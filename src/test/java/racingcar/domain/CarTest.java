@@ -3,12 +3,14 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
 
 	@Test
-	public void 자동차_전진() {
+	@DisplayName("자동차 전진")
+	public void goTest() {
 		Car car = Car.from("pobi");
 		car.move(4);
 
@@ -16,7 +18,8 @@ public class CarTest {
 	}
 
 	@Test
-	public void 자동차_정지() {
+	@DisplayName("자동차 정지")
+	public void stopTest() {
 		Car car = Car.from("pobi");
 		car.move(2);
 
@@ -24,12 +27,14 @@ public class CarTest {
 	}
 
 	@Test
-	public void 자동차_이름_길이_정상() {
+	@DisplayName("자동차 이름길이 정상")
+	public void correctLengthOfNameTest() {
 		Car.from("lala");
 	}
 
 	@Test
-	public void 자동차_이름_길이_초과_예외() {
+	@DisplayName("자동차 이름 길이 초과 예외")
+	public void overLengthOfNameTest() {
 		Assertions.assertThatThrownBy(() -> {
 				Car.from("lalaland");
 			}).isInstanceOf(IllegalArgumentException.class)
@@ -37,7 +42,8 @@ public class CarTest {
 	}
 
 	@Test
-	public void 자동차_이름_길이_빈문자열_예외() {
+	@DisplayName("자동차 이름 길이 빈문자열 예외")
+	public void emptyNameTest() {
 		Assertions.assertThatThrownBy(() -> {
 				Car.from("");
 			}).isInstanceOf(IllegalArgumentException.class)

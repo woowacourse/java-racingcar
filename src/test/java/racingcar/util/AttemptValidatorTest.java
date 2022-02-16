@@ -1,6 +1,7 @@
 package racingcar.util;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcar.validator.AttemptValidator;
@@ -8,12 +9,14 @@ import racingcar.validator.AttemptValidator;
 public class AttemptValidatorTest {
 
 	@Test
-	public void 시도횟수_타입_정상() {
+	@DisplayName("시도횟수 타입 정상")
+	public void correctTest() {
 		AttemptValidator.check("4");
 	}
 
 	@Test
-	public void 시도횟수_타입_예외() {
+	@DisplayName("시도횟수 타입 예외")
+	public void typeErrorTest() {
 		Assertions.assertThatThrownBy(() -> {
 				AttemptValidator.check("라라");
 			}).isInstanceOf(IllegalArgumentException.class)
@@ -21,7 +24,8 @@ public class AttemptValidatorTest {
 	}
 
 	@Test
-	public void 시도횟수_범위_예외() {
+	@DisplayName("시도횟수 범위 예외")
+	public void rangeErrorTest() {
 		Assertions.assertThatThrownBy(() -> {
 				AttemptValidator.check("-1");
 			}).isInstanceOf(IllegalArgumentException.class)

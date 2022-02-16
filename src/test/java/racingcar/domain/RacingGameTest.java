@@ -11,7 +11,7 @@ public class RacingGameTest {
 
 	@Test
 	@DisplayName("자동차 경주 게임 시작")
-	public void start_정상() {
+	public void startTest() {
 		List<Car> cars = List.of(Car.from("lala"), Car.from("pobi"));
 		Attempt attempt = Attempt.fromStringValue("2");
 		RacingGame game = RacingGame.of(cars, attempt);

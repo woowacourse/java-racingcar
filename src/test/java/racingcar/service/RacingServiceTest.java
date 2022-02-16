@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.CarDto;
@@ -24,7 +25,8 @@ public class RacingServiceTest {
 	}
 
 	@Test
-	public void 우승자_한명_계산() {
+	@DisplayName("우승자 한명 계산")
+	public void findOneWinnerTest() {
 		racingService.registerCars(List.of(CarDto.of(LALA, 1000)));
 		List<CarDto> winnerCars = racingService.findWinnerCars();
 		assertThat(winnerCars.size()).isEqualTo(1);
@@ -37,7 +39,8 @@ public class RacingServiceTest {
 	}
 
 	@Test
-	public void 우승자_여러명_계산() {
+	@DisplayName("우승자 여러명 계산")
+	public void findSomeWinnerTest() {
 		List<CarDto> winnerCars = racingService.findWinnerCars();
 		assertThat(winnerCars.size()).isEqualTo(2);
 
