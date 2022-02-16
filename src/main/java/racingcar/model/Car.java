@@ -3,6 +3,8 @@ package racingcar.model;
 import java.util.List;
 import java.util.Objects;
 
+import racingcar.service.CheckingService;
+
 public class Car implements Comparable<Car> {
 	public static final String ONE_STEP = "-";
 	public static final String COLON = " : ";
@@ -11,6 +13,7 @@ public class Car implements Comparable<Car> {
 	private int position = 0;
 
 	public Car(String name) {
+		CheckingService.checkCarNameLength(name);
 		this.name = name;
 	}
 

@@ -2,8 +2,6 @@ package racingcar.servicetest;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import racingcar.service.CheckingService;
@@ -23,7 +21,7 @@ public class CheckingServiceTest {
 
 	@Test
 	public void 자동차_이름_예외처리() {
-		assertThatThrownBy(() -> CheckingService.checkCarNamesLength(Arrays.asList("배카라쿠배네", "아스피")))
+		assertThatThrownBy(() -> CheckingService.checkCarNameLength("배카라쿠배네"))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 

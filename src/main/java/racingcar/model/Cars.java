@@ -1,16 +1,41 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
+import racingcar.service.CheckingService;
 import racingcar.service.RandomNumberService;
 
 public class Cars {
+	public static final String COMMA_DELIMITER = ",";
 	private List<Car> cars;
+
+	public Cars(String inputCarNames) {
+		List<String> carNames = splitCarNames(inputCarNames);
+		CheckingService.checkCarNamesBlank(inputCarNames);
+		cars = toCar(carNames);
+	}
 
 	public Cars(List<Car> cars) {
 		this.cars = cars;
+	}
+
+	private List<String> splitCarNames(String carNames) {
+		return Arrays.asList(carNames.split(COMMA_DELIMITER));
+	}
+
+	private List<Car> toCar(List<String> carNames) {
+		List<Car> cars = new ArrayList<Car>();
+		try {
+			carNames.stream()
+				.forEach(carName -> cars.add(new Car(carName)));
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+		return cars;
 	}
 
 	public void moveCars() {
@@ -36,5 +61,17 @@ public class Cars {
 		return cars.stream()
 			.max(Car::compareTo)
 			.orElseThrow(() -> new IllegalArgumentException());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Cars cars = (Cars)obj;
+
+		return this.cars.equals(cars.cars);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.cars);
 	}
 }
