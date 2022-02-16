@@ -33,8 +33,7 @@ public class RacingServiceTest {
         cars.add(carC);
         cars.add(carD);
 
-        racingService = new RacingService();
-        racingService.generateCarsByTheseCars(cars);
+        racingService = new RacingService(cars);
     }
 
     @Test

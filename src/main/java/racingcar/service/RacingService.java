@@ -18,14 +18,14 @@ public class RacingService {
         cars = new ArrayList<>();
     }
 
+    public RacingService(List<Car> cars) {
+        this.cars = cars;
+    }
+
     public void generateCars(List<String> carNames) {
         carNames.stream()
             .map(Car::new)
             .forEach(cars::add);
-    }
-
-    public void generateCarsByTheseCars(List<Car> cars) {
-        this.cars = cars;
     }
 
     public List<Car> findWinners() {
