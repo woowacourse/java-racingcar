@@ -35,7 +35,6 @@ public class RacingCarValidatorTest {
 			new Car("소니",movingPolicy)
 		);
 
-		RacingCarValidator.validateCars(cars);
 		assertThatThrownBy(() ->{
 			RacingCarValidator.validateCars(cars);
 		}).isInstanceOf(IllegalArgumentException.class);
