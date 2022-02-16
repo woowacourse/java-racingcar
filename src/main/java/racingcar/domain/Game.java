@@ -13,11 +13,17 @@ public class Game {
 
     private static final int RANDOM_RANGE = 10;
 
+    private String[] carNames;
+    private int tryNo;
+
+    public Game(String[] carNames, int tryNo) {
+        this.carNames = carNames;
+        this.tryNo = tryNo;
+    }
+
     public void start() {
-        String[] names = inputCarNames();
-        List<Car> cars = generateCar(names);
-        int coin = inputCoin();
-        race(coin, cars);
+        List<Car> cars = generateCar(carNames);
+        race(tryNo, cars);
         List<String> winners = getWinner(cars);
         output.printWinner(winners);
     }
@@ -76,13 +82,4 @@ public class Game {
             .collect(Collectors.toList());
     }
 
-    private String[] inputCarNames() {
-        output.inputCarNameMessage();
-        return input.getNames();
-    }
-
-    private int inputCoin() {
-        output.inputCoinMessage();
-        return input.getCoin();
-    }
 }

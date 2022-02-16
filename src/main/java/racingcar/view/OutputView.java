@@ -9,14 +9,6 @@ public class OutputView {
     private static final String POSITION_FLAG = "-";
     private static final String JOIN_REGEX = ", ";
 
-    public void inputCarNameMessage() {
-        System.out.println(Constant.PRINT_INPUT_CAR_NAME_MESSAGE);
-    }
-
-    public void inputCoinMessage() {
-        System.out.println(Constant.PRINT_INPUT_COIN_MESSAGE);
-    }
-
     public void printResultMessage() {
         System.out.println(Constant.PRINT_RESULT_MESSAGE);
     }
