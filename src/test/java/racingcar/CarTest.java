@@ -9,8 +9,6 @@ import racingcar.domain.Car;
 import racingcar.domain.util.CarFactory;
 
 public class CarTest {
-	private static final String ERROR_MESSAGE = "[ERROR]";
-
 	@Test
 	@DisplayName("CarFactory 통한 차 여러대 생성")
 	public void generate_cars_through_carFactory() {
@@ -23,7 +21,7 @@ public class CarTest {
 	public void name_longer_then_5_exception() {
 		assertThatThrownBy(() -> new Car("abcdef"))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageStartingWith(ERROR_MESSAGE);
+			.hasMessage("[ERROR] 이름은 5글자를 초과할 수 없습니다.");
 	}
 
 	@Test
@@ -31,6 +29,6 @@ public class CarTest {
 	public void name_blank_exception() {
 		assertThatThrownBy(() -> new Car(""))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageStartingWith(ERROR_MESSAGE);
+			.hasMessageStartingWith("[ERROR] 이름은 공백일 수 없습니다.");
 	}
 }
