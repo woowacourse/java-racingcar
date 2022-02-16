@@ -3,12 +3,14 @@ package racingcar.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.dto.ResponseRoundResultDto;
 
 public class CarsTest {
 
@@ -25,14 +27,13 @@ public class CarsTest {
     public void repeatRaceBy_test(String[] nameInput, String attemptInput) throws Exception {
         Cars cars = new Cars(nameInput);
         Attempt attempt = new Attempt(attemptInput);
-        RoundResults result = cars.repeatRaceBy(attempt);
-        for (int i = 0; i < Integer.parseInt(attemptInput); i++) {
-            assertThat(result.hasResult()).isTrue();
-            RoundResult roundResult = result.poll();
+        List<RoundResult> results = cars.repeatRaceBy(attempt);
+
+        assertThat(results).hasSize(Integer.parseInt(attemptInput));
+        for (RoundResult roundResult : results) {
             assertThat(roundResult.getNames()).hasSize(nameInput.length);
             assertThat(roundResult.getNames()).contains(nameInput);
         }
-        assertThat(result.hasResult()).isFalse();
     }
 
     private static Stream<Arguments> repeatRaceByTestSet() {

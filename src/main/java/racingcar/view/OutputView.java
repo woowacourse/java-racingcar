@@ -1,9 +1,10 @@
 package racingcar.view;
 
 import java.util.stream.Collectors;
+import racingcar.vo.Car;
 import racingcar.vo.RoundResult;
-import racingcar.vo.RoundResults;
-import racingcar.vo.Winners;
+import racingcar.dto.ResponseRoundResultDto;
+import racingcar.dto.ResponseWinnersDto;
 
 public class OutputView {
 
@@ -14,10 +15,10 @@ public class OutputView {
     private static final String WINNERS_DELIMITER = ",";
     private static final String WINNER_MESSAGE_FORM = "%s가 최종 우승했습니다.";
 
-    public static void printRaceResult(RoundResults results) {
+    public static void printRaceResult(ResponseRoundResultDto dto) {
         System.out.println(RACE_RESULT_MESSAGE);
-        while (results.hasResult()) {
-            printResult(results.poll());
+        for (RoundResult result : dto.getResults()) {
+            printResult(result);
         }
     }
 
@@ -37,8 +38,8 @@ public class OutputView {
         System.out.println(builder.toString());
     }
 
-    public static void printWinners(Winners winners) {
-        String winnersString = winners.getWinners().stream()
+    public static void printWinners(ResponseWinnersDto dto) {
+        String winnersString = dto.getWinners().stream()
                 .map(car -> car.getName().get())
                 .collect(Collectors.joining(WINNERS_DELIMITER));
         System.out.printf(WINNER_MESSAGE_FORM, winnersString);

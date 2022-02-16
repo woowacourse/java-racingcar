@@ -24,8 +24,8 @@ public class Cars {
         }
     }
 
-    public RoundResults repeatRaceBy(Attempt attempt) {
-        RoundResults results = new RoundResults();
+    public List<RoundResult> repeatRaceBy(Attempt attempt) {
+        List<RoundResult> results = new ArrayList<>();
         while (attempt.isLeft()) {
             results.add(raceAll());
             attempt.decrease();
@@ -42,13 +42,13 @@ public class Cars {
         return result;
     }
 
-    public Winners findWinners() {
+    public List<Car> findWinners() {
         Car maxPositionCar = cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(() -> new NoSuchElementException(NO_SUCH_CAR_ERROR_MESSAGE));
-        return new Winners(cars.stream()
+        return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     private void validateDuplicateCarName(Car car) {

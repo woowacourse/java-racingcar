@@ -1,12 +1,13 @@
-package racingcar.vo;
+package racingcar.dto;
 
 import java.util.List;
+import racingcar.vo.Car;
 
-public class Winners {
+public class ResponseWinnersDto {
 
     private List<Car> winners;
 
-    public Winners(List<Car> winners) {
+    public ResponseWinnersDto(List<Car> winners) {
         this.winners = winners;
     }
 

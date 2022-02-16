@@ -125,4 +125,9 @@
   
 ### step2 MVC 패턴으로 리팩터링 해보기
 
-- Winners에서 처리하던 출력 세부사항을 OutputView로 이동
+- [x] Winners에서 처리하던 출력 세부사항을 OutputView로 이동
+- [x] DTO를 이용하여 데이터를 이동
+    - [x] View -> Controller : RequestXXXDto
+    - [x] View <- Controller : ResponseXXXDto
+- 자동차 이름 입력을 나누는 RacingCar.splitCarNames를 InputView에서 하도록 수정(View에서 Cars까지 만들어서 Controller에게 반환)
+

@@ -13,7 +13,7 @@ public class InputViewTest {
     public void requestCarName_empty_name_input_test(String input) throws Exception {
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
-        assertThatThrownBy(() -> InputView.requestCarName())
+        assertThatThrownBy(() -> InputView.requestCars())
                 .isInstanceOf(RuntimeException.class);
     }
 
