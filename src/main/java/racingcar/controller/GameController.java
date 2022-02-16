@@ -15,7 +15,7 @@ public class GameController {
 
         runRounds(rounds, cars);
 
-        OutputView.printChampionList(cars);
+        OutputView.printChampionList(cars.getChampions());
     }
 
     private String[] split(String input) {
@@ -41,7 +41,7 @@ public class GameController {
         OutputView.printResultMessage();
         for (int i = 0; i < rounds; i++) {
             cars.moveAll();
-            OutputView.printRoundResult(cars);
+            OutputView.printRoundResult(cars.getCars());
         }
     }
 }
