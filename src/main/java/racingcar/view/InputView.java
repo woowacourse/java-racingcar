@@ -26,6 +26,7 @@ public class InputView {
 	private static String[] getCarNames() {
 		System.out.println(INPUT_CAR_NAMES_MESSAGE);
 		String input = scanner.nextLine();
+
 		return input.split(CAR_DELIMITER);
 	}
 

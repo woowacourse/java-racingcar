@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Car {
     private static final String NAME_INPUT_ERROR = "[ERROR] 이름은 공백, 빈 값, null일 수 없습니다.";
     private static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 5자를 초과할 수 없습니다.";
@@ -40,5 +42,20 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Car car = (Car)o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
