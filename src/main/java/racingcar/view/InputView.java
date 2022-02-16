@@ -24,11 +24,8 @@ public class InputView {
     }
 
     public static int inputTryCount() {
-        try {
-            System.out.println(INPUT_TRY_COUNT_MESSAGE);
-            return CONSOLE.nextInt();
-        } catch (InputMismatchException e) {
-            throw new NumberFormatException("시도횟수는 숫자이어야 합니다.");
-        }
+        String tryCountText = CONSOLE.nextLine();
+        Validator.validateTryCount(tryCountText);
+        return Integer.parseInt(tryCountText);
     }
 }

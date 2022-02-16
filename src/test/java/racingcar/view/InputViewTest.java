@@ -9,6 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.RacingGame;
 
 class InputViewTest {
 
@@ -30,5 +32,14 @@ class InputViewTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> Validator.validateCarNames(input))
             .withMessageMatching("자동차 입력 값이 존재해야한다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-1"})
+    @DisplayName("입력한 시도횟수가 0이하이면 예외가 발생한다.")
+    void negativeCount(String tryCountText) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> Validator.validateTryCount(tryCountText))
+            .withMessageMatching("시도횟수는 0이하의 값이 들어올 수 없다.");
     }
 }

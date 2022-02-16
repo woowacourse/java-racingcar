@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
+import racingcar.view.Validator;
 
 public class RacingGame {
 
@@ -11,14 +12,8 @@ public class RacingGame {
 
     public RacingGame(RacingCars racingCars, int leftCount) {
         this.racingCars = racingCars;
-        checkPositiveCount(leftCount);
+        Validator.checkTryCountPositive(leftCount);
         this.leftCount = leftCount;
-    }
-
-    private void checkPositiveCount(int leftCount) {
-        if (leftCount <= END_COUNT) {
-            throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
-        }
     }
 
     public void race() {
