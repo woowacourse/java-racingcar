@@ -17,7 +17,7 @@ public class Car implements Comparable<Car> {
 		}
 	}
 
-	public boolean isMovable(int randomNumber) {
+	private boolean isMovable(int randomNumber) {
 		return randomNumber >= MOVING_CAR_BOUND;
 	}
 
