@@ -42,7 +42,7 @@ public class RacingGame {
         output.printResultMessage();
         while (repeats-- > 0) {
             cars.startOneTurn();
-            output.printTurnResult(cars.getCars());
+            output.printTurnResult(cars.turnResult());
         }
         output.printWinners(cars.findWinner());
     }

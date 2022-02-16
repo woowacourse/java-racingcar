@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    private static final String CAR_POSITION = "-";
+    private static final String NAME_POSITION_SPLITTER = " : ";
+
     private final List<Car> cars;
     private final RandomNumber randomNumber;
 
@@ -47,7 +50,18 @@ public class Cars {
                 .collect(Collectors.joining(", "));
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<String> turnResult() {
+        return cars.stream()
+                .map(this::carTurnResult)
+                .collect(Collectors.toList());
+    }
+
+    private String carTurnResult(Car car) {
+        StringBuilder result = new StringBuilder();
+        result.append(car.getName() + NAME_POSITION_SPLITTER);
+        for (int i = 0; i < car.getPosition(); i++) {
+            result.append(CAR_POSITION);
+        }
+        return result.toString();
     }
 }
