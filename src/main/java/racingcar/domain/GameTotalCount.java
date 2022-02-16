@@ -2,6 +2,8 @@ package racingcar.domain;
 
 public class GameTotalCount {
 
+    private static final int GAME_END_CONDITION = 0;
+
     private int totalAttemptCount;
 
     public GameTotalCount(String attempt) {
@@ -12,11 +14,20 @@ public class GameTotalCount {
         return totalAttemptCount;
     }
 
+    public boolean isContinue() {
+        if (totalAttemptCount == GAME_END_CONDITION) {
+            return false;
+        }
+
+        totalAttemptCount = totalAttemptCount -1;
+
+        return true;
+    }
+
     private void initTotalAttempt(String attempt) throws IllegalArgumentException {
         int validateAttempt = validateAttempt(attempt);
         this.totalAttemptCount = validateAttempt;
     }
-
 
     private int validateAttempt(String attempt) {
         int number = translateVerifiedInteger(attempt);

@@ -13,8 +13,6 @@ import static racingcar.view.OutputView.*;
 
 public class RacingGame {
 
-    private static final int ZERO = 0;
-
     private Cars cars;
     private GameTotalCount gameTotalCount;
 
@@ -22,9 +20,7 @@ public class RacingGame {
         initRacingCarGame();
         startMessage();
 
-        int totalAttemptCount = gameTotalCount.getTotalAttemptCount();
-
-        while (totalAttemptCount --> ZERO) {
+        while (gameTotalCount.isContinue()) {
             run();
         }
 
