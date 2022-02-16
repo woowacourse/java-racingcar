@@ -18,6 +18,10 @@ public class ConsoleInputView implements InputView{
     public int getCount() {
         System.out.println(COUNT_INPUT_MESSAGE);
         String input = scanner.nextLine();
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자를 입력해주세요");
+        }
     }
 }

@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.service.RacingGame;
+import racingcar.utils.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -33,26 +34,21 @@ public class CarController {
     }
 
     private List<Car> makeCars(List<String> names) {
-        return names.stream()
+        List<Car> cars = names.stream()
                 .map(Car::new)
                 .collect(toList());
+        Validator.checkSinglePlayer(cars);
+        Validator.checkDuplicateName(cars);
+        return cars;
     }
 
     private int getCountFromUser() {
-        try {
-            return inputView.getCount();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getCountFromUser();
-        }
+        int count = inputView.getCount();
+        Validator.checkCountRange(count);
+        return count;
     }
 
     private List<String> getCarNamesFromUser() {
-        try {
-            return inputView.getCarNames();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getCarNamesFromUser();
-        }
+        return inputView.getCarNames();
     }
 }

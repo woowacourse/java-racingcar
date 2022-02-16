@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
     private static final int INIT_POSITION = 1;
     private static final int LOWER_MOVABLE_BOUND = 4;
@@ -36,16 +38,29 @@ public class Car implements Comparable<Car> {
         return this.position == competitor.position;
     }
 
-    @Override
-    public int compareTo(Car o) {
-        return position - o.position;
-    }
-
     public String getName() {
         return name;
     }
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return position - o.position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return name.equals(car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
