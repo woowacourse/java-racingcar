@@ -7,7 +7,7 @@ import racingcar.domain.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RaceControllerTest {
+public class RacingGameTest {
     RacingGame raceController;
 
     @BeforeEach
