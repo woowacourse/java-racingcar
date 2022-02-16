@@ -11,14 +11,13 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputView {
-	private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 	private static final Pattern VALIDATE_NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
 	private static final String DELIMITER_REGEX = ",";
 
 	public static List<String> getCarNames() {
 		List<String> carNames = new ArrayList<>();
 		String line = "";
-		try {
+		try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
 			line = bufferedReader.readLine();
 			validateEmptyString(line);
 			carNames = splitCarNames(line);
@@ -30,8 +29,8 @@ public class InputView {
 	}
 
 	public static int getNumberOfGames() {
-		int numberOfGames = 0;
-		try {
+		int numberOfGames;
+		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))){
 			String line = bufferedReader.readLine();
 			validateEmptyString(line);
 			validateNumber(line);
