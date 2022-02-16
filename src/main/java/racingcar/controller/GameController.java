@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.Name;
 import racingcar.util.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -31,7 +32,7 @@ public class GameController {
     private void inputCarNames() {
         InputView.inputCarNames();
         String carNamesInput = InputView.getInput();
-        List<String> carNames = splitCars(carNamesInput);
+        List<Name> carNames = splitCars(carNamesInput);
         cars = initCars(carNames);
     }
 
@@ -41,18 +42,17 @@ public class GameController {
         trialNum = convertToInteger(trialNumInput);
     }
 
-    public List<String> splitCars(String carNamesInput) {
-        InputValidator.validateNameInput(carNamesInput);
-        String carNamesWithoutSpace = carNamesInput.replaceAll(SPACE, BLANK);
-        List<String> carNames = Arrays.asList(carNamesWithoutSpace.split(COMMA));
-        InputValidator.validateCarName(carNames);
-        InputValidator.validateDuplicateName(carNames);
-
-        return carNames;
+    public List<Name> splitCars(String carNamesInput) {
+        InputValidator.validateBlank(carNamesInput);
+        String inputWithoutSpace = carNamesInput.replaceAll(SPACE, BLANK);
+        return Arrays.stream(inputWithoutSpace.split(COMMA))
+                .map(Name::new)
+                .collect(Collectors.toList());
     }
 
-    public Cars initCars(List<String> carNames) {
+    public Cars initCars(List<Name> carNames) {
         return new Cars(carNames.stream()
+                .map(Name::getName)
                 .map(Car::new)
                 .collect(Collectors.toList()));
     }

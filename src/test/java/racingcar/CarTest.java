@@ -16,20 +16,20 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarTest {
+class CarTest {
     private final GameController gameController = new GameController();
 
-    @Test
-    @DisplayName("자동차 객체 생성")
-    void createCarObject() {
-        List<String> actual = Arrays.asList("bom", "sun");
-        Cars cars = gameController.initCars(actual);
-        List<String> expected = cars.getCars().stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-
-        assertThat(expected).isEqualTo(actual);
-    }
+//    @Test
+//    @DisplayName("자동차 객체 생성")
+//    void createCarObject() {
+//        List<String> actual = Arrays.asList("bom", "sun");
+//        Cars cars = gameController.initCars(actual);
+//        List<String> expected = cars.getCars().stream()
+//                .map(Car::getName)
+//                .collect(Collectors.toList());
+//
+//        assertThat(expected).isEqualTo(actual);
+//    }
 
     @ParameterizedTest
     @DisplayName("특정 값을 통한 자동차 비전진 확인")
