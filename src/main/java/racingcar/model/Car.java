@@ -22,6 +22,31 @@ public class Car implements Comparable<Car> {
 		this.position = position;
 	}
 
+	public void move(int selectedNumber) {
+		if (checkMovingCondition(selectedNumber)) {
+			position += 1;
+		}
+	}
+
+	public boolean checkMovingCondition(int selectedNumber) {
+		return selectedNumber >= MOVING_CONDITION_NUMBER;
+	}
+
+	public boolean isSamePosition(Car otherCar) {
+		return this.position == otherCar.position;
+	}
+
+	public void appendName(List<String> winnerNames) {
+		winnerNames.add(name);
+	}
+
+	public String testMoveFunction(int expectedPosition) {
+		if (expectedPosition == this.position) {
+			return "Success!!";
+		}
+		return "Fail!!";
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder line = new StringBuilder();
@@ -47,28 +72,4 @@ public class Car implements Comparable<Car> {
 		return position - o.position;
 	}
 
-	public void move(int selectedNumber) {
-		if (checkMovingCondition(selectedNumber)) {
-			position += 1;
-		}
-	}
-
-	public boolean checkMovingCondition(int selectedNumber) {
-		return selectedNumber >= MOVING_CONDITION_NUMBER;
-	}
-
-	public boolean isSamePosition(Car otherCar) {
-		return this.position == otherCar.position;
-	}
-
-	public void appendName(List<String> winnerNames) {
-		winnerNames.add(name);
-	}
-
-	public String testMoveFunction(int expectedPosition) {
-		if (expectedPosition == this.position) {
-			return "Success!!";
-		}
-		return "Fail!!";
-	}
 }
