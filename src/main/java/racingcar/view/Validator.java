@@ -11,19 +11,19 @@ public class Validator {
         checkCarNamesLength(carNames.split(CAR_NAME_DELIMITER));
     }
 
-    public static void checkCarNamesEmpty(String stringNames) {
+    private static void checkCarNamesEmpty(String stringNames) {
         if (stringNames == null || stringNames.isEmpty()) {
             throw new IllegalArgumentException("자동차 입력 값이 존재해야한다.");
         }
     }
 
-    public static void checkCarNamesLength(String[] carNameArray) {
+    private static void checkCarNamesLength(String[] carNameArray) {
         for(String carName : carNameArray) {
             checkCarNameLength(carName);
         }
     }
 
-    public static void checkCarNameLength(String carName) {
+    private static void checkCarNameLength(String carName) {
         if(carName.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없다.");
         }
@@ -42,7 +42,7 @@ public class Validator {
         }
     }
 
-    public static void checkTryCountPositive(int tryCount) {
+    private static void checkTryCountPositive(int tryCount) {
         if(tryCount < MIN_TRY_COUNT) {
             throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
         }
