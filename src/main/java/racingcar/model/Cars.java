@@ -56,21 +56,9 @@ public class Cars {
 	}
 
 	public void moveCars() {
-		ArrayList<Integer> randomNumberArray = generateRandNumArray(cars.size());
-
-		for (int index = ZERO; index < cars.size(); index++) {
-			cars.get(index).movePosition(randomNumberArray.get(index));
+		for (Car car : cars) {
+			car.movePosition(generateRandNum());
 		}
-	}
-
-	private ArrayList<Integer> generateRandNumArray(int size) {
-		ArrayList<Integer> randomNumberArray = new ArrayList<>();
-
-		for (int index = ZERO; index < size; index++) {
-			randomNumberArray.add(generateRandNum());
-		}
-
-		return randomNumberArray;
 	}
 
 	private int generateRandNum() {
