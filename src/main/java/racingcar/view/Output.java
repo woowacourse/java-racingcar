@@ -25,6 +25,7 @@ public class Output {
             System.out.print(POSITION_WORD);
         }
     }
+
     public static void printResultWord() {
         System.out.println(PRINT_RESULT);
     }

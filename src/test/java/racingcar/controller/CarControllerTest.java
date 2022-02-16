@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import racingcar.domain.Car;
-import racingcar.view.Output;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CarControllerTest {
@@ -27,9 +25,9 @@ public class CarControllerTest {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
 
-        Car carOne = new Car("one",1);
-        Car carTwo = new Car("two",2);
-        Car carThree = new Car("three",3);
+        Car carOne = new Car("one", 1);
+        Car carTwo = new Car("two", 2);
+        Car carThree = new Car("three", 3);
         cars.add(carOne);
         cars.add(carTwo);
         cars.add(carThree);
