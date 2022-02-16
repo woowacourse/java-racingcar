@@ -1,5 +1,6 @@
 package racingcar.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.RandomNumber;
@@ -11,10 +12,17 @@ import static org.mockito.Mockito.when;
 @DisplayName("Car 클래스를 테스트한다.")
 class CarTest {
 
+	Car car;
+
+	@BeforeEach
+	void init() {
+		car = new Car("a");
+	}
+
+
 	@Test
 	@DisplayName("자동차가 앞으로 전진하는지 확인한다")
 	void goForward() {
-		Car car = new Car("a");
 		int exPosition = car.getPosition();
 
 		car.goForward(4);
@@ -25,11 +33,19 @@ class CarTest {
 	@Test
 	@DisplayName("자동차가 앞으로 전진하지 않는지 확인한다")
 	void dontGoForward() {
-		Car car = new Car("a");
 		int exPosition = car.getPosition();
 
 		car.goForward(3);
 
 		assertThat(exPosition).isEqualTo(car.getPosition());
+	}
+
+	@Test
+	@DisplayName("자동차가 우승자가 맞는지 확인한다")
+	void isWinner() {
+		car.goForward(4);
+		boolean result = car.isWinner(1);
+
+		assertThat(result).isTrue();
 	}
 }
