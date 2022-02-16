@@ -6,6 +6,7 @@ import java.util.List;
 
 public class RacingCars {
 
+    private static final String WINNER_NAME_DELIMITER = ", ";
     private final List<RacingCar> racingCars;
 
     public RacingCars() {
@@ -26,7 +27,31 @@ public class RacingCars {
         return racingCars;
     }
 
-    public RacingCar getRacingCarWithMaxPosition() {
+
+    public String getWinnersName() {
+        ArrayList<RacingCar> winners = getWinners();
+        ArrayList<String> winnersName = new ArrayList<>();
+        for (RacingCar winner : winners) {
+            winnersName.add(winner.getName());
+        }
+        return String.join(WINNER_NAME_DELIMITER, winnersName);
+    }
+
+    private ArrayList<RacingCar> getWinners() {
+
+        RacingCar racingCarOfMaxPosition = getRacingCarWithMaxPosition();
+
+        ArrayList<RacingCar> winners = new ArrayList<>();
+
+        for (RacingCar racingCar : racingCars) {
+            if (racingCar.isSamePosition(racingCarOfMaxPosition)) {
+                winners.add(racingCar);
+            }
+        }
+        return winners;
+    }
+
+    private RacingCar getRacingCarWithMaxPosition() {
         return racingCars.stream().max(Comparator.comparingInt(RacingCar::getPosition)).get();
     }
 }

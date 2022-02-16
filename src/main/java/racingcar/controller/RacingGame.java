@@ -7,12 +7,8 @@ import racingcar.validator.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RacingGame {
 
-    private static final String WINNER_NAME_DELIMITER = ", ";
     private final RacingCars racingCars;
 
     public RacingGame() {
@@ -43,29 +39,7 @@ public class RacingGame {
     }
 
     public void finish() {
-        OutputView.printWinners(getWinnersName());
+        OutputView.printWinners(racingCars.getWinnersName());
     }
 
-    private String getWinnersName() {
-        ArrayList<RacingCar> winners = getWinners(racingCars);
-        ArrayList<String> winnersName = new ArrayList<>();
-        for (RacingCar winner : winners) {
-            winnersName.add(winner.getName());
-        }
-        return String.join(WINNER_NAME_DELIMITER, winnersName);
-    }
-
-    private ArrayList<RacingCar> getWinners(RacingCars racingCars) {
-
-        RacingCar racingCarOfMaxPosition = racingCars.getRacingCarWithMaxPosition();
-        List<RacingCar> racingCarList = racingCars.getRacingCars();
-        ArrayList<RacingCar> winners = new ArrayList<>();
-
-        for (RacingCar racingCar : racingCarList) {
-            if (racingCar.isSamePosition(racingCarOfMaxPosition)) {
-                winners.add(racingCar);
-            }
-        }
-        return winners;
-    }
 }

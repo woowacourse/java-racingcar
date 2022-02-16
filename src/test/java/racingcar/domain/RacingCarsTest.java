@@ -1,8 +1,11 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,6 +14,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class RacingCarsTest {
 
     private static final int CAR_SIZE = 3;
+    private static final String WINNER_NAME_DELIMITER = ", ";
+    private RacingCar racingCar1;
+    private RacingCar racingCar2;
+    private RacingCar racingCar3;
+    private List<RacingCar> racingCarList;
+
+    @BeforeEach
+    public void setUp() {
+        racingCar1 = RacingCar.generateRacingCar("pobi");
+        racingCar2 = RacingCar.generateRacingCar("crong");
+        racingCar3 = RacingCar.generateRacingCar("honux");
+        racingCarList = new ArrayList<>(Arrays.asList(racingCar1, racingCar2, racingCar3));
+    }
 
     @Test
     @DisplayName("입력한 이름이 객체로 생성되었는지 확인하는 테스트")
@@ -29,21 +45,31 @@ class RacingCarsTest {
 
     }
 
+    @Test
+    @DisplayName("위치가 제일 먼 자동차가 우승자인지 테스트")
+    public void getWinnersTest() {
+
+        racingCar2.goOrStay(5);
+        racingCar3.goOrStay(5);
+        racingCar3.goOrStay(7);
+
+        RacingCars racingCars = new RacingCars(racingCarList);
+        String winnersName = racingCars.getWinnersName();
+
+        assertThat(winnersName).isEqualTo(racingCar3.getName());
+    }
 
     @Test
-    @DisplayName("최대 거리 이동한 자동차를 뽑는 테스트")
-    void getRacingCarWithMaxPositionTest() {
+    @DisplayName("우승자가 여러명일때 쉼표를 이용해 구분하는 기능")
+    public void getWinnersNameTest() {
 
-        RacingCar racingCar1 = RacingCar.generateRacingCar("pobi");
-        RacingCar racingCar2 = RacingCar.generateRacingCar("crong");
-        RacingCar maxPositionCar = RacingCar.generateRacingCar("honux");
-        maxPositionCar.goOrStay(9);
-        maxPositionCar.goOrStay(9);
+        racingCar2.goOrStay(5);
+        racingCar3.goOrStay(7);
+        RacingCars racingCars = new RacingCars(racingCarList);
+        String actual = racingCars.getWinnersName();
+        String winnersName = racingCar2.getName() + WINNER_NAME_DELIMITER + racingCar3.getName();
 
-        RacingCars racingCars = new RacingCars(List.of(racingCar1, racingCar2, maxPositionCar));
-
-        RacingCar actual = racingCars.getRacingCarWithMaxPosition();
-        assertThat(actual).isEqualTo(maxPositionCar);
+        assertThat(actual).isEqualTo(winnersName);
     }
 
 }
