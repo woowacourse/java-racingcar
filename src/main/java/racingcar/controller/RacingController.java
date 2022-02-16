@@ -10,27 +10,28 @@ import static racingcar.view.OutputView.printWinners;
 import racingcar.domain.Cars;
 import racingcar.domain.TrialCount;
 import racingcar.domain.Winners;
+import racingcar.domain.movestrategy.MovingStrategy;
 import racingcar.domain.movestrategy.RandomMovingStrategy;
 
 public class RacingController {
 
     public void play() {
         try {
-            Cars cars = new Cars(insertName(), new RandomMovingStrategy());
+            Cars cars = new Cars(insertName());
             TrialCount trialCount = new TrialCount(insertNumber());
 
-            progressTurns(cars, trialCount);
+            progressTurns(cars, trialCount, new RandomMovingStrategy());
             printWinners(new Winners(cars));
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
         }
     }
 
-    private void progressTurns(Cars cars, TrialCount trialCount) {
+    private void progressTurns(Cars cars, TrialCount trialCount, MovingStrategy movingStrategy) {
         printResultMessage();
 
         for (int i = 0; i < trialCount.getTrialCount(); i++) {
-            cars.moveCars();
+            cars.moveCars(movingStrategy);
             printTurnResult(cars);
         }
     }

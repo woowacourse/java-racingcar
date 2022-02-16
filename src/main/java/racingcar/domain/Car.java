@@ -4,18 +4,15 @@ import racingcar.domain.movestrategy.MovingStrategy;
 
 public class Car {
 
-    private final MovingStrategy strategy;
     private final Name name;
     private int position;
 
-    public Car(final String name, final MovingStrategy strategy) {
-        this.strategy = strategy;
+    public Car(final String name) {
         this.name = new Name(name);
         position = 0;
     }
 
-    public Car(final String name, final MovingStrategy strategy, final int position) {
-        this.strategy = strategy;
+    public Car(final String name, final int position) {
         this.name = new Name(name);
         this.position = position;
     }
@@ -28,8 +25,8 @@ public class Car {
         return position;
     }
 
-    public void move() {
-        if (strategy.canMove()) {
+    public void move(MovingStrategy movingStrategy) {
+        if (movingStrategy.canMove()) {
             position++;
         }
     }

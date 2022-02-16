@@ -52,9 +52,9 @@ public class Cars {
         }
     }
 
-    public void moveCars() {
+    public void moveCars(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            car.move();
+            car.move(movingStrategy);
         }
     }
 
