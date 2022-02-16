@@ -1,6 +1,5 @@
 package racingcar.util;
 
-import java.util.Objects;
 import racingcar.domain.Car;
 
 import java.util.HashSet;
@@ -54,11 +53,11 @@ public class ValidatorUtils {
 
     public static boolean validateAndParseBoolean(String value) {
         validateBooleanString(value);
-        return Objects.equals(value, RESTART_GAME_INPUT);
+        return value.equalsIgnoreCase(RESTART_GAME_INPUT);
     }
 
     private static void validateBooleanString(String value) {
-        if (!value.equals(RESTART_GAME_INPUT) && !value.equals(END_PROGRAM_INPUT)) {
+        if (!value.equalsIgnoreCase(RESTART_GAME_INPUT) && !value.equalsIgnoreCase(END_PROGRAM_INPUT)) {
             throw new RuntimeException(INVALID_BOOLEAN_STRING_EXCEPTION);
         }
     }

@@ -106,16 +106,26 @@ public class ValidatorUtilsTest {
 
     @DisplayName("validateAndParseBoolean 메서드는 y 혹은 n을 인자로 받는 경우 참/거짓으로 변환하여 반환한다.")
     @Test
-    void validateAndParseBoolean_returnBooleanOnValidInput() {
-        boolean shouldBeTrue = validateAndParseBoolean("y");
-        boolean shouldBeFalse = validateAndParseBoolean("n");
+    void validateAndParseBoolean_returnTrueOnValidYesInput() {
+        boolean lowerCaseYes = validateAndParseBoolean("y");
+        boolean upperCaseYes = validateAndParseBoolean("Y");
 
-        assertThat(shouldBeTrue).isTrue();
-        assertThat(shouldBeFalse).isFalse();
+        assertThat(lowerCaseYes).isTrue();
+        assertThat(upperCaseYes).isTrue();
+    }
+
+    @DisplayName("validateAndParseBoolean 메서드는 y 혹은 n을 인자로 받는 경우 참/거짓으로 변환하여 반환한다.")
+    @Test
+    void validateAndParseBoolean_returnTrueOnValidNoInput() {
+        boolean lowerCaseNo = validateAndParseBoolean("n");
+        boolean upperCaseNo = validateAndParseBoolean("N");
+
+        assertThat(lowerCaseNo).isFalse();
+        assertThat(upperCaseNo).isFalse();
     }
 
     @DisplayName("validateAndParseBoolean 메서드는 y, n 이외의 문자열을 인자로 받는 경우 예외를 발생시킨다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(strings = {"", " ", "abc"})
     void validateAndParseBoolean_errorOnInvalidInput(String value) {
 
