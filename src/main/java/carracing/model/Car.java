@@ -13,9 +13,7 @@ public class Car {
 	private int position;
 
 	public Car(String name) {
-		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
-		}
+		validateName(name);
 		this.name = name;
 		this.position = 0;
 	}
@@ -36,5 +34,15 @@ public class Car {
 
 	public boolean isSamePosition(int position) {
 		return this.position == position;
+	}
+
+	private void validateName(String name) {
+		validateLength(name);
+	}
+
+	private void validateLength(String name) {
+		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
+			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
+		}
 	}
 }
