@@ -8,7 +8,7 @@ public class AttemptValidator {
 	private static final int MINIMUM_ATTEMPT_NUMBER = 1;
 	private static final String INTEGER_REGEX = "-?\\d+";
 
-	public static void checkFromInput(String input) {
+	public static void check(String input) {
 		if (!input.matches(INTEGER_REGEX)) {
 			throw new IllegalArgumentException(ATTEMPT_NUMBER_TYPE_ERROR_MESSAGE);
 		}

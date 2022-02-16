@@ -3,6 +3,7 @@ package racingcar.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.domain.Attempt;
 import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.domain.RacingGame;
@@ -22,8 +23,8 @@ public class RacingService {
 		carRepository.add(cars);
 	}
 
-	public List<CarDto> race(int round) {
-		RacingGame racingGame = RacingGame.of(carRepository.findCars(), round);
+	public List<CarDto> race(Attempt attempt) {
+		RacingGame racingGame = RacingGame.of(carRepository.findCars(), attempt);
 		List<Car> resultCars = racingGame.start(randomUtil);
 		carRepository.updateCars(resultCars);
 

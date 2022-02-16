@@ -8,20 +8,20 @@ public class RacingGame {
 
 	private static final int RANDOM_VALUE_RANGE = 10;
 
-	private List<Car> cars;
-	private int round;
+	private final List<Car> cars;
+	private final Attempt attempt;
 
-	private RacingGame(List<Car> cars, int round) {
+	private RacingGame(List<Car> cars, Attempt attempt) {
 		this.cars = cars;
-		this.round = round;
+		this.attempt = attempt;
 	}
 
-	public static RacingGame of(List<Car> cars, int round) {
-		return new RacingGame(cars, round);
+	public static RacingGame of(List<Car> cars, Attempt attempt) {
+		return new RacingGame(cars, attempt);
 	}
 
 	public List<Car> start(RandomUtil randomUtil) {
-		for (int i = 0; i < round; i++) {
+		for (int i = 0; i < attempt.getNumber(); i++) {
 			playRound(randomUtil);
 		}
 

@@ -3,9 +3,9 @@ package racingcar.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.domain.Attempt;
 import racingcar.domain.CarDto;
 import racingcar.service.RacingService;
-import racingcar.validator.AttemptValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -16,22 +16,20 @@ public class RacingController {
 	public void start() {
 		racingService.registerCars(InputView.getCars());
 
-		int attemptNumber = inputAttemptNumber();
+		Attempt attempt = inputAttempt();
 		OutputView.printResultMessage();
-		play(attemptNumber);
+		play(attempt);
 
 		printRacingResult();
 	}
 
-	private int inputAttemptNumber() {
+	private Attempt inputAttempt() {
 		String attemptNumberInput = InputView.getAttemptNumber();
-		AttemptValidator.checkFromInput(attemptNumberInput);
-
-		return Integer.parseInt(attemptNumberInput);
+		return new Attempt(attemptNumberInput);
 	}
 
-	private void play(int attemptNumber) {
-		List<CarDto> carDtos = racingService.race(attemptNumber);
+	private void play(Attempt attempt) {
+		List<CarDto> carDtos = racingService.race(attempt);
 		OutputView.printRacingInfo(carDtos);
 
 	}
