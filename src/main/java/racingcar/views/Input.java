@@ -10,19 +10,15 @@ import racingcar.utils.RacingGameMessage;
 
 public class Input {
 
-	final Scanner scanner;
+	private static final Scanner scanner = new Scanner(System.in);
 
-	public Input(final Scanner scanner) {
-		this.scanner = scanner;
-	}
-
-	public List<String> inputValidNames() {
+	public static List<String> inputValidNames() {
 		final String names = inputNames();
 		return Arrays.stream(names.split(RacingGameMessage.CAR_NAME_DISTRIBUTOR))
 			.collect(Collectors.toList());
 	}
 
-	private String inputNames() {
+	private static String inputNames() {
 		try {
 			System.out.println(RacingGameMessage.INPUT_CAR_NAME);
 			final String names = scanner.next();
@@ -34,11 +30,11 @@ public class Input {
 		}
 	}
 
-	public int inputValidRepeats() {
+	public static int inputValidRepeats() {
 		return Integer.parseInt(inputRepeats());
 	}
 
-	private String inputRepeats() {
+	private static String inputRepeats() {
 		try {
 			System.out.println(RacingGameMessage.INPUT_REPEATS);
 			final String repeats = scanner.next();

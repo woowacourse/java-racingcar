@@ -12,13 +12,11 @@ import racingcar.views.Output;
 
 public class RacingGame {
 
-	private final Input input;
 	private final Output output;
 	private List<Car> cars;
 	private int repeats;
 
-	public RacingGame(final Input input, final Output output) {
-		this.input = input;
+	public RacingGame(final Output output) {
 		this.output = output;
 		cars = new ArrayList<>();
 		repeats = 0;
@@ -31,11 +29,11 @@ public class RacingGame {
 
 	private void inputValidData() {
 		createCar();
-		repeats = input.inputValidRepeats();
+		repeats = Input.inputValidRepeats();
 	}
 
 	private void createCar() {
-		final List<String> carNameList = input.inputValidNames();
+		final List<String> carNameList = Input.inputValidNames();
 		carNameList.forEach((carName) -> cars.add(new Car(new RandomNumber(), carName)));
 	}
 
