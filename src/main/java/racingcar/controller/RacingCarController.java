@@ -17,25 +17,25 @@ public class RacingCarController {
     }
 
     public void run() {
-        Cars cars = getCars();
-        race(cars, getCount());
+        Cars cars = createCars();
+        race(cars, createCount());
     }
 
-    private Cars getCars() {
+    private Cars createCars() {
         try {
             return new Cars(inputView.getCarNames(), new RandomMovingPolicy());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return getCars();
+            return createCars();
         }
     }
 
-    private Count getCount() {
+    private Count createCount() {
         try {
             return new Count(inputView.getCount());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return getCount();
+            return createCount();
         }
     }
 
