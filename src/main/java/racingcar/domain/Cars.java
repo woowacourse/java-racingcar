@@ -32,10 +32,11 @@ public class Cars {
         cars.forEach(car -> car.drive(numberGeneratePolicy.generateNumber()));
     }
 
-    public List<Car> getWinners() {
+    public List<CarDto> getWinners() {
         final Car maxPositionCar = findMaxPositionCar();
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
+                .map(car -> CarDto.from(car))
                 .collect(Collectors.toList());
     }
 

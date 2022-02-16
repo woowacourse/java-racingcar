@@ -22,9 +22,9 @@ class CarsTest {
 
         Cars cars = Cars.from(carList);
 
-        assertThat(cars.getDriveRecord().size()).isEqualTo(2);
-        assertThat(cars.getDriveRecord().get(0).getName()).isEqualTo(name1);
-        assertThat(cars.getDriveRecord().get(1).getName()).isEqualTo(name2);
+        assertThat(cars.getCurrentCars().size()).isEqualTo(2);
+        assertThat(cars.getCurrentCars().get(0).getName()).isEqualTo(name1);
+        assertThat(cars.getCurrentCars().get(1).getName()).isEqualTo(name2);
     }
 
     @ParameterizedTest
