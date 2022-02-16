@@ -9,10 +9,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CarNameValidatorTest {
 
-    @Test
-    void checkCarNames() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    void checkCarNames(String input) {
         assertThatThrownBy(() ->
-            CarNameValidator.checkCarNames(""))
+            CarNameValidator.checkCarNames(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("공백일 수 없습니다.");
     }
