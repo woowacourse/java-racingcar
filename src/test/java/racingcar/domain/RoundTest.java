@@ -24,7 +24,6 @@ class RoundTest {
     void invalid_round_test(int round) {
         assertThatThrownBy(() -> Round.fromInput(round))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
 
     @ParameterizedTest
