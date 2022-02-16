@@ -13,6 +13,7 @@ public class RacingGame {
 
     private final List<Car> cars;
     private int count;
+
     public RacingGame(List<Car> cars, int count) {
         this.cars = cars;
         this.count = count;
