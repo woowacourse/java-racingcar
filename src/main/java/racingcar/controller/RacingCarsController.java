@@ -5,17 +5,23 @@ import static racingcar.view.Output.*;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
+import racingcar.model.Cars;
+import racingcar.model.RoundCount;
 import racingcar.service.RacingCarService;
-import racingcar.utlis.Convertor;
-import racingcar.validator.CountValidator;
 import racingcar.validator.NameValidator;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
 public class RacingCarsController {
 
-	private int roundCount = 0;
-	private final RacingCarService racingCarService = new RacingCarService(new ArrayList<>());
+	private RoundCount roundCount;
+	private Cars cars;
+	private RacingCarService racingCarService;
+
+	public RacingCarsController() {
+		cars = new Cars();
+		racingCarService = new RacingCarService(new ArrayList<>());
+	}
 
 	public void start() {
 		requestCarNames();
@@ -27,7 +33,6 @@ public class RacingCarsController {
 	private void requestCarNames() {
 		String carNames = Input.inputCarNames();
 		try {
-			NameValidator.checkNull(carNames);
 			saveCarNames(carNames);
 		} catch (Exception exception) {
 			printError(exception.getMessage());
@@ -45,17 +50,10 @@ public class RacingCarsController {
 	}
 
 	private void requestCount() {
-		String count = Input.inputCount();
-		validateCount(count);
-	}
-
-	private void validateCount(String count) {
 		try {
-			CountValidator.checkInputString(count);
-			this.roundCount = Convertor.convertStringToInteger(count);
-			CountValidator.checkCountIsZero(roundCount);
-		} catch (Exception exception) {
-			Output.printError(exception.getMessage());
+			roundCount=new RoundCount(Input.inputCount());
+		}catch (Exception exception){
+			printError(exception.getMessage());
 			requestCount();
 		}
 	}
@@ -66,7 +64,7 @@ public class RacingCarsController {
 	}
 
 	private void runGame() {
-		IntStream.range(0, roundCount).forEach(i -> {
+		IntStream.range(0, roundCount.getRoundCount()).forEach(i -> {
 			racingCarService.playRound();
 			printRoundResult(racingCarService.findAllCars());
 		});
