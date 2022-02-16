@@ -15,7 +15,7 @@ public class GameController {
     }
 
     public void run() {
-        RacingGame racingGame = new RacingGame(createCarNames(), createTryCount());
+        RacingGame racingGame = initRacingGame();
 
         outputView.printResultMessage();
 
@@ -27,21 +27,21 @@ public class GameController {
         outputView.printWinners(racingGame.getWinners());
     }
 
-    public String[] createCarNames() {
+    private RacingGame initRacingGame() {
+        try {
+            return new RacingGame(inputView.inputCarNames(), inputView.inputTryCount());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return initRacingGame();
+        }
+    }
+
+    private String[] createCarNames() {
         try {
             return inputView.inputCarNames();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return createCarNames();
-        }
-    }
-
-    public int createTryCount() {
-        try {
-            return inputView.inputTryCount();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return createTryCount();
         }
     }
 }

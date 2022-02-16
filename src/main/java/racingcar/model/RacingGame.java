@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import static racingcar.utils.validator.TryCountValidator.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,14 +11,17 @@ import racingcar.utils.RandomNumber;
 
 public class RacingGame {
 
-    public static final int GAME_END_COUNT = 0;
+    private static final int GAME_END_COUNT = 0;
+
     private final List<Car> cars;
     private int tryCount;
 
-    public RacingGame(String[] cars, int tryCount) {
+    public RacingGame(String[] cars, String tryCount) {
         this.cars = new ArrayList<>();
         createCars(cars);
-        this.tryCount = tryCount;
+
+        validateTryCount(tryCount);
+        this.tryCount = Integer.parseInt(tryCount);
     }
 
     private void createCars(final String[] carNames) {

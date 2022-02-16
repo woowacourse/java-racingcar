@@ -3,7 +3,6 @@ package racingcar.view;
 import java.util.Scanner;
 
 import racingcar.utils.validator.CarNamesValidator;
-import racingcar.utils.validator.TryCountValidator;
 
 public class InputView {
 
@@ -30,13 +29,10 @@ public class InputView {
         System.out.println(CAR_NAME_INPUT_MESSAGE);
     }
 
-    public int inputTryCount() {
+    public String inputTryCount() {
         printTryCountInputMessage();
 
-        String tryCount = input.nextLine();
-        TryCountValidator.validatePattern(tryCount);
-
-        return Integer.parseInt(tryCount);
+        return input.nextLine();
     }
 
     private void printTryCountInputMessage() {
