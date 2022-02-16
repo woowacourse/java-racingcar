@@ -8,10 +8,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class InputView {
 	private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-	private static final String VALIDATE_NUMBER_REGEX = "^[0-9]+$";
+	private static final Pattern VALIDATE_NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
 	private static final String DELIMITER_REGEX = ",";
 
 	public static List<String> getCarNames() {
@@ -54,7 +55,7 @@ public class InputView {
 	}
 
 	private static void validateNumber(String line) {
-		if (!line.matches(VALIDATE_NUMBER_REGEX)) {
+		if (!VALIDATE_NUMBER_PATTERN.matcher(line).matches()) {
 			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
 		}
 	}
