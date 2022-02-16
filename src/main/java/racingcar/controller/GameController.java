@@ -9,75 +9,73 @@ import racingcar.view.OutputView;
 
 public class GameController {
 	private static final int ZERO = 0;
-	Cars cars;
-	int numberOfTurn = ZERO;
 
 	public void runRace() {
-		getCarNames();
-		getNumberOfTurn();
-		printProcess();
-		printResult();
+		Cars cars = getCarNames();
+		printProcess(getNumberOfTurn(), cars);
+		printResult(cars);
 	}
 
-	private void printResult() {
-		OutputView.printWinner(getWinner());
+	private void printResult(Cars cars) {
+		OutputView.printWinner(getWinner(cars));
 	}
 
-	private void printProcess() {
+	private void printProcess(int numberOfTurn, Cars cars) {
 		OutputView.printResultMessage();
-		playTotalTurn(numberOfTurn);
+		playTotalTurn(numberOfTurn, cars);
 	}
 
-	private void getNumberOfTurn() {
+	private int getNumberOfTurn() {
 		OutputView.askTurn();
-
 		try {
-			numberOfTurn = InputView.getNumberOfTurn();
+			return InputView.getNumberOfTurn();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			System.exit(ZERO);
 		}
+		return 0;
 	}
 
-	private void getCarNames() {
+	private Cars getCarNames() {
 		OutputView.askCarName();
 
 		String[] carNames = InputView.getCarNames();
 
 		try {
-			generateCars(carNames);
+			return generateCars(carNames);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			System.exit(ZERO);
 		}
+		return new Cars(new ArrayList<Car>());
 	}
 
-	private void playTotalTurn(int numberOfTurn) {
+	private void playTotalTurn(int numberOfTurn, Cars cars) {
 		for (int eachTurn = ZERO; eachTurn < numberOfTurn; eachTurn++) {
 			cars.moveCars();
 			OutputView.printCarPosition(cars.getCarsInfo());
 		}
 	}
 
-	private void generateCars(String[] names) {
+	private Cars generateCars(String[] names) {
 		ArrayList<Car> cars = new ArrayList<>();
 
 		for (String name : names) {
 			cars.add(new Car(name));
 		}
 
-		this.cars = new Cars(cars);
+		return new Cars(cars);
 	}
 
-	private ArrayList<String> getWinner() {
+	private ArrayList<String> getWinner(Cars cars) {
 		ArrayList<String> winner = new ArrayList<>();
 
-		isMaxPosition(winner);
+		isMaxPosition(winner, cars);
 
 		return winner;
 	}
 
-	private void isMaxPosition(ArrayList<String> winner) {
+	private void isMaxPosition(ArrayList<String> winner, Cars cars) {
 		int maxPosition = cars.getMaxPosition();
 
 		for (Car car : cars.getCars()) {
