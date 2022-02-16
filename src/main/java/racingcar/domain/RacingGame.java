@@ -13,9 +13,9 @@ public class RacingGame {
         this.numberGeneratePolicy = numberGeneratePolicy;
     }
 
-    public RacingRecord race() {
+    public List<Car> race() {
         cars.driveAll(numberGeneratePolicy);
-        return new RacingRecord(cars.getDriveRecord());
+        return cars.getDriveRecord();
     }
 
     public boolean isFinished() {

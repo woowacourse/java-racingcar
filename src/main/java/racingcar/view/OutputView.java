@@ -3,8 +3,9 @@ package racingcar.view;
 import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
-import racingcar.domain.RacingRecord;
 import racingcar.domain.RacingResult;
+import racingcar.dto.CarDto;
+import racingcar.dto.RecordDto;
 
 public class OutputView {
     private static final String NAME_AND_SCORE_DELIMITER = " : ";
@@ -18,9 +19,9 @@ public class OutputView {
         System.out.println(RACE_RECORD_MESSAGE);
     }
 
-    public static void printRacingRecord(RacingRecord racingRecord) {
-        for (Car car : racingRecord.getRacingRecord()) {
-            System.out.println(car.getName() + NAME_AND_SCORE_DELIMITER + printDash(car.getPosition()));
+    public static void printRacingRecord(RecordDto racingRecord) {
+        for (CarDto carDto : racingRecord.getRacingRecord()) {
+            System.out.println(carDto.getName() + NAME_AND_SCORE_DELIMITER + printDash(carDto.getPosition()));
         }
         System.out.println();
     }
