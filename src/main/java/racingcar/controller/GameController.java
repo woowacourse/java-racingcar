@@ -17,12 +17,9 @@ public class GameController {
     private Game game;
 
     public void run() {
-        boolean isRunning = true;
-
-        while (isRunning) {
+        do {
             playGame();
-            isRunning = requestNewGameInput();
-        }
+        } while (requestNewGameInput());
     }
 
     public void playGame() {
