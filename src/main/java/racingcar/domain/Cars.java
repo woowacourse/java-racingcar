@@ -3,6 +3,8 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import racingcar.util.RandomGenerator;
+
 public class Cars {
     public static final int INITIAL_POSITION = 0;
 
@@ -17,7 +19,7 @@ public class Cars {
 
     public void moveAll() {
         for (Car car : cars) {
-            car.move();
+            car.move(RandomGenerator.generateRandomNumber());
         }
     }
 
