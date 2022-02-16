@@ -25,8 +25,8 @@ class OutputViewTest {
 
     @BeforeEach
     public void setUpCars() {
-        carsList.add(new Car("코니"));
-        carsList.add(new Car("is2hs"));
+        carsList.add(Car.fromName("코니"));
+        carsList.add(Car.fromName("is2hs"));
         cars = Cars.from(carsList);
 
     }
