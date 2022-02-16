@@ -37,12 +37,12 @@ public class Controller {
     }
 
     private List<String> enrollNames() {
-        while (inputNames()) {
+        while (inputNamesAtConsole()) {
         }
         return carNamesReceiver.parseNames(receivedNamesForGame);
     }
 
-    private boolean inputNames() {
+    private boolean inputNamesAtConsole() {
         try {
             view.printInputNamesMessage();
             receivedNamesForGame = carNamesReceiver.validateCarNames(scanner.nextLine());
@@ -54,12 +54,12 @@ public class Controller {
     }
 
     private int enrollTryCount() {
-        while (inputTryCount()) {
+        while (inputTryCountAtConsole()) {
         }
         return tryCountReceiver.parseTryCount(receivedTryCountForGame);
     }
 
-    private boolean inputTryCount() {
+    private boolean inputTryCountAtConsole() {
         try {
             view.printInputTryCountMessage();
             receivedTryCountForGame = tryCountReceiver.validateTryCount(scanner.nextLine());
