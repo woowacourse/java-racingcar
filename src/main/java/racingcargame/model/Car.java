@@ -1,5 +1,6 @@
 package racingcargame.model;
 
+import racingcargame.dto.CarDto;
 import racingcargame.utils.RandomNumberGenerator;
 
 public class Car {
@@ -19,7 +20,7 @@ public class Car {
         this.position = position;
     }
 
-    void checkValidateName(final String name) {
+    private void checkValidateName(final String name) {
         checkNameExists(name);
         checkValidNameLength(name);
     }
@@ -36,15 +37,7 @@ public class Car {
         }
     }
 
-    String getName() {
-        return name;
-    }
-
-    int getPosition() {
-        return position;
-    }
-
-    int moveCar() {
+    public int moveCar() {
         int moveNumber = pickMoveNumber();
         if (moveNumber >= MIN_MOVABLE_NUMBER) {
             position++;
@@ -54,6 +47,10 @@ public class Car {
 
     private int pickMoveNumber() {
         return RandomNumberGenerator.pickRandomNumber();
+    }
+
+    public CarDto changeToDto() {
+        return new CarDto(name, position);
     }
 }
 
