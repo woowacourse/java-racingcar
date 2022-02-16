@@ -79,7 +79,7 @@ public class Cars {
         return Arrays.stream(carNames).map(CarName::new).map(Car::new).collect(toList());
     }
 
-    public void playRound() {
+    public void attemptToMoveCars() {
         for (final Car car : cars) {
             car.attemptToMove(moveStrategy.isMove());
         }
