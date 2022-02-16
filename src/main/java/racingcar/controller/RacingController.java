@@ -12,31 +12,33 @@ public class RacingController {
     private static final int RANDOM_LOWER_BOUND = 0;
     private static final int RANDOM_UPPER_BOUND = 10;
 
-    private Cars cars;
-    private TryCount tryCount;
+    public void playGame() {
+        Cars cars = inputCars();
+        TryCount tryCount = inputTryCount();
 
-    public void start() {
+        race(cars, tryCount);
+        terminateGame(cars);
+    }
+
+    private Cars inputCars() {
         try {
-            cars = new Cars(InputView.inputCarNames());
-            inputTryCount();
-            race();
-            terminate();
+            return new Cars(InputView.inputCarNames());
         } catch (IllegalArgumentException | IOException e) {
             OutputView.printException(e);
-            start();
+            return inputCars();
         }
     }
 
-    private void inputTryCount() {
+    private TryCount inputTryCount() {
         try {
-            tryCount = new TryCount(InputView.inputTryCount());
+            return new TryCount(InputView.inputTryCount());
         } catch (IllegalArgumentException | IOException e) {
             OutputView.printException(e);
-            inputTryCount();
+            return inputTryCount();
         }
     }
 
-    private void race() {
+    private void race(Cars cars, TryCount tryCount) {
         int currentTryCount = 0;
         OutputView.printStartMessage();
         while (tryCount.isNotSame(currentTryCount++)) {
@@ -45,7 +47,7 @@ public class RacingController {
         }
     }
 
-    private void terminate() {
+    private void terminateGame(Cars cars) {
         OutputView.printCurrentCarInfo(cars.getCarsStatus());
         OutputView.printWinners(cars.getWinners());
     }
