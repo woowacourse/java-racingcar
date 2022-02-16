@@ -34,7 +34,7 @@ public class StringCalculator {
 
     public static String getDelimiterFromText(String text) {
         Matcher matcher = Pattern.compile(DELIMITER_PATTERN)
-                .matcher(text);
+            .matcher(text);
 
         if (matcher.find()) {
             return matcher.group(1);
@@ -60,17 +60,15 @@ public class StringCalculator {
 
     public static Integer[] toIntegerArray(String[] strings) {
         return Arrays.stream(strings)
-                .map(Integer::parseInt)
-                .toArray(Integer[]::new);
+            .map(Integer::parseInt)
+            .toArray(Integer[]::new);
     }
 
     public static int sumIntegerArray(Integer[] integers) {
         return Arrays.stream(integers).mapToInt(Integer::intValue).sum();
     }
 
-
     public static String removeDelimiterFromText(String text) {
         return text.replaceAll(DELIMITER_PATTERN, "");
     }
-
 }

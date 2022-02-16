@@ -1,8 +1,8 @@
 package racingcar.model.car;
 
-import racingcar.util.StringValidator;
-
 import java.util.Objects;
+
+import racingcar.util.StringValidator;
 
 public class Name {
     private static final int MIN_LENGTH = 1;
@@ -30,7 +30,7 @@ public class Name {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Name name1 = (Name) object;
+        Name name1 = (Name)object;
         return Objects.equals(name, name1.name);
     }
 
