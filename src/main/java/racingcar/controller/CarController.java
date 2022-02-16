@@ -16,10 +16,10 @@ public class CarController {
 
         RacingGame racingGame = new RacingGame(cars, count);
 
-        OutputView.printResult(racingGame.getCars());
+        OutputView.printCurrentStatus(racingGame.getCars());
         while (!racingGame.isGameFinished()) {
             racingGame.playRound();
-            OutputView.printResult(racingGame.getCars());
+            OutputView.printCurrentStatus(racingGame.getCars());
         }
 
         OutputView.printWinners(racingGame.findWinners());
