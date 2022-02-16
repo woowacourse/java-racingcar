@@ -1,6 +1,13 @@
 package racingcar.validator;
 
 import java.util.List;
+import racingcar.validator.exception.CarNameDuplicationException;
+import racingcar.validator.exception.CarNameLengthOverException;
+import racingcar.validator.exception.CarNameNotFoundException;
+import racingcar.validator.exception.CarNameSpaceException;
+import racingcar.validator.exception.EmptyStringException;
+import racingcar.validator.exception.TrialCountNotNumericException;
+import racingcar.validator.exception.TrialCountNotPositiveException;
 
 public class InputValidator {
     private static int MAX_CAR_NAME_LENGTH = 5;
@@ -8,7 +15,7 @@ public class InputValidator {
 
     public static void checkCarNamesLine(String carNamesLine) {
         if (carNamesLine.equals(EMPTY_STRING)) {
-            throw new RuntimeException("빈 문자열을 자동차 이름으로 입력할 수 없습니다.");
+            throw new EmptyStringException();
         }
     }
 
@@ -23,44 +30,44 @@ public class InputValidator {
 
     private static void carNameLengthException(String carName) {
         if (carName.length() > MAX_CAR_NAME_LENGTH) {
-            throw new RuntimeException("자동차 이름은 5자 이하여야 합니다.");
+            throw new CarNameLengthOverException(carName.length());
         }
     }
 
     private static void carNameIsEmptyException(String carName) {
         if (carName.equals(EMPTY_STRING)) {
-            throw new RuntimeException("모든 자동차 이름은 반드시 존재해야 합니다.");
+            throw new CarNameNotFoundException();
         }
     }
 
     private static void carNameIsSpaceException(String carName) {
         if (carName.trim().equals(EMPTY_STRING)) {
-            throw new RuntimeException("자동차 이름은 공백으로 설정할 수 없습니다.");
+            throw new CarNameSpaceException();
         }
     }
 
     private static void carNameDuplicationException(List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
-            throw new RuntimeException("자동차 이름은 중복될 수 없습니다.");
+            throw new CarNameDuplicationException();
         }
     }
 
     public static void checkTrialCountLine(String line) {
-        trialCountNotNumericValueException(line);
-        trialCountZeroException(line);
+        checkTrialCountNumeric(line);
+        checkTrialCountPositive(line);
     }
 
-    private static void trialCountNotNumericValueException(String line) {
+    private static void checkTrialCountNumeric(String line) {
         try {
             Integer.parseInt(line);
         } catch (NumberFormatException exception) {
-            throw new RuntimeException("시도 횟수가 숫자가 아닙니다.");
+            throw new TrialCountNotNumericException();
         }
     }
 
-    private static void trialCountZeroException(String line) {
+    private static void checkTrialCountPositive(String line) {
         if (Integer.parseInt(line) <= 0) {
-            throw new RuntimeException("시도 횟수가 음수나 0이 될 수 없습니다.");
+            throw new TrialCountNotPositiveException();
         }
     }
 }
