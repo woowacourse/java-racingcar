@@ -51,12 +51,6 @@ public class InputView {
         }
     }
 
-    private static void validateCarsNameBlank(String carName) {
-        if (carName.contains(BLANK)) {
-            throw new IllegalArgumentException(ERROR_CAR_NAME_BLANK);
-        }
-    }
-
     private static void validateCarsNameDuplicated(List<String> carsName) {
         if (validateCarsNameSize(carsName)) {
             throw new IllegalArgumentException(ERROR_CARS_NAME_DUPLICATED);
@@ -70,6 +64,12 @@ public class InputView {
     private static void validateCarsNameLength(String carName) {
         if (carName.length() > CAR_NAME_LIMIT) {
             throw new IllegalArgumentException(ERROR_CAR_NAME_LENGTH);
+        }
+    }
+
+    private static void validateCarsNameBlank(String carName) {
+        if (carName.contains(BLANK)) {
+            throw new IllegalArgumentException(ERROR_CAR_NAME_BLANK);
         }
     }
 
