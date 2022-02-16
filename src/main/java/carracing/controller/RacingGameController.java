@@ -1,7 +1,6 @@
 package carracing.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import carracing.model.Car;
@@ -25,11 +24,15 @@ public class RacingGameController {
 
 	public void play() {
 		OutputView.printResultMessage();
-		while ((numberOfGames--) > END_OF_GAME_COUNT) {
+		while (isContinue()) {
 			cars.moveCars();
 			OutputView.printResultOfEachGame(cars.getCars());
 		}
 		endGame();
+	}
+
+	private boolean isContinue() {
+		return (numberOfGames--) > END_OF_GAME_COUNT;
 	}
 
 	private void getCars() {
