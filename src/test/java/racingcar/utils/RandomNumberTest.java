@@ -9,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class RandomNumberTest {
 
 	@Test
-	@DisplayName("1~9사이의 난수가 생성되는지 확인한다.")
+	@DisplayName("0~9사이의 난수가 생성되는지 확인한다.")
 	void getRandomNumber() {
 		RandomNumber randomNumber = RandomNumber.getInstance();
 		int random = randomNumber.getRandomNumber();
@@ -17,6 +17,6 @@ class RandomNumberTest {
 	}
 
 	private boolean checkRandomNumberInRange(int random) {
-		return 1 <= random && random <= 9;
+		return 0 <= random && random <= 9;
 	}
 }
