@@ -10,11 +10,9 @@ import racingcar.utils.RacingGameMessage;
 
 public class Input {
 
-	final InputValidation inputValidation;
 	final Scanner scanner;
 
-	public Input(final InputValidation inputValidation, final Scanner scanner) {
-		this.inputValidation = inputValidation;
+	public Input(final Scanner scanner) {
 		this.scanner = scanner;
 	}
 
@@ -28,7 +26,7 @@ public class Input {
 		try {
 			System.out.println(RacingGameMessage.INPUT_CAR_NAME);
 			final String names = scanner.next();
-			inputValidation.validateName(names);
+			InputValidation.validateName(names);
 			return names;
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage() + "\n");
@@ -44,7 +42,7 @@ public class Input {
 		try {
 			System.out.println(RacingGameMessage.INPUT_REPEATS);
 			final String repeats = scanner.next();
-			inputValidation.validateRepeats(repeats);
+			InputValidation.validateRepeats(repeats);
 			return repeats;
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage() + "\n");
