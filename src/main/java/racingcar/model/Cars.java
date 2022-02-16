@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class Cars {
     private static final int MINIMUM_POSITION = 0;
     private static final String JOIN_BY_COMMA = ", ";
-    private final NumberGenerator randomNumber = new RandomNumberGenerator();
 
+    private final NumberGenerator randomNumber = new RandomNumberGenerator();
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {

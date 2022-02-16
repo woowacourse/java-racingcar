@@ -5,12 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.controller.GameController;
-import racingcar.model.Car;
-import racingcar.model.Cars;
 import racingcar.util.FixedNumberGenerator;
 import racingcar.util.NumberGenerator;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
