@@ -1,21 +1,16 @@
-package racingcarTest.view;
+package racingcar.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import racingcar.controller.CarController;
 import racingcar.domain.Car;
-import racingcar.view.Output;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class OutputTest {
@@ -55,9 +50,9 @@ public class OutputTest {
 
     @Test
     void 현재_위치_출력_검증() {
-        Car car = new Car("pobi", 5);
+        Car car = new Car("pobi", 3);
         Output.printPositionWord(car);
 
-        assertThat(outContent.toString()).contains("-----");
+        assertThat(outContent.toString()).contains("---");
     }
 }

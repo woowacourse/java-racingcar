@@ -1,9 +1,8 @@
-package racingcarTest.controller;
+package racingcar.controller;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.controller.Validation;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
