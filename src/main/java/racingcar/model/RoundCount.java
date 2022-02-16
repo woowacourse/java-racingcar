@@ -11,7 +11,7 @@ public class RoundCount {
 	private static final String COUNT_NOT_INTEGER_MSG = "숫자가 아닌 값이 입력되었습니다.";
 	private static final String COUNT_ZERO_ERROR_MSG = "0회 이하는 게임을 진행할 수 없습니다.";
 
-	private final int roundCount;
+	private int roundCount;
 
 	public RoundCount(String roundCount) {
 		checkNull(roundCount);
@@ -59,5 +59,9 @@ public class RoundCount {
 	@Override
 	public int hashCode() {
 		return Objects.hash(roundCount);
+	}
+
+	public boolean isOverAndSameZero() {
+		return roundCount-- >= 0;
 	}
 }
