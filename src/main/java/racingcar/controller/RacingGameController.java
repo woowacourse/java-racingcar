@@ -16,7 +16,6 @@ public class RacingGameController {
             Round.fromNumber(InputView.getRound()),
             new RandomNumberGeneratePolicy()
         );
-
         OutputView.printRacingRecordHeadLine();
         while (racingGame.isFinished()) {
             OutputView.printRacingRecord(RecordDto.createRecordDto(racingGame.race()));
