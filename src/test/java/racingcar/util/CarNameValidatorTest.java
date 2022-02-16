@@ -3,6 +3,9 @@ package racingcar.util;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarNameValidatorTest {
 
@@ -22,26 +25,12 @@ class CarNameValidatorTest {
             .hasMessageContaining("1대 이상");
     }
 
-    @Test
-    void checkCarName_null() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"longName"})
+    void checkCarName(String input) {
         assertThatThrownBy(() ->
-            CarNameValidator.checkCarName(null))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("자동차 이름은");
-    }
-
-    @Test
-    void checkCarName_empty() {
-        assertThatThrownBy(() ->
-            CarNameValidator.checkCarName(""))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("자동차 이름은");
-    }
-
-    @Test
-    void checkCarName_exceeds_5() {
-        assertThatThrownBy(() ->
-            CarNameValidator.checkCarName("longName"))
+            CarNameValidator.checkCarName(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자동차 이름은");
     }
