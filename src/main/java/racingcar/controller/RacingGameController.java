@@ -26,7 +26,7 @@ public class RacingGameController {
 
     private Cars getCars() {
         try {
-            return Cars.fromNames(Names.from(InputView.getCarNames()));
+            return Cars.fromNames(Names.fromInput(InputView.getCarNames()));
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return getCars();

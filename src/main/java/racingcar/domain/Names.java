@@ -11,18 +11,22 @@ public class Names {
         this.names = names;
     }
 
-    public static Names from(List<String> names) {
-        validateNames(names);
+    public static Names fromInput(List<String> names) {
         return new Names(names.stream()
                 .map(Name::from)
                 .collect(Collectors.toList()));
     }
 
-    private static void validateNames(List<String> names) {
+    public static Names from(List<Name> names) {
+        validateNames(names);
+        return new Names(names);
+    }
+
+    private static void validateNames(List<Name> names) {
         checkNamesDuplicated(names);
     }
 
-    private static void checkNamesDuplicated(List<String> names) {
+    private static void checkNamesDuplicated(List<Name> names) {
         if (names.stream().distinct().count() != names.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATED_CAR_NAME_MESSAGE);
         }
