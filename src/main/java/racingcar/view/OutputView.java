@@ -1,8 +1,10 @@
-package racingcar;
+package racingcar.view;
 
 import java.util.List;
+import racingcar.utils.Constant;
+import racingcar.domain.Car;
 
-public class Output {
+public class OutputView {
 
     private static final String POSITION_FLAG = "-";
     private static final String JOIN_REGEX = ", ";

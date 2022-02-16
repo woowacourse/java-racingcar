@@ -1,8 +1,8 @@
-package racingcar;
+package racingcar.view;
 
 import java.util.Scanner;
 
-public class Input {
+public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
     private final InputValidator inputValidator = new InputValidator();

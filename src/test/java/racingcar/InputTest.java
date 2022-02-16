@@ -3,11 +3,12 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+import racingcar.view.InputView;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class InputTest {
 
-    Input input = new Input();
+    InputView input = new InputView();
 
     @Test
     void splitByComma_쉼표구분자_성공() {

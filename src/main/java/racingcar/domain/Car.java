@@ -1,7 +1,8 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import racingcar.utils.Constant;
 
 public class Car {
 

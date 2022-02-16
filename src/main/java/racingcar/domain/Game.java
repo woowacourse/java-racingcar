@@ -1,12 +1,15 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import racingcar.utils.Constant;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class Game {
 
-    private final Input input = new Input();
-    private final Output output = new Output();
+    private final InputView input = new InputView();
+    private final OutputView output = new OutputView();
 
     private static final int RANDOM_RANGE = 10;
 
