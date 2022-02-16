@@ -1,6 +1,7 @@
 package racingcar.service;
 
 import racingcar.domain.Car;
+import racingcar.utils.Randoms;
 
 import java.util.*;
 
@@ -8,7 +9,6 @@ import static java.util.stream.Collectors.toList;
 
 public class RacingGame {
 
-    private static final int RANDOM_NUMBER_UPPER_BOUND = 10;
     private static final int FIRST_CAR_INDEX = 0;
 
     private final List<Car> cars;
@@ -22,7 +22,7 @@ public class RacingGame {
     public void playRound() {
         count--;
         for (Car car : cars) {
-            car.move(getRandInt());
+            car.move(Randoms.getRandInt());
         }
     }
 
@@ -41,10 +41,6 @@ public class RacingGame {
         List<Car> result = new ArrayList<>(cars);
         result.sort(Comparator.reverseOrder());
         return result.get(FIRST_CAR_INDEX);
-    }
-
-    private int getRandInt() {
-        return new Random().nextInt(RANDOM_NUMBER_UPPER_BOUND);
     }
 
     public List<Car> getCars() {
