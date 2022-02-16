@@ -55,9 +55,13 @@ public class InputView {
 	}
 
 	private static void validateNumber(String line) {
-		if (!VALIDATE_NUMBER_PATTERN.matcher(line).matches()) {
+		if (isNumber(line)) {
 			throw new IllegalArgumentException(INPUT_NOT_NUMBER_EXCEPTION.getMessage());
 		}
+	}
+
+	private static boolean isNumber(String line) {
+		return !VALIDATE_NUMBER_PATTERN.matcher(line).matches();
 	}
 
 	private static int toInt(String line) {
