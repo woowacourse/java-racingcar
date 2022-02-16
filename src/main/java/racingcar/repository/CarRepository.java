@@ -17,7 +17,9 @@ public class CarRepository {
 	}
 
 	public List<Car> findCars() {
-		return cars;
+		return cars.stream()
+			.map(Car::copy)
+			.collect(Collectors.toList());
 	}
 
 	public void updateCars(List<Car> cars) {

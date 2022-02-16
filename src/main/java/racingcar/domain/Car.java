@@ -32,6 +32,10 @@ public class Car implements Comparable<Car> {
 		return new Car(name, position);
 	}
 
+	public Car copy() {
+		return Car.of(this.name, this.position);
+	}
+
 	public void move(int movingValue) {
 		if (movingValue >= STANDARD_OF_MOVING) {
 			this.position++;

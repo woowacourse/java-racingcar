@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.util.RandomUtil;
 
@@ -24,7 +25,9 @@ public class RacingGame {
 	public List<Car> start(RandomUtil randomUtil) {
 		for (int i = 0; i < attempt.getNumber(); i++) {
 			playRound(randomUtil);
-			racingResult.add(cars);
+			racingResult.add(cars.stream()
+				.map(Car::copy)
+				.collect(Collectors.toList()));
 		}
 
 		return cars;
