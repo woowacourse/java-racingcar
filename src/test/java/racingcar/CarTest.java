@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
 
@@ -45,5 +46,19 @@ public class CarTest {
         car1.move(4);
         //then
         assertThat(car1.isSamePositionWith(car2)).isFalse();
+    }
+
+    @Test
+    @DisplayName("자동차의 이름 길이가 5를 초과할 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenCarNameLengthOverFive() {
+        assertThatThrownBy(() -> new Car("longCarName"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차의 이름 길이가 1보다 작은 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenCarNameLengthLessThanOne() {
+        assertThatThrownBy(() -> new Car(""))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
