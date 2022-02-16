@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import racingcar.message.ErrorMessages;
-import racingcar.util.RandomGenerator;
+import racingcar.util.RandomUtils;
 
 public class Cars {
     private static final String DELIMITER = ",";
@@ -26,7 +26,7 @@ public class Cars {
 
     public void moveAll() {
         for (Car car : cars) {
-            car.goOrStop(RandomGenerator.generateNumber(MIN, MAX + 1));
+            car.goOrStop(RandomUtils.generateNumber(MIN, MAX + 1));
         }
     }
 

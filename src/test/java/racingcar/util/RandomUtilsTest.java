@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
-class RandomGeneratorTest {
+class RandomUtilsTest {
     @Test
     public void 랜덤_값() {
         // given
@@ -14,7 +14,7 @@ class RandomGeneratorTest {
         int max = 10;
 
         // when
-        int number = RandomGenerator.generateNumber(min, max);
+        int number = RandomUtils.generateNumber(min, max);
 
         // then
         assertThat(number).isGreaterThanOrEqualTo(min).isLessThan(max);
@@ -29,6 +29,6 @@ class RandomGeneratorTest {
         // when
 
         // then
-        assertDoesNotThrow(() -> RandomGenerator.generateNumber(min, max));
+        assertDoesNotThrow(() -> RandomUtils.generateNumber(min, max));
     }
 }
