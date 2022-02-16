@@ -1,6 +1,8 @@
 package racingcar.controller;
 
+import java.util.List;
 import racingcar.domain.Cars;
+import racingcar.domain.Names;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberGeneratePolicy;
 import racingcar.domain.Round;
@@ -24,7 +26,9 @@ public class RacingGameController {
 
     private Cars getCars() {
         try {
-            return Cars.fromNames(InputView.getCarsName());
+            List<String> carNames = InputView.getCarNames();
+            Names names = Names.from(carNames);
+            return Cars.fromNames(names);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return getCars();

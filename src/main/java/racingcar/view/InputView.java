@@ -15,7 +15,7 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public static List<String> getCarsName() {
+    public static List<String> getCarNames() {
         OutputView.printRequestInstruction(REQUEST_CARS_NAME);
         List<String> carsName = Util.splitWithDelimiter(getInput(), SPLIT_DELIMITER);
         Validator.validateCarNames(carsName);

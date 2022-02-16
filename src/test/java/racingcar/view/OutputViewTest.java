@@ -12,10 +12,11 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.FixedNumberGeneratePolicy;
+import racingcar.domain.Name;
 
 class OutputViewTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private List<Car> carsList = new ArrayList<>();
+    private final List<Car> carsList = new ArrayList<>();
     private Cars cars;
 
     @BeforeEach
@@ -25,8 +26,8 @@ class OutputViewTest {
 
     @BeforeEach
     public void setUpCars() {
-        carsList.add(Car.fromName("코니"));
-        carsList.add(Car.fromName("is2hs"));
+        carsList.add(Car.fromName(Name.from("코니")));
+        carsList.add(Car.fromName(Name.from("is2hs")));
         cars = Cars.from(carsList);
 
     }

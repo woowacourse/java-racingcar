@@ -3,34 +3,21 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
-    public static final int CAR_NAME_MIN_LENGTH = 1;
-    public static final int CAR_NAME_MAX_LENGTH = 5;
-    public static final String ERROR_INVALID_CAR_NAME_LENGTH_MESSAGE = 1 + "~" + 5 + " 글자 범위 내에서 입력하세요.";
     private static final int MINIMUM_DRIVE_CONDITION = 4;
     private static final int DEFAULT_POSITION_VALUE = 0;
-    private final String name;
+    private final Name name;
     private int position = DEFAULT_POSITION_VALUE;
 
-    private Car(String name) {
+    private Car(Name name) {
         this.name = name;
     }
 
-    public static Car fromName(String carName) {
-        validateCar(carName);
-        return new Car(carName);
+    public static Car fromName(Name name) {
+        return new Car(name);
     }
 
     private static void validateCar(String carName) {
-        checkValidLengthOfCarName(carName);
     }
-
-    private static void checkValidLengthOfCarName(String carName) {
-        int carNameLength = carName.length();
-        if (!(CAR_NAME_MIN_LENGTH <= carNameLength && carNameLength <= CAR_NAME_MAX_LENGTH)) {
-            throw new IllegalArgumentException(ERROR_INVALID_CAR_NAME_LENGTH_MESSAGE);
-        }
-    }
-
 
     public void drive(int value) {
         if (MINIMUM_DRIVE_CONDITION <= value) {
@@ -52,7 +39,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 
     @Override
