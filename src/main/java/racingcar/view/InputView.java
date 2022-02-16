@@ -15,14 +15,8 @@ public class InputView {
     }
 
     public static String getMoveCount(Scanner scanner) {
-        try {
-            System.out.println(REQUEST_MOVE_COUNT);
-            String inputMoveCount = scanner.nextLine();
-            MoveCountValidator.validateMoveCount(inputMoveCount);
-            return inputMoveCount;
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return getMoveCount(scanner);
-        }
+        System.out.println(REQUEST_MOVE_COUNT);
+        String inputMoveCount = scanner.nextLine();
+        return inputMoveCount;
     }
 }
