@@ -2,6 +2,8 @@ package carracing.model;
 
 import static carracing.view.messages.ExceptionMessage.*;
 
+import carracing.utils.NumberGenerator;
+
 public class Car {
 	private static final int MIN_NAME_LENGTH = 1;
 	private static final int MAX_NAME_LENGTH = 5;
@@ -22,8 +24,8 @@ public class Car {
 		return this.name;
 	}
 
-	public void move(int number) {
-		if (number >= MOVABLE_NUMBER_THRESHOLD) {
+	public void move(NumberGenerator numberGenerator) {
+		if (numberGenerator.generate() >= MOVABLE_NUMBER_THRESHOLD) {
 			this.position++;
 		}
 	}
