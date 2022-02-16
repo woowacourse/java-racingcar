@@ -23,7 +23,7 @@ class OutputViewTest extends ConsoleTest {
         outputView = ViewConfig.getOutputView();
         List<Car> testWinners = List.of(new Car("pobi"), new Car("seung"), new Car("char"));
         outputView.printWinners(testWinners);
-        assertThat(SAMPLE_WINNERS_MESSAGE).isEqualTo(outputStream.toString());
+        assertThat(outputStream.toString()).hasToString(SAMPLE_WINNERS_MESSAGE);
     }
 
     @DisplayName("자동차들의 위치가 정상적으로 출력되는지 확인")
@@ -31,9 +31,10 @@ class OutputViewTest extends ConsoleTest {
     void printCarsPosition() {
         changeOutput();
         outputView = ViewConfig.getOutputView();
-        Cars cars = new Cars("pobi,seung,char");
+        String input = "pobi,seung,char";
+        Cars cars = Cars.create(input);
         cars.move(() -> 1);
         outputView.printCarsPosition(cars);
-        assertThat(SAMPLE_CAR_POSITION).isEqualTo(outputStream.toString());
+        assertThat(outputStream.toString()).hasToString(SAMPLE_CAR_POSITION);
     }
 }

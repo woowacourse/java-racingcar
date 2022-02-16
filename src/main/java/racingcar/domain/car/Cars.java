@@ -14,12 +14,12 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(String names) {
-        this(createCarsByName(names));
-    }
-
     public Cars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    public static Cars create(String names) {
+        return new Cars(createCarsByName(names));
     }
 
     private static List<Car> createCarsByName(String names) {
@@ -48,7 +48,7 @@ public class Cars {
     public List<Car> findWinners() {
         final int max = findMaxPosition();
         return cars.stream()
-            .filter(car -> car.isMaxPosition(max))
+            .filter(car -> car.isSamePosition(max))
             .collect(Collectors.toList());
     }
 

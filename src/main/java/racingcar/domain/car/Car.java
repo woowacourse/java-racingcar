@@ -40,8 +40,8 @@ public class Car {
         return position.getPosition();
     }
 
-    public boolean isMaxPosition(int max) {
-        return position.isSame(max);
+    public boolean isSamePosition(int otherPosition) {
+        return position.isSame(otherPosition);
     }
 
     public void move(MovementStrategy strategy) {
