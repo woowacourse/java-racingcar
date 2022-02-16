@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_CARS_EMPTY;
 
+import java.util.Collections;
 import racingcar.util.RandomUtils;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class Cars {
     private final List<Car> cars = new ArrayList<>();
 
     public List<Car> findAllCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 
     public void add(Car car) {
