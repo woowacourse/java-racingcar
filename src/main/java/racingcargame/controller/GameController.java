@@ -31,9 +31,9 @@ public class GameController {
 
     private void playGame(final RacingCarGame racingCarGame) {
         outputView.showRaceResultMessage();
-        while (!racingCarGame.isOverRace()) {
+        while (racingCarGame.isNotOverRace()) {
             racingCarGame.startRace();
-            outputView.showCurrentRaceStatus(racingCarGame.sendCurrentPositionOfRacingCars());
+            outputView.showCurrentRaceStatus(racingCarGame.sendPositionOfRacingCars());
         }
     }
 
