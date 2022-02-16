@@ -48,4 +48,13 @@ public class RacingGame {
     public boolean isOver() {
         return currentRound >= totalRounds;
     }
+
+    @Override
+    public String toString() {
+        return "RacingGame{" +
+                "cars=" + cars +
+                ", totalRounds=" + totalRounds +
+                ", currentRound=" + currentRound +
+                '}';
+    }
 }

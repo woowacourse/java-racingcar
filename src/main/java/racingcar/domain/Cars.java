@@ -39,4 +39,11 @@ public class Cars {
                 .max(Car::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_CARS_EMPTY));
     }
+
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "cars=" + cars +
+                '}';
+    }
 }

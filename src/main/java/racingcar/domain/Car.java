@@ -51,4 +51,12 @@ public class Car implements Comparable<Car> {
     public int compareTo(Car car) {
         return Integer.compare(this.position, car.position);
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
+    }
 }
