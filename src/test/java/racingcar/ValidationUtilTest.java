@@ -20,7 +20,7 @@ public class ValidationUtilTest {
     void shouldThrowExceptionWhenHasDuplicateName() {
         List<Car> cars = List.of(new Car("one"), new Car("two"), new Car("one"));
 
-        assertThatThrownBy(() -> Validator.checkDuplicateName(cars))
+        assertThatThrownBy(() -> Validator.validate(cars))
                 .isInstanceOf(DuplicateCarNameException.class);
     }
 
@@ -29,14 +29,14 @@ public class ValidationUtilTest {
     void shouldThrowExceptionWhenSinglePlayer() {
         List<Car> singleCar = List.of(new Car("one"));
 
-        assertThatThrownBy(() -> Validator.checkSinglePlayer(singleCar))
+        assertThatThrownBy(() -> Validator.validate(singleCar))
                 .isInstanceOf(SingleCarException.class);
     }
 
     @Test
     @DisplayName("시도횟수가 0이하인 경우 예외를 발생시킨다")
     void shouldThrowExceptionWhenCountLessThanOne() {
-        assertThatThrownBy(() -> Validator.checkCountRange(0))
+        assertThatThrownBy(() -> Validator.validate(0))
                 .isInstanceOf(InvalidCountRangeException.class);
     }
 

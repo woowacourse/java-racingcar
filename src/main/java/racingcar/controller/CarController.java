@@ -37,14 +37,13 @@ public class CarController {
         List<Car> cars = names.stream()
                 .map(Car::new)
                 .collect(toList());
-        Validator.checkSinglePlayer(cars);
-        Validator.checkDuplicateName(cars);
+        Validator.validate(cars);
         return cars;
     }
 
     private int getCountFromUser() {
         int count = inputView.getCount();
-        Validator.checkCountRange(count);
+        Validator.validate(count);
         return count;
     }
 
