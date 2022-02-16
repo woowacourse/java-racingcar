@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import racingcar.utils.RandomNumber;
 
@@ -14,22 +15,29 @@ class CarTest {
 	@Test
 	@DisplayName("자동차가 앞으로 전진하는지 확인한다")
 	void goForward() {
-		Car car = new Car(new RandomNumberMockLargerThanFour(), "a");
-		int exPosition = car.getPosition();
+		try (MockedStatic<RandomNumber> mocked = mockStatic(RandomNumber.class)) {
+			mocked.when(RandomNumber::getRandomNumber).thenReturn(6);
+			Car car = new Car("a");
+			int exPosition = car.getPosition();
 
-		car.goForward();
+			car.goForward();
 
-		assertThat(exPosition + 1).isEqualTo(car.getPosition());
+			assertThat(exPosition + 1).isEqualTo(car.getPosition());
+		}
 	}
 
 	@Test
 	@DisplayName("자동차가 앞으로 전진하지 않는지 확인한다")
 	void dontGoForward() {
-		Car car = new Car(new RandomNumberMockLessThanThree(), "a");
-		int exPosition = car.getPosition();
+		try (MockedStatic<RandomNumber> mocked = mockStatic(RandomNumber.class)) {
+			mocked.when(RandomNumber::getRandomNumber).thenReturn(2);
+			Car car = new Car("a");
+			int exPosition = car.getPosition();
 
-		car.goForward();
+			car.goForward();
 
-		assertThat(exPosition).isEqualTo(car.getPosition());
+			assertThat(exPosition).isEqualTo(car.getPosition());
+		}
 	}
+
 }

@@ -12,8 +12,7 @@ class RandomNumberTest {
 	@Test
 	@DisplayName("1~9사이의 난수가 생성되는지 확인한다.")
 	void getRandomNumber() {
-		RandomNumber randomNumber = new RandomNumber();
-		int random = randomNumber.getRandomNumber();
+		int random = RandomNumber.getRandomNumber();
 		assertThat(checkRandomNumberInRange(random)).isTrue();
 	}
 

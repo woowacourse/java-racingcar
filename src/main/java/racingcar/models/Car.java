@@ -7,18 +7,16 @@ public class Car {
 	private static final int FORWARD_STANDARD = 4;
 	private static final int INITIAL_POSITION = 0;
 
-	private final RandomNumber randomNumber;
 	private final String name;
 	private int position;
 
-	public Car(final RandomNumber randomNumber, final String name) {
-		this.randomNumber = randomNumber;
+	public Car(final String name) {
 		this.name = name;
 		position = INITIAL_POSITION;
 	}
 
 	public void goForward() {
-		if (randomNumber.getRandomNumber() >= FORWARD_STANDARD) {
+		if (RandomNumber.getRandomNumber() >= FORWARD_STANDARD) {
 			position++;
 		}
 	}

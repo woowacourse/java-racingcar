@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.models.Car;
-import racingcar.utils.RandomNumber;
 import racingcar.views.Input;
 import racingcar.views.Output;
 
@@ -32,7 +31,7 @@ public class RacingGame {
 
 	private void createCar() {
 		final List<String> carNameList = Input.inputValidNames();
-		carNameList.forEach((carName) -> cars.add(new Car(new RandomNumber(), carName)));
+		carNameList.forEach((carName) -> cars.add(new Car(carName)));
 	}
 
 	private void startRacing() {
