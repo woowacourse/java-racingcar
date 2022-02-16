@@ -32,8 +32,8 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("최대 전진횟수와 동일한 전진횟수를 가지는 경우 우승자임을 반환")
-    public void mustBeWinner() {
+    @DisplayName("주어진 전진횟수와 동일한 전진횟수를 가지는 경우 true를 반환")
+    public void trueIfSame() {
         Car car = new Car("woo");
 
         car.move(9);
@@ -44,8 +44,8 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("최대전진횟수와 동일하지 않는 전진횟수를 가지는 경우 우승자가 아님을 반환")
-    public void mustNotBeWinner() {
+    @DisplayName("주어진 전진횟수와 동일하지 않는 전진횟수를 가지는 경우 false를 반환")
+    public void falseIfNotSame() {
         Car car = new Car("woo");
 
         assertThat(car.isSamePosition(3)).isFalse();
