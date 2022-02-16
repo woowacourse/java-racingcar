@@ -8,6 +8,7 @@ public class Car {
 	private static final int MIN_NAME_LENGTH = 1;
 	private static final int MAX_NAME_LENGTH = 5;
 	private static final int MOVABLE_NUMBER_THRESHOLD = 4;
+	private static final String BLANK_IN_NAME = " ";
 
 	private final String name;
 	private int position;
@@ -38,11 +39,18 @@ public class Car {
 
 	private void validateName(String name) {
 		validateLength(name);
+		validateBlank(name);
 	}
 
 	private void validateLength(String name) {
 		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
+		}
+	}
+
+	private void validateBlank(String name) {
+		if (name.contains(BLANK_IN_NAME)) {
+			throw new IllegalArgumentException(CAR_NAME_BLANK_EXCEPTION.getMessage());
 		}
 	}
 }
