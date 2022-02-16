@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.controller.CarDto;
 import racingcar.util.Validator;
 
 public class Cars {
@@ -25,7 +25,7 @@ public class Cars {
     }
 
     private static List<String> getCarNames(List<Car> cars) {
-        return cars.stream().map(car -> car.getName()).collect(Collectors.toList());
+        return cars.stream().map(car -> car.toString()).collect(Collectors.toList());
     }
 
     public void driveAll(NumberGeneratePolicy numberGeneratePolicy) {
@@ -45,7 +45,9 @@ public class Cars {
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_CAR_EMPTY));
     }
 
-    public List<Car> getDriveRecord() {
-        return Collections.unmodifiableList(cars);
+    public List<CarDto> getCurrentCars() {
+        return cars.stream()
+                .map(car -> CarDto.from(car))
+                .collect(Collectors.toList());
     }
 }

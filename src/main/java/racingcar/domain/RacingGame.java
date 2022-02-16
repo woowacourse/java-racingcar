@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
+import racingcar.controller.CarDto;
 
 public class RacingGame {
     private final Cars cars;
@@ -18,9 +19,9 @@ public class RacingGame {
         return new RacingGame(Cars.fromNames(carsName), new Round(round), numberGeneratePolicy);
     }
 
-    public RacingRecord race() {
+    public List<CarDto> race() {
         cars.driveAll(numberGeneratePolicy);
-        return new RacingRecord(cars.getDriveRecord());
+        return getCurrentCars();
     }
 
     public boolean hasNextGame() {
@@ -33,5 +34,9 @@ public class RacingGame {
 
     public RacingResult getRacingResult() {
         return new RacingResult(cars.getWinners());
+    }
+
+    public List<CarDto> getCurrentCars() {
+        return this.cars.getCurrentCars();
     }
 }

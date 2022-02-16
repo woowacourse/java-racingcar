@@ -28,7 +28,12 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public String getName() {
+    public int toPosition() {
+        return position;
+    }
+
+    @Override
+    public String toString() {
         return name;
     }
 
@@ -53,4 +58,6 @@ public class Car implements Comparable<Car> {
     public int hashCode() {
         return Objects.hash(name, position);
     }
+
+
 }
