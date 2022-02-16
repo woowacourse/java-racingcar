@@ -25,7 +25,7 @@ public class Car {
         return position;
     }
 
-    public void moveOrNot(int target) {
+    public void move(int target) {
         if (target >= CONDITION_FOR_MOVE) {
             position++;
         }

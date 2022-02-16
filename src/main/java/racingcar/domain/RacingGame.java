@@ -50,7 +50,7 @@ public class RacingGame {
 
     private void run() {
         for (Car car : cars) {
-            car.moveOrNot(generateRandomNumber());
+            car.move(generateRandomNumber());
         }
     }
 

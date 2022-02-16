@@ -15,7 +15,7 @@ class CarTest {
     public void carShouldMove(int input) {
         Car car = new Car("woo");
 
-        car.moveOrNot(input);
+        car.move(input);
 
         assertThat(car.getPosition()).isEqualTo(1);
     }
@@ -26,7 +26,7 @@ class CarTest {
     public void carShouldNotMove(int input) {
         Car car = new Car("woo");
 
-        car.moveOrNot(input);
+        car.move(input);
 
         assertThat(car.getPosition()).isEqualTo(0);
     }
@@ -36,9 +36,9 @@ class CarTest {
     public void mustBeWinner() {
         Car car = new Car("woo");
 
-        car.moveOrNot(9);
-        car.moveOrNot(9);
-        car.moveOrNot(9);
+        car.move(9);
+        car.move(9);
+        car.move(9);
 
         assertThat(car.isSamePosition(3)).isTrue();
     }
