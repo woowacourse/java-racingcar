@@ -1,7 +1,6 @@
 package calculator;
 
 public class Calculator {
-
 	public static final String CUSTOM_PREFIX = "//";
 	public static final String BASIC_DELIMITER = ",|:";
 	public static final String CUSTOM_DELIMITER = "\n";
@@ -11,9 +10,8 @@ public class Calculator {
 	public static final String FORMAT = "%s|%s";
 
 	public static int splitAndSum(final String text) {
-		if (text == null || text.isEmpty()) {
+		if (isBlank(text))
 			return 0;
-		}
 		final String[] splitValues = split(text);
 		return sum(splitValues);
 	}
@@ -29,18 +27,36 @@ public class Calculator {
 		return text.split(basicDelimiter);
 	}
 
-	private static boolean isCustom(String text) {
-		return text.startsWith(CUSTOM_PREFIX);
-	}
-
 	private static int sum(String[] values) {
 		int sum = 0;
 		for (String i : values) {
-			int target = Integer.parseInt(i);
+			int target = convertValue(i);
 			checkNegativeNumber(target);
 			sum += target;
 		}
 		return sum;
+	}
+
+	private static boolean isCustom(String text) {
+		return text.startsWith(CUSTOM_PREFIX);
+	}
+
+	private static boolean isBlank(String text) {
+		return text == null || text.isEmpty();
+	}
+
+	private static int convertValue(String string) {
+		if (isBlank(string)) {
+			return 0;
+		}
+		if (!isNumber(string)) {
+			throw new IllegalArgumentException("숫자를 입력해주세요.");
+		}
+		return Integer.parseInt(string);
+	}
+
+	private static boolean isNumber(String string) {
+		return string.matches("[+-]?\\d*(\\.\\d+)?");
 	}
 
 	private static void checkNegativeNumber(int number) {
