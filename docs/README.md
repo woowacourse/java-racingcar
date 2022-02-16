@@ -145,5 +145,6 @@
     - 문제점 : 첫번째 입력인 이름은 입력을 잘 받지만 두번째 입력인 시도 횟수를 제대로 입력받지 못함(null 입력이 됨)
     - 원인 분석 : InputView에서 Scanner를 상수로 처리했는데 이렇게 되면 문제가 발생하는것으로 예상됨
     - 해결 방법 : Controller에서 Scanner를 만들어 파라미터로 주거나 InputView에서 Scanner를 static으로 쓰지 않으면 문제가 해결됨
-    - static을 없애고 InputView의 인스턴스 변수로 Scanner를 만들어 사용하는 방식으로 문제를 해결함
+    - 나는 static을 없애고 InputView의 인스턴스 변수로 Scanner를 만들어 사용하는 방식으로 문제를 해결함
     - Scanner를 Controller에서 만들어서 주지 않은 이유는 InputView에서만 사용되는 Scanner를 꼭 Controller에서 생성하고 가지고 있어야하나? 라는 생각이 들었기 때문임
+- RacingCar의 로직을 main으로 이동(Controller의 역할을 RacingCar가 아닌 main이 하도록 수정함)
