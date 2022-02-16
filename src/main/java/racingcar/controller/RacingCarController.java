@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.CarsStatus;
+import racingcar.controller.dto.CarsDto;
 import racingcar.domain.Cars;
 import racingcar.domain.Count;
 import racingcar.domain.RandomMovingPolicy;
@@ -53,7 +53,7 @@ public class RacingCarController {
         }
 
         cars.move();
-        outputView.printStatus(new CarsStatus(cars.getCars()).makeCarsStatus());
+        outputView.printStatus(new CarsDto(cars));
         proceed(cars, count);
     }
 }
