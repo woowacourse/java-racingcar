@@ -11,14 +11,14 @@ import racingcar.util.MovingStrategy;
 
 public class RacingService {
 
-	private final CarRepository carRepository = CarRepository.getInstance();
-	private final MovingStrategy movingStrategy;
-
 	private static final int MINIMUM_NUMBER_OF_RACE_POSSIBLE = 2;
+	private static final int MINIMUM_ATTEMPT_NUMBER = 1;
 
 	private static final String NUMBER_OF_CAR_ERROR_MESSAGE = "레이싱에 필요한 자동차 수는 2대 이상입니다.";
 	private static final String ATTEMPT_NUMBER_RANGE_ERROR_MESSAGE = "시도 횟수는 1회 이상이어야 합니다.";
-	private static final int MINIMUM_ATTEMPT_NUMBER = 1;
+
+	private final CarRepository carRepository = CarRepository.getInstance();
+	private final MovingStrategy movingStrategy;
 
 	public RacingService(MovingStrategy movingStrategy) {
 		this.movingStrategy = movingStrategy;

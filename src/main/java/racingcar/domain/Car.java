@@ -1,9 +1,6 @@
 package racingcar.domain;
 
-public class Car implements Comparable<Car>{
-
-	private final String name;
-	private int position;
+public class Car implements Comparable<Car> {
 
 	private static final int INITIAL_POSITION = 0;
 	private static final int STANDARD_OF_MOVING = 4;
@@ -11,6 +8,9 @@ public class Car implements Comparable<Car>{
 
 	private static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차의 이름은 1글자 이상이어야 합니다.";
 	private static final String INVALID_CAR_NAME_ERROR_MESSAGE = "자동차의 이름은 5글자 이하여야 합니다.";
+
+	private final String name;
+	private int position;
 
 	private Car(String name, int position) {
 		validateCarName(name);

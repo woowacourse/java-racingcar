@@ -8,10 +8,10 @@ import racingcar.domain.Car;
 
 public class CarRepository {
 
+	private static final String EMPTY_CAR_ERROR_MESSAGE = "등록된 자동차가 없습니다.";
+
 	private static CarRepository carRepository;
 	private static final List<Car> cars = new ArrayList<>();
-
-	private static final String EMPTY_CAR_ERROR_MESSAGE = "등록된 자동차가 없습니다.";
 
 	private CarRepository() {}
 
