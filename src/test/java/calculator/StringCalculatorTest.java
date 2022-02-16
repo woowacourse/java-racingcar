@@ -2,38 +2,31 @@ package calculator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class StringCalculatorTest {
 
-    @Test
-    @DisplayName("콤마 구분자")
-    void splitByComma() {
-        String[] actual = StringCalculator.splitString("1,2");
-        String[] expected = {"1", "2"};
-
-        assertThat(actual).isEqualTo(expected);
+    static Stream<Arguments> differentParams() {
+        return Stream.of(
+                Arguments.of("1,2", new String[]{"1", "2"}),
+                Arguments.of("1:2", new String[]{"1", "2"}),
+                Arguments.of("//;\n1;2;3", new String[]{"1", "2", "3"})
+        );
     }
 
-    @Test
-    @DisplayName("콜론 구분자")
-    void splitByColon() {
-        String[] actual = StringCalculator.splitString("1:2");
-        String[] expected = {"1", "2"};
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @Test
-    @DisplayName("커스텀 구분자")
-    void splitByCustom() {
-        String[] actual = StringCalculator.splitString("//;\n1;2;3");
-        String[] expected = {"1", "2", "3"};
-
+    @ParameterizedTest
+    @MethodSource("differentParams")
+    @DisplayName("다양한 구분자")
+    void splitByParams(String given, String[] expected) {
+        String[] actual = StringCalculator.splitString(given);
         assertThat(actual).isEqualTo(expected);
     }
 

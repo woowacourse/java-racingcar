@@ -82,7 +82,7 @@ public class StringCalculator {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException e){
-            throw new NumberFormatException("입력 값은 숫자여야 합니다.");
+            throw new NumberFormatException("입력 값은 소수가 아닌 숫자여야 합니다.");
         }
     }
 
