@@ -19,7 +19,7 @@ public class CarController {
         }
     }
 
-    private static void printRace(List<Car> cars) {
+    public static void printRace(List<Car> cars) {
         for (Car car : cars) {
             Output.printName(car);
             Output.printPositionWord(car);
