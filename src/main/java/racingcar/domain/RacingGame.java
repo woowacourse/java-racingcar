@@ -12,7 +12,6 @@ public class RacingGame {
 
     public RacingGame(RacingCars racingCars, int leftCount) {
         this.racingCars = racingCars;
-        Validator.checkTryCountPositive(leftCount);
         this.leftCount = leftCount;
     }
 

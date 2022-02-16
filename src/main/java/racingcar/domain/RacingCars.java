@@ -18,7 +18,6 @@ public class RacingCars {
     public RacingCars(String[] carNameArray, MovingStrategy movingStrategy) {
         this.cars = makeRacingCars(carNameArray);
         this.movingStrategy = movingStrategy;
-        checkCarsEmpty();
     }
 
     private List<RacingCar> makeRacingCars(String[] carNames) {
@@ -26,12 +25,6 @@ public class RacingCars {
             .map(this::removeNameBlank)
             .map(RacingCar::new)
             .collect(Collectors.toList());
-    }
-
-    private void checkCarsEmpty() {
-        if (cars.isEmpty()) {
-            throw new RuntimeException("최소 1개의 자동차가 존재해야 한다.");
-        }
     }
 
     private String removeNameBlank(String name) {
