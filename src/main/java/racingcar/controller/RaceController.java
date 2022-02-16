@@ -18,38 +18,38 @@ public class RaceController {
 
     public void setUpCars() {
         try {
-            String input = InputView.inputNamesUi();
+            String input = InputView.inputNames();
             Arrays.stream(input.split(","))
                 .map(Car::from)
                 .forEach(cars::add);
             cars.validateIsEmpty();
         } catch (IllegalArgumentException exception) {
-            OutputView.printErrorUi(exception);
+            OutputView.printError(exception);
             setUpCars();
         }
     }
 
     public void setUpTryCount() {
         try {
-            String input = InputView.inputTryCountUi();
+            String input = InputView.inputTryCount();
             tryCount = TryCount.from(input);
         } catch (IllegalArgumentException exception) {
-            OutputView.printErrorUi(exception);
+            OutputView.printError(exception);
             setUpTryCount();
         }
     }
 
     public void raceStart() {
-        OutputView.printRaceResultUi();
+        OutputView.printRaceResult();
         for (int i = 0; i < tryCount.toInt(); i++) {
             cars.race(new MovableNumber());
-            OutputView.printCarsUi(cars.getCarsDto());
-            OutputView.printEnterUi();
+            OutputView.printCars(cars.getCarsDto());
+            OutputView.printEnter();
         }
     }
 
     public void raceEnd() {
-        OutputView.printWinnersUi(cars.getWinnersNames());
+        OutputView.printWinners(cars.getWinnersNames());
     }
 
 }
