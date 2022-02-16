@@ -86,24 +86,26 @@ public class GameTest {
 
 	private MoveStrategy moveOnce = new MoveStrategy() {
 		private int count = 0;
+
 		@Override
 		public boolean isMovable() {
 			if (count > 0) {
 				return false;
 			}
-			count ++;
+			count++;
 			return true;
 		}
 	};
 
 	private MoveStrategy moveTwice = new MoveStrategy() {
 		private int count = 0;
+
 		@Override
 		public boolean isMovable() {
 			if (count > 1) {
 				return false;
 			}
-			count ++;
+			count++;
 			return true;
 		}
 	};
