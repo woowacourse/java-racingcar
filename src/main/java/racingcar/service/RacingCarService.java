@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.model.Car;
+import racingcar.model.Name;
 import racingcar.utlis.Convertor;
 import racingcar.validator.NameValidator;
 
@@ -39,7 +40,7 @@ public class RacingCarService {
 		return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
 	}
 
-	public List<String> findWinner() {
+	public List<Name> findWinner() {
 		int maxPosition = findMaxPosition();
 		return cars.stream()
 			.filter(car -> car.matchPosition(maxPosition))

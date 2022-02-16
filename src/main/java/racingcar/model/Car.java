@@ -1,18 +1,15 @@
 package racingcar.model;
 
-import static racingcar.utlis.RandomNumberGenerator.*;
-
 import racingcar.validator.NameValidator;
 
 public class Car {
 
 	private static final int MOVE_CRITERIA = 4;
-	private final String name;
+	private final Name name;
 	private int position;
 
 	public Car(String name, int position) {
-		NameValidator.checkCarName(name);
-		this.name = name;
+		this.name = new Name(name);
 		this.position = position;
 	}
 
@@ -26,7 +23,7 @@ public class Car {
 		position++;
 	}
 
-	public String getName() {
+	public Name getName() {
 		return name;
 	}
 

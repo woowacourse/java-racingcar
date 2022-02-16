@@ -3,6 +3,7 @@ package racingcar.view;
 import java.util.List;
 
 import racingcar.model.Car;
+import racingcar.model.Name;
 
 public class Output {
 
@@ -25,16 +26,16 @@ public class Output {
 	public static void printRoundResult(List<Car> cars) {
 		for (Car car : cars) {
 			System.out.println(
-				car.getName() + NAME_AND_POSITION_CONNECTION + POSITION_SIGNATURE.repeat(car.getPosition()));
+				car.getName().getName() + NAME_AND_POSITION_CONNECTION + POSITION_SIGNATURE.repeat(car.getPosition()));
 		}
 		System.out.println();
 	}
 
-	public static void printWinners(List<String> winners) {
+	public static void printWinners(List<Name> winners) {
 		StringBuilder result = new StringBuilder();
-		for (String winner : winners) {
-			result.append(winner).append(WINNER_SEPARATED_STR);
-		}
+		winners.forEach(
+			winner -> result.append(winner.getName()).append(WINNER_SEPARATED_STR)
+		);
 		System.out.println(result.substring(START_STRING_INDEX, result.length() - 2) + FINAL_WINNER_MSG);
 	}
 }
