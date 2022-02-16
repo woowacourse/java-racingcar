@@ -3,8 +3,6 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import racingcar.domain.movestrategy.MovableMovingStrategy;
-import racingcar.domain.movestrategy.StoppableMovingStrategy;
 
 public class CarTest {
 
@@ -17,7 +15,7 @@ public class CarTest {
     @Test
     void 자동차_전진_성공() {
         Car car = new Car("jae");
-        car.move(new MovableMovingStrategy());
+        car.move(() -> true);
         assertThat(car.getPosition()).isEqualTo(1);
 
     }
@@ -25,7 +23,7 @@ public class CarTest {
     @Test
     void 자동차_전진_실패() {
         Car car = new Car("jae");
-        car.move(new StoppableMovingStrategy());
+        car.move(() -> false);
         assertThat(car.getPosition()).isEqualTo(0);
 
     }
