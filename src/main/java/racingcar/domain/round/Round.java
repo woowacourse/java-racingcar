@@ -4,7 +4,7 @@ public class Round {
 
     private static final int MIN_NUMBER = 1;
     private static final int END_OF_ROUND = 0;
-    private static final String NOT_INTEGER_ERROR_MESSAGE = MIN_NUMBER + " 이상의 양수를 입력하세요.";
+    private static final String NOT_MIN_NUMBER_ERROR_MESSAGE = MIN_NUMBER + " 이상의 양수를 입력하세요.";
 
     private int round;
 
@@ -19,7 +19,7 @@ public class Round {
 
     private void validate(int round) {
         if (round < MIN_NUMBER) {
-            throw new IllegalArgumentException(NOT_INTEGER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NOT_MIN_NUMBER_ERROR_MESSAGE);
         }
     }
 
@@ -27,7 +27,7 @@ public class Round {
         try {
             return Integer.parseInt(round);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NOT_MIN_NUMBER_ERROR_MESSAGE);
         }
     }
 
