@@ -8,7 +8,14 @@ public class RacingCar implements Comparable<RacingCar> {
     private int position = DEFAULT_POSITION;
 
     public RacingCar(String name) {
+        isEmpty(name);
         this.name = name;
+    }
+
+    private void isEmpty(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름은 비어있을 수 없다.");
+        }
     }
 
     public String getName() {
