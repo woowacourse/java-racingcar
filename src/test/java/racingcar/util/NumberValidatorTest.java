@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class NumberValidatorTest {
     @DisplayName("validateIsNumber 메소드는")
     @Nested
-    class validateStringIsNumber {
+    class ValidateStringIsNumber {
         @Nested
         @DisplayName("숫자가 아닌 문자열이 주어지면")
         class Context_with_string {
@@ -27,7 +27,7 @@ public class NumberValidatorTest {
 
     @DisplayName("validateIsPositive 메소드는")
     @Nested
-    class validateIsPositive {
+    class ValidateIsPositive {
         @Nested
         @DisplayName("양수가 아니라면")
         class Context_with_not_positive_number {
@@ -44,7 +44,7 @@ public class NumberValidatorTest {
 
     @DisplayName("validateIsNotNegative 메소드는")
     @Nested
-    class validateIsNotNegative {
+    class ValidateIsNotNegative {
         @Nested
         @DisplayName("음수라면")
         class Context_with_negative_number {

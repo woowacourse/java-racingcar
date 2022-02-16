@@ -18,7 +18,7 @@ public class NameTest {
         class Context_with_blank {
             @Test
             @DisplayName("예외를 발생시킨다.")
-            void is_throw_exception() {
+            void it_throw_exception() {
                 assertThatThrownBy(() -> Name.from(""))
                     .isInstanceOf(IllegalArgumentException.class);
             }
@@ -30,7 +30,7 @@ public class NameTest {
             @ParameterizedTest
             @DisplayName("예외를 발생시킨다.")
             @ValueSource(strings = {"", "aaaaaa"})
-            void is_throw_exception(String input) {
+            void it_throw_exception(String input) {
                 assertThatThrownBy(() -> Name.from(input))
                     .isInstanceOf(IllegalArgumentException.class);
             }
@@ -42,7 +42,7 @@ public class NameTest {
             @ParameterizedTest
             @DisplayName("Name 클래스를 반환한다.")
             @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
-            void is_returns_Name(String input) {
+            void it_returns_name(String input) {
                 assertDoesNotThrow(() -> Name.from(input));
             }
         }
@@ -53,7 +53,7 @@ public class NameTest {
             @ParameterizedTest
             @DisplayName("Name 클래스를 반환한다.")
             @ValueSource(strings = {"hudi", "tonic", "a", "토닉", "후디", "123"})
-            void is_returns_Name(String input) {
+            void it_returns_name(String input) {
                 assertDoesNotThrow(() -> Name.from(input));
             }
         }
@@ -64,7 +64,7 @@ public class NameTest {
             @ParameterizedTest
             @DisplayName("예외를 발생시킨다.")
             @ValueSource(strings = {" ", "ton*&", "?a1"})
-            void 올바른_형식의_문자열이_아니라면(String input) {
+            void it_throw_exception(String input) {
                 assertThatThrownBy(() -> Name.from(input))
                     .isInstanceOf(IllegalArgumentException.class);
             }

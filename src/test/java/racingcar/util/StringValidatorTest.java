@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class StringValidatorTest {
     @DisplayName("validateIsEmpty 메소드는")
     @Nested
-    class validateIsEmpty {
+    class ValidateIsEmpty {
         @Nested
         @DisplayName("빈 값이 주어지면")
         class Context_with_blank {
@@ -27,7 +27,7 @@ public class StringValidatorTest {
 
     @DisplayName("validateLength 메소드는")
     @Nested
-    class validateLength {
+    class ValidateLength {
         @Nested
         @DisplayName("한글자 이상 다섯글자 이하가 아니라면")
         class Context_with_incorrect_length {
@@ -44,7 +44,7 @@ public class StringValidatorTest {
 
     @DisplayName("validateFormat 메소드는")
     @Nested
-    class validateFormat {
+    class ValidateFormat {
         @Nested
         @DisplayName("올바른_형식의_문자열이_아니라면")
         class Context_with_incorrect_format {

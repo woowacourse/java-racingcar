@@ -23,7 +23,7 @@ public class PositionTest {
     class Increase {
         @Test
         @DisplayName("현재 위치에 1을 더한 Position을 리턴한다.")
-        void it_returns_Position_of_one_plus_value() {
+        void it_returns_position_of_one_plus_value() {
             assertThat(position.increase()).isEqualTo(Position.from(1));
         }
     }
@@ -38,7 +38,7 @@ public class PositionTest {
             @ParameterizedTest
             @DisplayName("Position을 반환한다.")
             @ValueSource(ints = {0, 1, 11})
-            void it_returns_Position(int input) {
+            void it_returns_position(int input) {
                 assertDoesNotThrow(() -> Position.from(input));
             }
         }

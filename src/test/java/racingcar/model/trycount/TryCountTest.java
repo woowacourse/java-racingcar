@@ -30,7 +30,7 @@ public class TryCountTest {
             @ParameterizedTest
             @DisplayName("TryCount 객체를 반환한다.")
             @ValueSource(strings = {"1", "11"})
-            void it_returns_TryCount(String input) {
+            void it_returns_try_count(String input) {
                 assertDoesNotThrow(() -> TryCount.from(input));
             }
         }
