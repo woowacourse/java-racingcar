@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import racingcar.models.Car;
-import racingcar.utils.RandomNumber;
 import racingcar.views.Input;
 import racingcar.views.Output;
 
@@ -35,7 +34,7 @@ public class RacingGame {
 
     private void createCar() {
         final List<String> carNames = input.inputValidNames();
-        carNames.forEach((carName) -> cars.add(new Car(new RandomNumber(), carName)));
+        carNames.forEach((carName) -> cars.add(new Car(carName)));
     }
 
     private void startRacing() {

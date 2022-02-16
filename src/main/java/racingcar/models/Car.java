@@ -13,8 +13,8 @@ public class Car {
 	private final String name;
 	private int position;
 
-	public Car(final RandomNumber randomNumber, final String name) {
-		this.randomNumber = randomNumber;
+	public Car(final String name) {
+		this.randomNumber = RandomNumber.getInstance();
 		this.name = name;
 		position = INITIAL_POSITION;
 	}
