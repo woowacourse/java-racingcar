@@ -32,11 +32,11 @@ public class RacingGame {
         return false;
     }
 
-    public RacingResult getRacingResult() {
-        return new RacingResult(cars.getWinners());
-    }
-
     public List<CarDto> getCurrentCars() {
         return this.cars.getCurrentCars();
+    }
+
+    public List<CarDto> findCarsOfWinner() {
+        return cars.getWinners();
     }
 }

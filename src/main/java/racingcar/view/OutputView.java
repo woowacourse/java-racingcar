@@ -1,9 +1,8 @@
 package racingcar.view;
 
+import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.domain.Car;
-import racingcar.domain.RacingRecord;
-import racingcar.domain.RacingResult;
+import racingcar.controller.CarDto;
 
 public class OutputView {
     private static final String NAME_AND_SCORE_DELIMITER = " : ";
@@ -18,8 +17,8 @@ public class OutputView {
         System.out.println(RACE_RECORD_MESSAGE);
     }
 
-    public static void printRacingRecord(RacingRecord racingRecord) {
-        for (Car car : racingRecord.getRacingRecord()) {
+    public static void printRacingRecord(List<CarDto> cars) {
+        for (CarDto car : cars) {
             System.out.println(car.getName() + NAME_AND_SCORE_DELIMITER + printDash(car.getPosition()));
         }
         System.out.println();
@@ -33,12 +32,12 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printRacingResult(RacingResult racingResult) {
-        System.out.println(collectingResult(racingResult) + RACE_WINNER_MESSAGE);
+    public static void printRacingResult(List<CarDto> carsOfWinner) {
+        System.out.println(collectingResult(carsOfWinner) + RACE_WINNER_MESSAGE);
     }
 
-    private static String collectingResult(RacingResult racingResult) {
-        return racingResult.getRacingRecord().stream().map(Car::getName).collect(Collectors.joining(NAME_DELIMITER));
+    private static String collectingResult(List<CarDto> cars) {
+        return cars.stream().map(car -> car.getName()).collect(Collectors.joining(NAME_DELIMITER));
     }
 
     static void printErrorMessage(Exception e) {

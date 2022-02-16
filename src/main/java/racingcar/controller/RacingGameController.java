@@ -16,6 +16,6 @@ public class RacingGameController {
         while (racingGame.hasNextGame()) {
             OutputView.printRacingRecord(racingGame.race());
         }
-        OutputView.printRacingResult(racingGame.getRacingResult());
+        OutputView.printRacingResult(racingGame.findCarsOfWinner());
     }
 }
