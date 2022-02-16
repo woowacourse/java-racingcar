@@ -18,10 +18,6 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
     public void race() {
         cars.forEach(car -> car.move(randomNumber));
     }
@@ -38,5 +34,9 @@ public class Cars {
                 .filter(car -> maxPosition == car.getPosition())
                 .map(Car::getName)
                 .collect(Collectors.joining(JOIN_BY_COMMA));
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
