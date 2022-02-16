@@ -28,11 +28,7 @@ public class OutputView {
     }
 
     static String makePositionString(final Position position) {
-        final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position.get(); i++) {
-            sb.append(POSITION_UNIT);
-        }
-        return sb.toString();
+        return POSITION_UNIT.repeat(position.get());
     }
 
     public static void printWinners(final List<Car> winners) {
