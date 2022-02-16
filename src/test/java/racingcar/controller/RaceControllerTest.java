@@ -8,11 +8,12 @@ import racingcar.domain.Car;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RaceControllerTest {
-    RaceController raceController;
+    RacingGame raceController;
 
     @BeforeEach
     public void beforeEach() {
-        raceController = new RaceController();
+        String[] defaultCarNames = {};
+        raceController = new RacingGame(defaultCarNames,0);
     }
 
     @Test
