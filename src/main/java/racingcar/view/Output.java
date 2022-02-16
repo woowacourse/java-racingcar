@@ -20,8 +20,8 @@ public class Output {
         System.out.println(String.join(SPLIT_DELIM, winnerNames) + OUTPUT_WINNER_MESSAGE);
     }
 
-    public static void printPositionWord(int position) {
-        for (int i = 0; i < position; i++) {
+    public static void printPositionWord(Car car) {
+        for (int i = 0; i < car.getPosition(); i++) {
             System.out.print(POSITION_WORD);
         }
     }
