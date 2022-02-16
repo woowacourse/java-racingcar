@@ -36,12 +36,12 @@ public class Cars {
     private List<String> findChampions(int highScore) {
         List<String> champions = new ArrayList<>();
         for (Car car : cars) {
-            verifyChampion(champions, car, highScore);
+            addIfChampion(champions, car, highScore);
         }
         return champions;
     }
 
-    private void verifyChampion(List<String> champions, Car car, int highScore) {
+    private void addIfChampion(List<String> champions, Car car, int highScore) {
         if (car.isSamePosition(highScore)) {
             champions.add(car.getName());
         }
