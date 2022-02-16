@@ -1,5 +1,6 @@
-package racingcar;
+package racingcar.controller;
 
+import racingcar.RandomGenerator;
 import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
 import racingcar.validator.Validator;
@@ -22,8 +23,8 @@ public class RacingGame {
         this.racingCars = racingCars;
     }
 
-    public void playGame(RacingCars racingCars) {
-
+    public void playGame() {
+        racingCars.join(InputView.askCarName());
         String tryCount = InputView.askTryCount();
         Validator.checkTryCountIsNaturalNumber(tryCount);
         int trialCount = Validator.convertToInt(tryCount);
@@ -41,7 +42,11 @@ public class RacingGame {
         }
     }
 
-    public String getWinnersName() {
+    public void finish() {
+        OutputView.printWinners(getWinnersName());
+    }
+
+    private String getWinnersName() {
         ArrayList<RacingCar> winners = getWinners(racingCars);
         ArrayList<String> winnersName = new ArrayList<>();
         for (RacingCar winner : winners) {

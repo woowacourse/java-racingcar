@@ -3,8 +3,10 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.RacingGame;
+import racingcar.controller.RacingGame;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,29 +47,38 @@ public class RacingCarTest {
 
     @Test
     @DisplayName("위치가 제일 먼 자동차가 우승자인지 테스트")
-    public void getWinnersTest() {
+    public void getWinnersTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         racingCar2.goOrStay(5);
         racingCar3.goOrStay(5);
         racingCar3.goOrStay(7);
 
         RacingCars racingCars = new RacingCars(racingCarList);
-        racingGame = new RacingGame(racingCars);
-        String winnersName = racingGame.getWinnersName();
+        RacingGame racingGameClass = new RacingGame(racingCars);
+
+        Method getWinnersName = racingGameClass.getClass().getDeclaredMethod("getWinnersName");
+        getWinnersName.setAccessible(true);
+
+        String winnersName = (String) getWinnersName.invoke(racingGameClass);
 
         assertThat(winnersName).isEqualTo(racingCar3.getName());
     }
 
     @Test
     @DisplayName("우승자가 여러명일때 쉼표를 이용해 구분하는 기능")
-    public void getWinnersNameTest() {
+    public void getWinnersNameTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         racingCar2.goOrStay(5);
         racingCar3.goOrStay(7);
 
         RacingCars racingCars = new RacingCars(racingCarList);
-        racingGame = new RacingGame(racingCars);
-        String actual = racingGame.getWinnersName();
+        RacingGame racingGameClass = new RacingGame(racingCars);
+
+        Method getWinnersName = racingGameClass.getClass().getDeclaredMethod("getWinnersName");
+        getWinnersName.setAccessible(true);
+
+        String actual = (String) getWinnersName.invoke(racingGameClass);
+
         String winnersName = racingCar2.getName() + WINNER_NAME_DELIMITER + racingCar3.getName();
 
         assertThat(actual).isEqualTo(winnersName);
