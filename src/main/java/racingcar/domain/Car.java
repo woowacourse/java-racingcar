@@ -2,13 +2,13 @@ package racingcar.domain;
 
 public class Car {
 
-    private static final int INITIAL_VALUE = 0;
+    private static final int POSITION_INITIAL_VALUE = 0;
     private static final int PROGRESS_CONDITION_VALUE = 4;
     private static final int CAR_NAME_MIN_LENGTH = 1;
     private static final int CAR_NAME_MAX_LENGTH = 5;
 
     private final String name;
-    private int position = INITIAL_VALUE;
+    private int position = POSITION_INITIAL_VALUE;
 
     public Car(String name) {
         validateCarName(name);
