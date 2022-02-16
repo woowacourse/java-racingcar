@@ -59,4 +59,10 @@ public class CarTest {
         //then
         assertThat(car1.isSamePositionWith(car2)).isFalse();
     }
+
+    @Test
+    void null로_자동차가_생성될_경우_예외발생() {
+        assertThatThrownBy(() -> new Car(null)).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자동차의 이름은 null이 될수 없습니다.");
+    }
 }

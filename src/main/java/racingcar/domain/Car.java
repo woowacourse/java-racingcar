@@ -10,7 +10,14 @@ public class Car implements Comparable<Car> {
     private final CarName name;
 
     public Car(final CarName name) {
+        checkNull(name);
         this.name = name;
+    }
+
+    private void checkNull(CarName name) {
+        if (name == null) {
+            throw new IllegalArgumentException("자동차의 이름은 null이 될수 없습니다.");
+        }
     }
 
     public Position getPosition() {
