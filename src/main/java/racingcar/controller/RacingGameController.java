@@ -10,7 +10,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGameController {
-    public static void main(String[] args) {
+    public void run() {
         RacingGame racingGame = new RacingGame(
             Cars.fromNames(InputView.getCarsName()),
             Round.fromNumber(InputView.getRound()),
