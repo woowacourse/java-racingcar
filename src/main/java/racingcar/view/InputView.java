@@ -19,8 +19,12 @@ public class InputView {
 
     public RequestCarsDto requestCars() {
         System.out.println(REQUEST_CAR_NAME_MESSAGE);
-        Cars cars = new Cars(readNextLine().split(CAR_NAME_DELIMITER));
+        Cars cars = new Cars(splitNames(readNextLine()));
         return new RequestCarsDto(cars);
+    }
+
+    private String[] splitNames(String nameInput) {
+        return nameInput.split(CAR_NAME_DELIMITER, -1);
     }
 
     public RequestAttemptDto requestAttempt() {
