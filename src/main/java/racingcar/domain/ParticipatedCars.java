@@ -10,12 +10,17 @@ import racingcar.util.BoundedRandomNumberGenerator;
 public class ParticipatedCars {
     private static final int MAX_BOUND = 9;
     private static final int MIN_BOUND = 0;
+    private static final int START_POSITION = 0;
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
+
+    public ParticipatedCars() {
+        this.cars = new ArrayList<>();
+    }
 
     public void generateCars(List<String> carNames) {
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            cars.add(new Car(carName, START_POSITION));
         }
     }
 
@@ -28,7 +33,7 @@ public class ParticipatedCars {
     }
 
     private Car findFastestCar() {
-        Collections.sort(cars);
+        Collections.sort(cars, Comparator.comparingInt(Car::getPosition));
         return cars.get(this.getSize()-1);
     }
 
