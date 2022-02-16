@@ -1,14 +1,12 @@
 package racingcar.domain.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.MockRandomNumberGenerator;
 
 class GameLogTest {
@@ -30,8 +28,15 @@ class GameLogTest {
 
     @ParameterizedTest(name = "{0} 번째 턴 : 포지션 {1}")
     @CsvSource(value = {"1,1", "2,2", "3,2", "4,2"})
-    public void 자동차이름으로_특정_턴의_포지션_찾기(int currentTryCount, int position) {
+    public void CAR_1_특정_턴의_포지션_찾기(int currentTryCount, int position) {
         assertThat(racingGame.getGameLog().getPositionByName(currentTryCount, CAR_1_NAME))
+                .isEqualTo(position);
+    }
+
+    @ParameterizedTest(name = "{0} 번째 턴 : 포지션 {1}")
+    @CsvSource(value = {"1,0", "2,0", "3,1", "4,2"})
+    public void CAR_2_특정_턴의_포지션_찾기(int currentTryCount, int position) {
+        assertThat(racingGame.getGameLog().getPositionByName(currentTryCount, CAR_2_NAME))
                 .isEqualTo(position);
     }
 
