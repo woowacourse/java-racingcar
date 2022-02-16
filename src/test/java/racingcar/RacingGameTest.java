@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.controller.GameController;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.Name;
 import racingcar.util.NumberGenerator;
 import racingcar.util.RandomNumberGenerator;
 
@@ -31,8 +32,8 @@ class RacingGameTest {
     @DisplayName("최종 우승자 출력")
     void findWinner() {
         List<Car> carList = new ArrayList<>();
-        carList.add(new Car("bom", 3));
-        carList.add(new Car("sun", 4));
+        carList.add(new Car(new Name("bom"), 3));
+        carList.add(new Car(new Name("sun"), 4));
         Cars cars = new Cars(carList);
 
         String winnerName = gameController.findWinner(cars);

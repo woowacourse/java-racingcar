@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,13 +25,6 @@ class InputValidationTest {
     @DisplayName("자동차 이름이 하나도 존재하지 않을 경우 예외처리")
     void blankInputException() {
         assertThatThrownBy(() -> gameController.splitCars(""))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("자동차 이름에 중복이 존재하는 경우 예외처리")
-    void duplicateCarNamesException() {
-        assertThatThrownBy(() -> gameController.splitCars("aaa,bbb,aaa"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -52,7 +52,6 @@ public class GameController {
 
     public Cars initCars(List<Name> carNames) {
         return new Cars(carNames.stream()
-                .map(Name::getName)
                 .map(Car::new)
                 .collect(Collectors.toList()));
     }

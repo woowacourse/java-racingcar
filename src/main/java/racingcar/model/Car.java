@@ -6,15 +6,15 @@ public class Car {
     private static final int MINIMUM_POSITION = 0;
     private static final int MOVE_FORWARD = 4;
 
-    private final String name;
+    private final Name name;
     private int position;
 
-    public Car(String name, int position) {
+    public Car(Name name, int position) {
         this.name = name;
         this.position = position;
     }
 
-    public Car(String name) {
+    public Car(Name name) {
         this(name, MINIMUM_POSITION);
     }
 
@@ -30,7 +30,7 @@ public class Car {
     }
 
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
