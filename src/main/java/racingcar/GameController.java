@@ -7,6 +7,7 @@ import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.domain.CarFactory;
 import racingcar.domain.Game;
+import racingcar.domain.RandomMove;
 import racingcar.domain.UniqueCars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -15,9 +16,10 @@ public class GameController {
 	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
 
 	public static void run() {
+		Game game = new Game(
+			new UniqueCars(CarFactory.of(InputView.inputCarNames())));
 		final int count = InputView.inputGameCount();
 		validateCount(count);
-		Game game = new Game(new UniqueCars(CarFactory.of(InputView.inputCarNames())));
 		play(game, count);
 		showWinner(game.getWinners());
 	}
@@ -25,7 +27,7 @@ public class GameController {
 	private static void play(Game game, int count) {
 		OutputView.printGameResultTitle();
 		for (int i = 0; i < count; i++) {
-			showResult(game.play());
+			showResult(game.play(new RandomMove()));
 		}
 	}
 
