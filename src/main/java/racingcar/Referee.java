@@ -1,7 +1,6 @@
 package racingcar;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Referee {
@@ -11,7 +10,7 @@ public class Referee {
 		return randomValue >= MOVE_CRITERIA;
 	}
 
-	public static List<Car> judgeWinner(Set<Car> cars, int maxPosition) {
+	public static List<Car> judgeWinner(List<Car> cars, int maxPosition) {
 		return cars.stream()
 			.filter(car -> car.isPosition(maxPosition))
 			.collect(Collectors.toList());

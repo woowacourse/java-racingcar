@@ -14,24 +14,24 @@ public class Game {
 
     public void start() {
         Cars cars = new Cars(CarFactory.of(InputView.inputCarNames()));
-        Set<Car> carSet = cars.getCars();
+        List<Car> carList = cars.getCars();
         int count = validateGameCount(InputView.inputGameCount());
         OutputView.printGameResultTitle();
         for (int i = 0; i < count; i++) {
-            play(carSet);
-            showResult(carSet);
+            play(carList);
+            showResult(carList);
         }
-        showWinner(Referee.judgeWinner(carSet, cars.getMaxPosition()));
+        showWinner(Referee.judgeWinner(carList, cars.getMaxPosition()));
     }
 
-    public void play(Set<Car> cars) {
+    public void play(List<Car> cars) {
         for (Car car : cars) {
             boolean canCarMove = Referee.canCarMove(makeRandomValue());
             car.move(canCarMove);
         }
     }
 
-    public void showResult(Set<Car> cars) {
+    public void showResult(List<Car> cars) {
         for (Car car : cars) {
             OutputView.printLineString(car.toString());
         }

@@ -2,8 +2,8 @@ package racingcar;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,7 +27,7 @@ public class RefereeTest {
 
 	@Test
 	public void 우승자_판정() {
-		Set<Car> cars = new HashSet<>();
+		List<Car> cars = new ArrayList<>();
 		Car car1 = new Car("forky");
 		Car car2 = new Car("kun");
 		cars.add(car1);
