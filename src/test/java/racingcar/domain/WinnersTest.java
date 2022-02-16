@@ -9,7 +9,7 @@ class WinnersTest {
 
     @Test
     void 우승자_rick() {
-        Cars cars = new Cars(Arrays.asList(
+        Cars cars = Cars.withCars(Arrays.asList(
                 new Car("rick", 3), new Car("huni", 0)));
 
         Winners winners = new Winners(cars);
@@ -20,7 +20,7 @@ class WinnersTest {
 
     @Test
     void 공동_우승자_rick_huni() {
-        Cars cars = new Cars(Arrays.asList(
+        Cars cars = Cars.withCars(Arrays.asList(
                 new Car("rick", 4), new Car("huni", 4)));
 
         Winners winners = new Winners(cars);

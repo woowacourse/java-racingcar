@@ -9,7 +9,7 @@ public class CarsTest {
 
     @Test
     void 자동차_2개_미만() {
-        assertThatThrownBy(() -> new Cars(List.of("rick")))
+        assertThatThrownBy(() -> Cars.withNames(List.of("rick")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차는 2대 이상 5대 이하이어야 합니다.");
     }
@@ -17,7 +17,7 @@ public class CarsTest {
     @Test
     void 자동차_5개_초과() {
         assertThatThrownBy(
-                () -> new Cars(List.of("rick", "huni", "sudal", "ukong", "tomy", "pobi")))
+                () -> Cars.withNames(List.of("rick", "huni", "sudal", "ukong", "tomy", "pobi")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차는 2대 이상 5대 이하이어야 합니다.");
     }

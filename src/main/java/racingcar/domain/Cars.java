@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +16,7 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(final List<Car> cars) {
+    private Cars(final List<Car> cars) {
         validateCarCount(cars.size());
         validateDuplicateName(cars.stream()
                 .map(Car::getName)
@@ -25,14 +24,16 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Cars(final List<String> names, final MovingStrategy strategy) {
-        validateCarCount(names.size());
-        validateDuplicateName(names);
+    public static Cars withNames(final List<String> names) {
+        List<Car> cars = names.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
 
-        this.cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name, strategy));
-        }
+        return new Cars(cars);
+    }
+
+    public static Cars withCars(final List<Car> cars) {
+        return new Cars(cars);
     }
 
     private void validateCarCount(final int size) {
