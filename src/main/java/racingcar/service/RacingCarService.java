@@ -9,18 +9,16 @@ import racingcar.domain.round.Round;
 
 public class RacingCarService {
 
-    private static final int END_ROUND = 0;
-
     private final Cars cars;
     private final Round round;
 
     public RacingCarService(String carNames, String roundNumber) {
-        this.cars = new Cars(carNames);
+        this.cars = Cars.create(carNames);
         this.round = new Round(roundNumber);
     }
 
     public boolean isEnd() {
-        return round.isEnd(END_ROUND);
+        return round.isEnd();
     }
 
     public Cars run() {
