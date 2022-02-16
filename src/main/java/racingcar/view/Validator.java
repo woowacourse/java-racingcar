@@ -1,7 +1,5 @@
 package racingcar.view;
 
-import java.util.List;
-
 public class Validator {
 
     private static String CAR_NAME_DELIMITER = ",";
@@ -10,7 +8,7 @@ public class Validator {
 
     public static void validateCarNames(String carNames) {
         checkCarNamesEmpty(carNames);
-        checkCarNameLength(carNames.split(CAR_NAME_DELIMITER));
+        checkCarNamesLength(carNames.split(CAR_NAME_DELIMITER));
     }
 
     public static void checkCarNamesEmpty(String stringNames) {
@@ -19,11 +17,15 @@ public class Validator {
         }
     }
 
-    public static void checkCarNameLength(String[] carNameArray) {
+    public static void checkCarNamesLength(String[] carNameArray) {
         for(String carName : carNameArray) {
-            if(carName.length() > CAR_NAME_MAX_LENGTH) {
-                throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없다.");
-            }
+            checkCarNameLength(carName);
+        }
+    }
+
+    public static void checkCarNameLength(String carName) {
+        if(carName.length() > CAR_NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없다.");
         }
     }
 

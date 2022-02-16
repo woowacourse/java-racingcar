@@ -4,14 +4,11 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.RacingCar;
-import racingcar.domain.RacingGame;
 
 class InputViewTest {
 
@@ -48,7 +45,7 @@ class InputViewTest {
     @DisplayName("자동차의 이름이 5자가 초과될 경우 예외가 발생해야 한다.")
     void checkRacingCarNameLength() {
         assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> Validator.checkCarNameLength(new String[]{"abcede", "abcde"}))
+            .isThrownBy(() -> Validator.checkCarNameLength("abcede"))
             .withMessageMatching("자동차 이름은 5자를 초과할 수 없다.");
     }
 }
