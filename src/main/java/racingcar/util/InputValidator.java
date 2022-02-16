@@ -41,11 +41,11 @@ public class InputValidator {
         }
     }
 
-    public static void validateDuplicateName(List<String> carNameList) {
-        long distinctNum = carNameList.stream()
+    public static void validateDuplicateName(List<String> carNames) {
+        long distinctNum = carNames.stream()
                 .distinct()
                 .count();
-        if (distinctNum != carNameList.size()) {
+        if (distinctNum != carNames.size()) {
             throw new IllegalArgumentException("자동차의 이름에 중복이 포함되면 안됩니다.");
         }
     }

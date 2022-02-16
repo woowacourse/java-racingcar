@@ -84,8 +84,8 @@ public class StringCalculator {
         }
     }
 
-    private static Integer sumNumbers(List<Integer> numList) {
-        return numList.stream()
+    private static Integer sumNumbers(List<Integer> numbers) {
+        return numbers.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
     }
