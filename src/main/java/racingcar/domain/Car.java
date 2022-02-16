@@ -9,22 +9,19 @@ public class Car implements Comparable<Car> {
 
     private String carName;
     private int position;
-    private RandomNumberGenerator randomNumberGenerator;
 
-
-    public Car(String carName, RandomNumberGenerator randomNumberGenerator) {
+    public Car(String carName) {
         this.carName = carName;
         this.position = 0;
-        this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public void tryMoving() {
-        if (isMovable()) {
+    public void tryMovingBy(RandomNumberGenerator randomNumberGenerator) {
+        if (isMovableBy(randomNumberGenerator)) {
             position++;
         }
     }
 
-    public boolean isMovable() {
+    public boolean isMovableBy(RandomNumberGenerator randomNumberGenerator) {
         return randomNumberGenerator.generate() >= OPERATING_STANDARD;
     }
 
