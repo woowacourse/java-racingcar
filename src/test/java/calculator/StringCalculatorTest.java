@@ -48,7 +48,7 @@ public class StringCalculatorTest {
 	public void 숫자_아닌_원소_예외_테스트() {
 		assertThatThrownBy(() -> StringCalculator.splitAndSum("1,안녕하세요:3"))
 			.isInstanceOf(RuntimeException.class)
-			.hasMessageContaining("전달된 배열의 원소는 반드시 숫자여야 합니다.");
+			.hasMessageContaining("전달된 배열의 원소는 반드시 숫자여야 합니다. value : 안녕하세요");
 	}
 
 	@Test

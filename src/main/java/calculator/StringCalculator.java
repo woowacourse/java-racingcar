@@ -1,5 +1,11 @@
 package calculator;
 
+import calculator.exception.DelimiterLengthOverException;
+import calculator.exception.DelimiterNotFoundException;
+import calculator.exception.DelimiterNumericException;
+import calculator.exception.ElementNotExistsException;
+import calculator.exception.NumberNotPositiveException;
+import calculator.exception.StringNotNumericException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -30,16 +36,15 @@ public class StringCalculator {
     }
 
     private static String getDelimiter(String input) {
-        String delimiter = DEFAULT_DELIMITER;
         if (Pattern.matches(REGEX, input)) {
-            delimiter = getCustomDelimiter(input);
+            return getCustomDelimiter(input);
         }
-        return delimiter;
+        return DEFAULT_DELIMITER;
     }
 
     private static String substringRegexPart(String input, String delimiter) {
         if (!delimiter.equals(DEFAULT_DELIMITER)) {
-            input = input.substring(VALID_REGEX_PART_LENGTH);
+            return input.substring(VALID_REGEX_PART_LENGTH);
         }
         return input;
     }
@@ -77,24 +82,22 @@ public class StringCalculator {
     }
 
     private static Integer stringToInteger(String input) {
-        Integer result = null;
         try {
-            result = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new RuntimeException("전달된 배열의 원소는 반드시 숫자여야 합니다.");
+            throw new StringNotNumericException(input);
         }
-        return result;
     }
 
     private static void checkElementsNotNull(List<Integer> numbers) {
         if (numbers.isEmpty()) {
-            throw new RuntimeException("전달된 배열에 원소가 없습니다.");
+            throw new ElementNotExistsException();
         }
     }
 
     private static void checkPositiveNumber(Integer number) {
         if (number < 0) {
-            throw new RuntimeException("음수 값은 포함될 수 없습니다.");
+            throw new NumberNotPositiveException(number);
         }
     }
 
@@ -106,7 +109,7 @@ public class StringCalculator {
 
     private static void checkDelimiterNotDigit(String delimiter) {
         if (Character.isDigit(delimiter.charAt(0))) {
-            throw new RuntimeException("정수는 커스텀 구분자로 지정할 수 없습니다.");
+            throw new DelimiterNumericException(delimiter);
         }
     }
 
@@ -118,13 +121,13 @@ public class StringCalculator {
 
     private static void hasRegex(String regexPart) {
         if (regexPart.length() < VALID_REGEX_PART_LENGTH) {
-            throw new RuntimeException("커스텀 구분자가 입력되지 않았습니다.");
+            throw new DelimiterNotFoundException();
         }
     }
 
     private static void checkRegexLength(String regexPart) {
         if (regexPart.length() > VALID_REGEX_PART_LENGTH) {
-            throw new RuntimeException("커스텀 구분자는 한 글자여야 합니다.");
+            throw new DelimiterLengthOverException();
         }
     }
 }
