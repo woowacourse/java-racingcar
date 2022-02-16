@@ -3,11 +3,10 @@ package racingcar.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import racingcar.model.firstcollection.Cars;
-import racingcar.model.vo.Car;
-import racingcar.model.vo.MovableStrategy;
-import racingcar.model.vo.RacingCarMovableStrategy;
+import racingcar.domain.firstcollection.Cars;
+import racingcar.domain.strategy.MovableStrategy;
+import racingcar.domain.strategy.RacingCarMovableStrategy;
+import racingcar.domain.vo.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -18,7 +17,7 @@ public class RacingGame {
     public void start() {
         final Cars cars = setupCars();
         race(cars, InputView.getTrial());
-        OutputView.printWinner(cars.getWinner());
+        OutputView.printWinner(cars.getWinnerNames());
     }
 
     private Cars setupCars() {
@@ -29,16 +28,18 @@ public class RacingGame {
         return getCarsByCarNames(getCarNames());
     }
 
-    private String[] getCarNames() {
+    private List<String> getCarNames() {
         String userInput = InputView.getCarNames();
+        String[] splitNames = userInput.split(CAR_NAME_DELIMITER);
 
-        return userInput.split(CAR_NAME_DELIMITER);
+        return Arrays.stream(splitNames)
+                .collect(Collectors.toList());
     }
 
-    private List<Car> getCarsByCarNames(final String[] carNames) {
-        return Arrays.stream(carNames)
-                    .map(Car::new)
-                    .collect(Collectors.toList());
+    private List<Car> getCarsByCarNames(final List<String> carNames) {
+        return carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     private void race(final Cars cars, final int trials) {

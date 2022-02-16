@@ -1,6 +1,7 @@
-package racingcar.model.vo;
+package racingcar.domain.vo;
 
 import java.util.Objects;
+import racingcar.domain.strategy.MovableStrategy;
 
 public class Car {
     private static final int MAXIMUM_LENGTH = 5;
@@ -32,18 +33,18 @@ public class Car {
     private static void validateLength(final String name) {
         if (name.length() < MINIMUM_LENGTH || name.length() > MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(
-                String.format(ERROR_MESSAGE_FOR_INVALID_SIZED_NAME, MINIMUM_LENGTH, MAXIMUM_LENGTH));
+                    String.format(ERROR_MESSAGE_FOR_INVALID_SIZED_NAME, MINIMUM_LENGTH, MAXIMUM_LENGTH));
         }
+    }
+
+    public boolean isEqualPosition(final Car car) {
+        return this.position == car.position;
     }
 
     public void advance(MovableStrategy movableStrategy) {
         if (movableStrategy.isMove()) {
             this.position++;
         }
-    }
-
-    public boolean isEqualPosition(final int position) {
-        return this.position == position;
     }
 
     public String getName() {
@@ -54,13 +55,25 @@ public class Car {
         return position;
     }
 
+    public int isWinning(final Car competitor) {
+        if (this.position > competitor.position) {
+            return -1;
+        } else if (this.position < competitor.position) {
+            return 1;
+        }
+
+        return 0;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (o == null || getClass() != o.getClass())
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
-        Car car = (Car)o;
+        }
+        Car car = (Car) o;
         return name.equals(car.name);
     }
 
@@ -72,8 +85,8 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
-            "name='" + name + '\'' +
-            ", position=" + position +
-            '}';
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
     }
 }

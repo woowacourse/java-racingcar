@@ -1,24 +1,24 @@
-package racingcar.model.vo;
+package racingcar.domain.vo;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
-    @Test
-    @DisplayName("유효한 이름으로 자동차 생성 테스트")
-    void carTest() {
-        // given
-        String testName = "test";
-
-        // when
-        Car car = new Car(testName);
+    @ParameterizedTest(name = "자동차 이름 : {0}")
+    @ValueSource(strings = {"j", "woowa"})
+    @DisplayName("유효한 이름으로 자동차 생성 테스트 - 1이상, 5이하")
+    void carTest(String carName) {
+        // given & when
+        Car car = new Car(carName);
 
         // then
-        assertThat(car.getName()).isEqualTo(testName);
+        assertThat(car.getName()).isEqualTo(carName);
     }
 
     @Test
@@ -42,8 +42,8 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> new Car(nullName))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageMatching("올바른 이름을 입력해주세요");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("올바른 이름을 입력해주세요");
     }
 
     @Test
@@ -54,8 +54,8 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> new Car(nullName))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
     }
 
     @Test
@@ -64,8 +64,8 @@ public class CarTest {
         String overSizedName = "richard";
 
         assertThatThrownBy(() -> new Car(overSizedName))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("이름은 \\d+글자 이상, \\d+글자 이하여야 합니다.");
     }
 
     @ParameterizedTest(name = "전진 - {0}")
