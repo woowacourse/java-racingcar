@@ -1,22 +1,22 @@
 package racingcar.domain;
 
-import java.util.Set;
+import java.util.Collection;
 
 public class Game {
-	private final UniqueCars uniqueCars;
+	private final Cars cars;
 
-	public Game(UniqueCars uniqueCars) {
-		this.uniqueCars = uniqueCars;
+	public Game(Cars cars) {
+		this.cars = cars;
 	}
 
-	public UniqueCars play(MoveStrategy moveStrategy) {
-		uniqueCars.getCars().stream()
+	public Cars play(MoveStrategy moveStrategy) {
+		cars.getCars().stream()
 			.filter(car -> moveStrategy.isMovable())
 			.forEach(Car::move);
-		return uniqueCars;
+		return cars;
 	}
 
-	public Set<Car> getWinners() {
-		return uniqueCars.getCarsInPosition(uniqueCars.getMaxPosition());
+	public Collection<Car> getWinners() {
+		return cars.getCarsInPosition(cars.getMaxPosition());
 	}
 }
