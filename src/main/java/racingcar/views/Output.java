@@ -21,7 +21,7 @@ public class Output {
 	}
 
 	private void printCarPosition(final Car car) {
-		System.out.print(car + NAME_POSITION_SPLITTER);
+		System.out.print(car.getName() + NAME_POSITION_SPLITTER);
 		for (int i = 0; i < car.getPosition(); i++) {
 			System.out.print(CAR_POSITION);
 		}

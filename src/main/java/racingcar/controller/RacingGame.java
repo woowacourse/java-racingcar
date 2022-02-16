@@ -65,7 +65,7 @@ public class RacingGame {
     private String getWinners(final int farthestPosition) {
         return cars.stream()
                 .filter((car) -> farthestPosition == car.getPosition())
-                .map(Car::toString)
+                .map(Car::getName)
                 .collect(Collectors.joining(", "));
     }
 }
