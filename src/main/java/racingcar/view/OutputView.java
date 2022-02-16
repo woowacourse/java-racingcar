@@ -12,7 +12,6 @@ public class OutputView {
     private static final String MOVE_SIGN = "-";
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-
     public static void printResult(List<Car> cars) {
         for (Car car : cars) {
             System.out.println(car.getName() + SEPARATOR + MOVE_SIGN.repeat(car.getPosition()));
