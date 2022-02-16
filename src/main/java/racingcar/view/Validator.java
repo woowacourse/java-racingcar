@@ -13,13 +13,13 @@ public class Validator {
         checkCarNameLength(carNames.split(CAR_NAME_DELIMITER));
     }
 
-    private static void checkCarNamesEmpty(String stringNames) {
+    public static void checkCarNamesEmpty(String stringNames) {
         if (stringNames == null || stringNames.isEmpty()) {
             throw new IllegalArgumentException("자동차 입력 값이 존재해야한다.");
         }
     }
 
-    private static void checkCarNameLength(String[] carNameArray) {
+    public static void checkCarNameLength(String[] carNameArray) {
         for(String carName : carNameArray) {
             if(carName.length() > CAR_NAME_MAX_LENGTH) {
                 throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없다.");
