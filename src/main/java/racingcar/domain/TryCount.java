@@ -2,11 +2,11 @@ package racingcar.domain;
 
 public class TryCount {
 
-    private final int maxTryCount;
+    private final int totalTryCount;
     private int currentTryCount = 0;
 
-    public TryCount(int maxTryCount) {
-        this.maxTryCount = maxTryCount;
+    public TryCount(int totalTryCount) {
+        this.totalTryCount = totalTryCount;
     }
 
     public void increaseCount() {
@@ -14,10 +14,14 @@ public class TryCount {
     }
 
     public boolean isFinished() {
-        return currentTryCount == maxTryCount;
+        return currentTryCount == totalTryCount;
     }
 
     public int getCurrentTryCount() {
         return currentTryCount;
+    }
+
+    public int getTotalTryCount() {
+        return totalTryCount;
     }
 }

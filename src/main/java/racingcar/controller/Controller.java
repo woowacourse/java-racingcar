@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 import racingcar.domain.game.RacingGame;
 import racingcar.domain.random.RandomNumberGenerator;
-import racingcar.receiver.CarNamesReceiver;
-import racingcar.receiver.TryCountReceiver;
+import racingcar.domain.receiver.CarNamesReceiver;
+import racingcar.domain.receiver.TryCountReceiver;
 import racingcar.view.View;
 
 public class Controller {
@@ -30,9 +30,9 @@ public class Controller {
         view.printResultViewTitle();
         while (!racingGame.isFinished()) {
             racingGame.proceedTurn();
-            view.printMidtermResults(racingGame.getGameLog());
+            view.printMidtermResults(racingGame.getGameLog(), racingGame.getTryCount().getCurrentTryCount());
         }
-        view.printWinnersResult(racingGame.getGameLog());
+        view.printWinnersResult(racingGame.getGameLog(), racingGame.getTryCount().getTotalTryCount());
     }
 
     private List<String> enrollNames() {

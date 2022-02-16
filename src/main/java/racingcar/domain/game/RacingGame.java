@@ -5,7 +5,6 @@ import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.exception.RacingGameIsFinishedException;
-import racingcar.domain.result.GameLog;
 
 public class RacingGame {
 
@@ -32,6 +31,10 @@ public class RacingGame {
 
     public boolean isFinished() {
         return tryCount.isFinished();
+    }
+
+    public TryCount getTryCount() {
+        return tryCount;
     }
 
     public GameLog getGameLog() {

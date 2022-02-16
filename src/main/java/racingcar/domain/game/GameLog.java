@@ -1,4 +1,4 @@
-package racingcar.domain.result;
+package racingcar.domain.game;
 
 import static java.util.stream.Collectors.toList;
 
@@ -19,14 +19,8 @@ public class GameLog {
         log.put(currentTryCount, currentCars.cloneCarList());
     }
 
-    public List<String> getLatestCarNames() {
-        return log.get(getLatestTryCount()).stream()
-                .map(Car::getName)
-                .collect(toList());
-    }
-
-    public int getLatestTryCount() {
-        return log.size();
+    public List<Car> getLog(int tryCount) {
+        return log.get(tryCount);
     }
 
     public int getPositionByName(int tryCount, String name) {
@@ -34,14 +28,14 @@ public class GameLog {
     }
 
     private Car findCarByName(int tryCount, String name) {
-        return log.get(tryCount).stream()
+        return getLog(tryCount).stream()
                 .filter(car -> car.getName().equals(name))
                 .findFirst()
                 .get();
     }
 
-    public List<String> getWinnerCarNames() {
-        List<Car> carList = log.get(getLatestTryCount());
+    public List<String> getWinnerCarNames(int totalTryCount) {
+        List<Car> carList = getLog(totalTryCount);
         int mostFarPosition = getMostFarPosition(carList);
         return carList.stream()
                 .filter(car -> car.isSamePosition(mostFarPosition))

@@ -1,4 +1,4 @@
-package racingcar.receiver;
+package racingcar.domain.receiver;
 
 import racingcar.exception.TryCountException;
 
