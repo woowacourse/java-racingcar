@@ -50,7 +50,7 @@ public class Validator {
         return carsName.stream().distinct().count() != carsName.size();
     }
 
-    public static void validateInputRound(String inputRound) {
+    public static void validateInputNumber(String inputRound) {
         checkNullOrEmpty(inputRound);
         checkIncludeBlank(inputRound);
     }

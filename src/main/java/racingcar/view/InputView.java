@@ -29,7 +29,7 @@ public class InputView {
     public static String getRound() {
         OutputView.printRequestInstruction(REQUEST_ROUND_VALUE);
         String inputRound = InputView.getInput();
-        Validator.validateInputRound(inputRound);
+        Validator.validateInputNumber(inputRound);
         return inputRound;
     }
 }
