@@ -18,7 +18,7 @@ public class OutputView {
 
 	public static void printCars(RacingCars cars) {
 		for (Car car : cars.getRacingCars()) {
-			System.out.println(car + " : " + CAR_MOVE.repeat(Math.max(0, car.getPosition())));
+			System.out.println(car.getName() + " : " + CAR_MOVE.repeat(Math.max(0, car.getPosition())));
 		}
 		printNewLine();
 	}
@@ -29,9 +29,9 @@ public class OutputView {
 
 	public static void printWinners(List<Car> winners) {
 		for (int idx = 0; idx < winners.size() - 1; idx++) {
-			System.out.print(winners.get(idx) + ", ");
+			System.out.print(winners.get(idx).getName() + ", ");
 		}
-		System.out.print(winners.get(winners.size() - 1));
+		System.out.print(winners.get(winners.size() - 1).getName());
 		System.out.println(FINAL_WINNER_MESSAGE);
 	}
 

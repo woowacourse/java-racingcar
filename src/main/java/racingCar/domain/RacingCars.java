@@ -15,8 +15,12 @@ public class RacingCars {
 
 	public void moveRacingCars() {
 		for (Car racingCar : this.racingCars) {
-			racingCar.moveCar();
+			racingCar.moveCar(isRandomOverProbability());
 		}
+	}
+
+	boolean isRandomOverProbability() {
+		return ((int)(Math.random() * 10) - 1) >= GO_OR_NOT;
 	}
 
 	private int getMaxDistance() {
