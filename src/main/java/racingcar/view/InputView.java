@@ -77,13 +77,17 @@ public class InputView {
         System.out.println(REQUEST_ROUND_VALUE);
         try {
             String inputRound = getInput();
-            validateRoundNumber(inputRound);
-            validateRoundMinimumOne(inputRound);
+            validateRound(inputRound);
             return Integer.parseInt(inputRound);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
             return getRound();
         }
+    }
+
+    private static void validateRound(String inputRound) {
+        validateRoundNumber(inputRound);
+        validateRoundMinimumOne(inputRound);
     }
 
     private static void validateRoundNumber(String input) {
