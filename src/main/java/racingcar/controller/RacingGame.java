@@ -1,19 +1,18 @@
 package racingcar.controller;
 
 import racingcar.models.Car;
+import racingcar.models.Cars;
 import racingcar.views.Input;
 import racingcar.views.Output;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGame {
 
     private final Input input;
     private final Output output;
-    private final List<Car> cars = new ArrayList<>();
+    private Cars cars;
     private int repeats;
 
     public RacingGame(final Input input, final Output output) {
@@ -34,39 +33,17 @@ public class RacingGame {
 
     private void createCar() {
         final List<String> carNames = input.inputValidNames();
-        carNames.forEach((carName) -> cars.add(new Car(carName)));
+        final List<Car> carInput = new ArrayList<>();
+        carNames.forEach((carName) -> carInput.add(new Car(carName)));
+        cars = new Cars(carInput);
     }
 
     private void startRacing() {
         output.printResultMessage();
         while (repeats-- > 0) {
-            cars.forEach(Car::goForward);
-            output.printTurnResult(cars);
+            cars.startOneTurn();
+            output.printTurnResult(cars.getCars());
         }
-        output.printWinners(findWinner());
-    }
-
-    private String findWinner() {
-        final int farthestPosition = findFarthestPosition();
-        return getWinners(farthestPosition);
-    }
-
-    private int findFarthestPosition() {
-        final List<Integer> sortedCars = cars.stream()
-                .sorted(Comparator.comparing(Car::getPosition).reversed())
-                .map(Car::getPosition)
-                .collect(Collectors.toList());
-
-        if (!sortedCars.isEmpty()) {
-            return sortedCars.get(0);
-        }
-        return 0;
-    }
-
-    private String getWinners(final int farthestPosition) {
-        return cars.stream()
-                .filter((car) -> car.isWinner(farthestPosition))
-                .map(Car::getName)
-                .collect(Collectors.joining(", "));
+        output.printWinners(cars.findWinner());
     }
 }
