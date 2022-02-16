@@ -57,6 +57,10 @@
     - [x] 우승은 한개 이상이다.
     - [x] 우승이 여러개일 경우 `, `를 이용하여 구분하여 문자열 반환 기능
 
+
+### 2단계 - 기능 구현 목록
+
+
 ## 우아한테크코스 코드리뷰
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
