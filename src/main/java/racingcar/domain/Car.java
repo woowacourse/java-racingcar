@@ -27,8 +27,8 @@ public class Car {
         return engine.ignite();
     }
 
-    public boolean isSamePosition(int highScore) {
-        return position == highScore;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     public String getName() {
