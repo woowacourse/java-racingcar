@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
 import racingcar.domain.Game;
-import racingcar.domain.RacingCars;
+import racingcar.domain.UniqueCars;
 
 public class GameTest {
 	@Test
@@ -16,7 +16,7 @@ public class GameTest {
 		Car winner = new Car("forky");
 		Car loser = new Car("kun");
 		winner.move();
-		Game game = new Game(new RacingCars(List.of(winner, loser)));
+		Game game = new Game(new UniqueCars(List.of(winner, loser)));
 		assertThat(game.getWinners())
 			.contains(winner);
 	}
@@ -28,7 +28,7 @@ public class GameTest {
 		Car loser = new Car("forky");
 		winner1.move();
 		winner2.move();
-		Game game = new Game(new RacingCars(List.of(winner1, winner2, loser)));
+		Game game = new Game(new UniqueCars(List.of(winner1, winner2, loser)));
 		assertThat(game.getWinners())
 			.containsExactlyInAnyOrder(winner1, winner2);
 	}

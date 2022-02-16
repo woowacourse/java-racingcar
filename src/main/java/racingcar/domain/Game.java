@@ -6,17 +6,17 @@ public class Game {
 	private static final int MOVE_CRITERIA = 4;
 	private static final int RANDOM_VALUE_BOUND = 9;
 
-	private final RacingCars racingCars;
+	private final UniqueCars uniqueCars;
 
-	public Game(RacingCars racingCars) {
-		this.racingCars = racingCars;
+	public Game(UniqueCars uniqueCars) {
+		this.uniqueCars = uniqueCars;
 	}
 
-	public RacingCars play() {
-		for (Car car : racingCars.getCars()) {
+	public UniqueCars play() {
+		for (Car car : uniqueCars.getCars()) {
 			moveCar(car);
 		}
-		return racingCars;
+		return uniqueCars;
 	}
 
 	private void moveCar(Car car) {
@@ -26,6 +26,6 @@ public class Game {
 	}
 
 	public Set<Car> getWinners() {
-		return racingCars.getCarsInPosition(racingCars.getMaxPosition());
+		return uniqueCars.getCarsInPosition(uniqueCars.getMaxPosition());
 	}
 }

@@ -7,7 +7,7 @@ import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.domain.CarFactory;
 import racingcar.domain.Game;
-import racingcar.domain.RacingCars;
+import racingcar.domain.UniqueCars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,7 +17,7 @@ public class GameController {
 	public static void run() {
 		final int count = InputView.inputGameCount();
 		validateCount(count);
-		Game game = new Game(new RacingCars(CarFactory.of(InputView.inputCarNames())));
+		Game game = new Game(new UniqueCars(CarFactory.of(InputView.inputCarNames())));
 		play(game, count);
 		showWinner(game.getWinners());
 	}
@@ -29,8 +29,8 @@ public class GameController {
 		}
 	}
 
-	private static void showResult(RacingCars racingCars) {
-		for (Car car : racingCars.getCars()) {
+	private static void showResult(UniqueCars uniqueCars) {
+		for (Car car : uniqueCars.getCars()) {
 			OutputView.printCarPosition(new CarDto(car.getName(), car.getPosition()));
 		}
 		OutputView.printBlankLine();
