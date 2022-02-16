@@ -65,8 +65,8 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("다섯 글자 이상의 자동차 이름 테스트")
-    public void 다섯글자_이상의_자동차_이름_테스트() {
+    @DisplayName("다섯 글자 초과의 자동차 이름 테스트")
+    public void 다섯글자_초과의_자동차_이름_테스트() {
         //given
         String name = "wooteco";
 
