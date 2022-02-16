@@ -25,7 +25,7 @@ public class Car {
     }
 
     private void checkNameExists(final String name) {
-        if (name.equals(EMPTY_NAME)) {
+        if (EMPTY_NAME.equals(name)) {
             throw new IllegalArgumentException(EMPTY_NAME_ERROR_MESSAGE);
         }
     }
