@@ -15,7 +15,7 @@ public class RecordDto {
 
     public static RecordDto createRecordDto(List<Car> cars) {
         return new RecordDto(cars.stream()
-            .map(CarDto::from)
+            .map(CarDto::creatCarDto)
             .collect(Collectors.toList()));
     }
 
