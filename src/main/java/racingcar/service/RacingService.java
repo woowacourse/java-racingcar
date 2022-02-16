@@ -7,6 +7,7 @@ import racingcar.domain.Attempt;
 import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.domain.RacingGame;
+import racingcar.domain.Round;
 import racingcar.repository.CarRepository;
 import racingcar.util.RandomUtilImpl;
 
@@ -14,6 +15,7 @@ public class RacingService {
 
 	private final CarRepository carRepository = new CarRepository();
 	private final RandomUtilImpl randomUtil = new RandomUtilImpl();
+	private RacingGame racingGame;
 
 	public void registerCars(List<CarDto> carDtos) {
 		List<Car> cars = carDtos.stream()
@@ -23,12 +25,14 @@ public class RacingService {
 		carRepository.add(cars);
 	}
 
-	public List<CarDto> race(Attempt attempt) {
-		RacingGame racingGame = RacingGame.of(carRepository.findCars(), attempt);
+	public void race(Attempt attempt) {
+		racingGame = RacingGame.of(carRepository.findCars(), attempt);
 		List<Car> resultCars = racingGame.start(randomUtil);
 		carRepository.updateCars(resultCars);
+	}
 
-		return carRepository.findCars().stream()
+	public List<CarDto> findRacingResult(Round round) {
+		return racingGame.findResultCars(round).stream()
 			.map(Car::toDto)
 			.collect(Collectors.toList());
 	}

@@ -10,6 +10,7 @@ public class RacingGame {
 
 	private final List<Car> cars;
 	private final Attempt attempt;
+	private final RacingResult racingResult = new RacingResult();
 
 	private RacingGame(List<Car> cars, Attempt attempt) {
 		this.cars = cars;
@@ -23,14 +24,17 @@ public class RacingGame {
 	public List<Car> start(RandomUtil randomUtil) {
 		for (int i = 0; i < attempt.getNumber(); i++) {
 			playRound(randomUtil);
+			racingResult.add(cars);
 		}
 
 		return cars;
 	}
 
 	private void playRound(RandomUtil randomUtil) {
-		cars.forEach(car -> {
-			car.move(randomUtil.generate(RANDOM_VALUE_RANGE));
-		});
+		cars.forEach(car -> car.move(randomUtil.generate(RANDOM_VALUE_RANGE)));
+	}
+
+	public List<Car> findResultCars(Round round) {
+		return racingResult.findResult(round);
 	}
 }

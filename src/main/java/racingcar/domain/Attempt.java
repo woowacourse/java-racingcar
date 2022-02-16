@@ -8,9 +8,17 @@ public class Attempt {
 
 	private final int number;
 
-	public Attempt(String number) {
+	private Attempt(int number) {
+		this.number = number;
+	}
+
+	public static Attempt fromStringValue(String number) {
 		AttemptValidator.check(number);
-		this.number = Integer.parseInt(number);
+		return new Attempt(Integer.parseInt(number));
+	}
+
+	public static Attempt fromIntegerValue(int number) {
+		return new Attempt(number);
 	}
 
 	public int getNumber() {
