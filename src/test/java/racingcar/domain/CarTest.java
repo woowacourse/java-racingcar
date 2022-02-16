@@ -7,6 +7,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi", "jun"})
+    void 자동차_이름_검증(String name) {
+        Car car = new Car(name);
+        assertThat(car.getName()).isEqualTo(name);
+    }
+
     @Test
     void 자동차_위치_검증_성공() {
         Car car = new Car("pobi", 4);
