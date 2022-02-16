@@ -1,8 +1,8 @@
 package racingcar.model;
 
+import static racingcar.utils.validator.CarNamesValidator.*;
 import static racingcar.utils.validator.TryCountValidator.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,16 +17,17 @@ public class RacingGame {
     private int tryCount;
 
     public RacingGame(String[] cars, String tryCount) {
-        this.cars = new ArrayList<>();
-        createCars(cars);
+        validateDuplicate(cars);
+        this.cars = createCars(cars);
 
         validateTryCount(tryCount);
         this.tryCount = Integer.parseInt(tryCount);
     }
 
-    private void createCars(final String[] carNames) {
-        Arrays.stream(carNames)
-            .forEach(carName -> cars.add(new Car(carName)));
+    private List<Car> createCars(final String[] carNames) {
+        return Arrays.stream(carNames)
+            .map(Car::new)
+            .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {

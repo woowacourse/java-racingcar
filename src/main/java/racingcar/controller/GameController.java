@@ -35,13 +35,4 @@ public class GameController {
             return initRacingGame();
         }
     }
-
-    private String[] createCarNames() {
-        try {
-            return inputView.inputCarNames();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return createCarNames();
-        }
-    }
 }

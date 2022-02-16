@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import static racingcar.utils.validator.CarNamesValidator.*;
+
 public class Car {
 
     private static final int INITIAL_POSITION = 0;
@@ -9,6 +11,7 @@ public class Car {
     private int position;
 
     public Car(final String name) {
+        validateCarName(name);
         this.name = name;
         this.position = INITIAL_POSITION;
     }

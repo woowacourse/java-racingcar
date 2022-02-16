@@ -2,9 +2,9 @@ package racingcar.utils.validator;
 
 public class TryCountValidator {
 
-    public static final String DIGIT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
-    public static final String POSITIVE_ERROR_MESSAGE = "[ERROR] 시도 횟수는 양수만 가능합니다.";
-    public static final int ZERO = 0;
+    private static final String DIGIT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
+    private static final String POSITIVE_ERROR_MESSAGE = "[ERROR] 시도 횟수는 양수만 가능합니다.";
+    private static final int ZERO = 0;
 
     private TryCountValidator() {}
 
