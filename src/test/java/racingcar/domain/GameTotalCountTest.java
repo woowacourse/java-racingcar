@@ -3,9 +3,24 @@ package racingcar.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTotalCountTest {
+
+    @Test
+    @DisplayName("정수로 변환이 가능한 문자열이 입력되었을 때 테스트")
+    public void 정상_입력_테스트() {
+        //given
+        String attempt = "5";
+        int attemptNumber = Integer.parseInt(attempt);
+
+        //when
+        GameTotalCount gameTotalCount = new GameTotalCount(attempt);
+
+        //then
+        assertThat(attemptNumber).isEqualTo(gameTotalCount.getTotalAttemptCount());
+    }
 
     @Test
     @DisplayName("시도 횟수가 정수인지 테스트")
