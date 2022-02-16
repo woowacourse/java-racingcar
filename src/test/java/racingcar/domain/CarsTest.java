@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SuppressWarnings("NonAsciiCharacters")
 class CarsTest {
 
-    private static final int MOVE_CONDITION = 10;
+    private static final int MINIMUM_MOVE_CONDITION = 4;
     private static final int WINNER_INDEX = 0;
 
     @Test
@@ -25,11 +25,11 @@ class CarsTest {
         for (int i = 0; i < size; i++) {
             Car car = cars.getCar(i);
 
-            car.progress(MOVE_CONDITION);
+            car.progress(MINIMUM_MOVE_CONDITION);
         }
         winnerPosition++;
 
-        cars.getCar(WINNER_INDEX).progress(MOVE_CONDITION);
+        cars.getCar(WINNER_INDEX).progress(MINIMUM_MOVE_CONDITION);
         winnerPosition++;
 
         //then
@@ -52,7 +52,7 @@ class CarsTest {
         for (int i = 0; i < size; i++) {
             Car car = cars.getCar(i);
 
-            car.progress(MOVE_CONDITION);
+            car.progress(MINIMUM_MOVE_CONDITION);
         }
         winnerPosition++;
 
