@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SuppressWarnings("NonAsciiCharacters")
 class CarTest {
 
-    public static final int MOVE_CONDITION= 10;
+    public static final int MOVE_CONDITION = 10;
     public static final int STOP_CONDITION = 0;
 
     @Test
