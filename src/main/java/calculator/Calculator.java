@@ -5,15 +5,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
-	private static final int WRONG_VALUE_RESULT = 0;
 	private static final int CUSTOM_DELIMITER_PART = 1;
 	private static final int NUMBER_PART = 2;
 
 	public int splitAndSum(String text) {
-		if (isEmpty(text)) {
-			return WRONG_VALUE_RESULT;
-		}
+		text = replaceEmpty(text);
 		return sum(getSplitNumbers(text));
+	}
+
+	private String replaceEmpty(String text) {
+		if (isEmpty(text)) {
+			text = "0";
+		}
+		return text;
 	}
 
 	private boolean isEmpty(String text) {
