@@ -6,12 +6,15 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class CarsTest {
+import carracing.util.MovableNumberGenerator;
+import carracing.utils.NumberGenerator;
 
+public class CarsTest {
 	Car eastCar;
 	Car pobiCar;
 	Car peperCar;
@@ -76,8 +79,9 @@ public class CarsTest {
 	}
 
 	void move(Car car, int cnt) {
+		final NumberGenerator numberGenerator = new MovableNumberGenerator();
 		while ((cnt--) > 0) {
-			car.move(9);
+			car.move(numberGenerator);
 		}
 	}
 }
