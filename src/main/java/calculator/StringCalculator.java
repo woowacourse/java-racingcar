@@ -9,8 +9,10 @@ public class StringCalculator {
 		if (checkNull(a)) {
 			return 0;
 		}
+
 		isNegative(splitByColon(a));
 		return checkCustomSplit(a);
+
 	}
 
 	private static boolean checkNull(String a) {
@@ -47,4 +49,5 @@ public class StringCalculator {
 		}
 		return sum(splitByColon(a));
 	}
+
 }
