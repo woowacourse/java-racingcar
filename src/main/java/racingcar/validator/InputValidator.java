@@ -47,7 +47,8 @@ public class InputValidator {
     }
 
     private static void carNameDuplicationException(List<String> carNames) {
-        if (carNames.stream().distinct().count() != carNames.size()) {
+        long count = carNames.stream().distinct().count();
+        if (count != carNames.size()) {
             throw new CarNameDuplicationException();
         }
     }
