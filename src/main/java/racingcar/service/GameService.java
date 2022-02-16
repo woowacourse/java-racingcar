@@ -35,6 +35,6 @@ public class GameService {
     }
 
     public static void showWinners() {
-        Output.printWinner(cars.findAllWinnerNames());
+        Output.printWinner(cars.findAllWinners());
     }
 }

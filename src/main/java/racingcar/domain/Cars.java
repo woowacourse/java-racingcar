@@ -15,15 +15,7 @@ public class Cars {
     }
 
     public void moveAllByRandom() {
-        cars.stream()
-                .forEach(car -> car.goForward(RandomUtil.getRandomForCar()));
-    }
-
-    public List<String> findAllWinnerNames() {
-        return cars.stream()
-                .filter(car -> car.isAlsoWinner(findOneWinner()))
-                .map(car -> car.getName())
-                .collect(Collectors.toList());
+        cars.forEach(car -> car.goForward(RandomUtil.getRandomForCar()));
     }
 
     public List<Car> findAllWinners() {
