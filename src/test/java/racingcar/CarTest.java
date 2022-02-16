@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
@@ -31,7 +32,7 @@ public class CarTest {
         cars.add(new Car("클레이", 0));
         cars.add(new Car("포비", 5));
         cars.add(new Car("이브", 100));
-        Collections.sort(cars);
+        Collections.sort(cars, Comparator.comparingInt(Car::getPosition));
         assertThat(cars.get(2).getName()).isEqualTo("이브");
     }
 }
