@@ -6,15 +6,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.receiver.CarNamesReceiver;
 import racingcar.exception.CarNameException;
 
 public class CarNamesReceiverTest {
 
-    CarNamesReceiver carNamesReceiver;
+    private CarNamesReceiver carNamesReceiver;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         carNamesReceiver = new CarNamesReceiver();
     }
 

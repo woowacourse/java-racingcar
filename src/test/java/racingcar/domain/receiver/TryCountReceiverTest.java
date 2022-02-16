@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.receiver.TryCountReceiver;
 import racingcar.exception.TryCountException;
 
 public class TryCountReceiverTest {
@@ -15,7 +14,7 @@ public class TryCountReceiverTest {
     private TryCountReceiver parser;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         parser = new TryCountReceiver();
     }
 
