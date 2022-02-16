@@ -21,9 +21,9 @@ public class ParticipatedCarsTest {
 
     @Test
     public void 최종_우승자_찾기_테스트() {
-        participatedCars.addCar(new Car("이브"));
-        participatedCars.addCar(new Car("클레이"));
-        participatedCars.addCar(new Car("포비"));
+        participatedCars.addCar(new Car("이브", 0));
+        participatedCars.addCar(new Car("클레이", 0));
+        participatedCars.addCar(new Car("포비", 0));
         participatedCars.executeCarRacing();
         participatedCars.findWinners();
         List<String> winners = participatedCars.findWinners().getWinnerNames();

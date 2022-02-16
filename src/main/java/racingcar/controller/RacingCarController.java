@@ -13,14 +13,15 @@ public class RacingCarController {
         participatedCars.generateCars(StringUtil.getCarNames(InputView.inputCarNames()));
         int trialCount = StringUtil.getTrialCount(InputView.inputTrials());
 
-        executeRacingUntil(trialCount);
+        executeRacingAndPrintRecord(trialCount);
         OutputView.printWinnerNames(participatedCars.findWinners());
     }
 
-    private void executeRacingUntil(int trialCount) {
+    private void executeRacingAndPrintRecord(int trialCount) {
         OutputView.printResultMessage();
         for (int i = 0; i < trialCount; i++) {
-            OutputView.printRacingRecords(participatedCars.executeCarRacing());
+            participatedCars.executeCarRacing();
+            OutputView.printRacingRecords(participatedCars.getCars());
         }
     }
 }

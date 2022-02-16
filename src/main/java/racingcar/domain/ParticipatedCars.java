@@ -37,13 +37,10 @@ public class ParticipatedCars {
         return cars.get(this.getSize()-1);
     }
 
-    public List<String> executeCarRacing() {
-        List<String> racingRecord = new ArrayList<>();
+    public void executeCarRacing() {
         for (Car car : cars) {
             car.tryMovingBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
-            racingRecord.add(car.toString());
         }
-        return racingRecord;
     }
 
     public int getSize() {
