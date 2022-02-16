@@ -12,7 +12,7 @@ public class RacingService {
 
     private final int START_RANDOM_NUMBER = 0;
     private final int END_RANDOM_NUMBER = 9;
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public RacingService() {
         cars = new ArrayList<>();
