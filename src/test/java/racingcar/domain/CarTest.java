@@ -9,8 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SuppressWarnings("NonAsciiCharacters")
 class CarTest {
 
-    public static final int MOVE_CONDITION = 10;
-    public static final int STOP_CONDITION = 0;
+    private static final int MOVE_CONDITION = 10;
+    private static final int STOP_CONDITION = 0;
 
     @Test
     @DisplayName("자동차에 기준값 보다 큰 값을 주면 전진 하는지 확인")

@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SuppressWarnings("NonAsciiCharacters")
 class CarsTest {
 
-    public static final int MOVE_CONDITION = 10;
-    public static final int WINNER_INDEX = 0;
+    private static final int MOVE_CONDITION = 10;
+    private static final int WINNER_INDEX = 0;
 
     @Test
     @DisplayName("우승자가 한 명일 경우에 대해서 테스트")
