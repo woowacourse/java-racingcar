@@ -48,7 +48,7 @@ public class RaceControllerTest {
         assertThat(raceController.getWinners()).contains("A","B");
     }
 
-    public void setPosition(Car car, int count) {
+    private void setPosition(Car car, int count) {
         for (int i = 0; i < count; i++) {
             car.move();
         }
