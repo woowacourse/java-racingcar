@@ -52,9 +52,8 @@ public class CarTest {
 		Car car = new Car("pobi");
 		//when
 		car.move(numberGenerator);
-		int position = car.getPosition();
 		//then
-		assertThat(position).isEqualTo(1);
+		assertThat(car.isSamePosition(1)).isTrue();
 	}
 
 	@ParameterizedTest
@@ -64,12 +63,10 @@ public class CarTest {
 		//given
 		final NumberGenerator numberGenerator = new ImmovableNumberGenerator();
 		Car car = new Car("pobi");
-		int originalPosition = car.getPosition();
 		//when
 		car.move(numberGenerator);
-		int changedPosition = car.getPosition();
 		//then
-		assertThat(changedPosition).isEqualTo(originalPosition);
+		assertThat(car.isSamePosition(0)).isTrue();
 	}
 
 }
