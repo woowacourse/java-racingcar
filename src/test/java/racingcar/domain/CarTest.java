@@ -32,14 +32,14 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"o", "brown"})
     @DisplayName("1이상 5이하의 자동차 이름의 길이 확인")
-    public void car_name_length_of_positive_name(String name) {
+    public void car_name_length_of_valid_name(String name) {
         assertDoesNotThrow(() -> new Car(name));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", "rookie"})
     @DisplayName("0 또는 6이상의 자동차 이름의 길이 확인")
-    public void car_name_length_of_negative_name(String name) {
+    public void car_name_length_of_invalid_name(String name) {
         assertThatThrownBy(() -> new Car(name))
             .isInstanceOf(IllegalArgumentException.class);
     }
