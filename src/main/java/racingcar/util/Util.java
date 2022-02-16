@@ -12,4 +12,8 @@ public class Util {
         return Arrays.stream(name.split(SPLIT_CARS_NAME, SPLIT_LIMIT))
                 .collect(Collectors.toList());
     }
+
+    public static int convertToInt(String inputRound) {
+        return Integer.parseInt(inputRound);
+    }
 }

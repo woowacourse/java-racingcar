@@ -8,13 +8,13 @@ public class Round {
     private static final int DECREASED_NUMBER = 1;
     private final int roundNum;
 
-    public Round(int roundNum) {
+    private Round(int roundNum) {
         this.roundNum = roundNum;
     }
 
-    public static Round fromNumber(int roundNum) {
-        Validator.validateRound(roundNum);
-        return new Round(roundNum);
+    public static Round fromInput(int inputRound) {
+        Validator.validateRound(inputRound);
+        return new Round(inputRound);
     }
 
     public boolean isValidRound() {

@@ -40,7 +40,7 @@ public class OutputView {
         return cars.stream().map(car -> car.getName()).collect(Collectors.joining(NAME_DELIMITER));
     }
 
-    static void printErrorMessage(Exception e) {
+    public static void printErrorMessage(Exception e) {
         System.out.println(ERROR + e.getMessage());
     }
 
