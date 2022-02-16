@@ -34,7 +34,7 @@ public class ParticipatedCars {
 
     private Car findFastestCar() {
         Collections.sort(cars, Comparator.comparingInt(Car::getPosition));
-        return cars.get(this.getSize()-1);
+        return cars.get(this.getSize() - 1);
     }
 
     public void executeCarRacing() {
