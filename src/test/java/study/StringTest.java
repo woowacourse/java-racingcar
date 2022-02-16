@@ -32,7 +32,6 @@ public class StringTest {
 			final String numbers = "1,2";
 			return numbers.split(",");
 		}
-
 	}
 
 	@Test

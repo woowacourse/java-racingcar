@@ -43,5 +43,4 @@ public class SetTest {
 	void findValueTest(int key, boolean expected) {
 		assertThat(numbers.contains(key)).isEqualTo(expected);
 	}
-
 }

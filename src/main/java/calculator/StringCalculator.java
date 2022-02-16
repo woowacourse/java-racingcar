@@ -47,5 +47,4 @@ public class StringCalculator {
     private static String[] splitNumber(final String input, final String distributor) {
         return input.split(distributor);
     }
-
 }

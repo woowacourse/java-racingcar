@@ -52,7 +52,4 @@ public class CarsTest {
 
         assertThat(result).isEqualTo(expected);
     }
-
-
-
 }
