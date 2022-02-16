@@ -9,6 +9,7 @@ import racingcar.domain.Car;
 public class CarRepository {
 
 	private static final String EMPTY_CAR_ERROR_MESSAGE = "등록된 자동차가 없습니다.";
+	public static final String EXIST_SAME_CAR_NAME_ERROR_MESSAGE = "자동차 이름이 중복되면 안됩니다.";
 
 	private static CarRepository carRepository;
 	private static final List<Car> cars = new ArrayList<>();
@@ -23,7 +24,14 @@ public class CarRepository {
 	}
 
 	public void addCar(Car car) {
+		validateDuplicateCarName(car);
 		cars.add(car);
+	}
+
+	private void validateDuplicateCarName(Car car) {
+		if (cars.contains(car)) {
+			throw new IllegalStateException(EXIST_SAME_CAR_NAME_ERROR_MESSAGE);
+		}
 	}
 
 	public int count() {

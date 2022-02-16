@@ -41,6 +41,14 @@ public class RacingServiceTest {
 	}
 
 	@Test
+	@DisplayName("자동차 이름 중복")
+	public void duplicateCarName() {
+		assertThatThrownBy(() -> carRepository.addCar(Car.from("pobi")))
+			.isInstanceOf(IllegalStateException.class);
+	}
+
+
+	@Test
 	@DisplayName("자동차 경주")
 	public void raceTest() {
 		racingService.race(2);
