@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import java.util.Optional;
+
 import racingcar.domain.Count;
 import racingcar.domain.MoveStrategy;
 import racingcar.domain.RacingCarGame;
@@ -12,7 +14,8 @@ public class GameController {
     private RacingCarGame racingCarGame;
 
     public GameController(final MoveStrategy moveStrategy) {
-        this.moveStrategy = moveStrategy;
+        this.moveStrategy = Optional.ofNullable(moveStrategy)
+                .orElseThrow(() -> new IllegalArgumentException("null은 사용할 수 없습니다. MoveStrategy타입을 사용하세요."));
     }
 
     public void run() {

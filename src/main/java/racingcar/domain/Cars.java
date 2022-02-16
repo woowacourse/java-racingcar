@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class Cars {
     private static final int MINIMUM_CAR_NAME_QUANTITY = 2;
@@ -12,21 +13,19 @@ public class Cars {
     private final MoveStrategy moveStrategy;
 
     public Cars(final List<Car> cars, final MoveStrategy moveStrategy) {
-        checkCars(cars);
-        this.cars = cars;
-        this.moveStrategy = moveStrategy;
+        final List<Car> noneNullCars = Optional.ofNullable(cars)
+                .orElseThrow(() -> new IllegalArgumentException("null은 사용할 수 없습니다. List<Car>타입을 사용하세요."));
+
+        this.moveStrategy = Optional.ofNullable(moveStrategy)
+                .orElseThrow(() -> new IllegalArgumentException("null은 사용할 수 없습니다. MoveStrategy타입을 사용하세요."));
+
+        checkCars(noneNullCars);
+        this.cars = noneNullCars;
     }
 
     private static void checkCars(final List<Car> cars) {
-        checkNull(cars);
         checkDuplicateName(cars);
         checkMinimumCarQuantity(cars);
-    }
-
-    private static void checkNull(List<Car> cars) {
-        if (cars == null) {
-            throw new IllegalArgumentException("null로 생성될수 없습니다.");
-        }
     }
 
     private static void checkMinimumCarQuantity(final List<Car> cars) {
@@ -58,7 +57,7 @@ public class Cars {
     public List<Car> findWinners() {
         final Car maxPositionCar = getMaxPositionCar();
         return cars.stream().filter(car -> car.isSamePositionWith(maxPositionCar))
-            .collect(toList());
+                .collect(toList());
     }
 
     private Car getMaxPositionCar() {

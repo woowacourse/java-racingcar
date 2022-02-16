@@ -63,6 +63,6 @@ public class CarTest {
     @Test
     void null로_자동차가_생성될_경우_예외발생() {
         assertThatThrownBy(() -> new Car(null)).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("자동차의 이름은 null이 될수 없습니다.");
+                .hasMessageContaining("null은 사용할 수 없습니다. CarName타입을 사용하세요.");
     }
 }

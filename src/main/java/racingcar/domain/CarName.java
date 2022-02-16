@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class CarName {
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
@@ -9,18 +10,20 @@ public class CarName {
     private final String name;
 
     public CarName(final String name) {
-        checkName(name);
-        this.name = name;
+        final String noneNullString = Optional.ofNullable(name)
+                .orElseThrow(() -> new IllegalArgumentException("null은 사용할 수 없습니다. String 타입을 사용하세요."));
+        checkName(noneNullString);
+        this.name = noneNullString;
     }
 
     private static void checkName(final String name) {
-        checkNullOrBlank(name);
+        checkBlank(name);
         checkMinimumCarName(name);
         checkMaximumCarNameLength(name);
     }
 
-    private static void checkNullOrBlank(String name) {
-        if (name == null || name.isBlank()) {
+    private static void checkBlank(String name) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException("자동차의 이름을 입력해주세요!");
         }
     }
@@ -45,7 +48,7 @@ public class CarName {
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        CarName carName = (CarName)other;
+        CarName carName = (CarName) other;
         return Objects.equals(name, carName.name);
     }
 
