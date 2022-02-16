@@ -5,11 +5,18 @@ import racingcar.service.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.*;
+import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
 public class CarController {
+
+    private final InputView inputView;
+
+    public CarController(InputView inputView) {
+        this.inputView = inputView;
+    }
+
     public void run() {
         List<Car> cars = makeCars(getCarNamesFromUser());
         int count = getCountFromUser();
@@ -33,7 +40,7 @@ public class CarController {
 
     private int getCountFromUser() {
         try {
-            return InputView.getCount();
+            return inputView.getCount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getCountFromUser();
@@ -42,7 +49,7 @@ public class CarController {
 
     private List<String> getCarNamesFromUser() {
         try {
-            return InputView.getCarNames();
+            return inputView.getCarNames();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getCarNamesFromUser();
