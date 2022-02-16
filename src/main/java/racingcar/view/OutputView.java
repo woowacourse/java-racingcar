@@ -33,9 +33,9 @@ public class OutputView {
 
     public static void printWinners(final List<Car> winners) {
         final String result = winners.stream()
-            .map(Car::getName)
-            .map(CarName::toString)
-            .collect(Collectors.joining(WINNERS_DELIMITER + BLANK));
+                .map(Car::getName)
+                .map(CarName::toString)
+                .collect(Collectors.joining(WINNERS_DELIMITER + BLANK));
         System.out.println(result + "가 최종 우승했습니다.");
     }
 }

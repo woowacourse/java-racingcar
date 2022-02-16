@@ -11,10 +11,6 @@ public class Count {
         this.count = count;
     }
 
-    public int get() {
-        return count;
-    }
-
     private static void checkCount(final int count) {
         checkMinimumCount(count);
         checkMaximumCount(count);
@@ -30,5 +26,9 @@ public class Count {
         if (count < MINIMUM_COUNT) {
             throw new IllegalArgumentException("입력횟수는 1 이상의 정수여야 합니다.");
         }
+    }
+
+    public int get() {
+        return count;
     }
 }
