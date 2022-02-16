@@ -71,20 +71,23 @@ public class StringCalculator {
         return numSize == SINGLE_ENTRY && strArr[0].equals(BLANK);
     }
 
-    private static Integer convertToInt(String str) {
-        int value;
-        try {
-            value = Integer.parseInt(str);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("입력 값은 숫자여야 합니다.");
-        }
+    private static Integer convertToInt(String value) {
+        isNumber(value);
         isPositive(value);
 
-        return value;
+        return Integer.parseInt(value);
     }
 
-    private static void isPositive(int value) {
-        if (value < 0) {
+    private static void isNumber(String value) {
+        try {
+            Integer.parseInt(value);
+        } catch (NumberFormatException e){
+            throw new NumberFormatException("입력 값은 숫자여야 합니다.");
+        }
+    }
+
+    private static void isPositive(String value) {
+        if (Integer.parseInt(value) < 0) {
             throw new IllegalArgumentException("입력 값은 0 이상의 정수여야 합니다.");
         }
     }
