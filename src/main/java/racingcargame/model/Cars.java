@@ -1,9 +1,11 @@
 package racingcargame.model;
 
-import java.util.Comparator;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcargame.dto.CarDto;
 
 public class Cars {
     private static final String HAS_DUPLICATE_CAR_NAME_ERROR_MESSAGE = "[error] 입력한 자동차 이름 중 중복되는 이름이 있습니다.";
@@ -13,7 +15,7 @@ public class Cars {
     public Cars(final List<String> carNames) {
         checkDuplicateCarNames(carNames);
         cars = carNames.stream().
-                map(carName -> new Car(carName, 0)).
+                map(carName -> new Car(carName.trim(), 0)).
                 collect(Collectors.toList());
     }
 
@@ -35,23 +37,20 @@ public class Cars {
         cars.forEach(Car::moveCar);
     }
 
-    HashMap<String, Integer> bringCarsPositionSeparatedByName() {
-        HashMap<String, Integer> carsPosition = new HashMap<>();
-        cars.forEach(car -> carsPosition.put(car.getName(), car.getPosition()));
-        return carsPosition;
+    List<CarDto> bringCarsInformation() {
+        return cars.stream().map(Car::changeToDto).collect(Collectors.toList());
     }
 
-    List<String> findWinner() {
-        int winnerPosition = findWinnerPosition();
+    List<CarDto> findWinner() {
+        Car winnerCar = findWinnerCar();
         return cars.stream()
-                .filter(car -> car.getPosition() == winnerPosition)
-                .map(Car::getName)
+                .filter(car -> car.hasSamePosition(winnerCar))
+                .map(Car::changeToDto)
                 .collect(Collectors.toList());
     }
 
-    private int findWinnerPosition() {
-        return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition)).get().
-                getPosition();
+    private Car findWinnerCar() {
+        Collections.sort(cars);
+        return cars.get(0);
     }
 }

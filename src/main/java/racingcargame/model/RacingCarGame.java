@@ -2,6 +2,7 @@ package racingcargame.model;
 
 import java.util.HashMap;
 import java.util.List;
+import racingcargame.dto.CarDto;
 
 public class RacingCarGame {
     private static final int GAME_OVER_COUNT = 0;
@@ -35,7 +36,7 @@ public class RacingCarGame {
         return cars.bringCarsPositionSeparatedByName();
     }
 
-    public List<String> sendRacingGameWinner() {
+    public List<CarDto> sendRacingGameWinner() {
         return cars.findWinner();
     }
 }

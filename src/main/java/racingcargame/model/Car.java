@@ -3,7 +3,7 @@ package racingcargame.model;
 import racingcargame.dto.CarDto;
 import racingcargame.utils.RandomNumberGenerator;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int MIN_MOVABLE_NUMBER = 4;
     private static final int MAX_NAME_LENGTH_COUNT = 5;
     private static final int MIN_NAME_LENGTH_COUNT = 1;
@@ -49,8 +49,22 @@ public class Car {
         return RandomNumberGenerator.pickRandomNumber();
     }
 
+    public boolean hasSamePosition(Car winnerCar) {
+        return this.position == winnerCar.position;
+    }
+
     public CarDto changeToDto() {
         return new CarDto(name, position);
+    }
+
+    @Override
+    public int compareTo(final Car otherCar) {
+        if (this.position > otherCar.position) {
+            return -1;
+        } else if (this.position < otherCar.position) {
+            return 1;
+        }
+        return 0;
     }
 }
 
