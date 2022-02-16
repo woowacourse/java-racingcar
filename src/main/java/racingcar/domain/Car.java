@@ -4,27 +4,27 @@ import java.util.Objects;
 
 public class Car implements Comparable<Car> {
     private static final int MINIMUM_DRIVE_CONDITION = 4;
-    private static final int DEFAULT_POSITION_VALUE = 0;
 
     private final Name name;
-    private int position = DEFAULT_POSITION_VALUE;
+    private Position position;
 
     public Car(final String name) {
         this.name = new Name(name);
+        this.position = new Position();
     }
 
     public void drive(int value) {
         if (MINIMUM_DRIVE_CONDITION <= value) {
-            this.position++;
+            position = position.moveForward();
         }
     }
 
     public boolean isSamePosition(Car car) {
-        return this.position == car.position;
+        return this.position.equals(car.position);
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public String getName() {
@@ -33,7 +33,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car car) {
-        return this.position - car.position;
+        return position.getPosition() - car.getPosition();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Car implements Comparable<Car> {
             return false;
         }
         Car car = (Car) o;
-        return position == car.position && Objects.equals(name, car.name);
+        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
     }
 
     @Override
