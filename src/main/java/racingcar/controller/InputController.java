@@ -31,13 +31,16 @@ public class InputController {
     }
 
     private static List<Car> splitList(String names) {
-        List<Car> cars = new ArrayList<>();
         String[] carNames = names.split(SPLIT_DELIM);
+        List<Car> cars = new ArrayList<>();
 
+        return splitNameToList(carNames, cars);
+    }
+
+    private static List<Car> splitNameToList(String[] carNames, List<Car> cars) {
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-
         return cars;
     }
 
