@@ -1,14 +1,9 @@
 package racingcar.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import racingcar.utils.Constant;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.view.ResultView;
 
 public class Game {
-
-    private final OutputView output = new OutputView();
 
     private static final int RANDOM_RANGE = 10;
     private static final String COMMA_REGEX = ",";
@@ -28,24 +23,17 @@ public class Game {
 
     public void race() {
         moveCar(cars);
-        output.printPosition(cars.getCars());
         tryNo--;
     }
 
-    public void getWinners() {
-        List<String> winners = cars.getWinners();
-        output.printWinner(winners);
+    public List<String> getWinners() {
+        return cars.getWinners();
     }
 
+    public List<Car> getCars() {
+        return cars.getCars();
+    }
 
-//    private void race(int coin, Cars cars) {
-//
-//        output.printResultMessage();
-//        for (int index = 0; index < coin; index++) {
-//            moveCar(cars);
-//            output.printPosition(cars.getCars());
-//        }
-//    }
 
     private void moveCar(Cars cars) {
         for (Car car : cars.getCars()) {

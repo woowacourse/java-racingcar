@@ -3,6 +3,7 @@ package racingcar;
 import racingcar.domain.Cars;
 import racingcar.domain.Game;
 import racingcar.view.InputView;
+import racingcar.view.ResultView;
 
 public class MainController {
 
@@ -14,8 +15,10 @@ public class MainController {
 
         while(!game.isEnd()) {
             game.race();
+            ResultView.printPosition(game.getCars());
         }
-        game.getWinners();
+
+        ResultView.printWinners(game.getWinners());
 
     }
 }
