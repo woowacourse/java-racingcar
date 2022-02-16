@@ -5,6 +5,7 @@ import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberGeneratePolicy;
 import racingcar.domain.Round;
 import racingcar.dto.RecordDto;
+import racingcar.dto.ResultDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -20,6 +21,6 @@ public class RacingGameController {
         while (racingGame.isFinished()) {
             OutputView.printRacingRecord(RecordDto.createRecordDto(racingGame.race()));
         }
-        OutputView.printRacingResult(racingGame.getRacingResult());
+        OutputView.printRacingResult(ResultDto.createResultDto(racingGame.getRacingResult()));
     }
 }

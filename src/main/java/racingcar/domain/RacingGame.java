@@ -26,7 +26,7 @@ public class RacingGame {
         return false;
     }
 
-    public RacingResult getRacingResult() {
-        return new RacingResult(cars.getWinners());
+    public List<Car> getRacingResult() {
+        return cars.getWinners();
     }
 }

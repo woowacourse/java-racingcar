@@ -2,10 +2,9 @@ package racingcar.view;
 
 import java.util.stream.Collectors;
 
-import racingcar.domain.Car;
-import racingcar.domain.RacingResult;
 import racingcar.dto.CarDto;
 import racingcar.dto.RecordDto;
+import racingcar.dto.ResultDto;
 
 public class OutputView {
     private static final String NAME_AND_SCORE_DELIMITER = " : ";
@@ -34,13 +33,12 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    public static void printRacingResult(RacingResult racingResult) {
+    public static void printRacingResult(ResultDto racingResult) {
         System.out.println(appendComma(racingResult) + RACE_WINNER_MESSAGE);
     }
 
-    private static String appendComma(RacingResult racingResult) {
-        return racingResult.getRacingRecord().stream()
-            .map(Car::getName)
+    private static String appendComma(ResultDto racingResult) {
+        return racingResult.getRacingWinner().stream()
             .collect(Collectors.joining(NAME_DELIMITER));
     }
 }
