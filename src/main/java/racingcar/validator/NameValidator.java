@@ -9,7 +9,6 @@ public class NameValidator {
 
 
 	private static final int MINIMUM_NAME_LIST_SIZE = 1;
-	private static final String INPUT_STRING_NULL_ERROR_MSG = "빈 값이 입력되었습니다.";
 	private static final String CAR_NUMBER_IS_ONE_WARNING_MSG = "경주할 자동차가 한 대일 경우 경주를 진행할 수 없습니다.";
 	private static final String NAME_DUPLICATION_WARNING_MSG = "중복되는 이름이 존재합니다.";
 
@@ -17,12 +16,6 @@ public class NameValidator {
 	public static void checkNameList(List<String> names) {
 		checkNameIsOne(names);
 		checkDuplicatedName(names);
-	}
-
-	public static void checkNull(String inputString) {
-		if (inputString == null || inputString.trim().isEmpty()) {
-			throw new IllegalArgumentException(INPUT_STRING_NULL_ERROR_MSG);
-		}
 	}
 
 	private static void checkNameIsOne(List<String> nameList) {

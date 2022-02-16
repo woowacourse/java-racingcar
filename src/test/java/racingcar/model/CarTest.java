@@ -28,7 +28,7 @@ class CarTest {
 		//given
 		Car car = new Car("주디", 0);
 		//when
-		car.decideMove(3);
+		car.decideMove(MOVE_CRITERIA-1);
 		//then
 		assertThat(car.getPosition()).isEqualTo(0);
 	}
@@ -39,7 +39,7 @@ class CarTest {
 		//given
 		Car car = new Car("주디", 0);
 		//when
-		car.decideMove(4);
+		car.decideMove(MOVE_CRITERIA);
 		//then
 		assertThat(car.getPosition()).isEqualTo(1);
 	}
