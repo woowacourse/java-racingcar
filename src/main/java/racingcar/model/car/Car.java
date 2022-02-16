@@ -3,6 +3,7 @@ package racingcar.model.car;
 import java.util.Objects;
 
 import racingcar.dto.CarDto;
+import racingcar.util.MovableStrategy;
 
 public class Car implements Comparable<Car> {
     private final Name name;
@@ -21,8 +22,10 @@ public class Car implements Comparable<Car> {
         return new Car(Name.from(name), Position.from(position));
     }
 
-    public void move() {
-        position = position.increase();
+    public void move(MovableStrategy movableStrategy) {
+        if (movableStrategy.isMove()) {
+            position = position.increase();
+        }
     }
 
     public CarDto toDto() {

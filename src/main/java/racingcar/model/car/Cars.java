@@ -7,13 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.dto.CarDto;
-import racingcar.util.RandomUtil;
+import racingcar.util.MovableStrategy;
 
 public class Cars {
-    private static final int MIN_RANDOM_BOUND = 0;
-    private static final int MAX_RANDOM_BOUND = 9;
-    private static final int MIN_MOVABLE_VALUE = 4;
-
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
@@ -33,10 +29,9 @@ public class Cars {
         cars.add(car);
     }
 
-    public void race(RandomUtil randomUtil) {
+    public void race(MovableStrategy movableStrategy) {
         cars.stream()
-            .filter(i -> randomUtil.create(MIN_RANDOM_BOUND, MAX_RANDOM_BOUND) >= MIN_MOVABLE_VALUE)
-            .forEach(Car::move);
+            .forEach(car -> car.move(movableStrategy));
     }
 
     public List<String> getWinnersNames() {

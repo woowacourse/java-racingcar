@@ -48,7 +48,7 @@ public class CarsTest {
     @DisplayName("race 메소드는")
     class Describe_race {
         @Nested
-        @DisplayName("만약 모든 차에게 4이상의 값이 주어지면")
+        @DisplayName("만약 모든 차에게 true 값을 주면")
         class Context_Number_of_4_or_more {
             @Test
             @DisplayName("모든 차의 위치는 1 증가한다.")
@@ -57,7 +57,7 @@ public class CarsTest {
                 cars.add(Car.of("car1", 0));
                 cars.add(Car.of("car2", 0));
                 cars.add(Car.of("car3", 0));
-                cars.race((min, max) -> 4);
+                cars.race(() -> true);
                 for (CarDto carInformation : cars.getCarsDto()) {
                     assertThat(carInformation.getPosition()).isEqualTo(1);
                 }

@@ -5,13 +5,15 @@ import java.util.Arrays;
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 import racingcar.model.trycount.TryCount;
-import racingcar.util.MovableNumber;
+import racingcar.util.MovableStrategy;
+import racingcar.util.RacingCarMovableStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
+    private final Cars cars = Cars.create();
+    private final MovableStrategy racingCarMovableStrategy = new RacingCarMovableStrategy();
     private TryCount tryCount;
-    private Cars cars = Cars.create();
 
     public RaceController() {
     }
@@ -42,7 +44,7 @@ public class RaceController {
     public void raceStart() {
         OutputView.printRaceResult();
         for (int i = 0; i < tryCount.toInt(); i++) {
-            cars.race(new MovableNumber());
+            cars.race(racingCarMovableStrategy);
             OutputView.printCars(cars.getCarsDto());
             OutputView.printEnter();
         }
