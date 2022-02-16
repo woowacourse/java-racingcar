@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
 
@@ -24,6 +23,7 @@ class CarTest {
     static Stream<Arguments> invalidParameters() {
         return Stream.of(
             Arguments.of("", "한글자 미만"),
+            Arguments.of("pobi,,crong", "이름길이 0"),
             Arguments.of("donghok", "5글자 초과")
         );
     }
