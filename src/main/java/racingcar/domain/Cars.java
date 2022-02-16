@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +25,6 @@ public class Cars {
         int maxPosition = findMaxPosition(cars);
         List<String> winners = findWinnerByPosition(maxPosition, cars);
         return winners;
-
     }
 
     private int findMaxPosition(List<Car> cars) {

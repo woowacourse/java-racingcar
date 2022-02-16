@@ -8,36 +8,36 @@ import racingcar.view.OutputView;
 
 public class Game {
 
-    private final InputView input = new InputView();
     private final OutputView output = new OutputView();
 
     private static final int RANDOM_RANGE = 10;
+    private static final String COMMA_REGEX = ",";
 
-    private String[] carNames;
     private int tryNo;
+    private Cars cars;
 
-    public Game(String[] carNames, int tryNo) {
-        this.carNames = carNames;
+    public Game(String carNames, int tryNo) {
+        this.cars = generateCars(carNames);
         this.tryNo = tryNo;
     }
 
     public void start() {
-        Cars cars = generateCars(carNames);
-        race(tryNo, cars.getCars());
+        race(tryNo, cars);
         List<String> winners = cars.getWinners();
         output.printWinner(winners);
     }
 
-    private void race(int coin, List<Car> cars) {
+
+    private void race(int coin, Cars cars) {
         output.printResultMessage();
         for (int index = 0; index < coin; index++) {
             moveCar(cars);
-            output.printPosition(cars);
+            output.printPosition(cars.getCars());
         }
     }
 
-    private void moveCar(List<Car> cars) {
-        for (Car car : cars) {
+    private void moveCar(Cars cars) {
+        for (Car car : cars.getCars()) {
             car.movePosition(makeRandom());
         }
     }
@@ -46,14 +46,18 @@ public class Game {
         return (int) (Math.random() * RANDOM_RANGE);
     }
 
-    private Cars generateCars(String[] names) {
+    private Cars generateCars(String names) {
         List<Car> cars = new ArrayList<>();
 
-        for (String name : names) {
+        for (String name : splitByComma(names)) {
             cars.add(new Car(name));
         }
 
         return new Cars(cars);
+    }
+
+    public  String[] splitByComma(String input) {
+        return input.split(COMMA_REGEX);
     }
 
 

@@ -12,14 +12,14 @@ public class InputView {
     private static final int MINIMUM_NATURAL_NUMBER = 1;
 
     private static final String COIN_PATTERN_REGEX = "^[0-9]*$";
-    private static final String COMMA_REGEX = ",";
+
 
     private static final Pattern COIN_PATTERN = Pattern.compile(COIN_PATTERN_REGEX);
 
 
-    public static String[] getCarNames() {
+    public static String getCarNames() {
         System.out.println(Constant.PRINT_CAR_CAR_NAME_MESSAGE);
-        return splitByComma(scanner.nextLine());
+        return scanner.nextLine();
     }
 
     public static int getTryNo() {
@@ -28,9 +28,6 @@ public class InputView {
         return checkTryNo(input);
     }
 
-    public static String[] splitByComma(String input) {
-        return input.split(COMMA_REGEX);
-    }
 
     private static int checkTryNo(String input) {
         isNumeric(input);
