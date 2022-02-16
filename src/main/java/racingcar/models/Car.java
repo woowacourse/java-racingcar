@@ -33,6 +33,10 @@ public class Car {
 		return position;
 	}
 
+	public boolean isWinner(final int farthestPosition) {
+		return position == farthestPosition;
+	}
+
 	@Override
 	public String toString() {
 		return "Car name= " + name + ", position=" + position;

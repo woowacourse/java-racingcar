@@ -52,19 +52,20 @@ public class RacingGame {
     }
 
     private int findFarthestPosition() {
-        final List<Car> sortedCars = cars.stream()
+        final List<Integer> sortedCars = cars.stream()
                 .sorted(Comparator.comparing(Car::getPosition).reversed())
+                .map(Car::getPosition)
                 .collect(Collectors.toList());
 
         if (!sortedCars.isEmpty()) {
-            return sortedCars.get(0).getPosition();
+            return sortedCars.get(0);
         }
         return 0;
     }
 
     private String getWinners(final int farthestPosition) {
         return cars.stream()
-                .filter((car) -> farthestPosition == car.getPosition())
+                .filter((car) -> car.isWinner(farthestPosition))
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
     }
