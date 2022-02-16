@@ -15,40 +15,40 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-	private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
+    private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
 
-	public static void run() {
-		Game game = new Game(new UniqueCars(CarFactory.of(InputView.inputCarNames())));
-		final int count = InputView.inputGameCount();
-		validateCount(count);
-		play(game, count);
-		showWinner(game.getWinners());
-	}
+    public static void run() {
+        Game game = new Game(new UniqueCars(CarFactory.of(InputView.inputCarNames())));
+        final int count = InputView.inputGameCount();
+        validateCount(count);
+        play(game, count);
+        showWinner(game.getWinners());
+    }
 
-	private static void play(Game game, int count) {
-		OutputView.printGameResultTitle();
-		for (int i = 0; i < count; i++) {
-			showResult(game.play(new RandomMove()));
-		}
-	}
+    private static void play(Game game, int count) {
+        OutputView.printGameResultTitle();
+        for (int i = 0; i < count; i++) {
+            showResult(game.play(new RandomMove()));
+        }
+    }
 
-	private static void showResult(Cars cars) {
-		for (Car car : cars.getCars()) {
-			OutputView.printCarPosition(new CarDto(car.getName(), car.getPosition()));
-		}
-		OutputView.printBlankLine();
-	}
+    private static void showResult(Cars cars) {
+        for (Car car : cars.getCars()) {
+            OutputView.printCarPosition(new CarDto(car.getName(), car.getPosition()));
+        }
+        OutputView.printBlankLine();
+    }
 
-	private static void showWinner(Collection<Car> winners) {
-		final Set<CarDto> winnerDtos = winners.stream()
-			.map(car -> new CarDto(car.getName()))
-			.collect(Collectors.toSet());
-		OutputView.printWinner(winnerDtos);
-	}
+    private static void showWinner(Collection<Car> winners) {
+        final Set<CarDto> winnerDtos = winners.stream()
+                .map(car -> new CarDto(car.getName()))
+                .collect(Collectors.toSet());
+        OutputView.printWinner(winnerDtos);
+    }
 
-	private static void validateCount(int count) {
-		if (count < 0) {
-			throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
-		}
-	}
+    private static void validateCount(int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
+        }
+    }
 }
