@@ -12,12 +12,10 @@ import racingcar.views.Output;
 
 public class RacingGame {
 
-	private final Output output;
 	private List<Car> cars;
 	private int repeats;
 
-	public RacingGame(final Output output) {
-		this.output = output;
+	public RacingGame() {
 		cars = new ArrayList<>();
 		repeats = 0;
 	}
@@ -38,12 +36,12 @@ public class RacingGame {
 	}
 
 	private void startRacing() {
-		output.printResultMessage();
+		Output.printResultMessage();
 		while(repeats-- > 0) {
 			cars.forEach(Car::goForward);
-			output.printTurnResult(cars);
+			Output.printTurnResult(cars);
 		}
-		output.printWinner(findWinner());
+		Output.printWinner(findWinner());
 	}
 
 	private List<Car> findWinner() {
