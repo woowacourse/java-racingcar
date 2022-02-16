@@ -21,20 +21,31 @@ public class Game {
         this.tryNo = tryNo;
     }
 
-    public void start() {
-        race(tryNo, cars);
+
+    public boolean isEnd() {
+        return tryNo == 0;
+    }
+
+    public void race() {
+        moveCar(cars);
+        output.printPosition(cars.getCars());
+        tryNo--;
+    }
+
+    public void getWinners() {
         List<String> winners = cars.getWinners();
         output.printWinner(winners);
     }
 
 
-    private void race(int coin, Cars cars) {
-        output.printResultMessage();
-        for (int index = 0; index < coin; index++) {
-            moveCar(cars);
-            output.printPosition(cars.getCars());
-        }
-    }
+//    private void race(int coin, Cars cars) {
+//
+//        output.printResultMessage();
+//        for (int index = 0; index < coin; index++) {
+//            moveCar(cars);
+//            output.printPosition(cars.getCars());
+//        }
+//    }
 
     private void moveCar(Cars cars) {
         for (Car car : cars.getCars()) {
