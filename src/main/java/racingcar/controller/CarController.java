@@ -5,10 +5,7 @@ import racingcar.model.CarDto;
 import racingcar.model.CarRepository;
 import racingcar.model.RandomNo;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -59,5 +56,13 @@ public class CarController {
 		return IntStream.range(0, size)
 			.mapToObj(i -> RandomNo.getNumber())
 			.collect(Collectors.toList());
+	}
+
+	public List<CarDto> toCarDtos(List<String> names) {
+		List<CarDto> carDtos = new ArrayList<>();
+		for (String name: names) {
+			carDtos.add(new CarDto(name, 0));
+		}
+		return carDtos;
 	}
 }

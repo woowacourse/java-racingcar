@@ -4,6 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.model.CarDto;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -28,5 +31,17 @@ public class CarControllerTest {
 
 		assertThatThrownBy(() -> carController.createCars(input)).isInstanceOf(RuntimeException.class)
 				.hasMessageContaining("중복");
+	}
+
+	@Test
+	@DisplayName("자동차 이름 리스트를 입력하여 CarDto로 반환한다.")
+	void toCarDtos() {
+		CarController carController = new CarController();
+		String name = "범고래";
+		List<String> input = List.of(name);
+
+		List<CarDto> carDtos = carController.toCarDtos(input);
+		CarDto carDto = carDtos.get(0);
+		assertThat(carDto.getName()).isEqualTo(name);
 	}
 }
