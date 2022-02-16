@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.Car;
-import racingcar.domain.CarFactory;
+import racingcar.domain.util.CarFactory;
 
 public class CarTest {
 	private static final String ERROR_MESSAGE = "[ERROR]";

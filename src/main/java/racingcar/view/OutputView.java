@@ -3,7 +3,7 @@ package racingcar.view;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import racingcar.domain.CarDto;
+import racingcar.domain.dto.CarDto;
 
 public class OutputView {
 	private static final String GAME_RESULT_TITLE = "\n실행 결과";

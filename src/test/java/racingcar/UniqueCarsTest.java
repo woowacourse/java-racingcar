@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import racingcar.domain.CarFactory;
+import racingcar.domain.util.CarFactory;
 import racingcar.domain.UniqueCars;
 
 public class UniqueCarsTest {

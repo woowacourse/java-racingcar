@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Game;
-import racingcar.domain.MoveStrategy;
+import racingcar.domain.strategy.MoveStrategy;
 
 public class GameTest {
 	@Test

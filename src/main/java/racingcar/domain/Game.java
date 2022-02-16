@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.Collection;
 
+import racingcar.domain.strategy.MoveStrategy;
+
 public class Game {
 	private final Cars cars;
 

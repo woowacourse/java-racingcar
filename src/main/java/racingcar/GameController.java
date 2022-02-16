@@ -5,12 +5,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
-import racingcar.domain.CarDto;
-import racingcar.domain.CarFactory;
 import racingcar.domain.Cars;
 import racingcar.domain.Game;
-import racingcar.domain.RandomMove;
 import racingcar.domain.UniqueCars;
+import racingcar.domain.dto.CarDto;
+import racingcar.domain.strategy.RandomMove;
+import racingcar.domain.util.CarFactory;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -47,7 +47,7 @@ public class GameController {
 	}
 
 	private static void validateCount(int count) {
-		if(count < 0) {
+		if (count < 0) {
 			throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
 		}
 	}
