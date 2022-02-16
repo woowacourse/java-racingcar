@@ -9,7 +9,7 @@ public class TryCount {
 
     public TryCount(String countString) {
         this.tryCount = convertStringToInt(countString);
-        validate(tryCount);
+        validate();
     }
 
     public boolean isNotSame(int tryCount) {
@@ -41,8 +41,8 @@ public class TryCount {
         }
     }
 
-    private void validate(int count) {
-        if (count <= 0) {
+    private void validate() {
+        if (tryCount <= 0) {
             throw new IllegalArgumentException(TRY_CNT_NOT_POSITIVE);
         }
     }
