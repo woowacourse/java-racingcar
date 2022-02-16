@@ -33,9 +33,4 @@ public class Car {
         return this.position.toInt();
     }
 
-    @Override
-    public String toString() {
-        return name + " : " + position;
-    }
-
 }
