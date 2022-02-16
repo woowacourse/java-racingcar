@@ -1,9 +1,9 @@
 package racingcar.util;
 
 public class InputValidator {
-    public static final String NEGATIVE_TRY_COUNT_MESSAGE = "[ERROR] 시도 횟수로 음수를 입력할 수 없습니다.";
-    private static final String NO_INTEGER_TRY_COUNT_ERROR_MESSAGE = "[ERROR] 정수가 아닌 문자열이 입력되었습니다.";
-    private static final String CAR_NAME_ERROR_MESSAGE = "[ERROR] 자동차 이름을 확인해주세요.";
+    public static final String NEGATIVE_TRY_COUNT_MESSAGE = "시도 횟수로 음수를 입력할 수 없습니다.";
+    private static final String NO_INTEGER_TRY_COUNT_ERROR_MESSAGE = "정수가 아닌 문자열이 입력되었습니다.";
+    private static final String CAR_NAME_ERROR_MESSAGE = "자동차 이름을 확인해주세요.";
 
     private static final int MAX_CAR_NAME_LENGTH = 5;
 

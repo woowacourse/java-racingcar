@@ -10,10 +10,8 @@ public class OutputView {
     private static final String WINNER_SUFFIX = "가 최종 우승했습니다.";
     private static final String SEPARATOR = ":";
     private static final String MOVE_SIGN = "-";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public static void printResultPrefix() {
-        System.out.println(RESULT_PREFIX);
-    }
 
     public static void printResult(List<Car> cars) {
         for (Car car : cars) {
@@ -25,5 +23,13 @@ public class OutputView {
     public static void printWinner(String[] winners) {
         System.out.print(String.join(SPLIT_DELIMITER, winners));
         System.out.println(WINNER_SUFFIX);
+    }
+
+    public static void printError(String error) {
+        System.out.println(ERROR_PREFIX + error);
+    }
+
+    public static void printMessage(String message) {
+        System.out.println(message);
     }
 }

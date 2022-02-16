@@ -20,7 +20,7 @@ public class Application {
         try {
             racingGame.play();
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            OutputView.printError(e.getMessage());
         }
     }
 }

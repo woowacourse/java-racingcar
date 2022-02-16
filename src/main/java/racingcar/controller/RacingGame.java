@@ -5,6 +5,8 @@ import racingcar.view.OutputView;
 import java.util.Arrays;
 
 public class RacingGame {
+    private static final String RESULT_PREFIX = "실행결과";
+
     private final RaceController raceController;
     private final int tryCount;
 
@@ -15,7 +17,7 @@ public class RacingGame {
     }
 
     public void play() throws RuntimeException {
-        OutputView.printResultPrefix();
+        OutputView.printMessage(RESULT_PREFIX);
         for (int i = 0; i < tryCount; i++) {
             raceController.moveRound();
             raceController.printPosition();
