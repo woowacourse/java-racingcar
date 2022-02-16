@@ -1,17 +1,21 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import racingcar.domain.Car;
 import racingcar.domain.Game;
-import racingcar.view.OutputView;
 
 public class GameController {
 
-    public void playGameUntilEnd(Game game) {
-        OutputView.printRoundResultText();
+    public List<List<Car>> playAndGetRoundResults(Game game) {
+        List<List<Car>> roundResults = new ArrayList<>();
 
         while (!game.isOver()) {
             game.playRound();
-            OutputView.printRoundResult(game.getCars());
+            roundResults.add(game.getCars());
         }
+
+        return roundResults;
     }
 
     public void clearGameData(Game game) {

@@ -17,8 +17,9 @@ public class Application {
             String totalRoundsInput = InputView.requestTotalRoundsInput();
             Game game = Game.byUserInput(carNamesInput, totalRoundsInput);
 
-            gameController.playGameUntilEnd(game);
+            OutputView.printGameResult(gameController.playAndGetRoundResults(game));
             OutputView.printWinners(game.getWinners());
+
             gameController.clearGameData(game);
         } while (validateAndParseBoolean(InputView.requestRestartGameInput()));
     }

@@ -33,20 +33,30 @@ public class OutputView {
         print(REQUEST_RESTART_GAME_INPUT_MESSAGE);
     }
 
-    public static void printRoundResultText() {
+    public static void printGameResult(List<List<Car>> roundResults) {
+        StringJoiner gameResult = new StringJoiner(LINE_SEPARATOR);
+
+        for (List<Car> roundResult : roundResults) {
+            gameResult.add(printRoundResult(roundResult));
+        }
+
+        printRoundResultText();
+        print(gameResult.toString());
+    }
+
+    private static void printRoundResultText() {
         printBlankLine();
         print(ROUND_RESULT_TEXT);
     }
 
-    public static void printRoundResult(List<Car> cars) {
-        StringBuilder builder = new StringBuilder();
+    private static String printRoundResult(List<Car> cars) {
+        StringBuilder roundResult = new StringBuilder();
 
         for (Car car : cars) {
-            builder.append(formatCarPositionData(car))
+            roundResult.append(formatCarPositionData(car))
                     .append(LINE_SEPARATOR);
         }
-
-        print(builder.toString());
+        return roundResult.toString();
     }
 
     private static String formatCarPositionData(Car car) {
