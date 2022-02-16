@@ -1,27 +1,22 @@
 package racingcar.controller;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import racingcar.domain.Car;
-import racingcar.domain.CarName;
-import racingcar.domain.Cars;
 import racingcar.domain.Count;
 import racingcar.domain.MoveStrategy;
+import racingcar.domain.RacingCarGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class CarController {
-    private Count count;
+public class GameController {
     private final MoveStrategy moveStrategy;
+    private Count count;
+    private RacingCarGame racingCarGame;
 
-    public CarController(final MoveStrategy moveStrategy) {
+    public GameController(final MoveStrategy moveStrategy) {
         this.moveStrategy = moveStrategy;
     }
 
     public void run() {
-        cars = generateCars();
+        racingCarGame = generateGame();
         count = getCountFromUser();
 
         playGame();
@@ -29,28 +24,24 @@ public class CarController {
     }
 
     private void showResult() {
-        OutputView.printWinners(cars.findWinners());
+        OutputView.printWinners(racingCarGame.getWinners());
     }
 
-    private Cars generateCars() {
+    private RacingCarGame generateGame() {
         try {
-            String carsNames = InputView.getCarNames();
-            List<Car> cars = Arrays.stream(carsNames.split(","))
-                .map(CarName::new)
-                .map(Car::new)
-                .collect(Collectors.toList());
-            return new Cars(cars, moveStrategy);
+            final String carNamesWithDelimiter = InputView.getCarNames();
+            return new RacingCarGame(carNamesWithDelimiter, moveStrategy);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return generateCars();
+            return generateGame();
         }
     }
 
     private void playGame() {
-        OutputView.printResult(cars.get());
+        OutputView.printResult(racingCarGame.getCars());
         for (int i = 0; i < count.get(); i++) {
-            cars.attemptToMoveCars();
-            OutputView.printResult(cars.get());
+            racingCarGame.playRound();
+            OutputView.printResult(racingCarGame.getCars());
         }
     }
 
