@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RaceController {
-    private static final int DEFAULT_POSITION = 0;
-
     private List<Car> cars = new ArrayList<>();
 
     public void insertCar(Car car) {
@@ -18,7 +16,7 @@ public class RaceController {
 
     public void insertCarFromCarNames(String[] carNames) {
         for (String carName : carNames) {
-            insertCar(new Car(carName, DEFAULT_POSITION, new RandomNumberGenerator()));
+            insertCar(new Car(carName, new RandomNumberGenerator()));
         }
     }
 
