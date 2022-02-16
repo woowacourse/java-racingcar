@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class RacingGame {
@@ -15,7 +16,7 @@ public class RacingGame {
 
     public List<Car> race() {
         cars.driveAll(numberGeneratePolicy);
-        return cars.getDriveRecord();
+        return Collections.unmodifiableList(cars.getDriveRecord());
     }
 
     public boolean isFinished() {
@@ -27,6 +28,6 @@ public class RacingGame {
     }
 
     public List<Car> getRacingResult() {
-        return cars.getWinners();
+        return Collections.unmodifiableList(cars.getWinners());
     }
 }
