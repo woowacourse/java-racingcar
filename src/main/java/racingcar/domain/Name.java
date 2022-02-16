@@ -9,7 +9,7 @@ public class Name {
     private static final String ERROR_INVALID_CAR_NAME_LENGTH_MESSAGE =
             CAR_NAME_MIN_LENGTH + "~" + CAR_NAME_MAX_LENGTH + " 글자 범위 내에서 입력하세요.";
 
-    public Name(String name) {
+    private Name(String name) {
         this.name = name;
     }
 
