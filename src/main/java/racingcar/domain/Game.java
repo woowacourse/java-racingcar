@@ -24,7 +24,7 @@ public class Game {
     public void start() {
         Cars cars = generateCars(carNames);
         race(tryNo, cars.getCars());
-        List<String> winners = getWinner(cars.getCars());
+        List<String> winners = cars.getWinners();
         output.printWinner(winners);
     }
 
@@ -56,24 +56,5 @@ public class Game {
         return new Cars(cars);
     }
 
-    private List<String> getWinner(List<Car> cars) {
-        int maxPosition = findMaxPosition(cars);
-        List<String> winners = findWinnerByPosition(maxPosition, cars);
-        return winners;
-    }
-
-    private int findMaxPosition(List<Car> cars) {
-        Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getPosition);
-
-        return cars.stream()
-            .max(comparatorByPosition).get().getPosition();
-    }
-
-    private List<String> findWinnerByPosition(int maxPosition, List<Car> cars) {
-        return cars.stream()
-            .filter(car -> car.isSamePosition(maxPosition))
-            .map(Car::getName)
-            .collect(Collectors.toList());
-    }
 
 }
