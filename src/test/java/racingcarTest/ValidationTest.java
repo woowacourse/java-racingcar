@@ -33,4 +33,11 @@ public class ValidationTest {
     void 게임_회수_입력_참검증(String value) {
         Validation.tryNumValidation(value);
     }
+
+    @Test
+    void 플레이어_이름_중복_검증() {
+        assertThatThrownBy(() -> Validation.carNameValidation("pobi,crong,pobi"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
