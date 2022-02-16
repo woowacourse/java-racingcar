@@ -22,9 +22,9 @@ public class Game {
     }
 
     public void start() {
-        List<Car> cars = generateCar(carNames);
-        race(tryNo, cars);
-        List<String> winners = getWinner(cars);
+        Cars cars = generateCars(carNames);
+        race(tryNo, cars.getCars());
+        List<String> winners = getWinner(cars.getCars());
         output.printWinner(winners);
     }
 
@@ -46,20 +46,14 @@ public class Game {
         return (int) (Math.random() * RANDOM_RANGE);
     }
 
-    private List<Car> generateCar(String[] names) {
+    private Cars generateCars(String[] names) {
         List<Car> cars = new ArrayList<>();
-        checkDuplicate(names);
+
         for (String name : names) {
             cars.add(new Car(name));
         }
-        return cars;
-    }
 
-    private void checkDuplicate(String[] names) {
-        Set<String> uniqueNames = new HashSet<>(Arrays.asList(names));
-        if (uniqueNames.size() != names.length) {
-            throw new IllegalArgumentException(Constant.DUPLICATE_NAME_ERROR);
-        }
+        return new Cars(cars);
     }
 
     private List<String> getWinner(List<Car> cars) {
