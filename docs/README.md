@@ -40,7 +40,7 @@
     - [x] 회수가 입력하지 않는 경우
     - [x] 회수가 숫자가 아닌 경우
     - [x] 회수가 음수인 경우
-  
+
 ## 요구사항
 
 - 코드 컨벤션을 지킨다.
@@ -133,7 +133,7 @@
     - @EnumSource(value = MyEnums.class, names = {"NAME1", "NAME2"})
     - @MethodSource
     - https://www.baeldung.com/parameterized-tests-junit-5
-  
+
 ### step2 MVC 패턴으로 리팩터링 해보기
 
 - [x] Winners에서 처리하던 출력 세부사항을 OutputView로 이동
@@ -141,4 +141,9 @@
     - [x] View -> Controller : RequestXXXDto
     - [x] View <- Controller : ResponseXXXDto
 - 자동차 이름 입력을 나누는 RacingCar.splitCarNames를 InputView에서 하도록 수정(View에서 Cars까지 만들어서 Controller에게 반환)
-
+- 전체 통합 테스트가 제대로 되지 않음
+    - 문제점 : 첫번째 입력인 이름은 입력을 잘 받지만 두번째 입력인 시도 횟수를 제대로 입력받지 못함(null 입력이 됨)
+    - 원인 분석 : InputView에서 Scanner를 상수로 처리했는데 이렇게 되면 문제가 발생하는것으로 예상됨
+    - 해결 방법 : Controller에서 Scanner를 만들어 파라미터로 주거나 InputView에서 Scanner를 static으로 쓰지 않으면 문제가 해결됨
+    - static을 없애고 InputView의 인스턴스 변수로 Scanner를 만들어 사용하는 방식으로 문제를 해결함
+    - Scanner를 Controller에서 만들어서 주지 않은 이유는 InputView에서만 사용되는 Scanner를 꼭 Controller에서 생성하고 가지고 있어야하나? 라는 생각이 들었기 때문임

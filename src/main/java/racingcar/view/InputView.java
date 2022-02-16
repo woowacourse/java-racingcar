@@ -15,24 +15,24 @@ public class InputView {
 
     private static final String CAR_NAME_DELIMITER = ",";
 
-    private static final Scanner SCANNER = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    public static RequestCarsDto requestCars() {
+    public RequestCarsDto requestCars() {
         System.out.println(REQUEST_CAR_NAME_MESSAGE);
         Cars cars = new Cars(readNextLine().split(CAR_NAME_DELIMITER));
         return new RequestCarsDto(cars);
     }
 
-    public static RequestAttemptDto requestAttempt() {
+    public RequestAttemptDto requestAttempt() {
         System.out.println(REQUEST_ATTEMPT_MESSAGE);
         Attempt attempt = new Attempt(readNextLine());
         System.out.println();
         return new RequestAttemptDto(attempt);
     }
 
-    private static String readNextLine() {
+    private String readNextLine() {
         try {
-            return SCANNER.nextLine();
+            return scanner.nextLine();
         } catch (NoSuchElementException exception) {
             throw new RuntimeException(EMPTY_INPUT_ERROR_MESSAGE);
         }

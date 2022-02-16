@@ -1,14 +1,11 @@
 package racingcar;
 
-import static racingcar.view.InputView.requestAttempt;
-import static racingcar.view.OutputView.printRaceResult;
-import static racingcar.view.OutputView.printWinners;
-
 import racingcar.domain.dto.ResponseRoundResultDto;
 import racingcar.domain.dto.ResponseWinnersDto;
 import racingcar.view.InputView;
 import racingcar.domain.vo.Attempt;
 import racingcar.domain.vo.Cars;
+import racingcar.view.OutputView;
 
 public class RacingCar {
 
@@ -16,9 +13,12 @@ public class RacingCar {
     }
 
     public void play() {
-        Cars cars = InputView.requestCars().getCars();
-        Attempt attempt = requestAttempt().getAttempt();
-        printRaceResult(new ResponseRoundResultDto(cars.repeatRaceBy(attempt)));
-        printWinners(new ResponseWinnersDto(cars.findWinners()));
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+
+        Cars cars = inputView.requestCars().getCars();
+        Attempt attempt = inputView.requestAttempt().getAttempt();
+        outputView.printRaceResult(new ResponseRoundResultDto(cars.repeatRaceBy(attempt)));
+        outputView.printWinners(new ResponseWinnersDto(cars.findWinners()));
     }
 }
