@@ -9,14 +9,6 @@ public class InputValidator {
         }
     }
 
-    public static void validateTrialInput(String number) {
-        try {
-            Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("시도할 횟수는 숫자여야 합니다.");
-        }
-    }
-
     public static void validateDuplicateName(List<String> carNames) {
         long distinctNum = carNames.stream()
                 .distinct()

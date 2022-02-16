@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.Name;
+import racingcar.model.TrialNum;
 import racingcar.util.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -16,7 +17,7 @@ public class GameController {
     private static final String SPACE = " ";
 
     private Cars cars;
-    private int trialNum;
+    private TrialNum trialNum;
 
     public void run() {
         initGame();
@@ -36,10 +37,10 @@ public class GameController {
         cars = initCars(carNames);
     }
 
-    private void inputTrialNum() {
+    public void inputTrialNum() {
         InputView.inputTrialNum();
         String trialNumInput = InputView.getInput();
-        trialNum = convertToInteger(trialNumInput);
+        trialNum = new TrialNum(trialNumInput);
     }
 
     public List<Name> splitCars(String carNamesInput) {
@@ -56,14 +57,9 @@ public class GameController {
                 .collect(Collectors.toList()));
     }
 
-    private int convertToInteger(String number) {
-        InputValidator.validateTrialInput(number);
-        return Integer.parseInt(number);
-    }
-
     private void runGame() {
         OutputView.printTrialResult();
-        for (int i = 0; i < trialNum; i++) {
+        for (int i = 0; i < trialNum.getValue(); i++) {
             cars.race();
             OutputView.printCarPosition(cars);
         }

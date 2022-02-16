@@ -38,7 +38,6 @@ public class Car {
         return number >= MOVE_FORWARD;
     }
 
-
     public Name getName() {
         return name;
     }
