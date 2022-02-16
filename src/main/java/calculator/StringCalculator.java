@@ -9,6 +9,8 @@ public class StringCalculator {
     private static final String BASIC_SPLITTER = ",|:";
     private static final String CUSTOM_PREFIX = "//";
     private static final String CUSTOM_SUFFIX = "\n";
+    private static final String BLANK = "";
+    private static final int SINGLE_ENTRY = 1;
 
     public static Integer splitAndSum(String input) {
         try {
@@ -63,7 +65,10 @@ public class StringCalculator {
     }
 
     private static boolean isEmptyList(String[] strArr) {
-        return Arrays.stream(strArr).count() == 1 && strArr[0].equals("");
+        int numSize = (int) Arrays.stream(strArr)
+                .count();
+
+        return numSize == SINGLE_ENTRY && strArr[0].equals(BLANK);
     }
 
     private static Integer convertToInt(String str) {
