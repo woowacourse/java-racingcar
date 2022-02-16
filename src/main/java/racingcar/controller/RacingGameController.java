@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.Names;
 import racingcar.domain.RacingGame;
