@@ -9,7 +9,7 @@ import racingcar.domain.Car;
 public class RecordDto {
     private List<CarDto> racingRecord;
 
-    public RecordDto(List<CarDto> racingRecord) {
+    private RecordDto(List<CarDto> racingRecord) {
         this.racingRecord = racingRecord;
     }
 

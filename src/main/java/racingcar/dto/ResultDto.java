@@ -8,7 +8,7 @@ import racingcar.domain.Car;
 public class ResultDto {
     private List<String> winners;
 
-    public ResultDto(List<String> winners) {
+    private ResultDto(List<String> winners) {
         this.winners = winners;
     }
 
