@@ -1,6 +1,6 @@
 package racingcar;
 
-import racingcar.game.RacingGame;
+import racingcar.controller.RacingGame;
 
 import static racingcar.view.OutputView.printErrorMessage;
 
