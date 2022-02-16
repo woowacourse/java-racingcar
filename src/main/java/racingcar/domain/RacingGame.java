@@ -10,20 +10,20 @@ public class RacingGame {
 	private static final int RANDOM_VALUE_RANGE = 10;
 
 	private final List<Car> cars;
-	private final Attempt attempt;
+	private final AttemptNumber attemptNumber;
 	private final RacingResult racingResult = new RacingResult();
 
-	private RacingGame(List<Car> cars, Attempt attempt) {
+	private RacingGame(List<Car> cars, AttemptNumber attemptNumber) {
 		this.cars = cars;
-		this.attempt = attempt;
+		this.attemptNumber = attemptNumber;
 	}
 
-	public static RacingGame of(List<Car> cars, Attempt attempt) {
-		return new RacingGame(cars, attempt);
+	public static RacingGame of(List<Car> cars, AttemptNumber attemptNumber) {
+		return new RacingGame(cars, attemptNumber);
 	}
 
 	public List<Car> start(RandomUtil randomUtil) {
-		for (int i = 0; i < attempt.getNumber(); i++) {
+		for (int i = 0; i < attemptNumber.value(); i++) {
 			playRound(randomUtil);
 			racingResult.add(cars.stream()
 				.map(Car::copy)

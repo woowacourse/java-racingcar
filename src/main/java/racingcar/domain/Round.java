@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Round {
 
-	private int number;
+	private final int number;
 
 	private Round(int number) {
 		this.number = number;
@@ -12,10 +12,6 @@ public class Round {
 
 	public static Round of(int number) {
 		return new Round(number);
-	}
-
-	public int getNumber() {
-		return number;
 	}
 
 	@Override

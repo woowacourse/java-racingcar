@@ -13,15 +13,15 @@ public class RacingGameTest {
 	@DisplayName("자동차 경주 게임 시작")
 	public void startTest() {
 		List<Car> cars = List.of(Car.from("lala"), Car.from("pobi"));
-		Attempt attempt = Attempt.fromStringValue("2");
-		RacingGame game = RacingGame.of(cars, attempt);
+		AttemptNumber attemptNumber = AttemptNumber.fromStringValue("2");
+		RacingGame game = RacingGame.of(cars, attemptNumber);
 		List<Car> racingCars = game.start(bound -> 5);
 
 		racingCars.stream()
 			.map(Car::toDto)
 			.collect(Collectors.toList())
 			.forEach(car -> {
-				Assertions.assertThat(car.getPosition()).isEqualTo(attempt.getNumber());
+				Assertions.assertThat(car.getPosition()).isEqualTo(attemptNumber.value());
 			});
 	}
 }

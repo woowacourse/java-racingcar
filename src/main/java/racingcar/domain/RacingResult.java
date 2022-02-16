@@ -7,11 +7,11 @@ import java.util.List;
 public class RacingResult {
 
 	private final HashMap<Round, List<Car>> results = new HashMap<>();
-	private Attempt attempt = Attempt.fromIntegerValue(0);
+	private AttemptNumber attemptNumber = AttemptNumber.fromIntegerValue(0);
 
 	public void add(List<Car> cars)  {
-		int newRound = attempt.getNumber() + 1;
-		attempt = Attempt.fromIntegerValue(newRound);
+		int newRound = attemptNumber.value() + 1;
+		attemptNumber = AttemptNumber.fromIntegerValue(newRound);
 
 		results.put(Round.of(newRound), cars);
 	}
@@ -20,5 +20,4 @@ public class RacingResult {
 		List<Car> cars = results.get(round);
 		return new ArrayList<>(cars);
 	}
-
 }

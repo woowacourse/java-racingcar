@@ -3,7 +3,7 @@ package racingcar.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.Attempt;
+import racingcar.domain.AttemptNumber;
 import racingcar.domain.CarDto;
 import racingcar.domain.Round;
 import racingcar.service.RacingService;
@@ -17,25 +17,25 @@ public class RacingController {
 	public void start() {
 		racingService.registerCars(InputView.getCars());
 
-		Attempt attempt = inputAttempt();
+		AttemptNumber attemptNumber = inputAttemptNumber();
 		OutputView.printResultMessage();
-		play(attempt);
+		play(attemptNumber);
 
-		printRacingRoundResult(attempt);
+		printRacingRoundResult(attemptNumber);
 		printRacingWinnerResult();
 	}
 
-	private Attempt inputAttempt() {
+	private AttemptNumber inputAttemptNumber() {
 		String attemptNumberInput = InputView.getAttemptNumber();
-		return Attempt.fromStringValue(attemptNumberInput);
+		return AttemptNumber.fromStringValue(attemptNumberInput);
 	}
 
-	private void play(Attempt attempt) {
-		racingService.race(attempt);
+	private void play(AttemptNumber attemptNumber) {
+		racingService.race(attemptNumber);
 	}
 
-	private void printRacingRoundResult(Attempt attempt) {
-		for (int round = 1; round <= attempt.getNumber(); round++) {
+	private void printRacingRoundResult(AttemptNumber attemptNumber) {
+		for (int round = 1; round <= attemptNumber.value(); round++) {
 			List<CarDto> racingResult = racingService.findRacingResult(Round.of(round));
 			OutputView.printRacingInfo(racingResult);
 		}
