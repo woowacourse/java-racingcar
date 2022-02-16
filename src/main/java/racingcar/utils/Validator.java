@@ -1,6 +1,9 @@
 package racingcar.utils;
 
 import racingcar.domain.Car;
+import racingcar.exception.DuplicateCarNameException;
+import racingcar.exception.InvalidCountRangeException;
+import racingcar.exception.SingleCarException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -11,13 +14,13 @@ public class Validator {
 
     public static void checkDuplicateName(List<Car> cars) {
         if (hasDuplicateName1(cars)) {
-            throw new IllegalArgumentException("차 이름은 중복될 수 없습니다");
+            throw new DuplicateCarNameException("차 이름은 중복될 수 없습니다");
         }
     }
 
     public static void checkSinglePlayer(List<Car> cars) {
         if (cars.size() == 1) {
-            throw new IllegalArgumentException("최소 자동차 개수는 2개 이상입니다");
+            throw new SingleCarException("최소 자동차 개수는 2개 이상입니다");
         }
     }
 
@@ -28,7 +31,7 @@ public class Validator {
 
     public static void checkCountRange(int count) {
         if (count < MINIMUM_COUNT) {
-            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다");
+            throw new InvalidCountRangeException("시도 횟수는 1 이상이어야 합니다");
         }
     }
 }

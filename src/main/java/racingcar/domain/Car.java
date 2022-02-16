@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.exception.InvalidCarNameException;
+
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
@@ -23,10 +25,10 @@ public class Car implements Comparable<Car> {
 
     private void validate(String name) {
         if (name.length() > MAXIMUM_CAR_NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차의 이름 길이는 " + MAXIMUM_CAR_NAME_LENGTH + "이하여야 합니다");
+            throw new InvalidCarNameException("자동차의 이름 길이는 " + MAXIMUM_CAR_NAME_LENGTH + "이하여야 합니다");
         }
         if (name.isEmpty()) {
-            throw new IllegalArgumentException("자동차 이름을 입력해주세요");
+            throw new InvalidCarNameException("자동차 이름을 입력해주세요");
         }
     }
 
