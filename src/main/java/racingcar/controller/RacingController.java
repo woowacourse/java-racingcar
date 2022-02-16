@@ -5,13 +5,13 @@ import java.util.List;
 import racingcar.domain.RacingResult;
 import racingcar.service.RacingService;
 import racingcar.util.Converter;
-import racingcar.util.RandomUtilImpl;
+import racingcar.util.RandomMovingStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
 
-	private final RacingService racingService = new RacingService(new RandomUtilImpl());
+	private final RacingService racingService = new RacingService(new RandomMovingStrategy());
 
 	public void start() {
 		String carNames = InputView.getCarNames();

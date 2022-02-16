@@ -13,7 +13,6 @@ import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
 import racingcar.service.RacingService;
 import racingcar.util.Converter;
-import racingcar.util.RandomUtilImpl;
 
 public class RacingServiceTest {
 
@@ -22,7 +21,7 @@ public class RacingServiceTest {
 
 	@BeforeEach
 	public void init() {
-		racingService = new RacingService(bound -> bound + 5);
+		racingService = new RacingService(() -> 5);
 		carRepository = CarRepository.getInstance();
 		String input = "pobi,joon";
 		racingService.registerCars(Converter.toCarList(input));
