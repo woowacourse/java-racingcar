@@ -48,7 +48,10 @@
 - domain
   - Car
   - CarDto
-  - Game
+  - RacingGame
+  - RacingResult
+  - Round
+  - AttemptNumber
 - repository
   - CarRepository
 - service 
@@ -59,7 +62,9 @@
   - InputView
   - OutputView
 - validator
-  - Validator
+  - AttemptValidator
+  - CarValidator
+  - InputValidator
 - util
   - RandomUtil
   - RandomUtilImpl
@@ -70,6 +75,18 @@
 
 ### CarDto
 - Car 객체의 name, position 필드를 갖는 DTO이다.
+
+### RacingGame
+- 시도 횟수만큼 자동차들 경주를 시킨다.
+
+### RacingResult
+- 자동차 경주에 대한 결과들을 저장한다.
+
+### Round
+- 라운드 VO
+
+### AttemptNumber
+- 시도 횟수 VO
 
 ### CarRepository
 - Car 객체를 저장한다.
@@ -88,7 +105,13 @@
 ### OutputView
 - 자동차 경주 결과를 출력한다.
 
-### Validator
+### AttemptValidator
+- 시도 횟수에 대한 유효성 검사를 한다.
+
+### CarValidator
+- Car 객체에 대한 유효성 검사를 한다.
+
+### InputValidator
 - 입력값이 유효한 값인지 검증한다.
 
 ### RandomUtil
@@ -96,6 +119,3 @@
 
 ### RandomUtilImpl
 - RandomUtil 을 구현하는 클래스이다.
-
-### Game
-- 자동차, 시도 횟수를 가지고 
