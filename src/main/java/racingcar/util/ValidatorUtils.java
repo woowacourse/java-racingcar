@@ -10,6 +10,8 @@ import java.util.Set;
 public class ValidatorUtils {
 
     public static final int MAX_NAME_LENGTH = 5;
+    public static final String RESTART_GAME_INPUT = "y";
+    public static final String END_PROGRAM_INPUT = "n";
     private static final String NOT_POSITIVE_INTEGER_EXCEPTION = "양수를 입력해야 합니다.";
     private static final String BLANK_NOT_ALLOWED_EXCEPTION = "공백을 입력하면 안 됩니다.";
     private static final String OVER_FIVE_CHARACTERS_EXCEPTION = "5글자 이하의 이름을 입력해야 합니다.";
@@ -52,11 +54,11 @@ public class ValidatorUtils {
 
     public static boolean validateAndParseBoolean(String value) {
         validateBooleanString(value);
-        return Objects.equals(value, "y");
+        return Objects.equals(value, RESTART_GAME_INPUT);
     }
 
     private static void validateBooleanString(String value) {
-        if (!value.equals("y") && !value.equals("n")) {
+        if (!value.equals(RESTART_GAME_INPUT) && !value.equals(END_PROGRAM_INPUT)) {
             throw new RuntimeException(INVALID_BOOLEAN_STRING_EXCEPTION);
         }
     }
