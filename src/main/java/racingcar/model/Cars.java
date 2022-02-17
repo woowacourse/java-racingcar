@@ -61,7 +61,7 @@ public class Cars {
 	private void checkDuplicationCarNames(String[] carNames) {
 		Set<String> duplicationCheck = new HashSet<>(Arrays.asList(carNames));
 		if (duplicationCheck.size() != carNames.length) {
-			throw new RuntimeException(ERROR_CAR_NAMES_DUPLICATE_MESSAGE);
+			throw new IllegalArgumentException(ERROR_CAR_NAMES_DUPLICATE_MESSAGE);
 		}
 	}
 }

@@ -14,7 +14,7 @@ class InputViewTest {
 	void validatePositiveInputTest(String input) {
 		Assertions.assertThatThrownBy(() -> {
 				InputView.validateIterationNumber(input);
-			}).isInstanceOf(RuntimeException.class)
+			}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("양수");
 	}
 
@@ -23,7 +23,7 @@ class InputViewTest {
 	void validateEmptyInputTest() {
 		Assertions.assertThatThrownBy(() -> {
 				InputView.validateIterationNumber("");
-			}).isInstanceOf(RuntimeException.class)
+			}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("빈 값");
 	}
 }

@@ -45,13 +45,13 @@ class Car {
 
 	private void validateOverNameLength(String name) {
 		if (name.length() > MAX_CAR_NAME_LENGTH) {
-			throw new RuntimeException(ERROR_OVER_CAR_NAME_LENGTH_MESSAGE);
+			throw new IllegalArgumentException(ERROR_OVER_CAR_NAME_LENGTH_MESSAGE);
 		}
 	}
 
 	private void validateEmptyName(String name) {
 		if (name.isEmpty()) {
-			throw new RuntimeException(ERROR_EMPTY_CAR_NAME_MESSAGE);
+			throw new IllegalArgumentException(ERROR_EMPTY_CAR_NAME_MESSAGE);
 		}
 	}
 }

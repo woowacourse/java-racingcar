@@ -38,13 +38,13 @@ public class InputView {
 
 	private static void validatePositiveInput(String input) {
 		if (!input.matches(POSITIVE_REGEX)) {
-			throw new RuntimeException(ERROR_NOT_POSITIVE_MESSAGE);
+			throw new IllegalArgumentException(ERROR_NOT_POSITIVE_MESSAGE);
 		}
 	}
 
 	private static void validateEmptyInput(String input) {
 		if (input == null || input.isEmpty()) {
-			throw new RuntimeException(ERROR_EMPTY_INPUT_MESSAGE);
+			throw new IllegalArgumentException(ERROR_EMPTY_INPUT_MESSAGE);
 		}
 	}
 }
