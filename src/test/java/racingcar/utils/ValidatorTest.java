@@ -65,7 +65,7 @@ public class ValidatorTest {
     @Test
     void 횟수_음수_입력_실패() {
         assertThatThrownBy(() ->
-                toInt("-3"))
+                checkPositiveNumber(-3))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 횟수는 1 이상이어야 합니다.");
     }
