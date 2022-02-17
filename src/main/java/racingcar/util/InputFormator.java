@@ -7,8 +7,11 @@ import java.util.stream.Collectors;
 import racingcar.model.car.Name;
 
 public class InputFormator {
+    private static final String INPUT_DELIMITER = ",";
+    private static final int SPLIT_INPUT_EMPTY_VALUE = 0;
+
     public static List<Name> toNameList(String input) {
-        String[] splitInput = input.split(",");
+        String[] splitInput = input.split(INPUT_DELIMITER);
         validateSplitInput(splitInput);
         return Arrays.stream(splitInput)
             .map(name -> new Name(name))
@@ -16,7 +19,7 @@ public class InputFormator {
     }
 
     private static void validateSplitInput(String[] splitInput) {
-        if (splitInput.length == 0) {
+        if (splitInput.length == SPLIT_INPUT_EMPTY_VALUE) {
             throw new IllegalArgumentException("올바르지 않은 입력값입니다.");
         }
         long removeDuplicateSize = Arrays.stream(splitInput)
