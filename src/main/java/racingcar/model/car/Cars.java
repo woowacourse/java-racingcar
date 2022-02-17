@@ -30,8 +30,9 @@ public class Cars {
     }
 
     public void race(MovableStrategy movableStrategy) {
-        cars.stream()
-            .forEach(car -> car.move(movableStrategy));
+        for (Car car : cars) {
+            car.move(movableStrategy);
+        }
     }
 
     public List<String> getWinnersNames() {
