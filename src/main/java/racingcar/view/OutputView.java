@@ -16,8 +16,8 @@ public class OutputView {
         System.out.println(RACE_RESULT_MESSAGE);
     }
 
-    public static void printOneTurnRaceResult(RacingGame racingGame) {
-        for (Car car : racingGame.getCars()) {
+    public static void printOneTurnRaceResult(List<Car> cars) {
+        for (Car car : cars) {
             System.out.println(getOneCarPosition(car));
         }
 

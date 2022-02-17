@@ -21,7 +21,7 @@ public class RacingGameController {
     }
 
     public static void updateViewOneTurnResult() {
-        OutputView.printOneTurnRaceResult(racingGame);
+        OutputView.printOneTurnRaceResult(racingGame.getCars());
     }
 
     public static void updateViewChampionNames() {
