@@ -1,7 +1,7 @@
 package racingCar.domain;
 
 public class CarDTO {
-    public String name;
+    public final String name;
     public int position;
 
     public CarDTO(Car car) {
