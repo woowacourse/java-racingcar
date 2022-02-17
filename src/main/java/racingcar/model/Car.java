@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.Objects;
+import racingcar.strategy.MovingCarStrategy;
 
 public class Car implements Comparable<Car> {
     private static final String NULL_EMPTY_CAR_NAME_ERROR_MESSAGE = "[Error] 다시 이름을 입력하세요";

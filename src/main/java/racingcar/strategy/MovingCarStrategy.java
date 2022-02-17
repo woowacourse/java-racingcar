@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.strategy;
 
 @FunctionalInterface
 public interface MovingCarStrategy {

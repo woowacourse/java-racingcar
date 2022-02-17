@@ -6,7 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
-import racingcar.model.MovingCarStrategy;
+import racingcar.strategy.MovingCarStrategy;
+import racingcar.strategy.RandomMovingStrategy;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
@@ -14,7 +15,7 @@ public class CarTest {
 
     @BeforeEach
     public void beforeEach() {
-        movingCarStrategy = () -> true;
+        movingCarStrategy = new RandomMovingStrategy();
     }
 
     @Test
@@ -37,6 +38,7 @@ public class CarTest {
 
     @Test
     public void 전진_성공() {
+        movingCarStrategy = () -> true;
         Car testCar = new Car("아스피", movingCarStrategy);
         testCar.move();
         assertThat(testCar.isSamePosition(new Car("배카라", 1))).isEqualTo(true);

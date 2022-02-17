@@ -2,11 +2,10 @@ package racingcar.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.service.RandomNumberService;
+import racingcar.strategy.MovingCarStrategy;
+import racingcar.strategy.RandomMovingStrategy;
 
 public class Cars {
-    private static final int MOVING_CONDITION_NUMBER = 4;
-
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -18,11 +17,7 @@ public class Cars {
     }
 
     private static List<Car> toCar(List<String> carNames) {
-        MovingCarStrategy movingCarStrategy = () -> {
-            int randomNumber = RandomNumberService.getRandomNumber();
-            return randomNumber > MOVING_CONDITION_NUMBER;
-        };
-
+        MovingCarStrategy movingCarStrategy = new RandomMovingStrategy();
         return carNames.stream()
                 .map(carName -> new Car(carName, movingCarStrategy))
                 .collect(Collectors.toList());
