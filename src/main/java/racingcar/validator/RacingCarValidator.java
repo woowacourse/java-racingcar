@@ -17,6 +17,8 @@ public class RacingCarValidator {
 	private static final String CAR_NAMES_DUPLICATE_ERROR ="[ERROR] 자동차 이름은 중복될 수 없습니다.";
 
 	public static void validateCount(int number) {
+		// TODO: 숫자가 아닐 경우 exception 추가
+
 		if (number < NEGATIVE_NUMBER_CHECK) {
 			throw new IllegalArgumentException();
 		}

@@ -12,13 +12,11 @@ import racingcar.view.OutPutView;
 public class RacingCarController {
 
 	public void run() {
-		List<Car> cars = InputView.getCars();
-		RacingCarValidator.validateCars(cars);
+		String[] carNames = InputView.getCarNames();
+		/*RacingCarValidator.validateCars(cars);*/
+		String tryNo = InputView.getCount();
 
-		Count count = InputView.getCount();
-
-		Racing racing = new Racing(cars, count);
-
+		Racing racing = new Racing(carNames, tryNo);
 		OutPutView.printStatusMessage();
 		while (!racing.isEnd()) {
 			OutPutView.printStatus(racing.race());

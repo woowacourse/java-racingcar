@@ -2,15 +2,22 @@ package racingcar.domain;
 
 import static java.util.stream.Collectors.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Racing {
 	private final List<Car> cars;
 	private final Count count;
 
-	public Racing(List<Car> cars, Count count) {
-		this.cars = cars;
-		this.count = count;
+	public Racing(String[] carNames, String tryNo) {
+		this.cars = getCars(carNames);
+		this.count = new Count(tryNo);
+	}
+
+	private List<Car> getCars(String[] carNames) {
+		return Arrays.stream(carNames)
+			.map(carName -> new Car(carName, new RandomMovingPolicy()))
+			.collect(toList());
 	}
 
 	public boolean isEnd() {
