@@ -12,7 +12,7 @@ public class Position implements Comparable<Position> {
         this.position = DEFAULT_POSITION;
     }
 
-    public Position(int position) {
+    public Position(final int position) {
         this.position = position;
     }
 

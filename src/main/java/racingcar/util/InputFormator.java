@@ -10,7 +10,7 @@ public class InputFormator {
     private static final String INPUT_DELIMITER = ",";
     private static final int SPLIT_INPUT_EMPTY_VALUE = 0;
 
-    public static List<Name> toNameList(String input) {
+    public static List<Name> toNameList(final String input) {
         String[] splitInput = input.split(INPUT_DELIMITER);
         validateSplitInput(splitInput);
         return Arrays.stream(splitInput)
@@ -18,7 +18,7 @@ public class InputFormator {
             .collect(Collectors.toList());
     }
 
-    private static void validateSplitInput(String[] splitInput) {
+    private static void validateSplitInput(final String[] splitInput) {
         if (splitInput.length == SPLIT_INPUT_EMPTY_VALUE) {
             throw new IllegalArgumentException("올바르지 않은 입력값입니다.");
         }

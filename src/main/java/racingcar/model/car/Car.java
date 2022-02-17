@@ -8,17 +8,17 @@ public class Car implements Comparable<Car> {
     private final Name name;
     private Position position;
 
-    public Car(Name name) {
+    public Car(final Name name) {
         this(name, new Position());
 
     }
 
-    public Car(Name name, Position position) {
+    public Car(final Name name, final Position position) {
         this.name = name;
         this.position = position;
     }
 
-    public void move(MovableStrategy movableStrategy) {
+    public void move(final MovableStrategy movableStrategy) {
         if (movableStrategy.isMove()) {
             position = position.increase();
         }

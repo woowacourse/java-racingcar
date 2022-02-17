@@ -14,12 +14,12 @@ public class Cars {
     public Cars() {
     }
 
-    public void add(Car car) {
+    public void add(final Car car) {
         validateDuplicate(car);
         cars.add(car);
     }
 
-    public void race(MovableStrategy movableStrategy) {
+    public void race(final MovableStrategy movableStrategy) {
         validateIsEmpty();
         for (Car car : cars) {
             car.move(movableStrategy);
@@ -40,7 +40,7 @@ public class Cars {
         return getCarsByPosition(getFirstPosition());
     }
 
-    private List<Car> getCarsByPosition(Position position) {
+    private List<Car> getCarsByPosition(final Position position) {
         return cars.stream()
             .filter((car) -> car.getPosition() == position.value())
             .collect(Collectors.toList());
@@ -58,7 +58,7 @@ public class Cars {
         }
     }
 
-    private void validateDuplicate(Car car) {
+    private void validateDuplicate(final Car car) {
         if (cars.contains(car)) {
             throw new IllegalArgumentException("이미 존재하는 자동차 이름입니다.");
         }

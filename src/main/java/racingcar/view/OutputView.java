@@ -12,18 +12,18 @@ public class OutputView {
         System.out.println(System.lineSeparator() + "실행 결과");
     }
 
-    public static void printCars(Cars cars) {
+    public static void printCars(final Cars cars) {
         for (Car car : cars.getCars()) {
             System.out.println(car.getName() + " : " + CAR_POSITION_BAR.repeat(car.getPosition()));
         }
         System.out.println();
     }
 
-    public static void printWinners(List<String> names) {
+    public static void printWinners(final List<String> names) {
         System.out.printf("%s가 최종 우승했습니다.", String.join(", ", names));
     }
 
-    public static void printError(Exception exception) {
+    public static void printError(final Exception exception) {
         System.out.println(exception.getMessage());
     }
 }

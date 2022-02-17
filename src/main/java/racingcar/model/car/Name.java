@@ -9,20 +9,20 @@ public class Name {
 
     private final String name;
 
-    public Name(String name) {
+    public Name(final String name) {
         validateIsEmpty(name);
         validateLength(name, MIN_LENGTH, MAX_LENGTH);
         validateFormat(name);
         this.name = name;
     }
 
-    private static void validateIsEmpty(String text) {
+    private static void validateIsEmpty(final String text) {
         if (text.isEmpty()) {
             throw new IllegalArgumentException("문자열은 빈값이면 안됩니다.");
         }
     }
 
-    private static void validateLength(String text, int min, int max) {
+    private static void validateLength(final String text, final int min, final int max) {
         if (text.length() < min || text.length() > max) {
             throw new IllegalArgumentException(
                 String.format("문자열의 길이가 %d 이상 %d 이하가 아닙니다.", min, max)
@@ -30,7 +30,7 @@ public class Name {
         }
     }
 
-    private static void validateFormat(String text) {
+    private static void validateFormat(final String text) {
         if (!text.matches(FORMAT_PATTERN)) {
             throw new IllegalArgumentException("올바르지 않은 형식의 문자열입니다.");
         }
