@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.domain.car;
+
+import racingcar.dto.CarDto;
 
 import java.util.Collections;
 import java.util.List;

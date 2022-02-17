@@ -1,4 +1,14 @@
-package racingcar;
+package racingcar.controller;
+
+import racingcar.domain.car.CarFactory;
+import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.domain.numbergenerator.RandomNumberGenerator;
+import racingcar.domain.Referee;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
+import racingcar.dto.CarDto;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;

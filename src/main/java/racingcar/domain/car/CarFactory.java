@@ -1,8 +1,7 @@
-package racingcar;
+package racingcar.domain.car;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CarFactory {

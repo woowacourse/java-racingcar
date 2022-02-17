@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain.numbergenerator;
 
 public class NonMovableNumberGenerator implements NumberGenerator {
     private static final int NON_MOVABLE_VALUE = 3;
