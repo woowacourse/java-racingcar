@@ -60,6 +60,20 @@ public class CarsTest {
                 }
             }
         }
+
+        @Nested
+        @DisplayName("참가한 자동차가 없다면")
+        class Empty_Cars {
+            @Test
+            @DisplayName("예외를 발생시킨다.")
+            void it_throw_exception() {
+                Cars cars = new Cars();
+
+                assertThatThrownBy(() -> cars.race(() -> true))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("아무 차량도 추가되지 않았습니다.");
+            }
+        }
     }
 
     @Nested
@@ -75,50 +89,20 @@ public class CarsTest {
 
             assertThat(cars.getWinnersNames()).containsExactly("car1", "car3");
         }
-    }
-
-    @Nested
-    @DisplayName("getFirstPosition 메소드는")
-    class GetFirstPosition {
-        @Test
-        @DisplayName("가장 멀리간 차의 위치를 가져온다")
-        void it_returns_farthest_position() {
-            Cars cars = new Cars();
-            cars.add(new Car(new Name("car1"), new Position(10)));
-            cars.add(new Car(new Name("car2"), new Position(1)));
-            cars.add(new Car(new Name("car3"), new Position(5)));
-
-            assertThat(cars.getFirstPosition())
-                .isEqualTo(new Position(10));
-        }
 
         @Nested
-        @DisplayName("아무 차가 없다면")
-        class Context_empty_cars {
+        @DisplayName("참가한 자동차가 없다면")
+        class Empty_Cars {
             @Test
             @DisplayName("예외를 발생시킨다.")
             void it_throw_exception() {
                 Cars cars = new Cars();
-                assertThatThrownBy(cars::getFirstPosition)
-                    .isInstanceOf(IllegalArgumentException.class);
+
+                assertThatThrownBy(() -> cars.getWinnersNames())
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("아무 차량도 추가되지 않았습니다.");
             }
-
         }
-    }
 
-    @Nested
-    @DisplayName("getCarsByPosition 메소드는")
-    class GetCarsByposition {
-        @Test
-        @DisplayName("위치와_일치하는_자동차의_리스트를_가져온다")
-        void it_returns_car_list() {
-            Cars cars = new Cars();
-            cars.add(new Car(new Name("car1"), new Position(10)));
-            cars.add(new Car(new Name("car2"), new Position(1)));
-            cars.add(new Car(new Name("car3"), new Position(10)));
-
-            assertThat(cars.getCarsByPosition(new Position(10)))
-                .contains(new Car(new Name("car1")), new Car(new Name("car3")));
-        }
     }
 }

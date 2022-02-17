@@ -21,6 +21,7 @@ public class Cars {
     }
 
     public void race(MovableStrategy movableStrategy) {
+        validateIsEmpty();
         for (Car car : cars) {
             car.move(movableStrategy);
         }
@@ -33,29 +34,29 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
-    private List<Car> getWinners() {
-        return getCarsByPosition(getFirstPosition());
-    }
-
-    public List<Car> getCarsByPosition(Position position) {
-        return cars.stream()
-            .filter((car) -> car.getPosition().equals(position))
-            .collect(Collectors.toList());
-    }
-
-    public Position getFirstPosition() {
-        validateIsEmpty();
-        Collections.sort(cars, Comparator.reverseOrder());
-        return cars.get(0).getPosition();
-    }
-
     public List<CarDto> getCarsDto() {
         return cars.stream()
             .map(Car::toDto)
             .collect(Collectors.toList());
     }
 
-    public void validateIsEmpty() {
+    private List<Car> getWinners() {
+        return getCarsByPosition(getFirstPosition());
+    }
+
+    private List<Car> getCarsByPosition(Position position) {
+        return cars.stream()
+            .filter((car) -> car.getPosition().equals(position))
+            .collect(Collectors.toList());
+    }
+
+    private Position getFirstPosition() {
+        validateIsEmpty();
+        Collections.sort(cars, Comparator.reverseOrder());
+        return cars.get(0).getPosition();
+    }
+
+    private void validateIsEmpty() {
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
         }
