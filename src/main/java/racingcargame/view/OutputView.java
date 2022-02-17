@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(RACE_RESULT_GUIDE_MESSAGE);
     }
 
-    public void showCurrentRaceStatus(List<CarDto> racingCarsInformation) {
+    public void showCurrentRaceResult(final List<CarDto> racingCarsInformation) {
         racingCarsInformation.forEach((racingCarInformation) -> {
             showRacingCarName(racingCarInformation.getName());
             showRacingCarPosition(racingCarInformation.getPosition());
@@ -23,16 +23,16 @@ public class OutputView {
         newLine();
     }
 
-    private void showRacingCarName(String racingCarName) {
+    private void showRacingCarName(final String racingCarName) {
         System.out.print(racingCarName + RACING_CAR_NAME_SEPARATOR);
     }
 
-    private void showRacingCarPosition(int racingCarPosition) {
+    private void showRacingCarPosition(final int racingCarPosition) {
         IntStream.range(0, racingCarPosition).forEach(index -> System.out.print(CAR_POSITION_SYMBOL));
         newLine();
     }
 
-    public void showWinners(List<CarDto> winners) {
+    public void showRaceWinners(final List<CarDto> winners) {
         final StringJoiner winnerNames = new StringJoiner(", ");
         winners.forEach(winner -> winnerNames.add(winner.getName()));
         System.out.println(winnerNames + GAME_WINNER_MESSAGE);
