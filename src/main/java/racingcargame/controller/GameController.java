@@ -4,7 +4,6 @@ import java.util.List;
 
 import racingcargame.model.RacingCarGame;
 import racingcargame.utils.Move;
-import racingcargame.utils.RandomNumberGenerator;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
@@ -23,6 +22,7 @@ public class GameController {
     }
 
     public void runGame() {
+        // 질문 드릴 부분
         final RacingCarGame racingCarGame = setUpGame();
 
         playGame(racingCarGame);
@@ -39,12 +39,12 @@ public class GameController {
     private void playGame(final RacingCarGame racingCarGame) {
         outputView.showRaceResultMessage();
         while (racingCarGame.isNotOverRace()) {
-            racingCarGame.startRace(randomNumberGenerator);
-            outputView.showCurrentRaceStatus(racingCarGame.sendRacingCarsInformation());
+            racingCarGame.startRace(move);
+            outputView.showCurrentRaceResult(racingCarGame.sendRacingCarsInformation());
         }
     }
 
     private void finishGame(final RacingCarGame racingCarGame) {
-        outputView.showWinners(racingCarGame.sendRacingGameWinner());
+        outputView.showRaceWinners(racingCarGame.sendRacingGameWinner());
     }
 }
