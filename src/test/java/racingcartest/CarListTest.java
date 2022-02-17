@@ -1,9 +1,9 @@
 package racingcartest;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.model.CarList;
-import racingcar.util.StringConst;
 
 import java.util.ArrayList;
 
@@ -35,6 +35,7 @@ public class CarListTest {
         this.carList.moveCarAt(0, 5);
         this.carList.moveCarAt(1, 6);
         ArrayList<String> winnerNameList = carList.getWinnerNames();
-        assertThat(String.join(StringConst.WINNER_DELIMITER.getValue(), winnerNameList)).isEqualTo("pobi, jun");
+        String[] correctNameList = {"pobi", "jun"};
+        assertThat(winnerNameList).isEqualTo(new ArrayList<String>(Arrays.asList(correctNameList)));
     }
 }
