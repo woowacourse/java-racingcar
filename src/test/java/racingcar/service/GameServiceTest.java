@@ -1,6 +1,7 @@
 package racingcar.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.dto.CarStatusDto;
 import racingcar.dto.RoundDto;
+import racingcar.exception.WrongArgumentException;
 
 class GameServiceTest {
 
@@ -45,6 +47,13 @@ class GameServiceTest {
                 .collect(Collectors.toUnmodifiableList());
 
         carLocations.forEach(location -> assertThat(location).isEqualTo(CAR_INITIALIZED_LOCATION));
+    }
+
+    @DisplayName("자동차 이름은 중복될 수 없습니다.")
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideForInitCarNamesDuplicatedExceptionTest")
+    void initCarNamesDuplicatedExceptionTest(final List<String> carNames) {
+        assertThrows(WrongArgumentException.class, () -> gameService.initCarNames(carNames));
     }
 
     @DisplayName("실행 횟수 초기화 기능 테스트")
