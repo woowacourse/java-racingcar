@@ -10,10 +10,9 @@ public class InputFormator {
     public static List<Name> toNameList(String input) {
         String[] splitInput = input.split(",");
         validateSplitInput(splitInput);
-        List<Name> names = Arrays.stream(splitInput)
+        return Arrays.stream(splitInput)
             .map(name -> new Name(name))
             .collect(Collectors.toList());
-        return names;
     }
 
     private static void validateSplitInput(String[] splitInput) {
