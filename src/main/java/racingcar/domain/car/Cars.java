@@ -5,22 +5,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.domain.car.strategy.MoveStrategy;
 import racingcar.domain.car.validator.CarsValidator;
-import racingcar.service.picker.NumberPicker;
 
 public class Cars {
 
     private final List<Car> cars = new ArrayList<>();
+    private final MoveStrategy moveStrategy;
 
-    public Cars(final List<String> names) {
+    public Cars(final List<String> names, final MoveStrategy moveStrategy) {
         names.forEach(name -> cars.add(new Car(name)));
         CarsValidator.validateNames(names);
+        this.moveStrategy = moveStrategy;
     }
 
-    public void goForwardOrStop(final NumberPicker numberPicker) {
-        cars.stream()
-                .filter(car -> car.isPossibleToGoForward(numberPicker.pickNumber()))
-                .forEach(Car::goForward);
+    public void goForwardOrStop() {
+        cars.forEach(car -> car.goForward(moveStrategy));
     }
 
     public List<CarStatusDto> getStatuses() {

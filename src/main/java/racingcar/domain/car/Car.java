@@ -1,6 +1,6 @@
 package racingcar.domain.car;
 
-import racingcar.domain.car.condition.ForwardCondition;
+import racingcar.domain.car.strategy.MoveStrategy;
 import racingcar.domain.car.validator.CarValidator;
 
 public class Car {
@@ -13,12 +13,10 @@ public class Car {
         this.name = name;
     }
 
-    public boolean isPossibleToGoForward(final int number) {
-        return ForwardCondition.isSatisfied(number);
-    }
-
-    public void goForward() {
-        this.location++;
+    public void goForward(MoveStrategy moveStrategy) {
+        if (moveStrategy.isPossibleToMove()) {
+            this.location++;
+        }
     }
 
     public boolean isLocationSameWith(final int location) {

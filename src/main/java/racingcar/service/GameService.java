@@ -5,21 +5,16 @@ import java.util.stream.Collectors;
 
 import racingcar.domain.car.CarStatusDto;
 import racingcar.domain.car.Cars;
+import racingcar.domain.car.strategy.RandomMoveStrategy;
 import racingcar.domain.round.Round;
-import racingcar.service.picker.NumberPicker;
 
 public class GameService {
 
-    private final NumberPicker numberPicker;
     private Cars cars;
     private Round round;
 
-    public GameService(final NumberPicker numberPicker) {
-        this.numberPicker = numberPicker;
-    }
-
     public void initCarNames(final List<String> carNames) {
-        this.cars = new Cars(carNames);
+        this.cars = new Cars(carNames, new RandomMoveStrategy());
     }
 
     public void initRound(final int count) {
@@ -31,7 +26,7 @@ public class GameService {
     }
 
     public void playRound() {
-        cars.goForwardOrStop(numberPicker);
+        cars.goForwardOrStop();
         round.decreaseCount();
     }
 

@@ -2,8 +2,6 @@ package racingcar;
 
 import racingcar.controller.GameController;
 import racingcar.service.GameService;
-import racingcar.service.picker.NumberPicker;
-import racingcar.service.picker.RandomNumberPicker;
 import racingcar.view.input.InputView;
 import racingcar.view.input.reader.ConsoleReader;
 import racingcar.view.input.reader.Reader;
@@ -15,17 +13,15 @@ public class AppConfig {
 
     public final GameController gameController;
     public final GameService gameService;
-    public final NumberPicker numberPicker;
     public final InputView inputView;
-    public final Reader reader;
     public final OutputView outputView;
+    public final Reader reader;
 
     private AppConfig() {
-        this.outputView = initOutputView();
         this.reader = initReader();
+        this.outputView = initOutputView();
         this.inputView = initInputView(reader);
-        this.numberPicker = initNumberPicker();
-        this.gameService = initGameService(numberPicker);
+        this.gameService = initGameService();
         this.gameController = initGameController(gameService, inputView, outputView);
     }
 
@@ -45,17 +41,12 @@ public class AppConfig {
         return new InputView(reader);
     }
 
-    private NumberPicker initNumberPicker() {
-        return new RandomNumberPicker();
-    }
-
-    private GameService initGameService(final NumberPicker numberPicker) {
-        return new GameService(numberPicker);
+    private GameService initGameService() {
+        return new GameService();
     }
 
     private GameController initGameController(final GameService gameService,
-                                              final InputView inputView,
-                                              final OutputView outputView) {
+                                              final InputView inputView, final OutputView outputView) {
         return new GameController(gameService, inputView, outputView);
     }
 

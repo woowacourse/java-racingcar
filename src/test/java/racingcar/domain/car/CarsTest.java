@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -12,17 +12,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import racingcar.domain.car.CarStatusDto;
-import racingcar.domain.car.Cars;
+import racingcar.domain.car.strategy.CustomMoveStrategy;
+import racingcar.domain.car.strategy.MoveStrategy;
+import racingcar.domain.car.strategy.TrueMoveStrategy;
 import racingcar.exception.WrongArgumentException;
-import racingcar.service.picker.CustomNumberPicker;
 
 class CarsTest {
 
-    private static final String PROVIDER_PATH = "racingcar.domain.provider.CarsTestProvider#";
+    private static final String PROVIDER_PATH = "racingcar.domain.car.provider.CarsTestProvider#";
+    private static final MoveStrategy TRUE_MOVE_STRATEGY = TrueMoveStrategy.getInstance();
 
     private void exceptionTest(final List<String> carNames) {
-        assertThrows(WrongArgumentException.class, () -> new Cars(carNames));
+        assertThrows(WrongArgumentException.class, () -> new Cars(carNames, TRUE_MOVE_STRATEGY));
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없다")
@@ -57,7 +58,7 @@ class CarsTest {
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForConstructorTest")
     void constructorTest(final List<String> names) {
-        assertDoesNotThrow(() -> new Cars(names));
+        assertDoesNotThrow(() -> new Cars(names, TRUE_MOVE_STRATEGY));
     }
 
     @DisplayName("라운드실행 기능 테스트")
@@ -65,11 +66,11 @@ class CarsTest {
     @MethodSource(PROVIDER_PATH + "provideForPlayRoundTest")
     void playRoundTest(final List<String> carNames,
                        final int repeatTime,
-                       final List<Integer> numbers,
+                       final List<Boolean> conditions,
                        final List<String> expected) {
-        final Cars cars = new Cars(carNames);
-
-        final List<CarStatusDto> statuses = repeatPlay(cars, repeatTime, numbers);
+        CustomMoveStrategy customMoveStrategy = new CustomMoveStrategy(conditions);
+        final Cars cars = new Cars(carNames, customMoveStrategy);
+        final List<CarStatusDto> statuses = repeatPlay(cars, repeatTime);
 
         final List<String> actual = statuses.stream()
                 .map(CarStatusDto::toString)
@@ -82,22 +83,20 @@ class CarsTest {
     @MethodSource(PROVIDER_PATH + "provideForGetWinnerNamesTest")
     void selectWinnersTest(final List<String> carNames,
                            final int repeatTime,
-                           final List<Integer> numbers,
+                           final List<Boolean> conditions,
                            final List<String> expected) {
-        final Cars cars = new Cars(carNames);
-
-        repeatPlay(cars, repeatTime, numbers);
+        CustomMoveStrategy customMoveStrategy = new CustomMoveStrategy(conditions);
+        final Cars cars = new Cars(carNames, customMoveStrategy);
+        repeatPlay(cars, repeatTime);
 
         final List<String> winnerNames = cars.getWinnerNames();
         assertThat(winnerNames).isEqualTo(expected);
     }
 
-    private List<CarStatusDto> repeatPlay(final Cars cars, final int repeatTime, final List<Integer> numbers) {
-        final CustomNumberPicker numberPicker = new CustomNumberPicker(numbers);
-
+    private List<CarStatusDto> repeatPlay(final Cars cars, final int repeatTime) {
         final List<CarStatusDto> statuses = new ArrayList<>();
         for (int i = 0; i < repeatTime; i++) {
-            cars.goForwardOrStop(numberPicker);
+            cars.goForwardOrStop();
             statuses.addAll(cars.getStatuses());
         }
         return statuses;

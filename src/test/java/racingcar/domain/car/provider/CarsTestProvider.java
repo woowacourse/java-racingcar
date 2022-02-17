@@ -1,4 +1,4 @@
-package racingcar.domain.provider;
+package racingcar.domain.car.provider;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -48,11 +48,11 @@ class CarsTestProvider {
         return Stream.of(
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        1, Arrays.asList(3, 4, 5),
+                        1, Arrays.asList(false, true, true),
                         Arrays.asList("slow : ", "if : -", "poby : -")),
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        2, Arrays.asList(0, 5, 8, 7, 3, 4),
+                        2, Arrays.asList(false, true, true, true, false, true),
                         Arrays.asList(
                                 "slow : ", "if : -", "poby : -",
                                 "slow : -", "if : -", "poby : --"))
@@ -63,11 +63,11 @@ class CarsTestProvider {
         return Stream.of(
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        1, Arrays.asList(0, 5, 8),
+                        1, Arrays.asList(false, true, true),
                         Arrays.asList("if", "poby")),
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        2, Arrays.asList(0, 5, 8, 7, 3, 4),
+                        2, Arrays.asList(false, true, true, true, false, true),
                         Arrays.asList("poby"))
         );
     }
