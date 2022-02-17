@@ -5,8 +5,6 @@ import java.util.Objects;
 import racingcar.domain.validation.CarValidator;
 
 public class Car implements Comparable<Car> {
-	private static final String STEP = "-";
-	private static final String FORMAT = "%s : %s";
 	private static final int DRIVE_FLAG = 3;
 
 	private final String name;
@@ -47,15 +45,6 @@ public class Car implements Comparable<Car> {
 
 	public int getPosition() {
 		return position;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder positions = new StringBuilder();
-		for (int i = 0; i < position; i++) {
-			positions.append(STEP);
-		}
-		return String.format(FORMAT, name, positions);
 	}
 
 	@Override

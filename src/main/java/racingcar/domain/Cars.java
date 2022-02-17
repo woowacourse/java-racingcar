@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.domain.validation.CarsValidator;
-import racingcar.service.StepGenerator;
 import racingcar.service.StepPolicy;
 import racingcar.util.Constant;
 
