@@ -30,14 +30,11 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car o) {
-        if (this.position.equals(o.position)) {
-            return 0;
-        }
-
         if (this.position.isSmallerThan(o.position)) {
             return -1;
+        } else if (this.position.equals(o.position)) {
+            return 0;
         }
-
         return 1;
     }
 }
