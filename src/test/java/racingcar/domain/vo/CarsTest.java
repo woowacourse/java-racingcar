@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.enums.ErrorMessage;
 
 public class CarsTest {
 
@@ -48,6 +49,7 @@ public class CarsTest {
     public void duplicate_car_name_exception_test() throws Exception {
         String[] name = {"name1", "name1"};
         assertThatThrownBy(() -> new Cars(name))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
     }
 }

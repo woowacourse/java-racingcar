@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.enums.ErrorMessage;
 
 public class AttemptTest {
 
@@ -46,7 +47,8 @@ public class AttemptTest {
     public void non_number_input_exception_test() throws Exception {
         String input = "abc";
         assertThatThrownBy(() -> new Attempt(input))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
     }
 
     @DisplayName("validNegative() 음수 입력 예외 테스트")
@@ -54,6 +56,7 @@ public class AttemptTest {
     public void negative_input_exception_test() throws Exception {
         String input = "-3";
         assertThatThrownBy(() -> new Attempt(input))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
     }
 }

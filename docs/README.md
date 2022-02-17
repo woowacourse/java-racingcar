@@ -158,3 +158,8 @@
 - 자동차 경주 게임의 기능 통합 테스트와 예외 상황 테스트 추가
 - controller와 domain 사이에 service를 추가(service에서 여러 로직을 처리하고 controller는 원하는것만 시키거나 얻을 수 있도록 함)
 - assertThat.allSatisfy() : Test에서 for문으로 assertThat을 돌리는 경우 사용
+- hasMessageContaining()를 이용하여 예외 처리 테스트를 더 정확하게 하도록 수정
+    - 에러 메시지를 가지는 Enum을 만든다.
+    - 같은 ErrorMessageEnum을 domain과 test에서 사용한다.
+    - 그러면 에러 메시지가 수정될 때 domain과 test 모두를 수정하지 않아도 될 것 같다.
+  

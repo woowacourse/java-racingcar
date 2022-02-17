@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.enums.ErrorMessage;
 
 public class ApplicationTest {
 
@@ -47,7 +48,8 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
     }
 
     private static Stream<Arguments> emptyInputExceptionTestSet() {
@@ -68,7 +70,8 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
     }
 
     private static Stream<Arguments> lengthOverInputExceptionTestSet() {
@@ -89,7 +92,8 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
     }
 
     private static Stream<Arguments> duplicateInputExceptionTestSet() {
@@ -109,7 +113,8 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.get());
     }
 
     private static Stream<Arguments> emptyAttemptExceptionTestSet() {
@@ -127,7 +132,8 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
     }
 
     private static Stream<Arguments> negativeNumberInputExceptionTestSet() {
@@ -147,7 +153,8 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
     }
 
     private static Stream<Arguments> numberFormatExceptionTestSet() {

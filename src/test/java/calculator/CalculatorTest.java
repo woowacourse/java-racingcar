@@ -3,6 +3,7 @@ package calculator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import calculator.enums.ErrorMessage;
 import java.util.Arrays;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -46,13 +47,15 @@ public class CalculatorTest {
     @ValueSource(strings = {"a", "a,1", "1,b", "a,b"})
     public void sum_non_number_input_test(String input) throws Exception {
         assertThatThrownBy(() -> Calculator.sum(input))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.NONE_INTEGER_ERROR_MESSAGE.get());
     }
 
     @ParameterizedTest(name = "sum() 음수 입력 예외 테스트 : {0}")
     @ValueSource(strings = {"-1", "-1,1", "1,-1", "-1,-2"})
     public void sum_negative_input_test(String input) throws Exception {
         assertThatThrownBy(() -> Calculator.sum(input))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining(ErrorMessage.NEGATIVE_VALUE_ERROR_MESSAGE.get());
     }
 }
