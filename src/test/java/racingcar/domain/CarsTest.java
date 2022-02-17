@@ -3,6 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -62,5 +63,13 @@ class CarsTest {
         car2.drive(4);
 
         assertThat(cars.getWinners().size()).isEqualTo(2);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"hoon:hoon"}, delimiter = ':')
+    @DisplayName("자동차들의 이름이 중복된 경우 예외처리 기능")
+    public void cars_name_invalid_duplicated(String name1, String name2) {
+        assertThatThrownBy(() -> Cars.fromNames(Arrays.asList(name1, name2)))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
