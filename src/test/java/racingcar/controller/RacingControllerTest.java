@@ -37,4 +37,17 @@ public class RacingControllerTest extends IOTest {
                 .contains("ac가 최종 우승 했습니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = "ac,cd\n-1\n2")
+    void 레이싱_컨트롤러_횟수_에러_메시지(String input) {
+        systemIn(input);
+        RacingController racingController = new RacingController();
+        numberGenerator.prepareStubNumbers(4, 4, 1, 4, 1);
+
+        racingController.play(numberGenerator);
+
+        assertThat(getOutput()).contains("[ERROR] 횟수는 1 이상이어야 합니다.")
+                .contains("ac가 최종 우승 했습니다.");
+    }
+
 }
