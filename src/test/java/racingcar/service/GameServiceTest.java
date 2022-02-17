@@ -81,6 +81,13 @@ class GameServiceTest {
         carLocations.forEach(location -> assertThat(location).isEqualTo(CAR_INITIALIZED_LOCATION));
     }
 
+    @DisplayName("실행 횟수는 양수여야 합니다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -2,- 3})
+    void initRoundNotPositiveExceptionTest(final int roundCount) {
+        assertThrows(WrongArgumentException.class, () -> gameService.initRound(roundCount));
+    }
+
     @DisplayName("실행 횟수 초기화 기능 테스트")
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5})
