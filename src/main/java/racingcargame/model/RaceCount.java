@@ -9,10 +9,10 @@ public class RaceCount {
     private static final String RACE_COUNT_START_ZERO_ERROR_MESSAGE = "[error] 경주횟수는 1이상의 값을 입력해주세요.";
     private static final String EMPTY_RACE_COUNT_ERROR_MESSAGE = "[error] 경주횟수를 입력해주세요.";
 
-    private static int count;
+    private int count;
 
     public RaceCount(String count) {
-        initCount(checkRightCount(count));
+        this.count = checkRightCount(count);
     }
 
     private int checkRightCount(String count) {
@@ -28,15 +28,11 @@ public class RaceCount {
         return Integer.parseInt(count);
     }
 
-    private void initCount(int count) {
-        this.count = count;
-    }
-
-    void reduceCount() {
+    public void reduceCount() {
         count--;
     }
 
-    int getCount() {
+    public int getCount() {
         return count;
     }
 }
