@@ -7,7 +7,7 @@ public class CustomNumberPicker implements NumberPicker {
 
     private final Iterator<Integer> numbers;
 
-    public CustomNumberPicker(List<Integer> numbers) {
+    public CustomNumberPicker(final List<Integer> numbers) {
         this.numbers = numbers.iterator();
     }
 

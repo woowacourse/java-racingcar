@@ -12,7 +12,7 @@ public class GameController {
     private final OutputView outputView;
     private final GameService gameService;
 
-    public GameController(GameService gameService, InputView inputView, OutputView outputView) {
+    public GameController(final GameService gameService, final InputView inputView, final OutputView outputView) {
         this.gameService = gameService;
         this.inputView = inputView;
         this.outputView = outputView;
@@ -59,13 +59,13 @@ public class GameController {
         }
     }
 
-    private void announceStatuses(List<String> carStatuses) {
+    private void announceStatuses(final List<String> carStatuses) {
         outputView.printCarStatuses(carStatuses);
         outputView.printEmptyLine();
     }
 
     private void announceWinners() {
-        List<String> winnerNames = gameService.getWinnerNames();
+        final List<String> winnerNames = gameService.getWinnerNames();
         outputView.printMessageOfWinners(winnerNames);
     }
 

@@ -14,35 +14,35 @@ import racingcar.exception.WrongArgumentException;
 
 class CarTest {
 
-    private void exceptionTest(String name) {
+    private void exceptionTest(final String name) {
         assertThrows(WrongArgumentException.class, () -> new Car(name));
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없다.")
     @ParameterizedTest
     @NullSource
-    void carNameNullExceptionTest(String name) {
+    void carNameNullExceptionTest(final String name) {
         exceptionTest(name);
     }
 
     @DisplayName("자동차 이름은 공백이 될 수 없다.")
     @ParameterizedTest
     @EmptySource
-    void carNameEmptyExceptionTest(String name) {
+    void carNameEmptyExceptionTest(final String name) {
         exceptionTest(name);
     }
 
     @DisplayName("자동차 이름은 5자를 넘길 수 없다.")
     @ParameterizedTest
     @ValueSource(strings = {"123456", "1234567", "12345678"})
-    void carNameTooLongExceptionTest(String name) {
+    void carNameTooLongExceptionTest(final String name) {
         exceptionTest(name);
     }
 
     @DisplayName("생성자 기능 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"aaa", "poby", "if", "hanul"})
-    void constructorTest(String name) {
+    void constructorTest(final String name) {
         assertDoesNotThrow(() -> new Car(name));
     }
 

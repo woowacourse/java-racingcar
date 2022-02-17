@@ -9,7 +9,7 @@ public enum RoundCountExceptionStatus implements ExceptionStatus {
 
     private final String message;
 
-    RoundCountExceptionStatus(String message) {
+    RoundCountExceptionStatus(final String message) {
         this.message = message;
     }
 

@@ -10,11 +10,11 @@ public enum RandomRange {
 
     private final int number;
 
-    RandomRange(int number) {
+    RandomRange(final int number) {
         this.number = number;
     }
 
-    public static int pick(Random random) {
+    public static int pick(final Random random) {
         return random.nextInt(SIZE.number) + INCLUSIVE_START.number;
     }
 

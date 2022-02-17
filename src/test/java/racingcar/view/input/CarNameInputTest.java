@@ -12,17 +12,17 @@ import racingcar.view.input.reader.CustomReader;
 
 class CarNameInputTest {
 
-    private static final String providerPath = "racingcar.view.input.provider.CarNamesInputTestProvider#";
+    private static final String PROVIDER_PATH = "racingcar.view.input.provider.CarNamesInputTestProvider#";
 
     private final CustomReader customReader = new CustomReader();
     private final InputView inputView = new InputView(customReader);
 
     @DisplayName("자동차 이름 입력 기능 테스트")
     @ParameterizedTest
-    @MethodSource(providerPath + "provideValuesForNormalInput")
-    void requestCarNamesTest(String inputValue, List<String> expected) {
+    @MethodSource(PROVIDER_PATH + "provideValuesForNormalInput")
+    void requestCarNamesTest(final String inputValue, final List<String> expected) {
         customReader.initText(inputValue);
-        List<String> carNames = inputView.requestCarNames();
+        final List<String> carNames = inputView.requestCarNames();
         assertThat(carNames).isEqualTo(expected);
     }
 

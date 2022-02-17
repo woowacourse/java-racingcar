@@ -11,11 +11,11 @@ public class RoundValidator {
     private RoundValidator() {
     }
 
-    public static void validateCount(int count) {
+    public static void validateCount(final int count) {
         ROUND_VALIDATOR.validateCountPositive(count);
     }
 
-    private void validateCountPositive(int count) {
+    private void validateCountPositive(final int count) {
         if (RoundCountRange.isTooSmall(count)) {
             throw new WrongArgumentException(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE);
         }

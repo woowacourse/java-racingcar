@@ -7,7 +7,7 @@ public class RoundCountRange {
     private RoundCountRange() {
     }
 
-    public static boolean isTooSmall(int count) {
+    public static boolean isTooSmall(final int count) {
         return count < ALLOWED_MINIMUM;
     }
 

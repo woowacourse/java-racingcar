@@ -11,25 +11,25 @@ public class CarValidator {
     private CarValidator() {
     }
 
-    public static void validateName(String name) {
+    public static void validateName(final String name) {
         CAR_VALIDATOR.validateNameIsNull(name);
         CAR_VALIDATOR.validateNameIsEmpty(name);
         CAR_VALIDATOR.validateNameIsTooLong(name);
     }
 
-    private void validateNameIsNull(String name) {
+    private void validateNameIsNull(final String name) {
         if (name == null) {
             throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_NULL);
         }
     }
 
-    private void validateNameIsEmpty(String name) {
+    private void validateNameIsEmpty(final String name) {
         if (name.isEmpty()) {
             throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_EMPTY);
         }
     }
 
-    private void validateNameIsTooLong(String name) {
+    private void validateNameIsTooLong(final String name) {
         if (NameLength.isTooLong(name)) {
             throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_TOO_LONG);
         }

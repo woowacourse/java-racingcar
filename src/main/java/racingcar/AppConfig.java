@@ -11,7 +11,7 @@ import racingcar.view.output.OutputView;
 
 public class AppConfig {
 
-    private static final AppConfig instance = new AppConfig();
+    private static final AppConfig APP_CONFIG = new AppConfig();
 
     public final GameController gameController;
     public final GameService gameService;
@@ -30,7 +30,7 @@ public class AppConfig {
     }
 
     public static AppConfig getInstance() {
-        return instance;
+        return APP_CONFIG;
     }
 
     private OutputView initOutputView() {
@@ -41,7 +41,7 @@ public class AppConfig {
         return new ConsoleReader();
     }
 
-    private InputView initInputView(Reader reader) {
+    private InputView initInputView(final Reader reader) {
         return new InputView(reader);
     }
 
@@ -49,11 +49,13 @@ public class AppConfig {
         return new RandomNumberPicker();
     }
 
-    private GameService initGameService(NumberPicker numberPicker) {
+    private GameService initGameService(final NumberPicker numberPicker) {
         return new GameService(numberPicker);
     }
 
-    private GameController initGameController(GameService gameService, InputView inputView, OutputView outputView) {
+    private GameController initGameController(final GameService gameService,
+                                              final InputView inputView,
+                                              final OutputView outputView) {
         return new GameController(gameService, inputView, outputView);
     }
 

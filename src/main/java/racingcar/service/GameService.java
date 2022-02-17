@@ -14,15 +14,15 @@ public class GameService {
     private Cars cars;
     private Round round;
 
-    public GameService(NumberPicker numberPicker) {
+    public GameService(final NumberPicker numberPicker) {
         this.numberPicker = numberPicker;
     }
 
-    public void initCarNames(List<String> carNames) {
+    public void initCarNames(final List<String> carNames) {
         this.cars = new Cars(carNames);
     }
 
-    public void initRound(int count) {
+    public void initRound(final int count) {
         this.round = new Round(count);
     }
 
@@ -36,7 +36,7 @@ public class GameService {
     }
 
     public List<String> getCurrentStatuses() {
-        List<CarStatusDto> statuses = cars.getStatuses();
+        final List<CarStatusDto> statuses = cars.getStatuses();
         return statuses.stream()
                 .map(CarStatusDto::toString)
                 .collect(Collectors.toUnmodifiableList());

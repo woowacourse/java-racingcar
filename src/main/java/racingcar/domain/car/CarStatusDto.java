@@ -7,12 +7,12 @@ public class CarStatusDto {
     private final String name;
     private final int location;
 
-    public CarStatusDto(String name, int location) {
+    public CarStatusDto(final String name, final int location) {
         this.name = name;
         this.location = location;
     }
 
-    public static CarStatusDto toDto(Car car) {
+    public static CarStatusDto toDto(final Car car) {
         return new CarStatusDto(car.getName(), car.getLocation());
     }
 

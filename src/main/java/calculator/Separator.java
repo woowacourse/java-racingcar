@@ -11,29 +11,29 @@ public class Separator {
     private static final Pattern CUSTOM_SEPARATOR_PATTERN = Pattern.compile("//(.*)\n(.*)");
     private static final String STANDARD_UNITS = ",:";
     private static final String SEPARATOR_FORMAT = "[%s]";
-    private static final String emptyString = "";
+    private static final String EMPTY_STRING = "";
 
     public List<String> splitByUnits(final String text) {
-        String unitsForSeparate = extractCustomUnits(text) + STANDARD_UNITS;
-        String regexForSeparate = String.format(SEPARATOR_FORMAT, unitsForSeparate);
-        String targetString = extractString(text);
+        final String unitsForSeparate = extractCustomUnits(text) + STANDARD_UNITS;
+        final String regexForSeparate = String.format(SEPARATOR_FORMAT, unitsForSeparate);
+        final String targetString = extractString(text);
         return Arrays.asList(targetString.split(regexForSeparate));
     }
 
-    private String extractCustomUnits(String text) {
-        int indexOfUnits = 1;
+    private String extractCustomUnits(final String text) {
+        final int indexOfUnits = 1;
         return extractIndexByPattern(text, indexOfUnits)
-                .orElse(emptyString);
+                .orElse(EMPTY_STRING);
     }
 
-    private String extractString(String text) {
-        int indexOfTargetString = 2;
+    private String extractString(final String text) {
+        final int indexOfTargetString = 2;
         return extractIndexByPattern(text, indexOfTargetString)
                 .orElse(text);
     }
 
-    private Optional<String> extractIndexByPattern(String targetValue, int index) {
-        Matcher matcher = CUSTOM_SEPARATOR_PATTERN.matcher(targetValue);
+    private Optional<String> extractIndexByPattern(final String targetValue, final int index) {
+        final Matcher matcher = CUSTOM_SEPARATOR_PATTERN.matcher(targetValue);
         if (matcher.find()) {
             return Optional.ofNullable(matcher.group(index));
         }

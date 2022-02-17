@@ -7,7 +7,7 @@ public enum NumberExceptionStatus {
 
     private final String message;
 
-    NumberExceptionStatus(String message) {
+    NumberExceptionStatus(final String message) {
         this.message = message;
     }
 

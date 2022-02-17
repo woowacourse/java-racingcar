@@ -10,11 +10,11 @@ public class NumberValidator {
     private NumberValidator() {
     }
 
-    public static void validateNumber(int number) {
+    public static void validateNumber(final int number) {
         NUMBER_VALIDATOR.validateNumberIsNegative(number);
     }
 
-    private void validateNumberIsNegative(int number) {
+    private void validateNumberIsNegative(final int number) {
         if (number < 0) {
             throw new WrongArgumentException(NumberExceptionStatus.NUMBER_IS_NEGATIVE);
         }

@@ -8,12 +8,12 @@ public class Car {
     private final String name;
     private int location;
 
-    public Car(String name) {
+    public Car(final String name) {
         CarValidator.validateName(name);
         this.name = name;
     }
 
-    public boolean isPossibleToGoForward(int number) {
+    public boolean isPossibleToGoForward(final int number) {
         return ForwardCondition.isSatisfied(number);
     }
 
@@ -21,7 +21,7 @@ public class Car {
         this.location++;
     }
 
-    public boolean isLocationSameWith(int location) {
+    public boolean isLocationSameWith(final int location) {
         return this.location == location;
     }
 

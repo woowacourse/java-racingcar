@@ -7,7 +7,7 @@ public class NameLength {
     private NameLength() {
     }
 
-    public static boolean isTooLong(String name) {
+    public static boolean isTooLong(final String name) {
         return name.length() > ALLOWED_MAXIMUM_LENGTH;
     }
 

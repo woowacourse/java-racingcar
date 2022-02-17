@@ -4,7 +4,7 @@ public class CustomReader implements Reader {
 
     private String text;
 
-    public void initText(String text) {
+    public void initText(final String text) {
         this.text = text;
     }
 

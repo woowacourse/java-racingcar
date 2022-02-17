@@ -13,7 +13,7 @@ public enum CarNameExceptionStatus implements ExceptionStatus {
 
     private final String message;
 
-    CarNameExceptionStatus(String message) {
+    CarNameExceptionStatus(final String message) {
         this.message = message;
     }
 

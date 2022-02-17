@@ -6,12 +6,12 @@ public class GameApplication {
 
     private final GameController gameController;
 
-    public GameApplication(AppConfig appConfig) {
+    public GameApplication(final AppConfig appConfig) {
         this.gameController = appConfig.gameController;
     }
 
     public static void main(String[] args) {
-        AppConfig appConfig = AppConfig.getInstance();
+        final AppConfig appConfig = AppConfig.getInstance();
         GameApplication gameApplication = new GameApplication(appConfig);
         gameApplication.run();
     }

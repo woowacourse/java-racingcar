@@ -7,33 +7,34 @@ import racingcar.view.output.message.OutputMessage;
 
 public class OutputView {
 
-    public void printMessage(String message) {
+    public void printMessage(final String message) {
         System.out.println(message);
     }
 
     public void printMessageOfRequestCarNames() {
-        printMessage(OutputMessage.MessageOfRequestCarNames);
+        printMessage(OutputMessage.MESSAGE_OF_REQUEST_CAR_NAMES);
     }
 
     public void printMessageOfRequestRound() {
-        printMessage(OutputMessage.MessageOfRequestRound);
+        printMessage(OutputMessage.MESSAGE_OF_REQUEST_ROUND);
     }
 
     public void printMessageOfStatusTitle() {
-        printMessage(OutputMessage.MessageOfStatusTitle);
+        printMessage(OutputMessage.MESSAGE_OF_STATUS_TITLE);
     }
 
-    public void printCarStatuses(List<String> carStatuses) {
+    public void printCarStatuses(final List<String> carStatuses) {
         carStatuses.forEach(this::printMessage);
     }
 
-    public void printMessageOfWinners(List<String> winnerNames) {
-        String message = String.format(OutputMessage.MessageFormatOfPrintWinner, Delimiter.joinWithComma(winnerNames));
+    public void printMessageOfWinners(final List<String> winnerNames) {
+        final String message = String.format(
+                OutputMessage.MESSAGE_FORMAT_OF_PRINT_WINNERS, Delimiter.joinWithComma(winnerNames));
         printMessage(message);
     }
 
     public void printEmptyLine() {
-        printMessage("");
+        printMessage(OutputMessage.EMPTY_STRING);
     }
 
 }

@@ -19,40 +19,40 @@ class CalculatorTest {
     private final Separator separator = new Separator();
     private final Calculator calculator = new Calculator(separator);
 
-    private void exceptionText(String text) {
+    private void exceptionText(final String text) {
         assertThrows(WrongArgumentException.class, () -> calculator.splitAndSum(text));
     }
 
     @DisplayName("숫자 이외의 값은 입력할 수 없습니다")
     @ParameterizedTest
     @ValueSource(strings = {"a", "1,a"})
-    void numberIsNotNumericExceptionTest(String text) {
+    void numberIsNotNumericExceptionTest(final String text) {
         exceptionText(text);
     }
 
     @DisplayName("음수는 입력할 수 없습니다")
     @ParameterizedTest
     @ValueSource(strings = {"-1", "1,-1"})
-    void numberIsNegativeExceptionTest(String text) {
+    void numberIsNegativeExceptionTest(final String text) {
         exceptionText(text);
     }
 
-    private void calculatorSumTest(String text, int expected) {
-        int result = calculator.splitAndSum(text);
+    private void calculatorSumTest(final String text, final int expected) {
+        final int result = calculator.splitAndSum(text);
         assertThat(result).isEqualTo(expected);
     }
 
     @DisplayName("NULL 또는 공백 입력 시, 0을 반환")
     @ParameterizedTest
     @NullAndEmptySource
-    void nullOrEmptyInputTest(String text) {
+    void nullOrEmptyInputTest(final String text) {
         calculatorSumTest(text, 0);
     }
 
     @DisplayName("문자열 덧셈 기능 테스트")
     @ParameterizedTest
     @MethodSource("provideForSplitAndSumTest")
-    void splitAndSumTest(String text, int expected) {
+    void splitAndSumTest(final String text, final int expected) {
         calculatorSumTest(text, expected);
     }
 

@@ -7,7 +7,7 @@ public class ForwardCondition {
     private ForwardCondition() {
     }
 
-    public static boolean isSatisfied(int number) {
+    public static boolean isSatisfied(final int number) {
         return number >= STANDARD_TO_GO_FORWARD;
     }
 

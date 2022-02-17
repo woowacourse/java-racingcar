@@ -12,12 +12,12 @@ public class Cars {
 
     private final List<Car> cars = new ArrayList<>();
 
-    public Cars(List<String> names) {
+    public Cars(final List<String> names) {
         names.forEach(name -> cars.add(new Car(name)));
         CarsValidator.validateNames(names);
     }
 
-    public void goForwardOrStop(NumberPicker numberPicker) {
+    public void goForwardOrStop(final NumberPicker numberPicker) {
         cars.stream()
                 .filter(car -> car.isPossibleToGoForward(numberPicker.pickNumber()))
                 .forEach(Car::goForward);
@@ -30,7 +30,7 @@ public class Cars {
     }
 
     public List<String> getWinnerNames() {
-        int farthestLocation = getFarthestLocation();
+        final int farthestLocation = getFarthestLocation();
         return cars.stream()
                 .filter(car -> car.isLocationSameWith(farthestLocation))
                 .map(Car::getName)
