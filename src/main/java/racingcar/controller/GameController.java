@@ -1,9 +1,6 @@
 package racingcar.controller;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
-import racingcar.model.Name;
-import racingcar.model.TrialNum;
+import racingcar.model.*;
 import racingcar.util.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -19,6 +16,14 @@ public class GameController {
     private Cars cars;
     private TrialNum trialNum;
 
+    public void start() {
+        InputView.inputCarNames();
+        String carNames = InputView.getInput();
+        InputView.inputTrialNum();
+        String trialNum = InputView.getInput();
+
+        RacingGame racingGame = new RacingGame(carNames, trialNum);
+    }
     public void run() {
         initGame();
         runGame();
