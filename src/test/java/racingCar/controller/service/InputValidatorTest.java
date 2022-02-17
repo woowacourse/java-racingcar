@@ -9,7 +9,6 @@ import racingCar.domain.exception.NullInputException;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class InputValidatorTest {
-
     @Test
     void requestNames_null() {
         assertThatThrownBy(() -> validate(null))

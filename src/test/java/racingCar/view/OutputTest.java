@@ -13,7 +13,6 @@ import racingCar.domain.RacingCars;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class OutputTest {
-
     @Test
     void 시작메세지_검사() {
         //given

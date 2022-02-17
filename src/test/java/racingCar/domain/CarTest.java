@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
-    Car car = new Car("jiwoo", 0);
+    private final Car car = new Car("jiwoo", 0);
 
     @Test
     void go_3넣으면_이동안함() {

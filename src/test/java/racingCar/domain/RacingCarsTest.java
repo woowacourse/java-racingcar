@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingCarsTest {
-    RacingCars cars = new RacingCars(Arrays.asList("hunch", "judi"));
+    private final RacingCars cars = new RacingCars(Arrays.asList("hunch", "judi"));
 
     @Test
     void getMaxPosition_0_검사() {

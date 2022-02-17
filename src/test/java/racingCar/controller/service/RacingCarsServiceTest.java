@@ -15,7 +15,7 @@ import racingCar.domain.CarDTO;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingCarsServiceTest {
-    RacingCarsService carsService;
+    private RacingCarsService carsService;
 
     @BeforeEach
     void setup() {

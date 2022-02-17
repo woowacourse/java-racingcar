@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class StringCalculatorTest {
-    StringCalculator stringCalculator = new StringCalculator();
+    private final StringCalculator stringCalculator = new StringCalculator();
 
     @Test
     void 쉼표를_기준으로_구분() {
