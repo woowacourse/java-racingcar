@@ -20,7 +20,14 @@ public class CarRepository {
         }
     }
 
-    public void moveAllCars(){
+    public Car getCar(String name) {
+        return cars.stream()
+                .filter(c -> c.getName().equals(name))
+                .collect(Collectors.toList())
+                .get(0);
+    }
+
+    public void moveAllCars() {
         for (Car car : cars) {
             car.move(generateRandomNumber());
         }
