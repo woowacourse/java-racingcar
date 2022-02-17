@@ -12,9 +12,11 @@ public class Car implements Comparable<Car> {
 
     private final String name;
     private int position;
+    private MovingCarStrategy movingCarStrategy;
 
-    public Car(String name) {
+    public Car(String name, MovingCarStrategy movingCarStrategy) {
         this(name, 0);
+        this.movingCarStrategy = movingCarStrategy;
     }
 
     public Car(String name, int position) {
@@ -65,8 +67,8 @@ public class Car implements Comparable<Car> {
         return position - other.position;
     }
 
-    public void move(MovingCarStrategy movingCar, int number) {
-        if (movingCar.canMove(number)) {
+    public void move() {
+        if (movingCarStrategy.canMove()) {
             position += 1;
         }
     }

@@ -18,16 +18,18 @@ public class Cars {
     }
 
     private static List<Car> toCar(List<String> carNames) {
+        MovingCarStrategy movingCarStrategy = () -> {
+            int randomNumber = RandomNumberService.getRandomNumber();
+            return randomNumber > MOVING_CONDITION_NUMBER;
+        };
+
         return carNames.stream()
-                .map(Car::new)
+                .map(carName -> new Car(carName, movingCarStrategy))
                 .collect(Collectors.toList());
     }
 
     public void moveCars() {
-        cars.forEach(car -> {
-            int randomNumber = RandomNumberService.getRandomNumber();
-            car.move((int turnNumber) -> turnNumber > MOVING_CONDITION_NUMBER, randomNumber);
-        });
+        cars.forEach(Car::move);
     }
 
     public List<String> getPosition() {
