@@ -12,6 +12,7 @@ public class RacingCars {
     private static final int MINIMUM_CAR_NUMBER = 2;
     private static final String EXCEPTION_NUMBER_OF_CAR = "[ERROR] 경기를 위한 자동차는 최소 2대이상이여야 합니다.";
     private static final String EXCEPTION_ARGUMENT_NULL = "[ERROR] 인자가 null입니다.";
+    private static final String EXCEPTION_DUPLICATED_NAME = "[ERROR] 중복된 자동차 이름이 있습니다.";
     private final List<RacingCar> racingCars;
 
     public RacingCars(List<String> carNames) {
@@ -40,29 +41,10 @@ public class RacingCars {
     }
 
     private void checkDuplicatedCarNameExist(List<String> carNames) {
-        for (String name : carNames) {
-            checkNameExistMoreThanOne(name, carNames);
-        }
-    }
-
-    private void checkNameExistMoreThanOne(String sourceName, List<String> carNames) {
-        int numberOfName = 0;
-        for (String targetName : carNames) {
-            numberOfName += isNameSame(sourceName, targetName);
-        }
-        checkNumberOfNameOverLimit(numberOfName);
-    }
-
-    private int isNameSame(String sourceName, String targetName) {
-        if (sourceName.equals(targetName)) {
-            return 1;
-        }
-        return 0;
-    }
-
-    private void checkNumberOfNameOverLimit(int number) {
-        if (number < MINIMUM_CAR_NUMBER) {
-            throw new IllegalArgumentException(EXCEPTION_NUMBER_OF_CAR);
+        List<String> noDuplicatedCarNames = carNames.stream()
+            .distinct().collect(Collectors.toList());
+        if (noDuplicatedCarNames.size() != carNames.size()) {
+            throw new IllegalArgumentException(EXCEPTION_DUPLICATED_NAME);
         }
     }
 
