@@ -22,23 +22,23 @@ public class OutputView {
         System.out.println(GAME_RESULT_TITLE);
     }
 
-    public void printCarsPosition(List<RacingCarDto> racingCarDtos) {
+    public void printCarsPosition(final List<RacingCarDto> racingCarDtos) {
         racingCarDtos.forEach(this::printCarPosition);
         System.out.println();
     }
 
-    private void printCarPosition(RacingCarDto racingCarDto) {
+    private void printCarPosition(final RacingCarDto racingCarDto) {
         System.out.printf(CAR_POSITION_INFO_MESSAGE, racingCarDto.getName(), getCarPosistionBar(racingCarDto.getPosition()));
         System.out.println();
     }
 
-    private String getCarPosistionBar(int position) {
+    private String getCarPosistionBar(final int position) {
         return IntStream.range(0, position)
             .mapToObj(value -> POSITION_BAR)
             .collect(Collectors.joining());
     }
 
-    public void printWinnerNames(List<String> winnerNames) {
+    public void printWinnerNames(final List<String> winnerNames) {
         System.out.println(join(PRINT_WINNER_DELIMITER, winnerNames) + PRINT_WINNER_MESSAGE);
     }
 }

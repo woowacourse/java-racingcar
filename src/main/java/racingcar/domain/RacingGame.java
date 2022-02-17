@@ -5,44 +5,47 @@ import racingcar.controller.RacingCarDto;
 
 public class RacingGame {
 
-    private static final int END_COUNT = 0;
-
     private final RacingCars racingCars;
-    private int leftCount;
+    private final Round finalRound;
+    private Round currentRound = Round.init();
 
-    public RacingGame(RacingCars racingCars, int leftCount) {
-        checkPositiveCount(leftCount);
+    public RacingGame(final RacingCars racingCars, final Round finalRound) {
         this.racingCars = racingCars;
-        this.leftCount = leftCount;
-    }
-
-    private void checkPositiveCount(int leftCount) {
-        if (leftCount <= END_COUNT) {
-            throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
-        }
+        this.finalRound = finalRound;
     }
 
     public void race() {
-        checkCanRace();
+        currentRoundToNextRound();
         racingCars.moveCars();
-        leftCount--;
+    }
+
+    private void currentRoundToNextRound() {
+        checkCanRace();
+        currentRound = currentRound.nextRound();
     }
 
     private void checkCanRace() {
         if (isEnd()) {
-            throw new RuntimeException("종료된 게임은 더이상 실행할 수 없다.");
+            throw new IllegalStateException("종료된 게임은 더이상 실행할 수 없다.");
+        }
+    }
+
+    public List<String> winnerNames() {
+        checkCanReturnWinner();
+        return racingCars.calculateWinnerNames();
+    }
+
+    private void checkCanReturnWinner() {
+        if (!isEnd()) {
+            throw new IllegalStateException("종료되지 않은 게임은 우승자를 반환할 수 없다.");
         }
     }
 
     public boolean isEnd() {
-        return leftCount == END_COUNT;
+        return currentRound.compareTo(finalRound) > 0;
     }
 
-    public List<String> winnerNames() {
-        return racingCars.calculateWinnerNames();
-    }
-
-    public List<RacingCarDto> getCurrentRacingCar() {
-        return racingCars.getRacingCars();
+    public List<RacingCarDto> getCurrentRacingCarDtos() {
+        return racingCars.getRacingCarDtos();
     }
 }

@@ -13,10 +13,10 @@ class InputViewTest {
     @Test
     @DisplayName("시도횟수가 문자열이 아닌지 검증한다.")
     void checkTryCountIsDigit() {
-        InputStream customInputStream = new ByteArrayInputStream("123a".getBytes());
+        final InputStream customInputStream = new ByteArrayInputStream("123a".getBytes());
         System.setIn(customInputStream);
-        Scanner scanner = new Scanner(System.in);
-        InputView inputView = new InputView(scanner);
+        final Scanner scanner = new Scanner(System.in);
+        final InputView inputView = new InputView(scanner);
 
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> inputView.inputTryCount())
