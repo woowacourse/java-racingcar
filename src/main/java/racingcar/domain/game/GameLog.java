@@ -4,12 +4,13 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
 public class GameLog {
 
-    private final HashMap<Integer, List<Car>> log;
+    private final Map<Integer, List<Car>> log;
 
     public GameLog() {
         this.log = new HashMap<>();
