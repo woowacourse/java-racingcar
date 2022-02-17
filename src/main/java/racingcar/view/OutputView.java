@@ -3,7 +3,6 @@ package racingcar.view;
 import java.util.ArrayList;
 
 import racingcar.util.IntegerConst;
-import racingcar.util.StringConst;
 
 public class OutputView {
     public static void askCarName() {

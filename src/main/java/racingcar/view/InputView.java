@@ -4,20 +4,26 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 
-import racingcar.util.ErrorMessage;
 import racingcar.util.IntegerConst;
-import racingcar.util.StringConst;
 
 public class InputView {
+    private static final String ERROR_NULL = "[ERROR] 입력값은 NULL일 수 없습니다.";
+    private static final String ERROR_BLANK = "[ERROR] 입력값은 빈 입력일 수 없습니다.";
+    private static final String ERROR_SIZE = "[ERROR] 입력값의 크기는 5 초과일 수 없습니다.";
+    private static final String ERROR_SPECIAL_CHAR = "[ERROR] 입력값은 특수문자일 수 없습니다.";
+    private static final String ERROR_DUPLICATE = "[ERROR] 입력값은 중복될 수 없습니다.";
+    private static final String ERROR_INT_NUM = "[ERROR] 입력값은 문자일 수 없습니다.";
+    private static final String ERROR_NO_CAR = "[ERROR] 쉼표를 기준으로 차가 한 대 이상 있어야 합니다.";
+
     private static void checkNull(String stringInput) throws IllegalArgumentException {
         if (stringInput == null) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NULL.getValue());
+            throw new IllegalArgumentException(ERROR_NULL);
         }
     }
 
     private static void checkBlank(String stringInput) throws IllegalArgumentException {
         if (stringInput.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_BLANK.getValue());
+            throw new IllegalArgumentException(ERROR_BLANK);
         }
     }
 
@@ -26,13 +32,13 @@ public class InputView {
             .filter(eachStringInput -> eachStringInput.length() > IntegerConst.SIZE_BOUND.getValue())
             .count();
         if (overSizeCount > IntegerConst.ZERO.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_SIZE.getValue());
+            throw new IllegalArgumentException(ERROR_SIZE);
         }
     }
 
     private static void checkZeroCars(String[] splitStringInput) throws IllegalArgumentException {
         if (splitStringInput.length == IntegerConst.ZERO.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NO_CAR.getValue());
+            throw new IllegalArgumentException(ERROR_NO_CAR);
         }
     }
 
@@ -41,20 +47,20 @@ public class InputView {
             .filter(eachStringInput -> !eachStringInput.matches(StringConst.REGEX_PATTERN.getValue()))
             .count();
         if (specialCount > IntegerConst.ZERO.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_SPECIAL_CHAR.getValue());
+            throw new IllegalArgumentException(ERROR_SPECIAL_CHAR);
         }
     }
 
     private static void checkDuplicate(String[] splitStringInput) throws IllegalArgumentException {
         HashSet<String> nameSet = new HashSet<>(Arrays.asList(splitStringInput));
         if (nameSet.size() != splitStringInput.length) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATE.getValue());
+            throw new IllegalArgumentException(ERROR_DUPLICATE);
         }
     }
 
     private static void checkIntNum(String stringInput) throws IllegalArgumentException {
         if (!stringInput.matches(StringConst.NUMBER_REGEX_PATTERN.getValue())) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INT_NUM.getValue());
+            throw new IllegalArgumentException(ERROR_INT_NUM);
         }
     }
 
