@@ -8,16 +8,16 @@ import racingcar.domain.random.RandomNumberGenerator;
 
 public class Cars {
 
-    private final List<Car> carList;
+    private final List<Car> cars;
 
     public Cars(List<String> names) {
-        carList = names.stream()
+        cars = names.stream()
                 .map(name -> new Car(name))
                 .collect(toList());
     }
 
     public void move(RandomNumberGenerator randomNumberGenerator) {
-        for (Car car : carList) {
+        for (Car car : cars) {
             moveOneCar(randomNumberGenerator, car);
         }
     }
@@ -30,7 +30,7 @@ public class Cars {
 
     public List<Car> cloneCarList() {
         List<Car> carsClone = new ArrayList<>();
-        for (Car car : carList) {
+        for (Car car : cars) {
             carsClone.add(car.clone());
         }
         return carsClone;
