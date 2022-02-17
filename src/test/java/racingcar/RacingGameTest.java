@@ -11,13 +11,13 @@ import racingcar.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameTest {
     private static final int TESTCASE_NUM = 10000;
-    private final GameController gameController = new GameController();
 
     @Test
     @DisplayName("랜덤 숫자 생성")
@@ -36,7 +36,10 @@ class RacingGameTest {
         carList.add(new Car(new Name("sun"), 4));
         Cars cars = new Cars(carList);
 
-        String winnerName = gameController.findWinner(cars);
-        assertThat(winnerName).contains("sun").doesNotContain("bom");
+        String actual = cars.findWinnerName(cars.findMaxPosition()).stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+
+        assertThat(actual).contains("sun").doesNotContain("bom");
     }
 }

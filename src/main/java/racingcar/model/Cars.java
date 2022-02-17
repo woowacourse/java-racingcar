@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MINIMUM_POSITION = 0;
-    private static final String JOIN_BY_COMMA = ", ";
 
     private final NumberGenerator randomNumber = new RandomNumberGenerator();
     private final List<Car> cars;
@@ -40,11 +39,10 @@ public class Cars {
                 .max().orElse(MINIMUM_POSITION);
     }
 
-    public String findWinnerName(int maxPosition) {
+    public List<Car> findWinnerName(int maxPosition) {
         return cars.stream()
                 .filter(car -> maxPosition == car.getPosition())
-                .map(Car::getName)
-                .collect(Collectors.joining(JOIN_BY_COMMA));
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {

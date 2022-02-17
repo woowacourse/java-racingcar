@@ -4,7 +4,6 @@ import racingcar.model.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-
 public class GameController {
 
     public void run() {
@@ -23,11 +22,6 @@ public class GameController {
             racingGame.race();
             OutputView.printCarPosition(racingGame.getCars());
         }
-        OutputView.printWinnerName(findWinner(racingGame.getCars()));
-    }
-
-    public String findWinner(Cars cars) {
-        int maxPosition = cars.findMaxPosition();
-        return cars.findWinnerName(maxPosition);
+        OutputView.printWinnerName(racingGame.findWinner());
     }
 }

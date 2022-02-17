@@ -46,4 +46,9 @@ public class RacingGame {
     public Cars getCars() {
         return cars;
     }
+
+    public Result findWinner() {
+        int maxPosition = cars.findMaxPosition();
+        return new Result(cars.findWinnerName(maxPosition), maxPosition);
+    }
 }
