@@ -5,12 +5,17 @@ import static java.util.stream.Collectors.*;
 import java.util.Arrays;
 import java.util.List;
 
+import racingcar.validator.RacingCarValidator;
+
 public class Racing {
 	private final List<Car> cars;
 	private final Count count;
 
 	public Racing(String[] carNames, String tryNo) {
-		this.cars = getCars(carNames);
+		List<Car> inputCars = getCars(carNames);
+		RacingCarValidator.validateCars(inputCars);
+
+		this.cars = inputCars;
 		this.count = new Count(tryNo);
 	}
 
