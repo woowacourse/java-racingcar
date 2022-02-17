@@ -3,7 +3,6 @@ package racingcar.domain;
 public class Car implements Cloneable {
 
     private static final int START_POSITION = 0;
-    public static final String CLONING_FAIL_CAR_NAME = "cloning fail";
 
     private final String name;
     private int position;
@@ -24,13 +23,4 @@ public class Car implements Cloneable {
     public int getPosition() {
         return position;
     }
-//
-//    @Override
-//    protected Car clone() {
-//        try {
-//            return (Car) super.clone();
-//        } catch (CloneNotSupportedException e) {
-//            return new Car(CLONING_FAIL_CAR_NAME);
-//        }
-//    }
 }
