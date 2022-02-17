@@ -19,7 +19,7 @@ public class OutputView {
 
     public static void printRacingRecord(List<CarDto> cars) {
         for (CarDto car : cars) {
-            System.out.println(car.getName() + NAME_AND_SCORE_DELIMITER + printDash(car.getPosition()));
+            System.out.println(car.getName().toString() + NAME_AND_SCORE_DELIMITER + printDash(car.getPosition().toInt()));
         }
         System.out.println();
     }
@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     private static String collectingResult(List<CarDto> cars) {
-        return cars.stream().map(car -> car.getName()).collect(Collectors.joining(NAME_DELIMITER));
+        return cars.stream().map(car -> car.getName().toString()).collect(Collectors.joining(NAME_DELIMITER));
     }
 
     public static void printErrorMessage(Exception e) {

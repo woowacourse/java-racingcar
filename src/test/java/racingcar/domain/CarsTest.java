@@ -23,8 +23,8 @@ class CarsTest {
         Cars cars = Cars.from(carList);
 
         assertThat(cars.getCurrentCars().size()).isEqualTo(2);
-        assertThat(cars.getCurrentCars().get(0).getName()).isEqualTo(name1);
-        assertThat(cars.getCurrentCars().get(1).getName()).isEqualTo(name2);
+        assertThat(cars.getCurrentCars().get(0).getName().toString()).isEqualTo(name1);
+        assertThat(cars.getCurrentCars().get(1).getName().toString()).isEqualTo(name2);
     }
 
     @ParameterizedTest

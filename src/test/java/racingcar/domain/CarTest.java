@@ -16,7 +16,7 @@ class CarTest {
         Car car = Car.fromName(Name.from("is2js"));
         car.drive(value);
 
-        assertThat(1).isEqualTo(car.getPosition());
+        assertThat(1).isEqualTo(car.toPosition().toInt());
     }
 
     @ParameterizedTest
@@ -26,7 +26,7 @@ class CarTest {
         Car car = Car.fromName(Name.from("is2js"));
         car.drive(value);
 
-        assertThat(0).isEqualTo(car.getPosition());
+        assertThat(0).isEqualTo(car.toPosition().toInt());
     }
 
     @ParameterizedTest

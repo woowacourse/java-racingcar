@@ -2,8 +2,8 @@ package racingcar.domain;
 
 public class Position {
 
-    public static final String ERROR_POSITION_INVALID_RANGE_MESSAGE = "정상 범위(" + 0 + "이상)가 아닙니다";
-    public static final int MIN_POSITION_VALUE = 0;
+    private static final String ERROR_POSITION_INVALID_RANGE_MESSAGE = "정상 범위(" + 0 + "이상)가 아닙니다";
+    private static final int MIN_POSITION_VALUE = 0;
     private final int position;
 
     private Position(int position) {
