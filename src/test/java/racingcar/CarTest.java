@@ -11,6 +11,7 @@ import racingcar.domain.Car;
 import racingcar.util.MovableNumberGenerator;
 import racingcar.util.NonMovableNumberGenerator;
 
+
 @SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
 
