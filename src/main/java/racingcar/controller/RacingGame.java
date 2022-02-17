@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.controller;
 
 import static racingcar.view.InputView.requestAttempt;
 import static racingcar.view.InputView.requestCarName;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 import racingcar.vo.Attempt;
 import racingcar.vo.Cars;
 
-public class RacingCar {
+public class RacingGame {
 
     private static final String CAR_NAME_DELIMITER = ",";
 

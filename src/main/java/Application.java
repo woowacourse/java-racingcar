@@ -1,11 +1,11 @@
 import java.util.Scanner;
-import racingcar.RacingCar;
+import racingcar.controller.RacingGame;
 
 public class Application {
 
     public static void main(String[] args) {
-        RacingCar racingCar = new RacingCar();
+        RacingGame racingGame = new RacingGame();
         Scanner scanner = new Scanner(System.in);
-        racingCar.play(scanner);
+        racingGame.play(scanner);
     }
 }

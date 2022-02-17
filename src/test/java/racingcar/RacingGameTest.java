@@ -7,9 +7,10 @@ import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.controller.RacingGame;
 import racingcar.view.ErrorMessage;
 
-public class RacingCarTest {
+public class RacingGameTest {
 
     @DisplayName("play() 입력 값에 공백이 있는 경우 예외 테스트")
     @ParameterizedTest()
@@ -19,8 +20,8 @@ public class RacingCarTest {
         byte[] buf = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         Scanner scanner = new Scanner(System.in);
-        RacingCar racingCar = new RacingCar();
-        assertThatThrownBy(() -> racingCar.play(scanner))
+        RacingGame racingGame = new RacingGame();
+        assertThatThrownBy(() -> racingGame.play(scanner))
                 .hasMessageContaining(ErrorMessage.CAR_NAME_EMPTY.toString());
     }
 }
