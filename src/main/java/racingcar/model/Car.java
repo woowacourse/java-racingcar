@@ -7,7 +7,6 @@ public class Car implements CarMoveCondition {
 	private static final String ERROR_LENGTH = "[ERROR] 이름의 길이는 5이상일 수 없습니다.";
 	private static final String REGEX_PATTERN = "[^a-zA-Z0-9\\s]";
 	private static final String ERROR_SPECIAL_SYMBOL = "[ERROR] 이름에 특수문자가 사용될 수 없습니다.";
-	private static final int MOVE_CRITERIA = 3;
 	private static final int NAME_LENGTH_CRITERIA = 4;
 
 	private final String name;
