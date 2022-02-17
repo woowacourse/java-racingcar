@@ -9,8 +9,8 @@ import racingCar.domain.utils.Util;
 import racingCar.view.Output;
 
 public class RacingCarsService {
-    public final RacingCars cars;
-    public final RoundCount roundCount;
+    private final RacingCars cars;
+    private final RoundCount roundCount;
 
     public RacingCarsService(String names, String count) {
         this.cars = initiateCars(names);
@@ -43,5 +43,13 @@ public class RacingCarsService {
         cars.go();
         roundCount.minusOne();
         Output.printRoundResult(cars.get());
+    }
+
+    public RacingCars getCars() {
+        return cars;
+    }
+
+    public RoundCount getRoundCount() {
+        return roundCount;
     }
 }

@@ -26,7 +26,7 @@ public class RacingCarsServiceTest {
     void 생성자_cars_값이_들어가는지_테스트() {
         //when
         List<String> names = new ArrayList<>();
-        for (CarDTO carDTO : carsService.cars.get()) {
+        for (CarDTO carDTO : carsService.getCars().get()) {
             names.add(carDTO.name);
         }
 
@@ -36,7 +36,7 @@ public class RacingCarsServiceTest {
 
     @Test
     void 생성자_roundCount_값이_들어가는지_테스트() {
-        assertThat(carsService.roundCount.get()).isEqualTo(5);
+        assertThat(carsService.getRoundCount().get()).isEqualTo(5);
     }
 
     @Test
@@ -66,8 +66,8 @@ public class RacingCarsServiceTest {
         carsService.playGame();
 
         //when
-        int max = carsService.cars.getMaxPosition();
-        List<CarDTO> result = carsService.cars.get()
+        int max = carsService.getCars().getMaxPosition();
+        List<CarDTO> result = carsService.getCars().get()
                 .stream()
                 .filter(carDTO -> carDTO.position == max)
                 .collect(Collectors.toList());

@@ -11,12 +11,12 @@ public class CarTest {
     @Test
     void go_3넣으면_이동안함() {
         car.go(3);
-        assertThat(car.position.get()).isEqualTo(0);
+        assertThat(car.getPosition().get()).isEqualTo(0);
     }
 
     @Test
     void go_4넣으면_이동() {
         car.go(4);
-        assertThat(car.position.get()).isEqualTo(1);
+        assertThat(car.getPosition().get()).isEqualTo(1);
     }
 }

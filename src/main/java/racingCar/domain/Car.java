@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Car {
     private static final int GO_NUM = 4;
-    public final Name name;
-    public final Position position;
+    private final Name name;
+    private final Position position;
 
     public Car(String name, int position) {
         this.name = new Name(name);
@@ -16,6 +16,14 @@ public class Car {
         if (number >= GO_NUM) {
             position.move();
         }
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     @Override

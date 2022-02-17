@@ -28,7 +28,7 @@ public class RacingCars {
     public int getMaxPosition() {
         ArrayList<Integer> positions = new ArrayList<>();
         for (Car car : cars) {
-            positions.add(car.position.get());
+            positions.add(car.getPosition().get());
         }
         return Collections.max(positions);
     }

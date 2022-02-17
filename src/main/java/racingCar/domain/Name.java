@@ -10,7 +10,7 @@ public class Name {
     private static final String NOT_SPECIAL_REGEX = "[가-힣\\w_]*";
     private static final int MAX_NAME_SIZE = 5;
 
-    public final String name;
+    private final String name;
 
     public Name(String name) {
         validate(name);
