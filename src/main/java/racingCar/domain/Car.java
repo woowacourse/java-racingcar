@@ -3,7 +3,7 @@ package racingCar.domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int GO_NUMBER = 4;
+    private static final int GO_NUM = 4;
     public final Name name;
     public final Position position = new Position();
 
@@ -12,7 +12,7 @@ public class Car {
     }
 
     public void go(int number) {
-        if (number >= GO_NUMBER) {
+        if (number >= GO_NUM) {
             move();
         }
     }

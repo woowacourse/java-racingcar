@@ -8,11 +8,11 @@ import racingCar.domain.exception.count.CountNotNumberException;
 
 public class Util {
     private static final String NAME_REGEX = ",";
-    private static final int RANDOM_MAX_BOUND_INTEGER = 10;
-    private static final String INTEGER_REGEX = "[0-9]+";
+    private static final int RANDOM_MAX_BOUND_NUM = 10;
+    private static final String NUM_REGEX = "[0-9]+";
 
     public static int getRandomInteger() {
-        return new Random().nextInt(RANDOM_MAX_BOUND_INTEGER);
+        return new Random().nextInt(RANDOM_MAX_BOUND_NUM);
     }
 
     public static int getMax(List<Integer> integers) {
@@ -24,7 +24,7 @@ public class Util {
     }
 
     public static int convertToInteger(String count) {
-        if (!Pattern.matches(INTEGER_REGEX, count)) {
+        if (!Pattern.matches(NUM_REGEX, count)) {
             throw new CountNotNumberException();
         }
         return Integer.parseInt(count);
