@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
+	private static final String STEP = "-";
 	private static final int CAR_LENGTH_LIMIT = 5;
 
 	private final String name;
@@ -15,6 +16,10 @@ public class Car implements Comparable<Car> {
 		if (directing) {
 			move();
 		}
+	}
+
+	public String step() {
+		return name + " : " + STEP.repeat(position);
 	}
 
 	public boolean isSamePosition(Car other) {

@@ -37,8 +37,9 @@ public class RacingCarGame {
 	}
 
 	private void round() {
-		int nowAttempt = 0;
+		Output.resultTitle();
 
+		int nowAttempt = 0;
 		while (!attempt.isSame(nowAttempt)) {
 			cars.play();
 			nowAttempt++;

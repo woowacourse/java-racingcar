@@ -30,8 +30,9 @@ public class Cars {
 	public void play() {
 		for (Car car : cars) {
 			car.drive(hasNext());
+			Output.roundResult(car.step());
 		}
-		Output.roundResult(cars);
+		Output.newLine();
 	}
 
 	public List<String> findWinners() {
