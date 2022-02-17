@@ -1,4 +1,4 @@
-package racingcar.vo;
+package racingcar.domain;
 
 import java.util.Objects;
 
@@ -18,8 +18,18 @@ public class Trial {
         }
     }
 
-    public int getCount() {
-        return count;
+    public void minus() {
+        if (count >= MINIMUM) {
+            this.count--;
+        }
+    }
+
+    public int getTrial() {
+        return this.count;
+    }
+
+    public boolean isExistsTrial() {
+        return this.count >= MINIMUM;
     }
 
     @Override
