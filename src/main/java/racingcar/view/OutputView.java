@@ -17,7 +17,7 @@ public class OutputView {
         }
     }
 
-    public static void printWinners(List<String> winnerNameBucket){
-        System.out.println(String.join(WINNER_NAME_DELIMITER, winnerNameBucket) + WINNER_ANNOUNCEMENT);
+    public static void printWinners(List<String> winnerNames){
+        System.out.println(String.join(WINNER_NAME_DELIMITER, winnerNames) + WINNER_ANNOUNCEMENT);
     }
 }

@@ -11,20 +11,20 @@ public class RacingCars {
     private static final int MINIMUM_CAR_NUMBER = 2;
     private static final String EXCEPTION_NUMBER_OF_CAR = "[ERROR] 경기를 위한 자동차는 최소 2대이상이여야 합니다.";
     private static final String EXCEPTION_ARGUMENT_NULL = "[ERROR] 인자가 null입니다.";
-    private final List<RacingCar> racingCarBucket;
+    private final List<RacingCar> racingCars;
 
-    public RacingCars(List<String> carNameBucket) {
-        validateCar(carNameBucket);
-        racingCarBucket = new ArrayList<>();
-        for (String name : carNameBucket) {
-            racingCarBucket.add(new RacingCar(name));
+    public RacingCars(List<String> carNames) {
+        validateCar(carNames);
+        racingCars = new ArrayList<>();
+        for (String name : carNames) {
+            racingCars.add(new RacingCar(name));
         }
     }
 
-    private void validateCar(List<String> carNameBucket) {
-        checkArgumentIsNull(carNameBucket);
-        checkNumberOfCar(carNameBucket);
-        checkDuplicatedCarNameExist(carNameBucket);
+    private void validateCar(List<String> carNames) {
+        checkArgumentIsNull(carNames);
+        checkNumberOfCar(carNames);
+        checkDuplicatedCarNameExist(carNames);
     }
 
     private void checkArgumentIsNull(List<String> argument) {
@@ -33,21 +33,21 @@ public class RacingCars {
         }
     }
 
-    private void checkNumberOfCar(List<String> carNameBucket) {
-        if (carNameBucket.size() < MINIMUM_CAR_NUMBER) {
+    private void checkNumberOfCar(List<String> carNames) {
+        if (carNames.size() < MINIMUM_CAR_NUMBER) {
             throw new IllegalArgumentException(EXCEPTION_NUMBER_OF_CAR);
         }
     }
 
-    private void checkDuplicatedCarNameExist(List<String> carNameBucket) {
-        for (String name : carNameBucket) {
-            checkNameExistMoreThanOne(name, carNameBucket);
+    private void checkDuplicatedCarNameExist(List<String> carNames) {
+        for (String name : carNames) {
+            checkNameExistMoreThanOne(name, carNames);
         }
     }
 
-    private void checkNameExistMoreThanOne(String sourceName, List<String> carNameBucket) {
+    private void checkNameExistMoreThanOne(String sourceName, List<String> carNames) {
         int numberOfName = 0;
-        for (String targetName : carNameBucket) {
+        for (String targetName : carNames) {
             numberOfName += isNameSame(sourceName, targetName);
         }
         checkNumberOfNameOverLimit(numberOfName);
@@ -67,14 +67,14 @@ public class RacingCars {
     }
 
     public void moveCars() {
-        for (RacingCar racingCar : racingCarBucket) {
+        for (RacingCar racingCar : racingCars) {
             racingCar.goOrStay(RandomGenerator.generateRandomNumber());
         }
     }
 
     public List<String> getCurrentRaceState() {
         List<String> currentRaceState = new ArrayList<>();
-        for (RacingCar racingCar: racingCarBucket) {
+        for (RacingCar racingCar: racingCars) {
             currentRaceState.add(racingCar.currentState());
         }
         return currentRaceState;
@@ -84,24 +84,24 @@ public class RacingCars {
         return sourceCar.compareCar(targetCar);
     }
 
-    public List<String> getWinnerNameBucket() {
-        RacingCar bestPositionCar = racingCarBucket.get(ANY_INDEX);
-        for (RacingCar racingCar : racingCarBucket) {
+    public List<String> getWinnerNames() {
+        RacingCar bestPositionCar = racingCars.get(ANY_INDEX);
+        for (RacingCar racingCar : racingCars) {
             bestPositionCar = compareCarWithPosition(bestPositionCar, racingCar);
         }
 
-        List<String> winnerNameBucket = new ArrayList<>();
-        for (RacingCar racingCar : racingCarBucket) {
-            winnerNameBucket = updateWinnerNameBucket(winnerNameBucket, bestPositionCar, racingCar);
+        List<String> winnerNames = new ArrayList<>();
+        for (RacingCar racingCar : racingCars) {
+            winnerNames = updateWinnerNames(winnerNames, bestPositionCar, racingCar);
         }
-        return winnerNameBucket;
+        return winnerNames;
     }
 
-    private List<String> updateWinnerNameBucket(List<String> winnerNameBucket,
+    private List<String> updateWinnerNames(List<String> winnerNames,
         RacingCar bestPositionCar, RacingCar racingCar) {
         if (racingCar.isSamePosition(bestPositionCar)) {
-            winnerNameBucket.add(racingCar.getName());
+            winnerNames.add(racingCar.getName());
         }
-        return winnerNameBucket;
+        return winnerNames;
     }
 }

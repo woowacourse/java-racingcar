@@ -18,10 +18,10 @@ public class RacingGame {
     }
 
     private void makeRacingCars() {
-        List<String> carNameBucket = InputView.askCarName();
+        List<String> carNames = InputView.askCarName();
         trialCount = InputView.askTryCount();
         checkTrialCountIsNaturalNumber();
-        racingCars = new RacingCars(carNameBucket);
+        racingCars = new RacingCars(carNames);
     }
 
     private void checkTrialCountIsNaturalNumber() {
@@ -37,7 +37,7 @@ public class RacingGame {
             doOneTrial();
             OutputView.printCurrentRaceState(racingCars.getCurrentRaceState());
         }
-        OutputView.printWinners(racingCars.getWinnerNameBucket());
+        OutputView.printWinners(racingCars.getWinnerNames());
     }
 
     private void doOneTrial() {
