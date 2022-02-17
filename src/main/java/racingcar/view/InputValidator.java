@@ -1,7 +1,13 @@
-package racingcar.validator;
+package racingcar.view;
 
-public class TrialCountValidator {
-	public static void checkTrialCountLine(String line) {
+public class InputValidator {
+	public static void checkCarNamesInput(String carNamesLine) {
+		if (carNamesLine.equals("")) {
+			throw new RuntimeException("빈 문자열을 자동차 이름으로 입력할 수 없습니다.");
+		}
+	}
+
+	public static void checkTrialCount(String line) {
 		trialCountNotNumericValueException(line);
 		trialCountZeroException(line);
 	}
