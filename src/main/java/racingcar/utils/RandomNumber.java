@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomNumber {
 
-	private final static int MAX_EXCLUSIVE = 9;
+	private static final int MAX_EXCLUSIVE = 9;
 
 	private RandomNumber() {}
 
