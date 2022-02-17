@@ -1,12 +1,12 @@
 package racingcar.domain;
 
+import racingcar.domain.movestrategy.RandomMovingStrategy;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static racingcar.util.RandomUtil.getRandomNumber;
 
 public class Cars {
 
@@ -34,7 +34,7 @@ public class Cars {
 
     public void progressWithAllCar() {
         for (Car car : cars) {
-            car.progress(getRandomNumber());
+            car.progress(new RandomMovingStrategy());
         }
     }
 

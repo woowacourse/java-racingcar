@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.movestrategy.MovingStrategy;
+
 public class Car {
 
     private static final int POSITION_INITIAL_VALUE = 0;
@@ -20,8 +22,8 @@ public class Car {
         return position;
     }
 
-    public void progress(int number) {
-        if (number >= PROGRESS_CONDITION_VALUE) {
+    public void progress(MovingStrategy movingStrategy) {
+        if (movingStrategy.isMovable()) {
             position++;
         }
     }
