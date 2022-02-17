@@ -30,7 +30,7 @@ public class Cars {
         }
     }
 
-    public void race() {
+    public void moveAll() {
         cars.forEach(car -> car.move(randomNumber));
     }
 

@@ -1,7 +1,7 @@
 package racingcar.model;
 
 public class TrialNum {
-    private final int value;
+    private int value;
 
     public TrialNum(String trialNum) {
         validateTrialNum(trialNum);
@@ -18,5 +18,9 @@ public class TrialNum {
 
     public int getValue() {
         return value;
+    }
+
+    public void increase() {
+        value++;
     }
 }

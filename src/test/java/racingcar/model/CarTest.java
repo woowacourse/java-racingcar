@@ -8,10 +8,6 @@ import racingcar.controller.GameController;
 import racingcar.util.FixedNumberGenerator;
 import racingcar.util.NumberGenerator;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -25,21 +21,6 @@ class CarTest {
         assertThatThrownBy(() -> new Car(new Name(name)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("5자 이하");
-    }
-
-    @Test
-    @DisplayName("자동차 객체 생성")
-    void createCarObject() {
-        List<Name> actual = Stream.of("bom", "sun")
-                .map(Name::new)
-                .collect(Collectors.toList());
-
-        Cars cars = gameController.initCars(actual);
-        List<Name> expected = cars.getCars().stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-
-        assertThat(expected).isEqualTo(actual);
     }
 
     @ParameterizedTest

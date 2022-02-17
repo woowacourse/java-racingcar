@@ -5,12 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
+    public static final String INITIAL_TRIAL_COUNT = "0";
+
     private final Cars cars;
     private final TrialNum trialNum;
+    private final TrialNum trialCnt;
 
     public RacingGame(String namesInput, String trialNumInput) {
         this.cars = createCars(namesInput);
         this.trialNum = createTrialNum(trialNumInput);
+        this.trialCnt = new TrialNum(INITIAL_TRIAL_COUNT);
     }
 
     private Cars createCars(String namesInput) {
@@ -28,5 +32,18 @@ public class RacingGame {
 
     private TrialNum createTrialNum(String trialNum) {
         return new TrialNum(trialNum);
+    }
+
+    public boolean isEnd() {
+        return trialNum.getValue() == trialCnt.getValue();
+    }
+
+    public void race() {
+        cars.moveAll();
+        trialCnt.increase();
+    }
+
+    public Cars getCars() {
+        return cars;
     }
 }
