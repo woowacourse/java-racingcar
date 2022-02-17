@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -56,7 +57,7 @@ public class CarsTest {
 		//when
 
 		//then
-		List<String> winners = cars.getWinners();
+		List<String> winners = convertWinnersToStringList(cars.getWinners());
 		assertThat(winners).contains("peper");
 	}
 
@@ -73,7 +74,7 @@ public class CarsTest {
 		));
 		// when
 		// then
-		List<String> winners = cars.getWinners();
+		List<String> winners = convertWinnersToStringList(cars.getWinners());
 		assertThat(winners).contains("peper", "east");
 	}
 
@@ -82,5 +83,11 @@ public class CarsTest {
 		while ((cnt--) > 0) {
 			car.move(numberGenerator);
 		}
+	}
+
+	List<String> convertWinnersToStringList(List<Car> winners){
+		return winners.stream()
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 }

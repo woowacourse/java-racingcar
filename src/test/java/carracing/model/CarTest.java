@@ -51,7 +51,7 @@ public class CarTest {
 		//when
 		car.move(numberGenerator);
 		//then
-		assertThat(car.isSamePosition(1)).isTrue();
+		assertThat(car).extracting("position").isEqualTo(1);
 	}
 
 	@ParameterizedTest
@@ -64,7 +64,6 @@ public class CarTest {
 		//when
 		car.move(numberGenerator);
 		//then
-		assertThat(car.isSamePosition(0)).isTrue();
+		assertThat(car).extracting("position").isEqualTo(0);
 	}
-
 }
