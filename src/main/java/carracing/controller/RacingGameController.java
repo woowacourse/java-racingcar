@@ -63,7 +63,7 @@ public class RacingGameController {
 	private void createCars(List<String> carNames) {
 		List<Car> carList = new ArrayList<>();
 		for (String carName : carNames) {
-			carList.add(new Car(carName));
+			carList.add(Car.nameOf(carName));
 		}
 		cars = new Cars(carList);
 	}

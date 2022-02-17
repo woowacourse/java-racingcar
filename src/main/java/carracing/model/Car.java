@@ -13,10 +13,14 @@ public class Car {
 	private final String name;
 	private int position;
 
-	public Car(String name) {
+	private Car(String name) {
 		validateName(name);
 		this.name = name;
 		this.position = 0;
+	}
+
+	public static Car nameOf(String name) {
+		return new Car(name);
 	}
 
 	public String getName() {
