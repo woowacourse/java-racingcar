@@ -1,9 +1,9 @@
 package racingcar.controller;
 
-import racingcar.domain.Cars;
+import racingcar.domain.Game;
 import racingcar.service.DetermineMovement;
 import racingcar.service.MoveOrStop;
-import racingcar.view.InputView.InputView;
+import racingcar.view.InputView.ConsoleInputView;
 import racingcar.view.OutputView.ConsoleOutputView;
 import racingcar.view.OutputView.OutputView;
 
@@ -11,25 +11,20 @@ public class RacingController {
     private final OutputView outputView;
     private final MoveOrStop moveOrStop;
 
-    private final Cars cars;
-    private int trialCount;
-
-    public RacingController(InputView inputView, ConsoleOutputView outputView, DetermineMovement moveOrStop) {
-        cars = new Cars(inputView.inputCarNames());
-        trialCount = inputView.inputTrialCount();
+    public RacingController(ConsoleOutputView outputView, DetermineMovement moveOrStop) {
         this.outputView = outputView;
         this.moveOrStop = moveOrStop;
     }
 
     public void run() {
+        Game game = new Game(new ConsoleInputView());
         outputView.printResultMessage();
 
-        while(trialCount > 0) {
-            cars.move(moveOrStop);
-            outputView.printRoundStatus(cars.getCarInfos());
-            trialCount--;
+        while(game.isContinue()) {
+            game.carsMove(moveOrStop);
+            outputView.printRoundStatus(game.carsInfo());
         }
 
-        outputView.printWinners(cars.getFarthestCars());
+        outputView.printWinners(game.winnerCarsInfo());
     }
 }
