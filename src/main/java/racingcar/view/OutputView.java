@@ -4,6 +4,7 @@ import racingcar.domain.Car;
 
 import java.util.List;
 import java.util.StringJoiner;
+import racingcar.domain.Cars;
 
 public class OutputView {
 
@@ -33,11 +34,11 @@ public class OutputView {
         print(REQUEST_RESTART_GAME_INPUT_MESSAGE);
     }
 
-    public static void printGameResult(List<List<Car>> roundResults) {
+    public static void printGameResult(List<Cars> roundResults) {
         StringJoiner gameResult = new StringJoiner(LINE_SEPARATOR);
 
-        for (List<Car> roundResult : roundResults) {
-            gameResult.add(printRoundResult(roundResult));
+        for (Cars roundResult : roundResults) {
+            gameResult.add(formatRoundResult(roundResult.getCars()));
         }
 
         printRoundResultText();
@@ -49,7 +50,7 @@ public class OutputView {
         print(ROUND_RESULT_TEXT);
     }
 
-    private static String printRoundResult(List<Car> cars) {
+    private static String formatRoundResult(List<Car> cars) {
         StringBuilder roundResult = new StringBuilder();
 
         for (Car car : cars) {
