@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -12,8 +13,7 @@ public class Random {
 
 	public List<Integer> createNumbers(int size) {
 		return IntStream.range(0, size)
-			.map(i -> random.nextInt(RANDOM_BOUND))
-			.boxed()
+			.mapToObj(i -> random.nextInt(RANDOM_BOUND))
 			.collect(Collectors.toList());
 	}
 }
