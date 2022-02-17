@@ -81,7 +81,7 @@ public class CarController {
 		OutputView.showGameResult(winners);
 	}
 
-	List<Car> getWinners() {
+	private List<Car> getWinners() {
 		List<Car> findCars = carRepository.findAll();
 		Cars cars = new Cars(findCars);
 		return cars.getWinners();
