@@ -40,18 +40,16 @@ public class Cars {
     }
 
     public List<Name> judgeRacingWinners() {
-        Position maxPosition = getMaxPosition();
+        Car maxPositionCar = getMaxPositionCar();
         return cars.stream()
-                .filter(car -> car.isMaxPosition(maxPosition))
+                .filter(car -> car.isSamePosition(maxPositionCar))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private Position getMaxPosition() {
-        Position position = Position.createStartPosition();
-        for (Car car : cars) {
-            position.changeIfSmallerThan(car.getPosition());
-        }
-        return position;
+    private Car getMaxPositionCar() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("차량이 존재하지 않습니다"));
     }
 }

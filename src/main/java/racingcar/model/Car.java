@@ -1,6 +1,6 @@
 package racingcar.model;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private final Name name;
     private final Position position;
@@ -24,7 +24,17 @@ public class Car {
         return this.name;
     }
 
-    public boolean isMaxPosition(Position maxPosition) {
-        return position.equals(maxPosition);
+    public boolean isSamePosition(Car maxPositionCar) {
+        return position.equals(maxPositionCar.getPosition());
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        if (this.position.isSmallerThan(o.position)) {
+            return -1;
+        } else if (this.position.equals(o.position)) {
+            return 0;
+        }
+        return 1;
     }
 }
