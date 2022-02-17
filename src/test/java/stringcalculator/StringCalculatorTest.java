@@ -13,13 +13,10 @@ public class StringCalculatorTest {
 	@Test
 	@DisplayName("null 입력시 0을 반환")
 	public void inputNull() {
-
 		// given
 		final int actual = StringCalculator.splitAndSum(null);
-
 		// when & then
 		assertThat(actual).isEqualTo(0);
-
 	}
 
 	@Test
@@ -27,7 +24,6 @@ public class StringCalculatorTest {
 	public void inputEmpty() {
 		// given
 		final int actual = StringCalculator.splitAndSum("");
-
 		// when & then
 		assertThat(actual).isEqualTo(0);
 	}
@@ -37,10 +33,8 @@ public class StringCalculatorTest {
 	public void 숫자_하나() {
 		// given
 		final int result = StringCalculator.splitAndSum("1");
-
 		// then
 		assertThat(result).isEqualTo(1);
-
 	}
 
 	@Test
@@ -48,7 +42,6 @@ public class StringCalculatorTest {
 	public void splitCommaSeparator() {
 		// given
 		final int actual = StringCalculator.splitAndSum("1,2,3");
-
 		// then
 		assertThat(actual).isEqualTo(6);
 	}
@@ -58,18 +51,16 @@ public class StringCalculatorTest {
 	public void splitCommaOrColon() {
 		// given
 		final int actual = StringCalculator.splitAndSum("1,2;3");
-
 		// then
 		assertThat(actual).isEqualTo(6);
 	}
 
-	@Test
+	@ParameterizedTest
+	@ValueSource(strings = {"//;\n1;2;3", "//-\n1-2-3"})
 	@DisplayName("커스텀 구분자")
 	public void splitCustomDeliminator() {
-
 		// given
 		final int actual = StringCalculator.splitAndSum("//;\n1;2;3");
-
 		// then
 		assertThat(actual).isEqualTo(6);
 	}
@@ -78,7 +69,6 @@ public class StringCalculatorTest {
 	@ValueSource(strings = {"-1", "A", "가"})
 	@DisplayName("예외 처리 : 음수, 숫자 이외의 입력")
 	public void exception(String input) {
-
 		// then
 		assertThatExceptionOfType(RuntimeException.class)
 			.isThrownBy(() -> StringCalculator.splitAndSum(input))

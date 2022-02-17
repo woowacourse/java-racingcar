@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import static racingcar.domain.Cars.*;
 import static racingcar.domain.vo.CarName.*;
 
 import org.junit.jupiter.api.Assertions;
@@ -22,12 +23,12 @@ class CarsTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"aa,aa,bb", " , a, bb, c, a"})
+	@ValueSource(strings = {"aa,aa,bb", " a, bb, c, a"})
 	@DisplayName("이름에 중복이 들어가면 예외가 발생한다")
 	public void not_duplicate_names(String carNames) {
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(
-			() -> new Cars(carNames)
-		);
+			() -> new Cars(carNames))
+			.withMessage(INVALID_DUPLICATE_CAR_NAMES);
 	}
 
 	@ParameterizedTest
