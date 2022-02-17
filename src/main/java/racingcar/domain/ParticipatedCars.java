@@ -22,11 +22,7 @@ public class ParticipatedCars {
     }
 
     public WinnerNames findWinners() {
-        return getWinnerNamesWithFirstCar(findFastestCar());
-    }
-
-    private WinnerNames getWinnerNamesWithFirstCar(Car firstCar) {
-        return WinnerNames.of(this, firstCar);
+        return WinnerNames.of(this, findFastestCar());
     }
 
     private Car findFastestCar() {
