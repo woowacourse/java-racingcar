@@ -1,8 +1,6 @@
 package racingcargame.model;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcargame.dto.CarDto;
@@ -15,15 +13,7 @@ public class Cars {
     public Cars(final List<String> carNames) {
         checkDuplicateCarNames(carNames);
         cars = carNames.stream().
-                map(carName -> new Car(carName.trim(), 0)).
-                collect(Collectors.toList());
-    }
-
-    public Cars(final List<String> carNames, int carPositions) {
-        checkDuplicateCarNames(carNames);
-        cars = carNames.stream().
-                map(carName -> new Car(carName, carPositions)).
-                collect(Collectors.toList());
+                map(carName -> new Car(carName.trim()).collect(Collectors.toList());
     }
 
     private void checkDuplicateCarNames(final List<String> carNames) {
