@@ -42,7 +42,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public boolean hasSamePosition(Car winnerCar) {
+    public boolean hasSamePosition(final Car winnerCar) {
         return this.position == winnerCar.position;
     }
 
