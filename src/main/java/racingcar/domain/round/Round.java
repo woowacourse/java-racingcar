@@ -19,4 +19,8 @@ public class Round {
         this.count--;
     }
 
+    public int getCount() {
+        return this.count;
+    }
+
 }
