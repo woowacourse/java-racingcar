@@ -1,11 +1,9 @@
-package racingCar.model;
+package racingCar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
-import racingCar.controller.service.RacingCarsService;
-import racingCar.model.exception.name.NameRangeException;
 
 class CarDTOTest {
 

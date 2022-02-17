@@ -1,10 +1,10 @@
-package racingCar.model.utils;
+package racingCar.domain.utils;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
-import racingCar.model.exception.count.CountNotNumberException;
+import racingCar.domain.exception.count.CountNotNumberException;
 
 public class Util {
     private static final String NAME_REGEX = ",";

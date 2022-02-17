@@ -1,6 +1,4 @@
-package racingCar.model;
-
-import static org.junit.jupiter.api.Assertions.*;
+package racingCar.domain;
 
 import org.junit.jupiter.api.Test;
 

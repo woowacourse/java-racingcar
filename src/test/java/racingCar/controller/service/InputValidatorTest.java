@@ -5,7 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static racingCar.controller.service.InputValidator.validate;
 
 import org.junit.jupiter.api.Test;
-import racingCar.model.exception.NullInputException;
+import racingCar.domain.exception.NullInputException;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class InputValidatorTest {

@@ -1,4 +1,4 @@
-package racingCar.model.exception.count;
+package racingCar.domain.exception.count;
 
 public class CountNotNumberException extends IllegalArgumentException {
     public static final String EXCEPTION_NOT_NUMBER_MESSAGE = "숫자를 입력해주세요.";

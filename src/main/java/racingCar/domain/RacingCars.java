@@ -1,12 +1,12 @@
-package racingCar.model;
+package racingCar.domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingCar.model.exception.name.NameDuplicatedException;
-import racingCar.model.exception.name.NameOnlyOneException;
-import racingCar.model.utils.Util;
+import racingCar.domain.exception.name.NameDuplicatedException;
+import racingCar.domain.exception.name.NameOnlyOneException;
+import racingCar.domain.utils.Util;
 
 public class RacingCars {
     private final List<Car> cars = new ArrayList<>();

@@ -1,6 +1,6 @@
 package racingCar.controller.service;
 
-import racingCar.model.exception.NullInputException;
+import racingCar.domain.exception.NullInputException;
 
 public class InputValidator {
     public static String validate(String input) {

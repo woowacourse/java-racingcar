@@ -2,10 +2,10 @@ package racingCar.controller.service;
 
 import java.util.Arrays;
 import java.util.List;
-import racingCar.model.CarDTO;
-import racingCar.model.RacingCars;
-import racingCar.model.RoundCount;
-import racingCar.model.utils.Util;
+import racingCar.domain.CarDTO;
+import racingCar.domain.RacingCars;
+import racingCar.domain.RoundCount;
+import racingCar.domain.utils.Util;
 import racingCar.view.Output;
 
 public class RacingCarsService {

@@ -8,8 +8,8 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import racingCar.model.CarDTO;
-import racingCar.model.RacingCars;
+import racingCar.domain.CarDTO;
+import racingCar.domain.RacingCars;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class OutputTest {

@@ -1,6 +1,6 @@
-package racingCar.model;
+package racingCar.domain;
 
-import racingCar.model.exception.count.CountRangeException;
+import racingCar.domain.exception.count.CountRangeException;
 
 public class RoundCount {
     private int count;

@@ -1,10 +1,10 @@
-package racingCar.model;
+package racingCar.domain;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
-import racingCar.model.exception.name.NameRangeException;
-import racingCar.model.exception.name.NameSpaceException;
-import racingCar.model.exception.name.NameSpecialCharException;
+import racingCar.domain.exception.name.NameRangeException;
+import racingCar.domain.exception.name.NameSpaceException;
+import racingCar.domain.exception.name.NameSpecialCharException;
 
 public class Name {
     private static final String NOT_SPECIAL_REGEX = "[가-힣\\w_]*";
