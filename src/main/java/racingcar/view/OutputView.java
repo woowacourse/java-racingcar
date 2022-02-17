@@ -29,12 +29,10 @@ public class OutputView {
     }
 
     private void printResultOne(String name, Integer position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(name).append(RESULT_DELIMITER);
-        for (int i = 0; i < position; i++) {
-            builder.append(POSITION_BAR);
-        }
-        System.out.println(builder.toString());
+        String builder = name
+                + RESULT_DELIMITER
+                + POSITION_BAR.repeat(Math.max(0, position));
+        System.out.println(builder);
     }
 
     public void printWinners(ResponseWinnersDto dto) {

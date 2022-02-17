@@ -11,7 +11,6 @@ public class Cars {
     private static final RandomNumberGenerator RANDOM_NUMBER_GENERATOR = new RandomNumberGenerator();
     private static final String DUPLICATE_CAR_NAME_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.";
     private static final String NO_SUCH_CAR_ERROR_MESSAGE = "자동차가 없습니다.";
-    private static final int NONE_DUPLICATION = 0;
 
     private List<Car> cars;
 
@@ -52,7 +51,7 @@ public class Cars {
     }
 
     private void validateDuplicateCarName(Car car) {
-        if (cars.stream().filter(each -> each.isSameName(car)).count() != NONE_DUPLICATION) {
+        if (cars.stream().anyMatch(each -> each.isSameName(car))) {
             throw new RuntimeException(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
         }
     }

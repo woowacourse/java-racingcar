@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class ApplicationTest {
 
-    @ParameterizedTest(name = "main() 테스트 : {0},[1]")
+    @ParameterizedTest(name = "main() 테스트 : {0}")
     @MethodSource("correctInputTestSet")
     public void main_test(String[] input) throws Exception {
         OutputStream output = new ByteArrayOutputStream();
