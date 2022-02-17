@@ -44,10 +44,6 @@ public class RacingGame {
         return result;
     }
 
-    public List<CarDto> getDto() {
-        return cars.getDto();
-    }
-
     public Cars getCars() {
         return cars;
     }
