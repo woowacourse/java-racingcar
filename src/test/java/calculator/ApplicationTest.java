@@ -6,11 +6,8 @@ import org.junit.jupiter.api.Test;
 public class ApplicationTest {
     Application application = new Application();
 
-<<<<<<< HEAD
-    @Test
-=======
+
    @Test
->>>>>>> 3454ff5 (test: 사용자 입력 공백 예외 테스트함수 작성)
     void 공백_입력_예외_처리() {
         int number = Application.runCalculator(null);
         assertThat(number).isEqualTo(0);
@@ -21,7 +18,7 @@ public class ApplicationTest {
         number = application.runCalculator(" ");
         assertThat(number).isEqualTo(0);
     }
-<<<<<<< HEAD
+
 
     @Test
     void 구분자_기준_연산() {
@@ -55,6 +52,4 @@ public class ApplicationTest {
         assertThatThrownBy(() -> application.runCalculator("a,2,3"))
                 .isInstanceOf(RuntimeException.class);
     }
-=======
->>>>>>> 3454ff5 (test: 사용자 입력 공백 예외 테스트함수 작성)
 }
