@@ -3,10 +3,11 @@ package racingcar.domain;
 public class TryCount {
 
     private final int totalTryCount;
-    private int currentTryCount = 0;
+    private int currentTryCount;
 
     public TryCount(int totalTryCount) {
         this.totalTryCount = totalTryCount;
+        this.currentTryCount = 0;
     }
 
     public void increaseCount() {
