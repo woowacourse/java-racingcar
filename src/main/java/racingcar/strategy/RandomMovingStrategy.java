@@ -5,7 +5,7 @@ public class RandomMovingStrategy implements MovingCarStrategy {
 
     @Override
     public boolean canMove() {
-        return getRandomNumber() > MOVING_CONDITION_NUMBER;
+        return getRandomNumber() >= MOVING_CONDITION_NUMBER;
     }
 
     private int getRandomNumber() {
