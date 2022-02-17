@@ -11,24 +11,24 @@ public class CarNameValidationUtil {
     }
 
     public static void validateCarName(String carName, int minLength, int maxLength) {
-        isEmpty(carName);
-        doesContainSpace(carName);
-        isValidLength(carName, minLength, maxLength);
+        validateEmpty(carName);
+        validateSpace(carName);
+        validateLength(carName, minLength, maxLength);
     }
 
-    private static void isEmpty(String carName) {
+    private static void validateEmpty(String carName) {
         if (carName == null || carName.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_CAR_NAME);
         }
     }
 
-    private static void doesContainSpace(String carName) {
+    private static void validateSpace(String carName) {
         if (carName.contains(" ")) {
             throw new IllegalArgumentException(NO_SPACE);
         }
     }
 
-    private static void isValidLength(String carName, int minLength, int maxLength) {
+    private static void validateLength(String carName, int minLength, int maxLength) {
         if (carName.length() < minLength) {
             throw new IllegalArgumentException(MORE_THAN_ONE_LETTER);
         }

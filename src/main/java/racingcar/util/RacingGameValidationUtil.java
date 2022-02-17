@@ -10,7 +10,7 @@ public class RacingGameValidationUtil {
     private RacingGameValidationUtil() {
     }
 
-    public static void isDuplicated(String[] carNames) {
+    public static void validateDuplication(String[] carNames) {
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(carNames));
 
         if (hashSet.size() < carNames.length) {

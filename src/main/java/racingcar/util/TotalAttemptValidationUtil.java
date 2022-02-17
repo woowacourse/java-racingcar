@@ -9,11 +9,11 @@ public class TotalAttemptValidationUtil {
     }
 
     public static void validateAttempt(String attempt) {
-        int num = isIntegerThenParse(attempt);
-        isPositive(num);
+        int num = validateIntegerThenParse(attempt);
+        validatePositive(num);
     }
 
-    private static int isIntegerThenParse(String num) {
+    private static int validateIntegerThenParse(String num) {
         try {
             return Integer.parseInt(num);
         } catch (Exception e) {
@@ -21,7 +21,7 @@ public class TotalAttemptValidationUtil {
         }
     }
 
-    private static void isPositive(int num) {
+    private static void validatePositive(int num) {
         if (num <= 0) {
             throw new IllegalArgumentException(MUST_BE_POSITIVE);
         }

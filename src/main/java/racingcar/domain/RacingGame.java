@@ -16,7 +16,7 @@ public class RacingGame {
 
     public void initCarNames(String carNames) {
         String[] names = carNames.split(SIGN_OF_CAR_NAME);
-        isDuplicated(names);
+        validateDuplication(names);
 
         for (String name : names) {
             cars.add(new Car(name));
