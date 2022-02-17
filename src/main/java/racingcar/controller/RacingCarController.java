@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.CarsStatus;
+import racingcar.controller.dto.CarsDto;
 import racingcar.domain.Cars;
 import racingcar.domain.Count;
 import racingcar.domain.RandomMovingPolicy;
@@ -8,32 +8,39 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public void run() {
-        Cars cars = getCars();
-        race(cars, getCount());
+    public RacingCarController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
-    private Cars getCars() {
+    public void run() {
+        Cars cars = createCars();
+        race(cars, createCount());
+    }
+
+    private Cars createCars() {
         try {
-            return new Cars(InputView.getCarNames(), new RandomMovingPolicy());
+            return new Cars(inputView.getCarNames(), new RandomMovingPolicy());
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getCars();
+            outputView.printErrorMessage(e.getMessage());
+            return createCars();
         }
     }
 
-    private Count getCount() {
+    private Count createCount() {
         try {
-            return new Count(InputView.getCount());
+            return new Count(inputView.getCount());
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getCount();
+            outputView.printErrorMessage(e.getMessage());
+            return createCount();
         }
     }
 
     private void race(Cars cars, Count count) {
-        OutputView.printStatusMessage();
+        outputView.printStatusMessage();
         proceed(cars, count);
     }
 
@@ -41,12 +48,12 @@ public class RacingCarController {
         try {
             count.subtract();
         } catch (IllegalStateException e) {
-            OutputView.printResult(cars.getWinners());
+            outputView.printResult(cars.getWinners());
             return;
         }
 
         cars.move();
-        OutputView.printStatus(new CarsStatus(cars.getCars()).makeCarsStatus());
+        outputView.printStatus(new CarsDto(cars));
         proceed(cars, count);
     }
 }
