@@ -20,9 +20,10 @@ public class InputFormator {
         if (splitInput.length == 0) {
             throw new IllegalArgumentException("올바르지 않은 입력값입니다.");
         }
-        if (Arrays.stream(splitInput)
+        long removeDuplicateSize = Arrays.stream(splitInput)
             .distinct()
-            .count() != splitInput.length) {
+            .count();
+        if (removeDuplicateSize != splitInput.length) {
             throw new IllegalArgumentException("중복된 이름을 가지고 있습니다.");
         }
     }
