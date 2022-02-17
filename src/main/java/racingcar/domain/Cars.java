@@ -16,7 +16,7 @@ public class Cars {
 	public Cars(String[] carNames) {
 		RacingGameValidator.validateCarNames(carNames);
 		for (String carName : carNames) {
-			this.cars.add(new Car(carName));
+			cars.add(new Car(carName));
 		}
 	}
 
@@ -44,7 +44,7 @@ public class Cars {
 
 	public List<Car> getWinners() {
 		int maxPosition = getMaxPosition();
-		return this.cars.stream()
+		return cars.stream()
 			.filter(car -> car.isSamePosition(maxPosition))
 			.collect(Collectors.toList());
 	}
