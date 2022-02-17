@@ -1,31 +1,20 @@
 package racingcar.controller;
 
 import racingcar.models.CarRepository;
-import racingcar.views.Input;
 import racingcar.views.Output;
 
 public class RacingGame {
 
-	private CarRepository carRepository;
+	private final CarRepository carRepository;
 	private int repeats;
 
-	public RacingGame() {
-		repeats = 0;
+	public RacingGame(final String names, final int repeats) {
+		carRepository = new CarRepository(names);
+		this.repeats = repeats;
 	}
 
 	public void startGame() {
-		inputValidData();
 		startRacing();
-	}
-
-	private void inputValidData() {
-		createCar();
-		repeats = Input.inputValidRepeats();
-	}
-
-	private void createCar() {
-		final String carNames = Input.inputValidNames();
-		carRepository = new CarRepository(carNames);
 	}
 
 	private void startRacing() {
