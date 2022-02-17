@@ -4,7 +4,6 @@ import racingcar.domain.validation.CarsValidator;
 import racingcar.service.StepGenerator;
 import racingcar.util.Constant;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,31 +16,27 @@ public class Cars {
 		CarsValidator.carsValid(cars);
 		this.cars = cars;
 	}
-		public void play () {
-			for (Car car : cars) {
-				car.drive(new StepGenerator());
-			}
-		}
 
-		public List<Car> getCars () {
-			return Collections.unmodifiableList(cars);
-		}
-
-		public List<String> findWinners () {
-			Car maxPositionCar = findMaxPositionCar();
-			return findSamePositionCar(maxPositionCar);
-		}
-
-		private Car findMaxPositionCar () {
-			return cars.stream()
-				.max(Car::compareTo)
-				.orElseThrow(() -> new NoSuchElementException(Constant.MAX_FIND_ERROR));
-		}
-
-		private List<String> findSamePositionCar (Car target){
-			return cars.stream()
-				.filter(car -> car.isSamePosition(target))
-				.map(Car::getName)
-				.collect(Collectors.toList());
+	public void play() {
+		for (Car car : cars) {
+			car.drive(new StepGenerator());
 		}
 	}
+
+	public List<Car> getCars() {
+		return Collections.unmodifiableList(cars);
+	}
+
+	public List<String> findWinners() {
+		Car maxPositionCar = findMaxPositionCar();
+		return findSamePositionCar(maxPositionCar);
+	}
+
+	private Car findMaxPositionCar() {
+		return cars.stream().max(Car::compareTo).orElseThrow(() -> new NoSuchElementException(Constant.MAX_FIND_ERROR));
+	}
+
+	private List<String> findSamePositionCar(Car target) {
+		return cars.stream().filter(car -> car.isSamePosition(target)).map(Car::getName).collect(Collectors.toList());
+	}
+}

@@ -23,14 +23,14 @@ public class Car implements Comparable<Car> {
 		this.position = position;
 	}
 
-	private void move() {
-		position++;
-	}
-
 	public void drive(StepPolicy stepPolicy) {
 		if (stepPolicy.hasNext()) {
 			move();
 		}
+	}
+
+	private void move() {
+		position++;
 	}
 
 	public boolean isSamePosition(Car other) {
