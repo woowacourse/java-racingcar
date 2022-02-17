@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SuppressWarnings("NonAsciiCharacters")
 class CarsTest {
 
-    private static final int MINIMUM_MOVE_CONDITION = 4;
     private static final int WINNER_INDEX = 0;
 
     private Cars cars;
@@ -31,7 +30,7 @@ class CarsTest {
         //when
         winnerPosition = progressWithAllCars(size, cars, winnerPosition);
 
-        cars.getCar(WINNER_INDEX).progress(MINIMUM_MOVE_CONDITION);
+        cars.getCar(WINNER_INDEX).progress(() -> true);
         winnerPosition++;
 
         //then
@@ -59,7 +58,7 @@ class CarsTest {
         for (int i = 0; i < size; i++) {
             Car car = cars.getCar(i);
 
-            car.progress(MINIMUM_MOVE_CONDITION);
+            car.progress(() -> true);
         }
         winnerPosition++;
         return winnerPosition;

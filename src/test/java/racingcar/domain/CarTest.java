@@ -9,9 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SuppressWarnings("NonAsciiCharacters")
 class CarTest {
 
-    private static final int MINIMUM_MOVE_CONDITION = 4;
-    private static final int MAXIMUM_STOP_CONDITION = 3;
-
     @Test
     @DisplayName("자동차에 기준값 보다 큰 값을 주면 전진 하는지 확인")
     public void 자동차_진행_테스트() {
@@ -19,7 +16,7 @@ class CarTest {
         Car car = new Car("woo");
 
         //when
-        car.progress(MINIMUM_MOVE_CONDITION);
+        car.progress(() -> true);
 
         //then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -32,7 +29,7 @@ class CarTest {
         Car car = new Car("woo");
 
         //when
-        car.progress(MAXIMUM_STOP_CONDITION);
+        car.progress(() -> false);
 
         //then
         assertThat(car.getPosition()).isEqualTo(0);
@@ -47,7 +44,7 @@ class CarTest {
 
         //when
         for (int i = 0; i < repeatCount; i++) {
-            car.progress(MINIMUM_MOVE_CONDITION);
+            car.progress(() -> true);
         }
 
         //then
