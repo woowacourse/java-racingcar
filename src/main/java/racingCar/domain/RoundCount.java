@@ -10,18 +10,18 @@ public class RoundCount {
         this.count = count;
     }
 
+    private static void validate(int count) {
+        if (count <= 0) {
+            throw new CountRangeException();
+        }
+    }
+
     public void minusOne() {
         count--;
     }
 
     public boolean isFinish() {
         return count == 0;
-    }
-
-    private static void validate(int count) {
-        if (count <= 0) {
-            throw new CountRangeException();
-        }
     }
 
     public int get() {

@@ -2,8 +2,8 @@ package racingCar.controller;
 
 import static racingCar.view.Output.printStartMessage;
 
-import racingCar.controller.service.RacingCarsService;
 import racingCar.controller.service.InputValidator;
+import racingCar.controller.service.RacingCarsService;
 import racingCar.view.Input;
 import racingCar.view.Output;
 

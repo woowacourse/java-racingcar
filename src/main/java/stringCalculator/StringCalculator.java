@@ -4,10 +4,10 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    public static String regex = "[,:]";
-    public static String text = "";
     public static final String COMMEND_END = "\n";
     public static final String CUSTOM_REGEX = "//(.)\n(.*)";
+    public static String regex = "[,:]";
+    public static String text = "";
 
     public int calculateString(String text) {
         if (text == null || text.length() == 0) {

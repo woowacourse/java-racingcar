@@ -8,7 +8,7 @@ import racingCar.domain.exception.name.NameSpecialCharException;
 
 public class Name {
     private static final String NOT_SPECIAL_REGEX = "[가-힣\\w_]*";
-    private static final int maxNameSize = 5;
+    private static final int MAX_NAME_SIZE = 5;
 
     public final String name;
 
@@ -21,17 +21,12 @@ public class Name {
         if (name.trim().isEmpty()) {
             throw new NameSpaceException();
         }
-        if (name.length() > maxNameSize) {
+        if (name.length() > MAX_NAME_SIZE) {
             throw new NameRangeException();
         }
         if (!Pattern.matches(NOT_SPECIAL_REGEX, name)) {
             throw new NameSpecialCharException();
         }
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 
     @Override
@@ -49,5 +44,10 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
