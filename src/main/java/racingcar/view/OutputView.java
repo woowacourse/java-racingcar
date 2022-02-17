@@ -1,9 +1,6 @@
 package racingcar.view;
 
-import java.util.ArrayList;
-
 import java.util.List;
-import racingcar.util.IntegerConst;
 
 public class OutputView {
 	public static void askCarName() {
@@ -17,7 +14,7 @@ public class OutputView {
 	public static void displayCarPosition(List<String> nameList, List<Integer> positionList,
 										  String delimiter) {
 		int totalSize = nameList.size();
-		for (int index = IntegerConst.ZERO.getValue(); index < totalSize; index++) {
+		for (int index = 0; index < totalSize; index++) {
 			System.out.println(nameList.get(index) + StringConst.OUTPUT_DELIMITER.getValue() + delimiter.repeat(
 				positionList.get(index)));
 		}

@@ -1,13 +1,12 @@
 package racingcar.model;
 
 import java.util.List;
-import racingcar.util.IntegerConst;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class CarList {
-	private final ArrayList<Car> carList;
+	private final List<Car> carList;
 
 	public CarList(String[] names) {
 		this.carList = new ArrayList<>();
@@ -29,7 +28,7 @@ public class CarList {
 	}
 
 	private int getMaxPosition() {
-		int maxPosition = IntegerConst.ZERO.getValue();
+		int maxPosition = Car.BASE_POSITION;
 		for (Car car : this.carList) {
 			maxPosition = Math.max(maxPosition, car.getPosition());
 		}

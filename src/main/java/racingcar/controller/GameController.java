@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import racingcar.model.CarList;
 import racingcar.model.RandomNumberList;
-import racingcar.util.IntegerConst;
 import racingcar.view.StringConst;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -23,7 +22,7 @@ public class GameController {
 
 	private void playGame(int totalTurn, CarList carList) {
 		OutputView.displayResult();
-		for (int nowTurn = IntegerConst.ZERO.getValue(); nowTurn < totalTurn; nowTurn++) {
+		for (int nowTurn = 0; nowTurn < totalTurn; nowTurn++) {
 			moveCarList(carList);
 			OutputView.displayCarPosition(carList.getNameList(), carList.getEachCarPosition(),
 				StringConst.POSITION_DELIMITER.getValue());
@@ -34,7 +33,7 @@ public class GameController {
 	private void moveCarList(CarList carList) {
 		int size = carList.getTotalCount();
 		RandomNumberList randomNumberList = new RandomNumberList(size);
-		for (int index = IntegerConst.ZERO.getValue(); index < size; index++) {
+		for (int index = 0; index < size; index++) {
 			carList.moveCarAt(index, randomNumberList.getNumberAt(index));
 		}
 	}

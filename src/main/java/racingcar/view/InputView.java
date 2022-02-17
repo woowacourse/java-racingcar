@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 
-import racingcar.util.IntegerConst;
-
 public class InputView {
 	private static final String ERROR_NULL = "[ERROR] 입력값은 NULL일 수 없습니다.";
 	private static final String ERROR_BLANK = "[ERROR] 입력값은 빈 입력일 수 없습니다.";
@@ -14,6 +12,7 @@ public class InputView {
 	private static final String ERROR_DUPLICATE = "[ERROR] 입력값은 중복될 수 없습니다.";
 	private static final String ERROR_INT_NUM = "[ERROR] 입력값은 문자일 수 없습니다.";
 	private static final String ERROR_NO_CAR = "[ERROR] 쉼표를 기준으로 차가 한 대 이상 있어야 합니다.";
+	private static final int SIZE_BOUND = 5;
 
 	private static void checkNull(String stringInput) throws IllegalArgumentException {
 		if (stringInput == null) {
@@ -28,25 +27,24 @@ public class InputView {
 	}
 
 	private static void checkOverSize(String[] splitStringInput) throws IllegalArgumentException {
-		int overSizeCount = (int) Arrays.stream(splitStringInput)
-			.filter(eachStringInput -> eachStringInput.length() > IntegerConst.SIZE_BOUND.getValue())
-			.count();
-		if (overSizeCount > IntegerConst.ZERO.getValue()) {
+		boolean isOverSize = Arrays.stream(splitStringInput)
+			.anyMatch(eachStringInput -> eachStringInput.length() > SIZE_BOUND);
+
+		if (isOverSize) {
 			throw new IllegalArgumentException(ERROR_SIZE);
 		}
 	}
 
 	private static void checkZeroCars(String[] splitStringInput) throws IllegalArgumentException {
-		if (splitStringInput.length == IntegerConst.ZERO.getValue()) {
+		if (Arrays.asList(splitStringInput).isEmpty()) {
 			throw new IllegalArgumentException(ERROR_NO_CAR);
 		}
 	}
 
 	private static void checkSpecialChar(String[] splitStringInput) throws IllegalArgumentException {
-		int specialCount = (int) Arrays.stream(splitStringInput)
-			.filter(eachStringInput -> !eachStringInput.matches(StringConst.REGEX_PATTERN.getValue()))
-			.count();
-		if (specialCount > IntegerConst.ZERO.getValue()) {
+		boolean isSpecialCharError = Arrays.stream(splitStringInput)
+			.anyMatch(eachStringInput -> !eachStringInput.matches(StringConst.REGEX_PATTERN.getValue()));
+		if (isSpecialCharError) {
 			throw new IllegalArgumentException(ERROR_SPECIAL_CHAR);
 		}
 	}
@@ -90,12 +88,10 @@ public class InputView {
 		return name.split(StringConst.DELIMITER.getValue());
 	}
 
-
 	public static int getTurnInput() throws IllegalArgumentException {
 		Scanner scanner = new Scanner(System.in);
 		String turn = scanner.nextLine();
 		checkTurnError(turn);
 		return Integer.parseInt(turn);
 	}
-
 }
