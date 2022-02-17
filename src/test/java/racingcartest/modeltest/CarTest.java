@@ -1,5 +1,6 @@
 package racingcartest.modeltest;
 
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -39,6 +40,19 @@ public class CarTest {
 		assertThrows(IllegalArgumentException.class, () -> {
 			new Car("car!!");
 		});
+	}
+
+	@DisplayName("전진 조건 테스트")
+	@Test
+	public void movePositionTest() {
+		//given
+		Car car = new Car("car");
+
+		//when
+		car.movePosition(true);
+
+		//then
+		assertThat(car.getPosition()).isEqualTo(1);
 	}
 
 }
