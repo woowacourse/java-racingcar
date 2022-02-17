@@ -13,6 +13,13 @@ public class GameServiceTestProvider {
         );
     }
 
+    public static Stream<Arguments> provideForInitCarNamesEmptyExceptionTest() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("", "poby", "hanul", "hello")),
+                Arguments.of(Arrays.asList("hanul", "", "poby", "ifif"))
+        );
+    }
+
     public static Stream<Arguments> provideForInitCarNamesDuplicatedExceptionTest() {
         return Stream.of(
                 Arguments.of(Arrays.asList("ifif", "poby", "poby", "hello")),
