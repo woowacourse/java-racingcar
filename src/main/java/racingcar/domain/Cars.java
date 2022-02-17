@@ -48,8 +48,4 @@ public class Cars {
 		}
 		return maxPosition;
 	}
-
-	public int getSize() {
-		return cars.size();
-	}
 }
