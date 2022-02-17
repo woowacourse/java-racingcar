@@ -11,38 +11,37 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Cars {
-	private List<Car> cars = new ArrayList<>();
+	private List<Car> cars;
 
-	public Cars(List<Car> names) {
-		CarsValidator.carsValid(names);
-		cars.addAll(names);
+	public Cars(List<Car> cars) {
+		CarsValidator.carsValid(cars);
+		this.cars = cars;
 	}
+		public void play () {
+			for (Car car : cars) {
+				car.drive(new StepGenerator());
+			}
+		}
 
-	public void play() {
-		for (Car car : cars) {
-			car.drive(new StepGenerator());
+		public List<Car> getCars () {
+			return Collections.unmodifiableList(cars);
+		}
+
+		public List<String> findWinners () {
+			Car maxPositionCar = findMaxPositionCar();
+			return findSamePositionCar(maxPositionCar);
+		}
+
+		private Car findMaxPositionCar () {
+			return cars.stream()
+				.max(Car::compareTo)
+				.orElseThrow(() -> new NoSuchElementException(Constant.MAX_FIND_ERROR));
+		}
+
+		private List<String> findSamePositionCar (Car target){
+			return cars.stream()
+				.filter(car -> car.isSamePosition(target))
+				.map(Car::getName)
+				.collect(Collectors.toList());
 		}
 	}
-
-	public List<Car> getCars() {
-		return Collections.unmodifiableList(cars);
-	}
-
-	public List<String> findWinners() {
-		Car maxPositionCar = findMaxPositionCar();
-		return findSamePositionCar(maxPositionCar);
-	}
-
-	private Car findMaxPositionCar() {
-		return cars.stream()
-			.max(Car::compareTo)
-			.orElseThrow(() -> new NoSuchElementException(Constant.MAX_FIND_ERROR));
-	}
-
-	private List<String> findSamePositionCar(Car target) {
-		return cars.stream()
-			.filter(car -> car.isSamePosition(target))
-			.map(Car::getName)
-			.collect(Collectors.toList());
-	}
-}

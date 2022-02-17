@@ -13,9 +13,6 @@ public class RacingCarGame {
 	private Cars cars;
 	private Attempt attempt;
 
-	public RacingCarGame() {
-	}
-
 	public void run() {
 		init();
 		round();
