@@ -7,17 +7,16 @@ import racingcar.view.OutputView;
 
 public class RacingCarController {
 
-    private final ParticipatedCars participatedCars = new ParticipatedCars();
-
     public void playGame() {
+        ParticipatedCars participatedCars = new ParticipatedCars();
         participatedCars.generateCars(StringUtil.getCarNames(InputView.inputCarNames()));
         int trialCount = StringUtil.getTrialCount(InputView.inputTrials());
 
-        executeRacingAndPrintRecord(trialCount);
+        executeRacingAndPrintRecord(trialCount, participatedCars);
         OutputView.printWinnerNames(participatedCars.findWinners());
     }
 
-    private void executeRacingAndPrintRecord(int trialCount) {
+    private void executeRacingAndPrintRecord(int trialCount, ParticipatedCars participatedCars) {
         OutputView.printResultMessage();
         for (int i = 0; i < trialCount; i++) {
             participatedCars.executeCarRacing();
