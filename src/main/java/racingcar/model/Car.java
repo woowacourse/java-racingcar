@@ -34,12 +34,4 @@ public class Car {
             throw new IllegalArgumentException(NAME_LENGTH_MESSAGE);
         }
     }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-            "name='" + name + '\'' +
-            ", position=" + position +
-            '}';
-    }
 }
