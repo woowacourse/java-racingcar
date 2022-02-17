@@ -13,6 +13,10 @@ public class Validator {
     private static final int MINIMUM_COUNT = 1;
     private static final int MINIMUM_PLAYER = 1;
 
+    private Validator() {
+        throw new UnsupportedOperationException();
+    }
+
     public static void validate(List<Car> cars) {
         checkDuplicateName(cars);
         checkMinimumPlayer(cars);
