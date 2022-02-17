@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarDtoTest {
-    CarDto carDto = new CarDto("애니", 3);
+    private final CarDto carDto = new CarDto("애니", 3);
 
     @DisplayName("이름 반환이 정상적으로 되는지 테스트")
     @Test

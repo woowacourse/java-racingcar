@@ -11,7 +11,7 @@ class RaceCountTest {
     @Test
     void checkRightCount_EmptyCount() {
         assertThatThrownBy(() -> {
-            RaceCount raceCount = new RaceCount(null);
+            final RaceCount raceCount = new RaceCount(null);
         }).isInstanceOf(IllegalArgumentException.class).
                 hasMessageContaining("[error] 경주횟수를 입력해주세요.");
     }
@@ -20,7 +20,7 @@ class RaceCountTest {
     @Test
     void checkRightCount_RightNumber() {
         assertThatThrownBy(() -> {
-            RaceCount raceCount = new RaceCount("1x9");
+            final RaceCount raceCount = new RaceCount("1x9");
         }).isInstanceOf(IllegalArgumentException.class).
                 hasMessageContaining("[error] 경주횟수는 0부터 9까지의 숫자만 입력해주세요.");
     }
@@ -29,7 +29,7 @@ class RaceCountTest {
     @Test
     void checkRightCount_IncorrectStart() {
         assertThatThrownBy(() -> {
-            RaceCount raceCount = new RaceCount("068");
+            final RaceCount raceCount = new RaceCount("068");
         }).isInstanceOf(IllegalArgumentException.class).
                 hasMessageContaining("[error] 경주횟수는 1이상의 값을 입력해주세요.");
     }

@@ -11,7 +11,7 @@ class PositionTest {
     @Test
     void move_Test() {
         Position position = new Position();
-        int moveValue = 2;
+        final int moveValue = 2;
         position.move(2);
 
         assertThat(position.getPosition()).isEqualTo(2);
