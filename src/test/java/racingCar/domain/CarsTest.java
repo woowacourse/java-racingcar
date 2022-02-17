@@ -6,8 +6,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
-public class RacingCarsTest {
-    private final RacingCars cars = new RacingCars(Arrays.asList("hunch", "judi"));
+public class CarsTest {
+    private final Cars cars = new Cars(Arrays.asList("hunch", "judi"));
 
     @Test
     void getMaxPosition_0_검사() {
@@ -18,8 +18,8 @@ public class RacingCarsTest {
     @Test
     void getMaxPosition_2_검사() {
         //given
-        CarDTO hunchDTO = new CarDTO(new Car("hunch",2));
-        CarDTO judiDTO = new CarDTO(new Car("judi",2));
+        CarDto hunchDTO = new CarDto(new Car("hunch",2));
+        CarDto judiDTO = new CarDto(new Car("judi",2));
 
         //when
         cars.go();
@@ -42,7 +42,7 @@ public class RacingCarsTest {
     @Test
     void getSamePositionCars_이동했을때_검사() {
         //given
-        CarDTO sampleDTO = new CarDTO(new Car("hunch",2));
+        CarDto sampleDTO = new CarDto(new Car("hunch",2));
 
         //when
         while (!cars.get().contains(sampleDTO)) {
@@ -65,8 +65,8 @@ public class RacingCarsTest {
 
     @Test
     void get_같은값이_나오는지_검사() {
-        CarDTO hunchDTO = new CarDTO(new Car("hunch",0));
-        CarDTO judiDTO = new CarDTO(new Car("judi",0));
+        CarDto hunchDTO = new CarDto(new Car("hunch",0));
+        CarDto judiDTO = new CarDto(new Car("judi",0));
 
         assertThat(cars.get()).isEqualTo(Arrays.asList(hunchDTO,judiDTO));
     }

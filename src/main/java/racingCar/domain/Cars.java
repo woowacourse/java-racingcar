@@ -9,10 +9,10 @@ import racingCar.domain.exception.name.NameDuplicatedException;
 import racingCar.domain.exception.name.NameOnlyOneException;
 import racingCar.domain.utils.Util;
 
-public class RacingCars {
+public class Cars {
     private final List<Car> cars = new ArrayList<>();
 
-    public RacingCars(List<String> cars) {
+    public Cars(List<String> cars) {
         validate(cars);
         for (String car : cars) {
             this.cars.add(new Car(car, 0));
@@ -42,17 +42,17 @@ public class RacingCars {
         }
     }
 
-    public List<CarDTO> getSamePositionCars(int position) {
+    public List<CarDto> getSamePositionCars(int position) {
         return get().stream()
                 .filter(car -> car.position == position)
                 .collect(Collectors.toList());
     }
 
-    public List<CarDTO> get() {
-        List<CarDTO> carDTOs = new ArrayList<>();
+    public List<CarDto> get() {
+        List<CarDto> carDtos = new ArrayList<>();
         for (Car car : cars) {
-            carDTOs.add(new CarDTO(car));
+            carDtos.add(new CarDto(car));
         }
-        return carDTOs;
+        return carDtos;
     }
 }

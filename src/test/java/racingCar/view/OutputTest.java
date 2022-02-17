@@ -8,8 +8,8 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import racingCar.domain.CarDTO;
-import racingCar.domain.RacingCars;
+import racingCar.domain.CarDto;
+import racingCar.domain.Cars;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class OutputTest {
@@ -20,7 +20,7 @@ public class OutputTest {
         System.setOut(new PrintStream(out));
 
         //when
-        Output.printStartMessage();
+        OutputView.printStartMessage();
 
         //then
         assertThat(out.toString())
@@ -32,12 +32,12 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        RacingCars cars = new RacingCars(Arrays.asList("jiwoo", "juri"));
-        CarDTO jiwooCarDTO = cars.get().get(0);
-        jiwooCarDTO.position = 2;
+        Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
+        CarDto jiwooCarDto = cars.get().get(0);
+        jiwooCarDto.position = 2;
 
         //when
-        Output.printRoundResult(Arrays.asList(jiwooCarDTO, cars.get().get(1)));
+        OutputView.printRoundResult(Arrays.asList(jiwooCarDto, cars.get().get(1)));
 
         //then
         assertThat(out.toString())
@@ -49,11 +49,11 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        RacingCars cars = new RacingCars(Arrays.asList("jiwoo", "juri"));
-        CarDTO jiwooCarDTO = cars.get().get(0);
+        Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
+        CarDto jiwooCarDto = cars.get().get(0);
 
         //when
-        Output.printWinner(List.of(jiwooCarDTO));
+        OutputView.printWinner(List.of(jiwooCarDto));
 
         //then
         assertThat(out.toString())
@@ -65,10 +65,10 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        RacingCars cars = new RacingCars(Arrays.asList("jiwoo", "juri"));
+        Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
 
         //when
-        Output.printWinner(cars.get());
+        OutputView.printWinner(cars.get());
 
         //then
         assertThat(out.toString())

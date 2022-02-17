@@ -1,4 +1,4 @@
-package racingCar.controller.service;
+package racingCar.domain.service;
 
 import racingCar.domain.exception.NullInputException;
 

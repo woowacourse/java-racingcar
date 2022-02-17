@@ -2,11 +2,11 @@ package racingCar.domain;
 
 import java.util.Objects;
 
-public class CarDTO {
+public class CarDto {
     public final String name;
     public int position;
 
-    public CarDTO(Car car) {
+    public CarDto(Car car) {
         this.name = car.getName().toString();
         this.position = car.getPosition().get();
     }
@@ -19,7 +19,7 @@ public class CarDTO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CarDTO carDTO = (CarDTO) o;
+        CarDto carDTO = (CarDto) o;
         return position == carDTO.position && Objects.equals(name, carDTO.name);
     }
 
