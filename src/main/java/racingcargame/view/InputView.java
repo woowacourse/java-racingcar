@@ -9,10 +9,10 @@ public class InputView {
     }
 
     public static String inputCarName() {
-        return NameInputValidator.validateCarNames(SCANNER.nextLine());
+        return NameInputValidator.validateCarNamesInput(SCANNER.nextLine());
     }
 
     public static String inputRaceCount() {
-        return RaceCountInputValidator.validateRaceCount(SCANNER.nextLine());
+        return RaceCountInputValidator.validateRaceCountInput(SCANNER.nextLine());
     }
 }
