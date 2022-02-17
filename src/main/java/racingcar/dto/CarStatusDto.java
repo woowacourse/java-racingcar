@@ -17,6 +17,14 @@ public class CarStatusDto {
         return new CarStatusDto(car.getName(), car.getLocation());
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getLocation() {
+        return this.location;
+    }
+
     @Override
     public String toString() {
         return Delimiter.concatWithColon(name, Delimiter.repeatUnderBar(location));
