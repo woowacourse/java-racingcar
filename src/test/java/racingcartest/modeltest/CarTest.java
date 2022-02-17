@@ -8,13 +8,12 @@ import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
 
 public class CarTest {
-	Car car;
 
 	@DisplayName("이름이 null일 경우")
 	@Test
 	public void carNameTest_null() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			car = new Car(null);
+			new Car(null);
 		});
 	}
 
@@ -22,7 +21,7 @@ public class CarTest {
 	@Test
 	public void carNameTest_blank() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			car = new Car("");
+			new Car("");
 		});
 	}
 
@@ -30,7 +29,7 @@ public class CarTest {
 	@Test
 	public void carNameTest_length() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			car = new Car("abcdef");
+			new Car("abcdef");
 		});
 	}
 
@@ -38,7 +37,7 @@ public class CarTest {
 	@Test
 	public void carNameTest_specialSymbol() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			car = new Car("car!!");
+			new Car("car!!");
 		});
 	}
 
