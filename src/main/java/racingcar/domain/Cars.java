@@ -34,19 +34,19 @@ public class Cars {
 		return makeRandom() >= MOVE_CONDITION;
 	}
 
+	public List<Car> getWinners() {
+		int maxPosition = getMaxPosition();
+		return cars.stream()
+			.filter(car -> car.isSamePosition(maxPosition))
+			.collect(Collectors.toList());
+	}
+
 	private int getMaxPosition() {
 		int maxPosition = 0;
 		for (Car car : cars) {
 			maxPosition = Math.max(maxPosition, car.getPosition());
 		}
 		return maxPosition;
-	}
-
-	public List<Car> getWinners() {
-		int maxPosition = getMaxPosition();
-		return cars.stream()
-			.filter(car -> car.isSamePosition(maxPosition))
-			.collect(Collectors.toList());
 	}
 
 	public int getSize() {
