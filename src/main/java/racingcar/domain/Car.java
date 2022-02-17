@@ -25,10 +25,6 @@ public class Car {
 		this.movingStrategy = builder.movingStrategy;
 	}
 
-	public String getName() {
-		return name.get();
-	}
-
 	public static class Builder {
 		private CarName name;
 		private int position = 0;
@@ -58,6 +54,10 @@ public class Car {
 		return new Builder();
 	}
 
+	public String getName() {
+		return name.get();
+	}
+
 	public void move(final int distance) {
 		position += distance;
 	}
@@ -84,6 +84,7 @@ public class Car {
 		return function.apply(other);
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;

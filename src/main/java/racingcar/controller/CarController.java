@@ -70,7 +70,7 @@ public class CarController {
 		OutputView.showCurrentStatus(cars);
 	}
 
-	void moveCars(List<Car> cars) {
+	private void moveCars(List<Car> cars) {
 		for (Car car : cars) {
 			car.move();
 		}
