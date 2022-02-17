@@ -5,11 +5,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final int NEGATIVE_STANDARD = 0;
     private static final int CUSTOM_DELIMITER_GROUP_INDEX = 1;
     private static final String DELIMITER_PATTERN = "^\\/\\/(.)\\n";
     private static final String INPUT_FORMAT_PATTERN = "(" + DELIMITER_PATTERN + ")?(([0-9]+.{1})*[0-9]+)?";
     private static final String DELIMITER = ",|:";
+
+    public static int sum(String text) {
+        if (isNullOrEmpty(text)) {
+            return 0;
+        }
+
+        validateInput(text);
+        String delimiter = getDelimiterFromText(text);
+
+        return sumIntegerArray(toIntegerArray(split(removeDelimiterFromText(text), delimiter)));
+    }
 
     private static boolean isNullOrEmpty(String text) {
         return text == null || text.isEmpty();
@@ -18,12 +28,6 @@ public class StringCalculator {
     private static void validateInput(String text) {
         if (!text.matches(INPUT_FORMAT_PATTERN)) {
             throw new RuntimeException("잘못된 입력 형식입니다.");
-        }
-    }
-
-    private static void validateNegativeNumber(int number) {
-        if (number < NEGATIVE_STANDARD) {
-            throw new RuntimeException("음수는 입력할 수 없습니다.");
         }
     }
 
@@ -52,25 +56,7 @@ public class StringCalculator {
                 .toArray(Integer[]::new);
     }
 
-    private static int toNumber(String text) {
-        int number = Integer.parseInt(text);
-        validateNegativeNumber(number);
-
-        return number;
-    }
-
     private static int sumIntegerArray(Integer[] integers) {
         return Arrays.stream(integers).mapToInt(Integer::intValue).sum();
-    }
-
-    public static int sum(String text) {
-        if (isNullOrEmpty(text)) {
-            return 0;
-        }
-
-        validateInput(text);
-        String delimiter = getDelimiterFromText(text);
-
-        return sumIntegerArray(toIntegerArray(split(removeDelimiterFromText(text), delimiter)));
     }
 }
