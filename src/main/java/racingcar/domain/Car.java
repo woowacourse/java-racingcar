@@ -19,7 +19,7 @@ public class Car {
         }
     }
 
-    public boolean isMovableBy(RandomNumberGenerator randomNumberGenerator) {
+    private boolean isMovableBy(RandomNumberGenerator randomNumberGenerator) {
         return randomNumberGenerator.generate() >= OPERATING_STANDARD;
     }
 

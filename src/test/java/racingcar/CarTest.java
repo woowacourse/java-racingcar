@@ -17,13 +17,15 @@ public class CarTest {
     @Test
     public void 자동차_멈춤_테스트() {
         Car car = new Car("클레이", 0);
-        assertThat(car.isMovableBy(new NonMovableNumberGenerator())).isEqualTo(false);
+        car.tryToMoveBy(new NonMovableNumberGenerator());
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
     public void 자동차_전진_테스트() {
         Car car = new Car("클레이", 0);
-        assertThat(car.isMovableBy(new MovableNumberGenerator())).isEqualTo(true);
+        car.tryToMoveBy(new MovableNumberGenerator());
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
