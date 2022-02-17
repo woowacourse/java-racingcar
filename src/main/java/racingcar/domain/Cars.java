@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +16,7 @@ public class Cars {
 	public static final String INVALID_DUPLICATE_CAR_NAMES = "[ERROR] 차 이름이 중복됩니다";
 	private static final String INVALID_EMPTY_CAR_NAMES = "[ERROR] 차 이름은 공백이 될 수 없습니다";
 
-	private List<Car> cars = new ArrayList<>();
+	private final List<Car> cars;
 
 	public Cars(final List<Car> cars) {
 		this.cars = cars;
@@ -23,6 +24,7 @@ public class Cars {
 
 	public Cars(final String carNames) {
 		final String[] parseCarNames = splitCarNames(carNames);
+		cars  = new ArrayList<>();
 
 		for (final String carName : parseCarNames) {
 			final Car car = Car.builder()
@@ -37,7 +39,7 @@ public class Cars {
 	}
 
 	public List<Car> getCars() {
-		return cars;
+		return Collections.unmodifiableList(cars);
 	}
 
 	private void validateCarNamesEmpty(final String[] carNames) {
@@ -62,7 +64,6 @@ public class Cars {
 	}
 
 	public List<Car> getWinners() {
-
 		final Car maxCar = getMaxPositionCar();
 
 		return cars.stream()

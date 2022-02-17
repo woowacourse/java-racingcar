@@ -83,9 +83,7 @@ public class CarController {
 
 	List<Car> getWinners() {
 		List<Car> findCars = carRepository.findAll();
-
 		Cars cars = new Cars(findCars);
-
 		return cars.getWinners();
 	}
 
