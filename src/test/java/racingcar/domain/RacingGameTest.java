@@ -14,7 +14,7 @@ class RacingGameTest {
     @Test
     @DisplayName("정상적인 차 이름들을 받았을 경우")
     void validateNames() {
-        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
+        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"), 0);
         List<String> names = new ArrayList<>();
 
         for (Car car : racingGame.getCars()) {
@@ -28,14 +28,14 @@ class RacingGameTest {
     @DisplayName("빈 배열을 차 이름들로 받았을 경우")
     void validateNamesEmpty() {
         assertThatThrownBy(() -> {
-            new RacingGame(Arrays.asList());
+            new RacingGame(Arrays.asList(), 0);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("챔피언이 한명인 경우 챔피언 이름 받기")
     void getChampionNamesOnlyOneChampion() {
-        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
+        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"), 1);
 
         racingGame.getCars().get(0).move(5);
         racingGame.getCars().get(1).move(1);
@@ -50,7 +50,7 @@ class RacingGameTest {
     @Test
     @DisplayName("챔피언이 여러명인 경우 챔피언 이름 받기")
     void getChampionNames() {
-        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"));
+        RacingGame racingGame = new RacingGame(Arrays.asList("car1", "car2", "car3"), 1);
 
         racingGame.getCars().get(0).move(5);
         racingGame.getCars().get(1).move(5);

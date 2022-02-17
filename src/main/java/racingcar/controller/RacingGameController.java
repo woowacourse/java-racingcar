@@ -1,7 +1,5 @@
 package racingcar.controller;
 
-import java.util.List;
-
 import racingcar.domain.RacingGame;
 import racingcar.util.Parser;
 import racingcar.view.InputView;
@@ -10,23 +8,19 @@ import racingcar.view.OutputView;
 public class RacingGameController {
     private static RacingGame racingGame;
 
-    public static void setCarsName() {
-        String carNamesInput = InputView.inputCarNames();
-        List<String> names = Parser.split(carNamesInput);
-        racingGame = new RacingGame(names);
+    public static void setRacingGame() {
+        racingGame = new RacingGame(InputView.inputCarNames(), InputView.inputRounds());
     }
 
     public static void proceedRacingGame() {
-        int rounds = InputView.inputRounds();
-
         OutputView.printRaceResultMessage();
-        for (int i = 0; i < rounds; i++) {
+        while (!racingGame.isFinished()) {
             racingGame.moveCars();
-            updateViewAfterOneTurn();
+            updateViewOneTurnResult();
         }
     }
 
-    public static void updateViewAfterOneTurn() {
+    public static void updateViewOneTurnResult() {
         OutputView.printOneTurnRaceResult(racingGame);
     }
 
@@ -35,7 +29,7 @@ public class RacingGameController {
     }
 
     public static void main(String[] args) {
-        setCarsName();
+        setRacingGame();
         proceedRacingGame();
         updateViewChampionNames();
     }

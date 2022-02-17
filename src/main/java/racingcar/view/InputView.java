@@ -1,6 +1,9 @@
 package racingcar.view;
 
+import java.util.List;
 import java.util.Scanner;
+
+import racingcar.util.Parser;
 
 public class InputView {
     private static final String CAR_NAMES_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -10,11 +13,11 @@ public class InputView {
     private static final String NOT_POSITIVE_NUMBER_ERROR_MESSAGE = "라운드 입력이 양수가 아님";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String inputCarNames() {
+    public static List<String> inputCarNames() {
         System.out.println(CAR_NAMES_INPUT_MESSAGE);
         String input = scanner.nextLine();
         validateInput(input);
-        return input;
+        return Parser.split(input);
     }
 
     public static int inputRounds() {
