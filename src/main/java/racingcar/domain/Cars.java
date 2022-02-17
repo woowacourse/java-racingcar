@@ -17,10 +17,6 @@ public class Cars {
 		}
 	}
 
-	public int getSize() {
-		return cars.size();
-	}
-
 	public List<Car> getCars() {
 		return cars;
 	}
