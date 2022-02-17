@@ -1,7 +1,9 @@
 package racingcar.controller;
 
+import java.util.List;
+
+import racingcar.models.Car;
 import racingcar.models.CarRepository;
-import racingcar.views.Output;
 
 public class RacingGame {
 
@@ -13,17 +15,19 @@ public class RacingGame {
 		this.repeats = repeats;
 	}
 
-	public void startGame() {
-		startRacing();
+	public boolean isEnd() {
+		return repeats-- <= 0;
 	}
 
-	private void startRacing() {
-		Output.printResultMessage();
-		while(repeats-- > 0) {
-			carRepository.startThisTurn();
-			Output.printTurnResult(carRepository.getThisTurnResult());
-		}
-		Output.printWinner(carRepository.getWinners());
+	public void race() {
+		carRepository.startThisTurn();
 	}
 
+	public List<Car> getThisTurnResult() {
+		return carRepository.getThisTurnResult();
+	}
+
+	public List<Car> getWinners() {
+		return carRepository.getWinners();
+	}
 }

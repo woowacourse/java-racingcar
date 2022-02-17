@@ -7,6 +7,9 @@ import java.io.InputStream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.util.reflection.ReflectionMemberAccessor;
+
+import racingcar.models.CarRepository;
 
 @DisplayName("RacingGame 클래스")
 class RacingGameTest {
@@ -15,13 +18,14 @@ class RacingGameTest {
 	@DisplayName("게임이 정상적으로 실행되는지 확인한다")
 	void runGame() {
 		final RacingGame racingGame = mock(RacingGame.class);
+		when(racingGame.isEnd()).thenReturn(false)
+			.thenReturn(false)
+			.thenReturn(true);
 
-		InputStream nameInput = new ByteArrayInputStream("pobi,crong,honux".getBytes());
-		InputStream repeatsInput = new ByteArrayInputStream("5".getBytes());
-		System.setIn(nameInput);
-		System.setIn(repeatsInput);
-		racingGame.startGame();
+		while(!racingGame.isEnd()) {
+			racingGame.race();
+		}
 
-		verify(racingGame).startGame();
+		verify(racingGame, times(2)).race();
 	}
 }
