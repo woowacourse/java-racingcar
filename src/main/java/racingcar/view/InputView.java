@@ -7,95 +7,95 @@ import java.util.Scanner;
 import racingcar.util.IntegerConst;
 
 public class InputView {
-    private static final String ERROR_NULL = "[ERROR] 입력값은 NULL일 수 없습니다.";
-    private static final String ERROR_BLANK = "[ERROR] 입력값은 빈 입력일 수 없습니다.";
-    private static final String ERROR_SIZE = "[ERROR] 입력값의 크기는 5 초과일 수 없습니다.";
-    private static final String ERROR_SPECIAL_CHAR = "[ERROR] 입력값은 특수문자일 수 없습니다.";
-    private static final String ERROR_DUPLICATE = "[ERROR] 입력값은 중복될 수 없습니다.";
-    private static final String ERROR_INT_NUM = "[ERROR] 입력값은 문자일 수 없습니다.";
-    private static final String ERROR_NO_CAR = "[ERROR] 쉼표를 기준으로 차가 한 대 이상 있어야 합니다.";
+	private static final String ERROR_NULL = "[ERROR] 입력값은 NULL일 수 없습니다.";
+	private static final String ERROR_BLANK = "[ERROR] 입력값은 빈 입력일 수 없습니다.";
+	private static final String ERROR_SIZE = "[ERROR] 입력값의 크기는 5 초과일 수 없습니다.";
+	private static final String ERROR_SPECIAL_CHAR = "[ERROR] 입력값은 특수문자일 수 없습니다.";
+	private static final String ERROR_DUPLICATE = "[ERROR] 입력값은 중복될 수 없습니다.";
+	private static final String ERROR_INT_NUM = "[ERROR] 입력값은 문자일 수 없습니다.";
+	private static final String ERROR_NO_CAR = "[ERROR] 쉼표를 기준으로 차가 한 대 이상 있어야 합니다.";
 
-    private static void checkNull(String stringInput) throws IllegalArgumentException {
-        if (stringInput == null) {
-            throw new IllegalArgumentException(ERROR_NULL);
-        }
-    }
+	private static void checkNull(String stringInput) throws IllegalArgumentException {
+		if (stringInput == null) {
+			throw new IllegalArgumentException(ERROR_NULL);
+		}
+	}
 
-    private static void checkBlank(String stringInput) throws IllegalArgumentException {
-        if (stringInput.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_BLANK);
-        }
-    }
+	private static void checkBlank(String stringInput) throws IllegalArgumentException {
+		if (stringInput.isEmpty()) {
+			throw new IllegalArgumentException(ERROR_BLANK);
+		}
+	}
 
-    private static void checkOverSize(String[] splitStringInput) throws IllegalArgumentException {
-        int overSizeCount = (int) Arrays.stream(splitStringInput)
-            .filter(eachStringInput -> eachStringInput.length() > IntegerConst.SIZE_BOUND.getValue())
-            .count();
-        if (overSizeCount > IntegerConst.ZERO.getValue()) {
-            throw new IllegalArgumentException(ERROR_SIZE);
-        }
-    }
+	private static void checkOverSize(String[] splitStringInput) throws IllegalArgumentException {
+		int overSizeCount = (int) Arrays.stream(splitStringInput)
+			.filter(eachStringInput -> eachStringInput.length() > IntegerConst.SIZE_BOUND.getValue())
+			.count();
+		if (overSizeCount > IntegerConst.ZERO.getValue()) {
+			throw new IllegalArgumentException(ERROR_SIZE);
+		}
+	}
 
-    private static void checkZeroCars(String[] splitStringInput) throws IllegalArgumentException {
-        if (splitStringInput.length == IntegerConst.ZERO.getValue()) {
-            throw new IllegalArgumentException(ERROR_NO_CAR);
-        }
-    }
+	private static void checkZeroCars(String[] splitStringInput) throws IllegalArgumentException {
+		if (splitStringInput.length == IntegerConst.ZERO.getValue()) {
+			throw new IllegalArgumentException(ERROR_NO_CAR);
+		}
+	}
 
-    private static void checkSpecialChar(String[] splitStringInput) throws IllegalArgumentException {
-        int specialCount = (int) Arrays.stream(splitStringInput)
-            .filter(eachStringInput -> !eachStringInput.matches(StringConst.REGEX_PATTERN.getValue()))
-            .count();
-        if (specialCount > IntegerConst.ZERO.getValue()) {
-            throw new IllegalArgumentException(ERROR_SPECIAL_CHAR);
-        }
-    }
+	private static void checkSpecialChar(String[] splitStringInput) throws IllegalArgumentException {
+		int specialCount = (int) Arrays.stream(splitStringInput)
+			.filter(eachStringInput -> !eachStringInput.matches(StringConst.REGEX_PATTERN.getValue()))
+			.count();
+		if (specialCount > IntegerConst.ZERO.getValue()) {
+			throw new IllegalArgumentException(ERROR_SPECIAL_CHAR);
+		}
+	}
 
-    private static void checkDuplicate(String[] splitStringInput) throws IllegalArgumentException {
-        HashSet<String> nameSet = new HashSet<>(Arrays.asList(splitStringInput));
-        if (nameSet.size() != splitStringInput.length) {
-            throw new IllegalArgumentException(ERROR_DUPLICATE);
-        }
-    }
+	private static void checkDuplicate(String[] splitStringInput) throws IllegalArgumentException {
+		HashSet<String> nameSet = new HashSet<>(Arrays.asList(splitStringInput));
+		if (nameSet.size() != splitStringInput.length) {
+			throw new IllegalArgumentException(ERROR_DUPLICATE);
+		}
+	}
 
-    private static void checkIntNum(String stringInput) throws IllegalArgumentException {
-        if (!stringInput.matches(StringConst.NUMBER_REGEX_PATTERN.getValue())) {
-            throw new IllegalArgumentException(ERROR_INT_NUM);
-        }
-    }
+	private static void checkIntNum(String stringInput) throws IllegalArgumentException {
+		if (!stringInput.matches(StringConst.NUMBER_REGEX_PATTERN.getValue())) {
+			throw new IllegalArgumentException(ERROR_INT_NUM);
+		}
+	}
 
-    private static void nullOrBlank(String stringInput) throws IllegalArgumentException {
-        checkNull(stringInput);
-        checkBlank(stringInput);
-    }
+	private static void nullOrBlank(String stringInput) throws IllegalArgumentException {
+		checkNull(stringInput);
+		checkBlank(stringInput);
+	}
 
-    public static void checkNameError(String nameInput) throws IllegalArgumentException {
-        nullOrBlank(nameInput);
-        String[] commaSeparateName = nameInput.split(StringConst.DELIMITER.getValue());
-        checkZeroCars(commaSeparateName);
-        checkSpecialChar(commaSeparateName);
-        checkOverSize(commaSeparateName);
-        checkDuplicate(commaSeparateName);
-    }
+	public static void checkNameError(String nameInput) throws IllegalArgumentException {
+		nullOrBlank(nameInput);
+		String[] commaSeparateName = nameInput.split(StringConst.DELIMITER.getValue());
+		checkZeroCars(commaSeparateName);
+		checkSpecialChar(commaSeparateName);
+		checkOverSize(commaSeparateName);
+		checkDuplicate(commaSeparateName);
+	}
 
-    public static void checkTurnError(String turnInput) throws IllegalArgumentException {
-        nullOrBlank(turnInput);
-        checkIntNum(turnInput);
-    }
+	public static void checkTurnError(String turnInput) throws IllegalArgumentException {
+		nullOrBlank(turnInput);
+		checkIntNum(turnInput);
+	}
 
-    public static String[] getCarNameInput() throws IllegalArgumentException {
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        checkNameError(name);
-        return name.split(StringConst.DELIMITER.getValue());
-    }
+	public static String[] getCarNameInput() throws IllegalArgumentException {
+		Scanner scanner = new Scanner(System.in);
+		String name = scanner.nextLine();
+		checkNameError(name);
+		return name.split(StringConst.DELIMITER.getValue());
+	}
 
 
-    public static int getTurnInput() throws IllegalArgumentException {
-        Scanner scanner = new Scanner(System.in);
-        String turn = scanner.nextLine();
-        checkTurnError(turn);
-        return Integer.parseInt(turn);
-    }
+	public static int getTurnInput() throws IllegalArgumentException {
+		Scanner scanner = new Scanner(System.in);
+		String turn = scanner.nextLine();
+		checkTurnError(turn);
+		return Integer.parseInt(turn);
+	}
 
 }
