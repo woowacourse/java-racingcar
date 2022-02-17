@@ -2,7 +2,7 @@ package racingcar.io;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.dto.CarValue;
+import racingcar.vo.CarValue;
 import racingcar.vo.Name;
 import racingcar.dto.Winners;
 

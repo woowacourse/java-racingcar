@@ -28,7 +28,7 @@ public class Trial {
         return this.count;
     }
 
-    public boolean isExistsTrial() {
+    public boolean isExists() {
         return this.count >= MINIMUM;
     }
 

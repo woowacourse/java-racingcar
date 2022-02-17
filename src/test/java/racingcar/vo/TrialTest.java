@@ -39,7 +39,7 @@ class TrialTest {
     void exist_trial() {
         Trial trial = Trial.create(1);
 
-        assertThat(trial.isExistsTrial()).isTrue();
+        assertThat(trial.isExists()).isTrue();
     }
 
     @Test
@@ -48,6 +48,6 @@ class TrialTest {
         Trial trial = Trial.create(1);
         trial.minus();
 
-        assertThat(trial.isExistsTrial()).isFalse();
+        assertThat(trial.isExists()).isFalse();
     }
 }

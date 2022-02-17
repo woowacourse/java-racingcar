@@ -23,10 +23,6 @@ public class Name {
         return name.trim();
     }
 
-    public static Name create(String name) {
-        return new Name(name);
-    }
-
     @Override
     public String toString() {
         return this.name;
@@ -47,5 +43,9 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public static Name create(String name) {
+        return new Name(name);
     }
 }
