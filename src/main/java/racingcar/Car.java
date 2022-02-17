@@ -8,6 +8,7 @@ public class Car {
     private static final String EMPTY_NAME_ERROR = "[ERROR] 이름은 공백일 수 없습니다.";
     private static final String TO_STRING_CONJUNCTION = " : ";
     private static final String POSITION_CHARACTOR = "-";
+    private static final int MOVE_CRITERIA = 4;
 
     private final String name;
     private int position;
@@ -23,8 +24,10 @@ public class Car {
         return this.position == position;
     }
 
-    public void move(boolean canCarMove) {
-        if (canCarMove) {
+    public void move(NumberGenerator numberGenerator) {
+        int number = numberGenerator.generateNumber();
+
+        if (number >= MOVE_CRITERIA) {
             position++;
         }
     }

@@ -53,6 +53,26 @@ public class CarTest {
 	}
 
 	@Test
+	public void 랜덤값이_3일때_차_전진_못하고_position_유지() {
+		Car car = new Car("kun");
+		NumberGenerator numberGenerator = new NonMovableNumberGenerator();
+
+		car.move(numberGenerator);
+
+		assertThat(car.getPosition()).isEqualTo(0);
+	}
+
+	@Test
+	public void 랜덤값이_4일때_차_전진_position_1증가() {
+		Car car = new Car("kun");
+		NumberGenerator numberGenerator = new MovableNumberGenerator();
+
+		car.move(numberGenerator);
+
+		assertThat(car.getPosition()).isEqualTo(1);
+	}
+
+	@Test
 	public void toString_kun() {
 		Car car = new Car("kun");
 		assertThat(car.toString()).startsWith("kun : ");
@@ -67,15 +87,18 @@ public class CarTest {
 	@Test
 	public void toString_position_1() {
 		Car car = new Car("kun");
-		car.move(true);
+		NumberGenerator numberGenerator = new MovableNumberGenerator();
+		car.move(numberGenerator);
 		assertThat(car.toString()).isEqualTo("kun : -");
 	}
 
 	@Test
 	public void toString_position_3() {
 		Car car = new Car("kun");
+		NumberGenerator numberGenerator = new MovableNumberGenerator();
+
 		for (int i = 0; i < 3 ; i++) {
-			car.move(true);
+			car.move(numberGenerator);
 		}
 		assertThat(car.toString()).isEqualTo("kun : ---");
 	}

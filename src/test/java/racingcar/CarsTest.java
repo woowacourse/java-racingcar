@@ -37,10 +37,11 @@ public class CarsTest {
     public void Car_집합에서_최대_position_값_찾기() {
         Cars cars = new Cars(CarFactory.of("kun,forky"));
         String name = "kun";
+        NumberGenerator numberGenerator = new MovableNumberGenerator();
 
         for (Car car : cars.getCars()) {
             if (name.equals(car.getName())) {
-                car.move(true);
+                car.move(numberGenerator);
 
             }
         }
