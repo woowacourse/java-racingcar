@@ -1,8 +1,8 @@
-package racingcar.domain.receiver;
+package racingcar.input.validator;
 
 import racingcar.exception.TryCountException;
 
-public class TryCountReceiver {
+public class TryCountValidator {
 
     public static final String NULL_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 NULL값일 수 없습니다.";
     public static final String BLANK_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 공백일 수 없습니다.";
@@ -13,7 +13,7 @@ public class TryCountReceiver {
     private static final String FLOAT_REG_EXP = "(-|\\+)?[0-9]+\\.[0-9]+";
     private static final String DIGIT_REG_EXP = "(-|\\+)?[0-9]+";
 
-    public String validateTryCount(String tryCount) {
+    public String validate(String tryCount) {
         checkNullTryCount(tryCount);
         checkBlankTryCount(tryCount);
         checkFloatTryCount(tryCount);
@@ -21,10 +21,6 @@ public class TryCountReceiver {
         checkNegativeTryCount(tryCount);
         checkZeroTryCount(tryCount);
         return tryCount;
-    }
-
-    public int parseTryCount(String input) {
-        return Integer.parseInt(input);
     }
 
     private void checkNullTryCount(String input) {
