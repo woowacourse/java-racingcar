@@ -67,7 +67,7 @@ public class CarTest {
         String name = "bunny";
         Car car = new Car(name);
 
-        car.movePosition(true);
+        car.movePosition(6);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
@@ -77,7 +77,7 @@ public class CarTest {
         String name = "bunny";
         Car car = new Car(name);
 
-        car.movePosition(false);
+        car.movePosition(2);
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
@@ -87,11 +87,11 @@ public class CarTest {
         String name = "bunny";
         Car car = new Car(name);
 
-        car.movePosition(true);
-        car.movePosition(true);
-        car.movePosition(true);
+        car.movePosition(6);
+        car.movePosition(8);
+        car.movePosition(6);
 
-        assertThat(car.isMaxPosition(3)).isEqualTo(true);
+        assertThat(car.isSamePosition(3)).isEqualTo(true);
     }
 
     @DisplayName("Car 우승자 계산 테스트 - FALSE")
@@ -100,11 +100,11 @@ public class CarTest {
         String name = "bunny";
         Car car = new Car(name);
 
-        car.movePosition(true);
-        car.movePosition(true);
-        car.movePosition(false);
+        car.movePosition(5);
+        car.movePosition(5);
+        car.movePosition(2);
 
-        assertThat(car.isMaxPosition(3)).isEqualTo(false);
+        assertThat(car.isSamePosition(3)).isEqualTo(false);
     }
 
     @DisplayName("Car 이동할 수 있는지 테스트 - TRUE")
@@ -113,8 +113,7 @@ public class CarTest {
         String name = "bunny";
         Car car = new Car(name);
 
-        boolean isMove = car.isMovable(5);
-        car.movePosition(isMove);
+        car.movePosition(5);
 
         assertThat(car.getPosition()).isEqualTo(1);
     }
@@ -125,8 +124,7 @@ public class CarTest {
         String name = "bunny";
         Car car = new Car(name);
 
-        boolean isMove = car.isMovable(3);
-        car.movePosition(isMove);
+        car.movePosition(3);
 
         assertThat(car.getPosition()).isEqualTo(0);
     }

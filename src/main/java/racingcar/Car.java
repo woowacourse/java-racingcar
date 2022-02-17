@@ -21,13 +21,13 @@ public class Car {
         this.position = START_POSITION;
     }
 
-    public void movePosition(boolean isMovable) {
-        if (isMovable) {
+    public void movePosition(int number) {
+        if (isMovable(number)) {
             position++;
         }
     }
 
-    public boolean isMovable(int number) {
+    private boolean isMovable(int number) {
         return number >= MINIMUM_MOVE;
     }
 

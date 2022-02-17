@@ -53,8 +53,7 @@ public class Game {
     private void moveCar(List<Car> cars) {
         for (Car car : cars) {
             int randomNumber = makeRandomNumber();
-            boolean isMove = car.isMovable(randomNumber);
-            car.movePosition(isMove);
+            car.movePosition(randomNumber);
         }
     }
 
