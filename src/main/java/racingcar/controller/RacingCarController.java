@@ -34,7 +34,7 @@ public class RacingCarController {
 			OutputView.printRacingRecords(new RacingRecordDTO(cars.getRacingRecord()));
 		}
 
-		OutputView.printWinnerNames(cars.findWinners(new WinnerNames()));
+		OutputView.printWinnerNames(new WinnerNames().findWinners(cars.getCars()));
 	}
 
 	public List<String> getCarNames(String carNamesLine) {

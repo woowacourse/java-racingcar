@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +44,7 @@ public class CarsTest {
 	public void 최종_우승자_찾기_테스트() {
 		Cars cars = new Cars(new RacingCarController().getCarNames("이브,클레이"));
 		cars.executeCarRacing(new BoundedRandomNumberGenerator(9, 4));
-		List<String> winners = cars.findWinners(new WinnerNames());
+		List<String> winners = new WinnerNames().findWinners(cars.getCars());
 
 		assertThat(winners.size()).isEqualTo(2);
 		assertThat(winners).contains("이브", "클레이");

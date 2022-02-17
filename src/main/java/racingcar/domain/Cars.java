@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,20 +21,8 @@ public class Cars {
 		return cars.size();
 	}
 
-	public List<String> findWinners(WinnerNames winnerNames) {
-		return getWinnerNamesWithFirstCar(findFastestCar(), winnerNames);
-	}
-
-	private Car findFastestCar() {
-		Collections.sort(cars);
-		return cars.get(0);
-	}
-
-	private List<String> getWinnerNamesWithFirstCar(Car firstCar, WinnerNames winnerNames) {
-		for (Car car : cars) {
-			winnerNames.addWinnerByFastestCar(car, firstCar);
-		}
-		return winnerNames.getWinnerNames();
+	public List<Car> getCars() {
+		return cars;
 	}
 
 	public void executeCarRacing(RandomNumberGenerator randomNumberGenerator) {
