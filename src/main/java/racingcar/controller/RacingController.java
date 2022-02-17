@@ -27,7 +27,7 @@ public class RacingController {
 	private void printRacingResult(RacingResult racingResult) {
 		OutputView.printResultMessage();
 
-		racingResult.get().stream()
+		racingResult.getRacingRecords().stream()
 			.forEach(OutputView::printRacingInfo);
 
 		List<String> winnerNames = racingService.findWinnerNames();

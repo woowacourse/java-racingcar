@@ -5,13 +5,13 @@ import java.util.List;
 
 public class RacingResult {
 
-	private List<List<CarDto>> records = new ArrayList<>();
+	private List<List<CarDto>> racingResult = new ArrayList<>();
 
 	public void addRecord(List<CarDto> record) {
-		records.add(record);
+		racingResult.add(record);
 	}
 
-	public List<List<CarDto>> get() {
-		return records;
+	public List<List<CarDto>> getRacingRecords() {
+		return racingResult;
 	}
 }
