@@ -2,25 +2,27 @@ package racingCar.validator;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import racingCar.validator.RacingCarValidator;
 
 public class RacingTimesTest {
 	@Test
-	void 시도_횟수_숫자_이외의_값_에러() {
+	@DisplayName("시도 횟수 숫자 이외의 값 입력")
+	void isRightTimesNotNumberError() {
 		assertThatThrownBy(() -> RacingCarValidator.isRightTimes("!"))
 			.isInstanceOf(RuntimeException.class);
 	}
 
 	@Test
-	void 시도_횟수_정수가_아닌_실수값_에러() {
+	@DisplayName("시도 횟수 정수가 아닌 실수값 입력")
+	void isRightTimesNotIntegerError() {
 		assertThatThrownBy(() -> RacingCarValidator.isRightTimes("1.5"))
 			.isInstanceOf(RuntimeException.class);
 	}
 
 	@Test
-	void 시도_횟수_음수_값_에러() {
+	@DisplayName("시도 횟수 음수 값 입력")
+	void isRightTimesNegativeNumberError() {
 		assertThatThrownBy(() -> RacingCarValidator.isRightTimes("-2"))
 			.isInstanceOf(RuntimeException.class);
 	}
