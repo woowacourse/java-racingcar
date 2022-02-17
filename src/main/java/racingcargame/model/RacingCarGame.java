@@ -1,6 +1,5 @@
 package racingcargame.model;
 
-import java.util.HashMap;
 import java.util.List;
 import racingcargame.dto.CarDto;
 
@@ -32,8 +31,8 @@ public class RacingCarGame {
         cars.moveCars();
     }
 
-    public HashMap<String, Integer> sendPositionOfRacingCars() {
-        return cars.bringCarsPositionSeparatedByName();
+    public List<CarDto> sendPositionOfRacingCars() {
+        return cars.bringCarsInformation();
     }
 
     public List<CarDto> sendRacingGameWinner() {
