@@ -2,7 +2,6 @@ package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -33,8 +32,17 @@ class CarsTest {
 	void checkDuplicationCarNamesTest() {
 		String[] CarNames = {"범고래", "범고래"};
 		assertThatThrownBy(() -> cars.createCars(CarNames))
-			.isInstanceOf(RuntimeException.class)
+			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("중복");
+	}
+
+	@Test
+	@DisplayName("전달되는 숫자 리스트 크기가 작을 경우 예외 발생")
+	void validRandomsSizeTest() {
+		List<Integer> integers = Collections.singletonList(1);
+		assertThatThrownBy(() -> cars.moveAll(integers))
+			.isInstanceOf(IllegalStateException.class)
+			.hasMessageContaining("리스트 크기가 작습니다");
 	}
 
 	@Test
@@ -44,7 +52,7 @@ class CarsTest {
 		Car carMove = new Car("소주캉");
 
 		carMove.move(4);
-		cars.move(moveConditionNumbers);
+		cars.moveAll(moveConditionNumbers);
 		List<CarDto> expected = Arrays.asList(new CarDto(carStop), new CarDto(carMove));
 
 		assertThat(cars.getCars()).isEqualTo(expected);
@@ -57,7 +65,7 @@ class CarsTest {
 		carMove.move(4);
 		List<CarDto> expected = Collections.singletonList(new CarDto(carMove));
 
-		cars.move(moveConditionNumbers);
+		cars.moveAll(moveConditionNumbers);
 		List<CarDto> winners = cars.getWinners();
 
 		assertThat(winners).isEqualTo(expected);

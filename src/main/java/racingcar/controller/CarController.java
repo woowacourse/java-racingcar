@@ -31,7 +31,7 @@ class CarController {
 
 	void run() {
 		int numberOfCars = cars.getSize();
-		cars.move(random.createNumbers(numberOfCars));
+		cars.moveAll(random.createNumbers(numberOfCars));
 	}
 
 	List<CarDto> getCars() {

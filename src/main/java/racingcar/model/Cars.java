@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Cars {
 	private static final String ERROR_CAR_NAMES_DUPLICATE_MESSAGE = "중복된 자동차 이름이 입력됐습니다.";
@@ -21,12 +20,23 @@ public class Cars {
 		cars.clear();
 		checkDuplicationCarNames(carNames);
 		Arrays.stream(carNames)
-			.forEach(carName -> cars.add(new Car(carName)));
+			.map(Car::new)
+			.forEach(cars::add);
 	}
 
-	public void move(List<Integer> randoms) {
-		IntStream.range(0, randoms.size())
-			.forEach(i -> cars.get(i).move(randoms.get(i)));
+	public void moveAll(List<Integer> randoms) {
+		validateRandomsSize(randoms);
+		int i = 0;
+		for (Car car : cars) {
+			car.move(randoms.get(i));
+			i++;
+		}
+	}
+
+	private void validateRandomsSize(List<Integer> randoms) {
+		if (randoms.size() < cars.size()) {
+			throw new IllegalStateException("전달된 리스트 크기가 작습니다.");
+		}
 	}
 
 	public int getSize() {
