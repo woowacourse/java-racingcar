@@ -22,7 +22,6 @@ public class GameController {
     }
 
     public void runGame() {
-        // 질문 드릴 부분
         final RacingCarGame racingCarGame = setUpGame();
 
         playGame(racingCarGame);
