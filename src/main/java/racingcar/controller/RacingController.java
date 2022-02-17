@@ -6,31 +6,29 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
-    private Cars cars;
-    private TryCount tryCount;
-
     public void start() {
         try {
-            cars = new Cars(InputView.inputCarNames());
-            inputTryCount();
-            race();
-            terminate();
+            Cars cars = new Cars(InputView.inputCarNames());
+            TryCount tryCount = inputTryCount();
+            race(cars, tryCount);
+            terminate(cars);
+
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             start();
         }
     }
 
-    private void inputTryCount() {
+    private TryCount inputTryCount() {
         try {
-            tryCount = new TryCount(InputView.inputTryCount());
+            return new TryCount(InputView.inputTryCount());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            inputTryCount();
+            return inputTryCount();
         }
     }
 
-    private void race() {
+    private void race(Cars cars, TryCount tryCount) {
         int nowTryCnt = 0;
         OutputView.printStartMessage();
         while (tryCount.isNotSame(nowTryCnt++)) {
@@ -39,7 +37,7 @@ public class RacingController {
         }
     }
 
-    private void terminate() {
+    private void terminate(Cars cars) {
         OutputView.printCarsStatus(cars.getCars());
         OutputView.printWinners(cars.getWinners());
     }
