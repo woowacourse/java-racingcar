@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.Utils;
+import racingcar.Util.Utils;
 
 import java.util.Scanner;
 

@@ -1,12 +1,14 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.*;
-import static racingcar.Utils.*;
+import static racingcar.Util.Utils.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import racingcar.Util.Utils;
 
 class UtilsTest {
 	@Test
