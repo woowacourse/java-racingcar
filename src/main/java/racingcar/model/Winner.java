@@ -13,7 +13,7 @@ public class Winner {
     private void validateWinner(List<Car> cars, int maxPosition) {
         if (!cars.stream()
                 .allMatch(car -> car.getPosition() == maxPosition)) {
-            throw new IllegalArgumentException("우승자 판별이 잘못 계산되었습니다.");
+            throw new IllegalArgumentException("우승자 판별이 잘못되었습니다.");
         }
     }
 
