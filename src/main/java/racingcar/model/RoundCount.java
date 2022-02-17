@@ -46,6 +46,10 @@ public class RoundCount {
 		}
 	}
 
+	public boolean isOverZero() {
+		return roundCount-- > 0;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -61,7 +65,4 @@ public class RoundCount {
 		return Objects.hash(roundCount);
 	}
 
-	public boolean isOverAndSameZero() {
-		return roundCount-- >= 0;
-	}
 }

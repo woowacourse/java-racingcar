@@ -1,77 +1,72 @@
 package racingcar.controller;
 
-import static racingcar.view.Output.*;
-
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 
 import racingcar.model.Cars;
 import racingcar.model.RoundCount;
-import racingcar.service.RacingCarService;
-import racingcar.validator.NameValidator;
+import racingcar.model.Winners;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
 public class RacingCarsController {
 
 	private RoundCount roundCount;
-	private Cars cars;
-	private RacingCarService racingCarService;
+	private final Cars cars;
+	private final Winners winners;
 
 	public RacingCarsController() {
-		cars = new Cars();
-		racingCarService = new RacingCarService(new ArrayList<>());
+		cars = new Cars(new ArrayList<>());
+		winners = new Winners();
 	}
 
-	public void start() {
+	public void run() {
 		requestCarNames();
 		requestCount();
 		startGame();
-		endGame();
 	}
 
 	private void requestCarNames() {
-		String carNames = Input.inputCarNames();
-		try {
-			saveCarNames(carNames);
-		} catch (Exception exception) {
-			printError(exception.getMessage());
-			requestCarNames();
-		}
+		String carNames;
+		do {
+			carNames = Input.inputCarNames();
+		} while (!isSaveCars(carNames));
 	}
 
-	private void saveCarNames(String carNames) {
+	private boolean isSaveCars(String carNames) {
+		boolean safeSaveChecker = false;
 		try {
-			racingCarService.saveCars(carNames);
+			cars.saveCars(carNames);
+			safeSaveChecker = true;
 		} catch (Exception exception) {
-			printError(exception.getMessage());
-			requestCarNames();
+			Output.printError(exception.getMessage());
 		}
+		return safeSaveChecker;
 	}
 
 	private void requestCount() {
 		try {
-			roundCount=new RoundCount(Input.inputCount());
-		}catch (Exception exception){
-			printError(exception.getMessage());
+			roundCount = new RoundCount(Input.inputCount());
+		} catch (Exception exception) {
+			Output.printError(exception.getMessage());
 			requestCount();
 		}
 	}
 
 	private void startGame() {
-		printResultMessage();
+		Output.printResultMessage();
 		runGame();
 	}
 
 	private void runGame() {
-		IntStream.range(0, roundCount.getRoundCount()).forEach(i -> {
-			racingCarService.playRound();
-			printRoundResult(racingCarService.findAllCars());
-		});
+		while (roundCount.isOverZero()) {
+			cars.startRound();
+			Output.printRoundResult(cars.getCars());
+		}
+		endGame();
 	}
 
 	private void endGame() {
-		Output.printWinners(racingCarService.findWinner());
+		Output.printWinners(winners.findWinner(cars.getCars()));
 	}
 
 }
