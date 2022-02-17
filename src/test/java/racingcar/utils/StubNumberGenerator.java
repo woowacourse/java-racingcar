@@ -15,12 +15,19 @@ public class StubNumberGenerator implements NumberGenerator{
     }
 
     public void prepareStubNumbers(int count, int ... values) {
+        checkCountRange(count);
         checkValuesLengthSameAsCount(count, values);
         Arrays.stream(values)
                 .forEach(value -> {
                     checkValueRange(value);
                     numbers.add(value);
                 });
+    }
+
+    private void checkCountRange(int count) {
+        if (count <= 0) {
+            throw new AssertionError("count must be greater than 0");
+        }
     }
 
     private void checkValuesLengthSameAsCount(int count, int[] values) {

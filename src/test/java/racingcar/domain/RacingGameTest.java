@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RacingGameTest {
 
     @Test
-    void 시도_회수_감소() {
+    void 게임_종료_성공() {
         RacingGame racingGame = new RacingGame(new Cars(new String[]{"jae"}), 1, new RandomNumberGenerator());
         racingGame.playTurn();
 
