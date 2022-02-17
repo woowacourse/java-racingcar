@@ -3,6 +3,7 @@ package racingcargame.model;
 import java.util.regex.Pattern;
 
 public class RaceCount {
+    private static final int GAME_OVER_COUNT = 0;
     private static final String RACE_COUNT_PATTERN = "[0-9]+";
     private static final String INCORRECT_START_COUNT = "0";
     private static final String NOT_RIGHT_COUNT_ERROR_MESSAGE = "[error] 경주횟수는 0부터 9까지의 숫자만 입력해주세요.";
@@ -32,7 +33,7 @@ public class RaceCount {
         count--;
     }
 
-    public int getCount() {
-        return count;
+    public boolean hasCount() {
+        return count != GAME_OVER_COUNT;
     }
 }

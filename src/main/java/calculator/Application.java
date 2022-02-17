@@ -1,6 +1,5 @@
 package calculator;
 
-<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -106,11 +105,5 @@ public class Application {
 
     private static List<String> divideInput(String input) {
         return Arrays.asList(input.split(BASE_DELIMITER_PATTERN));
-=======
-public class Application {
-
-    public static void main(String[] args) {
-
->>>>>>> 3454ff5 (test: 사용자 입력 공백 예외 테스트함수 작성)
     }
 }

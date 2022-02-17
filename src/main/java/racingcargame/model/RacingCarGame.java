@@ -5,8 +5,6 @@ import racingcargame.dto.CarDto;
 import racingcargame.utils.RandomNumberGenerator;
 
 public class RacingCarGame {
-    private static final int GAME_OVER_COUNT = 0;
-
     private final Cars cars;
     private final RaceCount raceCount;
 
@@ -16,7 +14,7 @@ public class RacingCarGame {
     }
 
     public boolean isNotOverRace() {
-        return raceCount.getCount() != GAME_OVER_COUNT;
+        return raceCount.hasCount();
     }
 
     public void startRace(final RandomNumberGenerator randomNumberGenerator) {
