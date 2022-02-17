@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
 import racingcar.service.RacingService;
@@ -35,7 +36,7 @@ public class RacingServiceTest {
 	@Test
 	@DisplayName("자동차 경주 정상 진행")
 	public void raceTest() {
-		racingService.race(2);
+		racingService.race(AttemptNumber.from(2));
 
 		List<Car> cars = carRepository.findCars();
 
@@ -50,7 +51,7 @@ public class RacingServiceTest {
 		carRepository.clear();
 		racingService.registerCars(List.of(Car.from("asd")));
 
-		assertThatThrownBy(() -> racingService.race(3))
+		assertThatThrownBy(() -> racingService.race(AttemptNumber.from(3)))
 			.isInstanceOf(IllegalStateException.class);
 	}
 

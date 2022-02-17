@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
 import racingcar.validator.Validator;
 
@@ -17,7 +18,12 @@ public class Converter {
 			.collect(Collectors.toList());
 	}
 
-	public static int toInteger(String input) {
+	public static AttemptNumber toAttemptNumber(String input) {
+		int attemptNumber = toInteger(input);
+		return AttemptNumber.from(attemptNumber);
+	}
+
+	private static int toInteger(String input) {
 		Validator.ofIntegerInput(input);
 		return Integer.parseInt(input);
 	}

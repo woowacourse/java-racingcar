@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.List;
 
+import racingcar.domain.AttemptNumber;
 import racingcar.domain.RacingResult;
 import racingcar.service.RacingService;
 import racingcar.util.Converter;
@@ -17,7 +18,7 @@ public class RacingController {
 		String carNames = InputView.getCarNames();
 		racingService.registerCars(Converter.toCarList(carNames));
 
-		int attemptNumber = InputView.getAttemptNumber();
+		AttemptNumber attemptNumber = InputView.getAttemptNumber();
 
 		RacingResult racingResult = racingService.race(attemptNumber);
 

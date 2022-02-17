@@ -2,6 +2,7 @@ package racingcar.view;
 
 import java.util.Scanner;
 
+import racingcar.domain.AttemptNumber;
 import racingcar.util.Converter;
 
 public class InputView {
@@ -16,8 +17,8 @@ public class InputView {
 		return scanner.nextLine();
 	}
 
-	public static int getAttemptNumber() {
+	public static AttemptNumber getAttemptNumber() {
 		System.out.println(ATTEMPT_NUMBER_MESSAGE);
-		return Converter.toInteger(scanner.nextLine());
+		return Converter.toAttemptNumber(scanner.nextLine());
 	}
 }
