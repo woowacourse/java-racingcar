@@ -16,9 +16,8 @@ public class GameController {
             OutputView.askTurn();
             int totalTurn = InputView.getTurnInput();
             playGame(totalTurn, carList);
-        }
-        catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
+        } catch (IllegalArgumentException error) {
+            OutputView.displayError(error.getMessage());
         }
     }
 
@@ -26,7 +25,8 @@ public class GameController {
         OutputView.displayResult();
         for (int nowTurn = IntegerConst.ZERO.getValue(); nowTurn < totalTurn; nowTurn++) {
             moveCarList(carList);
-            OutputView.displayCarPosition(carList.getNameList(), carList.getEachCarPosition(), StringConst.POSITION_DELEIMIER.getValue());
+            OutputView.displayCarPosition(carList.getNameList(), carList.getEachCarPosition(),
+                StringConst.POSITION_DELEIMIER.getValue());
         }
         OutputView.displayWinner(carList.getWinnerNames());
     }
