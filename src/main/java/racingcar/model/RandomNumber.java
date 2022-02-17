@@ -2,7 +2,7 @@ package racingcar.model;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomNo {
+public class RandomNumber {
     private static final int RANDOM_BOUND = 10;
 
     public static int getNumber() {

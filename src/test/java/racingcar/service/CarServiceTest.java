@@ -36,4 +36,17 @@ public class CarServiceTest {
         List<Car> expected = Arrays.asList(new Car(name1), new Car(name2));
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("자동차 갯수 만큼 Random리스트를 생성한다.")
+    void createRandomNumbers() {
+        CarService carService = new CarService();
+        String name1 = "범고래";
+        String name2 = "소주캉";
+        List<Car> cars = Arrays.asList(new Car(name1), new Car(name2));
+        carService.createCars(cars);
+
+        List<Integer> randomNumbers = carService.createRandomNumbers();
+        assertThat(randomNumbers.size()).isEqualTo(cars.size());
+    }
 }

@@ -3,7 +3,7 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.model.CarDto;
 import racingcar.model.CarRepository;
-import racingcar.model.RandomNo;
+import racingcar.model.RandomNumber;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -54,7 +54,7 @@ public class CarController {
 
 	private List<Integer> createRandomNumbers(int size) {
 		return IntStream.range(0, size)
-			.mapToObj(i -> RandomNo.getNumber())
+			.mapToObj(i -> RandomNumber.getNumber())
 			.collect(Collectors.toList());
 	}
 
