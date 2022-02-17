@@ -65,7 +65,7 @@ public class Car implements Comparable<Car> {
         return position - other.position;
     }
 
-    public void move(MovingCar movingCar, int number) {
+    public void move(MovingCarStrategy movingCar, int number) {
         if (movingCar.canMove(number)) {
             position += 1;
         }

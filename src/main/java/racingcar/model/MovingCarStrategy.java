@@ -1,6 +1,6 @@
 package racingcar.model;
 
 @FunctionalInterface
-public interface MovingCar {
+public interface MovingCarStrategy {
     boolean canMove(int number);
 }
