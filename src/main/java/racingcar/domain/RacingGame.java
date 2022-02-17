@@ -35,10 +35,14 @@ public class RacingGame {
     }
 
     public List<String> winnerNames() {
+        checkCanReturnWinner();
+        return racingCars.calculateWinnerNames();
+    }
+
+    private void checkCanReturnWinner() {
         if (!isEnd()) {
             throw new IllegalStateException("종료되지 않은 게임은 우승자를 반환할 수 없다.");
         }
-        return racingCars.calculateWinnerNames();
     }
 
     public List<RacingCarDto> getCurrentRacingCarDtos() {
