@@ -3,10 +3,12 @@ package racingcargame.model;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import racingcargame.dto.CarDto;
 import racingcargame.utils.RandomNumberGenerator;
 
 public class Cars {
+    private static final int RANDOM_NUMBER_BOUND = 10;
     private static final String HAS_DUPLICATE_CAR_NAME_ERROR_MESSAGE = "[error] 입력한 자동차 이름 중 중복되는 이름이 있습니다.";
 
     private final List<Car> cars;
@@ -24,15 +26,15 @@ public class Cars {
         }
     }
 
-    void moveCars(final RandomNumberGenerator randomNumberGenerator) {
-        cars.forEach(car -> car.moveCar(randomNumberGenerator.generateNumber(10)));
+    public void moveCars(final RandomNumberGenerator randomNumberGenerator) {
+        cars.forEach(car -> car.moveCar(randomNumberGenerator.generateNumber(RANDOM_NUMBER_BOUND)));
     }
 
-    List<CarDto> bringCarsInformation() {
+    public List<CarDto> bringCarsInformation() {
         return cars.stream().map(Car::changeToDto).collect(Collectors.toList());
     }
 
-    List<CarDto> findWinner() {
+    public List<CarDto> findWinner() {
         Car winnerCar = findWinnerCar();
         return cars.stream()
                 .filter(car -> car.hasSamePosition(winnerCar))
