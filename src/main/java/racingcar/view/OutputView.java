@@ -2,6 +2,7 @@ package racingcar.view;
 
 import java.util.ArrayList;
 
+import java.util.List;
 import racingcar.util.IntegerConst;
 
 public class OutputView {
@@ -13,7 +14,7 @@ public class OutputView {
 		System.out.println(StringConst.INPUT_TURN_MESSAGE.getValue());
 	}
 
-	public static void displayCarPosition(ArrayList<String> nameList, ArrayList<Integer> positionList,
+	public static void displayCarPosition(List<String> nameList, List<Integer> positionList,
 										  String delimiter) {
 		int totalSize = nameList.size();
 		for (int index = IntegerConst.ZERO.getValue(); index < totalSize; index++) {
@@ -23,7 +24,7 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void displayWinner(ArrayList<String> winnerName) {
+	public static void displayWinner(List<String> winnerName) {
 		System.out.println(
 			String.join(StringConst.WINNER_DELIMITER.getValue(), winnerName) + StringConst.WINNER_MESSAGE.getValue());
 	}

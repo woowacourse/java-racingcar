@@ -16,8 +16,8 @@ public class CarList {
 		}
 	}
 
-	public ArrayList<String> getNameList() {
-		ArrayList<String> nameList = new ArrayList<>();
+	public List<String> getNameList() {
+		List<String> nameList = new ArrayList<>();
 		for (Car car : this.carList) {
 			nameList.add(car.getName());
 		}
@@ -36,9 +36,9 @@ public class CarList {
 		return maxPosition;
 	}
 
-	public ArrayList<String> getWinnerNames() {
+	public List<String> getWinnerNames() {
 		int maxPosition = getMaxPosition();
-		return (ArrayList<String>) this.carList.stream().filter(car -> car.isNowPositionAt(maxPosition))
+		return this.carList.stream().filter(car -> car.isNowPositionAt(maxPosition))
 			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
@@ -47,8 +47,8 @@ public class CarList {
 		return this.carList.size();
 	}
 
-	public ArrayList<Integer> getEachCarPosition() {
-		ArrayList<Integer> eachCarPositionList = new ArrayList<>();
+	public List<Integer> getEachCarPosition() {
+		List<Integer> eachCarPositionList = new ArrayList<>();
 		for (Car car : this.carList) {
 			eachCarPositionList.add(car.getPosition());
 		}
