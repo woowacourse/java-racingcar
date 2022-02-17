@@ -2,7 +2,6 @@ package racingcar.util;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.controller.GameController;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.Name;
@@ -31,7 +30,6 @@ class InputValidationTest {
 
         assertThat(cars.getCars().stream()
                 .map(Car::getName)
-                .map(Name::getName)
                 .collect(Collectors.toList()))
                 .isEqualTo(expected);
     }

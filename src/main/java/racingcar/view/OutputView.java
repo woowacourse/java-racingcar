@@ -16,7 +16,7 @@ public class OutputView {
     }
 
     private static void printCarResult(Car car) {
-        System.out.println(car.getName().getName() + COLON + makeDash(car.getPosition()));
+        System.out.println(car.getName() + COLON + makeDash(car.getPosition()));
     }
 
     private static String makeDash(int position) {

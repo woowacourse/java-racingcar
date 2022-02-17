@@ -21,7 +21,6 @@ public class Cars {
     private void validateCarNames(List<Car> cars) {
         int countDistinctNames = (int) cars.stream()
                 .map(Car::getName)
-                .map(Name::getName)
                 .distinct()
                 .count();
 
@@ -45,7 +44,6 @@ public class Cars {
         return cars.stream()
                 .filter(car -> maxPosition == car.getPosition())
                 .map(Car::getName)
-                .map(Name::getName)
                 .collect(Collectors.joining(JOIN_BY_COMMA));
     }
 

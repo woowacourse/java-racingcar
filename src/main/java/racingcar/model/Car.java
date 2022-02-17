@@ -38,8 +38,8 @@ public class Car {
         return number >= MOVE_FORWARD;
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getName();
     }
 
     public int getPosition() {
