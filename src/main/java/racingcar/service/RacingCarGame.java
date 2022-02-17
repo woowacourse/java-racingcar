@@ -24,8 +24,16 @@ public class RacingCarGame {
 	}
 
 	private void init() {
-		cars = input.carName();
-		attempt = input.attempt();
+		cars = createCars(input.carName());
+		attempt = createAttempt(input.attempt());
+	}
+
+	private Cars createCars(String carName) {
+		return new Cars(carName);
+	}
+
+	private Attempt createAttempt(String attempt) {
+		return new Attempt(attempt);
 	}
 
 	private void round() {

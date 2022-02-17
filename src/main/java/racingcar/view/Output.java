@@ -8,9 +8,6 @@ public class Output {
 	private static final String STEP = "-";
 	private static StringBuilder stringBuilder = new StringBuilder();
 
-	private Output() {
-	}
-
 	public static void errorMessage(String message) {
 		System.out.println("[ERROR] " + message);
 	}
