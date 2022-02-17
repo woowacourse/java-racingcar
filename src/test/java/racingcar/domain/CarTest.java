@@ -14,7 +14,6 @@ public class CarTest {
         Car car = new Car("jae");
         car.goForward(FORWARD_STANDARD);
         assertThat(car.getPosition()).isEqualTo(1);
-
     }
 
     @Test
@@ -22,6 +21,5 @@ public class CarTest {
         Car car = new Car("jae");
         car.goForward(FORWARD_STANDARD - 1);
         assertThat(car.getPosition()).isEqualTo(0);
-
     }
 }
