@@ -2,19 +2,20 @@ package racingcar.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import racingcar.util.RandomNumberGenerator;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
 public class Game {
 
-    private static final int RANDOM_RANGE = 10;
-
     private Input input;
     private Output output;
+    private RandomNumberGenerator randomNumberGenerator;
 
     public Game() {
         input = new Input();
         output = new Output();
+        randomNumberGenerator = new RandomNumberGenerator();
     }
 
     public void start() {
@@ -54,13 +55,8 @@ public class Game {
 
     private void moveCar(List<Car> cars) {
         for (Car car : cars) {
-            int randomNumber = makeRandomNumber();
-            car.movePosition(randomNumber);
+            car.movePosition(randomNumberGenerator.generateRandomNumber());
         }
-    }
-
-    private int makeRandomNumber() {
-        return (int) (Math.random() * RANDOM_RANGE);
     }
 
     private List<String> getWinner(List<Car> cars) {
