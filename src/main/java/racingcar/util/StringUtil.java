@@ -13,9 +13,9 @@ public class StringUtil {
         return split(carNamesLine);
     }
 
-    private static List<String> split(String carNamesLine) {
+    public static List<String> split(String carNamesLine) {
+        InputValidator.checkCarNamesLine(carNamesLine);
         List<String> carNames = Arrays.asList(carNamesLine.split(CAR_NAME_DELIMITER, SPLIT_WITH_EMPTY));
-        InputValidator.checkCarNames(carNames);
         return carNames;
     }
 

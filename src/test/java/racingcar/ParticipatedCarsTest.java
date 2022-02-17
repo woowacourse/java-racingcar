@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +15,7 @@ import racingcar.domain.ParticipatedCars;
 import racingcar.domain.WinnerNames;
 import racingcar.util.BoundedRandomNumberGenerator;
 import racingcar.util.MovableNumberGenerator;
+import racingcar.util.StringUtil;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class ParticipatedCarsTest {
@@ -31,10 +33,18 @@ public class ParticipatedCarsTest {
     }
 
     @Test
+    public void 자동차_이름_중복_테스트() {
+        List<String> carNames = Arrays.asList("이브", "이브", "포비");
+        assertThatThrownBy(() -> new ParticipatedCars(carNames))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessageContaining("자동차 이름은 중복될 수 없습니다.");
+    }
+
+    @Test
     public void 자동차_작동_테스트() {
         participatedCars.executeCarRacing(new MovableNumberGenerator());
         List<Car> cars = participatedCars.getCars();
-        for (int i = 0 ; i < cars.size() ; i++) {
+        for (int i = 0; i < cars.size(); i++) {
             assertThat(cars.get(i).getPosition()).isEqualTo(1);
         }
     }

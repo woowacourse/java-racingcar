@@ -5,11 +5,11 @@ import racingcar.util.RandomNumberGenerator;
 public class Car {
     private static final int OPERATING_STANDARD = 4;
 
-    private final String name;
+    private final CarName name;
     private int position;
 
     public Car(String carName, int position) {
-        this.name = carName;
+        this.name = new CarName(carName);
         this.position = position;
     }
 
@@ -24,7 +24,7 @@ public class Car {
     }
 
     public String getName() {
-        return this.name;
+        return name.getCarName();
     }
 
     public int getPosition() {
