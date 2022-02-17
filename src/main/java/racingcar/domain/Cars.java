@@ -38,10 +38,15 @@ public class Cars {
 		return winnerNames.getWinnerNames();
 	}
 
-	public Map<String, Integer> executeCarRacing(RandomNumberGenerator randomNumberGenerator) {
-		Map<String, Integer> racingRecord = new LinkedHashMap<>();
+	public void executeCarRacing(RandomNumberGenerator randomNumberGenerator) {
 		for (Car car : cars) {
 			car.tryMoving(randomNumberGenerator.generate());
+		}
+	}
+
+	public Map<String, Integer> getRacingRecord() {
+		Map<String, Integer> racingRecord = new LinkedHashMap<>();
+		for (Car car : cars) {
 			racingRecord.put(car.getCarName(), car.getCarPosition());
 		}
 		return racingRecord;

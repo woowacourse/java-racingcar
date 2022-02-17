@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +20,10 @@ public class CarsTest {
 	}
 
 	@Test
-	public void 자동차_경주_실행_테스트1() {
+	public void 자동차_경주_실행_테스트_전진() {
 		Cars cars = new Cars(new RacingCarController().getCarNames("이브,클레이,포비"));
-		Map<String, Integer> result = cars.executeCarRacing(new BoundedRandomNumberGenerator(9, 4));
+		cars.executeCarRacing(new BoundedRandomNumberGenerator(9, 4));
+		Map<String, Integer> result = cars.getRacingRecord();
 
 		for (Integer position : result.values()) {
 			assertThat(position).isEqualTo(1);
@@ -29,9 +31,10 @@ public class CarsTest {
 	}
 
 	@Test
-	public void 자동차_경주_실행_테스트2() {
+	public void 자동차_경주_실행_테스트2_멈춤() {
 		Cars cars = new Cars(new RacingCarController().getCarNames("이브,클레이,포비"));
-		Map<String, Integer> result = cars.executeCarRacing(new BoundedRandomNumberGenerator(3, 0));
+		cars.executeCarRacing(new BoundedRandomNumberGenerator(3, 0));
+		Map<String, Integer> result = cars.getRacingRecord();
 
 		for (Integer position : result.values()) {
 			assertThat(position).isEqualTo(0);

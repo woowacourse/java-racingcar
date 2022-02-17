@@ -30,7 +30,8 @@ public class RacingCarController {
 
 		OutputView.printRacingRecordsMsg();
 		for (int i = 0; i < trialCount; i++) {
-			OutputView.printRacingRecords(new RacingRecordDTO(cars.executeCarRacing(randomNumberGenerator)));
+			cars.executeCarRacing(randomNumberGenerator);
+			OutputView.printRacingRecords(new RacingRecordDTO(cars.getRacingRecord()));
 		}
 
 		OutputView.printWinnerNames(cars.findWinners(new WinnerNames()));
