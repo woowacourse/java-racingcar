@@ -65,7 +65,17 @@ public class GameTest {
         assertThat(game.isOver()).isEqualTo(result);
     }
 
+    @DisplayName("clearCars 메서드는 carsRepository의 cars 배열을 비운다.")
+    @Test
+    void clearCars() {
+        assertThat(game.getCars().size()).isPositive();
+
+        game.clearCars();
+
+        assertThat(game.getCars().size()).isZero();
+    }
+
     private void clearDatabase() {
-        carRepository.findAllCars().clear();
+        carRepository.clear();
     }
 }

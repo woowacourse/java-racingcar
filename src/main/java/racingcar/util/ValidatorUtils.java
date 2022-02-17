@@ -9,10 +9,17 @@ import java.util.Set;
 public class ValidatorUtils {
 
     public static final int MAX_NAME_LENGTH = 5;
+    public static final String RESTART_GAME_INPUT = "y";
+    public static final String END_PROGRAM_INPUT = "n";
     private static final String NOT_POSITIVE_INTEGER_EXCEPTION = "양수를 입력해야 합니다.";
     private static final String BLANK_NOT_ALLOWED_EXCEPTION = "공백을 입력하면 안 됩니다.";
+    private static final String NULL_NOT_ALLOWED_EXCEPTION = "값이 입력되어야 합니다.";
     private static final String OVER_FIVE_CHARACTERS_EXCEPTION = "5글자 이하의 이름을 입력해야 합니다.";
     private static final String DUPLICATE_CAR_EXCEPTION = "중복된 이름을 입력하면 안 됩니다.";
+    private static final String INVALID_BOOLEAN_STRING_EXCEPTION = "y 혹은 n을 입력해야 합니다.";
+
+    private ValidatorUtils() {
+    }
 
     public static int validateAndParsePositiveInt(String value) {
         int number = Integer.parseInt(value);
@@ -42,6 +49,24 @@ public class ValidatorUtils {
         Set<Car> carSet = new HashSet<>(cars);
         if (cars.size() != carSet.size()) {
             throw new RuntimeException(DUPLICATE_CAR_EXCEPTION);
+        }
+    }
+
+    public static boolean validateAndParseBoolean(String value) {
+        validateBooleanString(value);
+        return value.equalsIgnoreCase(RESTART_GAME_INPUT);
+    }
+
+    private static void validateBooleanString(String value) {
+        validateNotNull(value);
+        if (!value.equalsIgnoreCase(RESTART_GAME_INPUT) && !value.equalsIgnoreCase(END_PROGRAM_INPUT)) {
+            throw new RuntimeException(INVALID_BOOLEAN_STRING_EXCEPTION);
+        }
+    }
+
+    private static void validateNotNull(String value) {
+        if (value == null) {
+            throw new RuntimeException(NULL_NOT_ALLOWED_EXCEPTION);
         }
     }
 }

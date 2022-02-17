@@ -19,6 +19,11 @@ public class Car {
         this.name = name;
     }
 
+    private Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public void goOrNot(int number) {
         if (canGo(number)) {
             go();
@@ -43,6 +48,15 @@ public class Car {
 
     public boolean hasSamePosition(int value) {
         return position == value;
+    }
+
+    @Override
+    public Car clone() {
+        try {
+            return (Car) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new Car(this.name, this.position);
+        }
     }
 
     @Override

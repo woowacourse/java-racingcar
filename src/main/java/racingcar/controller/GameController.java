@@ -1,54 +1,42 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.Game;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
-
+import java.util.ArrayList;
 import java.util.List;
-
-import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.Game;
+import racingcar.domain.GameRepository;
 
 public class GameController {
 
-    private static final String CAR_NAMES_INPUT_DELIMITER = ",";
+    private static final GameRepository gameRepository = new GameRepository();
 
-    private Game game;
-
-    public void run() {
-        initGame();
-        playGameUntilEnd();
-        printGameResult();
+    public void initGame(String carNamesInput, String totalRoundsInput) {
+        Game newGame = Game.byUserInput(carNamesInput, totalRoundsInput);
+        gameRepository.initGame(newGame);
     }
 
-    private void initGame() {
-        String[] carNames = requestCarNamesInput();
-        int totalRounds = requestTotalRoundsInput();
-
-        game = new Game(carNames, totalRounds);
-    }
-
-    private String[] requestCarNamesInput() {
-        String carNamesInput = InputView.requestCarNameInput();
-        return carNamesInput.split(CAR_NAMES_INPUT_DELIMITER);
-    }
-
-    private int requestTotalRoundsInput() {
-        String totalRoundsInput = InputView.requestTotalRoundsInput();
-        return validateAndParsePositiveInt(totalRoundsInput);
-    }
-
-    private void playGameUntilEnd() {
-        OutputView.printRoundResultText();
+    public List<Cars> playAndGetRoundResults() {
+        Game game = getGame();
+        List<Cars> roundResults = new ArrayList<>();
 
         while (!game.isOver()) {
             game.playRound();
-            OutputView.printRoundResult(game.getCars());
+            roundResults.add(new Cars(game.getCars()));
         }
+
+        return roundResults;
     }
 
-    private void printGameResult() {
-        List<Car> winners = game.getWinners();
-        OutputView.printWinners(winners);
+    public List<Car> getWinners() {
+        return getGame().getWinners();
+    }
+
+    public void clearGameData() {
+        getGame().clearCars();
+    }
+
+    private Game getGame() {
+        return gameRepository.getGame();
     }
 }

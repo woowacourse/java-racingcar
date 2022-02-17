@@ -3,6 +3,7 @@ package racingcar.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 
@@ -13,6 +14,7 @@ import static common.DisplayFormat.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static racingcar.util.ValidatorUtils.validateAndParseBoolean;
 import static racingcar.util.ValidatorUtils.validateAndParsePositiveInt;
 import static racingcar.util.ValidatorUtils.validateNoDuplicateCar;
 import static racingcar.util.ValidatorUtils.validateNotBlank;
@@ -101,5 +103,42 @@ public class ValidatorUtilsTest {
 
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> validateNoDuplicateCar(carList));
+    }
+
+    @DisplayName("validateAndParseBoolean 메서드는 y 혹은 n을 인자로 받는 경우 참/거짓으로 변환하여 반환한다.")
+    @Test
+    void validateAndParseBoolean_returnTrueOnValidYesInput() {
+        boolean lowerCaseYes = validateAndParseBoolean("y");
+        boolean upperCaseYes = validateAndParseBoolean("Y");
+
+        assertThat(lowerCaseYes).isTrue();
+        assertThat(upperCaseYes).isTrue();
+    }
+
+    @DisplayName("validateAndParseBoolean 메서드는 y 혹은 n을 인자로 받는 경우 참/거짓으로 변환하여 반환한다.")
+    @Test
+    void validateAndParseBoolean_returnTrueOnValidNoInput() {
+        boolean lowerCaseNo = validateAndParseBoolean("n");
+        boolean upperCaseNo = validateAndParseBoolean("N");
+
+        assertThat(lowerCaseNo).isFalse();
+        assertThat(upperCaseNo).isFalse();
+    }
+
+    @DisplayName("validateAndParseBoolean 메서드는 null을 인자로 받는 경우 예외를 발생시킨다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @NullSource
+    void validateAndParseBoolean_errorOnNullInput(String nullOrEmptyValue) {
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> validateAndParseBoolean(nullOrEmptyValue));
+    }
+
+    @DisplayName("validateAndParseBoolean 메서드는 y, n 이외의 문자열을 인자로 받는 경우 예외를 발생시킨다.")
+    @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
+    @ValueSource(strings = {"", " ", "abc"})
+    void validateAndParseBoolean_errorOnInvalidInput(String value) {
+
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> validateAndParseBoolean(value));
     }
 }
