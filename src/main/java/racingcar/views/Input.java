@@ -14,10 +14,8 @@ public class Input {
 
 	private Input() {}
 
-	public static List<String> inputValidNames() {
-		final String names = inputNames();
-		return Arrays.stream(names.split(RacingGameMessage.CAR_NAME_DISTRIBUTOR))
-			.collect(Collectors.toList());
+	public static String inputValidNames() {
+		return inputNames();
 	}
 
 	private static String inputNames() {

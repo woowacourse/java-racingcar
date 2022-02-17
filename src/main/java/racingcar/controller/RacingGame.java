@@ -1,21 +1,15 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import racingcar.models.Car;
+import racingcar.models.CarRepository;
 import racingcar.views.Input;
 import racingcar.views.Output;
 
 public class RacingGame {
 
-	private List<Car> cars;
+	private CarRepository carRepository;
 	private int repeats;
 
 	public RacingGame() {
-		cars = new ArrayList<>();
 		repeats = 0;
 	}
 
@@ -30,35 +24,17 @@ public class RacingGame {
 	}
 
 	private void createCar() {
-		final List<String> carNameList = Input.inputValidNames();
-		carNameList.forEach((carName) -> cars.add(new Car(carName)));
+		final String carNames = Input.inputValidNames();
+		carRepository = new CarRepository(carNames);
 	}
 
 	private void startRacing() {
 		Output.printResultMessage();
 		while(repeats-- > 0) {
-			cars.forEach(Car::goForward);
-			Output.printTurnResult(cars);
+			carRepository.startThisTurn();
+			Output.printTurnResult(carRepository.getThisTurnResult());
 		}
-		Output.printWinner(findWinner());
+		Output.printWinner(carRepository.getWinners());
 	}
 
-	private List<Car> findWinner() {
-		final int farthestPosition = findFarthestPosition();
-		return getWinners(farthestPosition);
-	}
-
-	private int findFarthestPosition() {
-		return cars.stream()
-			.sorted(Comparator.comparing(Car::getPosition))
-			.collect(Collectors.toList())
-			.get(cars.size() - 1)
-			.getPosition();
-	}
-
-	private List<Car> getWinners(final int farthestPosition) {
-		return cars.stream()
-			.filter((car) -> farthestPosition == car.getPosition())
-			.collect(Collectors.toList());
-	}
 }
