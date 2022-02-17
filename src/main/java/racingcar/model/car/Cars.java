@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.dto.CarDto;
 import racingcar.util.MovableStrategy;
 
 public class Cars {
@@ -29,15 +28,12 @@ public class Cars {
 
     public List<String> getWinnersNames() {
         return getWinners().stream()
-            .map(Car::toDto)
-            .map(CarDto::getName)
+            .map(Car::getName)
             .collect(Collectors.toList());
     }
 
-    public List<CarDto> getCarsDto() {
-        return cars.stream()
-            .map(Car::toDto)
-            .collect(Collectors.toList());
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     private List<Car> getWinners() {
@@ -46,14 +42,14 @@ public class Cars {
 
     private List<Car> getCarsByPosition(Position position) {
         return cars.stream()
-            .filter((car) -> car.getPosition().equals(position))
+            .filter((car) -> car.getPosition() == position.value())
             .collect(Collectors.toList());
     }
 
     private Position getFirstPosition() {
         validateIsEmpty();
         Collections.sort(cars, Comparator.reverseOrder());
-        return cars.get(0).getPosition();
+        return new Position(cars.get(0).getPosition());
     }
 
     private void validateIsEmpty() {

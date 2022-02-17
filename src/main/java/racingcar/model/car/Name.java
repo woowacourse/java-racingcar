@@ -36,6 +36,10 @@ public class Name {
         }
     }
 
+    public String value() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -51,10 +55,5 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

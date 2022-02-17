@@ -20,7 +20,7 @@ public class Position implements Comparable<Position> {
         return new Position(position + INCREASE_DISTANCE);
     }
 
-    public int toInt() {
+    public int value() {
         return position;
     }
 

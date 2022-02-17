@@ -15,7 +15,7 @@ public class CarTest {
         void it_increase_position() {
             Car car = new Car(new Name("car1"));
             car.move(() -> true);
-            assertThat(car.toDto().getPosition()).isEqualTo(1);
+            assertThat(car.getPosition()).isEqualTo(1);
         }
     }
 }

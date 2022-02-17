@@ -7,8 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import racingcar.dto.CarDto;
-
 public class CarsTest {
     @DisplayName("add 메소드는")
     @Nested
@@ -55,7 +53,7 @@ public class CarsTest {
                 cars.add(new Car(new Name("car2")));
                 cars.add(new Car(new Name("car3")));
                 cars.race(() -> true);
-                for (CarDto carInformation : cars.getCarsDto()) {
+                for (Car carInformation : cars.getCars()) {
                     assertThat(carInformation.getPosition()).isEqualTo(1);
                 }
             }

@@ -2,7 +2,6 @@ package racingcar.model.car;
 
 import java.util.Objects;
 
-import racingcar.dto.CarDto;
 import racingcar.util.MovableStrategy;
 
 public class Car implements Comparable<Car> {
@@ -25,16 +24,12 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public CarDto toDto() {
-        return new CarDto(name.toString(), position.toInt());
+    public int getPosition() {
+        return position.value();
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.value();
     }
 
     @Override

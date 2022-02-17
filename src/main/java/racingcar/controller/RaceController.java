@@ -11,7 +11,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
-    private static final String INPUT_DELIMITER = ",";
     private final MovableStrategy racingCarMovableStrategy = new RacingCarMovableStrategy();
     private Cars cars = new Cars();
     private TryCount tryCount;
@@ -51,9 +50,9 @@ public class RaceController {
 
     public void race() {
         OutputView.printRaceResult();
-        for (int i = 0; i < tryCount.toInt(); i++) {
+        for (int i = 0; i < tryCount.value(); i++) {
             cars.race(racingCarMovableStrategy);
-            OutputView.printCars(cars.getCarsDto());
+            OutputView.printCars(cars);
         }
     }
 

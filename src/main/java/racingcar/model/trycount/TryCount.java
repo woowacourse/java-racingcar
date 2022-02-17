@@ -10,7 +10,7 @@ public class TryCount {
         this.tryCount = tryCount;
     }
 
-    public int toInt() {
+    public int value() {
         return tryCount;
     }
 }
