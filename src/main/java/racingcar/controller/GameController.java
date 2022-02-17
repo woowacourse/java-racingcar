@@ -9,8 +9,10 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class GameController {
+    private static final String SPLIT_DELIM = ",";
+
     public void play() {
-        Cars cars = makeCarsFromNames(Input.getCarNames());
+        Cars cars = makeCarsFromNames(Input.getCarNamesSeperatedByDelimiter(SPLIT_DELIM));
         int tryNum = Input.getTryNum();
 
         runRaceTryTimes(cars, tryNum);
