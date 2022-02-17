@@ -27,6 +27,11 @@ public class Cars {
 		}
 	}
 
+	public Cars(List<Car> cars) {
+		checkValid(cars);
+		this.cars = cars;
+	}
+
 	public void play() {
 		for (Car car : cars) {
 			car.drive(hasNext());
@@ -49,13 +54,33 @@ public class Cars {
 		}
 	}
 
+	private void checkValid(List<Car> cars) {
+		if (!isCars(cars)) {
+			throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
+		}
+		if (isDuplicated(cars)) {
+			throw new IllegalArgumentException("자동차 이름을 모두 다르게 입력해주세요.");
+		}
+	}
+
 	private boolean isCars(String[] names) {
 		return names.length >= CAR_LIMIT;
+	}
+
+	private boolean isCars(List<Car> cars) {
+		return cars.size() >= CAR_LIMIT;
 	}
 
 	private boolean isDuplicated(String[] names) {
 		Set<String> carNames = new HashSet<>(Arrays.asList(names));
 		return carNames.size() != names.length;
+	}
+
+	private boolean isDuplicated(List<Car> cars) {
+		return cars.stream()
+				.map(Car::getName)
+				.distinct()
+				.count() != cars.size();
 	}
 
 	private Car createCar(String name) {
