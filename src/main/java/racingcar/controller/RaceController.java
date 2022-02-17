@@ -18,6 +18,13 @@ public class RaceController {
     public RaceController() {
     }
 
+    public void start() {
+        setUpCars();
+        setUpTryCount();
+        race();
+        raceEnd();
+    }
+
     public void setUpCars() {
         try {
             String input = InputView.inputNames();
@@ -41,12 +48,11 @@ public class RaceController {
         }
     }
 
-    public void raceStart() {
+    public void race() {
         OutputView.printRaceResult();
         for (int i = 0; i < tryCount.toInt(); i++) {
             cars.race(racingCarMovableStrategy);
             OutputView.printCars(cars.getCarsDto());
-            OutputView.printEnter();
         }
     }
 

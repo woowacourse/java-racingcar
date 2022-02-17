@@ -6,16 +6,13 @@ import racingcar.dto.CarDto;
 
 public class OutputView {
     public static void printRaceResult() {
-        System.out.format("%n실행 결과%n");
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
     public static void printCars(List<CarDto> carsInformation) {
         for (CarDto carInformation : carsInformation) {
             System.out.println(carInformation.getName() + " : " + "-".repeat(carInformation.getPosition()));
         }
-    }
-
-    public static void printEnter() {
         System.out.println();
     }
 
