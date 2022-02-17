@@ -5,7 +5,8 @@ import static java.util.stream.Collectors.joining;
 import java.util.List;
 import java.util.stream.IntStream;
 import racingcar.domain.Car;
-import racingcar.domain.game.GameLog;
+import racingcar.domain.log.GameLog;
+import racingcar.domain.log.LogCar;
 
 public class View {
 
@@ -31,8 +32,8 @@ public class View {
     }
 
     public void printMidtermResults(GameLog gameLog, int currentTryCount) {
-        for (Car car : gameLog.getLog(currentTryCount)) {
-            String name = car.getName();
+        for (LogCar logCar : gameLog.getLog(currentTryCount)) {
+            String name = logCar.getName();
             printCarNameAndProgressBar(name, gameLog.getPositionByName(currentTryCount, name));
         }
         printBlankLine();

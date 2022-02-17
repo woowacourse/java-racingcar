@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import static java.util.stream.Collectors.toList;
 
-import java.util.ArrayList;
 import java.util.List;
 import racingcar.domain.random.RandomNumberGenerator;
 
@@ -28,11 +27,7 @@ public class Cars {
         }
     }
 
-    public List<Car> cloneCarList() {
-        List<Car> carsClone = new ArrayList<>();
-        for (Car car : cars) {
-            carsClone.add(car.clone());
-        }
-        return carsClone;
+    public List<Car> getCars() {
+        return cars;
     }
 }

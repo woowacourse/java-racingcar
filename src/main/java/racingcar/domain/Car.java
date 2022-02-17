@@ -17,10 +17,6 @@ public class Car implements Cloneable {
         position++;
     }
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
-    }
-
     public String getName() {
         return name;
     }
@@ -28,13 +24,13 @@ public class Car implements Cloneable {
     public int getPosition() {
         return position;
     }
-
-    @Override
-    protected Car clone() {
-        try {
-            return (Car) super.clone();
-        } catch (CloneNotSupportedException e) {
-            return new Car(CLONING_FAIL_CAR_NAME);
-        }
-    }
+//
+//    @Override
+//    protected Car clone() {
+//        try {
+//            return (Car) super.clone();
+//        } catch (CloneNotSupportedException e) {
+//            return new Car(CLONING_FAIL_CAR_NAME);
+//        }
+//    }
 }
