@@ -51,10 +51,10 @@ public class Cars {
     }
 
     public List<CarDto> get() {
-        List<CarDto> carDtos = new ArrayList<>();
+        List<CarDto> carsDto = new ArrayList<>();
         for (Car car : cars) {
-            carDtos.add(new CarDto(car));
+            carsDto.add(new CarDto(car));
         }
-        return carDtos;
+        return carsDto;
     }
 }

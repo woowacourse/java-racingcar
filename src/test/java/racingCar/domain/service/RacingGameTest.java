@@ -23,7 +23,7 @@ public class RacingGameTest {
     void 생성자_cars_값이_들어가는지_테스트() {
         //when
         List<String> names = new ArrayList<>();
-        for (CarDto carDTO : racingGame.getCars().get()) {
+        for (CarDto carDTO : racingGame.getResult()) {
             names.add(carDTO.name);
         }
 
@@ -44,7 +44,7 @@ public class RacingGameTest {
 
         //when
         int max = racingGame.getCars().getMaxPosition();
-        List<CarDto> result = racingGame.getCars().get()
+        List<CarDto> result = racingGame.getResult()
                 .stream()
                 .filter(carDTO -> carDTO.position == max)
                 .collect(Collectors.toList());

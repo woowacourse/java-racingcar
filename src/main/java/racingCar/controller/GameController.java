@@ -30,7 +30,7 @@ public class GameController {
 
     private void playRounds(RacingGame racingGame) {
         racingGame.go();
-        OutputView.printRoundResult(racingGame.getCars().get());
+        OutputView.printRoundResult(racingGame.getResult());
         if (racingGame.getRoundCount().isFinish()) {
             return;
         }
