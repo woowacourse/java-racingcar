@@ -1,10 +1,8 @@
 package racingCar.domain.utils;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
-import racingCar.domain.moveStratege.RandomNumGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class UtilTest {

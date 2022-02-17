@@ -28,7 +28,7 @@ public class RacingGameTest {
         }
 
         //then
-        assertThat(names).isEqualTo(Arrays.asList("juri","hunch"));
+        assertThat(names).isEqualTo(Arrays.asList("juri", "hunch"));
     }
 
     @Test

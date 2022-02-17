@@ -3,13 +3,13 @@ package racingCar.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
-import racingCar.domain.service.RacingGame;
 import racingCar.domain.exception.count.CountNotNumberException;
 import racingCar.domain.exception.count.CountRangeException;
 import racingCar.domain.exception.name.NameDuplicatedException;
 import racingCar.domain.exception.name.NameOnlyOneException;
 import racingCar.domain.exception.name.NameRangeException;
 import racingCar.domain.exception.name.NameSpecialCharException;
+import racingCar.domain.service.RacingGame;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class ExceptionTest {

@@ -11,18 +11,18 @@ public class RoundCount {
         this.count = count;
     }
 
+    private static void validate(int count) {
+        if (count <= MINIMUM_NUM) {
+            throw new CountRangeException();
+        }
+    }
+
     public void minusOne() {
         count--;
     }
 
     public boolean isFinish() {
         return count == MINIMUM_NUM;
-    }
-
-    private static void validate(int count) {
-        if (count <= MINIMUM_NUM) {
-            throw new CountRangeException();
-        }
     }
 
     public int get() {

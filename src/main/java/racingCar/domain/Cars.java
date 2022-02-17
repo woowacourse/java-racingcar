@@ -20,6 +20,15 @@ public class Cars {
         }
     }
 
+    private static void validate(List<String> cars) {
+        if (cars.size() <= 1) {
+            throw new NameOnlyOneException();
+        }
+        if (new HashSet<>(cars).size() != cars.size()) {
+            throw new NameDuplicatedException();
+        }
+    }
+
     public void go() {
         NumGenerator numGenerator = new RandomNumGenerator();
         for (Car car : cars) {
@@ -33,15 +42,6 @@ public class Cars {
             positions.add(car.getPosition());
         }
         return Collections.max(positions);
-    }
-
-    private static void validate(List<String> cars) {
-        if (cars.size() <= 1) {
-            throw new NameOnlyOneException();
-        }
-        if (new HashSet<>(cars).size() != cars.size()) {
-            throw new NameDuplicatedException();
-        }
     }
 
     public List<CarDto> getSamePositionCars(int position) {

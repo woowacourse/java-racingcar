@@ -4,14 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CheckException extends Throwable {
+    static final String CUSTOM_FRONT_FORMAT = "(.)[";
+    static final String CUSTOM_BACK_FORMAT = "]{2,}(.)*";
     static final String NULL_ERROR_MESSAGE = "빈 문자열이 포함되어 있습니다!";
     static final String NUMBER_ERROR_MESSAGE = "숫자가 아닌 파라미터가 포함되어 있습니다!";
     static final String NUMBER_RANGE_ERROR_MESSAGE = "숫자 범위에 일치하지 않습니다!";
     static final String SplitOk_FITST_ERROR_MESSAGE = "구분자가 맨앞 위치에 있습니다!";
     static final String SplitOk_LAST_ERROR_MESSAGE = "구분자가 맨뒤 위치에 있습니다!";
     static final String SplitOk_mid_ERROR_MESSAGE = "구분자가 연속된 위치에 있습니다!";
-    public static final String CUSTOM_FRONT_FORMAT = "(.)[";
-    public static final String CUSTOM_BACK_FORMAT = "]{2,}(.)*";
 
     public static void check(String[] array) {
         for (String text : array) {
