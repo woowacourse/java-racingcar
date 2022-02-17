@@ -17,7 +17,6 @@ public class Name {
     public static Name from(String input) {
         StringValidator.validateIsEmpty(input);
         StringValidator.validateLength(input, MIN_LENGTH, MAX_LENGTH);
-        StringValidator.validateFormat(input);
 
         return new Name(input);
     }

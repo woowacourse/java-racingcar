@@ -30,14 +30,4 @@ public class NameTest {
         assertThatThrownBy(() -> Name.from(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("from 메소드에 허용되지 않는 문자열이 입력되면 예외가 발생 한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {" ", "ton*&", "?a1"})
-    void fromWithInvalidCharacter(String input) {
-        assertThatThrownBy(() -> Name.from(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-
 }
