@@ -4,7 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class CarDTOTest {
+@SuppressWarnings("NonAsciiCharacters")
+public class CarDTOTest {
     @Test
     void 이름확인() {
         assertThat(new CarDTO(new Car("hunch", 0)).name)

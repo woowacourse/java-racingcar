@@ -21,12 +21,12 @@ public class GameController {
         endGame();
     }
 
-    public void playGame() {
+    private void playGame() {
         printStartMessage();
         racingCarsService.playGame();
     }
 
-    public void endGame() {
+    private void endGame() {
         Output.printWinner(racingCarsService.getWinnerCars());
     }
 }
