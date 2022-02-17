@@ -6,10 +6,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import racingcar.util.BoundedRandomNumberGenerator;
+import racingcar.util.RandomNumberGenerator;
 
 public class ParticipatedCars {
-    private static final int MAX_BOUND = 9;
-    private static final int MIN_BOUND = 0;
     private static final int START_POSITION = 0;
 
     private final List<Car> cars;
@@ -21,18 +20,9 @@ public class ParticipatedCars {
         }
     }
 
-    public WinnerNames findWinners() {
-        return WinnerNames.of(this, findFastestCar());
-    }
-
-    private Car findFastestCar() {
-        Collections.sort(cars, Comparator.comparingInt(Car::getPosition));
-        return cars.get(cars.size() - 1);
-    }
-
-    public void executeCarRacing() {
+    public void executeCarRacing(RandomNumberGenerator randomNumberGenerator) {
         for (Car car : cars) {
-            car.tryToMoveBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
+            car.tryToMoveBy(randomNumberGenerator);
         }
     }
 
