@@ -28,7 +28,7 @@ public class CarList {
         this.carList.get(index).movePosition(number);
     }
 
-    public int getMaxPosition() {
+    private int getMaxPosition() {
         int maxPosition = IntegerConst.ZERO.getValue();
         for (Car car : this.carList) {
             maxPosition = Math.max(maxPosition, car.getPosition());

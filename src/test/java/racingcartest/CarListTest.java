@@ -24,13 +24,6 @@ public class CarListTest {
     }
 
     @Test
-    public void carListMaxPositionTest() {
-        this.carList.moveCarAt(0, 5);
-        this.carList.moveCarAt(0, 6);
-        assertThat(this.carList.getMaxPosition()).isEqualTo(2);
-    }
-
-    @Test
     public void carListWinnerNameTest() {
         this.carList.moveCarAt(0, 5);
         this.carList.moveCarAt(1, 6);
