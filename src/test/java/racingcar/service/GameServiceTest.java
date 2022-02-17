@@ -22,6 +22,24 @@ class GameServiceTest {
 
     private final GameService gameService = new GameService();
 
+    private void initCarNamesExceptionTest(final List<String> carNames) {
+        assertThrows(WrongArgumentException.class, () -> gameService.initCarNames(carNames));
+    }
+
+    @DisplayName("자동차 이름은 NULL이 될 수 없습니다.")
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideForInitCarNamesNullExceptionTest")
+    void initCarNamesNullExceptionTest(final List<String> carNames) {
+        initCarNamesExceptionTest(carNames);
+    }
+
+    @DisplayName("자동차 이름은 중복될 수 없습니다.")
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideForInitCarNamesDuplicatedExceptionTest")
+    void initCarNamesDuplicatedExceptionTest(final List<String> carNames) {
+        initCarNamesExceptionTest(carNames);
+    }
+
     @DisplayName("자동차 이름 초기화 기능 테스트")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesTest")
@@ -47,13 +65,6 @@ class GameServiceTest {
                 .collect(Collectors.toUnmodifiableList());
 
         carLocations.forEach(location -> assertThat(location).isEqualTo(CAR_INITIALIZED_LOCATION));
-    }
-
-    @DisplayName("자동차 이름은 중복될 수 없습니다.")
-    @ParameterizedTest
-    @MethodSource(PROVIDER_PATH + "provideForInitCarNamesDuplicatedExceptionTest")
-    void initCarNamesDuplicatedExceptionTest(final List<String> carNames) {
-        assertThrows(WrongArgumentException.class, () -> gameService.initCarNames(carNames));
     }
 
     @DisplayName("실행 횟수 초기화 기능 테스트")

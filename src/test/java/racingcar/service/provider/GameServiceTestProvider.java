@@ -6,10 +6,10 @@ import org.junit.jupiter.params.provider.Arguments;
 
 public class GameServiceTestProvider {
 
-    public static Stream<Arguments> provideForInitCarNamesTest() {
+    public static Stream<Arguments> provideForInitCarNamesNullExceptionTest() {
         return Stream.of(
-                Arguments.of(Arrays.asList("ifif", "poby", "hanul", "hello")),
-                Arguments.of(Arrays.asList("hanul", "hello", "poby", "ifif"))
+                Arguments.of(Arrays.asList(null, "poby", "hanul", "hello")),
+                Arguments.of(Arrays.asList("hanul", "hello", null, "ifif"))
         );
     }
 
@@ -20,5 +20,11 @@ public class GameServiceTestProvider {
         );
     }
 
+    public static Stream<Arguments> provideForInitCarNamesTest() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("ifif", "poby", "hanul", "hello")),
+                Arguments.of(Arrays.asList("hanul", "hello", "poby", "ifif"))
+        );
+    }
 
 }
