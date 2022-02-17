@@ -42,6 +42,6 @@ public class CarTest {
         Car anotherCar = new Car("def");
         anotherCar.move(firstMove);
         anotherCar.move(secondMove);
-        assertThat(car. isSameDistance(anotherCar)).isEqualTo(expected);
+        assertThat(car.isSameDistance(anotherCar.getDistance())).isEqualTo(expected);
     }
 }

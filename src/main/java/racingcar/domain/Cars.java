@@ -3,6 +3,8 @@ package racingcar.domain;
 import racingcar.dto.CarDto;
 import racingcar.service.MoveOrStop;
 import racingcar.utils.ExceptionMessage;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
