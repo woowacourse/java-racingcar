@@ -5,7 +5,7 @@ import racingcar.util.RandomNumberGenerator;
 public class Car {
     private static final int OPERATING_STANDARD = 4;
 
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String carName, int position) {
@@ -13,7 +13,7 @@ public class Car {
         this.position = position;
     }
 
-    public void tryMovingBy(RandomNumberGenerator randomNumberGenerator) {
+    public void tryToMoveBy(RandomNumberGenerator randomNumberGenerator) {
         if (isMovableBy(randomNumberGenerator)) {
             position++;
         }

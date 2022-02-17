@@ -39,7 +39,7 @@ public class ParticipatedCars {
 
     public void executeCarRacing() {
         for (Car car : cars) {
-            car.tryMovingBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
+            car.tryToMoveBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
         }
     }
 
