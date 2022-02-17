@@ -83,8 +83,8 @@ public class GameController {
 		}
 	}
 
-	private void isSamePosition(ArrayList<String> winner, int maxPosition, Car car) {
-		if (car.getPosition() == maxPosition) {
+	private void isSamePosition(ArrayList<String> winner, int Position, Car car) {
+		if (car.getPosition() == Position) {
 			winner.add(car.getName());
 		}
 	}

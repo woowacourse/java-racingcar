@@ -64,8 +64,8 @@ public class Car implements CarMoveCondition {
 		}
 	}
 
-	private void throwSpecialSymbolError(String name, int i) {
-		if (String.valueOf(name.charAt(i)).matches(REGEX_PATTERN)) {
+	private void throwSpecialSymbolError(String name, int index) {
+		if (String.valueOf(name.charAt(index)).matches(REGEX_PATTERN)) {
 			throw new IllegalArgumentException(ERROR_SPECIAL_SYMBOL);
 		}
 	}
