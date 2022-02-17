@@ -30,4 +30,8 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    public boolean isSamePositionWith(int fastestPosition) {
+        return this.position == fastestPosition;
+    }
 }
