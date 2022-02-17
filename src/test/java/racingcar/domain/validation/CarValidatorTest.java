@@ -25,7 +25,7 @@ class CarValidatorTest {
 	void car_name_null() {
 		assertThatThrownBy(() -> {
 			CarValidator.carValid(null);
-		}).isInstanceOf(NullPointerException.class).hasMessage("자동차 이름은 null 일 수 없습니다.");
+		}).isInstanceOf(NullPointerException.class).hasMessage("자동차 이름은 null일 수 없습니다.");
 	}
 
 	@DisplayName("자동차 이름 길이 테스트")

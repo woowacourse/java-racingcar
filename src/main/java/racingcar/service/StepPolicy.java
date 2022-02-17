@@ -1,5 +1,5 @@
 package racingcar.service;
 
 public interface StepPolicy {
-	boolean hasNext();
+	int generate();
 }

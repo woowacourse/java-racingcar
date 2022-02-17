@@ -3,11 +3,11 @@ package racingcar.domain;
 import java.util.Objects;
 
 import racingcar.domain.validation.CarValidator;
-import racingcar.service.StepPolicy;
 
 public class Car implements Comparable<Car> {
 	private static final String STEP = "-";
 	private static final String FORMAT = "%s : %s";
+	private static final int DRIVE_FLAG = 3;
 
 	private final String name;
 	private int position = 0;
@@ -23,10 +23,14 @@ public class Car implements Comparable<Car> {
 		this.position = position;
 	}
 
-	public void drive(StepPolicy stepPolicy) {
-		if (stepPolicy.hasNext()) {
+	public void drive(int stepValue) {
+		if (hasNext(stepValue)) {
 			move();
 		}
+	}
+
+	private boolean hasNext(int value) {
+		return value > DRIVE_FLAG;
 	}
 
 	private void move() {

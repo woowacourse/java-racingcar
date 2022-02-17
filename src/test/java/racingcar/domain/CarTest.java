@@ -15,9 +15,8 @@ class CarTest {
 	void car_hasNext_true() {
 		//given
 		Car car = new Car("sudal");
-		StepPolicy stepPolicy = () -> true;
 		//when
-		car.drive(stepPolicy);
+		car.drive(4);
 		//then
 		assertThat(car.getPosition()).isEqualTo(1);
 	}
@@ -26,9 +25,8 @@ class CarTest {
 	@Test
 	void car_drive_false() {
 		Car car = new Car("sudal");
-		StepPolicy stepPolicy = () -> false;
 		//when
-		car.drive(stepPolicy);
+		car.drive(3);
 		//then
 		assertThat(car.getPosition()).isEqualTo(0);
 	}

@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.domain.validation.CarsValidator;
 import racingcar.service.StepGenerator;
+import racingcar.service.StepPolicy;
 import racingcar.util.Constant;
 
 import java.util.Collections;
@@ -17,9 +18,9 @@ public class Cars {
 		this.cars = cars;
 	}
 
-	public void play() {
+	public void play(StepPolicy stepPolicy) {
 		for (Car car : cars) {
-			car.drive(new StepGenerator());
+			car.drive(stepPolicy.generate());
 		}
 	}
 
