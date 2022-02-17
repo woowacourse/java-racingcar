@@ -10,17 +10,19 @@ import java.util.List;
 public class Game {
     private final Cars cars;
     private int trialCount;
+    private final MoveOrStop moveOrStop;
 
-    public Game(InputView inputView) {
+    public Game(InputView inputView,DetermineMovement moveOrStop){
         cars = new Cars(inputView.inputCarNames());
         trialCount = inputView.inputTrialCount();
+        this.moveOrStop = moveOrStop;
     }
 
     public boolean isContinue() {
         return this.trialCount > 0;
     }
 
-    public void carsMove(MoveOrStop moveOrStop) {
+    public void carsMove() {
         this.cars.move(moveOrStop);
         this.trialCount--;
     }

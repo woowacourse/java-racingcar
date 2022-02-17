@@ -9,19 +9,17 @@ import racingcar.view.OutputView.OutputView;
 
 public class RacingController {
     private final OutputView outputView;
-    private final MoveOrStop moveOrStop;
 
     public RacingController(ConsoleOutputView outputView, DetermineMovement moveOrStop) {
         this.outputView = outputView;
-        this.moveOrStop = moveOrStop;
     }
 
     public void run() {
-        Game game = new Game(new ConsoleInputView());
+        Game game = new Game(new ConsoleInputView(), new DetermineMovement());
         outputView.printResultMessage();
 
         while(game.isContinue()) {
-            game.carsMove(moveOrStop);
+            game.carsMove();
             outputView.printRoundStatus(game.carsInfo());
         }
 
