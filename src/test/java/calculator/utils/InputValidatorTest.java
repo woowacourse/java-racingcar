@@ -1,6 +1,6 @@
 package calculator.utils;
 
-import calculator.view.InputView;
+import calculator.model.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

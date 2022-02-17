@@ -1,8 +1,5 @@
 package racingcargame.view;
 
-import racingcargame.utils.NameInputValidator;
-import racingcargame.utils.RaceCountInputValidator;
-
 import java.util.Scanner;
 
 public class InputView {
