@@ -2,6 +2,8 @@ package racingcargame.model;
 
 import java.util.List;
 import racingcargame.dto.CarDto;
+import racingcargame.model.car.Cars;
+import racingcargame.model.racecount.RaceCount;
 import racingcargame.utils.Move;
 
 public class RacingCarGame {

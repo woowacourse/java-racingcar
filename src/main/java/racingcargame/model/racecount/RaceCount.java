@@ -1,4 +1,4 @@
-package racingcargame.model;
+package racingcargame.model.racecount;
 
 import java.util.regex.Pattern;
 
