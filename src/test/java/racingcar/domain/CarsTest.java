@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,14 +14,20 @@ class CarsTest {
     private static final int MINIMUM_MOVE_CONDITION = 4;
     private static final int WINNER_INDEX = 0;
 
+    private Cars cars;
+    private int size;
+    private int winnerPosition;
+
+    @BeforeEach
+    void setUpCars() {
+        cars = new Cars("dwoo,woo,te,ch");
+        size = cars.getSize();
+        winnerPosition = 0;
+    }
+
     @Test
     @DisplayName("우승자가 한 명일 경우에 대해서 테스트")
     public void 우승자_테스트() {
-        //given
-        Cars cars = new Cars("dwoo,woo,te,ch");
-        int size = cars.getSize();
-        int winnerPosition = 0;
-
         //when
         winnerPosition = progressWithAllCars(size, cars, winnerPosition);
 
@@ -38,11 +45,6 @@ class CarsTest {
     @Test
     @DisplayName("우승자가 여러명일 경우에 대해서 테스트")
     public void 복수_우승자_테스트() {
-        //given
-        Cars cars = new Cars("dwoo,woo,te,ch");
-        int size = cars.getSize();
-        int winnerPosition = 0;
-
         //when
         winnerPosition = progressWithAllCars(size, cars, winnerPosition);
 
