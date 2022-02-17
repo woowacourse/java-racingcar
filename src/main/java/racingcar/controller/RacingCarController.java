@@ -13,7 +13,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
-	private static final String CAR_NAME_DELIMITER = ",";
 	private static final int MAX_BOUND = 9;
 	private static final int MIN_BOUND = 0;
 
@@ -24,7 +23,7 @@ public class RacingCarController {
 	}
 
 	public void playGame() {
-		Cars cars = new Cars(splitAndGetCarNames(InputView.getCarNames()));
+		Cars cars = new Cars(validateCarNames(InputView.getCarNames()));
 		int trialCount = InputView.getTrialCount();
 
 		OutputView.printRacingRecordsMsg();
@@ -36,8 +35,7 @@ public class RacingCarController {
 		OutputView.printWinnerNames(new WinnerNames().findWinners(cars.getCars()));
 	}
 
-	private List<String> splitAndGetCarNames(String carNamesLine) {
-		List<String> carNames = Arrays.asList(carNamesLine.split(CAR_NAME_DELIMITER, -1));
+	private List<String> validateCarNames(List<String> carNames) {
 		CarNameValidator.checkEachCarNames(carNames);
 		return carNames;
 	}
