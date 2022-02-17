@@ -1,9 +1,14 @@
 package racingcar.view;
 
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.Names;
+import racingcar.domain.car.Name;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
+    private static final String NAME_DELIMITER = ",";
+
     public static void printInputNamesUi() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
@@ -21,8 +26,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printRaceResultUi(Names names) {
-        System.out.printf("%s가 최종 우승했습니다.", names);
+    public static void printRaceResultUi(List<Name> names) {
+        System.out.printf("%s가 최종 우승했습니다.", String.join(NAME_DELIMITER, names.stream()
+                .map(Name::toString)
+                .collect(Collectors.joining()))
+        );
     }
 
     public static void printErrorUi(Exception exception) {

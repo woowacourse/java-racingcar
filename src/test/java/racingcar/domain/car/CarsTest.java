@@ -26,7 +26,8 @@ public class CarsTest {
         cars.add(Car.of("car2", 3));
         cars.add(Car.of("car3", 5));
 
-        assertThat(cars.getWinnersNames().toString()).isEqualTo("car1, car3");
+        assertThat(cars.getWinnersNames())
+                .containsExactly(Name.from("car1"), Name.from("car3"));
     }
 
     @DisplayName("moveAll 메소드가 모든 차를 전진시킨다.")
