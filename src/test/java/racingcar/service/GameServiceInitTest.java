@@ -15,9 +15,9 @@ import racingcar.dto.CarStatusDto;
 import racingcar.dto.RoundDto;
 import racingcar.exception.WrongArgumentException;
 
-class GameServiceTest {
+public class GameServiceInitTest {
 
-    private static final String PROVIDER_PATH = "racingcar.service.provider.GameServiceTestProvider#";
+    private static final String PROVIDER_PATH = "racingcar.service.provider.GameServiceInitTestProvider#";
     private static final int CAR_INITIALIZED_LOCATION = 0;
 
     private final GameService gameService = new GameService();
