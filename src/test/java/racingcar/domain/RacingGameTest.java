@@ -91,4 +91,14 @@ public class RacingGameTest {
             () -> assertThat(result).containsExactly("pobi", "crong")
         );
     }
+
+    @Test
+    @DisplayName("종료되지 않은 게임은 우승자를 반환할 수 없다.")
+    void cannotGetWinnerInRunningGaem() {
+        final RacingCars racingCars = createInitCars();
+        final RacingGame racingGame = new RacingGame(racingCars, new Round(10));
+        assertThatExceptionOfType(IllegalStateException.class)
+            .isThrownBy(() -> racingGame.winnerNames())
+            .withMessageMatching("종료되지 않은 게임은 우승자를 반환할 수 없다.");
+    }
 }
