@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.ParticipatedCars;
 import racingcar.domain.WinnerNames;
 
 import java.util.List;
@@ -17,8 +18,10 @@ public class OutputView {
         System.out.println(NEW_LINE + RACING_RESULT_MESSAGE);
     }
 
-    public static void printRacingRecords(List<Car> cars) {
-        cars.stream().forEach(car -> System.out.println(getCarRecord(car)));
+    public static void printRacingRecords(ParticipatedCars participatedCars) {
+        participatedCars.getCars()
+                .stream()
+                .forEach(car -> System.out.println(getCarRecord(car)));
         System.out.println();
     }
 

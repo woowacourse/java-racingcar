@@ -21,7 +21,7 @@ public class RacingCarController {
         OutputView.printResultMessage();
         for (int i = 0; i < trialCount; i++) {
             participatedCars.executeCarRacing();
-            OutputView.printRacingRecords(participatedCars.getCars());
+            OutputView.printRacingRecords(participatedCars);
         }
     }
 }
