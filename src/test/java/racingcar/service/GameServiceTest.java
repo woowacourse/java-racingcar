@@ -40,6 +40,13 @@ class GameServiceTest {
         initCarNamesExceptionTest(carNames);
     }
 
+    @DisplayName("자동차 이름은 5자를 넘을 수 없습니다.")
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideForInitCarNamesTooLongExceptionTest")
+    void initCarNamesTooLongExceptionTest(final List<String> carNames) {
+        initCarNamesExceptionTest(carNames);
+    }
+
     @DisplayName("자동차 이름은 중복될 수 없습니다.")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesDuplicatedExceptionTest")

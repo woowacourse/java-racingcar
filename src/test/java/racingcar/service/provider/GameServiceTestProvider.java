@@ -20,6 +20,13 @@ public class GameServiceTestProvider {
         );
     }
 
+    public static Stream<Arguments> provideForInitCarNamesTooLongExceptionTest() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("abcdef", "poby", "hanul", "hello")),
+                Arguments.of(Arrays.asList("hanul", "", "poby", "ififif"))
+        );
+    }
+
     public static Stream<Arguments> provideForInitCarNamesDuplicatedExceptionTest() {
         return Stream.of(
                 Arguments.of(Arrays.asList("ifif", "poby", "poby", "hello")),
