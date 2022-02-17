@@ -29,10 +29,7 @@ public class StringCalculator {
     }
 
     private static boolean isNullOrEmpty(String input) {
-        if (input == null || input.isEmpty()) {
-            return true;
-        }
-        return false;
+        return input == null || input.isEmpty();
     }
 
     private static String getDelimiter(String input) {
