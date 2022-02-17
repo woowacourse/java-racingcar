@@ -34,8 +34,8 @@ public class Cars {
 
     private void addWinnerNames(int position) {
         cars.stream()
-            .filter(car -> car.getPosition() == position)
-            .forEach(car -> winners.add(car.getName()));
+                .filter(car -> car.getPosition() == position)
+                .forEach(car -> winners.add(car.getName()));
     }
 
     private int getMaxPosition() {

@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-
 import racingcar.utils.NumberGenerator;
 
 public class RacingGame {

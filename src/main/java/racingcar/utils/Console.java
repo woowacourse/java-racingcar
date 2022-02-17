@@ -11,7 +11,7 @@ public class Console {
     }
 
     private static Scanner getInstance() {
-        if(Objects.isNull(scanner) || isClosed()) {
+        if (Objects.isNull(scanner) || isClosed()) {
             scanner = new Scanner(System.in);
         }
         return scanner;

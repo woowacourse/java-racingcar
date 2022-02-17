@@ -3,7 +3,6 @@ package racingcar.controller;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 import racingcar.utils.NumberGenerator;
-import racingcar.utils.RandomNumberGenerator;
 
 import static racingcar.view.InputView.*;
 import static racingcar.view.OutputView.*;
