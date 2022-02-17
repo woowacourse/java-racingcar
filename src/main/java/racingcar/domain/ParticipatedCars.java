@@ -14,11 +14,8 @@ public class ParticipatedCars {
 
     private final List<Car> cars;
 
-    public ParticipatedCars() {
+    public ParticipatedCars(List<String> carNames) {
         this.cars = new ArrayList<>();
-    }
-
-    public void generateCars(List<String> carNames) {
         for (String carName : carNames) {
             cars.add(new Car(carName, START_POSITION));
         }

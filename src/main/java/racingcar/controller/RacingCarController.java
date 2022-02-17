@@ -8,8 +8,8 @@ import racingcar.view.OutputView;
 public class RacingCarController {
 
     public void playGame() {
-        ParticipatedCars participatedCars = new ParticipatedCars();
-        participatedCars.generateCars(StringUtil.getCarNames(InputView.inputCarNames()));
+        ParticipatedCars participatedCars = new ParticipatedCars(StringUtil.getCarNames(InputView.inputCarNames()));
+
         int trialCount = StringUtil.getTrialCount(InputView.inputTrials());
 
         executeRacingAndPrintRecord(trialCount, participatedCars);

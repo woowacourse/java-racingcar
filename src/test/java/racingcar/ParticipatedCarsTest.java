@@ -19,13 +19,11 @@ public class ParticipatedCarsTest {
 
     @BeforeEach
     void setCars() {
-        participatedCars = new ParticipatedCars();
-        participatedCars.generateCars(Arrays.asList("이브", "클레이", "포비"));
+        participatedCars = new ParticipatedCars(Arrays.asList("이브", "클레이", "포비"));
     }
 
     @Test
     public void 자동차_생성_테스트() {
-
         assertThat(participatedCars.getCars().size()).isEqualTo(3);
     }
 
@@ -33,11 +31,11 @@ public class ParticipatedCarsTest {
     public void 최종_우승자_찾기_테스트() {
         participatedCars.executeCarRacing();
         List<String> winners = participatedCars.findWinners().getWinnerNames();
-
         List<Car> cars = participatedCars.getCars();
         Collections.sort(cars, (faster, slower) -> slower.getPosition() - faster.getPosition());
+        int winnerIndex = winners.size() - 1;
 
-        assertThat(winners.get(winners.size() - 1))
-                .isEqualTo(cars.get(cars.size() - 1).getName());
+        assertThat(winners.get(winnerIndex))
+                .isEqualTo(cars.get(winnerIndex).getName());
     }
 }
