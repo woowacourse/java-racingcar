@@ -33,7 +33,7 @@ public class RacingGameTest {
 
     @Test
     void 생성자_roundCount_값이_들어가는지_테스트() {
-        assertThat(racingGame.getRoundCount().get()).isEqualTo(5);
+        assertThat(racingGame).extracting("roundCount").isEqualTo(5);
     }
 
     @Test
