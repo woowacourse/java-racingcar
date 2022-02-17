@@ -10,21 +10,21 @@ import racingcar.domain.Car;
 public class CarTest {
 
 	@Test
-	@DisplayName("자동차 생성 빈 이름")
+	@DisplayName("자동차 생성 빈 이름일 때 예외")
 	public void createCarWithEmptyName() {
 		assertThatThrownBy(() -> Car.from(""))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	@DisplayName("자동차 생성 이름 6자 이상")
+	@DisplayName("자동차 생성 이름 6자 이상일 때 예외")
 	public void createCarWithLengthOver() {
 		assertThatThrownBy(() -> Car.from("abcdef"))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
-	@DisplayName("자동차 생성 position 음수")
+	@DisplayName("자동차 생성 position 음수일 때 예외")
 	public void createCarPositionWithNegative() {
 		assertThatThrownBy(() -> Car.of("abcde", -1))
 			.isInstanceOf(IllegalArgumentException.class);

@@ -33,7 +33,7 @@ public class RacingServiceTest {
 	}
 
 	@Test
-	@DisplayName("자동차 저장")
+	@DisplayName("자동차 이름 정상 입력 후 저장")
 	public void saveCar() {
 		int carCount = carRepository.count();
 
@@ -41,7 +41,7 @@ public class RacingServiceTest {
 	}
 
 	@Test
-	@DisplayName("자동차 이름 중복")
+	@DisplayName("자동차 이름 중복시 예외")
 	public void duplicateCarName() {
 		assertThatThrownBy(() -> carRepository.addCar(Car.from("pobi")))
 			.isInstanceOf(IllegalStateException.class);
@@ -49,7 +49,7 @@ public class RacingServiceTest {
 
 
 	@Test
-	@DisplayName("자동차 경주")
+	@DisplayName("자동차 경주 정상 진행")
 	public void raceTest() {
 		racingService.race(2);
 
@@ -61,7 +61,7 @@ public class RacingServiceTest {
 	}
 
 	@Test
-	@DisplayName("자동차 경주 자동차 1대")
+	@DisplayName("자동차 경주 자동차 1대일 때 예외 발생")
 	public void raceWithOneCar() {
 		carRepository.clear();
 		racingService.registerCars(List.of(Car.from("asd")));

@@ -11,7 +11,7 @@ public class ValidatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"아라", "abc"})
-	@DisplayName("시도횧수 타입 예외")
+	@DisplayName("시도횟수 입력 타입 예외")
 	public void generateExceptionWithAttemptNumber(String input) {
 		Assertions.assertThatThrownBy(() -> {
 				Validator.ofIntegerInput(input);
@@ -22,7 +22,7 @@ public class ValidatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"3", "344"})
-	@DisplayName("시도 횟수 정상")
+	@DisplayName("시도 횟수 입력 정상")
 	public void passAttemptTypeInput(String input) {
 		Validator.ofIntegerInput(input);
 	}
