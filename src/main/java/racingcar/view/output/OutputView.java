@@ -20,11 +20,13 @@ public class OutputView {
     }
 
     public void printMessageOfStatusTitle() {
+        printEmptyLine();
         printMessage(OutputMessage.MESSAGE_OF_STATUS_TITLE);
     }
 
     public void printCarStatuses(final List<String> carStatuses) {
         carStatuses.forEach(this::printMessage);
+        printEmptyLine();
     }
 
     public void printMessageOfWinners(final List<String> winnerNames) {

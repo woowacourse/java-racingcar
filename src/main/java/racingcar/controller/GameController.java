@@ -24,21 +24,13 @@ public class GameController {
     }
 
     private void initParticipants() {
-        gameService.initCarNames(requestCarNames());
-    }
-
-    private List<String> requestCarNames() {
-        outputView.printMessageOfRequestCarNames();
-        return inputView.requestCarNames();
+        final List<String> carNames = inputView.requestCarNames();
+        gameService.initCarNames(carNames);
     }
 
     private void initRound() {
-        gameService.initRound(requestRound());
-    }
-
-    private int requestRound() {
-        outputView.printMessageOfRequestRound();
-        return inputView.requestRoundNumber();
+        final int roundCount = inputView.requestRoundCount();
+        gameService.initRound(roundCount);
     }
 
     public void playGame() {
@@ -48,20 +40,14 @@ public class GameController {
     }
 
     private void announceStatusTitle() {
-        outputView.printEmptyLine();
         outputView.printMessageOfStatusTitle();
     }
 
     private void announcePlayStatuses() {
         while (gameService.isContinuable()) {
             gameService.playRound();
-            announceStatuses(gameService.getCurrentStatuses());
+            outputView.printCarStatuses(gameService.getCurrentStatuses());
         }
-    }
-
-    private void announceStatuses(final List<String> carStatuses) {
-        outputView.printCarStatuses(carStatuses);
-        outputView.printEmptyLine();
     }
 
     private void announceWinners() {

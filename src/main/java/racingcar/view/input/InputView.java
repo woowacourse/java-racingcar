@@ -8,16 +8,20 @@ import racingcar.exception.WrongArgumentException;
 import racingcar.exception.status.round.RoundCountExceptionStatus;
 import racingcar.utils.Delimiter;
 import racingcar.view.input.reader.Reader;
+import racingcar.view.output.OutputView;
 
 public class InputView {
 
     private final Reader reader;
+    private final OutputView outputView;
 
-    public InputView(final Reader reader) {
+    public InputView(final Reader reader, final OutputView outputView) {
         this.reader = reader;
+        this.outputView = outputView;
     }
 
     public List<String> requestCarNames() {
+        outputView.printMessageOfRequestCarNames();
         return parseNames(reader.readLine());
     }
 
@@ -31,7 +35,8 @@ public class InputView {
         return Delimiter.appendSpaceBehind(targetString);
     }
 
-    public int requestRoundNumber() {
+    public int requestRoundCount() {
+        outputView.printMessageOfRequestRound();
         return parseNumber(reader.readLine());
     }
 

@@ -20,7 +20,7 @@ public class AppConfig {
     private AppConfig() {
         this.reader = initReader();
         this.outputView = initOutputView();
-        this.inputView = initInputView(reader);
+        this.inputView = initInputView(reader, outputView);
         this.gameService = initGameService();
         this.gameController = initGameController(gameService, inputView, outputView);
     }
@@ -37,8 +37,8 @@ public class AppConfig {
         return new ConsoleReader();
     }
 
-    private InputView initInputView(final Reader reader) {
-        return new InputView(reader);
+    private InputView initInputView(final Reader reader, final OutputView outputView) {
+        return new InputView(reader, outputView);
     }
 
     private GameService initGameService() {
