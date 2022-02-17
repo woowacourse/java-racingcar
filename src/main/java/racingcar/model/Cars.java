@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
 	private static final String ERROR_CAR_NAMES_DUPLICATE_MESSAGE = "중복된 자동차 이름이 입력됐습니다.";
+	private static final String ERROR_INVALID_LIST_SIZE = "전달된 리스트 크기가 작습니다.";
 
 	private final List<Car> cars;
 
@@ -35,7 +36,7 @@ public class Cars {
 
 	private void validateRandomsSize(List<Integer> randoms) {
 		if (randoms.size() < cars.size()) {
-			throw new IllegalStateException("전달된 리스트 크기가 작습니다.");
+			throw new IllegalStateException(ERROR_INVALID_LIST_SIZE);
 		}
 	}
 
@@ -43,20 +44,13 @@ public class Cars {
 		return cars.size();
 	}
 
-	public List<CarDto> getCars() {
-		return carsToCarDtos(cars);
+	public List<Car> getCars() {
+		return cars;
 	}
 
-	public List<CarDto> getWinners() {
-		List<Car> winnerCars = cars.stream()
-			.filter(car -> car.isSamePosition(maxPosition()))
-			.collect(Collectors.toList());
-		return carsToCarDtos(winnerCars);
-	}
-
-	private List<CarDto> carsToCarDtos(List<Car> cars) {
+	public List<Car> getWinners() {
 		return cars.stream()
-			.map(CarDto::new)
+			.filter(car -> car.isSamePosition(maxPosition()))
 			.collect(Collectors.toList());
 	}
 

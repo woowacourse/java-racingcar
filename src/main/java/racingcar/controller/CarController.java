@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import racingcar.model.CarDto;
+import racingcar.model.CarToCarDtoMapper;
 import racingcar.model.Cars;
 import racingcar.model.Random;
 
@@ -35,10 +36,10 @@ class CarController {
 	}
 
 	List<CarDto> getCars() {
-		return cars.getCars();
+		return CarToCarDtoMapper.carsToCarDtos(cars.getCars());
 	}
 
 	List<CarDto> getWinners() {
-		return cars.getWinners();
+		return CarToCarDtoMapper.carsToCarDtos(cars.getWinners());
 	}
 }

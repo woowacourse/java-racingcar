@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 class Car {
 	private static final int MAX_CAR_NAME_LENGTH = 5;
 	private static final int INITIAL_POSITION = 0;
@@ -53,5 +55,20 @@ class Car {
 		if (name.isEmpty()) {
 			throw new IllegalArgumentException(ERROR_EMPTY_CAR_NAME_MESSAGE);
 		}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Car car = (Car)o;
+		return position == car.position && Objects.equals(name, car.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, position);
 	}
 }

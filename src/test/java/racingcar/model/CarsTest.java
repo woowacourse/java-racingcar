@@ -53,7 +53,7 @@ class CarsTest {
 
 		carMove.move(4);
 		cars.moveAll(moveConditionNumbers);
-		List<CarDto> expected = Arrays.asList(new CarDto(carStop), new CarDto(carMove));
+		List<Car> expected = Arrays.asList(carStop, carMove);
 
 		assertThat(cars.getCars()).isEqualTo(expected);
 	}
@@ -63,10 +63,10 @@ class CarsTest {
 	void winnerTest() {
 		Car carMove = new Car("소주캉");
 		carMove.move(4);
-		List<CarDto> expected = Collections.singletonList(new CarDto(carMove));
+		List<Car> expected = Collections.singletonList(carMove);
 
 		cars.moveAll(moveConditionNumbers);
-		List<CarDto> winners = cars.getWinners();
+		List<Car> winners = cars.getWinners();
 
 		assertThat(winners).isEqualTo(expected);
 	}
