@@ -12,7 +12,7 @@ public class Car {
         this.position = new Position();
     }
 
-    public void goOrStop(int random) {
+    public void go(int random) {
         if (random >= STANDARD_VALUE) {
             position.move(MOVING_DISTANCE);
         }

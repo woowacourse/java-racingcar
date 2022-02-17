@@ -26,7 +26,7 @@ public class Cars {
 
     public void moveAll() {
         for (Car car : cars) {
-            car.goOrStop(RandomUtils.generateNumber(MIN, MAX + 1));
+            car.go(RandomUtils.generateNumber(MIN, MAX + 1));
         }
     }
 
