@@ -39,7 +39,7 @@ public class GameController {
 	private Cars getCarNames() {
 		OutputView.askCarName();
 
-		String[] carNames = InputView.getCarNames();
+		final String[] carNames = InputView.getCarNames();
 
 		try {
 			return generateCars(carNames);
@@ -47,7 +47,7 @@ public class GameController {
 			System.out.println(e.getMessage());
 			System.exit(ZERO);
 		}
-		return new Cars(new ArrayList<Car>());
+		return new Cars(new ArrayList<>());
 	}
 
 	private void playTotalTurn(int numberOfTurn, Cars cars) {
@@ -58,7 +58,7 @@ public class GameController {
 	}
 
 	private Cars generateCars(String[] names) {
-		ArrayList<Car> cars = new ArrayList<>();
+		final ArrayList<Car> cars = new ArrayList<>();
 
 		for (String name : names) {
 			cars.add(new Car(name));
@@ -68,7 +68,7 @@ public class GameController {
 	}
 
 	private ArrayList<String> getWinner(Cars cars) {
-		ArrayList<String> winner = new ArrayList<>();
+		final ArrayList<String> winner = new ArrayList<>();
 
 		isMaxPosition(winner, cars);
 
@@ -76,7 +76,7 @@ public class GameController {
 	}
 
 	private void isMaxPosition(ArrayList<String> winner, Cars cars) {
-		int maxPosition = cars.getMaxPosition();
+		final int maxPosition = cars.getMaxPosition();
 
 		for (Car car : cars.getCars()) {
 			isSamePosition(winner, maxPosition, car);

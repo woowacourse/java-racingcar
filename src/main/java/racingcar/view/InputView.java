@@ -23,7 +23,7 @@ public class InputView {
 	}
 
 	private static int isValidNum(String input) {
-		int numberOfTurn = isInteger(input);
+		final int numberOfTurn = isInteger(input);
 		isPositive(numberOfTurn);
 
 		return numberOfTurn;

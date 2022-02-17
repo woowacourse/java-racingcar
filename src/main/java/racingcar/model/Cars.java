@@ -20,8 +20,8 @@ public class Cars implements CarMoveCondition {
 	}
 
 	private void checkDuplicatedName(ArrayList<Car> cars) {
-		ArrayList<String> nameList = new ArrayList<>();
-		HashSet<String> nameSet = new HashSet<>();
+		final ArrayList<String> nameList = new ArrayList<>();
+		final HashSet<String> nameSet = new HashSet<>();
 		for (Car car : cars) {
 			nameList.add(car.getName());
 			nameSet.add(car.getName());
@@ -62,13 +62,13 @@ public class Cars implements CarMoveCondition {
 	}
 
 	private int generateRandNum() {
-		Random random = new Random();
+		final Random random = new Random();
 
 		return random.nextInt(BOUND_RANDOM);
 	}
 
 	public LinkedHashMap<String, Integer> getCarsInfo() {
-		LinkedHashMap<String, Integer> carsInfo = new LinkedHashMap<>();
+		final LinkedHashMap<String, Integer> carsInfo = new LinkedHashMap<>();
 
 		for (Car car : this.cars) {
 			carsInfo.put(car.getName(), car.getPosition());
