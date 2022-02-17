@@ -143,10 +143,16 @@
 - 자동차 이름 입력을 나누는 RacingCar.splitCarNames를 InputView에서 하도록 수정(View에서 Cars까지 만들어서 Controller에게 반환)
 - 전체 통합 테스트가 제대로 되지 않음
     - 문제점 : 첫번째 입력인 이름은 입력을 잘 받지만 두번째 입력인 시도 횟수를 제대로 입력받지 못함(null 입력이 됨)
-    - 원인 분석 : InputView에서 Scanner를 상수로 처리했는데 이렇게 되면 문제가 발생하는것으로 예상됨
-    - 해결 방법 : Controller에서 Scanner를 만들어 파라미터로 주거나 InputView에서 Scanner를 static으로 쓰지 않으면 문제가 해결됨
-    - 나는 static을 없애고 InputView의 인스턴스 변수로 Scanner를 만들어 사용하는 방식으로 문제를 해결함
-    - Scanner를 Controller에서 만들어서 주지 않은 이유는 InputView에서만 사용되는 Scanner를 꼭 Controller에서 생성하고 가지고 있어야하나? 라는 생각이 들었기 때문임
+    - 원인 분석 : InputView에서 Scanner를 상수로 처리했는데 이렇게 되면 문제가 발생 Scanner를 상수(static)으로 생성하고 ParameterizedTest로 테스트하면 2번째 이후
+      테스트에서 제대로 입력을 받지 못함. ParameterizedTest를 하면 Java 프로그래밍은 1번돌아가고 거기서 여러번의 테스트케이스가 돌아간다. 그렇기 때문에 가장 처음 케이스에서 성공을 하고
+      두번째 테스트에서부터는 Scanner에 첫번째 데이터가 들어간 상태로 이미 상수로 생성되어 있기 때문에 제대로 테스트가 되지 않는다.
+    - 해결 방법 :
+        - Controller에서 Scanner를 만들어 InputView로 파라미터로 준다.
+        - InputView에서 Scanner를 static으로 쓰지 않고 매번 새로 생성한다.
+        - 또 다른 방법이 있을까?
+    - 시도했던것들 :
+        - static을 없애고 InputView의 인스턴스 변수로 Scanner를 만들어 사용하는 방식으로 문제를 해결해봄.
+        - Scanner를 Controller에서 만들어서 주지 않은 이유는 InputView에서만 사용되는 Scanner를 꼭 Controller에서 생성하고 가지고 있어야하나? 라는 생각이 들었기 때문임
 - RacingCar의 로직을 main으로 이동(Controller의 역할을 RacingCar가 아닌 main이 하도록 수정함)
 - ApplicationTest.empty_input_exception_test에서 가장 마지막에 공백이 오는 경우(`a,b,`) 예외 처리하지 않는 오류 수정
 - 자동차 경주 게임의 기능 통합 테스트와 예외 상황 테스트 추가
