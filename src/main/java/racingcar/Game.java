@@ -28,8 +28,9 @@ public class Game {
     }
 
     public void showResult(Cars cars) {
-        for (Car car : cars.getCars()) {
-            OutputView.printLineString(car.toString());
+        List<CarDto> carDtoList = cars.toCarDto();
+        for (CarDto carDto : carDtoList) {
+            OutputView.printLineString(carDto);
         }
         OutputView.printBlankLine();
     }

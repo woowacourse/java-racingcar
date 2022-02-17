@@ -6,8 +6,6 @@ public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 5글자를 초과할 수 없습니다.";
     private static final String EMPTY_NAME_ERROR = "[ERROR] 이름은 공백일 수 없습니다.";
-    private static final String TO_STRING_CONJUNCTION = " : ";
-    private static final String POSITION_CHARACTOR = "-";
     private static final int MOVE_CRITERIA = 4;
 
     private final String name;
@@ -30,14 +28,6 @@ public class Car {
         if (number >= MOVE_CRITERIA) {
             position++;
         }
-    }
-
-    private String buildStringPosition() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            stringBuilder.append(POSITION_CHARACTOR);
-        }
-        return stringBuilder.toString();
     }
 
     private void validateEmptyName(String name) {
@@ -73,10 +63,5 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-        return name + TO_STRING_CONJUNCTION + buildStringPosition();
     }
 }
