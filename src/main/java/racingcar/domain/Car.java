@@ -11,6 +11,12 @@ public class Car {
 		this.name = name;
 	}
 
+	public Car(String name, int position) {
+		CarNameValidator.validateName(name);
+		this.name = name;
+		this.position = position;
+	}
+
 	public String getName() {
 		return name;
 	}

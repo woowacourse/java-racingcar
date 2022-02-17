@@ -20,6 +20,10 @@ public class Cars {
 		}
 	}
 
+	public Cars(List<Car> cars) {
+		this.cars.addAll(cars);
+	}
+
 	public List<Car> getCars() {
 		return cars;
 	}
