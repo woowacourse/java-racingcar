@@ -9,7 +9,7 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름이 공백인 경우")
-	public void nameEmptyTest() {
+	public void testNameEmpty() {
 		//given
 		String name = " ";
 		//when
@@ -21,7 +21,7 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름이 5자 이상인 경우")
-	public void nameSizeOverFiveTest() {
+	public void testNameSizeOverFive() {
 		//given
 		String name = "주리짱짱짱걸";
 		//when
@@ -33,7 +33,7 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름이 5자 이하인 경우")
-	public void nameSizeLowerFiveTest() {
+	public void testNameSizeLowerFive() {
 		//given
 		String name = "주리짱짱걸";
 		//when
@@ -44,7 +44,7 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름에 특수문자가 들어간 경우")
-	public void spatialCharInNameTest() {
+	public void testSpatialCharInName() {
 		//given
 		String name = "*주리*";
 		//when
@@ -56,7 +56,7 @@ class NameTest {
 
 	@Test
 	@DisplayName("이름에 특수문자가 들어간 경우지만 '_'인 경우")
-	public void spatialCharInNameTestWithException() {
+	public void testSpatialCharInNameWithException() {
 		//given
 		String name = "주_리";
 		//when

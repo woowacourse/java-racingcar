@@ -9,7 +9,7 @@ class RoundCountTest {
 
 	@DisplayName("빈_문자열_입력된_경우")
 	@Test
-	public void countEmptyTest() {
+	public void testCountEmpty() {
 		String input = "";
 		assertThatThrownBy(() -> {
 			new RoundCount(input);
@@ -18,7 +18,7 @@ class RoundCountTest {
 
 	@DisplayName("숫자가_아닐_경우")
 	@Test
-	public void countMatchNumberTest() {
+	public void testCountMatchNumber() {
 		String input = "a";
 		assertThatThrownBy(() -> {
 			new RoundCount(input);
@@ -27,7 +27,7 @@ class RoundCountTest {
 
 	@DisplayName("카운트가 0인 경우")
 	@Test
-	public void CountOverZeroTest() {
+	public void testCountOverZero() {
 		String input = "0";
 		assertThatThrownBy(() -> {
 			new RoundCount(input);
@@ -36,7 +36,7 @@ class RoundCountTest {
 
 	@DisplayName("정상적인 경우")
 	@Test
-	public void CountCreateTest() {
+	public void testCountCreate() {
 		String input = "13";
 		assertThat(new RoundCount(input).getRoundCount()).isEqualTo(13);
 	}
