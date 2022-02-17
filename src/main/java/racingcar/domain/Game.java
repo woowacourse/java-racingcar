@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import racingcar.dto.CarDto;
-import racingcar.service.DetermineMovement;
+import racingcar.service.DetermineMovementByRandomNumber;
 import racingcar.service.MoveOrStop;
 import racingcar.view.InputView.InputView;
 
@@ -12,7 +12,7 @@ public class Game {
     private int trialCount;
     private final MoveOrStop moveOrStop;
 
-    public Game(InputView inputView,DetermineMovement moveOrStop){
+    public Game(InputView inputView, DetermineMovementByRandomNumber moveOrStop){
         cars = new Cars(inputView.inputCarNames());
         trialCount = inputView.inputTrialCount();
         this.moveOrStop = moveOrStop;
