@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 import static racingcar.util.StringUtils.splitByDelimiter;
 import static racingcar.util.StringUtils.stripStringArray;
