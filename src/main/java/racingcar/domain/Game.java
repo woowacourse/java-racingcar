@@ -1,7 +1,9 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import racingcar.view.Input;
+import racingcar.view.Output;
 
 public class Game {
 
