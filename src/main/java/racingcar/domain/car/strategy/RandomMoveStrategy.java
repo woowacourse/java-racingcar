@@ -1,18 +1,12 @@
 package racingcar.domain.car.strategy;
 
-import java.util.Random;
+import racingcar.utils.RandomUtil;
 
 public class RandomMoveStrategy implements MoveStrategy {
 
-    private static final int CONDITION_TO_MOVE = 4;
-    private static final int EXCLUSIVE_RANDOM_START = 10;
     private static final int INCLUSIVE_RANDOM_START = 0;
-    private final Random random;
-
-    public RandomMoveStrategy() {
-        random = new Random();
-        random.setSeed(System.currentTimeMillis());
-    }
+    private static final int EXCLUSIVE_RANDOM_END = 10;
+    private static final int CONDITION_TO_MOVE = 4;
 
     @Override
     public boolean isPossibleToMove() {
@@ -20,8 +14,7 @@ public class RandomMoveStrategy implements MoveStrategy {
     }
 
     private int pickOne() {
-        final int size = EXCLUSIVE_RANDOM_START - INCLUSIVE_RANDOM_START;
-        return random.nextInt(size) + INCLUSIVE_RANDOM_START;
+        return RandomUtil.pickNumberInRange(INCLUSIVE_RANDOM_START, EXCLUSIVE_RANDOM_END);
     }
 
 }
