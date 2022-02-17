@@ -1,25 +1,25 @@
-package racingcar.controller;
+package racingcar.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
+import racingcar.controller.RacingGame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RacingGameTest {
-    RacingGame raceController;
+public class CarsTest {
+    Cars cars = Cars.getInstance();
 
     @BeforeEach
     public void beforeEach() {
         String[] defaultCarNames = {};
-        raceController = new RacingGame(defaultCarNames,0);
+        cars.removeAll();
     }
 
     @Test
     public void 자동차_저장_확인() {
-        raceController.insertCarFromCarNames(new String[]{"A", "B", "C"});
-        assertThat(raceController.carCount()).isEqualTo(3);
+        cars.insertCarFromCarNames(new String[]{"A", "B", "C"});
+        assertThat(cars.carCount()).isEqualTo(3);
     }
 
     @Test
@@ -29,10 +29,10 @@ public class RacingGameTest {
         Car loser1 = new Car("B", () -> 5);
         Car loser2 = new Car("C", () -> 5);
         setPosition(winner, 1);
-        raceController.insertCar(winner);
-        raceController.insertCar(loser1);
-        raceController.insertCar(loser2);
-        assertThat(raceController.getWinners()).contains("A");
+        cars.insertCar(winner);
+        cars.insertCar(loser1);
+        cars.insertCar(loser2);
+        assertThat(cars.getWinners()).contains("A");
     }
 
     @Test
@@ -43,10 +43,10 @@ public class RacingGameTest {
         Car loser = new Car("C", () -> 5);
         setPosition(winner1, 5);
         setPosition(winner2, 5);
-        raceController.insertCar(winner1);
-        raceController.insertCar(winner2);
-        raceController.insertCar(loser);
-        assertThat(raceController.getWinners()).contains("A","B");
+        cars.insertCar(winner1);
+        cars.insertCar(winner2);
+        cars.insertCar(loser);
+        assertThat(cars.getWinners()).contains("A","B");
     }
 
     private void setPosition(Car car, int count) {
