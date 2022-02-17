@@ -15,6 +15,12 @@ public class Output {
         System.out.println();
     }
 
+    public void printWinner(Winners winners) {
+        System.out.printf("%s가 최종 우승했습니다.", winners.getWinners().stream()
+            .map(Name::toString)
+            .collect(Collectors.joining(NAME_DELIMITER)));
+    }
+
     private void printRacingProgress(CarValue car) {
         System.out.printf("%s : %s%n", car.getName(), getPositionString(car.getPosition()));
     }
@@ -25,11 +31,5 @@ public class Output {
             builder.append(CAR_ADVANCE_EXPRESSION);
         }
         return builder.toString();
-    }
-
-    public void printWinner(Winners winners) {
-        System.out.printf("%s가 최종 우승했습니다.", winners.getWinners().stream()
-            .map(Name::toString)
-            .collect(Collectors.joining(NAME_DELIMITER)));
     }
 }

@@ -13,10 +13,8 @@ public class MovingNumber {
         this.number = number;
     }
 
-    private void validateRange(int number) {
-        if (number < MINIMUM_RANGE || number > MAXIMUM_RANGE) {
-            throw new IllegalArgumentException("숫자는 0과 9사이어야 합니다.");
-        }
+    public static MovingNumber create(int number) {
+        return new MovingNumber(number);
     }
 
     public int value() {
@@ -40,7 +38,9 @@ public class MovingNumber {
         return Objects.hash(number);
     }
 
-    public static MovingNumber create(int number) {
-        return new MovingNumber(number);
+    private void validateRange(int number) {
+        if (number < MINIMUM_RANGE || number > MAXIMUM_RANGE) {
+            throw new IllegalArgumentException("숫자는 0과 9사이어야 합니다.");
+        }
     }
 }

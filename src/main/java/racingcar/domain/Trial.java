@@ -12,12 +12,6 @@ public class Trial {
         this.count = count;
     }
 
-    private void validateRange(int count) {
-        if (count < MINIMUM) {
-            throw new IllegalArgumentException("시도 횟수는 1 이상을 입력해주세요.");
-        }
-    }
-
     public void minus() {
         if (count >= MINIMUM) {
             this.count--;
@@ -51,5 +45,11 @@ public class Trial {
 
     public static Trial create(int count) {
         return new Trial(count);
+    }
+
+    private void validateRange(int count) {
+        if (count < MINIMUM) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상을 입력해주세요.");
+        }
     }
 }

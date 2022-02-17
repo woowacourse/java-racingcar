@@ -11,6 +11,10 @@ public class CarValue {
         this.position = position;
     }
 
+    public static CarValue create(String name, int position) {
+        return new CarValue(name, position);
+    }
+
     public String getName() {
         return name;
     }
@@ -34,9 +38,5 @@ public class CarValue {
     @Override
     public int hashCode() {
         return Objects.hash(name, position);
-    }
-
-    public static CarValue create(String name, int position) {
-        return new CarValue(name, position);
     }
 }

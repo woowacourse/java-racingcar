@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,10 +8,9 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.vo.Name;
 import racingcar.dto.Winners;
 import racingcar.vo.MovingNumber;
-import static org.assertj.core.api.Assertions.*;
+import racingcar.vo.Name;
 
 public class CarsTest {
 

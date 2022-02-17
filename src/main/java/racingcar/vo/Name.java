@@ -13,14 +13,8 @@ public class Name {
         this.name = name;
     }
 
-    private void validateLength(String name) {
-        if (name.length() > MAXIMUM_LENGTH) {
-            throw new IllegalArgumentException(String.format("이름은 %d글자가 넘을 수 없습니다. :%d", MAXIMUM_LENGTH, name.length()));
-        }
-    }
-
-    private String removeLeadingAndTrailingSpace(String name) {
-        return name.trim();
+    public static Name create(String name) {
+        return new Name(name);
     }
 
     @Override
@@ -45,7 +39,13 @@ public class Name {
         return Objects.hash(name);
     }
 
-    public static Name create(String name) {
-        return new Name(name);
+    private void validateLength(String name) {
+        if (name.length() > MAXIMUM_LENGTH) {
+            throw new IllegalArgumentException(String.format("이름은 %d글자가 넘을 수 없습니다. :%d", MAXIMUM_LENGTH, name.length()));
+        }
+    }
+
+    private String removeLeadingAndTrailingSpace(String name) {
+        return name.trim();
     }
 }

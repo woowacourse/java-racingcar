@@ -22,12 +22,6 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    private void validateRange(int number) {
-        if (number < MINIMUM_ADVANCE_RANGE || number > MAXIMUM_ADVANCE_RANGE) {
-            throw new IllegalArgumentException("유효한 범위가 아닙니다.");
-        }
-    }
-
     public Name getName() {
         return name;
     }
@@ -43,5 +37,11 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car car) {
         return this.position - car.position;
+    }
+
+    private void validateRange(int number) {
+        if (number < MINIMUM_ADVANCE_RANGE || number > MAXIMUM_ADVANCE_RANGE) {
+            throw new IllegalArgumentException("유효한 범위가 아닙니다.");
+        }
     }
 }

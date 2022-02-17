@@ -27,12 +27,6 @@ public class Cars {
         return pickWinners(getMaxPosition());
     }
 
-    private List<Car> convertNamesToCars(List<Name> names) {
-        return names.stream()
-            .map(Car::new)
-            .collect(Collectors.toList());
-    }
-
     public List<CarValue> getCars() {
         return this.cars.stream()
             .map(this::carToCarValue)
@@ -41,6 +35,12 @@ public class Cars {
 
     public int size() {
         return this.cars.size();
+    }
+
+    private List<Car> convertNamesToCars(List<Name> names) {
+        return names.stream()
+            .map(Car::new)
+            .collect(Collectors.toList());
     }
 
     private void validateSize(int size) {
