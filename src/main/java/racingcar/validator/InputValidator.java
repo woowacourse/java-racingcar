@@ -21,32 +21,32 @@ public class InputValidator {
 
     public static void checkCarNames(List<String> carNames) {
         for (String carName : carNames) {
-            carNameLengthException(carName);
-            carNameIsEmptyException(carName);
-            carNameIsSpaceException(carName);
+            checkCarNameLength(carName);
+            checkCarNameNotFound(carName);
+            checkCarNameIsSpace(carName);
         }
-        carNameDuplicationException(carNames);
+        checkCarNameDuplicated(carNames);
     }
 
-    private static void carNameLengthException(String carName) {
+    private static void checkCarNameLength(String carName) {
         if (carName.length() > MAX_CAR_NAME_LENGTH) {
             throw new CarNameLengthOverException(carName.length());
         }
     }
 
-    private static void carNameIsEmptyException(String carName) {
+    private static void checkCarNameNotFound(String carName) {
         if (carName.equals(EMPTY_STRING)) {
             throw new CarNameNotFoundException();
         }
     }
 
-    private static void carNameIsSpaceException(String carName) {
+    private static void checkCarNameIsSpace(String carName) {
         if (carName.trim().equals(EMPTY_STRING)) {
             throw new CarNameSpaceException();
         }
     }
 
-    private static void carNameDuplicationException(List<String> carNames) {
+    private static void checkCarNameDuplicated(List<String> carNames) {
         long count = carNames.stream().distinct().count();
         if (count != carNames.size()) {
             throw new CarNameDuplicationException();
