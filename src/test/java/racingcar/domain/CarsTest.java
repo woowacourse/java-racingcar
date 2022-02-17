@@ -22,12 +22,7 @@ class CarsTest {
         int winnerPosition = 0;
 
         //when
-        for (int i = 0; i < size; i++) {
-            Car car = cars.getCar(i);
-
-            car.progress(MINIMUM_MOVE_CONDITION);
-        }
-        winnerPosition++;
+        winnerPosition = progressWithAllCars(size, cars, winnerPosition);
 
         cars.getCar(WINNER_INDEX).progress(MINIMUM_MOVE_CONDITION);
         winnerPosition++;
@@ -49,17 +44,22 @@ class CarsTest {
         int winnerPosition = 0;
 
         //when
-        for (int i = 0; i < size; i++) {
-            Car car = cars.getCar(i);
-
-            car.progress(MINIMUM_MOVE_CONDITION);
-        }
-        winnerPosition++;
+        winnerPosition = progressWithAllCars(size, cars, winnerPosition);
 
         //then
         List<String> winner = cars.getWinner(winnerPosition);
 
         assertThat(winner.size()).isEqualTo(4);
         assertThat(winnerPosition).isEqualTo(cars.getCar(WINNER_INDEX).getPosition());
+    }
+
+    private int progressWithAllCars(int size, Cars cars, int winnerPosition) {
+        for (int i = 0; i < size; i++) {
+            Car car = cars.getCar(i);
+
+            car.progress(MINIMUM_MOVE_CONDITION);
+        }
+        winnerPosition++;
+        return winnerPosition;
     }
 }
