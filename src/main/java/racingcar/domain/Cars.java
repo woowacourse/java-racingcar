@@ -38,11 +38,10 @@ public class Cars {
 		return maxPosition;
 	}
 
-	public List<String> getWinners() {
+	public List<Car> getWinners() {
 		int maxPosition = getMaxPosition();
 		return this.cars.stream()
 			.filter(car -> car.isSamePosition(maxPosition))
-			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
 
