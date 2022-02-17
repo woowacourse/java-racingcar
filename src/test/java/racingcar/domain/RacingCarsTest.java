@@ -3,6 +3,7 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.dto.WinnerDto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class RacingCarsTest {
 
     private static final int CAR_SIZE = 3;
-    private static final String WINNER_NAME_DELIMITER = ", ";
     private RacingCar racingCar1;
     private RacingCar racingCar2;
     private RacingCar racingCar3;
@@ -54,22 +54,24 @@ class RacingCarsTest {
         racingCar3.goOrStay(7);
 
         RacingCars racingCars = new RacingCars(racingCarList);
-        String winnersName = racingCars.getWinnersName();
-
-        assertThat(winnersName).isEqualTo(racingCar3.getName());
+        WinnerDto winners = racingCars.getWinners();
+        List<String> winnersNames = winners.getNames();
+        assertThat(winnersNames.get(0)).isEqualTo(racingCar3.getName());
     }
 
     @Test
-    @DisplayName("우승자가 여러명일때 쉼표를 이용해 구분하는 기능")
+    @DisplayName("우승자가 여러명일때 우승자 모두 반환하는 기능")
     public void getWinnersNameTest() {
 
         racingCar2.goOrStay(5);
         racingCar3.goOrStay(7);
         RacingCars racingCars = new RacingCars(racingCarList);
-        String actual = racingCars.getWinnersName();
-        String winnersName = racingCar2.getName() + WINNER_NAME_DELIMITER + racingCar3.getName();
+        WinnerDto winners = racingCars.getWinners();
+        List<String> winnersNames = winners.getNames();
 
-        assertThat(actual).isEqualTo(winnersName);
+        assertThat(winnersNames.get(0)).isEqualTo(racingCar2.getName());
+        assertThat(winnersNames.get(1)).isEqualTo(racingCar3.getName());
+
     }
 
 }

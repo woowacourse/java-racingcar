@@ -39,7 +39,7 @@ public class RacingGame {
     }
 
     public void finish() {
-        OutputView.printWinners(racingCars.getWinnersName());
+        OutputView.printWinners(racingCars);
     }
 
 }

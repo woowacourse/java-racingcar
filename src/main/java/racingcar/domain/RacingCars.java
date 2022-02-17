@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.dto.WinnerDto;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class RacingCars {
 
-    private static final String WINNER_NAME_DELIMITER = ", ";
     private final List<RacingCar> racingCars;
 
     public RacingCars() {
@@ -28,18 +29,16 @@ public class RacingCars {
         return racingCars;
     }
 
-
-    public String getWinnersName() {
-        ArrayList<RacingCar> winners = getWinners();
+    public WinnerDto getWinners() {
+        ArrayList<RacingCar> winnersCandidate = getWinnersCandidate();
         ArrayList<String> winnersName = new ArrayList<>();
-        for (RacingCar winner : winners) {
+        for (RacingCar winner : winnersCandidate) {
             winnersName.add(winner.getName());
         }
-        return String.join(WINNER_NAME_DELIMITER, winnersName);
+        return new WinnerDto(winnersName);
     }
 
-    private ArrayList<RacingCar> getWinners() {
-
+    private ArrayList<RacingCar> getWinnersCandidate() {
         RacingCar racingCarOfMaxPosition = getRacingCarWithMaxPosition();
 
         return racingCars.stream()
