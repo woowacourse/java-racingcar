@@ -1,11 +1,9 @@
 package racingcar.controller;
 
-import java.util.Arrays;
-
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
-import racingcar.model.car.Name;
 import racingcar.model.trycount.TryCount;
+import racingcar.util.InputFormator;
 import racingcar.util.MovableStrategy;
 import racingcar.util.NumberValidator;
 import racingcar.util.RacingCarMovableStrategy;
@@ -30,24 +28,14 @@ public class RaceController {
 
     public void setUpCars() {
         try {
-            cars = getCarsFromInput(InputView.inputNames());
+            InputFormator.toNameList(InputView.inputNames())
+                .stream()
+                .map(name -> new Car(name))
+                .forEach(cars::add);
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception);
             setUpCars();
         }
-    }
-
-    public Cars getCarsFromInput(String input) {
-        Cars cars = new Cars();
-        String[] names = input.split(INPUT_DELIMITER);
-        if (names.length == 0) {
-            throw new IllegalArgumentException("잘못된 입력입니다. 다시 입력해주세요.");
-        }
-        Arrays.stream(names)
-            .map(Name::new)
-            .map(name -> new Car(name))
-            .forEach(cars::add);
-        return cars;
     }
 
     public void setUpTryCount() {
