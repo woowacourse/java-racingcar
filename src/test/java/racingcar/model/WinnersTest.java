@@ -38,7 +38,7 @@ class WinnersTest {
         cars.add(new Car(name1));
 
         Car car1 = new Car(name2);
-        car1.goOrStop(6);
+        car1.go(6);
         cars.add(car1);
 
         // when
@@ -56,8 +56,8 @@ class WinnersTest {
         String name = "연로그";
 
         Car car = new Car(name);
-        car.goOrStop(6);
-        car.goOrStop(6);
+        car.go(6);
+        car.go(6);
 
         List<Car> cars = new ArrayList<>();
         cars.add(car);

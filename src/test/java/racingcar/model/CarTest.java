@@ -38,7 +38,7 @@ class CarTest {
         Car car = new Car("test");
 
         // when
-        car.goOrStop(input);
+        car.go(input);
 
         // then
         assertThat(car.getPosition()).isEqualTo(expect);
