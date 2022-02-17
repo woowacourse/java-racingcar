@@ -8,9 +8,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@SuppressWarnings("NonAsciiCharacters")
 class CarTest {
     @Test
+    @DisplayName("자동차 생성")
     public void create() {
         // given
         String name = "test1";
@@ -24,6 +24,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "123456", " "})
+    @DisplayName("자동차 생성 실패")
     public void createFail(String name) {
         // then
         assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
@@ -31,6 +32,7 @@ class CarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"6:1", "3:0"}, delimiter = ':')
+    @DisplayName("자동차 이동")
     public void go(int input, int expect) {
         // given
         Car car = new Car("test");

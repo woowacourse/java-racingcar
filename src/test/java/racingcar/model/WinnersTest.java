@@ -4,12 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@SuppressWarnings("NonAsciiCharacters")
 class WinnersTest {
     @Test
-    void 공동_우승자() {
+    @DisplayName("공동 우승자")
+    void many() {
         // given
         String name1 = "오찌";
         String name2 = "연로그";
@@ -27,7 +28,8 @@ class WinnersTest {
     }
 
     @Test
-    void 우승자_1명() {
+    @DisplayName("우승자 1명")
+    void one() {
         // given
         String name1 = "오찌";
         String name2 = "연로그";
@@ -48,7 +50,8 @@ class WinnersTest {
     }
 
     @Test
-    void maxPosition_구하기() {
+    @DisplayName("maxPosition 구하기")
+    void maxPosition() {
         // given
         List<Car> cars = new ArrayList<>();
         Car car = new Car("연로그");
