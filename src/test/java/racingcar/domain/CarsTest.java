@@ -10,15 +10,17 @@ import org.junit.jupiter.api.Test;
 
 public class CarsTest {
 
+    @DisplayName("자동차 2개 미만")
     @Test
-    void 자동차_2개_미만() {
+    void carSizeException1() {
         assertThatThrownBy(() -> Cars.withNames(List.of("rick")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차는 2대 이상 5대 이하이어야 합니다.");
     }
 
+    @DisplayName("자동차 5개 초과")
     @Test
-    void 자동차_5개_초과() {
+    void carSizeException2() {
         assertThatThrownBy(
                 () -> Cars.withNames(List.of("rick", "huni", "sudal", "ukong", "tomy", "pobi")))
                 .isInstanceOf(IllegalArgumentException.class)
