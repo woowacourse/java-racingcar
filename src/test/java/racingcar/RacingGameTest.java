@@ -1,8 +1,10 @@
-package racingcar.domain;
+package racingcar;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.CarDTO;
+import racingcar.domain.RacingGame;
 
 import java.util.List;
 

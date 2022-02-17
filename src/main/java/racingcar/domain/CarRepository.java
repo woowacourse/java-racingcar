@@ -12,7 +12,7 @@ public class CarRepository {
 
     private Set<Car> cars = new HashSet<>();
 
-    CarRepository(String[] names) {
+    public CarRepository(String[] names) {
         validateDuplication(names);
 
         for (String name : names) {
