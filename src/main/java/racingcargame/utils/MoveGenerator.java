@@ -6,8 +6,8 @@ public class MoveGenerator implements Move {
 
     private final NumberGenerator numberGenerator;
 
-    public MoveGenerator() {
-        numberGenerator = new RandomNumberGenerator();
+    public MoveGenerator(final NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
     }
 
     public int getMoveValue() {
