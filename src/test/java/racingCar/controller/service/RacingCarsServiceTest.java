@@ -50,8 +50,13 @@ public class RacingCarsServiceTest {
         String result = out.toString();
 
         //then
-        assertThat(Arrays.stream(result.split(" ")).filter(s -> s.contains("juri")).count() == 5 &&
-                Arrays.stream(result.split(" ")).filter(s -> s.contains("hunch")).count() == 5)
+        assertThat(
+                Arrays.stream(result.split(" "))
+                        .filter(s -> s.contains("juri"))
+                        .count() == 5 &&
+                Arrays.stream(result.split(" "))
+                        .filter(s -> s.contains("hunch"))
+                        .count() == 5)
                 .isTrue();
     }
 
@@ -61,16 +66,13 @@ public class RacingCarsServiceTest {
         carsService.playGame();
 
         //when
-        int max = carsService.cars.get().stream()
-                .mapToInt(carDTO -> carDTO.position)
-                .max()
-                .orElse(-1);
+        int max = carsService.cars.getMaxPosition();
         List<CarDTO> result = carsService.cars.get().stream()
                 .filter(carDTO -> carDTO.position == max)
                 .collect(Collectors.toList());
 
         //then
-        assertThat(result.get(0).name)
-                .isEqualTo(carsService.getWinnerCars().get(0).name);
+        assertThat(result)
+                .isEqualTo(carsService.getWinnerCars());
     }
 }
