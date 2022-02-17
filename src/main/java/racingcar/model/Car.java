@@ -17,9 +17,13 @@ public class Car implements Comparable<Car> {
     }
 
     public void moveForward(final int number) {
-        if (number >= MOVE_FORWARD_CONDITION) {
+        if (isMoveForward(number)) {
             position++;
         }
+    }
+
+    private boolean isMoveForward(final int number) {
+        return number >= MOVE_FORWARD_CONDITION;
     }
 
     public String getCarName() {
