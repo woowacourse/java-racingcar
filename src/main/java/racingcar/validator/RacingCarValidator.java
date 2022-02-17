@@ -39,15 +39,8 @@ public class RacingCarValidator {
 			throw new IllegalArgumentException(CAR_NAMES_LENGTH_ERROR);
 		}
 
-		Set<Car> overlapChecker = new HashSet<>();
-		for (Car carName : carNames) {
-			isDuplicate(carName, overlapChecker);
-			overlapChecker.add(carName);
-		}
-	}
-
-	private static void isDuplicate(Car carName, Set<Car> overlapChecker) {
-		if(overlapChecker.contains(carName)) {
+		Set<Car> overlapChecker = new HashSet<>(carNames);
+		if(overlapChecker.size() != carNames.size()) {
 			throw new IllegalArgumentException(CAR_NAMES_DUPLICATE_ERROR);
 		}
 	}
