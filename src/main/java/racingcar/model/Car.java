@@ -1,10 +1,9 @@
 package racingcar.model;
 
-import racingcar.validator.NameValidator;
-
 public class Car {
 
 	private static final int MOVE_CRITERIA = 4;
+
 	private final Name name;
 	private int position;
 

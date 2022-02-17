@@ -7,7 +7,6 @@ public class Name {
 
 	private static final String SPACIAL_CHAR_REGEX = "[가-힣\\w_]*";
 	private static final int MAXIMUM_NAME_SIZE = 5;
-	private static final String INPUT_STRING_NULL_ERROR_MSG = "빈 값이 입력되었습니다.";
 	private static final String NAME_EMPTY_ERROR_MSG = "이름이 공백일 수 없습니다.";
 	private static final String NAME_MAX_SIZE_WARNING_MSG = "이름이 5자보다 클 수 없습니다.";
 	private static final String NAME_SPATIAL_CHAR_WARNING_MSG = "이름에 특수문자를 입력할 수 없습니다. (단, '_' 제외)";
@@ -24,16 +23,9 @@ public class Name {
 	}
 
 	private void checkName(String name) {
-		checkNull(name);
 		checkSpace(name);
 		checkNameSize(name);
 		checkSpecialChar(name);
-	}
-
-	private void checkNull(String inputString) {
-		if (inputString == null || inputString.trim().isEmpty()) {
-			throw new IllegalArgumentException(INPUT_STRING_NULL_ERROR_MSG);
-		}
 	}
 
 	private void checkSpace(String name) {
