@@ -7,10 +7,8 @@ import racingcar.view.OutputView;
 public class GameController {
 
     public void run() {
-        InputView.inputCarNames();
-        String carNames = InputView.getInput();
-        InputView.inputTrialNum();
-        String trialNum = InputView.getInput();
+        String carNames =  InputView.inputCarNames();
+        String trialNum = InputView.inputTrialNum();
 
         RacingGame racingGame = new RacingGame(carNames, trialNum);
         startRace(racingGame);
