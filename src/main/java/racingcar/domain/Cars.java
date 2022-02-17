@@ -6,14 +6,12 @@ import java.util.List;
 import racingcar.util.RandomGenerator;
 
 public class Cars {
-    public static final int INITIAL_POSITION = 0;
-
     private final List<Car> cars;
 
     public Cars(String[] names) {
         this.cars = new ArrayList<>();
         for (String name : names) {
-            cars.add(new Car(name, INITIAL_POSITION));
+            cars.add(new Car(name));
         }
     }
 
