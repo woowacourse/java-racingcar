@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.util.RandomUtil;
-import racingcar.view.Output;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,11 +28,8 @@ public class Cars {
                 .max(Comparator.comparing(Car::getPosition)).get();
     }
 
-    public void showCarsStatus() {
-        for (Car car : cars) {
-            Output.printCarStatus(car);
-        }
-        Output.printBlankLine();
+    public List<Car> getCars() {
+        return cars;
     }
 
     @Override

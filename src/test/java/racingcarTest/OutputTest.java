@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.util.Validation;
+import racingcar.view.Output;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -53,7 +54,7 @@ public class OutputTest {
         carList.add(carCat);
 
         Cars cars = new Cars(carList);
-        cars.showCarsStatus();
+        Output.printCarsStatus(cars.getCars());
         assertThat(outContent.toString()).contains("dog : -----");
         assertThat(outContent.toString()).contains("cat : ---");
     }

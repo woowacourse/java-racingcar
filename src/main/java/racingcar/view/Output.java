@@ -16,8 +16,10 @@ public class Output {
         System.out.println(PRINT_RESULT);
     };
 
-    public static void printCarStatus(Car car) {
-        System.out.println(car.getName() + INFO_BETWEEN_WORD + POSITION_WORD.repeat(car.getPosition()));
+    public static void printCarsStatus(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.getName() + INFO_BETWEEN_WORD + POSITION_WORD.repeat(car.getPosition()));
+        }
     }
 
     public static void printWinner(List<Car> winners) {
