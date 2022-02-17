@@ -1,12 +1,16 @@
 package racingcar.controller;
 
-import racingcar.model.car.Cars;
-import racingcar.model.car.Names;
-import racingcar.model.trycount.TryCount;
+import racingcar.domain.car.Cars;
+import racingcar.domain.car.Name;
+import racingcar.domain.trycount.TryCount;
+import racingcar.util.RandomGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.List;
+
 public class RaceController {
+    private static final RandomGenerator randomGenerator = new RandomGenerator();
     private TryCount tryCount;
     private Cars cars = Cars.create();
 
@@ -15,8 +19,7 @@ public class RaceController {
 
     public void setUpCars() {
         try {
-            String input = InputView.inputNamesUi();
-            Names names = Names.from(input);
+            List<Name> names = InputView.inputNamesUi();
             cars = Cars.from(names);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorUi(exception);
@@ -38,7 +41,7 @@ public class RaceController {
     public void raceStart() {
         OutputView.printRaceResultUi();
         for (int i = 0; i < tryCount.toInt(); i++) {
-            cars.moveAll();
+            cars.moveAll(randomGenerator);
             OutputView.printCarsUi(cars);
         }
     }

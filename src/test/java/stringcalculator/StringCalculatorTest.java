@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringCalculatorTest {
-    public static final char DELIMITER = ' ';
+    private static final char DELIMITER = ' ';
 
     @DisplayName("null 또는 빈 문자가 입력되었을 경우 0을 반환한다")
     @Test
@@ -47,7 +47,7 @@ public class StringCalculatorTest {
         assertThat(StringCalculator.sum(input)).isEqualTo(6);
     }
 
-    @DisplayName("음수를 입력받으면 예외를 Throw 한다")
+    @DisplayName("음수를 입력받으면 예외가 발생 한다")
     @ParameterizedTest
     @ValueSource(strings = {"-3", "3,-5", "//;\n1;-2;3"})
     public void negative(String input) {

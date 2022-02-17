@@ -1,4 +1,4 @@
-package racingcar.model.car;
+package racingcar.domain.car;
 
 import java.util.Objects;
 
@@ -17,10 +17,13 @@ public class Car implements Comparable<Car> {
         return new Car(Name.from(name), Position.from(position));
     }
 
-    public void move(int value) {
-        if (value >= MIN_MOVABLE_VALUE) {
+    public boolean move(int value) {
+        boolean willMove = value >= MIN_MOVABLE_VALUE;
+        if (willMove) {
             position = position.increase();
         }
+
+        return willMove;
     }
 
     public Position getPosition() {
