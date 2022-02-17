@@ -31,7 +31,7 @@ public class RacingCarGame {
         cars.moveCars();
     }
 
-    public List<CarDto> sendPositionOfRacingCars() {
+    public List<CarDto> sendRacingCarsInformation() {
         return cars.bringCarsInformation();
     }
 

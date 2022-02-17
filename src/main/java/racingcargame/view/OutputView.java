@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.StringJoiner;
 import java.util.stream.IntStream;
+import racingcargame.dto.CarDto;
 
 public class OutputView {
     private static final String NOW_RACE_PROGRESS_GUIDE_MESSAGE = "실행 결과";
@@ -17,10 +19,10 @@ public class OutputView {
         System.out.println(NOW_RACE_PROGRESS_GUIDE_MESSAGE);
     }
 
-    public void showCurrentRaceStatus(HashMap<String, Integer> racingCarsInformation) {
-        racingCarsInformation.forEach((racingCarName, racingCarPosition) -> {
-            showRacingCarName(racingCarName);
-            showRacingCarPosition(racingCarPosition);
+    public void showCurrentRaceStatus(List<CarDto> racingCarsInformation) {
+        racingCarsInformation.forEach((racingCarInformation) -> {
+            showRacingCarName(racingCarInformation.getName());
+            showRacingCarPosition(racingCarInformation.getPosition());
         });
         newLine();
     }
@@ -34,13 +36,10 @@ public class OutputView {
         newLine();
     }
 
-    public void showWinners(List<String> winners) {
-        Queue<String> winner = new LinkedList<>(winners);
-
-        while (winner.size() > 1) {
-            System.out.print(winner.poll() + CAR_NAME_SEPARATOR);
-        }
-        System.out.print(winner.poll() + GAME_WINNER_MESSAGE);
+    public void showWinners(List<CarDto> winners) {
+        final StringJoiner winnerNames = new StringJoiner(", ");
+        winners.forEach(winner -> winnerNames.add(winner.getName()));
+        System.out.println(winnerNames);
     }
 
     private void newLine() {

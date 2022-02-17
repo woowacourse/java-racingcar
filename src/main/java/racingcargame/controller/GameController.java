@@ -33,7 +33,7 @@ public class GameController {
         outputView.showRaceResultMessage();
         while (racingCarGame.isNotOverRace()) {
             racingCarGame.startRace();
-            outputView.showCurrentRaceStatus(racingCarGame.sendPositionOfRacingCars());
+            outputView.showCurrentRaceStatus(racingCarGame.sendRacingCarsInformation());
         }
     }
 
