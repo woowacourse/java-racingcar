@@ -35,7 +35,7 @@ public class GameController {
         racingGame = new RacingGame(cars, tryCount);
     }
 
-    public String[] inputCarNames() {
+    private String[] inputCarNames() {
         try {
             String[] carNames = inputView.inputCarNames();
             CarNamesValidator.validateCarNames(carNames);
@@ -52,7 +52,7 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
-    public int inputTryCount() {
+    private int inputTryCount() {
         try {
             String tryCountInput = inputView.inputTryCount();
             TryCountValidator.validateTryCount(tryCountInput);
