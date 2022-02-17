@@ -67,7 +67,8 @@ public class RacingCarsServiceTest {
 
         //when
         int max = carsService.cars.getMaxPosition();
-        List<CarDTO> result = carsService.cars.get().stream()
+        List<CarDTO> result = carsService.cars.get()
+                .stream()
                 .filter(carDTO -> carDTO.position == max)
                 .collect(Collectors.toList());
 
