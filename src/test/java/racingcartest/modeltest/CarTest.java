@@ -42,9 +42,9 @@ public class CarTest {
 		});
 	}
 
-	@DisplayName("전진 조건 테스트")
+	@DisplayName("전진 조건 테스트(전진 할 때)")
 	@Test
-	public void movePositionTest() {
+	public void movePositionTest_satisfied() {
 		//given
 		Car car = new Car("car");
 
@@ -53,6 +53,19 @@ public class CarTest {
 
 		//then
 		assertThat(car.getPosition()).isEqualTo(1);
+	}
+
+	@DisplayName("전진 조건 테스트(전진 안할 때)")
+	@Test
+	public void movePositionTest_unSatisfied() {
+		//given
+		Car car = new Car("car");
+
+		//when
+		car.movePosition(false);
+
+		//then
+		assertThat(car.getPosition()).isEqualTo(0);
 	}
 
 }
