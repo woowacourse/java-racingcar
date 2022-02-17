@@ -16,10 +16,9 @@ public class RacingCars {
 
     public RacingCars(List<String> carNames) {
         validateCar(carNames);
-        racingCars = new ArrayList<>();
-        for (String name : carNames) {
-            racingCars.add(new RacingCar(name));
-        }
+        racingCars = carNames.stream()
+            .map(RacingCar::new)
+            .collect(Collectors.toList());
     }
 
     private void validateCar(List<String> carNames) {
