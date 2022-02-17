@@ -30,4 +30,8 @@ public class Name {
             throw new IllegalArgumentException(NO_VALIDATE_NAME_LENGTH_ERROR_MESSAGE);
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

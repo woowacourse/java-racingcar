@@ -22,7 +22,7 @@ public class Car implements Comparable<Car> {
     }
 
     public CarDto changeToDto() {
-        return new CarDto(name, position);
+        return new CarDto(name.getName(), position.getPosition());
     }
 
     @Override

@@ -10,4 +10,8 @@ public class Position {
     public void move(final int moveValue) {
         position += moveValue;
     }
+
+    public int getPosition() {
+        return position;
+    }
 }
