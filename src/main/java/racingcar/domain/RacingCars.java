@@ -10,6 +10,7 @@ public class RacingCars {
     private static final int ANY_INDEX = 0;
     private static final int MINIMUM_CAR_NUMBER = 2;
     private static final String EXCEPTION_NUMBER_OF_CAR = "[ERROR] 경기를 위한 자동차는 최소 2대이상이여야 합니다.";
+    private static final String EXCEPTION_ARGUMENT_NULL = "[ERROR] 인자가 null입니다.";
     private final List<RacingCar> racingCarBucket;
 
     public RacingCars(List<String> carNameBucket) {
@@ -21,8 +22,15 @@ public class RacingCars {
     }
 
     private void validateCar(List<String> carNameBucket) {
+        checkArgumentIsNull(carNameBucket);
         checkNumberOfCar(carNameBucket);
         checkDuplicatedCarNameExist(carNameBucket);
+    }
+
+    private void checkArgumentIsNull(List<String> argument) {
+        if (argument == null) {
+            throw new IllegalArgumentException(EXCEPTION_ARGUMENT_NULL);
+        }
     }
 
     private void checkNumberOfCar(List<String> carNameBucket) {

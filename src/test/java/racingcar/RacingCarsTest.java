@@ -27,5 +27,11 @@ public class RacingCarsTest {
 		assertThatThrownBy(() -> new RacingCars(carNameBucket)).isInstanceOf(IllegalArgumentException.class);
 	}
 
+	@Test
+	@DisplayName("자동차 이름 리스트가 null일때 예외던지는지 확인")
+	public void validateCar_null() {
+		assertThatThrownBy(() -> new RacingCars(null)).isInstanceOf(IllegalArgumentException.class);
+	}
+
 
 }
