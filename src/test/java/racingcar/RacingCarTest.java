@@ -45,6 +45,13 @@ public class RacingCarTest {
     }
 
     @Test
+    @DisplayName("객체가 생성될 때 이름이 null인지 확인하는 테스트")
+    public void validateNAmeTest3() {
+        assertThatThrownBy(() -> new RacingCar(null)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @Test
     @DisplayName("두 자동차의 위치가 같을때 true를 반환하는지 확인하는 테스트")
     public void isSamePositionTest_True() {
         RacingCar sourceCar = new RacingCar("pobi");

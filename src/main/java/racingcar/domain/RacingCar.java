@@ -24,7 +24,7 @@ public class RacingCar {
     }
 
     private void checkCarNameIsEmpty(String name) {
-        if (name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(EXCEPTION_NO_NAME);
         }
     }
