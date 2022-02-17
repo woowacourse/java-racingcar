@@ -16,6 +16,11 @@ public class RacingGame {
         this.roundCount = initRoundCount(count);
     }
 
+    public void go() {
+        cars.go();
+        roundCount.minusOne();
+    }
+
     public List<CarDto> getWinnerCars() {
         return cars.getSamePositionCars(cars.getMaxPosition());
     }
@@ -30,9 +35,8 @@ public class RacingGame {
         return new RoundCount(count);
     }
 
-    public void go() {
-        cars.go();
-        roundCount.minusOne();
+    public List<CarDto> getResult() {
+        return cars.get();
     }
 
     public Cars getCars() {

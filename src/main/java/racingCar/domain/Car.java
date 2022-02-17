@@ -21,12 +21,12 @@ public class Car {
         }
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.toString();
     }
 
-    public Position getPosition() {
-        return position;
+    public int getPosition() {
+        return position.get();
     }
 
     @Override

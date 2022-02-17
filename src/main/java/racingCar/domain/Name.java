@@ -34,6 +34,9 @@ public class Name {
         if (this == obj) {
             return true;
         }
+        if (obj instanceof String) {
+            return name.equals(obj);
+        }
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }

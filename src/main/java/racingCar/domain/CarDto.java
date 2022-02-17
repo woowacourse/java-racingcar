@@ -7,8 +7,8 @@ public class CarDto {
     public int position;
 
     public CarDto(Car car) {
-        this.name = car.getName().toString();
-        this.position = car.getPosition().get();
+        this.name = car.getName();
+        this.position = car.getPosition();
     }
 
     @Override

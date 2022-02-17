@@ -22,6 +22,9 @@ public class Position {
         if (this == obj) {
             return true;
         }
+        if (obj instanceof Integer) {
+            return position == (int) obj;
+        }
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
