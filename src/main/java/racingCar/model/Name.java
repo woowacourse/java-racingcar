@@ -1,5 +1,6 @@
 package racingCar.model;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 import racingCar.model.exception.name.NameRangeException;
 import racingCar.model.exception.name.NameSpaceException;
@@ -31,5 +32,22 @@ public class Name {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Name objName = (Name) obj;
+        return Objects.equals(name, objName.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

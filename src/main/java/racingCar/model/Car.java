@@ -1,5 +1,7 @@
 package racingCar.model;
 
+import java.util.Objects;
+
 public class Car {
     private static final int GO_NUMBER = 4;
     public final Name name;
@@ -17,5 +19,22 @@ public class Car {
 
     public void move() {
         position.move();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Car car = (Car) obj;
+        return name.equals(car.name) && position.equals(car.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
