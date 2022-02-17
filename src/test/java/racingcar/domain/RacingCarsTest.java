@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,10 +37,29 @@ class RacingCarsTest {
     }
 
     @Test
-    @DisplayName("자동차 우승자 이름을 계산한다.")
-    void calculateWinnerNames() {
+    @DisplayName("다수 우승자이름을 계산한다.")
+    void calculateMultiWinnerNames() {
         final RacingCars racingCars = RacingCars.from("pobi,crong,honux");
         final List<String> winnerNames = racingCars.calculateWinnerNames();
         assertThat(winnerNames).containsExactly("pobi", "crong", "honux");
+    }
+
+    @Test
+    @DisplayName("단일 우승자이름을 계산한다.")
+    void calculateSingleWinnerName() {
+        // given
+        final RacingCar pobi = new RacingCar(new Name("pobi"), () -> true);
+        pobi.move();
+        final RacingCar crong = new RacingCar(new Name("crong"), () -> false);
+        final RacingCar honux = new RacingCar(new Name("honux"), () -> false);
+        final RacingCars racingCars = new RacingCars(Arrays.asList(pobi, crong, honux));
+
+        // when
+        final List<String> winnerName = racingCars.calculateWinnerNames();
+
+        assertAll(
+            () -> assertThat(winnerName.size()).isEqualTo(1),
+            () -> assertThat(winnerName).containsExactly("pobi")
+        );
     }
 }
