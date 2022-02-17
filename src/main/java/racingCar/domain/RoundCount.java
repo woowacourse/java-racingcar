@@ -3,6 +3,7 @@ package racingCar.domain;
 import racingCar.domain.exception.count.CountRangeException;
 
 public class RoundCount {
+    public static final int MINIMUM_NUM = 0;
     private int count;
 
     public RoundCount(int count) {
@@ -11,7 +12,7 @@ public class RoundCount {
     }
 
     private static void validate(int count) {
-        if (count <= 0) {
+        if (count <= MINIMUM_NUM) {
             throw new CountRangeException();
         }
     }
@@ -21,7 +22,7 @@ public class RoundCount {
     }
 
     public boolean isFinish() {
-        return count == 0;
+        return count == MINIMUM_NUM;
     }
 
     public int get() {
