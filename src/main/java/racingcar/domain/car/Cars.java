@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import racingcar.domain.car.strategy.MoveStrategy;
 import racingcar.domain.car.validator.CarsValidator;
+import racingcar.dto.CarStatusDto;
 
 public class Cars {
 

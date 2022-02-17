@@ -3,7 +3,7 @@ package racingcar.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.domain.car.CarStatusDto;
+import racingcar.dto.CarStatusDto;
 import racingcar.domain.car.Cars;
 import racingcar.domain.car.strategy.RandomMoveStrategy;
 import racingcar.domain.round.Round;
@@ -30,11 +30,8 @@ public class GameService {
         round.decreaseCount();
     }
 
-    public List<String> getCurrentStatuses() {
-        final List<CarStatusDto> statuses = cars.getStatuses();
-        return statuses.stream()
-                .map(CarStatusDto::toString)
-                .collect(Collectors.toUnmodifiableList());
+    public List<CarStatusDto> getCurrentStatuses() {
+        return cars.getStatuses();
     }
 
     public List<String> getWinnerNames() {

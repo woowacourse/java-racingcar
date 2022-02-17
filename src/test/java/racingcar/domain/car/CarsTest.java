@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.car.strategy.CustomMoveStrategy;
 import racingcar.domain.car.strategy.MoveStrategy;
 import racingcar.domain.car.strategy.TrueMoveStrategy;
+import racingcar.dto.CarStatusDto;
 import racingcar.exception.WrongArgumentException;
 
 class CarsTest {

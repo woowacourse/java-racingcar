@@ -2,6 +2,7 @@ package racingcar.view.output;
 
 import java.util.List;
 
+import racingcar.dto.CarStatusDto;
 import racingcar.utils.Delimiter;
 
 public class OutputView {
@@ -27,8 +28,10 @@ public class OutputView {
         printMessage(OutputMessage.PRINT_TITLE_OF_STATUS);
     }
 
-    public void printCarStatuses(final List<String> carStatuses) {
-        carStatuses.forEach(this::printMessage);
+    public void printCarStatuses(final List<CarStatusDto> carStatuses) {
+        carStatuses.stream()
+                .map(CarStatusDto::toString)
+                .forEach(this::printMessage);
         printEmptyLine();
     }
 

@@ -1,5 +1,6 @@
-package racingcar.domain.car;
+package racingcar.dto;
 
+import racingcar.domain.car.Car;
 import racingcar.utils.Delimiter;
 
 public class CarStatusDto {
