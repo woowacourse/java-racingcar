@@ -4,7 +4,7 @@ import racingcar.utils.Console;
 
 import static racingcar.utils.NumberConverter.*;
 import static racingcar.view.OutputView.*;
-import static racingcar.utils.NameValidator.*;
+import static racingcar.utils.Validator.*;
 
 public class InputView {
 
@@ -25,6 +25,8 @@ public class InputView {
     public static int insertRightNumber() {
         printNumberMessage();
         String input = Console.readLine();
-        return toInt(input);
+        int rightNumber = toInt(input);
+        checkPositiveNumber(rightNumber);
+        return rightNumber;
     }
 }

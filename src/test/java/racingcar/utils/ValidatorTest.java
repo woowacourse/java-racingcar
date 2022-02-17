@@ -4,9 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 import static racingcar.utils.NumberConverter.*;
-import static racingcar.utils.NameValidator.*;
+import static racingcar.utils.Validator.*;
 
-public class NameValidatorTest {
+@SuppressWarnings("NonAsciiCharacters")
+public class ValidatorTest {
 
     @Test
     void 이름_빈칸_실패() {
@@ -19,7 +20,7 @@ public class NameValidatorTest {
     @Test
     void 이름_없음_실패() {
         assertThatThrownBy(() ->
-                validateEachCarName(new String[]{"jae",""}))
+                validateEachCarName(new String[]{"jae", ""}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름 입력은 필수입니다.");
     }
@@ -65,7 +66,7 @@ public class NameValidatorTest {
     @Test
     void 횟수_음수_입력_실패() {
         assertThatThrownBy(() ->
-                toInt("-3"))
+                checkPositiveNumber(-3))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 횟수는 1 이상이어야 합니다.");
     }

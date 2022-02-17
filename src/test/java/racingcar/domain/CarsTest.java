@@ -1,35 +1,42 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingcar.utils.NumberGenerator;
 import racingcar.utils.StubNumberGenerator;
 
-import static org.assertj.core.api.Assertions.*;
+import java.util.List;
 
-public class CarsTest{
+import static org.assertj.core.api.SoftAssertions.*;
 
-    NumberGenerator numberGenerator;
+@SuppressWarnings("NonAsciiCharacters")
+public class CarsTest {
 
-    @BeforeEach
-    void setUp() {
-        numberGenerator = new StubNumberGenerator();
-    }
+    private StubNumberGenerator numberGenerator = new StubNumberGenerator();
 
     @Test
     void 자동차_우승_1명_성공() {
-        Cars cars = new Cars(new String[]{"jae","rick"});
+        Cars cars = new Cars(new String[]{"jae", "rick"});
+        numberGenerator.prepareStubNumbers(2, 3, 4);
         cars.moveCars(numberGenerator);
-        assertThat(cars.getWinners()).isEqualTo("rick가 최종 우승 했습니다.");
+
+        assertSoftly(softAssertions -> {
+            List<String> winners = cars.findWinners();
+            softAssertions.assertThat(winners).contains("rick");
+            softAssertions.assertThat(winners.size()).isEqualTo(1);
+        });
     }
 
     @Test
     void 자동차_우승_2명_성공() {
         Cars cars = new Cars(new String[]{"jae", "rick"});
-        for (int i = 0; i < 2; i++) {
-            cars.moveCars(numberGenerator);
-        }
-        assertThat(cars.getWinners()).isEqualTo("jae, rick가 최종 우승 했습니다.");
-    }
 
+        numberGenerator.prepareStubNumbers(2, 4, 4);
+        cars.moveCars(numberGenerator);
+
+        assertSoftly(softAssertions -> {
+            List<String> winners = cars.findWinners();
+            softAssertions.assertThat(winners).contains("rick");
+            softAssertions.assertThat(winners).contains("jae");
+            softAssertions.assertThat(winners.size()).isEqualTo(2);
+        });
+    }
 }

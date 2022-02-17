@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
 
     private static final int FORWARD_STANDARD = 4;
@@ -13,7 +14,6 @@ public class CarTest {
         Car car = new Car("jae");
         car.goForward(FORWARD_STANDARD);
         assertThat(car.getPosition()).isEqualTo(1);
-
     }
 
     @Test
@@ -21,15 +21,5 @@ public class CarTest {
         Car car = new Car("jae");
         car.goForward(FORWARD_STANDARD - 1);
         assertThat(car.getPosition()).isEqualTo(0);
-
     }
-
-    @Test
-    void 자동차_포지션_출력_성공() {
-        Car car = new Car("jae");
-        car.goForward(FORWARD_STANDARD);
-        assertThat(car.toString()).isEqualTo("jae : -");
-
-    }
-
 }

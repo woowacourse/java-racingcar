@@ -3,14 +3,11 @@ package racingcar.domain;
 import racingcar.utils.NumberGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Cars {
-
-    public static final String LIST_JOIN_DELIMITER = ", ";
-    public static final String WINNER_MESSAGE = "가 최종 우승 했습니다.";
-
 
     private final List<Car> cars;
     private final List<String> winners;
@@ -29,16 +26,16 @@ public class Cars {
         }
     }
 
-    public String getWinners() {
+    public List<String> findWinners() {
         int maxPosition = getMaxPosition();
         addWinnerNames(maxPosition);
-        return String.join(LIST_JOIN_DELIMITER, winners) + WINNER_MESSAGE;
+        return winners;
     }
 
     private void addWinnerNames(int position) {
         cars.stream()
-            .filter(car -> car.getPosition() == position)
-            .forEach(car -> winners.add(car.getName()));
+                .filter(car -> car.getPosition() == position)
+                .forEach(car -> winners.add(car.getName()));
     }
 
     private int getMaxPosition() {
@@ -48,13 +45,7 @@ public class Cars {
                 .orElseThrow(NoSuchElementException::new);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car)
-                    .append("\n");
-        }
-        return stringBuilder.toString();
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

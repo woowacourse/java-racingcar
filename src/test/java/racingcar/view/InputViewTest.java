@@ -8,7 +8,7 @@ import java.io.ByteArrayInputStream;
 import static org.assertj.core.api.Assertions.*;
 import static racingcar.view.InputView.*;
 
-
+@SuppressWarnings("NonAsciiCharacters")
 public class InputViewTest {
 
     private void systemIn(String input) {
@@ -42,10 +42,19 @@ public class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = "a")
-    void 횟수_입력_실패(String input) {
+    void 횟수_문자_입력_실패(String input) {
         systemIn(input);
         assertThatThrownBy(() -> insertRightNumber())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 횟수는 숫자로 입력해야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = "-1")
+    void 횟수_음수_입력_실패(String input) {
+        systemIn(input);
+        assertThatThrownBy(() -> insertRightNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 횟수는 1 이상이어야 합니다.");
     }
 }
