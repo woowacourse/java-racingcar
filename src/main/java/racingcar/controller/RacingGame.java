@@ -27,7 +27,7 @@ public class RacingGame {
 		return carRepository.getThisTurnResult();
 	}
 
-	public List<Car> getWinners() {
-		return carRepository.getWinners();
+	public List<String> getWinnersName() {
+		return carRepository.getWinnersName();
 	}
 }

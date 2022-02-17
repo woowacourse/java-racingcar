@@ -15,6 +15,6 @@ public class Application {
 			racingGame.race();
 			Output.printTurnResult(racingGame.getThisTurnResult());
 		}
-		Output.printWinner(racingGame.getWinners());
+		Output.printWinner(racingGame.getWinnersName());
 	}
 }

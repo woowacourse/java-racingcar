@@ -26,10 +26,11 @@ public class CarRepository {
 			.collect(Collectors.toList());
 	}
 
-	public List<Car> getWinners() {
+	public List<String> getWinnersName() {
 		final int farthestPosition = findFarthestPosition();
 		return cars.stream()
 			.filter((car) -> farthestPosition == car.getPosition())
+			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
 

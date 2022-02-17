@@ -26,14 +26,12 @@ public class Output {
 		System.out.print("\n");
 	}
 
-	public static void printWinner(final List<Car> winners) {
+	public static void printWinner(final List<String> winners) {
 		System.out.print(joinWinnerNames(winners) + RacingGameMessage.WINNER);
 	}
 
-	private static String joinWinnerNames(final List<Car> winners) {
-		final String[] winnerNames = winners.stream()
-			.map(Car::getName)
-			.toArray(String[]::new);
+	private static String joinWinnerNames(final List<String> winners) {
+		final String[] winnerNames = winners.toArray(String[]::new);
 		return String.join(", ", winnerNames);
 	}
 }
