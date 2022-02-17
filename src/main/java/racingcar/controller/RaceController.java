@@ -4,15 +4,18 @@ import java.util.Arrays;
 
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
+import racingcar.model.car.Name;
 import racingcar.model.trycount.TryCount;
 import racingcar.util.MovableStrategy;
+import racingcar.util.NumberValidator;
 import racingcar.util.RacingCarMovableStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
-    private final Cars cars = Cars.create();
+    private static final String INPUT_DELIMITER = ",";
     private final MovableStrategy racingCarMovableStrategy = new RacingCarMovableStrategy();
+    private Cars cars = new Cars();
     private TryCount tryCount;
 
     public RaceController() {
@@ -27,21 +30,31 @@ public class RaceController {
 
     public void setUpCars() {
         try {
-            String input = InputView.inputNames();
-            Arrays.stream(input.split(","))
-                .map(Car::from)
-                .forEach(cars::add);
-            cars.validateIsEmpty();
+            cars = getCarsFromInput(InputView.inputNames());
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception);
             setUpCars();
         }
     }
 
+    public Cars getCarsFromInput(String input) {
+        Cars cars = new Cars();
+        String[] names = input.split(INPUT_DELIMITER);
+        if (names.length == 0) {
+            throw new IllegalArgumentException("잘못된 입력입니다. 다시 입력해주세요.");
+        }
+        Arrays.stream(names)
+            .map(Name::new)
+            .map(name -> new Car(name))
+            .forEach(cars::add);
+        return cars;
+    }
+
     public void setUpTryCount() {
         try {
             String input = InputView.inputTryCount();
-            tryCount = TryCount.from(input);
+            NumberValidator.validateStringIsNumber(input);
+            tryCount = new TryCount(Integer.parseInt(input));
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception);
             setUpTryCount();

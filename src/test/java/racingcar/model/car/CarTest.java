@@ -15,7 +15,7 @@ public class CarTest {
         @Test
         @DisplayName("1칸 이동할 수 있다.")
         void it_increase_position() {
-            Car car = Car.of("car", 0);
+            Car car = new Car(new Name("car1"));
             car.move(new RacingCarMovableStrategy());
             assertThat(car.toDto().getPosition()).isEqualTo(1);
         }

@@ -9,17 +9,14 @@ public class Car implements Comparable<Car> {
     private final Name name;
     private Position position;
 
-    private Car(Name name, Position position) {
+    public Car(Name name) {
+        this(name, new Position());
+
+    }
+
+    public Car(Name name, Position position) {
         this.name = name;
         this.position = position;
-    }
-
-    public static Car from(String name) {
-        return new Car(Name.from(name), Position.create());
-    }
-
-    public static Car of(String name, int position) {
-        return new Car(Name.from(name), Position.from(position));
     }
 
     public void move(MovableStrategy movableStrategy) {

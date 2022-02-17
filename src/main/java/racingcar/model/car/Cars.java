@@ -10,22 +10,13 @@ import racingcar.dto.CarDto;
 import racingcar.util.MovableStrategy;
 
 public class Cars {
-    private final List<Car> cars;
+    private final List<Car> cars = new ArrayList<Car>();
 
-    private Cars(List<Car> cars) {
-        this.cars = cars;
-    }
-
-    public static Cars create() {
-        return new Cars(new ArrayList<>());
+    public Cars() {
     }
 
     public void add(Car car) {
-        if (cars.contains(car)) {
-            cars.clear();
-            throw new IllegalArgumentException("이미 존재하는 자동차 이름입니다.");
-        }
-
+        validateDuplicate(car);
         cars.add(car);
     }
 
@@ -58,15 +49,21 @@ public class Cars {
         return cars.get(0).getPosition();
     }
 
+    public List<CarDto> getCarsDto() {
+        return cars.stream()
+            .map(Car::toDto)
+            .collect(Collectors.toList());
+    }
+
     public void validateIsEmpty() {
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("아무 차량도 추가되지 않았습니다.");
         }
     }
 
-    public List<CarDto> getCarsDto() {
-        return cars.stream()
-            .map(Car::toDto)
-            .collect(Collectors.toList());
+    private void validateDuplicate(Car car) {
+        if (cars.contains(car)) {
+            throw new IllegalArgumentException("이미 존재하는 자동차 이름입니다.");
+        }
     }
 }

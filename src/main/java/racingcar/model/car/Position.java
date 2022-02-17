@@ -2,29 +2,22 @@ package racingcar.model.car;
 
 import java.util.Objects;
 
-import racingcar.util.NumberValidator;
-
 public class Position implements Comparable<Position> {
     private static final int INCREASE_DISTANCE = 1;
     private static final int DEFAULT_POSITION = 0;
 
     private final int position;
 
-    private Position(int position) {
+    public Position() {
+        this.position = DEFAULT_POSITION;
+    }
+
+    public Position(int position) {
         this.position = position;
     }
 
-    public static Position create() {
-        return new Position(DEFAULT_POSITION);
-    }
-
-    public static Position from(int position) {
-        NumberValidator.validateIsNotNegative(position);
-        return new Position(position);
-    }
-
     public Position increase() {
-        return from(this.position + INCREASE_DISTANCE);
+        return new Position(position + INCREASE_DISTANCE);
     }
 
     public int toInt() {

@@ -19,7 +19,7 @@ public class NameTest {
             @Test
             @DisplayName("예외를 발생시킨다.")
             void it_throw_exception() {
-                assertThatThrownBy(() -> Name.from(""))
+                assertThatThrownBy(() -> new Name(""))
                     .isInstanceOf(IllegalArgumentException.class);
             }
         }
@@ -31,7 +31,7 @@ public class NameTest {
             @DisplayName("예외를 발생시킨다.")
             @ValueSource(strings = {"", "aaaaaa"})
             void it_throw_exception(String input) {
-                assertThatThrownBy(() -> Name.from(input))
+                assertThatThrownBy(() -> new Name(input))
                     .isInstanceOf(IllegalArgumentException.class);
             }
         }
@@ -43,7 +43,7 @@ public class NameTest {
             @DisplayName("Name 클래스를 반환한다.")
             @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
             void it_returns_name(String input) {
-                assertDoesNotThrow(() -> Name.from(input));
+                assertDoesNotThrow(() -> new Name(input));
             }
         }
 
@@ -54,7 +54,7 @@ public class NameTest {
             @DisplayName("Name 클래스를 반환한다.")
             @ValueSource(strings = {"hudi", "tonic", "a", "토닉", "후디", "123"})
             void it_returns_name(String input) {
-                assertDoesNotThrow(() -> Name.from(input));
+                assertDoesNotThrow(() -> new Name(input));
             }
         }
 
@@ -65,7 +65,7 @@ public class NameTest {
             @DisplayName("예외를 발생시킨다.")
             @ValueSource(strings = {" ", "ton*&", "?a1"})
             void it_throw_exception(String input) {
-                assertThatThrownBy(() -> Name.from(input))
+                assertThatThrownBy(() -> new Name(input))
                     .isInstanceOf(IllegalArgumentException.class);
             }
         }

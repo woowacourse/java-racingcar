@@ -10,16 +10,11 @@ public class Name {
 
     private final String name;
 
-    private Name(String name) {
+    public Name(String name) {
+        StringValidator.validateIsEmpty(name);
+        StringValidator.validateLength(name, MIN_LENGTH, MAX_LENGTH);
+        StringValidator.validateFormat(name);
         this.name = name;
-    }
-
-    public static Name from(String input) {
-        StringValidator.validateIsEmpty(input);
-        StringValidator.validateLength(input, MIN_LENGTH, MAX_LENGTH);
-        StringValidator.validateFormat(input);
-
-        return new Name(input);
     }
 
     @Override
