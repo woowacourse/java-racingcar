@@ -13,12 +13,8 @@ public class Car {
 
     public void go(int number) {
         if (number >= GO_NUM) {
-            move();
+            position.move();
         }
-    }
-
-    public void move() {
-        position.move();
     }
 
     @Override

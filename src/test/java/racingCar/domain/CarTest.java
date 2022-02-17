@@ -9,12 +9,6 @@ public class CarTest {
     Car car = new Car("jiwoo");
 
     @Test
-    void move_후_위치확인_잘되는지_검사() {
-        car.move();
-        assertThat(car.position.get()).isEqualTo(1);
-    }
-
-    @Test
     void go_3넣으면_이동안함() {
         car.go(3);
         assertThat(car.position.get()).isEqualTo(0);
