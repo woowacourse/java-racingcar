@@ -1,6 +1,7 @@
 package racingCar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +15,7 @@ public class RacingCars {
     public RacingCars(List<String> cars) {
         validate(cars);
         for (String car : cars) {
-            this.cars.add(new Car(car));
+            this.cars.add(new Car(car, 0));
         }
     }
 
@@ -38,7 +39,7 @@ public class RacingCars {
         for (Car car : cars) {
             positions.add(car.position.get());
         }
-        return Util.getMax(positions);
+        return Collections.max(positions);
     }
 
     public List<CarDTO> getSamePositionCars(int position) {

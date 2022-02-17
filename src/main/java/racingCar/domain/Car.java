@@ -5,10 +5,11 @@ import java.util.Objects;
 public class Car {
     private static final int GO_NUM = 4;
     public final Name name;
-    public final Position position = new Position();
+    public final Position position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         this.name = new Name(name);
+        this.position = new Position(position);
     }
 
     public void go(int number) {

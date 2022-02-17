@@ -15,10 +15,6 @@ public class Util {
         return new Random().nextInt(RANDOM_MAX_BOUND_NUM);
     }
 
-    public static int getMax(List<Integer> integers) {
-        return Collections.max(integers);
-    }
-
     public static String[] separate(String text) {
         return text.split(NAME_REGEX);
     }
