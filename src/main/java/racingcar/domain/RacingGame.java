@@ -19,10 +19,6 @@ public class RacingGame {
         racingCars.moveCars();
     }
 
-    public boolean isEnd() {
-        return currentRound.compareTo(finalRound) > 0;
-    }
-
     private void currentRoundToNextRound() {
         checkCanRace();
         currentRound = currentRound.nextRound();
@@ -43,6 +39,10 @@ public class RacingGame {
         if (!isEnd()) {
             throw new IllegalStateException("종료되지 않은 게임은 우승자를 반환할 수 없다.");
         }
+    }
+
+    public boolean isEnd() {
+        return currentRound.compareTo(finalRound) > 0;
     }
 
     public List<RacingCarDto> getCurrentRacingCarDtos() {
