@@ -134,15 +134,22 @@
     - @MethodSource
     - https://www.baeldung.com/parameterized-tests-junit-5
 
-### step2 MVC 패턴으로 리팩터링 해보기
+## step2 MVC 패턴으로 리팩터링 해보기
 
-- [x] Winners에서 처리하던 출력 세부사항을 OutputView로 이동
-- [x] DTO를 이용하여 데이터를 이동
-    - [x] View -> Controller : RequestXXXDto
-    - [x] View <- Controller : ResponseXXXDto
+### MVC 패턴 관련 수정
+
+- Winners에서 처리하던 출력 세부사항을 OutputView로 이동
+- DTO를 이용하여 데이터를 이동
+    - View -> Controller : RequestXXXDto
+    - Controller -> View : ResponseXXXDto
 - 자동차 이름 입력을 나누는 RacingCar.splitCarNames를 InputView에서 하도록 수정(View에서 Cars까지 만들어서 Controller에게 반환)
+- RacingCar의 로직을 main으로 이동(Controller의 역할을 RacingCar가 아닌 main이 하도록 수정함)
+- controller와 domain 사이에 service를 추가(service에서 여러 로직을 처리하고 controller는 원하는것만 시키거나 얻을 수 있도록 함)
+
+### Test 관련 수정
+
 - 전체 통합 테스트가 제대로 되지 않음
-    - 문제점 : 첫번째 입력인 이름은 입력을 잘 받지만 두번째 입력인 시도 횟수를 제대로 입력받지 못함(null 입력이 됨)
+    - 문제점 : ParameterizedTest로 테스트하면 두번째 테스트부터는 실패함.
     - 원인 분석 : InputView에서 Scanner를 상수로 처리했는데 이렇게 되면 문제가 발생 Scanner를 상수(static)으로 생성하고 ParameterizedTest로 테스트하면 2번째 이후
       테스트에서 제대로 입력을 받지 못함. ParameterizedTest를 하면 Java 프로그래밍은 1번돌아가고 거기서 여러번의 테스트케이스가 돌아간다. 그렇기 때문에 가장 처음 케이스에서 성공을 하고
       두번째 테스트에서부터는 Scanner에 첫번째 데이터가 들어간 상태로 이미 상수로 생성되어 있기 때문에 제대로 테스트가 되지 않는다.
@@ -153,10 +160,8 @@
     - 시도했던것들 :
         - static을 없애고 InputView의 인스턴스 변수로 Scanner를 만들어 사용하는 방식으로 문제를 해결해봄.
         - Scanner를 Controller에서 만들어서 주지 않은 이유는 InputView에서만 사용되는 Scanner를 꼭 Controller에서 생성하고 가지고 있어야하나? 라는 생각이 들었기 때문임
-- RacingCar의 로직을 main으로 이동(Controller의 역할을 RacingCar가 아닌 main이 하도록 수정함)
-- ApplicationTest.empty_input_exception_test에서 가장 마지막에 공백이 오는 경우(`a,b,`) 예외 처리하지 않는 오류 수정
 - 자동차 경주 게임의 기능 통합 테스트와 예외 상황 테스트 추가
-- controller와 domain 사이에 service를 추가(service에서 여러 로직을 처리하고 controller는 원하는것만 시키거나 얻을 수 있도록 함)
+- ApplicationTest.empty_input_exception_test에서 가장 마지막에 공백이 오는 경우(`a,b,`) 예외 처리하지 않는 오류 수정
 - assertThat.allSatisfy() : Test에서 for문으로 assertThat을 돌리는 경우 사용
 - hasMessageContaining()를 이용하여 예외 처리 테스트를 더 정확하게 하도록 수정
     - 에러 메시지를 가지는 Enum을 만든다.
