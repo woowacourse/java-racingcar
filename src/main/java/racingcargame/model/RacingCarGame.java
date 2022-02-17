@@ -21,7 +21,7 @@ public class RacingCarGame {
 
     public void startRace(final RandomNumberGenerator randomNumberGenerator) {
         raceCount.reduceCount();
-        cars.moveCars();
+        cars.moveCars(randomNumberGenerator);
     }
 
     public List<CarDto> sendRacingCarsInformation() {
