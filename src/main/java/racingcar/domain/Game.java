@@ -9,12 +9,16 @@ import racingcar.view.ResultView;
 public class Game {
 
     private static final int RANDOM_RANGE = 10;
-    private static final String COMMA_REGEX = ",";
     private static final int MINIMUM_NATURAL_NUMBER = 1;
+    private static final int MINIMUM_MOVE = 4;
 
+    private static final String COMMA_REGEX = ",";
     private static final String TRY_NO_PATTERN_REGEX = "^[0-9]*$";
 
     private static final Pattern TRY_NO_PATTERN = Pattern.compile(TRY_NO_PATTERN_REGEX);
+
+//    private static final RandomMoveCondition randomMoveCondition = new RandomMoveCondition();
+//    private static final MoveCondition moveCondition = () -> makeRandom() >= 4;
 
     private int tryNo;
     private Cars cars;
@@ -42,10 +46,11 @@ public class Game {
         return cars.getCars();
     }
 
-
     private void moveCar(Cars cars) {
         for (Car car : cars.getCars()) {
-            car.movePosition(makeRandom());
+            //RandomMoveCondition randomMoveCondition = new RandomMoveCondition();
+//            car.movePosition(randomMoveCondition);
+            car.movePosition(() -> makeRandom() >= MINIMUM_MOVE);
         }
     }
 

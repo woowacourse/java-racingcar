@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import racingcar.utils.Constant;
@@ -23,12 +24,9 @@ public class Car {
         this.position = START_POSITION;
     }
 
-    public boolean isMovable(int number) {
-        return number >= MINIMUM_MOVE;
-    }
 
-    public void movePosition(int number) {
-        if (isMovable(number)) {
+    public void movePosition(MoveCondition moveCondition) {
+        if (moveCondition.isMovable()) {
             position++;
         }
     }
