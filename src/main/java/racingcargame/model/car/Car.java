@@ -13,10 +13,8 @@ public class Car implements Comparable<Car> {
         this.position = new Position();
     }
 
-    public void moveCar(final int number) {
-        if (number >= MIN_MOVABLE_NUMBER) {
-            position++;
-        }
+    public void moveCar(final int moveValue) {
+        position.move(moveValue);
     }
 
     public boolean hasSamePosition(final Car winnerCar) {
