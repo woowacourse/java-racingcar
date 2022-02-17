@@ -4,6 +4,7 @@ import racingcar.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCars {
 
@@ -80,28 +81,18 @@ public class RacingCars {
         return currentRaceState;
     }
 
-    private RacingCar compareCarWithPosition(RacingCar sourceCar, RacingCar targetCar) {
-        return sourceCar.compareCar(targetCar);
-    }
-
     public List<String> getWinnerNames() {
-        RacingCar bestPositionCar = racingCars.get(ANY_INDEX);
-        for (RacingCar racingCar : racingCars) {
-            bestPositionCar = compareCarWithPosition(bestPositionCar, racingCar);
-        }
-
-        List<String> winnerNames = new ArrayList<>();
-        for (RacingCar racingCar : racingCars) {
-            winnerNames = updateWinnerNames(winnerNames, bestPositionCar, racingCar);
-        }
-        return winnerNames;
+        RacingCar bestPositionCar = findBestPositionCar();
+        return racingCars.stream()
+            .filter(bestPositionCar::isSamePosition)
+            .map(RacingCar::getName)
+            .collect(Collectors.toList());
     }
 
-    private List<String> updateWinnerNames(List<String> winnerNames,
-        RacingCar bestPositionCar, RacingCar racingCar) {
-        if (racingCar.isSamePosition(bestPositionCar)) {
-            winnerNames.add(racingCar.getName());
-        }
-        return winnerNames;
+    private RacingCar findBestPositionCar() {
+        return racingCars.stream()
+            .max(RacingCar::compareTo)
+            .orElseThrow(() -> new IllegalArgumentException(EXCEPTION_ARGUMENT_NULL));
     }
+
 }

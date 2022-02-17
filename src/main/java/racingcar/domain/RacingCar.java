@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class RacingCar {
+public class RacingCar implements Comparable<RacingCar> {
 
     private static final int START_POSITION = 0;
     private static final int MOVE_STANDARD = 4;
@@ -66,10 +66,8 @@ public class RacingCar {
         return name + NAME_POSITION_CONNECTOR + visualizePosition();
     }
 
-    public RacingCar compareCar(RacingCar targetCar) {
-        if (this.position > targetCar.position) {
-            return this;
-        }
-        return targetCar;
+    @Override
+    public int compareTo(RacingCar otherCar) {
+        return this.position - otherCar.position;
     }
 }

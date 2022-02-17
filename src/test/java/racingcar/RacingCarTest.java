@@ -91,7 +91,7 @@ public class RacingCarTest {
         targetCar.goOrStay(5);
         targetCar.goOrStay(5);
 
-        assertThat(sourceCar.compareCar(targetCar)).isEqualTo(targetCar);
+        assertThat(sourceCar.compareTo(targetCar)).isEqualTo(-3);
     }
 
 
