@@ -44,9 +44,10 @@ public class Cars {
         return Collections.max(positions);
     }
 
-    public List<CarDto> getSamePositionCarsDto(int position) {
+    public List<String> getSamePositionCarsDto(int position) {
         return getDto().stream()
                 .filter(car -> car.position == position)
+                .map(carDto -> carDto.name)
                 .collect(Collectors.toList());
     }
 

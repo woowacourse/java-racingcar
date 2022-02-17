@@ -53,6 +53,8 @@
    - [x]  extracting 적용, 일급컬렉션 equals() 문자/숫자 비교 편하게 수정
    - [x]  메서드 시그니처 분리 : https://tecoble.techcourse.co.kr/post/2020-05-07-appropriate_method_for_test_by_parameter/
    - [x]  인터페이스 분리 : https://tecoble.techcourse.co.kr/post/2020-05-17-appropriate_method_for_test_by_interface/
+   - [x]  view와 domain 사이 연결 끊기
+      - [x]  view 메소드들의 인수를 string/int 리스트/맵 형태로 가져오기
 
 ---
 

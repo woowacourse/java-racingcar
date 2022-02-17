@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingCar.domain.CarDto;
@@ -32,12 +33,13 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
-        CarDto jiwooCarDto = cars.getDto().get(0);
-        jiwooCarDto.position = 2;
 
         //when
-        OutputView.printRoundResult(Arrays.asList(jiwooCarDto, cars.getDto().get(1)));
+        LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
+        result.put("jiwoo",2);
+        result.put("juri",0);
+
+        OutputView.printRoundResult(result);
 
         //then
         assertThat(out.toString())
@@ -49,15 +51,13 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
-        CarDto jiwooCarDto = cars.getDto().get(0);
 
         //when
-        OutputView.printWinner(List.of(jiwooCarDto));
+        OutputView.printWinner(List.of("hunch"));
 
         //then
         assertThat(out.toString())
-                .isEqualTo("jiwoo가 최종 우승했습니다.\n");
+                .isEqualTo("hunch가 최종 우승했습니다.\n");
     }
 
     @Test
@@ -65,10 +65,9 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
 
         //when
-        OutputView.printWinner(cars.getDto());
+        OutputView.printWinner(Arrays.asList("jiwoo","juri"));
 
         //then
         assertThat(out.toString())

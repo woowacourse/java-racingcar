@@ -1,6 +1,7 @@
 package racingCar.domain.service;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import racingCar.domain.CarDto;
 import racingCar.domain.Cars;
@@ -21,7 +22,7 @@ public class RacingGame {
         roundCount.minusOne();
     }
 
-    public List<CarDto> getWinnerCars() {
+    public List<String> getWinnerCars() {
         return cars.getSamePositionCarsDto(cars.getMaxPosition());
     }
 
@@ -35,7 +36,15 @@ public class RacingGame {
         return new RoundCount(count);
     }
 
-    public List<CarDto> getResult() {
+    public LinkedHashMap<String, Integer> getResult() {
+        LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
+        for (CarDto carDto : cars.getDto()) {
+            result.put(carDto.name, carDto.position);
+        }
+        return result;
+    }
+
+    public List<CarDto> getDto() {
         return cars.getDto();
     }
 
