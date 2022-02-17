@@ -27,8 +27,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public boolean isSameDistance(Car otherCar) {
-        return this.distance == otherCar.distance;
+    public boolean isSameDistance(int distance) {
+        return this.distance == distance;
     }
 
     @Override

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final int INITIAL_DISTANCE = 0;
+
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
@@ -33,12 +35,13 @@ public class Cars {
     }
 
     public List<CarDto> getFarthestCars() {
-        Car maxDistanceCar = cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow(IllegalArgumentException::new);
+        int maxDistance = cars.stream()
+                .mapToInt(Car::getDistance)
+                .max()
+                .orElse(INITIAL_DISTANCE);
 
         List<CarDto> farthestCars = cars.stream()
-                .filter(maxDistanceCar::isSameDistance)
+                .filter(car -> car.isSameDistance(maxDistance))
                 .map(CarDto::toDto)
                 .collect(Collectors.toUnmodifiableList());
 
