@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.controller;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import racingcar.util.Parser;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class Application {
+public class RacingGameController {
     public static void main(String[] args) {
         String carNamesInput = InputView.inputCarNames();
         List<String> names = Parser.split(carNamesInput);
