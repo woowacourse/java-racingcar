@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputView {
+	private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 	private static final Pattern VALIDATE_NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
 	private static final String DELIMITER_REGEX = ",";
 
@@ -19,8 +20,8 @@ public class InputView {
 	public static List<String> getCarNames() {
 		List<String> carNames = new ArrayList<>();
 		String line = "";
-		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-			line = bufferedReader.readLine();
+		try {
+			line = inputString();
 			validateEmptyString(line);
 			carNames = splitCarNames(line);
 		} catch (IllegalArgumentException | IOException e) {
@@ -32,8 +33,8 @@ public class InputView {
 
 	public static int getNumberOfGames() {
 		int numberOfGames;
-		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-			String line = bufferedReader.readLine();
+		try {
+			String line = inputString();
 			validateEmptyString(line);
 			validateNumber(line);
 			numberOfGames = toInt(line);
@@ -43,6 +44,10 @@ public class InputView {
 			numberOfGames = getNumberOfGames();
 		}
 		return numberOfGames;
+	}
+
+	private static String inputString() throws IOException {
+		return bufferedReader.readLine();
 	}
 
 	private static void validateEmptyString(String line) {
