@@ -11,32 +11,31 @@ import racingcar.view.ErrorMessage;
 public class Cars {
 
     private static final int NONE_DUPLICATION = 0;
-    private static final String DEFAULT_RACE_ALL_RESULT = "자동차 경주 진행 전입니다.";
 
     private final List<Car> cars;
-    private final String raceAllResult;
+    private final RaceResult raceResult;
 
     public Cars(String[] names) {
         cars = new ArrayList<>();
-        raceAllResult = DEFAULT_RACE_ALL_RESULT;
+        raceResult = new RaceResult();
         createCarsWith(names);
     }
 
     private Cars(List<Car> cars, String raceAllResult) {
         this.cars = new ArrayList<>(cars);
-        this.raceAllResult = raceAllResult;
+        this.raceResult = new RaceResult(raceAllResult);
     }
 
     public Cars repeatRaceBy(Attempt attempt) {
-        StringBuilder raceAllResultBuilder = new StringBuilder();
+        StringBuilder raceResultBuilder = new StringBuilder();
         List<Car> cars = new ArrayList<>(this.cars);
         NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         while (attempt.isLeft()) {
             cars = raceAll(cars, randomNumberGenerator);
-            raceAllResultBuilder.append(getRaceResultWith(cars));
+            raceResultBuilder.append(getOnceResultWith(cars));
             attempt = attempt.decrease();
         }
-        return new Cars(cars, raceAllResultBuilder.toString());
+        return new Cars(cars, raceResultBuilder.toString());
     }
 
     public Winners judgeWinners() {
@@ -74,7 +73,7 @@ public class Cars {
         return afterRaceCars;
     }
 
-    private String getRaceResultWith(List<Car> cars) {
+    private String getOnceResultWith(List<Car> cars) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car : cars) {
             stringBuilder.append(car.toString());
@@ -93,7 +92,7 @@ public class Cars {
         }
     }
 
-    public String getRaceAllResult() {
-        return raceAllResult;
+    public RaceResult getRaceResult() {
+        return raceResult;
     }
 }

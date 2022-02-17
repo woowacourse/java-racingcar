@@ -30,8 +30,8 @@ public class CarsTest {
         Cars cars = new Cars(names);
         Attempt attempt = new Attempt("5");
         Cars afterRaceCars = cars.repeatRaceBy(attempt);
-        String result = afterRaceCars.getRaceAllResult();
-        Matcher matcher = Pattern.compile(name).matcher(result);
+        RaceResult raceResult = afterRaceCars.getRaceResult();
+        Matcher matcher = Pattern.compile(name).matcher(raceResult.getResult());
         int nameCount = 0;
         while (matcher.find()) {
             nameCount++;

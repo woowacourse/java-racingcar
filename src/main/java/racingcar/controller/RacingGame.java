@@ -20,7 +20,7 @@ public class RacingGame {
         Cars cars = createCars(splitCarNames(userInputRequester.getCarName()));
         Attempt attempt = new Attempt(userInputRequester.getAttempt());
         cars = cars.repeatRaceBy(attempt);
-        printRaceResult(cars.getRaceAllResult());
+        printRaceResult(cars.getRaceResult());
         printWinners(cars.judgeWinners());
     }
 
