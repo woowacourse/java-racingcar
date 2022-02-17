@@ -7,6 +7,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
+	private static final String POSITION_DELIMITER = "-";
 
 	public void runRace() {
 		try {
@@ -24,8 +25,7 @@ public class GameController {
 		OutputView.displayResult();
 		for (int nowTurn = 0; nowTurn < totalTurn; nowTurn++) {
 			moveCarList(carList);
-			OutputView.displayCarPosition(carList.getNameList(), carList.getEachCarPosition(),
-				StringConst.POSITION_DELIMITER.getValue());
+			OutputView.displayCarPosition(carList.getNameList(), carList.getEachCarPosition(), POSITION_DELIMITER);
 		}
 		OutputView.displayWinner(carList.getWinnerNames());
 	}

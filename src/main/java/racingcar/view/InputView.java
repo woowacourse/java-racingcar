@@ -12,6 +12,9 @@ public class InputView {
 	private static final String ERROR_DUPLICATE = "[ERROR] 입력값은 중복될 수 없습니다.";
 	private static final String ERROR_INT_NUM = "[ERROR] 입력값은 문자일 수 없습니다.";
 	private static final String ERROR_NO_CAR = "[ERROR] 쉼표를 기준으로 차가 한 대 이상 있어야 합니다.";
+	private static final String DELIMITER = ",";
+	private static final String NUMBER_REGEX_PATTERN = "^[0-9]+$";
+	private static final String NAME_REGEX_PATTERN = "^[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$";
 	private static final int SIZE_BOUND = 5;
 
 	private static void checkNull(String stringInput) throws IllegalArgumentException {
@@ -43,7 +46,7 @@ public class InputView {
 
 	private static void checkSpecialChar(String[] splitStringInput) throws IllegalArgumentException {
 		boolean isSpecialCharError = Arrays.stream(splitStringInput)
-			.anyMatch(eachStringInput -> !eachStringInput.matches(StringConst.REGEX_PATTERN.getValue()));
+			.anyMatch(eachStringInput -> !eachStringInput.matches(NAME_REGEX_PATTERN));
 		if (isSpecialCharError) {
 			throw new IllegalArgumentException(ERROR_SPECIAL_CHAR);
 		}
@@ -57,7 +60,7 @@ public class InputView {
 	}
 
 	private static void checkIntNum(String stringInput) throws IllegalArgumentException {
-		if (!stringInput.matches(StringConst.NUMBER_REGEX_PATTERN.getValue())) {
+		if (!stringInput.matches(NUMBER_REGEX_PATTERN)) {
 			throw new IllegalArgumentException(ERROR_INT_NUM);
 		}
 	}
@@ -69,7 +72,7 @@ public class InputView {
 
 	public static void checkNameError(String nameInput) throws IllegalArgumentException {
 		nullOrBlank(nameInput);
-		String[] commaSeparateName = nameInput.split(StringConst.DELIMITER.getValue());
+		String[] commaSeparateName = nameInput.split(DELIMITER);
 		checkZeroCars(commaSeparateName);
 		checkSpecialChar(commaSeparateName);
 		checkOverSize(commaSeparateName);
@@ -85,7 +88,7 @@ public class InputView {
 		Scanner scanner = new Scanner(System.in);
 		String name = scanner.nextLine();
 		checkNameError(name);
-		return name.split(StringConst.DELIMITER.getValue());
+		return name.split(DELIMITER);
 	}
 
 	public static int getTurnInput() throws IllegalArgumentException {
