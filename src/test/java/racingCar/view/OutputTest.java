@@ -33,11 +33,11 @@ public class OutputTest {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
-        CarDto jiwooCarDto = cars.get().get(0);
+        CarDto jiwooCarDto = cars.getDto().get(0);
         jiwooCarDto.position = 2;
 
         //when
-        OutputView.printRoundResult(Arrays.asList(jiwooCarDto, cars.get().get(1)));
+        OutputView.printRoundResult(Arrays.asList(jiwooCarDto, cars.getDto().get(1)));
 
         //then
         assertThat(out.toString())
@@ -50,7 +50,7 @@ public class OutputTest {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
-        CarDto jiwooCarDto = cars.get().get(0);
+        CarDto jiwooCarDto = cars.getDto().get(0);
 
         //when
         OutputView.printWinner(List.of(jiwooCarDto));
@@ -68,7 +68,7 @@ public class OutputTest {
         Cars cars = new Cars(Arrays.asList("jiwoo", "juri"));
 
         //when
-        OutputView.printWinner(cars.get());
+        OutputView.printWinner(cars.getDto());
 
         //then
         assertThat(out.toString())

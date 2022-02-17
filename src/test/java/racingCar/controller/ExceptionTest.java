@@ -1,4 +1,4 @@
-package racingCar.domain;
+package racingCar.controller;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

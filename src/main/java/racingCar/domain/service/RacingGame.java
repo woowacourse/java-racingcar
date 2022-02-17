@@ -22,7 +22,7 @@ public class RacingGame {
     }
 
     public List<CarDto> getWinnerCars() {
-        return cars.getSamePositionCars(cars.getMaxPosition());
+        return cars.getSamePositionCarsDto(cars.getMaxPosition());
     }
 
     private Cars initCars(String nameString) {
@@ -36,7 +36,7 @@ public class RacingGame {
     }
 
     public List<CarDto> getResult() {
-        return cars.get();
+        return cars.getDto();
     }
 
     public Cars getCars() {

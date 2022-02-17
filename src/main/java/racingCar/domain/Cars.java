@@ -44,13 +44,13 @@ public class Cars {
         return Collections.max(positions);
     }
 
-    public List<CarDto> getSamePositionCars(int position) {
-        return get().stream()
+    public List<CarDto> getSamePositionCarsDto(int position) {
+        return getDto().stream()
                 .filter(car -> car.position == position)
                 .collect(Collectors.toList());
     }
 
-    public List<CarDto> get() {
+    public List<CarDto> getDto() {
         List<CarDto> carsDto = new ArrayList<>();
         for (Car car : cars) {
             carsDto.add(new CarDto(car));

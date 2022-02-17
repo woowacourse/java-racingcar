@@ -1,5 +1,6 @@
 package racingCar.domain;
 
+import java.util.Objects;
 import racingCar.domain.exception.count.CountRangeException;
 
 public class RoundCount {
@@ -25,7 +26,23 @@ public class RoundCount {
         return count == MINIMUM_NUM;
     }
 
-    public int get() {
-        return count;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Integer) {
+            return count == (int) obj;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        RoundCount that = (RoundCount) obj;
+        return count == that.count;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(count);
     }
 }

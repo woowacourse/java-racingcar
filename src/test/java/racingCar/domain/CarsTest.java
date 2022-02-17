@@ -11,7 +11,7 @@ public class CarsTest {
 
     @Test
     void getMaxPosition_0_검사() {
-        System.out.println(cars.get());
+        System.out.println(cars.getDto());
         assertThat(cars.getMaxPosition()).isEqualTo(0);
     }
 
@@ -23,8 +23,8 @@ public class CarsTest {
 
         //when
         cars.go();
-        if (cars.get().contains(hunchDTO) || cars.get().contains(judiDTO)) {
-            System.out.println(cars.get());
+        if (cars.getDto().contains(hunchDTO) || cars.getDto().contains(judiDTO)) {
+            System.out.println(cars.getDto());
             assertThat(cars.getMaxPosition()).isEqualTo(2);
             return;
         }
@@ -35,8 +35,8 @@ public class CarsTest {
 
     @Test
     void getSamePositionCars_이동없을때_검사() {
-        System.out.println(cars.get());
-        assertThat(cars.getSamePositionCars(0)).isEqualTo(cars.get());
+        System.out.println(cars.getDto());
+        assertThat(cars.getSamePositionCarsDto(0)).isEqualTo(cars.getDto());
     }
 
     @Test
@@ -45,22 +45,22 @@ public class CarsTest {
         CarDto sampleDTO = new CarDto(new Car("hunch", 2));
 
         //when
-        while (!cars.get().contains(sampleDTO)) {
+        while (!cars.getDto().contains(sampleDTO)) {
             cars.go();
         }
 
         //then
-        System.out.println(cars.get());
-        assertThat(cars.getSamePositionCars(2)).contains(sampleDTO);
+        System.out.println(cars.getDto());
+        assertThat(cars.getSamePositionCarsDto(2)).contains(sampleDTO);
     }
 
     @Test
     void getSamePositionCars_이동했을때_검사2() {
-        while (cars.get().get(0).position != 2) {
+        while (cars.getDto().get(0).position != 2) {
             cars.go();
         }
-        System.out.println(cars.get());
-        assertThat(cars.getSamePositionCars(2).get(0).position).isEqualTo(2);
+        System.out.println(cars.getDto());
+        assertThat(cars.getSamePositionCarsDto(2).get(0).position).isEqualTo(2);
     }
 
     @Test
@@ -68,6 +68,6 @@ public class CarsTest {
         CarDto hunchDTO = new CarDto(new Car("hunch", 0));
         CarDto judiDTO = new CarDto(new Car("judi", 0));
 
-        assertThat(cars.get()).isEqualTo(Arrays.asList(hunchDTO, judiDTO));
+        assertThat(cars.getDto()).isEqualTo(Arrays.asList(hunchDTO, judiDTO));
     }
 }

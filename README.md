@@ -44,14 +44,14 @@
 - [x]  HashSet으로 size비교를 했는데 의도한대로 동작을 할까요??
 - [x]  (vo) equals, hashCode 사용
 - [x]  Random을 항상 새로 호출해야할까요?? -> x
-- [x]  0은 상수화 시키는 것이 낫지 않을까요?? -> 0
-- [x]  test클래스 변수 접근 제어자를 private로 변경
-- [x]  변수 접근제어자가 public -> 어디에서나 값을 수정
+- [x]  변수 접근제어자 private로 변경
+- [x]  DTO 적용
 - [x]  model이 view로 넘어와도 될까요?? -> Dto 클래스를 통해 값 변경 제한
 - [x]  테스트 메서드 의미 알려주는게 명확 -> 한글 변수명으로 이동, warning~ 태그 추가
 - [x]  가장 중요한 go에 대한 테스트가 없는거 같아요.
 - [x]  RacingCars 테스트 작성
 - [x]  컨트롤러 속 service를 domain 패키지 안으로 이동
+- [x]  extracting 적용, 일급컬렉션 equals() 문자/숫자 비교 편하게 수정
 
   리뷰를 잘 반영해 주셔서 이것을 2단계에 도전해 보죠 😎
 - [x]  메서드 시그니처 분리 : https://tecoble.techcourse.co.kr/post/2020-05-07-appropriate_method_for_test_by_parameter/
