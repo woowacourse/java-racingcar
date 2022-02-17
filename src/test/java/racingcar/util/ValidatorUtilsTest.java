@@ -3,7 +3,7 @@ package racingcar.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 
@@ -125,9 +125,9 @@ public class ValidatorUtilsTest {
         assertThat(upperCaseNo).isFalse();
     }
 
-    @DisplayName("validateAndParseBoolean 메서드는 null 혹은 빈 문자열을 인자로 받는 경우 예외를 발생시킨다.")
+    @DisplayName("validateAndParseBoolean 메서드는 null을 인자로 받는 경우 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @NullAndEmptySource
+    @NullSource
     void validateAndParseBoolean_errorOnNullInput(String nullOrEmptyValue) {
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() -> validateAndParseBoolean(nullOrEmptyValue));
