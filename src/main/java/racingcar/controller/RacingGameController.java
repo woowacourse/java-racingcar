@@ -8,19 +8,35 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGameController {
-    public static void main(String[] args) {
+    private static RacingGame racingGame;
+
+    public static void setCarsName() {
         String carNamesInput = InputView.inputCarNames();
         List<String> names = Parser.split(carNamesInput);
-        RacingGame racingGame = new RacingGame(names);
+        racingGame = new RacingGame(names);
+    }
 
+    public static void proceedRacingGame() {
         int rounds = InputView.inputRounds();
 
         OutputView.printRaceResultMessage();
         for (int i = 0; i < rounds; i++) {
             racingGame.moveCars();
-            OutputView.printOneTurnRaceResult(racingGame);
+            updateViewAfterOneTurn();
         }
+    }
 
+    public static void updateViewAfterOneTurn() {
+        OutputView.printOneTurnRaceResult(racingGame);
+    }
+
+    public static void updateViewChampionNames() {
         OutputView.printChampionNames(racingGame.getChampionNames());
+    }
+
+    public static void main(String[] args) {
+        setCarsName();
+        proceedRacingGame();
+        updateViewChampionNames();
     }
 }
