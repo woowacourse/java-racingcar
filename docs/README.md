@@ -151,3 +151,4 @@
 - ApplicationTest.empty_input_exception_test에서 가장 마지막에 공백이 오는 경우(`a,b,`) 예외 처리하지 않는 오류 수정
 - 자동차 경주 게임의 기능 통합 테스트와 예외 상황 테스트 추가
 - controller와 domain 사이에 service를 추가(service에서 여러 로직을 처리하고 controller는 원하는것만 시키거나 얻을 수 있도록 함)
+- assertThat.allSatisfy() : Test에서 for문으로 assertThat을 돌리는 경우 사용

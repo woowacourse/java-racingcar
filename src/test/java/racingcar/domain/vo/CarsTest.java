@@ -29,10 +29,10 @@ public class CarsTest {
         List<RoundResult> results = cars.repeatRaceBy(attempt);
 
         assertThat(results).hasSize(Integer.parseInt(attemptInput));
-        for (RoundResult roundResult : results) {
-            assertThat(roundResult.getNames()).hasSize(nameInput.length);
-            assertThat(roundResult.getNames()).contains(nameInput);
-        }
+        assertThat(results).allSatisfy(result -> {
+            assertThat(result.getNames()).hasSize(nameInput.length);
+            assertThat(result.getNames()).contains(nameInput);
+        });
     }
 
     private static Stream<Arguments> repeatRaceByTestSet() {
