@@ -6,19 +6,17 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import racingcar.numberGenerator.NumberGenerator;
 import racingcar.numberGenerator.RandomNumberGenerator;
+import racingcar.util.CarMakerUtil;
 import racingcar.view.ErrorMessage;
 
 public class Cars {
-
-    private static final int NONE_DUPLICATION = 0;
 
     private final List<Car> cars;
     private final RaceResult raceResult;
 
     public Cars(String[] names) {
-        cars = new ArrayList<>();
+        cars = CarMakerUtil.createCarsWith(names);
         raceResult = new RaceResult();
-        createCarsWith(names);
     }
 
     private Cars(List<Car> cars, String raceAllResult) {
@@ -51,19 +49,6 @@ public class Cars {
         return cars.size() == size;
     }
 
-    private void createCarsWith(String[] names) {
-        for (String name : names) {
-            addCar(name);
-        }
-    }
-
-    private void addCar(String name) {
-        CarName carName = new CarName(name);
-        Car car = new Car(carName);
-        validateDuplicateCarName(car);
-        cars.add(car);
-    }
-
     private List<Car> raceAll(List<Car> cars, NumberGenerator numberGenerator) {
         List<Car> afterRaceCars = new ArrayList<>();
         for (Car car : cars) {
@@ -81,15 +66,6 @@ public class Cars {
         }
         stringBuilder.append(System.lineSeparator());
         return stringBuilder.toString();
-    }
-
-    private void validateDuplicateCarName(Car car) {
-        long countDuplication = cars.stream()
-                .filter(each -> each.isSameName(car))
-                .count();
-        if (countDuplication != NONE_DUPLICATION) {
-            throw new RuntimeException(ErrorMessage.CAR_NAME_DUPLICATE.toString());
-        }
     }
 
     public RaceResult getRaceResult() {
