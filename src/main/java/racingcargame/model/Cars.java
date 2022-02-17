@@ -8,6 +8,7 @@ import racingcargame.dto.CarDto;
 import racingcargame.utils.Move;
 
 public class Cars {
+    private static final int WINNER_CAR_INDEX = 0;
     private static final String HAS_DUPLICATE_CAR_NAME_ERROR_MESSAGE = "[error] 입력한 자동차 이름 중 중복되는 이름이 있습니다.";
 
     private final List<Car> cars;
@@ -43,6 +44,6 @@ public class Cars {
 
     private Car findWinnerCar() {
         Collections.sort(cars);
-        return cars.get(0);
+        return cars.get(WINNER_CAR_INDEX);
     }
 }
