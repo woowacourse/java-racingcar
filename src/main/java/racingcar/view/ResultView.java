@@ -10,6 +10,9 @@ public class ResultView {
 	private static final String JOIN_DELIMITER = ", ";
 	private static final String WINNERS_RESULT_SUFFIX = "가 최종 우승했습니다.";
 
+	private ResultView() {
+	}
+
 	public static void printGameResult(List<CarDto> cars) {
 		cars.stream()
 			.map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))

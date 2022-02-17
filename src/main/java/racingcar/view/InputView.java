@@ -11,6 +11,9 @@ public class InputView {
 
 	private static final Scanner scanner = new Scanner(System.in);
 
+	private InputView() {
+	}
+
 	public static String getCarNames() {
 		System.out.println(GET_CAR_NAMES_MESSAGE);
 		return scanner.nextLine();
