@@ -3,7 +3,6 @@ package carracing.model;
 import static carracing.view.messages.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import carracing.util.ImmovableNumberGenerator;
 import carracing.util.MovableNumberGenerator;
 import carracing.utils.NumberGenerator;
-import carracing.utils.RandomNumberGenerator;
 
 public class CarTest {
 
@@ -20,7 +18,7 @@ public class CarTest {
 	@DisplayName("자동차 이름의 길이가 5를 초과하는 경우 에러 발생")
 	void validate_자동차이름_길이() {
 		assertThatThrownBy(() -> {
-			new Car("pobbiii");
+			Car.nameOf("pobbiii");
 		}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 	}
@@ -29,7 +27,7 @@ public class CarTest {
 	@DisplayName("자동차 이름의 길이가 1미만인 경우 에러 발생")
 	void validate_자동차이름_길이기준_미달() {
 		assertThatThrownBy(() -> {
-			new Car("");
+			Car.nameOf("");
 		}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 	}
@@ -38,7 +36,7 @@ public class CarTest {
 	@DisplayName("자동차 이름에 공백이 포함될 경우 에러 발생")
 	void validate_자동차이름_공백포함() {
 		assertThatThrownBy(() -> {
-			new Car(" east");
+			Car.nameOf(" east");
 		}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(CAR_NAME_BLANK_EXCEPTION.getMessage());
 	}
@@ -49,7 +47,7 @@ public class CarTest {
 	void 랜덤값_4이상이면_전진(int randomNumber) {
 		//given
 		final NumberGenerator numberGenerator = new MovableNumberGenerator();
-		Car car = new Car("pobi");
+		Car car = Car.nameOf("pobi");
 		//when
 		car.move(numberGenerator);
 		//then
@@ -62,7 +60,7 @@ public class CarTest {
 	void 랜덤값_4미만이면_멈춤(int randomNumber) {
 		//given
 		final NumberGenerator numberGenerator = new ImmovableNumberGenerator();
-		Car car = new Car("pobi");
+		Car car = Car.nameOf("pobi");
 		//when
 		car.move(numberGenerator);
 		//then

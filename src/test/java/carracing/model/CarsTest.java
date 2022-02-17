@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,9 +20,9 @@ public class CarsTest {
 
 	@BeforeEach
 	void car_init() {
-		eastCar = new Car("east");
-		pobiCar = new Car("pobi");
-		peperCar = new Car("peper");
+		eastCar = Car.nameOf("east");
+		pobiCar = Car.nameOf("pobi");
+		peperCar = Car.nameOf("peper");
 	}
 
 	@Test
@@ -37,7 +36,7 @@ public class CarsTest {
 				pobiCar,
 				eastCar,
 				peperCar,
-				new Car("east")
+				Car.nameOf("east")
 			));
 		}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
