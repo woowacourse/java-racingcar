@@ -1,13 +1,13 @@
 package racingcar.domain.util;
 
 import java.util.Random;
+import racingcar.domain.enums.ErrorMessage;
 
 public class RandomNumberGenerator implements NumberGenerator {
 
     private static final int EXCLUSIVE_BOUND_CORRECTION_VALUE = 1;
     private static final int MINIMUM = 0;
     private static final int MAXIMUM = 9;
-    private static final String RANGE_OVER_ERROR_MESSAGE = "최소, 최대 범위의 입력을 확인해 주세요";
 
     private static final Random RANDOM = new Random();
 
@@ -21,7 +21,7 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     private static void validateRange(int randomNumber) {
         if (randomNumber > MAXIMUM || randomNumber < MINIMUM) {
-            throw new IllegalStateException(RANGE_OVER_ERROR_MESSAGE);
+            throw new IllegalStateException(ErrorMessage.RANDOM_NUMBER_RANGE_OVER_ERROR_MESSAGE.get());
         }
     }
 }

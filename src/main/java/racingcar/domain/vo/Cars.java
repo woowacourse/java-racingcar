@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+import racingcar.domain.enums.ErrorMessage;
 import racingcar.domain.util.RandomNumberGenerator;
 
 public class Cars {
 
     private static final RandomNumberGenerator RANDOM_NUMBER_GENERATOR = new RandomNumberGenerator();
-    private static final String DUPLICATE_CAR_NAME_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.";
-    private static final String NO_SUCH_CAR_ERROR_MESSAGE = "자동차가 없습니다.";
 
     private List<Car> cars;
 
@@ -44,7 +43,7 @@ public class Cars {
     public List<Car> findWinners() {
         Car maxPositionCar = cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new NoSuchElementException(NO_SUCH_CAR_ERROR_MESSAGE));
+                .orElseThrow(() -> new NoSuchElementException(ErrorMessage.NO_SUCH_CAR_ERROR_MESSAGE.get()));
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .collect(Collectors.toList());
@@ -52,7 +51,7 @@ public class Cars {
 
     private void validateDuplicateCarName(Car car) {
         if (cars.stream().anyMatch(each -> each.isSameName(car))) {
-            throw new RuntimeException(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
+            throw new RuntimeException(ErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
         }
     }
 
