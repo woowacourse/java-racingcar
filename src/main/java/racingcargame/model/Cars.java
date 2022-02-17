@@ -14,7 +14,7 @@ public class Cars {
     public Cars(final List<String> carNames) {
         checkDuplicateCarNames(carNames);
         cars = carNames.stream().
-                map(carName -> new Car(carName.trim()).collect(Collectors.toList());
+                map(carName -> new Car(carName.trim())).collect(Collectors.toList());
     }
 
     private void checkDuplicateCarNames(final List<String> carNames) {
@@ -25,7 +25,7 @@ public class Cars {
     }
 
     void moveCars(final RandomNumberGenerator randomNumberGenerator) {
-        cars.forEach(Car::moveCar);
+        cars.forEach(car -> car.moveCar(randomNumberGenerator.generateNumber(10)));
     }
 
     List<CarDto> bringCarsInformation() {

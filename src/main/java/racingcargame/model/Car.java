@@ -1,7 +1,6 @@
 package racingcargame.model;
 
 import racingcargame.dto.CarDto;
-import racingcargame.utils.RandomNumberGenerator;
 
 public class Car implements Comparable<Car> {
     private static final int MIN_MOVABLE_NUMBER = 4;
@@ -14,10 +13,10 @@ public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
-    public Car(final String name, final int position) {
+    public Car(final String name) {
         checkValidateName(name);
         this.name = name;
-        this.position = position;
+        this.position = 0;
     }
 
     private void checkValidateName(final String name) {
@@ -37,16 +36,10 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public int moveCar() {
-        int moveNumber = pickMoveNumber();
-        if (moveNumber >= MIN_MOVABLE_NUMBER) {
+    public void moveCar(final int number) {
+        if (number >= MIN_MOVABLE_NUMBER) {
             position++;
         }
-        return moveNumber;
-    }
-
-    private int pickMoveNumber() {
-        return RandomNumberGenerator.pickRandomNumber();
     }
 
     public boolean hasSamePosition(Car winnerCar) {
