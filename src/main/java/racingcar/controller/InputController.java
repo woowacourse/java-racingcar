@@ -7,14 +7,14 @@ import static racingcar.view.InputView.scanTryCount;
 
 public class InputController {
     public String[] getUserCarNames(final String userCarText) throws RuntimeException {
-        return carSplit(userCarText);
+        return splitCar(userCarText);
     }
 
     public int getUserTryCount(final String userTryCount) throws RuntimeException {
         return toInt(userTryCount);
     }
 
-    private String[] carSplit(final String cars) throws RuntimeException {
+    private String[] splitCar(final String cars) throws RuntimeException {
         String[] carNames = cars.split(",");
         for (String carName : carNames) {
             InputValidator.validateName(carName);

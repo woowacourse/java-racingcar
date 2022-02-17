@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import racingcar.util.RandomNumberGenerator;
 import racingcar.util.RandomUtil;
 
 public class Car {
@@ -24,10 +23,7 @@ public class Car {
     }
 
     private boolean isMovable(final RandomUtil randomNumberGenerator) {
-        if (randomNumberGenerator.generate() >= STANDARD) {
-            return true;
-        }
-        return false;
+        return randomNumberGenerator.generate() >= STANDARD;
     }
 
     public void move(final RandomUtil randomNumberGenerator) {
