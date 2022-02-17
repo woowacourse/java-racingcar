@@ -12,5 +12,4 @@ public class RandomNumber {
 		final Random random = new Random();
 		return random.nextInt(MAX_EXCLUSIVE) + 1;
 	}
-
 }

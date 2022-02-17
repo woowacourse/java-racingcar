@@ -26,7 +26,7 @@ public class Input {
 			return inputNames();
 		}
 	}
-
+  
 	public static int inputValidRepeats() {
 		return Integer.parseInt(inputRepeats());
 	}
