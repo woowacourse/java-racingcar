@@ -54,16 +54,36 @@ class CarTest {
         assertThat(car.getLocation()).isEqualTo(CAR_INITIALIZED_LOCATION);
     }
 
-    @DisplayName("자동차는 한번에 1만큼 이동할 수 있다.")
+    @DisplayName("조건을 만족한 경우, 자동차는 한번에 1만큼 이동할 수 있다.")
     @ParameterizedTest
-    @ValueSource(strings = {"aaa", "poby", "if", "hanul"})
-    void goForwardTest(final String name) {
+    @MethodSource("provideForGoForwardTest")
+    void goForwardTrueTest(final String name) {
         final Car car = new Car(name);
         final int carLocation = car.getLocation();
         car.goForward(() -> true);
 
         final int actual = car.getLocation();
         final int expected = carLocation + INCREASING_COUNT;
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> provideForGoForwardTest() {
+        return Stream.of(
+                Arguments.of("aaa"),
+                Arguments.of("poby"),
+                Arguments.of("if"),
+                Arguments.of("hanul"));
+    }
+
+    @DisplayName("조건을 만족하지 못한 경우, 자동차는 이동할 수 없다.")
+    @ParameterizedTest
+    @MethodSource("provideForGoForwardTest")
+    void goForwardFalseTest(final String name) {
+        final Car car = new Car(name);
+        final int expected = car.getLocation();
+        car.goForward(() -> false);
+
+        final int actual = car.getLocation();
         assertThat(actual).isEqualTo(expected);
     }
 
