@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,12 +12,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
-	Cars cars;
-	List<Integer> moveConditionNumbers;
+	private Cars cars;
+	private List<Integer> moveConditionNumbers;
 
 	@BeforeEach
 	void setUp() {
-		moveConditionNumbers = new ArrayList<>(Arrays.asList(3, 4));
+		moveConditionNumbers = Arrays.asList(3, 4);
 		cars = new Cars();
 		cars.createCars(new String[] {"범고래", "소주캉"});
 	}
@@ -46,7 +47,7 @@ class CarsTest {
 		cars.move(moveConditionNumbers);
 		List<CarDto> expected = Arrays.asList(new CarDto(carStop), new CarDto(carMove));
 
-		assertThat(cars.getCars().equals(expected)).isTrue();
+		assertThat(cars.getCars()).isEqualTo(expected);
 	}
 
 	@Test
@@ -54,11 +55,11 @@ class CarsTest {
 	void winnerTest() {
 		Car carMove = new Car("소주캉");
 		carMove.move(4);
-		List<CarDto> expected = Arrays.asList(new CarDto(carMove));
+		List<CarDto> expected = Collections.singletonList(new CarDto(carMove));
 
 		cars.move(moveConditionNumbers);
 		List<CarDto> winners = cars.getWinners();
 
-		assertThat(winners.equals(expected)).isTrue();
+		assertThat(winners).isEqualTo(expected);
 	}
 }
