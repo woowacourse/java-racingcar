@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,6 +35,12 @@ public class RacingServiceTest {
         cars.add(carD);
 
         racingService = new RacingService(cars);
+    }
+
+    @Test
+    void 자동차_생성(){
+        racingService.generateCars(Arrays.asList("pobi","abc","def"));
+        assertThat(cars).contains(new Car("pobi"), new Car("abc"), new Car("def"));
     }
 
     @Test
