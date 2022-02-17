@@ -4,7 +4,7 @@ import racingcargame.dto.CarDto;
 
 public class Car implements Comparable<Car> {
     private final Name name;
-    private Position position;
+    private final Position position;
 
     public Car(final String name) {
         this.name = new Name(name);
