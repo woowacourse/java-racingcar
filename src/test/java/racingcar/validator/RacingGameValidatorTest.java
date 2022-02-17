@@ -12,7 +12,7 @@ class RacingGameValidatorTest {
 	@Test
 	@DisplayName("입력한 이름값이 한개인 경우")
 	void onlyName() {
-		Assertions.assertThatThrownBy(() -> validateCarNames(Utils.splitAndTrim("pobi")))
+		Assertions.assertThatThrownBy(() -> validateCarNames(Utils.splitter("pobi")))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(ERROR_ONLY_NAME);
 	}
@@ -20,7 +20,7 @@ class RacingGameValidatorTest {
 	@Test
 	@DisplayName("중복된 이름이 있을 경우")
 	void duplicateName() {
-		Assertions.assertThatThrownBy(() -> validateCarNames(Utils.splitAndTrim("pobi,pobi")))
+		Assertions.assertThatThrownBy(() -> validateCarNames(Utils.splitter("pobi,pobi")))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(ERROR_DUPLICATE_NAME);
 	}

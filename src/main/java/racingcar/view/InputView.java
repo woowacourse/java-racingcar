@@ -11,7 +11,7 @@ public class InputView {
 	public static String[] getCarNames(Scanner scanner) {
 		System.out.println(REQUEST_CAR_NAMES);
 		String inputNames = scanner.nextLine();
-		return Utils.splitAndTrim(inputNames);
+		return Utils.splitter(inputNames);
 	}
 
 	public static int getMoveCount(Scanner scanner) {
