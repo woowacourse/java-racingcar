@@ -29,11 +29,11 @@ public class OutputViewTest {
 		final MovingPolicy movingPolicy = () -> true;
 
 		final List<Car> cars = Arrays.asList(
-			new Car("메트", movingPolicy),
-			new Car("잉", movingPolicy)
+			new Car("메트"),
+			new Car("잉")
 		);
 
-		cars.forEach(Car::move);
+		cars.forEach(car -> car.move(movingPolicy));
 		OutPutView.printStatus(cars);
 		assertThat(outputStream.toString()).isEqualTo("메트 : -\n잉 : -\n\n");
 	}

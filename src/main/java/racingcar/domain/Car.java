@@ -9,16 +9,14 @@ public class Car {
 
     private final String name;
     private int position;
-    private final MovingPolicy movingPolicy;
 
-    public Car(String name, MovingPolicy movingPolicy) {
+    public Car(String name) {
         RacingCarValidator.validateCarName(name);
         this.name = name;
         this.position = POSITION_INIT;
-        this.movingPolicy = movingPolicy;
     }
 
-    public void move() {
+    public void move(MovingPolicy movingPolicy) {
         if (movingPolicy.isMovable()) {
             position++;
         }

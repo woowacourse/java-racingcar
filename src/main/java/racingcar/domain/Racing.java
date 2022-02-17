@@ -21,7 +21,7 @@ public class Racing {
 
 	private List<Car> getCars(String[] carNames) {
 		return Arrays.stream(carNames)
-			.map(carName -> new Car(carName, new RandomMovingPolicy()))
+			.map(Car::new)
 			.collect(toList());
 	}
 
@@ -37,7 +37,7 @@ public class Racing {
 	}
 
 	private void moveCars(List<Car> cars) {
-		cars.forEach(Car::move);
+		cars.forEach(car -> car.move(new RandomMovingPolicy()));
 	}
 
 	public List<String> getWinners() {

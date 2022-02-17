@@ -19,7 +19,7 @@ public class RacingCarValidatorTest {
 	@DisplayName("차 한대 인지 확인하기")
 	@Test
 	void validateCars_한대() {
-		final List<Car> cars = Collections.singletonList(new Car("잉", movingPolicy));
+		final List<Car> cars = Collections.singletonList(new Car("잉"));
 
 		assertThatThrownBy(() -> {
 			RacingCarValidator.validateCars(cars);
@@ -30,9 +30,9 @@ public class RacingCarValidatorTest {
 	@Test
 	void validateCars_중복() {
 		final List<Car> cars = Arrays.asList(
-			new Car("소니",movingPolicy),
-			new Car("잉",movingPolicy),
-			new Car("소니",movingPolicy)
+			new Car("소니"),
+			new Car("잉"),
+			new Car("소니")
 		);
 
 		assertThatThrownBy(() ->{
