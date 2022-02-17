@@ -30,8 +30,8 @@ public class GameController {
     }
 
     private RacingCarGame setUpGame() {
-        List<String> racingCarNames = inputView.inputRacingCarNames();
-        String raceCount = inputView.inputRaceCount();
+        final List<String> racingCarNames = inputView.inputRacingCarNames();
+        final String raceCount = inputView.inputRaceCount();
         return new RacingCarGame(racingCarNames, raceCount);
     }
 
