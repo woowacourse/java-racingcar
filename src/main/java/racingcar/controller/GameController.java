@@ -6,9 +6,6 @@ import racingcar.view.OutputView;
 
 
 public class GameController {
-    private static final String COMMA = ",";
-    private static final String BLANK = "";
-    private static final String SPACE = " ";
 
     public void run() {
         InputView.inputCarNames();
@@ -21,6 +18,7 @@ public class GameController {
     }
 
     private void startRace(RacingGame racingGame) {
+        OutputView.printTrialResult();
         while (!racingGame.isEnd()) {
             racingGame.race();
             OutputView.printCarPosition(racingGame.getCars());
