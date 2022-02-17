@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import static racingcar.utils.NumberConverter.*;
 import static racingcar.utils.Validator.*;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class ValidatorTest {
 
     @Test
@@ -19,7 +20,7 @@ public class ValidatorTest {
     @Test
     void 이름_없음_실패() {
         assertThatThrownBy(() ->
-                validateEachCarName(new String[]{"jae",""}))
+                validateEachCarName(new String[]{"jae", ""}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름 입력은 필수입니다.");
     }

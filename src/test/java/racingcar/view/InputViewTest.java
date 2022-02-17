@@ -8,7 +8,7 @@ import java.io.ByteArrayInputStream;
 import static org.assertj.core.api.Assertions.*;
 import static racingcar.view.InputView.*;
 
-
+@SuppressWarnings("NonAsciiCharacters")
 public class InputViewTest {
 
     private void systemIn(String input) {

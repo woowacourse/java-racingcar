@@ -5,6 +5,7 @@ import racingcar.utils.RandomNumberGenerator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class RacingGameTest {
 
     @Test

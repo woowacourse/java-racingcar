@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
 
     private static final int FORWARD_STANDARD = 4;

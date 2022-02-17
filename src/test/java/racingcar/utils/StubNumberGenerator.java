@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StubNumberGenerator implements NumberGenerator{
+public class StubNumberGenerator implements NumberGenerator {
 
     private final List<Integer> numbers;
     private int index;
@@ -14,7 +14,7 @@ public class StubNumberGenerator implements NumberGenerator{
         index = 0;
     }
 
-    public void prepareStubNumbers(int count, int ... values) {
+    public void prepareStubNumbers(int count, int... values) {
         checkCountRange(count);
         checkValuesLengthSameAsCount(count, values);
         Arrays.stream(values)

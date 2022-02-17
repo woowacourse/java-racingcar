@@ -7,6 +7,7 @@ import racingcar.utils.StubNumberGenerator;
 
 import static org.assertj.core.api.Assertions.*;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class RacingControllerTest extends IOTest {
 
     private StubNumberGenerator numberGenerator = new StubNumberGenerator();
@@ -16,7 +17,7 @@ public class RacingControllerTest extends IOTest {
     void 레이싱_컨트롤러_플레이_성공(String input) {
         systemIn(input);
         RacingController racingController = new RacingController();
-        numberGenerator.prepareStubNumbers(6,3,3,4,4,3,3);
+        numberGenerator.prepareStubNumbers(6, 3, 3, 4, 4, 3, 3);
 
         racingController.play(numberGenerator);
 
@@ -28,7 +29,7 @@ public class RacingControllerTest extends IOTest {
     void 레이싱_컨트롤러_공백_에러_메시지(String input) {
         systemIn(input);
         RacingController racingController = new RacingController();
-        numberGenerator.prepareStubNumbers(4,4,1,4,1);
+        numberGenerator.prepareStubNumbers(4, 4, 1, 4, 1);
 
         racingController.play(numberGenerator);
 
