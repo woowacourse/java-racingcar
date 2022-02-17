@@ -1,6 +1,7 @@
 package carracing.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import carracing.model.Car;
 import carracing.view.messages.ExceptionMessage;
@@ -40,12 +41,18 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printWinners(List<String> winners) {
+	public static void printWinners(List<Car> winners) {
 		System.out.println(generateWinnersString(winners) + OutputMessage.FINAL_WINNER_MESSAGE.getMessage());
 	}
 
-	private static String generateWinnersString(List<String> winners) {
-		return String.join(DELIMITER_FOR_JOINING_WINNERS, winners);
+	private static String generateWinnersString(List<Car> winners) {
+		return String.join(DELIMITER_FOR_JOINING_WINNERS, covertWinnersToStringList(winners));
+	}
+
+	private static List<String> covertWinnersToStringList(List<Car> winners) {
+		return winners.stream()
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 
 	private static String generateResultString(Car car) {

@@ -33,12 +33,16 @@ public class Car {
 		}
 	}
 
-	public int getPosition() {
-		return this.position;
+	public boolean isAheadOf(Car car) {
+		return this.position > car.position;
 	}
 
-	public boolean isSamePosition(int position) {
-		return this.position == position;
+	public boolean isTiedWith(Car car) {
+		return this.position == car.position;
+	}
+
+	public int getPosition() {
+		return this.position;
 	}
 
 	private void validateName(String name) {
