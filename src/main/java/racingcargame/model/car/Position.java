@@ -1,6 +1,6 @@
 package racingcargame.model.car;
 
-public class Position {
+public class Position implements Comparable<Position> {
     private int position;
 
     public Position() {
@@ -13,5 +13,10 @@ public class Position {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public int compareTo(final Position winnerPosition) {
+        return this.position - winnerPosition.position;
     }
 }
