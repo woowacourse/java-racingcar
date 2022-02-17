@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import java.util.Objects;
 import racingcar.strategy.MovingCarStrategy;
 
 public class Car implements Comparable<Car> {
@@ -37,23 +36,6 @@ public class Car implements Comparable<Car> {
         if (name.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
         }
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        Car car = (Car) obj;
-        return Objects.equals(name, car.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
     }
 
     @Override
