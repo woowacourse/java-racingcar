@@ -9,17 +9,16 @@ public class CalculatorController {
     private static final int DEFAULT_NUMBER = 0;
 
     public void runCalculator(String input){
-        Calculator calculator = new Calculator();
-
         if (InputValidator.isInputNullOrBlankOrEmpty(input)) {
             OutputView.showSum(DEFAULT_NUMBER);
             return;
         }
-
         if (InputView.hasCustomDelimiterInInput(input)) {
-            OutputView.showSum(calculator.makeSumOfNumbers(InputView.dividesByCustomAndCheckValidate(input)));
+            Calculator calculator = new Calculator(InputView.dividesByCustomAndCheckValidate(input));
+            OutputView.showSum(calculator.makeSumOfNumbers());
             return;
         }
-        OutputView.showSum(calculator.makeSumOfNumbers(InputView.divideNumbersByDelimiterAndCheckValidate(input)));
+        Calculator calculator = new Calculator(InputView.divideNumbersByDelimiterAndCheckValidate(input));
+        OutputView.showSum(calculator.makeSumOfNumbers());
     }
 }

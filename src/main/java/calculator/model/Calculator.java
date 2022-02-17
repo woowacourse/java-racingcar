@@ -1,20 +1,27 @@
 package calculator.model;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculator {
-    private static final String DEFAULT_NUMBER = "0";
+    private final List<String> numbers;
 
-    public int makeSumOfNumbers(List<String> numbers) {
-        return numbers.stream()
-                .mapToInt(num -> Integer.parseInt(sumOfNumber(num)))
-                .sum();
+    public Calculator(List<String> numbers) {
+        this.numbers = replaceBlankNumberZero(new ArrayList<>(numbers));
     }
 
-    private String sumOfNumber(String number) {
-        if (InputValidator.isInputNullOrBlankOrEmpty(number)) {
-            return DEFAULT_NUMBER;
-        }
-        return number;
+    private List<String> replaceBlankNumberZero(List<String> numbers) {
+        return numbers.stream()
+                .filter(number -> !StringUtils.isBlank(number))
+                .collect(Collectors.toList());
+    }
+
+    public int makeSumOfNumbers() {
+        return numbers.stream()
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }
