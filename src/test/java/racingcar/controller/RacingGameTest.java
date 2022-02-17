@@ -1,13 +1,11 @@
-package racingcar;
+package racingcar.controller;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
-import java.util.Scanner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.controller.RacingGame;
 import racingcar.view.ErrorMessage;
 
 public class RacingGameTest {
@@ -19,9 +17,8 @@ public class RacingGameTest {
         String[] input = {inputNames, "5"};
         byte[] buf = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
-        Scanner scanner = new Scanner(System.in);
         RacingGame racingGame = new RacingGame();
-        assertThatThrownBy(() -> racingGame.play(scanner))
+        assertThatThrownBy(() -> racingGame.play())
                 .hasMessageContaining(ErrorMessage.CAR_NAME_EMPTY.toString());
     }
 }

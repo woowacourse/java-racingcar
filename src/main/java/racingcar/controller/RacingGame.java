@@ -1,11 +1,8 @@
 package racingcar.controller;
 
-import static racingcar.view.InputView.requestAttempt;
-import static racingcar.view.InputView.requestCarName;
 import static racingcar.view.OutputView.printRaceResult;
 import static racingcar.view.OutputView.printWinners;
 
-import java.util.Scanner;
 import racingcar.vo.Attempt;
 import racingcar.vo.Cars;
 
@@ -13,9 +10,15 @@ public class RacingGame {
 
     private static final String CAR_NAME_DELIMITER = ",";
 
-    public void play(Scanner scanner) {
-        Cars cars = createCars(splitCarNames(requestCarName(scanner)));
-        Attempt attempt = new Attempt(requestAttempt(scanner));
+    private final UserInputRequester userInputRequester;
+
+    public RacingGame() {
+        this.userInputRequester = new UserInputRequester();
+    }
+
+    public void play() {
+        Cars cars = createCars(splitCarNames(userInputRequester.getCarName()));
+        Attempt attempt = new Attempt(userInputRequester.getAttempt());
         cars = cars.repeatRaceBy(attempt);
         printRaceResult(cars.getRaceAllResult());
         printWinners(cars.judgeWinners());

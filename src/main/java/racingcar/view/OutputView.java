@@ -9,7 +9,8 @@ public class OutputView {
 
     public static void printRaceResult(String raceResult) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(RACE_RESULT_MESSAGE)
+        stringBuilder.append(System.lineSeparator())
+                .append(RACE_RESULT_MESSAGE)
                 .append(System.lineSeparator())
                 .append(raceResult);
         System.out.print(stringBuilder);
