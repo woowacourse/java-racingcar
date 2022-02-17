@@ -1,9 +1,8 @@
 package racingcar.domain;
 
-public class Car {
+import java.util.Objects;
 
-	private final String name;
-	private int position;
+public class Car implements Comparable<Car> {
 
 	private static final int INITIAL_POSITION = 0;
 	private static final int STANDARD_OF_MOVING = 4;
@@ -11,6 +10,9 @@ public class Car {
 
 	private static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차의 이름은 1글자 이상이어야 합니다.";
 	private static final String INVALID_CAR_NAME_ERROR_MESSAGE = "자동차의 이름은 5글자 이하여야 합니다.";
+
+	private final String name;
+	private int position;
 
 	private Car(String name, int position) {
 		validateCarName(name);
@@ -52,7 +54,34 @@ public class Car {
 		return this.position == position;
 	}
 
+	public boolean isSamePosition(Car other) {
+		return this.position == other.position;
+	}
+
 	public CarDto toDto() {
 		return new CarDto(this.name, this.position);
+	}
+
+	@Override
+	public int compareTo(Car other) {
+		return this.position - other.position;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+
+		if (o == null || getClass() != o.getClass())
+			return false;
+
+		Car car = (Car)o;
+
+		return Objects.equals(name, car.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
 	}
 }
