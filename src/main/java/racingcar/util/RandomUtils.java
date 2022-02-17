@@ -1,10 +1,8 @@
 package racingcar.util;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
-    private static final Random random = new Random();
-
     public static int generateNumber(int min, int max) {
         if (min > max) {
             int temp = min;
@@ -14,6 +12,6 @@ public class RandomUtils {
         if (min == max) {
             return min;
         }
-        return min + random.nextInt(max - min);
+        return min + ThreadLocalRandom.current().nextInt(max - min);
     }
 }
