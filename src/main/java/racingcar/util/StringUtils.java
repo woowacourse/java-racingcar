@@ -1,6 +1,9 @@
 package racingcar.util;
 
 public class StringUtils {
+    private StringUtils() {
+    }
+
     public static String[] splitByDelimiter(String string, String delimiter) {
         return string.split(delimiter);
     }
