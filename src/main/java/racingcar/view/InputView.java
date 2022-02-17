@@ -25,6 +25,8 @@ public class InputView {
     public static int insertRightNumber() {
         printNumberMessage();
         String input = Console.readLine();
-        return toInt(input);
+        int rightNumber = toInt(input);
+        checkPositiveNumber(rightNumber);
+        return rightNumber;
     }
 }
