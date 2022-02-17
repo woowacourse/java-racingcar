@@ -11,13 +11,10 @@ public class DetermineMovementByRandomNumber implements MoveOrStop {
     public boolean determine() {
         int randomNumber = random.nextInt(MAX_RANDOM_NUMBER_BOUNDARY);
 
-        if (judgeToMove(randomNumber)) {
+        if (randomNumber >= MOVE_CRITERION) {
             return true;
         }
         return false;
     }
 
-    private boolean judgeToMove(int randomNumber) {
-        return randomNumber >= MOVE_CRITERION;
-    }
 }
