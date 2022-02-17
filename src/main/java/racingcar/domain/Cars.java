@@ -37,16 +37,10 @@ public class Cars {
 
     private List<String> findChampions(int highScore) {
         List<String> champions = new ArrayList<>();
-        for (Car car : cars) {
-            addIfChampion(champions, car, highScore);
-        }
+        cars.stream()
+            .filter(car -> car.isSamePosition(highScore))
+            .forEach(car -> champions.add(car.getName()));
         return champions;
-    }
-
-    private void addIfChampion(List<String> champions, Car car, int highScore) {
-        if (car.isSamePosition(highScore)) {
-            champions.add(car.getName());
-        }
     }
 
     public List<Car> getCars() {
