@@ -12,7 +12,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     @DisplayName("랜덤값이 전진 조건값 이상일 경우 한칸 전진")
-    public void carShouldMove(int input) {
+    void carShouldMove(int input) {
         Car car = new Car("woo");
 
         car.move(input);
@@ -23,7 +23,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
     @DisplayName("랜덤값이 전진 조건값 미만일 경우 전진하지 않음")
-    public void carShouldNotMove(int input) {
+    void carShouldNotMove(int input) {
         Car car = new Car("woo");
 
         car.move(input);
@@ -32,8 +32,8 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("주어진 전진횟수와 동일한 전진횟수를 가지는 경우 true를 반환")
-    public void trueIfSame() {
+    @DisplayName("주어진 전진횟수와 동일한 전진횟수를 가지는 경우 true 반환")
+    void trueIfSame() {
         Car car = new Car("woo");
 
         car.move(9);
@@ -44,8 +44,8 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("주어진 전진횟수와 동일하지 않는 전진횟수를 가지는 경우 false를 반환")
-    public void falseIfNotSame() {
+    @DisplayName("주어진 전진횟수와 동일하지 않는 전진횟수를 가지는 경우 false 반환")
+    void falseIfNotSame() {
         Car car = new Car("woo");
 
         assertThat(car.isSamePosition(3)).isFalse();

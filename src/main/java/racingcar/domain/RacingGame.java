@@ -1,26 +1,20 @@
 package racingcar.domain;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static racingcar.util.RacingGameValidationUtil.*;
-import static racingcar.util.TotalAttemptValidationUtil.*;
-import static racingcar.util.RandomUtil.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingGame {
 
+    private static final String MUST_BE_INTEGER = "[ERROR] 시도 횟수는 숫자만 허용됩니다.";
+    private static final String MUST_BE_POSITIVE = "[ERROR] 1미만의 시도횟수는 허용되지 않습니다.";
     private final String SIGN_OF_CAR_NAME = ",";
 
-    private Set<Car> cars = new HashSet<>();
+    private CarRepository cars;
     private int totalAttempt = 0;
 
     public void initCarNames(String carNames) {
         String[] names = carNames.split(SIGN_OF_CAR_NAME);
-        validateDuplication(names);
-
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
+        cars = new CarRepository(names);
     }
 
     public void initTotalAttempt(String attempt) {
@@ -32,43 +26,34 @@ public class RacingGame {
         List<List<CarDTO>> totalExecutionResult = new ArrayList<>();
 
         while (totalAttempt-- > 0) {
-            run();
-            totalExecutionResult.add(saveExecutionResult());
+            cars.moveAllCars();
+            totalExecutionResult.add(cars.getExecutionResult());
         }
 
         return totalExecutionResult;
     }
 
     public List<String> selectWinners() {
-        int maxPosition = getMaxPosition();
-
-        return cars.stream()
-                .filter(c -> c.isSamePosition(maxPosition))
-                .map(Car::getName)
-                .collect(Collectors.toList());
+        return cars.selectWinners();
     }
 
-    private void run() {
-        for (Car car : cars) {
-            car.move(generateRandomNumber());
+    private static void validateAttempt(String attempt) {
+        int num = validateIntegerThenParse(attempt);
+        validatePositive(num);
+    }
+
+    private static int validateIntegerThenParse(String num) {
+        try {
+            return Integer.parseInt(num);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(MUST_BE_INTEGER);
         }
     }
 
-    private List<CarDTO> saveExecutionResult() {
-        List<CarDTO> executionResult = new ArrayList<>();
-
-        for (Car car : cars) {
-            executionResult.add(new CarDTO(car.getName(), car.getPosition()));
+    private static void validatePositive(int num) {
+        if (num <= 0) {
+            throw new IllegalArgumentException(MUST_BE_POSITIVE);
         }
-
-        return executionResult;
-    }
-
-    private int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
     }
 
 }
