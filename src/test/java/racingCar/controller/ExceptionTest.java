@@ -1,5 +1,6 @@
 package racingCar.controller;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,13 @@ import racingCar.domain.service.RacingGame;
 public class ExceptionTest {
     private static final String RIGHT_NAMES_INPUT = "juri,hunch";
     private static final String RIGHT_COUNT_INPUT = "5";
+
+    @Test
+    void 올바른_이름이_들어온_경우() {
+        assertThatCode(() -> new RacingGame(RIGHT_NAMES_INPUT, RIGHT_COUNT_INPUT))
+                .doesNotThrowAnyException();
+
+    }
 
     @Test
     void 이름이_5자보다_큰_경우() {
