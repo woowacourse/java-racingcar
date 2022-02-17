@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,15 +53,6 @@ class CarsTest {
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("자동차 랜덤 숫자 범위 확인")
-	@Test
-	void cars_random_range() {
-		//given, when
-		int value = generate();
-		//then
-		assertTrue(value > -1 && value < 11);
-	}
-
 	@DisplayName("우승자 1명")
 	@Test
 	void cars_winner() {
@@ -97,9 +87,5 @@ class CarsTest {
 		List<String> winners = cars.findWinners();
 
 		assertThat(winners).containsExactly("car1", "car2");
-	}
-
-	private int generate() {
-		return (int)(Math.random() * 100) % 10;
 	}
 }
