@@ -34,21 +34,13 @@ public class ParticipatedCars {
 
     private Car findFastestCar() {
         Collections.sort(cars, Comparator.comparingInt(Car::getPosition));
-        return cars.get(this.getSize() - 1);
+        return cars.get(cars.size() - 1);
     }
 
     public void executeCarRacing() {
         for (Car car : cars) {
             car.tryToMoveBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
         }
-    }
-
-    public int getSize() {
-        return cars.size();
-    }
-
-    public void addCar(Car car) {
-        cars.add(car);
     }
 
     public List<Car> getCars() {
