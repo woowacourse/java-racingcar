@@ -10,7 +10,7 @@ public class RacingCars {
     private static final int ANY_INDEX = 0;
     private static final int MINIMUM_CAR_NUMBER = 2;
     private static final String EXCEPTION_NUMBER_OF_CAR = "[ERROR] 경기를 위한 자동차는 최소 2대이상이여야 합니다.";
-    private List<RacingCar> racingCarBucket;
+    private final List<RacingCar> racingCarBucket;
 
     public RacingCars(List<String> carNameBucket) {
         validateCar(carNameBucket);
