@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import java.util.List;
 import racingcar.util.IntegerConst;
 
 import java.util.ArrayList;
@@ -37,7 +38,9 @@ public class CarList {
 
     public ArrayList<String> getWinnerNames() {
         int maxPosition = getMaxPosition();
-        return (ArrayList<String>) this.carList.stream().filter(car -> car.isWinner(maxPosition)).map(Car::getName).collect(Collectors.toList());
+        return (ArrayList<String>) this.carList.stream().filter(car -> car.isNowPositionAt(maxPosition))
+            .map(Car::getName)
+            .collect(Collectors.toList());
     }
 
     public int getTotalCount() {
