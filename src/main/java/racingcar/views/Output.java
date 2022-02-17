@@ -7,6 +7,8 @@ import racingcar.utils.RacingGameMessage;
 
 public class Output {
 
+	private Output() {}
+
 	public static void printResultMessage() {
 		System.out.println(RacingGameMessage.TURN_RESULT);
 	}

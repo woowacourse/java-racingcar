@@ -14,4 +14,6 @@ public class RacingGameMessage {
 	public static final String NAME_POSITION_SPLITTER = " : ";
 
 	public static final String CAR_NAME_DISTRIBUTOR = ",";
+
+	private RacingGameMessage() {}
 }

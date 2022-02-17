@@ -8,6 +8,8 @@ public class InputValidation {
 	private static final String NUMBER_PATTERN = "^[0-9]*$";
 	private static final Pattern COMPILED_NUMBER_PATTERN = Pattern.compile(NUMBER_PATTERN);
 
+	private InputValidation(){}
+
 	public static void validateName(final String names) {
 		final String[] carNames = names.split(RacingGameMessage.CAR_NAME_DISTRIBUTOR);
 		for (String carName : carNames) {

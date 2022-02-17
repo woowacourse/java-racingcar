@@ -12,6 +12,8 @@ public class Input {
 
 	private static final Scanner scanner = new Scanner(System.in);
 
+	private Input() {}
+
 	public static List<String> inputValidNames() {
 		final String names = inputNames();
 		return Arrays.stream(names.split(RacingGameMessage.CAR_NAME_DISTRIBUTOR))
