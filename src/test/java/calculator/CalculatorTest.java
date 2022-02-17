@@ -1,10 +1,12 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import racingcar.model.PlayTime;
 
 class CalculatorTest {
 
@@ -48,10 +50,10 @@ class CalculatorTest {
 
     @Test
     public void 음수_전달시_예외_처리() {
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+        assertThatThrownBy(() -> {
             calculator.splitAndSum("-1,2");
-        });
-
-        assertEquals("음수는 불가합니다!", exception.getMessage());
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("음수는 불가합니다!");
     }
 }
