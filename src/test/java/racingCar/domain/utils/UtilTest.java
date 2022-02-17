@@ -4,17 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
+import racingCar.domain.moveStratege.RandomNumGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class UtilTest {
-    @Test
-    void 랜덤값_테스트() {
-        for (int i = 0; i < 100; i++) {
-            int result = Util.getRandomInteger();
-            System.out.println("result :" + result);
-            assertThat(result).isBetween(0, 9);
-        }
-    }
 
     @Test
     void 쉼표_기준으로_이름_분리() {

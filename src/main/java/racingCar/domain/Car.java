@@ -1,6 +1,7 @@
 package racingCar.domain;
 
 import java.util.Objects;
+import racingCar.domain.moveStratege.NumGenerator;
 
 public class Car {
     private static final int GO_NUM = 4;
@@ -12,7 +13,9 @@ public class Car {
         this.position = new Position(position);
     }
 
-    public void go(int number) {
+    public void move(NumGenerator numGenerator) {
+        final int number = numGenerator.generate();
+
         if (number >= GO_NUM) {
             position.move();
         }

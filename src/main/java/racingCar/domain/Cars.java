@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingCar.domain.exception.name.NameDuplicatedException;
 import racingCar.domain.exception.name.NameOnlyOneException;
-import racingCar.domain.utils.Util;
+import racingCar.domain.moveStratege.NumGenerator;
+import racingCar.domain.moveStratege.RandomNumGenerator;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
@@ -20,15 +21,16 @@ public class Cars {
     }
 
     public void go() {
+        NumGenerator numGenerator = new RandomNumGenerator();
         for (Car car : cars) {
-            car.go(Util.getRandomInteger());
+            car.move(numGenerator);
         }
     }
 
     public int getMaxPosition() {
         ArrayList<Integer> positions = new ArrayList<>();
         for (Car car : cars) {
-            positions.add(car.getPosition().get());
+            positions.add(car.getPosition());
         }
         return Collections.max(positions);
     }

@@ -66,7 +66,7 @@
 - 
   리뷰를 잘 반영해 주셔서 이것을 2단계에 도전해 보죠 😎
 - [x]  메서드 시그니처 분리 : https://tecoble.techcourse.co.kr/post/2020-05-07-appropriate_method_for_test_by_parameter/
-- [ ]  인터페이스 분리 : https://tecoble.techcourse.co.kr/post/2020-05-17-appropriate_method_for_test_by_interface/
+- [x]  인터페이스 분리 : https://tecoble.techcourse.co.kr/post/2020-05-17-appropriate_method_for_test_by_interface/
 
 
 
