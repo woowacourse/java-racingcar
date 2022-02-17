@@ -43,7 +43,7 @@ public class RacingGameTest {
         final Round finalRound = new Round(1);
         final RacingGame racingGame = new RacingGame(racingCars, finalRound);
         racingGame.race();
-        assertThatExceptionOfType(UnsupportedOperationException.class)
+        assertThatExceptionOfType(IllegalStateException.class)
             .isThrownBy(() -> racingGame.race())
             .withMessageMatching("종료된 게임은 더이상 실행할 수 없다.");
     }

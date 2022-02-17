@@ -26,7 +26,7 @@ public class RacingGame {
 
     private void checkCanRace() {
         if (isEnd()) {
-            throw new UnsupportedOperationException("종료된 게임은 더이상 실행할 수 없다.");
+            throw new IllegalStateException("종료된 게임은 더이상 실행할 수 없다.");
         }
     }
 
