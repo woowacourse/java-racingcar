@@ -9,6 +9,9 @@ import racingcar.utils.Constant;
 
 public class Cars {
 
+    private static final int MINIMUM_MOVE = 4;
+    private static final int RANDOM_RANGE = 10;
+
     List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -25,6 +28,20 @@ public class Cars {
         int maxPosition = findMaxPosition(cars);
         List<String> winners = findWinnerByPosition(maxPosition, cars);
         return winners;
+    }
+
+    public void move() {
+
+        for (Car car : cars) {
+//            RandomMoveCondition randomMoveCondition = new RandomMoveCondition();
+//            car.movePosition(randomMoveCondition);
+            car.movePosition(() -> makeRandom() >= MINIMUM_MOVE);
+            //car.movePosition(randomMoveCondition);
+        }
+    }
+
+    private int makeRandom() {
+        return (int) (Math.random() * RANDOM_RANGE);
     }
 
     private int findMaxPosition(List<Car> cars) {
