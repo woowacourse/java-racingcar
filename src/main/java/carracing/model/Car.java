@@ -15,6 +15,7 @@ public class Car {
 
 	private Car(String name) {
 		validateName(name);
+
 		this.name = name;
 		this.position = 0;
 	}
