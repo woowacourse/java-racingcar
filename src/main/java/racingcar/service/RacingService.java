@@ -6,6 +6,7 @@ import racingcar.utils.RandomIntegerGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RacingService {
     private static final String INVALID_GET_WINNERS_ERROR_MESSAGE = "우승자 파악 과정에서 에러가 발생했습니다.";
@@ -23,9 +24,9 @@ public class RacingService {
     }
 
     public void generateCars(List<String> carNames) {
-        carNames.stream()
-            .map(Car::new)
-            .forEach(cars::add);
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
     }
 
     public List<Car> findWinners() {
