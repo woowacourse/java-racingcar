@@ -17,7 +17,7 @@ public class Input {
             Validation.carNameValidation(carNamesInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            getCarNames();
+            return getCarNames();
         }
         return carNamesInput.split(SPLIT_DELIM);
     }
@@ -28,7 +28,7 @@ public class Input {
             Validation.tryNumValidation(tryValue);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            getTryNum();
+            return getTryNum();
         }
         return Integer.parseInt(tryValue);
     }
