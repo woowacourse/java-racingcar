@@ -7,14 +7,15 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.MockRandomNumberGenerator;
+import racingcar.domain.Game;
 import racingcar.exception.RacingGameIsFinishedException;
 
-public class RacingGameTest {
+public class GameTest {
 
     private static final String CAR_1_NAME = "pobi";
     private static final String CAR_2_NAME = "jason";
 
-    private RacingGame racingGame;
+    private Game game;
     private List<String> names;
 
     @BeforeEach
@@ -24,18 +25,18 @@ public class RacingGameTest {
 
     @Test
     public void 시도횟수만큼_게임진행() {
-        racingGame = new RacingGame(names, 2, new MockRandomNumberGenerator());
-        assertThat(racingGame.isFinished()).isFalse();
-        racingGame.proceedTurn();
-        racingGame.proceedTurn();
-        assertThat(racingGame.isFinished()).isTrue();
+        game = new Game(names, 2, new MockRandomNumberGenerator());
+        assertThat(game.isFinished()).isFalse();
+        game.proceedTurn();
+        game.proceedTurn();
+        assertThat(game.isFinished()).isTrue();
     }
 
     @Test
     public void 시도횟수_이상으로_게임_진행시_예외_발생() {
-        racingGame = new RacingGame(names, 1, new MockRandomNumberGenerator());
-        racingGame.proceedTurn();
-        assertThatThrownBy(() -> racingGame.proceedTurn())
+        game = new Game(names, 1, new MockRandomNumberGenerator());
+        game.proceedTurn();
+        assertThatThrownBy(() -> game.proceedTurn())
                 .isInstanceOf(RacingGameIsFinishedException.class);
     }
 }
