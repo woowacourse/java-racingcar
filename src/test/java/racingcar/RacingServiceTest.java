@@ -33,22 +33,6 @@ public class RacingServiceTest {
 	}
 
 	@Test
-	@DisplayName("자동차 이름 정상 입력 후 저장")
-	public void saveCar() {
-		int carCount = carRepository.count();
-
-		assertThat(carCount).isEqualTo(2);
-	}
-
-	@Test
-	@DisplayName("자동차 이름 중복시 예외")
-	public void duplicateCarName() {
-		assertThatThrownBy(() -> carRepository.addCar(Car.from("pobi")))
-			.isInstanceOf(IllegalStateException.class);
-	}
-
-
-	@Test
 	@DisplayName("자동차 경주 정상 진행")
 	public void raceTest() {
 		racingService.race(2);
