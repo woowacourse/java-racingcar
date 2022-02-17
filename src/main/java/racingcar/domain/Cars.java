@@ -20,6 +20,10 @@ public class Cars {
 		}
 	}
 
+	public List<Car> getCars() {
+		return cars;
+	}
+
 	public void startEachRace() {
 		cars.stream()
 			.filter(car -> isMoveCondition())
@@ -47,11 +51,5 @@ public class Cars {
 
 	public int getSize() {
 		return cars.size();
-	}
-
-	public List<String> getAllPositionToString() {
-		return this.cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.toList());
 	}
 }
