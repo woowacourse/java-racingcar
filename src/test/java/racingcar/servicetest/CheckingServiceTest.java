@@ -22,7 +22,7 @@ public class CheckingServiceTest {
 	@Test
 	public void 자동차_이름_예외처리() {
 		assertThatThrownBy(() -> CheckingService.checkCarNameLength("배카라쿠배네"))
-			.isInstanceOf(IllegalArgumentException.class);
+      .isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test

@@ -62,7 +62,7 @@ public class Cars {
 			.max(Car::compareTo)
 			.orElseThrow(() -> new IllegalArgumentException());
 	}
-
+  
 	@Override
 	public boolean equals(Object obj) {
 		Cars cars = (Cars)obj;
@@ -74,4 +74,5 @@ public class Cars {
 	public int hashCode() {
 		return Objects.hash(this.cars);
 	}
+
 }

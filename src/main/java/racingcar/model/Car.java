@@ -46,7 +46,7 @@ public class Car implements Comparable<Car> {
 		}
 		return "Fail!!";
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder line = new StringBuilder();
@@ -71,5 +71,5 @@ public class Car implements Comparable<Car> {
 	public int compareTo(Car o) {
 		return position - o.position;
 	}
-
+  
 }

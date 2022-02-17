@@ -13,7 +13,7 @@ public class CheckingService {
 			throw new IllegalArgumentException(NULL_EMPTY_CAR_NAME_ERROR_MESSAGE);
 		}
 	}
-
+  
 	public static void checkCarNameLength(String carName) {
 		if (carName.length() > MAX_CAR_NAME_LENGTH) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
