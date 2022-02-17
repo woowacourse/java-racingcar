@@ -16,18 +16,18 @@ public class Cars {
         insertCarFromCarNames(carNames);
     }
 
-    public List<Car> getRacingCars() {
-        return cars;
+    private void insertCarFromCarNames(final String[] carNames) {
+        for (String carName : carNames) {
+            insertCar(new Car(carName, DEFAULT_POSITION));
+        }
     }
 
     public void insertCar(final Car car) {
         cars.add(car);
     }
 
-    private void insertCarFromCarNames(final String[] carNames) {
-        for (String carName : carNames) {
-            insertCar(new Car(carName, DEFAULT_POSITION));
-        }
+    public List<Car> getRacingCars() {
+        return cars;
     }
 
     public void moveRound() {

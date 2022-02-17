@@ -9,7 +9,7 @@ public class Car {
     private int position;
 
 
-    public Car(final String name, int position) {
+    public Car(final String name, final int position) {
         this.name = name;
         this.position = position;
     }
@@ -22,14 +22,14 @@ public class Car {
         return this.position;
     }
 
-    private boolean isMovable(final RandomUtil randomNumberGenerator) {
-        return randomNumberGenerator.generate() >= STANDARD;
-    }
-
     public void move(final RandomUtil randomNumberGenerator) {
         if (isMovable(randomNumberGenerator)) {
             position++;
         }
+    }
+
+    private boolean isMovable(final RandomUtil randomNumberGenerator) {
+        return randomNumberGenerator.generate() >= STANDARD;
     }
 
     public boolean isMaxPosition(final int maxPosition) {

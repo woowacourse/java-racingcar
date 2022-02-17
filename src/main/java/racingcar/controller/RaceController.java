@@ -5,9 +5,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
-    private Cars initCars(final String[] carNames) {
-        return new Cars(carNames);
-    }
 
     public void runGame() {
         try {
@@ -29,6 +26,10 @@ public class RaceController {
             printPosition(cars);
         }
         printWinner(cars);
+    }
+
+    private Cars initCars(final String[] carNames) {
+        return new Cars(carNames);
     }
 
     public void printPosition(final Cars cars) {
