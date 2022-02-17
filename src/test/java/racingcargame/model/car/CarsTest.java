@@ -9,17 +9,18 @@ import org.junit.jupiter.api.Test;
 import racingcargame.dto.CarDto;
 import racingcargame.utils.Move;
 
-class MoveTest implements Move {
-    private int base = 0;
-
-    @Override
-    public int getMoveValue() {
-        base += 1;
-        return base;
-    }
-}
-
 class CarsTest {
+
+    class MoveTest implements Move {
+        private int base = 0;
+
+        @Override
+        public int getMoveValue() {
+            base += 1;
+            return base;
+        }
+    }
+
     private final Cars cars = new Cars(List.of("포인", "비니", "마크"));
     private final Move move = new MoveTest();
 
