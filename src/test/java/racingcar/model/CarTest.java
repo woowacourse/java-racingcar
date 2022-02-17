@@ -2,14 +2,16 @@ package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @SuppressWarnings("NonAsciiCharacters")
 class CarTest {
     @Test
-    public void 자동차_생성() {
+    public void create() {
         // given
         String name = "test1";
 
@@ -22,30 +24,22 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "123456", " "})
-    public void 자동차_생성_실패(String name) {
+    public void createFail(String name) {
         // then
         assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    public void 전진() {
-        goOrStop_테스트(6, 1);
-    }
-
-    @Test
-    public void 정지() {
-        goOrStop_테스트(3, 0);
-    }
-
-    private void goOrStop_테스트(int random, int expected) {
+    @ParameterizedTest
+    @CsvSource(value = {"6:1", "3:0"}, delimiter = ':')
+    public void go(int input, int expect) {
         // given
         Car car = new Car("test");
 
         // when
-        car.goOrStop(random);
+        car.goOrStop(input);
 
         // then
-        assertThat(car.getPosition()).isEqualTo(expected);
+        assertThat(car.getPosition()).isEqualTo(expect);
     }
 
 }
