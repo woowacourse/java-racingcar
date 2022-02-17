@@ -35,7 +35,7 @@ public class RacingController {
 
     private void startRacing(PlayTime playTime) {
         outputView.announceRacingStart();
-        while (!playTime.isZero()) {
+        while (!playTime.isEnd()) {
             cars.race();
             playTime.decreasePlayTime();
             outputView.recordCurrentScore(cars);
