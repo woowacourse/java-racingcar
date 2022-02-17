@@ -19,12 +19,12 @@ class WinnersTest {
 	@Test
 	public void testFindWinner() {
 		//given
-		List<Car> cars;
+		List<RacingCar> cars;
 		//when
 		cars = Arrays.asList(
-			new Car("juri", 2),
-			new Car("hunch", 1),
-			new Car("pobi", expectMaxPosition));
+			new RacingCar("juri", 2),
+			new RacingCar("hunch", 1),
+			new RacingCar("pobi", expectMaxPosition));
 		//then
 		assertThat(winners.findWinner(cars)).isEqualTo(Collections.singletonList(new Name("pobi")));
 	}
@@ -33,12 +33,12 @@ class WinnersTest {
 	@Test
 	public void testFindWinners() {
 		//given
-		List<Car> cars;
+		List<RacingCar> cars;
 		//when
 		cars = Arrays.asList(
-			new Car("juri", expectMaxPosition),
-			new Car("hunch", 1),
-			new Car("pobi", expectMaxPosition));
+			new RacingCar("juri", expectMaxPosition),
+			new RacingCar("hunch", 1),
+			new RacingCar("pobi", expectMaxPosition));
 		//then
 		assertThat(winners.findWinner(cars)).isEqualTo(List.of(new Name("juri"), new Name("pobi")));
 	}

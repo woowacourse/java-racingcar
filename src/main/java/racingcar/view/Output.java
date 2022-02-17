@@ -4,6 +4,7 @@ import java.util.List;
 
 import racingcar.model.Car;
 import racingcar.model.Name;
+import racingcar.model.RacingCar;
 
 public class Output {
 
@@ -23,8 +24,8 @@ public class Output {
 		System.out.println(RESULT_MSG);
 	}
 
-	public static void printRoundResult(List<Car> cars) {
-		for (Car car : cars) {
+	public static void printRoundResult(List<RacingCar> cars) {
+		for (RacingCar car : cars) {
 			System.out.println(
 				car.getName().getName() + NAME_AND_POSITION_CONNECTION + POSITION_SIGNATURE.repeat(car.getPosition()));
 		}

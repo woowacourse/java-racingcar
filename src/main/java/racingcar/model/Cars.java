@@ -17,13 +17,13 @@ public class Cars {
 	private static final String CAR_NUMBER_IS_ONE_WARNING_MSG = "경주할 자동차가 한 대일 경우 경주를 진행할 수 없습니다.";
 	private static final String NAME_DUPLICATION_WARNING_MSG = "중복되는 이름이 존재합니다.";
 
-	private List<Car> cars;
+	private List<RacingCar> cars;
 
-	public Cars(List<Car> cars) {
+	public Cars(List<RacingCar> cars) {
 		this.cars = cars;
 	}
 
-	public List<Car> getCars() {
+	public List<RacingCar> getCars() {
 		return cars;
 	}
 
@@ -35,7 +35,7 @@ public class Cars {
 
 	private void save(List<String> carNames) {
 		checkNameList(carNames);
-		this.cars = carNames.stream().map(name -> new Car(name, 0)).collect(Collectors.toList());
+		this.cars = carNames.stream().map(name -> new RacingCar(name, 0)).collect(Collectors.toList());
 	}
 
 	public void startRound() {
