@@ -7,14 +7,12 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 public class StringCalculatorTest {
-    static Stream<String> blankStrings() {
-        return Stream.of("", null);
-    }
 
     @ParameterizedTest
-    @MethodSource("blankStrings")
+    @NullAndEmptySource
     public void 빈_문자열_널_0_반환_테스트(String input) {
         assertThat(StringCalculator.splitAndSum(input)).isEqualTo(0);
     }
