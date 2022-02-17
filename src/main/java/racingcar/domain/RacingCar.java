@@ -13,23 +13,23 @@ public class RacingCar {
 
 
     public RacingCar(String name) {
+        validateName(name);
         this.position = START_POSITION;
         this.name = name;
-        validateName();
     }
 
-    public void validateName() {
-        checkCarNameIsEmpty();
-        checkCarNameSize();
+    public void validateName(String name) {
+        checkCarNameIsEmpty(name);
+        checkCarNameSize(name);
     }
 
-    private void checkCarNameIsEmpty() {
+    private void checkCarNameIsEmpty(String name) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException(EXCEPTION_NO_NAME);
         }
     }
 
-    private void checkCarNameSize() {
+    private void checkCarNameSize(String name) {
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(EXCEPTION_TOO_LONG_NAME);
         }
