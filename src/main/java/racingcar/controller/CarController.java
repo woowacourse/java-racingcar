@@ -61,7 +61,7 @@ public class CarController {
 	public List<CarDto> toCarDtos(List<String> names) {
 		List<CarDto> carDtos = new ArrayList<>();
 		for (String name: names) {
-			carDtos.add(new CarDto(name, 0));
+			carDtos.add(new CarDto(name));
 		}
 		return carDtos;
 	}

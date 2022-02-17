@@ -16,6 +16,11 @@ public class CarDto {
 		this.position = position;
 	}
 
+	public CarDto(String name) {
+		this.name = name;
+		this.position = 0;
+	}
+
 	public String getName() {
 		return name;
 	}
