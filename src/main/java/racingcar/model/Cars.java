@@ -8,7 +8,7 @@ import java.util.Random;
 public class Cars implements CarMoveCondition {
 	private static final String ERROR_DUPLICATED_NAME = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
 	private static final String ERROR_CAR_COUNT = "[ERROR] 자동차를 1대 이상 입력해야 합니다.";
-	private static final int ZERO = 0;
+	private static final int MINIMUM_NUMBER_OF_CAR = 1;
 	private static final int BOUND_RANDOM = 10;
 	private final ArrayList<Car> cars;
 
@@ -36,7 +36,7 @@ public class Cars implements CarMoveCondition {
 	}
 
 	private void checkCarCount(ArrayList<Car> cars) {
-		if (cars.size() == ZERO) {
+		if (cars.size() < MINIMUM_NUMBER_OF_CAR) {
 			throw new IllegalArgumentException(ERROR_CAR_COUNT);
 		}
 	}
@@ -46,7 +46,7 @@ public class Cars implements CarMoveCondition {
 	}
 
 	public int getMaxPosition() {
-		int max = ZERO;
+		int max = 0;
 
 		for (Car car : cars) {
 			max = Math.max(max, car.getPosition());
