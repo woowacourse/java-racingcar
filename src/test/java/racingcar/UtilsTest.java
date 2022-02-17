@@ -14,9 +14,9 @@ class UtilsTest {
 	@Test
 	void splitAndTrim() {
 		String testString = "pobi  ,  crong,huan";
-		String[] result1 = testString.split(CAR_NAME_INPUT_REGEX);
+		String[] result = splitter(testString);
 
-		assertThat(result1).containsExactly("pobi", "crong", "huan");
+		assertThat(result).containsExactly("pobi", "crong", "huan");
 	}
 
 	@ParameterizedTest
