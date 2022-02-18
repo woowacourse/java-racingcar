@@ -21,4 +21,18 @@ public class PlayTime {
     public boolean isEnd() {
         return playTime == 0;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        PlayTime playTime1 = (PlayTime) o;
+
+        return playTime.equals(playTime1.playTime);
+    }
 }
