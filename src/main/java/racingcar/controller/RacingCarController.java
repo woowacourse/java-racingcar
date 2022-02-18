@@ -2,7 +2,9 @@ package racingcar.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import racingcar.domain.Car;
+import racingcar.domain.CarDto;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -17,15 +19,22 @@ public class RacingCarController {
         return InputView.getRound();
     }
 
-    public void printRoundResult(Map<Integer, List<Car>> raceResult) {
+    public void printRoundResult(Map<Integer, List<CarDto>> raceResult) {
         OutputView.printRoundResult(raceResult);
     }
 
-    public void printWinners(List<Car> winners) {
-        OutputView.printWinners(winners);
+    public void printWinners(List<String> winnerNames) {
+        OutputView.printWinners(winnerNames);
     }
 
     public RacingGame initRacing(List<String> carNames, int round) {
         return new RacingGame(carNames, round);
+    }
+
+    public List<String> getWinnerNames(RacingGame racingGame) {
+        return racingGame.findWinners()
+                .stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }

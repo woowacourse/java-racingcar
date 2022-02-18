@@ -12,6 +12,7 @@ public class RacingCarMain {
         Integer round = controller.getRound();
         RacingGame racingGame = controller.initRacing(carNames, round);
         controller.printRoundResult(racingGame.race());
-        controller.printWinners(racingGame.findWinners());
+        List<String> winnerNames = controller.getWinnerNames(racingGame);
+        controller.printWinners(winnerNames);
     }
 }

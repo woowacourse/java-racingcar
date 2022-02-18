@@ -16,11 +16,11 @@ public class RacingGameTest {
     void checkRacingResult() {
         int round = 5;
         RacingGame racingGame = new RacingGame(carNames, round);
-        Map<Integer, List<Car>> raceResult = racingGame.race();
+        Map<Integer, List<CarDto>> raceResult = racingGame.race();
 
         int maxPosition = raceResult.get(round - 1)
                 .stream()
-                .mapToInt(Car::getPosition)
+                .mapToInt(CarDto::getPosition)
                 .max()
                 .orElse(0);
         List<Car> winners = racingGame.findWinners();

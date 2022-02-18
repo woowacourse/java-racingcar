@@ -2,8 +2,7 @@ package racingcar.view;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import racingcar.domain.Car;
+import racingcar.domain.CarDto;
 
 public class OutputView {
     private static final String ROUND_RESULT = "실행 결과";
@@ -12,7 +11,7 @@ public class OutputView {
     private static final String CAR_POSITION_BAR = "-";
     private static final String WINNER_NAME_DELIMITER = ", ";
 
-    public static void printRoundResult(Map<Integer, List<Car>> raceResult) {
+    public static void printRoundResult(Map<Integer, List<CarDto>> raceResult) {
         System.out.println(ROUND_RESULT);
         for (Integer round : raceResult.keySet()) {
             raceResult.get(round).forEach(OutputView::printCarPositionInfo);
@@ -20,19 +19,16 @@ public class OutputView {
         }
     }
 
-    private static void printCarPositionInfo(Car car) {
+    private static void printCarPositionInfo(CarDto carDto) {
         System.out.println(
-                car.getName() + CAR_INFO_SEPARATOR + CAR_POSITION_BAR.repeat(Math.max(0, car.getPosition())));
+                carDto.getName() + CAR_INFO_SEPARATOR + CAR_POSITION_BAR.repeat(Math.max(0, carDto.getPosition())));
     }
 
-    public static void printWinners(List<Car> winners) {
-        System.out.println(toWinnerNameString(winners) + WINNER_MESSAGE);
+    public static void printWinners(List<String> winnerNames) {
+        System.out.println(joinWinnerNames(winnerNames) + WINNER_MESSAGE);
     }
 
-    private static String toWinnerNameString(List<Car> winners) {
-        return winners.stream()
-                .map(Car::getName)
-                .collect(Collectors.joining(WINNER_NAME_DELIMITER));
+    private static String joinWinnerNames(List<String> winnerNames) {
+        return String.join(WINNER_NAME_DELIMITER, winnerNames);
     }
-
 }

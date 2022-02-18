@@ -21,11 +21,11 @@ public class RacingGame {
         this.round = round;
     }
 
-    public Map<Integer, List<Car>> race() {
-        Map<Integer, List<Car>> raceResults = new LinkedHashMap<>();
+    public Map<Integer, List<CarDto>> race() {
+        Map<Integer, List<CarDto>> raceResults = new LinkedHashMap<>();
         for (int i = 0; i < round; i++) {
             cars.forEach(this::proceedOrStopCar);
-            raceResults.put(i, deepCopyCars());
+            raceResults.put(i, toCarDtos());
         }
         return raceResults;
     }
@@ -37,10 +37,10 @@ public class RacingGame {
                 .collect(Collectors.toList());
     }
 
-    private List<Car> deepCopyCars() {
-        List<Car> copiedCars = new ArrayList<>();
-        cars.forEach(car -> copiedCars.add(car.deepCopy()));
-        return copiedCars;
+    private List<CarDto> toCarDtos() {
+        List<CarDto> carDtos = new ArrayList<>();
+        cars.forEach(car -> carDtos.add(car.toDto()));
+        return carDtos;
     }
 
     private void proceedOrStopCar(Car car) {

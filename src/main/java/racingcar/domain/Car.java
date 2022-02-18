@@ -16,13 +16,6 @@ public class Car {
         this.position = INIT_POSITION;
     }
 
-    private Car(String name, int position) {
-        carNameCheck(name);
-        positionCheck(position);
-        this.name = name;
-        this.position = position;
-    }
-
     public void proceed() {
         this.position++;
     }
@@ -31,14 +24,8 @@ public class Car {
         return this.position == position;
     }
 
-    public Car deepCopy() {
-        return new Car(this.getName(), this.getPosition());
-    }
-
-    private void positionCheck(int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException(POSITION_ERROR_MESSAGE);
-        }
+    public CarDto toDto() {
+        return new CarDto(this.getName(), this.getPosition());
     }
 
     private void carNameCheck(String name) {
