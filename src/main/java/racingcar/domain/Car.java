@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+import racingcar.domain.strategy.MoveStrategy;
+
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 5글자를 초과할 수 없습니다.";
@@ -28,8 +30,10 @@ public class Car {
         }
     }
 
-    public void move() {
-        position++;
+    public void move(MoveStrategy moveStrategy) {
+        if (moveStrategy.isMovable()) {
+            position++;
+        }
     }
 
     public boolean isPosition(int position) {
@@ -46,12 +50,12 @@ public class Car {
 
     @Override
     public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return Objects.equals(name, car.name);
     }

@@ -1,6 +1,6 @@
 package racingcar;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,24 +14,6 @@ import racingcar.domain.Game;
 import racingcar.domain.strategy.MoveStrategy;
 
 public class GameTest {
-    @Test
-    @DisplayName("무조건 false를 반환하는 MoveStrategy 일 때 Car 이동")
-    public void play_MoveStrategy_false() {
-        TestCars cars = new TestCars();
-        new Game(cars).play(() -> false);
-        cars.getCars()
-                .forEach(car -> assertThat(car.getPosition()).isEqualTo(0));
-    }
-
-    @Test
-    @DisplayName("무조건 true를 반환하는 MoveStrategy 일 때 Car 이동")
-    public void play_MoveStrategy_true() {
-        TestCars cars = new TestCars();
-        new Game(cars).play(() -> true);
-        cars.getCars()
-                .forEach(car -> assertThat(car.getPosition()).isEqualTo(1));
-    }
-
     @Test
     @DisplayName("우승자가 한 명일 때 우승자 판정")
     public void getWinners_one_winner() {
@@ -52,7 +34,7 @@ public class GameTest {
                 .containsExactlyInAnyOrder(cars.getCars().get(0), cars.getCars().get(1));
     }
 
-    class TestCars implements Cars {
+    private class TestCars implements Cars {
         private final List<Car> cars;
 
         public TestCars() {
@@ -61,6 +43,11 @@ public class GameTest {
                     new Car("kun"),
                     new Car("pobi")
             );
+        }
+
+        @Override
+        public void moveCars(MoveStrategy moveStrategy) {
+            cars.forEach(car -> car.move(moveStrategy));
         }
 
         @Override

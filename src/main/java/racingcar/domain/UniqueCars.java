@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import racingcar.domain.strategy.MoveStrategy;
+
 public class UniqueCars implements Cars {
     private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
 
@@ -12,6 +14,11 @@ public class UniqueCars implements Cars {
     public UniqueCars(List<Car> cars) {
         this.cars = Set.copyOf(cars);
         validateDuplicatedCars(cars);
+    }
+
+    @Override
+    public void moveCars(MoveStrategy moveStrategy) {
+        cars.forEach(car -> car.move(moveStrategy));
     }
 
     @Override

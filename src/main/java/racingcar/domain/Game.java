@@ -12,9 +12,7 @@ public class Game {
     }
 
     public Cars play(MoveStrategy moveStrategy) {
-        cars.getCars().stream()
-                .filter(car -> moveStrategy.isMovable())
-                .forEach(Car::move);
+        cars.moveCars(moveStrategy);
         return cars;
     }
 
