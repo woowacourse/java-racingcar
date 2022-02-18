@@ -42,10 +42,6 @@ public class Car {
         return name;
     }
 
-    public void setPosition(int number) {
-        position = number;
-    }
-
     private void checkName(String name) {
 
         checkLength(name);
