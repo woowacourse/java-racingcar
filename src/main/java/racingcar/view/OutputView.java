@@ -2,6 +2,7 @@ package racingcar.view;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.RacingGame;
 
 public class OutputView {
     private static final String TRIAL_RESULT = "\n실행 결과";
@@ -10,8 +11,8 @@ public class OutputView {
     private static final String DASH = "-";
     private static final int MINIMUM_POSITION = 0;
 
-    public static void printCarPosition(Cars cars) {
-        cars.getCars().forEach(OutputView::printCarResult);
+    public static void printCarPosition(RacingGame racingGame) {
+        racingGame.getCars().getCars().forEach(OutputView::printCarResult);
         System.out.println();
     }
 
