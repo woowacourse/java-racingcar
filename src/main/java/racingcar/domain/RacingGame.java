@@ -1,11 +1,11 @@
 package racingcar.domain;
 
-import java.util.List;
-
-import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.constants.GameConstants.INITIAL_ROUND_NUM;
+import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.util.ValidatorUtils.validateNoDuplicates;
 import static racingcar.util.ValidatorUtils.validatePositiveInt;
+
+import java.util.List;
 
 public class RacingGame {
 
@@ -27,14 +27,6 @@ public class RacingGame {
         }
     }
 
-    public List<Car> getCars() {
-        return cars.findAllCars();
-    }
-
-    public List<Car> getWinners() {
-        return cars.getWinners();
-    }
-
     public void playRound() {
         cars.race();
         addOneRound();
@@ -47,6 +39,14 @@ public class RacingGame {
 
     public boolean isOver() {
         return currentRound >= totalRounds;
+    }
+
+    public List<Car> getCars() {
+        return cars.findAllCars();
+    }
+
+    public List<Car> getWinners() {
+        return cars.getWinners();
     }
 
     @Override

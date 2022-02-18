@@ -35,16 +35,16 @@ public class Car implements Comparable<Car> {
         return number >= CAN_GO_VALUE;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean isSamePosition(int position) {
         return this.position == position;
     }
 
     public boolean isSamePosition(Car car) {
         return this.position == car.position;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
