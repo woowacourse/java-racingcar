@@ -1,7 +1,6 @@
 package racingcar;
 
 import racingcar.domain.Cars;
-import racingcar.utils.CarNameValidator;
 import racingcar.utils.MoveCountValidator;
 import racingcar.utils.StringSeparator;
 import racingcar.view.InputView;
@@ -17,21 +16,20 @@ public class GameController {
     }
 
     public void run() {
-        Cars cars = getProperCars();
+        Cars cars = readyCars();
         int moveCount = getProperMoveCount();
         startRace(cars, moveCount);
         OutputView.printWinners(cars.findWinners());
     }
 
-    private Cars getProperCars() {
+    private Cars readyCars() {
         try {
             String carNames = InputView.getCarNames(scanner);
             String[] splitCarNames = StringSeparator.splitAndTrim(carNames);
-            CarNameValidator.validateCarNames(splitCarNames);
             return new Cars(splitCarNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getProperCars();
+            return readyCars();
         }
     }
 

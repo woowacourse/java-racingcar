@@ -13,18 +13,8 @@ public class CarNameValidator {
     private static final int NAME_LENGTH_LIMIT = 5;
 
     public static void validateCarNames(String[] splitCarNames) {
-        for (String carName : splitCarNames) {
-            checkEmptyName(carName);
-            checkLongName(carName);
-        }
         checkOnlyName(splitCarNames);
         checkDuplicateName(splitCarNames);
-    }
-
-    private static void checkEmptyName(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_EMPTY_NAME);
-        }
     }
 
     private static void checkOnlyName(String[] names) {
@@ -33,16 +23,27 @@ public class CarNameValidator {
         }
     }
 
-    private static void checkLongName(String name) {
-        if (name.length() > NAME_LENGTH_LIMIT) {
-            throw new IllegalArgumentException(ERROR_LONG_NAME);
-        }
-    }
-
     private static void checkDuplicateName(String[] names) {
         Set<String> hashNames = new HashSet<>(Arrays.asList(names));
         if (hashNames.size() != names.length) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
+        }
+    }
+
+    public static void validateCarName(String carName) {
+        checkEmptyName(carName);
+        checkLongName(carName);
+    }
+
+    private static void checkEmptyName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_EMPTY_NAME);
+        }
+    }
+
+    private static void checkLongName(String name) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException(ERROR_LONG_NAME);
         }
     }
 

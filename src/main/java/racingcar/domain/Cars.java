@@ -3,14 +3,16 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.utils.CarNameValidator;
 import racingcar.utils.RandomNumberGenerator;
 
 public class Cars {
     public static final int START_POSITION = 0;
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(String[] carNames) {
+        CarNameValidator.validateCarNames(carNames);
         cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName, START_POSITION));
