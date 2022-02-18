@@ -33,7 +33,7 @@ public class CarsTest {
     void insertCarTest1() {
         Car carA = new Car("A", 0);
         cars.insertCar(carA);
-        assertEquals(carA, cars.getRacingCars().get(0));
+        assertEquals(carA, cars.getCars().get(0));
     }
 
     @DisplayName("자동차 저장 확인 테스트2")
@@ -43,6 +43,6 @@ public class CarsTest {
         Car carB = new Car("B", 0);
         cars.insertCar(carA);
         cars.insertCar(carB);
-        assertEquals(carB, cars.getRacingCars().get(1));
+        assertEquals(carB, cars.getCars().get(1));
     }
 }

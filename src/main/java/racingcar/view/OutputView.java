@@ -1,8 +1,7 @@
 package racingcar.view;
 
 import racingcar.model.Car;
-
-import java.util.List;
+import racingcar.model.Cars;
 
 public class OutputView {
     private static final String SPLIT_DELIMITER = ",";
@@ -15,15 +14,15 @@ public class OutputView {
         System.out.println(RESULT_PREFIX);
     }
 
-    public static void printResult(final List<Car> cars) {
-        for (Car car : cars) {
+    public static void printPosition(final Cars cars) {
+        for (Car car : cars.getCars()) {
             System.out.println(car.getName() + SEPARATOR + MOVE_SIGN.repeat(car.getPosition()));
         }
         System.out.println();
     }
 
-    public static void printWinner(final List<String> winners) {
-        System.out.print(String.join(SPLIT_DELIMITER, winners));
+    public static void printWinner(Cars cars) {
+        System.out.print(String.join(SPLIT_DELIMITER, cars.getWinner()));
         System.out.println(WINNER_SUFFIX);
     }
 }

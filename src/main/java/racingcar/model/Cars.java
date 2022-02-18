@@ -26,7 +26,7 @@ public class Cars {
         cars.add(car);
     }
 
-    public List<Car> getRacingCars() {
+    public List<Car> getCars() {
         return cars;
     }
 
@@ -37,14 +37,18 @@ public class Cars {
     }
 
     public List<String> getWinner() {
-        int maxPosition = cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .getAsInt();
+        int maxPosition = getMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.isMaxPosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
     }
 }
