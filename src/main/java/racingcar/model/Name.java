@@ -41,7 +41,7 @@ public class Name {
 			throw new IllegalArgumentException(NAME_SPATIAL_CHAR_WARNING_MSG);
 		}
 	}
-	
+
 	public String getName() {
 		return name;
 	}

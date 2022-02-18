@@ -15,6 +15,7 @@ public class Output {
 	private static final String WINNER_SEPARATED_STR = ", ";
 	private static final int START_STRING_INDEX = 0;
 	private static final String FINAL_WINNER_MSG = "가 최종 우승했습니다.";
+	private static final int FINAL_RESULT_STRING_MINUS_INDEX = 2;
 
 	public static void printError(String error) {
 		System.out.println(ERROR_MSG + error);
@@ -37,6 +38,6 @@ public class Output {
 		winners.forEach(
 			winner -> result.append(winner.getName()).append(WINNER_SEPARATED_STR)
 		);
-		System.out.println(result.substring(START_STRING_INDEX, result.length() - 2) + FINAL_WINNER_MSG);
+		System.out.println(result.substring(START_STRING_INDEX, result.length() - FINAL_RESULT_STRING_MINUS_INDEX) + FINAL_WINNER_MSG);
 	}
 }
