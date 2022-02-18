@@ -23,8 +23,8 @@ public class Cars {
         }
     }
 
-    public Winners pickWinners() {
-        return pickWinners(getMaxPosition());
+    public Winners pickMoreWinners() {
+        return pickMoreWinners(findFirstCar());
     }
 
     public List<CarValue> getCars() {
@@ -49,16 +49,15 @@ public class Cars {
         }
     }
 
-    private int getMaxPosition() {
+    private Car findFirstCar() {
         return cars.stream()
             .max(Car::compareTo)
-            .orElseThrow(NoSuchElementException::new)
-            .getPosition();
+            .orElseThrow(NoSuchElementException::new);
     }
 
-    private Winners pickWinners(int maxPosition) {
+    private Winners pickMoreWinners(Car firstCar) {
         return new Winners(cars.stream()
-            .filter(car -> car.isEqualPosition(maxPosition))
+            .filter(car -> car.isEqualPosition(firstCar))
             .map(Car::getName)
             .collect(Collectors.toList()));
     }

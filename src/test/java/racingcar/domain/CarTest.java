@@ -57,37 +57,28 @@ public class CarTest {
     void equalsPosition() {
         // given
         Car car = new Car(Name.create("test"));
+        Car otherCar = new Car(Name.create("other"));
 
         // when
         car.advance(4);
+        otherCar.advance(4);
 
         // then
-        assertTrue(car.isEqualPosition(1));
+        assertTrue(car.isEqualPosition(otherCar));
     }
 
     @Test
-    @DisplayName("pobi 자동차가 가장 많이 전진하여 정렬 후 가장 마지막 인덱스에 위치한다")
-    void sortByPositionAsc() {
+    @DisplayName("포지션이 높은 차가 양수를 반환")
+    void comparePosition() {
         // given
-        Car pobi = new Car(Name.create("pobi"));
-        Car hoho = new Car(Name.create("hoho"));
-        Car rich = new Car(Name.create("rich"));
-
-        pobi.advance(4);
-        pobi.advance(4);
-
-        hoho.advance(4);
-
-        List<Car> cars = new ArrayList<>();
-        cars.add(hoho);
-        cars.add(rich);
-        cars.add(pobi);
+        Car car = new Car(Name.create("test"));
+        Car otherCar = new Car(Name.create("other"));
 
         // when
-        Collections.sort(cars);
+        car.advance(4);
+        otherCar.advance(3);
 
         // then
-        assertThat(cars).containsExactly(rich, hoho, pobi);
+        assertThat(car.compareTo(otherCar)).isEqualTo(1);
     }
-    
 }

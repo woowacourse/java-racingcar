@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import racingcar.vo.Name;
 
-public class Car implements Comparable<Car> {
+public class Car {
     private static final int ADVANCE_STANDARD = 4;
 
     private static final int MINIMUM_ADVANCE_RANGE = 0;
@@ -22,21 +22,20 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public boolean isEqualPosition(Car car) {
+        return this.position == car.position;
+    }
+
+    public int compareTo(Car car) {
+        return this.position - car.getPosition();
+    }
+
     public Name getName() {
         return name;
     }
 
     public int getPosition() {
         return position;
-    }
-
-    public boolean isEqualPosition(int position) {
-        return this.position == position;
-    }
-
-    @Override
-    public int compareTo(Car car) {
-        return this.position - car.position;
     }
 
     private void validateRange(int number) {

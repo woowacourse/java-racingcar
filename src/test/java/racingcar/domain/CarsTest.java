@@ -38,7 +38,7 @@ public class CarsTest {
         cars.move(movingNumbers);
 
         // then
-        Winners winners = cars.pickWinners();
+        Winners winners = cars.pickMoreWinners();
         assertThat(winners.getWinners()).containsExactly(Name.create("hoho"));
     }
 
@@ -53,7 +53,7 @@ public class CarsTest {
         cars.move(movingNumbers);
 
         // then
-        Winners winners = cars.pickWinners();
+        Winners winners = cars.pickMoreWinners();
         assertThat(winners.getWinners()).containsExactly(Name.create("hoho"), Name.create("rich"));
     }
 
