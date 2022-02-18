@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 import static racingcar.util.RandomUtil.generateRandomNumber;
 
 
-public class CarRepository {
+public class Cars {
 
     private static final String DUPLICATED = "[ERROR] 중복된 자동차 이름은 허용되지 않습니다.";
 
     private Set<Car> cars = new HashSet<>();
 
-    public CarRepository(String[] names) {
+    public Cars(String[] names) {
         validateDuplication(names);
 
         for (String name : names) {
@@ -20,14 +20,14 @@ public class CarRepository {
         }
     }
 
-    public void moveAllCars() {
+    public void move() {
         for (Car car : cars) {
             car.move(generateRandomNumber());
         }
     }
 
     public List<String> selectWinners() {
-        int maxPosition = getMaxPosition();
+        int maxPosition = findMaxPosition();
 
         return cars.stream()
                 .filter(c -> c.isSamePosition(maxPosition))
@@ -60,7 +60,7 @@ public class CarRepository {
         }
     }
 
-    private int getMaxPosition() {
+    private int findMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
