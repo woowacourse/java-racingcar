@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
-
 	@Test
 	@DisplayName("자동차 이름이 같을 시, 같은 객체로 간주한다.")
 	void matchCar() {

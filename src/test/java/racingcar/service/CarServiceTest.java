@@ -18,9 +18,7 @@ public class CarServiceTest {
         String name1 = "범고래";
         String name2 = "소주캉";
         List<CarDto> input = Arrays.asList(new CarDto(name1), new CarDto(name2));
-
         List<Car> result = carService.toCars(input);
-
         List<Car> expected = Arrays.asList(new Car(name1), new Car(name2));
         assertThat(result).isEqualTo(expected);
     }
