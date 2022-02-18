@@ -23,20 +23,16 @@ public class Cars {
         return findChampions(getHighScore());
     }
 
-    private int getHighScore() {
-        int highScore = 0;
-        for (Car car : cars) {
-            highScore = Math.max(highScore, car.getPosition());
-        }
-        return highScore;
-    }
-
     private List<String> findChampions(int highScore) {
         List<String> champions = new ArrayList<>();
         cars.stream()
             .filter(car -> car.isSamePosition(highScore))
             .forEach(car -> champions.add(car.getName()));
         return champions;
+    }
+
+    private int getHighScore() {
+        return cars.stream().mapToInt(Car::getPosition).max().orElseThrow();
     }
 
     public List<Car> getCars() {
