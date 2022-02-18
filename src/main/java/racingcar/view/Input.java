@@ -15,24 +15,14 @@ public class Input {
 
     public static List<String> getCarNamesSeperatedByDelimiter(String delimiter) {
         String carNamesInput = inputCarNames();
-        try {
-            Validation.carNameValidation(carNamesInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getCarNamesSeperatedByDelimiter(delimiter);
-        }
+        Validation.carNameValidation(carNamesInput);
         return Arrays.stream(carNamesInput.split(delimiter))
                 .collect(Collectors.toList());
     }
 
     public static int getTryNum() {
         String tryValue = inputTry();
-        try {
-            Validation.tryNumValidation(tryValue);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getTryNum();
-        }
+        Validation.tryNumValidation(tryValue);
         return Integer.parseInt(tryValue);
     }
 
