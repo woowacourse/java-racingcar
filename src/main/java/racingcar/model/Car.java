@@ -30,7 +30,7 @@ public class Car {
         return name.getName();
     }
 
-    public boolean isWinnerPosition(Integer position) {
+    public boolean isSamePosition(Integer position) {
         return Objects.equals(position, getCarPosition());
     }
 }

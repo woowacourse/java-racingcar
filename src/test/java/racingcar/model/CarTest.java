@@ -29,12 +29,12 @@ class CarTest {
     @Test
     public void shouldBeWinner() {
         car.tryMove(5);
-        assertThat(car.isWinnerPosition(1)).isEqualTo(true);
+        assertThat(car.isSamePosition(1)).isEqualTo(true);
     }
 
     @Test
     public void shouldNotBeWinner() {
         car.tryMove(3);
-        assertThat(car.isWinnerPosition(1)).isEqualTo(false);
+        assertThat(car.isSamePosition(1)).isEqualTo(false);
     }
 }

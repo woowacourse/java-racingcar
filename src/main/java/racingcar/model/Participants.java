@@ -35,7 +35,7 @@ public class Participants {
     public List<String> findRacingWinners() {
         Integer maxPosition = findMaxPosition();
         return cars.stream()
-                .filter(car -> car.isWinnerPosition(maxPosition))
+                .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
