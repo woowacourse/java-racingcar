@@ -3,7 +3,7 @@ package racingcar.domain;
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_NOT_ALLOWED;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_OR_NULL_NOT_ALLOWED;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +38,7 @@ class CarTest {
     void constructor_errorOnBlank(String name) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new Car(name))
-                .withMessageMatching(ERROR_BLANK_NOT_ALLOWED);
+                .withMessageMatching(ERROR_BLANK_OR_NULL_NOT_ALLOWED);
     }
 
     @DisplayName("생성자는 name으로 5글자를 초과하는 문자열이 입력되었을 때 예외를 발생시킨다.")
@@ -52,13 +52,11 @@ class CarTest {
 
     @DisplayName("goOrNot 메서드는 인자의 값이 4 이상일 경우 position 값을 1만큼 증가시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void goOrNot_move(int num) {
-        int prevPosition = 0;
-
+    @CsvSource(value = {"4,1", "5,1", "6,1", "7,1", "8,1", "9,1"}, delimiter = ',')
+    void goOrNot_move(int num, int result) {
         car.goOrNot(num);
 
-        assertThat(car.isSamePosition(prevPosition + 1)).isTrue();
+        assertThat(car.isSamePosition(result)).isTrue();
     }
 
     @DisplayName("goOrNot 메서드의 인자의 값이 4 미만일 경우 position 값은 변경되지 않는다.")
@@ -75,21 +73,21 @@ class CarTest {
     @DisplayName("isSamePosition 메서드는 인자로 정수가 들어올 경우 해당 정수 현재 Car의 position이 일치하는지 확인한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @CsvSource(value = {"3:true", "4:false"}, delimiter = ':')
-    void isSamePosition_int(String position, String result) {
+    void isSamePosition_int(int position, boolean result) {
         // given
         Car pobi = new Car("pobi", 3);
         // then
-        assertThat(pobi.isSamePosition(Integer.parseInt(position))).isEqualTo(Boolean.parseBoolean(result));
+        assertThat(pobi.isSamePosition(position)).isEqualTo(result);
     }
 
     @DisplayName("isSamePosition 메서드는 인자로 Car 객체가 들어올 경우 해당 정수 현재 Car의 position이 일치하는지 확인한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @CsvSource(value = {"3:true", "4:false"}, delimiter = ':')
-    void isSamePosition_carObject(String position, String result) {
+    void isSamePosition_carObject(int position, boolean result) {
         // given
         Car pobi = new Car("pobi", 3);
-        Car testCar = new Car("test", Integer.parseInt(position));
+        Car testCar = new Car("test", position);
         // then
-        assertThat(pobi.isSamePosition(testCar)).isEqualTo(Boolean.parseBoolean(result));
+        assertThat(pobi.isSamePosition(testCar)).isEqualTo(result);
     }
 }
