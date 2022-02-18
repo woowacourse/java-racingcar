@@ -2,7 +2,7 @@ package racingCar.domain.service;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static racingCar.domain.service.InputValidator.validate;
+import static racingCar.domain.utils.InputValidator.validate;
 
 import org.junit.jupiter.api.Test;
 import racingCar.domain.exception.NullInputException;

@@ -1,6 +1,6 @@
 package racingCar.controller;
 
-import racingCar.domain.service.InputValidator;
+import racingCar.domain.utils.InputValidator;
 import racingCar.domain.service.RacingGame;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
