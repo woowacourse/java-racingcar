@@ -18,10 +18,6 @@ public class Name {
 		this.name = name;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	private void checkName(String name) {
 		checkSpace(name);
 		checkNameSize(name);
@@ -44,6 +40,10 @@ public class Name {
 		if (!Pattern.matches(SPACIAL_CHAR_REGEX, name)) {
 			throw new IllegalArgumentException(NAME_SPATIAL_CHAR_WARNING_MSG);
 		}
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	@Override
