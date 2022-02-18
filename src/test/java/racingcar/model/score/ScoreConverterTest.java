@@ -1,6 +1,9 @@
-package racingcar.model;
+package racingcar.model.score;
 
 import org.junit.jupiter.api.Test;
+import racingcar.model.car.CarDto;
+import racingcar.model.score.Score;
+import racingcar.model.score.ScoreConverter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

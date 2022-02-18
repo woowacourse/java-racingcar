@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.model.score;
 
 public class Score implements Comparable<Score> {
     private final String name;

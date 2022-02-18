@@ -1,7 +1,9 @@
-package racingcar.model;
+package racingcar.model.score;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.model.score.Score;
+import racingcar.model.score.ScoreBoard;
 
 import java.util.Arrays;
 import java.util.List;

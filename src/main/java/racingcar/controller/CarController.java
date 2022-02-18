@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.model.ScoreBoard;
+import racingcar.model.score.ScoreBoard;
 import racingcar.service.CarService;
 
 import java.util.List;

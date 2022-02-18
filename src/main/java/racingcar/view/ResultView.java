@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.model.Score;
-import racingcar.model.ScoreBoard;
+import racingcar.model.score.Score;
+import racingcar.model.score.ScoreBoard;
 
 import java.util.List;
 
