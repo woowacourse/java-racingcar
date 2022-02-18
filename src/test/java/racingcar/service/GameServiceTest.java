@@ -62,7 +62,7 @@ class GameServiceTest {
     @DisplayName("게임 라운드 실행 시, 조건에 따라 자동차가 전진한다.")
     @ParameterizedTest
     @MethodSource("provideForPlayRoundTest")
-    void playRoundTest(final List<Boolean> moveConditions, final List<Integer> expected, final int repeatTime) {
+    void playRoundTest(final List<Boolean> moveConditions, final int repeatTime, final List<Integer> expected) {
         customMoveStrategy.initMoveConditions(moveConditions);
         for (int i = 0; i < repeatTime; i++) {
             gameService.playRound();
@@ -79,14 +79,44 @@ class GameServiceTest {
         return Stream.of(
                 Arguments.of(
                         Arrays.asList(true, true, false, false),
-                        Arrays.asList(1, 1, 0, 0), 1
+                        1, Arrays.asList(1, 1, 0, 0)
                 ),
                 Arguments.of(
                         Arrays.asList(
                                 false, true, true, false,
                                 false, true, false, true
                         ),
-                        Arrays.asList(0, 2, 1, 1), 2
+                        2, Arrays.asList(0, 2, 1, 1)
+                )
+        );
+    }
+
+    @DisplayName("게임 라운드 우승자 반환 기능 테스트")
+    @ParameterizedTest
+    @MethodSource("provideForGetWinnerNamesTest")
+    void getWinnerNamesTest(final List<Boolean> moveConditions, final int repeatTime, final List<String> expected) {
+        customMoveStrategy.initMoveConditions(moveConditions);
+        for (int i = 0; i < repeatTime; i++) {
+            gameService.playRound();
+        }
+
+        final List<String> winnerNames = gameService.getWinnerNames();
+        assertThat(winnerNames).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> provideForGetWinnerNamesTest() {
+        return Stream.of(
+                Arguments.of(
+                        Arrays.asList(true, true, false, false),
+                        1, Arrays.asList("hello", "poby")
+
+                ),
+                Arguments.of(
+                        Arrays.asList(
+                                false, true, true, false,
+                                false, true, false, true
+                        ),
+                        2, Arrays.asList("poby")
                 )
         );
     }
