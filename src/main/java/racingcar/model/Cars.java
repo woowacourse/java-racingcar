@@ -15,17 +15,6 @@ public class Cars {
         validateCarNames(cars);
     }
 
-    private void validateCarNames(List<Car> cars) {
-        int countDistinctNames = (int) cars.stream()
-                .map(Car::getName)
-                .distinct()
-                .count();
-
-        if (countDistinctNames != cars.size()) {
-            throw new IllegalArgumentException("자동차 이름에 중복이 존재할 수 없습니다.");
-        }
-    }
-
     public void moveAll(NumberGenerator numberGenerator) {
         cars.forEach(car -> {
             int number = numberGenerator.generate();
@@ -44,6 +33,17 @@ public class Cars {
         return cars.stream()
                 .filter(car -> maxPosition == car.getPosition())
                 .collect(Collectors.toList());
+    }
+
+    private void validateCarNames(List<Car> cars) {
+        int countDistinctNames = (int) cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count();
+
+        if (countDistinctNames != cars.size()) {
+            throw new IllegalArgumentException("자동차 이름에 중복이 존재할 수 없습니다.");
+        }
     }
 
     public List<Car> getCars() {

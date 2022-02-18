@@ -8,6 +8,10 @@ public class TrialNum {
         this.number = Integer.parseInt(trialNum);
     }
 
+    public void increase() {
+        number++;
+    }
+
     private void validateTrialNum(String number) {
         try {
             Integer.parseInt(number);
@@ -18,9 +22,5 @@ public class TrialNum {
 
     public int getNumber() {
         return number;
-    }
-
-    public void increase() {
-        number++;
     }
 }

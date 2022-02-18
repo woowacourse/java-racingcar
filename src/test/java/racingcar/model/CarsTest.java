@@ -43,7 +43,7 @@ class CarsTest {
                 .collect(Collectors.toList()));
 
         final FixedNumberGenerator fixedNumber = new FixedNumberGenerator(number);
-        
+
         cars.moveAll(fixedNumber);
 
         assertThat(cars.getCars().stream()

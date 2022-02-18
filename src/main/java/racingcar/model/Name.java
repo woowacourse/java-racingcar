@@ -4,7 +4,6 @@ public class Name {
     private static final String BLANK = "";
     private static final String SPACE = " ";
     private static final int MAXIMUM_NAME_LENGTH = 10;
-    private static final int MINIMUM_NAME_LENGTH = 1;
 
     private final String name;
 

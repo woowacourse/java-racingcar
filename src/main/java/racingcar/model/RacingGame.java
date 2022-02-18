@@ -38,7 +38,7 @@ public class RacingGame {
 
     private Cars createCars(String namesInput) {
         List<Name> carNames = createName(namesInput);
-        return new Cars (carNames.stream()
+        return new Cars(carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList()));
     }

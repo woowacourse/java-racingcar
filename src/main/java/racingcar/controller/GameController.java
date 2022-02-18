@@ -7,7 +7,7 @@ import racingcar.view.OutputView;
 public class GameController {
 
     public void run() {
-        String carNames =  InputView.inputCarNames();
+        String carNames = InputView.inputCarNames();
         String trialNum = InputView.inputTrialNum();
 
         RacingGame racingGame = new RacingGame(carNames, trialNum);

@@ -18,16 +18,17 @@ public class Car {
         this(name, MINIMUM_POSITION);
     }
 
-    private void validateCarNameLength(Name carName) {
-        boolean isValidLength = carName.getName().length() <= MAXIMUM_CAR_NAME_LENGTH;
-        if (!isValidLength) {
-            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
-        }
-    }
 
     public void move(int number) {
         if (canMove(number)) {
             position++;
+        }
+    }
+
+    private void validateCarNameLength(Name carName) {
+        boolean isValidLength = carName.getName().length() <= MAXIMUM_CAR_NAME_LENGTH;
+        if (!isValidLength) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
         }
     }
 

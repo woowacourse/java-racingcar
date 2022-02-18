@@ -13,7 +13,7 @@ class RandomNumberGeneratorTest {
     void generateRandomNumber() {
         final NumberGenerator randomNumber = new RandomNumberGenerator();
         for (int i = 0; i < TESTCASE_NUM; i++) {
-            assertThat(randomNumber.generate()).isBetween(0,9);
+            assertThat(randomNumber.generate()).isBetween(0, 9);
         }
     }
 }
