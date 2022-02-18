@@ -6,7 +6,6 @@ public class Car {
 
     private static final int INIT_POSITION = 0;
     private static final String CAR_NAME_ERROR_MESSAGE = "자동차 이름이 null이거나 빈 문자열, 혹은 공백으로만 이루어져 있습니다.";
-    private static final String POSITION_ERROR_MESSAGE = "자동차의 위치는 최소 0 이상이어야 합니다.";
     private final String name;
     private int position;
 
