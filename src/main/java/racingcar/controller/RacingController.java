@@ -25,6 +25,7 @@ public class RacingController {
             game.carsMove();
             outputView.printRoundStatus(convertToDto(game.now()));
         }
+
         outputView.printWinners(convertToDto(game.winnerCars()));
     }
 

@@ -8,10 +8,10 @@ import java.util.Optional;
 public class CarName {
     private static final int MAX_LENGTH_OF_CAR_NAME = 5;
 
-    private final String value;
+    private final String name;
 
     public CarName(String value) {
-        this.value = Optional.ofNullable(value)
+        this.name = Optional.ofNullable(value)
             .orElseThrow(() -> new NullPointerException(ExceptionMessage.NULL_CAR_NAME));
         validateLength(value);
         validateBlank(value);
@@ -30,7 +30,7 @@ public class CarName {
     }
 
     public String value() {
-        return value;
+        return name;
     }
 
     @Override
@@ -38,11 +38,11 @@ public class CarName {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarName carName = (CarName) o;
-        return Objects.equals(value, carName.value);
+        return Objects.equals(name, carName.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(name);
     }
 }

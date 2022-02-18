@@ -6,11 +6,11 @@ public class Car {
     private static final int INITIAL_DISTANCE = 0;
 
     private final CarName carName;
-    private Integer distance;
+    private Distance distance;
 
     public Car(String carName) {
         this.carName = new CarName(carName);
-        distance = INITIAL_DISTANCE;
+        this.distance = new Distance();
     }
 
     public String getCarName() {
@@ -18,17 +18,17 @@ public class Car {
     }
 
     public int getDistance() {
-        return distance;
+        return distance.getDistance();
     }
 
     public void move(boolean moveOrStop) {
         if (moveOrStop) {
-            distance++;
+            distance.plus();
         }
     }
 
     public boolean isSameWith(int distance) {
-        return this.distance == distance;
+        return this.distance.getDistance() == distance;
     }
 
     @Override
