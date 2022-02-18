@@ -3,7 +3,6 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +18,8 @@ public class CarsTest {
 
         List<Car> cars = Arrays.asList(new Car("happy"), new Car("good"), new Car("happy"));
 
-        assertThatThrownBy(() -> new Cars(cars)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Cars(cars))
+            .isInstanceOf(IllegalArgumentException.class);
 
     }
 
@@ -29,8 +29,11 @@ public class CarsTest {
         Cars cars = new Cars(Arrays.asList(new Car("happy"), new Car("good")));
 
         assertThat(
-            cars.getCars().stream().map(Car::getName).collect(Collectors.toList())).containsExactly(
-            "happy", "good");
+            cars.getCars()
+                .stream()
+                .map(Car::getName)
+                .collect(Collectors.toList()))
+            .containsExactly("happy", "good");
 
     }
 
@@ -45,7 +48,8 @@ public class CarsTest {
         car1.movePosition(() -> true);
         car2.movePosition(() -> false);
 
-        assertThat(cars.getWinners()).containsExactly("happy");
+        assertThat(cars.getWinners())
+            .containsExactly("happy");
 
     }
 
@@ -60,7 +64,8 @@ public class CarsTest {
         car1.movePosition(() -> true);
         car2.movePosition(() -> true);
 
-        assertThat(cars.getWinners()).containsExactly("happy", "good");
+        assertThat(cars.getWinners())
+            .containsExactly("happy", "good");
 
     }
 
