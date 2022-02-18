@@ -13,18 +13,18 @@ public class Round {
         this.roundNum = END_ROUND_NUMBER;
     }
 
-    private Round(int roundNum) {
+    private Round(final int roundNum) {
         validateMinimum(roundNum);
         this.roundNum = roundNum;
     }
 
-    private static void validateMinimum(int roundNum) {
+    private static void validateMinimum(final int roundNum) {
         if (roundNum < MINIMUM_ROUND_NUMBER) {
             throw new IllegalArgumentException("시도 횟수의 최소값은 0 이하일 수 없습니다.");
         }
     }
 
-    public static Round fromNumber(int round) {
+    public static Round fromNumber(final int round) {
         return new Round(round);
     }
 

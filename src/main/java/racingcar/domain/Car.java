@@ -13,13 +13,13 @@ public class Car implements Comparable<Car> {
         this.position = new Position();
     }
 
-    public void drive(int value) {
+    public void drive(final int value) {
         if (MINIMUM_DRIVE_CONDITION <= value) {
             position = position.moveForward();
         }
     }
 
-    public boolean isSamePosition(Car car) {
+    public boolean isSamePosition(final Car car) {
         return this.position.equals(car.position);
     }
 

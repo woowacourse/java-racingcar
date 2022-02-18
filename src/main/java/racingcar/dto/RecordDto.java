@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import racingcar.domain.Car;
 
 public class RecordDto {
-    private List<CarDto> racingRecord;
+    private final List<CarDto> racingRecord;
 
-    private RecordDto(List<CarDto> racingRecord) {
+    private RecordDto(final List<CarDto> racingRecord) {
         this.racingRecord = racingRecord;
     }
 
-    public static RecordDto createRecordDto(List<Car> cars) {
+    public static RecordDto createRecordDto(final List<Car> cars) {
         return new RecordDto(cars.stream()
             .map(CarDto::creatCarDto)
             .collect(Collectors.toList()));

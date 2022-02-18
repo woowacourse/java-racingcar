@@ -12,29 +12,29 @@ public class Cars {
 
     private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    private Cars(final List<Car> cars) {
         validateDuplicated(cars);
         this.cars = cars;
     }
 
-    private void validateDuplicated(List<Car> cars) {
+    private void validateDuplicated(final List<Car> cars) {
         Set<Car> carsSet = new HashSet<>(cars);
         if (carsSet.size() != cars.size()) {
             throw new IllegalArgumentException(ERROR_CARS_INVALID_DUPLICATED);
         }
     }
 
-    public static Cars from(List<Car> cars) {
+    public static Cars from(final List<Car> cars) {
         return new Cars(cars);
     }
 
-    public static Cars fromNames(List<String> carsName) {
+    public static Cars fromNames(final List<String> carsName) {
         return new Cars(carsName.stream()
             .map(carName -> new Car(carName))
             .collect(Collectors.toList()));
     }
 
-    public void driveAll(NumberGeneratePolicy numberGeneratePolicy) {
+    public void driveAll(final NumberGeneratePolicy numberGeneratePolicy) {
         cars.forEach(car -> car.drive(numberGeneratePolicy.generateNumber()));
     }
 

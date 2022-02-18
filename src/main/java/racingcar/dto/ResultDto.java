@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 import racingcar.domain.Car;
 
 public class ResultDto {
-    private List<String> winners;
+    private final List<String> winners;
 
-    private ResultDto(List<String> winners) {
+    private ResultDto(final List<String> winners) {
         this.winners = winners;
     }
 
-    public static ResultDto createResultDto(List<Car> cars) {
+    public static ResultDto createResultDto(final List<Car> cars) {
         return new ResultDto(cars.stream()
             .map(car -> car.getName())
             .collect(Collectors.toList()));
