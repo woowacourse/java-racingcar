@@ -12,14 +12,6 @@ public class Car {
         this.position = 0;
     }
 
-    public String getName() {
-        return name.getName();
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
     public void move(int target) {
         if (target >= CONDITION_FOR_MOVE) {
             position++;
@@ -28,6 +20,14 @@ public class Car {
 
     public boolean isSamePosition(int target) {
         return position == target;
+    }
+
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return position;
     }
 
 }

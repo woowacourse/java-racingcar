@@ -2,8 +2,6 @@ package racingcar.domain;
 
 public class CarName {
 
-    private final String name;
-
     private static final int MIN_LENGTH_OF_NAME = 1;
     private static final int MAX_LENGTH_OF_NAME = 5;
     private static final String EMPTY_CAR_NAME = "[ERROR] 자동차 이름이 입력되지 않았습니다.";
@@ -11,19 +9,21 @@ public class CarName {
     private static final String LESS_THAN_FIVE_LETTER = "[ERROR] 5글자 초과의 자동차 이름은 허용되지 않습니다.";
     private static final String NO_SPACE = "[ERROR] 공백을 포함하는 자동차 이름은 허용되지 않습니다.";
 
+    private final String name;
+
     public CarName(String name) {
         validateCarName(name);
         this.name = name;
-    }
-
-    public String getName(){
-        return this.name;
     }
 
     public static void validateCarName(String name) {
         validateEmpty(name);
         validateSpace(name);
         validateLength(name);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     private static void validateEmpty(String name) {
