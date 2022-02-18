@@ -46,7 +46,7 @@ public class Cars {
 
     private String getWinners(final int farthestPosition) {
         return cars.stream()
-                .filter((car) -> car.isWinner(farthestPosition))
+                .filter((car) -> car.isSamePosition(farthestPosition))
                 .map(Car::getName)
                 .collect(Collectors.joining(CAR_NAME_DISTRIBUTOR));
     }

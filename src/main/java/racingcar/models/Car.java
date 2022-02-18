@@ -13,10 +13,14 @@ public class Car {
         position = INITIAL_POSITION;
     }
 
-    public void goForward(int randomNumber) {
-        if (randomNumber >= FORWARD_STANDARD) {
+    public void goForward(int number) {
+        if (number >= FORWARD_STANDARD) {
             position++;
         }
+    }
+
+    public boolean isSamePosition(final int position) {
+        return this.position == position;
     }
 
     public String getName() {
@@ -25,10 +29,6 @@ public class Car {
 
     public int getPosition() {
         return position;
-    }
-
-    public boolean isWinner(final int farthestPosition) {
-        return position == farthestPosition;
     }
 
     @Override

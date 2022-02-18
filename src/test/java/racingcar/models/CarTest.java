@@ -40,7 +40,7 @@ class CarTest {
     @DisplayName("자동차가 우승자가 맞는지 확인한다")
     void isWinner() {
         car.goForward(4);
-        boolean result = car.isWinner(1);
+        boolean result = car.isSamePosition(1);
 
         assertThat(result).isTrue();
     }
