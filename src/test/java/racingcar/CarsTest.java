@@ -7,6 +7,7 @@ import racingcar.domain.car.Cars;
 import racingcar.domain.numbergenerator.MovableNumberGenerator;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,7 +51,32 @@ public class CarsTest {
 
             }
         }
-
         assertThat(cars.getMaxPosition()).isEqualTo(1);
+    }
+
+    @Test
+    public void Car_리스트에서_position이_같은_Car_찾기() {
+        Car car1 = new Car("forky");
+        Car car2 = new Car("kun");
+        Cars cars = new Cars(Arrays.asList(car1, car2));
+        int position = 1;
+
+        car2.move(new MovableNumberGenerator());
+
+        assertThat(cars.getSamePositionCar(position).get(0)).isEqualTo(car2);
+    }
+
+    @Test
+    public void Car_리스트에서_position이_같은_Car_2개인경우() {
+        Car car1 = new Car("forky");
+        Car car2 = new Car("kun");
+        Cars cars = new Cars(Arrays.asList(car1, car2));
+        int position = 1;
+        NumberGenerator numberGenerator = new MovableNumberGenerator();
+
+        car1.move(numberGenerator);
+        car2.move(numberGenerator);
+
+        assertThat(cars.getSamePositionCar(position).size()).isEqualTo(2);
     }
 }

@@ -76,35 +76,4 @@ public class CarTest {
 
 		assertThat(car.getPosition()).isEqualTo(1);
 	}
-
-//	@Test
-//	public void toString_kun() {
-//		Car car = new Car("kun");
-//		assertThat(car.toString()).startsWith("kun : ");
-//	}
-//
-//	@Test
-//	public void toString_forky() {
-//		Car car = new Car("forky");
-//		assertThat(car.toString()).startsWith("forky : ");
-//	}
-//
-//	@Test
-//	public void toString_position_1() {
-//		Car car = new Car("kun");
-//		NumberGenerator numberGenerator = new MovableNumberGenerator();
-//		car.move(numberGenerator);
-//		assertThat(car.toString()).isEqualTo("kun : -");
-//	}
-//
-//	@Test
-//	public void toString_position_3() {
-//		Car car = new Car("kun");
-//		NumberGenerator numberGenerator = new MovableNumberGenerator();
-//
-//		for (int i = 0; i < 3 ; i++) {
-//			car.move(numberGenerator);
-//		}
-//		assertThat(car.toString()).isEqualTo("kun : ---");
-//	}
 }
