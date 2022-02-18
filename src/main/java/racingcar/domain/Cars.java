@@ -3,8 +3,6 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import racingcar.util.RandomGenerator;
-
 public class Cars {
     private final List<Car> cars;
 
@@ -15,9 +13,9 @@ public class Cars {
         }
     }
 
-    public void moveAll() {
+    public void moveAll(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            car.move(RandomGenerator.generateRandomNumber());
+            car.move(movingStrategy);
         }
     }
 

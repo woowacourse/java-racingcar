@@ -10,9 +10,9 @@ class CarsTest {
     void getChampions() {
         Cars cars = new Cars(new String[] {"car1", "car2", "car3"});
 
-        cars.getCars().get(0).move(5);
-        cars.getCars().get(1).move(5);
-        cars.getCars().get(2).move(3);
+        cars.getCars().get(0).move(() -> true);
+        cars.getCars().get(1).move(() -> true);
+        cars.getCars().get(2).move(() -> false);
 
         assertThat(cars.getChampions())
             .contains("car1")

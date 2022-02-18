@@ -8,8 +8,8 @@ class CarTest {
 
     @Test
     void move() {
-        Car car = new Car("test", 0);
-        car.move(4);
+        Car car = new Car("test");
+        car.move(() -> true);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 

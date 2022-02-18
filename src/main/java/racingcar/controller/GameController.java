@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.util.CarNameValidator;
+import racingcar.domain.RandomMovingStrategy;
 import racingcar.util.RoundValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -40,7 +41,7 @@ public class GameController {
     private void runRounds(int rounds, Cars cars) {
         OutputView.printResultMessage();
         for (int i = 0; i < rounds; i++) {
-            cars.moveAll();
+            cars.moveAll(new RandomMovingStrategy());
             OutputView.printRoundResult(cars.getCars());
         }
     }
