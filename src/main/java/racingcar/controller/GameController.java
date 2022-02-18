@@ -28,7 +28,7 @@ public class GameController {
 
     private void runGame() {
         OutputView.printTrialResult();
-        for (int i = 0; i < racingGame.getTrialNum(); i++) {
+        for (int i = 0; i < racingGame.getTrialNum().getTrialNum(); i++) {
             racingGame.race();
             OutputView.printCarPosition(racingGame.getCars());
         }

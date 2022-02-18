@@ -1,10 +1,10 @@
 package racingcar.model;
 
-import racingcar.util.InputValidator;
+import racingcar.model.vo.TrialNum;
 
 public class RacingGame {
     private Cars cars;
-    private int trialNum;
+    private TrialNum trialNum;
 
     public RacingGame() {
     }
@@ -12,12 +12,7 @@ public class RacingGame {
     //TODO 생성자를 이렇게 사용해도 될까 고민해보기
     public RacingGame(String carNames, String inputTrialNum) {
         this.cars = Cars.initCars(carNames);
-        this.trialNum = convertToInteger(inputTrialNum);
-    }
-
-    private int convertToInteger(String number) {
-        InputValidator.validateTrialInput(number);
-        return Integer.parseInt(number);
+        this.trialNum = TrialNum.initTrialNum(inputTrialNum);
     }
 
     public void race() {
@@ -28,7 +23,7 @@ public class RacingGame {
         return cars;
     }
 
-    public int getTrialNum() {
+    public TrialNum getTrialNum() {
         return trialNum;
     }
 }
