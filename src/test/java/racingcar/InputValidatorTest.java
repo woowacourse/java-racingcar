@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class InputValidatorTest {
+class InputValidatorTest {
     @Test
     void 자동차의_이름이_5자_이상인_경우_예외처리() {
         assertThatThrownBy(() -> {

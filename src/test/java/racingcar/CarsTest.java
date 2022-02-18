@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class CarsTest {
+class CarsTest {
 
     @Test
     void 자동차_입력시_공백이_들어간_경우() {
@@ -34,7 +33,6 @@ public class CarsTest {
             Cars.splitCars("aaa,bbb,aaa");
         }).isInstanceOf(IllegalArgumentException.class);
     }
-
 
     @Test
     void 자동차의_이름이_공백인_경우_예외처리() {

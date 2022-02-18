@@ -8,7 +8,7 @@ import racingcar.util.NumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarTest {
+class CarTest {
     @ParameterizedTest
     @ValueSource(ints = 5)
     void 자동차_전진_확인(int value) {
