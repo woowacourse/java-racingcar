@@ -41,7 +41,7 @@ public class Racing {
 	}
 
 	public List<String> getWinners() {
-		int maxPosition = getMaxPosition(cars);
+		int maxPosition = getMaxPosition();
 
 		return cars.stream()
 			.filter(car -> maxPosition == car.getPosition())
@@ -49,7 +49,7 @@ public class Racing {
 			.collect(toList());
 	}
 
-	private int getMaxPosition(List<Car> cars) {
+	private int getMaxPosition() {
 		return cars.stream()
 			.mapToInt(Car::getPosition)
 			.max()
