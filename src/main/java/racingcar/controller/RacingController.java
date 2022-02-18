@@ -9,7 +9,6 @@ import racingcar.view.output.OutputView;
 public class RacingController {
     private final OutputView outputView;
     private final Movement movement;
-
     private final Cars cars;
     private final TrialCount trialCount;
 
