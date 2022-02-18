@@ -36,10 +36,9 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
-    private int findMaxPosition() {
+    private Car findMaxPosition() {
         return cars.stream()
-            .mapToInt(Car::getPosition)
-            .max()
-            .orElse(0);
+            .max(Car::compareTo)
+            .orElseThrow();
     }
 }

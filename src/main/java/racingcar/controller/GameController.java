@@ -6,30 +6,25 @@ import racingcar.view.OutputView;
 
 public class GameController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
-
     public GameController() {
-        inputView = new InputView();
-        outputView = new OutputView();
     }
 
     public void run() {
         RacingGame racingGame = initRacingGame();
 
-        outputView.printResultMessage();
+        OutputView.printResultMessage();
 
         while (!racingGame.isEnd()) {
             racingGame.race();
-            outputView.printResult(racingGame.getCars());
+            OutputView.printResult(racingGame.getCars());
         }
 
-        outputView.printWinners(racingGame.getWinners());
+        OutputView.printWinners(racingGame.getWinners());
     }
 
     private RacingGame initRacingGame() {
         try {
-            return new RacingGame(inputView.inputCarNames(), inputView.inputTryCount());
+            return new RacingGame(InputView.inputCarNames(), InputView.inputTryCount());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return initRacingGame();

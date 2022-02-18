@@ -1,62 +1,35 @@
 package racingcar.model;
 
-import static racingcar.utils.validator.CarNamesValidator.*;
-import static racingcar.utils.validator.TryCountValidator.*;
+import static racingcar.utils.validator.TryCountValidator.validateTryCount;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import racingcar.utils.RandomNumber;
 
 public class RacingGame {
 
     private static final int GAME_END_COUNT = 0;
 
-    private final List<Car> cars;
+    private final Cars cars;
     private int tryCount;
 
-    public RacingGame(String[] cars, String tryCount) {
-        validateDuplicate(cars);
-        this.cars = createCars(cars);
-
-        validateTryCount(tryCount);
-        this.tryCount = Integer.parseInt(tryCount);
-    }
-
-    private List<Car> createCars(final String[] carNames) {
-        return Arrays.stream(carNames)
-            .map(Car::new)
-            .collect(Collectors.toList());
+    public RacingGame(String[] carNames, String tryCount) {
+        cars = new Cars(carNames);
+        this.tryCount = validateTryCount(tryCount);
     }
 
     public List<Car> getCars() {
-        return cars;
+        return cars.getCars();
     }
 
     public boolean isEnd() {
-        if (tryCount > GAME_END_COUNT) {
-            tryCount--;
-            return false;
-        }
-        return true;
+        return tryCount == GAME_END_COUNT;
     }
 
     public void race() {
-        cars.forEach(car -> car.move(RandomNumber.generate()));
+        cars.move();
+        tryCount--;
     }
 
-    public List<String> getWinners() {
-        return cars.stream()
-            .filter(car -> car.isMaxPosition(findMaxPosition()))
-            .map(Car::getCarName)
-            .collect(Collectors.toList());
-    }
-
-    private int findMaxPosition() {
-        return cars.stream()
-            .mapToInt(Car::getPosition)
-            .max()
-            .orElse(0);
+    public List<Car> getWinners() {
+        return cars.getWinners();
     }
 }

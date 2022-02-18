@@ -47,7 +47,9 @@ class RacingGameTest {
         String[] cars = {"test"};
         RacingGame racingGame = new RacingGame(cars, "5");
 
-        while (!racingGame.isEnd()) {}
+        while (!racingGame.isEnd()) {
+            racingGame.race();
+        }
 
         assertThat(racingGame.isEnd()).isTrue();
     }
