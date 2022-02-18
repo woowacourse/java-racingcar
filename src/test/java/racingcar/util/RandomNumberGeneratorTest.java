@@ -6,7 +6,6 @@ import racingcar.util.RandomNumberGenerator;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RandomNumberGeneratorTest {
-
     @Test
     public void 랜덤값_범위_확인() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();

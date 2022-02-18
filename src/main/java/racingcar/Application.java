@@ -1,36 +1,25 @@
 package racingcar;
 
 import racingcar.controller.InputController;
-import racingcar.controller.RaceController;
+import racingcar.controller.RacingGame;
 import racingcar.view.OutputView;
 
 public class Application {
     InputController inputController = new InputController();
-    RaceController raceController = new RaceController();
 
     public static void main(String[] args) {
         Application application = new Application();
         application.run();
     }
 
-    private void gameStart() throws RuntimeException {
+    private void run() {
         String[] carNames = inputController.getUserCarNames();
         int tryCount = inputController.getUserTryCount();
-        raceController.insertCarFromCarNames(carNames);
-        OutputView.printResultPrefix();
-        for (int i = 0; i < tryCount; i++) {
-            raceController.moveRound();
-            raceController.printPosition();
-        }
-
-        raceController.printWinner();
-    }
-
-    private void run() {
+        RacingGame racingGame = new RacingGame(carNames, tryCount);
         try {
-            gameStart();
+            racingGame.play();
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            OutputView.printError(e.getMessage());
         }
     }
 }

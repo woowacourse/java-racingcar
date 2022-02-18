@@ -9,12 +9,12 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String scanCarNames() {
-        System.out.println(CAR_NAME_SCAN_MESSAGE);
+        OutputView.printMessage(CAR_NAME_SCAN_MESSAGE);
         return scanner.nextLine().trim();
     }
 
     public static String scanTryCount() {
-        System.out.println(TRY_COUNT_SCAN_MESSAGE);
+        OutputView.printMessage(TRY_COUNT_SCAN_MESSAGE);
         return scanner.nextLine().trim();
     }
 }

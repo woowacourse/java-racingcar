@@ -1,16 +1,22 @@
-package racingcar.controller;
+package racingcar.domain;
 
-import racingcar.model.Car;
 import racingcar.util.RandomNumberGenerator;
-import racingcar.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class RaceController {
-    private static final int DEFAULT_POSITION = 0;
+public class Cars {
+    private static final Cars instance = new Cars();
 
     private List<Car> cars = new ArrayList<>();
+
+    private Cars() {
+    }
+
+    public static Cars getInstance() {
+        return instance;
+    }
 
     public void insertCar(Car car) {
         cars.add(car);
@@ -18,7 +24,7 @@ public class RaceController {
 
     public void insertCarFromCarNames(String[] carNames) {
         for (String carName : carNames) {
-            insertCar(new Car(carName, DEFAULT_POSITION, new RandomNumberGenerator()));
+            insertCar(new Car(carName, new RandomNumberGenerator()));
         }
     }
 
@@ -34,7 +40,6 @@ public class RaceController {
 
     public String[] getWinners() {
         int maxPosition = getMaxPosition();
-
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
@@ -48,11 +53,11 @@ public class RaceController {
                 .getAsInt();
     }
 
-    public void printPosition() {
-        OutputView.printResult(cars);
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
-    public void printWinner() {
-        OutputView.printWinner(getWinners());
+    public void removeAll() {
+        cars.clear();
     }
 }
