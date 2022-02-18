@@ -12,45 +12,5 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RacingGameTest {
     RacingGame racingGame = new RacingGame();
-    
-    @Test
-    void 자동차_입력시_공백이_들어간_경우() {
-        final String actual = "bom, sun";
-        final List<String> expected = Arrays.asList("bom", "sun");
-        assertThat(racingGame.splitCars(actual)).isEqualTo(expected);
-    }
 
-    @Test
-    void 자동차_객체_생성() {
-        List<String> actual = Arrays.asList("bom", "sun");
-        Cars cars = racingGame.initCars(actual);
-        List<String> expected = cars.getCars().stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-
-        assertThat(expected).isEqualTo(actual);
-    }
-
-    @Test
-    void 자동차_이름이_하나도_존재하지_않을_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            racingGame.splitCars("");
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 자동차_이름에_중복이_존재하는_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            racingGame.splitCars("aaa,bbb,aaa");
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-
-    @Test
-    void 자동차의_이름이_공백인_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            racingGame.splitCars(" , , ");
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차의 이름이 존재하지 않습니다.");
-    }
 }
