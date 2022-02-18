@@ -1,12 +1,11 @@
 package racingcar.utils;
 
-import java.util.Random;
-
 public class RandomNumber {
 
-    private static final int END_EXCLUSIVE = 10;
+    private static final int START_INCLUSIVE = 0;
+    private static final int END_EXCLUSIVE = 9;
 
     public static int generate() {
-        return new Random().nextInt(END_EXCLUSIVE);
+        return (int)(Math.random() * (END_EXCLUSIVE - START_INCLUSIVE + 1)) + START_INCLUSIVE;
     }
 }

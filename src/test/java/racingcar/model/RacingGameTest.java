@@ -45,9 +45,11 @@ class RacingGameTest {
     @Test
     void 게임횟수_카운트_검증() {
         String[] cars = {"test"};
-        RacingGame racingGame = new RacingGame(cars, 5);
+        RacingGame racingGame = new RacingGame(cars, "5");
 
-        while (!racingGame.isEnd()) {}
+        while (!racingGame.isEnd()) {
+            racingGame.race();
+        }
 
         assertThat(racingGame.isEnd()).isTrue();
     }

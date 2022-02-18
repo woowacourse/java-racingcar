@@ -2,14 +2,25 @@ package racingcar.utils.validator;
 
 public class TryCountValidator {
 
-    private static final String PATTERN = "^([1-9])([0-9])*$";
-    private static final String PATTERN_ERROR_MESSAGE = "[ERROR] 시도 회수는 양수만 가능합니다.";
+    private static final String DIGIT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
+    private static final String POSITIVE_ERROR_MESSAGE = "[ERROR] 시도 횟수는 양수만 가능합니다.";
+    private static final int ZERO = 0;
 
-    private TryCountValidator() {}
+    private TryCountValidator() {
+    }
 
-    public static void validatePattern(final String inputValue) {
-        if (!inputValue.matches(PATTERN)) {
-            throw new IllegalArgumentException(PATTERN_ERROR_MESSAGE);
+    public static int validateTryCount(final String inputValue) {
+        try {
+            validatePositive(Integer.parseInt(inputValue));
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(DIGIT_ERROR_MESSAGE);
+        }
+        return Integer.parseInt(inputValue);
+    }
+
+    private static void validatePositive(final int inputValue) {
+        if (inputValue <= ZERO) {
+            throw new IllegalArgumentException(POSITIVE_ERROR_MESSAGE);
         }
     }
 }
