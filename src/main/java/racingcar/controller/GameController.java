@@ -1,14 +1,8 @@
 package racingcar.controller;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
 import racingcar.model.RacingGame;
-import racingcar.util.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class GameController {
     private RacingGame racingGame;
@@ -28,7 +22,7 @@ public class GameController {
 
     private void runGame() {
         OutputView.printTrialResult();
-        for (int i = 0; i < racingGame.getTrialNum().getTrialNum(); i++) {
+        while (!racingGame.isEnd()) {
             racingGame.race();
             OutputView.printCarPosition(racingGame.getCars());
         }

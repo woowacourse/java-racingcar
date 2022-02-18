@@ -13,6 +13,7 @@ public class RacingGame {
 
     private Cars cars;
     private TrialNum trialNum;
+    private int count;
 
     public RacingGame() {
     }
@@ -21,6 +22,7 @@ public class RacingGame {
     public RacingGame(String carNames, String inputTrialNum) {
         this.cars = Cars.initCars(carNames);
         this.trialNum = TrialNum.initTrialNum(inputTrialNum);
+        this.count = 0;
     }
 
     public void race() {
@@ -46,11 +48,11 @@ public class RacingGame {
                 .collect(Collectors.joining(JOIN_BY_COMMA));
     }
 
-    public Cars getCars() {
-        return cars;
+    public boolean isEnd() {
+        return trialNum.getTrialNum() == count;
     }
 
-    public TrialNum getTrialNum() {
-        return trialNum;
+    public Cars getCars() {
+        return cars;
     }
 }
