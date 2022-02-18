@@ -14,6 +14,10 @@ public class OutputView {
     private static final String COMMA = ", ";
     private static final int MINIMUM_POSITION = 0;
 
+    private OutputView() {
+        throw new AssertionError();
+    }
+
     public static void printCarPosition(Cars cars) {
         cars.getCars().forEach(OutputView::printCarResult);
         System.out.println();
