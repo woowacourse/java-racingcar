@@ -20,13 +20,13 @@ public class Racing {
 
     public void start() {
         enrollCars();
-        PlayTime playTime = new PlayTime(inputView.getPlayTimes());
+        PlayTime playTime = new PlayTime(inputView.requestPlayTimes());
         startRacing(playTime);
         showRacingResult();
     }
 
     private void enrollCars() {
-        String[] carNames = inputView.getCarNames().split(",");
+        String[] carNames = inputView.requestCarNames().split(",");
         for (String carName : carNames) {
             Car car = new Car(carName);
             participants.participateInRacing(car);
