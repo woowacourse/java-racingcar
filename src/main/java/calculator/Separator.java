@@ -17,7 +17,7 @@ public class Separator {
         final String unitsForSeparate = extractCustomUnits(text) + STANDARD_UNITS;
         final String regexForSeparate = String.format(SEPARATOR_FORMAT, unitsForSeparate);
         final String targetString = extractString(text);
-        return Arrays.asList(targetString.split(regexForSeparate));
+        return List.of(targetString.split(regexForSeparate));
     }
 
     private String extractCustomUnits(final String text) {
