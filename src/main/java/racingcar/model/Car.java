@@ -23,14 +23,6 @@ public class Car {
         }
     }
 
-    public int getBiggerPosition(int position) {
-        return Math.max(position, this.position);
-    }
-
-    public boolean matchPosition(int position) {
-        return this.position == position;
-    }
-
     private void validName(String name) {
         if (isOverNameLength(name)) {
             throw new RuntimeException(CAR_NAME_LENGTH_OVER_ERROR_MESSAGE);

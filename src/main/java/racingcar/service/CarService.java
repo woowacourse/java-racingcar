@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarService {
-    private final CarRepository carRepository;
+    private final Cars cars;
     private final GameScoreBoard gameScoreBoard;
 
     public CarService() {
-        this.carRepository = new CarRepository();
+        this.cars = new Cars();
         this.gameScoreBoard = new GameScoreBoard();
     }
 
@@ -25,7 +25,7 @@ public class CarService {
     }
 
     public void createCars(List<String> names) {
-        names.forEach(name -> carRepository.save(new Car(name)));
+        names.forEach(name -> cars.save(new Car(name)));
     }
 
     public void addScoreBoard(int round, List<CarDto> cars) {
@@ -34,8 +34,8 @@ public class CarService {
 
     public void moveCars(int iteration) {
         for (int i = 0; i < iteration; i++) {
-            carRepository.move(RandomNumber.getNumbers(carRepository.getSize()));
-            addScoreBoard(i, carRepository.getCarDtos());
+            cars.move(RandomNumber.getNumbers(cars.getSize()));
+            addScoreBoard(i, cars.getCarDtos());
         }
     }
 

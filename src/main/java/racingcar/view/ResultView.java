@@ -15,10 +15,17 @@ public class ResultView {
     public static void printGameResult(List<ScoreBoard> scoreBoards) {
         printBeforeGameResult();
         for (ScoreBoard scoreBoard : scoreBoards) {
-            List<Score> scores = scoreBoard.getScores();
-            scores.forEach(score -> System.out.println(score.getName() + SUFFIX_PRINT_RESULT_CAR_NAME + CAR_POSITION_STATUS_EXPRESSION.repeat(score.getPoint())));
+            printScoreBoard(scoreBoard.getScores());
             printEmptyLine();
         }
+    }
+
+    private static void printScoreBoard(List<Score> scores) {
+        for (Score score : scores) {
+            System.out.println(score.getName() + SUFFIX_PRINT_RESULT_CAR_NAME
+                    + CAR_POSITION_STATUS_EXPRESSION.repeat(score.getPoint()));
+        }
+        printEmptyLine();
     }
 
     public static void printWinners(List<String> names) {
