@@ -11,7 +11,7 @@ public class CustomReader implements Reader {
         this.values = values.iterator();
     }
 
-    public void initText(String value) {
+    public void initText(final String value) {
         this.values = List.of(value).iterator();
     }
 

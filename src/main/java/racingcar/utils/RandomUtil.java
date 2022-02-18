@@ -16,7 +16,7 @@ public class RandomUtil {
         return RANDOM_UTIL.pickNumber(inclusiveStart, exclusiveEnd);
     }
 
-    private int pickNumber(int inclusiveStart, int exclusiveEnd) {
+    private int pickNumber(final int inclusiveStart, final int exclusiveEnd) {
         final int size = exclusiveEnd - inclusiveStart;
         return random.nextInt(size) + inclusiveStart;
     }

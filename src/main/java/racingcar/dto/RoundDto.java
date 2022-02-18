@@ -6,7 +6,7 @@ public class RoundDto {
 
     private final int count;
 
-    public RoundDto(Round round) {
+    public RoundDto(final Round round) {
         this.count = round.getCount();
     }
 

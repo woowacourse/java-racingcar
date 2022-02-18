@@ -92,7 +92,7 @@ class GameServiceInitTest {
 
     @DisplayName("실행 횟수 초기화 기능 테스트")
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5})
+    @ValueSource(ints = {1, 2, 3, 4, 5})
     void initRoundTest(final int roundCount) {
         gameService.initRound(roundCount);
         final RoundDto roundDto = gameService.getCurrentRound();

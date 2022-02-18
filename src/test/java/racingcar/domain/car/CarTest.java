@@ -18,7 +18,7 @@ import racingcar.exception.WrongArgumentException;
 class CarTest {
 
     private static final int CAR_INITIALIZED_LOCATION = 0;
-    private static final int POSITION_INCREASING_COUNT = 1;
+    private static final int LOCATION_INCREASING_COUNT = 1;
 
     private void exceptionTest(final String name) {
         assertThrows(WrongArgumentException.class, () -> new Car(name));
@@ -63,7 +63,7 @@ class CarTest {
         car.goForward(() -> true);
 
         final int actual = car.getLocation();
-        final int expected = carLocation + POSITION_INCREASING_COUNT;
+        final int expected = carLocation + LOCATION_INCREASING_COUNT;
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -104,7 +104,7 @@ class CarTest {
         );
     }
 
-    private void repeatGoForward(Car car, int location) {
+    private void repeatGoForward(final Car car, final int location) {
         for (int i = 0; i < location; i++) {
             car.goForward(() -> true);
         }

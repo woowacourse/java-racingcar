@@ -13,7 +13,7 @@ public class Car {
         this.name = name;
     }
 
-    public void goForward(MoveStrategy moveStrategy) {
+    public void goForward(final MoveStrategy moveStrategy) {
         if (moveStrategy.isMovable()) {
             this.location++;
         }
