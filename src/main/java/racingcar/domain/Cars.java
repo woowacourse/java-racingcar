@@ -17,10 +17,8 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(final List<Car> cars) {
-        validateCarCount(cars.size());
-        validateDuplicateName(cars.stream()
-                .map(Car::getName)
-                .collect(Collectors.toList()));
+        validateCarCount(cars);
+        validateDuplicateName(cars);
         this.cars = cars;
     }
 
@@ -36,19 +34,19 @@ public class Cars {
         return new Cars(cars);
     }
 
-    private void validateCarCount(final int size) {
-        if (size > MAX_COUNT || size < MIN_COUNT) {
+    private void validateCarCount(final List<Car> cars) {
+        if (cars.size() > MAX_COUNT || cars.size() < MIN_COUNT) {
             throw new IllegalArgumentException(ERROR_CAR_COUNT);
         }
     }
 
-    private void validateDuplicateName(final List<String> names) {
+    private void validateDuplicateName(final List<Car> cars) {
         Set<String> tempNameSet = new HashSet<>();
-        for (String name : names) {
-            tempNameSet.add(name);
+        for (Car car : cars) {
+            tempNameSet.add(car.getName());
         }
 
-        if (tempNameSet.size() < names.size()) {
+        if (tempNameSet.size() < cars.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
         }
     }
