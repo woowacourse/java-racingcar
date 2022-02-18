@@ -22,8 +22,7 @@ public class Name {
         return name.length() > MAX_NAME_LENGTH;
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public String getName() {
+        return this.name;
     }
 }

@@ -23,11 +23,11 @@ public class Car {
     }
 
     public Integer getCarPosition() {
-        return location.getCurrentPosition();
+        return location.getLocation();
     }
 
-    public Name getName() {
-        return this.name;
+    public String getName() {
+        return name.getName();
     }
 
     public boolean isWinnerPosition(Integer position) {

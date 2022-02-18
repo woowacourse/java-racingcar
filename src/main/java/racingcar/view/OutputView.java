@@ -23,9 +23,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void recordRacingWinners(List<Name> winners) {
-        System.out.println(winners.stream()
-            .map(Name::toString)
-            .collect(Collectors.joining(WINNER_RESULT_DELIMITER)) + WINNER_RESULT_MESSAGE);
+    public void recordRacingWinners(List<String> winners) {
+        System.out.println(String.join(WINNER_RESULT_DELIMITER, winners) + WINNER_RESULT_MESSAGE);
     }
 }

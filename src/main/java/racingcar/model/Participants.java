@@ -32,7 +32,7 @@ public class Participants {
         return Collections.unmodifiableList(cars);
     }
 
-    public List<Name> findRacingWinners() {
+    public List<String> findRacingWinners() {
         Integer maxPosition = findMaxPosition();
         return cars.stream()
                 .filter(car -> car.isWinnerPosition(maxPosition))
