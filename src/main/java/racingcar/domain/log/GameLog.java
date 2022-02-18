@@ -29,7 +29,7 @@ public class GameLog {
         return carForLogList;
     }
 
-    public List<CarForLog> getLog(int tryCount) {
+    public List<CarForLog> getSingleLog(int tryCount) {
         return gameLog.get(tryCount);
     }
 
@@ -38,14 +38,14 @@ public class GameLog {
     }
 
     private CarForLog findCarForLogByName(int tryCount, String name) {
-        return getLog(tryCount).stream()
+        return getSingleLog(tryCount).stream()
                 .filter(carForLog -> carForLog.getName().equals(name))
                 .findFirst()
                 .orElseThrow();
     }
 
     public List<String> getWinnerCarNames(int totalTryCount) {
-        List<CarForLog> carForLogList = getLog(totalTryCount);
+        List<CarForLog> carForLogList = getSingleLog(totalTryCount);
         int mostFarPosition = getMostFarPosition(carForLogList);
         return carForLogList.stream()
                 .filter(car -> car.isSamePosition(mostFarPosition))

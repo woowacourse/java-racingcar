@@ -1,11 +1,10 @@
-package racingcar.domain.validator;
+package racingcar.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.exception.CarNameException;
-import racingcar.validator.NamesSettingValidator;
 
 public class NamesSettingValidatorTest {
 
@@ -17,7 +16,7 @@ public class NamesSettingValidatorTest {
     }
 
     @Test
-    public void 입력값이_null일_경우_예외_발생() {
+    public void 입력값이_null_일_경우_예외_발생() {
         assertThatThrownBy(() -> namesSettingValidator.validate(null))
                 .isInstanceOf(CarNameException.class).hasMessage(NamesSettingValidator.NULL_INPUT_ERROR_MESSAGE);
     }

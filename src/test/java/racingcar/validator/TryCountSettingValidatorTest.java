@@ -1,4 +1,4 @@
-package racingcar.domain.validator;
+package racingcar.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.exception.TryCountException;
-import racingcar.validator.TryCountSettingValidator;
 
 public class TryCountSettingValidatorTest {
 

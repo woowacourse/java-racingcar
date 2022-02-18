@@ -40,7 +40,7 @@ public class View {
     }
 
     public void printMidtermResults(GameLog gameLog, int currentTryCount) {
-        for (CarForLog carForLog : gameLog.getLog(currentTryCount)) {
+        for (CarForLog carForLog : gameLog.getSingleLog(currentTryCount)) {
             String name = carForLog.getName();
             printCarNameAndProgressBar(name, gameLog.getPositionByName(currentTryCount, name));
         }
