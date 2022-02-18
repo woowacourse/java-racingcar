@@ -2,7 +2,6 @@ package racingcar.domain.vo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import racingcar.domain.enums.DomainErrorMessage;
 import racingcar.domain.util.RandomNumberGenerator;
@@ -10,10 +9,12 @@ import racingcar.domain.util.RandomNumberGenerator;
 public class Cars {
 
     private static final RandomNumberGenerator RANDOM_NUMBER_GENERATOR = new RandomNumberGenerator();
+    private static final int EMPTY_SIZE = 0;
 
     private List<Car> cars;
 
     public Cars(String[] names) {
+        validateSize(names);
         cars = new ArrayList<>();
         for (String name : names) {
             Car car = new Car(new CarName(name));
@@ -43,10 +44,16 @@ public class Cars {
     public List<Car> findWinners() {
         Car maxPositionCar = cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new NoSuchElementException(DomainErrorMessage.NO_SUCH_CAR_ERROR_MESSAGE.get()));
+                .orElseThrow(() -> new IllegalStateException(DomainErrorMessage.NO_SUCH_CAR_ERROR_MESSAGE.get()));
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .collect(Collectors.toList());
+    }
+
+    private void validateSize(String[] inputs) {
+        if (inputs.length == EMPTY_SIZE) {
+            throw new IllegalArgumentException(DomainErrorMessage.HAS_NOTHING_CAR_NAME_ERROR_MESSAGE.get());
+        }
     }
 
     private void validateDuplicateCarName(Car car) {

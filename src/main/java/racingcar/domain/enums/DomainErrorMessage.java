@@ -2,6 +2,7 @@ package racingcar.domain.enums;
 
 public enum DomainErrorMessage {
     RANDOM_NUMBER_RANGE_OVER_ERROR_MESSAGE("최소, 최대 범위의 입력을 확인해 주세요"),
+    HAS_NOTHING_CAR_NAME_ERROR_MESSAGE("자동차의 이름을 1개 이상 입력해야합니다."),
     DUPLICATE_CAR_NAME_ERROR_MESSAGE("자동차의 이름이 중복되었습니다."),
     NO_SUCH_CAR_ERROR_MESSAGE("저장된 자동차가 없습니다."),
     EMPTY_CAR_NAME_ERROR_MESSAGE("자동차 이름으로 공백을 입력할 수 없습니다."),

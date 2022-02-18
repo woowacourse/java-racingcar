@@ -208,3 +208,8 @@
     - "이펙티브 자바의 Item 12"와 여러 블로그에서 toString()에 대해 보면서 toString()은 디버깅을 위해 사용하는 것 외에 사용은 하지않는 것이 좋다고 생각하게 되었다. 그래서 코드 부분과 테스트에서 toString()을 이용하여 테스트하는 모든 부분을 수정하였다.
     - 처음에 RoundResult에서 toString()으로 데이터를 가져온 이유는 강박적으로 getter를 쓰지 않기위해서 였다. 그런데 조금 더 생각해보니 Car 객체의 이름과 이동 거리를 view에서 사용하게 되었기 때문에 getter를 써도 될것같다고 생각했다.
     - getter를 쓰지말라는 이유는 getter로 반환된 값을 다른 메서드가 수정하거나 사용하는 로직을 처리하지 말라는 식으로 이해를 했다. 따라서 view에서 사용하기 위해서 getter를 하는것은 허용이 되지않을까? 라고 생각을 했다.
+- [x] Cars를 생성할 때 차가 0개인 경우 Cars가 생성되지 않도록 수정
+    - Cars 생성 시 차가 없으면 `IllegalArgumentException` 발생
+    - findWinners()를 실행했을 때 차가 없는 경우 `IllegalStateException` 발생
+        - 애초에 차가 없었다면 Cars가 생성되지 못 했었을 것이기 때문이다.
+    

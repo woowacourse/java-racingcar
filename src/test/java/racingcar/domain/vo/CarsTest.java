@@ -36,6 +36,15 @@ public class CarsTest {
         );
     }
 
+    @DisplayName("Cars() 자동차 이름이 없는 경우 예외 테스트")
+    @Test
+    public void has_nothing_car_name_test() throws Exception {
+        String[] name = {};
+        assertThatThrownBy(() -> new Cars(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainErrorMessage.HAS_NOTHING_CAR_NAME_ERROR_MESSAGE.get());
+    }
+
     @DisplayName("Cars() 중복된 이름 입력 예외 테스트")
     @Test
     public void duplicate_car_name_exception_test() throws Exception {
