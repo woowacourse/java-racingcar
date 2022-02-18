@@ -5,7 +5,9 @@ import racingcar.domain.Cars;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController {
@@ -20,8 +22,8 @@ public class GameController {
         Output.printWinner(cars.findAllWinners());
     }
 
-    private Cars makeCarsFromNames(String[] names) {
-        return new Cars(Arrays.stream(names)
+    private Cars makeCarsFromNames(List<String> names) {
+        return new Cars(names.stream()
                 .map(carName -> new Car(carName))
                 .collect(Collectors.toList()));
     }

@@ -2,7 +2,10 @@ package racingcar.view;
 
 import racingcar.util.Validation;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Input {
     private static final String INPUT_CAR_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -10,7 +13,7 @@ public class Input {
 
     private final static Scanner sc = new Scanner(System.in);
 
-    public static String[] getCarNamesSeperatedByDelimiter(String delimiter) {
+    public static List<String> getCarNamesSeperatedByDelimiter(String delimiter) {
         String carNamesInput = inputCarNames();
         try {
             Validation.carNameValidation(carNamesInput);
@@ -18,7 +21,8 @@ public class Input {
             System.out.println(e.getMessage());
             return getCarNamesSeperatedByDelimiter(delimiter);
         }
-        return carNamesInput.split(delimiter);
+        return Arrays.stream(carNamesInput.split(delimiter))
+                .collect(Collectors.toList());
     }
 
     public static int getTryNum() {
