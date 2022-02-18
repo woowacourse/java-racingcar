@@ -17,13 +17,13 @@ public class CarTest {
     @Test
     void 자동차_위치_검증_성공() {
         Car car = new Car("pobi", 4);
-        assertThat(car.checkPosition(4)).isTrue();
+        assertThat(car.checkIfPositionSame(4)).isTrue();
     }
 
     @Test
     void 자동차_위치_검증_실패() {
         Car car = new Car("pobi", 4);
-        assertThat(car.checkPosition(6)).isFalse();
+        assertThat(car.checkIfPositionSame(6)).isFalse();
     }
 
     @ParameterizedTest
@@ -31,7 +31,7 @@ public class CarTest {
     void 랜덤값_4이상_전진_검증(int value) {
         Car car = new Car("pobi", 0);
         car.goForward(value);
-        assertThat(car.checkPosition(1)).isTrue();
+        assertThat(car.checkIfPositionSame(1)).isTrue();
     }
 
     @ParameterizedTest
@@ -39,6 +39,6 @@ public class CarTest {
     void 랜덤값_4미만_전진_검증(int value) {
         Car car = new Car("pobi", 0);
         car.goForward(value);
-        assertThat(car.checkPosition(1)).isFalse();
+        assertThat(car.checkIfPositionSame(1)).isFalse();
     }
 }

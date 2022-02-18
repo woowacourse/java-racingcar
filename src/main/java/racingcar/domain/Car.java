@@ -29,7 +29,7 @@ public class Car {
         }
     }
 
-    public boolean checkPosition(int maxPosition) {
-        return position == maxPosition;
+    public boolean checkIfPositionSame(int position) {
+        return this.position == position;
     }
 }
