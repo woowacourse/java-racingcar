@@ -5,6 +5,7 @@ import racingcar.utils.RandomForwardJudgment;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -36,6 +37,10 @@ public class Cars {
     }
 
     private int getFarthestPosition() {
+        if (cars.isEmpty()) {
+            return 0;
+        }
+
         return cars.stream()
                 .max(Car::compareTo)
                 .get()
