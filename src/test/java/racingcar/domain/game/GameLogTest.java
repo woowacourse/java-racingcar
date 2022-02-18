@@ -16,7 +16,7 @@ class GameLogTest {
     private static final String CAR_2_NAME = "jason";
 
     private Cars cars;
-    MockRandomNumberGenerator mockRandomNumberGenerator;
+    private MockRandomNumberGenerator mockRandomNumberGenerator;
     private GameLog gameLog;
 
     @BeforeEach
@@ -29,10 +29,10 @@ class GameLogTest {
     @Test
     @DisplayName("하나의_로그_기록_확인")
     public void getSingleLog() {
-        cars.move(mockRandomNumberGenerator);
-        gameLog.writeLog(1, cars);
-        cars.move(mockRandomNumberGenerator);
-        gameLog.writeLog(2, cars);
+        for (int i = 1; i < 3; i++) {
+            cars.move(mockRandomNumberGenerator);
+            gameLog.writeLog(i, cars);
+        }
         assertThat(gameLog.getSingleLog(2).stream()
                 .filter(carForLog -> carForLog.getName() == CAR_1_NAME)
                 .findFirst()
@@ -50,10 +50,10 @@ class GameLogTest {
     @Test
     @DisplayName("이름으로_자동차위치_찾기")
     public void getPositionByName() {
-        cars.move(mockRandomNumberGenerator);
-        gameLog.writeLog(1, cars);
-        cars.move(mockRandomNumberGenerator);
-        gameLog.writeLog(2, cars);
+        for (int i = 1; i < 3; i++) {
+            cars.move(mockRandomNumberGenerator);
+            gameLog.writeLog(i, cars);
+        }
         assertThat(gameLog.getPositionByName(2, CAR_1_NAME)).isEqualTo(2);
         assertThat(gameLog.getPositionByName(2, CAR_2_NAME)).isEqualTo(0);
     }
@@ -61,14 +61,10 @@ class GameLogTest {
     @Test
     @DisplayName("우승자_찾기")
     public void getWinnerCarNames() {
-        cars.move(mockRandomNumberGenerator);
-        gameLog.writeLog(1, cars);
-        cars.move(mockRandomNumberGenerator);
-        gameLog.writeLog(2, cars);
-        cars.move(mockRandomNumberGenerator);
-        gameLog.writeLog(3, cars);
-        cars.move(mockRandomNumberGenerator);
-        gameLog.writeLog(4, cars);
+        for (int i = 1; i < 5; i++) {
+            cars.move(mockRandomNumberGenerator);
+            gameLog.writeLog(i, cars);
+        }
         assertThat(gameLog.getWinnerCarNames(4)).contains(CAR_1_NAME, CAR_2_NAME);
     }
 }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class TryCountTest {
 
-    public static final int TOTAL_TRY_COUNT = 3;
+    private static final int TOTAL_TRY_COUNT = 3;
 
     @Test
     @DisplayName("현재_시도횟수_증가")

@@ -9,11 +9,11 @@ import racingcar.MockRandomNumberGenerator;
 
 class CarsTest {
 
-    public static final String CAR_1_NAME = "pobi";
-    public static final String CAR_2_NAME = "jason";
+    private static final String CAR_1_NAME = "pobi";
+    private static final String CAR_2_NAME = "jason";
 
     @Test
-    @DisplayName("자동차들_이동")
+    @DisplayName("게임에_참여한_자동차들_이동")
     public void move() {
         Cars cars = new Cars(List.of(CAR_1_NAME, CAR_2_NAME));
         MockRandomNumberGenerator mockRandomNumberGenerator = new MockRandomNumberGenerator();
