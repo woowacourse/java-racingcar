@@ -22,7 +22,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars withNames(final List<String> names) {
+    public static Cars fromNames(final List<String> names) {
         List<Car> cars = names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
@@ -30,7 +30,7 @@ public class Cars {
         return new Cars(cars);
     }
 
-    public static Cars withCars(final List<Car> cars) {
+    public static Cars fromCars(final List<Car> cars) {
         return new Cars(cars);
     }
 
