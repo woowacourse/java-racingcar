@@ -8,7 +8,7 @@ public class CarFactory {
 
     public static List<Car> of(String names) {
         String[] arrNames = names.split(",");
-        return  Arrays.stream(arrNames)
+        return Arrays.stream(arrNames)
                 .map(String::trim)
                 .map(Car::new)
                 .collect(Collectors.toList());

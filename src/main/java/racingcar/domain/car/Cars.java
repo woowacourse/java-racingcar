@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
+    private static final String NOT_EXIST_CAR = "[ERROR] 차가 존재하지 않습니다.";
 
     private final List<Car> cars;
 
@@ -30,7 +31,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .getAsInt();
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CAR));
     }
 
     public List<Car> getSamePositionCar(int position) {
