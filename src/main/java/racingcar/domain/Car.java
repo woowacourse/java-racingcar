@@ -5,7 +5,6 @@ import racingcar.domain.movestrategy.MovingStrategy;
 public class Car {
 
     private static final int POSITION_INITIAL_VALUE = 0;
-    private static final int PROGRESS_CONDITION_VALUE = 4;
 
     private final CarName carName;
     private int position = POSITION_INITIAL_VALUE;
