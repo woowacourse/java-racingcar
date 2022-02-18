@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
+    private static final String GAME_IS_OVER_MESSAGE = "게임이 종료되어 실행시킬 수 없음";
     private Cars cars;
     private int rounds;
     private final List<String> championNames = new ArrayList<>();
@@ -14,14 +15,11 @@ public class RacingGame {
     }
 
     public void run() {
-        cars.move();
-        reduceRounds();
-    }
-
-    private void reduceRounds() {
-        if (rounds > 0) {
-            rounds--;
+        if (isFinished()) {
+            throw new IllegalArgumentException(GAME_IS_OVER_MESSAGE);
         }
+        cars.move();
+        rounds--;
     }
 
     public List<String> getChampionNames() {
