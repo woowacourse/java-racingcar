@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import racingcar.domain.Car;
+import racingcar.service.CarService;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CarControllerTest {
@@ -41,7 +42,7 @@ public class CarControllerTest {
 
     @Test
     void 자동차_경주_출력_검증() {
-        CarController.printRace(cars);
+        CarService.printRace(cars);
         assertThat(outContent.toString()).contains("one : -");
         assertThat(outContent.toString()).contains("two : --");
         assertThat(outContent.toString()).contains("three : ---");
@@ -50,7 +51,7 @@ public class CarControllerTest {
 
     @Test
     void 우승자_검증() {
-        CarController.finalWinner(cars);
+        CarService.finalWinner(cars);
         assertThat(outContent.toString()).contains("three가 최종 우승했습니다.");
     }
 }

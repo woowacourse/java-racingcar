@@ -1,4 +1,4 @@
-package racingcar.controller;
+package racingcar.service;
 
 import java.util.Random;
 import racingcar.domain.Car;
@@ -8,7 +8,7 @@ import racingcar.view.Output;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarController {
+public class CarService {
     public static void startRace(List<Car> cars, int tryNum) {
         Output.printResultWord();
 

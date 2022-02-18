@@ -2,6 +2,8 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import java.util.List;
+import racingcar.service.CarService;
+import racingcar.service.InputService;
 
 public class MainController {
     private List<Car> cars;
@@ -11,10 +13,10 @@ public class MainController {
     }
 
     public void play() {
-        cars = InputController.inputCars();
-        tryNum = InputController.inputTryNum();
+        cars = InputService.inputCars();
+        tryNum = InputService.inputTryNum();
 
-        CarController.startRace(cars, tryNum);
-        CarController.finalWinner(cars);
+        CarService.startRace(cars, tryNum);
+        CarService.finalWinner(cars);
     }
 }

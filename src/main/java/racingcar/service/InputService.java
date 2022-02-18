@@ -1,4 +1,4 @@
-package racingcar.controller;
+package racingcar.service;
 
 import racingcar.domain.Car;
 import racingcar.util.Validation;
@@ -6,7 +6,7 @@ import racingcar.view.Input;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputController {
+public class InputService {
     private static final String SPLIT_DELIM = ",";
 
     public static List<Car> inputCars() {
@@ -18,17 +18,18 @@ public class InputController {
     }
 
     private static List<Car> saveCars() {
+        String names;
+        List<Car> cars = new ArrayList<>();
         while (true) {
-            String names = Input.inputCarNames();
-
+            names = Input.inputCarNames();
             try {
-                new Car("hd");
                 Validation.carNameValidation(names);
-                List<Car> cars = convertStringList(names);
-                return cars;
+                cars = convertStringList(names);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                continue;
             }
+            return cars;
         }
     }
 

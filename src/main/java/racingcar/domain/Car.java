@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.util.Validation;
+
 public class Car {
     private static final int GO_FORWARD_CONDITION = 4;
 
@@ -7,6 +9,7 @@ public class Car {
     private int position = 0;
 
     public Car(String name) {
+        Validation.carNameValidation(name);
         this.name = name;
     }
 
