@@ -31,6 +31,7 @@ public class RacingGame {
     public void race() {
         RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
         cars.race(numberGenerator);
+        count++;
     }
 
     public String findWinner() {
