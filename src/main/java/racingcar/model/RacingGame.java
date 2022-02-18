@@ -2,20 +2,15 @@ package racingcar.model;
 
 import racingcar.util.RandomNumberGenerator;
 
-import java.util.Comparator;
-import java.util.stream.Collectors;
-
 
 // 역할: 게임의 진행??? 게임을 초기화해서 진행하고, 우승자를 찾아주는 역할?
 public class RacingGame {
-    public static final int MINIMUM_POSITION = 0;
-    public static final String JOIN_BY_COMMA = ", ";
-
     private Cars cars;
     private TrialNum trialNum;
     private int count;
 
-    private RacingGame() { }
+    private RacingGame() {
+    }
 
     public static RacingGame createRacingGame(String carNames, String inputTrialNum) {
         RacingGame racingGame = new RacingGame();
@@ -32,22 +27,8 @@ public class RacingGame {
     }
 
     public String findWinner() {
-        int maxPosition = findMaxPosition();
-        return findWinnerName(maxPosition);
-    }
-
-    private int findMaxPosition() {
-        return cars.getCars().stream()
-                .map(Car::getPosition)
-                .max(Comparator.comparing(x -> x))
-                .orElse(MINIMUM_POSITION);
-    }
-
-    private String findWinnerName(int maxPosition) {
-        return cars.getCars().stream()
-                .filter(car -> maxPosition == car.getPosition())
-                .map(Car::getName)
-                .collect(Collectors.joining(JOIN_BY_COMMA));
+        Winners winners = new Winners(cars);
+        return winners.findName();
     }
 
     public boolean isEnd() {
