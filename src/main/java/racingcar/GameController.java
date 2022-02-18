@@ -24,7 +24,7 @@ public class GameController {
 
     private Cars readyCars() {
         try {
-            String carNames = InputView.getCarNames(scanner);
+            String carNames = InputView.askCarNames(scanner);
             String[] splitCarNames = StringSeparator.splitAndTrim(carNames);
             return new Cars(splitCarNames);
         } catch (IllegalArgumentException exception) {
@@ -35,7 +35,7 @@ public class GameController {
 
     private int getProperMoveCount() {
         try {
-            String moveCount = InputView.getMoveCount(scanner);
+            String moveCount = InputView.askMoveCount(scanner);
             MoveCountValidator.validateMoveCount(moveCount);
             return Integer.parseInt(moveCount);
         } catch (IllegalArgumentException exception) {
