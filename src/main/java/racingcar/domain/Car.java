@@ -9,7 +9,7 @@ public class Car {
         this.position = 0;
     }
 
-    public void goForward(boolean  canGo) {
+    public void goForward(boolean canGo) {
         if (canGo) {
             position += 1;
         }
