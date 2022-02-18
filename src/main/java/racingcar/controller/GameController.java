@@ -1,8 +1,11 @@
 package racingcar.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
-import racingcar.model.Winner;
+import java.util.stream.Collectors;
+import racingcar.model.Car;
+import racingcar.model.RacingGame;
 import racingcar.utils.validator.CarNamesValidator;
 import racingcar.utils.validator.TryCountValidator;
 import racingcar.view.InputView;
@@ -12,14 +15,11 @@ public class GameController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final CarController carController;
-
-    private int tryCount;
+    private RacingGame racingGame;
 
     public GameController() {
         inputView = new InputView();
         outputView = new OutputView();
-        carController = new CarController();
     }
 
     public void run() {
@@ -29,45 +29,52 @@ public class GameController {
     }
 
     private void ready() {
-        carController.createCars(createCarNames());
-        tryCount = createTryCount();
+        final List<Car> cars = createCars(inputCarNames());
+        final int tryCount = inputTryCount();
+
+        racingGame = new RacingGame(cars, tryCount);
     }
 
-    private void start() {
-        outputView.printResultMessage();
-
-        for (int i = 0; i < tryCount; i++) {
-            carController.moveCars();
-            outputView.printResult(carController.getCars());
-        }
-    }
-
-    private void result() {
-        Winner winner = new Winner();
-        List<String> winners = winner.getWinners(carController.getCars());
-
-        outputView.printWinners(winners);
-    }
-
-    public String[] createCarNames() {
+    private String[] inputCarNames() {
         try {
             String[] carNames = inputView.inputCarNames();
             CarNamesValidator.validateCarNames(carNames);
             return carNames;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return createCarNames();
+            return inputCarNames();
         }
     }
 
-    public int createTryCount() {
+    private List<Car> createCars(final String[] carNames) {
+        return Arrays.stream(carNames)
+                .map(Car::new)
+                .collect(Collectors.toList());
+    }
+
+    private int inputTryCount() {
         try {
             String tryCountInput = inputView.inputTryCount();
             TryCountValidator.validateTryCount(tryCountInput);
             return Integer.parseInt(tryCountInput);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return createTryCount();
+            return inputTryCount();
         }
+    }
+
+    private void start() {
+        outputView.printResultMessage();
+
+        while (!racingGame.isEnd()) {
+            racingGame.race();
+            outputView.printResult(racingGame.getCars());
+        }
+    }
+
+    private void result() {
+        List<String> winners = racingGame.getWinners();
+
+        outputView.printWinners(winners);
     }
 }
