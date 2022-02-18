@@ -24,8 +24,8 @@ public class Car implements Comparable<Car> {
         return this.name;
     }
 
-    public boolean isSamePosition(Car maxPositionCar) {
-        return position.equals(maxPositionCar.getPosition());
+    public boolean isSamePosition(Car car) {
+        return position.equals(car.getPosition());
     }
 
     @Override

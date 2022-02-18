@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Position {
 
     private static final int START_POSITION_VALUE = 0;
-    private int position = 0;
+    private int position;
 
     private Position(int position) {
         this.position = position;
