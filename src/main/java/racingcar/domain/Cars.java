@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.domain.movestrategy.MovingStrategy;
-import racingcar.domain.movestrategy.RandomMovingStrategy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
