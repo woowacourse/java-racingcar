@@ -5,16 +5,20 @@ import java.util.List;
 
 import carracing.model.Car;
 import carracing.model.Cars;
-import carracing.view.InputView;
-import carracing.view.OutputView;
+import carracing.view.input.InputView;
+import carracing.view.output.OutputView;
 
 public class RacingGameController {
 	private static final int END_OF_GAME_COUNT = 0;
 
+	private InputView inputView;
+	private OutputView outputView;
 	private Cars cars;
 	private int numberOfGames;
 
-	public RacingGameController() {
+	public RacingGameController(InputView inputView, OutputView outputView) {
+		this.inputView = inputView;
+		this.outputView = outputView;
 	}
 
 	public void init() {
@@ -23,10 +27,10 @@ public class RacingGameController {
 	}
 
 	public void play() {
-		OutputView.printResultMessage();
+		outputView.printResultMessage();
 		while (isContinue()) {
 			cars.moveCars();
-			OutputView.printResultOfEachGame(cars.getCars());
+			outputView.printResultOfEachGame(cars.getCars());
 		}
 		endGame();
 	}
@@ -36,28 +40,28 @@ public class RacingGameController {
 	}
 
 	private void getCars() {
-		OutputView.printInputCarName();
-		List<String> carNames = InputView.getCarNames();
+		outputView.printInputCarName();
+		List<String> carNames = inputView.getCarNames();
 		try {
 			createCars(carNames);
 		} catch (IllegalArgumentException e) {
-			OutputView.printException(e.getMessage());
+			outputView.printException(e.getMessage());
 			getCars();
 		}
 	}
 
 	private void getNumberOfGames() {
-		OutputView.printInputNumberOfGames();
+		outputView.printInputNumberOfGames();
 		try {
-			numberOfGames = InputView.getNumberOfGames();
+			numberOfGames = inputView.getNumberOfGames();
 		} catch (IllegalArgumentException e) {
-			OutputView.printException(e.getMessage());
+			outputView.printException(e.getMessage());
 			getNumberOfGames();
 		}
 	}
 
 	private void endGame() {
-		OutputView.printWinners(cars.getWinners());
+		outputView.printWinners(cars.getWinners());
 	}
 
 	private void createCars(List<String> carNames) {

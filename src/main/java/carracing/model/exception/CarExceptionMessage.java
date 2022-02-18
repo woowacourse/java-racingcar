@@ -1,4 +1,4 @@
-package carracing.model;
+package carracing.model.exception;
 
 public enum CarExceptionMessage {
 	NAME_LENGTH_EXCEPTION("자동차 이름의 길이는 한 글자 이상, 다섯 글자 이하여야합니다."),

@@ -1,6 +1,6 @@
 package carracing.model;
 
-import static carracing.model.CarExceptionMessage.*;
+import static carracing.model.exception.CarExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
