@@ -9,7 +9,8 @@ public class RacingCarMain {
     public static final RacingCarController controller = new RacingCarController();
 
     public static void main(String[] args) {
-        List<Car> cars = controller.getCarNames();
+        List<String> carNames = controller.getCarNames();
+        List<Car> cars = controller.generateCars(carNames);
         int round = controller.getRound();
         RacingGame racingGame = new RacingGame(cars);
         raceAndPrintResult(round, racingGame);

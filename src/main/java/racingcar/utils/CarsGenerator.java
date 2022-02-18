@@ -1,23 +1,14 @@
 package racingcar.utils;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
-import racingcar.utils.validator.CarNameValidator;
 
 public class CarsGenerator {
-    private static final String NAME_DELIMITER = ",";
 
-    public static List<Car> generateCars(String userInput) {
-        List<String> carNames = separateCarNames(userInput);
-        carNames.forEach(CarNameValidator::validate);
+    public static List<Car> generateCars(List<String> carNames) {
         return carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
-    }
-
-    private static List<String> separateCarNames(String userInput) {
-        return Arrays.asList(userInput.split(NAME_DELIMITER, -1));
     }
 }
