@@ -28,15 +28,11 @@ public class RacingTest {
 		assertThat(racing.isEnd()).isTrue();
 	}
 
-	@DisplayName("우승자가 알맞게 나오는지 확인")
+	@DisplayName("우승자가 최소 한 명 이상인지 확인")
 	@Test
 	void getWinners() {
-		// 우승자 리스트를 예상하는 시나리오를 짜서 그거대로 나오는 지 테스트해야 한다
-			// maxPosition을 구해서 나온 max값과 우승자 포지션을 비교하는 방법으로....
-		// 근데 내가 그걸 어케 알지 ?
-
-
 		List<String> winners = racing.getWinners();
-		System.out.println(winners);
+
+		assertThat(winners.size()).isGreaterThanOrEqualTo(1);
 	}
 }
