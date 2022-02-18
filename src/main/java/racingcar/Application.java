@@ -1,11 +1,11 @@
 package racingcar;
 
-import java.util.List;
-
-import racingcar.domain.CarDTO;
 import racingcar.domain.RacingGame;
 
-import static racingcar.view.InputView.*;
+import java.util.List;
+
+import static racingcar.view.InputView.inputAttemptCount;
+import static racingcar.view.InputView.inputCarNames;
 import static racingcar.view.OutputView.*;
 
 public class Application {
@@ -27,8 +27,8 @@ public class Application {
     }
 
     private static void playAndPrintTotalExecutionResult() {
-        List<List<CarDTO>> executionResult = racingGame.play();
-        printTotalExecutionResult(executionResult);
+        racingGame.play();
+        printTotalExecutionResult(racingGame.getTotalExecutionResult());
     }
 
     private static void selectAndPrintWinner() {

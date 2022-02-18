@@ -39,7 +39,9 @@ public class RacingGameTest {
     void repeatedAsAttempt() {
         racingGame.initCarNames(new String[]{"a", "b"});
         racingGame.initTotalAttempt("5");
-        List<List<CarDTO>> totalExecutionResult = racingGame.play();
+        racingGame.play();
+
+        List<List<CarDTO>> totalExecutionResult = racingGame.getTotalExecutionResult().getExecutionResult();
 
         assertThat(totalExecutionResult.size()).isEqualTo(5);
     }

@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
@@ -8,8 +7,9 @@ public class RacingGame {
     private static final String MUST_BE_INTEGER = "[ERROR] 시도 횟수는 숫자만 허용됩니다.";
     private static final String MUST_BE_POSITIVE = "[ERROR] 1미만의 시도횟수는 허용되지 않습니다.";
 
-    private Cars cars;
+    private Cars cars = new Cars();
     private int totalAttempt = 0;
+    private ExecutionResult totalExecutionResult = new ExecutionResult();
 
     public void initCarNames(String[] names) {
         cars = new Cars(names);
@@ -20,19 +20,19 @@ public class RacingGame {
         totalAttempt = Integer.parseInt(attempt);
     }
 
-    public List<List<CarDTO>> play() {
-        List<List<CarDTO>> totalExecutionResult = new ArrayList<>();
-
+    public void play() {
         while (totalAttempt-- > 0) {
             cars.move();
-            totalExecutionResult.add(cars.getExecutionResult());
+            totalExecutionResult.addCurrentExecutionResult(cars);
         }
-
-        return totalExecutionResult;
     }
 
     public List<String> selectWinners() {
         return cars.selectWinners();
+    }
+
+    public ExecutionResult getTotalExecutionResult() {
+        return this.totalExecutionResult;
     }
 
     private void validateAttempt(String attempt) {

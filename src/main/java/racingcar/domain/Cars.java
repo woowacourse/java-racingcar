@@ -12,6 +12,9 @@ public class Cars {
 
     private Set<Car> cars = new HashSet<>();
 
+    public Cars() {
+    }
+
     public Cars(String[] names) {
         validateDuplication(names);
 
@@ -26,6 +29,16 @@ public class Cars {
         }
     }
 
+    public List<CarDTO> convertToDTO() {
+        List<CarDTO> carDTOs = new ArrayList<>();
+
+        for (Car car : cars) {
+            carDTOs.add(new CarDTO(car));
+        }
+
+        return carDTOs;
+    }
+
     public List<String> selectWinners() {
         int maxPosition = findMaxPosition();
 
@@ -33,16 +46,6 @@ public class Cars {
                 .filter(c -> c.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
-    }
-
-    public List<CarDTO> getExecutionResult() {
-        List<CarDTO> executionResult = new ArrayList<>();
-
-        for (Car car : cars) {
-            executionResult.add(new CarDTO(car.getName(), car.getPosition()));
-        }
-
-        return executionResult;
     }
 
     public Car getCar(String name) {

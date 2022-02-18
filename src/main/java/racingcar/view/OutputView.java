@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.CarDTO;
+import racingcar.domain.ExecutionResult;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printTotalExecutionResult(List<List<CarDTO>> executionResults) {
+    public static void printTotalExecutionResult(ExecutionResult executionResults) {
         System.out.println("\n실행 결과");
-        for (List<CarDTO> executionResult : executionResults) {
+        for (List<CarDTO> executionResult : executionResults.getExecutionResult()) {
             printExecutionResult(executionResult);
         }
     }
