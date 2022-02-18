@@ -8,11 +8,11 @@ import static racingcar.view.InputView.getCarNames;
 import static racingcar.view.InputView.getIterationNo;
 
 public class ApplicationMain {
-	public static void main(String[] args) {
-		CarController carController = new CarController();
-		carController.createCars(Splitter.split(getCarNames()));
-		int iteration = getIterationNo();
-		carController.moveCars(iteration);
-		ResultView.printGameResult(carController.findGameScoreBoard());
-	}
+    public static void main(String[] args) {
+        CarController carController = new CarController();
+        carController.createCars(Splitter.split(getCarNames()));
+        carController.moveCars(getIterationNo());
+        ResultView.printGameResult(carController.findGameScoreBoard());
+        ResultView.printWinners(carController.findWinners());
+    }
 }
