@@ -5,13 +5,14 @@ import java.util.Scanner;
 public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final String SIGN_OF_CAR_NAME = ",";
 
     private InputView() {
     }
 
-    public static String inputCarNames() {
+    public static String[] inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return SCANNER.nextLine();
+        return SCANNER.nextLine().split(SIGN_OF_CAR_NAME);
     }
 
     public static String inputAttemptCount() {

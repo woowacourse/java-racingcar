@@ -38,7 +38,7 @@ public class RacingGameTest {
     @Test
     @DisplayName("입력된 시도횟수만큼 반복")
     void repeatedAsAttempt() {
-        racingGame.initCarNames("a,b");
+        racingGame.initCarNames(new String[]{"a", "b"});
         racingGame.initTotalAttempt("5");
         List<List<CarDTO>> totalExecutionResult = racingGame.play();
 
