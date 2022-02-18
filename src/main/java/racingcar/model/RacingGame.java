@@ -1,11 +1,8 @@
 package racingcar.model;
 
-import racingcar.model.vo.TrialNum;
-import racingcar.util.NumberGenerator;
 import racingcar.util.RandomNumberGenerator;
 
 import java.util.Comparator;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 
@@ -18,10 +15,8 @@ public class RacingGame {
     private TrialNum trialNum;
     private int count;
 
-    private RacingGame() {
-    }
+    private RacingGame() { }
 
-    //TODO 생성자를 이렇게 사용해도 될까 고민해보기
     public static RacingGame createRacingGame(String carNames, String inputTrialNum) {
         RacingGame racingGame = new RacingGame();
         racingGame.cars = Cars.initCars(carNames);

@@ -19,7 +19,6 @@ public class GameController {
         racingGame = RacingGame.createRacingGame(carNames, inputTrialNum);
     }
 
-
     private void runGame() {
         OutputView.printTrialResult();
         while (!racingGame.isEnd()) {

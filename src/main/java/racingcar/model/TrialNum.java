@@ -1,6 +1,4 @@
-package racingcar.model.vo;
-
-import racingcar.util.InputValidator;
+package racingcar.model;
 
 public class TrialNum {
     private final int trialNum;
