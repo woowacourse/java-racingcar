@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class Names {
     private static final String ERROR_DUPLICATED_CAR_NAME_MESSAGE = "중복값을 입력할 수 없습니다.";
+
     private final List<Name> names;
 
     private Names(List<Name> names) {

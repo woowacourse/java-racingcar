@@ -3,8 +3,9 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
-    private static final int MOVING_DEMANED_MINIMUM_NUMBER = 4;
+    private static final int MOVING_DEMANDED_MINIMUM_NUMBER = 4;
     private static final int DEFAULT_POSITION_VALUE = 0;
+
     private final Name name;
     private Position position;
 
@@ -18,7 +19,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void drive(int value) {
-        if (MOVING_DEMANED_MINIMUM_NUMBER <= value) {
+        if (MOVING_DEMANDED_MINIMUM_NUMBER <= value) {
             this.position = this.position.increase();
         }
     }
@@ -27,17 +28,17 @@ public class Car implements Comparable<Car> {
         return this.position.equals(car.position);
     }
 
-    public Position toPosition() {
+    public Position getPosition() {
         return this.position;
     }
 
-    public Name toName() {
+    public Name getName() {
         return this.name;
     }
 
     @Override
     public int compareTo(Car car) {
-        return this.position.toInt() - car.position.toInt();
+        return this.position.compareTo(car.getPosition());
     }
 
     @Override

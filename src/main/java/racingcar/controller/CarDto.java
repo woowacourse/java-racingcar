@@ -14,7 +14,7 @@ public class CarDto {
     }
 
     public static CarDto from(Car car) {
-        return new CarDto(car.toName(), car.toPosition());
+        return new CarDto(car.getName(), car.getPosition());
     }
 
     public Name getName() {

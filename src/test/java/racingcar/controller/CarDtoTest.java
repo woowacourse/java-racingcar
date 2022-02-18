@@ -18,7 +18,7 @@ class CarDtoTest {
         CarDto carDto = CarDto.from(코니);
 
         String name = carDto.getName().toString();
-        int position = carDto.getPosition().toInt();
+        int position = carDto.getPosition().getPositionValue();
 
         assertThat(name).isEqualTo("코니");
         assertThat(position).isEqualTo(2);
