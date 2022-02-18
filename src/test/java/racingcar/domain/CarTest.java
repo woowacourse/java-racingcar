@@ -26,16 +26,6 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"false, false, 1", "false, true, 0", "true, true, -1"})
-    @DisplayName("다른 자동차의 거리값에 비해 자기 자신의 거리값이 작으면 -1, 같으면 0, 크면 1을 반환한다. ")
-    void compareTo(boolean firstMove, boolean secondMove, int expected){
-        Car anotherCar = new Car("def");
-        anotherCar.move(firstMove);
-        anotherCar.move(secondMove);
-        assertThat(car.compareTo(anotherCar)).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
     @CsvSource({"false, false, false", "false, true, true", "true, true, false"})
     @DisplayName("자기 자신의 거리값과 다른 자동차의 거리값이 같으면 true, 다르면 false를 리턴한다.")
     void isSameDistance(boolean firstMove, boolean secondMove,  boolean expected){

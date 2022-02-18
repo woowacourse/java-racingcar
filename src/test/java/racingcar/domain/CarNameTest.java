@@ -30,7 +30,7 @@ class CarNameTest {
     void create_NullCarName() {
         String nullCarName = null;
          assertThatThrownBy(() -> new CarName(nullCarName))
-                        .isInstanceOf(IllegalArgumentException.class)
+                        .isInstanceOf(NullPointerException.class)
                         .hasMessage(ExceptionMessage.NULL_CAR_NAME);
     }
 }

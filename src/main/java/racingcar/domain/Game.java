@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.dto.CarDto;
 import racingcar.service.DetermineMovementByRandomNumber;
 import racingcar.service.MoveOrStop;
 import racingcar.view.InputView.InputView;
@@ -27,12 +26,11 @@ public class Game {
         this.trialCount--;
     }
 
-    public List<CarDto> carsInfo() {
-        return cars.getCarInfos();
+    public List<Car> now(){
+        return cars.getCars();
     }
 
-    public List<CarDto> winnerCarsInfo() {
+    public List<Car> winnerCars(){
         return cars.getFarthestCars();
     }
-
 }

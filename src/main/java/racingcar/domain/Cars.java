@@ -20,6 +20,10 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     private void validateDuplication(List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_CAR_NAMES);
@@ -30,21 +34,14 @@ public class Cars {
         cars.forEach(car -> car.move(moveOrStop.determine()));
     }
 
-    public List<CarDto> getCarInfos() {
-        return cars.stream()
-                .map(CarDto::toDto)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    public List<CarDto> getFarthestCars() {
+    public List<Car> getFarthestCars() {
         int maxDistance = cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
                 .orElse(INITIAL_DISTANCE);
 
-        List<CarDto> farthestCars = cars.stream()
+        List<Car> farthestCars = cars.stream()
                 .filter(car -> car.isSameDistance(maxDistance))
-                .map(CarDto::toDto)
                 .collect(Collectors.toUnmodifiableList());
 
         return farthestCars;

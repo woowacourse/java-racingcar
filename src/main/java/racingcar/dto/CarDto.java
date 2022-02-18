@@ -1,8 +1,11 @@
 package racingcar.dto;
 
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class CarDto {
     private final String carName;
@@ -15,6 +18,12 @@ public class CarDto {
 
     public static CarDto toDto(Car car) {
         return new CarDto(car.getCarName(), car.getDistance());
+    }
+
+    public static List<CarDto> toDtoList(List<Car> cars) {
+        return cars.stream()
+                .map(CarDto::toDto)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public String carName() {
