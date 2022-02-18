@@ -12,9 +12,9 @@ public class CarRepository {
 		cars.add(car);
 	}
 
-	public void move(List<Integer> randoms) {
-		IntStream.range(0, randoms.size())
-			.forEach(i -> cars.get(i).move(randoms.get(i)));
+	public void move(List<Integer> numbers) {
+		IntStream.range(0, numbers.size())
+			.forEach(i -> cars.get(i).move(numbers.get(i)));
 	}
 
 	public int getSize() {
