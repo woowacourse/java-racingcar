@@ -23,7 +23,7 @@ public class Participants {
     }
 
     public void race() {
-        for (RacingCar car : cars) {
+        for (Car car : cars) {
             car.tryMove(makeRandomNumberBetweenZeroAndNine());
         }
     }
@@ -34,7 +34,7 @@ public class Participants {
 
     public List<Name> findRacingWinners() {
         Integer maxPosition = findMaxPosition();
-        return  cars.stream()
+        return cars.stream()
                 .filter(car -> car.isWinnerPosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());

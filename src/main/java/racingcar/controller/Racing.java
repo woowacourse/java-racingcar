@@ -3,8 +3,8 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.model.Participants;
 import racingcar.model.PlayTime;
-import racingcar.view.OutputView;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class Racing {
 

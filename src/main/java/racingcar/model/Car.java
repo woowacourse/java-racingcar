@@ -2,21 +2,22 @@ package racingcar.model;
 
 import java.util.Objects;
 
-public class Car implements RacingCar{
+public class Car {
+
+    private final static int MOVABLE_NUMBER = 4;
 
     private final Name name;
     private final Location location;
-    private final int movableNumber;
+    private final Moving moving;
 
     public Car(String carName) {
         this.name = new Name(carName);
         this.location = new Location();
-        this.movableNumber = 4;
+        this.moving = new BiggerNumberMoving(MOVABLE_NUMBER);
     }
 
-    @Override
     public void tryMove(Integer number) {
-        if (isMovable(number)) {
+        if (moving.canMove(number)) {
             this.location.increase();
         }
     }
@@ -27,10 +28,6 @@ public class Car implements RacingCar{
 
     public Name getName() {
         return this.name;
-    }
-
-    private boolean isMovable(Integer number) {
-        return number >= movableNumber;
     }
 
     public boolean isWinnerPosition(Integer position) {
