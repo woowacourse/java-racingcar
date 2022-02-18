@@ -24,5 +24,4 @@ class RacingGameTest {
         String winnerName = racingGame.findWinner();
         assertThat(winnerName).contains("sun").doesNotContain("bom");
     }
-
 }

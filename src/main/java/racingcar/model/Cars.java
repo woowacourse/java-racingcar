@@ -2,10 +2,8 @@ package racingcar.model;
 
 import racingcar.util.InputValidator;
 import racingcar.util.NumberGenerator;
-import racingcar.util.RandomNumberGenerator;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
