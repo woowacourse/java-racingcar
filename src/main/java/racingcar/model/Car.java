@@ -3,6 +3,7 @@ package racingcar.model;
 public class Car {
 
 	private static final int MOVE_CRITERIA = 4;
+	private static final int INITIAL_POSITION_VALUE = 0;
 
 	private final Name name;
 	private int position;
@@ -10,6 +11,11 @@ public class Car {
 	public Car(String name, int position) {
 		this.name = new Name(name);
 		this.position = position;
+	}
+
+	public Car(String name) {
+		this.name = new Name(name);
+		this.position = INITIAL_POSITION_VALUE;
 	}
 
 	public void decideMove(int number) {

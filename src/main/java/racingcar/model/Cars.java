@@ -35,7 +35,7 @@ public class Cars {
 
 	private void save(List<String> carNames) {
 		checkNameList(carNames);
-		this.cars = carNames.stream().map(name -> new RacingCar(name, 0)).collect(Collectors.toList());
+		this.cars = carNames.stream().map(RacingCar::new).collect(Collectors.toList());
 	}
 
 	public void startRound() {
