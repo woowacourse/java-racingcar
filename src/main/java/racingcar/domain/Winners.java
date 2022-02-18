@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class Winners {
 
+    private static final int INIT_POSITION = 0;
     private final List<String> winners;
 
     public Winners(final Cars cars) {
@@ -14,12 +15,10 @@ public class Winners {
     }
 
     private int getMaxPosition(final Cars cars) {
-        int maxPosition = 0;
-        for (Car car : cars.getCars()) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-
-        return maxPosition;
+        return cars.getCars().stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(INIT_POSITION);
     }
 
     private List<String> createWinners(final Cars cars, final int maxPosition) {
