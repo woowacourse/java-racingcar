@@ -16,7 +16,7 @@ public class GameController {
     private void initGame() {
         String carNames = InputView.inputCarNames();
         String inputTrialNum = InputView.inputTrialNum();
-        racingGame = new RacingGame(carNames, inputTrialNum);
+        racingGame = RacingGame.createRacingGame(carNames, inputTrialNum);
     }
 
 

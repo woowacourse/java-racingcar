@@ -18,14 +18,16 @@ public class RacingGame {
     private TrialNum trialNum;
     private int count;
 
-    public RacingGame() {
+    private RacingGame() {
     }
 
     //TODO 생성자를 이렇게 사용해도 될까 고민해보기
-    public RacingGame(String carNames, String inputTrialNum) {
-        this.cars = Cars.initCars(carNames);
-        this.trialNum = TrialNum.initTrialNum(inputTrialNum);
-        this.count = 0;
+    public static RacingGame createRacingGame(String carNames, String inputTrialNum) {
+        RacingGame racingGame = new RacingGame();
+        racingGame.cars = Cars.initCars(carNames);
+        racingGame.trialNum = TrialNum.initTrialNum(inputTrialNum);
+        racingGame.count = 0;
+        return racingGame;
     }
 
     public void race() {
