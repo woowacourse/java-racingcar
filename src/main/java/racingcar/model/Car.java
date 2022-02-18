@@ -16,6 +16,10 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public boolean isSamePosition(Car car) {
+        return position.equals(car.getPosition());
+    }
+
     public Position getPosition() {
         return position;
     }
@@ -24,17 +28,8 @@ public class Car implements Comparable<Car> {
         return this.name;
     }
 
-    public boolean isSamePosition(Car car) {
-        return position.equals(car.getPosition());
-    }
-
     @Override
     public int compareTo(Car o) {
-        if (this.position.isSmallerThan(o.position)) {
-            return -1;
-        } else if (this.position.equals(o.position)) {
-            return 0;
-        }
-        return 1;
+        return this.position.compareTo(o.getPosition());
     }
 }

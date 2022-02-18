@@ -13,9 +13,10 @@ public class Calculator {
     public static final String NEGATIVE_NUMBER_EXCEPTION_MESSAGE = "음수는 불가합니다!";
 
     public int splitAndSum(String text) {
-        if (validateEmptyNum(text)) {
+        if (!validateEmptyNum(text)) {
             return DEFAULT_RETURN_NUMBER;
         }
+
         Matcher compiledMatcher = Pattern.compile(CUSTOM_REGEX).matcher(text);
 
         if (compiledMatcher.find()) {
@@ -27,14 +28,14 @@ public class Calculator {
     }
 
     private boolean validateEmptyNum(String text) {
-        return text == null || "".equals(text);
+        return text != null && !"".equals(text);
     }
 
     private int sum(String[] tokens) {
         return Arrays.stream(tokens)
-            .map(Integer::parseInt)
-            .filter(this::filterNegativeNum)
-            .reduce(0, Integer::sum);
+                .map(Integer::parseInt)
+                .filter(this::filterNegativeNum)
+                .reduce(0, Integer::sum);
     }
 
     private boolean filterNegativeNum(Integer num) {

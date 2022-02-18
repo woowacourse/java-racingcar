@@ -3,19 +3,28 @@ package racingcar.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
 
+    @DisplayName("차가 정상적으로 참여하는지 확인한다.")
     @Test
     public void participateInRacing() {
-        Cars participants = new Cars();
+        Cars cars = new Cars();
 
-        participants.participateInRacing(new Car("Eden"));
+        cars.participateInRacing(new Car("Eden"));
 
-        assertThat(participants.participateSize()).isEqualTo(1);
+        assertThat(cars.getCarsSize()).isEqualTo(1);
     }
 
+    @DisplayName("차가 이동 가능한지 확인한다.")
+    @Test
+    public void isMovable() {
+
+    }
+
+    @DisplayName("우승자를 판별한다.")
     @Test
     public void judgeRacingWinners() {
         Cars cars = new Cars();

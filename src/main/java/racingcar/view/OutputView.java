@@ -13,18 +13,18 @@ public class OutputView {
     private static final String ROAD = "-";
     private static final String WINNER_RESULT_MESSAGE = "(이)가 최종 우승하였습니다.";
 
-    public void announceRacingStart() {
+    public static void announceRacingStart() {
         System.out.println(EXECUTE_RESULT);
     }
 
-    public void recordCurrentScore(Cars cars) {
+    public static void recordCurrentScore(Cars cars) {
         for (Car car : cars.getParticipantCars()) {
             System.out.println(car.getName() + " : " + ROAD.repeat(car.getPosition().getCurrentPosition()));
         }
         System.out.println();
     }
 
-    public void recordRacingWinners(List<Name> winners) {
+    public static void recordRacingWinners(List<Name> winners) {
         System.out.println(winners.stream()
             .map(Name::toString)
             .collect(Collectors.joining(WINNER_RESULT_DELIMITER)) + WINNER_RESULT_MESSAGE);

@@ -20,18 +20,10 @@ public class Cars {
         this.cars.add(car);
     }
 
-    public int participateSize() {
-        return this.cars.size();
-    }
-
     public void race() {
         for (Car car : cars) {
             car.move(isMovable());
         }
-    }
-
-    public List<Car> getParticipantCars() {
-        return Collections.unmodifiableList(cars);
     }
 
     private boolean isMovable() {
@@ -51,5 +43,13 @@ public class Cars {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException("차량이 존재하지 않습니다"));
+    }
+
+    public List<Car> getParticipantCars() {
+        return Collections.unmodifiableList(cars);
+    }
+
+    public int getCarsSize() {
+        return this.cars.size();
     }
 }
