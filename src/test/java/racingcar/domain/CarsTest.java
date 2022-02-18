@@ -32,4 +32,16 @@ class CarsTest {
             new Cars(Arrays.asList());
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("최고 위치를 정상적으로 받는지 검사")
+    void getMaxPosition() {
+        Cars cars = new Cars(Arrays.asList("car1", "car2"));
+
+        cars.getCarList().get(0).move(5);
+        cars.getCarList().get(0).move(5);
+        cars.getCarList().get(1).move(3);
+
+        assertThat(cars.getMaxPosition()).isEqualTo(2);
+    }
 }
