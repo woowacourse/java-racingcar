@@ -3,6 +3,7 @@ package racingcar.model.car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,6 +31,16 @@ public class CarTest {
 	void successNameValidate(String input) {
 		Car car = new Car(input);
 		assertThat(car.getName()).isEqualTo(input);
+	}
+
+	@ParameterizedTest
+	@CsvSource(value = {"1,0", "2,0", "3,0", "4,1", "5,1", "6,1", "9,1"}, delimiter = ',')
+	@DisplayName("9이하인 입력 받은 숫자가 4이상일 경우 전진하고, 3이하이면 멈춘다.")
+	void move(int input, int actual) {
+		String name = "범고래";
+		Car car = new Car(name);
+		car.move(input);
+		assertThat(car.getPosition()).isEqualTo(actual);
 	}
 
 	@ParameterizedTest
