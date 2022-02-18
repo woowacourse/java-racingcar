@@ -17,7 +17,7 @@ public class CarTest {
 
         // when & then
         assertThatCode(() -> {
-            new Car(input, new RandomMovingPolicy());
+            new Car(input);
         }).doesNotThrowAnyException();
     }
 
@@ -29,7 +29,7 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> {
-            new Car(input, new RandomMovingPolicy());
+            new Car(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -41,7 +41,7 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> {
-            new Car(input, new RandomMovingPolicy());
+            new Car(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -51,7 +51,7 @@ public class CarTest {
     void constructor_blank(String input) {
         // given & when & then
         assertThatThrownBy(() -> {
-            new Car(input, new RandomMovingPolicy());
+            new Car(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -63,7 +63,7 @@ public class CarTest {
 
         // when & then
         assertThatThrownBy(() -> {
-            new Car(input, new RandomMovingPolicy());
+            new Car(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -75,8 +75,8 @@ public class CarTest {
         MovingPolicy movingPolicy = () -> true;
 
         // when
-        Car car = new Car(input, movingPolicy);
-        car.move();
+        Car car = new Car(input);
+        car.move(movingPolicy);
 
         // then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -91,8 +91,8 @@ public class CarTest {
         MovingPolicy movingPolicy = () -> false;
 
         // when
-        Car car = new Car(input, movingPolicy);
-        car.move();
+        Car car = new Car(input);
+        car.move(movingPolicy);
 
         // then
         assertThat(car.getPosition()).isEqualTo(0);

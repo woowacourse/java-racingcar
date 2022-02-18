@@ -1,25 +1,30 @@
 package racingcar.domain;
 
+import racingcar.validator.RacingCarValidator;
+
 public class Count {
-    private int count;
+	private final static int ZERO = 0;
+	private final static String NOT_INT_ERROR = "횟수는 숫자여야 합니다.";
 
-    public Count(String input) {
-        int number = Integer.parseInt(input);
-        validateNegative(number);
-        this.count = number;
-    }
+	private int count;
 
-    private void validateNegative(int number) {
-        if (number < 0) {
-            throw new IllegalArgumentException();
-        }
-    }
+	public Count(String input) {
+		try {
+			int number = Integer.parseInt(input);
+			RacingCarValidator.validateCount(number);
 
-    public boolean isPositive() {
-        return count > 0;
-    }
+			this.count = number;
 
-    public void subtract() {
-        count--;
-    }
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException(NOT_INT_ERROR);
+		}
+	}
+
+	public boolean isPositive() {
+		return count > ZERO;
+	}
+
+	public void subtract() {
+		count--;
+	}
 }

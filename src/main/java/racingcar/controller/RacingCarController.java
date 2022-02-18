@@ -1,30 +1,21 @@
 package racingcar.controller;
 
-import static java.util.stream.Collectors.*;
-
-import java.util.Arrays;
-import java.util.List;
-
-import racingcar.domain.Car;
 import racingcar.domain.Racing;
-import racingcar.domain.RandomMovingPolicy;
 import racingcar.view.InputView;
 import racingcar.view.OutPutView;
 
 public class RacingCarController {
-    private final Racing racing;
 
-    public RacingCarController(Racing racing) {
-        this.racing = racing;
-    }
+	public void run() {
+		String[] carNames = InputView.getCarNames();
+		String tryNo = InputView.getCount();
 
-    public void run() {
-        OutPutView.printResult(racing.race(getCars(), InputView.getCount()));
-    }
+		Racing racing = new Racing(carNames, tryNo);
+		OutPutView.printStatusMessage();
+		while (!racing.isEnd()) {
+			OutPutView.printStatus(racing.race());
+		}
 
-    private List<Car> getCars() {
-        return Arrays.stream(InputView.getCarNames())
-            .map(carName -> new Car(carName, new RandomMovingPolicy()))
-            .collect(toList());
-    }
+		OutPutView.printResult(racing.getWinners());
+	}
 }
