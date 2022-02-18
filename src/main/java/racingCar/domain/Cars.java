@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingCar.domain.exception.name.NameDuplicatedException;
 import racingCar.domain.exception.name.NameOnlyOneException;
-import racingCar.domain.moveStratege.NumGenerator;
-import racingCar.domain.moveStratege.RandomNumGenerator;
+import racingCar.domain.moveStrategy.NumGenerator;
+import racingCar.domain.moveStrategy.RandomNumGenerator;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();

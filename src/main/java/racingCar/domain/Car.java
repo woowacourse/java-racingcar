@@ -1,7 +1,7 @@
 package racingCar.domain;
 
 import java.util.Objects;
-import racingCar.domain.moveStratege.NumGenerator;
+import racingCar.domain.moveStrategy.NumGenerator;
 
 public class Car {
     private static final int GO_NUM = 4;

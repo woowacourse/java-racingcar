@@ -1,4 +1,4 @@
-package racingCar.domain.moveStratege;
+package racingCar.domain.moveStrategy;
 
 public class NonMovableNumGenerator implements NumGenerator {
     public static final int NON_MOVABLE_NUM = 3;

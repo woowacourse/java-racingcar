@@ -1,4 +1,4 @@
-package racingCar.domain.moveStratege;
+package racingCar.domain.moveStrategy;
 
 public class MovableNumGenerator implements NumGenerator {
     public static final int MOVABLE_NUM = 4;

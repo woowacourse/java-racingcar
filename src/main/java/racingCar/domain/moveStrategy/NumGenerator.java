@@ -1,4 +1,4 @@
-package racingCar.domain.moveStratege;
+package racingCar.domain.moveStrategy;
 
 public interface NumGenerator {
     int generate();

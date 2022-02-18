@@ -3,9 +3,9 @@ package racingCar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import racingCar.domain.moveStratege.MovableNumGenerator;
-import racingCar.domain.moveStratege.NonMovableNumGenerator;
-import racingCar.domain.moveStratege.NumGenerator;
+import racingCar.domain.moveStrategy.MovableNumGenerator;
+import racingCar.domain.moveStrategy.NonMovableNumGenerator;
+import racingCar.domain.moveStrategy.NumGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
