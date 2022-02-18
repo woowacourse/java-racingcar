@@ -1,26 +1,24 @@
 package calculator.controller;
 
 import calculator.model.Calculator;
-import calculator.utils.InputValidator;
+import calculator.view.InputValidator;
+import calculator.view.InputView;
 import calculator.view.OutputView;
 
 public class CalculatorController {
-    private final static CalculatorController CALCULATOR_CONTROLLER = new CalculatorController();
-
-    private CalculatorController() {
-    }
-
-    public static CalculatorController getCalculatorController() {
-        return CALCULATOR_CONTROLLER;
-    }
+    private static final int DEFAULT_NUMBER = 0;
 
     public void runCalculator(String input){
-        Calculator calculator = new Calculator();
-
         if (InputValidator.isInputNullOrBlankOrEmpty(input)) {
-            OutputView.showSum(0);
+            OutputView.showSum(DEFAULT_NUMBER);
             return;
         }
-        OutputView.showSum(calculator.sumAndDivideInput(input));
+        if (InputView.hasCustomDelimiterInInput(input)) {
+            Calculator calculator = new Calculator(InputView.dividesByCustomAndCheckValidate(input));
+            OutputView.showSum(calculator.makeSumOfNumbers());
+            return;
+        }
+        Calculator calculator = new Calculator(InputView.divideNumbersByDelimiterAndCheckValidate(input));
+        OutputView.showSum(calculator.makeSumOfNumbers());
     }
 }

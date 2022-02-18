@@ -6,11 +6,11 @@ import java.util.Random;
 
 public class RandomNumberGenerator {
     private static final Random RANDOM = new Random();
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public RandomNumberGenerator(int start, int end) {
-        RandomNumber randomNumber = RandomNumber.of(start, end);
-        numbers = randomNumber.getNumbers();
+        RandomNumbers randomNumber = RandomNumbers.of(start, end);
+        this.numbers = randomNumber.getNumbers();
     }
 
     public int pickRandomNumber() {

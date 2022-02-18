@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomNumber {
-    private List<Integer> numbers;
+public class RandomNumbers {
+    private final List<Integer> numbers;
 
-    private RandomNumber(int start, int end) {
-        numbers = IntStream.range(start, end)
+    private RandomNumbers(int start, int end) {
+        this.numbers = IntStream.range(start, end)
                 .boxed()
                 .collect(Collectors.toList());
     }
 
-    public static RandomNumber of(int start, int end) {
-        return new RandomNumber(start, end);
+    public static RandomNumbers of(int start, int end) {
+        return new RandomNumbers(start, end);
     }
 
     public List<Integer> getNumbers() {

@@ -5,8 +5,8 @@ public class CarVO {
     private final int position;
 
     public CarVO(Car car) {
-        name = car.getName();
-        position = car.getPosition();
+        this.name = car.getName();
+        this.position = car.getPosition();
     }
 
     public int getPosition() {

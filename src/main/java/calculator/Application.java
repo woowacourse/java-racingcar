@@ -8,7 +8,7 @@ import calculator.view.InputView;
 public class Application {
 
     public static void main(String[] args) throws IOException {
-        CalculatorController calculatorController = CalculatorController.getCalculatorController();
+        CalculatorController calculatorController = new CalculatorController();
         calculatorController.runCalculator(InputView.askInput());
     }
 }

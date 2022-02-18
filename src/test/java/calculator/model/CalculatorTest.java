@@ -1,52 +1,42 @@
 package calculator.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.List;
+
+import calculator.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class CalculatorTest {
-    Calculator calculator = new Calculator();
 
     @Test
     @DisplayName("숫자 하나 입력 시")
     void inputOneNumber() {
-        int number = calculator.sumAndDivideInput("1");
+        Calculator calculator = new Calculator(List.of("1"));
+        int number = calculator.makeSumOfNumbers();
 
         assertThat(number).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("음수 입력 시 예외")
-    void inputNegativeNumberException() {
-        assertThatThrownBy(() -> calculator.sumAndDivideInput("-1,2,3"))
-                .isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    @DisplayName("숫자가 아닌 문자 입력 시 예외")
-    void inputStringException() {
-        assertThatThrownBy(() -> calculator.sumAndDivideInput("a,2,3"))
-                .isInstanceOf(RuntimeException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1,,3", "1,:3"})
     @DisplayName("구분자 무시하고 숫자 합 반환")
     void sumNumbersIgnoreDelimiter(String input) {
-        assertThat(calculator.sumAndDivideInput(input)).isEqualTo(4);
+        Calculator calculator = new Calculator(InputView.divideNumbersByDelimiterAndCheckValidate(input));
+        int number = calculator.makeSumOfNumbers();
+
+        assertThat(number).isEqualTo(4);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("구분자 기준으로 나누어서 연산")
-    void calculateByDelimiter() {
-        int number = calculator.sumAndDivideInput("1,2");
-
-        assertThat(number).isEqualTo(3);
-
-        number = calculator.sumAndDivideInput("1:2");
+    @ValueSource(strings = {"1,2", "1:2"})
+    void calculateByCommaDelimiter(String input) {
+        Calculator calculator = new Calculator(InputView.divideNumbersByDelimiterAndCheckValidate(input));
+        int number = calculator.makeSumOfNumbers();
 
         assertThat(number).isEqualTo(3);
     }
@@ -54,7 +44,8 @@ class CalculatorTest {
     @Test
     @DisplayName("커스텀 구분자 기준 연산")
     void calculateByCustomDelimiter() {
-        int number = calculator.sumAndDivideInput("//;\n12;2;3");
+        Calculator calculator = new Calculator(InputView.dividesByCustomAndCheckValidate("//;\n12;2;3"));
+        int number = calculator.makeSumOfNumbers();
 
         assertThat(number).isEqualTo(17);
     }
