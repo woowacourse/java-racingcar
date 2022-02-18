@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
-    public static final String INITIAL_TRIAL_COUNT = "0";
+    private static final String INITIAL_TRIAL_COUNT = "0";
+    private static final String COMMA = ",";
 
     private final Cars cars;
     private final TrialNum trialNum;
@@ -19,23 +20,6 @@ public class RacingGame {
         this.cars = createCars(namesInput);
         this.trialNum = createTrialNum(trialNumInput);
         this.trialCnt = new TrialNum(INITIAL_TRIAL_COUNT);
-    }
-
-    private Cars createCars(String namesInput) {
-        List<Name> carNames = createName(namesInput);
-        return new Cars (carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList()));
-    }
-
-    private List<Name> createName(String carNames) {
-        return Arrays.stream(carNames.split(","))
-                .map(Name::new)
-                .collect(Collectors.toList());
-    }
-
-    private TrialNum createTrialNum(String trialNum) {
-        return new TrialNum(trialNum);
     }
 
     public boolean isEnd() {
@@ -50,6 +34,23 @@ public class RacingGame {
     public Result findWinner() {
         int maxPosition = cars.findMaxPosition();
         return new Result(cars.findWinnerName(maxPosition), maxPosition);
+    }
+
+    private Cars createCars(String namesInput) {
+        List<Name> carNames = createName(namesInput);
+        return new Cars (carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList()));
+    }
+
+    private List<Name> createName(String carNames) {
+        return Arrays.stream(carNames.split(COMMA))
+                .map(Name::new)
+                .collect(Collectors.toList());
+    }
+
+    private TrialNum createTrialNum(String trialNum) {
+        return new TrialNum(trialNum);
     }
 
     public Cars getRacingCars() {
