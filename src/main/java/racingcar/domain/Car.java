@@ -11,8 +11,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void goForward(int randomNum) {
-        if (randomNum >= RANDOM_CONDITION) {
+    public void goForward(int number) {
+        if (number >= RANDOM_CONDITION) {
             position += 1;
         }
     }
