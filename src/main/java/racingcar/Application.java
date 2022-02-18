@@ -2,8 +2,8 @@ package racingcar;
 
 import racingcar.controller.Controller;
 import racingcar.domain.random.RacingcarRandomNumberGenerator;
-import racingcar.view.NamesInput;
-import racingcar.view.TryCountInput;
+import racingcar.view.input.NamesInput;
+import racingcar.view.input.TryCountInput;
 
 public class Application {
 
