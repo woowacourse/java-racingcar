@@ -40,16 +40,12 @@ public class CarsTest {
         Car car1 = new Car("happy");
         Car car2 = new Car("good");
 
-        car1.setPosition(5);
-        car2.setPosition(6);
+        Cars cars = new Cars(Arrays.asList(car1, car2));
 
-        List<Car> carLists = new ArrayList<>();
-        carLists.add(car1);
-        carLists.add(car2);
+        car1.movePosition(() -> true);
+        car2.movePosition(() -> false);
 
-        Cars cars = new Cars(carLists);
-
-        assertThat(cars.getWinners()).containsExactly("good");
+        assertThat(cars.getWinners()).containsExactly("happy");
 
     }
 
@@ -59,14 +55,10 @@ public class CarsTest {
         Car car1 = new Car("happy");
         Car car2 = new Car("good");
 
-        List<Car> carLists = new ArrayList<>();
-        carLists.add(car1);
-        carLists.add(car2);
+        Cars cars = new Cars(Arrays.asList(car1, car2));
 
-        car1.setPosition(6);
-        car2.setPosition(6);
-
-        Cars cars = new Cars(carLists);
+        car1.movePosition(() -> true);
+        car2.movePosition(() -> true);
 
         assertThat(cars.getWinners()).containsExactly("happy", "good");
 
