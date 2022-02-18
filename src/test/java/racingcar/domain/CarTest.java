@@ -14,8 +14,21 @@ class CarTest {
     }
 
     @Test
+    void stop() {
+        Car car = new Car("test");
+        car.move(() -> false);
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @Test
     void isSamePosition() {
         Car car = new Car("test", 3);
         assertThat(car.isSamePosition(3)).isTrue();
+    }
+
+    @Test
+    void isNotInSamePosition() {
+        Car car = new Car("test", 3);
+        assertThat(car.isSamePosition(2)).isFalse();
     }
 }
