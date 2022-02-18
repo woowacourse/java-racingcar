@@ -13,16 +13,14 @@ public class Cars {
     private final static String CAR_NAME_DISTRIBUTOR = ", ";
 
     private final List<Car> cars;
-    private final RandomNumber randomNumber;
 
     public Cars(List<Car> cars) {
-        this.randomNumber = RandomNumber.getInstance();
         this.cars = cars;
     }
 
     public void startOneTurn() {
         cars.forEach(car -> {
-            int randomNumber = this.randomNumber.getRandomNumber();
+            int randomNumber = RandomNumber.getRandomNumber();
             car.goForward(randomNumber);
         });
     }
