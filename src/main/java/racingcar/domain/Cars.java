@@ -30,7 +30,7 @@ public class Cars {
 
     public static Cars fromNames(final List<String> carsName) {
         return new Cars(carsName.stream()
-            .map(carName -> new Car(carName))
+            .map(Car::new)
             .collect(Collectors.toList()));
     }
 

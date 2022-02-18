@@ -14,7 +14,7 @@ public class ResultDto {
 
     public static ResultDto createResultDto(final List<Car> cars) {
         return new ResultDto(cars.stream()
-            .map(car -> car.getName())
+            .map(Car::getName)
             .collect(Collectors.toList()));
     }
 
