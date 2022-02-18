@@ -27,8 +27,8 @@ public class GameController {
             String carNames = InputView.getCarNames(scanner);
             String[] splitCarNames = StringSeparator.splitAndTrim(carNames);
             return new Cars(splitCarNames);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception);
             return readyCars();
         }
     }
@@ -38,8 +38,8 @@ public class GameController {
             String moveCount = InputView.getMoveCount(scanner);
             MoveCountValidator.validateMoveCount(moveCount);
             return Integer.parseInt(moveCount);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception);
             return getProperMoveCount();
         }
     }
