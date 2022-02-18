@@ -7,12 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
-    private static final String RESULT_MESSAGE = "실행 결과";
-    private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
+    private static final String CAR_JOIN_DELIMITER = " : ";
+    private static final String MOVE_EXPRESSION = "-";
     private static final String WINNER_JOIN_DELIMITER = ", ";
 
+    private static final String RESULT_MESSAGE = "실행 결과";
+    private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
+
+
     public static void printCarsPosition(Cars cars) {
-        System.out.println(cars.toString());
+        for (Car car : cars.getCars()) {
+            printCarPosition(car);
+        }
+        System.out.println();
+    }
+
+    private static void printCarPosition(Car car) {
+        String name = car.getName();
+        int position = car.getPosition();
+        System.out.println(name + CAR_JOIN_DELIMITER + MOVE_EXPRESSION.repeat(Math.max(0, position)));
     }
 
     public static void printResultMessage() {

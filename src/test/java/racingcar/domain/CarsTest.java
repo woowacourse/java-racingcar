@@ -38,4 +38,11 @@ class CarsTest {
         assertThat(winners).containsExactly(elsa,woods);
     }
 
+    @Test
+    @DisplayName("toString 이 Cars의 중요 정보를 모두 담고 있는가?")
+    void name() {
+        Cars cars = new Cars(new String[]{"pobi", "elsa"});
+        System.out.println(cars);
+        assertThat(cars.toString()).contains("pobi", "elsa");
+    }
 }

@@ -31,4 +31,11 @@ class CarTest {
         car.move(3);
         assertThat(car.isSamePosition(0)).isTrue();
     }
+
+    @Test
+    @DisplayName("toString 이 Car의 중요 정보를 모두 담고 있는가?")
+    void name() {
+        Car car = new Car("pobi",0);
+        assertThat(car.toString()).contains("pobi", "0");
+    }
 }
