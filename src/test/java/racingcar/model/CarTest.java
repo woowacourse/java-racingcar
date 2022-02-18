@@ -28,7 +28,7 @@ class CarTest {
         NumberGenerator numberGenerator = new FixedNumberGenerator(num);
         Car car = new Car(new Name("sun"));
         car.move(numberGenerator);
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPosition()).isZero();
     }
 
     @ParameterizedTest
@@ -38,6 +38,6 @@ class CarTest {
         NumberGenerator numberGenerator = new FixedNumberGenerator(num);
         Car car = new Car(new Name("sun"));
         car.move(numberGenerator);
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.getPosition()).isOne();
     }
 }
