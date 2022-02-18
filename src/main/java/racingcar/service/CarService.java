@@ -24,6 +24,7 @@ public class CarService {
             Output.printPositionWord(car);
             System.out.println();
         }
+
         System.out.println();
     }
 
@@ -35,6 +36,7 @@ public class CarService {
 
     private static void moveCar(List<Car> cars) {
         Random random = new Random();
+
         for (Car car : cars) {
             car.goForward(RandomUtil.getRandomNum());
         }

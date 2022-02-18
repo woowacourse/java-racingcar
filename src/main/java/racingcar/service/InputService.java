@@ -18,23 +18,21 @@ public class InputService {
     }
 
     private static List<Car> saveCars() {
-        String names;
-        List<Car> cars = new ArrayList<>();
-        while (true) {
-            names = Input.inputCarNames();
-            try {
-                Validation.carNameValidation(names);
-                cars = convertStringList(names);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
+        String names = Input.inputCarNames();
+
+        try {
+            Validation.carNameValidation(names);
+            List<Car> cars = convertStringList(names);
             return cars;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return saveCars();
         }
     }
 
     private static List<Car> convertStringList(String names) {
         List<Car> cars = new ArrayList<>();
+
         for (String carName : names.split(SPLIT_DELIM)) {
             cars.add(new Car(carName));
         }
@@ -42,15 +40,14 @@ public class InputService {
     }
 
     private static int saveTryNum() {
-        while (true) {
-            String tryValue = Input.inputTry();
+        String tryValue = Input.inputTry();
 
-            try {
-                Validation.tryNumValidation(tryValue);
-                return Integer.parseInt(tryValue);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            Validation.tryNumValidation(tryValue);
+            return Integer.parseInt(tryValue);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return saveTryNum();
         }
     }
 }
