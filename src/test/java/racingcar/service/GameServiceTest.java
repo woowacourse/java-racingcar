@@ -19,7 +19,7 @@ import racingcar.dto.RoundDto;
 class GameServiceTest {
 
     private static final List<String> CAR_NAMES = Arrays.asList("hello", "poby", "ifif", "hanul");
-    private static final int ROUND_INITIALIZED_COUNT = 3;
+    private static final int ROUND_INITIALIZING_COUNT = 3;
     private static final int ROUND_DECREASING_COUNT = 1;
 
     private final CustomMoveStrategy customMoveStrategy = new CustomMoveStrategy();
@@ -28,7 +28,7 @@ class GameServiceTest {
     @BeforeEach
     void initialize() {
         gameService.initCarNames(CAR_NAMES);
-        gameService.initRound(ROUND_INITIALIZED_COUNT);
+        gameService.initRound(ROUND_INITIALIZING_COUNT);
     }
 
     @DisplayName("게임 라운드 실행 횟수는 하나씩 감소된다.")
@@ -39,8 +39,24 @@ class GameServiceTest {
         final RoundDto roundDto = gameService.getCurrentRound();
 
         final int actual = roundDto.getCount();
-        final int expected = ROUND_INITIALIZED_COUNT - ROUND_DECREASING_COUNT;
+        final int expected = ROUND_INITIALIZING_COUNT - ROUND_DECREASING_COUNT;
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("게임 라운드 실행 가능 여부 확인 기능 테스트")
+    @Test
+    void isContinuableTest() {
+        customMoveStrategy.initMoveConditions(Arrays.asList(
+                true, true, true, true,
+                true, true, true, true,
+                true, true, true, true
+        ));
+
+        for (int i = 0; i < ROUND_INITIALIZING_COUNT; i++) {
+            assertThat(gameService.isContinuable()).isTrue();
+            gameService.playRound();
+        }
+        assertThat(gameService.isContinuable()).isFalse();
     }
 
     @DisplayName("게임 라운드 실행 시, 조건에 따라 자동차가 전진한다.")
