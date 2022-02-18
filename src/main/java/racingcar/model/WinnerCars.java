@@ -11,8 +11,9 @@ public class WinnerCars {
     }
 
     private void validateWinnerCars(List<Car> cars, int maxPosition) {
-        if (!cars.stream()
-                .allMatch(car -> car.getPosition() == maxPosition)) {
+        boolean isWinners = cars.stream().allMatch(car -> car.getPosition() == maxPosition);
+
+        if (!isWinners) {
             throw new IllegalArgumentException("우승자 판별이 잘못되었습니다.");
         }
     }
