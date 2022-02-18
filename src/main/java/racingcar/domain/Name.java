@@ -42,4 +42,9 @@ public class Name {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
