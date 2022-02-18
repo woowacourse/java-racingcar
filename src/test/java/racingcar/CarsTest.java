@@ -53,7 +53,7 @@ class CarsTest {
     @Test
     void 자동차_객체_생성() {
         List<String> actual = Arrays.asList("bom", "sun");
-        String given = "bom, sun";
+        String given = "bom,sun";
         Cars cars = Cars.initCars(given);
         List<String> expected = cars.getCars().stream()
                 .map(Car::getName)
