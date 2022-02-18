@@ -11,16 +11,16 @@ public class RacingCarController {
     }
 
     public void run() {
-        RacingCars racingCars = new RacingCars(InputView.getCarNames(), new RacingCarCommander());
-        int tryCount = InputView.inputTryCount();
+        final RacingCars racingCars = new RacingCars(InputView.getCarNames(), new RacingCarCommander());
+        final int tryCount = InputView.inputTryCount();
 
-        RacingGame game = new RacingGame(racingCars, tryCount);
+        final RacingGame game = new RacingGame(racingCars, tryCount);
         OutputView.printGameResultTitle();
         raceAllRounds(game, racingCars);
         OutputView.printWinnerNames(game.getWinnerNames());
     }
 
-    public void raceAllRounds(RacingGame game, RacingCars racingCars) {
+    public void raceAllRounds(final RacingGame game, final RacingCars racingCars) {
         while (!game.isEnd()) {
             game.race();
             OutputView.printCarsPosition(racingCars.getRacingCarDtoList());

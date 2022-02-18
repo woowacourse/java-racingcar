@@ -15,19 +15,19 @@ public class RacingCars {
     private final List<RacingCar> cars;
     private final MovingStrategy movingStrategy;
 
-    public RacingCars(List<String> carNameArray, MovingStrategy movingStrategy) {
-        this.cars = makeRacingCars(carNameArray);
+    public RacingCars(final List<String> carNames, final MovingStrategy movingStrategy) {
+        this.cars = makeRacingCars(carNames);
         this.movingStrategy = movingStrategy;
     }
 
-    private List<RacingCar> makeRacingCars(List<String> carNames) {
+    private List<RacingCar> makeRacingCars(final List<String> carNames) {
         return carNames.stream()
             .map(this::removeNameBlank)
             .map(RacingCar::new)
             .collect(Collectors.toList());
     }
 
-    private String removeNameBlank(String name) {
+    private String removeNameBlank(final String name) {
         return name.replaceAll(NAME_BLANK, NAME_NOT_BLANK);
     }
 
@@ -41,7 +41,7 @@ public class RacingCars {
         cars.forEach(this::moveCar);
     }
 
-    private void moveCar(RacingCar car) {
+    private void moveCar(final RacingCar car) {
         if (movingStrategy.isMovable()) {
             car.move();
         }
@@ -55,7 +55,7 @@ public class RacingCars {
             .collect(Collectors.toList());
     }
 
-    private boolean isSamePosition(RacingCar racingCar, RacingCar anyWinner) {
+    private boolean isSamePosition(final RacingCar racingCar, final RacingCar anyWinner) {
         return racingCar.compareTo(anyWinner) == EQUAL_SYMBOL_NUMBER;
     }
 
