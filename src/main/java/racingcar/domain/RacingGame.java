@@ -37,12 +37,12 @@ public class RacingGame {
         return cars.selectWinners();
     }
 
-    private static void validateAttempt(String attempt) {
+    private void validateAttempt(String attempt) {
         int num = validateIntegerThenParse(attempt);
         validatePositive(num);
     }
 
-    private static int validateIntegerThenParse(String num) {
+    private int validateIntegerThenParse(String num) {
         try {
             return Integer.parseInt(num);
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class RacingGame {
         }
     }
 
-    private static void validatePositive(int num) {
+    private void validatePositive(int num) {
         if (num <= 0) {
             throw new IllegalArgumentException(MUST_BE_POSITIVE);
         }

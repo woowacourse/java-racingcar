@@ -52,7 +52,7 @@ public class CarRepository {
                 .get(0);
     }
 
-    private static void validateDuplication(String[] carNames) {
+    private void validateDuplication(String[] carNames) {
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(carNames));
 
         if (hashSet.size() < carNames.length) {

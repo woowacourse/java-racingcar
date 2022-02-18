@@ -16,29 +16,29 @@ public class CarName {
         this.name = name;
     }
 
-    public static void validateCarName(String name) {
+    public String getName() {
+        return this.name;
+    }
+
+    private void validateCarName(String name) {
         validateEmpty(name);
         validateSpace(name);
         validateLength(name);
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    private static void validateEmpty(String name) {
+    private void validateEmpty(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_CAR_NAME);
         }
     }
 
-    private static void validateSpace(String name) {
+    private void validateSpace(String name) {
         if (name.contains(" ")) {
             throw new IllegalArgumentException(NO_SPACE);
         }
     }
 
-    private static void validateLength(String name) {
+    private void validateLength(String name) {
         if (name.length() < MIN_LENGTH_OF_NAME) {
             throw new IllegalArgumentException(MORE_THAN_ONE_LETTER);
         }
