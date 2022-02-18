@@ -27,13 +27,6 @@ class CarsTest {
         assertThrows(WrongArgumentException.class, () -> new Cars(carNames, TRUE_MOVE_STRATEGY));
     }
 
-    @DisplayName("자동차 이름은 NULL이 될 수 없다")
-    @ParameterizedTest
-    @MethodSource(PROVIDER_PATH + "provideForNullExceptionTest")
-    void carNameNullExceptionTest(final List<String> names) {
-        exceptionTest(names);
-    }
-
     @DisplayName("자동차 이름은 공백이 될 수 없다")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForEmptyExceptionTest")
