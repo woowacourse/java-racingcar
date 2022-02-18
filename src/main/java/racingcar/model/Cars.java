@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import racingcar.util.NumberGenerator;
-import racingcar.util.RandomNumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +8,6 @@ import java.util.stream.Collectors;
 public class Cars {
     private static final int MINIMUM_POSITION = 0;
 
-    private final NumberGenerator randomNumber = new RandomNumberGenerator();
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -28,8 +26,11 @@ public class Cars {
         }
     }
 
-    public void moveAll() {
-        cars.forEach(car -> car.move(randomNumber));
+    public void moveAll(NumberGenerator numberGenerator) {
+        cars.forEach(car -> {
+            int number = numberGenerator.generate();
+            car.move(number);
+        });
     }
 
     public int findMaxPosition() {

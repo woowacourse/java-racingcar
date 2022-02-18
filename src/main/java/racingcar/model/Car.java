@@ -1,7 +1,5 @@
 package racingcar.model;
 
-import racingcar.util.NumberGenerator;
-
 public class Car {
     private static final int MINIMUM_POSITION = 0;
     private static final int MOVE_FORWARD = 4;
@@ -27,8 +25,7 @@ public class Car {
         }
     }
 
-    public void move(NumberGenerator numberGenerator) {
-        int number = numberGenerator.generate();
+    public void move(int number) {
         if (canMove(number)) {
             position++;
         }

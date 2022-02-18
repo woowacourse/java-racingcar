@@ -1,5 +1,8 @@
 package racingcar.model;
 
+import racingcar.util.NumberGenerator;
+import racingcar.util.RandomNumberGenerator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +13,7 @@ public class RacingGame {
     private final Cars cars;
     private final TrialNum trialNum;
     private final TrialNum trialCnt;
+    private final NumberGenerator randomNumber = new RandomNumberGenerator();
 
     public RacingGame(String namesInput, String trialNumInput) {
         this.cars = createCars(namesInput);
@@ -39,7 +43,7 @@ public class RacingGame {
     }
 
     public void race() {
-        cars.moveAll();
+        cars.moveAll(randomNumber);
         trialCnt.increase();
     }
 
