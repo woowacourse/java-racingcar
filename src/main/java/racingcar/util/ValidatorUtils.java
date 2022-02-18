@@ -1,15 +1,15 @@
 package racingcar.util;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
+import static racingcar.constants.GameConstants.MAX_NAME_LENGTH;
+import static racingcar.constants.SystemConstants.NUMBER_ZERO_FOR_POSITIVE_CHECK;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_NOT_ALLOWED;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_DUPLICATE_NAME;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_NOT_POSITIVE_INTEGER;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
-import static racingcar.constants.GameConstants.MAX_NAME_LENGTH;
-import static racingcar.constants.SystemConstants.NUMBER_ZERO_FOR_POSITIVE_CHECK;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ValidatorUtils {
 

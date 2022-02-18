@@ -1,13 +1,13 @@
 package racingcar.controller;
 
+import static racingcar.constants.SystemConstants.DELIMITER_COMMA;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_NOT_INTEGER;
+
+import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.List;
-
-import static racingcar.util.SplitUtils.splitByComma;
 
 public class GameController {
 
@@ -27,11 +27,23 @@ public class GameController {
     }
 
     private String[] requestCarNames() {
-        return splitByComma(InputView.requestCarNameInput());
+        return InputView.requestCarNameInput().split(DELIMITER_COMMA);
     }
 
     private int requestTotalRounds() {
-        return Integer.parseInt(InputView.requestTotalRoundsInput());
+        return toInt(InputView.requestTotalRoundsInput());
+    }
+
+    private int toInt(String inputValue) {
+        int totalRounds;
+
+        try {
+            totalRounds = Integer.parseInt(inputValue);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ERROR_NOT_INTEGER);
+        }
+
+        return totalRounds;
     }
 
     private void playGame() {
