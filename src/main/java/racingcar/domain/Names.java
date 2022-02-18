@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class Names {
 	private final List<Name> names;
 
 	public Names(List<Name> names) {
+		names = new ArrayList<>(names);
 		validateDuplicate(names);
 		this.names = names;
 	}
@@ -24,7 +26,7 @@ public class Names {
 	}
 
 	public List<Name> getNames() {
-		return names;
+		return Collections.unmodifiableList(names);
 	}
 
 	public int getSize() {
