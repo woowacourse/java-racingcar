@@ -38,9 +38,9 @@ public class RacingGame {
     }
 
     private List<CarDto> toCarDtos() {
-        List<CarDto> carDtos = new ArrayList<>();
-        cars.forEach(car -> carDtos.add(car.toDto()));
-        return carDtos;
+        return cars.stream()
+                .map(Car::toDto)
+                .collect(Collectors.toList());
     }
 
     private void proceedOrStopCar(Car car) {
