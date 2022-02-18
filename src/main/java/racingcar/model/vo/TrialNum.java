@@ -14,11 +14,19 @@ public class TrialNum {
     }
 
     private static int convertToInteger(String number) {
-        InputValidator.validateTrialInput(number);
+        validateTrialInput(number);
         return Integer.parseInt(number);
     }
 
     public int getTrialNum() {
         return trialNum;
+    }
+
+    public static void validateTrialInput(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("시도할 횟수는 숫자여야 합니다.");
+        }
     }
 }
