@@ -10,7 +10,7 @@ class CarNameTest {
     @DisplayName("null 값으로 CarName을 생성하려 하면 예외를 발생시킨다.")
     void create_Null_Test() {
         String expectedExceptionMessage = "자동차 이름에 null이 들어왔습니다.";
-        assertThatThrownBy(() -> new CarName(null))
+        assertThatThrownBy(() -> CarName.valueOf(null))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage(expectedExceptionMessage);
     }
@@ -20,7 +20,7 @@ class CarNameTest {
     void create_LongerLengthOfCarNameThanFive_Test() {
         String longerThanFiveCarName = "abcdef";
         String expectedExceptionMessage = "자동차 이름은 최대 5자입니다.";
-        assertThatThrownBy(() -> new CarName(longerThanFiveCarName))
+        assertThatThrownBy(() -> CarName.valueOf(longerThanFiveCarName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedExceptionMessage);
     }
@@ -30,7 +30,7 @@ class CarNameTest {
     void create_BlankCarName_Test() {
         String blankCarName = " ";
         String expectedExceptionMessage = "공백으로만 이루어진 자동차 이름이 있습니다.";
-         assertThatThrownBy(() -> new CarName(blankCarName))
+         assertThatThrownBy(() -> CarName.valueOf(blankCarName))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(expectedExceptionMessage);
     }
