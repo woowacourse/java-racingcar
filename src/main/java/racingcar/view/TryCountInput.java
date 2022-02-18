@@ -1,18 +1,17 @@
-package racingcar.input;
+package racingcar.view;
 
 import java.util.Scanner;
-import racingcar.input.validator.TryCountValidator;
-import racingcar.view.View;
+import racingcar.domain.validator.TryCountInputValidator;
 
-public class TryCountReceiver {
+public class TryCountInput {
 
     private Scanner scanner;
-    private TryCountValidator tryCountValidator;
+    private TryCountInputValidator tryCountInputValidator;
     private View view;
 
-    public TryCountReceiver() {
+    public TryCountInput() {
         this.scanner = new Scanner(System.in);
-        this.tryCountValidator = new TryCountValidator();
+        this.tryCountInputValidator = new TryCountInputValidator();
         this.view = View.getInstance();
     }
 
@@ -29,7 +28,7 @@ public class TryCountReceiver {
 
     private boolean checkRules(String tryCount) {
         try {
-            tryCountValidator.validate(tryCount);
+            tryCountInputValidator.validate(tryCount);
             return true;
         } catch (IllegalArgumentException exception) {
             view.printExceptionMessage(exception);

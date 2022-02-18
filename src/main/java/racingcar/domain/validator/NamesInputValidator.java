@@ -1,10 +1,10 @@
-package racingcar.input.validator;
+package racingcar.domain.validator;
 
 import java.util.Arrays;
 import racingcar.exception.CarNameException;
-import racingcar.input.NamesReceiver;
+import racingcar.view.NamesInput;
 
-public class NamesValidator {
+public class NamesInputValidator {
 
     public static final String INVALID_LENGTH_ERROR_MESSAGE = "자동차 이름은 5글자 이하여야 합니다.";
     public static final String EMPTY_NAME_ERROR_MESSAGE = "자동차 이름은 공백일 수 없습니다.";
@@ -37,18 +37,18 @@ public class NamesValidator {
     }
 
     private boolean isInvalidLength(String names) {
-        return Arrays.stream(names.split(NamesReceiver.NAME_DELIMITER))
+        return Arrays.stream(names.split(NamesInput.NAME_DELIMITER))
                 .anyMatch(n -> n.length() > NAME_UPPER_LENGTH);
     }
 
     private boolean isEmptyName(String names) {
-        return Arrays.stream(names.split(NamesReceiver.NAME_DELIMITER))
+        return Arrays.stream(names.split(NamesInput.NAME_DELIMITER))
                 .anyMatch(String::isEmpty);
     }
 
     private boolean isDuplicateName(String names) {
-        return Arrays.stream(names.split(NamesReceiver.NAME_DELIMITER))
+        return Arrays.stream(names.split(NamesInput.NAME_DELIMITER))
                 .distinct()
-                .count() != names.split(NamesReceiver.NAME_DELIMITER).length;
+                .count() != names.split(NamesInput.NAME_DELIMITER).length;
     }
 }
