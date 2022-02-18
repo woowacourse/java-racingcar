@@ -14,8 +14,7 @@ public class Car {
 	}
 
 	public Car(String name) {
-		this.name = new Name(name);
-		this.position = INITIAL_POSITION_VALUE;
+		this(name,INITIAL_POSITION_VALUE);
 	}
 
 	public void decideMove(int number) {
