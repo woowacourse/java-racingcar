@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.utils.Constant;
+import racingcar.utils.ErrorMassage;
 
 public class Cars {
 
@@ -63,7 +63,7 @@ public class Cars {
             .collect(Collectors.toSet());
 
         if (uniqueNames.size() != cars.size()) {
-            throw new IllegalArgumentException(Constant.DUPLICATE_NAME_ERROR);
+            throw new IllegalArgumentException(ErrorMassage.DUPLICATE_NAME_ERROR);
         }
 
     }

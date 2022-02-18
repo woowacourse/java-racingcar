@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import racingcar.utils.Constant;
+import racingcar.utils.ErrorMassage;
 
 public class Game {
 
@@ -71,7 +71,7 @@ public class Game {
         Matcher matcher = TRY_NO_PATTERN.matcher(input);
 
         if (!matcher.find()) {
-            throw new IllegalArgumentException(Constant.NOT_NUMERIC_ERROR);
+            throw new IllegalArgumentException(ErrorMassage.NOT_NUMERIC_ERROR);
         }
 
     }
@@ -79,7 +79,7 @@ public class Game {
     private void isNaturalNumber(int input) {
 
         if (input < MINIMUM_NATURAL_NUMBER) {
-            throw new IllegalArgumentException(Constant.MINIMUM_NATURAL_NUMBER_ERROR);
+            throw new IllegalArgumentException(ErrorMassage.MINIMUM_NATURAL_NUMBER_ERROR);
         }
 
     }

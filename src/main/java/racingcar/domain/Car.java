@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import racingcar.utils.Constant;
+import racingcar.utils.ErrorMassage;
 
 public class Car {
 
@@ -52,7 +53,7 @@ public class Car {
     private void checkLength(String name) {
 
         if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException(Constant.NOT_ALLOW_LENGTH_ERROR);
+            throw new IllegalArgumentException(ErrorMassage.NOT_ALLOW_LENGTH_ERROR);
         }
 
     }
@@ -62,7 +63,7 @@ public class Car {
         Matcher matcher = CAR_NAME_PATTERN.matcher(name);
 
         if (!matcher.find()) {
-            throw new IllegalArgumentException(Constant.NOT_ALPHA_ERROR);
+            throw new IllegalArgumentException(ErrorMassage.NOT_ALPHA_ERROR);
         }
 
     }
