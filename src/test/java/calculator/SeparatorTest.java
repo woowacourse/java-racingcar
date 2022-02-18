@@ -25,11 +25,11 @@ class SeparatorTest {
 
     public static Stream<Arguments> provideForExtractCustomUnitsTest() {
         return Stream.of(
-                Arguments.of("111", Arrays.asList("111")),
-                Arguments.of("1,1", Arrays.asList("1", "1")),
-                Arguments.of("//a\n1a1", Arrays.asList("1", "1")),
-                Arguments.of("//,+\n1,a+1b", Arrays.asList("1", "a", "1b")),
-                Arguments.of("//-()\n1(a)1", Arrays.asList("1", "a", "1"))
+                Arguments.of("111", List.of("111")),
+                Arguments.of("1,1", List.of("1", "1")),
+                Arguments.of("//a\n1a1", List.of("1", "1")),
+                Arguments.of("//,+\n1,a+1b", List.of("1", "a", "1b")),
+                Arguments.of("//-()\n1(a)1", List.of("1", "a", "1"))
         );
     }
 

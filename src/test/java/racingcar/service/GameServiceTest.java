@@ -20,7 +20,7 @@ import racingcar.dto.RoundDto;
 class GameServiceTest {
 
     private static final String PROVIDER_PATH = "racingcar.service.provider.GameServiceTestProvider#";
-    private static final List<String> CAR_NAMES = Arrays.asList("hello", "poby", "ifif", "hanul");
+    private static final List<String> CAR_NAMES = List.of("hello", "poby", "ifif", "hanul");
     private static final int ROUND_INITIALIZING_COUNT = 3;
     private static final int ROUND_DECREASING_COUNT = 1;
     private static final AppConfig APP_CONFIG = AppConfig.getInstance();
@@ -37,7 +37,7 @@ class GameServiceTest {
     @DisplayName("게임 라운드 실행 횟수는 하나씩 감소된다.")
     @Test
     void decreaseRoundTest() {
-        customMoveStrategy.initMoveConditions(Arrays.asList(true, true, true, true));
+        customMoveStrategy.initMoveConditions(List.of(true, true, true, true));
         gameService.playRound();
         final RoundDto roundDto = gameService.getCurrentRound();
 
@@ -49,7 +49,7 @@ class GameServiceTest {
     @DisplayName("게임 라운드 실행 가능 여부 확인 기능 테스트")
     @Test
     void isContinuableTest() {
-        customMoveStrategy.initMoveConditions(Arrays.asList(
+        customMoveStrategy.initMoveConditions(List.of(
                 true, true, true, true,
                 true, true, true, true,
                 true, true, true, true
