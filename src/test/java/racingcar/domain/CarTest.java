@@ -1,17 +1,17 @@
 package racingcar.domain;
 
+import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_NOT_ALLOWED;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_NOT_ALLOWED;
-import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
 
 public class CarTest {
 
@@ -38,7 +38,7 @@ public class CarTest {
     void constructor_errorOnBlank(String name) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    Car car = new Car(name);
+                    new Car(name);
                 })
                 .withMessageMatching(ERROR_BLANK_NOT_ALLOWED);
     }
@@ -49,7 +49,7 @@ public class CarTest {
     void constructor_errorOnOverFiveCharacters(String name) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    Car car = new Car(name);
+                    new Car(name);
                 })
                 .withMessageMatching(ERROR_OVER_FIVE_CHARACTERS);
     }
@@ -79,7 +79,7 @@ public class CarTest {
     @DisplayName("isSamePosition 메서드는 인자로 정수가 들어올 경우 해당 정수 현재 Car의 position이 일치하는지 확인한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @CsvSource(value = {"3:true", "4:false"}, delimiter = ':')
-    public void isSamePosition_int(String position, String result) throws Exception {
+    public void isSamePosition_int(String position, String result) {
         // given
         Car pobi = new Car("pobi", 3);
         // then
@@ -89,7 +89,7 @@ public class CarTest {
     @DisplayName("isSamePosition 메서드는 인자로 Car 객체가 들어올 경우 해당 정수 현재 Car의 position이 일치하는지 확인한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @CsvSource(value = {"3:true", "4:false"}, delimiter = ':')
-    public void isSamePosition_carObject(String position, String result) throws Exception {
+    public void isSamePosition_carObject(String position, String result) {
         // given
         Car pobi = new Car("pobi", 3);
         Car testCar = new Car("test", Integer.parseInt(position));
