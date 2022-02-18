@@ -3,16 +3,24 @@ package racingcar.util;
 import java.util.List;
 
 public class Validator {
-    private static final String BLANK = " ";
-    private static final String ERROR_NULL_EMPTY_MESSAGE = "빈칸 입력은 허용하지 않는다.";
-    private static final String ERROR_INCLUDE_BLANK_MESSAGE = "내부에 공백이 포함될 수 없습니다.";
+    private static final String ERROR_LIST_INCLUDE_EMPTY_MESSAGE = "이름을 생략할 수 없습니다.";
     private static final String ERROR_DUPLICATED_MESSAGE = "중복값을 입력할 수 없습니다.";
-    public static final String ERROR_INVALID_FORMAT_MESSAGE = "입력한 값이 숫자의 형태가 아닙니다.";
+    private static final String ERROR_INVALID_FORMAT_MESSAGE = "입력한 값이 숫자의 형태가 아닙니다.";
+    private static final String ERROR_NULL_EMPTY_MESSAGE = "빈칸 입력은 허용하지 않습니다.";
+    private static final String BLANK = " ";
+    private static final String ERROR_INCLUDE_BLANK_MESSAGE = "내부에 공백이 포함될 수 없습니다.";
 
     public static void validateCarNames(List<String> carNames) {
+        checkCarNamesEmpty(carNames);
         checkDuplicated(carNames);
         for (String carName : carNames) {
             validateInput(carName);
+        }
+    }
+
+    private static void checkCarNamesEmpty(List<String> carNames) {
+        if (carNames.stream().anyMatch(String::isEmpty)) {
+            throw new IllegalArgumentException(ERROR_LIST_INCLUDE_EMPTY_MESSAGE);
         }
     }
 
