@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
     @ParameterizedTest
-    @ValueSource(ints = 5)
+    @ValueSource(ints = 4)
     void 자동차_전진_확인(int value) {
         NumberGenerator numberGenerator = new FixedNumberGenerator(value);
         Car car = new Car("qwer");
@@ -19,7 +19,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = 4)
+    @ValueSource(ints = 3)
     void 자동차_전진안함_확인(int value) {
         NumberGenerator numberGenerator = new FixedNumberGenerator(value);
         Car car = new Car("qwer");

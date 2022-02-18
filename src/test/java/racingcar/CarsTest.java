@@ -3,6 +3,7 @@ package racingcar;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.util.InputValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,13 @@ class CarsTest {
     void 자동차_이름이_하나도_존재하지_않을_경우_예외처리() {
         assertThatThrownBy(() -> {
             Cars.splitCars("");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 자동차의_이름이_5자_이상인_경우_예외처리() {
+        assertThatThrownBy(() -> {
+            Cars.splitCars("asd,qwerty");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
