@@ -13,7 +13,7 @@ public class Validation {
     private static final String ERROR_ONLY_NUMBER = "[ERROR] 시도 회수는 숫자만 입력 가능합니다";
     private static final String ERROR_DUPLICATE = "[ERROR] 중복된 이름이 존재합니다";
 
-    public static void carNameValidation(String input) {
+    public static void carNameValidation(final String input) {
         List<String> names = Arrays.asList(input.split(SPLIT_DELIM, -1));
 
         checkDuplicate(names);
@@ -22,7 +22,7 @@ public class Validation {
         }
     }
 
-    private static void checkDuplicate(List<String> names) {
+    private static void checkDuplicate(final List<String> names) {
         Set<String> set = new HashSet<>(names);
 
         if (set.size() != names.size()) {
@@ -30,19 +30,19 @@ public class Validation {
         }
     }
 
-    private static void checkNameLength(String name) {
+    private static void checkNameLength(final String name) {
         if (name.length() == NAME_LENGTH_MIN || name.length() > NAME_LENGTH_MAX) {
             throw new IllegalArgumentException(ERROR_NAME_LENGTH);
         }
     }
 
-    public static void tryNumValidation(String tryValue) {
+    public static void tryNumValidation(final String tryValue) {
         for (char num : tryValue.toCharArray()) {
             checkCharIsNum(num);
         }
     }
 
-    private static void checkCharIsNum(char num) {
+    private static void checkCharIsNum(final char num) {
         if (!Character.isDigit(num)) {
             throw new IllegalArgumentException(ERROR_ONLY_NUMBER);
         }

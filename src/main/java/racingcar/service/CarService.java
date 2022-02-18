@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
-    public static void startRace(List<Car> cars, int tryNum) {
+    public static void startRace(final List<Car> cars, final int tryNum) {
         Output.printResultWord();
 
         for (int i = 0; i < tryNum; i++) {
@@ -18,7 +18,7 @@ public class CarService {
         }
     }
 
-    public static void printRace(List<Car> cars) {
+    public static void printRace(final List<Car> cars) {
         for (Car car : cars) {
             Output.printName(car);
             Output.printPositionWord(car);
@@ -28,13 +28,13 @@ public class CarService {
         System.out.println();
     }
 
-    public static void finalWinner(List<Car> cars) {
+    public static void finalWinner(final List<Car> cars) {
         int maxPosition = findMaxPosition(cars);
         List<String> winnerList = getWinnerList(cars, maxPosition);
         Output.printWinner(winnerList);
     }
 
-    private static void moveCar(List<Car> cars) {
+    private static void moveCar(final List<Car> cars) {
         Random random = new Random();
 
         for (Car car : cars) {
@@ -42,7 +42,7 @@ public class CarService {
         }
     }
 
-    private static List<String> getWinnerList(List<Car> cars, int maxPosition) {
+    private static List<String> getWinnerList(final List<Car> cars, final int maxPosition) {
         List<String> winnerList = new ArrayList<>();
 
         for (Car car : cars) {
@@ -54,7 +54,7 @@ public class CarService {
         return winnerList;
     }
 
-    private static int findMaxPosition(List<Car> cars) {
+    private static int findMaxPosition(final List<Car> cars) {
         int maxNum = 0;
 
         for (Car car : cars) {

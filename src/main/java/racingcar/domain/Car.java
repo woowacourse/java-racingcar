@@ -13,7 +13,7 @@ public class Car {
         this.name = name;
     }
 
-    public Car(String name, int position) {
+    public Car(final String name, final int position) {
         this.name = name;
         this.position = position;
     }
@@ -26,13 +26,13 @@ public class Car {
         return position;
     }
 
-    public void goForward(int num) {
+    public void goForward(final int num) {
         if (num >= GO_FORWARD_CONDITION) {
             position += 1;
         }
     }
 
-    public boolean checkIfPositionSame(int position) {
+    public boolean checkIfPositionSame(final int position) {
         return this.position == position;
     }
 }

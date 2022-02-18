@@ -30,7 +30,7 @@ public class InputService {
         }
     }
 
-    private static List<Car> convertStringList(String names) {
+    private static List<Car> convertStringList(final String names) {
         List<Car> cars = new ArrayList<>();
 
         for (String carName : names.split(SPLIT_DELIM)) {
