@@ -35,11 +35,7 @@ class CarTest {
     @Test
     @DisplayName("주어진 전진횟수와 동일한 전진횟수를 가지는 경우 true 반환")
     void trueIfSame() {
-        Car car = new Car("woo");
-
-        car.move(9);
-        car.move(9);
-        car.move(9);
+        Car car = new Car("woo", 3);
 
         assertThat(car.isSamePosition(3)).isTrue();
     }
@@ -47,7 +43,7 @@ class CarTest {
     @Test
     @DisplayName("주어진 전진횟수와 동일하지 않는 전진횟수를 가지는 경우 false 반환")
     void falseIfNotSame() {
-        Car car = new Car("woo");
+        Car car = new Car("woo", 1);
 
         assertThat(car.isSamePosition(3)).isFalse();
     }

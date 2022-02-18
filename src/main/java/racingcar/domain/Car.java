@@ -12,6 +12,11 @@ public class Car {
         this.position = 0;
     }
 
+    public Car(String name, int position) {
+        this.name = new CarName(name);
+        this.position = position;
+    }
+
     public void move(int target) {
         if (target >= CONDITION_FOR_MOVE) {
             position++;

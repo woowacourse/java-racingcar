@@ -23,6 +23,15 @@ public class Cars {
         }
     }
 
+    public Cars(Map<String, Integer> carInfo) {
+        Set<String> names = carInfo.keySet();
+        validateDuplication(names.toArray(new String[names.size()]));
+
+        for (String name : names) {
+            cars.add(new Car(name, carInfo.get(name)));
+        }
+    }
+
     public void move() {
         for (Car car : cars) {
             car.move(generateRandomNumber());
@@ -46,13 +55,6 @@ public class Cars {
                 .filter(c -> c.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
-    }
-
-    public Car getCar(String name) {
-        return cars.stream()
-                .filter(c -> c.getName().equals(name))
-                .collect(Collectors.toList())
-                .get(0);
     }
 
     private void validateDuplication(String[] carNames) {

@@ -2,10 +2,12 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,31 +26,31 @@ public class CarsTest {
     @Test
     @DisplayName("한명의 올바른 최종 우승자를 선택하는지 확인")
     void selectOneRightWinner() {
-        Cars cars = new Cars(new String[]{"woo", "te", "co"});
+        Map<String, Integer> carInfo = new HashMap<>();
+        carInfo.put("woo", 10);
+        carInfo.put("te", 0);
+        carInfo.put("co", 0);
 
-        Car co = cars.getCar("co");
-        co.move(9);
-        co.move(9);
+        Cars cars = new Cars(carInfo);
 
-        assertThat(cars.selectWinners()).containsExactly("co");
+        assertThat(cars.selectWinners()).containsExactly("woo");
     }
 
     @Test
     @DisplayName("여러명의 올바른 최종 우승자를 선택하는지 확인")
     void selectManyRightWinner() {
-        Cars cars = new Cars(new String[]{"woo", "te", "co"});
+        Map<String, Integer> carInfo = new HashMap<>();
+        carInfo.put("woo", 0);
+        carInfo.put("te", 10);
+        carInfo.put("co", 10);
 
-        Car te = cars.getCar("te");
-        te.move(9);
-        te.move(9);
-
-        Car co = cars.getCar("co");
-        co.move(9);
-        co.move(9);
-
+        Cars cars = new Cars(carInfo);
         List<String> winners = cars.selectWinners();
 
-        assertThat(winners).contains("te");
-        assertThat(winners).contains("co");
+        List<String> expected = new ArrayList<>();
+        expected.add("te");
+        expected.add("co");
+
+        assertThat(winners).isEqualTo(expected);
     }
 }
