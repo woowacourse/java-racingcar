@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import carracing.utils.RandomMove;
 import carracing.utils.RandomUtil;
 
-public class Cars {
+public class RacingCars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public RacingCars(List<Car> cars) {
         validateDuplication(cars);
 
         this.cars = cars;

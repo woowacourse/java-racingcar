@@ -30,7 +30,7 @@ public class CarsTest {
         //when
         //then
         assertThatThrownBy(() -> {
-            Cars cars = new Cars(Arrays.asList(
+            RacingCars racingCars = new RacingCars(Arrays.asList(
                     pobiCar,
                     eastCar,
                     peperCar,
@@ -48,13 +48,13 @@ public class CarsTest {
         move(eastCar, 2);
         move(peperCar, 3);
 
-        Cars cars = new Cars(Arrays.asList(
+        RacingCars racingCars = new RacingCars(Arrays.asList(
                 pobiCar, eastCar, peperCar
         ));
         //when
 
         //then
-        List<String> winners = cars.getWinners();
+        List<String> winners = racingCars.getWinners();
         assertThat(winners).contains("peper");
     }
 
@@ -66,12 +66,12 @@ public class CarsTest {
         move(eastCar, 3);
         move(peperCar, 3);
 
-        Cars cars = new Cars(Arrays.asList(
+        RacingCars racingCars = new RacingCars(Arrays.asList(
                 pobiCar, eastCar, peperCar
         ));
         // when
         // then
-        List<String> winners = cars.getWinners();
+        List<String> winners = racingCars.getWinners();
         assertThat(winners).contains("peper", "east");
     }
 

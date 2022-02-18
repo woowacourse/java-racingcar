@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import carracing.model.Car;
-import carracing.model.Cars;
+import carracing.model.RacingCars;
 import carracing.view.InputView;
 import carracing.view.OutputView;
 
 public class RacingGameController {
-    private Cars cars;
+    private RacingCars racingCars;
     private int numberOfGames;
 
     public RacingGameController() {
@@ -23,8 +23,8 @@ public class RacingGameController {
     public void play() {
         OutputView.printResultMessage();
         for (int round = 0; round < numberOfGames; round++) {
-            cars.moveCars();
-            OutputView.printGameResult(cars.getCars());
+            racingCars.moveCars();
+            OutputView.printGameResult(racingCars.getCars());
         }
         endGame();
     }
@@ -51,7 +51,7 @@ public class RacingGameController {
     }
 
     private void endGame() {
-        OutputView.printWinners(cars.getWinners());
+        OutputView.printWinners(racingCars.getWinners());
     }
 
     private void createCars(List<String> carNames) {
@@ -59,6 +59,6 @@ public class RacingGameController {
         for (String carName : carNames) {
             carList.add(new Car(carName));
         }
-        cars = new Cars(carList);
+        racingCars = new RacingCars(carList);
     }
 }
