@@ -12,7 +12,7 @@ public class FalseMoveStrategy implements MoveStrategy {
     }
 
     @Override
-    public boolean isPossibleToMove() {
+    public boolean isMovable() {
         return false;
     }
 

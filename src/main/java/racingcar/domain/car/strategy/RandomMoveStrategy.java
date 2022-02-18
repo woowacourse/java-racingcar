@@ -9,7 +9,7 @@ public class RandomMoveStrategy implements MoveStrategy {
     private static final int CONDITION_TO_MOVE = 4;
 
     @Override
-    public boolean isPossibleToMove() {
+    public boolean isMovable() {
         return pickOne() >= CONDITION_TO_MOVE;
     }
 

@@ -12,7 +12,7 @@ public class CustomMoveStrategy implements MoveStrategy {
     }
 
     @Override
-    public boolean isPossibleToMove() {
+    public boolean isMovable() {
         return conditions.next();
     }
 

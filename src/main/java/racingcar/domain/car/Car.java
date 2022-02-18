@@ -14,7 +14,7 @@ public class Car {
     }
 
     public void goForward(MoveStrategy moveStrategy) {
-        if (moveStrategy.isPossibleToMove()) {
+        if (moveStrategy.isMovable()) {
             this.location++;
         }
     }
