@@ -53,13 +53,13 @@ public class Cars {
 		checkDuplicatedName(carNames);
 	}
 
-	private static void checkNameIsOne(List<String> nameList) {
+	private void checkNameIsOne(List<String> nameList) {
 		if (nameList.size() <= MINIMUM_NAME_LIST_SIZE) {
 			throw new IllegalArgumentException(CAR_NUMBER_IS_ONE_WARNING_MSG);
 		}
 	}
 
-	private static void checkDuplicatedName(List<String> nameList) {
+	private void checkDuplicatedName(List<String> nameList) {
 		Set<String> nameSet = new HashSet<>(nameList);
 		if (nameSet.size() != nameList.size()) {
 			throw new IllegalArgumentException(NAME_DUPLICATION_WARNING_MSG);
