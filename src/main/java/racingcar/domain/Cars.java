@@ -41,7 +41,7 @@ public class Cars {
                     .orElse(INITIAL_DISTANCE);
 
         List<Car> farthestCars = cars.stream()
-                    .filter(car -> car.isSameDistance(maxDistance))
+                    .filter(car -> car.isSameWith(maxDistance))
                     .collect(Collectors.toUnmodifiableList());
 
         return farthestCars;

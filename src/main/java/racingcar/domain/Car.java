@@ -27,7 +27,7 @@ public class Car {
         }
     }
 
-    public boolean isSameDistance(int distance) {
+    public boolean isSameWith(int distance) {
         return this.distance == distance;
     }
 
