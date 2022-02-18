@@ -7,6 +7,7 @@ public class Round {
     private static final String ERROR_INVALID_RANGE_MESSAGE = "정상 범위(" + 1 + "이상)가 아닙니다";
     private static final int ROUND_END_NUMBER = 0;
     private static final int DECREASED_NUMBER = 1;
+    
     private final int roundNum;
 
     private Round(int roundNum) {
