@@ -52,8 +52,8 @@
    - Cars
       - car name 중복 검사
       - winner 판별 로직
-   - Random
-      - random값 생성 처리를 어떻게 할 것인가?
+   - MoveCondition
+     - Car이 이동가능한지 판별하는 인터페이스
 - utils
    - ErrorCode
      - 에러코드 상수
