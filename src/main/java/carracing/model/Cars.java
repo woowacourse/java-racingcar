@@ -1,6 +1,6 @@
 package carracing.model;
 
-import static carracing.view.messages.ExceptionMessage.*;
+import static carracing.model.CarExceptionMessage.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,7 +62,7 @@ public class Cars {
 			.count() != cars.size();
 
 		if (isDuplicated) {
-			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
+			throw new IllegalArgumentException(NAME_DUPLICATE_EXCEPTION.getMessage());
 		}
 	}
 }

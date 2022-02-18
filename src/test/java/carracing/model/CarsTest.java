@@ -1,6 +1,6 @@
 package carracing.model;
 
-import static carracing.view.messages.ExceptionMessage.*;
+import static carracing.model.CarExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
@@ -40,7 +40,7 @@ public class CarsTest {
 				Car.nameOf("east")
 			));
 		}).isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
+			.hasMessageContaining(NAME_DUPLICATE_EXCEPTION.getMessage());
 	}
 
 	@Test

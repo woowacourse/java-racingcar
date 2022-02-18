@@ -1,6 +1,6 @@
 package carracing.model;
 
-import static carracing.view.messages.ExceptionMessage.*;
+import static carracing.model.CarExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +20,7 @@ public class CarTest {
 		assertThatThrownBy(() -> {
 			Car.nameOf("pobbiii");
 		}).isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining(CAR_NAME_LENGTH_EXCEPTION.getMessage());
+			.hasMessageContaining(NAME_LENGTH_EXCEPTION.getMessage());
 	}
 
 	@Test
@@ -29,7 +29,7 @@ public class CarTest {
 		assertThatThrownBy(() -> {
 			Car.nameOf("");
 		}).isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining(CAR_NAME_LENGTH_EXCEPTION.getMessage());
+			.hasMessageContaining(NAME_LENGTH_EXCEPTION.getMessage());
 	}
 
 	@Test
@@ -38,7 +38,7 @@ public class CarTest {
 		assertThatThrownBy(() -> {
 			Car.nameOf(" east");
 		}).isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining(CAR_NAME_BLANK_EXCEPTION.getMessage());
+			.hasMessageContaining(NAME_BLANK_EXCEPTION.getMessage());
 	}
 
 	@ParameterizedTest

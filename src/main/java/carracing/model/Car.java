@@ -1,6 +1,6 @@
 package carracing.model;
 
-import static carracing.view.messages.ExceptionMessage.*;
+import static carracing.model.CarExceptionMessage.*;
 
 import carracing.utils.NumberGenerator;
 
@@ -53,13 +53,13 @@ public class Car {
 
 	private void validateLength(String name) {
 		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
+			throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION.getMessage());
 		}
 	}
 
 	private void validateBlank(String name) {
 		if (name.contains(BLANK_IN_NAME)) {
-			throw new IllegalArgumentException(CAR_NAME_BLANK_EXCEPTION.getMessage());
+			throw new IllegalArgumentException(NAME_BLANK_EXCEPTION.getMessage());
 		}
 	}
 }
