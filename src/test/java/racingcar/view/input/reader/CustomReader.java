@@ -1,5 +1,6 @@
 package racingcar.view.input.reader;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class CustomReader implements Reader {
     }
 
     public void initText(final String value) {
-        this.values = List.of(value).iterator();
+        this.values = Arrays.asList(value).iterator();
     }
 
     @Override

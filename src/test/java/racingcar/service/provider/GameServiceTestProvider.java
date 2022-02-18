@@ -1,6 +1,6 @@
 package racingcar.service.provider;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.provider.Arguments;
@@ -10,15 +10,15 @@ public class GameServiceTestProvider {
     public static Stream<Arguments> provideForPlayRoundTest() {
         return Stream.of(
                 Arguments.of(
-                        List.of(true, true, false, false),
-                        1, List.of(1, 1, 0, 0)
+                        Arrays.asList(true, true, false, false),
+                        1, Arrays.asList(1, 1, 0, 0)
                 ),
                 Arguments.of(
-                        List.of(
+                        Arrays.asList(
                                 false, true, true, false,
                                 false, true, false, true
                         ),
-                        2, List.of(0, 2, 1, 1)
+                        2, Arrays.asList(0, 2, 1, 1)
                 )
         );
     }
@@ -26,16 +26,16 @@ public class GameServiceTestProvider {
     public static Stream<Arguments> provideForGetWinnerNamesTest() {
         return Stream.of(
                 Arguments.of(
-                        List.of(true, true, false, false),
-                        1, List.of("hello", "poby")
+                        Arrays.asList(true, true, false, false),
+                        1, Arrays.asList("hello", "poby")
 
                 ),
                 Arguments.of(
-                        List.of(
+                        Arrays.asList(
                                 false, true, true, false,
                                 false, true, false, true
                         ),
-                        2, List.of("poby")
+                        2, Arrays.asList("poby")
                 )
         );
     }

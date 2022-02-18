@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -16,7 +17,7 @@ public class Separator {
         final String unitsForSeparate = extractCustomUnits(text) + STANDARD_UNITS;
         final String regexForSeparate = String.format(SEPARATOR_FORMAT, unitsForSeparate);
         final String targetString = extractString(text);
-        return List.of(targetString.split(regexForSeparate));
+        return Arrays.asList(targetString.split(regexForSeparate));
     }
 
     private String extractCustomUnits(final String text) {
