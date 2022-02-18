@@ -62,7 +62,9 @@ class GameControllerTest {
     @DisplayName("게임 라운드 실행, 자동차 이동거리 확인 테스트")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForGetCarStatusesTest")
-    void getCarStatusesTest(final List<String> readerDatas, final List<Boolean> moveConditions, final List<Integer> expected) {
+    void getCarStatusesTest(final List<String> readerDatas,
+                            final List<Boolean> moveConditions,
+                            final List<Integer> expected) {
         this.initGame(readerDatas);
         customMoveStrategy.initMoveConditions(moveConditions);
         gameController.playGame();
@@ -74,6 +76,18 @@ class GameControllerTest {
         assertThat(carLocations).isEqualTo(expected);
     }
 
+    @DisplayName("게임 라운드 실행, 우승자 확인 테스트")
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideForGetWinnerNamesTest")
+    void getWinnerNamesTest(final List<String> readerDatas,
+                            final List<Boolean> moveConditions,
+                            final List<String> expected) {
+        this.initGame(readerDatas);
+        customMoveStrategy.initMoveConditions(moveConditions);
+        gameController.playGame();
 
+        final List<String> winnerNames = gameService.getWinnerNames();
+        assertThat(winnerNames).isEqualTo(expected);
+    }
 
 }

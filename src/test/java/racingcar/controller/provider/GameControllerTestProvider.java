@@ -33,4 +33,19 @@ public class GameControllerTestProvider {
         );
     }
 
+    public static Stream<Arguments> provideForGetWinnerNamesTest() {
+        return Stream.of(
+                Arguments.of(
+                        Arrays.asList("hello, poby, ifif, hanul", "1"),
+                        Arrays.asList(true, true, false, false),
+                        Arrays.asList("hello", "poby")),
+                Arguments.of(
+                        Arrays.asList("hanul, poby, ifif", "2"),
+                        Arrays.asList(
+                                true, true, false,
+                                false, true, false),
+                        Arrays.asList("poby"))
+        );
+    }
+
 }
