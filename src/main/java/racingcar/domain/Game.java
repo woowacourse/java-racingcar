@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import racingcar.utils.Constant;
-import racingcar.view.ResultView;
 
 public class Game {
 
@@ -15,16 +14,13 @@ public class Game {
 
     private static final Pattern TRY_NO_PATTERN = Pattern.compile(TRY_NO_PATTERN_REGEX);
 
-    //private static final RandomMoveCondition randomMoveCondition = new RandomMoveCondition();
-
+    private final Cars cars;
     private int tryNo;
-    private Cars cars;
 
     public Game(String carNames, String tryNo) {
         this.cars = generateCars(carNames);
         this.tryNo = checkTryNo(tryNo);
     }
-
 
     public boolean isEnd() {
         return tryNo == 0;
@@ -44,13 +40,15 @@ public class Game {
     }
 
     private Cars generateCars(String names) {
-        List<Car> cars = new ArrayList<>();
+
+        List<Car> carItems = new ArrayList<>();
 
         for (String name : splitByComma(names)) {
-            cars.add(new Car(name));
+            carItems.add(new Car(name));
         }
 
-        return new Cars(cars);
+        return new Cars(carItems);
+
     }
 
     private String[] splitByComma(String input) {
@@ -58,24 +56,32 @@ public class Game {
     }
 
     private int checkTryNo(String input) {
+
         isNumeric(input);
+
         int tryNo = Integer.parseInt(input);
         isNaturalNumber(tryNo);
+
         return tryNo;
 
     }
 
     private void isNumeric(String input) {
+
         Matcher matcher = TRY_NO_PATTERN.matcher(input);
+
         if (!matcher.find()) {
             throw new IllegalArgumentException(Constant.NOT_NUMERIC_ERROR);
         }
+
     }
 
     private void isNaturalNumber(int input) {
+
         if (input < MINIMUM_NATURAL_NUMBER) {
             throw new IllegalArgumentException(Constant.MINIMUM_NATURAL_NUMBER_ERROR);
         }
+
     }
 
 }
