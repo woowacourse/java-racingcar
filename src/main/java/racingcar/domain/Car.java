@@ -10,26 +10,30 @@ public class Car implements Comparable<Car> {
 	private final String name;
 	private int position;
 
-	private Car(String name) {
-		this.name = name;
-		this.position = INITIAL_POSITION;
-	}
-
 	private Car(String name, int position) {
 		this.name = name;
 		this.position = position;
 	}
 
-	public static Car from(String name) {
+	public static Car of(String name) {
 		CarValidator.checkNameLength(name);
 
-		return new Car(name);
+		return new Car(name, INITIAL_POSITION);
 	}
 
 	public static Car of(String name, int position) {
 		CarValidator.checkNameLength(name);
+		CarValidator.checkPositionRange(position);
 
 		return new Car(name, position);
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public Car copy() {
@@ -40,10 +44,6 @@ public class Car implements Comparable<Car> {
 		if (movingValue >= STANDARD_OF_MOVING) {
 			this.position++;
 		}
-	}
-
-	public CarDto toDto() {
-		return CarDto.of(this.name, this.position);
 	}
 
 	public boolean isSamePosition(Car other) {

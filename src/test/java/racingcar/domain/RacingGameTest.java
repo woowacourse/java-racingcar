@@ -12,13 +12,13 @@ public class RacingGameTest {
 	@Test
 	@DisplayName("자동차 경주 게임 시작")
 	public void startTest() {
-		List<Car> cars = List.of(Car.from("lala"), Car.from("pobi"));
+		List<Car> cars = List.of(Car.of("lala"), Car.of("pobi"));
 		AttemptNumber attemptNumber = AttemptNumber.of("2");
 		RacingGame game = RacingGame.of(cars, attemptNumber);
 		List<Car> racingCars = game.start(bound -> 5);
 
 		racingCars.stream()
-			.map(Car::toDto)
+			.map(CarDto::of)
 			.collect(Collectors.toList())
 			.forEach(car -> {
 				Assertions.assertThat(car.getPosition()).isEqualTo(attemptNumber.value());

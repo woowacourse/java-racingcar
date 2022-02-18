@@ -22,7 +22,7 @@ public class InputView {
 		InputValidator.checkCarNames(input);
 
 		return Arrays.stream(input.split(SEPARATOR_OF_CAR_NAME))
-			.map(CarDto::from)
+			.map(CarDto::of)
 			.collect(Collectors.toList());
 	}
 

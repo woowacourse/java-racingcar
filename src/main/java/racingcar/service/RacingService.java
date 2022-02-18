@@ -33,13 +33,13 @@ public class RacingService {
 
 	public List<CarDto> findRacingResult(Round round) {
 		return racingGame.findResultCars(round).stream()
-			.map(Car::toDto)
+			.map(CarDto::of)
 			.collect(Collectors.toList());
 	}
 
 	public List<CarDto> findWinnerCars() {
 		return carRepository.findWinnerCars().stream()
-			.map(Car::toDto)
+			.map(CarDto::of)
 			.collect(Collectors.toList());
 	}
 }

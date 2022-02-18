@@ -11,7 +11,7 @@ public class CarTest {
 	@Test
 	@DisplayName("자동차 전진")
 	public void goTest() {
-		Car car = Car.from("pobi");
+		Car car = Car.of("pobi");
 		car.move(4);
 
 		assertThat(car.isSamePosition(1)).isTrue();
@@ -20,7 +20,7 @@ public class CarTest {
 	@Test
 	@DisplayName("자동차 정지")
 	public void stopTest() {
-		Car car = Car.from("pobi");
+		Car car = Car.of("pobi");
 		car.move(2);
 
 		assertThat(car.isSamePosition(0)).isTrue();
@@ -29,14 +29,14 @@ public class CarTest {
 	@Test
 	@DisplayName("자동차 이름길이 정상")
 	public void correctLengthOfNameTest() {
-		Car.from("lala");
+		Car.of("lala");
 	}
 
 	@Test
 	@DisplayName("자동차 이름 길이 초과 예외")
 	public void overLengthOfNameTest() {
 		Assertions.assertThatThrownBy(() -> {
-				Car.from("lalaland");
+				Car.of("lalaland");
 			}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("자동차의 이름은 1~5글자여야 합니다.");
 	}
@@ -45,7 +45,7 @@ public class CarTest {
 	@DisplayName("자동차 이름 길이 빈문자열 예외")
 	public void emptyNameTest() {
 		Assertions.assertThatThrownBy(() -> {
-				Car.from("");
+				Car.of("");
 			}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("자동차의 이름은 1~5글자여야 합니다.");
 	}
