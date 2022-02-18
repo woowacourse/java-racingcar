@@ -24,7 +24,7 @@ public class RacingGame {
     public Map<Integer, List<Car>> race() {
         Map<Integer, List<Car>> raceResults = new LinkedHashMap<>();
         for (int i = 0; i < round; i++) {
-            cars.forEach(this::randomDrawAndProceed);
+            cars.forEach(this::proceedOrStopCar);
             raceResults.put(i, deepCopyCars());
         }
         return raceResults;
@@ -39,14 +39,18 @@ public class RacingGame {
 
     private List<Car> deepCopyCars() {
         List<Car> copiedCars = new ArrayList<>();
-        cars.forEach(car -> copiedCars.add(new Car(car.getName(), car.getPosition())));
+        cars.forEach(car -> copiedCars.add(car.deepCopy()));
         return copiedCars;
     }
 
-    private void randomDrawAndProceed(Car car) {
-        if (RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER) > PROCEED_FlAG_NUMBER) {
+    private void proceedOrStopCar(Car car) {
+        if (carProceedCondition()) {
             car.proceed();
         }
+    }
+
+    private boolean carProceedCondition() {
+        return RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER) > PROCEED_FlAG_NUMBER;
     }
 
     private int findMaxPosition() {

@@ -6,7 +6,7 @@ public class Car {
 
     private static final int INIT_POSITION = 0;
     private static final String CAR_NAME_ERROR_MESSAGE = "자동차 이름이 null이거나 빈 문자열, 혹은 공백으로만 이루어져 있습니다.";
-    public static final String POSITION_ERROR_MESSAGE = "자동차의 위치는 최소 0 이상이어야 합니다.";
+    private static final String POSITION_ERROR_MESSAGE = "자동차의 위치는 최소 0 이상이어야 합니다.";
     private final String name;
     private int position;
 
@@ -16,7 +16,7 @@ public class Car {
         this.position = INIT_POSITION;
     }
 
-    public Car(String name, int position) {
+    private Car(String name, int position) {
         carNameCheck(name);
         positionCheck(position);
         this.name = name;
@@ -29,6 +29,10 @@ public class Car {
 
     public boolean isHere(int position) {
         return this.position == position;
+    }
+
+    public Car deepCopy() {
+        return new Car(this.getName(), this.getPosition());
     }
 
     private void positionCheck(int position) {
