@@ -8,7 +8,7 @@ public class ScoreConverterTest {
     @Test
     void ofCar() {
         String name = "범고래";
-        Car car = new Car(name);
+        CarDto car = new CarDto(name);
 
         Score score = ScoreConverter.of(car);
         assertThat(score.getName()).isEqualTo(car.getName());

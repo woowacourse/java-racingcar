@@ -45,16 +45,6 @@ public class CarServiceTest {
     }
 
     @Test
-    @DisplayName("자동차 갯수 만큼 Random리스트를 생성한다.")
-    void createRandomNumbers() {
-        List<String> input = Arrays.asList("범고래", "소주캉");
-        carService.createCars(input);
-
-        List<Integer> randomNumbers = carService.createRandomNumbers();
-        assertThat(randomNumbers.size()).isEqualTo(input.size());
-    }
-
-    @Test
     @DisplayName("자동차 리스트와 라운드를 입력받아 저장한다..")
     void convertToCars() {
         CarService carService = new CarService();

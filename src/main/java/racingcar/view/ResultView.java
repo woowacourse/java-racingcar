@@ -1,6 +1,8 @@
 package racingcar.view;
 
 import racingcar.model.CarDto;
+import racingcar.model.Score;
+import racingcar.model.ScoreBoard;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +14,11 @@ public class ResultView {
 	private static final String SUFFIX_PRINT_RESULT_CAR_NAME = " : ";
 	private static final String CAR_POSITION_STATUS_EXPRESSION = "-";
 
-	public static void printGameResult(List<CarDto> cars) {
-		for (CarDto car: cars) {
-			System.out.println(car.getName() + SUFFIX_PRINT_RESULT_CAR_NAME + CAR_POSITION_STATUS_EXPRESSION.repeat(car.getPosition()));
+	public static void printGameResult(List<ScoreBoard> scoreBoards) {
+		for (ScoreBoard scoreBoard: scoreBoards) {
+			List<Score> scores = scoreBoard.getScores();
+			scores.forEach(score -> System.out.println(score.getName() + SUFFIX_PRINT_RESULT_CAR_NAME + CAR_POSITION_STATUS_EXPRESSION.repeat(score.getScore())));
+			printEmptyLine();
 		}
 		printEmptyLine();
 	}

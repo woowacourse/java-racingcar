@@ -2,7 +2,6 @@ package racingcar.service;
 
 import racingcar.model.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,15 +25,7 @@ public class CarService {
     }
 
     public void createCars(List<String> names) {
-        names.forEach(i -> carRepository.save(new Car(i)));
-    }
-
-    public List<Integer> createRandomNumbers() {
-        List<Integer> randomNumbers = new ArrayList<>();
-        for (int i = 0; i < carRepository.getSize(); i++) {
-            randomNumbers.add(RandomNumber.getNumber());
-        }
-        return randomNumbers;
+        names.forEach(name -> carRepository.save(new Car(name)));
     }
 
     public void addScoreBoard(int round, List<CarDto> cars) {
@@ -46,5 +37,9 @@ public class CarService {
             carRepository.move(RandomNumber.getNumbers(carRepository.getSize()));
             addScoreBoard(i, carRepository.getCarDtos());
         }
+    }
+
+    public List<ScoreBoard> findScoreBoard() {
+        return gameScoreBoard.getScoreBoards();
     }
 }
