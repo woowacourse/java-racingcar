@@ -19,8 +19,8 @@ public class RacingCarController {
         return InputView.getRound();
     }
 
-    public void printRoundResult(Map<Integer, List<CarDto>> raceResult) {
-        OutputView.printRoundResult(raceResult);
+    public void printRaceResults(Map<Integer, List<CarDto>> raceResult) {
+        OutputView.printRaceResults(raceResult);
     }
 
     public void printWinners(List<String> winnerNames) {
@@ -36,5 +36,9 @@ public class RacingCarController {
                 .stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
+    }
+
+    public Map<Integer, List<CarDto>> getRaceResults(RacingGame racingGame) {
+        return racingGame.race();
     }
 }

@@ -1,7 +1,9 @@
 package racingcar;
 
 import java.util.List;
+import java.util.Map;
 import racingcar.controller.RacingCarController;
+import racingcar.domain.CarDto;
 import racingcar.domain.RacingGame;
 
 public class RacingCarMain {
@@ -11,7 +13,8 @@ public class RacingCarMain {
         List<String> carNames = controller.getCarNames();
         Integer round = controller.getRound();
         RacingGame racingGame = controller.initRacing(carNames, round);
-        controller.printRoundResult(racingGame.race());
+        Map<Integer, List<CarDto>> raceResults = controller.getRaceResults(racingGame);
+        controller.printRaceResults(raceResults);
         List<String> winnerNames = controller.getWinnerNames(racingGame);
         controller.printWinners(winnerNames);
     }

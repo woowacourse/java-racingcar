@@ -11,7 +11,7 @@ public class OutputView {
     private static final String CAR_POSITION_BAR = "-";
     private static final String WINNER_NAME_DELIMITER = ", ";
 
-    public static void printRoundResult(Map<Integer, List<CarDto>> raceResult) {
+    public static void printRaceResults(Map<Integer, List<CarDto>> raceResult) {
         System.out.println(ROUND_RESULT);
         for (Integer round : raceResult.keySet()) {
             raceResult.get(round).forEach(OutputView::printCarPositionInfo);
