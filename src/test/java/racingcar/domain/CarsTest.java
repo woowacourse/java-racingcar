@@ -24,7 +24,7 @@ class CarsTest {
 		@ParameterizedTest
 		@ValueSource(strings = {"panda,philz,jav#a", "aaa, bb@bb, cc"})
 		@DisplayName("허용되지 않는 문자를 입력했을 때 예외 발생")
-		public void input_all_car_name_exception(String carNames) {
+		public void input_all_car_name_exception(final String carNames) {
 			assertThatThrownBy(
 				() -> new Cars(carNames))
 				.isInstanceOf(RuntimeException.class)
@@ -34,7 +34,7 @@ class CarsTest {
 		@ParameterizedTest
 		@ValueSource(strings = {"aa,aa,bb", " a, bb, c, a"})
 		@DisplayName("이름에 중복이 들어가면 예외가 발생한다")
-		public void not_duplicate_names(String carNames) {
+		public void not_duplicate_names(final String carNames) {
 			assertThatExceptionOfType(RuntimeException.class).isThrownBy(
 					() -> new Cars(carNames))
 				.withMessage(INVALID_DUPLICATE_CAR_NAMES);
@@ -43,7 +43,7 @@ class CarsTest {
 		@ParameterizedTest
 		@ValueSource(strings = {"panda,philz,java", " panda, philz  , java"})
 		@DisplayName("정상 값을 입력했을 때 예외가 발생하지 않는다")
-		public void input_all_car_name(String carNames) {
+		public void input_all_car_name(final String carNames) {
 			Assertions.assertDoesNotThrow(
 				() -> new Cars(carNames)
 			);

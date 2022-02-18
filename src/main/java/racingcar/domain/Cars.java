@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import racingcar.domain.strategy.RandomMovingStrategy;
+import racingcar.domain.strategy.FixedMovingStrategy;
+import racingcar.domain.strategy.MovingStrategy;
 
 public class Cars {
 
@@ -16,6 +17,7 @@ public class Cars {
 	public static final String INVALID_DUPLICATE_CAR_NAMES = "[ERROR] 차 이름이 중복됩니다";
 	private static final String INVALID_EMPTY_CAR_NAMES = "[ERROR] 차 이름은 공백이 될 수 없습니다";
 
+	private MovingStrategy randomMovingStrategy;
 	private final List<Car> cars;
 
 	public Cars(final List<Car> cars) {
@@ -23,39 +25,45 @@ public class Cars {
 	}
 
 	public Cars(final String carNames) {
-		final String[] parseCarNames = splitCarNames(carNames);
+		this(carNames, new FixedMovingStrategy());
+	}
+
+	public Cars(final String carNames, final MovingStrategy randomMovingStrategy) {
+		final List<String> parsedCarNames = List.of(splitCarNames(carNames));
+		this.randomMovingStrategy = randomMovingStrategy;
 		cars  = new ArrayList<>();
 
-		for (final String carName : parseCarNames) {
+		validateCarNamesEmpty(parsedCarNames);
+		validateDuplication(parsedCarNames);
+
+		for (final String carName : parsedCarNames) {
 			final Car car = Car.builder()
 				.name(carName)
-				.movingStrategy(new RandomMovingStrategy())
+				.movingStrategy(randomMovingStrategy)
 				.build();
 
 			cars.add(car);
 		}
-		validateCarNamesEmpty(parseCarNames);
-		validateDuplication(cars);
 	}
 
 	public List<Car> getCars() {
 		return Collections.unmodifiableList(cars);
 	}
 
-	private void validateCarNamesEmpty(final String[] carNames) {
-		if (carNames.length == 0) {
+	private void validateCarNamesEmpty(final List<String> carNames) {
+		if (carNames.size() == 0) {
 			throw new RuntimeException(INVALID_EMPTY_CAR_NAMES);
 		}
 	}
 
-	private void validateDuplication(List<Car> cars) {
-		if (isDuplicated(cars)) {
+	private void validateDuplication(List<String> carNames) {
+		if (isDuplicated(carNames)) {
 			throw new RuntimeException(INVALID_DUPLICATE_CAR_NAMES);
 		}
 	}
 
-	private boolean isDuplicated(final List<Car> cars) {
-		return cars.size() != new HashSet<>(cars).size();
+	private boolean isDuplicated(final List<String> carNames) {
+		return carNames.size() != new HashSet<>(carNames).size();
 	}
 
 	private String[] splitCarNames(String input) {

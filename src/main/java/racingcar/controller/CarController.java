@@ -4,6 +4,7 @@ import java.util.List;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.strategy.RandomMovingStrategy;
 import racingcar.domain.vo.TryRoundNumber;
 import racingcar.repository.CarRepository;
 import racingcar.util.Voider;
@@ -14,12 +15,15 @@ public class CarController {
 
 	private final CarRepository carRepository;
 	private final InputView inputView;
+	private final RandomMovingStrategy randomMovingStrategy;
 
 	private int roundNumber;
 
-	public CarController(CarRepository carRepository, InputView inputView) {
+	public CarController(CarRepository carRepository, InputView inputView,
+		RandomMovingStrategy randomMovingStrategy) {
 		this.carRepository = carRepository;
 		this.inputView = inputView;
+		this.randomMovingStrategy = randomMovingStrategy;
 	}
 
 	public void initGame() {
@@ -30,7 +34,7 @@ public class CarController {
 	private void initCars() {
 		Voider voider = () -> {
 			String carNames = inputView.inputCarNames();
-			Cars cars = new Cars(carNames);
+			Cars cars = new Cars(carNames, randomMovingStrategy);
 			List<Car> carList = cars.getCars();
 			carRepository.addCars(carList);
 		};
