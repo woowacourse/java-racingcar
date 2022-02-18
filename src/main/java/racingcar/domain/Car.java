@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import racingcar.utils.Constant;
 import racingcar.utils.ErrorMassage;
 
 public class Car {
