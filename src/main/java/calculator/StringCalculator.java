@@ -9,6 +9,7 @@ public class StringCalculator {
     private static final String NUMBER_FORMAT_EXCEPTION = "숫자가 아닌 문자는 허용되지 않습니다.";
     private static final String NEGATIVE_NUMBER_EXCEPTION = "숫자가 아닌 문자는 허용되지 않습니다.";
     private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+    private static final String DELIMITER_APPENDER = "|";
     private static final int CUSTOM_DELIMITER_GROUP = 1;
     private static final int INPUT_STRING_GROUP = 2;
     private static final StringBuilder delimiters = new StringBuilder(",|:");
@@ -46,7 +47,7 @@ public class StringCalculator {
 
     private static String findCustomDelimiter(Matcher m) {
         String customDelimiter = m.group(CUSTOM_DELIMITER_GROUP);
-        delimiters.append("|").append(customDelimiter);
+        delimiters.append(DELIMITER_APPENDER).append(customDelimiter);
         return m.group(INPUT_STRING_GROUP);
     }
 
