@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarsTest {
-    private final Cars cars = new Cars(new String[]{});
+    private final Cars cars = new Cars();
 
     @DisplayName("우승자 확인 테스트")
     @Test

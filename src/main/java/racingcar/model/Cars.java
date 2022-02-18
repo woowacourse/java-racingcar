@@ -7,22 +7,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int DEFAULT_POSITION = 0;
 
     private List<Car> cars;
 
-    public Cars(final String[] carNames) {
+    public Cars() {
         this.cars = new ArrayList<>();
-        insertCarFromCarNames(carNames);
     }
 
-    private void insertCarFromCarNames(final String[] carNames) {
-        for (String carName : carNames) {
-            insertCar(new Car(carName, DEFAULT_POSITION));
-        }
-    }
-
-    private void insertCar(final Car car) {
+    public void insertCar(final Car car) {
         cars.add(car);
     }
 

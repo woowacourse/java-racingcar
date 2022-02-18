@@ -19,7 +19,7 @@ public class Application {
             String[] carNames = inputController.getUserCarNames(InputView.scanCarNames());
             int tryCount = inputController.getUserTryCount(InputView.scanTryCount());
 
-            RacingGame racingGame = new RacingGame(raceController.initCars(carNames), tryCount);
+            RacingGame racingGame = new RacingGame(raceController.insertCarFromCarNames(carNames), tryCount);
             raceController.race(racingGame);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
