@@ -17,11 +17,9 @@ public class RacingController {
         racingService.generateCars(carNames);
     }
 
-    public void race(final int round) {
-        for (int i = 0; i < round; i++) {
-            List<Car> progressRoundCars = racingService.raceRound();
-            RacingCarOutput.printRoundResult(progressRoundCars);
-        }
+
+    public List<Car> race() {
+        return racingService.raceRound();
     }
 
     public void checkWinners() {

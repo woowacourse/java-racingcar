@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.controller.RacingController;
+import racingcar.domain.Car;
 import racingcar.ui.RacingCarInput;
 import racingcar.ui.RacingCarOutput;
 import racingcar.utils.CarsGenerator;
@@ -14,8 +15,15 @@ public class RacingCarMain {
         racingController.generateRacingCars(carNameInput());
         int round = roundInput();
         RacingCarOutput.printRoundResultMessage();
-        racingController.race(round);
+        race(racingController, round);
         racingController.checkWinners();
+    }
+
+    private static void race(RacingController racingController, int round) {
+        for (int i = 0; i < round; i++) {
+            List<Car> progressRoundCars = racingController.race();
+            RacingCarOutput.printRoundResult(progressRoundCars);
+        }
     }
 
     public static List<String> carNameInput() {
