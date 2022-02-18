@@ -1,11 +1,9 @@
-package racingcargame.utils;
+package racingcargame.view;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-
-import racingcargame.view.NameInputValidator;
 
 public class NameInputValidatorTest {
 
