@@ -7,8 +7,8 @@ public class Input {
 
     private static final String COMMA_REGEX = ",";
 
-    private Scanner scanner;
-    private InputValidator inputValidator;
+    final private Scanner scanner;
+    final private InputValidator inputValidator;
 
     public Input() {
         scanner = new Scanner(System.in);

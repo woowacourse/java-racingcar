@@ -9,9 +9,9 @@ import racingcar.view.Output;
 
 public class MainController {
 
-    private Input input;
-    private Output output;
-    private RandomNumberGenerator randomNumberGenerator;
+    final private Input input;
+    final private Output output;
+    final private RandomNumberGenerator randomNumberGenerator;
 
     public MainController() {
         input = new Input();
@@ -50,8 +50,7 @@ public class MainController {
     }
 
     private void moveCar(List<Car> cars) {
-        cars.stream()
-            .forEach(car -> car.movePosition(randomNumberGenerator.generateRandomNumber()));
+        cars.forEach(car -> car.movePosition(randomNumberGenerator.generateRandomNumber()));
     }
 
     private List<String> getWinner(List<Car> cars) {
@@ -69,7 +68,7 @@ public class MainController {
     private List<String> findWinnerByPosition(int position, List<Car> cars) {
         return cars.stream()
             .filter(car -> car.isSamePosition(position))
-            .map(car -> car.getName())
+            .map(Car::getName)
             .collect(Collectors.toList());
     }
 }

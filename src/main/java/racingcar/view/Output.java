@@ -34,8 +34,7 @@ public class Output {
     }
 
     private String makePositionString(int position) {
-        String positionFlag = POSITION_FLAG;
-        return positionFlag.repeat(position);
+        return POSITION_FLAG.repeat(position);
     }
 
     public void printWinner(List<String> winnerNames) {

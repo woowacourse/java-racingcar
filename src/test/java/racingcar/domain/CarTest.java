@@ -30,9 +30,7 @@ public class CarTest {
     public void createCar_not_allow_length() {
         String name = "bunnies";
 
-        assertThatThrownBy(() -> {
-            new Car(name);
-        })
+        assertThatThrownBy(() -> new Car(name))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자동차 이름은 5자 이하만 가능합니다.");
     }
@@ -42,9 +40,7 @@ public class CarTest {
     public void createCar_not_allow_minimum_length() {
         String name = "";
 
-        assertThatThrownBy(() -> {
-            new Car(name);
-        })
+        assertThatThrownBy(() -> new Car(name))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자동차 이름은 1자 이상만 가능합니다.");
     }
@@ -54,9 +50,7 @@ public class CarTest {
     public void createCar_not_allow_space() {
         String name = "b nny";
 
-        assertThatThrownBy(() -> {
-            new Car(name);
-        })
+        assertThatThrownBy(() -> new Car(name))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("자동차 이름에 공백 입력은 불가능합니다.");
     }
