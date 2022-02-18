@@ -2,17 +2,18 @@ package racingcar.controller;
 
 import racingcar.model.CarList;
 import racingcar.model.RandomNumberList;
-import racingcar.view.InputView;
+import racingcar.view.InputProcessView;
 import racingcar.view.OutputView;
+import racingcar.view.UserInputView;
 
 public class GameController {
 
 	public void runRace() {
 		try {
 			OutputView.askCarName();
-			CarList carList = new CarList(InputView.getCarNameInput());
+			CarList carList = new CarList(InputProcessView.getCarNameInput(new UserInputView().getUserInput()));
 			OutputView.askTurn();
-			playGame(InputView.getTurnInput(), carList);
+			playGame(InputProcessView.getTurnInput(new UserInputView().getUserInput()), carList);
 		} catch (IllegalArgumentException error) {
 			OutputView.displayError(error.getMessage());
 		}
