@@ -1,7 +1,7 @@
 package racingcar.domain.car;
 
 import racingcar.dto.CarDto;
-import racingcar.service.Movement;
+import racingcar.domain.movement.Movement;
 
 import java.util.HashSet;
 import java.util.List;

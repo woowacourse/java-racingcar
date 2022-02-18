@@ -1,8 +1,8 @@
 package racingcar;
 
 import racingcar.controller.RacingController;
-import racingcar.service.RandomNumberGenerator;
-import racingcar.service.RandomNumberOverThanFour;
+import racingcar.domain.movement.RandomNumberGenerator;
+import racingcar.domain.movement.RandomNumberOverThanFour;
 import racingcar.view.input.ConsoleInputView;
 import racingcar.view.output.ConsoleOutputView;
 

@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.car.Cars;
 import racingcar.domain.trialcount.TrialCount;
-import racingcar.service.Movement;
+import racingcar.domain.movement.Movement;
 import racingcar.view.input.InputView;
 import racingcar.view.output.OutputView;
 

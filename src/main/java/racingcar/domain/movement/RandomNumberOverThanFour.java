@@ -1,4 +1,4 @@
-package racingcar.service;
+package racingcar.domain.movement;
 
 public class RandomNumberOverThanFour implements Movement {
     private static final int NUMBER_POSSIBLE_TO_MOVE = 4;

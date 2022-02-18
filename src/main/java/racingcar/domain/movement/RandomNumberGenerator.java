@@ -1,4 +1,4 @@
-package racingcar.service;
+package racingcar.domain.movement;
 
 import java.util.Random;
 
