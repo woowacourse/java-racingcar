@@ -37,9 +37,9 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car("
-                + "name = " + name
-                + ", position = " + position
-                + ")";
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
     }
 }

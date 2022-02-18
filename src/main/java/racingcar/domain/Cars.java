@@ -65,10 +65,8 @@ public class Cars {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car + "\n");
-        }
-        return stringBuilder.toString();
+        return "Cars{" +
+                "cars=" + cars +
+                '}';
     }
 }
