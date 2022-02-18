@@ -9,7 +9,7 @@ public class CarDTO {
         this.position = position;
     }
 
-    public String getCarName() {
+    public String getName() {
         return name;
     }
 

@@ -21,7 +21,7 @@ public class OutputView {
     private static void printExecutionResult(List<CarDTO> cars) {
         for (CarDTO car : cars) {
             String positionSign = SIGN_OF_POSITION.repeat(car.getPosition());
-            System.out.println(car.getCarName() + " : " + positionSign);
+            System.out.println(car.getName() + " : " + positionSign);
         }
         System.out.println();
     }
