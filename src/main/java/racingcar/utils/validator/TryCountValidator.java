@@ -6,14 +6,16 @@ public class TryCountValidator {
     private static final String POSITIVE_ERROR_MESSAGE = "[ERROR] 시도 횟수는 양수만 가능합니다.";
     private static final int ZERO = 0;
 
-    private TryCountValidator() {}
+    private TryCountValidator() {
+    }
 
-    public static void validateTryCount(final String inputValue) {
+    public static int validateTryCount(final String inputValue) {
         try {
             validatePositive(Integer.parseInt(inputValue));
         } catch (NumberFormatException e) {
             throw new NumberFormatException(DIGIT_ERROR_MESSAGE);
         }
+        return Integer.parseInt(inputValue);
     }
 
     private static void validatePositive(final int inputValue) {

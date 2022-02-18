@@ -1,11 +1,11 @@
 package racingcar.validator;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
 import racingcar.model.Car;
-import racingcar.utils.validator.CarNamesValidator;
+import racingcar.model.Cars;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarNamesValidatorTest {
@@ -13,7 +13,7 @@ public class CarNamesValidatorTest {
     @Test
     void 자동차_이름_중복() {
         String[] carNames = {"aa", "bb", "aa"};
-        assertThatThrownBy(() -> CarNamesValidator.validateDuplicate(carNames))
+        assertThatThrownBy(() -> new Cars(carNames))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] 자동차 이름은 중복될 수 없습니다.");
     }
