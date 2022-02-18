@@ -8,9 +8,9 @@ import racingcar.view.OutputView;
 public class RaceController {
     private static final int DEFAULT_POSITION = 0;
 
-    public void race(RacingGame racingGame) {
+    public void race(final RacingGame racingGame) {
         OutputView.printResultPrefix();
-        for (int i = 0; i < racingGame.getTryCount(); i++) {
+        while (!racingGame.isEnd()) {
             racingGame.raceRound();
             OutputView.printPosition(racingGame.getCars());
         }

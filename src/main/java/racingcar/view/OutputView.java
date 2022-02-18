@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void printPosition(final Cars cars) {
-        for (Car car : cars.getCars()) {
+        for (final Car car : cars.getCars()) {
             System.out.println(car.getName() + SEPARATOR + MOVE_SIGN.repeat(car.getPosition()));
         }
         System.out.println();

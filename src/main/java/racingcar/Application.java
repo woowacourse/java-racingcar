@@ -7,19 +7,19 @@ import racingcar.view.InputView;
 
 public class Application {
     public static void main(String[] args) {
-        Application application = new Application();
+        final Application application = new Application();
         application.runGame();
     }
 
     public void runGame() {
         try {
-            InputController inputController = new InputController();
-            RaceController raceController = new RaceController();
+            final InputController inputController = new InputController();
+            final RaceController raceController = new RaceController();
 
-            String[] carNames = inputController.getUserCarNames(InputView.scanCarNames());
-            int tryCount = inputController.getUserTryCount(InputView.scanTryCount());
+            final String[] carNames = inputController.getUserCarNames(InputView.scanCarNames());
+            final int tryCount = inputController.getUserTryCount(InputView.scanTryCount());
 
-            RacingGame racingGame = new RacingGame(raceController.insertCarFromCarNames(carNames), tryCount);
+            final RacingGame racingGame = new RacingGame(raceController.insertCarFromCarNames(carNames), tryCount);
             raceController.race(racingGame);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());

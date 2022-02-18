@@ -7,7 +7,7 @@ public class RandomNumberGenerator implements RandomUtil {
 
     @Override
     public int generate() {
-        Random random = new Random();
+        final Random random = new Random();
         return random.nextInt(MAX_RANDOM_VALUE + 1);
     }
 }
