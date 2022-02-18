@@ -1,5 +1,6 @@
 package racingcar.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
@@ -11,11 +12,18 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarServiceTest {
+    private CarService carService;
+
+    @BeforeEach
+    void setUp() {
+        List<String> names = Arrays.asList("범고래", "소주캉");
+        carService.createCars(names);
+    }
+
 
     @Test
     @DisplayName("CarDto를 받아서 Car객체로 반환한다.")
     void toCar() {
-        CarService carService = new CarService();
         String name = "범고래";
         CarDto carDto = new CarDto(name);
 
@@ -26,7 +34,6 @@ public class CarServiceTest {
     @Test
     @DisplayName("CarDto 리스트를 받아서 Car 리스트로 반환한다.")
     void toCars() {
-        CarService carService = new CarService();
         String name1 = "범고래";
         String name2 = "소주캉";
         List<CarDto> input = Arrays.asList(new CarDto(name1), new CarDto(name2));
@@ -40,14 +47,11 @@ public class CarServiceTest {
     @Test
     @DisplayName("자동차 갯수 만큼 Random리스트를 생성한다.")
     void createRandomNumbers() {
-        CarService carService = new CarService();
-        String name1 = "범고래";
-        String name2 = "소주캉";
-        List<Car> cars = Arrays.asList(new Car(name1), new Car(name2));
-        carService.createCars(cars);
+        List<String> input = Arrays.asList("범고래", "소주캉");
+        carService.createCars(input);
 
         List<Integer> randomNumbers = carService.createRandomNumbers();
-        assertThat(randomNumbers.size()).isEqualTo(cars.size());
+        assertThat(randomNumbers.size()).isEqualTo(input.size());
     }
 
     @Test
@@ -56,7 +60,15 @@ public class CarServiceTest {
         CarService carService = new CarService();
         int round = 1;
         String name = "범고레";
-        List<Car> cars = List.of(new Car(name));
+        List<CarDto> cars = List.of(new CarDto(name));
         carService.addScoreBoard(round, cars);
+    }
+
+    @Test
+    @DisplayName("시도 횟수를 입력 받아 자동차들을 움직인다.")
+    void moveCars() {
+        CarService carService = new CarService();
+        int iteration = 3;
+        carService.moveCars(iteration);
     }
 }

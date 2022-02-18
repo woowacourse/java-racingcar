@@ -25,8 +25,8 @@ public class CarService {
                 .collect(Collectors.toList());
     }
 
-    public void createCars(List<Car> cars) {
-        cars.forEach(carRepository::save);
+    public void createCars(List<String> names) {
+        names.forEach(i -> carRepository.save(new Car(i)));
     }
 
     public List<Integer> createRandomNumbers() {
@@ -37,7 +37,14 @@ public class CarService {
         return randomNumbers;
     }
 
-    public void addScoreBoard(int round, List<Car> cars) {
+    public void addScoreBoard(int round, List<CarDto> cars) {
         gameScoreBoard.add(new ScoreBoard(round, ScoreConverter.of(cars)));
+    }
+
+    public void moveCars(int iteration) {
+        for (int i = 0; i < iteration; i++) {
+            carRepository.move(RandomNumber.getNumbers(carRepository.getSize()));
+            addScoreBoard(i, carRepository.getCarDtos());
+        }
     }
 }
