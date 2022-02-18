@@ -1,6 +1,8 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Game;
@@ -27,6 +29,24 @@ public class GameTest {
         game.race();
 
         assertThat(game.isEnd()).isEqualTo(true);
+
+    }
+
+    @Test
+    void tryNo_숫자_아닐시_예외발생() {
+
+        assertThatThrownBy(() ->
+            new Game("love,happy", "헉")
+        ).isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    @Test
+    void tryNo_숫자인경우_Game_생성_성공() {
+
+        assertThatCode(() ->
+            new Game("love,happy", "3")
+        ).doesNotThrowAnyException();
 
     }
 
