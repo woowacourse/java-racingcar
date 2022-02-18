@@ -38,7 +38,7 @@ public class InputView {
         try {
             return scanner.nextLine();
         } catch (NoSuchElementException exception) {
-            throw new RuntimeException(ViewErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.get());
+            throw new NoSuchElementException(ViewErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.get());
         }
     }
 }

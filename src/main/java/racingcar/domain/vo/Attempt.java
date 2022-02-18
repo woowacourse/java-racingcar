@@ -32,13 +32,13 @@ public class Attempt {
         try {
             return Integer.parseInt(s);
         } catch (NumberFormatException numberFormatException) {
-            throw new RuntimeException(DomainErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
+            throw new NumberFormatException(DomainErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
         }
     }
 
     private void validateNegative(int attempt) {
         if (attempt < ZERO) {
-            throw new RuntimeException(DomainErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(DomainErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
         }
     }
 

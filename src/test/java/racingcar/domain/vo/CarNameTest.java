@@ -24,7 +24,7 @@ public class CarNameTest {
     @EmptySource
     public void empty_input_test(String input) throws Exception {
         assertThatThrownBy(() -> new CarName(input))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
     }
 
@@ -32,7 +32,7 @@ public class CarNameTest {
     @ValueSource(strings = {"abcdef", "1234567890"})
     public void over_length_input_test(String input) throws Exception {
         assertThatThrownBy(() -> new CarName(input))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
     }
 }

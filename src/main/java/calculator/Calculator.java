@@ -59,7 +59,7 @@ public class Calculator {
 
     private static void validateNegative(int number) {
         if (number < ZERO) {
-            throw new RuntimeException(ErrorMessage.NEGATIVE_VALUE_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_VALUE_ERROR_MESSAGE.get());
         }
     }
 

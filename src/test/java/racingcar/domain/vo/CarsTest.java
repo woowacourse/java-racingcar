@@ -49,7 +49,7 @@ public class CarsTest {
     public void duplicate_car_name_exception_test() throws Exception {
         String[] name = {"name1", "name1"};
         assertThatThrownBy(() -> new Cars(name))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
     }
 }

@@ -34,13 +34,13 @@ public class CarName {
 
     private void validEmpty(String name) {
         if (name.isEmpty()) {
-            throw new RuntimeException(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
         }
     }
 
     private void validLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new RuntimeException(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
         }
     }
 }

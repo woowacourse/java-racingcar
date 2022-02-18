@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -49,7 +50,7 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
     }
 
@@ -71,7 +72,7 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
     }
 
@@ -93,7 +94,7 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
     }
 
@@ -114,7 +115,7 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(NoSuchElementException.class)
                 .hasMessageContaining(ViewErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.get());
     }
 
@@ -133,7 +134,7 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
     }
 
@@ -154,7 +155,7 @@ public class ApplicationTest {
         System.setIn(new ByteArrayInputStream(buf));
 
         assertThatThrownBy(() -> Application.main(new String[0]))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining(DomainErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
     }
 

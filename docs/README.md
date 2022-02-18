@@ -193,8 +193,12 @@
     - Integer.parseInt()는 내부에서 입력이 숫자가 아니면 알아서 NumberFormatException을 던지는 것 같다. 
     - 그래서 validateNumberFormat 메서드는 필요가 없을 것 같다.
     - 하지만 toInteger에서 NumberFormatException이 발생했을 때 원하는 에러 메시지로 예외를 던지고 싶어서 try catch문을 이용했다.
-- [ ] 어떤 예외를 던지는지 다시 확인해보기
+- [x] 어떤 예외를 던지는지 다시 확인해보기
     - 적절한 시점에 예외를 던지는 것도 중요하지만 예외의 종류도 중요합니다. 어떤 예외를 던지느냐에 따라 사용자에게 전달되는 의미가 달라지기 때문입니다.
+    - 구현 코드와 테스트 코드 모두 적절한 예외의 종류로 수정
+    - 사용자가 입력한 데이터가 잘못된 경우 → `IllegalArgumentException`
+    - 찾으려는 데이터가 없는 경우 → `NoSuchElementException`
+    - Integer.parseInt()에 문자열을 파라미터로 준 경우 → `NumberFormatException`
 - [ ] 변수, 클래스, 메서드 명을 전부 다 확인하여 의도에 맞게, 규칙에 맞게 지어졌는지 다시 확인해보기
     - move()에서 파라미터 값의 이름이 `randomNumber`입니다. 꼭 random이어야 할까요? 이것도 잘못된 의도로 이해가 될 수도 있지 않을까요?
     - CarName에서 validEmpty() 메서드 명도 수정해야한다.

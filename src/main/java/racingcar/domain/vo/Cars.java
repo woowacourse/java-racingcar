@@ -51,7 +51,7 @@ public class Cars {
 
     private void validateDuplicateCarName(Car car) {
         if (cars.stream().anyMatch(each -> each.isSameName(car))) {
-            throw new RuntimeException(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
         }
     }
 

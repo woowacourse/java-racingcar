@@ -47,7 +47,7 @@ public class CalculatorTest {
     @ValueSource(strings = {"a", "a,1", "1,b", "a,b"})
     public void sum_non_number_input_test(String input) throws Exception {
         assertThatThrownBy(() -> Calculator.sum(input))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining(ErrorMessage.NONE_INTEGER_ERROR_MESSAGE.get());
     }
 
@@ -55,7 +55,7 @@ public class CalculatorTest {
     @ValueSource(strings = {"-1", "-1,1", "1,-1", "-1,-2"})
     public void sum_negative_input_test(String input) throws Exception {
         assertThatThrownBy(() -> Calculator.sum(input))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NEGATIVE_VALUE_ERROR_MESSAGE.get());
     }
 }

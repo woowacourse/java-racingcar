@@ -48,7 +48,7 @@ public class AttemptTest {
     public void non_number_input_exception_test() throws Exception {
         String input = "abc";
         assertThatThrownBy(() -> new Attempt(input))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining(DomainErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
     }
 
@@ -57,7 +57,7 @@ public class AttemptTest {
     public void negative_input_exception_test() throws Exception {
         String input = "-3";
         assertThatThrownBy(() -> new Attempt(input))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
     }
 }
