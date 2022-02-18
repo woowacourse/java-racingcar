@@ -1,17 +1,14 @@
-package racingcar;
+package racingcar.controller;
 
+import racingcar.RandomGenerator;
 import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
 import racingcar.validator.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RacingGame {
 
-    private static final String WINNER_NAME_DELIMITER = ", ";
     private final RacingCars racingCars;
 
     public RacingGame() {
@@ -22,8 +19,8 @@ public class RacingGame {
         this.racingCars = racingCars;
     }
 
-    public void playGame(RacingCars racingCars) {
-
+    public void playGame() {
+        racingCars.join(InputView.askCarName());
         String tryCount = InputView.askTryCount();
         Validator.checkTryCountIsNaturalNumber(tryCount);
         int trialCount = Validator.convertToInt(tryCount);
@@ -41,26 +38,8 @@ public class RacingGame {
         }
     }
 
-    public String getWinnersName() {
-        ArrayList<RacingCar> winners = getWinners(racingCars);
-        ArrayList<String> winnersName = new ArrayList<>();
-        for (RacingCar winner : winners) {
-            winnersName.add(winner.getName());
-        }
-        return String.join(WINNER_NAME_DELIMITER, winnersName);
+    public void finish() {
+        OutputView.printWinners(racingCars);
     }
 
-    private ArrayList<RacingCar> getWinners(RacingCars racingCars) {
-
-        RacingCar racingCarOfMaxPosition = racingCars.getRacingCarWithMaxPosition();
-        List<RacingCar> racingCarList = racingCars.getRacingCars();
-        ArrayList<RacingCar> winners = new ArrayList<>();
-
-        for (RacingCar racingCar : racingCarList) {
-            if (racingCar.isSamePosition(racingCarOfMaxPosition)) {
-                winners.add(racingCar);
-            }
-        }
-        return winners;
-    }
 }

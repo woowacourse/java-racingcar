@@ -3,11 +3,12 @@ package racingcar.domain;
 public class RacingCar {
 
     private static final int MOVE_STANDARD = 4;
+    private static final int BASE_POSITION = 0;
     private final String name;
     private int position;
 
     private RacingCar(String name) {
-        this.position = 0;
+        this.position = BASE_POSITION;
         this.name = name;
     }
 

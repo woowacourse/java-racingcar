@@ -1,8 +1,11 @@
 package racingcar.domain;
 
+import racingcar.domain.dto.WinnerDto;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCars {
 
@@ -26,7 +29,24 @@ public class RacingCars {
         return racingCars;
     }
 
-    public RacingCar getRacingCarWithMaxPosition() {
+    public WinnerDto getWinners() {
+        ArrayList<RacingCar> winnersCandidate = getWinnersCandidate();
+        ArrayList<String> winnersName = new ArrayList<>();
+        for (RacingCar winner : winnersCandidate) {
+            winnersName.add(winner.getName());
+        }
+        return new WinnerDto(winnersName);
+    }
+
+    private ArrayList<RacingCar> getWinnersCandidate() {
+        RacingCar racingCarOfMaxPosition = getRacingCarWithMaxPosition();
+
+        return racingCars.stream()
+                .filter(racingCar -> racingCar.isSamePosition(racingCarOfMaxPosition))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    private RacingCar getRacingCarWithMaxPosition() {
         return racingCars.stream().max(Comparator.comparingInt(RacingCar::getPosition)).get();
     }
 }
