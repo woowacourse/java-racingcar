@@ -1,9 +1,6 @@
 package racingcar.service;
 
-import racingcar.model.Car;
-import racingcar.model.CarDto;
-import racingcar.model.CarRepository;
-import racingcar.model.RandomNumber;
+import racingcar.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +8,11 @@ import java.util.stream.Collectors;
 
 public class CarService {
     private final CarRepository carRepository;
+    private final GameScoreBoard gameScoreBoard;
 
     public CarService() {
         this.carRepository = new CarRepository();
+        this.gameScoreBoard = new GameScoreBoard();
     }
 
     public Car toCar(CarDto carDto) {
@@ -36,5 +35,9 @@ public class CarService {
             randomNumbers.add(RandomNumber.getNumber());
         }
         return randomNumbers;
+    }
+
+    public void addScoreBoard(int round, List<Car> cars) {
+        gameScoreBoard.add(new ScoreBoard(round, ScoreConverter.of(cars)));
     }
 }

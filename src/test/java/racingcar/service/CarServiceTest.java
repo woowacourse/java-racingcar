@@ -49,4 +49,14 @@ public class CarServiceTest {
         List<Integer> randomNumbers = carService.createRandomNumbers();
         assertThat(randomNumbers.size()).isEqualTo(cars.size());
     }
+
+    @Test
+    @DisplayName("자동차 리스트와 라운드를 입력받아 저장한다..")
+    void convertToCars() {
+        CarService carService = new CarService();
+        int round = 1;
+        String name = "범고레";
+        List<Car> cars = List.of(new Car(name));
+        carService.addScoreBoard(round, cars);
+    }
 }
