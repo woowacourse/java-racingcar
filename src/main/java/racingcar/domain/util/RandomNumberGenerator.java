@@ -1,7 +1,7 @@
 package racingcar.domain.util;
 
 import java.util.Random;
-import racingcar.domain.enums.ErrorMessage;
+import racingcar.domain.enums.DomainErrorMessage;
 
 public class RandomNumberGenerator implements NumberGenerator {
 
@@ -21,7 +21,7 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     private static void validateRange(int randomNumber) {
         if (randomNumber > MAXIMUM || randomNumber < MINIMUM) {
-            throw new IllegalStateException(ErrorMessage.RANDOM_NUMBER_RANGE_OVER_ERROR_MESSAGE.get());
+            throw new IllegalStateException(DomainErrorMessage.RANDOM_NUMBER_RANGE_OVER_ERROR_MESSAGE.get());
         }
     }
 }

@@ -4,9 +4,9 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import racingcar.domain.dto.RequestAttemptDto;
 import racingcar.domain.dto.RequestCarsDto;
-import racingcar.domain.enums.ErrorMessage;
 import racingcar.domain.vo.Attempt;
 import racingcar.domain.vo.Cars;
+import racingcar.view.enums.ViewErrorMessage;
 
 public class InputView {
 
@@ -38,7 +38,7 @@ public class InputView {
         try {
             return scanner.nextLine();
         } catch (NoSuchElementException exception) {
-            throw new RuntimeException(ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.get());
+            throw new RuntimeException(ViewErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.get());
         }
     }
 }

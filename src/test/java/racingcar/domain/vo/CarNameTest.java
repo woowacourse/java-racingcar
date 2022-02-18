@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.enums.ErrorMessage;
+import racingcar.domain.enums.DomainErrorMessage;
 
 public class CarNameTest {
 
@@ -25,7 +25,7 @@ public class CarNameTest {
     public void empty_input_test(String input) throws Exception {
         assertThatThrownBy(() -> new CarName(input))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining(ErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
     }
 
     @ParameterizedTest(name = "CarName() 글자 수 초과 입력 예외 테스트")
@@ -33,6 +33,6 @@ public class CarNameTest {
     public void over_length_input_test(String input) throws Exception {
         assertThatThrownBy(() -> new CarName(input))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining(ErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
     }
 }

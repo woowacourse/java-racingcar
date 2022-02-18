@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.domain.enums.ErrorMessage;
+import racingcar.domain.enums.DomainErrorMessage;
 
 public class CarsTest {
 
@@ -50,6 +50,6 @@ public class CarsTest {
         String[] name = {"name1", "name1"};
         assertThatThrownBy(() -> new Cars(name))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining(ErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
     }
 }

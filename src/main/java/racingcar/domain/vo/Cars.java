@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import racingcar.domain.enums.ErrorMessage;
+import racingcar.domain.enums.DomainErrorMessage;
 import racingcar.domain.util.RandomNumberGenerator;
 
 public class Cars {
@@ -43,7 +43,7 @@ public class Cars {
     public List<Car> findWinners() {
         Car maxPositionCar = cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new NoSuchElementException(ErrorMessage.NO_SUCH_CAR_ERROR_MESSAGE.get()));
+                .orElseThrow(() -> new NoSuchElementException(DomainErrorMessage.NO_SUCH_CAR_ERROR_MESSAGE.get()));
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .collect(Collectors.toList());
@@ -51,7 +51,7 @@ public class Cars {
 
     private void validateDuplicateCarName(Car car) {
         if (cars.stream().anyMatch(each -> each.isSameName(car))) {
-            throw new RuntimeException(ErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
+            throw new RuntimeException(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
         }
     }
 

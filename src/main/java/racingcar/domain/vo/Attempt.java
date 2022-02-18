@@ -1,6 +1,7 @@
 package racingcar.domain.vo;
 
-import racingcar.domain.enums.ErrorMessage;
+import java.util.Objects;
+import racingcar.domain.enums.DomainErrorMessage;
 
 public class Attempt {
 
@@ -11,10 +12,6 @@ public class Attempt {
 
     public Attempt(String attempt) {
         this.attempt = validate(attempt);
-    }
-
-    public int get() {
-        return attempt;
     }
 
     public boolean isLeft() {
@@ -40,13 +37,37 @@ public class Attempt {
         try {
             Integer.parseInt(attempt);
         } catch (NumberFormatException numberFormatException) {
-            throw new RuntimeException(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
+            throw new RuntimeException(DomainErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
         }
     }
 
     private void validateNegative(int attempt) {
         if (attempt < ZERO) {
-            throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
+            throw new RuntimeException(DomainErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Attempt attempt1 = (Attempt) o;
+        return attempt == attempt1.attempt;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(attempt);
+    }
+
+    @Override
+    public String toString() {
+        return "Attempt{" +
+                "attempt=" + attempt +
+                '}';
     }
 }
