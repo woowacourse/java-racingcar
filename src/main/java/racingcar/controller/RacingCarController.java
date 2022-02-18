@@ -1,9 +1,9 @@
 package racingcar.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 import racingcar.domain.Car;
-import racingcar.utils.CarsGenerator;
+import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -13,15 +13,11 @@ public class RacingCarController {
         return InputView.getCarNames();
     }
 
-    public int getRound() {
+    public Integer getRound() {
         return InputView.getRound();
     }
 
-    public void printRoundResultMessage() {
-        OutputView.printRoundResultMessage();
-    }
-
-    public void printRoundResult(List<Car> raceResult) {
+    public void printRoundResult(Map<Integer, List<Car>> raceResult) {
         OutputView.printRoundResult(raceResult);
     }
 
@@ -29,7 +25,7 @@ public class RacingCarController {
         OutputView.printWinners(winners);
     }
 
-    public List<Car> generateCars(List<String> carNames) {
-        return CarsGenerator.generateCars(carNames);
+    public RacingGame initRacing(List<String> carNames, int round) {
+        return new RacingGame(carNames, round);
     }
 }

@@ -3,8 +3,6 @@ package racingcar.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import racingcar.domain.Car;
-import racingcar.utils.CarsGenerator;
 import racingcar.utils.validator.CarNameValidator;
 import racingcar.utils.validator.RoundNumberValidator;
 
@@ -45,9 +43,9 @@ public class InputView {
         return Arrays.asList(userInput.split(NAME_DELIMITER, -1));
     }
 
-    private static int toIntWithValidate(String roundNumberString) {
+    private static Integer toIntWithValidate(String roundNumberString) {
         RoundNumberValidator.validate(roundNumberString);
-        return Integer.parseInt(roundNumberString);
+        return Integer.valueOf(roundNumberString);
     }
 
     private static String userRoundInput() {

@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 
@@ -11,13 +12,12 @@ public class OutputView {
     private static final String CAR_POSITION_BAR = "-";
     private static final String WINNER_NAME_DELIMITER = ", ";
 
-    public static void printRoundResultMessage() {
+    public static void printRoundResult(Map<Integer, List<Car>> raceResult) {
         System.out.println(ROUND_RESULT);
-    }
-
-    public static void printRoundResult(List<Car> cars) {
-        cars.forEach(OutputView::printCarPositionInfo);
-        System.out.println();
+        for (Integer round : raceResult.keySet()) {
+            raceResult.get(round).forEach(OutputView::printCarPositionInfo);
+            System.out.println();
+        }
     }
 
     private static void printCarPositionInfo(Car car) {

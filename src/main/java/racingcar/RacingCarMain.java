@@ -2,7 +2,6 @@ package racingcar;
 
 import java.util.List;
 import racingcar.controller.RacingCarController;
-import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 
 public class RacingCarMain {
@@ -10,18 +9,9 @@ public class RacingCarMain {
 
     public static void main(String[] args) {
         List<String> carNames = controller.getCarNames();
-        List<Car> cars = controller.generateCars(carNames);
-        int round = controller.getRound();
-        RacingGame racingGame = new RacingGame(cars);
-        raceAndPrintResult(round, racingGame);
+        Integer round = controller.getRound();
+        RacingGame racingGame = controller.initRacing(carNames, round);
+        controller.printRoundResult(racingGame.race());
         controller.printWinners(racingGame.findWinners());
-    }
-
-    private static void raceAndPrintResult(int round, RacingGame racingGame) {
-        controller.printRoundResultMessage();
-        for (int i = 0; i < round; i++) {
-            List<Car> raceResult = racingGame.race();
-            controller.printRoundResult(raceResult);
-        }
     }
 }
