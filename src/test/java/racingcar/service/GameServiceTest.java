@@ -5,19 +5,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
 import racingcar.domain.car.strategy.CustomMoveStrategy;
 import racingcar.dto.CarStatusDto;
 import racingcar.dto.RoundDto;
 
 class GameServiceTest {
 
+    private static final String PROVIDER_PATH = "racingcar.service.provider.GameServiceTestProvider#";
     private static final List<String> CAR_NAMES = Arrays.asList("hello", "poby", "ifif", "hanul");
     private static final int ROUND_INITIALIZING_COUNT = 3;
     private static final int ROUND_DECREASING_COUNT = 1;
@@ -61,7 +62,7 @@ class GameServiceTest {
 
     @DisplayName("게임 라운드 실행 시, 조건에 따라 자동차가 전진한다.")
     @ParameterizedTest
-    @MethodSource("provideForPlayRoundTest")
+    @MethodSource(PROVIDER_PATH + "provideForPlayRoundTest")
     void playRoundTest(final List<Boolean> moveConditions, final int repeatTime, final List<Integer> expected) {
         customMoveStrategy.initMoveConditions(moveConditions);
         for (int i = 0; i < repeatTime; i++) {
@@ -75,25 +76,9 @@ class GameServiceTest {
         assertThat(carLocations).isEqualTo(expected);
     }
 
-    public static Stream<Arguments> provideForPlayRoundTest() {
-        return Stream.of(
-                Arguments.of(
-                        Arrays.asList(true, true, false, false),
-                        1, Arrays.asList(1, 1, 0, 0)
-                ),
-                Arguments.of(
-                        Arrays.asList(
-                                false, true, true, false,
-                                false, true, false, true
-                        ),
-                        2, Arrays.asList(0, 2, 1, 1)
-                )
-        );
-    }
-
     @DisplayName("게임 라운드 우승자 반환 기능 테스트")
     @ParameterizedTest
-    @MethodSource("provideForGetWinnerNamesTest")
+    @MethodSource(PROVIDER_PATH + "provideForGetWinnerNamesTest")
     void getWinnerNamesTest(final List<Boolean> moveConditions, final int repeatTime, final List<String> expected) {
         customMoveStrategy.initMoveConditions(moveConditions);
         for (int i = 0; i < repeatTime; i++) {
@@ -102,23 +87,6 @@ class GameServiceTest {
 
         final List<String> winnerNames = gameService.getWinnerNames();
         assertThat(winnerNames).isEqualTo(expected);
-    }
-
-    public static Stream<Arguments> provideForGetWinnerNamesTest() {
-        return Stream.of(
-                Arguments.of(
-                        Arrays.asList(true, true, false, false),
-                        1, Arrays.asList("hello", "poby")
-
-                ),
-                Arguments.of(
-                        Arrays.asList(
-                                false, true, true, false,
-                                false, true, false, true
-                        ),
-                        2, Arrays.asList("poby")
-                )
-        );
     }
 
 }
