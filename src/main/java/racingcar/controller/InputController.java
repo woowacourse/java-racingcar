@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Car;
+import racingcar.util.Validation;
 import racingcar.view.Input;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,9 @@ public class InputController {
             String names = Input.inputCarNames();
 
             try {
+                new Car("hd");
                 Validation.carNameValidation(names);
-                List<Car> cars = splitList(names);
+                List<Car> cars = convertStringList(names);
                 return cars;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -30,15 +32,9 @@ public class InputController {
         }
     }
 
-    private static List<Car> splitList(String names) {
-        String[] carNames = names.split(SPLIT_DELIM);
+    private static List<Car> convertStringList(String names) {
         List<Car> cars = new ArrayList<>();
-
-        return splitNameToList(carNames, cars);
-    }
-
-    private static List<Car> splitNameToList(String[] carNames, List<Car> cars) {
-        for (String carName : carNames) {
+        for (String carName : names.split(SPLIT_DELIM)) {
             cars.add(new Car(carName));
         }
         return cars;

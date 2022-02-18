@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 public class Car {
-    private static final int RANDOM_CONDITION = 4;
+    private static final int GO_FORWARD_CONDITION = 4;
 
     private final String name;
     private int position = 0;
@@ -23,16 +23,13 @@ public class Car {
         return position;
     }
 
-    public void goForward(int randomNum) {
-        if (randomNum >= RANDOM_CONDITION) {
+    public void goForward(int num) {
+        if (num >= GO_FORWARD_CONDITION) {
             position += 1;
         }
     }
 
     public boolean checkPosition(int maxPosition) {
-        if (position == maxPosition) {
-            return true;
-        }
-        return false;
+        return position == maxPosition;
     }
 }
