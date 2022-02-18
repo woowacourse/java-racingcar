@@ -35,15 +35,6 @@ public class CarTest {
         assertThat(car2.isSamePosition(moveCar)).isFalse();
     }
 
-    @DisplayName("toString() 테스트")
-    @Test
-    public void toString_test() throws Exception {
-        String name = "name1";
-        CarName carName = new CarName(name);
-        Car car = new Car(carName);
-        assertThat(car.toString()).contains(name, ":");
-    }
-
     @DisplayName("compareTo() 테스트")
     @Test
     public void compareTo_test() throws Exception {

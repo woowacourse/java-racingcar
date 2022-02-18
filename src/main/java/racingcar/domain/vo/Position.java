@@ -20,7 +20,9 @@ public class Position implements Comparable<Position> {
 
     @Override
     public String toString() {
-        return Integer.toString(position);
+        return "Position{" +
+                "position=" + position +
+                '}';
     }
 
     @Override

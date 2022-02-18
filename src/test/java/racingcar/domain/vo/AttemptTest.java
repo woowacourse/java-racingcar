@@ -16,7 +16,6 @@ public class AttemptTest {
     public void constructor_test() throws Exception {
         String input = "3";
         Attempt attempt = new Attempt(input);
-        System.out.println(attempt.toString());
         assertThat(attempt.equals(new Attempt(input))).isTrue();
     }
 

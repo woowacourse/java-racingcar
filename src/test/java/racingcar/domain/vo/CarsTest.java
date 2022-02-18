@@ -14,14 +14,6 @@ import racingcar.domain.enums.DomainErrorMessage;
 
 public class CarsTest {
 
-    @DisplayName("Cars() 테스트")
-    @Test
-    public void constructor_test() throws Exception {
-        String[] name = {"name1", "name2"};
-        Cars cars = new Cars(name);
-        assertThat(cars.toString()).contains(name);
-    }
-
     @ParameterizedTest(name = "repeatRaceBy() 테스트 : {0}, {1}")
     @MethodSource("repeatRaceByTestSet")
     public void repeatRaceBy_test(String[] nameInput, String attemptInput) throws Exception {

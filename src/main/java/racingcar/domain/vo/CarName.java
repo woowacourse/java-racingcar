@@ -19,6 +19,13 @@ public class CarName {
     }
 
     @Override
+    public String toString() {
+        return "CarName{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object object) {
         if (!(object instanceof CarName)) {
             return false;

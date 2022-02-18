@@ -19,9 +19,16 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     @Override
     public String toString() {
-        return name.get() + TO_STRING_DELIMITER + position.toString();
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
     }
 
     @Override
