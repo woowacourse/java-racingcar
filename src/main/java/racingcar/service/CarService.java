@@ -20,7 +20,7 @@ public class CarService {
         this.gameScoreBoard = new GameScoreBoard();
     }
 
-    public Car toCar(CarDto carDto) {
+    private Car toCar(CarDto carDto) {
         return new Car(carDto.getName());
     }
 
@@ -34,7 +34,7 @@ public class CarService {
         names.forEach(name -> cars.save(new Car(name)));
     }
 
-    public void addScoreBoard(int round, List<CarDto> cars) {
+    private void addScoreBoard(int round, List<CarDto> cars) {
         gameScoreBoard.add(new ScoreBoard(round, ScoreConverter.of(cars)));
     }
 
