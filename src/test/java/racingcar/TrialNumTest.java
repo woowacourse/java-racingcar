@@ -1,6 +1,7 @@
-package racingcar.model;
+package racingcar;
 
 import org.junit.jupiter.api.Test;
+import racingcar.model.TrialNum;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
