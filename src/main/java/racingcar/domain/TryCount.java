@@ -18,11 +18,11 @@ public class TryCount {
         return currentTryCount == totalTryCount;
     }
 
-    public int getCurrentTryCount() {
-        return currentTryCount;
-    }
-
     public int getTotalTryCount() {
         return totalTryCount;
+    }
+
+    public int getCurrentTryCount() {
+        return currentTryCount;
     }
 }
