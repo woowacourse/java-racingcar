@@ -25,12 +25,19 @@ public class Cars {
 	}
 
 	public List<Car> getWinners() {
+		Car winner = getWinner();
+		return getTiedWith(winner);
+	}
+
+	private Car getWinner() {
 		Car winningCar = cars.get(FIRST_CAR_INDEX);
-		final Car winner;
 		for (Car car : cars) {
 			winningCar = getWinningCar(winningCar, car);
 		}
-		winner = winningCar;
+		return winningCar;
+	}
+
+	private List<Car> getTiedWith(Car winner) {
 		return cars.stream()
 			.filter(car -> car.isTiedWith(winner))
 			.collect(Collectors.toList());
