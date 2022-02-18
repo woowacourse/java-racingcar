@@ -1,11 +1,10 @@
-package racingcar;
+package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.domain.UniqueCars;
 import racingcar.domain.util.CarFactory;
 
 public class UniqueCarsTest {

@@ -1,11 +1,9 @@
-package racingcar;
+package racingcar.domain.util;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import racingcar.domain.util.Random;
 
 public class RandomTest {
     @Test

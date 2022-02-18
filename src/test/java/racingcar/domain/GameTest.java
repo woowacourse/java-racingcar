@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,9 +8,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.Game;
 import racingcar.domain.strategy.MoveStrategy;
 
 public class GameTest {
