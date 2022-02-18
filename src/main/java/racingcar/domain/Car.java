@@ -33,7 +33,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car car) {
-        return position.getPosition() - car.getPosition();
+        return position.compareTo(car.position);
     }
 
     @Override
