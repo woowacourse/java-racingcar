@@ -3,7 +3,6 @@ package racingcarTest;
 import org.junit.jupiter.api.*;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.util.Validation;
 import racingcar.view.Output;
 
 import java.io.ByteArrayOutputStream;
@@ -22,7 +21,7 @@ public class OutputTest {
 
     private void makeCarMoveCountTimes(Car car, int count) {
         for (int i = 0; i < count; i++) {
-            car.goForward(5);
+            car.goForward(true);
         }
     }
 

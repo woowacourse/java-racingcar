@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.util.RandomUtil;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,8 +11,8 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveAllByRandom() {
-        cars.forEach(car -> car.goForward(RandomUtil.getRandomForCar()));
+    public void moveAll(MoveStrategy moveStrategy) {
+        cars.forEach(car -> car.goForward(moveStrategy.canMove()));
     }
 
     public List<Car> findAllWinners() {

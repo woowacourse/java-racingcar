@@ -1,8 +1,6 @@
 package racingcar.domain;
 
 public class Car {
-    private static final int RANDOM_CONDITION = 4;
-
     private final String name;
     private int position;
 
@@ -11,8 +9,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void goForward(int number) {
-        if (number >= RANDOM_CONDITION) {
+    public void goForward(boolean  canGo) {
+        if (canGo) {
             position += 1;
         }
     }

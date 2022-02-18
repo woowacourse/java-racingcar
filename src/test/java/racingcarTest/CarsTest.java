@@ -3,8 +3,10 @@ package racingcarTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.AllMoveStrategy;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.NoMoveStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +14,43 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
-
-    private final int intOverRandomCondition = 5;
-
     private void makeCarMoveCountTimes(Car car, int count) {
         for (int i = 0; i < count; i++) {
-            car.goForward(intOverRandomCondition);
+            car.goForward(true);
+        }
+    }
+
+    @DisplayName("모든_Car_전진실행")
+    @Test
+    void cars_strategyReturnTrue_AllCarMove() {
+        List<Car> carList = new ArrayList<>();
+        carList.add(new Car("dog"));
+        carList.add(new Car("cat"));
+        carList.add(new Car("bird"));
+        carList.add(new Car("mouse"));
+
+        Cars cars = new Cars(carList);
+        cars.moveAll(new AllMoveStrategy());
+
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(1);
+        }
+    }
+
+    @DisplayName("모든_Car_전진하지_않음")
+    @Test
+    void cars_strategyReturnFalse_NoCarMove() {
+        List<Car> carList = new ArrayList<>();
+        carList.add(new Car("dog"));
+        carList.add(new Car("cat"));
+        carList.add(new Car("bird"));
+        carList.add(new Car("mouse"));
+
+        Cars cars = new Cars(carList);
+        cars.moveAll(new NoMoveStrategy());
+
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(0);
         }
     }
 

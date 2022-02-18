@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.RandomMoveStrategy;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
@@ -31,7 +32,7 @@ public class GameController {
     private void runRaceTryTimes(Cars cars, int tryNum) {
         Output.printStartRace();
         for (int i = 0; i < tryNum; i++) {
-            cars.moveAllByRandom();
+            cars.moveAll(new RandomMoveStrategy());
             Output.printCarsStatus(cars.getCars());
             Output.printBlankLine();
         }

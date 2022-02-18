@@ -9,12 +9,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
     @ParameterizedTest
-    @CsvSource(value = {"5,1", "4,1", "3,0"}, delimiter = ',')
-    @DisplayName("4를_넘는_값에_전진_미만은_정지")
-    void num_Over4_carGoForward(int random, int expectedPosition) {
+    @CsvSource(value = {"true,1", "false,0"}, delimiter = ',')
+    @DisplayName("true에_전진_false에_정지")
+    void num_Over4_carGoForward(boolean move, int expectedPosition) {
         Car testCar = new Car("test");
 
-        testCar.goForward(random);
+        testCar.goForward(move);
         assertThat(testCar.getPosition()).isEqualTo(expectedPosition);
     }
 }
