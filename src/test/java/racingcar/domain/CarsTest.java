@@ -8,7 +8,7 @@ class CarsTest {
 
     @Test
     void getSingleChampion() {
-        Cars cars = new Cars(new String[] {"car1", "car2", "car3"});
+        Cars cars = Cars.of(new String[] {"car1", "car2", "car3"});
 
         cars.getCars().get(0).move(() -> true);
         cars.getCars().get(1).move(() -> false);
@@ -20,7 +20,7 @@ class CarsTest {
 
     @Test
     void getChampions() {
-        Cars cars = new Cars(new String[] {"car1", "car2", "car3"});
+        Cars cars = Cars.of(new String[] {"car1", "car2", "car3"});
 
         cars.getCars().get(0).move(() -> true);
         cars.getCars().get(1).move(() -> true);
@@ -34,7 +34,7 @@ class CarsTest {
 
     @Test
     void getChampionsWithAllHavingHighScore() {
-        Cars cars = new Cars(new String[] {"car1", "car2", "car3"});
+        Cars cars = Cars.of(new String[] {"car1", "car2", "car3"});
 
         cars.getCars().get(0).move(() -> true);
         cars.getCars().get(1).move(() -> true);
@@ -48,7 +48,7 @@ class CarsTest {
 
     @Test
     void getChampionWithSingleParticipant() {
-        Cars cars = new Cars(new String[] {"car1"});
+        Cars cars = Cars.of(new String[] {"car1"});
 
         cars.getCars().get(0).move(() -> true);
 

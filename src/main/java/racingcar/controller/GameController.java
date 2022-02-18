@@ -11,7 +11,7 @@ public class GameController {
     private static final String DELIMITER = ",";
 
     public void start() {
-        Cars cars = new Cars(split(InputView.inputCarNames()));
+        Cars cars = Cars.of(split(InputView.inputCarNames()));
         int rounds = toInts(InputView.inputRounds());
 
         runRounds(rounds, cars);

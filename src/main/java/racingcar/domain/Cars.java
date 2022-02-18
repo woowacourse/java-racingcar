@@ -2,17 +2,18 @@ package racingcar.domain;
 
 import static java.util.stream.Collectors.*;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(String[] names) {
-        this.cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
+    private Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public static Cars of(String[] names) {
+        return new Cars(Arrays.stream(names).map(Car::new).collect(toList()));
     }
 
     public void moveAll(MovingStrategy movingStrategy) {
