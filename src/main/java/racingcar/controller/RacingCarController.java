@@ -23,7 +23,7 @@ public class RacingCarController {
     public void raceAllRounds(final RacingGame game, final RacingCars racingCars) {
         while (!game.isEnd()) {
             game.race();
-            OutputView.printCarsPosition(racingCars.getRacingCarDtoList());
+            OutputView.printCarsPosition(racingCars.convertToRacingCarDtos());
         }
     }
 }

@@ -1,15 +1,12 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
 import racingcar.controller.MovingStrategy;
 import racingcar.controller.RacingCarCommander;
 
@@ -19,7 +16,7 @@ class RacingCarsTest {
     @DisplayName("자동차 이름을 받아 자동차를 생성한다.")
     void createRacingCars() {
         RacingCars racingCars = new RacingCars(Arrays.asList(new String[]{"pobi", "crong", "honux"}), new RacingCarCommander());
-        List<String> carNames = racingCars.getRacingCarDtoList()
+        List<String> carNames = racingCars.convertToRacingCarDtos()
             .stream()
             .map(racingCarDto -> racingCarDto.getName())
             .collect(Collectors.toList());
@@ -30,7 +27,7 @@ class RacingCarsTest {
     @DisplayName("자동차 이름의 공백을 제거한다.")
     void trimBlank() {
         RacingCars racingCars = new RacingCars(Arrays.asList(new String[]{"pobi" , "cr ong" , "honux"}), new RacingCarCommander());
-        List<String> carNames = racingCars.getRacingCarDtoList()
+        List<String> carNames = racingCars.convertToRacingCarDtos()
             .stream()
             .map(racingCarDto -> racingCarDto.getName())
             .collect(Collectors.toList());
@@ -51,7 +48,7 @@ class RacingCarsTest {
         MovingStrategy movingStrategy = () -> true;
         RacingCars racingCars = new RacingCars(Arrays.asList(new String[]{"pobi", "crong", "honux"}), movingStrategy);
         racingCars.moveCars();
-        racingCars.getRacingCarDtoList()
+        racingCars.convertToRacingCarDtos()
             .forEach(car -> assertThat(car.getPosition()).isEqualTo(1));
     }
 
@@ -61,7 +58,7 @@ class RacingCarsTest {
         MovingStrategy movingStrategy = () -> false;
         RacingCars racingCars = new RacingCars(Arrays.asList(new String[]{"pobi", "crong", "honux"}), movingStrategy);
         racingCars.moveCars();
-        racingCars.getRacingCarDtoList()
+        racingCars.convertToRacingCarDtos()
             .forEach(car -> assertThat(car.getPosition()).isEqualTo(0));
     }
 }
