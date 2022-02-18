@@ -1,11 +1,5 @@
 package racingcar.util;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
-
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
@@ -17,7 +11,13 @@ import static racingcar.util.ValidatorUtils.validateCarName;
 import static racingcar.util.ValidatorUtils.validateNoDuplicates;
 import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
-public class ValidatorUtilsTest {
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+class ValidatorUtilsTest {
 
     @DisplayName("validatePositiveInt 메서드는 입력된 숫자가 0이 아닌 양의 정수인지 검사한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)

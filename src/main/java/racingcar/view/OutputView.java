@@ -1,16 +1,15 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
-
-import java.util.List;
-import java.util.StringJoiner;
-
 import static racingcar.constants.output.ResultOutputMessages.RESULT_GAME_WINNER_TEXT;
+import static racingcar.constants.output.ResultOutputMessages.RESULT_ROUND_TEXT;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_CAR_INFO_DELIMITER;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_DISTANCE;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_EMPTY_LINE;
-import static racingcar.constants.output.ResultOutputMessages.RESULT_ROUND_TEXT;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_WINNERS_JOINER_DELIMITER;
+
+import java.util.List;
+import java.util.StringJoiner;
+import racingcar.domain.Car;
 
 public class OutputView {
 

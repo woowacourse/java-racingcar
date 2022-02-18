@@ -31,7 +31,7 @@ public class Cars {
         Car carMaxPosition = getCarMaxPosition();
 
         return cars.stream()
-                .filter((car) -> car.isSamePosition(carMaxPosition))
+                .filter(car -> car.isSamePosition(carMaxPosition))
                 .collect(Collectors.toList());
     }
 

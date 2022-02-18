@@ -1,15 +1,14 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_CARS_EMPTY;
 
-public class CarsTest {
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+class CarsTest {
 
     @DisplayName("getWinners 메서드는 가장 position 값이 큰 car 객체들을 반환한다")
     @Test

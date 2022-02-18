@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class RacingGameTest {
+class RacingGameTest {
 
     @DisplayName("isOver 메서드는 totalRounds와 currentRounds의 일치 여부를 반환한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
