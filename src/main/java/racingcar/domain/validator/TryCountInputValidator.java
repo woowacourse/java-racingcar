@@ -2,7 +2,7 @@ package racingcar.domain.validator;
 
 import racingcar.exception.TryCountException;
 
-public class TryCountValidator {
+public class TryCountInputValidator {
 
     public static final String NULL_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 NULL값일 수 없습니다.";
     public static final String BLANK_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 공백일 수 없습니다.";

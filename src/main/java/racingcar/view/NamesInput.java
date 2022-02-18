@@ -5,19 +5,19 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import racingcar.domain.validator.NamesValidator;
+import racingcar.domain.validator.NamesInputValidator;
 
 public class NamesInput {
 
     public static final String NAME_DELIMITER = ",";
 
     private Scanner scanner;
-    private NamesValidator namesValidator;
+    private NamesInputValidator namesInputValidator;
     private View view;
 
     public NamesInput() {
         this.scanner = new Scanner(System.in);
-        this.namesValidator = new NamesValidator();
+        this.namesInputValidator = new NamesInputValidator();
         this.view = View.getInstance();
     }
 
@@ -34,7 +34,7 @@ public class NamesInput {
 
     private boolean checkRules(String names) {
         try {
-            namesValidator.validate(names);
+            namesInputValidator.validate(names);
             return true;
         } catch (IllegalArgumentException exception) {
             view.printExceptionMessage(exception);

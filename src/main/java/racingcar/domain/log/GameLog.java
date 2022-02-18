@@ -34,10 +34,10 @@ public class GameLog {
     }
 
     public int getPositionByName(int tryCount, String name) {
-        return findCarByName(tryCount, name).getPosition();
+        return findCarForLogByName(tryCount, name).getPosition();
     }
 
-    private CarForLog findCarByName(int tryCount, String name) {
+    private CarForLog findCarForLogByName(int tryCount, String name) {
         return getLog(tryCount).stream()
                 .filter(carForLog -> carForLog.getName().equals(name))
                 .findFirst()

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import racingcar.exception.CarNameException;
 import racingcar.view.NamesInput;
 
-public class NamesValidator {
+public class NamesInputValidator {
 
     public static final String NULL_INPUT_ERROR_MESSAGE = "null 값이 입력 될 수 없습니다.";
     public static final String INVALID_LENGTH_ERROR_MESSAGE = "자동차 이름은 5글자 이하여야 합니다.";
