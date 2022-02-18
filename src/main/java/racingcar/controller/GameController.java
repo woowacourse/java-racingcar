@@ -6,15 +6,13 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-	private static final String POSITION_DELIMITER = "-";
 
 	public void runRace() {
 		try {
 			OutputView.askCarName();
 			CarList carList = new CarList(InputView.getCarNameInput());
 			OutputView.askTurn();
-			int totalTurn = InputView.getTurnInput();
-			playGame(totalTurn, carList);
+			playGame(InputView.getTurnInput(), carList);
 		} catch (IllegalArgumentException error) {
 			OutputView.displayError(error.getMessage());
 		}
@@ -24,7 +22,7 @@ public class GameController {
 		OutputView.displayResult();
 		for (int nowTurn = 0; nowTurn < totalTurn; nowTurn++) {
 			moveCarList(carList);
-			OutputView.displayCarPosition(carList.getNameList(), carList.getEachCarPosition(), POSITION_DELIMITER);
+			OutputView.displayCarPosition(carList.getNameList(), carList.getEachCarPosition());
 		}
 		OutputView.displayWinner(carList.getWinnerNames());
 	}

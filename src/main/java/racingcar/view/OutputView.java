@@ -9,6 +9,7 @@ public class OutputView {
 	private static final String WINNER_DELIMITER = ", ";
 	private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
 	private static final String RESULT_MESSAGE = "실행 결과";
+	private static final String POSITION_DELIMITER = "-";
 
 	public static void askCarName() {
 		System.out.println(INPUT_CAR_NAME_MESSAGE);
@@ -18,11 +19,10 @@ public class OutputView {
 		System.out.println(INPUT_TURN_MESSAGE);
 	}
 
-	public static void displayCarPosition(List<String> nameList, List<Integer> positionList,
-										  String delimiter) {
+	public static void displayCarPosition(List<String> nameList, List<Integer> positionList) {
 		int totalSize = nameList.size();
 		for (int index = 0; index < totalSize; index++) {
-			System.out.println(nameList.get(index) + OUTPUT_DELIMITER + delimiter.repeat(
+			System.out.println(nameList.get(index) + OUTPUT_DELIMITER + POSITION_DELIMITER.repeat(
 				positionList.get(index)));
 		}
 		System.out.println();
