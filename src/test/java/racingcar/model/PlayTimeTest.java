@@ -10,7 +10,7 @@ class PlayTimeTest {
     @Test
     public void biggerThanZero() {
         assertThatThrownBy(() -> new PlayTime(-1))
-            .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 class ParticipantsTest {
 
     private Participants participants;
+
     @BeforeEach
     public void setUp() {
         this.participants = new Participants();
@@ -25,7 +26,7 @@ class ParticipantsTest {
     @Test
     public void cannotModifyWhenGetParticipantsCars() {
         List<Car> participantCars = participants.getParticipantCars();
-        assertThatThrownBy(() ->  participantCars.add(new Car("Pobi")))
+        assertThatThrownBy(() -> participantCars.add(new Car("Pobi")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 

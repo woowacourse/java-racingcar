@@ -8,10 +8,12 @@ import org.junit.jupiter.api.Test;
 class CarTest {
 
     private Car car;
+
     @BeforeEach
     public void setUp() {
         car = new Car("Thor");
     }
+
     @Test
     public void move() {
         car.tryMove(5);
