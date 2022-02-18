@@ -23,7 +23,7 @@ public class RacingGame {
     }
 
     public boolean isEnd() {
-        return trialNum.getValue() == trialCnt.getValue();
+        return trialNum.getNumber() == trialCnt.getNumber();
     }
 
     public void race() {

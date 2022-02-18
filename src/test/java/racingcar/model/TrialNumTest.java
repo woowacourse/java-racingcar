@@ -13,7 +13,7 @@ class TrialNumTest {
     void createTrialNumObject() {
         TrialNum actual = new TrialNum("5");
         int expected = 5;
-        assertThat(actual.getValue()).isEqualTo(expected);
+        assertThat(actual.getNumber()).isEqualTo(expected);
     }
 
     @Test

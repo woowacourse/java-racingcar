@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     public static void printWinnerName(Result result) {
-        System.out.println(result.getWinner().getCars().stream()
+        System.out.println(result.getWinners().getCars().stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(COMMA))
                 + WINNER_MESSAGE);

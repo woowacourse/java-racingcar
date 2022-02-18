@@ -1,11 +1,11 @@
 package racingcar.model;
 
 public class TrialNum {
-    private int value;
+    private int number;
 
     public TrialNum(String trialNum) {
         validateTrialNum(trialNum);
-        this.value = Integer.parseInt(trialNum);
+        this.number = Integer.parseInt(trialNum);
     }
 
     private void validateTrialNum(String number) {
@@ -16,11 +16,11 @@ public class TrialNum {
         }
     }
 
-    public int getValue() {
-        return value;
+    public int getNumber() {
+        return number;
     }
 
     public void increase() {
-        value++;
+        number++;
     }
 }

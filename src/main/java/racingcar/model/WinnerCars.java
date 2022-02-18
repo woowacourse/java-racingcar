@@ -2,15 +2,15 @@ package racingcar.model;
 
 import java.util.List;
 
-public class Winner {
+public class WinnerCars {
     private final List<Car> cars;
 
-    public Winner(List<Car> cars, int maxPosition) {
+    public WinnerCars(List<Car> cars, int maxPosition) {
         this.cars = cars;
-        validateWinner(cars, maxPosition);
+        validateWinnerCars(cars, maxPosition);
     }
 
-    private void validateWinner(List<Car> cars, int maxPosition) {
+    private void validateWinnerCars(List<Car> cars, int maxPosition) {
         if (!cars.stream()
                 .allMatch(car -> car.getPosition() == maxPosition)) {
             throw new IllegalArgumentException("우승자 판별이 잘못되었습니다.");
