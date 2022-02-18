@@ -14,8 +14,11 @@ class RandomNumberOverThanFourTest {
     @DisplayName("랜덤 생성된 숫자가 4 이상이면 전진 값에 대하여 1을 반환하고 4 미만이면 0을 반환한다.")
     @MethodSource("provideDefinedRandomNumberAndExpectedMovementValue")
     void move_Test(NumberGenerator numberGenerator, int expected) {
+        //given
         Movement movement = new RandomNumberOverThanFour(numberGenerator);
+        //when
         int actual = movement.getMovementValue();
+        //then
         assertThat(actual).isEqualTo(expected);
     }
 

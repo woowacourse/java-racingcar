@@ -11,16 +11,22 @@ class CarDtoTest {
     @Test
     @DisplayName("이름을 반환한다.")
     void getCarName_Test() {
-        final String actual = carDto.getCarName();
+        //given
         final String expected = "abc";
+        //when
+        final String actual = carDto.getCarName();
+        //then
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
     @DisplayName("이름을 반환한다.")
     void getDistance_Test() {
-        final int actual = carDto.getDistance();
+        //given
         final int expected = 2;
+        //when
+        final int actual = carDto.getDistance();
+        //then
         assertThat(actual).isEqualTo(expected);
     }
 }
