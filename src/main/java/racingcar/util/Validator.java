@@ -10,6 +10,9 @@ public class Validator {
     private static final String BLANK = " ";
     private static final String ERROR_INCLUDE_BLANK_MESSAGE = "내부에 공백이 포함될 수 없습니다.";
 
+    private Validator() {
+    }
+
     public static void validateCarNames(List<String> carNames) {
         checkCarNamesEmpty(carNames);
         checkDuplicated(carNames);
@@ -25,36 +28,36 @@ public class Validator {
     }
 
     private static void checkDuplicated(List<String> carNames) {
-        if (carNames.stream().distinct().count() != carNames.size()) {
+        long distinctCountOfCarNames = carNames.stream().distinct().count();
+        if (distinctCountOfCarNames != carNames.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATED_MESSAGE);
         }
     }
 
-    public static void validateInput(String carName) {
+    private static void validateInput(String carName) {
         checkNullOrEmpty(carName);
         checkIncludeBlank(carName);
     }
 
     public static void validateInputNumber(String inputRound) {
         checkNullOrEmpty(inputRound);
-        checkIncludeBlank(inputRound);
         checkValidFormat(inputRound);
     }
 
-    private static void checkValidFormat(String inputRound) {
-        if (!(inputRound.chars().allMatch(Character::isDigit))) {
+    private static void checkValidFormat(String inputNumber) {
+        if (!(inputNumber.chars().allMatch(Character::isDigit))) {
             throw new IllegalArgumentException(ERROR_INVALID_FORMAT_MESSAGE);
         }
     }
 
-    private static void checkNullOrEmpty(String inputRound) {
-        if (inputRound == null || inputRound.trim().isEmpty()) {
+    private static void checkNullOrEmpty(String input) {
+        if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(ERROR_NULL_EMPTY_MESSAGE);
         }
     }
 
-    private static void checkIncludeBlank(String inputRound) {
-        if (inputRound.trim().contains(BLANK)) {
+    private static void checkIncludeBlank(String input) {
+        if (input.trim().contains(BLANK)) {
             throw new IllegalArgumentException(ERROR_INCLUDE_BLANK_MESSAGE);
         }
     }
