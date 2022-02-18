@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import racingcar.model.CarList;
 import racingcar.model.RandomNumberList;
-import racingcar.view.StringConst;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

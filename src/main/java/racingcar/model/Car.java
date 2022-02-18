@@ -25,7 +25,7 @@ public class Car {
 		}
 	}
 
-	public Boolean isNowPositionAt(int maxPosition) {
-		return this.position == maxPosition;
+	public Boolean isPositionAt(int targetPosition) {
+		return this.position == targetPosition;
 	}
 }
