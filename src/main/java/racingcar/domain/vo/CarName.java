@@ -40,7 +40,6 @@ public class CarName {
 	}
 
 	private static void hasCarNameWrongFormat(final String carName) {
-		// if (carName.matches(NOT_ALLOWED_REGEXP_STRING)) {
 		if (doesNotMatchCarName(carName)) {
 			throw new RuntimeException(NOT_ALLOWED_FORMAT_MESSAGE);
 		}

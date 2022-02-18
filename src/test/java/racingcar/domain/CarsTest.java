@@ -14,10 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import racingcar.controller.CarController;
 import racingcar.domain.strategy.RandomMovingStrategy;
-import racingcar.repository.CarRepository;
-import racingcar.view.InputView;
 
 class CarsTest {
 
@@ -99,6 +96,4 @@ class CarsTest {
 			assertThat(winners).containsExactly(car1, car3);
 		}
 	}
-
-
 }

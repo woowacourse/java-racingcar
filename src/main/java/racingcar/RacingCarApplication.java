@@ -11,7 +11,6 @@ public class RacingCarApplication {
 	private static InputView inputView;
 
 	public static void main(String[] args) {
-
 		injectDependency();
 		playGame();
 	}
