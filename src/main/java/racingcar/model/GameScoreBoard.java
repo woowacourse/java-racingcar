@@ -13,4 +13,12 @@ public class GameScoreBoard {
     public List<ScoreBoard> getScoreBoards() {
         return scoreBoards;
     }
+
+    public List<String> findWinners() {
+        return scoreBoards.get(getSize() - 1).findWinners();
+    }
+
+    private int getSize() {
+        return scoreBoards.size();
+    }
 }

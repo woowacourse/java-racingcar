@@ -19,4 +19,20 @@ public class ScoreBoardTest {
         ScoreBoard scoreBoard = new ScoreBoard(round, scores);
         assertThat(scoreBoard.getRound()).isEqualTo(round);
     }
+
+    @Test
+    @DisplayName("point가 가장 높은 Score를 반환한다.")
+    void findMaxPoint() {
+        List<Score> scores = Arrays.asList(new Score("범고래", 2), new Score("소주캉", 1));
+        ScoreBoard scoreBoard = new ScoreBoard(0, scores);
+        assertThat(scoreBoard.findMaxScore()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("point가 가장 높은 Score 이름을 반환한다.")
+    void findWinners() {
+        List<Score> scores = Arrays.asList(new Score("범고래", 2), new Score("소주캉", 1));
+        ScoreBoard scoreBoard = new ScoreBoard(0, scores);
+        assertThat(scoreBoard.findWinners()).isEqualTo(List.of("범고래"));
+    }
 }

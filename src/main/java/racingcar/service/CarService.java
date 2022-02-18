@@ -42,4 +42,9 @@ public class CarService {
     public List<ScoreBoard> findScoreBoard() {
         return gameScoreBoard.getScoreBoards();
     }
+
+
+    public List<String> findWinners() {
+        return gameScoreBoard.findWinners();
+    }
 }

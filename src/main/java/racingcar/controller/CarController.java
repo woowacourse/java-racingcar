@@ -25,4 +25,8 @@ public class CarController {
     public List<ScoreBoard> findGameScoreBoard() {
         return carService.findScoreBoard();
     }
+
+    public List<String> findWinners() {
+        return carService.findWinners();
+    }
 }
