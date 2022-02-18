@@ -4,7 +4,7 @@ public class FixedNumberGeneratePolicy implements NumberGeneratePolicy {
     public static final int FIXED_NUMBER = 4;
 
     @Override
-    public int generateNumber() {
+    public int generate() {
         return FIXED_NUMBER;
     }
 }

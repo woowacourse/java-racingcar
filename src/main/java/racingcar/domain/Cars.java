@@ -6,6 +6,7 @@ import racingcar.controller.CarDto;
 
 public class Cars {
     private static final String ERROR_CAR_EMPTY = "자동차가 존재하지 않습니다.";
+
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
@@ -23,7 +24,7 @@ public class Cars {
     }
 
     public void driveAll(NumberGeneratePolicy numberGeneratePolicy) {
-        cars.forEach(car -> car.drive(numberGeneratePolicy.generateNumber()));
+        cars.forEach(car -> car.drive(numberGeneratePolicy.generate()));
     }
 
     public List<CarDto> getWinners() {
