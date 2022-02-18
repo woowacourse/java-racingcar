@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.controller.RacingCarCommander;
+import racingcar.view.Validator;
 
 public class RacingGameTest {
 
@@ -18,7 +19,8 @@ public class RacingGameTest {
 
     @BeforeEach
     void setUp() {
-        racingCars = new RacingCars(new String[]{"pobi", "crong", "honux"}, new RacingCarCommander());
+        racingCars = new RacingCars(new String[]{"pobi", "crong", "honux"},
+            new RacingCarCommander());
         racingGame = new RacingGame(racingCars, 5);
     }
 
@@ -40,5 +42,14 @@ public class RacingGameTest {
         assertThatExceptionOfType(RuntimeException.class)
             .isThrownBy(() -> racingGame.race())
             .withMessageMatching("종료된 게임은 더이상 실행할 수 없다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1})
+    @DisplayName("입력한 시도횟수가 0이하이면 예외가 발생한다.")
+    void negativeCount(int tryCount) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> new RacingGame(racingCars, tryCount))
+            .withMessageMatching("시도횟수는 0이하의 값이 들어올 수 없다.");
     }
 }

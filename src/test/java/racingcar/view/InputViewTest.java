@@ -32,20 +32,4 @@ class InputViewTest {
             .withMessageMatching("자동차 입력 값이 존재해야한다.");
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "-1"})
-    @DisplayName("입력한 시도횟수가 0이하이면 예외가 발생한다.")
-    void negativeCount(String tryCountText) {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> Validator.validateTryCount(tryCountText))
-            .withMessageMatching("시도횟수는 0이하의 값이 들어올 수 없다.");
-    }
-
-    @Test
-    @DisplayName("자동차의 이름이 5자가 초과될 경우 예외가 발생해야 한다.")
-    void checkRacingCarNameLength() {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> Validator.validateCarNames("abcede"))
-            .withMessageMatching("자동차 이름은 5자를 초과할 수 없다.");
-    }
 }

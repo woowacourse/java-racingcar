@@ -5,6 +5,7 @@ import racingcar.view.Validator;
 
 public class RacingGame {
 
+    private static int MIN_TRY_COUNT = 1;
     private static final int END_COUNT = 0;
 
     private final RacingCars racingCars;
@@ -12,7 +13,14 @@ public class RacingGame {
 
     public RacingGame(RacingCars racingCars, int leftCount) {
         this.racingCars = racingCars;
+        checkLeftCountPositive(leftCount);
         this.leftCount = leftCount;
+    }
+
+    private void checkLeftCountPositive(int leftCount) {
+        if (leftCount < MIN_TRY_COUNT) {
+            throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
+        }
     }
 
     public void race() {
