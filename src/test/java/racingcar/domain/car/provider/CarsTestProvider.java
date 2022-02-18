@@ -8,28 +8,6 @@ import org.junit.jupiter.params.provider.Arguments;
 
 class CarsTestProvider {
 
-    public static Stream<Arguments> provideForNullExceptionTest() {
-        return Stream.of(
-                Arguments.of(Arrays.asList("if", null, "hanul")),
-                Arguments.of(Arrays.asList("if", "hanul", null))
-        );
-    }
-
-    public static Stream<Arguments> provideForEmptyExceptionTest() {
-        return Stream.of(
-                Arguments.of(List.of("")),
-                Arguments.of(List.of("if", "hanul", ""))
-        );
-    }
-
-    public static Stream<Arguments> provideForLengthExceptionTest() {
-        return Stream.of(
-                Arguments.of(List.of("slow", "if", "hanull")),
-                Arguments.of(List.of("sinb57", "slow", "if")),
-                Arguments.of(List.of("sinb57", "slow", "if", "hanull"))
-        );
-    }
-
     public static Stream<Arguments> provideForDuplicateExceptionTest() {
         return Stream.of(
                 Arguments.of(List.of("slow", "if", "slow")),
