@@ -24,7 +24,11 @@ public class OutputView {
     }
 
     private static void printCarResult(Car car) {
-        System.out.println(car.getName() + COLON + makeDash(car.getPosition()));
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(car.getName())
+                .append(COLON)
+                .append(makeDash(car.getPosition()));
+        System.out.println(stringBuilder);
     }
 
     private static String makeDash(int position) {
