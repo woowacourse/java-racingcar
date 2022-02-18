@@ -6,8 +6,6 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.Name;
 import racingcar.model.RacingGame;
-import racingcar.util.NumberGenerator;
-import racingcar.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +36,8 @@ class RacingGameTest {
         String actual = cars.findWinnerName(cars.findMaxPosition()).stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
+        String expected = "sun";
 
-        assertThat(actual).contains("sun").doesNotContain("bom");
+        assertThat(actual).isEqualTo(expected);
     }
 }
