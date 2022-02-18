@@ -20,12 +20,9 @@ public class MainController {
     }
 
     public void start() {
-        String[] names = inputCarNames();
-        List<Car> cars = generateCar(names);
-        int attemptCount = inputAttemptCount();
-        race(attemptCount, cars);
-        List<String> winners = getWinner(cars);
-        output.printWinner(winners);
+        List<Car> cars = generateCar(inputCarNames());
+        race(inputAttemptCount(), cars);
+        output.printWinner(getWinner(cars));
     }
 
     private String[] inputCarNames() {
@@ -40,9 +37,7 @@ public class MainController {
 
     private List<Car> generateCar(String[] names) {
         List<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
+        Arrays.stream(names).forEach(name -> cars.add(new Car(name)));
         return cars;
     }
 
@@ -55,15 +50,13 @@ public class MainController {
     }
 
     private void moveCar(List<Car> cars) {
-        for (Car car : cars) {
-            car.movePosition(randomNumberGenerator.generateRandomNumber());
-        }
+        cars.stream()
+            .forEach(car -> car.movePosition(randomNumberGenerator.generateRandomNumber()));
     }
 
     private List<String> getWinner(List<Car> cars) {
         int maxPosition = findMaxPosition(cars);
-        List<String> winners = findWinnerByPosition(maxPosition, cars);
-        return winners;
+        return findWinnerByPosition(maxPosition, cars);
     }
 
     private int findMaxPosition(List<Car> cars) {
