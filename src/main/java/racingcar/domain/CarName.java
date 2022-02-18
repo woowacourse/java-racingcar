@@ -3,7 +3,6 @@ package racingcar.domain;
 import racingcar.utils.ExceptionMessage;
 
 import java.util.Objects;
-import java.util.Optional;
 
 public class CarName {
     private static final int MAX_LENGTH_OF_CAR_NAME = 5;
@@ -11,21 +10,17 @@ public class CarName {
     private final String name;
 
     public CarName(String value) {
-        this.name = Optional.ofNullable(value)
-            .orElseThrow(() -> new NullPointerException(ExceptionMessage.NULL_CAR_NAME));
-        validateLength(value);
-        validateBlank(value);
+        validateCarName(value);
+        this.name = value;
     }
 
-    private void validateLength(String value) {
-        if (value.length() > MAX_LENGTH_OF_CAR_NAME) {
-            throw new IllegalArgumentException(ExceptionMessage.LONGER_THAN_FIVE_CAR_NAME);
-        }
-    }
-
-    private void validateBlank(String value) {
+    private void validateCarName(String value) {
         if (value.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_CAR_NAME);
+        }
+
+        if (value.length() > MAX_LENGTH_OF_CAR_NAME) {
+            throw new IllegalArgumentException(ExceptionMessage.LONGER_THAN_FIVE_CAR_NAME);
         }
     }
 
