@@ -20,7 +20,7 @@ public class Car {
 		this.position = 0;
 	}
 
-	public static Car nameOf(String name) {
+	public static Car from(String name) {
 		return new Car(name);
 	}
 

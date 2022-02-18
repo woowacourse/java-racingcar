@@ -21,9 +21,9 @@ public class CarsTest {
 
 	@BeforeEach
 	void car_init() {
-		eastCar = Car.nameOf("east");
-		pobiCar = Car.nameOf("pobi");
-		peperCar = Car.nameOf("peper");
+		eastCar = Car.from("east");
+		pobiCar = Car.from("pobi");
+		peperCar = Car.from("peper");
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class CarsTest {
 				pobiCar,
 				eastCar,
 				peperCar,
-				Car.nameOf("east")
+				Car.from("east")
 			));
 		}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(NAME_DUPLICATE_EXCEPTION.getMessage());
