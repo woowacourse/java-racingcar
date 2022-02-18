@@ -1,11 +1,10 @@
 package racingcar.controller;
 
+import racingcar.domain.Game;
+import racingcar.domain.car.Car;
 import racingcar.domain.car.CarFactory;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.numbergenerator.RandomNumberGenerator;
-import racingcar.domain.Referee;
-import racingcar.domain.car.Car;
-import racingcar.domain.car.Cars;
 import racingcar.dto.CarDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -13,33 +12,31 @@ import racingcar.view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Game {
+public class GameController {
     private static final String WINNER_NAME_DELIMITER = ", ";
-    private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
-    private static final int ERROR_CRITERIA_VALUE_ZERO = 0;
+
+    private final Game game;
+
+    public GameController() {
+        game = new Game(CarFactory.of(InputView.inputCarNames()), InputView.inputGameCount());
+    }
 
     public void start() {
-        Cars cars = new Cars(CarFactory.of(InputView.inputCarNames()));
-        int count = validateGameCount(InputView.inputGameCount());
         OutputView.printGameResultTitle();
-        for (int i = 0; i < count; i++) {
-            play(cars);
-            showResult(cars);
-        }
-        showWinner(Referee.judgeWinner(cars, cars.getMaxPosition()));
-    }
-
-    public void play(Cars cars) {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
 
-        for (Car car : cars.getCars()) {
-            car.move(numberGenerator);
+        for (int i = 0; i < game.getGameCount(); i++) {
+            game.play(numberGenerator);
+            showResult();
         }
+
+        showWinner(game.judgeWinner());
     }
 
-    public void showResult(Cars cars) {
-        List<CarDto> carDtoList = cars.toCarDto();
-        for (CarDto carDto : carDtoList) {
+    public void showResult() {
+        List<CarDto> carDtos = game.getCarDto();
+
+        for (CarDto carDto : carDtos) {
             OutputView.printLineString(carDto);
         }
         OutputView.printBlankLine();
@@ -51,12 +48,5 @@ public class Game {
                 .collect(Collectors.joining(WINNER_NAME_DELIMITER));
 
         OutputView.printWinner(winnerNames);
-    }
-
-    private int validateGameCount(int gameCount) {
-        if (gameCount < ERROR_CRITERIA_VALUE_ZERO) {
-            throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
-        }
-        return gameCount;
     }
 }

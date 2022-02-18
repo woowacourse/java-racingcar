@@ -4,7 +4,10 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Game;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarFactory;
+import racingcar.domain.numbergenerator.MovableNumberGenerator;
+import racingcar.domain.numbergenerator.NumberGenerator;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,5 +34,28 @@ public class GameTest {
         Game game = new Game(cars, gameCount);
 
         assertThat(game).isInstanceOf(Game.class);
+    }
+
+    @Test
+    public void 우승자_판정_1명() {
+        Car car1 = new Car("forky");
+        Car car2 = new Car("kun");
+
+        Game game = new Game(Arrays.asList(car1, car2), 1);
+        NumberGenerator numberGenerator = new MovableNumberGenerator();
+
+        car1.move(numberGenerator);
+
+        assertThat(game.judgeWinner().get(0)).isEqualTo(car1);
+    }
+
+    @Test
+    public void 우승자_여러명() {
+        Game game = new Game(CarFactory.of("forky,kun"), 2);
+        NumberGenerator numberGenerator = new MovableNumberGenerator();
+
+        game.play(numberGenerator);
+
+        assertThat(game.judgeWinner().size()).isEqualTo(2);
     }
 }
