@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
@@ -10,9 +9,9 @@ public class RacingGameController {
     private final Cars cars;
     private final RacingGame racingGame;
 
-    public RacingGameController(final Cars cars, final RacingGame racingGame) {
-        this.cars = cars;
-        this.racingGame = racingGame;
+    public RacingGameController() {
+        this.cars = new Cars(InputView.inputCarNames());
+        this.racingGame = new RacingGame(cars, InputView.inputRounds());
     }
 
     public void proceedRacingGame() {
