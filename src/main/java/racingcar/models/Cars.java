@@ -8,10 +8,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    private static final String CAR_POSITION = "-";
-    private static final String NAME_POSITION_SPLITTER = " : ";
-    private final static String CAR_NAME_DISTRIBUTOR = ", ";
-
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -25,7 +21,7 @@ public class Cars {
         });
     }
 
-    public String findWinners() {
+    public List<String> findWinners() {
         final int farthestPosition = findFarthestPosition();
         return getWinners(farthestPosition);
     }
@@ -42,25 +38,14 @@ public class Cars {
         return 0;
     }
 
-    private String getWinners(final int farthestPosition) {
+    private List<String> getWinners(final int farthestPosition) {
         return cars.stream()
-                .filter((car) -> car.isSamePosition(farthestPosition))
-                .map(Car::getName)
-                .collect(Collectors.joining(CAR_NAME_DISTRIBUTOR));
-    }
-
-    public List<String> turnResult() {
-        return cars.stream()
-                .map(this::carTurnResult)
+                .filter(car -> car.getPosition() == farthestPosition)
+                .map(car -> car.getName())
                 .collect(Collectors.toList());
     }
 
-    private String carTurnResult(Car car) {
-        StringBuilder result = new StringBuilder();
-        result.append(car.getName() + NAME_POSITION_SPLITTER);
-        for (int i = 0; i < car.getPosition(); i++) {
-            result.append(CAR_POSITION);
-        }
-        return result.toString();
+    public List<Car> getCars() {
+        return cars;
     }
 }

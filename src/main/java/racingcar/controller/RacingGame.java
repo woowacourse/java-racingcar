@@ -38,7 +38,7 @@ public class RacingGame {
         Output.printResultMessage();
         while (repeats-- > 0) {
             cars.startOneTurn();
-            Output.printTurnResult(cars.turnResult());
+            Output.printTurnResult(cars.getCars());
         }
         Output.printWinners(cars.findWinners());
     }
