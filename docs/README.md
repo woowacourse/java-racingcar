@@ -189,7 +189,10 @@
     - View에서 발생하는 예외 처리에 사용할 ViewErrorMessage와 domain에서 발생하는 예외 처리에 사용할 DomainErrorMessage로 분리.
 - [ ] Util 클래스는 어떤 책임을 가져야 할까요?
 - [ ] 테스트에서만 사용되는 클래스는 test source set에 선언해주면 어떨까요?
-- [ ] `Integer.parseInt()`가 중복으로 호출되는곳이 있는데, 어떻게 하면 호출을 줄일 수 있을까요?
+- [x] `Integer.parseInt()`가 중복으로 호출되는곳이 있는데, 어떻게 하면 호출을 줄일 수 있을까요?
+    - Integer.parseInt()는 내부에서 입력이 숫자가 아니면 알아서 NumberFormatException을 던지는 것 같다. 
+    - 그래서 validateNumberFormat 메서드는 필요가 없을 것 같다.
+    - 하지만 toInteger에서 NumberFormatException이 발생했을 때 원하는 에러 메시지로 예외를 던지고 싶어서 try catch문을 이용했다.
 - [ ] 어떤 예외를 던지는지 다시 확인해보기
     - 적절한 시점에 예외를 던지는 것도 중요하지만 예외의 종류도 중요합니다. 어떤 예외를 던지느냐에 따라 사용자에게 전달되는 의미가 달라지기 때문입니다.
 - [ ] 변수, 클래스, 메서드 명을 전부 다 확인하여 의도에 맞게, 규칙에 맞게 지어졌는지 다시 확인해보기

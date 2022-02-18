@@ -23,19 +23,14 @@ public class Attempt {
     }
 
     private int validate(String attempt) {
-        validateNumberFormat(attempt);
         int number = toInteger(attempt);
         validateNegative(number);
         return number;
     }
 
-    private int toInteger(String string) {
-        return Integer.parseInt(string);
-    }
-
-    private void validateNumberFormat(String attempt) {
+    private int toInteger(String s) {
         try {
-            Integer.parseInt(attempt);
+            return Integer.parseInt(s);
         } catch (NumberFormatException numberFormatException) {
             throw new RuntimeException(DomainErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
         }
