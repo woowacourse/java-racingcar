@@ -13,7 +13,7 @@ public class RacingGameTest {
 	@DisplayName("자동차 경주 게임 시작")
 	public void startTest() {
 		List<Car> cars = List.of(Car.from("lala"), Car.from("pobi"));
-		AttemptNumber attemptNumber = AttemptNumber.fromStringValue("2");
+		AttemptNumber attemptNumber = AttemptNumber.of("2");
 		RacingGame game = RacingGame.of(cars, attemptNumber);
 		List<Car> racingCars = game.start(bound -> 5);
 

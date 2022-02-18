@@ -8,13 +8,14 @@ import java.util.Map;
 public class RacingResult {
 
 	private static final int ADDITIONAL_NUMBER = 1;
+	private static final int INIT_VALUE_OF_ATTEMPT_NUMBER = 0;
 
 	private final Map<Round, List<Car>> results = new HashMap<>();
-	private AttemptNumber attemptNumber = AttemptNumber.fromInitValue();
+	private AttemptNumber attemptNumber = AttemptNumber.of(INIT_VALUE_OF_ATTEMPT_NUMBER);
 
 	public void add(List<Car> cars)  {
 		int newRound = attemptNumber.value() + ADDITIONAL_NUMBER;
-		attemptNumber = AttemptNumber.fromIntegerValue(newRound);
+		attemptNumber = AttemptNumber.of(newRound);
 
 		results.put(Round.of(newRound), cars);
 	}

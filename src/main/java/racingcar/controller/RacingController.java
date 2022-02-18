@@ -29,7 +29,7 @@ public class RacingController {
 
 	private AttemptNumber inputAttemptNumber() {
 		String attemptNumberInput = InputView.getAttemptNumber();
-		return AttemptNumber.fromStringValue(attemptNumberInput);
+		return AttemptNumber.of(attemptNumberInput);
 	}
 
 	private void play(AttemptNumber attemptNumber) {

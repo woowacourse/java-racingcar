@@ -7,6 +7,7 @@ import racingcar.validator.AttemptValidator;
 public class AttemptNumber {
 
 	private static final int INIT_VALUE_OF_ATTEMPT_NUMBER = 0;
+	private static final AttemptNumber INIT_ATTEMPT_NUMBER = new AttemptNumber(INIT_VALUE_OF_ATTEMPT_NUMBER);
 
 	private final int value;
 
@@ -14,17 +15,16 @@ public class AttemptNumber {
 		this.value = value;
 	}
 
-	public static AttemptNumber fromStringValue(String value) {
+	public static AttemptNumber of(String value) {
 		AttemptValidator.check(value);
 		return new AttemptNumber(Integer.parseInt(value));
 	}
 
-	public static AttemptNumber fromIntegerValue(int value) {
+	public static AttemptNumber of(int value) {
+		if (value == INIT_VALUE_OF_ATTEMPT_NUMBER) {
+			return INIT_ATTEMPT_NUMBER;
+		}
 		return new AttemptNumber(value);
-	}
-
-	public static AttemptNumber fromInitValue() {
-		return new AttemptNumber(INIT_VALUE_OF_ATTEMPT_NUMBER);
 	}
 
 	public int value() {
