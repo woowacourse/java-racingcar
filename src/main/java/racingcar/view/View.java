@@ -4,9 +4,8 @@ import static java.util.stream.Collectors.joining;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import racingcar.domain.Car;
 import racingcar.domain.log.GameLog;
-import racingcar.domain.log.LogCar;
+import racingcar.domain.log.CarForLog;
 
 public class View {
 
@@ -17,6 +16,15 @@ public class View {
     private static final String PROGRESS_BAR = "-";
     private static final String NAME_AND_PROGRESS_BAR_DELIMITER = " : ";
     private static final String WINNER_NAMES_DELIMITER = ", ";
+
+    private static final View view = new View();
+
+    private View() {
+    }
+
+    public static View getInstance() {
+        return view;
+    }
 
     public void printInputNamesMessage() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
@@ -32,8 +40,8 @@ public class View {
     }
 
     public void printMidtermResults(GameLog gameLog, int currentTryCount) {
-        for (LogCar logCar : gameLog.getLog(currentTryCount)) {
-            String name = logCar.getName();
+        for (CarForLog carForLog : gameLog.getLog(currentTryCount)) {
+            String name = carForLog.getName();
             printCarNameAndProgressBar(name, gameLog.getPositionByName(currentTryCount, name));
         }
         printBlankLine();
@@ -51,7 +59,8 @@ public class View {
     }
 
     public void printWinnersResult(GameLog gameLog, int totalTryCount) {
-        System.out.println(getFormattedWinnerNames(gameLog.getWinnerCarNames(totalTryCount)) + WINNER_RESULT_SUFFIX_MESSAGE);
+        System.out.println(
+                getFormattedWinnerNames(gameLog.getWinnerCarNames(totalTryCount)) + WINNER_RESULT_SUFFIX_MESSAGE);
     }
 
     private String getFormattedWinnerNames(List<String> lastCarNames) {

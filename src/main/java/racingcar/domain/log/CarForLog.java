@@ -1,11 +1,11 @@
 package racingcar.domain.log;
 
-public class LogCar {
+public class CarForLog {
 
-    private String name;
-    private int position;
+    private final String name;
+    private final int position;
 
-    public LogCar(String name, int position) {
+    public CarForLog(String name, int position) {
         this.name = name;
         this.position = position;
     }

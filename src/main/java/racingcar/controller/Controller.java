@@ -11,7 +11,7 @@ public class Controller {
     private final Game game;
 
     public Controller(List<String> names, int tryCount, RandomNumberGenerator randomNumberGenerator) {
-        this.view = new View();
+        this.view = View.getInstance();
         this.game = new Game(names, tryCount, randomNumberGenerator);
     }
 

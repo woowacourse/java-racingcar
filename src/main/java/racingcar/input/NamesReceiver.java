@@ -15,25 +15,27 @@ public class NamesReceiver {
     private Scanner scanner;
     private NamesValidator namesValidator;
     private View view;
-    private String receivedNames;
 
     public NamesReceiver() {
         this.scanner = new Scanner(System.in);
         this.namesValidator = new NamesValidator();
-        this.view = new View();
-        this.receivedNames = null;
+        this.view = View.getInstance();
     }
 
     public List<String> receive() {
-        while (!checkRules()) {
+        boolean retrySwitch = true;
+        String names = null;
+        while (retrySwitch) {
+            view.printInputNamesMessage();
+            names = scanner.nextLine();
+            retrySwitch = !checkRules(names);
         }
-        return parseNames(receivedNames);
+        return parseNames(names);
     }
 
-    private boolean checkRules() {
+    private boolean checkRules(String names) {
         try {
-            view.printInputNamesMessage();
-            receivedNames = namesValidator.validate(scanner.nextLine());
+            namesValidator.validate(names);
             return true;
         } catch (IllegalArgumentException exception) {
             view.printExceptionMessage(exception);

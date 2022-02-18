@@ -11,7 +11,7 @@ import racingcar.domain.Cars;
 
 public class GameLog {
 
-    private final Map<Integer, List<LogCar>> gameLog;
+    private final Map<Integer, List<CarForLog>> gameLog;
 
     public GameLog() {
         this.gameLog = new HashMap<>();
@@ -21,16 +21,15 @@ public class GameLog {
         gameLog.put(currentTryCount, getLogCarList(currentCars));
     }
 
-    private List<LogCar> getLogCarList(Cars cars) {
-        List<LogCar> logCarList = new ArrayList<>();
+    private List<CarForLog> getLogCarList(Cars cars) {
+        List<CarForLog> carForLogList = new ArrayList<>();
         for (Car car : cars.getCars()) {
-            logCarList.add(new LogCar(car.getName(), car.getPosition()));
+            carForLogList.add(new CarForLog(car.getName(), car.getPosition()));
         }
-        return logCarList;
+        return carForLogList;
     }
 
-
-    public List<LogCar> getLog(int tryCount) {
+    public List<CarForLog> getLog(int tryCount) {
         return gameLog.get(tryCount);
     }
 
@@ -38,25 +37,25 @@ public class GameLog {
         return findCarByName(tryCount, name).getPosition();
     }
 
-    private LogCar findCarByName(int tryCount, String name) {
+    private CarForLog findCarByName(int tryCount, String name) {
         return getLog(tryCount).stream()
-                .filter(logCar -> logCar.getName().equals(name))
+                .filter(carForLog -> carForLog.getName().equals(name))
                 .findFirst()
                 .orElseThrow();
     }
 
     public List<String> getWinnerCarNames(int totalTryCount) {
-        List<LogCar> logCarList = getLog(totalTryCount);
-        int mostFarPosition = getMostFarPosition(logCarList);
-        return logCarList.stream()
+        List<CarForLog> carForLogList = getLog(totalTryCount);
+        int mostFarPosition = getMostFarPosition(carForLogList);
+        return carForLogList.stream()
                 .filter(car -> car.isSamePosition(mostFarPosition))
-                .map(LogCar::getName)
+                .map(CarForLog::getName)
                 .collect(toList());
     }
 
-    private int getMostFarPosition(List<LogCar> carList) {
+    private int getMostFarPosition(List<CarForLog> carList) {
         return carList.stream()
-                .mapToInt(LogCar::getPosition)
+                .mapToInt(CarForLog::getPosition)
                 .max()
                 .orElseThrow();
     }

@@ -9,25 +9,27 @@ public class TryCountReceiver {
     private Scanner scanner;
     private TryCountValidator tryCountValidator;
     private View view;
-    private String receivedTryCount;
 
     public TryCountReceiver() {
         this.scanner = new Scanner(System.in);
         this.tryCountValidator = new TryCountValidator();
-        this.view = new View();
-        this.receivedTryCount = null;
+        this.view = View.getInstance();
     }
 
     public int receive() {
-        while (!checkRules()) {
+        boolean retrySwitch = true;
+        String tryCount = null;
+        while (retrySwitch) {
+            view.printInputTryCountMessage();
+            tryCount = scanner.nextLine();
+            retrySwitch = !checkRules(tryCount);
         }
-        return parseTryCount(receivedTryCount);
+        return parseTryCount(tryCount);
     }
 
-    private boolean checkRules() {
+    private boolean checkRules(String tryCount) {
         try {
-            view.printInputTryCountMessage();
-            receivedTryCount = tryCountValidator.validate(scanner.nextLine());
+            tryCountValidator.validate(tryCount);
             return true;
         } catch (IllegalArgumentException exception) {
             view.printExceptionMessage(exception);
