@@ -2,8 +2,6 @@ package racingcar.model;
 
 import racingcar.util.RandomNumberGenerator;
 
-
-// 역할: 게임의 진행??? 게임을 초기화해서 진행하고, 우승자를 찾아주는 역할?
 public class RacingGame {
     private Cars cars;
     private TrialNum trialNum;
