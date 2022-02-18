@@ -3,10 +3,9 @@ package racingcar.utils;
 import java.util.Random;
 
 public class RandomNumberGenerator {
-    private static final int RANDOM_NUMBER_BOUND = 10;
 
-    public static int makeRandom() {
+    public static int makeRandom(int randomNumberBound) {
         Random random = new Random();
-        return random.nextInt(RANDOM_NUMBER_BOUND);
+        return random.nextInt(randomNumberBound);
     }
 }

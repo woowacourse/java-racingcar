@@ -34,7 +34,7 @@ class CarTest {
 
     @Test
     @DisplayName("toString 이 Car의 중요 정보를 모두 담고 있는가?")
-    void name() {
+    void carToString() {
         Car car = new Car("pobi",0);
         assertThat(car.toString()).contains("pobi", "0");
     }

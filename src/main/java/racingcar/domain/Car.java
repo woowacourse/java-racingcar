@@ -5,6 +5,7 @@ import racingcar.utils.CarNameValidator;
 public class Car {
     private static final int MOVE_CONDITION = 4;
 
+
     private final String name;
     private int position;
 

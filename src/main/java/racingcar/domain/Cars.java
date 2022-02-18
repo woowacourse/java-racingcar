@@ -8,6 +8,7 @@ import racingcar.utils.RandomNumberGenerator;
 
 public class Cars {
     public static final int START_POSITION = 0;
+    private static final int RANDOM_NUMBER_BOUND = 10;
 
     private final List<Car> cars;
 
@@ -21,7 +22,19 @@ public class Cars {
 
     public void startEachRace() {
         for (Car car : cars) {
-            car.move(RandomNumberGenerator.makeRandom());
+            car.move(RandomNumberGenerator.makeRandom(RANDOM_NUMBER_BOUND));
+        }
+    }
+
+    public void startEachRace(int bound) {
+        for (Car car : cars) {
+            car.move(RandomNumberGenerator.makeRandom(bound));
+        }
+    }
+
+    public void startEachRace(int bound, int multiple) {
+        for (Car car : cars) {
+            car.move(RandomNumberGenerator.makeRandom(bound) * multiple);
         }
     }
 
@@ -34,7 +47,7 @@ public class Cars {
         return winnerCars;
     }
 
-    private int findMaxPosition() {
+    public int findMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = Math.max(maxPosition, car.getPosition());
