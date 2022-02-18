@@ -17,4 +17,7 @@ public class Distance {
         distance++;
     }
 
+    public boolean isSameWith(int distance) {
+        return this.distance == distance;
+    }
 }

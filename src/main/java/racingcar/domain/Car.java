@@ -28,7 +28,7 @@ public class Car {
     }
 
     public boolean isSameWith(int distance) {
-        return this.distance.getDistance() == distance;
+        return this.distance.isSameWith(distance);
     }
 
     @Override
