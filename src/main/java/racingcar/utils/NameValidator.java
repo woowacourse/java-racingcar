@@ -9,7 +9,7 @@ public class NameValidator {
     private static final int MAX_NAME_LENGTH = 5;
 
     public static void isValidateName(String carName) {
-        if (isInvalidNameLength(carName.length()) || isBlankName(carName)) {
+        if (isInvalidNameLength(carName.length()) || isNullOrBlankName(carName)) {
             throw new IllegalArgumentException(WRONG_NAME_MESSAGE);
         }
     }
@@ -18,8 +18,8 @@ public class NameValidator {
         return nameLength < MIN_NAME_LENGTH || nameLength > MAX_NAME_LENGTH;
     }
 
-    private static boolean isBlankName(String carName) {
-        return carName.isBlank();
+    private static boolean isNullOrBlankName(String carName) {
+        return carName == null || carName.isBlank();
     }
 
     public static void isDuplicatedNames(List<String> carNames) {
