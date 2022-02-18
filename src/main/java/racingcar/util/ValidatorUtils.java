@@ -2,7 +2,7 @@ package racingcar.util;
 
 import static racingcar.constants.GameConstants.MAX_NAME_LENGTH;
 import static racingcar.constants.SystemConstants.NUMBER_ZERO_FOR_POSITIVE_CHECK;
-import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_NOT_ALLOWED;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_OR_NULL_NOT_ALLOWED;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_DUPLICATE_NAME;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_NOT_POSITIVE_INTEGER;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
@@ -24,13 +24,13 @@ public class ValidatorUtils {
     }
 
     public static void validateCarName(String name) {
-        validateNotBlank(name);
+        validateNonBlankOrNull(name);
         validateNotOverFiveCharacters(name);
     }
 
-    private static void validateNotBlank(String string) {
-        if (string.isBlank()) {
-            throw new IllegalArgumentException(ERROR_BLANK_NOT_ALLOWED);
+    private static void validateNonBlankOrNull(String string) {
+        if (string == null || string.isBlank()) {
+            throw new IllegalArgumentException(ERROR_BLANK_OR_NULL_NOT_ALLOWED);
         }
     }
 

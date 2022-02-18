@@ -3,7 +3,7 @@ package racingcar.util;
 import static constants.TestConstants.PARAMETERIZED_TEST_DISPLAY_FORMAT;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
-import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_NOT_ALLOWED;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_BLANK_OR_NULL_NOT_ALLOWED;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_DUPLICATE_NAME;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_NOT_POSITIVE_INTEGER;
 import static racingcar.constants.output.ErrorOutputMessages.ERROR_OVER_FIVE_CHARACTERS;
@@ -14,7 +14,7 @@ import static racingcar.util.ValidatorUtils.validatePositiveInt;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidatorUtilsTest {
@@ -44,13 +44,13 @@ class ValidatorUtilsTest {
                 .isThrownBy(() -> validateCarName(carName));
     }
 
-    @DisplayName("validateCarName 메서드는 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
+    @DisplayName("validateCarName 메서드는 null 혹은 공백 혹은 빈 문자열이 입력되었을 때 예외를 발생시킨다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @EmptySource
+    @NullAndEmptySource
     void validateCarNames_errorOnBlank(String carName) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> validateCarName(carName))
-                .withMessageMatching(ERROR_BLANK_NOT_ALLOWED);
+                .withMessageMatching(ERROR_BLANK_OR_NULL_NOT_ALLOWED);
     }
 
     @DisplayName("validateCarName 메서드는 5글자를 초과하는 문자열이 입력되었을 때 예외를 발생시킨다.")
