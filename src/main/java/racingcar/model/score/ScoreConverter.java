@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ScoreConverter {
-    public static Score of(CarDto car) {
+    private static Score of(CarDto car) {
         return new Score(car.getName(), car.getPosition());
     }
 

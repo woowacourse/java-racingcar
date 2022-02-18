@@ -2,8 +2,6 @@ package racingcar.model.score;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.score.Score;
-import racingcar.model.score.ScoreBoard;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +15,6 @@ public class ScoreBoardTest {
     void create() {
         int round = 1;
         List<Score> scores = Arrays.asList(new Score("범고래", 1), new Score("소주캉", 1));
-
         ScoreBoard scoreBoard = new ScoreBoard(round, scores);
         assertThat(scoreBoard.getRound()).isEqualTo(round);
     }
