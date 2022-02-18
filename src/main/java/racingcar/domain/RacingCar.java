@@ -5,12 +5,10 @@ public class RacingCar implements Comparable<RacingCar> {
     private static final int START_POSITION = 0;
     private static final int MOVE_STANDARD = 4;
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final String NAME_POSITION_CONNECTOR = " : ";
     private static final String EXCEPTION_NO_NAME = "[ERROR] 자동차 이름은 반드시 존재해야 합니다.\n";
     private static final String EXCEPTION_TOO_LONG_NAME = "[ERROR] 자동차 이름은 5자 이하여야 합니다.\n";
     private final String name;
     private int position;
-
 
     public RacingCar(String name) {
         validateName(name);
@@ -49,7 +47,7 @@ public class RacingCar implements Comparable<RacingCar> {
         }
     }
 
-    public boolean isSamePosition(RacingCar racingCar){
+    public boolean isSamePosition(RacingCar racingCar) {
         return this.position == racingCar.getPosition();
     }
 

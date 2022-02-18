@@ -5,10 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.RacingCar;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,6 +12,7 @@ public class RacingCarTest {
 
     private static final int ONE_STEP = 1;
     private RacingCar racingCar1;
+
     @BeforeEach
     public void setUp() {
         racingCar1 = new RacingCar("pobi");
@@ -29,7 +26,6 @@ public class RacingCarTest {
         int afterPosition = racingCar1.getPosition();
 
         assertThat(beforePosition + ONE_STEP).isEqualTo(afterPosition);
-
     }
 
     @Test
@@ -50,7 +46,6 @@ public class RacingCarTest {
         assertThatThrownBy(() -> new RacingCar(null)).isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @Test
     @DisplayName("두 자동차의 위치가 같을때 true를 반환하는지 확인하는 테스트")
     public void isSamePositionTest_True() {
@@ -65,7 +60,6 @@ public class RacingCarTest {
     public void isSamePositionTest_False() {
         RacingCar sourceCar = new RacingCar("pobi");
         RacingCar targetCar = new RacingCar("josh");
-
         sourceCar.goOrStay(5);
 
         assertThat(sourceCar.isSamePosition(targetCar)).isEqualTo(false);
@@ -82,6 +76,4 @@ public class RacingCarTest {
 
         assertThat(sourceCar.compareTo(targetCar)).isEqualTo(-3);
     }
-
-
 }

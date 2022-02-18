@@ -11,6 +11,7 @@ public class Application {
         int trialCount = InputView.askTryCount();
 
         RacingGame racingGame = new RacingGame(carNames, trialCount);
+        OutputView.printGameStartMessage();
         while (!racingGame.isEnd()) {
             racingGame.doOneTrial();
             OutputView.printCurrentRaceState(racingGame.getGameState());
