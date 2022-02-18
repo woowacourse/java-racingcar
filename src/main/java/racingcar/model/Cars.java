@@ -22,12 +22,8 @@ public class Cars {
         }
     }
 
-    public void insertCar(final Car car) {
+    private void insertCar(final Car car) {
         cars.add(car);
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 
     public void moveRound() {
@@ -50,5 +46,9 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .getAsInt();
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

@@ -14,14 +14,6 @@ public class Car {
         this.position = position;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getPosition() {
-        return this.position;
-    }
-
     public void move(final RandomUtil randomNumberGenerator) {
         if (isMovable(randomNumberGenerator)) {
             position++;
@@ -34,5 +26,13 @@ public class Car {
 
     public boolean isMaxPosition(final int maxPosition) {
         return position == maxPosition;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
     }
 }

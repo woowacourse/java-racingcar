@@ -9,15 +9,15 @@ public class RacingGame {
         this.tryCount = tryCount;
     }
 
+    public void raceRound() {
+        cars.moveRound();
+    }
+
     public Cars getCars() {
         return cars;
     }
 
     public int getTryCount() {
         return tryCount;
-    }
-
-    public void raceRound() {
-        cars.moveRound();
     }
 }
