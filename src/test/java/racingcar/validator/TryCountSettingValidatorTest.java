@@ -24,7 +24,7 @@ public class TryCountSettingValidatorTest {
                 .hasMessageContaining(TryCountSettingValidator.NEGATIVE_TRY_COUNT_ERROR_MESSAGE);
     }
 
-    @ParameterizedTest(name = "실수의 경우 예외 발생 - 입력값 : {0}")
+    @ParameterizedTest(name = "자연수가 아닐때 예외 발생 - 입력값 : {0}")
     @ValueSource(strings = {"1.234", "-123.2345", "+12.674"})
     public void 자연수가_아닐때_예외_발생(String input) {
         assertThatThrownBy(() -> tryCountSettingValidator.validate(input))
