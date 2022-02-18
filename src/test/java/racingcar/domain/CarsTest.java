@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import racingcar.domain.strategy.RandomMovingStrategy;
+import racingcar.domain.strategy.FixedMovingStrategy;
 
 class CarsTest {
 
@@ -61,9 +61,9 @@ class CarsTest {
 		@BeforeEach
 		void setUp() {
 			// given
-			car1 = Car.builder().movingStrategy(new RandomMovingStrategy()).build();
-			car2 = Car.builder().movingStrategy(new RandomMovingStrategy()).build();
-			car3 = Car.builder().movingStrategy(new RandomMovingStrategy()).build();
+			car1 = Car.builder().movingStrategy(new FixedMovingStrategy()).build();
+			car2 = Car.builder().movingStrategy(new FixedMovingStrategy()).build();
+			car3 = Car.builder().movingStrategy(new FixedMovingStrategy()).build();
 		}
 
 		@Test

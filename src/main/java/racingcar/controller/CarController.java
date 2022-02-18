@@ -65,25 +65,25 @@ public class CarController {
 	}
 
 	private void playRound() {
-		List<Car> cars = carRepository.findAll();
+		final List<Car> cars = carRepository.findAll();
 		moveCars(cars);
 		OutputView.showCurrentStatus(cars);
 	}
 
-	private void moveCars(List<Car> cars) {
+	private void moveCars(final List<Car> cars) {
 		for (Car car : cars) {
 			car.move();
 		}
 	}
 
 	public void showWinners() {
-		List<Car> winners = getWinners();
+		final List<Car> winners = getWinners();
 		OutputView.showGameResult(winners);
 	}
 
 	private List<Car> getWinners() {
-		List<Car> findCars = carRepository.findAll();
-		Cars cars = new Cars(findCars);
+		final List<Car> findCars = carRepository.findAll();
+		final Cars cars = new Cars(findCars);
 		return cars.getWinners();
 	}
 

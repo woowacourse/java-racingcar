@@ -58,13 +58,15 @@ public class Car {
 		return name.get();
 	}
 
-	public void move(final int distance) {
-		position += distance;
-	}
-
 	public void move() {
 		if (movingStrategy.movable()) {
 			this.position++;
+		}
+	}
+
+	public void move(final int movingTryCount) {
+		for (int i = 0; i < movingTryCount; i++) {
+			move();
 		}
 	}
 
