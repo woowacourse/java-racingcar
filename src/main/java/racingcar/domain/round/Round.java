@@ -6,9 +6,9 @@ import racingcar.utils.IntegerUtils;
 
 public class Round {
 
+    private static final String ERROR_MESSAGE = "1 이상의 양수를 입력하세요.";
     private static final int END_ROUND = 0;
     private static final int MIN_NUMBER = 1;
-    public static final String ERROR_MESSAGE = "1 이상의 양수를 입력하세요.";
 
     private int round;
 
