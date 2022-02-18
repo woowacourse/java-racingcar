@@ -29,4 +29,14 @@ public class RacingGameTest {
             assertThat(winner.getPosition()).isLessThanOrEqualTo(maxPosition);
         }
     }
+
+    @Test
+    @DisplayName("레이싱 없이 우승자 추출해서 공동 우승자 나오는지 테스트")
+    void checkCoWinners() {
+        int round = 5;
+        RacingGame racingGame = new RacingGame(carNames, round);
+        List<Car> winners = racingGame.findWinners();
+
+        assertThat(winners.size()).isEqualTo(carNames.size());
+    }
 }
