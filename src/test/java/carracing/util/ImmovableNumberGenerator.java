@@ -7,6 +7,6 @@ public class ImmovableNumberGenerator implements NumberGenerator {
 
 	@Override
 	public int generate() {
-		return 3;
+		return IMMOVABLE_NUMBER;
 	}
 }
