@@ -17,7 +17,6 @@ public class Cars {
 	public static final String INVALID_DUPLICATE_CAR_NAMES = "[ERROR] 차 이름이 중복됩니다";
 	private static final String INVALID_EMPTY_CAR_NAMES = "[ERROR] 차 이름은 공백이 될 수 없습니다";
 
-	private MovingStrategy randomMovingStrategy;
 	private final List<Car> cars;
 
 	public Cars(final List<Car> cars) {
@@ -30,7 +29,6 @@ public class Cars {
 
 	public Cars(final String carNames, final MovingStrategy randomMovingStrategy) {
 		final List<String> parsedCarNames = List.of(splitCarNames(carNames));
-		this.randomMovingStrategy = randomMovingStrategy;
 		cars  = new ArrayList<>();
 
 		validateCarNamesEmpty(parsedCarNames);
