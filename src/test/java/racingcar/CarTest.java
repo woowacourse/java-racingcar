@@ -6,8 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
-import racingcar.strategy.MovingCarStrategy;
-import racingcar.strategy.RandomMovingStrategy;
+import racingcar.model.MovingCarStrategy;
+import racingcar.model.RandomMovingStrategy;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarTest {

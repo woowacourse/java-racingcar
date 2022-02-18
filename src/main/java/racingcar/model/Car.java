@@ -1,7 +1,5 @@
 package racingcar.model;
 
-import racingcar.strategy.MovingCarStrategy;
-
 public class Car implements Comparable<Car> {
     private static final String NULL_EMPTY_CAR_NAME_ERROR_MESSAGE = "[Error] 다시 이름을 입력하세요";
     private static final int MAX_CAR_NAME_LENGTH = 5;

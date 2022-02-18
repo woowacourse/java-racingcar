@@ -1,4 +1,4 @@
-package racingcar.strategy;
+package racingcar.model;
 
 public class RandomMovingStrategy implements MovingCarStrategy {
     private static final int MOVING_CONDITION_NUMBER = 4;

@@ -2,8 +2,6 @@ package racingcar.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.strategy.MovingCarStrategy;
-import racingcar.strategy.RandomMovingStrategy;
 
 public class Cars {
     private final List<Car> cars;
