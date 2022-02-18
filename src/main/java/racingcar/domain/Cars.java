@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.domain.movestrategy.MovingStrategy;
 import racingcar.domain.movestrategy.RandomMovingStrategy;
 
 import java.util.ArrayList;
@@ -32,9 +33,9 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void progressWithAllCar() {
+    public void progressWithAllCar(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            car.progress(new RandomMovingStrategy());
+            car.progress(movingStrategy);
         }
     }
 

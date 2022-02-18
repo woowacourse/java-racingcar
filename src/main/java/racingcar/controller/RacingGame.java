@@ -3,6 +3,8 @@ package racingcar.controller;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.GameTotalCount;
+import racingcar.domain.movestrategy.MovingStrategy;
+import racingcar.domain.movestrategy.RandomMovingStrategy;
 import racingcar.view.OutputView;
 
 import java.util.List;
@@ -15,6 +17,7 @@ public class RacingGame {
 
     private Cars cars;
     private GameTotalCount gameTotalCount;
+    private MovingStrategy movingStrategy = new RandomMovingStrategy();
 
     public void start() throws IllegalArgumentException {
         initRacingCarGame();
@@ -37,7 +40,7 @@ public class RacingGame {
     }
 
     private void run() {
-        cars.progressWithAllCar();
+        cars.progressWithAllCar(movingStrategy);
         printProgress();
         printLine();
     }
