@@ -15,13 +15,13 @@ public class RacingCars {
     private final List<RacingCar> cars;
     private final MovingStrategy movingStrategy;
 
-    public RacingCars(String[] carNameArray, MovingStrategy movingStrategy) {
+    public RacingCars(List<String> carNameArray, MovingStrategy movingStrategy) {
         this.cars = makeRacingCars(carNameArray);
         this.movingStrategy = movingStrategy;
     }
 
-    private List<RacingCar> makeRacingCars(String[] carNames) {
-        return Arrays.stream(carNames)
+    private List<RacingCar> makeRacingCars(List<String> carNames) {
+        return carNames.stream()
             .map(this::removeNameBlank)
             .map(RacingCar::new)
             .collect(Collectors.toList());

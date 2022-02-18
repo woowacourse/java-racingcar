@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -12,11 +14,11 @@ public class InputView {
     private InputView() {
     }
 
-    public static String[] getCarNames() {
+    public static List<String> getCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
         String carNames = CONSOLE.nextLine();
         Validator.validateCarNames(carNames);
-        return carNames.split(CAR_NAME_DELIMITER);
+        return Arrays.asList(carNames.split(CAR_NAME_DELIMITER));
     }
 
     public static int inputTryCount() {
