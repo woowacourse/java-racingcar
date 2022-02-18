@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,9 +56,13 @@ public class ParticipatedCarsTest {
         List<String> winners = WinnerNames.of(participatedCars).getWinnerNames();
 
         List<Car> cars = participatedCars.getCars();
-        Collections.sort(cars, (faster, slower) -> slower.getPosition() - faster.getPosition());
+        List<String> sortedNamesByPosition = cars.stream()
+                .sorted((faster, slower) -> slower.getPosition() - faster.getPosition())
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
 
-        int winnerIndex = winners.size() - 1;
-        assertThat(winners.get(winnerIndex)).isEqualTo(cars.get(winnerIndex).getName());
+        for (int i = 0 ; i < winners.size(); i++) {
+            assertThat(winners.get(i)).isEqualTo(sortedNamesByPosition.get(i));
+        }
     }
 }

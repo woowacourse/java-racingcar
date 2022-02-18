@@ -14,7 +14,7 @@ public class ParticipatedCars {
 
     private final List<Car> cars;
 
-    public ParticipatedCars(List<String> carNames) {
+    public ParticipatedCars(final List<String> carNames) {
         checkCarNameDuplicated(carNames);
         this.cars = new ArrayList<>();
         for (String carName : carNames) {
@@ -22,8 +22,10 @@ public class ParticipatedCars {
         }
     }
 
-    private static void checkCarNameDuplicated(List<String> carNames) {
-        long count = carNames.stream().distinct().count();
+    private static void checkCarNameDuplicated(final List<String> carNames) {
+        long count = carNames.stream()
+                .distinct()
+                .count();
         if (count != carNames.size()) {
             throw new CarNameDuplicationException();
         }
@@ -36,6 +38,6 @@ public class ParticipatedCars {
     }
 
     public List<Car> getCars() {
-        return this.cars;
+        return Collections.unmodifiableList(cars);
     }
 }
