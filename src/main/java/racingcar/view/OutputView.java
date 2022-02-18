@@ -12,10 +12,10 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printTotalExecutionResult(ExecutionResult executionResults) {
+    public static void printTotalExecutionResult(List<ExecutionResult> totalExecutionResults) {
         System.out.println("\n실행 결과");
-        for (List<CarDTO> executionResult : executionResults.getExecutionResult()) {
-            printExecutionResult(executionResult);
+        for (ExecutionResult executionResult : totalExecutionResults) {
+            printExecutionResult(executionResult.getExecutionResult());
         }
     }
 

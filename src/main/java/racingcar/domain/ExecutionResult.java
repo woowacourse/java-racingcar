@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExecutionResult {
-    List<List<CarDTO>> executionResult = new ArrayList<>();
+    List<CarDTO> executionResult = new ArrayList<>();
 
-    public void addCurrentExecutionResult(Cars cars) {
-        executionResult.add(cars.convertToDTO());
+    public ExecutionResult(Cars cars) {
+        for (Car car : cars.getCars()) {
+            executionResult.add(new CarDTO(car));
+        }
     }
 
-    public List<List<CarDTO>> getExecutionResult() {
+    public List<CarDTO> getExecutionResult() {
         return this.executionResult;
     }
 

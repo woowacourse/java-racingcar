@@ -3,7 +3,7 @@ package racingcar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.CarDTO;
+import racingcar.domain.ExecutionResult;
 import racingcar.domain.RacingGame;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class RacingGameTest {
         racingGame.initTotalAttempt("5");
         racingGame.play();
 
-        List<List<CarDTO>> totalExecutionResult = racingGame.getTotalExecutionResult().getExecutionResult();
+        List<ExecutionResult> totalExecutionResult = racingGame.getTotalExecutionResult();
 
         assertThat(totalExecutionResult.size()).isEqualTo(5);
     }

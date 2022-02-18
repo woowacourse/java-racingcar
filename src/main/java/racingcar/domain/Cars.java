@@ -57,6 +57,10 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
+    public Set<Car> getCars() {
+        return this.cars;
+    }
+
     private void validateDuplication(String[] carNames) {
         HashSet<String> hashSet = new HashSet<>(Arrays.asList(carNames));
 

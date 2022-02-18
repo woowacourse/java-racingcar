@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
@@ -9,7 +10,7 @@ public class RacingGame {
 
     private Cars cars = new Cars();
     private int totalAttempt = 0;
-    private ExecutionResult totalExecutionResult = new ExecutionResult();
+    private List<ExecutionResult> totalExecutionResult = new ArrayList<>();
 
     public void initCarNames(String[] names) {
         cars = new Cars(names);
@@ -23,7 +24,7 @@ public class RacingGame {
     public void play() {
         while (totalAttempt-- > 0) {
             cars.move();
-            totalExecutionResult.addCurrentExecutionResult(cars);
+            totalExecutionResult.add(new ExecutionResult(cars));
         }
     }
 
@@ -31,7 +32,7 @@ public class RacingGame {
         return cars.selectWinners();
     }
 
-    public ExecutionResult getTotalExecutionResult() {
+    public List<ExecutionResult> getTotalExecutionResult() {
         return this.totalExecutionResult;
     }
 
