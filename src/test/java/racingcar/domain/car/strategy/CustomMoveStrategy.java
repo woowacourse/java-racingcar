@@ -5,9 +5,16 @@ import java.util.List;
 
 public class CustomMoveStrategy implements MoveStrategy {
 
-    private final Iterator<Boolean> conditions;
+    private Iterator<Boolean> conditions;
+
+    public CustomMoveStrategy() {
+    }
 
     public CustomMoveStrategy(final List<Boolean> conditions) {
+        initMoveConditions(conditions);
+    }
+
+    public void initMoveConditions(final List<Boolean> conditions) {
         this.conditions = conditions.iterator();
     }
 
