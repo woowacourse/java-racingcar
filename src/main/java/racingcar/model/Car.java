@@ -4,32 +4,31 @@ import java.util.List;
 import java.util.Objects;
 
 import racingcar.service.CheckingService;
+import racingcar.service.MovingCondition;
 
 public class Car implements Comparable<Car> {
 	public static final String ONE_STEP = "-";
 	public static final String COLON = " : ";
-	public static final int MOVING_CONDITION_NUMBER = 4;
-	private String name;
-	private int position = 0;
 
-	public Car(String name) {
-		CheckingService.checkCarNameLength(name);
-		this.name = name;
-	}
+	private String name;
+	private int position;
+	private MovingCondition movingCondition;
 
 	public Car(String name, int position) {
+		CheckingService.checkCarNameLength(name);
 		this.name = name;
 		this.position = position;
 	}
 
-	public void move(int selectedNumber) {
-		if (checkMovingCondition(selectedNumber)) {
-			position += 1;
-		}
+	public Car(String name, MovingCondition movingCondition) {
+		this(name, 0);
+		this.movingCondition = movingCondition;
 	}
 
-	public boolean checkMovingCondition(int selectedNumber) {
-		return selectedNumber >= MOVING_CONDITION_NUMBER;
+	public void move() {
+		if (movingCondition.canMove()) {
+			position += 1;
+		}
 	}
 
 	public boolean isSamePosition(Car otherCar) {
@@ -46,7 +45,7 @@ public class Car implements Comparable<Car> {
 		}
 		return "Fail!!";
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder line = new StringBuilder();

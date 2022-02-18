@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import racingcar.service.CheckingService;
-import racingcar.service.RandomNumberService;
+import racingcar.service.RandomNumberMovingCondition;
 
 public class Cars {
 	public static final String COMMA_DELIMITER = ",";
@@ -31,7 +31,7 @@ public class Cars {
 		List<Car> cars = new ArrayList<Car>();
 		try {
 			carNames.stream()
-				.forEach(carName -> cars.add(new Car(carName)));
+				.forEach(carName -> cars.add(new Car(carName, new RandomNumberMovingCondition())));
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(e.getMessage());
 		}
@@ -39,7 +39,7 @@ public class Cars {
 	}
 
 	public void moveCars() {
-		cars.stream().forEach(car -> car.move(RandomNumberService.getRandomNumber()));
+		cars.stream().forEach(Car::move);
 	}
 
 	public List<String> getPosition() {

@@ -9,12 +9,14 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.service.RandomNumberMovingCondition;
 
 public class CarsTest {
 	@Test
 	public void 자동차_이름_구분_및_저장() {
 		Cars result = new Cars("배카라,아스피");
-		assertThat(result).isEqualTo(new Cars(Arrays.asList(new Car("배카라"), new Car("아스피"))));
+		assertThat(result).isEqualTo(new Cars(Arrays.asList(new Car("배카라", new RandomNumberMovingCondition()),
+			new Car("아스피", new RandomNumberMovingCondition()))));
 	}
 
 	@Test
