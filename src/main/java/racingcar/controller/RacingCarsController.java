@@ -1,7 +1,5 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
-
 import racingcar.model.Cars;
 import racingcar.model.RoundCount;
 import racingcar.model.Winners;
@@ -14,9 +12,9 @@ public class RacingCarsController {
 	private final Cars cars;
 	private final Winners winners;
 
-	public RacingCarsController() {
-		cars = new Cars(new ArrayList<>());
-		winners = new Winners();
+	public RacingCarsController(Cars cars,Winners winners) {
+		this.cars=cars;
+		this.winners = winners;
 	}
 
 	public void run() {
