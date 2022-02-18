@@ -25,13 +25,13 @@ public class Cars {
     public List<RoundResult> repeatRaceBy(Attempt attempt) {
         List<RoundResult> results = new ArrayList<>();
         while (attempt.isLeft()) {
-            results.add(raceAll());
+            results.add(raceAllCar());
             attempt.decrease();
         }
         return results;
     }
 
-    private RoundResult raceAll() {
+    private RoundResult raceAllCar() {
         RoundResult result = new RoundResult();
         for (Car car : cars) {
             car.move(RANDOM_NUMBER_GENERATOR.generate());

@@ -19,8 +19,8 @@ public class RandomNumberGenerator implements NumberGenerator {
         return randomNumber;
     }
 
-    private static void validateRange(int randomNumber) {
-        if (randomNumber > MAXIMUM || randomNumber < MINIMUM) {
+    private static void validateRange(int number) {
+        if (number > MAXIMUM || number < MINIMUM) {
             throw new IllegalStateException(DomainErrorMessage.RANDOM_NUMBER_RANGE_OVER_ERROR_MESSAGE.get());
         }
     }

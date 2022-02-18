@@ -199,7 +199,8 @@
     - 사용자가 입력한 데이터가 잘못된 경우 → `IllegalArgumentException`
     - 찾으려는 데이터가 없는 경우 → `NoSuchElementException`
     - Integer.parseInt()에 문자열을 파라미터로 준 경우 → `NumberFormatException`
-- [ ] 변수, 클래스, 메서드 명을 전부 다 확인하여 의도에 맞게, 규칙에 맞게 지어졌는지 다시 확인해보기
+- [x] 변수, 클래스, 메서드 명을 전부 다 확인하여 의도에 맞게, 규칙에 맞게 지어졌는지 다시 확인해보기
     - move()에서 파라미터 값의 이름이 `randomNumber`입니다. 꼭 random이어야 할까요? 이것도 잘못된 의도로 이해가 될 수도 있지 않을까요?
     - CarName에서 validEmpty() 메서드 명도 수정해야한다.
+    - 메소드 명, 파라미터 명, 변수 명을 수정
 - [ ] toString()를 어떻게 잘 사용해야할지 고민해자!

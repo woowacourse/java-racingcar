@@ -39,19 +39,19 @@ public class Calculator {
         return input.split(String.format(DELIMITER_FORMAT, delimiter));
     }
 
-    private static int[] toIntegers(String[] stringNumbers) {
-        int[] numbers = new int[stringNumbers.length];
-        for (int i = 0; i < stringNumbers.length; i++) {
-            int result = toInteger(stringNumbers[i]);
+    private static int[] toIntegers(String[] array) {
+        int[] numbers = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            int result = toInteger(array[i]);
             validateNegative(result);
             numbers[i] = result;
         }
         return numbers;
     }
 
-    private static int toInteger(String stringNumber) {
+    private static int toInteger(String s) {
         try {
-            return Integer.parseInt(stringNumber);
+            return Integer.parseInt(s);
         } catch (NumberFormatException numberFormatException) {
             throw new NumberFormatException(ErrorMessage.NONE_INTEGER_ERROR_MESSAGE.get());
         }

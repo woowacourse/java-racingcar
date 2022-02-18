@@ -9,8 +9,8 @@ public class CarName {
     private String name;
 
     public CarName(String name) {
-        validEmpty(name);
-        validLength(name);
+        validateEmpty(name);
+        validateLength(name);
         this.name = name;
     }
 
@@ -32,13 +32,13 @@ public class CarName {
         return name.hashCode();
     }
 
-    private void validEmpty(String name) {
+    private void validateEmpty(String name) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
         }
     }
 
-    private void validLength(String name) {
+    private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
         }

@@ -23,8 +23,8 @@ public class InputView {
         return new RequestCarsDto(cars);
     }
 
-    private String[] splitNames(String nameInput) {
-        return nameInput.split(CAR_NAME_DELIMITER, -1);
+    private String[] splitNames(String input) {
+        return input.split(CAR_NAME_DELIMITER, -1);
     }
 
     public RequestAttemptDto requestAttempt() {

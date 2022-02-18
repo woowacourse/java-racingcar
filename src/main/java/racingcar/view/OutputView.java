@@ -17,18 +17,18 @@ public class OutputView {
     public void printRaceResult(ResponseRoundResultDto dto) {
         System.out.println(RACE_RESULT_MESSAGE);
         for (RoundResult result : dto.getResults()) {
-            printResult(result);
+            printRoundResult(result);
         }
     }
 
-    private void printResult(RoundResult result) {
+    private void printRoundResult(RoundResult result) {
         for (String name : result.getNames()) {
-            printResultOne(name, result.getPosition(name));
+            printNameAndPositionBar(name, result.getPosition(name));
         }
         System.out.println();
     }
 
-    private void printResultOne(String name, Integer position) {
+    private void printNameAndPositionBar(String name, Integer position) {
         String builder = name
                 + RESULT_DELIMITER
                 + POSITION_BAR.repeat(Math.max(0, position));

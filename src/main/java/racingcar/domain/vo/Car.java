@@ -37,8 +37,8 @@ public class Car implements Comparable<Car> {
         return position.compareTo(car.position) == SAME_POSITION;
     }
 
-    public void move(int randomNumber) {
-        if (isMoveForward(randomNumber)) {
+    public void move(int number) {
+        if (isMoveForward(number)) {
             position.increase();
         }
     }

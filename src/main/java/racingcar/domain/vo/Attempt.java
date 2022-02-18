@@ -36,8 +36,8 @@ public class Attempt {
         }
     }
 
-    private void validateNegative(int attempt) {
-        if (attempt < ZERO) {
+    private void validateNegative(int number) {
+        if (number < ZERO) {
             throw new IllegalArgumentException(DomainErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
         }
     }
