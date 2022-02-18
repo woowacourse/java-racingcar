@@ -53,19 +53,6 @@ public class RacingCar implements Comparable<RacingCar> {
         return this.position == racingCar.getPosition();
     }
 
-    private String visualizePosition() {
-        StringBuffer bufferForPositionVisualize = new StringBuffer();
-        for (int i = 0; i<position; ++i) {
-            bufferForPositionVisualize.append("-");
-        }
-        return bufferForPositionVisualize.toString();
-    }
-
-
-    public String currentState() {
-        return name + NAME_POSITION_CONNECTOR + visualizePosition();
-    }
-
     @Override
     public int compareTo(RacingCar otherCar) {
         return this.position - otherCar.position;

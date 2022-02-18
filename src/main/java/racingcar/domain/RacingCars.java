@@ -4,6 +4,7 @@ import racingcar.util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RacingCars {
@@ -54,12 +55,9 @@ public class RacingCars {
         }
     }
 
-    public List<String> getCurrentRaceState() {
-        List<String> currentRaceState = new ArrayList<>();
-        for (RacingCar racingCar: racingCars) {
-            currentRaceState.add(racingCar.currentState());
-        }
-        return currentRaceState;
+    public Map<String, Integer> getRaceStateData() {
+        return racingCars.stream()
+            .collect(Collectors.toMap(RacingCar::getName, RacingCar::getPosition));
     }
 
     public List<String> getWinnerNames() {

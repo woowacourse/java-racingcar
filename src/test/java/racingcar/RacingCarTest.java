@@ -72,17 +72,6 @@ public class RacingCarTest {
     }
 
     @Test
-    @DisplayName("자동차의 이름, 현재위치를 시각화하는 기능 테스트")
-    public void currentStateTest() {
-        RacingCar car = new RacingCar("josh");
-        car.goOrStay(5);
-        car.goOrStay(5);
-        car.goOrStay(5);
-
-        assertThat(car.currentState()).isEqualTo("josh : ---");
-    }
-
-    @Test
     @DisplayName("두 자동차의 위치를 비교하고 더 큰 자동차 객체를 반환하는 기능 테스트")
     public void compareCarTest() {
         RacingCar sourceCar = new RacingCar("pobi");

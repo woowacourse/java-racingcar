@@ -7,6 +7,7 @@ import racingcar.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class RacingGame {
 
@@ -37,8 +38,8 @@ public class RacingGame {
         return racingCars.getWinnerNames();
     }
 
-    public RacingCars getCars() {
-        return racingCars;
+    public Map<String, Integer> getGameState() {
+        return racingCars.getRaceStateData();
     }
 
     public void doOneTrial() {
