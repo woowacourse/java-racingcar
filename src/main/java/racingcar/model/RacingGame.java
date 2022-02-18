@@ -23,6 +23,10 @@ public class RacingGame {
     public void race() {
         RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
         cars.race(numberGenerator);
+        increaseTrialCount();
+    }
+
+    private void increaseTrialCount() {
         count++;
     }
 
