@@ -13,21 +13,16 @@ public class Input {
     private static final String INPUT_REPEATS = "시도할 회수는 몇회인가요?";
     private final static String CAR_NAME_DISTRIBUTOR = ",";
 
-    final InputValidation inputValidation;
-    final Scanner scanner;
+    final static InputValidation inputValidation = new InputValidation();
+    final static Scanner scanner = new Scanner(System.in);
 
-    public Input(final InputValidation inputValidation, final Scanner scanner) {
-        this.inputValidation = inputValidation;
-        this.scanner = scanner;
-    }
-
-    public List<String> inputValidNames() {
+    public static List<String> inputValidNames() {
         final String names = inputNames();
         return Arrays.stream(names.split(CAR_NAME_DISTRIBUTOR))
                 .collect(Collectors.toList());
     }
 
-    private String inputNames() {
+    private static String inputNames() {
         try {
             System.out.println(INPUT_CAR_NAME);
             final String names = scanner.next();
@@ -39,7 +34,7 @@ public class Input {
         }
     }
 
-    public int inputRepeats() {
+    public static int inputRepeats() {
         try {
             System.out.println(INPUT_REPEATS);
             final String repeats = scanner.next();

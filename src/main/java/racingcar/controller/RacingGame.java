@@ -10,14 +10,10 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final Input input;
-    private final Output output;
     private Cars cars;
     private int repeats;
 
-    public RacingGame(final Input input, final Output output) {
-        this.input = input;
-        this.output = output;
+    public RacingGame() {
         repeats = 0;
     }
 
@@ -28,22 +24,22 @@ public class RacingGame {
 
     private void inputValidData() {
         createCar();
-        repeats = input.inputRepeats();
+        repeats = Input.inputRepeats();
     }
 
     private void createCar() {
-        final List<String> carNames = input.inputValidNames();
+        final List<String> carNames = Input.inputValidNames();
         final List<Car> carInput = new ArrayList<>();
         carNames.forEach((carName) -> carInput.add(new Car(carName)));
         cars = new Cars(carInput);
     }
 
     private void startRacing() {
-        output.printResultMessage();
+        Output.printResultMessage();
         while (repeats-- > 0) {
             cars.startOneTurn();
-            output.printTurnResult(cars.turnResult());
+            Output.printTurnResult(cars.turnResult());
         }
-        output.printWinners(cars.findWinners());
+        Output.printWinners(cars.findWinners());
     }
 }
