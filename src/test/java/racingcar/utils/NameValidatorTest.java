@@ -27,7 +27,7 @@ class NameValidatorTest {
 
     @Test
     void 자동차이름_중복() {
-        assertThatThrownBy(() -> NameValidator.isDuplicatedNames(Arrays.asList("pobi","pobi")))
+        assertThatThrownBy(() -> NameValidator.isDuplicatedNames(Arrays.asList("pobi", "pobi")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
