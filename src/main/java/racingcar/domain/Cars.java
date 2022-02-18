@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +26,7 @@ public class Cars {
     }
 
     private List<String> findChampions(int highScore) {
-        List<String> champions = new ArrayList<>();
-        cars.stream()
-            .filter(car -> car.isSamePosition(highScore))
-            .forEach(car -> champions.add(car.getName()));
-        return champions;
+        return cars.stream().filter(car -> car.isSamePosition(highScore)).map(Car::getName).collect(toList());
     }
 
     private int getHighScore() {
