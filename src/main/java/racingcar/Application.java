@@ -2,6 +2,7 @@ package racingcar;
 
 import java.util.List;
 import racingcar.domain.game.DefaultRandomNumberGenerator;
+import racingcar.domain.game.RacingGameBuilder;
 import racingcar.parser.CarNameParser;
 import racingcar.parser.TryCountParser;
 import racingcar.domain.game.RacingGame;
@@ -11,17 +12,18 @@ public class Application {
 
     private final CarNameParser carNameParser = new CarNameParser();
     private final TryCountParser tryCountParser = new TryCountParser();
-    private RacingGame racingGame;
+    private RacingGameBuilder racingGameBuilder;
     private View view;
 
     public void init() {
-        racingGame = new RacingGame(new DefaultRandomNumberGenerator());
+        racingGameBuilder = RacingGame.builder().randomNumberGenerator(new DefaultRandomNumberGenerator());
         view = new View();
     }
 
     public void run() {
         RetryableTemplate.execute(this::inputCarNames, this::handleException);
         RetryableTemplate.execute(this::inputTryCount, this::handleException);
+        RacingGame racingGame = racingGameBuilder.build();
 
         view.printResultViewTitle();
         while (!racingGame.isFinished()) {
@@ -33,11 +35,12 @@ public class Application {
 
     public void inputCarNames() {
         List<String> names = carNameParser.parse(view.inputCarNames());
-        racingGame.enrollCars(names);
+        racingGameBuilder.carNames(names);
     }
 
     public void inputTryCount() {
-        racingGame.initTryCount(tryCountParser.parse(view.inputTryCount()));
+        int tryCount = tryCountParser.parse(view.inputTryCount());
+        racingGameBuilder.tryCount(tryCount);
     }
 
     private void handleException(Exception e) {

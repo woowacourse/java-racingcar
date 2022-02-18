@@ -9,12 +9,12 @@ import racingcar.domain.result.WinnerResult;
 
 public class RacingGame {
 
-    private final RandomNumberGenerator randomNumberGenerator;
-    private TryCount tryCount;
-    private Cars cars;
+    private final TryCount tryCount;
+    private final Cars cars;
 
-    public RacingGame(RandomNumberGenerator randomNumberGenerator) {
-        this.randomNumberGenerator = randomNumberGenerator;
+    private RacingGame(TryCount tryCount, Cars cars) {
+        this.tryCount = tryCount;
+        this.cars = cars;
     }
 
     public void proceedTurn() {
@@ -37,11 +37,39 @@ public class RacingGame {
         return cars.getMidtermResult();
     }
 
-    public void enrollCars(List<String> names) {
-        cars = new Cars(names, randomNumberGenerator);
+    public static RacingGameBuilder builder() {
+        return new RacingGameBuilderImpl();
     }
 
-    public void initTryCount(int inputTryCount) {
-        tryCount = new TryCount(inputTryCount);
+    private static class RacingGameBuilderImpl implements RacingGameBuilder {
+
+        private RandomNumberGenerator numberGenerator;
+        private Integer tryCount;
+        private List<String> carNames;
+
+
+        public RacingGameBuilder randomNumberGenerator(
+            RandomNumberGenerator randomNumberGenerator) {
+            this.numberGenerator = randomNumberGenerator;
+            return this;
+        }
+
+        public RacingGameBuilder tryCount(Integer tryCount) {
+            this.tryCount = tryCount;
+            return this;
+        }
+
+        public RacingGameBuilder carNames(List<String> carNames) {
+            this.carNames = carNames;
+            return this;
+        }
+
+        public RacingGame build() {
+            if (numberGenerator == null || tryCount == null || carNames == null) {
+                throw new IllegalStateException();
+            }
+
+            return new RacingGame(new TryCount(tryCount), new Cars(carNames, numberGenerator));
+        }
     }
 }
