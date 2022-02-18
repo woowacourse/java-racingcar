@@ -17,7 +17,7 @@ public class DefaultRandomNumberGenerator implements RandomNumberGenerator {
     public DefaultRandomNumberGenerator() {
         this.random = new Random();
         this.numbers = IntStream.range(START_INCLUSIVE_NUMBER, END_EXCLUSIVE_NUMBER)
-            .mapToObj(Integer::valueOf)
+            .boxed()
             .collect(toUnmodifiableList());
     }
 
