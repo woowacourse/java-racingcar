@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
     private static final String NUMBER_FORMAT_EXCEPTION = "숫자가 아닌 문자는 허용되지 않습니다.";
-    private static final String NEGATIVE_NUMBER_EXCEPTION = "숫자가 아닌 문자는 허용되지 않습니다.";
+    private static final String NEGATIVE_NUMBER_EXCEPTION = "음수는 허용되지 않습니다.";
     private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
     private static final String DELIMITER_APPENDER = "|";
     private static final int CUSTOM_DELIMITER_GROUP = 1;
