@@ -14,21 +14,22 @@ public class OutputView {
         System.out.println(TRIAL_RESULT);
     }
 
-    public void printCurrentRaceState(Map<String, Integer> carNamesAndPositions){
+    public static void printCurrentRaceState(Map<String, Integer> carNamesAndPositions){
         carNamesAndPositions.keySet()
             .stream()
             .forEach(s -> raceStateFormat(s, carNamesAndPositions.get(s)));
+        System.out.println();
     }
-    private void raceStateFormat(String name, int position) {
+    private static void raceStateFormat(String name, int position) {
         System.out.println(name + NAME_POSITION_CONNECTOR + visualizePosition(position));
     }
 
-    private String visualizePosition(int position) {
-        return NAME_POSITION_CONNECTOR.repeat(position);
+    private static String visualizePosition(int position) {
+        return POSITION_MARKER.repeat(position);
     }
 
 
-    public void printWinners(List<String> winnerNames){
+    public static void printWinners(List<String> winnerNames){
         System.out.println(String.join(WINNER_NAME_DELIMITER, winnerNames) + WINNER_ANNOUNCEMENT);
     }
 }

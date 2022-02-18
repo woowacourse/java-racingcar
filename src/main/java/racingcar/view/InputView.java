@@ -14,10 +14,9 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> askCarName() {
+    public static String askCarName() {
         System.out.println(QUESTION_CAR_NAME);
-        return new ArrayList(Arrays.asList(scanner.nextLine()
-            .split(CAR_NAME_DELIMITER)));
+        return scanner.nextLine();
     }
 
 
