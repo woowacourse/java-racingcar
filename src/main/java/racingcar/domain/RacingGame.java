@@ -1,10 +1,11 @@
-package racingcar;
+package racingcar.domain;
 
 import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class RacingGame {
