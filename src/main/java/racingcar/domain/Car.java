@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class Car implements Comparable<Car> {
+public class Car {
     private static final String CAR_NAME_ERROR_MESSAGE = "유효하지 않은 자동차 이름";
     private static final String CAR_NAME_LENGTH_ERROR_MESSAGE = "자동차 이름 5글자 초과";
     private static final int MAX_NAME_LENGTH = 5;
@@ -43,10 +43,5 @@ public class Car implements Comparable<Car> {
 
     public boolean isSamePosition(int position) {
         return this.position == position;
-    }
-
-    @Override
-    public int compareTo(Car car) {
-        return this.position - car.position;
     }
 }

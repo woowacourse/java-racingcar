@@ -1,27 +1,29 @@
 package racingcar.controller;
 
+import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
-import racingcar.util.Parser;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGameController {
     private static RacingGame racingGame;
+    private static Cars cars;
 
     public static void setRacingGame() {
-        racingGame = new RacingGame(InputView.inputCarNames(), InputView.inputRounds());
+        cars = new Cars(InputView.inputCarNames());
+        racingGame = new RacingGame(cars, InputView.inputRounds());
     }
 
     public static void proceedRacingGame() {
         OutputView.printRaceResultMessage();
         while (!racingGame.isFinished()) {
-            racingGame.moveCars();
+            racingGame.run();
             updateViewOneTurnResult();
         }
     }
 
     public static void updateViewOneTurnResult() {
-        OutputView.printOneTurnRaceResult(racingGame.getCars());
+        OutputView.printOneTurnRaceResult(cars.getCarList());
     }
 
     public static void updateViewChampionNames() {
