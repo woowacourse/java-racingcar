@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.util.RandomUtil;
+import racingcar.util.MovingNumberPolicy;
 
 public class RacingGame {
 
@@ -22,9 +22,9 @@ public class RacingGame {
 		return new RacingGame(cars, attemptNumber);
 	}
 
-	public List<Car> start(RandomUtil randomUtil) {
+	public List<Car> start(MovingNumberPolicy movingNumberPolicy) {
 		for (int i = 0; i < attemptNumber.value(); i++) {
-			playRound(randomUtil);
+			playRound(movingNumberPolicy);
 			racingResult.add(cars.stream()
 				.map(Car::copy)
 				.collect(Collectors.toList()));
@@ -33,8 +33,8 @@ public class RacingGame {
 		return cars;
 	}
 
-	private void playRound(RandomUtil randomUtil) {
-		cars.forEach(car -> car.move(randomUtil.generate(RANDOM_VALUE_RANGE)));
+	private void playRound(MovingNumberPolicy movingNumberPolicy) {
+		cars.forEach(car -> car.move(movingNumberPolicy.generate(RANDOM_VALUE_RANGE)));
 	}
 
 	public List<Car> findResultCars(Round round) {

@@ -1,6 +1,6 @@
 package racingcar.util;
 
-public interface RandomUtil {
+public interface MovingNumberPolicy {
 
 	int generate(int bound);
 }

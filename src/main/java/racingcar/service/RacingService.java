@@ -9,12 +9,12 @@ import racingcar.domain.CarDto;
 import racingcar.domain.RacingGame;
 import racingcar.domain.Round;
 import racingcar.repository.CarRepository;
-import racingcar.util.RandomUtilImpl;
+import racingcar.util.MovingNumberPolicyByRandom;
 
 public class RacingService {
 
 	private final CarRepository carRepository = new CarRepository();
-	private final RandomUtilImpl randomUtil = new RandomUtilImpl();
+	private final MovingNumberPolicyByRandom randomUtil = new MovingNumberPolicyByRandom();
 	private RacingGame racingGame;
 
 	public void registerCars(List<CarDto> carDtos) {

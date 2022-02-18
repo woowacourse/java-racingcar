@@ -2,7 +2,7 @@ package racingcar.util;
 
 import java.util.Random;
 
-public class RandomUtilImpl implements RandomUtil {
+public class MovingNumberPolicyByRandom implements MovingNumberPolicy {
 
 	private static final Random random = new Random();
 
