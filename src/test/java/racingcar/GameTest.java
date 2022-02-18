@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
 import racingcar.domain.Game;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -47,6 +49,29 @@ public class GameTest {
         assertThatCode(() ->
             new Game("love,happy", "3")
         ).doesNotThrowAnyException();
+
+    }
+
+    @Test
+    void 시도횟수_입력_자연수_아닐시_예외() {
+
+        assertThatThrownBy(() ->
+            new Game("love,happy", "-1")
+        ).isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    @Test
+    void carName_쉼표로_구분_성공() {
+
+        Game game = new Game("love,happy", "3");
+
+        assertThat(
+            game.getCars()
+                .stream()
+                .map(Car::getName)
+                .collect(Collectors.toList()))
+            .containsExactly("love", "happy");
 
     }
 
