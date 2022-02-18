@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class WinnerTest {
+class WinnerTest {
 
     @Test
     @DisplayName("잘못된 우승자 판별 예외처리")
