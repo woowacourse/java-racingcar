@@ -45,10 +45,6 @@ public class Cars {
         }
     }
 
-    public List<Car> getCarList() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public List<Car> findWinners() {
         final int max = findMaxPosition();
         return cars.stream()
@@ -61,5 +57,9 @@ public class Cars {
             .mapToInt(Car::getPosition)
             .max()
             .orElse(-1);
+    }
+
+    public List<Car> getCarList() {
+        return Collections.unmodifiableList(cars);
     }
 }
