@@ -16,13 +16,8 @@ public class CarsTest {
 
 	@BeforeEach
 	void setUpCars() {
-		cars = new Cars(
-			new Names(Arrays.asList(
-				new Name("slow"),
-				new Name("pobi"),
-				new Name("if")
-			))
-		);
+		String[] names = {"slow", "pobi", "if"};
+		cars = Cars.of(names);
 	}
 
 	@Test

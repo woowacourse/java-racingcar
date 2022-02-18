@@ -2,9 +2,6 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import racingcar.exception.DuplicateCarNameException;
@@ -31,14 +28,9 @@ public class NameTest {
 
 	@Test
 	void 자동차_이름이_중복되면_예외를_던진다() {
-		List<Name> names = Arrays.asList(
-			new Name("slow "),
-			new Name("pobi"),
-			new Name("if"),
-			new Name("slow")
-		);
+		String[] names = {"slow ", "pobi", "if", "slow"};
 
-		assertThatThrownBy(() -> new Names(names))
+		assertThatThrownBy(() -> Cars.of(names))
 			.isInstanceOf(DuplicateCarNameException.class);
 	}
 

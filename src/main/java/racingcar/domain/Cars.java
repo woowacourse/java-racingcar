@@ -1,18 +1,40 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.controller.NumberPicker;
+import racingcar.exception.DuplicateCarNameException;
 
 public class Cars {
 
-	private final List<Car> cars = new ArrayList<>();
+	private final List<Car> cars;
 
-	public Cars(Names names) {
-		names.getNames().forEach(name -> cars.add(new Car(name)));
+	private Cars(List<Car> cars) {
+		cars = new ArrayList<>(cars);
+		validateDuplicate(cars);
+		this.cars = cars;
+	}
+
+	public static Cars of(String[] names) {
+		return new Cars(Arrays.stream(names)
+			.map(Name::new)
+			.map(Car::new)
+			.collect(Collectors.toList()));
+	}
+
+	private void validateDuplicate(List<Car> cars) {
+		boolean duplicated = cars.stream()
+			.map(Car::getName)
+			.distinct()
+			.count() != cars.size();
+
+		if (duplicated) {
+			throw new DuplicateCarNameException();
+		}
 	}
 
 	public void play(NumberPicker numberPicker) {

@@ -26,7 +26,7 @@ public class RacingCarController {
 
 	private Cars initCars() {
 		outputView.printMessageOfRequestCarNames();
-		return new Cars(inputView.requestCarNames());
+		return Cars.of(inputView.requestCarNames());
 	}
 
 	private Round initRound() {
