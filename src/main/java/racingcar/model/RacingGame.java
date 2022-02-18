@@ -1,8 +1,11 @@
 package racingcar.model;
 
 import racingcar.model.vo.TrialNum;
+import racingcar.util.NumberGenerator;
+import racingcar.util.RandomNumberGenerator;
 
 import java.util.Comparator;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 
@@ -26,7 +29,8 @@ public class RacingGame {
     }
 
     public void race() {
-        cars.race();
+        RandomNumberGenerator numberGenerator = new RandomNumberGenerator();
+        cars.race(numberGenerator);
     }
 
     public String findWinner() {

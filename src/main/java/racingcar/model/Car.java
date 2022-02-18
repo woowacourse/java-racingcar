@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.util.NumberGenerator;
+
 public class Car {
     private static final int MINIMUM_POSITION = 0;
     private static final int MOVE_FORWARD = 4;
@@ -16,14 +18,15 @@ public class Car {
         this.position = position;
     }
 
-    public void move(int number) {
-        if (canMove(number)) {
+    public void move(NumberGenerator numberGenerator) {
+        int value = numberGenerator.generate();
+        if (canMove(value)) {
             position++;
         }
     }
 
-    private boolean canMove(int number) {
-        return number >= MOVE_FORWARD;
+    private boolean canMove(int value) {
+        return value >= MOVE_FORWARD;
     }
 
     public String getName() {

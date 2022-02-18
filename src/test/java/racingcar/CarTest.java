@@ -1,17 +1,31 @@
 package racingcar;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 import racingcar.model.Car;
+import racingcar.util.FixedNumberGenerator;
+import racingcar.util.NumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
-    @Test
-    void 자동차_전진_확인() {
+    @ParameterizedTest
+    @ValueSource(ints = 5)
+    void 자동차_전진_확인(int value) {
+        NumberGenerator numberGenerator = new FixedNumberGenerator(value);
         Car car = new Car("qwer");
-        for (int i = 0; i <= 9; i++) {
-            car.move(i);
-        }
-        assertThat(car.getPosition()).isEqualTo(6);
+        car.move(numberGenerator);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = 4)
+    void 자동차_전진안함_확인(int value) {
+        NumberGenerator numberGenerator = new FixedNumberGenerator(value);
+        Car car = new Car("qwer");
+        car.move(numberGenerator);
+        assertThat(car.getPosition()).isZero();
     }
 }

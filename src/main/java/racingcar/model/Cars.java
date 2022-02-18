@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import racingcar.util.InputValidator;
+import racingcar.util.NumberGenerator;
 import racingcar.util.RandomNumberGenerator;
 
 import java.util.Arrays;
@@ -40,9 +41,9 @@ public class Cars {
         return carNames.replaceAll(SPACE, BLANK).split(COMMA);
     }
 
-    public void race() {
+    public void race(NumberGenerator numberGenerator) {
         cars.forEach(car -> {
-            car.move(RandomNumberGenerator.generate());
+            car.move(numberGenerator);
         });
     }
 
