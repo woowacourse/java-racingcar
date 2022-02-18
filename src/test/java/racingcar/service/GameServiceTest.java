@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import racingcar.AppConfig;
 import racingcar.domain.car.strategy.CustomMoveStrategy;
 import racingcar.dto.CarStatusDto;
 import racingcar.dto.RoundDto;
@@ -22,9 +23,10 @@ class GameServiceTest {
     private static final List<String> CAR_NAMES = Arrays.asList("hello", "poby", "ifif", "hanul");
     private static final int ROUND_INITIALIZING_COUNT = 3;
     private static final int ROUND_DECREASING_COUNT = 1;
+    private static final AppConfig APP_CONFIG = AppConfig.getInstance();
 
-    private final CustomMoveStrategy customMoveStrategy = new CustomMoveStrategy();
-    private final GameService gameService = new GameService(customMoveStrategy);
+    private final CustomMoveStrategy customMoveStrategy = APP_CONFIG.moveStrategy;
+    private final GameService gameService = APP_CONFIG.gameService;
 
     @BeforeEach
     void initialize() {

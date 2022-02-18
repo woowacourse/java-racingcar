@@ -11,8 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import racingcar.domain.car.strategy.MoveStrategy;
-import racingcar.domain.car.strategy.TrueMoveStrategy;
+import racingcar.AppConfig;
 import racingcar.dto.CarStatusDto;
 import racingcar.dto.RoundDto;
 import racingcar.exception.WrongArgumentException;
@@ -21,8 +20,9 @@ public class GameServiceInitTest {
 
     private static final String PROVIDER_PATH = "racingcar.service.provider.GameServiceInitTestProvider#";
     private static final int CAR_INITIALIZED_LOCATION = 0;
+    private static final AppConfig APP_CONFIG = AppConfig.getInstance();
 
-    private final GameService gameService = new GameService(TrueMoveStrategy.getInstance());
+    private final GameService gameService = APP_CONFIG.gameService;
 
     private void initCarNamesExceptionTest(final List<String> carNames) {
         assertThrows(WrongArgumentException.class, () -> gameService.initCarNames(carNames));
