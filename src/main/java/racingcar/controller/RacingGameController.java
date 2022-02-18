@@ -10,7 +10,7 @@ public class RacingGameController {
     private final Cars cars;
     private final RacingGame racingGame;
 
-    public RacingGameController(Cars cars, RacingGame racingGame) {
+    public RacingGameController(final Cars cars, final RacingGame racingGame) {
         this.cars = cars;
         this.racingGame = racingGame;
     }

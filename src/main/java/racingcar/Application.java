@@ -11,6 +11,7 @@ public class Application {
         Cars cars = new Cars(InputView.inputCarNames());
         RacingGame racingGame = new RacingGame(cars, InputView.inputRounds());
         RacingGameController controller = new RacingGameController(cars, racingGame);
+
         controller.proceedRacingGame();
         controller.updateViewChampionNames();
     }

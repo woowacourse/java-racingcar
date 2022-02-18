@@ -7,6 +7,7 @@ import racingcar.util.RandomUtil;
 
 public class Cars {
     private static final String NOTHING_NAME_ERROR_MASSAGE = "자동차 이름들이 존재하지 않음";
+
     private final List<Car> carList = new ArrayList<>();
 
     public Cars(final List<String> names) {

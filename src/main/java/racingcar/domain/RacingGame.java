@@ -5,7 +5,8 @@ import java.util.List;
 
 public class RacingGame {
     private static final String GAME_IS_OVER_MESSAGE = "게임이 종료되어 실행시킬 수 없음";
-    private Cars cars;
+
+    private final Cars cars;
     private int rounds;
     private final List<String> championNames = new ArrayList<>();
 
@@ -22,8 +23,14 @@ public class RacingGame {
         rounds--;
     }
 
+    public boolean isFinished() {
+        if (rounds == 0) {
+            return true;
+        }
+        return false;
+    }
+
     public List<String> getChampionNames() {
-        championNames.clear();
         int maxPosition = cars.getMaxPosition();
 
         for (Car car : cars.getCarList()) {
@@ -33,16 +40,9 @@ public class RacingGame {
         return championNames;
     }
 
-    private void addChampionCarName(Car car, int maxPosition) {
+    private void addChampionCarName(final Car car, final int maxPosition) {
         if (car.isSamePosition(maxPosition)) {
             championNames.add(car.getName());
         }
-    }
-
-    public boolean isFinished() {
-        if (rounds == 0) {
-            return true;
-        }
-        return false;
     }
 }

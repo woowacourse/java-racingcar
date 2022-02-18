@@ -27,7 +27,7 @@ public class Car {
         }
     }
 
-    public void move(int number) {
+    public void move(final int number) {
         if (number > DO_NOT_MOVE_THRESHOLD) {
             position++;
         }
@@ -41,7 +41,7 @@ public class Car {
         return position;
     }
 
-    public boolean isSamePosition(int position) {
+    public boolean isSamePosition(final int position) {
         return this.position == position;
     }
 }

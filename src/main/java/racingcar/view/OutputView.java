@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println(RACE_RESULT_MESSAGE);
     }
 
-    public static void printOneTurnRaceResult(List<Car> cars) {
+    public static void printOneTurnRaceResult(final List<Car> cars) {
         for (Car car : cars) {
             System.out.println(getOneCarPosition(car));
         }
@@ -24,7 +24,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private static String getOneCarPosition(Car car) {
+    private static String getOneCarPosition(final Car car) {
         StringBuilder sb = new StringBuilder();
         sb.append(car.getName());
         sb.append(NAME_AND_POSITION_SEPARATOR);
@@ -36,7 +36,7 @@ public class OutputView {
         return sb.toString();
     }
 
-    public static void printChampionNames(List<String> names) {
+    public static void printChampionNames(final List<String> names) {
         String championNames = String.join(CHAMPION_NAMES_SEPARATOR, names);
         System.out.println(championNames + CHAMPION_NAMES_FOLLOWING_MESSAGE);
     }

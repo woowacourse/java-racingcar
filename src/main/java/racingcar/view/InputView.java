@@ -28,18 +28,18 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public static void validateInput(String input) {
+    public static void validateInput(final String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(NOTHING_INPUT_ERROR_MASSAGE);
         }
     }
 
-    public static void validateRounds(String round) {
+    public static void validateRounds(final String round) {
         validateDigit(round);
         validatePositiveNumber(round);
     }
 
-    private static void validateDigit(String round) {
+    private static void validateDigit(final String round) {
         try {
             Integer.parseInt(round);
         } catch (NumberFormatException e) {
@@ -47,7 +47,7 @@ public class InputView {
         }
     }
 
-    private static void validatePositiveNumber(String round) {
+    private static void validatePositiveNumber(final String round) {
         if (Integer.parseInt(round) <= 0) {
             throw new IllegalArgumentException(NOT_POSITIVE_NUMBER_ERROR_MESSAGE);
         }
