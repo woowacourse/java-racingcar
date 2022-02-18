@@ -7,15 +7,18 @@ public class WinnerCars {
 
     public WinnerCars(List<Car> cars, int maxPosition) {
         this.cars = cars;
-        validateWinnerCars(cars, maxPosition);
+        validateWinnerCars(maxPosition);
     }
 
-    private void validateWinnerCars(List<Car> cars, int maxPosition) {
-        boolean isWinners = cars.stream().allMatch(car -> car.getPosition() == maxPosition);
-
-        if (!isWinners) {
+    private void validateWinnerCars(int maxPosition) {
+        if (!isWinner(maxPosition)) {
             throw new IllegalArgumentException("우승자 판별이 잘못되었습니다.");
         }
+    }
+
+    private boolean isWinner(int maxPosition) {
+        return this.cars.stream()
+                .allMatch(car -> car.getPosition() == maxPosition);
     }
 
     public List<Car> getCars() {
