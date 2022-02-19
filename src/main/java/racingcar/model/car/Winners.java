@@ -12,8 +12,7 @@ public class Winners {
         Position maxPosition = getMaxPosition(cars);
         names = cars.stream()
                 .filter(car -> car.isSameWith(maxPosition))
-                .map(Car::getName)
-                .map(Name::toString)
+                .map(car -> car.getName().toString())
                 .collect(Collectors.toUnmodifiableList());
     }
 
