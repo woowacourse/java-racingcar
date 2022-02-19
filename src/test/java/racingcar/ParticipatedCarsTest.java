@@ -19,6 +19,8 @@ import racingcar.util.BoundedRandomNumberGenerator;
 import racingcar.util.MovableNumberGenerator;
 import racingcar.util.NonMovableNumberGenerator;
 import racingcar.util.RandomNumberGenerator;
+import racingcar.util.StringUtil;
+import racingcar.validator.exception.carname.CarNameException;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class ParticipatedCarsTest {
@@ -27,7 +29,7 @@ public class ParticipatedCarsTest {
 
     @BeforeEach
     void setCars() {
-        participatedCars = new ParticipatedCars(Arrays.asList("이브", "클레이", "포비"));
+        participatedCars = new ParticipatedCars("이브,클레이,포비");
     }
 
     @Test
@@ -35,14 +37,20 @@ public class ParticipatedCarsTest {
         assertThat(participatedCars.getCars().size()).isEqualTo(3);
     }
 
-    @Test
-    public void 자동차_이름_중복_테스트() {
-        List<String> carNames = Arrays.asList("이브", "이브", "포비");
-        assertThatThrownBy(() -> new ParticipatedCars(carNames))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("자동차 이름은 중복될 수 없습니다.");
+    @ParameterizedTest
+    @MethodSource("provideCarNamesLineAndExceptionMessage")
+    public void 자동차_생성_예외_테스트(String carNamesLine, String message) {
+        assertThatThrownBy(() -> new ParticipatedCars(carNamesLine))
+                .isInstanceOf(CarNameException.class)
+                .hasMessageContaining(message);
     }
 
+    private static Stream<Arguments> provideCarNamesLineAndExceptionMessage() {
+        return Stream.of(
+                Arguments.of("", "빈 문자열을 자동차 이름으로 입력할 수 없습니다."),
+                Arguments.of("이브,이브,포비", "자동차 이름은 중복될 수 없습니다.")
+        );
+    }
 
     @ParameterizedTest
     @MethodSource("provideGeneratorAndResultPosition")

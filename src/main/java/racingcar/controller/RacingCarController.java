@@ -4,6 +4,7 @@ import racingcar.domain.ParticipatedCars;
 import racingcar.domain.WinnerNames;
 import racingcar.util.BoundedRandomNumberGenerator;
 import racingcar.util.StringUtil;
+import racingcar.validator.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -12,8 +13,7 @@ public class RacingCarController {
     private static final int MIN_BOUND = 0;
 
     public void playGame() {
-        ParticipatedCars participatedCars = new ParticipatedCars(StringUtil.getCarNames(InputView.inputCarNames()));
-
+        ParticipatedCars participatedCars = new ParticipatedCars(InputView.inputCarNames());
         int trialCount = StringUtil.getTrialCount(InputView.inputTrials());
 
         executeRacingAndPrintRecord(trialCount, participatedCars);
