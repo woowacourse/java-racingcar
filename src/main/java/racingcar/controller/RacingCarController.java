@@ -1,8 +1,6 @@
 package racingcar.controller;
 
-import java.util.Arrays;
 import java.util.List;
-
 import racingcar.domain.CarNameValidator;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingRecordDTO;
@@ -13,30 +11,30 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
-	private static final int MAX_BOUND = 9;
-	private static final int MIN_BOUND = 0;
+    private static final int MAX_BOUND = 9;
+    private static final int MIN_BOUND = 0;
 
-	public final RandomNumberGenerator randomNumberGenerator;
+    public final RandomNumberGenerator randomNumberGenerator;
 
-	public RacingCarController() {
-		this.randomNumberGenerator = new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND);
-	}
+    public RacingCarController() {
+        this.randomNumberGenerator = new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND);
+    }
 
-	public void playGame() {
-		Cars cars = new Cars(validateCarNames(InputView.getCarNames()));
-		int trialCount = InputView.getTrialCount();
+    public void playGame() {
+        Cars cars = new Cars(validateCarNames(InputView.getCarNames()));
+        int trialCount = InputView.getTrialCount();
 
-		OutputView.printRacingRecordsMsg();
-		for (int i = 0; i < trialCount; i++) {
-			cars.executeCarRacing(randomNumberGenerator);
-			OutputView.printRacingRecords(new RacingRecordDTO(cars.getRacingRecord()));
-		}
+        OutputView.printRacingRecordsMsg();
+        for (int i = 0; i < trialCount; i++) {
+            cars.executeCarRacing(randomNumberGenerator);
+            OutputView.printRacingRecords(new RacingRecordDTO(cars.getRacingRecord()));
+        }
 
-		OutputView.printWinnerNames(new WinnerNames().findWinners(cars.getCars()));
-	}
+        OutputView.printWinnerNames(new WinnerNames().findWinners(cars.getCars()));
+    }
 
-	private List<String> validateCarNames(List<String> carNames) {
-		CarNameValidator.checkEachCarNames(carNames);
-		return carNames;
-	}
+    private List<String> validateCarNames(List<String> carNames) {
+        CarNameValidator.checkEachCarNames(carNames);
+        return carNames;
+    }
 }
