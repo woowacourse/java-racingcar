@@ -17,4 +17,10 @@ public class Position {
         return this.position;
     }
 
+    @Override
+    public String toString() {
+        return "Position{" +
+                "position=" + position +
+                '}';
+    }
 }

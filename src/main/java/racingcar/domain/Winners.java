@@ -34,4 +34,11 @@ public class Winners {
                 .orElse(MIN_POSITION);
     }
 
+    @Override
+    public String toString() {
+        return "Winners{" +
+                "winners=" + winners +
+                ", maxPosition=" + maxPosition +
+                '}';
+    }
 }

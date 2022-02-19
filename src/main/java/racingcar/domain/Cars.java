@@ -45,4 +45,11 @@ public class Cars {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATED_NAME);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "cars=" + cars +
+                '}';
+    }
 }

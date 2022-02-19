@@ -46,4 +46,11 @@ public class TryCount {
             throw new IllegalArgumentException(TRY_CNT_NOT_NATURAL_NUMBER);
         }
     }
+
+    @Override
+    public String toString() {
+        return "TryCount{" +
+                "tryCount=" + tryCount +
+                '}';
+    }
 }
