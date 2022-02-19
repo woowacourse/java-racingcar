@@ -34,7 +34,7 @@ public class RacingGame {
     }
 
     public boolean isEnd() {
-        return trialNum.getTrialNum() == count;
+        return trialNum.isTrialNumEqualCount(count);
     }
 
     public Cars getCars() {

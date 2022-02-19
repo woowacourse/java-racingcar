@@ -16,8 +16,8 @@ public class TrialNum {
         return Integer.parseInt(number);
     }
 
-    public int getTrialNum() {
-        return trialNum;
+    public boolean isTrialNumEqualCount(int count) {
+        return trialNum == count;
     }
 
     public static void validateTrialInput(String number) {
