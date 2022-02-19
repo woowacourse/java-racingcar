@@ -1,15 +1,11 @@
-package racingcar.controller;
+package racingcar.models;
 
 import static org.mockito.Mockito.*;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.util.reflection.ReflectionMemberAccessor;
 
-import racingcar.models.CarRepository;
+import racingcar.models.RacingGame;
 
 @DisplayName("RacingGame 클래스")
 class RacingGameTest {

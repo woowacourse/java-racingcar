@@ -1,9 +1,6 @@
-package racingcar.controller;
+package racingcar.models;
 
 import java.util.List;
-
-import racingcar.models.Car;
-import racingcar.models.CarRepository;
 
 public class RacingGame {
 
