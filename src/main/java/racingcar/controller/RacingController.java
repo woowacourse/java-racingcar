@@ -34,7 +34,7 @@ public class RacingController {
 
     private TryCount inputTryCount() {
         try {
-            return new TryCount(InputView.inputTryCount());
+            return TryCount.fromString(InputView.inputTryCount());
         } catch (IllegalArgumentException | IOException e) {
             OutputView.printException(e);
             return inputTryCount();
@@ -42,17 +42,22 @@ public class RacingController {
     }
 
     private void race(Cars cars, TryCount tryCount) {
-        int currentTryCount = 0;
+        TryCount currentTryCount = TryCount.initialize();
         OutputView.printStartMessage();
-        while (tryCount.isNotSame(currentTryCount++)) {
+        while (isGameContinuable(tryCount, currentTryCount)) {
             cars.moveAll(RandomNumberGenerator.fromBounds(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND));
             OutputView.printCurrentCarNameAndPosition(getCarsNameAndPosition(cars));
+            currentTryCount = currentTryCount.increase();
         }
     }
 
     private void terminateGame(Cars cars) {
         OutputView.printCurrentCarNameAndPosition(getCarsNameAndPosition(cars));
         OutputView.printWinners(cars.getWinners());
+    }
+
+    private boolean isGameContinuable(TryCount totalTryCount, TryCount currentTryCount) {
+        return !totalTryCount.equals(currentTryCount);
     }
 
     private List<CarNameAndPosition> getCarsNameAndPosition(Cars cars) {

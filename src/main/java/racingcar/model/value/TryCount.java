@@ -7,13 +7,21 @@ import java.util.Objects;
 public class TryCount {
     private final int tryCount;
 
-    public TryCount(String countString) {
-        this.tryCount = convertStringToInt(countString);
+    private TryCount(int tryCount) {
+        this.tryCount = tryCount;
         validate();
     }
 
-    public boolean isNotSame(int tryCount) {
-        return this.tryCount != tryCount;
+    public static TryCount fromString(String countString) {
+        return new TryCount(convertStringToInt(countString));
+    }
+
+    public static TryCount initialize() {
+        return new TryCount(0);
+    }
+
+    public TryCount increase() {
+        return new TryCount(tryCount + 1);
     }
 
     @Override
@@ -33,7 +41,7 @@ public class TryCount {
         return Objects.hash(tryCount);
     }
 
-    private int convertStringToInt(String string) {
+    private static int convertStringToInt(String string) {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {
@@ -42,7 +50,7 @@ public class TryCount {
     }
 
     private void validate() {
-        if (tryCount <= 0) {
+        if (tryCount < 0) {
             throw new IllegalArgumentException(TRY_CNT_NOT_POSITIVE);
         }
     }
