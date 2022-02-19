@@ -75,9 +75,9 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
-    @DisplayName("Car 우승자 계산 테스트 - TRUE")
+    @DisplayName("Car 인자로 전달받은 값과 동일한 위치에 있는지 테스트 - TRUE")
     @Test
-    public void carMaxPosition_True() {
+    public void carSamePositionTest_True() {
         String name = "bunny";
         Car car = new Car(name);
 
@@ -88,9 +88,9 @@ public class CarTest {
         assertThat(car.isSamePosition(3)).isEqualTo(true);
     }
 
-    @DisplayName("Car 우승자 계산 테스트 - FALSE")
+    @DisplayName("Car 인자로 전달받은 값과 동일한 위치에 있는지 테스트 - FALSE")
     @Test
-    public void carMaxPosition_False() {
+    public void carSamePositionTest_False() {
         String name = "bunny";
         Car car = new Car(name);
 
