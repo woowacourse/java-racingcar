@@ -13,7 +13,7 @@ public class Car implements Comparable<Car> {
     private final Distance distance;
 
     public Car(final String carName) {
-        this.carName = new CarName(carName);
+        this.carName = CarName.valueOf(carName);
         distance = new Distance(INITIAL_DISTANCE);
     }
 

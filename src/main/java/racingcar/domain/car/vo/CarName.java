@@ -10,23 +10,27 @@ public class CarName {
 
     private final String name;
 
-    public CarName(final String value) {
-        validateBlank(value);
-        validateLength(value);
-        this.name = value;
+    private CarName(final String name) {
+        this.name = name;
     }
 
-    private void validateLength(final String value) {
-        if (value.length() > MAX_LENGTH_OF_CAR_NAME) {
+    public static CarName valueOf(final String name) {
+        validateBlank(name);
+        validateLength(name);
+        return new CarName(name);
+    }
+
+    private static void validateLength(final String name) {
+        if (name.length() > MAX_LENGTH_OF_CAR_NAME) {
             throw new IllegalArgumentException(LONGER_THAN_FIVE_CAR_NAME);
         }
     }
 
-    private void validateBlank(final String value) {
-        if (value == null) {
+    private static void validateBlank(final String name) {
+        if (name == null) {
             throw new NullPointerException(CAR_NAME_NULL_EXCEPTION);
         }
-        if (value.isBlank()) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException(BLANK_CAR_NAME);
         }
     }

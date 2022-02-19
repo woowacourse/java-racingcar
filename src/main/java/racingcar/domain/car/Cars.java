@@ -1,15 +1,16 @@
 package racingcar.domain.car;
 
 import racingcar.dto.CarDto;
-import racingcar.service.Movement;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Cars {
     private static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
+    private static final String WINNER_CANNOT_FOUND_EXCEPTION_MESSAGE = "자동차들이 존재하지 않아 우승자를 판별할 수 없습니다.";
 
     private final List<Car> cars;
 
@@ -22,18 +23,21 @@ public class Cars {
 
     private void validateDuplication(final List<String> carNames) {
         Set<String> addedCarNames = new HashSet<>();
-        carNames.forEach(carName -> checkCarNameDuplication(addedCarNames, carName));
+        for (String carName : carNames) {
+            checkCarNameDuplication(addedCarNames, carName);
+            addedCarNames.add(carName);
+        }
     }
 
     private void checkCarNameDuplication(final Set<String> addedCarNames, final String nextCarName) {
         if (addedCarNames.contains(nextCarName)) {
             throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
         }
-        addedCarNames.add(nextCarName);
     }
 
-    public void move(final Movement movement) {
-        cars.forEach(car -> car.move(movement.getMovementValue()));
+    public void move(final List<Integer> movementValues) {
+        IntStream.range(0, cars.size())
+                .forEach(index -> cars.get(index).move(movementValues.get(index)));
     }
 
     public List<CarDto> getCarInfos() {
@@ -54,7 +58,7 @@ public class Cars {
         return cars.stream()
                 .sorted()
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(WINNER_CANNOT_FOUND_EXCEPTION_MESSAGE));
     }
 
     private boolean hasSameDistance(final Car first, final Car second) {
