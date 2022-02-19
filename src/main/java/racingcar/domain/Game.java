@@ -44,7 +44,7 @@ public class Game {
         List<Car> carItems = new ArrayList<>();
 
         for (String name : splitByComma(names)) {
-            carItems.add(new Car(name));
+            carItems.add(new Car(name, new RandomMoveCondition()));
         }
 
         return new Cars(carItems);

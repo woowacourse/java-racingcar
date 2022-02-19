@@ -13,16 +13,18 @@ public class Car {
 
     private static final Pattern CAR_NAME_PATTERN = Pattern.compile(CAR_NAME_PATTERN_REGEX);
 
-    private String name;
+    private final String name;
     private int position;
+    private final MoveCondition moveCondition;
 
-    public Car(String name) {
+    public Car(String name, MoveCondition moveCondition) {
         checkName(name);
         this.name = name;
         this.position = START_POSITION;
+        this.moveCondition = moveCondition;
     }
 
-    public void movePosition(MoveCondition moveCondition) {
+    public void movePosition() {
 
         if (moveCondition.isMovable()) {
             position++;

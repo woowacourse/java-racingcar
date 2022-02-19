@@ -29,13 +29,9 @@ public class Cars {
     public void move() {
 
         for (Car car : cars) {
-            car.movePosition(() -> makeRandom() >= MINIMUM_MOVE);
+            car.movePosition();
         }
 
-    }
-
-    private int makeRandom() {
-        return (int) (Math.random() * RANDOM_RANGE);
     }
 
     private int findMaxPosition(List<Car> cars) {
