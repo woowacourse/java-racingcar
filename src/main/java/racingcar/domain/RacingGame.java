@@ -21,7 +21,7 @@ public class RacingGame {
     }
 
     public void race() {
-        cars.move(createMovingNumbers(cars.size()));
+        cars.move(createMovingNumbers());
         trial.minus();
     }
 
@@ -37,8 +37,8 @@ public class RacingGame {
         return cars.pickMoreWinners();
     }
 
-    private Queue<MovingNumber> createMovingNumbers(int size) {
-        return RandomUtil.getRandomNumbers(size, RANDOM_NUMBER_RANGE).stream()
+    private Queue<MovingNumber> createMovingNumbers() {
+        return RandomUtil.getRandomNumbers(cars.size(), RANDOM_NUMBER_RANGE).stream()
             .map(MovingNumber::new)
             .collect(Collectors.toCollection(LinkedList::new));
     }
