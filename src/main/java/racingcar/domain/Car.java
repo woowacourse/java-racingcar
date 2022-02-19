@@ -36,7 +36,7 @@ public class Car {
     }
 
     public int compareTo(Car car) {
-        return this.position - car.getPosition();
+        return Integer.compare(this.position, car.position);
     }
 
     public Name getName() {
