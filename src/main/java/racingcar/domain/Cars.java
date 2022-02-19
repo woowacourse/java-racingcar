@@ -29,7 +29,7 @@ public class Cars {
 		Movable movable = new MovableImpl();
 		for (Car car : cars) {
 			car.drive(movable);
-			Output.roundResult(car.showNowPosition());
+			Output.roundResult(car.getName(), car.getPosition());
 		}
 		Output.newLine();
 	}
@@ -80,15 +80,6 @@ public class Cars {
 				.distinct()
 				.count() != cars.size();
 	}
-
-//	private boolean hasNext() {
-//		DriveStrategy moveFlag = new MoveStrategy();
-//		return moveFlag.canMove() > DRIVE_FLAG;
-//	}
-
-//	private int generate() {
-//		return (int)(Math.random() * 100) % 10;
-//	}
 
 	private Car findMaxPositionCar() {
 		return cars.stream()

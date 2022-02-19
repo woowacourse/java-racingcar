@@ -2,7 +2,6 @@ package racingcar.domain;
 
 public class Car implements Comparable<Car> {
 	private static final int MOVE_FLAG = 3;
-	private static final String STEP = "-";
 	private static final int CAR_LENGTH_LIMIT = 5;
 
 	private final String name;
@@ -26,16 +25,16 @@ public class Car implements Comparable<Car> {
 		}
 	}
 
-	public String showNowPosition() {
-		return name + " : " + STEP.repeat(position);
+	public String getName() {
+		return name;
+	}
+
+	public int getPosition() {
+		return position;
 	}
 
 	public boolean isSamePosition(Car other) {
 		return this.position == other.position;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	@Override
