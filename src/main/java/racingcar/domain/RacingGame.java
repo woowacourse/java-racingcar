@@ -24,10 +24,7 @@ public class RacingGame {
     }
 
     public boolean isFinished() {
-        if (rounds == 0) {
-            return true;
-        }
-        return false;
+        return rounds == 0;
     }
 
     public List<String> getChampionNames() {
