@@ -17,7 +17,7 @@ class WinnerCarsTest {
         cars.add(new Car(new Name("sun"), 4));
         cars.add(new Car(new Name("ron"), 2));
 
-        assertThatThrownBy(() -> new Result(cars, 4))
+        assertThatThrownBy(() -> new WinnerCars(cars, 4))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("우승자 판별");
     }

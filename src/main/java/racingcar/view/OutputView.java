@@ -2,7 +2,7 @@ package racingcar.view;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
-import racingcar.model.Result;
+import racingcar.model.WinnerCars;
 
 import java.util.stream.Collectors;
 
@@ -39,8 +39,8 @@ public class OutputView {
         System.out.println(TRIAL_RESULT);
     }
 
-    public static void printWinnerName(Result result) {
-        System.out.println(result.getWinners().getCars().stream()
+    public static void printWinnerName(WinnerCars winners) {
+        System.out.println(winners.getCars().stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(COMMA))
                 + WINNER_MESSAGE);

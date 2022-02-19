@@ -31,9 +31,9 @@ public class RacingGame {
         trialCnt.increase();
     }
 
-    public Result findWinner() {
+    public WinnerCars findWinner() {
         int maxPosition = cars.findMaxPosition();
-        return new Result(cars.findWinnerName(maxPosition), maxPosition);
+        return new WinnerCars(cars.findWinnerName(maxPosition), maxPosition);
     }
 
     private Cars createCars(String namesInput) {
