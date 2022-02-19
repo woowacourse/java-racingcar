@@ -19,9 +19,13 @@ public class GameTotalCount {
             return false;
         }
 
-        totalAttemptCount = totalAttemptCount -1;
+        reduceAttemptCount();
 
         return true;
+    }
+
+    private void reduceAttemptCount() {
+        totalAttemptCount = totalAttemptCount -1;
     }
 
     private int validateAttempt(String attempt) {
