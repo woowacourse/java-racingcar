@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class Calculator {
 	private static final int CUSTOM_DELIMITER_PART = 1;
 	private static final int NUMBER_PART = 2;
+	public static final String EMPTY_VALUE = "0";
 
 	public int splitAndSum(String text) {
 		text = replaceEmpty(text);
@@ -15,7 +16,7 @@ public class Calculator {
 
 	private String replaceEmpty(String text) {
 		if (isEmpty(text)) {
-			text = "0";
+			text = EMPTY_VALUE;
 		}
 		return text;
 	}
