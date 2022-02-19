@@ -3,12 +3,16 @@ package racingcar.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.ConsoleTest;
 import racingcar.config.ViewConfig;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 
 class OutputViewTest extends ConsoleTest {
 
@@ -21,7 +25,10 @@ class OutputViewTest extends ConsoleTest {
     void printWinners() {
         changeOutput();
         outputView = ViewConfig.getOutputView();
-        List<Car> testWinners = List.of(new Car("pobi"), new Car("seung"), new Car("char"));
+        List<CarDto> testWinners =
+            Stream.of(new Car("pobi"), new Car("seung"), new Car("char"))
+                .map(CarDto::new)
+                .collect(Collectors.toList());
         outputView.printWinners(testWinners);
         assertThat(outputStream.toString()).hasToString(SAMPLE_WINNERS_MESSAGE);
     }
@@ -34,7 +41,8 @@ class OutputViewTest extends ConsoleTest {
         String[] input = {"pobi", "seung", "char"};
         Cars cars = Cars.create(input);
         cars.move(() -> 1);
-        outputView.printCarsPosition(cars);
+        CarsDto carsDto = new CarsDto(cars);
+        outputView.printCarsPosition(carsDto);
         assertThat(outputStream.toString()).hasToString(SAMPLE_CAR_POSITION);
     }
 }

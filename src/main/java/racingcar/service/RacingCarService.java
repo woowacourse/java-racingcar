@@ -1,11 +1,12 @@
 package racingcar.service;
 
 import java.util.List;
-
-import racingcar.domain.car.Car;
+import java.util.stream.Collectors;
 import racingcar.domain.car.Cars;
 import racingcar.domain.movement.RandomMovementStrategy;
 import racingcar.domain.round.Round;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 
 public class RacingCarService {
 
@@ -21,13 +22,15 @@ public class RacingCarService {
         return round.isEnd();
     }
 
-    public Cars run() {
+    public CarsDto run() {
         cars.move(new RandomMovementStrategy());
         round.decrease();
-        return cars;
+        return new CarsDto(cars);
     }
 
-    public List<Car> getWinners() {
-        return cars.findWinners();
+    public List<CarDto> getWinners() {
+        return cars.findWinners().stream()
+            .map(CarDto::new)
+            .collect(Collectors.toList());
     }
 }
