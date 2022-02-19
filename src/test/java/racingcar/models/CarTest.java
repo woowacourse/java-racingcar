@@ -1,13 +1,9 @@
 package racingcar.models;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
-
-import racingcar.utils.RandomNumber;
 
 @DisplayName("Car 클래스를 테스트한다.")
 class CarTest {
@@ -15,28 +11,22 @@ class CarTest {
 	@Test
 	@DisplayName("자동차가 앞으로 전진하는지 확인한다")
 	void goForward() {
-		try (MockedStatic<RandomNumber> mocked = mockStatic(RandomNumber.class)) {
-			mocked.when(RandomNumber::getRandomNumber).thenReturn(6);
-			Car car = new Car("a");
-			int exPosition = car.getPosition();
+		CarMockGoForward car = new CarMockGoForward("a");
+		int exPosition = car.getPosition();
 
-			car.startThisTurn();
+		car.startThisTurn();
 
-			assertThat(exPosition + 1).isEqualTo(car.getPosition());
-		}
+		assertThat(exPosition + 1).isEqualTo(car.getPosition());
 	}
 
 	@Test
 	@DisplayName("자동차가 앞으로 전진하지 않는지 확인한다")
 	void dontGoForward() {
-		try (MockedStatic<RandomNumber> mocked = mockStatic(RandomNumber.class)) {
-			mocked.when(RandomNumber::getRandomNumber).thenReturn(2);
-			Car car = new Car("a");
-			int exPosition = car.getPosition();
+		CarMockDontGoForward car = new CarMockDontGoForward("a");
+		int exPosition = car.getPosition();
 
-			car.startThisTurn();
+		car.startThisTurn();
 
-			assertThat(exPosition).isEqualTo(car.getPosition());
-		}
+		assertThat(exPosition).isEqualTo(car.getPosition());
 	}
 }
