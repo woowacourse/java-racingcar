@@ -1,10 +1,9 @@
 package racingcar.controller;
 
 import racingcar.domain.ParticipatedCars;
+import racingcar.domain.TrialCount;
 import racingcar.domain.WinnerNames;
 import racingcar.util.BoundedRandomNumberGenerator;
-import racingcar.util.StringUtil;
-import racingcar.validator.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -14,15 +13,15 @@ public class RacingCarController {
 
     public void playGame() {
         ParticipatedCars participatedCars = new ParticipatedCars(InputView.inputCarNames());
-        int trialCount = StringUtil.getTrialCount(InputView.inputTrials());
+        TrialCount trialCount = TrialCount.from(InputView.inputTrials());
 
         executeRacingAndPrintRecord(trialCount, participatedCars);
         OutputView.printWinnerNames(WinnerNames.of(participatedCars));
     }
 
-    private void executeRacingAndPrintRecord(int trialCount, ParticipatedCars participatedCars) {
+    private void executeRacingAndPrintRecord(TrialCount trialCount, ParticipatedCars participatedCars) {
         OutputView.printResultMessage();
-        for (int i = 0; i < trialCount; i++) {
+        for (int i = 0; i < trialCount.toInt(); i++) {
             participatedCars.tryToMoveBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
             OutputView.printRacingRecords(participatedCars);
         }

@@ -1,11 +1,22 @@
-package racingcar.validator;
+package racingcar.domain;
 
 import racingcar.validator.exception.TrialCountNotNumericException;
 import racingcar.validator.exception.TrialCountNotPositiveException;
 
-public class InputValidator {
+public class TrialCount {
 
-    public static void checkTrialCountLine(String line) {
+    private int trialCount;
+
+    private TrialCount(int trialCount) {
+        this.trialCount = trialCount;
+    }
+
+    public static TrialCount from(String trialCountLine) {
+        checkTrialCountLine(trialCountLine);
+        return new TrialCount(Integer.parseInt(trialCountLine));
+    }
+
+    private static void checkTrialCountLine(String line) {
         checkTrialCountNumeric(line);
         checkTrialCountPositive(line);
     }
@@ -22,5 +33,9 @@ public class InputValidator {
         if (Integer.parseInt(line) <= 0) {
             throw new TrialCountNotPositiveException();
         }
+    }
+
+    public int toInt() {
+        return trialCount;
     }
 }
