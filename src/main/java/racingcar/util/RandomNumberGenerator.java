@@ -4,7 +4,7 @@ public class RandomNumberGenerator {
 
     private static final int RANDOM_RANGE = 10;
 
-    public int generateRandomNumber() {
+    public int generate() {
         return (int) (Math.random() * RANDOM_RANGE);
     }
 }

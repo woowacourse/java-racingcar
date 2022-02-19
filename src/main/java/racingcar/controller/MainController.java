@@ -50,7 +50,7 @@ public class MainController {
     }
 
     private void moveCar(List<Car> cars) {
-        cars.forEach(car -> car.movePosition(randomNumberGenerator.generateRandomNumber()));
+        cars.forEach(car -> car.movePosition(randomNumberGenerator.generate()));
     }
 
     private List<String> getWinner(List<Car> cars) {
