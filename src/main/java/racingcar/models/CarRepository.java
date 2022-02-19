@@ -41,7 +41,7 @@ public class CarRepository {
 	}
 
 	public void startThisTurn() {
-		cars.forEach(Car::goForward);
+		cars.forEach(Car::startThisTurn);
 	}
 
 	public List<Car> getThisTurnResult() {

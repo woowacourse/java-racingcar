@@ -20,7 +20,7 @@ class CarTest {
 			Car car = new Car("a");
 			int exPosition = car.getPosition();
 
-			car.goForward();
+			car.startThisTurn();
 
 			assertThat(exPosition + 1).isEqualTo(car.getPosition());
 		}
@@ -34,7 +34,7 @@ class CarTest {
 			Car car = new Car("a");
 			int exPosition = car.getPosition();
 
-			car.goForward();
+			car.startThisTurn();
 
 			assertThat(exPosition).isEqualTo(car.getPosition());
 		}

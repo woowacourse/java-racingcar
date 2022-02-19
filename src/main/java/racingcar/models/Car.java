@@ -15,10 +15,22 @@ public class Car {
 		position = INITIAL_POSITION;
 	}
 
-	public void goForward() {
-		if (RandomNumber.getRandomNumber() >= FORWARD_STANDARD) {
-			position++;
+	public void startThisTurn() {
+		if (shouldGoForward(generateRandomNumber())) {
+			goForward();
 		}
+	}
+
+	protected int generateRandomNumber() {
+		return RandomNumber.getRandomNumber();
+	}
+
+	private boolean shouldGoForward(final int standard) {
+		return standard >= FORWARD_STANDARD;
+	}
+
+	private void goForward() {
+		position++;
 	}
 
 	public String getName() {
