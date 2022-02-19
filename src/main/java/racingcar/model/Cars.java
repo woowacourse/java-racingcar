@@ -24,19 +24,19 @@ public class Cars {
         return cars;
     }
 
-    public List<String> findWinners() {
-        List<String> winners = new ArrayList<>();
+    public List<String> findWinnerNames() {
+        List<String> winnerNames = new ArrayList<>();
         int farthestPosition = getFarthestPosition();
 
         for (Car car : cars) {
-            addWinners(winners, farthestPosition, car);
+            addWinnerNames(winnerNames, farthestPosition, car);
         }
-        return winners;
+        return winnerNames;
     }
 
-    private void addWinners(List<String> winners, int farthestPosition, Car car) {
+    private void addWinnerNames(List<String> winnerNames, int farthestPosition, Car car) {
         if (car.isSamePositionWith(farthestPosition)) {
-            winners.add(car.getName());
+            winnerNames.add(car.getName());
         }
     }
 

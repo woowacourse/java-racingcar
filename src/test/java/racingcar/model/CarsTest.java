@@ -25,13 +25,13 @@ class CarsTest {
     @Test
     void 단독_우승자() {
         car1.forward(movableNumberGenerator);
-        Assertions.assertThat(cars.findWinners()).containsExactly("pobi");
+        Assertions.assertThat(cars.findWinnerNames()).containsExactly("pobi");
     }
 
     @Test
     void 공동_우승자() {
         car1.forward(movableNumberGenerator);
         car2.forward(movableNumberGenerator);
-        Assertions.assertThat(cars.findWinners()).containsExactly("pobi", "crong");
+        Assertions.assertThat(cars.findWinnerNames()).containsExactly("pobi", "crong");
     }
 }

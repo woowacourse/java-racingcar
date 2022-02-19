@@ -18,7 +18,7 @@ public class Controller {
         initialize();
         OutputView.printResultMessage();
         forwardCarsByTrialNumber();
-        OutputView.printWinners(cars.findWinners());
+        OutputView.printWinners(cars.findWinnerNames());
     }
 
     private void initialize() {
