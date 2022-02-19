@@ -7,6 +7,7 @@ import racingcar.util.RandomUtil;
 
 public class Cars {
     private static final String NOTHING_NAME_ERROR_MASSAGE = "자동차 이름들이 존재하지 않음";
+    private static final int MIN_POSITION = 0;
 
     private final List<Car> carList = new ArrayList<>();
 
@@ -34,7 +35,7 @@ public class Cars {
     }
 
     public int getMaxPosition() {
-        int maxPosition = 0;
+        int maxPosition = MIN_POSITION;
 
         for (Car car : carList) {
             maxPosition = Math.max(maxPosition, car.getPosition());
