@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+
+    private OutputView() {
+        throw new UnsupportedOperationException();
+    }
+
     public static void printCurrentStatus(List<Car> cars) {
         for (Car car : cars) {
             String result = car.getName() + " : ";
