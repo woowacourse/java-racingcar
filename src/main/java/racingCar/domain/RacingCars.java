@@ -19,8 +19,17 @@ public class RacingCars {
 		}
 	}
 
-	boolean isRandomOverProbability() {
+	private boolean isRandomOverProbability() {
 		return ((int)(Math.random() * 10) - 1) >= GO_OR_NOT;
+	}
+
+	public List<Car> findWinner() {
+		int maxDistance = getMaxDistance();
+		List<Car> winners = new ArrayList<>();
+		for (Car racingCar : this.racingCars) {
+			addWinner(maxDistance, winners, racingCar);
+		}
+		return winners;
 	}
 
 	private int getMaxDistance() {
@@ -31,20 +40,10 @@ public class RacingCars {
 		return maxDistance;
 	}
 
-	public List<Car> findWinner() {
-		int maxDistance = getMaxDistance();
-		List<Car> winners = new ArrayList<>();
-		for (Car racingCar : this.racingCars) {
-			winners = addWinner(maxDistance, winners, racingCar);
-		}
-		return winners;
-	}
-
-	private List<Car> addWinner(int maxDistance, List<Car> winners, Car racingCar) {
+	private void addWinner(int maxDistance, List<Car> winners, Car racingCar) {
 		if (racingCar.isWinner(maxDistance)) {
 			winners.add(racingCar);
 		}
-		return winners;
 	}
 
 	public List<Car> getRacingCars() {
