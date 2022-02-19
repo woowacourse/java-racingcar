@@ -16,7 +16,7 @@ public class RacingGame {
     public Map<Integer, List<CarDto>> race() {
         Map<Integer, List<CarDto>> raceResults = new LinkedHashMap<>();
         for (int i = 0; i < round; i++) {
-            cars.proceedAll();
+            cars.proceedAll(new RandomProceedStrategy());
             raceResults.put(i, cars.toCarDtos());
         }
         return raceResults;

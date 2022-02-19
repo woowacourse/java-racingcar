@@ -16,8 +16,8 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void proceedAll() {
-        cars.forEach(car -> car.proceed(new RandomProceedStrategy()));
+    public void proceedAll(ProceedStrategy proceedStrategy) {
+        cars.forEach(car -> car.proceed(proceedStrategy));
     }
 
     public List<Car> getCarsHere(int positions) {
