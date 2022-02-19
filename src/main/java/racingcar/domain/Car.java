@@ -53,6 +53,14 @@ public class Car implements Comparable<Car> {
 	}
 
 	@Override
+	public String toString() {
+		return "Car{" +
+			"name='" + name + '\'' +
+			", position=" + position +
+			'}';
+	}
+
+	@Override
 	public boolean equals(Object object) {
 		if (object instanceof Car) {
 			Car car = (Car)object;

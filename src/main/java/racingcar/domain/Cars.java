@@ -7,6 +7,7 @@ import racingcar.util.Constant;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -38,5 +39,27 @@ public class Cars {
 
 	private List<String> findSamePositionCar(Car target) {
 		return cars.stream().filter(car -> car.isSamePosition(target)).map(Car::getName).collect(Collectors.toList());
+	}
+
+	@Override
+	public String toString() {
+		return "Cars{" +
+			"cars=" + cars +
+			'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Cars cars1 = (Cars)o;
+		return Objects.equals(cars, cars1.cars);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cars);
 	}
 }
