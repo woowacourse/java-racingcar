@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.domain.movement.FixedMovementStrategy;
 import racingcar.domain.movement.MovementStrategy;
-import racingcar.domain.movement.RandomMovementStrategy;
 import racingcar.exception.InvalidNameInputException;
 
 public class CarsTest {
@@ -17,7 +16,7 @@ public class CarsTest {
     void createCarsBySplitComma() {
         String input = "pobi,seung,char";
         Cars cars = new Cars(input);
-        List<Car> carList = cars.getCarList();
+        List<Car> carList = cars.getCars();
         Assertions.assertThat(carList.size()).isEqualTo(3);
         Assertions.assertThat(carList.get(0)).isEqualTo(new Car("pobi"));
         Assertions.assertThat(carList.get(1)).isEqualTo(new Car("seung"));
@@ -28,8 +27,8 @@ public class CarsTest {
     void errorOnContinuousComma() {
         String input = ",,,";
         Assertions.assertThatThrownBy(() -> {
-                new Cars(input);
-            }).isInstanceOf(InvalidNameInputException.class);
+            new Cars(input);
+        }).isInstanceOf(InvalidNameInputException.class);
     }
 
     @Test
@@ -41,7 +40,7 @@ public class CarsTest {
         // when
         cars.move(strategy);
         // then
-        List<Car> carList = cars.getCarList();
+        List<Car> carList = cars.getCars();
         Assertions.assertThat(carList.get(0).getPosition()).isEqualTo(1);
         Assertions.assertThat(carList.get(1).getPosition()).isEqualTo(1);
         Assertions.assertThat(carList.get(2).getPosition()).isEqualTo(1);

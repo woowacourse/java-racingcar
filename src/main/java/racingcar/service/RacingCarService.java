@@ -5,7 +5,6 @@ import java.util.List;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.domain.movement.MovementStrategy;
-import racingcar.domain.movement.RandomMovementStrategy;
 import racingcar.domain.round.Round;
 
 public class RacingCarService {
@@ -22,10 +21,10 @@ public class RacingCarService {
         return round.isEnd();
     }
 
-    public Cars run(MovementStrategy strategy) {
+    public List<Car> run(MovementStrategy strategy) {
         cars.move(strategy);
         round.decrease();
-        return cars;
+        return cars.getCars();
     }
 
     public List<Car> findWinners() {
