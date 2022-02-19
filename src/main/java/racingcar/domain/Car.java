@@ -25,7 +25,7 @@ public class Car implements Comparable<Car> {
 		}
 	}
 
-	public String step() {
+	public String showNowPosition() {
 		return name + " : " + STEP.repeat(position);
 	}
 
