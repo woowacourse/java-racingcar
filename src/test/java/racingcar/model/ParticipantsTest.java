@@ -36,8 +36,4 @@ class ParticipantsTest {
         List<String> racingWinners = participants.findRacingWinners();
         assertThat(racingWinners.size()).isEqualTo(1);
     }
-
-    @Test
-    public void race() {
-    }
 }
