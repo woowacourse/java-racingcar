@@ -1,14 +1,12 @@
 package racingcar;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Game;
 import racingcar.domain.dto.CarDto;
-import racingcar.domain.strategy.RandomMove;
+import racingcar.domain.strategy.MovePredicate;
 import racingcar.domain.util.CarFactory;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -25,7 +23,7 @@ public class GameController {
     private static void play(Game game, int count) {
         OutputView.printGameResultTitle();
         for (int i = 0; i < count; i++) {
-            showResult(game.play(new RandomMove()));
+            showResult(game.play(new MovePredicate()));
         }
     }
 

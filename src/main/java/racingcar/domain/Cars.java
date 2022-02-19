@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import racingcar.domain.strategy.MoveStrategy;
+import racingcar.domain.strategy.MovePredicate;
 
 public class Cars {
     private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
@@ -16,8 +16,8 @@ public class Cars {
         this.cars = List.copyOf(cars);
     }
 
-    public void moveCars(MoveStrategy moveStrategy) {
-        cars.forEach(car -> car.move(moveStrategy));
+    public void moveCars(MovePredicate movePredicate) {
+        cars.forEach(car -> car.move(movePredicate.testRandom()));
     }
 
     public List<Car> getCars() {

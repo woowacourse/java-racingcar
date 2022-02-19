@@ -1,7 +1,8 @@
 package racingcar.domain;
 
 import java.util.List;
-import racingcar.domain.strategy.MoveStrategy;
+
+import racingcar.domain.strategy.MovePredicate;
 
 public class Game {
     private final Cars cars;
@@ -10,8 +11,8 @@ public class Game {
         this.cars = cars;
     }
 
-    public Cars play(MoveStrategy moveStrategy) {
-        cars.moveCars(moveStrategy);
+    public Cars play(MovePredicate movePredicate) {
+        cars.moveCars(movePredicate);
         return cars;
     }
 

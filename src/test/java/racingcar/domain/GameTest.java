@@ -20,12 +20,13 @@ public class GameTest {
         kun = new Car("kun");
         pobi = new Car("pobi");
         cars = new Cars(List.of(forky, kun, pobi));
+
+        forky.move(true);
     }
 
     @Test
     @DisplayName("우승자가 한 명일 때 우승자 판정")
     public void getWinners_one_winner() {
-        forky.move(() -> true);
         Game game = new Game(cars);
         assertThat(game.getWinners())
                 .containsExactly(forky);
@@ -34,8 +35,7 @@ public class GameTest {
     @Test
     @DisplayName("우승자가 두 명일 때 우승자 판정")
     public void getWinners_two_winners() {
-        forky.move(() -> true);
-        kun.move(() -> true);
+        kun.move(true);
         Game game = new Game(cars);
         assertThat(game.getWinners())
                 .containsExactlyInAnyOrder(forky, kun);

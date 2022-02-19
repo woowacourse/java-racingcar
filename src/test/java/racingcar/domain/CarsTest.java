@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.domain.strategy.MoveStrategy;
 import racingcar.domain.util.CarFactory;
 
 public class CarsTest {
@@ -34,7 +33,7 @@ public class CarsTest {
     @Test
     @DisplayName("최대 위치값이 1일 때 maxPosition 구하기")
     public void getMaxPosition_1() {
-        forky.move(() -> true);
+        forky.move(true);
         Cars cars = new Cars(List.of(forky, kun, pobi));
         assertThat(cars.getMaxPosition()).isEqualTo(1);
     }
@@ -42,32 +41,8 @@ public class CarsTest {
     @Test
     @DisplayName("위치값이 1인 car 구하기")
     public void matchPosition_1() {
-        forky.move(() -> true);
+        forky.move(true);
         Cars cars = new Cars(List.of(forky, kun, pobi));
         assertThat(cars.matchPosition(1)).containsExactly(forky);
     }
-
-    @Test
-    @DisplayName("이동 정책에 따른 차 이동")
-    public void moveCars_twice() {
-        Cars cars = new Cars(List.of(forky, kun, pobi));
-        cars.moveCars(moveTwice);
-        assertThat(forky.getPosition())
-                .isEqualTo(kun.getPosition())
-                .isEqualTo(1)
-                .isGreaterThan(pobi.getPosition());
-    }
-
-    private MoveStrategy moveTwice = new MoveStrategy() {
-        private int count = 0;
-
-        @Override
-        public boolean isMovable() {
-            if (count > 1) {
-                return false;
-            }
-            count++;
-            return true;
-        }
-    };
 }

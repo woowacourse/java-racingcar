@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import racingcar.domain.strategy.MoveStrategy;
+import racingcar.domain.strategy.MovePredicate;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
@@ -30,8 +30,8 @@ public class Car {
         }
     }
 
-    public void move(MoveStrategy moveStrategy) {
-        if (moveStrategy.isMovable()) {
+    public void move(boolean isMovable) {
+        if (isMovable) {
             position++;
         }
     }
