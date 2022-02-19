@@ -27,7 +27,7 @@ public class UserInputRequester {
         try {
             return scanner.nextLine();
         } catch (NoSuchElementException exception) {
-            throw new RuntimeException(ErrorMessage.INPUT_EMPTY.toString());
+            throw new RuntimeException(ErrorMessage.INPUT_EMPTY.getMessage());
         }
     }
 }

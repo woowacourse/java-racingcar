@@ -39,7 +39,7 @@ public class Cars {
     public Winners judgeWinners() {
         Car maxPositionCar = cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new NoSuchElementException(ErrorMessage.CAR_NOT_FOUND.toString()));
+                .orElseThrow(() -> new NoSuchElementException(ErrorMessage.CAR_NOT_FOUND.getMessage()));
         return new Winners(cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .collect(Collectors.toList()));

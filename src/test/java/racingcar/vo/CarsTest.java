@@ -57,6 +57,6 @@ public class CarsTest {
         String name = "name1";
         String[] names = {name, name};
         assertThatThrownBy(() -> new Cars(names))
-                .hasMessageContaining(ErrorMessage.CAR_NAME_DUPLICATE.toString());
+                .hasMessageContaining(ErrorMessage.CAR_NAME_DUPLICATE.getMessage());
     }
 }

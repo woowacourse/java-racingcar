@@ -42,7 +42,7 @@ public class UserInputRequesterTest {
         System.setIn(new ByteArrayInputStream(buf));
         UserInputRequester userInputRequester = new UserInputRequester();
         assertThatThrownBy(() -> userInputRequester.getCarName())
-                .hasMessageContaining(ErrorMessage.INPUT_EMPTY.toString());
+                .hasMessageContaining(ErrorMessage.INPUT_EMPTY.getMessage());
     }
 
     @DisplayName("getAttempt() 시도 회수가 공백으로 입력되었을 때 예외 테스트")
@@ -53,6 +53,6 @@ public class UserInputRequesterTest {
         System.setIn(new ByteArrayInputStream(buf));
         UserInputRequester userInputRequester = new UserInputRequester();
         assertThatThrownBy(() -> userInputRequester.getAttempt())
-                .hasMessageContaining(ErrorMessage.INPUT_EMPTY.toString());
+                .hasMessageContaining(ErrorMessage.INPUT_EMPTY.getMessage());
     }
 }

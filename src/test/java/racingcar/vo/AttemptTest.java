@@ -55,6 +55,6 @@ public class AttemptTest {
     public void constructor_negativeNumber_exception_test() throws Exception {
         String input = "-3";
         assertThatThrownBy(() -> new Attempt(input))
-                .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE.toString());
+                .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE.getMessage());
     }
 }

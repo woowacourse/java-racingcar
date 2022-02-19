@@ -21,7 +21,7 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     private static void validateRange(int randomNumber) {
         if (randomNumber > MAXIMUM || randomNumber < MINIMUM) {
-            throw new IllegalArgumentException(ErrorMessage.RANGE_OVER.toString());
+            throw new IllegalArgumentException(ErrorMessage.RANGE_OVER.getMessage());
         }
     }
 }

@@ -30,7 +30,7 @@ public class CarMakerUtil {
                 .filter(each -> each.isSameName(car))
                 .count();
         if (countDuplication != NONE_DUPLICATION) {
-            throw new RuntimeException(ErrorMessage.CAR_NAME_DUPLICATE.toString());
+            throw new RuntimeException(ErrorMessage.CAR_NAME_DUPLICATE.getMessage());
         }
     }
 }

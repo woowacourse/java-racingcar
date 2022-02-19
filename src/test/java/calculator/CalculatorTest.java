@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.ErrorMessage;
 
 public class CalculatorTest {
-    
+
     @DisplayName("sum() null 혹은 빈칸 입력되었을 때 테스트")
     @ParameterizedTest
     @NullSource
@@ -46,6 +46,6 @@ public class CalculatorTest {
     @Test
     public void sum_negativeNumber_test() throws Exception {
         assertThatThrownBy(() -> Calculator.sum("-1,-2"))
-                .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE.toString());
+                .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE.getMessage());
     }
 }

@@ -19,6 +19,6 @@ public class RacingGameTest {
         System.setIn(new ByteArrayInputStream(buf));
         RacingGame racingGame = new RacingGame();
         assertThatThrownBy(() -> racingGame.play())
-                .hasMessageContaining(ErrorMessage.CAR_NAME_EMPTY.toString());
+                .hasMessageContaining(ErrorMessage.CAR_NAME_EMPTY.getMessage());
     }
 }

@@ -55,7 +55,7 @@ public class Calculator {
 
     private static void validateNegative(int number) {
         if (number < ZERO) {
-            throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE.toString());
+            throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE.getMessage());
         }
     }
 
