@@ -1,13 +1,13 @@
-package racingcar.numberGenerator;
+package racingcar.numbergenerator;
 
 import java.util.Random;
 import racingcar.view.ErrorMessage;
 
-public class UnMovableNumberGenerator implements NumberGenerator {
+public class MovableNumberGenerator implements NumberGenerator {
 
     private static final int EXCLUSIVE_BOUND_CORRECTION_VALUE = 1;
-    private static final int MINIMUM = 0;
-    private static final int MAXIMUM = 3;
+    private static final int MINIMUM = 4;
+    private static final int MAXIMUM = 9;
 
     private static final Random RANDOM = new Random();
 

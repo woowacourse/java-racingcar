@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.numberGenerator.MovableNumberGenerator;
-import racingcar.numberGenerator.NumberGenerator;
-import racingcar.numberGenerator.UnMovableNumberGenerator;
+import racingcar.numbergenerator.MovableNumberGenerator;
+import racingcar.numbergenerator.NumberGenerator;
+import racingcar.numbergenerator.UnMovableNumberGenerator;
 
 class CarTest {
 

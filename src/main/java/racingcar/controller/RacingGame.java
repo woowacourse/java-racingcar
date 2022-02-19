@@ -3,7 +3,7 @@ package racingcar.controller;
 import static racingcar.view.OutputView.printRaceResult;
 import static racingcar.view.OutputView.printWinners;
 
-import racingcar.numberGenerator.NumberGenerator;
+import racingcar.numbergenerator.NumberGenerator;
 import racingcar.vo.Attempt;
 import racingcar.vo.Cars;
 

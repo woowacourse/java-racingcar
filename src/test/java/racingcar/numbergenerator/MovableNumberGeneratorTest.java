@@ -1,4 +1,4 @@
-package racingcar.numberGenerator;
+package racingcar.numbergenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

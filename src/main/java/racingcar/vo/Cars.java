@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import racingcar.numberGenerator.NumberGenerator;
+import racingcar.numbergenerator.NumberGenerator;
 import racingcar.util.CarMakerUtil;
 import racingcar.view.ErrorMessage;
 

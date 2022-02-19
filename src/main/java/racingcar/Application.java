@@ -1,8 +1,8 @@
 package racingcar;
 
 import racingcar.controller.RacingGame;
-import racingcar.numberGenerator.NumberGenerator;
-import racingcar.numberGenerator.RandomNumberGenerator;
+import racingcar.numbergenerator.NumberGenerator;
+import racingcar.numbergenerator.RandomNumberGenerator;
 
 public class Application {
 

@@ -11,10 +11,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.numberGenerator.MovableNumberGenerator;
-import racingcar.numberGenerator.NumberGenerator;
-import racingcar.numberGenerator.RandomNumberGenerator;
-import racingcar.numberGenerator.UnMovableNumberGenerator;
+import racingcar.numbergenerator.MovableNumberGenerator;
+import racingcar.numbergenerator.NumberGenerator;
+import racingcar.numbergenerator.RandomNumberGenerator;
+import racingcar.numbergenerator.UnMovableNumberGenerator;
 import racingcar.view.ErrorMessage;
 
 class RacingGameTest {
