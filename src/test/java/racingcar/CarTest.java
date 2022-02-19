@@ -16,16 +16,9 @@ import racingcar.util.NonMovableNumberGenerator;
 public class CarTest {
 
     @Test
-    public void 자동차_멈춤_테스트() {
-        Car car = new Car("클레이", 0);
-        car.tryToMoveBy(new NonMovableNumberGenerator());
-        assertThat(car.getPosition()).isEqualTo(0);
-    }
-
-    @Test
     public void 자동차_전진_테스트() {
         Car car = new Car("클레이", 0);
-        car.tryToMoveBy(new MovableNumberGenerator());
+        car.move();
         assertThat(car.getPosition()).isEqualTo(1);
     }
 

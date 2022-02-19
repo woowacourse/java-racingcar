@@ -2,15 +2,14 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import racingcar.util.BoundedRandomNumberGenerator;
 import racingcar.util.RandomNumberGenerator;
 import racingcar.validator.exception.CarNameDuplicationException;
 
 public class ParticipatedCars {
     private static final int START_POSITION = 0;
+    private static final int OPERATING_STANDARD = 4;
 
     private final List<Car> cars;
 
@@ -31,9 +30,15 @@ public class ParticipatedCars {
         }
     }
 
-    public void executeCarRacing(RandomNumberGenerator randomNumberGenerator) {
+    public void tryToDriveBy(RandomNumberGenerator randomNumberGenerator) {
         for (Car car : cars) {
-            car.tryToMoveBy(randomNumberGenerator);
+            executeGeneratorToMoveCar(car, randomNumberGenerator);
+        }
+    }
+
+    private void executeGeneratorToMoveCar(Car car, RandomNumberGenerator randomNumberGenerator) {
+        if (randomNumberGenerator.generate() > OPERATING_STANDARD) {
+            car.move();
         }
     }
 
