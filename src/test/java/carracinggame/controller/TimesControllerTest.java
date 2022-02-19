@@ -13,7 +13,7 @@ public class TimesControllerTest {
     TimesController timesController = new TimesController();
     @DisplayName("경기 횟수가 정상적으로 입력됨")
     @Test
-    void timesTest() {
+    void testTimes() {
         int times = timesController.makeTimes("5");
         assertThat(times).isEqualTo(5);
     }
@@ -29,14 +29,14 @@ public class TimesControllerTest {
 
     @DisplayName("시도 횟수가 실수일 떄 에러 확인")
     @Test
-    void TestTimesRealNumberError() {
+    void testTimesRealNumberError() {
         assertThatThrownBy(() -> timesController.makeTimes("1.5"))
                 .isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("시도 횟수가 음수일 떄 에러 확인")
     @Test
-    void TestTimesNegativeNumberError() {
+    void testTimesNegativeNumberError() {
         assertThatThrownBy(() -> timesController.makeTimes("-2"))
                 .isInstanceOf(RuntimeException.class);
     }
