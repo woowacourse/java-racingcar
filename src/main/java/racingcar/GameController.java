@@ -9,10 +9,11 @@ import racingcar.view.OutputView;
 import java.util.Scanner;
 
 public class GameController {
-    private final Scanner scanner;
+    private final InputView inputView;
 
     public GameController(Scanner scanner) {
-        this.scanner = scanner;
+        this.inputView = new InputView(scanner);
+
     }
 
     public void run() {
@@ -24,7 +25,7 @@ public class GameController {
 
     private Cars readyCars() {
         try {
-            String carNames = InputView.askCarNames(scanner);
+            String carNames = inputView.askCarNames();
             String[] splitCarNames = StringSeparator.splitAndTrim(carNames);
             return new Cars(splitCarNames);
         } catch (IllegalArgumentException exception) {
@@ -35,7 +36,7 @@ public class GameController {
 
     private int getProperMoveCount() {
         try {
-            String moveCount = InputView.askMoveCount(scanner);
+            String moveCount = inputView.askMoveCount();
             MoveCountValidator.validateMoveCount(moveCount);
             return Integer.parseInt(moveCount);
         } catch (IllegalArgumentException exception) {
