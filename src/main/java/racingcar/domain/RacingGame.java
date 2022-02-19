@@ -34,7 +34,7 @@ public class RacingGame {
     }
 
     public Winners getWinners() {
-        return cars.pickMoreWinners();
+        return cars.findWinners();
     }
 
     private Queue<MovingNumber> createMovingNumbers() {

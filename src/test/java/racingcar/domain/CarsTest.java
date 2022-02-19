@@ -37,7 +37,7 @@ public class CarsTest {
         cars.move(movingNumbers);
 
         // then
-        Winners winners = cars.pickMoreWinners();
+        Winners winners = cars.findWinners();
         assertThat(winners.getWinners()).containsExactly(new Name("hoho"));
     }
 
@@ -52,7 +52,7 @@ public class CarsTest {
         cars.move(movingNumbers);
 
         // then
-        Winners winners = cars.pickMoreWinners();
+        Winners winners = cars.findWinners();
         assertThat(winners.getWinners()).containsExactly(new Name("hoho"), new Name("rich"));
     }
 
@@ -91,7 +91,7 @@ public class CarsTest {
         Car anyCar = cars.getCars().get(0);
         anyCar.advance(4);
 
-        List<Name> winners = cars.pickMoreWinners().getWinners();
+        List<Name> winners = cars.findWinners().getWinners();
         assertThat(winners.size()).isEqualTo(3);
     }
 

@@ -21,7 +21,7 @@ public class Cars {
         }
     }
 
-    public Winners pickMoreWinners() {
+    public Winners findWinners() {
         return pickMoreWinners(findFirstCar());
     }
 
