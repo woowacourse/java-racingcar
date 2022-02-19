@@ -6,6 +6,8 @@ import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.numberGenerator.NumberGenerator;
+import racingcar.numberGenerator.RandomNumberGenerator;
 import racingcar.view.ErrorMessage;
 
 class RacingGameTest {
@@ -18,7 +20,8 @@ class RacingGameTest {
         byte[] buf = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         RacingGame racingGame = new RacingGame();
-        assertThatThrownBy(() -> racingGame.play())
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        assertThatThrownBy(() -> racingGame.play(numberGenerator))
                 .hasMessageContaining(ErrorMessage.CAR_NAME_EMPTY.getMessage());
     }
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import racingcar.numberGenerator.NumberGenerator;
-import racingcar.numberGenerator.RandomNumberGenerator;
 import racingcar.util.CarMakerUtil;
 import racingcar.view.ErrorMessage;
 
@@ -24,12 +23,11 @@ public class Cars {
         this.raceResult = new RaceResult(raceAllResult);
     }
 
-    public Cars repeatRaceBy(Attempt attempt) {
+    public Cars repeatRaceBy(Attempt attempt, NumberGenerator numberGenerator) {
         StringBuilder raceResultBuilder = new StringBuilder();
         List<Car> cars = new ArrayList<>(this.cars);
-        NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         while (attempt.isLeft()) {
-            cars = raceAll(cars, randomNumberGenerator);
+            cars = raceAll(cars, numberGenerator);
             raceResultBuilder.append(getOnceResultWith(cars));
             attempt = attempt.decrease();
         }

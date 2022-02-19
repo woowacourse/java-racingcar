@@ -3,6 +3,7 @@ package racingcar.controller;
 import static racingcar.view.OutputView.printRaceResult;
 import static racingcar.view.OutputView.printWinners;
 
+import racingcar.numberGenerator.NumberGenerator;
 import racingcar.vo.Attempt;
 import racingcar.vo.Cars;
 
@@ -16,10 +17,10 @@ public class RacingGame {
         this.userInputRequester = new UserInputRequester();
     }
 
-    public void play() {
+    public void play(NumberGenerator numberGenerator) {
         Cars cars = createCars(splitCarNames(userInputRequester.getCarName()));
         Attempt attempt = new Attempt(userInputRequester.getAttempt());
-        cars = cars.repeatRaceBy(attempt);
+        cars = cars.repeatRaceBy(attempt, numberGenerator);
         printRaceResult(cars.getRaceResult());
         printWinners(cars.judgeWinners());
     }

@@ -9,6 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.numberGenerator.NumberGenerator;
+import racingcar.numberGenerator.RandomNumberGenerator;
 import racingcar.view.ErrorMessage;
 
 class CarsTest {
@@ -29,7 +31,8 @@ class CarsTest {
         String[] names = {name};
         Cars cars = new Cars(names);
         Attempt attempt = new Attempt("5");
-        Cars afterRaceCars = cars.repeatRaceBy(attempt);
+        NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        Cars afterRaceCars = cars.repeatRaceBy(attempt, randomNumberGenerator);
         RaceResult raceResult = afterRaceCars.getRaceResult();
         Matcher matcher = Pattern.compile(name).matcher(raceResult.getResult());
         int nameCount = 0;
