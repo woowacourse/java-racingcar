@@ -23,14 +23,16 @@ public class Cars {
 
     private void validateDuplication(final List<String> carNames) {
         Set<String> addedCarNames = new HashSet<>();
-        carNames.forEach(carName -> checkCarNameDuplication(addedCarNames, carName));
+        for (String carName : carNames) {
+            checkCarNameDuplication(addedCarNames, carName);
+            addedCarNames.add(carName);
+        }
     }
 
     private void checkCarNameDuplication(final Set<String> addedCarNames, final String nextCarName) {
         if (addedCarNames.contains(nextCarName)) {
             throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
         }
-        addedCarNames.add(nextCarName);
     }
 
     public void move(final Movement movement) {
