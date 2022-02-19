@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import static racingcar.domain.CarTest.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,9 +13,6 @@ import racingcar.domain.vo.MovingNumber;
 import racingcar.domain.vo.Name;
 
 public class CarsTest {
-
-    final int advanceValue = 5;
-    final int stopValue = 3;
 
     @Test
     @DisplayName("자동차의 이름으로 자동차 리스트를 생성한다")
@@ -31,7 +29,7 @@ public class CarsTest {
     void existsWinner() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue, stopValue, stopValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(ADVANCE, STOP, STOP);
 
         // when
         cars.move(movingNumbers);
@@ -46,7 +44,7 @@ public class CarsTest {
     void existsWinners() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue, advanceValue, stopValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(ADVANCE, ADVANCE, STOP);
 
         // when
         cars.move(movingNumbers);
@@ -61,7 +59,7 @@ public class CarsTest {
     void throwExceptionWhenCarsSizeNotEqualsNumbersSize() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(ADVANCE);
 
         // when & then
         assertThatIllegalArgumentException()
@@ -83,16 +81,16 @@ public class CarsTest {
 
     @Test
     @DisplayName("조회한 자동차는 기존 자동차의 상태 변경이 불가능하다")
-    void dsds() {
+    void getCarsImmutable() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
 
         // when && then
         Car anyCar = cars.getCars().get(0);
-        anyCar.advance(4);
+        anyCar.advance(ADVANCE);
 
         List<Name> winners = cars.findWinners().getWinners();
-        assertThat(winners.size()).isEqualTo(3);
+        assertThat(winners.size()).isEqualTo(cars.size());
     }
 
     private List<Name> givenCarsNames(String... names) {

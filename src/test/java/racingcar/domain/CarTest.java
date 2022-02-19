@@ -10,6 +10,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.vo.Name;
 
 public class CarTest {
+    static final int ADVANCE = 5;
+    static final int STOP = 3;
+
     @Test
     @DisplayName("이름으로 자동차 생성 테스트")
     void carTest() {
@@ -57,8 +60,8 @@ public class CarTest {
         Car otherCar = new Car(new Name("other"));
 
         // when
-        car.advance(4);
-        otherCar.advance(4);
+        car.advance(ADVANCE);
+        otherCar.advance(ADVANCE);
 
         // then
         assertTrue(car.isEqualPosition(otherCar));
@@ -72,10 +75,10 @@ public class CarTest {
         Car otherCar = new Car(new Name("other"));
 
         // when
-        car.advance(4);
-        otherCar.advance(3);
+        car.advance(ADVANCE);
+        otherCar.advance(ADVANCE);
 
         // then
-        assertThat(car.compareTo(otherCar)).isEqualTo(1);
+        assertThat(car.comparePosition(otherCar)).isEqualTo(1);
     }
 }

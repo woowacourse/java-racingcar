@@ -8,7 +8,7 @@ import racingcar.domain.vo.Name;
 import racingcar.domain.vo.MovingNumber;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<Name> names) {
         this.cars = convertNamesToCars(names);
@@ -22,7 +22,7 @@ public class Cars {
     }
 
     public Winners findWinners() {
-        return pickMoreWinners(findFirstCar());
+        return new Winners(findCoWinners(findWinner()));
     }
 
     public List<Car> getCars() {
@@ -47,17 +47,17 @@ public class Cars {
         }
     }
 
-    private Car findFirstCar() {
+    private Car findWinner() {
         return cars.stream()
-            .max(Car::compareTo)
+            .max(Car::comparePosition)
             .orElseThrow(NoSuchElementException::new);
     }
 
-    private Winners pickMoreWinners(Car firstCar) {
-        return new Winners(cars.stream()
+    private List<Name> findCoWinners(Car firstCar) {
+        return cars.stream()
             .filter(car -> car.isEqualPosition(firstCar))
             .map(Car::getName)
-            .collect(Collectors.toList()));
+            .collect(Collectors.toList());
     }
 
 }

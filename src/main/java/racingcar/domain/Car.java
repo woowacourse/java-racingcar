@@ -38,7 +38,7 @@ public class Car {
         return this.position == car.position;
     }
 
-    public int compareTo(Car car) {
+    public int comparePosition(Car car) {
         return POSITION_COMPARATOR.compare(this, car);
     }
 
