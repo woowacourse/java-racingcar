@@ -4,7 +4,7 @@ import java.util.Comparator;
 import racingcar.domain.vo.Name;
 
 public class Car {
-    private static final Comparator<Car> COMPARATOR = Comparator.comparingInt(car -> car.position);
+    private static final Comparator<Car> POSITION_COMPARATOR = Comparator.comparingInt(car -> car.position);
 
     private static final int ADVANCE_STANDARD = 4;
 
@@ -39,7 +39,7 @@ public class Car {
     }
 
     public int compareTo(Car car) {
-        return COMPARATOR.compare(this, car);
+        return POSITION_COMPARATOR.compare(this, car);
     }
 
     public Name getName() {
