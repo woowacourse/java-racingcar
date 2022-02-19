@@ -58,7 +58,6 @@ public class GameController {
             Car car = Car.carBuilder().setName(x).build();
             cars.add(car);
         });
-
         carRepository.addCars(cars);
     }
 
@@ -103,7 +102,7 @@ public class GameController {
 
         return winners;
     }
-
+  
     public static class GameControllerBuilder {
         private InputView inputView;
         private OutputView outputView;

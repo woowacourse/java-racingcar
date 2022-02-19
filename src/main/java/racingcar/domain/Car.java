@@ -47,7 +47,7 @@ public class Car implements Comparable<Car>, Vehicle {
     public String toString() {
         return name + " : " + "-".repeat(position);
     }
-
+  
     public static class CarBuilder {
         private String name;
 
