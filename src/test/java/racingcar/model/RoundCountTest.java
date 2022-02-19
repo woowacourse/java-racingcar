@@ -33,12 +33,4 @@ class RoundCountTest {
 			new RoundCount(input);
 		}).hasMessage("0회 이하는 게임을 진행할 수 없습니다.");
 	}
-
-	@DisplayName("정상적인 경우 isEqualTo로 비교")
-	@Test
-	public void testCountCreate() {
-		RoundCount actual = new RoundCount("13");
-		assertThat(actual).isEqualTo(new RacingCar("13"));
-	}
-
 }
