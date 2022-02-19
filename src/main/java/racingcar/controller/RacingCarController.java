@@ -30,7 +30,7 @@ public class RacingCarController {
     }
 
     private RacingCarService createRacingService() {
-        String carNames = inputView.inputCarNames();
+        String[] carNames = inputView.inputCarNames();
         String roundNumber = inputView.inputRoundNumber();
         return new RacingCarService(carNames, roundNumber);
     }

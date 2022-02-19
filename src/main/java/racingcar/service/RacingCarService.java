@@ -12,7 +12,7 @@ public class RacingCarService {
     private final Cars cars;
     private final Round round;
 
-    public RacingCarService(String carNames, String roundNumber) {
+    public RacingCarService(String[] carNames, String roundNumber) {
         this.cars = Cars.create(carNames);
         this.round = new Round(roundNumber);
     }

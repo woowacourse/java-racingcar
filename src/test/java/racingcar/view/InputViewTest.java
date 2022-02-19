@@ -7,6 +7,8 @@ import racingcar.config.ViewConfig;
 
 class InputViewTest extends ConsoleTest {
 
+    public static final int FIRST_CAR_NAME  = 0;
+
     private InputView inputView;
 
     @Test
@@ -14,11 +16,11 @@ class InputViewTest extends ConsoleTest {
         changeInput("pobi");
         changeOutput();
         inputView = ViewConfig.getInputView();
-        String carName = inputView.inputCarNames();
+        String[] carName = inputView.inputCarNames();
 
         Assertions.assertThat(outputStream.toString())
             .contains("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        Assertions.assertThat(carName).isEqualTo("pobi");
+        Assertions.assertThat(carName[FIRST_CAR_NAME]).isEqualTo("pobi");
     }
 
     @Test
