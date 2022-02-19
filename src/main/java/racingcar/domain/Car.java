@@ -42,6 +42,11 @@ public class Car implements Comparable<Car> {
 		return this.position - car.position;
 	}
 
+	@Override
+	public String toString() {
+		return "name : " + name + ", position : " + position;
+	}
+
 	private void checkValidName(String names) {
 		checkBlank(names);
 		checkNameLength(names);

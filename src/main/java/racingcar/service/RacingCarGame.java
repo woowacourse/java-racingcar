@@ -23,6 +23,11 @@ public class RacingCarGame {
 		win();
 	}
 
+	@Override
+	public String toString() {
+		return "- cars\n" + cars + "- " + attempt;
+	}
+
 	private void init() {
 		cars = createCars(input.carName());
 		attempt = createAttempt(input.attempt());

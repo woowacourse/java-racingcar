@@ -19,6 +19,11 @@ public class Attempt {
         return attempt == nowAttempt;
     }
 
+    @Override
+    public String toString() {
+        return "attempt : " + attempt;
+    }
+
     private void checkValid(String attempt) {
         if (attempt.isBlank()) {
             throw new IllegalArgumentException("반복 횟수는 %s일 수 없습니다.");

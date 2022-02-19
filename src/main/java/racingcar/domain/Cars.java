@@ -45,6 +45,16 @@ public class Cars {
 		return findSamePositionCar(maxPositionCar);
 	}
 
+	@Override
+	public String toString() {
+		String result = "";
+		for (Car car : cars) {
+			result += car + "\n";
+		}
+
+		return result;
+	}
+
 	private void checkValid(String[] names) {
 		if (!isCars(names)) {
 			throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
