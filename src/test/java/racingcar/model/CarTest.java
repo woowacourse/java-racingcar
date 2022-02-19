@@ -10,7 +10,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import racingcar.utils.MovableNumberGenerator;
+import racingcar.utils.NonMovableNumberGenerator;
+import racingcar.utils.NumberGenerator;
+
 class CarTest {
+    private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
+    private final NumberGenerator nonMovableNumberGenerator = new NonMovableNumberGenerator();
+    private final Car car = new Car("pobi");
 
     @ParameterizedTest(name = "{index}: {1}")
     @MethodSource("invalidParameters")
@@ -26,6 +33,20 @@ class CarTest {
             Arguments.of("pobi,,crong", "이름길이 0"),
             Arguments.of("donghok", "5글자 초과")
         );
+    }
+
+    @Test
+    void 자동차_전진() {
+        int position = car.getPosition();
+        car.forward(movableNumberGenerator);
+        assertThat(car.getPosition()).isEqualTo(position + 1);
+    }
+
+    @Test
+    void 자동차_정지() {
+        int position = car.getPosition();
+        car.forward(nonMovableNumberGenerator);
+        assertThat(car.getPosition()).isEqualTo(position);
     }
 
     @Test

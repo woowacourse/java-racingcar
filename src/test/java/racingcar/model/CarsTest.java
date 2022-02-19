@@ -10,9 +10,9 @@ import racingcar.utils.MovableNumberGenerator;
 import racingcar.utils.NumberGenerator;
 
 class CarsTest {
-    Car car1, car2, car3;
-    Cars cars;
-    NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
+    private Car car1, car2, car3;
+    private Cars cars;
+    private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
 
     @BeforeEach
     void initialize() {
