@@ -9,11 +9,11 @@ import static racingcar.view.InputView.inputCarNames;
 import static racingcar.view.OutputView.*;
 
 public class Application {
-    static RacingGame racingGame = new RacingGame();
+    private static RacingGame racingGame;
 
     public static void main(String[] args) {
         try {
-            init();
+            racingGame = new RacingGame(inputCarNames(), inputAttemptCount());
             playAndPrintTotalExecutionResult();
             selectAndPrintWinner();
         } catch (IllegalArgumentException e) {
@@ -21,14 +21,8 @@ public class Application {
         }
     }
 
-    private static void init() {
-        racingGame.initCarNames(inputCarNames());
-        racingGame.initTotalAttempt(inputAttemptCount());
-    }
-
     private static void playAndPrintTotalExecutionResult() {
-        racingGame.play();
-        printTotalExecutionResult(racingGame.getTotalExecutionResult());
+        printTotalExecutionResult(racingGame.play());
     }
 
     private static void selectAndPrintWinner() {
