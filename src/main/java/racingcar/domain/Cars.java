@@ -13,7 +13,9 @@ public class Cars {
     }
 
     public static Cars of(String[] names) {
-        return new Cars(Arrays.stream(names).map(Car::new).collect(toList()));
+        return new Cars(Arrays.stream(names)
+            .map(Car::new).
+            collect(toList()));
     }
 
     public void moveAll(MovingStrategy movingStrategy) {
