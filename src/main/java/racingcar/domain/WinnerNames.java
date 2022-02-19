@@ -12,7 +12,7 @@ public class WinnerNames {
     }
 
     public List<String> findWinners(List<Car> cars) {
-        return getWinnerNamesWithFirstCar(findFastestCar(cars), cars);
+        return getWinnerNamesWithFirstCar(findFastestCar(new ArrayList<>(cars)), cars);
     }
 
     private Car findFastestCar(List<Car> cars) {
