@@ -12,8 +12,8 @@
 
 ## 예외 상황
 
-- [x] 입력이 숫자가 아닌 경우 `RuntimeException`을 throw 한다.
-- [x] 입력이 음수인 경우 `RuntimeException`을 throw 한다.
+- [x] 입력이 숫자가 아닌 경우 `NumberFormatException`을 throw 한다.
+- [x] 입력이 음수인 경우 `IllegalArgumentException`을 throw 한다.
 
 # 자동차 경주
 
@@ -31,15 +31,16 @@
 ## 예외 상황
 
 - [x] 자동차 이름이 잘못된 경우 `RuntimeException`을 throw 한다.
-    - [x] 이름을 입력하지 않는 경우
-    - [x] 입력한 이름 중 공백이 있는 경우
-    - [x] 이름이 5자를 넘을 경우
-    - [x] 중복된 이름을 입력한 경우
+    - [x] 이름을 입력하지 않는 경우 -> `NoSuchElementException`
+    - [x] 입력한 이름 중 공백이 있는 경우 -> `IllegalArgumentException`
+    - [x] 이름이 5자를 넘을 경우 -> `IllegalArgumentException`
+    - [x] 중복된 이름을 입력한 경우 -> `IllegalArgumentException`
+    - [x] 자동차가 없는데 우승자를 구하는 경우 -> `IllegalStateException`
 
 - [x] 시도할 회수가 잘못된 경우 `RuntimeException`을 throw 한다.
-    - [x] 회수가 입력하지 않는 경우
-    - [x] 회수가 숫자가 아닌 경우
-    - [x] 회수가 음수인 경우
+    - [x] 회수가 입력하지 않는 경우 -> `NoSuchElementException`
+    - [x] 회수가 숫자가 아닌 경우 -> `IllegalArgumentException`
+    - [x] 회수가 음수인 경우 -> `NumberFormatException`
 
 ## 요구사항
 
@@ -189,6 +190,9 @@
 - [x] View에서만 사용되는 에러 메시지를 왜 Domain 패키지에 위치한걸까요?
     - 아직 view와 domain의 경계를 구분하지 못하고 있어서 포함시킨 것 같습니다.
     - View에서 발생하는 예외 처리에 사용할 ViewErrorMessage와 domain에서 발생하는 예외 처리에 사용할 DomainErrorMessage로 분리.
+    - 서로 다른 클래스에 이름이 같은 패키지가 위치하면 몇 가지 단점이 있다.
+        - 한 코드에서 이들을 함께 사용할 경우 패키지까지 명시해서 구분해야 한다는 점.
+        - 이름만 나타내면 실수로 이름이 같은 다른 클래스를 import해서 사용하더라도 실수를 눈치채기 어렵다는 점.
 - [x] Util 클래스는 어떤 책임을 가져야 할까요?
     - 보통 Util 클래스는 문자열 관련, 랜덤값 구하기, 날짜 및 시간 구하기 등 특정 비지니스 로직이나 독립적인 기능을 한다고 한다.
     - 책임은 어떤 요청에 대해 그 클래스가 꼭 해야하는 일과 같은 개념인 것 같다. 그렇다면 Util 클래스의 책임은 여러 계층에서 사용될 수도 있고 특별한 의존 관계가 없는 일인 것 같다.
@@ -199,6 +203,11 @@
       것 같다. 입력을 나누는 일이 `View`의 일인가? 라고 생각하면 아니라고 생각되었기 때문입니다.
     - `RandomUtil`은 시작 숫자와 끝 숫자만을 받아와 그 사이에 랜덤값을 반환하는 기능을 하는 메서드를 가지고 시작 숫자와 끝 숫자는 Cars가 가지도록 수정.
     - `MovementUtil`은 파라미터로 받은 값에 따라 이동할지 말지를 확인하고 있는데 이것은 `Car`에서 하도록 수정.
+    - Util이라는 이름은 어디서든 사용할 수 있다는 느낌이 있기도 하다. 구현 코드에서도 `StringUtil` 은 가장 상위 메서드에 있고 `calculator`와 `racingcar`에서 모두 사용한다.
+      이것처럼 여러 클라이언트가 사용하는 코드가 될 수 있기 때문에 많은 주의가 필요하다. 변경이 발생할 경우 파급력이 굉장히 클 수 있기 때문에 변경을 최소화해야 한다.
+    - "비지니스 로직"이라고 부를 만큼 중요한 로직이 Util 클래스에 위치하게 된다면 어쩌면 도메인에 그 로직이 위치하기 더 적절한 곳이 있을 수도 있다. 그래서 Util 클래스/메서드를 작성할 때에는
+      항상 "이 기능이 정말 Utility 성격인지" 고민해보는 것이 좋다.
+    - Util에 어떤 기능을 두어야 하는지 명확한 기준을 세워보는것도 도움이 될 것 같다.
 - [x] 테스트에서만 사용되는 클래스는 test source set에 선언해주면 어떨까요?
 - [x] `Integer.parseInt()`가 중복으로 호출되는곳이 있는데, 어떻게 하면 호출을 줄일 수 있을까요?
     - Integer.parseInt()는 내부에서 입력이 숫자가 아니면 알아서 NumberFormatException을 던지는 것 같다.
@@ -210,6 +219,14 @@
     - 사용자가 입력한 데이터가 잘못된 경우 → `IllegalArgumentException`
     - 찾으려는 데이터가 없는 경우 → `NoSuchElementException`
     - Integer.parseInt()에 문자열을 파라미터로 준 경우 → `NumberFormatException`
+    - Cars.findWinners를 자동차가 없는 상태에서 호출하면 stream().max().orElseThrow()에서 예외가 발생 -> `IllegalStateException`
+        - 이 상황에서 `IllegalStateException`을 사용하는 것이 맞는걸까?
+        - `IllegalStateException`는 호출 시점이 적절하지 않은 경우 발생한다고
+          한다. (https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)
+        - 스트림을 close한 다음 읽거나 쓰는 경우 등이 있을 것 같다.
+        - 리뷰어님은 비지니스 로직의 전제 조건이 만족되지 않는 경우에 이 예외를 던지기도 한다고 함. 논리적으로는 반드시 존재해야 하는 객체가 실제로는 저장소에 존재하지 않는다거나 하는 경우!
+        - 현재 구현 코드의 경우 자동차가 없다면 객체 생성자체가 불가능하고 생성된 후 자동차가 삭제되지도 않기 때문에 findWinners 메서드는 무조건 자동차가 있는 상태에서 호출된다. 그렇다면
+          Javadoc에서 설명한 상황과 정확히 맞지는 않지만 리뷰어님의 예시와 비슷한 상황인 것 같아서 사용해도 될 것 같다. 다른 크루들과도 더 이야기해보자.
 - [x] 변수, 클래스, 메서드 명을 전부 다 확인하여 의도에 맞게, 규칙에 맞게 지어졌는지 다시 확인해보기
     - move()에서 파라미터 값의 이름이 `randomNumber`입니다. 꼭 random이어야 할까요? 이것도 잘못된 의도로 이해가 될 수도 있지 않을까요?
     - CarName에서 validEmpty() 메서드 명도 수정해야한다.
@@ -227,4 +244,14 @@
     - Cars 생성 시 차가 없으면 `IllegalArgumentException` 발생
     - findWinners()를 실행했을 때 차가 없는 경우 `IllegalStateException` 발생
         - 애초에 차가 없었다면 Cars가 생성되지 못 했었을 것이기 때문이다.
-    
+        - Javadoc에서 설명하는 `IllegalStateException`의 발생 상황과 정확히 맞지는 않다. 하지만 RuntimeException의 모든 예외를 확인해봐도 이 예외보다 적절한 예외가
+          있는지는 더 고민해봐야 할 것 같다. Random값을 생성하고 검증하는 부분에서도 `IllegalStateException`를 사용하는데 이 상황과 예외에 대해서 다른 크루들과 함께 고민해봐야 할
+          것 같다.
+
+## step2 MVC 패턴으로 리팩터링 해보기 피드백 정리 2
+
+- [ ] 오류 메시지를 가진 enum이 과연 필요한 것인가? 왜 오류 메시를 사용하는 곳이 아니라 별도의 enum으로 분리했을까요?
+- [ ] `RandomNumberGenerator`(`RandomUtil`)에서 `validateRange`만 static으로 선언된 이유가 무엇일까요?
+- [ ] `Attemp`에서 `validate`는 실제로 유효성 검사 뿐만 아니라 문자열 -> 정수 변환도 이루어지고 있습니다. 더 적절한 이름은 없을까요?
+- [ ] 도메인 객체가 모두 `vo` 패키지 내에 있는데 이것들이 정말 VO가 맞는지도 고민해보면 좋겠습니다.
+- [ ] CarsTest에서 회차마다 입력한 자동차의 이름이 결과에 포함되어 있는지를 검증하지만 실제로 각 car들이 이동했는지를 검증하지 않습니다. 이 부분도 테스트하려면 어떻게 해야 할까요?
