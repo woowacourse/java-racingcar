@@ -36,7 +36,6 @@ public class Cars {
         return splitCarNames;
     }
 
-
     private static String[] splitNameWithoutSpace(String carNames) {
         return carNames.replaceAll(SPACE, BLANK).split(COMMA);
     }

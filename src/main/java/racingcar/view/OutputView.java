@@ -1,7 +1,6 @@
 package racingcar.view;
 
 import racingcar.model.Car;
-import racingcar.model.Cars;
 import racingcar.model.RacingGame;
 import racingcar.model.Winners;
 

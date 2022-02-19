@@ -2,8 +2,6 @@ package racingcar.model;
 
 import racingcar.util.RandomNumberGenerator;
 
-import java.util.Comparator;
-
 public class RacingGame {
     private Cars cars;
     private TrialNum trialNum;
