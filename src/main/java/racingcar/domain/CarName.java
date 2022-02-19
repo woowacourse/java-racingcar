@@ -1,7 +1,8 @@
 package racingcar.domain;
 
 import racingcar.validator.exception.carname.CarNameLengthOverException;
-import racingcar.validator.exception.carname.CarNameNotFoundException;
+import racingcar.validator.exception.carname.CarNameNotExistsException;
+import racingcar.validator.exception.carname.CarNameNullPointerException;
 import racingcar.validator.exception.carname.CarNameSpaceException;
 
 public class CarName {
@@ -16,9 +17,16 @@ public class CarName {
     }
 
     private static void checkCarName(String input) {
-            checkCarNameLength(input);
-            checkCarNameNotFound(input);
-            checkCarNameIsSpace(input);
+        checkCarNameNotNull(input);
+        checkCarNameLength(input);
+        checkCarNameExists(input);
+        checkCarNameIsNotSpace(input);
+    }
+
+    private static void checkCarNameNotNull(String carName) {
+        if (carName == null) {
+            throw new CarNameNullPointerException();
+        }
     }
 
     private static void checkCarNameLength(String carName) {
@@ -27,13 +35,13 @@ public class CarName {
         }
     }
 
-    private static void checkCarNameNotFound(String carName) {
+    private static void checkCarNameExists(String carName) {
         if (carName.equals(EMPTY_STRING)) {
-            throw new CarNameNotFoundException();
+            throw new CarNameNotExistsException();
         }
     }
 
-    private static void checkCarNameIsSpace(String carName) {
+    private static void checkCarNameIsNotSpace(String carName) {
         if (carName.trim().equals(EMPTY_STRING)) {
             throw new CarNameSpaceException();
         }

@@ -26,6 +26,7 @@ public class CarNameTest {
 
     private static Stream<Arguments> provideCarNameAndExceptionMessage() {
         return Stream.of(
+                Arguments.of(null, "자동차 이름을 찾을 수 없습니다!"),
                 Arguments.of("다섯글자이상", "자동차 이름은 5자 이하여야 합니다."),
                 Arguments.of("", "모든 자동차 이름은 반드시 존재해야 합니다."),
                 Arguments.of(" ", "자동차 이름은 공백으로 설정할 수 없습니다."),

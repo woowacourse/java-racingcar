@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.validator.exception.TrialCountNotNumericException;
 import racingcar.validator.exception.TrialCountNotPositiveException;
+import racingcar.validator.exception.TrialCountNullPointerException;
 
 public class TrialCount {
 
@@ -17,8 +18,15 @@ public class TrialCount {
     }
 
     private static void checkTrialCountLine(String line) {
+        checkTrialCountNotNull(line);
         checkTrialCountNumeric(line);
         checkTrialCountPositive(line);
+    }
+
+    private static void checkTrialCountNotNull(String line) {
+        if (line == null) {
+            throw new TrialCountNullPointerException();
+        }
     }
 
     private static void checkTrialCountNumeric(String line) {

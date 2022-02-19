@@ -8,6 +8,7 @@ import racingcar.util.RandomNumberGenerator;
 import racingcar.util.StringUtil;
 import racingcar.validator.exception.carname.CarNameDuplicationException;
 import racingcar.validator.exception.carname.CarNameLineEmptyException;
+import racingcar.validator.exception.carname.CarNameNullPointerException;
 
 public class ParticipatedCars {
     private static final int START_POSITION = 0;
@@ -29,10 +30,17 @@ public class ParticipatedCars {
     }
 
     private static List<String> getCarNamesFrom(String carNamesLine) {
+        checkCarNamesLineNotNull(carNamesLine);
         checkCarNamesLineNonEmpty(carNamesLine);
         List<String> carNames = StringUtil.split(carNamesLine);
         checkCarNameDuplicated(carNames);
         return carNames;
+    }
+
+    private static void checkCarNamesLineNotNull(String carNamesLine) {
+        if (carNamesLine == null) {
+            throw new CarNameNullPointerException();
+        }
     }
 
     private static void checkCarNamesLineNonEmpty(String carNamesLine) {

@@ -44,6 +44,7 @@ public class ParticipatedCarsTest {
 
     private static Stream<Arguments> provideCarNamesLineAndExceptionMessage() {
         return Stream.of(
+                Arguments.of(null, "자동차 이름을 찾을 수 없습니다!"),
                 Arguments.of("", "빈 문자열을 자동차 이름으로 입력할 수 없습니다."),
                 Arguments.of("이브,이브,포비", "자동차 이름은 중복될 수 없습니다.")
         );
@@ -65,7 +66,7 @@ public class ParticipatedCarsTest {
                 Arguments.of(new NonMovableNumberGenerator(), 0)
         );
     }
-    
+
     @Test
     public void 최종_우승자_찾기_테스트() {
         participatedCars.tryToMoveBy(new BoundedRandomNumberGenerator(9, 0));
