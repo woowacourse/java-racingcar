@@ -14,7 +14,8 @@ class RacingGameTest {
     @CsvSource(value = {"4,false", "5,true"}, delimiter = ',')
     void isOver(String roundNumString, String resultString) {
         int totalRounds = 5;
-        RacingGame racingGame = new RacingGame(new String[]{"pobi", "jeong", "roma"}, totalRounds);
+        RacingGame racingGame = new RacingGame(new String[]{"pobi", "jeong", "roma"}, totalRounds,
+                new RandomMoveStrategy());
         int roundNum = Integer.parseInt(roundNumString);
         boolean result = Boolean.parseBoolean(resultString);
 

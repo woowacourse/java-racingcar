@@ -5,6 +5,7 @@ import static racingcar.constants.output.ErrorOutputMessages.ERROR_NOT_INTEGER;
 
 import java.util.List;
 import racingcar.domain.Car;
+import racingcar.domain.MoveStrategy;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -13,17 +14,17 @@ public class GameController {
 
     private RacingGame racingGame;
 
-    public void run() {
-        initGame();
+    public void run(MoveStrategy moveStrategy) {
+        initGame(moveStrategy);
         playGame();
         printGameResult();
     }
 
-    private void initGame() {
+    private void initGame(MoveStrategy moveStrategy) {
         String[] carNames = requestCarNames();
         int totalRounds = requestTotalRounds();
 
-        racingGame = new RacingGame(carNames, totalRounds);
+        racingGame = new RacingGame(carNames, totalRounds, moveStrategy);
     }
 
     private String[] requestCarNames() {

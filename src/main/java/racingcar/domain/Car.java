@@ -1,8 +1,7 @@
 package racingcar.domain;
 
-import static racingcar.constants.GameConstants.CAN_GO_VALUE;
-import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.constants.GameConstants.INITIAL_POSITION;
+import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.util.ValidatorUtils.validateCarName;
 
 import java.util.Objects;
@@ -23,18 +22,14 @@ public class Car implements Comparable<Car> {
         this.position = position;
     }
 
-    public void goOrNot(int number) {
-        if (canGo(number)) {
+    public void goOrNot(MoveStrategy moveStrategy) {
+        if (moveStrategy.canGo()) {
             go();
         }
     }
 
     private void go() {
         position += NUMBER_ONE_FOR_INCREMENT;
-    }
-
-    private boolean canGo(int number) {
-        return number >= CAN_GO_VALUE;
     }
 
     public boolean isSamePosition(int position) {

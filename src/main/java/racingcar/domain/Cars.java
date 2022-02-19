@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import racingcar.util.RandomUtils;
 
 public class Cars {
 
@@ -22,9 +21,9 @@ public class Cars {
         }
     }
 
-    public void race() {
+    public void race(MoveStrategy moveStrategy) {
         for (Car car : cars) {
-            car.goOrNot(RandomUtils.generateNumber());
+            car.goOrNot(moveStrategy);
         }
     }
 

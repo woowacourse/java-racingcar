@@ -12,16 +12,18 @@ public class RacingGame {
     private final Cars cars;
     private final int totalRounds;
     private int currentRound = INITIAL_ROUND_NUM;
+    private final MoveStrategy moveStrategy;
 
-    public RacingGame(String[] carNames, int totalRounds) {
+    public RacingGame(String[] carNames, int totalRounds, MoveStrategy moveStrategy) {
         validatePositiveInt(totalRounds);
 
         cars = new Cars(carNames);
         this.totalRounds = totalRounds;
+        this.moveStrategy = moveStrategy;
     }
 
     public void playRound() {
-        cars.race();
+        cars.race(moveStrategy);
         addOneRound();
     }
 

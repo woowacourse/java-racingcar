@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.StubMoveStrategy;
 
 class CarTest {
 
@@ -25,9 +26,10 @@ class CarTest {
     @DisplayName("생성자는 인스턴스의 name을 인자로 받은 문자열로, position을 0으로 초기화한다.")
     @Test
     void constructor() {
+        // given
         String name = "pobi";
         Car car = new Car(name);
-
+        // then
         assertThat(car.getName()).isEqualTo(name);
         assertThat(car.isSamePosition(0)).isTrue();
     }
@@ -50,23 +52,25 @@ class CarTest {
                 .withMessageMatching(ERROR_OVER_FIVE_CHARACTERS);
     }
 
-    @DisplayName("goOrNot 메서드는 인자의 값이 4 이상일 경우 position 값을 1만큼 증가시킨다.")
+    @DisplayName("goOrNot 메서드는 들어온 전략에 따라 canGo() 가 true 이면 position을 1 전진한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @CsvSource(value = {"4,1", "5,1", "6,1", "7,1", "8,1", "9,1"}, delimiter = ',')
     void goOrNot_move(int num, int result) {
-        car.goOrNot(num);
-
+        // given
+        car.goOrNot(new StubMoveStrategy(1, num));
+        // then
         assertThat(car.isSamePosition(result)).isTrue();
     }
 
-    @DisplayName("goOrNot 메서드의 인자의 값이 4 미만일 경우 position 값은 변경되지 않는다.")
+    @DisplayName("goOrNot 메서드 인자의 값이 4 미만일 경우 position 값은 변경되지 않는다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
     @ValueSource(ints = {0, 1, 2, 3})
     void goOrNot_stay(int num) {
+        // given
         int prevPosition = 0;
-
-        car.goOrNot(num);
-
+        // when
+        car.goOrNot(new StubMoveStrategy(1, num));
+        // then
         assertThat(car.isSamePosition(prevPosition)).isTrue();
     }
 
