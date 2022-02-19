@@ -47,7 +47,7 @@ public class Cars {
         return winnerCars;
     }
 
-    public int findMaxPosition() {
+    private int findMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = Math.max(maxPosition, car.getPosition());
