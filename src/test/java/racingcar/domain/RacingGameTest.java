@@ -12,37 +12,32 @@ import org.junit.jupiter.api.Test;
 class RacingGameTest {
 
     @Test
-    @DisplayName("챔피언이 한명인 경우 챔피언 이름 받기")
+    @DisplayName("챔피언이 한명인 경우 챔피언 이름 수는 하나")
     void getChampionNamesOnlyOneChampion() {
         Cars cars = new Cars(Arrays.asList("car1", "car2", "car3"));
+        RacingGame racingGame = new RacingGame(cars, 1);
 
         cars.getCarList().get(0).move(5);
-        cars.getCarList().get(1).move(1);
-        cars.getCarList().get(2).move(3);
+        cars.getCarList().get(0).move(5);
 
-        RacingGame racingGame = new RacingGame(cars, 0);
+        while (!racingGame.isFinished()) {
+            racingGame.run();
+        }
 
-        assertThat(racingGame.getChampionNames())
-            .contains("car1")
-            .doesNotContain("car2")
-            .doesNotContain("car3");
+        assertThat(racingGame.getChampionNames().size()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("챔피언이 여러명인 경우 챔피언 이름 받기")
+    @DisplayName("챔피언이 여러명일 수 있는 경우 챔피언 이름 수 체크")
     void getChampionNames() {
         Cars cars = new Cars(Arrays.asList("car1", "car2", "car3"));
+        RacingGame racingGame = new RacingGame(cars, 3);
 
-        cars.getCarList().get(0).move(5);
-        cars.getCarList().get(1).move(5);
-        cars.getCarList().get(2).move(3);
+        while (!racingGame.isFinished()) {
+            racingGame.run();
+        }
 
-        RacingGame racingGame = new RacingGame(cars, 0);
-
-        assertThat(racingGame.getChampionNames())
-            .contains("car1")
-            .contains("car2")
-            .doesNotContain("car3");
+        assertThat(racingGame.getChampionNames().size()).isGreaterThanOrEqualTo(1);
     }
 
     @Test
