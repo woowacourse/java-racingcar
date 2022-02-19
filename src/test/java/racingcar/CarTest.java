@@ -14,9 +14,8 @@ public class CarTest {
     private static final MoveCondition TRUE_MOVE_CONDITION = () -> true;
     private static final MoveCondition FALSE_MOVE_CONDITION = () -> false;
 
-    @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void movePosition_자동차_전진_성공(int argument) {
+    @Test
+    void movePosition_자동차_전진_성공() {
 
         //given
         Car car = new Car("car", TRUE_MOVE_CONDITION);
@@ -29,9 +28,8 @@ public class CarTest {
 
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
-    void movePosition_자동차_전진_실패(int argument) {
+    @Test
+    void movePosition_자동차_전진_실패() {
 
         //given
         Car car = new Car("car", FALSE_MOVE_CONDITION);
