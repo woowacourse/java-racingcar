@@ -11,7 +11,7 @@ public class CountTest {
         final int incorrectCount = 0;
 
         assertThatThrownBy(() -> new Count(incorrectCount))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1 이상");
     }
 
@@ -20,7 +20,7 @@ public class CountTest {
         final int incorrectCount = 51;
 
         assertThatThrownBy(() -> new Count(incorrectCount))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("50 이하");
     }
 
