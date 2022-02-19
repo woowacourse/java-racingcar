@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 import racingcar.domain.AttemptNumber;
 import racingcar.domain.CarDto;
 import racingcar.domain.Round;
-import racingcar.service.RacingService;
+import racingcar.service.RacingGame;
+import racingcar.util.MovingNumberPolicyByRandom;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -14,17 +15,15 @@ public class RacingController {
 
 	private static final int START_ROUND = 1;
 
-	private final RacingService racingService = new RacingService();
-
 	public void start() {
-		racingService.registerCars(InputView.getCars());
+		final List<CarDto> cars = InputView.getCars();
+		final AttemptNumber attemptNumber = inputAttemptNumber();
 
-		AttemptNumber attemptNumber = inputAttemptNumber();
-		OutputView.printResultMessage();
-		play(attemptNumber);
+		final RacingGame racingGame = RacingGame.of(cars, attemptNumber);
+		racingGame.start(new MovingNumberPolicyByRandom());
 
-		printRacingRoundResult(attemptNumber);
-		printRacingWinnerResult();
+		printRacingResult(racingGame, attemptNumber);
+		printRacingWinnerResult(racingGame);
 	}
 
 	private AttemptNumber inputAttemptNumber() {
@@ -32,19 +31,17 @@ public class RacingController {
 		return AttemptNumber.of(attemptNumberInput);
 	}
 
-	private void play(AttemptNumber attemptNumber) {
-		racingService.race(attemptNumber);
-	}
+	private void printRacingResult(RacingGame racingGame, AttemptNumber attemptNumber) {
+		OutputView.printResultMessage();
 
-	private void printRacingRoundResult(AttemptNumber attemptNumber) {
 		for (int round = START_ROUND; round <= attemptNumber.value(); round++) {
-			List<CarDto> racingResult = racingService.findRacingResult(Round.of(round));
+			List<CarDto> racingResult = racingGame.findRacingResult(Round.of(round));
 			OutputView.printRacingInfo(racingResult);
 		}
 	}
 
-	private void printRacingWinnerResult() {
-		List<String> winnerNames = racingService.findWinnerCars().stream()
+	private void printRacingWinnerResult(RacingGame racingGame) {
+		List<String> winnerNames = racingGame.findWinnerCars().stream()
 			.map(CarDto::getName)
 			.collect(Collectors.toList());
 

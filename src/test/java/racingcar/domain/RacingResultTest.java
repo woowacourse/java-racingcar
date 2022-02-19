@@ -17,7 +17,7 @@ public class RacingResultTest {
 		racingResult.add(List.of(Car.of("라라", 1), Car.of("포비", 2), Car.of("더즈", 1)));
 
 		List<CarDto> resultCars = racingResult.findResult(Round.of(2)).stream()
-			.map(Car::toDto)
+			.map(CarDto::of)
 			.collect(Collectors.toList());
 
 		Assertions.assertThat(resultCars.get(1).getName()).isEqualTo("포비");

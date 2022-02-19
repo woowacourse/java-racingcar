@@ -1,27 +1,28 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import racingcar.util.MovingNumberPolicy;
 
 public class Cars {
 
 	private static final String EMPTY_CAR_ERROR_MESSAGE = "등록된 자동차가 없습니다.";
 
-	private List<Car> cars = new ArrayList<>();
+	private final List<Car> cars = new ArrayList<>();
 
 	public void add(List<Car> cars) {
 		this.cars.addAll(cars);
 	}
 
-	public List<Car> findCars() {
-		return cars.stream()
-			.map(Car::copy)
-			.collect(Collectors.toList());
+	public void moveCars(MovingNumberPolicy movingNumberPolicy) {
+		cars.forEach(car -> car.move(movingNumberPolicy.generate()));
 	}
 
-	public void updateCars(List<Car> cars) {
-		this.cars = cars;
+	public List<Car> findCars() {
+		return Collections.unmodifiableList(cars);
 	}
 
 	public List<Car> findWinnerCars() {
