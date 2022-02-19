@@ -7,7 +7,7 @@ public class GameTotalCount {
     private int totalAttemptCount;
 
     public GameTotalCount(String attempt) {
-        this.totalAttemptCount = validateAttempt(attempt);
+        this.totalAttemptCount = translatePositiveInteger(attempt);
     }
 
     public int getTotalAttemptCount() {
@@ -25,22 +25,21 @@ public class GameTotalCount {
     }
 
     private void reduceAttemptCount() {
-        totalAttemptCount = totalAttemptCount -1;
+        totalAttemptCount = totalAttemptCount - 1;
     }
 
-    private int validateAttempt(String attempt) {
-        int number = translateVerifiedInteger(attempt);
-        validatePositiveNumber(number);
+    private int translatePositiveInteger(String attempt) {
+        int number;
 
-        return number;
-    }
-
-    private int translateVerifiedInteger(String attempt) {
         try {
-            return Integer.parseInt(attempt);
+            number = Integer.parseInt(attempt);
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 합니다.");
         }
+
+        validatePositiveNumber(number);
+
+        return number;
     }
 
     private void validatePositiveNumber(int number) {
