@@ -25,8 +25,7 @@ public class Cars {
 
     public int findMaxPosition() {
         return cars.stream()
-                .map(Car::getPosition)
-                .mapToInt(position -> position)
+                .mapToInt(Car::getPosition)
                 .max().orElse(MINIMUM_POSITION);
     }
 
