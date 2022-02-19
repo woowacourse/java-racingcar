@@ -41,8 +41,8 @@ public class CarsTest {
         cars.move(strategy);
         // then
         List<Car> carList = cars.getCars();
-        Assertions.assertThat(carList.get(0).getPosition()).isEqualTo(1);
-        Assertions.assertThat(carList.get(1).getPosition()).isEqualTo(1);
-        Assertions.assertThat(carList.get(2).getPosition()).isEqualTo(1);
+        for (int i = 0; i < 3; i++) {
+            Assertions.assertThat(carList.get(i).getPosition()).isEqualTo(1);
+        }
     }
 }
