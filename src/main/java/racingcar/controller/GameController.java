@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import java.util.Optional;
+import java.util.Objects;
 
 import racingcar.domain.Count;
 import racingcar.domain.MoveStrategy;
@@ -10,39 +10,41 @@ import racingcar.view.OutputView;
 
 public class GameController {
     private final MoveStrategy moveStrategy;
-    private Count count;
-    private RacingCarGame racingCarGame;
 
     public GameController(final MoveStrategy moveStrategy) {
-        this.moveStrategy = Optional.ofNullable(moveStrategy)
-                .orElseThrow(() -> new IllegalArgumentException("null은 사용할 수 없습니다. MoveStrategy타입을 사용하세요."));
+        if (Objects.isNull(moveStrategy)) {
+            throw new IllegalArgumentException("null은 사용할 수 없습니다. MoveStrategy타입을 사용하세요.");
+        }
+        this.moveStrategy = moveStrategy;
     }
 
     public void run() {
-        racingCarGame = generateGame();
-        count = getCountFromUser();
+        final RacingCarGame racingCarGame = getCarNamesWithDelimiter();
+        final Count count = getCountFromUser();
 
-        playGame();
-        showResult();
+        racingCarGame.setCount(count);
+
+        playGame(racingCarGame);
+        showResult(racingCarGame);
     }
 
-    private void showResult() {
-        OutputView.printWinners(racingCarGame.getWinners());
-    }
-
-    private RacingCarGame generateGame() {
+    private RacingCarGame getCarNamesWithDelimiter() {
         try {
             final String carNamesWithDelimiter = InputView.getCarNames();
             return new RacingCarGame(carNamesWithDelimiter, moveStrategy);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return generateGame();
+            return getCarNamesWithDelimiter();
         }
     }
 
-    private void playGame() {
+    private void showResult(final RacingCarGame racingCarGame) {
+        OutputView.printWinners(racingCarGame.getWinners());
+    }
+
+    private void playGame(final RacingCarGame racingCarGame) {
         OutputView.printResult(racingCarGame.getCars());
-        for (int i = 0; i < count.get(); i++) {
+        while (racingCarGame.canPlay()) {
             racingCarGame.playRound();
             OutputView.printResult(racingCarGame.getCars());
         }
