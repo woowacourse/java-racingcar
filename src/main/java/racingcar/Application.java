@@ -1,9 +1,6 @@
 package racingcar;
 
-import java.util.ArrayList;
-
 import racingcar.controller.RacingCarsController;
-import racingcar.model.Cars;
 import racingcar.model.Winners;
 
 public class Application {

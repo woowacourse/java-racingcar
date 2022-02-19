@@ -10,19 +10,6 @@ class CarsTest {
 	Cars cars;
 
 	@Test
-	@DisplayName("빈 값이 입력된 경우")
-	public void testNullInput() {
-		//given
-		String input = "";
-		//when
-
-		//then
-		assertThatThrownBy(() -> {
-			cars = new Cars(input);
-		}).hasMessage("빈 값이 입력되었습니다.");
-	}
-
-	@Test
 	@DisplayName("자동차가 하나인 경우")
 	public void testCarsSizeIsOne() {
 		//given
