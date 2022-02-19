@@ -17,7 +17,7 @@ public class Output {
 
     public void printWinner(Winners winners) {
         System.out.printf("%s가 최종 우승했습니다.", winners.getWinners().stream()
-            .map(Name::toString)
+            .map(Name::value)
             .collect(Collectors.joining(NAME_DELIMITER)));
     }
 
