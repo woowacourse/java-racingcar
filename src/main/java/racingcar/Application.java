@@ -1,3 +1,5 @@
+package racingcar;
+
 import racingcar.controller.RacingGame;
 import racingcar.numberGenerator.NumberGenerator;
 import racingcar.numberGenerator.RandomNumberGenerator;
