@@ -18,17 +18,9 @@ public class RacingCarGame implements Game {
     }
 
     @Override
-    public void play() {
+    public void play(Rule rule) {
         RacingCarController controller = createController();
-        runGame(controller);
-    }
-
-    private void runGame(RacingCarController controller) {
-        outputView.printProcessPrompt();
-        while (controller.isRunnable()) {
-            outputView.printCarsPosition(controller.run());
-        }
-        outputView.printWinners(controller.end());
+        runGame(controller, rule);
     }
 
     private RacingCarController createController() {
@@ -40,5 +32,13 @@ public class RacingCarGame implements Game {
             errorView.error(e);
             return createController();
         }
+    }
+
+    private void runGame(RacingCarController controller, Rule rule) {
+        outputView.printProcessPrompt();
+        while (controller.isRunnable()) {
+            outputView.printCarsPosition(controller.run(rule.getMovementStrategy()));
+        }
+        outputView.printWinners(controller.end());
     }
 }

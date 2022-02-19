@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.domain.car.Car;
+import racingcar.domain.movement.MovementStrategy;
 import racingcar.domain.movement.RandomMovementStrategy;
 import racingcar.dto.CarDTO;
 import racingcar.service.RacingCarService;
@@ -24,11 +25,11 @@ public class RacingCarController {
         return !service.isRoundEnd();
     }
 
-    public List<CarDTO> run() {
+    public List<CarDTO> run(MovementStrategy strategy) {
         if (!isRunnable()) {
             throw new IllegalArgumentException("경주할 자동차가 없습니다.");
         }
-        return toDTO(service.run(new RandomMovementStrategy()));
+        return toDTO(service.run(strategy));
     }
 
     private List<CarDTO> toDTO(List<Car> cars) {
