@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.domain.RacingCar;
 
 public class RacingCarDto {
@@ -10,6 +12,12 @@ public class RacingCarDto {
     private RacingCarDto(final String name, final int position) {
         this.name = name;
         this.position = position;
+    }
+
+    public static List<RacingCarDto> from(final List<RacingCar> racingCars) {
+        return racingCars.stream()
+            .map(RacingCarDto::from)
+            .collect(Collectors.toList());
     }
 
     public static RacingCarDto from(final RacingCar racingCar) {

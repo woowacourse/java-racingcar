@@ -32,9 +32,7 @@ public class RacingCars {
     }
 
     public List<RacingCarDto> convertToRacingCarDtos() {
-        return cars.stream()
-            .map(RacingCarDto::from)
-            .collect(Collectors.toList());
+        return RacingCarDto.from(cars);
     }
 
     public void moveCars() {
