@@ -3,7 +3,6 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,12 +13,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.Car;
 import racingcar.domain.ParticipatedCars;
-import racingcar.domain.WinnerNames;
 import racingcar.util.BoundedRandomNumberGenerator;
 import racingcar.util.MovableNumberGenerator;
 import racingcar.util.NonMovableNumberGenerator;
 import racingcar.util.RandomNumberGenerator;
-import racingcar.util.StringUtil;
 import racingcar.validator.exception.carname.CarNameException;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -29,7 +26,7 @@ public class ParticipatedCarsTest {
 
     @BeforeEach
     void setCars() {
-        participatedCars = new ParticipatedCars("이브,클레이,포비");
+        participatedCars = ParticipatedCars.from("이브,클레이,포비");
     }
 
     @Test
@@ -40,7 +37,7 @@ public class ParticipatedCarsTest {
     @ParameterizedTest
     @MethodSource("provideCarNamesLineAndExceptionMessage")
     public void 자동차_생성_예외_테스트(String carNamesLine, String message) {
-        assertThatThrownBy(() -> new ParticipatedCars(carNamesLine))
+        assertThatThrownBy(() -> ParticipatedCars.from(carNamesLine))
                 .isInstanceOf(CarNameException.class)
                 .hasMessageContaining(message);
     }
@@ -72,12 +69,12 @@ public class ParticipatedCarsTest {
     @Test
     public void 최종_우승자_찾기_테스트() {
         participatedCars.tryToMoveBy(new BoundedRandomNumberGenerator(9, 0));
-        List<String> winners = WinnerNames.of(participatedCars).getWinnerNames();
+        List<String> winnerNames = participatedCars.getWinnerNames();
 
         List<String> sortedNames = getSortedNamesByPositionDesc(participatedCars);
 
-        for (int i = 0 ; i < winners.size(); i++) {
-            assertThat(winners.get(i)).isEqualTo(sortedNames.get(i));
+        for (int i = 0 ; i < winnerNames.size(); i++) {
+            assertThat(winnerNames.get(i)).isEqualTo(sortedNames.get(i));
         }
     }
 

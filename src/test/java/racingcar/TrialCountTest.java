@@ -16,8 +16,11 @@ public class TrialCountTest {
 
     @Test
     public void 시도_횟수_입력_테스트() {
-        int gameCount = TrialCount.from("3").toInt();
-        assertThat(gameCount).isEqualTo(3);
+        TrialCount trialCount = TrialCount.from("3");
+        for (int i = 0 ; i < 3 ; i++) {
+            trialCount.consume();
+        }
+        assertThat(trialCount.isEmpty()).isEqualTo(true);
     }
 
     @ParameterizedTest
