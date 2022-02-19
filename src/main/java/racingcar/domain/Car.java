@@ -3,7 +3,9 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int INITIAL_DISTANCE = 0;
+    private static final int OTHER_IS_BIGGER = -1;
+    private static final int THIS_IS_BIGGER = 1;
+    private static final int SAME = 0;
 
     private final CarName carName;
     private Distance distance;
@@ -29,12 +31,12 @@ public class Car {
 
     public int orderByDistanceAsc(Car otherCar) {
         if (this.distance.getDistance() > otherCar.getDistance()) {
-            return 1;
+            return THIS_IS_BIGGER;
         }
         if (this.distance.getDistance() < otherCar.getDistance()) {
-            return -1;
+            return OTHER_IS_BIGGER;
         }
-        return 0;
+        return SAME;
     }
 
     public boolean isSameWith(int distance) {
