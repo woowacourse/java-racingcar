@@ -1,4 +1,4 @@
-package racingcar.domain.util;
+package util;
 
 import java.util.Random;
 import racingcar.domain.enums.DomainErrorMessage;

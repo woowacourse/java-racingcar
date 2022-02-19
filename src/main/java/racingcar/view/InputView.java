@@ -7,6 +7,7 @@ import racingcar.dto.RequestCarsDto;
 import racingcar.domain.vo.Attempt;
 import racingcar.domain.vo.Cars;
 import racingcar.view.enums.ViewErrorMessage;
+import util.StringUtil;
 
 public class InputView {
 
@@ -19,12 +20,9 @@ public class InputView {
 
     public RequestCarsDto requestCars() {
         System.out.println(REQUEST_CAR_NAME_MESSAGE);
-        Cars cars = new Cars(splitNames(readNextLine()));
+        String[] carNames = StringUtil.split(readNextLine(), CAR_NAME_DELIMITER);
+        Cars cars = new Cars(carNames);
         return new RequestCarsDto(cars);
-    }
-
-    private String[] splitNames(String input) {
-        return input.split(CAR_NAME_DELIMITER, -1);
     }
 
     public RequestAttemptDto requestAttempt() {

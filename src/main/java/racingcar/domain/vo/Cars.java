@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.enums.DomainErrorMessage;
-import racingcar.domain.util.RandomUtil;
+import util.RandomUtil;
 
 public class Cars {
 
