@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Cars {
 	private static final String DELIMITER = ",";
 	private static final int CAR_LIMIT = 2;
-	private List<Car> cars = new ArrayList<>();
+	private final List<Car> cars;
 
 	public Cars(String names) {
 		this(names.split(DELIMITER));
@@ -22,7 +22,7 @@ public class Cars {
 
 	public Cars(List<Car> cars) {
 		checkValid(cars);
-		this.cars = cars;
+		this.cars = new ArrayList<>(cars);
 	}
 
 	public void play() {
