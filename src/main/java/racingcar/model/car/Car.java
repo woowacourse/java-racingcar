@@ -8,29 +8,29 @@ public class Car {
     private static final int STANDARD_VALUE = 4;
 
     private final Name name;
-    private final Position position;
+    private Position position;
 
     public Car(String nameString) {
         this.name = new Name(nameString);
-        this.position = new Position();
+        this.position = Position.create();
     }
 
     public void goOrStop(int random) {
         if (random >= STANDARD_VALUE) {
-            position.move(MOVING_DISTANCE);
+            position = position.move(MOVING_DISTANCE);
         }
     }
 
-    public boolean isSameWithPosition(int position) {
-        return this.position.isSameWith(position);
+    public boolean isSameWith(Position position) {
+        return this.position.equals(position);
     }
 
-    public String getName() {
-        return this.name.toString();
+    public Name getName() {
+        return this.name;
     }
 
-    public int getPosition() {
-        return this.position.toInt();
+    public Position getPosition() {
+        return this.position;
     }
 
 }

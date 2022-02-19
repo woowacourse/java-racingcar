@@ -2,17 +2,21 @@ package racingcar.model.value;
 
 import java.util.Objects;
 
-public class Position {
+public class Position implements Comparable {
     private static final int INITIAL_POSITION = 0;
 
-    private int position;
+    private final int position;
 
-    public Position() {
-        this.position = INITIAL_POSITION;
+    private Position(int position) {
+        this.position = position;
     }
 
-    public void move(int distance) {
-        this.position += distance;
+    public static Position create() {
+        return new Position(INITIAL_POSITION);
+    }
+
+    public Position move(int distance) {
+        return new Position(position + distance);
     }
 
     public int toInt() {
@@ -21,6 +25,12 @@ public class Position {
 
     public boolean isSameWith(int position) {
         return this.position == position;
+    }
+
+    @Override
+    public int compareTo(Object obj) {
+        Position position1 = (Position) obj;
+        return Integer.compare(position, position1.position);
     }
 
     @Override

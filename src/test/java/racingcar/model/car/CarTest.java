@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.model.value.Position;
 
 class CarTest {
     @Test
@@ -22,27 +23,29 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"4:1", "3:0"}, delimiter = ':')
+    @CsvSource(value = {"4,1", "3,0"})
     @DisplayName("4 이상의 값이면 전진하고 아니면 정지한다")
     public void goOrStop(int random, int expected) {
         // given
         Car car = new Car("test");
+        Position expectedPosition = Position.create().move(expected);
 
         // when
         car.goOrStop(random);
 
         // then
-        assertThat(car.getPosition()).isEqualTo(expected);
+        assertThat(car.isSameWith(expectedPosition)).isTrue();
     }
 
     @ParameterizedTest
     @CsvSource(value = {"0:true", "1:false"}, delimiter = ':')
     @DisplayName("가장 멀리 간 위치인지 비교한다")
-    public void compareToMaxPosition(int maxPosition, boolean expected) {
+    public void compareToMaxPosition(int input, boolean expected) {
         // given
         Car car = new Car("foo");
+        Position maxPosition = Position.create().move(input);
 
         // then
-        assertThat(car.isSameWithPosition(maxPosition)).isEqualTo(expected);
+        assertThat(car.isSameWith(maxPosition)).isEqualTo(expected);
     }
 }

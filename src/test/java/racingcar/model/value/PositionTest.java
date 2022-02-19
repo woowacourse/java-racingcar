@@ -10,25 +10,12 @@ public class PositionTest {
     @DisplayName("위치 값을 증가시킨다")
     void moveTest() {
         // given
-        Position position = new Position();
+        Position position = Position.create();
 
         // when
         position.move(1);
 
         // then
         assertThat(position.toInt()).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("위치를 비교한다")
-    void isSameTest() {
-        // given
-        Position position = new Position();
-
-        // when
-        position.move(2);
-
-        // then
-        assertThat(position.isSameWith(2)).isTrue();
     }
 }

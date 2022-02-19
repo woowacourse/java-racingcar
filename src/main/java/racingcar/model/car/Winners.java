@@ -2,17 +2,18 @@ package racingcar.model.car;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.model.value.Name;
+import racingcar.model.value.Position;
 
 public class Winners {
-    private static final int MIN_POSITION = 0;
-
     private final List<String> names;
 
     public Winners(List<Car> cars) {
-        int maxPosition = getMaxPosition(cars);
+        Position maxPosition = getMaxPosition(cars);
         names = cars.stream()
-                .filter(car -> car.isSameWithPosition(maxPosition))
+                .filter(car -> car.isSameWith(maxPosition))
                 .map(Car::getName)
+                .map(Name::toString)
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -20,10 +21,10 @@ public class Winners {
         return names;
     }
 
-    private int getMaxPosition(List<Car> cars) {
+    private Position getMaxPosition(List<Car> cars) {
         return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(MIN_POSITION);
+                .map(Car::getPosition)
+                .max(Position::compareTo)
+                .orElse(Position.create());
     }
 }

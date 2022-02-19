@@ -8,8 +8,8 @@ public class CarNameAndPosition {
     private final int position;
 
     public CarNameAndPosition(Car car) {
-        this.name = car.getName();
-        this.position = car.getPosition();
+        this.name = car.getName().toString();
+        this.position = car.getPosition().toInt();
     }
 
     public String getName() {
