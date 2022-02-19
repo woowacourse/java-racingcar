@@ -3,11 +3,8 @@ package racingcar.domain;
 import racingcar.view.Output;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -21,10 +18,7 @@ public class Cars {
 	}
 
 	public Cars(String[] names) {
-		checkValid(names);
-		for (String name : names) {
-			cars.add(createCar(name));
-		}
+		this(stringArrayToCarList(names));
 	}
 
 	public Cars(List<Car> cars) {
@@ -55,13 +49,16 @@ public class Cars {
 		return result;
 	}
 
-	private void checkValid(String[] names) {
-		if (!isCars(names)) {
-			throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
+	private static List<Car> stringArrayToCarList(String[] names) {
+		List<Car> tempCars = new ArrayList<>();
+		for (String name : names) {
+			tempCars.add(createCar(name));
 		}
-		if (isDuplicated(names)) {
-			throw new IllegalArgumentException("자동차 이름을 모두 다르게 입력해주세요.");
-		}
+		return tempCars;
+	}
+
+	private static Car createCar(String name) {
+		return new Car(name.trim());
 	}
 
 	private void checkValid(List<Car> cars) {
@@ -73,17 +70,8 @@ public class Cars {
 		}
 	}
 
-	private boolean isCars(String[] names) {
-		return names.length >= CAR_LIMIT;
-	}
-
 	private boolean isCars(List<Car> cars) {
 		return cars.size() >= CAR_LIMIT;
-	}
-
-	private boolean isDuplicated(String[] names) {
-		Set<String> carNames = new HashSet<>(Arrays.asList(names));
-		return carNames.size() != names.length;
 	}
 
 	private boolean isDuplicated(List<Car> cars) {
@@ -91,10 +79,6 @@ public class Cars {
 				.map(Car::getName)
 				.distinct()
 				.count() != cars.size();
-	}
-
-	private Car createCar(String name) {
-		return new Car(name.trim());
 	}
 
 	private boolean hasNext() {
