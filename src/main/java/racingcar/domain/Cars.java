@@ -36,9 +36,9 @@ public class Cars {
 
     public List<Car> getFarthestCars() {
         int maxDistance = cars.stream()
-                    .mapToInt(Car::getDistance)
-                    .max()
-                    .orElse(INITIAL_DISTANCE);
+                    .max(Car::orderByDistanceAsc)
+                    .map(Car::getDistance)
+                    .orElseThrow(IllegalArgumentException::new);
 
         List<Car> farthestCars = cars.stream()
                     .filter(car -> car.isSameWith(maxDistance))

@@ -27,6 +27,16 @@ public class Car {
         }
     }
 
+    public int orderByDistanceAsc(Car otherCar) {
+        if (this.distance.getDistance() > otherCar.getDistance()) {
+            return 1;
+        }
+        if (this.distance.getDistance() < otherCar.getDistance()) {
+            return -1;
+        }
+        return 0;
+    }
+
     public boolean isSameWith(int distance) {
         return this.distance.isSameWith(distance);
     }
