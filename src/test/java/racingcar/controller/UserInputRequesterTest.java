@@ -6,32 +6,28 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.ErrorMessage;
 
 class UserInputRequesterTest {
 
     @DisplayName("getCarName() 테스트")
-    @ParameterizedTest()
-    @ValueSource(strings = {"name1,name2", "name1"})
-    void getCarName_test(String inputNames) {
-        String input = inputNames;
+    @Test
+    void getCarName_test() {
+        String input = "name1";
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         UserInputRequester userInputRequester = new UserInputRequester();
-        assertThat(userInputRequester.getCarName()).isEqualTo(inputNames);
+        assertThat(userInputRequester.getCarName()).isEqualTo(input);
     }
 
     @DisplayName("getAttempt() 테스트")
-    @ParameterizedTest()
-    @ValueSource(strings = {"100", "1"})
-    void getAttempt_test(String inputAttempt) {
-        String input = inputAttempt;
+    @Test
+    void getAttempt_test() {
+        String input = "1";
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         UserInputRequester userInputRequester = new UserInputRequester();
-        assertThat(userInputRequester.getAttempt()).isEqualTo(inputAttempt);
+        assertThat(userInputRequester.getAttempt()).isEqualTo(input);
     }
 
     @DisplayName("getCarName() 자동차 이름이 공백으로 입력되었을 때 예외 테스트")
