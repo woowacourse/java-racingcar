@@ -17,12 +17,12 @@ public class Validator {
         throw new UnsupportedOperationException();
     }
 
-    public static void validate(List<Car> cars) {
+    public static void validateCarFollowsRule(List<Car> cars) {
         checkDuplicateName(cars);
         checkMinimumPlayer(cars);
     }
 
-    public static void validate(int count) {
+    public static void validateRange(int count) {
         checkMinimumRange(count);
     }
 
