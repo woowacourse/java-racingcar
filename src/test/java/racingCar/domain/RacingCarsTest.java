@@ -48,7 +48,7 @@ public class RacingCarsTest {
 
 		List<Car> winners = racingCars.findWinner();
 
-		assertThat(winners.get(0).toString()).isEqualTo("dun");
+		assertThat(winners.get(0).getName()).isEqualTo("dun");
 	}
 
 }
