@@ -36,11 +36,8 @@ public class CarsTest {
             Arrays.asList(new Car("happy", TRUE_MOVE_CONDITION),
                 new Car("good", TRUE_MOVE_CONDITION)));
 
-        assertThat(
-            cars.getCars()
-                .stream()
-                .map(Car::getName)
-                .collect(Collectors.toList()))
+        assertThat(cars.getCars())
+            .extracting("name")
             .containsExactly("happy", "good");
 
     }
