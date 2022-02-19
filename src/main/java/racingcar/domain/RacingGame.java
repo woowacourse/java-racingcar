@@ -42,4 +42,8 @@ public class RacingGame {
             championNames.add(car.getName());
         }
     }
+
+    public List<Car> getCarList() {
+        return cars.getCarList();
+    }
 }

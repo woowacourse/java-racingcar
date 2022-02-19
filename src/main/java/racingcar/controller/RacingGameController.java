@@ -1,17 +1,13 @@
 package racingcar.controller;
 
-import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGameController {
-    private final Cars cars;
     private final RacingGame racingGame;
 
-    public RacingGameController() {
-        this.cars = new Cars(InputView.inputCarNames());
-        this.racingGame = new RacingGame(cars, InputView.inputRounds());
+    public RacingGameController(final RacingGame racingGame) {
+        this.racingGame = racingGame;
     }
 
     public void proceedRacingGame() {
@@ -24,7 +20,7 @@ public class RacingGameController {
     }
 
     public void updateViewOneTurnResult() {
-        OutputView.printOneTurnRaceResult(cars.getCarList());
+        OutputView.printOneTurnRaceResult(racingGame.getCarList());
     }
 
     public void updateViewChampionNames() {
