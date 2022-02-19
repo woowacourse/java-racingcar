@@ -1,7 +1,7 @@
 package racingcar.dto;
 
 import java.util.List;
-import racingcar.vo.Name;
+import racingcar.domain.vo.Name;
 
 public class Winners {
     private final List<Name> winners;

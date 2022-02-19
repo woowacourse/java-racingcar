@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.vo.Name;
+import racingcar.domain.vo.Name;
 
 class InputNameHandlerTest {
     @Test
@@ -17,7 +17,7 @@ class InputNameHandlerTest {
         List<Name> result = InputNameHandler.inputToNames(input);
 
         // then
-        assertThat(result).containsExactly(Name.create("hoho"), Name.create("rich"), Name.create("pobi"));
+        assertThat(result).containsExactly(new Name("hoho"), new Name("rich"), new Name("pobi"));
     }
 
     @Test

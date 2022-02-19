@@ -5,9 +5,9 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.stream.Collectors;
 import racingcar.vo.CarValue;
-import racingcar.vo.Name;
+import racingcar.domain.vo.Name;
 import racingcar.dto.Winners;
-import racingcar.vo.MovingNumber;
+import racingcar.domain.vo.MovingNumber;
 
 public class Cars {
     private List<Car> cars;

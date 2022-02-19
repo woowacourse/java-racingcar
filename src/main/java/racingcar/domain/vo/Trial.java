@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.vo;
 
 import java.util.Objects;
 
@@ -41,10 +41,6 @@ public class Trial {
     @Override
     public int hashCode() {
         return Objects.hash(count);
-    }
-
-    public static Trial create(int count) {
-        return new Trial(count);
     }
 
     private void validateRange(int count) {

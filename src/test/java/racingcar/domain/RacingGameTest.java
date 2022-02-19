@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.Winners;
 import racingcar.vo.CarValue;
-import racingcar.vo.Name;
+import racingcar.domain.vo.Name;
 
 class RacingGameTest {
 
@@ -53,6 +53,6 @@ class RacingGameTest {
         Winners winners = racingGame.getWinners();
 
         assertThat(winners.getWinners())
-            .containsExactly(Name.create("pobi"), Name.create("hoho"), Name.create("rich"));
+            .containsExactly(new Name("pobi"), new Name("hoho"), new Name("rich"));
     }
 }

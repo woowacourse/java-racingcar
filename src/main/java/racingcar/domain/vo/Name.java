@@ -1,4 +1,4 @@
-package racingcar.vo;
+package racingcar.domain.vo;
 
 import java.util.Objects;
 
@@ -11,10 +11,6 @@ public class Name {
         name = removeLeadingAndTrailingSpace(name);
         validateLength(name);
         this.name = name;
-    }
-
-    public static Name create(String name) {
-        return new Name(name);
     }
 
     @Override

@@ -3,7 +3,7 @@ package racingcar.io;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.vo.CarValue;
-import racingcar.vo.Name;
+import racingcar.domain.vo.Name;
 import racingcar.dto.Winners;
 
 public class Output {

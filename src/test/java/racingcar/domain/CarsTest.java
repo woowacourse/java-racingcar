@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.Winners;
-import racingcar.vo.MovingNumber;
-import racingcar.vo.Name;
+import racingcar.domain.vo.MovingNumber;
+import racingcar.domain.vo.Name;
 
 public class CarsTest {
 
@@ -39,7 +39,7 @@ public class CarsTest {
 
         // then
         Winners winners = cars.pickMoreWinners();
-        assertThat(winners.getWinners()).containsExactly(Name.create("hoho"));
+        assertThat(winners.getWinners()).containsExactly(new Name("hoho"));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class CarsTest {
 
         // then
         Winners winners = cars.pickMoreWinners();
-        assertThat(winners.getWinners()).containsExactly(Name.create("hoho"), Name.create("rich"));
+        assertThat(winners.getWinners()).containsExactly(new Name("hoho"), new Name("rich"));
     }
 
     @Test
@@ -84,13 +84,13 @@ public class CarsTest {
 
     private List<Name> givenCarsNames(String... names) {
         return Arrays.stream(names)
-            .map(Name::create)
+            .map(Name::new)
             .collect(Collectors.toList());
     }
 
     private Queue<MovingNumber> givenNumbers(int... numbers) {
         return Arrays.stream(numbers)
-            .mapToObj(MovingNumber::create)
+            .mapToObj(MovingNumber::new)
             .collect(Collectors.toCollection(LinkedList::new));
     }
 }

@@ -3,7 +3,7 @@ package racingcar;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.vo.Name;
+import racingcar.domain.vo.Name;
 
 public class InputNameHandler {
     private static final String NAME_DELIMITER = ",";
@@ -18,7 +18,7 @@ public class InputNameHandler {
         validateDuplicateName(names);
 
         return Arrays.stream(names)
-            .map(Name::create)
+            .map(Name::new)
             .collect(Collectors.toList());
     }
 

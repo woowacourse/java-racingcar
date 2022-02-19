@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.vo.Name;
+import racingcar.domain.vo.Name;
 
 public class Car {
     private static final int ADVANCE_STANDARD = 4;

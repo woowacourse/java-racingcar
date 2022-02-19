@@ -1,4 +1,4 @@
-package racingcar.vo;
+package racingcar.domain.vo;
 
 import java.util.Objects;
 
@@ -11,10 +11,6 @@ public class MovingNumber {
     public MovingNumber(int number) {
         validateRange(number);
         this.number = number;
-    }
-
-    public static MovingNumber create(int number) {
-        return new MovingNumber(number);
     }
 
     public int value() {
