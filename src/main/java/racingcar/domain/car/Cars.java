@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
+    private static final String WINNER_CANNOT_FOUND_EXCEPTION_MESSAGE = "자동차들이 존재하지 않아 우승자를 판별할 수 없습니다.";
 
     private final List<Car> cars;
 
@@ -54,7 +55,7 @@ public class Cars {
         return cars.stream()
                 .sorted()
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(WINNER_CANNOT_FOUND_EXCEPTION_MESSAGE));
     }
 
     private boolean hasSameDistance(final Car first, final Car second) {
