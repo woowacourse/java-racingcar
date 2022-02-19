@@ -10,9 +10,7 @@ class CarsTest {
     void getSingleChampion() {
         Cars cars = Cars.of(new String[] {"car1", "car2", "car3"});
 
-        cars.getCars().get(0).move(() -> true);
-        cars.getCars().get(1).move(() -> false);
-        cars.getCars().get(2).move(() -> false);
+        cars.getCars().get(0).move();
 
         assertThat(cars.getChampions())
             .containsOnly("car1");
@@ -22,9 +20,8 @@ class CarsTest {
     void getChampions() {
         Cars cars = Cars.of(new String[] {"car1", "car2", "car3"});
 
-        cars.getCars().get(0).move(() -> true);
-        cars.getCars().get(1).move(() -> true);
-        cars.getCars().get(2).move(() -> false);
+        cars.getCars().get(0).move();
+        cars.getCars().get(1).move();
 
         assertThat(cars.getChampions())
             .contains("car1")
@@ -36,9 +33,9 @@ class CarsTest {
     void getChampionsWithAllHavingHighScore() {
         Cars cars = Cars.of(new String[] {"car1", "car2", "car3"});
 
-        cars.getCars().get(0).move(() -> true);
-        cars.getCars().get(1).move(() -> true);
-        cars.getCars().get(2).move(() -> true);
+        cars.getCars().get(0).move();
+        cars.getCars().get(1).move();
+        cars.getCars().get(2).move();
 
         assertThat(cars.getChampions())
             .contains("car1")
@@ -50,7 +47,7 @@ class CarsTest {
     void getChampionWithSingleParticipant() {
         Cars cars = Cars.of(new String[] {"car1"});
 
-        cars.getCars().get(0).move(() -> true);
+        cars.getCars().get(0).move();
 
         assertThat(cars.getChampions())
             .containsOnly("car1");

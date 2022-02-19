@@ -20,7 +20,13 @@ public class Cars {
 
     public void moveAll(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            car.move(movingStrategy);
+            moveEach(movingStrategy, car);
+        }
+    }
+
+    private void moveEach(MovingStrategy movingStrategy, Car car) {
+        if (movingStrategy.isMovable()) {
+            car.move();
         }
     }
 

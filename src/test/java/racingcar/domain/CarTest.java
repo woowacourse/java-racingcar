@@ -9,14 +9,13 @@ class CarTest {
     @Test
     void move() {
         Car car = new Car("test");
-        car.move(() -> true);
+        car.move();
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
     void stop() {
         Car car = new Car("test");
-        car.move(() -> false);
         assertThat(car.getPosition()).isEqualTo(0);
     }
 

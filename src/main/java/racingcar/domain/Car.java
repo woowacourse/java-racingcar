@@ -16,10 +16,8 @@ public class Car {
         this.position = INITIAL_POSITION;
     }
 
-    public void move(MovingStrategy movingStrategy) {
-        if (movingStrategy.isMovable()) {
-            position++;
-        }
+    public void move() {
+        position++;
     }
 
     public boolean isSamePosition(int position) {
