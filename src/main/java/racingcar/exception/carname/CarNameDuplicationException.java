@@ -1,4 +1,4 @@
-package racingcar.validator.exception.carname;
+package racingcar.exception.carname;
 
 public class CarNameDuplicationException extends CarNameException {
     public CarNameDuplicationException() {

@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import racingcar.validator.exception.TrialCountNotNumericException;
-import racingcar.validator.exception.TrialCountNotPositiveException;
-import racingcar.validator.exception.TrialCountNullPointerException;
+import racingcar.exception.trialcount.TrialCountNotNumericException;
+import racingcar.exception.trialcount.TrialCountNotPositiveException;
+import racingcar.exception.trialcount.TrialCountNullPointerException;
 
 public class TrialCount {
 

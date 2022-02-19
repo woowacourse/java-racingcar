@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.util.RandomNumberGenerator;
 import racingcar.util.StringUtil;
-import racingcar.validator.exception.carname.CarNameDuplicationException;
-import racingcar.validator.exception.carname.CarNameLineEmptyException;
-import racingcar.validator.exception.carname.CarNameNullPointerException;
+import racingcar.exception.carname.CarNameDuplicationException;
+import racingcar.exception.carname.CarNameLineEmptyException;
+import racingcar.exception.carname.CarNameNullPointerException;
 
 public class ParticipatedCars {
     private static final int START_POSITION = 0;

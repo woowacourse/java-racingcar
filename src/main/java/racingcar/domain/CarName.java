@@ -1,9 +1,9 @@
 package racingcar.domain;
 
-import racingcar.validator.exception.carname.CarNameLengthOverException;
-import racingcar.validator.exception.carname.CarNameNotExistsException;
-import racingcar.validator.exception.carname.CarNameNullPointerException;
-import racingcar.validator.exception.carname.CarNameSpaceException;
+import racingcar.exception.carname.CarNameLengthOverException;
+import racingcar.exception.carname.CarNameNotExistsException;
+import racingcar.exception.carname.CarNameNullPointerException;
+import racingcar.exception.carname.CarNameSpaceException;
 
 public class CarName {
     private static int MAX_CAR_NAME_LENGTH = 5;

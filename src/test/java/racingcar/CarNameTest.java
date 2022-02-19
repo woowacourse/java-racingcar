@@ -3,15 +3,11 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Car;
 import racingcar.domain.CarName;
-import racingcar.util.StringUtil;
-import racingcar.validator.exception.carname.CarNameException;
+import racingcar.exception.carname.CarNameException;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarNameTest {

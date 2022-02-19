@@ -1,4 +1,4 @@
-package racingcar.validator.exception;
+package racingcar.exception.trialcount;
 
 public class TrialCountNotNumericException extends TrialCountException {
     public TrialCountNotNumericException() {

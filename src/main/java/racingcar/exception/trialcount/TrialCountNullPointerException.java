@@ -1,4 +1,4 @@
-package racingcar.validator.exception;
+package racingcar.exception.trialcount;
 
 public class TrialCountNullPointerException extends TrialCountException {
     public TrialCountNullPointerException() {

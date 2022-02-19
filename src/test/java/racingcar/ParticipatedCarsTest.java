@@ -17,7 +17,7 @@ import racingcar.util.BoundedRandomNumberGenerator;
 import racingcar.util.MovableNumberGenerator;
 import racingcar.util.NonMovableNumberGenerator;
 import racingcar.util.RandomNumberGenerator;
-import racingcar.validator.exception.carname.CarNameException;
+import racingcar.exception.carname.CarNameException;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class ParticipatedCarsTest {
