@@ -10,7 +10,7 @@ public class StringUtil {
     private StringUtil() {
     }
 
-    public static List<String> splitName(final String name) {
+    public static List<String> toList(final String name) {
         return List.of(name.split(SPLIT_DELIMITER, SPLIT_LIMIT));
     }
 }

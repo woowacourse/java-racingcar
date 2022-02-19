@@ -24,7 +24,7 @@ public class RacingController {
 
     public void play() {
         try {
-            List<String> names = StringUtil.splitName(insertName());
+            List<String> names = StringUtil.toList(insertName());
             Cars cars = Cars.fromNames(names);
             TrialCount trialCount = new TrialCount(insertNumber());
 
