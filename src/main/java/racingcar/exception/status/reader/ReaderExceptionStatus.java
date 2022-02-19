@@ -8,7 +8,7 @@ public enum ReaderExceptionStatus implements ExceptionStatus {
 
     private final String message;
 
-    ReaderExceptionStatus(String message) {
+    ReaderExceptionStatus(final String message) {
         this.message = message;
     }
 

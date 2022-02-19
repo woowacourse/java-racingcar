@@ -6,7 +6,7 @@ public class Round {
 
     private int count;
 
-    public Round(int count) {
+    public Round(final int count) {
         RoundValidator.validateCount(count);
         this.count = count;
     }
@@ -17,6 +17,10 @@ public class Round {
 
     public void decreaseCount() {
         this.count--;
+    }
+
+    public int getCount() {
+        return this.count;
     }
 
 }

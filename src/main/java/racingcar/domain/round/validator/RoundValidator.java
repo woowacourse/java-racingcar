@@ -1,6 +1,6 @@
 package racingcar.domain.round.validator;
 
-import racingcar.domain.round.condition.RoundCountRange;
+import racingcar.domain.round.condition.RoundCount;
 import racingcar.exception.WrongArgumentException;
 import racingcar.exception.status.round.RoundCountExceptionStatus;
 
@@ -11,12 +11,12 @@ public class RoundValidator {
     private RoundValidator() {
     }
 
-    public static void validateCount(int count) {
+    public static void validateCount(final int count) {
         ROUND_VALIDATOR.validateCountPositive(count);
     }
 
-    private void validateCountPositive(int count) {
-        if (RoundCountRange.isTooSmall(count)) {
+    private void validateCountPositive(final int count) {
+        if (RoundCount.isTooSmall(count)) {
             throw new WrongArgumentException(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE);
         }
     }

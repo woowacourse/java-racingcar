@@ -1,7 +1,7 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
 
@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import calculator.exception.NumberExceptionStatus;
 import calculator.exception.WrongArgumentException;
 
 class CalculatorTest {
@@ -19,40 +20,44 @@ class CalculatorTest {
     private final Separator separator = new Separator();
     private final Calculator calculator = new Calculator(separator);
 
-    private void exceptionText(String text) {
-        assertThrows(WrongArgumentException.class, () -> calculator.splitAndSum(text));
+    private void exceptionText(final String text, final String errorMessage) {
+        assertThatThrownBy(() -> calculator.splitAndSum(text))
+                .isInstanceOf(WrongArgumentException.class)
+                .hasMessageContaining(errorMessage);
     }
 
     @DisplayName("숫자 이외의 값은 입력할 수 없습니다")
     @ParameterizedTest
     @ValueSource(strings = {"a", "1,a"})
-    void numberIsNotNumericExceptionTest(String text) {
-        exceptionText(text);
+    void numberIsNotNumericExceptionTest(final String text) {
+        final String errorMessage = NumberExceptionStatus.NUMBER_IS_NOT_NUMERIC.getMessage();
+        exceptionText(text, errorMessage);
     }
 
     @DisplayName("음수는 입력할 수 없습니다")
     @ParameterizedTest
     @ValueSource(strings = {"-1", "1,-1"})
-    void numberIsNegativeExceptionTest(String text) {
-        exceptionText(text);
+    void numberIsNegativeExceptionTest(final String text) {
+        final String errorMessage = NumberExceptionStatus.NUMBER_IS_NEGATIVE.getMessage();
+        exceptionText(text, errorMessage);
     }
 
-    private void calculatorSumTest(String text, int expected) {
-        int result = calculator.splitAndSum(text);
+    private void calculatorSumTest(final String text, final int expected) {
+        final int result = calculator.splitAndSum(text);
         assertThat(result).isEqualTo(expected);
     }
 
     @DisplayName("NULL 또는 공백 입력 시, 0을 반환")
     @ParameterizedTest
     @NullAndEmptySource
-    void nullOrEmptyInputTest(String text) {
+    void nullOrEmptyInputTest(final String text) {
         calculatorSumTest(text, 0);
     }
 
     @DisplayName("문자열 덧셈 기능 테스트")
     @ParameterizedTest
     @MethodSource("provideForSplitAndSumTest")
-    void splitAndSumTest(String text, int expected) {
+    void splitAndSumTest(final String text, final int expected) {
         calculatorSumTest(text, expected);
     }
 

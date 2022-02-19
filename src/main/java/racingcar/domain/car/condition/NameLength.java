@@ -1,14 +1,21 @@
 package racingcar.domain.car.condition;
 
-public class NameLength {
+public enum NameLength {
 
-    public static final int ALLOWED_MAXIMUM_LENGTH = 5;
+    ALLOWED_MAXIMUM_LENGTH(5);
 
-    private NameLength() {
+    private final int length;
+
+    NameLength(final int length) {
+        this.length = length;
     }
 
-    public static boolean isTooLong(String name) {
-        return name.length() > ALLOWED_MAXIMUM_LENGTH;
+    public static boolean isTooLong(final String name) {
+        return name.length() > ALLOWED_MAXIMUM_LENGTH.length;
+    }
+
+    public int getLength() {
+        return this.length;
     }
 
 }

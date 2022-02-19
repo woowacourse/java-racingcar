@@ -2,38 +2,47 @@ package racingcar.view.output;
 
 import java.util.List;
 
+import racingcar.dto.CarStatusDto;
 import racingcar.utils.Delimiter;
-import racingcar.view.output.message.OutputMessage;
 
 public class OutputView {
 
-    public void printMessage(String message) {
+    public void printMessage(final String message) {
         System.out.println(message);
     }
 
+    private void printMessage(final OutputMessage outputMessage) {
+        this.printMessage(outputMessage.getMessage());
+    }
+
     public void printMessageOfRequestCarNames() {
-        printMessage(OutputMessage.MessageOfRequestCarNames);
+        printMessage(OutputMessage.REQUEST_CAR_NAMES_MESSAGE);
     }
 
     public void printMessageOfRequestRound() {
-        printMessage(OutputMessage.MessageOfRequestRound);
+        printMessage(OutputMessage.REQUEST_ROUND_MESSAGE);
     }
 
     public void printMessageOfStatusTitle() {
-        printMessage(OutputMessage.MessageOfStatusTitle);
+        printEmptyLine();
+        printMessage(OutputMessage.PRINT_TITLE_OF_STATUS);
     }
 
-    public void printCarStatuses(List<String> carStatuses) {
-        carStatuses.forEach(this::printMessage);
+    public void printCarStatuses(final List<CarStatusDto> carStatuses) {
+        carStatuses.stream()
+                .map(CarStatusDto::toString)
+                .forEach(this::printMessage);
+        printEmptyLine();
     }
 
-    public void printMessageOfWinners(List<String> winnerNames) {
-        String message = String.format(OutputMessage.MessageFormatOfPrintWinner, Delimiter.joinWithComma(winnerNames));
+    public void printMessageOfWinners(final List<String> winnerNames) {
+        final String message = String.format(
+                OutputMessage.PRINT_WINNERS.getMessage(), Delimiter.joinWithComma(winnerNames));
         printMessage(message);
     }
 
     public void printEmptyLine() {
-        printMessage("");
+        printMessage(OutputMessage.EMPTY_STRING);
     }
 
 }

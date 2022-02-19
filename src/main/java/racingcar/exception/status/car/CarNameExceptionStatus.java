@@ -5,16 +5,16 @@ import racingcar.exception.status.ExceptionStatus;
 
 public enum CarNameExceptionStatus implements ExceptionStatus {
 
-    NAME_IS_DUPLICATED("자동차의 이름은 중복될 수 없습니다."),
-    NAME_IS_EMPTY("자동차의 이름은 공백이 될 수 없습니다."),
-    NAME_IS_NULL("자동차의 이름은 NULL이 될 수 없습니다."),
-    NAME_IS_TOO_LONG(
-            String.format("자동차의 이름은 %d자 이하여야 합니다.", NameLength.ALLOWED_MAXIMUM_LENGTH));
+    NAME_IS_DUPLICATED("중복될 수 없습니다."),
+    NAME_IS_EMPTY("공백이 될 수 없습니다."),
+    NAME_IS_NULL("NULL이 될 수 없습니다."),
+    NAME_IS_TOO_LONG(String.format("%d자 이하여야 합니다.", NameLength.ALLOWED_MAXIMUM_LENGTH.getLength()));
 
+    private static final String MESSAGE_PREFIX = "자동차의 이름은 ";
     private final String message;
 
-    CarNameExceptionStatus(String message) {
-        this.message = message;
+    CarNameExceptionStatus(final String message) {
+        this.message = MESSAGE_PREFIX + message;
     }
 
     public String getMessage() {

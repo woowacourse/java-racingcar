@@ -12,7 +12,7 @@ public class GameController {
     private final OutputView outputView;
     private final GameService gameService;
 
-    public GameController(GameService gameService, InputView inputView, OutputView outputView) {
+    public GameController(final GameService gameService, final InputView inputView, final OutputView outputView) {
         this.gameService = gameService;
         this.inputView = inputView;
         this.outputView = outputView;
@@ -24,21 +24,13 @@ public class GameController {
     }
 
     private void initParticipants() {
-        gameService.initCarNames(requestCarNames());
-    }
-
-    private List<String> requestCarNames() {
-        outputView.printMessageOfRequestCarNames();
-        return inputView.requestCarNames();
+        final List<String> carNames = inputView.requestCarNames();
+        gameService.initCarNames(carNames);
     }
 
     private void initRound() {
-        gameService.initRound(requestRound());
-    }
-
-    private int requestRound() {
-        outputView.printMessageOfRequestRound();
-        return inputView.requestRoundNumber();
+        final int roundCount = inputView.requestRoundCount();
+        gameService.initRound(roundCount);
     }
 
     public void playGame() {
@@ -48,24 +40,18 @@ public class GameController {
     }
 
     private void announceStatusTitle() {
-        outputView.printEmptyLine();
         outputView.printMessageOfStatusTitle();
     }
 
     private void announcePlayStatuses() {
         while (gameService.isContinuable()) {
             gameService.playRound();
-            announceStatuses(gameService.getCurrentStatuses());
+            outputView.printCarStatuses(gameService.getCurrentStatuses());
         }
     }
 
-    private void announceStatuses(List<String> carStatuses) {
-        outputView.printCarStatuses(carStatuses);
-        outputView.printEmptyLine();
-    }
-
     private void announceWinners() {
-        List<String> winnerNames = gameService.getWinnerNames();
+        final List<String> winnerNames = gameService.getWinnerNames();
         outputView.printMessageOfWinners(winnerNames);
     }
 

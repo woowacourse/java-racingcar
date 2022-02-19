@@ -1,4 +1,4 @@
-package racingcar.domain.provider;
+package racingcar.domain.car.provider;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -6,28 +6,6 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.provider.Arguments;
 
 class CarsTestProvider {
-
-    public static Stream<Arguments> provideForNullExceptionTest() {
-        return Stream.of(
-                Arguments.of(Arrays.asList("if", null, "hanul")),
-                Arguments.of(Arrays.asList("if", "hanul", null))
-        );
-    }
-
-    public static Stream<Arguments> provideForEmptyExceptionTest() {
-        return Stream.of(
-                Arguments.of(Arrays.asList("")),
-                Arguments.of(Arrays.asList("if", "hanul", ""))
-        );
-    }
-
-    public static Stream<Arguments> provideForLengthExceptionTest() {
-        return Stream.of(
-                Arguments.of(Arrays.asList("slow", "if", "hanull")),
-                Arguments.of(Arrays.asList("sinb57", "slow", "if")),
-                Arguments.of(Arrays.asList("sinb57", "slow", "if", "hanull"))
-        );
-    }
 
     public static Stream<Arguments> provideForDuplicateExceptionTest() {
         return Stream.of(
@@ -48,11 +26,11 @@ class CarsTestProvider {
         return Stream.of(
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        1, Arrays.asList(3, 4, 5),
+                        1, Arrays.asList(false, true, true),
                         Arrays.asList("slow : ", "if : -", "poby : -")),
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        2, Arrays.asList(0, 5, 8, 7, 3, 4),
+                        2, Arrays.asList(false, true, true, true, false, true),
                         Arrays.asList(
                                 "slow : ", "if : -", "poby : -",
                                 "slow : -", "if : -", "poby : --"))
@@ -63,11 +41,11 @@ class CarsTestProvider {
         return Stream.of(
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        1, Arrays.asList(0, 5, 8),
+                        1, Arrays.asList(false, true, true),
                         Arrays.asList("if", "poby")),
                 Arguments.of(
                         Arrays.asList("slow", "if", "poby"),
-                        2, Arrays.asList(0, 5, 8, 7, 3, 4),
+                        2, Arrays.asList(false, true, true, true, false, true),
                         Arrays.asList("poby"))
         );
     }

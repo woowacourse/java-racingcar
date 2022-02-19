@@ -18,8 +18,8 @@ class SeparatorTest {
     @DisplayName("문자열 분리 기능 테스트")
     @ParameterizedTest
     @MethodSource("provideForExtractCustomUnitsTest")
-    void extractCustomUnitsTest(String text, List<String> expected) {
-        List<String> actual = separator.splitByUnits(text);
+    void extractCustomUnitsTest(final String text, final List<String> expected) {
+        final List<String> actual = separator.splitByUnits(text);
         assertThat(actual).isEqualTo(expected);
     }
 

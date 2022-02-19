@@ -13,17 +13,17 @@ public class CarsValidator {
     private CarsValidator() {
     }
 
-    public static void validateNames(List<String> names) {
+    public static void validateNames(final List<String> names) {
         CAR_GROUP_VALIDATOR.validateNameIsDuplicated(names);
     }
 
-    private void validateNameIsDuplicated(List<String> names) {
+    private void validateNameIsDuplicated(final List<String> names) {
         if (checkNameIsDuplicated(names)) {
             throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_DUPLICATED);
         }
     }
 
-    private boolean checkNameIsDuplicated(List<String> names) {
+    private boolean checkNameIsDuplicated(final List<String> names) {
         return names.stream()
                 .anyMatch(name -> NameDuplication.isExcessiveDuplicated(names, name));
     }

@@ -8,21 +8,23 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import racingcar.AppConfig;
 import racingcar.view.input.reader.CustomReader;
 
 class CarNameInputTest {
 
-    private static final String providerPath = "racingcar.view.input.provider.CarNamesInputTestProvider#";
+    private static final String PROVIDER_PATH = "racingcar.view.input.provider.CarNamesInputTestProvider#";
+    private static final AppConfig APP_CONFIG = AppConfig.getInstance();
 
-    private final CustomReader customReader = new CustomReader();
-    private final InputView inputView = new InputView(customReader);
+    private final CustomReader customReader = APP_CONFIG.reader;
+    private final InputView inputView = APP_CONFIG.inputView;
 
     @DisplayName("자동차 이름 입력 기능 테스트")
     @ParameterizedTest
-    @MethodSource(providerPath + "provideValuesForNormalInput")
-    void requestCarNamesTest(String inputValue, List<String> expected) {
+    @MethodSource(PROVIDER_PATH + "provideValuesForNormalInput")
+    void requestCarNamesTest(final String inputValue, final List<String> expected) {
         customReader.initText(inputValue);
-        List<String> carNames = inputView.requestCarNames();
+        final List<String> carNames = inputView.requestCarNames();
         assertThat(carNames).isEqualTo(expected);
     }
 

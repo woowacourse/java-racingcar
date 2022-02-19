@@ -1,11 +1,11 @@
 package racingcar;
 
 import racingcar.controller.GameController;
+import racingcar.domain.car.strategy.CustomMoveStrategy;
 import racingcar.domain.car.strategy.MoveStrategy;
-import racingcar.domain.car.strategy.RandomMoveStrategy;
 import racingcar.service.GameService;
 import racingcar.view.input.InputView;
-import racingcar.view.input.reader.ConsoleReader;
+import racingcar.view.input.reader.CustomReader;
 import racingcar.view.input.reader.Reader;
 import racingcar.view.output.OutputView;
 
@@ -14,11 +14,11 @@ public class AppConfig {
     private static final AppConfig APP_CONFIG = new AppConfig();
 
     public final GameController gameController;
-    public final MoveStrategy moveStrategy;
+    public final CustomMoveStrategy moveStrategy;
     public final GameService gameService;
     public final InputView inputView;
     public final OutputView outputView;
-    public final Reader reader;
+    public final CustomReader reader;
 
     private AppConfig() {
         this.reader = initReader();
@@ -37,16 +37,16 @@ public class AppConfig {
         return new OutputView();
     }
 
-    private Reader initReader() {
-        return new ConsoleReader();
+    private CustomReader initReader() {
+        return new CustomReader();
     }
 
     private InputView initInputView(final Reader reader, final OutputView outputView) {
         return new InputView(reader, outputView);
     }
 
-    private MoveStrategy initMoveStrategy() {
-        return new RandomMoveStrategy();
+    private CustomMoveStrategy initMoveStrategy() {
+        return new CustomMoveStrategy();
     }
 
     private GameService initGameService(final MoveStrategy moveStrategy) {
