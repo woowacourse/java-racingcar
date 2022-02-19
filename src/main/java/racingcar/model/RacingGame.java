@@ -2,6 +2,8 @@ package racingcar.model;
 
 import racingcar.util.RandomNumberGenerator;
 
+import java.util.Comparator;
+
 public class RacingGame {
     private Cars cars;
     private TrialNum trialNum;
@@ -29,7 +31,8 @@ public class RacingGame {
     }
 
     public Winners findWinner() {
-        return new Winners(cars);
+        Cars winnerCars = cars.findWinnerCars();
+        return new Winners(winnerCars);
     }
 
     public boolean isEnd() {

@@ -16,6 +16,6 @@ class WinnersTest {
         cars.race(numberGenerator);
         Winners winners = new Winners(cars);
 
-        assertThat(winners.findName()).contains("bom").contains("sun");
+        assertThat(winners.makeWinnerName(",")).contains("bom").contains("sun");
     }
 }
