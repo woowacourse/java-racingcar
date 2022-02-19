@@ -7,10 +7,12 @@ import static racingcar.view.OutputView.printResultMessage;
 import static racingcar.view.OutputView.printTurnResult;
 import static racingcar.view.OutputView.printWinners;
 
+import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TrialCount;
 import racingcar.domain.Winners;
 import racingcar.domain.movestrategy.MovingStrategy;
+import racingcar.utils.StringUtil;
 
 public class RacingController {
 
@@ -22,7 +24,8 @@ public class RacingController {
 
     public void play() {
         try {
-            Cars cars = Cars.fromNames(insertName());
+            List<String> names = StringUtil.splitName(insertName());
+            Cars cars = Cars.fromNames(names);
             TrialCount trialCount = new TrialCount(insertNumber());
 
             progressTurns(cars, trialCount);
