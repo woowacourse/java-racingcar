@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import racingcar.domain.strategy.MovePredicate;
-
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String NAME_LENGTH_ERROR = "[ERROR] 이름은 5글자를 초과할 수 없습니다.";
