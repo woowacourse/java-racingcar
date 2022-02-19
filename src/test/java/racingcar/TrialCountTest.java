@@ -13,10 +13,19 @@ import racingcar.exception.trialcount.TrialCountException;
 
 public class TrialCountTest {
 
+    private static Stream<Arguments> provideTrialCountLineAndExceptionMessage() {
+        return Stream.of(
+                Arguments.of(null, "시도 횟수를 찾을 수 없습니다!"),
+                Arguments.of("이브", "시도 횟수가 숫자가 아닙니다."),
+                Arguments.of(-1, "시도 횟수가 음수나 0이 될 수 없습니다."),
+                Arguments.of(0, "시도 횟수가 음수나 0이 될 수 없습니다.")
+        );
+    }
+
     @Test
     public void 시도_횟수_입력_테스트() {
         TrialCount trialCount = TrialCount.from("3");
-        for (int i = 0 ; i < 3 ; i++) {
+        for (int i = 0; i < 3; i++) {
             trialCount.consume();
         }
         assertThat(trialCount.isEmpty()).isEqualTo(true);
@@ -28,14 +37,5 @@ public class TrialCountTest {
         assertThatThrownBy(() -> TrialCount.from("이브"))
                 .isInstanceOf(TrialCountException.class)
                 .hasMessageContaining("시도 횟수가 숫자가 아닙니다.");
-    }
-
-    private static Stream<Arguments> provideTrialCountLineAndExceptionMessage() {
-        return Stream.of(
-                Arguments.of(null, "시도 횟수를 찾을 수 없습니다!"),
-                Arguments.of("이브", "시도 횟수가 숫자가 아닙니다."),
-                Arguments.of(-1, "시도 횟수가 음수나 0이 될 수 없습니다."),
-                Arguments.of(0, "시도 횟수가 음수나 0이 될 수 없습니다.")
-        );
     }
 }

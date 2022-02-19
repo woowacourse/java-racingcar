@@ -8,8 +8,6 @@ import java.util.Comparator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.util.MovableNumberGenerator;
-import racingcar.util.NonMovableNumberGenerator;
 
 
 @SuppressWarnings("NonAsciiCharacters")

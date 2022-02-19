@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.util.RandomNumberGenerator;
-
 public class Car {
     private final CarName name;
     private int position;

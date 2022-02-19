@@ -1,8 +1,8 @@
 package racingcar.view;
 
 import java.util.Map.Entry;
-import racingcar.dto.WinnerNamesDto;
 import racingcar.dto.RacingResultsDto;
+import racingcar.dto.WinnerNamesDto;
 
 public class OutputView {
     private static final String NEW_LINE = "\n";

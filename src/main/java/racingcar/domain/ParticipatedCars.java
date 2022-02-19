@@ -2,13 +2,12 @@ package racingcar.domain;
 
 import java.util.Collections;
 import java.util.List;
-
 import java.util.stream.Collectors;
-import racingcar.util.RandomNumberGenerator;
-import racingcar.util.StringUtil;
 import racingcar.exception.carname.CarNameDuplicationException;
 import racingcar.exception.carname.CarNameLineEmptyException;
 import racingcar.exception.carname.CarNameNullPointerException;
+import racingcar.util.RandomNumberGenerator;
+import racingcar.util.StringUtil;
 
 public class ParticipatedCars {
     private static final int START_POSITION = 0;
