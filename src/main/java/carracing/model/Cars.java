@@ -1,15 +1,16 @@
 package carracing.model;
 
-import static carracing.view.messages.ExceptionMessage.*;
+import static carracing.model.exception.CarExceptionMessage.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-import carracing.utils.RandomNumber;
+import carracing.utils.NumberGenerator;
+import carracing.utils.RandomNumberGenerator;
 
 public class Cars {
-	private static final int RANDOM_NUMBER_RANGE = 10;
+	private static final int FIRST_CAR_INDEX = 0;
+	private static final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
 	private final List<Car> cars;
 
@@ -23,21 +24,35 @@ public class Cars {
 		return cars;
 	}
 
-	public List<String> getWinners() {
-		int maxPosition = cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.orElseThrow(NoSuchElementException::new);
+	public List<Car> getWinners() {
+		Car winner = getWinner();
+		return getTiedWith(winner);
+	}
 
+	private Car getWinner() {
+		Car winningCar = cars.get(FIRST_CAR_INDEX);
+		for (Car car : cars) {
+			winningCar = getWinningCar(winningCar, car);
+		}
+		return winningCar;
+	}
+
+	private List<Car> getTiedWith(Car winner) {
 		return cars.stream()
-			.filter(car -> car.isMaxPosition(maxPosition))
-			.map(Car::getName)
+			.filter(car -> car.isTiedWith(winner))
 			.collect(Collectors.toList());
 	}
 
 	public void moveCars() {
 		cars.forEach(car ->
-			car.move(RandomNumber.generate(RANDOM_NUMBER_RANGE)));
+			car.move(numberGenerator));
+	}
+
+	private Car getWinningCar(Car winningCar, Car car) {
+		if (car.isAheadOf(winningCar)) {
+			winningCar = car;
+		}
+		return winningCar;
 	}
 
 	private void validateDuplication(List<Car> cars) {
@@ -47,7 +62,7 @@ public class Cars {
 			.count() != cars.size();
 
 		if (isDuplicated) {
-			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
+			throw new IllegalArgumentException(NAME_DUPLICATE_EXCEPTION.getMessage());
 		}
 	}
 }

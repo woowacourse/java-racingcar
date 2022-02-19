@@ -1,26 +1,29 @@
 package carracing.model;
 
-import static carracing.view.messages.ExceptionMessage.*;
+import static carracing.model.exception.CarExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class CarsTest {
+import carracing.util.MovableNumberGenerator;
+import carracing.utils.NumberGenerator;
 
+public class CarsTest {
 	Car eastCar;
 	Car pobiCar;
 	Car peperCar;
 
 	@BeforeEach
 	void car_init() {
-		eastCar = new Car("east");
-		pobiCar = new Car("pobi");
-		peperCar = new Car("peper");
+		eastCar = Car.from("east");
+		pobiCar = Car.from("pobi");
+		peperCar = Car.from("peper");
 	}
 
 	@Test
@@ -34,10 +37,10 @@ public class CarsTest {
 				pobiCar,
 				eastCar,
 				peperCar,
-				new Car("east")
+				Car.from("east")
 			));
 		}).isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
+			.hasMessageContaining(NAME_DUPLICATE_EXCEPTION.getMessage());
 	}
 
 	@Test
@@ -54,7 +57,7 @@ public class CarsTest {
 		//when
 
 		//then
-		List<String> winners = cars.getWinners();
+		List<String> winners = convertWinnersToStringList(cars.getWinners());
 		assertThat(winners).contains("peper");
 	}
 
@@ -71,13 +74,20 @@ public class CarsTest {
 		));
 		// when
 		// then
-		List<String> winners = cars.getWinners();
+		List<String> winners = convertWinnersToStringList(cars.getWinners());
 		assertThat(winners).contains("peper", "east");
 	}
 
 	void move(Car car, int cnt) {
+		final NumberGenerator numberGenerator = new MovableNumberGenerator();
 		while ((cnt--) > 0) {
-			car.move(9);
+			car.move(numberGenerator);
 		}
+	}
+
+	List<String> convertWinnersToStringList(List<Car> winners){
+		return winners.stream()
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 }

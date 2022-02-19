@@ -1,21 +1,24 @@
 package carracing.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import carracing.model.Car;
 import carracing.model.Cars;
-import carracing.view.InputView;
-import carracing.view.OutputView;
+import carracing.view.input.InputView;
+import carracing.view.output.OutputView;
 
 public class RacingGameController {
 	private static final int END_OF_GAME_COUNT = 0;
 
+	private InputView inputView;
+	private OutputView outputView;
 	private Cars cars;
 	private int numberOfGames;
 
-	public RacingGameController() {
+	public RacingGameController(InputView inputView, OutputView outputView) {
+		this.inputView = inputView;
+		this.outputView = outputView;
 	}
 
 	public void init() {
@@ -24,43 +27,47 @@ public class RacingGameController {
 	}
 
 	public void play() {
-		OutputView.printResultMessage();
-		while ((numberOfGames--) > END_OF_GAME_COUNT) {
+		outputView.printResultMessage();
+		while (isContinue()) {
 			cars.moveCars();
-			OutputView.printResultOfEachGame(cars.getCars());
+			outputView.printResultOfEachGame(cars.getCars());
 		}
 		endGame();
 	}
 
+	private boolean isContinue() {
+		return (numberOfGames--) > END_OF_GAME_COUNT;
+	}
+
 	private void getCars() {
-		OutputView.printInputCarName();
-		List<String> carNames = InputView.getCarNames();
+		outputView.printInputCarName();
+		List<String> carNames = inputView.getCarNames();
 		try {
 			createCars(carNames);
 		} catch (IllegalArgumentException e) {
-			OutputView.printException(e.getMessage());
+			outputView.printException(e.getMessage());
 			getCars();
 		}
 	}
 
 	private void getNumberOfGames() {
-		OutputView.printInputNumberOfGames();
+		outputView.printInputNumberOfGames();
 		try {
-			numberOfGames = InputView.getNumberOfGames();
+			numberOfGames = inputView.getNumberOfGames();
 		} catch (IllegalArgumentException e) {
-			OutputView.printException(e.getMessage());
+			outputView.printException(e.getMessage());
 			getNumberOfGames();
 		}
 	}
 
 	private void endGame() {
-		OutputView.printWinners(cars.getWinners());
+		outputView.printWinners(cars.getWinners());
 	}
 
 	private void createCars(List<String> carNames) {
 		List<Car> carList = new ArrayList<>();
 		for (String carName : carNames) {
-			carList.add(new Car(carName));
+			carList.add(Car.from(carName));
 		}
 		cars = new Cars(carList);
 	}
