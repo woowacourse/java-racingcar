@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NameTest {
+
     @Test
     @DisplayName("이름이 10자 이상인 경우 예외처리")
     void exceededMaxCarNameLengthException() {

@@ -1,16 +1,14 @@
 package racingcar.model;
 
 import racingcar.util.NumberGenerator;
-import racingcar.util.RandomNumberGenerator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MINIMUM_POSITION = 0;
-    private static final String JOIN_BY_COMMA = ", ";
 
-    private final NumberGenerator randomNumber = new RandomNumberGenerator();
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -18,10 +16,28 @@ public class Cars {
         validateCarNames(cars);
     }
 
+    public void moveAll(NumberGenerator numberGenerator) {
+        cars.forEach(car -> {
+            int number = numberGenerator.generate();
+            car.move(number);
+        });
+    }
+
+    public int findMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max().orElse(MINIMUM_POSITION);
+    }
+
+    public List<Car> findWinnerName(int maxPosition) {
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .collect(Collectors.toList());
+    }
+
     private void validateCarNames(List<Car> cars) {
         int countDistinctNames = (int) cars.stream()
                 .map(Car::getName)
-                .map(Name::getName)
                 .distinct()
                 .count();
 
@@ -30,26 +46,7 @@ public class Cars {
         }
     }
 
-    public void race() {
-        cars.forEach(car -> car.move(randomNumber));
-    }
-
-    public int findMaxPosition() {
-        return cars.stream()
-                .map(Car::getPosition)
-                .mapToInt(position -> position)
-                .max().orElse(MINIMUM_POSITION);
-    }
-
-    public String findWinnerName(int maxPosition) {
-        return cars.stream()
-                .filter(car -> maxPosition == car.getPosition())
-                .map(Car::getName)
-                .map(Name::getName)
-                .collect(Collectors.joining(JOIN_BY_COMMA));
-    }
-
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 }

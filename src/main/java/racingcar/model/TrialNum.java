@@ -1,11 +1,17 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 public class TrialNum {
-    private final int value;
+    private int number;
 
     public TrialNum(String trialNum) {
         validateTrialNum(trialNum);
-        this.value = Integer.parseInt(trialNum);
+        this.number = Integer.parseInt(trialNum);
+    }
+
+    public void increase() {
+        number++;
     }
 
     private void validateTrialNum(String number) {
@@ -16,7 +22,16 @@ public class TrialNum {
         }
     }
 
-    public int getValue() {
-        return value;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TrialNum trialNum = (TrialNum) o;
+        return number == trialNum.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }

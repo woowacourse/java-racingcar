@@ -1,6 +1,6 @@
 package racingcar.model;
 
-import racingcar.util.NumberGenerator;
+import java.util.Objects;
 
 public class Car {
     private static final int MINIMUM_POSITION = 0;
@@ -20,6 +20,16 @@ public class Car {
         this(name, MINIMUM_POSITION);
     }
 
+    public void move(int number) {
+        if (canMove(number)) {
+            position++;
+        }
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
+
     private void validateCarNameLength(Name carName) {
         boolean isValidLength = carName.getName().length() <= MAXIMUM_CAR_NAME_LENGTH;
         if (!isValidLength) {
@@ -27,22 +37,28 @@ public class Car {
         }
     }
 
-    public void move(NumberGenerator numberGenerator) {
-        int number = numberGenerator.generate();
-        if (canMove(number)) {
-            position++;
-        }
-    }
-
     private boolean canMove(int number) {
         return number >= MOVE_FORWARD;
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getName();
     }
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position && Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
