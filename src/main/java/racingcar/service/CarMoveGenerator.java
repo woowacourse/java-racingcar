@@ -7,5 +7,4 @@ public class CarMoveGenerator implements MovePolicy {
 	public boolean hasNext(int number) {
 		return DRIVE_FLAG < number;
 	}
-
 }

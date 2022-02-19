@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.Console;
@@ -11,9 +12,12 @@ import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import racingcar.util.Constant;
 
 class CarsTest {
 
@@ -31,11 +35,36 @@ class CarsTest {
 	}
 
 	private List<Car> check_ranking_if_correct() {
-		return Arrays.asList(new Car("hee", 2),
-			new Car("bong", 3),
-			new Car("su", 3),
-			new Car("dal", 3),
-			new Car("good", 1)
+		return Arrays.asList(new Car(new CarName("hee"), 2),
+			new Car(new CarName("bong"), 3),
+			new Car(new CarName("su"), 3),
+			new Car(new CarName("dal"), 3),
+			new Car(new CarName("good"), 1)
 		);
+	}
+
+	@DisplayName("자동차 이름 중복 테스트")
+	@Test
+	void car_name_duplicated() {
+		//given, when
+		List<Car> cars = new ArrayList<>();
+		cars.add(new Car(new CarName("bong")));
+		cars.add(new Car(new CarName("bong")));
+		//then
+		assertThatThrownBy(() -> {
+			new Cars(cars);
+		}).isInstanceOf(IllegalArgumentException.class).hasMessage(Constant.CAR_DUPLICATED_ERROR_MESSAGE);
+	}
+
+	@DisplayName("자동차 개수 테스트")
+	@Test
+	void car_count_test() {
+		//given, when
+		List<Car> cars = new ArrayList<>();
+		cars.add(new Car(new CarName("hee")));
+		//then
+		assertThatThrownBy(() -> {
+			new Cars(cars);
+		}).isInstanceOf(IllegalArgumentException.class).hasMessage(Constant.CARS_ERROR_MESSAGE);
 	}
 }

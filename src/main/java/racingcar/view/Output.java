@@ -1,8 +1,10 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarName;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Output {
 	private static final String STEP = "-";

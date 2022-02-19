@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.validation.CarsValidator;
 import racingcar.service.MovePolicy;
 import racingcar.util.Constant;
 
@@ -11,10 +10,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Cars {
-	private List<Car> cars;
+	private final List<Car> cars;
 
 	public Cars(List<Car> cars) {
-		CarsValidator.carsValid(cars);
+		carsValid(cars);
 		this.cars = cars;
 	}
 
@@ -39,6 +38,25 @@ public class Cars {
 
 	private List<String> findSamePositionCar(Car target) {
 		return cars.stream().filter(car -> car.isSamePosition(target)).map(Car::getName).collect(Collectors.toList());
+	}
+
+	private void carsValid(List<Car> cars) {
+		if (!isCars(cars)) {
+			throw new IllegalArgumentException(Constant.CARS_ERROR_MESSAGE);
+		}
+		if (isDuplicated(cars)) {
+			throw new IllegalArgumentException(Constant.CAR_DUPLICATED_ERROR_MESSAGE);
+		}
+	}
+
+	private boolean isCars(List<Car> cars) {
+		return cars.size() >= Constant.CAR_LIMIT;
+	}
+
+	private boolean isDuplicated(List<Car> cars) {
+		return cars.stream()
+			.distinct()
+			.count() != cars.size();
 	}
 
 	@Override

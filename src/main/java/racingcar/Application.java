@@ -1,6 +1,6 @@
 package racingcar;
 
-import racingcar.service.RacingCarGame;
+import racingcar.controller.RacingCarGame;
 import racingcar.service.CarMoveGenerator;
 
 public class Application {

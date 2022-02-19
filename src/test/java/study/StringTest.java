@@ -38,4 +38,21 @@ public class StringTest {
 			indexValue.charAt(4);
 		}).isInstanceOf(IndexOutOfBoundsException.class);
 	}
+
+	@DisplayName("공백 split")
+	@Test
+	void split_empty() {
+		String target = " ";
+		String[] actual = target.split(",");
+		assertThat(actual.length).isEqualTo(1);
+	}
+
+	@DisplayName("null split")
+	@Test
+	void split_null() {
+		String target = null;
+		assertThatThrownBy(() -> {
+			String[] actual = target.split(",");
+		}).isInstanceOf(NullPointerException.class);
+	}
 }

@@ -2,22 +2,18 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import racingcar.domain.validation.CarValidator;
 import racingcar.service.RandomGenerator;
 import racingcar.service.MovePolicy;
 
 public class Car implements Comparable<Car> {
-
-	private final String name;
+	private final CarName name;
 	private int position = 0;
 
-	public Car(String name) {
-		CarValidator.carValid(name);
+	public Car(CarName name) {
 		this.name = name;
 	}
 
-	public Car(String name, int position) {
-		CarValidator.carValid(name);
+	public Car(CarName name, int position) {
 		this.name = name;
 		this.position = position;
 	}
@@ -37,7 +33,7 @@ public class Car implements Comparable<Car> {
 	}
 
 	public String getName() {
-		return name;
+		return name.getName();
 	}
 
 	public int getPosition() {
