@@ -28,7 +28,7 @@ public class CarTest {
     @ParameterizedTest
     @CsvSource({"false, false, false", "false, true, true", "true, true, false"})
     @DisplayName("자기 자신의 거리값과 다른 자동차의 거리값이 같으면 true, 다르면 false를 리턴한다.")
-    void isSameDistance(boolean firstMove, boolean secondMove,  boolean expected){
+    void isSameDistance(boolean firstMove, boolean secondMove, boolean expected) {
         Car anotherCar = new Car("def");
         anotherCar.move(firstMove);
         anotherCar.move(secondMove);

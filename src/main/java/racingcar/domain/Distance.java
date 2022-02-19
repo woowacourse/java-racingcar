@@ -5,7 +5,7 @@ public class Distance {
 
     private int distance;
 
-    public Distance(){
+    public Distance() {
         this.distance = INITIAL_DISTANCE;
     }
 

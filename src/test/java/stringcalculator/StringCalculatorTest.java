@@ -16,7 +16,7 @@ public class StringCalculatorTest {
     @ValueSource(strings = {"1,2,3", "1:2:3", "1,2:3"})
     void calculate_basicDelimiter(String expression) {
         int actual = stringCalculator.calculate(expression);
-        int  expected = 6;
+        int expected = 6;
         assertThat(actual).isEqualTo(expected);
     }
 

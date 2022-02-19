@@ -21,7 +21,7 @@ public class RacingController {
         Game game = new Game(new ConsoleInputView(), new DetermineMovementByRandomNumber());
         outputView.printResultMessage();
 
-        while(game.isContinue()){
+        while (game.isContinue()) {
             game.carsMove();
             outputView.printRoundStatus(convertToDto(game.now()));
         }
@@ -29,7 +29,7 @@ public class RacingController {
         outputView.printWinners(convertToDto(game.winnerCars()));
     }
 
-    private List<CarDto> convertToDto(List<Car> cars){
+    private List<CarDto> convertToDto(List<Car> cars) {
         return CarDto.toDtoList(cars);
     }
 }

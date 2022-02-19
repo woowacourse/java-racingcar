@@ -20,7 +20,7 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printRoundStatus(List<CarDto> cars) {
         for (CarDto car : cars) {
-            System.out.println(String.format("%s : %s",car.carName(), DISTANCE_SYMBOL.repeat(car.distance())));
+            System.out.println(String.format("%s : %s", car.carName(), DISTANCE_SYMBOL.repeat(car.distance())));
         }
         System.out.print(NEW_LINE);
     }

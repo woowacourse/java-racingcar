@@ -15,7 +15,7 @@ public class CarName {
     }
 
     private void validateCarName(String value) {
-        if (value == null){
+        if (value == null) {
             throw new NullPointerException(ExceptionMessage.NULL_CAR_NAME);
         }
 
