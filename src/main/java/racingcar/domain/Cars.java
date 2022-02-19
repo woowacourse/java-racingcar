@@ -8,9 +8,6 @@ import racingcar.utils.ErrorMassage;
 
 public class Cars {
 
-    private static final int MINIMUM_MOVE = 4;
-    private static final int RANDOM_RANGE = 10;
-
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
