@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
 import racingcar.domain.Game;
 
 public class GameTest {
@@ -66,10 +64,8 @@ public class GameTest {
         Game game = new Game("love,happy", "3");
 
         assertThat(
-            game.getCars()
-                .stream()
-                .map(Car::getName)
-                .collect(Collectors.toList()))
+            game.getCars())
+            .extracting("name")
             .containsExactly("love", "happy");
 
     }
