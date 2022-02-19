@@ -20,10 +20,6 @@ public class RoundCount {
 		checkCountIsZero(this.roundCount);
 	}
 
-	public int getRoundCount() {
-		return roundCount;
-	}
-
 	private int convertStringToInteger(String count) {
 		return Integer.parseInt(count);
 	}
