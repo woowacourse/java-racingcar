@@ -9,7 +9,7 @@ class MovableNumberGeneratorTest {
 
     @DisplayName("generate() 전진 숫자 테스트")
     @Test
-    void generator_movableNumber_test() throws Exception {
+    void generator_movableNumber_test() {
         NumberGenerator numberGenerator = new MovableNumberGenerator();
         int number = numberGenerator.generate();
         assertThat(number).isGreaterThanOrEqualTo(4);

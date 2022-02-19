@@ -9,7 +9,7 @@ class RandomNumberGeneratorTest {
 
     @DisplayName("generate() 무작위 숫자 테스트")
     @Test
-    void generator_random_test() throws Exception {
+    void generator_random_test() {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         int number = numberGenerator.generate();
         assertThat(number).isGreaterThanOrEqualTo(0);

@@ -15,7 +15,7 @@ class UserInputRequesterTest {
     @DisplayName("getCarName() 테스트")
     @ParameterizedTest()
     @ValueSource(strings = {"name1,name2", "name1"})
-    void getCarName_test(String inputNames) throws Exception {
+    void getCarName_test(String inputNames) {
         String input = inputNames;
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
@@ -26,7 +26,7 @@ class UserInputRequesterTest {
     @DisplayName("getAttempt() 테스트")
     @ParameterizedTest()
     @ValueSource(strings = {"100", "1"})
-    void getAttempt_test(String inputAttempt) throws Exception {
+    void getAttempt_test(String inputAttempt) {
         String input = inputAttempt;
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
@@ -36,23 +36,23 @@ class UserInputRequesterTest {
 
     @DisplayName("getCarName() 자동차 이름이 공백으로 입력되었을 때 예외 테스트")
     @Test
-    void getCarName_Empty_exception_test() throws Exception {
+    void getCarName_Empty_exception_test() {
         String input = "";
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         UserInputRequester userInputRequester = new UserInputRequester();
-        assertThatThrownBy(() -> userInputRequester.getCarName())
+        assertThatThrownBy(userInputRequester::getCarName)
                 .hasMessageContaining(ErrorMessage.INPUT_EMPTY.getMessage());
     }
 
     @DisplayName("getAttempt() 시도 회수가 공백으로 입력되었을 때 예외 테스트")
     @Test
-    void getAttempt_Empty_exception_test() throws Exception {
+    void getAttempt_Empty_exception_test() {
         String input = "";
         byte[] buf = input.getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         UserInputRequester userInputRequester = new UserInputRequester();
-        assertThatThrownBy(() -> userInputRequester.getAttempt())
+        assertThatThrownBy(userInputRequester::getAttempt)
                 .hasMessageContaining(ErrorMessage.INPUT_EMPTY.getMessage());
     }
 }

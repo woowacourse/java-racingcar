@@ -21,7 +21,7 @@ class RacingGameTest {
 
     @DisplayName("play() 움직임이 있는 경우 테스트")
     @Test()
-    void play_movable_test() throws Exception {
+    void play_movable_test() {
         String[] input = {"name1,name2", "1"};
         byte[] buf = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
@@ -44,13 +44,13 @@ class RacingGameTest {
 
     @DisplayName("play() 움직임이 없는 경우 테스트")
     @Test()
-    void play_unMovable_test() throws Exception {
+    void play_unMovable_test() {
         String[] input = {"name1,name2", "1"};
         byte[] buf = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(buf));
         OutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
-        
+
         RacingGame racingGame = new RacingGame();
         NumberGenerator numberGenerator = new UnMovableNumberGenerator();
         racingGame.play(numberGenerator);
@@ -68,7 +68,7 @@ class RacingGameTest {
     @DisplayName("play() 입력 값에 공백이 있는 경우 예외 테스트")
     @ParameterizedTest()
     @ValueSource(strings = {"name1,,name3", ",name1"})
-    void play_input_empty_test(String inputNames) throws Exception {
+    void play_input_empty_test(String inputNames) {
         String[] input = {inputNames, "5"};
         byte[] buf = String.join("\n", input).getBytes();
         System.setIn(new ByteArrayInputStream(buf));

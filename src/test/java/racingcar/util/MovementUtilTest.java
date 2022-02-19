@@ -9,7 +9,7 @@ class MovementUtilTest {
 
     @DisplayName("isMoveForward() 전진 조건 테스트")
     @Test
-    void isMoveForward_test() throws Exception {
+    void isMoveForward_test() {
         int moveForward = 4;
         int stop = 3;
         assertThat(MovementUtil.isMoveForward(moveForward)).isTrue();

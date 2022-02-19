@@ -11,7 +11,7 @@ class MatcherTest {
 
     @DisplayName("Matcher group(0) 학습 테스트")
     @Test
-    void group_null_test() throws Exception {
+    void group_null_test() {
         String input = "//;\n1;2;3";
         Pattern pattern = Pattern.compile("//(.)\n(.*)");
         Matcher matcher = pattern.matcher(input);
@@ -26,7 +26,7 @@ class MatcherTest {
 
     @DisplayName("Matcher group(1) 학습 테스트")
     @Test
-    void group_1_test() throws Exception {
+    void group_1_test() {
         String input = "//;\n1;2;3";
         Pattern pattern = Pattern.compile("//(.)\n(.*)");
         Matcher matcher = pattern.matcher(input);

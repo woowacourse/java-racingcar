@@ -11,7 +11,7 @@ class AttemptTest {
 
     @DisplayName("new Attempt() 테스트")
     @Test
-    void constructor_test() throws Exception {
+    void constructor_test() {
         String input = "3";
         Attempt attempt = new Attempt(input);
         assertThat(attempt.getAttempt()).isEqualTo(3);
@@ -19,7 +19,7 @@ class AttemptTest {
 
     @DisplayName("isLeft() 테스트")
     @Test
-    void isLeft_test() throws Exception {
+    void isLeft_test() {
         String inputZero = "0";
         String inputOne = "1";
         Attempt attemptZero = new Attempt(inputZero);
@@ -30,7 +30,7 @@ class AttemptTest {
 
     @DisplayName("decrease() 테스트")
     @Test
-    void decrease_test() throws Exception {
+    void decrease_test() {
         String input = "3";
         Attempt attempt = new Attempt(input);
         assertThat(attempt.getAttempt()).isEqualTo(3);
@@ -44,7 +44,7 @@ class AttemptTest {
 
     @DisplayName("validNumberFormat() 입력 값이 숫자가 아닌 경우 예외 테스트")
     @Test
-    void constructor_NonNumber_exception_test() throws Exception {
+    void constructor_NonNumber_exception_test() {
         String input = "abc";
         assertThatThrownBy(() -> new Attempt(input))
                 .isInstanceOf(RuntimeException.class);
@@ -52,7 +52,7 @@ class AttemptTest {
 
     @DisplayName("validNegative() 입력 값이 음수인 경우 예외 테스트")
     @Test
-    void constructor_negativeNumber_exception_test() throws Exception {
+    void constructor_negativeNumber_exception_test() {
         String input = "-3";
         assertThatThrownBy(() -> new Attempt(input))
                 .hasMessageContaining(ErrorMessage.NUMBER_NEGATIVE.getMessage());

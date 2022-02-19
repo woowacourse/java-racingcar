@@ -11,7 +11,7 @@ class ApplicationTest {
 
     @DisplayName("main() 전체 테스트")
     @Test
-    void main_test() throws Exception {
+    void main_test() {
         String[] input = {"name1,name2,name3", "5"};
         OutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
