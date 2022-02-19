@@ -53,12 +53,6 @@ class WinnersTest {
     @DisplayName("maxPosition 구하기")
     void maxPosition() {
         // given
-<<<<<<< HEAD
-        List<Car> cars = new ArrayList<>();
-        Car car = new Car("연로그");
-        car.goOrStop(6);
-        car.goOrStop(6);
-=======
         String name = "연로그";
 
         Car car = new Car(name);
@@ -66,7 +60,6 @@ class WinnersTest {
         car.go(6);
 
         List<Car> cars = new ArrayList<>();
->>>>>>> 0122f3d... style: goOrStop -> go 메소드 이름 변경
         cars.add(car);
 
         // when
