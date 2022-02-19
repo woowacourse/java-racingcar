@@ -14,7 +14,6 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
 
-
     public static void printCarsPosition(Cars cars) {
         for (Car car : cars.getCars()) {
             printCarPosition(car);
