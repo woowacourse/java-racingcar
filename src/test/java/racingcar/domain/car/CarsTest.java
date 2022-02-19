@@ -18,11 +18,6 @@ class CarsTest {
     private int index = 0;
     private final Movement movement = () -> definedMovementValues[index++];
 
-    @BeforeEach
-    void setUp() {
-        cars.move(movement);
-    }
-
     @Test
     @DisplayName("자동차 이름 간 중복이 있을 경우 예외를 발생시킵니다.")
     void create_duplicatedCarNames_Test() {
@@ -39,6 +34,7 @@ class CarsTest {
     @DisplayName("자동차들을 전진시키고 반환한다")
     void move_getCars_Test() {
         //given
+        cars.move(movement);
         final CarDto abc = new CarDto("abc", 0);
         final CarDto def = new CarDto("def", 1);
         final CarDto ghi = new CarDto("ghi", 1);
@@ -53,6 +49,7 @@ class CarsTest {
     @DisplayName("가장 멀리 간 자동차들을 반환한다.")
     void getFarthestCar_Test() {
         //given
+        cars.move(movement);
         final List<CarDto> actual = cars.getFarthestCar();
         //when
         final CarDto def = new CarDto("def", 1);
