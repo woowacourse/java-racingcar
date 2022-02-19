@@ -14,9 +14,8 @@ public class CarTest {
     @Test
     public void constructor_test() throws Exception {
         String name = "name1";
-        CarName carName = new CarName(name);
-        Car car = new Car(carName);
-        Car testCar = new Car(carName);
+        Car car = new Car(name);
+        Car testCar = new Car(name);
         assertThat(car.isSameName(testCar)).isTrue();
     }
 
@@ -25,10 +24,8 @@ public class CarTest {
     public void isSamePosition_test() throws Exception {
         String name = "name1";
         String testName = "name2";
-        CarName carName = new CarName(name);
-        CarName testCarName = new CarName(testName);
-        Car car = new Car(carName);
-        Car testCar = new Car(testCarName);
+        Car car = new Car(name);
+        Car testCar = new Car(testName);
         assertThat(car.isSamePosition(testCar)).isTrue();
     }
 
@@ -36,8 +33,7 @@ public class CarTest {
     @Test
     public void toString_test() throws Exception {
         String name = "name1";
-        CarName carName = new CarName(name);
-        Car car = new Car(carName);
+        Car car = new Car(name);
         assertThat(car.toString()).contains(name, " : ");
     }
 
