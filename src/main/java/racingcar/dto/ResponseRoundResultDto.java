@@ -1,4 +1,4 @@
-package racingcar.domain.dto;
+package racingcar.dto;
 
 import java.util.List;
 import racingcar.domain.vo.RoundResult;

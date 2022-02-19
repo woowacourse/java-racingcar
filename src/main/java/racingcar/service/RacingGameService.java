@@ -1,7 +1,7 @@
 package racingcar.service;
 
-import racingcar.domain.dto.ResponseRoundResultDto;
-import racingcar.domain.dto.ResponseWinnersDto;
+import racingcar.dto.ResponseRoundResultDto;
+import racingcar.dto.ResponseWinnersDto;
 import racingcar.domain.vo.Attempt;
 import racingcar.domain.vo.Cars;
 
