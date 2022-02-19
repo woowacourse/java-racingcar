@@ -7,7 +7,7 @@ public class GameTotalCount {
     private int totalAttemptCount;
 
     public GameTotalCount(String attempt) {
-        initTotalAttempt(attempt);
+        this.totalAttemptCount = validateAttempt(attempt);
     }
 
     public int getTotalAttemptCount() {
@@ -22,11 +22,6 @@ public class GameTotalCount {
         totalAttemptCount = totalAttemptCount -1;
 
         return true;
-    }
-
-    private void initTotalAttempt(String attempt) throws IllegalArgumentException {
-        int validateAttempt = validateAttempt(attempt);
-        this.totalAttemptCount = validateAttempt;
     }
 
     private int validateAttempt(String attempt) {
