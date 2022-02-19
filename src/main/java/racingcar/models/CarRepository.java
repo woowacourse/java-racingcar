@@ -2,7 +2,6 @@ package racingcar.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,10 +35,9 @@ public class CarRepository {
 
 	private int findFarthestPosition() {
 		return cars.stream()
-			.sorted(Comparator.comparing(Car::getPosition))
-			.collect(Collectors.toList())
-			.get(cars.size() - 1)
-			.getPosition();
+			.mapToInt(Car::getPosition)
+			.max()
+			.getAsInt();
 	}
 
 	public void startThisTurn() {
