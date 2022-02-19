@@ -3,6 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +22,7 @@ class CarsTest {
         carList.add(car1);
         carList.add(car2);
 
-        Cars cars = new Cars(carList);
+        Cars cars = Cars.from(carList);
 
         assertThat(cars.getDriveRecord().size()).isEqualTo(2);
         assertThat(cars.getDriveRecord().get(0).getName()).isEqualTo(name1);
@@ -39,7 +40,7 @@ class CarsTest {
         carList.add(car1);
         carList.add(car2);
 
-        Cars cars = new Cars(carList);
+        Cars cars = Cars.from(carList);
         car1.drive(5);
         Car findMaxCar = cars.findMaxPositionCar();
 
@@ -57,10 +58,18 @@ class CarsTest {
         carList.add(car1);
         carList.add(car2);
 
-        Cars cars = new Cars(carList);
+        Cars cars = Cars.from(carList);
         car1.drive(5);
         car2.drive(4);
 
         assertThat(cars.getWinners().size()).isEqualTo(2);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"hoon:hoon"}, delimiter = ':')
+    @DisplayName("자동차들의 이름이 중복된 경우 예외처리 기능")
+    public void cars_name_invalid_duplicated(String name1, String name2) {
+        assertThatThrownBy(() -> Cars.fromNames(Arrays.asList(name1, name2)))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }

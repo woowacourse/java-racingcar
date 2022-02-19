@@ -13,6 +13,7 @@ public class InputView {
     private static final String ERROR_ROUND_NOT_NUMBER = "입력한 이동 숫자가 숫자의 형태가 아닙니다.";
     private static final String ERROR_ROUND_MINIMUM_ONE = "입력한 이동 숫자가 0 이하일수는 없습니다.";
     private static final String ERROR_CARS_NAME_DUPLICATED = "자동차의 이름에 중복이 있습니다.";
+    private static final String ERROR_CAR_NAME_EMPTY = "자동차의 이름 입력은 비어있을 수 없습니다.";
     private static final String ERROR = "[ERROR] ";
     private static final String SPLIT_CARS_NAME = ",";
     private static final String BLANK = " ";
@@ -48,12 +49,7 @@ public class InputView {
         for (String carName : carsName) {
             validateCarsNameLength(carName);
             validateCarsNameBlank(carName);
-        }
-    }
-
-    private static void validateCarsNameBlank(String carName) {
-        if (carName.contains(BLANK)) {
-            throw new IllegalArgumentException(ERROR_CAR_NAME_BLANK);
+            validateCarsNameEmpty(carName);
         }
     }
 
@@ -73,17 +69,33 @@ public class InputView {
         }
     }
 
+    private static void validateCarsNameBlank(String carName) {
+        if (carName.contains(BLANK)) {
+            throw new IllegalArgumentException(ERROR_CAR_NAME_BLANK);
+        }
+    }
+
+    private static void validateCarsNameEmpty(String carName) {
+        if (carName.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_CAR_NAME_EMPTY);
+        }
+    }
+
     public static int getRound() {
         System.out.println(REQUEST_ROUND_VALUE);
         try {
             String inputRound = getInput();
-            validateRoundNumber(inputRound);
-            validateRoundMinimumOne(inputRound);
+            validateRound(inputRound);
             return Integer.parseInt(inputRound);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
             return getRound();
         }
+    }
+
+    private static void validateRound(String inputRound) {
+        validateRoundNumber(inputRound);
+        validateRoundMinimumOne(inputRound);
     }
 
     private static void validateRoundNumber(String input) {

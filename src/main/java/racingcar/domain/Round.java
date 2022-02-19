@@ -3,24 +3,40 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Round {
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
+    private static final int END_ROUND_NUMBER = 0;
+    private static final int MINIMUM_ROUND_NUMBER = 1;
+    private static final int DECREASE_NUMBER = 1;
+
     private final int roundNum;
 
-    public Round(int roundNum) {
+    private Round() {
+        this.roundNum = END_ROUND_NUMBER;
+    }
+
+    private Round(final int roundNum) {
+        validateMinimum(roundNum);
         this.roundNum = roundNum;
     }
 
-    public static Round from(int round) {
+    private static void validateMinimum(final int roundNum) {
+        if (roundNum < MINIMUM_ROUND_NUMBER) {
+            throw new IllegalArgumentException("시도 횟수의 최소값은 0 이하일 수 없습니다.");
+        }
+    }
+
+    public static Round fromNumber(final int round) {
         return new Round(round);
     }
 
     public boolean isPositiveNumber() {
-        return this.roundNum > ZERO;
+        return this.roundNum >= MINIMUM_ROUND_NUMBER;
     }
 
     public Round reduce() {
-        return new Round(roundNum - ONE);
+        if (roundNum == MINIMUM_ROUND_NUMBER) {
+            return new Round();
+        }
+        return new Round(roundNum - DECREASE_NUMBER);
     }
 
     @Override
