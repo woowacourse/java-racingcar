@@ -6,8 +6,8 @@ import racingcar.domain.movement.MovementStrategy;
 
 public class Position {
 
-    public static final int DEFAULT_POSITION = 0;
-    public static final int MIN_POSITION = 0;
+    private static final int DEFAULT_POSITION = 0;
+    private static final int MIN_POSITION = 0;
 
     private int position;
 
@@ -34,8 +34,8 @@ public class Position {
         return position == otherPosition;
     }
 
-    public void move(MovementStrategy strategy) {
-        position += strategy.move();
+    public void move(int distance) {
+        position += distance;
     }
 
     @Override

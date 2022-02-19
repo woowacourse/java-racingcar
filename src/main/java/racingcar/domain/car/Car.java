@@ -45,7 +45,8 @@ public class Car {
     }
 
     public void move(MovementStrategy strategy) {
-        this.position.move(strategy);
+        int distance = strategy.move();
+        this.position.move(distance);
     }
 
     @Override
