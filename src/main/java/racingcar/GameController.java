@@ -15,12 +15,10 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-    private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
 
     public static void run() {
         Game game = new Game(new UniqueCars(CarFactory.of(InputView.inputCarNames())));
         final int count = InputView.inputGameCount();
-        validateCount(count);
         play(game, count);
         showWinner(game.getWinners());
     }
@@ -44,11 +42,5 @@ public class GameController {
                 .map(car -> new CarDto(car.getName()))
                 .collect(Collectors.toSet());
         OutputView.printWinner(winnerDtos);
-    }
-
-    private static void validateCount(int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
-        }
     }
 }
