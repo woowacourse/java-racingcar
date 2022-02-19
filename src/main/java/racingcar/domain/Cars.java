@@ -23,7 +23,7 @@ public class Cars {
     }
 
     public List<String> getWinners() {
-        return findWinnerByPosition(findMaxPosition(cars), cars);
+        return findWinnerByPosition(findMaxPosition());
     }
 
     public void move() {
@@ -34,7 +34,7 @@ public class Cars {
 
     }
 
-    private int findMaxPosition(List<Car> cars) {
+    private int findMaxPosition() {
 
         Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getPosition);
 
@@ -43,7 +43,7 @@ public class Cars {
 
     }
 
-    private List<String> findWinnerByPosition(int maxPosition, List<Car> cars) {
+    private List<String> findWinnerByPosition(int maxPosition) {
 
         return cars.stream()
             .filter(car -> car.isSamePosition(maxPosition))
