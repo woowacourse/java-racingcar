@@ -1,10 +1,10 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.Winners;
-import racingcar.vo.CarValue;
 import racingcar.domain.vo.Name;
 
 class RacingGameTest {
@@ -37,11 +37,11 @@ class RacingGameTest {
         int trial = 1;
         RacingGame racingGame = new RacingGame(carNames, trial);
 
-        assertThat(racingGame.getCars())
-            .containsExactly(
-                new CarValue("pobi", 0),
-                new CarValue("hoho", 0),
-                new CarValue("rich", 0));
+        List<Name> names = List.of(new Name("pobi"), new Name("hoho"), new Name("rich"));
+
+        assertThat(racingGame.getCars()).extracting(Car::getName) // 치킨4마리의 이름을 모두
+            .usingRecursiveFieldByFieldElementComparator() // 이름만 담아놓은 리스트의 원소와 하나씩 필드 비교
+            .isEqualTo(names);
     }
 
     @Test

@@ -2,7 +2,7 @@ package racingcar.io;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.vo.CarValue;
+import racingcar.domain.Car;
 import racingcar.domain.vo.Name;
 import racingcar.dto.Winners;
 
@@ -10,7 +10,7 @@ public class Output {
     private static final String NAME_DELIMITER = ", ";
     private static final String CAR_ADVANCE_EXPRESSION = "-";
 
-    public void printCurrentPosition(List<CarValue> cars) {
+    public void printCurrentPosition(List<Car> cars) {
         cars.forEach(this::printRacingProgress);
         System.out.println();
     }
@@ -21,7 +21,7 @@ public class Output {
             .collect(Collectors.joining(NAME_DELIMITER)));
     }
 
-    private void printRacingProgress(CarValue car) {
+    private void printRacingProgress(Car car) {
         System.out.printf("%s : %s%n", car.getName(), getPositionString(car.getPosition()));
     }
 

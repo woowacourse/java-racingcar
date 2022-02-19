@@ -6,7 +6,6 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 import racingcar.InputNameHandler;
 import racingcar.domain.vo.Trial;
-import racingcar.vo.CarValue;
 import racingcar.dto.Winners;
 import racingcar.util.RandomUtil;
 import racingcar.domain.vo.MovingNumber;
@@ -31,7 +30,7 @@ public class RacingGame {
         return !trial.isExists();
     }
 
-    public List<CarValue> getCars() {
+    public List<Car> getCars() {
         return cars.getCars();
     }
 

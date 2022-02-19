@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.stream.Collectors;
-import racingcar.vo.CarValue;
-import racingcar.domain.vo.Name;
 import racingcar.dto.Winners;
+import racingcar.domain.vo.Name;
 import racingcar.domain.vo.MovingNumber;
 
 public class Cars {
@@ -27,10 +26,10 @@ public class Cars {
         return pickMoreWinners(findFirstCar());
     }
 
-    public List<CarValue> getCars() {
+    public List<Car> getCars() {
         return this.cars.stream()
-            .map(this::carToCarValue)
-            .collect(Collectors.toList());
+            .map(Car::newInstance)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     public int size() {
@@ -62,7 +61,4 @@ public class Cars {
             .collect(Collectors.toList()));
     }
 
-    private CarValue carToCarValue(Car car) {
-        return CarValue.create(car.getName().toString(), car.getPosition());
-    }
 }
