@@ -1,10 +1,11 @@
 package racingcar.domain;
 
 
+import static racingcar.utils.RandomNumberGenerator.*;
+
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.utils.CarNameValidator;
-import racingcar.utils.RandomNumberGenerator;
+import java.util.stream.Collectors;
 
 public class Cars {
     public static final int START_POSITION = 0;
@@ -22,19 +23,19 @@ public class Cars {
 
     public void startEachRace() {
         for (Car car : cars) {
-            car.move(RandomNumberGenerator.makeRandom(RANDOM_NUMBER_BOUND));
+            car.move(makeRandom(RANDOM_NUMBER_BOUND));
         }
     }
 
     public void startEachRace(int bound) {
         for (Car car : cars) {
-            car.move(RandomNumberGenerator.makeRandom(bound));
+            car.move(makeRandom(bound));
         }
     }
 
     public void startEachRace(int bound, int multiple) {
         for (Car car : cars) {
-            car.move(RandomNumberGenerator.makeRandom(bound) * multiple);
+            car.move(makeRandom(bound) * multiple);
         }
     }
 
@@ -63,8 +64,10 @@ public class Cars {
         return cars.size();
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<CarDto> getCarDtos() {
+        return this.cars.stream()
+                .map(CarDto::from)
+                .collect(Collectors.toList());
     }
 
     @Override

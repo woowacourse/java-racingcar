@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarDto;
 import racingcar.domain.Cars;
 
 import java.util.ArrayList;
@@ -15,15 +16,16 @@ public class OutputView {
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
 
     public static void printCarsPosition(Cars cars) {
-        for (Car car : cars.getCars()) {
-            printCarPosition(car);
+        List<CarDto> carDtos = cars.getCarDtos();
+        for (CarDto carDto : carDtos) {
+            printCarPosition(carDto);
         }
         System.out.println();
     }
 
-    private static void printCarPosition(Car car) {
-        String name = car.getName();
-        int position = car.getPosition();
+    private static void printCarPosition(CarDto carDto) {
+        String name = carDto.getCarName();
+        int position = carDto.getCarPosition();
         System.out.println(name + CAR_JOIN_DELIMITER + MOVE_EXPRESSION.repeat(Math.max(0, position)));
     }
 
