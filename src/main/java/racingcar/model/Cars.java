@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import racingcar.utils.generator.NumberGenerator;
@@ -21,7 +22,7 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 
     public List<String> findWinnerNames() {
@@ -31,7 +32,7 @@ public class Cars {
         for (Car car : cars) {
             addWinnerNames(winnerNames, farthestPosition, car);
         }
-        return winnerNames;
+        return Collections.unmodifiableList(winnerNames);
     }
 
     private void addWinnerNames(List<String> winnerNames, int farthestPosition, Car car) {
