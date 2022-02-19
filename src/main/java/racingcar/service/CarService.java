@@ -1,7 +1,6 @@
 package racingcar.service;
 
 import racingcar.model.car.Car;
-import racingcar.model.car.CarDto;
 import racingcar.model.car.Cars;
 import racingcar.model.score.GameScoreBoard;
 import racingcar.model.score.ScoreBoard;

@@ -2,7 +2,7 @@ package racingcar.model.score;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.car.CarDto;
+import racingcar.service.CarDto;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package racingcar.model.score;
 
-import racingcar.model.car.CarDto;
+import racingcar.service.CarDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
