@@ -23,7 +23,7 @@ public class RacingCarController {
     private void executeRacingAndPrintRecord(int trialCount, ParticipatedCars participatedCars) {
         OutputView.printResultMessage();
         for (int i = 0; i < trialCount; i++) {
-            participatedCars.tryToDriveBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
+            participatedCars.tryToMoveBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
             OutputView.printRacingRecords(participatedCars);
         }
     }

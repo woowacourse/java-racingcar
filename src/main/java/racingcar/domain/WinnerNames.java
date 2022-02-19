@@ -21,16 +21,15 @@ public class WinnerNames {
         int fastestPosition = findFastestPosition(cars);
         return cars.stream()
                 .filter(car -> car.isSamePositionWith(fastestPosition))
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
     private static int findFastestPosition(List<Car> cars) {
-        int fastestPosition = 0;
-        for (Car car : cars) {
-            fastestPosition = Math.max(car.getPosition(), fastestPosition);
-        }
-        return fastestPosition;
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
     }
 
     public List<String> getWinnerNames() {

@@ -23,7 +23,7 @@ public class Car {
         return position;
     }
 
-    public boolean isSamePositionWith(int fastestPosition) {
-        return this.position == fastestPosition;
+    public boolean isSamePositionWith(int position) {
+        return this.position == position;
     }
 }

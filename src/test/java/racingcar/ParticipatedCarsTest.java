@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.assertj.core.internal.bytebuddy.asm.Advice.Argument;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -48,7 +47,7 @@ public class ParticipatedCarsTest {
     @ParameterizedTest
     @MethodSource("provideGeneratorAndResultPosition")
     public void 자동차_작동_테스트(RandomNumberGenerator generator, int resultPosition) {
-        participatedCars.tryToDriveBy(generator);
+        participatedCars.tryToMoveBy(generator);
         List<Car> cars = participatedCars.getCars();
         for (int i = 0; i < cars.size(); i++) {
             assertThat(cars.get(i).getPosition()).isEqualTo(resultPosition);
@@ -64,7 +63,7 @@ public class ParticipatedCarsTest {
     
     @Test
     public void 최종_우승자_찾기_테스트() {
-        participatedCars.tryToDriveBy(new BoundedRandomNumberGenerator(9, 0));
+        participatedCars.tryToMoveBy(new BoundedRandomNumberGenerator(9, 0));
         List<String> winners = WinnerNames.of(participatedCars).getWinnerNames();
 
         List<String> sortedNames = getSortedNamesByPositionDesc(participatedCars);

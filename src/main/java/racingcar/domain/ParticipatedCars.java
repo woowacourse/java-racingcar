@@ -30,7 +30,7 @@ public class ParticipatedCars {
         }
     }
 
-    public void tryToDriveBy(RandomNumberGenerator randomNumberGenerator) {
+    public void tryToMoveBy(RandomNumberGenerator randomNumberGenerator) {
         for (Car car : cars) {
             executeGeneratorToMoveCar(car, randomNumberGenerator);
         }
