@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 public class Car {
     private static final int MINIMUM_POSITION = 0;
     private static final int MOVE_FORWARD = 4;
@@ -17,7 +19,6 @@ public class Car {
     public Car(Name name) {
         this(name, MINIMUM_POSITION);
     }
-
 
     public void move(int number) {
         if (canMove(number)) {
@@ -46,5 +47,18 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position && Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
