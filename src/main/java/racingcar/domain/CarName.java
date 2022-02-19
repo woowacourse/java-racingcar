@@ -16,10 +16,6 @@ public class CarName {
         this.name = name;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     private void validateCarName(String name) {
         validateEmpty(name);
         validateSpace(name);
@@ -46,5 +42,9 @@ public class CarName {
         if (name.length() > MAX_LENGTH_OF_NAME) {
             throw new IllegalArgumentException(LESS_THAN_FIVE_LETTER);
         }
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
