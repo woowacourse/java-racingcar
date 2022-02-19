@@ -32,13 +32,13 @@ public class RacingCarController {
         return toDTO(service.run(strategy));
     }
 
+    public List<CarDTO> end() {
+        return toDTO(service.findWinners());
+    }
+
     private List<CarDTO> toDTO(List<Car> cars) {
         return cars.stream()
             .map(CarDTO::from)
             .collect(Collectors.toList());
-    }
-
-    public List<CarDTO> end() {
-        return toDTO(service.findWinners());
     }
 }
