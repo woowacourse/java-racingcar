@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.utils.CarNameValidator;
-
 public class Car {
     private static final int MOVE_CONDITION = 4;
 
