@@ -40,10 +40,13 @@ class CarsTest {
         // given
         String[] names = {"june", "pobi", "roma"};
         Cars cars = new Cars(names);
-        Car pobiCar = new Car("pobi", 3);
-        Car romaCar = new Car("roma", 3);
+
+        Car pobiCar = new Car("pobi");
+        Car romaCar = new Car("roma");
         // when
         for (int i = 0; i < 3; i++) {
+            pobiCar.goOrNot(new StubMoveStrategy(3, 6, 6, 6));
+            romaCar.goOrNot(new StubMoveStrategy(3, 6, 6, 6));
             cars.race(new StubMoveStrategy(9, 1, 6, 6, 1, 6, 6, 1, 6, 6));
         }
         List<Car> winners = cars.findWinners();

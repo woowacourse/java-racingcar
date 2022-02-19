@@ -79,19 +79,32 @@ class CarTest {
     @CsvSource(value = {"3:true", "4:false"}, delimiter = ':')
     void isSamePosition_int(int position, boolean result) {
         // given
-        Car pobi = new Car("pobi", 3);
+        Car car = new Car("pobi");
+        StubMoveStrategy stubMoveStrategy = new StubMoveStrategy(3, 9, 9, 9);
+        // when
+        for (int i = 0; i < 3; i++) {
+            car.goOrNot(stubMoveStrategy);
+        }
         // then
-        assertThat(pobi.isSamePosition(position)).isEqualTo(result);
+        System.out.println(car);
+        assertThat(car.isSamePosition(position)).isEqualTo(result);
     }
 
     @DisplayName("isSamePosition 메서드는 인자로 Car 객체가 들어올 경우 해당 정수 현재 Car의 position이 일치하는지 확인한다.")
     @ParameterizedTest(name = PARAMETERIZED_TEST_DISPLAY_FORMAT)
-    @CsvSource(value = {"3:true", "4:false"}, delimiter = ':')
-    void isSamePosition_carObject(int position, boolean result) {
+    @CsvSource(value = {"3:false", "6:true"}, delimiter = ':')
+    void isSamePosition_carObject(int decision, boolean result) {
         // given
-        Car pobi = new Car("pobi", 3);
-        Car testCar = new Car("test", position);
+        Car pobiCar = new Car("pobi");
+        Car testCar = new Car("test");
+        StubMoveStrategy pobiCarStubMoveStrategy = new StubMoveStrategy(3, 9, 9, 9);
+        StubMoveStrategy testCarStubMoveStrategy = new StubMoveStrategy(3, decision, 9, 9);
+        // when
+        for (int i = 0; i < 3; i++) {
+            pobiCar.goOrNot(pobiCarStubMoveStrategy);
+            testCar.goOrNot(testCarStubMoveStrategy);
+        }
         // then
-        assertThat(pobi.isSamePosition(testCar)).isEqualTo(result);
+        assertThat(pobiCar.isSamePosition(testCar)).isEqualTo(result);
     }
 }

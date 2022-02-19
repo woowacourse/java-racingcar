@@ -12,14 +12,10 @@ public class Car implements Comparable<Car> {
     private int position;
 
     public Car(String name) {
-        this(name, INITIAL_POSITION);
-    }
-
-    public Car(String name, int position) {
         validateCarName(name);
 
         this.name = name;
-        this.position = position;
+        this.position = INITIAL_POSITION;
     }
 
     public void goOrNot(MoveStrategy moveStrategy) {
