@@ -1,11 +1,15 @@
 package carracinggame.controller;
 
 
+import carracinggame.domain.Times;
+
 public class CarRacingMain {
+
     public static void main(String[] args) {
-
         CarNamesController carNamesController = new CarNamesController();
-        final String[] carNames = carNamesController.getCarNames();
+        TimesController timesController = new TimesController();
 
+        final String[] carNames = carNamesController.getCarNames();
+        final int times = timesController.getTimes();
     }
 }
