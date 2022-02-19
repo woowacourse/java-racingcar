@@ -3,36 +3,16 @@ package racingcar.utils.validator;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class RoundNumberValidatorTest {
 
-    @Test
-    @DisplayName("자연수가 아닐 경우 예외처리 - 0")
-    void checkZeroOrPositiveNumber_0() {
-        assertThatThrownBy(() -> RoundNumberValidator.validate("0"))
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1.33", "abc", "-23"})
+    @DisplayName("자연수가 아닐 경우 예외처리")
+    void checkZeroOrPositiveNumber(String round) {
+        assertThatThrownBy(() -> RoundNumberValidator.validate(round))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    @DisplayName("자연수가 아닐 경우 예외처리 - 실수")
-    void checkZeroOrPositiveNumber_double() {
-        assertThatThrownBy(() -> RoundNumberValidator.validate("1.33"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("자연수가 아닐 경우 예외처리 - 문자")
-    void checkZeroOrPositiveNumber_string() {
-        assertThatThrownBy(() -> RoundNumberValidator.validate("abc"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("자연수가 아닐 경우 예외처리 - 음수")
-    void checkZeroOrPositiveNumber_negativeNumber() {
-        assertThatThrownBy(() -> RoundNumberValidator.validate("-23"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
 }

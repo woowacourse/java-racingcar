@@ -7,32 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringCalculatorTest {
 
-    @Test
-    @DisplayName("검증에 걸리는 요소를 포함시킨 경우 - 숫자가 아닌 값")
-    void inputNotNumber() {
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "", "-1"})
+    @DisplayName("검증에 걸리는 요소를 포함시킨 경우 예외발생")
+    void checkInvalidateInput(String text) {
         List<String> stringNumbers = new ArrayList<>();
-        stringNumbers.add("a");
-        assertThatThrownBy(() -> StringCalculator.calculate(stringNumbers))
-                .isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    @DisplayName("검증에 걸리는 요소를 포함시킨 경우 - 빈 문자열")
-    void inputEmptyString() {
-        List<String> stringNumbers = new ArrayList<>();
-        stringNumbers.add("");
-        assertThatThrownBy(() -> StringCalculator.calculate(stringNumbers))
-                .isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    @DisplayName("검증에 걸리는 요소를 포함시킨 경우 - 음수")
-    void inputNegativeNumber() {
-        List<String> stringNumbers = new ArrayList<>();
-        stringNumbers.add("-1");
+        stringNumbers.add(text);
         assertThatThrownBy(() -> StringCalculator.calculate(stringNumbers))
                 .isInstanceOf(RuntimeException.class);
     }
