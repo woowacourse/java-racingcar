@@ -1,10 +1,9 @@
 package racingcar.domain.car;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.dto.CarDto;
 import racingcar.domain.movement.Movement;
+import racingcar.dto.CarDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,11 +49,11 @@ class CarsTest {
     void getFarthestCar_Test() {
         //given
         cars.move(movement);
-        final List<CarDto> actual = cars.getFarthestCar();
-        //when
         final CarDto def = new CarDto("def", 1);
         final CarDto ghi = new CarDto("ghi", 1);
         final List<CarDto> expected = Arrays.asList(def, ghi);
+        //when
+        final List<CarDto> actual = cars.getFarthestCar();
         //then
         assertThat(actual).isEqualTo(expected);
     }
