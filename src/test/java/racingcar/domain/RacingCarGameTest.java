@@ -43,6 +43,7 @@ public class RacingCarGameTest {
         RacingCarGame racingCarGame = new RacingCarGame(inputCarNames, () -> true);
         List<Car> cars = racingCarGame.getCars();
         Position positionAfterMove = new Position(2);
+        racingCarGame.setCount(new Count(1));
 
         //when
         racingCarGame.playRound();
@@ -58,6 +59,7 @@ public class RacingCarGameTest {
         //given
         String inputCarNames = "어썸오,칙촉";
         RacingCarGame racingCarGame = new RacingCarGame(inputCarNames, () -> true);
+        racingCarGame.setCount(new MockCount(1));
         List<Car> cars = racingCarGame.getCars();
         Car awesome0 = cars.get(0);
 
@@ -66,5 +68,15 @@ public class RacingCarGameTest {
 
         //then
         assertThat(racingCarGame.getWinners()).containsOnly(awesome0);
+    }
+
+    @Test
+    void 게임종료전_우승자를_뽑을경우_예외발생() {
+        String inputCarNames = "어썸오,칙촉";
+        RacingCarGame racingCarGame = new RacingCarGame(inputCarNames, () -> true);
+        racingCarGame.setCount(new Count(1));
+
+        assertThatThrownBy(racingCarGame::getWinners).isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("게임이 끝나지 않았습니다.");
     }
 }
