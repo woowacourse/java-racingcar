@@ -2,7 +2,7 @@ package racingcar.view;
 
 import java.util.List;
 import racingcar.message.NoticeMessages;
-import racingcar.model.car.CarInfo;
+import racingcar.model.car.CarNameAndPosition;
 
 public class OutputView {
     private static final String DISTANCE_MARK = "-";
@@ -15,9 +15,9 @@ public class OutputView {
         System.out.println(NoticeMessages.RUN_RESULT);
     }
 
-    public static void printCurrentCarInfo(List<CarInfo> carInfos) {
-        carInfos.forEach(carInfo -> {
-            System.out.println(createCarInfoString(carInfo));
+    public static void printCurrentCarInfo(List<CarNameAndPosition> carNameAndPositions) {
+        carNameAndPositions.forEach(carNameAndPosition -> {
+            System.out.println(createCarInfoString(carNameAndPosition));
         });
         System.out.println();
     }
@@ -26,8 +26,8 @@ public class OutputView {
         System.out.println(createWinnersString(winners));
     }
 
-    private static String createCarInfoString(CarInfo carInfo) {
-        return String.format("%s : %s", carInfo.getName(), DISTANCE_MARK.repeat(carInfo.getPosition()));
+    private static String createCarInfoString(CarNameAndPosition carNameAndPosition) {
+        return String.format("%s : %s", carNameAndPosition.getName(), DISTANCE_MARK.repeat(carNameAndPosition.getPosition()));
     }
 
     private static String createWinnersString(List<String> winners) {
