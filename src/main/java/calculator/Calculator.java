@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.view.Output;
+
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +19,7 @@ public class Calculator {
 	private String replaceEmpty(String text) {
 		if (isEmpty(text)) {
 			text = EMPTY_VALUE;
+			Output.emptyValueOfSum();
 		}
 		return text;
 	}
