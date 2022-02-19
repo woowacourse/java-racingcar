@@ -12,6 +12,10 @@ public class Car {
         this.name = name;
     }
 
+    public int getPosition() {
+        return this.position;
+    }
+
     public void move(int number) {
         if (isOverProbability(number)) {
             position++;

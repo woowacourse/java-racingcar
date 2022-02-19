@@ -15,7 +15,5 @@ public class CarRacingMain {
         CarRacing carRacing = new CarRacing();
         carRacing.start(carNames, times);
 
-
-
     }
 }
