@@ -47,13 +47,6 @@ public class Cars {
         });
     }
 
-    public int findWinnerCarPosition() {
-        return cars.stream()
-                .map(Car::getPosition)
-                .max(Comparator.comparing(position -> position))
-                .orElse(MINIMUM_POSITION);
-    }
-
     public Cars findWinnerCars() {
         int maxPosition = findWinnerCarPosition();
         List<Car> winnerCars = cars.stream()
@@ -61,6 +54,13 @@ public class Cars {
                 .collect(Collectors.toList());
 
         return new Cars(winnerCars);
+    }
+
+    private int findWinnerCarPosition() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .max(Comparator.comparing(position -> position))
+                .orElse(MINIMUM_POSITION);
     }
 
     public String getCarNames(String delimiter) {

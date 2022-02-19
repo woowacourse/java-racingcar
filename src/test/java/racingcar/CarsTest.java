@@ -61,4 +61,14 @@ class CarsTest {
 
         assertThat(expected).isEqualTo(actual);
     }
+
+    @Test
+    void 우승자_자동차_확인() {
+        Car car1 = new Car("bom", 3);
+        Car car2 = new Car("sun", 4);
+        Car car3 = new Car("asdf", 4);
+        Cars cars = new Cars(Arrays.asList(car1, car2, car3));
+
+        assertThat(cars.findWinnerCars().getCars().size()).isEqualTo(2);
+    }
 }
