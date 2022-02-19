@@ -1,55 +1,46 @@
 package racingcar.model;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.service.RandomNumberService;
-
 public class Cars {
-	private static final String COMMA_DELIMITER = ",";
+    private final List<Car> cars;
 
-	private List<Car> cars;
+    public Cars(List<Car> cars) {
+        this.cars = cars;
+    }
 
-	public Cars(List<Car> cars) {
-		this.cars = cars;
-	}
+    public static Cars of(List<String> carNames, MovingCarStrategy movingCarStrategy) {
+        return new Cars(toCar(carNames, movingCarStrategy));
+    }
 
-	public void makeCars(String carNames) {
-		this.cars = toCar(splitCarNames(carNames));
-	}
+    private static List<Car> toCar(List<String> carNames, MovingCarStrategy movingCarStrategy) {
+        return carNames.stream()
+                .map(carName -> new Car(carName, movingCarStrategy))
+                .collect(Collectors.toList());
+    }
 
-	private List<Car> toCar(List<String> carNames) {
-		return carNames.stream()
-			.map(Car::new)
-			.collect(Collectors.toList());
-	}
+    public void moveCars() {
+        cars.forEach(Car::move);
+    }
 
-	private List<String> splitCarNames(String carNames) {
-		return Arrays.asList(carNames.split(COMMA_DELIMITER));
-	}
+    public List<String> getPosition() {
+        return cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.toList());
+    }
 
-	public void moveCars() {
-		cars.forEach(car -> car.move(RandomNumberService.getRandomNumber()));
-	}
+    public List<String> findWinnerCars() {
+        Car maxPositionCar = findWinnerCar();
+        return cars.stream()
+                .filter(maxPositionCar::isSamePosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
 
-	public List<String> getPosition() {
-		return cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.toList());
-	}
-
-	public List<String> findWinnerCars() {
-		Car maxPositionCar = findWinnerCar();
-		return cars.stream()
-			.filter(maxPositionCar::isSamePosition)
-			.map(Car::getName)
-			.collect(Collectors.toList());
-	}
-
-	public Car findWinnerCar() {
-		return cars.stream()
-			.max(Car::compareTo)
-			.orElseThrow(IllegalArgumentException::new);
-	}
+    private Car findWinnerCar() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }
