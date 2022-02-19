@@ -1,4 +1,4 @@
-package calculator;
+package calculator.ui;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ public class CalculatorInput {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    public String userInput() {
+    public static String userInput() {
         System.out.print(INPUT_MESSAGE);
         return scanner.nextLine();
     }

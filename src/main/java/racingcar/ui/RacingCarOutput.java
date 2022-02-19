@@ -16,20 +16,24 @@ public class RacingCarOutput {
         System.out.println(ROUND_RESULT);
     }
 
-    public static void printRoundResult(List<Car> cars) {
+    public static void printErrorMessage(final String error) {
+        System.out.println(error);
+    }
+
+    public static void printRoundResult(final List<Car> cars) {
         cars.forEach(RacingCarOutput::printCarPositionInfo);
         System.out.println();
     }
 
-    private static void printCarPositionInfo(Car car) {
+    private static void printCarPositionInfo(final Car car) {
         System.out.println(car.getName() + CAR_INFO_SEPARATOR + CAR_POSITION_BAR.repeat(Math.max(0, car.getPosition())));
     }
 
-    public static void printWinners(List<Car> winners) {
+    public static void printWinners(final List<Car> winners) {
         System.out.println(toWinnerNameString(winners) + WINNER_MESSAGE);
     }
 
-    private static String toWinnerNameString(List<Car> winners) {
+    private static String toWinnerNameString(final List<Car> winners) {
         return winners.stream()
             .map(Car::getName)
             .collect(Collectors.joining(WINNERS_DELIMITER));

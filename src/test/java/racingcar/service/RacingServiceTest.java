@@ -5,12 +5,15 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingServiceTest {
+    private static final int PROCEED_FlAG_NUMBER = 4;
+
     private List<Car> cars;
     private Car carA;
     private Car carB;
@@ -35,15 +38,21 @@ public class RacingServiceTest {
     }
 
     @Test
+    void 자동차_생성(){
+        racingService.generateCars(Arrays.asList("pobi","abc","def"));
+        assertThat(cars).contains(new Car("pobi"), new Car("abc"), new Car("def"));
+    }
+
+    @Test
     void 우승자_판단() {
-        carA.proceed();
+        carA.proceed(PROCEED_FlAG_NUMBER);
         assertThat(racingService.findWinners()).contains(carA);
     }
 
     @Test
     void 중복_우승자_판단() {
-        carA.proceed();
-        carB.proceed();
+        carA.proceed(PROCEED_FlAG_NUMBER);
+        carB.proceed(PROCEED_FlAG_NUMBER);
         assertThat(racingService.findWinners()).contains(carA, carB);
     }
 }
