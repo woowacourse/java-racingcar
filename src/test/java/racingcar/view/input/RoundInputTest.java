@@ -1,7 +1,7 @@
 package racingcar.view.input;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.AppConfig;
 import racingcar.exception.WrongArgumentException;
+import racingcar.exception.status.round.RoundCountExceptionStatus;
 import racingcar.view.input.reader.CustomReader;
 
 class RoundInputTest {
@@ -24,7 +25,9 @@ class RoundInputTest {
     @MethodSource(PROVIDER_PATH + "provideValuesForNotNumericException")
     void roundNotNumericExceptionTest(final String inputValue) {
         customReader.initText(inputValue);
-        assertThrows(WrongArgumentException.class, inputView::requestRoundCount);
+        assertThatThrownBy(inputView::requestRoundCount)
+                .isInstanceOf(WrongArgumentException.class)
+                .hasMessageContaining(RoundCountExceptionStatus.ROUND_IS_NOT_NUMERIC.getMessage());
     }
 
     @DisplayName("실행횟수 입력 기능 테스트")

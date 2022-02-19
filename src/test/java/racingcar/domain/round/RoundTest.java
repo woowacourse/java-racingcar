@@ -1,14 +1,15 @@
 package racingcar.domain.round;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.exception.WrongArgumentException;
+import racingcar.exception.status.round.RoundCountExceptionStatus;
 
 class RoundTest {
 
@@ -19,7 +20,9 @@ class RoundTest {
     @ParameterizedTest()
     @ValueSource(ints = {-3, -2, -1, 0})
     void roundNotPositiveExceptionTest(final int count) {
-        assertThrows(WrongArgumentException.class, () -> new Round(count));
+        assertThatThrownBy(() -> new Round(count))
+                .isInstanceOf(WrongArgumentException.class)
+                .hasMessageContaining(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE.getMessage());
     }
 
     @DisplayName("생성자 기능 테스트")

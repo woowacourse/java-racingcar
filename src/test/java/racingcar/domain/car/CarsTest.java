@@ -1,8 +1,8 @@
 package racingcar.domain.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,21 +17,20 @@ import racingcar.domain.car.strategy.MoveStrategy;
 import racingcar.domain.car.strategy.TrueMoveStrategy;
 import racingcar.dto.CarStatusDto;
 import racingcar.exception.WrongArgumentException;
+import racingcar.exception.status.car.CarNameExceptionStatus;
 
 class CarsTest {
 
     private static final String PROVIDER_PATH = "racingcar.domain.car.provider.CarsTestProvider#";
     private static final MoveStrategy TRUE_MOVE_STRATEGY = TrueMoveStrategy.getInstance();
 
-    private void exceptionTest(final List<String> carNames) {
-        assertThrows(WrongArgumentException.class, () -> new Cars(carNames, TRUE_MOVE_STRATEGY));
-    }
-
     @DisplayName("자동차 이름은 중복될 수 없다")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForDuplicateExceptionTest")
     void carNamesDuplicatedExceptionTest(final List<String> names) {
-        exceptionTest(names);
+        assertThatThrownBy(() -> new Cars(names, TRUE_MOVE_STRATEGY))
+                .isInstanceOf(WrongArgumentException.class)
+                .hasMessageContaining(CarNameExceptionStatus.NAME_IS_DUPLICATED.getMessage());
     }
 
     @DisplayName("생성자 기능 테스트")

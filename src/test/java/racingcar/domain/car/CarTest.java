@@ -1,7 +1,7 @@
 package racingcar.domain.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
 
@@ -14,35 +14,41 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.exception.WrongArgumentException;
+import racingcar.exception.status.car.CarNameExceptionStatus;
 
 class CarTest {
 
     private static final int CAR_INITIALIZED_LOCATION = 0;
     private static final int LOCATION_INCREASING_COUNT = 1;
 
-    private void exceptionTest(final String name) {
-        assertThrows(WrongArgumentException.class, () -> new Car(name));
+    private void exceptionTest(final String name, final String errorMessage) {
+        assertThatThrownBy(() -> new Car(name))
+                .isInstanceOf(WrongArgumentException.class)
+                .hasMessageContaining(errorMessage);
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없다.")
     @ParameterizedTest
     @NullSource
     void carNameNullExceptionTest(final String name) {
-        exceptionTest(name);
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_NULL.getMessage();
+        exceptionTest(name, errorMessage);
     }
 
     @DisplayName("자동차 이름은 공백이 될 수 없다.")
     @ParameterizedTest
     @EmptySource
     void carNameEmptyExceptionTest(final String name) {
-        exceptionTest(name);
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_EMPTY.getMessage();
+        exceptionTest(name, errorMessage);
     }
 
     @DisplayName("자동차 이름은 5자를 넘길 수 없다.")
     @ParameterizedTest
     @ValueSource(strings = {"123456", "1234567", "12345678"})
     void carNameTooLongExceptionTest(final String name) {
-        exceptionTest(name);
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_TOO_LONG.getMessage();
+        exceptionTest(name, errorMessage);
     }
 
     @DisplayName("생성자 기능 테스트")

@@ -1,7 +1,7 @@
 package racingcar.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +15,8 @@ import racingcar.AppConfig;
 import racingcar.dto.CarStatusDto;
 import racingcar.dto.RoundDto;
 import racingcar.exception.WrongArgumentException;
+import racingcar.exception.status.car.CarNameExceptionStatus;
+import racingcar.exception.status.round.RoundCountExceptionStatus;
 
 class GameServiceInitTest {
 
@@ -24,36 +26,42 @@ class GameServiceInitTest {
 
     private final GameService gameService = APP_CONFIG.gameService;
 
-    private void initCarNamesExceptionTest(final List<String> carNames) {
-        assertThrows(WrongArgumentException.class, () -> gameService.initCarNames(carNames));
+    private void initCarNamesExceptionTest(final List<String> carNames, final String errorMessage) {
+        assertThatThrownBy(() -> gameService.initCarNames(carNames))
+                .isInstanceOf(WrongArgumentException.class)
+                .hasMessageContaining(errorMessage);
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없습니다.")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesNullExceptionTest")
     void initCarNamesNullExceptionTest(final List<String> carNames) {
-        initCarNamesExceptionTest(carNames);
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_NULL.getMessage();
+        initCarNamesExceptionTest(carNames, errorMessage);
     }
 
     @DisplayName("자동차 이름은 비어있을 수 없습니다.")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesEmptyExceptionTest")
     void initCarNamesEmptyExceptionTest(final List<String> carNames) {
-        initCarNamesExceptionTest(carNames);
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_EMPTY.getMessage();
+        initCarNamesExceptionTest(carNames, errorMessage);
     }
 
     @DisplayName("자동차 이름은 5자를 넘을 수 없습니다.")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesTooLongExceptionTest")
     void initCarNamesTooLongExceptionTest(final List<String> carNames) {
-        initCarNamesExceptionTest(carNames);
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_TOO_LONG.getMessage();
+        initCarNamesExceptionTest(carNames, errorMessage);
     }
 
     @DisplayName("자동차 이름은 중복될 수 없습니다.")
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesDuplicatedExceptionTest")
     void initCarNamesDuplicatedExceptionTest(final List<String> carNames) {
-        initCarNamesExceptionTest(carNames);
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_TOO_LONG.getMessage();
+        initCarNamesExceptionTest(carNames, errorMessage);
     }
 
     @DisplayName("자동차 이름 초기화 기능 테스트")
@@ -87,7 +95,9 @@ class GameServiceInitTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1, -2,- 3})
     void initRoundNotPositiveExceptionTest(final int roundCount) {
-        assertThrows(WrongArgumentException.class, () -> gameService.initRound(roundCount));
+        assertThatThrownBy(() -> gameService.initRound(roundCount))
+                .isInstanceOf(WrongArgumentException.class)
+                .hasMessageContaining(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE.getMessage());
     }
 
     @DisplayName("실행 횟수 초기화 기능 테스트")
