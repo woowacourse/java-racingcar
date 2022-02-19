@@ -29,7 +29,7 @@ class CarTest {
     }
 
     @Test
-    void 정상입력() {
+    void 자동차_생성_정상() {
         assertThatCode(() -> new Car("pobi"))
             .doesNotThrowAnyException();
     }
