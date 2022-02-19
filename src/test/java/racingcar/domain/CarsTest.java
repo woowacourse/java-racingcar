@@ -32,6 +32,22 @@ public class CarsTest {
     }
 
     @Test
+    @DisplayName("최대 위치값이 1일 때 maxPosition 구하기")
+    public void getMaxPosition_1() {
+        forky.move(() -> true);
+        Cars cars = new Cars(List.of(forky, kun, pobi));
+        assertThat(cars.getMaxPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("위치값이 1인 car 구하기")
+    public void matchPosition_1() {
+        forky.move(() -> true);
+        Cars cars = new Cars(List.of(forky, kun, pobi));
+        assertThat(cars.matchPosition(1)).containsExactly(forky);
+    }
+
+    @Test
     @DisplayName("이동 정책에 따른 차 이동")
     public void moveCars_twice() {
         Cars cars = new Cars(List.of(forky, kun, pobi));

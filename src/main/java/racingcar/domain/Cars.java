@@ -24,7 +24,7 @@ public class Cars {
         return cars;
     }
 
-    public List<Car> getCarsInPosition(int position) {
+    public List<Car> matchPosition(int position) {
         return cars.stream()
                 .filter(car -> car.isPosition(position))
                 .collect(Collectors.toList());

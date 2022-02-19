@@ -16,6 +16,6 @@ public class Game {
     }
 
     public List<Car> getWinners() {
-        return cars.getCarsInPosition(cars.getMaxPosition());
+        return cars.matchPosition(cars.getMaxPosition());
     }
 }
