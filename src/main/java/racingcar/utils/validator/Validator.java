@@ -1,4 +1,4 @@
-package racingcar.utils;
+package racingcar.utils.validator;
 
 public class Validator {
     private static final String EMPTY_INPUT_MESSAGE = "시도 횟수에 빈 문자열은 입력될 수 없습니다.";

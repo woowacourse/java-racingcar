@@ -1,4 +1,4 @@
-package racingcar.utils;
+package racingcar.utils.generator;
 
 public class NonMovableNumberGenerator implements NumberGenerator {
     @Override

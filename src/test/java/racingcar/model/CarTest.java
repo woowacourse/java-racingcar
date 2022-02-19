@@ -10,9 +10,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import racingcar.utils.MovableNumberGenerator;
-import racingcar.utils.NonMovableNumberGenerator;
-import racingcar.utils.NumberGenerator;
+import racingcar.utils.generator.MovableNumberGenerator;
+import racingcar.utils.generator.NonMovableNumberGenerator;
+import racingcar.utils.generator.NumberGenerator;
 
 class CarTest {
     private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();

@@ -1,8 +1,8 @@
 package racingcar.model;
 
-import static racingcar.utils.NameValidator.*;
+import static racingcar.utils.validator.NameValidator.*;
 
-import racingcar.utils.NumberGenerator;
+import racingcar.utils.generator.NumberGenerator;
 
 public class Car {
     private final String name;

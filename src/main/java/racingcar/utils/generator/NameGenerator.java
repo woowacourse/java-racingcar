@@ -1,7 +1,9 @@
-package racingcar.utils;
+package racingcar.utils.generator;
 
 import java.util.Arrays;
 import java.util.List;
+
+import racingcar.utils.validator.NameValidator;
 
 public class NameGenerator {
     public static final String DELIMITER = ",";

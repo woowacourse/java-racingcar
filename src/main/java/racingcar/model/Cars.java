@@ -3,8 +3,8 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import racingcar.utils.NumberGenerator;
-import racingcar.utils.RandomNumberGenerator;
+import racingcar.utils.generator.NumberGenerator;
+import racingcar.utils.generator.RandomNumberGenerator;
 
 public class Cars {
     private final List<Car> cars;

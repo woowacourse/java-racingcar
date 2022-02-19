@@ -6,8 +6,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import racingcar.utils.MovableNumberGenerator;
-import racingcar.utils.NumberGenerator;
+import racingcar.utils.generator.MovableNumberGenerator;
+import racingcar.utils.generator.NumberGenerator;
 
 class CarsTest {
     private Car car1, car2, car3;

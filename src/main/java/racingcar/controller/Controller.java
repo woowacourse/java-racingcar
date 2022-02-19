@@ -5,8 +5,8 @@ import java.util.List;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
-import racingcar.utils.NameGenerator;
-import racingcar.utils.TrialNumberGenerator;
+import racingcar.utils.generator.NameGenerator;
+import racingcar.utils.generator.TrialNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

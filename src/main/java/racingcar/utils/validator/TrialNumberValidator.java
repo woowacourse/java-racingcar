@@ -1,4 +1,4 @@
-package racingcar.utils;
+package racingcar.utils.validator;
 
 public class TrialNumberValidator extends Validator{
     private static final int MIN_BOUND = 1;
