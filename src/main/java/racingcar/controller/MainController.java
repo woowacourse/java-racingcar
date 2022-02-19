@@ -22,7 +22,7 @@ public class MainController {
     public void start() {
         List<Car> cars = generateCar(inputCarNames());
         race(inputAttemptCount(), cars);
-        output.printWinner(getWinner(cars));
+        output.printWinner(getNamesOfWinners(cars));
     }
 
     private String[] inputCarNames() {
@@ -53,19 +53,18 @@ public class MainController {
         cars.forEach(car -> car.movePosition(randomNumberGenerator.generate()));
     }
 
-    private List<String> getWinner(List<Car> cars) {
+    private List<String> getNamesOfWinners(List<Car> cars) {
         int maxPosition = findMaxPosition(cars);
-        return findWinnerByPosition(maxPosition, cars);
+        return findCarNamesByPosition(maxPosition, cars);
     }
 
     private int findMaxPosition(List<Car> cars) {
         Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getPosition);
-
         return cars.stream()
             .max(comparatorByPosition).get().getPosition();
     }
 
-    private List<String> findWinnerByPosition(int position, List<Car> cars) {
+    private List<String> findCarNamesByPosition(int position, List<Car> cars) {
         return cars.stream()
             .filter(car -> car.isSamePosition(position))
             .map(Car::getName)
