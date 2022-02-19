@@ -4,14 +4,12 @@ import racingcar.domain.Car;
 import racingcar.domain.ParticipatedCars;
 import racingcar.domain.WinnerNames;
 
-import java.util.List;
-
 public class OutputView {
     private static final String NEW_LINE = "\n";
     private static final String RACING_RESULT_MESSAGE = "실행 결과";
     private static final String WINNER_NAME_DELIMITER = ", ";
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
-    private static final String STATUS_DELIMITER = " : ";
+    private static final String RECORD_DELIMITER = " : ";
     private static final String POSITION_TO_STRING = "-";
 
     public static void printResultMessage() {
@@ -26,12 +24,7 @@ public class OutputView {
     }
 
     private static String getCarRecord(Car car) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(car.getName()).append(STATUS_DELIMITER);
-        for (int i = 0; i < car.getPosition(); i++) {
-            stringBuilder.append(POSITION_TO_STRING);
-        }
-        return stringBuilder.toString();
+        return car.getName() + RECORD_DELIMITER + POSITION_TO_STRING.repeat(car.getPosition());
     }
 
     public static void printWinnerNames(WinnerNames winnerNames) {
