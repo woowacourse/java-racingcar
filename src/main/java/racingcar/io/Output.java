@@ -22,7 +22,7 @@ public class Output {
     }
 
     private void printRacingProgress(Car car) {
-        System.out.printf("%s : %s%n", car.getName(), getPositionString(car.getPosition()));
+        System.out.printf("%s : %s%n", car.getName().value(), getPositionString(car.getPosition()));
     }
 
     private String getPositionString(int position) {
