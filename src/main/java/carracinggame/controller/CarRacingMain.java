@@ -11,5 +11,11 @@ public class CarRacingMain {
 
         final String[] carNames = carNamesController.getCarNames();
         final int times = timesController.getTimes();
+
+        CarRacing carRacing = new CarRacing();
+        carRacing.start(carNames, times);
+
+
+
     }
 }
