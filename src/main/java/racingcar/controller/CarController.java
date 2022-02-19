@@ -34,17 +34,27 @@ public class CarController {
     }
 
     private List<Car> makeCars(List<String> names) {
-        List<Car> cars = names.stream()
-                .map(Car::new)
-                .collect(toList());
-        Validator.validateCarFollowsRule(cars);
-        return cars;
+        try {
+            List<Car> cars = names.stream()
+                    .map(Car::new)
+                    .collect(toList());
+            Validator.validateCarFollowsRule(cars);
+            return cars;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return makeCars(getCarNamesFromUser());
+        }
     }
 
     private int getCountFromUser() {
-        int count = inputView.getCount();
-        Validator.validateRange(count);
-        return count;
+        try {
+            int count = inputView.getCount();
+            Validator.validateRange(count);
+            return count;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return getCountFromUser();
+        }
     }
 
     private List<String> getCarNamesFromUser() {
