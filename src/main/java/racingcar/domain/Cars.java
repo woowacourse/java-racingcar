@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 public class Cars {
 	private static final String DELIMITER = ",";
 	private static final int CAR_LIMIT = 2;
-	private static final int DRIVE_FLAG = 3;
 	private List<Car> cars = new ArrayList<>();
 
 	public Cars(String names) {
@@ -27,8 +26,9 @@ public class Cars {
 	}
 
 	public void play() {
+		Movable movable = new MovableImpl();
 		for (Car car : cars) {
-			car.drive(hasNext());
+			car.drive(movable);
 			Output.roundResult(car.showNowPosition());
 		}
 		Output.newLine();
@@ -81,13 +81,14 @@ public class Cars {
 				.count() != cars.size();
 	}
 
-	private boolean hasNext() {
-		return generate() > DRIVE_FLAG;
-	}
+//	private boolean hasNext() {
+//		DriveStrategy moveFlag = new MoveStrategy();
+//		return moveFlag.canMove() > DRIVE_FLAG;
+//	}
 
-	private int generate() {
-		return (int)(Math.random() * 100) % 10;
-	}
+//	private int generate() {
+//		return (int)(Math.random() * 100) % 10;
+//	}
 
 	private Car findMaxPositionCar() {
 		return cars.stream()

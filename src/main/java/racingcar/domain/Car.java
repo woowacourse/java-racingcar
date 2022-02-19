@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
+	private static final int MOVE_FLAG = 3;
 	private static final String STEP = "-";
 	private static final int CAR_LENGTH_LIMIT = 5;
 
@@ -19,8 +20,8 @@ public class Car implements Comparable<Car> {
 		this.position = position;
 	}
 
-	public void drive(boolean directing) {
-		if (directing) {
+	public void drive(Movable movable) {
+		if (movable.randomNumber() > MOVE_FLAG) {
 			move();
 		}
 	}
