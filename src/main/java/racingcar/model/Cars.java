@@ -43,7 +43,7 @@ public class Cars {
 
     public void race(NumberGenerator numberGenerator) {
         cars.forEach(car -> {
-            car.move(numberGenerator);
+            car.move(numberGenerator.generate());
         });
     }
 

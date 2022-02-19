@@ -18,8 +18,7 @@ public class Car {
         this.position = position;
     }
 
-    public void move(NumberGenerator numberGenerator) {
-        int value = numberGenerator.generate();
+    public void move(int value) {
         if (canMove(value)) {
             position++;
         }
