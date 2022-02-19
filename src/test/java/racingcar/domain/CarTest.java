@@ -11,7 +11,7 @@ public class CarTest {
     @DisplayName("자동차가 움직인다")
     public void car_move() {
         // given
-        Car car = Car.carBuilder().setCarName("foo").build();
+        Car car = Car.carBuilder().setName("foo").build();
 
         // when & then
         assertThat(car.getPositionForTest()).isEqualTo(0);
@@ -23,7 +23,7 @@ public class CarTest {
     @DisplayName("자동차가 움직이지 않는다")
     public void car_not_move() {
         // given
-        Car car = Car.carBuilder().setCarName("foo").build();
+        Car car = Car.carBuilder().setName("foo").build();
 
         // when & then
         assertThat(car.getPositionForTest()).isEqualTo(0);

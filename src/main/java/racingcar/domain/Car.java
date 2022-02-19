@@ -1,11 +1,11 @@
 package racingcar.domain;
 
-public class Car implements Comparable<Car> {
-    private String name;
+public class Car implements Comparable<Car>, Vehicle {
+    private final String name;
     private int position;
 
     private Car(CarBuilder carbuilder) {
-        this.name = carbuilder.carName;
+        this.name = carbuilder.name;
     }
 
     public static CarBuilder carBuilder(){
@@ -49,10 +49,10 @@ public class Car implements Comparable<Car> {
     }
 
     public static class CarBuilder {
-        private String carName;
+        private String name;
 
-        public CarBuilder setCarName(String carName) {
-            this.carName = carName;
+        public CarBuilder setName(String name) {
+            this.name = name;
             return this;
         }
 

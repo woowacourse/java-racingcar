@@ -55,7 +55,7 @@ public class GameController {
 
         List<Car> cars = new ArrayList<>();
         carNames.forEach(x -> {
-            Car car = Car.carBuilder().setCarName(x).build();
+            Car car = Car.carBuilder().setName(x).build();
             cars.add(car);
         });
 
