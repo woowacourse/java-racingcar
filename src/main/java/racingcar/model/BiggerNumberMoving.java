@@ -9,7 +9,7 @@ public class BiggerNumberMoving implements Moving {
     }
 
     @Override
-    public boolean canMove(Integer number) {
+    public boolean canMove(int number) {
         if (number >= movableNumber) {
             return true;
         }

@@ -16,13 +16,13 @@ public class Car {
         this.moving = new BiggerNumberMoving(MOVABLE_NUMBER);
     }
 
-    public void tryMove(Integer number) {
+    public void tryMove(int number) {
         if (moving.canMove(number)) {
             this.location.increase();
         }
     }
 
-    public Integer getCarPosition() {
+    public int getCarPosition() {
         return location.getLocation();
     }
 
@@ -30,7 +30,7 @@ public class Car {
         return name.getName();
     }
 
-    public boolean isSamePosition(Integer position) {
+    public boolean isSamePosition(int position) {
         return Objects.equals(position, getCarPosition());
     }
 }

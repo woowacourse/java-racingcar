@@ -18,7 +18,7 @@ public class Participants {
         this.cars.add(car);
     }
 
-    public Integer participateSize() {
+    public int participateSize() {
         return this.cars.size();
     }
 
@@ -33,14 +33,14 @@ public class Participants {
     }
 
     public List<String> findRacingWinners() {
-        Integer maxPosition = findMaxPosition();
+        int maxPosition = findMaxPosition();
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private Integer findMaxPosition() {
+    private int findMaxPosition() {
         return Collections
                 .max(cars.stream()
                         .map(Car::getCarPosition)

@@ -13,7 +13,7 @@ public class InputView {
         return inputFromUser();
     }
 
-    public Integer requestPlayTimes() {
+    public int requestPlayTimes() {
         System.out.println(INPUT_RACING_TIMES_MESSAGE);
         return Integer.parseInt(inputFromUser());
     }
