@@ -11,7 +11,7 @@ class PositionTest {
     @Test
     void constructor_test() {
         Position position = new Position();
-        assertThat(position.getPosition()).isEqualTo(0);
+        assertThat(position.getPosition()).isZero();
     }
 
     @DisplayName("increase() 테스트")
@@ -27,6 +27,6 @@ class PositionTest {
     void compareTo_test() {
         Position position = new Position();
         Position increasedPosition = position.increase();
-        assertThat(increasedPosition.compareTo(position)).isGreaterThan(0);
+        assertThat(increasedPosition.compareTo(position)).isPositive();
     }
 }

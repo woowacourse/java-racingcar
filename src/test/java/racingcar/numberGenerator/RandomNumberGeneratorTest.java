@@ -12,7 +12,7 @@ class RandomNumberGeneratorTest {
     void generator_random_test() {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         int number = numberGenerator.generate();
-        assertThat(number).isGreaterThanOrEqualTo(0);
+        assertThat(number).isNotNegative();
         assertThat(number).isLessThanOrEqualTo(9);
     }
 }

@@ -18,7 +18,7 @@ class CalculatorTest {
     @ValueSource(strings = {""})
     void sum_null_empty_test(String input) {
         int inputResult = Calculator.sum(input);
-        assertThat(inputResult).isEqualTo(0);
+        assertThat(inputResult).isZero();
     }
 
     @DisplayName("sum() 입력 값이 하나인 경우 테스트")

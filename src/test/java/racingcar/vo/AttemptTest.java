@@ -39,7 +39,7 @@ class AttemptTest {
         attempt = attempt.decrease();
         assertThat(attempt.getAttempt()).isEqualTo(1);
         attempt = attempt.decrease();
-        assertThat(attempt.getAttempt()).isEqualTo(0);
+        assertThat(attempt.getAttempt()).isZero();
     }
 
     @DisplayName("validNumberFormat() 입력 값이 숫자가 아닌 경우 예외 테스트")

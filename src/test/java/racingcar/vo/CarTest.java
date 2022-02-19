@@ -48,7 +48,7 @@ class CarTest {
         Position zeroPosition = new Position(0);
         Car car = new Car(carName, onePosition);
         Car testCar = new Car(testCarName, zeroPosition);
-        assertThat(car.compareTo(testCar)).isGreaterThan(0);
+        assertThat(car.compareTo(testCar)).isPositive();
     }
 
     @DisplayName("move() 움직임 테스트")
@@ -60,7 +60,7 @@ class CarTest {
         Car car = new Car(carName, zeroPosition);
         NumberGenerator numberGenerator = new MovableNumberGenerator();
         Car movedCar = car.move(numberGenerator.generate());
-        assertThat(movedCar.compareTo(car)).isGreaterThan(0);
+        assertThat(movedCar.compareTo(car)).isPositive();
     }
 
     @DisplayName("move() 정지 테스트")
@@ -72,6 +72,6 @@ class CarTest {
         Car car = new Car(carName, zeroPosition);
         NumberGenerator numberGenerator = new UnMovableNumberGenerator();
         Car movedCar = car.move(numberGenerator.generate());
-        assertThat(movedCar.compareTo(car)).isEqualTo(0);
+        assertThat(movedCar.compareTo(car)).isZero();
     }
 }
