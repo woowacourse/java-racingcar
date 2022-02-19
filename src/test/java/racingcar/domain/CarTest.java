@@ -18,7 +18,7 @@ public class CarTest {
     @Test
     void moveForward1() {
         Car car = new Car("jae");
-        car.moveForward(() -> true);
+        car.moveForward(true);
         assertThat(car.getPosition()).isEqualTo(1);
 
     }
@@ -27,7 +27,7 @@ public class CarTest {
     @Test
     void moveForward2() {
         Car car = new Car("jae");
-        car.moveForward(() -> false);
+        car.moveForward(false);
         assertThat(car.getPosition()).isEqualTo(0);
 
     }

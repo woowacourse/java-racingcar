@@ -53,7 +53,7 @@ public class Cars {
 
     public void moveCarsForward(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            car.moveForward(movingStrategy);
+            car.moveForward(movingStrategy.canMoveForward());
         }
     }
 

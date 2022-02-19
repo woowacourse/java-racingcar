@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.movestrategy.MovingStrategy;
-
 public class Car {
 
     private final Name name;
@@ -25,8 +23,8 @@ public class Car {
         return position;
     }
 
-    public void moveForward(MovingStrategy movingStrategy) {
-        if (movingStrategy.canMoveForward()) {
+    public void moveForward(final boolean canMoveForward) {
+        if (canMoveForward) {
             position++;
         }
     }
