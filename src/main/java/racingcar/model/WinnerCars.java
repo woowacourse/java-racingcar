@@ -18,7 +18,7 @@ public class WinnerCars {
 
     private boolean isWinner(int maxPosition) {
         return this.cars.stream()
-                .allMatch(car -> car.getPosition() == maxPosition);
+                .allMatch(car -> car.isSamePosition(maxPosition));
     }
 
     public List<Car> getCars() {

@@ -25,6 +25,10 @@ public class Car {
         }
     }
 
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
+
     private void validateCarNameLength(Name carName) {
         boolean isValidLength = carName.getName().length() <= MAXIMUM_CAR_NAME_LENGTH;
         if (!isValidLength) {
