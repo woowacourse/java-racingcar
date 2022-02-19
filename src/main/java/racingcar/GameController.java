@@ -5,9 +5,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
-import racingcar.domain.Cars;
 import racingcar.domain.Game;
-import racingcar.domain.UniqueCars;
+import racingcar.domain.Cars;
 import racingcar.domain.dto.CarDto;
 import racingcar.domain.strategy.RandomMove;
 import racingcar.domain.util.CarFactory;
@@ -17,7 +16,7 @@ import racingcar.view.OutputView;
 public class GameController {
 
     public static void run() {
-        Game game = new Game(new UniqueCars(CarFactory.of(InputView.inputCarNames())));
+        Game game = new Game(new Cars(CarFactory.of(InputView.inputCarNames())));
         final int count = InputView.inputGameCount();
         play(game, count);
         showWinner(game.getWinners());

@@ -1,7 +1,6 @@
 package racingcar.domain;
 
-import java.util.Collection;
-
+import java.util.List;
 import racingcar.domain.strategy.MoveStrategy;
 
 public class Game {
@@ -16,7 +15,7 @@ public class Game {
         return cars;
     }
 
-    public Collection<Car> getWinners() {
+    public List<Car> getWinners() {
         return cars.getCarsInPosition(cars.getMaxPosition());
     }
 }

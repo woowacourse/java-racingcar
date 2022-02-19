@@ -1,15 +1,45 @@
 package racingcar.domain;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import racingcar.domain.strategy.MoveStrategy;
 
-public interface Cars {
-    void moveCars(MoveStrategy moveStrategy);
+public class Cars {
+    private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
 
-    Collection<Car> getCars();
+    private final List<Car> cars;
 
-    Collection<Car> getCarsInPosition(int position);
+    public Cars(List<Car> cars) {
+        validateDuplicatedCars(cars);
+        this.cars = List.copyOf(cars);
+    }
 
-    int getMaxPosition();
+    public void moveCars(MoveStrategy moveStrategy) {
+        cars.forEach(car -> car.move(moveStrategy));
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public List<Car> getCarsInPosition(int position) {
+        return cars.stream()
+                .filter(car -> car.isPosition(position))
+                .collect(Collectors.toList());
+    }
+
+    public int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
+    }
+
+    private void validateDuplicatedCars(List<Car> cars) {
+        if (cars.size() != Set.copyOf(cars).size()) {
+            throw new IllegalArgumentException(DUPLICATED_NAME_ERROR);
+        }
+    }
 }
