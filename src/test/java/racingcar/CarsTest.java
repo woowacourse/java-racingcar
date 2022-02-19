@@ -71,4 +71,34 @@ public class CarsTest {
 
     }
 
+    @Test
+    void move_전진_성공() {
+
+        Cars cars = new Cars(Arrays.asList(
+            new Car("happy", TRUE_MOVE_CONDITION),
+            new Car("good", TRUE_MOVE_CONDITION)));
+
+        cars.move();
+
+        assertThat(cars.getCars())
+            .extracting("position")
+            .containsExactly(1, 1);
+
+    }
+
+    @Test
+    void move_전진_실패() {
+
+        Cars cars = new Cars(Arrays.asList(
+            new Car("happy", FALSE_MOVE_CONDITION),
+            new Car("good", FALSE_MOVE_CONDITION)));
+
+        cars.move();
+
+        assertThat(cars.getCars())
+            .extracting("position")
+            .containsExactly(0, 0);
+
+    }
+
 }
