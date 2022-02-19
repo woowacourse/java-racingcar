@@ -7,7 +7,7 @@
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
 ## 기능 정리
- - [] 사용자로부터 자동차 이름들을 입력받는다.
+ - [x] 사용자로부터 자동차 이름들을 입력받는다.
  - [] 사용자로부터 시도할 횟수를 입력받는다.
  - [] 입력받은 자동차 이름을 쉼표로 구분한다.
  - [] 매 실행마다 0에서 9 사이에서 random 값을 구한 후 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.
