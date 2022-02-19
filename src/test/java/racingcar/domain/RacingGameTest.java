@@ -26,7 +26,7 @@ public class RacingGameTest {
         List<Car> winners = racingGame.findWinners();
 
         for (Car winner : winners) {
-            assertThat(winner.getPosition()).isLessThanOrEqualTo(maxPosition);
+            assertThat(winner.getPosition()).isEqualTo(maxPosition);
         }
     }
 
