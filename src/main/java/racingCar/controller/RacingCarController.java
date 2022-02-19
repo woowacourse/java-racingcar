@@ -7,7 +7,8 @@ import java.util.List;
 
 import racingCar.domain.Car;
 import racingCar.domain.RacingCars;
-import racingCar.validator.RacingCarValidator;
+import racingCar.validator.RacingCarNameValidator;
+import racingCar.validator.RacingCarTimeValidator;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
@@ -23,10 +24,17 @@ public class RacingCarController {
 
 	private String[] getSplitCarNames() {
 		String inputCarName = InputView.userStringInput(INPUT_CAR_NAME_MESSAGE);
+		try {
+			RacingCarNameValidator.isRightInput(inputCarName);
+		} catch (RuntimeException e) {
+			OutputView.printError(e.getMessage());
+			return getSplitCarNames();
+		}
 		return separateCarNames(inputCarName);
 	}
 
 	private String[] separateCarNames(String input) {
+		System.out.println(input);
 		String[] carNames = input.split(SPLIT_COMMA);
 		for (int idx = 0; idx < carNames.length; idx++) {
 			carNames[idx] = carNames[idx].trim();
@@ -37,7 +45,7 @@ public class RacingCarController {
 
 	private void checkCarName(String name) {
 		try {
-			RacingCarValidator.isRightLength(name);
+			RacingCarNameValidator.isRightLength(name);
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
 			getSplitCarNames();
@@ -47,7 +55,7 @@ public class RacingCarController {
 	private int getCarTimes() {
 		String inputRacingTimes = InputView.userStringInput(INPUT_COUNT_MESSAGE);
 		try {
-			RacingCarValidator.isRightTimes(inputRacingTimes);
+			RacingCarTimeValidator.isRightTimes(inputRacingTimes);
 			return Integer.parseInt(inputRacingTimes);
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
