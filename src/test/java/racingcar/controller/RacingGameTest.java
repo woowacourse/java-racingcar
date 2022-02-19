@@ -24,6 +24,7 @@ class RacingGameTest {
 
 		while(!racingGame.isEnd()) {
 			racingGame.race();
+			racingGame.endThisTurn();
 		}
 
 		verify(racingGame, times(2)).race();

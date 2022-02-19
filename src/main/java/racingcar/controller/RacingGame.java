@@ -16,7 +16,11 @@ public class RacingGame {
 	}
 
 	public boolean isEnd() {
-		return repeats-- <= 0;
+		return repeats <= 0;
+	}
+
+	public void endThisTurn() {
+		repeats--;
 	}
 
 	public void race() {

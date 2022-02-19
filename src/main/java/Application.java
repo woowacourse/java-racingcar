@@ -14,6 +14,7 @@ public class Application {
 		while (!racingGame.isEnd()) {
 			racingGame.race();
 			Output.printTurnResult(racingGame.getThisTurnResult());
+			racingGame.endThisTurn();
 		}
 		Output.printWinner(racingGame.getWinnersName());
 	}
