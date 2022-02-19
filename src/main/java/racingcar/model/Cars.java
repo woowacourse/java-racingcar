@@ -10,12 +10,11 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars from(List<String> carNames) {
-        return new Cars(toCar(carNames));
+    public static Cars of(List<String> carNames, MovingCarStrategy movingCarStrategy) {
+        return new Cars(toCar(carNames, movingCarStrategy));
     }
 
-    private static List<Car> toCar(List<String> carNames) {
-        MovingCarStrategy movingCarStrategy = new RandomMovingStrategy();
+    private static List<Car> toCar(List<String> carNames, MovingCarStrategy movingCarStrategy) {
         return carNames.stream()
                 .map(carName -> new Car(carName, movingCarStrategy))
                 .collect(Collectors.toList());
@@ -39,7 +38,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Car findWinnerCar() {
+    private Car findWinnerCar() {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(IllegalArgumentException::new);

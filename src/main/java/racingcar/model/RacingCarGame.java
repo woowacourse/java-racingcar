@@ -10,7 +10,7 @@ public class RacingCarGame {
     private final GameTurn gameTurn;
 
     public RacingCarGame(String carNames, int gameTurn) {
-        this.cars = Cars.from(splitCarNames(carNames));
+        this.cars = Cars.of(splitCarNames(carNames), new RandomMovingStrategy());
         this.gameTurn = new GameTurn(gameTurn);
     }
 
