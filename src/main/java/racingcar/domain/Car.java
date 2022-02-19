@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import java.util.Optional;
 
 public class Car implements Comparable<Car> {
     private static final int INIT_POSITION = 1;
@@ -11,8 +10,10 @@ public class Car implements Comparable<Car> {
     private final CarName name;
 
     public Car(final CarName name) {
-        this.name = Optional.ofNullable(name)
-                .orElseThrow(() -> new IllegalArgumentException("null은 사용할 수 없습니다. CarName타입을 사용하세요."));
+        if (Objects.isNull(name)) {
+            throw new IllegalArgumentException("null은 사용할 수 없습니다. CarName타입을 사용하세요.");
+        }
+        this.name = name;
     }
 
     public boolean isSamePositionWith(final Car other) {
