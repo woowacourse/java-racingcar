@@ -9,8 +9,7 @@ import racingcar.domain.movement.MovementStrategy;
 
 public class Cars {
 
-    private static final int MIN_LENGTH = 0;
-    private static final String DELIMITER = ",";
+    private static final int DEFAULT_MAX_POSITION = -1;
 
     private final List<Car> cars;
 
@@ -18,30 +17,17 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars create(String names) {
-        return new Cars(createCarsByName(names));
+    public static Cars create(String[] names) {
+        return new Cars(createCars(names));
     }
 
-    private static List<Car> createCarsByName(String names) {
-        String[] carNames = splitByDelimiter(names);
-        return createCarList(carNames);
-    }
-
-    private static String[] splitByDelimiter(String names) {
-        String[] carNames = names.split(DELIMITER);
-        if (carNames.length == MIN_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름에 "+ DELIMITER + "만 사용할 수 없습니다.");
-        }
-        return carNames;
-    }
-
-    private static List<Car> createCarList(String[] carNames) {
+    private static List<Car> createCars(String[] carNames) {
         return Arrays.stream(carNames)
             .map(name -> new Car(name.trim()))
             .collect(Collectors.toList());
     }
 
-    public List<Car> getCarList() {
+    public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 
@@ -56,7 +42,7 @@ public class Cars {
         return cars.stream()
             .mapToInt(Car::getPosition)
             .max()
-            .orElse(-1);
+            .orElse(DEFAULT_MAX_POSITION);
     }
 
     public void move(MovementStrategy strategy) {

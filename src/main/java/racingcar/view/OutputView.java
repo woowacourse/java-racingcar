@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     public void printCarsPosition(Cars cars) {
-        cars.getCarList().forEach(this::printCarPosition);
+        cars.getCars().forEach(this::printCarPosition);
         System.out.println();
     }
 

@@ -31,7 +31,7 @@ class OutputViewTest extends ConsoleTest {
     void printCarsPosition() {
         changeOutput();
         outputView = ViewConfig.getOutputView();
-        String input = "pobi,seung,char";
+        String[] input = {"pobi", "seung", "char"};
         Cars cars = Cars.create(input);
         cars.move(() -> 1);
         outputView.printCarsPosition(cars);

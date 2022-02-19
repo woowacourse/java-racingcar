@@ -23,22 +23,13 @@ class CarsTest {
 
     @Test
     void createCarsBySplitComma() {
-        String input = "pobi,seung,char";
+        String[] input = {"pobi", "seung", "char"};
         Cars cars = Cars.create(input);
-        List<Car> carList = cars.getCarList();
+        List<Car> carList = cars.getCars();
         assertThat(carList.size()).isEqualTo(3);
         assertThat(carList.get(0)).isEqualTo(new Car("pobi"));
         assertThat(carList.get(1)).isEqualTo(new Car("seung"));
         assertThat(carList.get(2)).isEqualTo(new Car("char"));
-    }
-
-    @Test
-    void errorOnContinuousComma() {
-        String input = ",,,";
-        assertThatThrownBy(() -> {
-            Cars.create(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("자동차 이름에 ,만 사용할 수 없습니다.");
     }
 
     @DisplayName("우승자가 1명일 경우 정상적인지 확인")
