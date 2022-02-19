@@ -13,7 +13,7 @@ public class PositionTest {
         Position position = Position.create();
 
         // when
-        position.move(1);
+        position = position.move(1);
 
         // then
         assertThat(position.toInt()).isEqualTo(1);
