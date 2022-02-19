@@ -1,5 +1,7 @@
 package racingcar.domain.round;
 
+import static racingcar.utils.IntegerUtils.parseInt;
+
 public class Round {
 
     private static final int MIN_NUMBER = 1;
@@ -9,7 +11,7 @@ public class Round {
     private int round;
 
     public Round(String round) {
-        this(parseInt(round));
+        this(parseInt(round, new IllegalArgumentException(NOT_MIN_NUMBER_ERROR_MESSAGE)));
     }
 
     public Round(int round) {
@@ -19,14 +21,6 @@ public class Round {
 
     private void validate(int round) {
         if (round < MIN_NUMBER) {
-            throw new IllegalArgumentException(NOT_MIN_NUMBER_ERROR_MESSAGE);
-        }
-    }
-
-    private static int parseInt(String round) {
-        try {
-            return Integer.parseInt(round);
-        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_MIN_NUMBER_ERROR_MESSAGE);
         }
     }
