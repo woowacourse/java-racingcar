@@ -2,6 +2,9 @@ package racingcar.controller;
 
 import java.io.IOException;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import racingcar.model.car.CarNameAndPosition;
 import racingcar.model.car.Cars;
 import racingcar.model.value.TryCount;
 import racingcar.util.RandomNumberGenerator;
@@ -43,13 +46,19 @@ public class RacingController {
         OutputView.printStartMessage();
         while (tryCount.isNotSame(currentTryCount++)) {
             cars.moveAll(RandomNumberGenerator.fromBounds(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND));
-            OutputView.printCurrentCarInfo(cars.getCarsInfo());
+            OutputView.printCurrentCarInfo(getCarsNameAndPosition(cars));
         }
     }
 
     private void terminateGame(Cars cars) {
-        OutputView.printCurrentCarInfo(cars.getCarsInfo());
+        OutputView.printCurrentCarInfo(getCarsNameAndPosition(cars));
         OutputView.printWinners(cars.getWinners());
+    }
+
+    private List<CarNameAndPosition> getCarsNameAndPosition(Cars cars) {
+        return cars.getCars().stream()
+                .map(CarNameAndPosition::new)
+                .collect(Collectors.toList());
     }
 }
 
