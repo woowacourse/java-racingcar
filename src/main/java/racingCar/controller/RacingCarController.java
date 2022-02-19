@@ -26,7 +26,7 @@ public class RacingCarController {
 		return separateCarNames(inputCarName);
 	}
 
-	String[] separateCarNames(String input) {
+	private String[] separateCarNames(String input) {
 		String[] carNames = input.split(SPLIT_COMMA);
 		for (int idx = 0; idx < carNames.length; idx++) {
 			carNames[idx] = carNames[idx].trim();
@@ -55,7 +55,7 @@ public class RacingCarController {
 		}
 	}
 
-	RacingCars makeCars(String[] carNames) {
+	private RacingCars makeCars(String[] carNames) {
 		List<Car> cars = new ArrayList<>();
 		for (String carName : carNames) {
 			cars.add(new Car(carName));
@@ -63,7 +63,7 @@ public class RacingCarController {
 		return new RacingCars(cars);
 	}
 
-	public void race(int count, RacingCars racingCars) {
+	private void race(int count, RacingCars racingCars) {
 		OutputView.startPrintResultMessage();
 		for (int i = 0; i < count; i++) {
 			racingCars.moveRacingCars();
