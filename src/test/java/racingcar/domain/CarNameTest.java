@@ -10,7 +10,7 @@ public class CarNameTest {
         final String nameString = "jason11";
 
         assertThatThrownBy(() -> new CarName(nameString))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("이하");
     }
 
@@ -19,7 +19,7 @@ public class CarNameTest {
         final String nameString = "";
 
         assertThatThrownBy(() -> new CarName(nameString))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차의 이름을 입력해주세요!");
     }
 
@@ -28,7 +28,7 @@ public class CarNameTest {
         final String nameString = null;
 
         assertThatThrownBy(() -> new CarName(nameString))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("null은 사용할 수 없습니다. String 타입을 사용하세요.");
     }
 
