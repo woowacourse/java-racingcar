@@ -7,7 +7,10 @@ import racingcar.view.ErrorMessage;
 import racingcar.vo.Car;
 
 public class CarMakerUtil {
-    
+
+    private CarMakerUtil() {
+    }
+
     public static List<Car> createCarsWith(String[] names) {
         validateDuplicateCarName(names);
         return Arrays.stream(names)
