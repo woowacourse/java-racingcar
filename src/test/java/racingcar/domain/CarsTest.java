@@ -8,7 +8,6 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.dto.Winners;
 import racingcar.domain.vo.MovingNumber;
 import racingcar.domain.vo.Name;
 

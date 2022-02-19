@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.stream.Collectors;
-import racingcar.dto.Winners;
 import racingcar.domain.vo.Name;
 import racingcar.domain.vo.MovingNumber;
 

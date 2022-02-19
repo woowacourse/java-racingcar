@@ -6,7 +6,6 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 import racingcar.InputNameHandler;
 import racingcar.domain.vo.Trial;
-import racingcar.dto.Winners;
 import racingcar.util.RandomUtil;
 import racingcar.domain.vo.MovingNumber;
 

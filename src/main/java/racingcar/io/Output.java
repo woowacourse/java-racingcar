@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.vo.Name;
-import racingcar.dto.Winners;
+import racingcar.domain.Winners;
 
 public class Output {
     private static final String NAME_DELIMITER = ", ";

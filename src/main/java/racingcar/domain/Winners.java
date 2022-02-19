@@ -1,5 +1,6 @@
-package racingcar.dto;
+package racingcar.domain;
 
+import java.util.Collections;
 import java.util.List;
 import racingcar.domain.vo.Name;
 
@@ -11,6 +12,6 @@ public class Winners {
     }
 
     public List<Name> getWinners() {
-        return winners;
+        return Collections.unmodifiableList(winners);
     }
 }
