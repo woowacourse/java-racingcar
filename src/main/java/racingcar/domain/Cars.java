@@ -38,16 +38,6 @@ public class Cars {
         }
     }
 
-    public List<CarDTO> convertToDTO() {
-        List<CarDTO> carDTOs = new ArrayList<>();
-
-        for (Car car : cars) {
-            carDTOs.add(new CarDTO(car));
-        }
-
-        return carDTOs;
-    }
-
     public List<String> selectWinners() {
         int maxPosition = findMaxPosition();
 
@@ -62,9 +52,9 @@ public class Cars {
     }
 
     private void validateDuplication(String[] carNames) {
-        HashSet<String> hashSet = new HashSet<>(Arrays.asList(carNames));
+        Set<String> set = new HashSet<>(Arrays.asList(carNames));
 
-        if (hashSet.size() < carNames.length) {
+        if (set.size() < carNames.length) {
             throw new IllegalArgumentException(DUPLICATED);
         }
     }
