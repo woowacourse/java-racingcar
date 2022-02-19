@@ -5,12 +5,10 @@ import java.util.Objects;
 public class Car {
 
     private static final int INIT_POSITION = 0;
-    private static final String CAR_NAME_ERROR_MESSAGE = "자동차 이름이 null이거나 빈 문자열, 혹은 공백으로만 이루어져 있습니다.";
     private final String name;
     private int position;
 
     public Car(String name) {
-        carNameCheck(name);
         this.name = name;
         this.position = INIT_POSITION;
     }
@@ -25,12 +23,6 @@ public class Car {
 
     public CarDto toDto() {
         return new CarDto(this.getName(), this.getPosition());
-    }
-
-    private void carNameCheck(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException(CAR_NAME_ERROR_MESSAGE);
-        }
     }
 
     public String getName() {
