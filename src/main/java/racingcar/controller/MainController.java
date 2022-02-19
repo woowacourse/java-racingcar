@@ -1,27 +1,28 @@
-package racingcar;
+package racingcar.controller;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import racingcar.domain.Car;
+import racingcar.util.RandomNumberGenerator;
+import racingcar.view.Input;
+import racingcar.view.Output;
 
-public class Game {
+public class MainController {
 
-    private static final int RANDOM_RANGE = 10;
+    final private Input input;
+    final private Output output;
+    final private RandomNumberGenerator randomNumberGenerator;
 
-    private Input input;
-    private Output output;
-
-    public Game() {
+    public MainController() {
         input = new Input();
         output = new Output();
+        randomNumberGenerator = new RandomNumberGenerator();
     }
 
     public void start() {
-        String[] names = inputCarNames();
-        List<Car> cars = generateCar(names);
-        int attemptCount = inputAttemptCount();
-        race(attemptCount, cars);
-        List<String> winners = getWinner(cars);
-        output.printWinner(winners);
+        List<Car> cars = generateCar(inputCarNames());
+        race(inputAttemptCount(), cars);
+        output.printWinner(getNamesOfWinners(cars));
     }
 
     private String[] inputCarNames() {
@@ -36,9 +37,7 @@ public class Game {
 
     private List<Car> generateCar(String[] names) {
         List<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
+        Arrays.stream(names).forEach(name -> cars.add(new Car(name)));
         return cars;
     }
 
@@ -51,34 +50,24 @@ public class Game {
     }
 
     private void moveCar(List<Car> cars) {
-        for (Car car : cars) {
-            int randomNumber = makeRandomNumber();
-            boolean isMove = car.isMovable(randomNumber);
-            car.movePosition(isMove);
-        }
+        cars.forEach(car -> car.movePosition(randomNumberGenerator.generate()));
     }
 
-    private int makeRandomNumber() {
-        return (int) (Math.random() * RANDOM_RANGE);
-    }
-
-    private List<String> getWinner(List<Car> cars) {
+    private List<String> getNamesOfWinners(List<Car> cars) {
         int maxPosition = findMaxPosition(cars);
-        List<String> winners = findWinnerByPosition(maxPosition, cars);
-        return winners;
+        return findCarNamesByPosition(maxPosition, cars);
     }
 
     private int findMaxPosition(List<Car> cars) {
         Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getPosition);
-
         return cars.stream()
             .max(comparatorByPosition).get().getPosition();
     }
 
-    private List<String> findWinnerByPosition(int maxPosition, List<Car> cars) {
+    private List<String> findCarNamesByPosition(int position, List<Car> cars) {
         return cars.stream()
-            .filter(car -> car.isMaxPosition(maxPosition))
-            .map(car -> car.getName())
+            .filter(car -> car.isSamePosition(position))
+            .map(Car::getName)
             .collect(Collectors.toList());
     }
 }

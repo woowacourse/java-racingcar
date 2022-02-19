@@ -1,6 +1,7 @@
-package racingcar;
+package racingcar.view;
 
 import java.util.List;
+import racingcar.domain.Car;
 
 public class Output {
 
@@ -33,8 +34,7 @@ public class Output {
     }
 
     private String makePositionString(int position) {
-        String positionFlag = POSITION_FLAG;
-        return positionFlag.repeat(position);
+        return POSITION_FLAG.repeat(position);
     }
 
     public void printWinner(List<String> winnerNames) {

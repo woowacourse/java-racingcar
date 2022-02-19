@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 public class Car {
 
@@ -21,18 +21,18 @@ public class Car {
         this.position = START_POSITION;
     }
 
-    public void movePosition(boolean isMovable) {
-        if (isMovable) {
+    public void movePosition(int number) {
+        if (isMovable(number)) {
             position++;
         }
     }
 
-    public boolean isMovable(int number) {
+    private boolean isMovable(int number) {
         return number >= MINIMUM_MOVE;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     public int getPosition() {

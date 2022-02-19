@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class InputValidatorTest {
 
-    private InputValidator inputValidator = new InputValidator();
+    final private InputValidator inputValidator = new InputValidator();
 
     @DisplayName("자동차 이름 목록에 구분자가 잘못 입력된 경우 에러 발생")
     @Test
