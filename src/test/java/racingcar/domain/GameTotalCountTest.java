@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static racingcar.domain.GameTotalCount.createGameTotalCount;
 
 @SuppressWarnings("NonAsciiCharacters")
 class GameTotalCountTest {
@@ -17,7 +18,7 @@ class GameTotalCountTest {
         int attemptNumber = Integer.parseInt(attempt);
 
         //when
-        GameTotalCount gameTotalCount = new GameTotalCount(attempt);
+        GameTotalCount gameTotalCount = createGameTotalCount(attempt);
 
         //then
         assertThat(attemptNumber).isEqualTo(gameTotalCount.getTotalAttemptCount());
@@ -30,7 +31,7 @@ class GameTotalCountTest {
         String attempt = "숫자";
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> new GameTotalCount(attempt));
+        assertThrows(IllegalArgumentException.class, () -> createGameTotalCount(attempt));
     }
 
     @Test
@@ -40,6 +41,6 @@ class GameTotalCountTest {
         String attempt = "-3";
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> new GameTotalCount(attempt));
+        assertThrows(IllegalArgumentException.class, () -> createGameTotalCount(attempt));
     }
 }

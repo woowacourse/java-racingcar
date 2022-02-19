@@ -9,6 +9,7 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
+import static racingcar.domain.GameTotalCount.*;
 import static racingcar.view.InputView.getAttemptCount;
 import static racingcar.view.InputView.getCarNames;
 import static racingcar.view.OutputView.*;
@@ -36,7 +37,7 @@ public class RacingGame {
         cars = new Cars(carNames);
 
         String attempt = getAttemptCount();
-        gameTotalCount = new GameTotalCount(attempt);
+        gameTotalCount = createGameTotalCount(attempt);
     }
 
     private void run() {
