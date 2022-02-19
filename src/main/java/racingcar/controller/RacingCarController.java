@@ -1,29 +1,55 @@
 package racingcar.controller;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import racingcar.domain.Car;
 import racingcar.domain.ParticipatedCars;
-import racingcar.domain.TrialCount;
-import racingcar.domain.WinnerNames;
-import racingcar.util.BoundedRandomNumberGenerator;
+import racingcar.domain.RacingGame;
+import racingcar.dto.RacingResultsDto;
+import racingcar.dto.WinnerNamesDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
-    private static final int MAX_BOUND = 9;
-    private static final int MIN_BOUND = 0;
 
     public void playGame() {
-        ParticipatedCars participatedCars = new ParticipatedCars(InputView.inputCarNames());
-        TrialCount trialCount = TrialCount.from(InputView.inputTrials());
+        RacingGame racingGame = initRacingGame();
+        executeRacingAndPrintResults(racingGame);
 
-        executeRacingAndPrintRecord(trialCount, participatedCars);
-        OutputView.printWinnerNames(WinnerNames.of(participatedCars));
+        OutputView.printWinnerNames(getWinnerNamesOfRacing(racingGame));
     }
 
-    private void executeRacingAndPrintRecord(TrialCount trialCount, ParticipatedCars participatedCars) {
+    private RacingGame initRacingGame() {
+        String carNamesLine = InputView.inputCarNames();
+        String trialCountLine = InputView.inputTrials();
+        return RacingGame.of(carNamesLine, trialCountLine);
+    }
+
+    private void executeRacingAndPrintResults(RacingGame racingGame) {
         OutputView.printResultMessage();
-        for (int i = 0; i < trialCount.toInt(); i++) {
-            participatedCars.tryToMoveBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
-            OutputView.printRacingRecords(participatedCars);
+        while (racingGame.canRaceMore()) {
+            racingGame.raceOnce();
+            OutputView.printRacingResults(getResultsOfRacing(racingGame));
         }
+    }
+
+    private WinnerNamesDto getWinnerNamesOfRacing(RacingGame racingGame) {
+        ParticipatedCars participatedCars = racingGame.getParticipatedCars();
+        List<String> names = participatedCars.getWinnerNames();
+        return new WinnerNamesDto(names);
+    }
+
+    private RacingResultsDto getResultsOfRacing(RacingGame racingGame) {
+        ParticipatedCars participatedCars = racingGame.getParticipatedCars();
+        Map<String, Integer> results = participatedCars.getCars()
+                .stream()
+                .collect(getResultCollector());
+        return new RacingResultsDto(results);
+    }
+
+    private Collector<Car, ?, Map<String, Integer>> getResultCollector() {
+        return Collectors.toMap(Car::getName, Car::getPosition);
     }
 }

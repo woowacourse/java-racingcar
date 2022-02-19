@@ -1,8 +1,8 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
-import racingcar.domain.ParticipatedCars;
-import racingcar.domain.WinnerNames;
+import java.util.Map.Entry;
+import racingcar.dto.WinnerNamesDto;
+import racingcar.dto.RacingResultsDto;
 
 public class OutputView {
     private static final String NEW_LINE = "\n";
@@ -16,18 +16,19 @@ public class OutputView {
         System.out.println(NEW_LINE + RACING_RESULT_MESSAGE);
     }
 
-    public static void printRacingRecords(ParticipatedCars participatedCars) {
-        participatedCars.getCars()
+    public static void printRacingResults(RacingResultsDto result) {
+        result.getResults()
+                .entrySet()
                 .stream()
-                .forEach(car -> System.out.println(getCarRecord(car)));
+                .forEach(carResult -> System.out.println(getCarResults(carResult)));
         System.out.println();
     }
 
-    private static String getCarRecord(Car car) {
-        return car.getName() + RECORD_DELIMITER + POSITION_TO_STRING.repeat(car.getPosition());
+    private static String getCarResults(Entry<String, Integer> carResult) {
+        return carResult.getKey() + RECORD_DELIMITER + POSITION_TO_STRING.repeat(carResult.getValue());
     }
 
-    public static void printWinnerNames(WinnerNames winnerNames) {
+    public static void printWinnerNames(WinnerNamesDto winnerNames) {
         String winners = String.join(WINNER_NAME_DELIMITER, winnerNames.getWinnerNames());
         System.out.println(winners + WINNER_MESSAGE);
     }

@@ -16,14 +16,19 @@ public class ParticipatedCars {
 
     private final List<Car> cars;
 
-    public ParticipatedCars(final String carNamesLine) {
-        List<String> carNames = getCarNamesFrom(carNamesLine);
-        cars = carNames.stream()
-                .map(name -> new Car(name, START_POSITION))
-                .collect(Collectors.toList());
+    private ParticipatedCars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    private List<String> getCarNamesFrom(String carNamesLine) {
+    public static ParticipatedCars from(String carNamesLine) {
+        List<String> carNames = getCarNamesFrom(carNamesLine);
+        List<Car> cars = carNames.stream()
+                .map(name -> new Car(name, START_POSITION))
+                .collect(Collectors.toList());
+        return new ParticipatedCars(cars);
+    }
+
+    private static List<String> getCarNamesFrom(String carNamesLine) {
         checkCarNamesLineNonEmpty(carNamesLine);
         List<String> carNames = StringUtil.split(carNamesLine);
         checkCarNameDuplicated(carNames);
@@ -55,6 +60,21 @@ public class ParticipatedCars {
         if (randomNumberGenerator.generate() > OPERATING_STANDARD) {
             car.move();
         }
+    }
+
+    public List<String> getWinnerNames() {
+        int fastestPosition = findFastestPosition(cars);
+        return cars.stream()
+                .filter(car -> car.isSamePositionWith(fastestPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int findFastestPosition(List<Car> cars) {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
     }
 
     public List<Car> getCars() {

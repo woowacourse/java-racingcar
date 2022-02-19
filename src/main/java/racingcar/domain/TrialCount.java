@@ -35,7 +35,11 @@ public class TrialCount {
         }
     }
 
-    public int toInt() {
-        return trialCount;
+    public void consume() {
+        trialCount--;
+    }
+
+    public boolean isEmpty() {
+        return trialCount == 0;
     }
 }
