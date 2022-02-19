@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import java.util.function.Function;
 
 import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.vo.CarName;
@@ -75,15 +74,11 @@ public class Car {
 	}
 
 	public int compareNameTo(final Car other) {
-		return compareTo((Car otherCar) -> this.name.get().compareTo(otherCar.name.get()), other);
+		return name.get().compareTo(other.getName());
 	}
 
 	public int comparePositionTo(final Car other) {
-		return compareTo((Car otherCar) -> this.position - otherCar.position, other);
-	}
-
-	public int compareTo(final Function<Car, Integer> function, final Car other) {
-		return function.apply(other);
+		return position - other.position;
 	}
 
 	@Override

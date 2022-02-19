@@ -1,8 +1,7 @@
-package racingcar.domain.vo;
+package racingcar.validator;
 
 import static org.assertj.core.api.Assertions.*;
-import static racingcar.domain.Cars.*;
-import static racingcar.domain.vo.CarName.*;
+import static racingcar.validator.CarNameValidator.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,8 +11,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.domain.Cars;
+import racingcar.domain.vo.CarName;
 
-public class CarNameTest {
+class CarNameValidatorTest {
 
 	@DisplayName("자동차 이름에")
 	@Nested

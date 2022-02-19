@@ -47,4 +47,6 @@ public class CarTest {
 		car.move();
 		assertThat(car.isSamePosition(notMovedCar)).isTrue();
 	}
+
+	// TODO position, name 에 대한 테스트 코드 구현할 것 !
 }

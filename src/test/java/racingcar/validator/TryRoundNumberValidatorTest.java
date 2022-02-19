@@ -1,14 +1,16 @@
-package racingcar.domain.vo;
+package racingcar.validator;
 
 import static org.assertj.core.api.Assertions.*;
-import static racingcar.domain.vo.TryRoundNumber.*;
+import static racingcar.validator.TryRoundNumberValidator.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class TryRoundNumberTest {
+import racingcar.domain.vo.TryRoundNumber;
+
+class TryRoundNumberValidatorTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"1", "2"})

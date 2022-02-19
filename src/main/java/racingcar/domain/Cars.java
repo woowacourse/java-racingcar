@@ -1,8 +1,9 @@
 package racingcar.domain;
 
+import static racingcar.validator.CarNameValidator.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,8 +15,6 @@ public class Cars {
 
 	private static final String CAR_NAME_DELIMINATOR = ",";
 	private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
-	public static final String INVALID_DUPLICATE_CAR_NAMES = "[ERROR] 차 이름이 중복됩니다";
-	private static final String INVALID_EMPTY_CAR_NAMES = "[ERROR] 차 이름은 공백이 될 수 없습니다";
 
 	private final List<Car> cars;
 
@@ -31,8 +30,7 @@ public class Cars {
 		final List<String> parsedCarNames = List.of(splitCarNames(carNames));
 		cars  = new ArrayList<>();
 
-		validateCarNamesEmpty(parsedCarNames);
-		validateDuplication(parsedCarNames);
+		validateCarNames(parsedCarNames);
 
 		for (final String carName : parsedCarNames) {
 			final Car car = Car.builder()
@@ -48,25 +46,8 @@ public class Cars {
 		return Collections.unmodifiableList(cars);
 	}
 
-	private void validateCarNamesEmpty(final List<String> carNames) {
-		if (carNames.size() == 0) {
-			throw new RuntimeException(INVALID_EMPTY_CAR_NAMES);
-		}
-	}
-
-	private void validateDuplication(List<String> carNames) {
-		if (isDuplicated(carNames)) {
-			throw new RuntimeException(INVALID_DUPLICATE_CAR_NAMES);
-		}
-	}
-
-	private boolean isDuplicated(final List<String> carNames) {
-		return carNames.size() != new HashSet<>(carNames).size();
-	}
-
 	private String[] splitCarNames(String input) {
-		input = input.replaceAll("\\s", "");
-		return input.split(CAR_NAME_DELIMINATOR);
+		return input.replaceAll("\\s", "").split(CAR_NAME_DELIMINATOR);
 	}
 
 	public List<Car> getWinners() {
