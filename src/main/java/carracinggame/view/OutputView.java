@@ -1,6 +1,7 @@
 package carracinggame.view;
 
 import carracinggame.domain.CarNames;
+import carracinggame.domain.Cars;
 
 public class OutputView {
 
@@ -10,6 +11,9 @@ public class OutputView {
             CarNames.NAME_MAX_LENGTH + "이상이면 안됩니다. 다시 입력해주세요.";
     public static final String WHAT_TIMES = "시도할 횟수는 몇회인가요?";
     public static final String TIMES_ERROR = "[ERROR] 시도 횟수는 양수인 정수여야 합니다. 다시 입력해주세요.";
+    public static final String RESULT = "실행결과";
+    public static final String NAME_AND_POSITION_DELIMITER = " : ";
+    public static final String DISTANCE_OUTPUT = "-";
 
     public static void printEnterCarNames() {
         System.out.println(ENTER_CAR_NAMES);
@@ -29,6 +33,18 @@ public class OutputView {
 
     public static void printTimesError() {
         System.out.println(TIMES_ERROR);
+    }
+
+    public static void printResultMessage() {
+        System.out.println(RESULT);
+    }
+
+    public static void printResult(String name, int position) {
+        System.out.print(name + NAME_AND_POSITION_DELIMITER);
+        while(position-- < 0) {
+            System.out.print(" - ");
+        }
+        System.out.println();
     }
 
 
