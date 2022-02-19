@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import racingcar.builder.CarBuilder;
 import racingcar.repository.CarRepository;
 import racingcar.domain.Car;
 import racingcar.util.CarNameParser;
@@ -21,14 +20,18 @@ public class GameController {
     private CarRepository carRepository;
     private int roundNumber;
 
-    public GameController(InputView inputView, OutputView outputView, CarRepository carRepository) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.carRepository = carRepository;
+    private GameController(GameControllerBuilder gameControllerBuilder) {
+        this.inputView = gameControllerBuilder.inputView;
+        this.outputView = gameControllerBuilder.outputView;
+        this.carRepository = gameControllerBuilder.carRepository;
     }
 
     public GameController(CarRepository carRepository) {
         this.carRepository = carRepository;
+    }
+
+    public static GameControllerBuilder gameControllerBuilder(){
+        return new GameControllerBuilder();
     }
 
     public void play() {
@@ -51,15 +54,13 @@ public class GameController {
         List<String> carNames = Arrays.asList(strings);
 
         List<Car> cars = new ArrayList<>();
-        CarBuilder carBuilder = new CarBuilder();
         carNames.forEach(x -> {
-            Car car = carBuilder.setCarName(x).build();
+            Car car = Car.carBuilder().setCarName(x).build();
             cars.add(car);
         });
 
         carRepository.addCars(cars);
     }
-
 
     private void setRoundNumbers() {
         outputView.printAskRoundNumberMessage();
@@ -94,8 +95,6 @@ public class GameController {
 
         Car maxCar = cars.stream()
                 .max(Car::compareTo)
-                .stream()
-                .findAny()
                 .orElseThrow(() -> new RuntimeException(NOT_FOUND_CARS_MESSAGE));
 
         List<Car> winners = cars.stream()
@@ -103,5 +102,30 @@ public class GameController {
                 .collect(Collectors.toList());
 
         return winners;
+    }
+
+    public static class GameControllerBuilder {
+        private InputView inputView;
+        private OutputView outputView;
+        private CarRepository carRepository;
+
+        public GameControllerBuilder setInputView(InputView inputView) {
+            this.inputView = inputView;
+            return this;
+        }
+
+        public GameControllerBuilder setOutputView(OutputView outputView) {
+            this.outputView = outputView;
+            return this;
+        }
+
+        public GameControllerBuilder setCarRepository(CarRepository carRepository) {
+            this.carRepository = carRepository;
+            return this;
+        }
+
+        public GameController build() {
+            return new GameController(this);
+        }
     }
 }

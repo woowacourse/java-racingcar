@@ -4,8 +4,12 @@ public class Car implements Comparable<Car> {
     private String name;
     private int position;
 
-    public Car(String name) {
-        this.name = name;
+    private Car(CarBuilder carbuilder) {
+        this.name = carbuilder.carName;
+    }
+
+    public static CarBuilder carBuilder(){
+        return new CarBuilder();
     }
 
     public void moveOrHold(Boolean isMove) {
@@ -18,7 +22,7 @@ public class Car implements Comparable<Car> {
         return targetCar.decideIsSame(position);
     }
 
-    public boolean decideIsSame(int targetPosition) {
+    private boolean decideIsSame(int targetPosition) {
         return position == targetPosition;
     }
 
@@ -35,12 +39,25 @@ public class Car implements Comparable<Car> {
         return s.getCompareToValue(position);
     }
 
-    public int getCompareToValue(int targetPosition) {
+    private int getCompareToValue(int targetPosition) {
         return targetPosition - position;
     }
 
     @Override
     public String toString() {
         return name + " : " + "-".repeat(position);
+    }
+
+    public static class CarBuilder {
+        private String carName;
+
+        public CarBuilder setCarName(String carName) {
+            this.carName = carName;
+            return this;
+        }
+
+        public Car build() {
+            return new Car(this);
+        }
     }
 }
