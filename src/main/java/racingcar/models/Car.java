@@ -16,7 +16,7 @@ public class Car {
 	}
 
 	public void goForward() {
-		if (randomNumber.getRandomNumber() >= FORWARD_STANDARD) {
+		if (RandomNumber.getRandomNumber() >= FORWARD_STANDARD) {
 			position++;
 		}
 	}
