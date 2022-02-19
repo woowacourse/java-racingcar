@@ -21,13 +21,14 @@ class CarTest {
 
     @Test
     void isSamePosition() {
-        Car car = new Car("test", 3);
-        assertThat(car.isSamePosition(3)).isTrue();
+        Car car = new Car("test");
+        car.move();
+        assertThat(car.isSamePosition(1)).isTrue();
     }
 
     @Test
     void isNotInSamePosition() {
-        Car car = new Car("test", 3);
-        assertThat(car.isSamePosition(2)).isFalse();
+        Car car = new Car("test");
+        assertThat(car.isSamePosition(1)).isFalse();
     }
 }
