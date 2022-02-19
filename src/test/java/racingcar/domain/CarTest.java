@@ -13,7 +13,7 @@ class CarTest {
     @BeforeEach
     void beforeEach() {
         car = new Car("test");
-        car.proceed();
+        car.proceed(() -> true);
     }
 
     @Test

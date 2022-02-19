@@ -2,12 +2,8 @@ package racingcar.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.utils.RandomIntegerGenerator;
 
 public class Cars {
-    private static final int START_RANDOM_NUMBER = 0;
-    private static final int END_RANDOM_NUMBER = 9;
-    private static final int PROCEED_FlAG_NUMBER = 4;
     private static final int MIN_POSITION = 0;
     private static final String CAR_NAME_ERROR_MESSAGE = "자동차 이름이 null이거나 빈 문자열, 혹은 공백으로만 이루어져 있습니다.";
 
@@ -21,7 +17,7 @@ public class Cars {
     }
 
     public void proceedAll() {
-        cars.forEach(this::proceedOrStopCar);
+        cars.forEach(car -> car.proceed(new RandomProceedStrategy()));
     }
 
     public List<Car> getCarsHere(int positions) {
@@ -41,16 +37,6 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(MIN_POSITION);
-    }
-
-    private void proceedOrStopCar(Car car) {
-        if (carProceedCondition()) {
-            car.proceed();
-        }
-    }
-
-    private boolean carProceedCondition() {
-        return RandomIntegerGenerator.random(START_RANDOM_NUMBER, END_RANDOM_NUMBER) > PROCEED_FlAG_NUMBER;
     }
 
     private void carNameCheck(String name) {

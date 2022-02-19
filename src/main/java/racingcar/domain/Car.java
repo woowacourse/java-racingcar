@@ -13,8 +13,10 @@ public class Car {
         this.position = INIT_POSITION;
     }
 
-    public void proceed() {
-        this.position++;
+    public void proceed(ProceedStrategy moveStrategy) {
+        if (moveStrategy.canProceed()) {
+            this.position++;
+        }
     }
 
     public boolean isHere(int position) {
