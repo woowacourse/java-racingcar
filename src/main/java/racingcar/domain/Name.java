@@ -13,11 +13,6 @@ public class Name {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return this.name;
-    }
-
     private void validate(String name) {
         validateNotEmpty(name);
         validateLength(name);
@@ -50,5 +45,10 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

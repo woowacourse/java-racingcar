@@ -16,6 +16,20 @@ public class TryCount {
         return this.tryCount != tryCount;
     }
 
+    private int convertStringToInt(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(TRY_CNT_NOT_NUMBER);
+        }
+    }
+
+    private void validatePositive(int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException(TRY_CNT_NOT_NATURAL_NUMBER);
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -31,20 +45,6 @@ public class TryCount {
     @Override
     public int hashCode() {
         return Objects.hash(tryCount);
-    }
-
-    private int convertStringToInt(String string) {
-        try {
-            return Integer.parseInt(string);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(TRY_CNT_NOT_NUMBER);
-        }
-    }
-
-    private void validatePositive(int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException(TRY_CNT_NOT_NATURAL_NUMBER);
-        }
     }
 
     @Override

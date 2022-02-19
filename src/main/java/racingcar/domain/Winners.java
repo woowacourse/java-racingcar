@@ -16,7 +16,6 @@ public class Winners {
                 .collect(Collectors.toList());
     }
 
-
     public int getMaxPosition() {
         return maxPosition;
     }
