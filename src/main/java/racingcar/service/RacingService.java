@@ -8,12 +8,12 @@ import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.domain.RacingGame;
 import racingcar.domain.Round;
-import racingcar.domain.CarRepository;
+import racingcar.domain.Cars;
 import racingcar.util.MovingNumberPolicyByRandom;
 
 public class RacingService {
 
-	private final CarRepository carRepository = new CarRepository();
+	private final Cars cars = new Cars();
 	private final MovingNumberPolicyByRandom randomUtil = new MovingNumberPolicyByRandom();
 	private RacingGame racingGame;
 
@@ -22,13 +22,13 @@ public class RacingService {
 			.map(CarDto::toEntity)
 			.collect(Collectors.toList());
 
-		carRepository.add(cars);
+		this.cars.add(cars);
 	}
 
 	public void race(AttemptNumber attemptNumber) {
-		racingGame = RacingGame.of(carRepository.findCars(), attemptNumber);
+		racingGame = RacingGame.of(cars.findCars(), attemptNumber);
 		List<Car> resultCars = racingGame.start(randomUtil);
-		carRepository.updateCars(resultCars);
+		cars.updateCars(resultCars);
 	}
 
 	public List<CarDto> findRacingResult(Round round) {
@@ -38,7 +38,7 @@ public class RacingService {
 	}
 
 	public List<CarDto> findWinnerCars() {
-		return carRepository.findWinnerCars().stream()
+		return cars.findWinnerCars().stream()
 			.map(CarDto::of)
 			.collect(Collectors.toList());
 	}

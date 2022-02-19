@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarRepository {
+public class Cars {
 
 	private static final String EMPTY_CAR_ERROR_MESSAGE = "등록된 자동차가 없습니다.";
 
