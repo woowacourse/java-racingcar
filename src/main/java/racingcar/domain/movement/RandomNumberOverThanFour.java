@@ -1,18 +1,19 @@
 package racingcar.domain.movement;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class RandomNumberOverThanFour implements Movement {
     private static final int NUMBER_POSSIBLE_TO_MOVE = 4;
-    private static final int MAX_RANDOM_NUMBER_BOUNDARY = 10;
 
-    private final NumberGenerator numberGenerator;
-
-    public RandomNumberOverThanFour(final NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
+    public List<Integer> getMovementValues(final List<Integer> movementSourceValues) {
+        return movementSourceValues.stream()
+                .map(this::generateMovementValue)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public int getMovementValue() {
-        final int randomNumber = numberGenerator.generate(MAX_RANDOM_NUMBER_BOUNDARY);
-        if (randomNumber >= NUMBER_POSSIBLE_TO_MOVE) {
+    private int generateMovementValue(final int movementSourceValue) {
+        if (movementSourceValue >= NUMBER_POSSIBLE_TO_MOVE) {
             return 1;
         }
         return 0;

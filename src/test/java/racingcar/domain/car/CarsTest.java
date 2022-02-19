@@ -2,9 +2,6 @@ package racingcar.domain.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.movement.Movement;
-import racingcar.domain.movement.NumberGenerator;
-import racingcar.domain.movement.RandomNumberOverThanFour;
 import racingcar.dto.CarDto;
 
 import java.util.Arrays;
@@ -15,10 +12,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
     private final Cars cars = new Cars(Arrays.asList("abc", "def", "ghi"));
-    private final int[] definedRandomNumberValues = {3, 4, 4};
-    private int index = 0;
-    private final NumberGenerator numberGenerator = (anyValue) -> definedRandomNumberValues[index++];
-    private final Movement movement = new RandomNumberOverThanFour(numberGenerator);
 
     @Test
     @DisplayName("자동차 이름 간 중복이 있을 경우 예외를 발생시킵니다.")
@@ -36,7 +29,8 @@ class CarsTest {
     @DisplayName("자동차들을 전진(혹은 정지)시키고 반환한다")
     void move_getCars_Test() {
         //given
-        cars.move(movement);
+        final List<Integer> movementValues = Arrays.asList(0, 1, 1);
+        cars.move(movementValues);
         final CarDto abc = new CarDto("abc", 0);
         final CarDto def = new CarDto("def", 1);
         final CarDto ghi = new CarDto("ghi", 1);
@@ -51,7 +45,8 @@ class CarsTest {
     @DisplayName("가장 멀리 간 자동차들을 반환한다.")
     void getFarthestCar_Test() {
         //given
-        cars.move(movement);
+        final List<Integer> movementValues = Arrays.asList(0, 1, 1);
+        cars.move(movementValues);
         final CarDto def = new CarDto("def", 1);
         final CarDto ghi = new CarDto("ghi", 1);
         final List<CarDto> expected = Arrays.asList(def, ghi);

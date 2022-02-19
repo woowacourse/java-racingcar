@@ -1,12 +1,12 @@
 package racingcar.domain.car;
 
 import racingcar.dto.CarDto;
-import racingcar.domain.movement.Movement;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Cars {
     private static final String DUPLICATED_CAR_NAMES = "자동차 이름들 간 중복이 있습니다.";
@@ -35,8 +35,9 @@ public class Cars {
         }
     }
 
-    public void move(final Movement movement) {
-        cars.forEach(car -> car.move(movement.getMovementValue()));
+    public void move(final List<Integer> movementValues) {
+        IntStream.range(0, cars.size())
+                .forEach(index -> cars.get(index).move(movementValues.get(index)));
     }
 
     public List<CarDto> getCarInfos() {

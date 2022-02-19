@@ -11,9 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GameTest {
-    private final int[] definedMovementValue = {1, 1, 0};
-    private int movementIndex = 0;
-    private final Movement movementStrategy = () -> definedMovementValue[movementIndex++];
+    private final Movement movementStrategy = (anySource) -> Arrays.asList(1, 1, 0);
     private final List<String> carNames = Arrays.asList("Chris", "Roma", "Alex");
     private final int trialCount = 1;
     private final Game game = new Game(carNames, trialCount, movementStrategy);
