@@ -2,6 +2,8 @@ package racingcar.vo;
 
 import static racingcar.util.MovementUtil.isMoveForward;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
 
     private static final String RESULT_DELIMITER = " : ";
@@ -43,6 +45,20 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car car) {
         return position.compareTo(car.position);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Car car = (Car) object;
+        return name.equals(car.name) && position.equals(car.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 
     public CarName getName() {

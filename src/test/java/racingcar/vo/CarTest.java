@@ -55,23 +55,19 @@ class CarTest {
     @Test
     void move_with_movableNumber_test() {
         String name = "name1";
-        CarName carName = new CarName(name);
-        Position zeroPosition = new Position(0);
-        Car car = new Car(carName, zeroPosition);
+        Car car = new Car(name);
         NumberGenerator numberGenerator = new MovableNumberGenerator();
         Car movedCar = car.move(numberGenerator.generate());
-        assertThat(movedCar.compareTo(car)).isPositive();
+        assertThat(car.equals(movedCar)).isFalse();
     }
 
     @DisplayName("move() 정지 테스트")
     @Test
     void move_with_unMovableNumber_test() {
         String name = "name1";
-        CarName carName = new CarName(name);
-        Position zeroPosition = new Position(0);
-        Car car = new Car(carName, zeroPosition);
+        Car car = new Car(name);
         NumberGenerator numberGenerator = new UnMovableNumberGenerator();
-        Car movedCar = car.move(numberGenerator.generate());
-        assertThat(movedCar.compareTo(car)).isZero();
+        Car unMovedCar = car.move(numberGenerator.generate());
+        assertThat(car.equals(unMovedCar)).isTrue();
     }
 }
