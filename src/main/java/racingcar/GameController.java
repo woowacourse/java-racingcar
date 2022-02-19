@@ -1,12 +1,12 @@
 package racingcar;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
-import racingcar.domain.Game;
 import racingcar.domain.Cars;
+import racingcar.domain.Game;
 import racingcar.domain.dto.CarDto;
 import racingcar.domain.strategy.RandomMove;
 import racingcar.domain.util.CarFactory;
@@ -30,16 +30,11 @@ public class GameController {
     }
 
     private static void showResult(Cars cars) {
-        for (Car car : cars.getCars()) {
-            OutputView.printCarPosition(new CarDto(car.getName(), car.getPosition()));
-        }
+        OutputView.printCarPosition(CarDto.of(cars));
         OutputView.printBlankLine();
     }
 
-    private static void showWinner(Collection<Car> winners) {
-        final Set<CarDto> winnerDtos = winners.stream()
-                .map(car -> new CarDto(car.getName()))
-                .collect(Collectors.toSet());
-        OutputView.printWinner(winnerDtos);
+    private static void showWinner(List<Car> winners) {
+        OutputView.printWinner(CarDto.of(winners));
     }
 }
