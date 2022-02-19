@@ -5,6 +5,10 @@ import racingcar.message.NoticeMessages;
 import racingcar.model.car.CarNameAndPosition;
 
 public class OutputView {
+    private OutputView() {
+
+    }
+
     private static final String DISTANCE_MARK = "-";
 
     public static void printException(Exception exception) {
