@@ -1,10 +1,8 @@
 package racingcar.domain.vo;
 
-import static racingcar.domain.util.MovementUtil.isMoveForward;
-
 public class Car implements Comparable<Car> {
 
-    private static final String TO_STRING_DELIMITER = ":";
+    private static final int MOVE_CONDITION = 4;
     private static final int SAME_POSITION = 0;
 
     private CarName name;
@@ -45,8 +43,12 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(int number) {
-        if (isMoveForward(number)) {
+        if (canMove(number)) {
             position.increase();
         }
+    }
+
+    private boolean canMove(int number) {
+        return number >= MOVE_CONDITION;
     }
 }

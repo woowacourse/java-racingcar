@@ -1,9 +1,9 @@
-package racingcar.domain.util;
+package racingcar.strategy;
 
 public class NonMovableNumberGenerator implements NumberGenerator {
 
     @Override
     public int generate() {
-        return MovementUtil.getMoveCondition() - 1;
+        return 3;
     }
 }

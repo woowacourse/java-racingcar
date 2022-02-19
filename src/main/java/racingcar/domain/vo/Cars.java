@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.enums.DomainErrorMessage;
-import racingcar.domain.util.RandomNumberGenerator;
+import racingcar.domain.util.RandomUtil;
 
 public class Cars {
 
-    private static final RandomNumberGenerator RANDOM_NUMBER_GENERATOR = new RandomNumberGenerator();
+    private static final int RANDOM_MINIMUM = 0;
+    private static final int RANDOM_MAXIMUM = 9;
     private static final int EMPTY_SIZE = 0;
 
     private List<Car> cars;
@@ -35,7 +36,8 @@ public class Cars {
     private RoundResult raceAllCar() {
         RoundResult result = new RoundResult();
         for (Car car : cars) {
-            car.move(RANDOM_NUMBER_GENERATOR.generate());
+            int randomNumber = RandomUtil.getRandomNumberBetweenMinimumAndMaximum(RANDOM_MINIMUM, RANDOM_MAXIMUM);
+            car.move(randomNumber);
             result.add(car);
         }
         return result;
