@@ -1,14 +1,18 @@
 package racingcar.model;
 
+import java.util.Arrays;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import racingcar.utils.MovableNumberGenerator;
+import racingcar.utils.NumberGenerator;
 
 class CarsTest {
     Car car1, car2, car3;
     Cars cars;
+    NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
 
     @BeforeEach
     void initialize() {
@@ -20,14 +24,14 @@ class CarsTest {
 
     @Test
     void 단독_우승자() {
-        car1.forward(true);
+        car1.forward(movableNumberGenerator);
         Assertions.assertThat(cars.findWinners()).containsExactly("pobi");
     }
 
     @Test
     void 공동_우승자() {
-        car1.forward(true);
-        car2.forward(true);
+        car1.forward(movableNumberGenerator);
+        car2.forward(movableNumberGenerator);
         Assertions.assertThat(cars.findWinners()).containsExactly("pobi", "crong");
     }
 }

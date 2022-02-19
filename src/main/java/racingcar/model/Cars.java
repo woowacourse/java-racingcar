@@ -1,12 +1,14 @@
 package racingcar.model;
 
-import racingcar.utils.RandomForwardJudgment;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import racingcar.utils.NumberGenerator;
+import racingcar.utils.RandomNumberGenerator;
+
 public class Cars {
     private final List<Car> cars;
+    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public Cars(List<Car> cars) {
         this.cars = cars;
@@ -14,7 +16,7 @@ public class Cars {
 
     public void forward() {
         for (Car car : cars) {
-            car.forward(RandomForwardJudgment.canForward());
+            car.forward(numberGenerator);
         }
     }
 

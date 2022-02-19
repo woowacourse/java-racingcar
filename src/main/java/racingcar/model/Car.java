@@ -2,6 +2,8 @@ package racingcar.model;
 
 import static racingcar.utils.NameValidator.*;
 
+import racingcar.utils.NumberGenerator;
+
 public class Car {
     private final String name;
     private int position;
@@ -11,8 +13,9 @@ public class Car {
         this.name = name;
     }
 
-    public void forward(boolean canForward) {
-        if (canForward) {
+    public void forward(NumberGenerator numberGenerator) {
+        int number = numberGenerator.generate();
+        if (number >= 4) {
             this.position += 1;
         }
     }
