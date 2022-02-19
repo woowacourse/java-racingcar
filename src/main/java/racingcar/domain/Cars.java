@@ -27,11 +27,17 @@ public class Cars {
     }
 
     private List<String> findChampions(int highScore) {
-        return cars.stream().filter(car -> car.isSamePosition(highScore)).map(Car::getName).collect(toList());
+        return cars.stream()
+            .filter(car -> car.isSamePosition(highScore))
+            .map(Car::getName)
+            .collect(toList());
     }
 
     private int getHighScore() {
-        return cars.stream().mapToInt(Car::getPosition).max().orElseThrow();
+        return cars.stream()
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElseThrow();
     }
 
     public List<Car> getCars() {
