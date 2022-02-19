@@ -12,6 +12,10 @@ public class Name {
     }
 
     private void validateLength(String name) {
+        if (isEmpty(name)) {
+            throw new IllegalArgumentException(MAX_NAME_LENGTH_ERROR_MESSAGE);
+        }
+
         if (isNameLengthOverMax(name)) {
             throw new IllegalArgumentException(MAX_NAME_LENGTH_ERROR_MESSAGE);
         }
@@ -19,6 +23,10 @@ public class Name {
 
     private boolean isNameLengthOverMax(String name) {
         return name.length() > MAX_NAME_LENGTH;
+    }
+
+    private boolean isEmpty(String name) {
+        return "".equals(name) || name == null;
     }
 
     @Override

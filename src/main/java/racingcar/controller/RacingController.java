@@ -1,8 +1,11 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.PlayTime;
+import racingcar.model.utils.RandomNumberGenerator;
 import racingcar.view.OutputView;
 import racingcar.view.InputView;
 
@@ -16,19 +19,19 @@ public class RacingController {
     }
 
     private Cars enrollCars() {
-        Cars cars = new Cars();
-        String[] carNames = InputView.requestCarNames().split(",");
+        List<Car> cars = new ArrayList<>();
+        String[] carNames = InputView.requestCarNames();
         for (String carName : carNames) {
-            Car car = new Car(carName);
-            cars.participateInRacing(car);
+            cars.add(new Car(carName));
         }
-        return cars;
+
+        return new Cars(cars);
     }
 
     private Cars startRacing(Cars cars, PlayTime playTime) {
         OutputView.announceRacingStart();
         while (!playTime.isEnd()) {
-            cars.race();
+            cars.race(new RandomNumberGenerator());
             playTime.decreasePlayTime();
             OutputView.recordCurrentScore(cars);
         }

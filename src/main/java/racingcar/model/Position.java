@@ -20,6 +20,11 @@ public class Position implements Comparable<Position> {
         this.position++;
     }
 
+    @Override
+    public int compareTo(Position o) {
+        return Integer.compare(position, o.getCurrentPosition());
+    }
+
     public int getCurrentPosition() {
         return position;
     }
@@ -39,10 +44,5 @@ public class Position implements Comparable<Position> {
     @Override
     public int hashCode() {
         return Objects.hash(position);
-    }
-
-    @Override
-    public int compareTo(Position o) {
-        return Integer.compare(position, o.getCurrentPosition());
     }
 }

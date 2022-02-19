@@ -1,6 +1,10 @@
 package racingcar.model;
 
+import racingcar.model.utils.NumberGenerator;
+
 public class Car implements Comparable<Car> {
+
+    private static final int MOVE_MIN_VALUE = 4;
 
     private final Name name;
     private final Position position;
@@ -10,8 +14,8 @@ public class Car implements Comparable<Car> {
         this.position = Position.createStartPosition();
     }
 
-    public void move(boolean movable) {
-        if (movable) {
+    public void move(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MOVE_MIN_VALUE) {
             this.position.increase();
         }
     }

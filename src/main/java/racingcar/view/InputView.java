@@ -8,9 +8,9 @@ public class InputView {
     private static final String INPUT_RACING_TIMES_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String requestCarNames() {
+    public static String[] requestCarNames() {
         System.out.println(INPUT_NAME_MESSAGE);
-        return scanner.nextLine();
+        return scanner.nextLine().split(",");
     }
 
     public static int requestPlayTimes() {
