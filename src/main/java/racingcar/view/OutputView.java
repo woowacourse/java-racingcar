@@ -19,9 +19,9 @@ public class OutputView {
         System.out.println(NoticeMessages.RUN_RESULT);
     }
 
-    public static void printCurrentCarInfo(List<CarNameAndPosition> carNameAndPositions) {
+    public static void printCurrentCarNameAndPosition(List<CarNameAndPosition> carNameAndPositions) {
         carNameAndPositions.forEach(carNameAndPosition -> {
-            System.out.println(createCarInfoString(carNameAndPosition));
+            System.out.println(createCarNameAndPositionString(carNameAndPosition));
         });
         System.out.println();
     }
@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println(createWinnersString(winners));
     }
 
-    private static String createCarInfoString(CarNameAndPosition carNameAndPosition) {
+    private static String createCarNameAndPositionString(CarNameAndPosition carNameAndPosition) {
         return String.format("%s : %s", carNameAndPosition.getName(), DISTANCE_MARK.repeat(carNameAndPosition.getPosition()));
     }
 
