@@ -11,8 +11,6 @@ public class Winners {
     }
 
     public String makeWinnerName(String delimiter) {
-        return cars.getCars().stream()
-                .map(Car::getName)
-                .collect(Collectors.joining(delimiter));
+        return cars.getCarNames(delimiter);
     }
 }

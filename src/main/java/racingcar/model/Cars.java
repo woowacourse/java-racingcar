@@ -63,6 +63,12 @@ public class Cars {
         return new Cars(winnerCars);
     }
 
+    public String getCarNames(String delimiter) {
+        return cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(delimiter));
+    }
+
     public List<Car> getCars() {
         return cars;
     }
