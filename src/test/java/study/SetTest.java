@@ -1,11 +1,14 @@
 package study;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
     private Set<Integer> numbers;
@@ -24,10 +27,9 @@ public class SetTest {
         assertThat(numbers.size()).isEqualTo(3);
     }
 
-    @Test
-    void containsTest() {
-        assertThat(numbers.contains(1)).isTrue();
-        assertThat(numbers.contains(2)).isTrue();
-        assertThat(numbers.contains(3)).isTrue();
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void containsTest(int input) {
+        assertTrue(numbers.contains(input));
     }
 }
