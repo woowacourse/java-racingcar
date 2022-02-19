@@ -19,15 +19,11 @@ public class Cars {
 
 	private List<RacingCar> cars;
 
-	public Cars(List<RacingCar> cars) {
-		this.cars = cars;
-	}
-
 	public List<RacingCar> getCars() {
 		return cars;
 	}
 
-	public void saveCars(String inputCarNames) {
+	public Cars(String inputCarNames) {
 		checkNull(inputCarNames);
 		List<String> carNames = Arrays.asList(Convertor.separateNamesByDelimiter(inputCarNames));
 		save(carNames);

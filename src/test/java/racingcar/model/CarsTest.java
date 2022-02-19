@@ -2,14 +2,12 @@ package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
 
-	Cars cars = new Cars(new ArrayList<>());
+	Cars cars;
 
 	@Test
 	@DisplayName("빈 값이 입력된 경우")
@@ -20,7 +18,7 @@ class CarsTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			cars.saveCars(input);
+			cars = new Cars(input);
 		}).hasMessage("빈 값이 입력되었습니다.");
 	}
 
@@ -33,7 +31,7 @@ class CarsTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			cars.saveCars(input);
+			cars = new Cars(input);
 		}).hasMessage("경주할 자동차가 한 대일 경우 경주를 진행할 수 없습니다.");
 	}
 
@@ -46,7 +44,7 @@ class CarsTest {
 
 		//then
 		assertThatThrownBy(() -> {
-			cars.saveCars(input);
+			cars = new Cars(input);
 		}).hasMessage("중복되는 이름이 존재합니다.");
 	}
 

@@ -9,11 +9,10 @@ import racingcar.view.Output;
 public class RacingCarsController {
 
 	private RoundCount roundCount;
-	private final Cars cars;
+	private Cars cars;
 	private final Winners winners;
 
-	public RacingCarsController(Cars cars,Winners winners) {
-		this.cars=cars;
+	public RacingCarsController(Winners winners) {
 		this.winners = winners;
 	}
 
@@ -33,7 +32,7 @@ public class RacingCarsController {
 	private boolean isSaveCars(String carNames) {
 		boolean safeSaveChecker = false;
 		try {
-			cars.saveCars(carNames);
+			cars = new Cars(carNames);
 			safeSaveChecker = true;
 		} catch (Exception exception) {
 			Output.printError(exception.getMessage());
