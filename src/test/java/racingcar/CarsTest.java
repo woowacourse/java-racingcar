@@ -9,14 +9,20 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.MoveCondition;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarsTest {
 
+    private static final MoveCondition TRUE_MOVE_CONDITION = () -> true;
+    private static final MoveCondition FALSE_MOVE_CONDITION = () -> false;
+
     @Test
     void 같은_이름의_자동차_생성시_예외발생() {
 
-        List<Car> cars = Arrays.asList(new Car("happy"), new Car("good"), new Car("happy"));
+        List<Car> cars = Arrays.asList(new Car("happy", TRUE_MOVE_CONDITION),
+            new Car("good", TRUE_MOVE_CONDITION),
+            new Car("happy", TRUE_MOVE_CONDITION));
 
         assertThatThrownBy(() -> new Cars(cars))
             .isInstanceOf(IllegalArgumentException.class);
@@ -26,7 +32,9 @@ public class CarsTest {
     @Test
     void 다른_이름의_자동차_생성_성공() {
 
-        Cars cars = new Cars(Arrays.asList(new Car("happy"), new Car("good")));
+        Cars cars = new Cars(
+            Arrays.asList(new Car("happy", TRUE_MOVE_CONDITION),
+                new Car("good", TRUE_MOVE_CONDITION)));
 
         assertThat(
             cars.getCars()
@@ -40,13 +48,12 @@ public class CarsTest {
     @Test
     void getWinners_우승자_한대_반환() {
 
-        Car car1 = new Car("happy");
-        Car car2 = new Car("good");
+        Car car1 = new Car("happy", TRUE_MOVE_CONDITION);
+        Car car2 = new Car("good", FALSE_MOVE_CONDITION);
 
         Cars cars = new Cars(Arrays.asList(car1, car2));
 
-        car1.movePosition(() -> true);
-        car2.movePosition(() -> false);
+        car1.movePosition();
 
         assertThat(cars.getWinners())
             .containsExactly("happy");
@@ -56,13 +63,13 @@ public class CarsTest {
     @Test
     void getWinners_우승자_두대_반환() {
 
-        Car car1 = new Car("happy");
-        Car car2 = new Car("good");
+        Car car1 = new Car("happy", TRUE_MOVE_CONDITION);
+        Car car2 = new Car("good", TRUE_MOVE_CONDITION);
 
         Cars cars = new Cars(Arrays.asList(car1, car2));
 
-        car1.movePosition(() -> true);
-        car2.movePosition(() -> true);
+        car1.movePosition();
+        car2.movePosition();
 
         assertThat(cars.getWinners())
             .containsExactly("happy", "good");
