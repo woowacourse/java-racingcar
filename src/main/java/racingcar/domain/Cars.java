@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import racingcar.domain.validation.CarsValidator;
-import racingcar.service.StepPolicy;
+import racingcar.service.MovePolicy;
 import racingcar.util.Constant;
 
 import java.util.Collections;
@@ -18,9 +18,9 @@ public class Cars {
 		this.cars = cars;
 	}
 
-	public void play(StepPolicy stepPolicy) {
+	public void play(MovePolicy movePolicy) {
 		for (Car car : cars) {
-			car.drive(stepPolicy.generate());
+			car.drive(movePolicy);
 		}
 	}
 

@@ -3,9 +3,10 @@ package racingcar.domain;
 import java.util.Objects;
 
 import racingcar.domain.validation.CarValidator;
+import racingcar.service.RandomGenerator;
+import racingcar.service.MovePolicy;
 
 public class Car implements Comparable<Car> {
-	private static final int DRIVE_FLAG = 3;
 
 	private final String name;
 	private int position = 0;
@@ -21,14 +22,10 @@ public class Car implements Comparable<Car> {
 		this.position = position;
 	}
 
-	public void drive(int stepValue) {
-		if (hasNext(stepValue)) {
+	public void drive(MovePolicy movePolicy) {
+		if (movePolicy.hasNext(RandomGenerator.generate())) {
 			move();
 		}
-	}
-
-	private boolean hasNext(int value) {
-		return value > DRIVE_FLAG;
 	}
 
 	private void move() {

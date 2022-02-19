@@ -7,19 +7,42 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import racingcar.service.StepPolicy;
+import racingcar.service.CarMoveGenerator;
+import racingcar.service.MovePolicy;
 
 class CarTest {
-	@DisplayName("랜덤 넘버가 4 이상일 경우 전진")
+
+	@DisplayName("랜덤 넘버가 4 이상일 경우 전진 요청")
 	@Test
 	void car_hasNext_true() {
 		//given
 		Car car = new Car("sudal");
 		//when
-		StepPolicy stepPolicy = () -> 4;
-		car.drive(stepPolicy.generate());
+		boolean actual = new CarMoveGenerator().hasNext(4);
+		//then
+		assertTrue(actual);
+	}
+
+	@DisplayName("랜덤 넘버가 4 이상일 경우 전진")
+	@Test
+	void car_drive_true() {
+		Car car = new Car("sudal");
+		//when
+		MovePolicy movePolicy = (int random) -> true;
+		car.drive(movePolicy);
 		//then
 		assertThat(car.getPosition()).isEqualTo(1);
+	}
+
+	@DisplayName("랜덤 넘버가 3 이하일 경우 멈춤 요청")
+	@Test
+	void car_hasNext_false() {
+		//given
+		Car car = new Car("sudal");
+		//when
+		boolean actual = new CarMoveGenerator().hasNext(3);
+		//then
+		assertFalse(actual);
 	}
 
 	@DisplayName("랜덤 넘버가 3 이하일 경우 멈춤")
@@ -27,8 +50,8 @@ class CarTest {
 	void car_drive_false() {
 		Car car = new Car("sudal");
 		//when
-		StepPolicy stepPolicy = () -> 3;
-		car.drive(stepPolicy.generate());
+		MovePolicy movePolicy = (int random) -> false;
+		car.drive(movePolicy);
 		//then
 		assertThat(car.getPosition()).isEqualTo(0);
 	}
@@ -41,7 +64,7 @@ class CarTest {
 		//when
 		boolean actual = targetPositionCar.isSamePosition(otherPositionCar);
 		//then
-		assertThat(actual).isTrue();
+		assertTrue(actual);
 	}
 
 	@DisplayName("같은 위치인지 비교 실패")
@@ -52,6 +75,6 @@ class CarTest {
 		//when
 		boolean actual = targetPositionCar.isSamePosition(otherPositionCar);
 		//then
-		assertThat(actual).isFalse();
+		assertFalse(actual);
 	}
 }

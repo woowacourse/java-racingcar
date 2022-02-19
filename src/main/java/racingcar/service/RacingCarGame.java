@@ -10,12 +10,12 @@ import java.util.List;
 public class RacingCarGame {
 	private static final int START_VALUE = 0;
 
-	private final StepGenerator stepGenerator;
+	private final MovePolicy movePolicy;
 	private Cars cars;
 	private Attempt attempt;
 
-	public RacingCarGame(StepGenerator stepGenerator) {
-		this.stepGenerator = stepGenerator;
+	public RacingCarGame(MovePolicy movePolicy) {
+		this.movePolicy = movePolicy;
 	}
 
 	public void run() {
@@ -33,7 +33,7 @@ public class RacingCarGame {
 		int nowAttempt = START_VALUE;
 
 		while (!attempt.isSame(nowAttempt)) {
-			cars.play(stepGenerator);
+			cars.play(movePolicy);
 			Output.roundResult(cars.getCars());
 			nowAttempt++;
 		}
