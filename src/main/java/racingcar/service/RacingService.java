@@ -8,7 +8,7 @@ import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.domain.RacingGame;
 import racingcar.domain.Round;
-import racingcar.repository.CarRepository;
+import racingcar.domain.CarRepository;
 import racingcar.util.MovingNumberPolicyByRandom;
 
 public class RacingService {

@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import racingcar.validator.AttemptValidator;
+import racingcar.util.validator.AttemptValidator;
 
 public class AttemptNumber {
 

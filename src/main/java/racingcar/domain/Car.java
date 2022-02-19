@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.validator.CarValidator;
+import racingcar.util.validator.CarValidator;
 
 public class Car implements Comparable<Car> {
 
