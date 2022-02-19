@@ -11,11 +11,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.view.ErrorMessage;
 
-public class CarsTest {
+class CarsTest {
 
     @DisplayName("add() 테스트")
     @Test
-    public void add_test() throws Exception {
+    void add_test() throws Exception {
         String name = "name1";
         String[] names = {name};
         Cars cars = new Cars(names);
@@ -24,7 +24,7 @@ public class CarsTest {
 
     @DisplayName("repeatRaceBy() 테스트")
     @Test
-    public void repeatRaceBy_test() throws Exception {
+    void repeatRaceBy_test() throws Exception {
         String name = "name1";
         String[] names = {name};
         Cars cars = new Cars(names);
@@ -42,7 +42,7 @@ public class CarsTest {
     @DisplayName("judgeWinners() 단독, 공동우승 테스트")
     @ParameterizedTest()
     @ValueSource(strings = {"name1", "name1,name2"})
-    public void judgeWinners_test(String inputNames) throws Exception {
+    void judgeWinners_test(String inputNames) throws Exception {
         String[] names = inputNames.split(",");
         Cars cars = new Cars(names);
         String winners = cars.judgeWinners().toString();
@@ -53,7 +53,7 @@ public class CarsTest {
 
     @DisplayName("add() 중복된 이름이 입력되었을 때 예외 테스트")
     @Test
-    public void add_duplicate_name_exception_test() throws Exception {
+    void add_duplicate_name_exception_test() throws Exception {
         String name = "name1";
         String[] names = {name, name};
         assertThatThrownBy(() -> new Cars(names))
