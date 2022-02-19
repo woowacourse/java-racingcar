@@ -1,8 +1,11 @@
 package racingcar.domain;
 
+import java.util.Comparator;
 import racingcar.domain.vo.Name;
 
 public class Car {
+    private static final Comparator<Car> COMPARATOR = Comparator.comparingInt(car -> car.position);
+
     private static final int ADVANCE_STANDARD = 4;
 
     private static final int MINIMUM_ADVANCE_RANGE = 0;
@@ -36,7 +39,7 @@ public class Car {
     }
 
     public int compareTo(Car car) {
-        return Integer.compare(this.position, car.position);
+        return COMPARATOR.compare(this, car);
     }
 
     public Name getName() {
