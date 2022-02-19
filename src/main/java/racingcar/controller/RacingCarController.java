@@ -6,25 +6,27 @@ import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.CarDto;
 import racingcar.domain.RacingGame;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.view.CarNamesInputView;
+import racingcar.view.RaceResultOutputView;
+import racingcar.view.WinnersOutputView;
+import racingcar.view.RoundInputView;
 
 public class RacingCarController {
 
     public List<String> getCarNames() {
-        return InputView.getCarNames();
+        return CarNamesInputView.getCarNames();
     }
 
     public Integer getRound() {
-        return InputView.getRound();
+        return RoundInputView.getRound();
     }
 
     public void printRaceResults(Map<Integer, List<CarDto>> raceResult) {
-        OutputView.printRaceResults(raceResult);
+        RaceResultOutputView.printRaceResults(raceResult);
     }
 
     public void printWinners(List<String> winnerNames) {
-        OutputView.printWinners(winnerNames);
+        WinnersOutputView.printWinners(winnerNames);
     }
 
     public RacingGame initRacing(List<String> carNames, int round) {
