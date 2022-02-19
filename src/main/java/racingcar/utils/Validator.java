@@ -1,9 +1,9 @@
 package racingcar.utils;
 
-import racingcar.model.Car;
 import racingcar.exception.DuplicateCarNameException;
 import racingcar.exception.InvalidCountRangeException;
 import racingcar.exception.SingleCarException;
+import racingcar.model.Car;
 
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class Validator {
 
     private static final int MINIMUM_COUNT = 1;
-    private static final int MINIMUM_PLAYER = 1;
+    private static final int MINIMUM_PLAYER = 2;
 
     private Validator() {
         throw new UnsupportedOperationException();
@@ -39,7 +39,7 @@ public class Validator {
     }
 
     private static void checkMinimumPlayer(List<Car> cars) {
-        if (cars.size() == MINIMUM_PLAYER) {
+        if (cars.size() < MINIMUM_PLAYER) {
             throw new SingleCarException("최소 자동차 개수는 2개 이상입니다");
         }
     }

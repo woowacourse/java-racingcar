@@ -1,6 +1,6 @@
 package racingcar.exception;
 
-public class SingleCarException extends RuntimeException{
+public class SingleCarException extends RuntimeException {
 
     public SingleCarException(String message) {
         super(message);

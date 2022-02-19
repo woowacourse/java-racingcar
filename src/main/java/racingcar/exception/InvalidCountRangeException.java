@@ -1,6 +1,6 @@
 package racingcar.exception;
 
-public class InvalidCountRangeException extends RuntimeException{
+public class InvalidCountRangeException extends RuntimeException {
 
     public InvalidCountRangeException(String message) {
         super(message);

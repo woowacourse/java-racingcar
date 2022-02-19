@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleInputView implements InputView{
+public class ConsoleInputView implements InputView {
     private final Scanner scanner = new Scanner(System.in);
 
     @Override

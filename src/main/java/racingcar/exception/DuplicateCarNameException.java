@@ -1,6 +1,6 @@
 package racingcar.exception;
 
-public class DuplicateCarNameException extends RuntimeException{
+public class DuplicateCarNameException extends RuntimeException {
 
     public DuplicateCarNameException(String message) {
         super(message);
