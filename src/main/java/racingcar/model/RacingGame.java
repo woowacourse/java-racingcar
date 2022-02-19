@@ -28,9 +28,8 @@ public class RacingGame {
         count++;
     }
 
-    public String findWinner() {
-        Winners winners = new Winners(cars);
-        return winners.findName();
+    public Winners findWinner() {
+        return new Winners(cars);
     }
 
     public boolean isEnd() {

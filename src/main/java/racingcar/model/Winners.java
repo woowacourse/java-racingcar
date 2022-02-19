@@ -26,4 +26,10 @@ public class Winners {
                 .max(Comparator.comparing(x -> x))
                 .orElse(MINIMUM_POSITION);
     }
+
+    public String makeWinnerName(String delimiter) {
+        return cars.getCars().stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(delimiter));
+    }
 }
