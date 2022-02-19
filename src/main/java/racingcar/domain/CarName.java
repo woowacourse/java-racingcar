@@ -15,6 +15,10 @@ public class CarName {
     }
 
     private void validateCarName(String value) {
+        if (value == null){
+            throw new NullPointerException(ExceptionMessage.NULL_CAR_NAME);
+        }
+
         if (value.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_CAR_NAME);
         }
