@@ -12,7 +12,7 @@ public class GameTotalCount {
     }
 
     public static GameTotalCount createGameTotalCount(String attempt) {
-        int number = translatePositiveInteger(attempt);
+        int number = translateInteger(attempt);
 
         return new GameTotalCount(number);
     }
@@ -35,7 +35,7 @@ public class GameTotalCount {
         totalAttemptCount = totalAttemptCount - 1;
     }
 
-    private static int translatePositiveInteger(String attempt) {
+    private static int translateInteger(String attempt) {
         try {
             return Integer.parseInt(attempt);
         } catch (NumberFormatException e) {
