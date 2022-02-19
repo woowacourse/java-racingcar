@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
 import racingcar.domain.MoveCondition;
 
-@SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
 
     private static final MoveCondition TRUE_MOVE_CONDITION = () -> true;

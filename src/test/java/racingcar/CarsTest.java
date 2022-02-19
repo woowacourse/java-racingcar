@@ -5,13 +5,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.MoveCondition;
 
-@SuppressWarnings("NonAsciiCharacters")
 public class CarsTest {
 
     private static final MoveCondition TRUE_MOVE_CONDITION = () -> true;

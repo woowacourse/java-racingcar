@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Game;
 
-@SuppressWarnings("NonAsciiCharacters")
 public class GameTest {
 
     @Test
