@@ -78,7 +78,7 @@ public class Car {
 	}
 
 	public int comparePositionTo(final Car other) {
-		return position - other.position;
+		return Integer.compare(position, other.position);
 	}
 
 	@Override
