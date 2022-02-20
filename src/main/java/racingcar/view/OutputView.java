@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public void showGameResult(List<Car> winners) {
-        String winnerNames = winners.stream().map(car -> car.getNameForTest()).collect(Collectors.joining(","));
+        String winnerNames = winners.stream().map(car -> car.getName()).collect(Collectors.joining(","));
         System.out.println(winnerNames + DECLARE_WINNER_MESSAGE);
     }
 
