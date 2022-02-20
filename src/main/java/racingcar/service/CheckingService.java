@@ -9,7 +9,7 @@ public class CheckingService {
 	private static final String GAME_TURN_NUMBER_REGEX = "[1-9]\\d*";
 
 	public static void checkCarNamesBlank(String input) {
-		if (input == null || input.isEmpty()) {
+		if (input == null || input.isBlank()) {
 			throw new IllegalArgumentException(NULL_EMPTY_CAR_NAME_ERROR_MESSAGE);
 		}
 	}
