@@ -39,17 +39,6 @@ public class Validator {
         checkIncludeBlank(carName);
     }
 
-    public static void validateInputNumber(String inputRound) {
-        checkNullOrEmpty(inputRound);
-        checkValidFormat(inputRound);
-    }
-
-    private static void checkValidFormat(String inputNumber) {
-        if (!(inputNumber.chars().allMatch(Character::isDigit))) {
-            throw new IllegalArgumentException(ERROR_INVALID_FORMAT_MESSAGE);
-        }
-    }
-
     private static void checkNullOrEmpty(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(ERROR_NULL_EMPTY_MESSAGE);
@@ -61,4 +50,16 @@ public class Validator {
             throw new IllegalArgumentException(ERROR_INCLUDE_BLANK_MESSAGE);
         }
     }
+
+    public static void validateInputNumber(String inputRound) {
+        checkNullOrEmpty(inputRound);
+        checkValidFormat(inputRound);
+    }
+
+    private static void checkValidFormat(String inputNumber) {
+        if (!(inputNumber.chars().allMatch(Character::isDigit))) {
+            throw new IllegalArgumentException(ERROR_INVALID_FORMAT_MESSAGE);
+        }
+    }
+
 }

@@ -15,12 +15,8 @@ public class Name {
     }
 
     public static Name from(String name) {
-        validateName(name);
-        return new Name(name);
-    }
-
-    private static void validateName(String name) {
         checkValidLengthOfName(name);
+        return new Name(name);
     }
 
     private static void checkValidLengthOfName(String name) {
