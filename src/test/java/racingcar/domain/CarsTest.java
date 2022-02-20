@@ -19,7 +19,8 @@ class CarsTest {
 
     @BeforeEach
     void setUpCars() {
-        cars = new Cars("dwoo,woo,te,ch");
+        String[] carNames = {"dwoo,woo,te,ch"};
+        cars = new Cars(carNames);
         size = cars.getSize();
         winnerPosition = 0;
     }

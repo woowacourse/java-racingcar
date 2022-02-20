@@ -10,12 +10,11 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    private static final String SEPARATOR = ",";
     private static final int FIRST_INDEX = 0;
 
     private List<Car> cars;
 
-    public Cars(String carNames) {
+    public Cars(String[] carNames) {
         initCar(carNames);
     }
 
@@ -46,13 +45,12 @@ public class Cars {
         return cars.get(index);
     }
 
-    private void initCar(String carNames) throws IllegalArgumentException {
+    private void initCar(String[] carNames) throws IllegalArgumentException {
         cars = new ArrayList<>();
-        String[] names = carNames.split(SEPARATOR);
 
-        validateDuplication(names);
+        validateDuplication(carNames);
 
-        for (String name : names) {
+        for (String name : carNames) {
             cars.add(new Car(name));
         }
     }

@@ -34,7 +34,7 @@ public class RacingGame {
     }
 
     private void initRacingCarGame() throws IllegalArgumentException {
-        String carNames = getCarNames();
+        String[] carNames = getCarNames();
         cars = new Cars(carNames);
 
         String attempt = getAttemptCount();
