@@ -1,22 +1,11 @@
 package racingcar.util;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
-import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RandomUtilTest {
-    @Test
-    @DisplayName("0과 9사이의 숫자 랜덤 생성 테스트")
-    void generateRandomNumber() {
-        IntStream.range(0, 10000)
-            .forEach(i -> {
-                int result = RandomUtil.getNumbersInRange(10);
-                assertTrue(result < 10 && result >= 0);
-            });
-    }
 
     @Test
     @DisplayName("랜덤한 숫자들을 원하는 갯수에 맞게 생성한다")

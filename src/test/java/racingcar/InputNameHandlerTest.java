@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.vo.Name;
 
 class InputNameHandlerTest {
+
     @Test
-    @DisplayName("List<Name> 생성 테스트")
+    @DisplayName("String 형태의 이름을 List<Name>으로 변환한다")
     void createNames() {
         // given
         String input = " hoho,rich , pobi ";
@@ -21,7 +22,7 @@ class InputNameHandlerTest {
     }
 
     @Test
-    @DisplayName("이름이 중복일 경우 예외 발생 테스트")
+    @DisplayName("이름이 중복일 경우 예외를 발생한다")
     void carNameShouldNotDuplicateName() {
         // given
         String input = "hoho,hoho,rich,rich";
@@ -31,5 +32,4 @@ class InputNameHandlerTest {
             .isThrownBy(() -> InputNameHandler.inputToNames(input))
             .withMessageMatching("이름은 중복될 수 없습니다.");
     }
-
 }

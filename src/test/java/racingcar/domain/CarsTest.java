@@ -55,7 +55,7 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차의 갯수와 랜덤한 숫자들의 갯수가 일치하지 않을경우 예외를 발새한다")
+    @DisplayName("자동차의 갯수와 랜덤한 숫자들의 갯수가 일치하지 않을경우 예외를 발생한다")
     void throwExceptionWhenCarsSizeNotEqualsNumbersSize() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));

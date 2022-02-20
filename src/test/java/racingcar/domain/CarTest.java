@@ -14,7 +14,7 @@ public class CarTest {
     static final int STOP = 3;
 
     @Test
-    @DisplayName("이름으로 자동차 생성 테스트")
+    @DisplayName("이름으로 자동차 생성를 생성한다")
     void carTest() {
         // given
         Name testName = new Name("test");
@@ -26,9 +26,19 @@ public class CarTest {
         assertThat(car.getName()).isEqualTo(testName);
     }
 
-    @ParameterizedTest
+    @Test
+    @DisplayName("움직임이 없는 자동차를 생성한다")
+    void newMotionlessCar() {
+        // given
+        Car car = Car.ZERO_POSITION;
+
+        // when && then
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @ParameterizedTest(name = "power : {0}, position : {1}")
     @CsvSource(value = {"4:1", "3:0"}, delimiter = ':')
-    @DisplayName("자동차 전진 테스트")
+    @DisplayName("4이상일 경우에만 자동차는 전진한다")
     void advanceTest(int number, int expected) {
         // given
         Car car = new Car(new Name("test"));
@@ -40,8 +50,9 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(expected);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "invalid value : {0}")
     @ValueSource(ints = {-1, 10})
+    @DisplayName("0 ~ 9 사이의 숫자로만 자동차 움직임 여부를 판단한다")
     void invalidAdvanceTest(int number) {
         // given
         Car car = new Car(new Name("test"));
@@ -53,7 +64,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("포지션 동일성 테스트")
+    @DisplayName("포지션이 같은지 비교한다")
     void equalsPosition() {
         // given
         Car car = new Car(new Name("test"));
@@ -68,7 +79,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("포지션을 비교하여 높은 자동차를 반환하는 테스트")
+    @DisplayName("포지션을 비교하여 높은 자동차를 반환한다")
     void comparePosition() {
         // given
         Car car = new Car(new Name("test"));
