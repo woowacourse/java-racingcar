@@ -7,7 +7,7 @@ public class Game {
 
 	private final Cars cars;
 	private final RoundCount roundCount;
-	private List<Cars> gameResult;
+	private final List<Cars> gameResult;
 
 	public Game(final Cars cars, final RoundCount roundCount) {
 		this.cars = cars;

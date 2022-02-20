@@ -1,31 +1,30 @@
 package racingcar.model;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static racingcar.utlis.RandomNumberGenerator.*;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import racingcar.model.movegenerator.MovableGenerator;
+import racingcar.model.movegenerator.NonMovableGenerator;
 
 class RacingCarTest {
 
-	@DisplayName("judy일 때")
 	@Test
-	void testCustomDecideMoveCar() {
+	void testMovableCar() {
 		//given
-		RacingCar car = new RacingCar("judy", 0);
+		RacingCar car = new RacingCar("judy", new MovableGenerator());
 		//when
-		car.decideMove(getRandomInt());
+		car.decideMove();
 		//then
 		assertThat(car.getPosition()).isEqualTo(1);
 	}
 
-	@DisplayName("pobi일 때")
 	@Test
-	void testCustomDecideMoveCar_2() {
+	void testNonMovableCar() {
 		//given
-		RacingCar car = new RacingCar("pobi", 0);
+		RacingCar car = new RacingCar("pobi", new NonMovableGenerator());
 		//when
-		car.decideMove(getRandomInt());
+		car.decideMove();
 		//then
 		assertThat(car.getPosition()).isEqualTo(0);
 	}

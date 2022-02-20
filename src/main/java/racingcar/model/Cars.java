@@ -1,6 +1,6 @@
 package racingcar.model;
 
-import static racingcar.utlis.RandomNumberGenerator.*;
+import static racingcar.model.RacingCar.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -33,22 +33,22 @@ public class Cars {
 
 	private void save(List<String> carNames) {
 		checkNameList(carNames);
-		this.cars = carNames.stream().map(RacingCar::new).collect(Collectors.toList());
+		this.cars = carNames.stream().map(RacingCar::createRandomMoveCar).collect(Collectors.toList());
 	}
 
 	public void startRound() {
-		cars.forEach(car -> car.decideMove(getRandomInt()));
+		cars.forEach(RacingCar::decideMove);
 	}
 
 	private int findMaxPosition(List<RacingCar> cars) {
-		return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
+		return cars.stream().mapToInt(RacingCar::getPosition).max().orElse(0);
 	}
 
 	public List<String> findWinner() {
 		int maxPosition = findMaxPosition(cars);
 		return cars.stream()
 			.filter(car -> car.matchPosition(maxPosition))
-			.map(Car::getName)
+			.map(RacingCar::getName)
 			.collect(Collectors.toUnmodifiableList());
 	}
 
