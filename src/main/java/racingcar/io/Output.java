@@ -1,9 +1,7 @@
 package racingcar.io;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import racingcar.domain.vo.Name;
-import racingcar.domain.Winners;
+import racingcar.dto.RacingResult;
 import racingcar.dto.RacingStatus;
 
 public class Output {
@@ -15,10 +13,9 @@ public class Output {
         System.out.println();
     }
 
-    public void printWinner(Winners winners) {
-        System.out.printf("%s가 최종 우승했습니다.", winners.getWinners().stream()
-            .map(Name::value)
-            .collect(Collectors.joining(NAME_DELIMITER)));
+    public void printWinner(RacingResult racingResult) {
+        List<String> winners = racingResult.getWinners();
+        System.out.printf("%s가 최종 우승했습니다.", String.join(NAME_DELIMITER, winners));
     }
 
     private void printRacingProgress(RacingStatus car) {

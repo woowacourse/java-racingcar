@@ -35,8 +35,8 @@ public class CarsTest {
         cars.move(movingNumbers);
 
         // then
-        Winners winners = cars.findWinners();
-        assertThat(winners.getWinners()).containsExactly(new Name("hoho"));
+        List<Name> winners = cars.findWinners();
+        assertThat(winners).containsExactly(new Name("hoho"));
     }
 
     @Test
@@ -50,8 +50,8 @@ public class CarsTest {
         cars.move(movingNumbers);
 
         // then
-        Winners winners = cars.findWinners();
-        assertThat(winners.getWinners()).containsExactly(new Name("hoho"), new Name("rich"));
+        List<Name> winners = cars.findWinners();
+        assertThat(winners).containsExactly(new Name("hoho"), new Name("rich"));
     }
 
     @Test

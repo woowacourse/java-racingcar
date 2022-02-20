@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
 import racingcar.InputNameHandler;
+import racingcar.domain.vo.Name;
 import racingcar.domain.vo.Trial;
 import racingcar.util.RandomUtil;
 import racingcar.domain.vo.MovingNumber;
@@ -29,12 +30,12 @@ public class RacingGame {
         return !trial.isExists();
     }
 
-    public List<Car> getCars() {
-        return cars.getCars();
+    public List<Name> getWinners() {
+        return cars.findWinners();
     }
 
-    public Winners getWinners() {
-        return cars.findWinners();
+    public List<Car> getCars() {
+        return cars.getCars();
     }
 
     private Queue<MovingNumber> createMovingNumbers() {

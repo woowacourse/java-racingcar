@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.stream.Collectors;
 import racingcar.domain.vo.Name;
@@ -22,8 +21,8 @@ public class Cars {
         }
     }
 
-    public Winners findWinners() {
-        return new Winners(findCoWinners(findWinner()));
+    public List<Name> findWinners() {
+        return new Winner(cars).findWinners();
     }
 
     public List<Car> getCars() {
@@ -45,18 +44,4 @@ public class Cars {
             throw new IllegalArgumentException("자동차와 랜덤한 숫자들의 갯수가 일치하지 않습니다.");
         }
     }
-
-    private Car findWinner() {
-        return cars.stream()
-            .max(Car::comparePosition)
-            .orElseThrow(NoSuchElementException::new);
-    }
-
-    private List<Name> findCoWinners(Car firstCar) {
-        return cars.stream()
-            .filter(car -> car.isEqualPosition(firstCar))
-            .map(Car::getName)
-            .collect(Collectors.toList());
-    }
-
 }

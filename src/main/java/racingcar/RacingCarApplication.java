@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
+import racingcar.dto.RacingResult;
 import racingcar.dto.RacingStatus;
 import racingcar.io.Input;
 import racingcar.io.Output;
@@ -21,7 +22,7 @@ public class RacingCarApplication {
             racingGame.race();
             output.printCurrentPosition(convertCarsToRacingStatus(racingGame.getCars()));
         }
-        output.printWinner(racingGame.getWinners());
+        output.printWinner(new RacingResult(racingGame.getWinners()));
     }
 
     private static List<RacingStatus> convertCarsToRacingStatus(List<Car> cars) {
