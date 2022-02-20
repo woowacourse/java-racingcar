@@ -5,6 +5,8 @@ import java.util.List;
 import racingcar.domain.strategy.MovePredicate;
 
 public class Game {
+    private static final MovePredicate MOVE_PREDICATE = new MovePredicate();
+
     private final Cars cars;
     private int count;
 
@@ -13,8 +15,8 @@ public class Game {
         this.count = count;
     }
 
-    public void play(MovePredicate movePredicate) {
-        cars.moveCars(movePredicate);
+    public void play() {
+        cars.moveCars(MOVE_PREDICATE);
         count--;
     }
 

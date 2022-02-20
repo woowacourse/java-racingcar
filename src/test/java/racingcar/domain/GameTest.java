@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.strategy.MovePredicate;
 
 public class GameTest {
     private Car forky;
@@ -49,9 +48,8 @@ public class GameTest {
     @DisplayName("진행 횟수에 따른 게임 종료 판단")
     public void isEnd_after_play(int count) {
         Game game = new Game(cars, count);
-        MovePredicate movePredicate = new MovePredicate();
         for (int i = 0; i < count; i++) {
-            game.play(movePredicate);
+            game.play();
         }
         assertThat(game.isEnd()).isTrue();
     }
