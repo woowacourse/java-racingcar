@@ -28,9 +28,9 @@ class InputViewTest extends ConsoleTest {
         changeOutput();
         changeInput("5");
         inputView = ViewConfig.getInputView();
-        String inputNumber = inputView.inputRoundNumber();
+        int inputNumber = inputView.inputRoundNumber();
 
         Assertions.assertThat(outputStream.toString()).contains("시도할 회수는 몇회인가요?");
-        Assertions.assertThat(inputNumber).isEqualTo("5");
+        Assertions.assertThat(inputNumber).isEqualTo(5);
     }
 }

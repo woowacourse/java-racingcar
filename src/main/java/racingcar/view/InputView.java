@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import java.util.Scanner;
+import racingcar.utils.IntegerUtils;
 
 public class InputView {
 
@@ -21,8 +22,10 @@ public class InputView {
         return input.split(DELIMITER, SPLIT_LIMIT);
     }
 
-    public String inputRoundNumber() {
+    public int inputRoundNumber() {
         System.out.println(ROUND_NUMBER_PROMPT);
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        return IntegerUtils.parseInt(input);
     }
+
 }
