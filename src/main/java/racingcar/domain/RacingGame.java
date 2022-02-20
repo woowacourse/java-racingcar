@@ -8,14 +8,16 @@ public class RacingGame {
 
     private final Cars cars;
     private int rounds;
+    private final MoveStrategy moveStrategy;
     private final List<String> championNames = new ArrayList<>();
 
-    public RacingGame(final Cars cars, final int rounds) {
+    public RacingGame(final Cars cars, final int rounds, final MoveStrategy moveStrategy) {
         this.cars = cars;
         this.rounds = rounds;
+        this.moveStrategy = moveStrategy;
     }
 
-    public void run(final MoveStrategy moveStrategy) {
+    public void run() {
         if (isFinished()) {
             throw new IllegalArgumentException(GAME_IS_OVER_MESSAGE);
         }

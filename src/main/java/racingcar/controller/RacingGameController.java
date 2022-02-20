@@ -12,11 +12,9 @@ public class RacingGameController {
     }
 
     public void proceedRacingGame() {
-        RandomNumberMoveStrategy randomNumberMoveStrategy = new RandomNumberMoveStrategy();
-
         OutputView.printRaceResultMessage();
         while (!racingGame.isFinished()) {
-            racingGame.run(randomNumberMoveStrategy);
+            racingGame.run();
             updateViewOneTurnResult();
         }
     }
