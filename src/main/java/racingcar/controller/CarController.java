@@ -32,4 +32,8 @@ public class CarController {
     public int scanRacingCnt() {
         return Integer.parseInt(inputView.scanRacingCnt());
     }
+
+    public List<Car> race(List<Car> cars) {
+        return carService.race(cars);
+    }
 }

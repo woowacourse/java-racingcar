@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 public class Car {
+
+    public static final int MOVE_FORWARD_NUMBER = 4;
     private final String name;
     private final int position;
 
@@ -16,5 +18,16 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public Car race(int num) {
+        if (num >= MOVE_FORWARD_NUMBER) {
+            return new Car(this.name, this.position + 1);
+        }
+        return new Car(this.name, this.position);
     }
 }
