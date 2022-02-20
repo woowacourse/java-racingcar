@@ -31,9 +31,6 @@ public class RoundCount {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof Integer) {
-            return count == (int) obj;
-        }
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }

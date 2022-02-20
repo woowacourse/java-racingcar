@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingCar.domain.CarDto;
+import racingCar.domain.RoundCount;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingGameTest {
@@ -33,7 +34,9 @@ public class RacingGameTest {
 
     @Test
     void 생성자_roundCount_값이_들어가는지_테스트() {
-        assertThat(racingGame).extracting("roundCount").isEqualTo(5);
+        assertThat(racingGame)
+                .extracting("roundCount")
+                .isEqualTo(new RoundCount(5));
     }
 
     @Test
