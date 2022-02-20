@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.numbergenerator.MovableNumberGenerator;
+import racingcar.numbergenerator.NumberGenerator;
 import racingcar.view.ErrorMessage;
 
 class CarsTest {
@@ -18,6 +20,19 @@ class CarsTest {
         String[] names = {name};
         Cars cars = new Cars(names);
         assertThat(cars.isSameSize(1)).isTrue();
+    }
+
+    @DisplayName("raceAll() 움직임 테스트")
+    @Test
+    void raceAll_test() {
+        String[] names = {"name1", "name2"};
+        Cars cars = new Cars(names);
+        Car unMovedCar = new Car("name3");
+        NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
+        Cars movedCars = cars.raceAll(movableNumberGenerator);
+        for (Car car : movedCars.getCars()) {
+            assertThat(car.isSamePosition(unMovedCar)).isFalse();
+        }
     }
 
     @DisplayName("judgeWinners() 단독, 공동우승 테스트")
