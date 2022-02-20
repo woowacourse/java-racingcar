@@ -1,18 +1,22 @@
 package racingcar.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.vo.Attempt;
 import racingcar.domain.vo.Car;
 import racingcar.domain.fcc.Cars;
+import racingcar.domain.vo.CarName;
 import racingcar.dto.RoundResult;
 import racingcar.strategy.MovableNumberGenerator;
 import racingcar.strategy.NonMovableNumberGenerator;
@@ -61,6 +65,16 @@ public class RacingGameServiceTest {
         );
     }
 
+    @DisplayName("racing() unmodifiableList 테스트")
+    @Test
+    public void racing_unmodifiableList_test() throws Exception {
+        Cars cars = new Cars(new String[]{"알린"});
+        List<RoundResult> roundResults = cars.repeatRaceBy(new Attempt("3"));
+        RoundResult testResult = new RoundResult(new ArrayList<>());
+        assertThatThrownBy(() -> roundResults.add(testResult))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
+
     @ParameterizedTest(name = "findWinners() 테스트 : {0}, {1}")
     @MethodSource("findWinnersTestSet")
     public void findWinners_test(String[] nameInput, String attemptInput) throws Exception {
@@ -82,5 +96,15 @@ public class RacingGameServiceTest {
                 Arguments.of(new String[]{"name3", "name4"}, "3"),
                 Arguments.of(new String[]{"name5", "name6"}, "1")
         );
+    }
+
+    @DisplayName("findWinners() unmodifiableList 테스트")
+    @Test
+    public void findWinners_unmodifiableList_test() throws Exception {
+        Cars cars = new Cars(new String[]{"알린"});
+        List<Car> winners = cars.findWinners();
+        Car testCar = new Car(new CarName("test"));
+        assertThatThrownBy(() -> winners.add(testCar))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }
