@@ -1,7 +1,7 @@
 package racingcar.model;
 
 public class Car {
-	public static final int BASE_POSITION = 0;
+	private static final int BASE_POSITION = 0;
 	private static final int MOVE_BOUND = 3;
 	private final String name;
 	private int position;
