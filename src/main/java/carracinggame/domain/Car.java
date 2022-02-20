@@ -5,8 +5,8 @@ public class Car {
     public static final int INITIAL_POSITION = 0;
     public static final int REFERENCE_NUMBER = 4;
 
-    String name;
-    int position = INITIAL_POSITION;
+    private String name;
+    private int position = INITIAL_POSITION;
 
     Car(String name) {
         this.name = name;
@@ -28,6 +28,20 @@ public class Car {
 
     private boolean isOverProbability(int number) {
         if (number >= REFERENCE_NUMBER) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isWinner(Car comparisonCar) {
+        if (this.position > comparisonCar.position) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isCoWinner(Car comparisonCar) {
+        if (this.position == comparisonCar.position) {
             return true;
         }
         return false;

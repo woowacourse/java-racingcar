@@ -3,7 +3,11 @@ package carracinggame.controller;
 import carracinggame.domain.Car;
 import carracinggame.domain.Cars;
 import carracinggame.domain.Times;
+import carracinggame.domain.Winner;
 import carracinggame.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarRacing {
 
@@ -32,6 +36,10 @@ public class CarRacing {
             OutputView.printResult(car.getName(), car.getPosition());
         }
         OutputView.println();
+    }
+
+    public void announceWinners() {
+        List<Car> winners = cars.findWinner();
     }
 
 }

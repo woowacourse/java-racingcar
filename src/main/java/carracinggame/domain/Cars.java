@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Cars {
 
-    List<Car> cars = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();
 
     public void makeCars(String[] carNames) {
         for (String carName : carNames) {
@@ -23,6 +23,11 @@ public class Cars {
 
     public Car getCar(int i) {
         return cars.get(i);
+    }
+
+    public List<Car> findWinner() {
+        Winner winner = new Winner();
+        return winner.findWinner(this.cars);
     }
 
 }

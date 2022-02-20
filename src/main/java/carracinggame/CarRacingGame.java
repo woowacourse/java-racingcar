@@ -153,7 +153,6 @@ public class CarRacingGame {
             winners = checkLead(car, winners);
         }
         return winners;
-
     }
 
     private List<Car> checkLead(Car car, List<Car> winners) {
