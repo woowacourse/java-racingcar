@@ -1,6 +1,5 @@
 package calculator.domain.vo;
 
-import calculator.enums.ErrorMessage;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,6 +7,8 @@ import util.StringUtil;
 
 public class Expression {
 
+    private static final String NONE_INTEGER_ERROR_MESSAGE = "숫자가 아닌 입력입니다. 구분자를 이용해서 숫자를 입력해주세요.";
+    private static final String NEGATIVE_VALUE_ERROR_MESSAGE = "음수 값을 입력했습니다. 양수를 입력해주세요.";
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
     private static final String BASIC_DELIMITER_COMMA = ",";
     private static final String BASIC_DELIMITER_COLON = ":";
@@ -52,13 +53,13 @@ public class Expression {
         try {
             return Integer.parseInt(s);
         } catch (NumberFormatException numberFormatException) {
-            throw new NumberFormatException(ErrorMessage.NONE_INTEGER_ERROR_MESSAGE.get());
+            throw new NumberFormatException(NONE_INTEGER_ERROR_MESSAGE);
         }
     }
 
     private static void validateNegative(int number) {
         if (number < 0) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_VALUE_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(NEGATIVE_VALUE_ERROR_MESSAGE);
         }
     }
 

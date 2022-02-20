@@ -8,9 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.enums.DomainErrorMessage;
 
 public class CarNameTest {
+
+    private static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차 이름으로 공백을 입력할 수 없습니다.";
+    private static final String TOO_LONG_CAR_NAME_ERROR_MESSAGE = "입력한 자동차 이름이 너무 깁니다.";
 
     @DisplayName("CarName() 테스트")
     @Test
@@ -25,7 +27,7 @@ public class CarNameTest {
     public void empty_input_test(String input) throws Exception {
         assertThatThrownBy(() -> new CarName(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(EMPTY_CAR_NAME_ERROR_MESSAGE);
     }
 
     @ParameterizedTest(name = "CarName() 글자 수 초과 입력 예외 테스트")
@@ -33,6 +35,6 @@ public class CarNameTest {
     public void over_length_input_test(String input) throws Exception {
         assertThatThrownBy(() -> new CarName(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(TOO_LONG_CAR_NAME_ERROR_MESSAGE);
     }
 }

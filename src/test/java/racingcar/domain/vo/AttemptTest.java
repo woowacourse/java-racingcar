@@ -7,9 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.enums.DomainErrorMessage;
 
 public class AttemptTest {
+
+    private static final String NUMBER_FORMAT_ERROR_MESSAGE = "시도 회수는 숫자로 입력해야합니다.";
+    private static final String NUMBER_NEGATIVE_ERROR_MESSAGE = "시도 회수는 0이상이어야 합니다.";
 
     @DisplayName("Attempt() 테스트")
     @Test
@@ -48,7 +50,7 @@ public class AttemptTest {
         String input = "abc";
         assertThatThrownBy(() -> new Attempt(input))
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessageContaining(DomainErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
+                .hasMessageContaining(NUMBER_FORMAT_ERROR_MESSAGE);
     }
 
     @DisplayName("validNegative() 음수 입력 예외 테스트")
@@ -57,6 +59,6 @@ public class AttemptTest {
         String input = "-3";
         assertThatThrownBy(() -> new Attempt(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
+                .hasMessageContaining(NUMBER_NEGATIVE_ERROR_MESSAGE);
     }
 }

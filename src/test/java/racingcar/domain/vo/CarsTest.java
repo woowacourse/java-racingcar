@@ -10,9 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.domain.enums.DomainErrorMessage;
 
 public class CarsTest {
+
+    private static final String HAS_NOTHING_CAR_NAME_ERROR_MESSAGE = "자동차의 이름을 1개 이상 입력해야합니다.";
+    private static final String DUPLICATE_CAR_NAME_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.";
 
     @ParameterizedTest(name = "repeatRaceBy() 테스트 : {0}, {1}")
     @MethodSource("repeatRaceByTestSet")
@@ -42,7 +44,7 @@ public class CarsTest {
         String[] name = {};
         assertThatThrownBy(() -> new Cars(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.HAS_NOTHING_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(HAS_NOTHING_CAR_NAME_ERROR_MESSAGE);
     }
 
     @DisplayName("Cars() 중복된 이름 입력 예외 테스트")
@@ -51,6 +53,6 @@ public class CarsTest {
         String[] name = {"name1", "name1"};
         assertThatThrownBy(() -> new Cars(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
     }
 }

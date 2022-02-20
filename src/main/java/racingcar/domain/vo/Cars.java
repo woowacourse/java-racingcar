@@ -3,11 +3,13 @@ package racingcar.domain.vo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.domain.enums.DomainErrorMessage;
 import util.RandomUtil;
 
 public class Cars {
 
+    private static final String NO_SUCH_CAR_ERROR_MESSAGE = "저장된 자동차가 없습니다.";
+    private static final String HAS_NOTHING_CAR_NAME_ERROR_MESSAGE = "자동차의 이름을 1개 이상 입력해야합니다.";
+    private static final String DUPLICATE_CAR_NAME_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.";
     private static final int RANDOM_MINIMUM = 0;
     private static final int RANDOM_MAXIMUM = 9;
     private static final int EMPTY_SIZE = 0;
@@ -46,7 +48,7 @@ public class Cars {
     public List<Car> findWinners() {
         Car maxPositionCar = cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalStateException(DomainErrorMessage.NO_SUCH_CAR_ERROR_MESSAGE.get()));
+                .orElseThrow(() -> new IllegalStateException(NO_SUCH_CAR_ERROR_MESSAGE));
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .collect(Collectors.toList());
@@ -54,13 +56,13 @@ public class Cars {
 
     private void validateSize(String[] inputs) {
         if (inputs.length == EMPTY_SIZE) {
-            throw new IllegalArgumentException(DomainErrorMessage.HAS_NOTHING_CAR_NAME_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(HAS_NOTHING_CAR_NAME_ERROR_MESSAGE);
         }
     }
 
     private void validateDuplicateCarName(Car car) {
         if (cars.stream().anyMatch(each -> each.isSameName(car))) {
-            throw new IllegalArgumentException(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
         }
     }
 

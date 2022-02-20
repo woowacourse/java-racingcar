@@ -10,10 +10,15 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.domain.enums.DomainErrorMessage;
-import racingcar.view.enums.ViewErrorMessage;
 
 public class ApplicationTest {
+
+    private static final String EMPTY_INPUT_ERROR_MESSAGE = "입력값이 없습니다.";
+    private static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차 이름으로 공백을 입력할 수 없습니다.";
+    private static final String DUPLICATE_CAR_NAME_ERROR_MESSAGE = "자동차의 이름이 중복되었습니다.";
+    private static final String TOO_LONG_CAR_NAME_ERROR_MESSAGE = "입력한 자동차 이름이 너무 깁니다.";
+    private static final String NUMBER_FORMAT_ERROR_MESSAGE = "시도 회수는 숫자로 입력해야합니다.";
+    private static final String NUMBER_NEGATIVE_ERROR_MESSAGE = "시도 회수는 0이상이어야 합니다.";
 
     @ParameterizedTest(name = "main() 테스트 : {0}")
     @MethodSource("correctInputTestSet")
@@ -51,7 +56,7 @@ public class ApplicationTest {
 
         assertThatThrownBy(() -> Application.main(new String[0]))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(EMPTY_CAR_NAME_ERROR_MESSAGE);
     }
 
     private static Stream<Arguments> emptyInputExceptionTestSet() {
@@ -73,7 +78,7 @@ public class ApplicationTest {
 
         assertThatThrownBy(() -> Application.main(new String[0]))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(TOO_LONG_CAR_NAME_ERROR_MESSAGE);
     }
 
     private static Stream<Arguments> lengthOverInputExceptionTestSet() {
@@ -95,7 +100,7 @@ public class ApplicationTest {
 
         assertThatThrownBy(() -> Application.main(new String[0]))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.DUPLICATE_CAR_NAME_ERROR_MESSAGE.get());
+                .hasMessageContaining(DUPLICATE_CAR_NAME_ERROR_MESSAGE);
     }
 
     private static Stream<Arguments> duplicateInputExceptionTestSet() {
@@ -116,7 +121,7 @@ public class ApplicationTest {
 
         assertThatThrownBy(() -> Application.main(new String[0]))
                 .isInstanceOf(NoSuchElementException.class)
-                .hasMessageContaining(ViewErrorMessage.EMPTY_INPUT_ERROR_MESSAGE.get());
+                .hasMessageContaining(EMPTY_INPUT_ERROR_MESSAGE);
     }
 
     private static Stream<Arguments> emptyAttemptExceptionTestSet() {
@@ -135,7 +140,7 @@ public class ApplicationTest {
 
         assertThatThrownBy(() -> Application.main(new String[0]))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainErrorMessage.NUMBER_NEGATIVE_ERROR_MESSAGE.get());
+                .hasMessageContaining(NUMBER_NEGATIVE_ERROR_MESSAGE);
     }
 
     private static Stream<Arguments> negativeNumberInputExceptionTestSet() {
@@ -156,7 +161,7 @@ public class ApplicationTest {
 
         assertThatThrownBy(() -> Application.main(new String[0]))
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessageContaining(DomainErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.get());
+                .hasMessageContaining(NUMBER_FORMAT_ERROR_MESSAGE);
     }
 
     private static Stream<Arguments> numberFormatExceptionTestSet() {

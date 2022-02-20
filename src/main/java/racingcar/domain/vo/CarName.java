@@ -1,9 +1,9 @@
 package racingcar.domain.vo;
 
-import racingcar.domain.enums.DomainErrorMessage;
-
 public class CarName {
 
+    private static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차 이름으로 공백을 입력할 수 없습니다.";
+    private static final String TOO_LONG_CAR_NAME_ERROR_MESSAGE = "입력한 자동차 이름이 너무 깁니다.";
     private static final int MAX_LENGTH = 5;
 
     private String name;
@@ -41,13 +41,13 @@ public class CarName {
 
     private void validateEmpty(String name) {
         if (name.isEmpty()) {
-            throw new IllegalArgumentException(DomainErrorMessage.EMPTY_CAR_NAME_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(EMPTY_CAR_NAME_ERROR_MESSAGE);
         }
     }
 
     private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException(DomainErrorMessage.TOO_LONG_CAR_NAME_ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(TOO_LONG_CAR_NAME_ERROR_MESSAGE);
         }
     }
 }

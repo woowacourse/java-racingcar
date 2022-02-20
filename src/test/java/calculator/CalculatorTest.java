@@ -3,13 +3,15 @@ package calculator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import calculator.enums.ErrorMessage;
 import java.util.Arrays;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CalculatorTest {
+
+    private static final String NONE_INTEGER_ERROR_MESSAGE = "숫자가 아닌 입력입니다. 구분자를 이용해서 숫자를 입력해주세요.";
+    private static final String NEGATIVE_VALUE_ERROR_MESSAGE = "음수 값을 입력했습니다. 양수를 입력해주세요.";
 
     @ParameterizedTest(name = "sum() null, empty 테스트 : {0}")
     @NullAndEmptySource
@@ -48,7 +50,7 @@ public class CalculatorTest {
     public void sum_non_number_input_test(String input) throws Exception {
         assertThatThrownBy(() -> Calculator.sum(input))
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessageContaining(ErrorMessage.NONE_INTEGER_ERROR_MESSAGE.get());
+                .hasMessageContaining(NONE_INTEGER_ERROR_MESSAGE);
     }
 
     @ParameterizedTest(name = "sum() 음수 입력 예외 테스트 : {0}")
@@ -56,6 +58,6 @@ public class CalculatorTest {
     public void sum_negative_input_test(String input) throws Exception {
         assertThatThrownBy(() -> Calculator.sum(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.NEGATIVE_VALUE_ERROR_MESSAGE.get());
+                .hasMessageContaining(NEGATIVE_VALUE_ERROR_MESSAGE);
     }
 }
