@@ -11,13 +11,13 @@ public class RacingResult {
         this.winners = convertNames(winners);
     }
 
+    public List<String> getWinners() {
+        return winners;
+    }
+
     private List<String> convertNames(List<Name> winners) {
         return winners.stream()
             .map(Name::value)
             .collect(Collectors.toList());
-    }
-
-    public List<String> getWinners() {
-        return winners;
     }
 }
