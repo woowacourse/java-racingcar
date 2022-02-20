@@ -11,7 +11,7 @@ class CarTest {
 	void carGenerate() {
 		String name = "pobi";
 		Car car = new Car(name, 0);
-		assertThat(car.getName()).isEqualTo(name);
+		assertThat(car.getName().toString()).isEqualTo(name);
 	}
 
 	@Test
