@@ -12,7 +12,7 @@ public class CarTest {
     private final Car car = new Car("jiwoo", 0);
 
     @Test
-    void go_3넣으면_이동안함() {
+    void move_3넣으면_이동안함() {
         //given
         NumGenerator numGenerator = new NonMovableNumGenerator();
 
@@ -24,7 +24,7 @@ public class CarTest {
     }
 
     @Test
-    void go_4넣으면_이동() {
+    void move_4넣으면_이동() {
         //given
         NumGenerator numberGenerator = new MovableNumGenerator();
 
