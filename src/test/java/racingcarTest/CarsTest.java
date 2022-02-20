@@ -3,48 +3,51 @@ package racingcarTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.MoveStrategy;
+import racingcarTest.domain.AlwaysMoveStrategy;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcarTest.domain.NoMoveStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
-
-    private final int intOverRandomCondition = 5;
-    private final int intRandomCondition = 4;
-    private final int intUnderRandomCondition = 3;
-
     private void makeCarMoveCountTimes(Car car, int count) {
+        AlwaysMoveStrategy alwaysMoveStrategy = new AlwaysMoveStrategy();
         for (int i = 0; i < count; i++) {
-            car.goForward(intOverRandomCondition);
+            car.goForward(alwaysMoveStrategy.generateNumber());
         }
     }
 
-    @DisplayName("랜덤값이_4이상_일_때_전진")
-    @Test
-    void randomNum_is4OrOver_carGoForward() {
-        Car testCar = new Car("test");
-
-        // 랜덤값이 4일 때 전진
-        testCar.goForward(intRandomCondition);
-        assertThat(testCar.getPosition()).isEqualTo(1);
-
-        //랜덤값이 5일 때 전진
-        testCar.goForward(intOverRandomCondition);
-        assertThat(testCar.getPosition()).isEqualTo(2);
+    private static Stream<Arguments> moveStrategyArguments() {
+        return Stream.of(
+                Arguments.of(new AlwaysMoveStrategy(), 1),
+                Arguments.of(new NoMoveStrategy(), 0));
     }
 
-    @DisplayName("랜덤값이_4미만_일_때_전진하지_않음")
-    @Test
-    void randomNum_isUnder4_carDontGoForward() {
-        Car testCar = new Car("test");
+    @DisplayName("MoveStrategy에_따른_Cars_전진_실행_여부")
+    @ParameterizedTest
+    @MethodSource("moveStrategyArguments")
+    void moveAll_eachStrategy_makeAllCarMoveOrNot(MoveStrategy moveStrategy, int expectedPosition) {
+        List<Car> carList = new ArrayList<>();
+        carList.add(new Car("dog"));
+        carList.add(new Car("cat"));
+        carList.add(new Car("bird"));
+        carList.add(new Car("mouse"));
 
-        // 랜덤값이 3일 때 전진하지 않음
-        testCar.goForward(intUnderRandomCondition);
-        assertThat(testCar.getPosition()).isEqualTo(0);
+        Cars cars = new Cars(carList);
+        cars.moveAll(moveStrategy);
+
+        for (Car car : cars.getCars()) {
+            assertThat(car.getPosition()).isEqualTo(expectedPosition);
+        }
     }
 
     @DisplayName("단일_우승자_반환")

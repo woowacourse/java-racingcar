@@ -1,9 +1,9 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
-import racingcar.domain.Cars;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Output {
     private static final String SPLIT_DELIM = ", ";
@@ -16,12 +16,20 @@ public class Output {
         System.out.println(PRINT_RESULT);
     };
 
-    public static void printCarStatus(Car car) {
-        System.out.println(car.getName() + INFO_BETWEEN_WORD + POSITION_WORD.repeat(car.getPosition()));
+    public static void printCarsStatus(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.getName() + INFO_BETWEEN_WORD + POSITION_WORD.repeat(car.getPosition()));
+        }
     }
 
-    public static void printWinner(List<String> winnerNames) {
-        System.out.println(String.join(SPLIT_DELIM, winnerNames) + OUTPUT_WINNER_MESSAGE);
+    public static void printWinner(List<Car> winners) {
+        System.out.println(String.join(SPLIT_DELIM, getWinnerNamesFromWinners(winners)) + OUTPUT_WINNER_MESSAGE);
+    }
+
+    private static List<String> getWinnerNamesFromWinners(List<Car> winners) {
+        return winners.stream()
+                .map(winner -> winner.getName())
+                .collect(Collectors.toList());
     }
 
     public static void printBlankLine() {

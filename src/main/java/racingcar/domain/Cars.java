@@ -1,8 +1,5 @@
 package racingcar.domain;
 
-import racingcar.util.RandomUtil;
-import racingcar.view.Output;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,16 +11,8 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveAllByRandom() {
-        cars.stream()
-                .forEach(car -> car.goForward(RandomUtil.getRandomForCar()));
-    }
-
-    public List<String> findAllWinnerNames() {
-        return cars.stream()
-                .filter(car -> car.isAlsoWinner(findOneWinner()))
-                .map(car -> car.getName())
-                .collect(Collectors.toList());
+    public void moveAll(MoveStrategy moveStrategy) {
+        cars.forEach(car -> car.goForward(moveStrategy.generateNumber()));
     }
 
     public List<Car> findAllWinners() {
@@ -37,11 +26,8 @@ public class Cars {
                 .max(Comparator.comparing(Car::getPosition)).get();
     }
 
-    public void showCarsStatus() {
-        for (Car car : cars) {
-            Output.printCarStatus(car);
-        }
-        Output.printBlankLine();
+    public List<Car> getCars() {
+        return cars;
     }
 
     @Override
