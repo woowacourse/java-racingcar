@@ -40,7 +40,7 @@ public class Cars {
 
     private List<String> getWinners(final int farthestPosition) {
         return cars.stream()
-                .filter(car -> car.getPosition() == farthestPosition)
+                .filter(car -> car.isSamePosition(farthestPosition))
                 .map(car -> car.getName())
                 .collect(Collectors.toList());
     }
