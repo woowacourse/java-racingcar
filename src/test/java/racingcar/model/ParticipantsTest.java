@@ -31,8 +31,8 @@ class ParticipantsTest {
 
     @Test
     public void findWinners() {
-        participants.getParticipantCars().get(0).tryMove(5);
+        participants.getParticipantCars().get(1).tryMove(5);
         List<Car> racingWinners = participants.findRacingWinners();
-        assertThat(racingWinners.size()).isEqualTo(1);
+        assertThat(racingWinners.get(0).getName()).isEqualTo("Thor");
     }
 }
