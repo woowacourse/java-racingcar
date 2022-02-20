@@ -2,11 +2,13 @@ package racingcar.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.service.CarService;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class CarController {
 
@@ -35,5 +37,13 @@ public class CarController {
 
     public List<Car> race(List<Car> cars) {
         return carService.race(cars);
+    }
+
+    public void printResultInitMessage() {
+        OutputView.printResultInitMessage();
+    }
+
+    public void printResult(final Map<String, Integer> carNameAndPositions) {
+        OutputView.printResult(carNameAndPositions);
     }
 }

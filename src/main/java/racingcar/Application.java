@@ -16,9 +16,20 @@ public class Application {
         List<Car> cars = controller.saveCars(carNames);
         final int racingCnt = controller.scanRacingCnt();
 
+        controller.printResultInitMessage();
         for (int i = 0; i < racingCnt; i++) {
             cars = controller.race(cars);
+            Map<String, Integer> carNameAndPositions = getCarNameAndPositions(cars);
+            controller.printResult(carNameAndPositions);
         }
+    }
+
+    private static Map<String, Integer> getCarNameAndPositions(final List<Car> cars) {
+        Map<String, Integer> carNameAndPositions = new LinkedHashMap<>();
+        for (Car car : cars) {
+            carNameAndPositions.put(car.getName(), car.getPosition());
+        }
+        return carNameAndPositions;
     }
 
 }

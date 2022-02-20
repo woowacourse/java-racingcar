@@ -24,7 +24,7 @@ public class Car {
         return position;
     }
 
-    public Car race(int num) {
+    public Car race(final int num) {
         if (num >= MOVE_FORWARD_NUMBER) {
             return new Car(this.name, this.position + 1);
         }
