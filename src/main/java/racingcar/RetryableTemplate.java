@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class RetryableTemplate {
 
@@ -8,13 +9,12 @@ public class RetryableTemplate {
 
     }
 
-    public static void execute(Runnable runnable, Consumer<Exception> exceptionHandler) {
+    public static <T> T execute(Supplier<T> supplier, Consumer<Exception> exceptionHandler) {
         try {
-            runnable.run();
-            return;
+            return supplier.get();
         } catch (Exception e) {
             exceptionHandler.accept(e);
         }
-        execute(runnable, exceptionHandler);
+        return execute(supplier, exceptionHandler);
     }
 }
