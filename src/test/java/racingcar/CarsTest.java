@@ -44,12 +44,8 @@ public class CarsTest {
         String name = "kun";
         NumberGenerator numberGenerator = new MovableNumberGenerator();
 
-        for (Car car : cars.getCars()) {
-            if (name.equals(car.getName())) {
-                car.move(numberGenerator);
+        cars.move(numberGenerator);
 
-            }
-        }
         assertThat(cars.getMaxPosition()).isEqualTo(1);
     }
 
@@ -73,8 +69,7 @@ public class CarsTest {
         int position = 1;
         NumberGenerator numberGenerator = new MovableNumberGenerator();
 
-        car1.move(numberGenerator);
-        car2.move(numberGenerator);
+        cars.move(numberGenerator);
 
         assertThat(cars.getSamePositionCar(position).size()).isEqualTo(2);
     }

@@ -22,11 +22,8 @@ public class Game {
         this.gameCount = gameCount;
     }
 
-    public Cars play(NumberGenerator numberGenerator) {
-        for (Car car : cars.getCars()) {
-            car.move(numberGenerator);
-        }
-        return cars;
+    public void play(NumberGenerator numberGenerator) {
+        cars.move(numberGenerator);
     }
 
     public List<Car> judgeWinner() {
