@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Input {
@@ -13,9 +14,13 @@ public class Input {
 		return scanner.nextLine();
 	}
 
-	public String inputCount() {
-		System.out.println(REQUEST_COUNT);
-		return scanner.nextLine();
+	public int inputCount() {
+		try {
+			System.out.println(REQUEST_COUNT);
+			return scanner.nextInt();
+		}catch (InputMismatchException exception){
+			throw new NumberFormatException("숫자가 아닌 값이 입력되었습니다.");
+		}
 	}
 
 }
