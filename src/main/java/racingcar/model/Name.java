@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 public class Name {
 
     private static final int MAX_NAME_LENGTH = 5;
@@ -12,6 +14,10 @@ public class Name {
     }
 
     private void validateLength(String name) {
+        if (isEmpty(name)) {
+            throw new IllegalArgumentException(MAX_NAME_LENGTH_ERROR_MESSAGE);
+        }
+
         if (isNameLengthOverMax(name)) {
             throw new IllegalArgumentException(MAX_NAME_LENGTH_ERROR_MESSAGE);
         }
@@ -19,6 +25,27 @@ public class Name {
 
     private boolean isNameLengthOverMax(String name) {
         return name.length() > MAX_NAME_LENGTH;
+    }
+
+    private boolean isEmpty(String name) {
+        return "".equals(name) || name == null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override

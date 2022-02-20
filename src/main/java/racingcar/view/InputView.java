@@ -8,13 +8,23 @@ public class InputView {
     private static final String INPUT_RACING_TIMES_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public String getCarNames() {
+    public static String[] requestCarNames() {
         System.out.println(INPUT_NAME_MESSAGE);
-        return scanner.nextLine();
+        return scanner.nextLine().split(",");
     }
 
-    public int getPlayTimes() {
+    public static int requestPlayTimes() {
         System.out.println(INPUT_RACING_TIMES_MESSAGE);
-        return Integer.parseInt(scanner.nextLine());
+        String playTimes = scanner.nextLine();
+        validInteger(playTimes);
+        return Integer.parseInt(playTimes);
+    }
+
+    private static void validInteger(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

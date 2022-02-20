@@ -1,6 +1,10 @@
 package racingcar.model;
 
-public class Car {
+import racingcar.model.utils.NumberGenerator;
+
+public class Car implements Comparable<Car> {
+
+    private static final int MOVE_MIN_VALUE = 4;
 
     private final Name name;
     private final Position position;
@@ -10,10 +14,14 @@ public class Car {
         this.position = Position.createStartPosition();
     }
 
-    public void move(boolean movable) {
-        if (movable) {
+    public void move(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MOVE_MIN_VALUE) {
             this.position.increase();
         }
+    }
+
+    public boolean isSamePosition(Car car) {
+        return position.equals(car.getPosition());
     }
 
     public Position getPosition() {
@@ -24,7 +32,8 @@ public class Car {
         return this.name;
     }
 
-    public boolean isMaxPosition(Position maxPosition) {
-        return position.equals(maxPosition);
+    @Override
+    public int compareTo(Car o) {
+        return this.position.compareTo(o.getPosition());
     }
 }
