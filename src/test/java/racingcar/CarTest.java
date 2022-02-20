@@ -29,7 +29,14 @@ class CarTest {
     @Test
     void 자동차의_이름이_6자_이상인_경우_예외처리() {
         assertThatThrownBy(() -> {
-            Car car = new Car("asdbds");
+            new Car("asdbds");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 자동차의_이름이_빈_믄자열인_경우_예외처리() {
+        assertThatThrownBy(() -> {
+            new Car("");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
