@@ -10,12 +10,14 @@ public class Input {
     public static String inputCarNames() {
         System.out.println(INPUT_CAR_MESSAGE);
         String inputName = sc.next();
+
         return inputName;
     }
 
     public static String inputTry() {
         System.out.println(INPUT_TRY_MESSAGE);
         String inputTry = sc.next();
+
         return inputTry;
     }
 }
