@@ -64,6 +64,7 @@ public class Cars {
 		Position maxPosition = getMaxPosition();
 		return cars.stream()
 			.filter(car -> car.isSamePosition(maxPosition))
+			.map(Car::getName)
 			.collect(Collectors.toList());
 	}
 
