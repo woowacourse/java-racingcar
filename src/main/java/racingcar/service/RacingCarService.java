@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import racingcar.domain.car.Cars;
 import racingcar.domain.movement.RandomMovementStrategy;
 import racingcar.domain.round.Round;
-import racingcar.dto.CarDto;
-import racingcar.dto.CarsDto;
+import racingcar.dto.CarResponse;
+import racingcar.dto.CarsResponse;
 
 public class RacingCarService {
 
@@ -22,15 +22,15 @@ public class RacingCarService {
         return round.isEnd();
     }
 
-    public CarsDto run() {
+    public CarsResponse run() {
         cars.move(new RandomMovementStrategy());
         round.decrease();
-        return new CarsDto(cars);
+        return new CarsResponse(cars);
     }
 
-    public List<CarDto> getWinners() {
+    public List<CarResponse> getWinners() {
         return cars.findWinners().stream()
-            .map(CarDto::new)
+            .map(CarResponse::new)
             .collect(Collectors.toList());
     }
 }

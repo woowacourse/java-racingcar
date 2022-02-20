@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.dto.CarsDto;
+import racingcar.dto.CarsResponse;
 import racingcar.service.RacingCarService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -23,7 +23,7 @@ public class RacingCarController {
     private void startRacing(RacingCarService service) {
         outputView.printProcessPrompt();
         while (!service.isEnd()) {
-            CarsDto result = service.run();
+            CarsResponse result = service.run();
             outputView.printCarsPosition(result);
         }
         outputView.printWinners(service.getWinners());

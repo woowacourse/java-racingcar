@@ -11,8 +11,8 @@ import racingcar.ConsoleTest;
 import racingcar.config.ViewConfig;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.dto.CarDto;
-import racingcar.dto.CarsDto;
+import racingcar.dto.CarResponse;
+import racingcar.dto.CarsResponse;
 
 class OutputViewTest extends ConsoleTest {
 
@@ -25,9 +25,9 @@ class OutputViewTest extends ConsoleTest {
     void printWinners() {
         changeOutput();
         outputView = ViewConfig.getOutputView();
-        List<CarDto> testWinners =
+        List<CarResponse> testWinners =
             Stream.of(new Car("pobi"), new Car("seung"), new Car("char"))
-                .map(CarDto::new)
+                .map(CarResponse::new)
                 .collect(Collectors.toList());
         outputView.printWinners(testWinners);
         assertThat(outputStream.toString()).hasToString(SAMPLE_WINNERS_MESSAGE);
@@ -41,7 +41,7 @@ class OutputViewTest extends ConsoleTest {
         String[] input = {"pobi", "seung", "char"};
         Cars cars = Cars.create(input);
         cars.move(() -> 1);
-        CarsDto carsDto = new CarsDto(cars);
+        CarsResponse carsDto = new CarsResponse(cars);
         outputView.printCarsPosition(carsDto);
         assertThat(outputStream.toString()).hasToString(SAMPLE_CAR_POSITION);
     }

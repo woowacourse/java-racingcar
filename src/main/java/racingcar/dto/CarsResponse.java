@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.car.Cars;
 
-public class CarsDto {
+public class CarsResponse {
 
-    List<CarDto> cars;
+    private final List<CarResponse> cars;
 
-    public CarsDto(Cars cars) {
+    public CarsResponse(Cars cars) {
         this.cars = cars.getCars().stream()
-            .map(CarDto::new)
+            .map(CarResponse::new)
             .collect(Collectors.toList());
     }
 
-    public List<CarDto> getCars() {
+    public List<CarResponse> getCars() {
         return Collections.unmodifiableList(cars);
     }
 }

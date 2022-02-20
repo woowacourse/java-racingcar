@@ -2,12 +2,12 @@ package racingcar.dto;
 
 import racingcar.domain.car.Car;
 
-public class CarDto {
+public class CarResponse {
 
-    private String name;
-    private int position;
+    private final String name;
+    private final int position;
 
-    public CarDto(Car car) {
+    public CarResponse(Car car) {
         this.name = car.getName();
         this.position = car.getPosition();
     }
