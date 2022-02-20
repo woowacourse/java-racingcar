@@ -2,8 +2,10 @@ package racingcar.exception;
 
 public class DuplicateCarNameException extends RuntimeException {
 
-    public DuplicateCarNameException(String message) {
-        super(message);
+    private static final String DEFAULT_MESSAGE = "차 이름은 중복될 수 없습니다";
+
+    public DuplicateCarNameException() {
+        super(DEFAULT_MESSAGE);
     }
 
     @Override

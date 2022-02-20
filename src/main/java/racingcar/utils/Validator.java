@@ -1,8 +1,8 @@
 package racingcar.utils;
 
 import racingcar.exception.DuplicateCarNameException;
-import racingcar.exception.InvalidCountRangeException;
-import racingcar.exception.SingleCarException;
+import racingcar.exception.LessThanMinimumCountException;
+import racingcar.exception.LessThanMinimumPlayerException;
 import racingcar.model.Car;
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.List;
 public class Validator {
 
     private static final int MINIMUM_COUNT = 1;
-    private static final int MINIMUM_PLAYER = 2;
+    private static final int MINIMUM_PLAYER_SIZE = 2;
 
     private Validator() {
         throw new UnsupportedOperationException();
@@ -28,19 +28,19 @@ public class Validator {
 
     private static void checkMinimumRange(int count) {
         if (count < MINIMUM_COUNT) {
-            throw new InvalidCountRangeException("시도 횟수는 1 이상이어야 합니다");
+            throw new LessThanMinimumCountException(MINIMUM_COUNT);
         }
     }
 
     private static void checkDuplicateName(List<Car> cars) {
         if (hasDuplicateName(cars)) {
-            throw new DuplicateCarNameException("차 이름은 중복될 수 없습니다");
+            throw new DuplicateCarNameException();
         }
     }
 
     private static void checkMinimumPlayer(List<Car> cars) {
-        if (cars.size() < MINIMUM_PLAYER) {
-            throw new SingleCarException("최소 자동차 개수는 2개 이상입니다");
+        if (cars.size() < MINIMUM_PLAYER_SIZE) {
+            throw new LessThanMinimumPlayerException(MINIMUM_PLAYER_SIZE);
         }
     }
 

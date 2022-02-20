@@ -4,8 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
 import racingcar.exception.DuplicateCarNameException;
-import racingcar.exception.InvalidCountRangeException;
-import racingcar.exception.SingleCarException;
+import racingcar.exception.LessThanMinimumCountException;
+import racingcar.exception.LessThanMinimumPlayerException;
 import racingcar.utils.Validator;
 
 import java.util.List;
@@ -30,14 +30,14 @@ public class ValidationUtilTest {
         List<Car> singleCar = List.of(new Car("one"));
 
         assertThatThrownBy(() -> Validator.validateCarFollowsRule(singleCar))
-                .isInstanceOf(SingleCarException.class);
+                .isInstanceOf(LessThanMinimumPlayerException.class);
     }
 
     @Test
     @DisplayName("시도횟수가 0이하인 경우 예외를 발생시킨다")
     void shouldThrowExceptionWhenCountLessThanOne() {
         assertThatThrownBy(() -> Validator.validateRange(0))
-                .isInstanceOf(InvalidCountRangeException.class);
+                .isInstanceOf(LessThanMinimumCountException.class);
     }
 
 }
