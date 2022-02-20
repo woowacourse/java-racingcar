@@ -1,8 +1,9 @@
 package racingcar.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import racingcar.util.Util;
+import java.util.stream.Collectors;
 import racingcar.util.Validator;
 
 public class InputView {
@@ -17,7 +18,9 @@ public class InputView {
 
     public static List<String> getCarNames() {
         OutputView.printRequestInstruction(REQUEST_CARS_NAME);
-        List<String> carsName = Util.splitWithDelimiter(getInput(), SPLIT_DELIMITER);
+        List<String> carsName = Arrays.stream(getInput().split(SPLIT_DELIMITER, -1))
+                .map(String::trim)
+                .collect(Collectors.toList());
         Validator.validateCarNames(carsName);
         return carsName;
     }
