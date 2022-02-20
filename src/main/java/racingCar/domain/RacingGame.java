@@ -3,6 +3,7 @@ package racingCar.domain;
 import java.util.Arrays;
 import java.util.List;
 import racingCar.domain.dto.CarDto;
+import racingCar.domain.moveStrategy.RandomNumGenerator;
 import racingCar.utils.Util;
 
 public class RacingGame {
@@ -15,7 +16,7 @@ public class RacingGame {
     }
 
     public void go() {
-        cars.go();
+        cars.go(new RandomNumGenerator());
         roundCount.minusOne();
     }
 

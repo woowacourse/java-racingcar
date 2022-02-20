@@ -30,8 +30,7 @@ public class Cars {
         }
     }
 
-    public void go() {
-        NumGenerator numGenerator = new RandomNumGenerator();
+    public void go(NumGenerator numGenerator) {
         for (Car car : cars) {
             car.move(numGenerator);
         }
