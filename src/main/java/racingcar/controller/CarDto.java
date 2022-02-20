@@ -1,27 +1,25 @@
 package racingcar.controller;
 
 import racingcar.domain.Car;
-import racingcar.domain.Name;
-import racingcar.domain.Position;
 
 public class CarDto {
-    private final Name name;
-    private final Position position;
+    private final String name;
+    private final int position;
 
-    public CarDto(Name name, Position position) {
+    public CarDto(String name, int position) {
         this.name = name;
         this.position = position;
     }
 
     public static CarDto from(Car car) {
-        return new CarDto(car.getName(), car.getPosition());
+        return new CarDto(car.getName().getNameValue(), car.getPosition().getPositionValue());
     }
 
-    public Name getName() {
+    public String getName() {
         return name;
     }
 
-    public Position getPosition() {
+    public int getPosition() {
         return position;
     }
 }

@@ -20,8 +20,8 @@ public class OutputView {
     public static void printRacingRecord(List<CarDto> cars) {
         for (CarDto car : cars) {
             System.out.println(
-                    car.getName().getNameValue() + NAME_AND_SCORE_DELIMITER + printDash(
-                            car.getPosition().getPositionValue()));
+                    car.getName() + NAME_AND_SCORE_DELIMITER + printDash(
+                            car.getPosition()));
         }
         System.out.println();
     }
