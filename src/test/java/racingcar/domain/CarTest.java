@@ -14,9 +14,9 @@ public class CarTest {
         Car car = Car.carBuilder().setName("foo").build();
 
         // when & then
-        assertThat(car.getPositionForTest()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
         car.moveOrHold(true);
-        assertThat(car.getPositionForTest()).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
@@ -26,8 +26,8 @@ public class CarTest {
         Car car = Car.carBuilder().setName("foo").build();
 
         // when & then
-        assertThat(car.getPositionForTest()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
         car.moveOrHold(false);
-        assertThat(car.getPositionForTest()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }

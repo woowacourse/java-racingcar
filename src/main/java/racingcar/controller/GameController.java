@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.repository.CarRepository;
 import racingcar.domain.Car;
 import racingcar.util.CarNameParser;
+import racingcar.validator.CarNameValidator;
 import racingcar.view.*;
 
 import java.util.*;
@@ -30,7 +31,7 @@ public class GameController {
         this.carRepository = carRepository;
     }
 
-    public static GameControllerBuilder gameControllerBuilder(){
+    public static GameControllerBuilder gameControllerBuilder() {
         return new GameControllerBuilder();
     }
 
@@ -50,15 +51,19 @@ public class GameController {
         outputView.printAskCarNameInputMessage();
 
         String input = inputView.readCarNamesInput();
-        String[] strings = CarNameParser.parseCarNameInputs(input);
-        List<String> carNames = Arrays.asList(strings);
+        String[] parsedStrings = CarNameParser.parseCarNameInputs(input);
+        CarNameValidator carNameValidator = new CarNameValidator();
+
+        for (String carName : parsedStrings) {
+            carNameValidator.validateCarName(carName);
+        }
+        List<String> carNames = Arrays.asList(parsedStrings);
 
         List<Car> cars = new ArrayList<>();
         carNames.forEach(x -> {
             Car car = Car.carBuilder().setName(x).build();
             cars.add(car);
         });
-
         carRepository.addCars(cars);
     }
 
