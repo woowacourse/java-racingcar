@@ -2,9 +2,6 @@ package racingcar.domain;
 
 import java.util.List;
 
-import racingcar.domain.strategy.MovePredicate;
-import racingcar.domain.util.CarFactory;
-
 public class Game {
     private static final MovePredicate MOVE_PREDICATE = new MovePredicate();
     private static final String COUNT_END_ERROR = "[ERROR] 이미 정해진 횟수만큼 진행되었습니다.";

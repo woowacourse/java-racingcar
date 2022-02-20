@@ -1,10 +1,8 @@
-package racingcar.domain.util;
+package racingcar.domain;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import racingcar.domain.Car;
 
 public class CarFactory {
     private static final String NAME_REGEX = ",";

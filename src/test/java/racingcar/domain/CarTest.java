@@ -6,8 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.domain.util.CarFactory;
-
 public class CarTest {
     @Test
     @DisplayName("CarFactory 통한 차 여러대 생성")

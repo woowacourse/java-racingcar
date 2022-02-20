@@ -1,4 +1,4 @@
-package racingcar.domain.strategy;
+package racingcar.domain;
 
 import java.util.Random;
 import java.util.function.IntPredicate;

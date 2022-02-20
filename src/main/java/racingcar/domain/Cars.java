@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import racingcar.domain.strategy.MovePredicate;
-
 public class Cars {
     private static final String DUPLICATED_NAME_ERROR = "[ERROR] 차 이름은 중복될 수 없습니다.";
 
