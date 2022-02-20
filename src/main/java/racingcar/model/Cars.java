@@ -64,7 +64,7 @@ public class Cars {
 		return winners;
 	}
 
-	public Car findWinnerCar() {
+	private Car findWinnerCar() {
 		return cars.stream()
 			.max(Car::compareTo)
 			.orElseThrow(() -> new IllegalArgumentException());
