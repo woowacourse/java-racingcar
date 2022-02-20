@@ -34,12 +34,13 @@ public class Cars {
 
 	private List<Car> toCar(List<String> carNames) {
 		Set<Car> cars = new LinkedHashSet<>();
-		carNames.stream()
-			.forEach(carName -> cars.add(new Car(carName, START_POSITION, new RandomNumberMovingCondition())));
 
-		if (cars.size() != carNames.size()) {
-			throw new IllegalArgumentException("[Error] 중복된 이름입니다.");
+		for (String carName : carNames) {
+			Car car = new Car(carName, START_POSITION, new RandomNumberMovingCondition());
+			CheckingService.checkDuplicationAboutCarName(cars, car);
+			cars.add(car);
 		}
+
 		return List.copyOf(cars);
 	}
 

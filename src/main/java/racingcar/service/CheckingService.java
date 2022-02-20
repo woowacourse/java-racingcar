@@ -1,5 +1,9 @@
 package racingcar.service;
 
+import java.util.Set;
+
+import racingcar.model.Car;
+
 public class CheckingService {
 	private static final String NULL_EMPTY_CAR_NAME_ERROR_MESSAGE = "[Error] 다시 이름을 입력하세요";
 	private static final int MAX_CAR_NAME_LENGTH = 5;
@@ -7,6 +11,7 @@ public class CheckingService {
 		MAX_CAR_NAME_LENGTH);
 	private static final String GAME_TURN_NUMBER_ERROR_MESSAGE = "[Error] 숫자를 입력하세요.";
 	private static final String GAME_TURN_NUMBER_REGEX = "[1-9]\\d*";
+	private static final String DUPLICATION_NAME_ERROR_MESSAGE = "[Error] 중복된 이름입니다.";
 
 	public static void checkCarNamesBlank(String input) {
 		if (input == null || input.isBlank()) {
@@ -25,4 +30,11 @@ public class CheckingService {
 			throw new IllegalArgumentException(GAME_TURN_NUMBER_ERROR_MESSAGE);
 		}
 	}
+
+	public static void checkDuplicationAboutCarName(Set<Car> cars, Car newCar) {
+		if (cars.contains(newCar)) {
+			throw new IllegalArgumentException(DUPLICATION_NAME_ERROR_MESSAGE);
+		}
+	}
+	
 }
