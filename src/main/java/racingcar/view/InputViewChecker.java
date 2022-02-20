@@ -2,9 +2,8 @@ package racingcar.view;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Scanner;
 
-public class InputProcessView {
+public class InputViewChecker {
 	private static final String ERROR_NULL = "[ERROR] 입력값은 NULL일 수 없습니다.";
 	private static final String ERROR_BLANK = "[ERROR] 입력값은 빈 입력일 수 없습니다.";
 	private static final String ERROR_SIZE = "[ERROR] 입력값의 크기는 5 초과일 수 없습니다.";
@@ -84,12 +83,12 @@ public class InputProcessView {
 		checkIntNum(turnInput);
 	}
 
-	public static String[] getCarNameInput(final String userInput) throws IllegalArgumentException {
+	public static String[] checkNameInput(final String userInput) throws IllegalArgumentException {
 		checkNameError(userInput);
 		return userInput.split(DELIMITER);
 	}
 
-	public static int getTurnInput(final String userInput) throws IllegalArgumentException {
+	public static int checkTurnInput(final String userInput) throws IllegalArgumentException {
 		checkTurnError(userInput);
 		return Integer.parseInt(userInput);
 	}
