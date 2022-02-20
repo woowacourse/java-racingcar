@@ -1,6 +1,6 @@
-package racingcargame.model.car;
+package racingcargame.model.car.vo;
 
-public class Name {
+public class CarName {
     private static final int MAX_NAME_LENGTH_COUNT = 5;
     private static final int MIN_NAME_LENGTH_COUNT = 1;
     private static final String EMPTY_NAME = "";
@@ -9,7 +9,7 @@ public class Name {
 
     private final String name;
 
-    public Name(final String name) {
+    public CarName(final String name) {
         this.name = checkValidateName(name);
     }
 
