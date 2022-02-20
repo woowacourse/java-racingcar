@@ -2,6 +2,8 @@ package racingcar.domain.round;
 
 import static racingcar.utils.IntegerUtils.parseInt;
 
+import java.util.Objects;
+
 public class Round {
 
     private static final int MIN_NUMBER = 1;
@@ -29,7 +31,20 @@ public class Round {
         this.round--;
     }
 
-    public int getRound() {
-        return round;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Round round1 = (Round) o;
+        return round == round1.round;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(round);
     }
 }

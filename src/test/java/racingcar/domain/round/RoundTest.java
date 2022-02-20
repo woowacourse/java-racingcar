@@ -14,7 +14,7 @@ class RoundTest {
     @Test
     void roundWithPositiveNumber() {
         Round round = new Round(3);
-        assertThat(round.getRound()).isEqualTo(3);
+        assertThat(round).isEqualTo(new Round(3));
     }
 
     @DisplayName("라운드가 음수, 0")
