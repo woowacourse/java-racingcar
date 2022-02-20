@@ -25,6 +25,7 @@ public class RacingGame {
         startMessage();
 
         while (gameTotalCount.isContinue()) {
+            gameTotalCount.reduceAttemptCount();
             run();
         }
 

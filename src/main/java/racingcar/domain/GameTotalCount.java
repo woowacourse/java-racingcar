@@ -26,12 +26,10 @@ public class GameTotalCount {
             return false;
         }
 
-        reduceAttemptCount();
-
         return true;
     }
 
-    private void reduceAttemptCount() {
+    public void reduceAttemptCount() {
         totalAttemptCount = totalAttemptCount - 1;
     }
 
