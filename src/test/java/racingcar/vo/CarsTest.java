@@ -43,7 +43,7 @@ class CarsTest {
     }
 
     @DisplayName("judgeWinners() 단독, 공동우승 테스트")
-    @ParameterizedTest()
+    @ParameterizedTest
     @ValueSource(strings = {"name1", "name1,name2"})
     void judgeWinners_test(String inputNames) {
         String[] names = inputNames.split(",");
