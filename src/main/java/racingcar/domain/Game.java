@@ -7,6 +7,7 @@ import racingcar.domain.util.CarFactory;
 
 public class Game {
     private static final MovePredicate MOVE_PREDICATE = new MovePredicate();
+    private static final String COUNT_END_ERROR = "[ERROR] 이미 정해진 횟수만큼 진행되었습니다.";
 
     private final Cars cars;
     private int count;
@@ -21,8 +22,11 @@ public class Game {
     }
 
     public void play() {
-        cars.moveCars(MOVE_PREDICATE);
+        if (isEnd()) {
+            throw new RuntimeException(COUNT_END_ERROR);
+        }
         count--;
+        cars.moveCars(MOVE_PREDICATE);
     }
 
     public List<Car> getWinners() {

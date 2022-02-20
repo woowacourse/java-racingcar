@@ -29,6 +29,6 @@ public class CarTest {
     public void name_blank_exception() {
         assertThatThrownBy(() -> new Car(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR] 이름은 공백일 수 없습니다.");
+                .hasMessage("[ERROR] 이름은 공백일 수 없습니다.");
     }
 }

@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
@@ -44,13 +45,26 @@ public class GameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2})
     @DisplayName("진행 횟수에 따른 게임 종료 판단")
+    @ValueSource(ints = {0, 1, 2})
     public void isEnd_after_play(int count) {
         Game game = new Game(cars, count);
         for (int i = 0; i < count; i++) {
             game.play();
         }
         assertThat(game.isEnd()).isTrue();
+    }
+
+    @ParameterizedTest
+    @DisplayName("게임 종료 후 play시 에러 발생")
+    @ValueSource(ints = {0, 1, 2})
+    public void play_after_game_ends(int count) {
+        Game game = new Game(cars, count);
+        for (int i = 0; i < count; i++) {
+            game.play();
+        }
+        assertThatThrownBy(game::play)
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("[ERROR] 이미 정해진 횟수만큼 진행되었습니다.");
     }
 }
