@@ -11,9 +11,14 @@ public class CarTest {
 	@Test
 	public void 전진_테스트() {
 		MovingCondition movingCondition = () -> true;
-		Car car = new Car("아스피", movingCondition);
+		Car car = new Car("아스피", 0, movingCondition);
 		car.move();
-		assertThat(car.isSamePosition(new Car("배카라", 1))).isEqualTo(true);
+		assertThat(car.isSamePosition(new Car("배카라", 1, new MovingCondition() {
+			@Override
+			public boolean canMove() {
+				return false;
+			}
+		}))).isEqualTo(true);
 	}
 
 }

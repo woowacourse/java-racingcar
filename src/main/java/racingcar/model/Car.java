@@ -10,14 +10,10 @@ public class Car implements Comparable<Car> {
 	private int position;
 	private MovingCondition movingCondition;
 
-	public Car(String name, int position) {
+	public Car(String name, int position, MovingCondition movingCondition) {
 		CheckingService.checkCarNameLength(name);
 		this.name = name;
 		this.position = position;
-	}
-
-	public Car(String name, MovingCondition movingCondition) {
-		this(name, 0);
 		this.movingCondition = movingCondition;
 	}
 
@@ -30,7 +26,7 @@ public class Car implements Comparable<Car> {
 	public boolean isSamePosition(Car otherCar) {
 		return this.position == otherCar.position;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

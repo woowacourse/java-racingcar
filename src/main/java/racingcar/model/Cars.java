@@ -11,7 +11,9 @@ import racingcar.service.CheckingService;
 import racingcar.service.RandomNumberMovingCondition;
 
 public class Cars {
-	public static final String COMMA_DELIMITER = ",";
+	private static final String COMMA_DELIMITER = ",";
+	private static final int START_POSITION = 0;
+
 	private List<Car> cars;
 
 	public Cars(String inputCarNames) {
@@ -29,10 +31,10 @@ public class Cars {
 	}
 
 	private List<Car> toCar(List<String> carNames) {
-		List<Car> cars = new ArrayList<Car>();
+		List<Car> cars = new ArrayList<>();
 		try {
 			carNames.stream()
-				.forEach(carName -> cars.add(new Car(carName, new RandomNumberMovingCondition())));
+				.forEach(carName -> cars.add(new Car(carName, START_POSITION, new RandomNumberMovingCondition())));
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(e.getMessage());
 		}
@@ -55,7 +57,7 @@ public class Cars {
 
 	public List<String> findWinnerCars() {
 		Car maxPositionCar = findWinnerCar();
-		List<String> winners = new ArrayList<String>();
+		List<String> winners = new ArrayList<>();
 		cars.stream()
 			.filter(maxPositionCar::isSamePosition)
 			.forEach(car -> winners.add(car.getName()));
