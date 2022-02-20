@@ -14,7 +14,7 @@ public class Cars {
 	private final List<Car> cars;
 
 	private Cars(List<Car> cars) {
-		cars = new ArrayList<>(cars);
+		cars = Collections.unmodifiableList(cars);
 		validateDuplicate(cars);
 		this.cars = cars;
 	}
@@ -43,12 +43,6 @@ public class Cars {
 		}
 	}
 
-	public List<String> getStatuses() {
-		return cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.toList());
-	}
-
 	public List<String> getWinnerNames() {
 		int farthestLocation = getFarthestLocation();
 		return cars.stream()
@@ -64,5 +58,9 @@ public class Cars {
 			.collect(Collectors.toList());
 
 		return Collections.max(carLocations);
+	}
+
+	public List<Car> getCars() {
+		return new ArrayList<>(cars);
 	}
 }
