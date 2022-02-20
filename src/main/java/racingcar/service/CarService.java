@@ -1,14 +1,12 @@
 package racingcar.service;
 
-import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
+import racingcar.model.car.RandomNumber;
 import racingcar.model.score.GameScoreBoard;
 import racingcar.model.score.ScoreBoard;
 import racingcar.model.score.ScoreConverter;
-import racingcar.model.car.RandomNumber;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CarService {
     private final Cars cars;
@@ -19,22 +17,8 @@ public class CarService {
         this.gameScoreBoard = new GameScoreBoard();
     }
 
-    private Car toCar(CarDto carDto) {
-        return new Car(carDto.getName());
-    }
-
-    public List<Car> toCars(List<CarDto> carDtos) {
-        return carDtos.stream()
-                .map(this::toCar)
-                .collect(Collectors.toList());
-    }
-
     public void createCars(List<String> names) {
         cars.create(names);
-    }
-
-    private void addScoreBoard(int round, List<CarDto> cars) {
-        gameScoreBoard.add(new ScoreBoard(round, ScoreConverter.of(cars)));
     }
 
     public void moveCars(int iteration) {
@@ -48,8 +32,12 @@ public class CarService {
         return gameScoreBoard.getScoreBoards();
     }
 
-
     public List<String> findWinners() {
         return gameScoreBoard.findWinners();
+    }
+
+
+    private void addScoreBoard(int round, List<CarDto> cars) {
+        gameScoreBoard.add(new ScoreBoard(round, ScoreConverter.of(cars)));
     }
 }
