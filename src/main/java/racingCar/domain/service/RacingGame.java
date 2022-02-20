@@ -44,8 +44,8 @@ public class RacingGame {
         return result;
     }
 
-    public Cars getCars() {
-        return cars;
+    public List<CarDto> getCarsDto() {
+        return cars.getDto();
     }
 
     public RoundCount getRoundCount() {
