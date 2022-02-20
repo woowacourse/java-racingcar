@@ -19,7 +19,7 @@ class CarsTest {
 		//then
 		assertThatThrownBy(() -> {
 			cars = new Cars(input);
-		}).hasMessage("경주할 자동차가 한 대일 경우 경주를 진행할 수 없습니다.");
+		}).hasMessage("경주할 자동차가 한 대 이하일 경우 경주를 진행할 수 없습니다.");
 	}
 
 	@Test

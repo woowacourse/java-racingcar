@@ -17,15 +17,15 @@ public class Output {
 	private static final String FINAL_WINNER_MSG = "가 최종 우승했습니다.";
 	private static final int FINAL_RESULT_STRING_MINUS_INDEX = 2;
 
-	public static void printError(String error) {
+	public void printError(String error) {
 		System.out.println(ERROR_MSG + error);
 	}
 
-	public static void printResultMessage() {
+	public void printResultMessage() {
 		System.out.println(RESULT_MSG);
 	}
 
-	public static void printRoundResult(List<RacingCar> cars) {
+	public void printRoundResult(List<RacingCar> cars) {
 		for (RacingCar car : cars) {
 			System.out.println(
 				car.getName().getName() + NAME_AND_POSITION_CONNECTION + POSITION_SIGNATURE.repeat(car.getPosition()));
@@ -33,7 +33,7 @@ public class Output {
 		System.out.println();
 	}
 
-	public static void printWinners(List<Name> winners) {
+	public void printWinners(List<Name> winners) {
 		StringBuilder result = new StringBuilder();
 		winners.forEach(
 			winner -> result.append(winner.getName()).append(WINNER_SEPARATED_STR)

@@ -8,12 +8,12 @@ public class Input {
 	private static final String REQUEST_COUNT = "시도할 회수는 몇회인가요?";
 	private static final Scanner scanner = new Scanner(System.in);
 
-	public static String inputCarNames() {
+	public String inputCarNames() {
 		System.out.println(REQUEST_CARS_NAME);
 		return scanner.nextLine();
 	}
 
-	public static String inputCount() {
+	public String inputCount() {
 		System.out.println(REQUEST_COUNT);
 		return scanner.nextLine();
 	}

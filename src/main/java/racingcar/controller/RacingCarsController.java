@@ -8,11 +8,15 @@ import racingcar.view.Output;
 
 public class RacingCarsController {
 
+	private Input inputView;
+	private Output outputView;
 	private RoundCount roundCount;
 	private Cars cars;
 	private final Winners winners;
 
-	public RacingCarsController(Winners winners) {
+	public RacingCarsController(Input inputView, Output outputView, Winners winners) {
+		this.inputView = inputView;
+		this.outputView = outputView;
 		this.winners = winners;
 	}
 
@@ -25,7 +29,7 @@ public class RacingCarsController {
 	private void requestCarNames() {
 		String carNames;
 		do {
-			carNames = Input.inputCarNames();
+			carNames = inputView.inputCarNames();
 		} while (!isSaveCars(carNames));
 	}
 
@@ -35,35 +39,35 @@ public class RacingCarsController {
 			cars = new Cars(carNames);
 			safeSaveChecker = true;
 		} catch (Exception exception) {
-			Output.printError(exception.getMessage());
+			outputView.printError(exception.getMessage());
 		}
 		return safeSaveChecker;
 	}
 
 	private void requestCount() {
 		try {
-			roundCount = new RoundCount(Input.inputCount());
+			roundCount = new RoundCount(inputView.inputCount());
 		} catch (Exception exception) {
-			Output.printError(exception.getMessage());
+			outputView.printError(exception.getMessage());
 			requestCount();
 		}
 	}
 
 	private void startGame() {
-		Output.printResultMessage();
+		outputView.printResultMessage();
 		runGame();
 	}
 
 	private void runGame() {
 		while (roundCount.isOverZero()) {
 			cars.startRound();
-			Output.printRoundResult(cars.getCars());
+			outputView.printRoundResult(cars.getCars());
 		}
 		endGame();
 	}
 
 	private void endGame() {
-		Output.printWinners(winners.findWinner(cars.getCars()));
+		outputView.printWinners(winners.findWinner(cars.getCars()));
 	}
 
 }
