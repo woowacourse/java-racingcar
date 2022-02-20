@@ -4,8 +4,6 @@ import java.util.Objects;
 
 public class Car {
 
-    private final static int MOVABLE_NUMBER = 4;
-
     private final Name name;
     private final Location location;
     private final Moving moving;
@@ -13,7 +11,7 @@ public class Car {
     public Car(String name) {
         this.name = new Name(name);
         this.location = new Location();
-        this.moving = new BiggerNumberMoving(MOVABLE_NUMBER);
+        this.moving = new BiggerNumberMoving();
     }
 
     public void tryMove(int number) {

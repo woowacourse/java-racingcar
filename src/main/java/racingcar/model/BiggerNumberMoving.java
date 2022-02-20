@@ -2,17 +2,10 @@ package racingcar.model;
 
 public class BiggerNumberMoving implements Moving {
 
-    private final int movableNumber;
-
-    public BiggerNumberMoving(int number) {
-        this.movableNumber = number;
-    }
+    private final static int MOVABLE_NUMBER = 4;
 
     @Override
     public boolean canMove(int number) {
-        if (number >= movableNumber) {
-            return true;
-        }
-        return false;
+        return number >= MOVABLE_NUMBER;
     }
 }
