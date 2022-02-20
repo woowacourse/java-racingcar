@@ -23,8 +23,8 @@ public class Application {
     }
 
     public static void run() {
-        List<String> names = RetryableTemplate.execute(Application::inputCarNames, Application::handleException);
-        Integer tryCount = RetryableTemplate.execute(Application::inputTryCount, Application::handleException);
+        List<String> names = RetryableTemplate.executeInput(Application::inputCarNames, Application::handleException);
+        Integer tryCount = RetryableTemplate.executeInput(Application::inputTryCount, Application::handleException);
         RacingGame racingGame = new RacingGame(tryCount, names, new DefaultRandomNumberGenerator());
 
         view.printResultViewTitle();
