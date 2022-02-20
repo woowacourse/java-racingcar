@@ -39,6 +39,19 @@
 
 - [x]  퍼블릭 메소드 별로 테스트 코드 작성
 - [x]  리뷰어 피드백 적용(밑에 줄줄 쓰며 투두 해결)
+- 2단계 피드백
+   - [x]  equals() 메소드에 원시값 비교 제거
+   - [x]  getter 내부적으로 필요한 값을 바로 return해 체이닝을 줄임
+   - [x]  OutputView에 List<carDTO> 전달하도록 수정
+   - [x]  service 패키지 제거(지금은 MVC 기본 모델에 집중)
+   - [x]  exception, utils 패키지 위치 이동
+   - [x]  Dto 인스턴스변수 접근제어자 private로 변경
+   - [x]  InputValidator를 Utils 패키지로 이동
+   - [x]  domain 패키지 내에 dto 패키지를 만들어 carDto를 분리
+   - [x]  test 속 system.out.println 제거
+   - [x]  테스트 속 조건문/while문을 제거
+
+- 1단계 피드백
    - [x]  주요 로직 메서드는 getter보다 위에 있는게 좋은거 같아요
    - [x]  HashSet으로 size비교를 했는데 의도한대로 동작을 할까요??
    - [x]  (vo) equals, hashCode 사용
