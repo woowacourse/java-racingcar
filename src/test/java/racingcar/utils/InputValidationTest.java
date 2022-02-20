@@ -10,8 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("InputValidation클래스 테스트")
 class InputValidationTest {
 
-	InputValidation validation = new InputValidation();
-
 	@Nested
 	@DisplayName("이름 문자열이 주어졌을 때 ")
 	class NameTest {
@@ -20,7 +18,7 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} names={0}")
 		@ValueSource(strings = {"pobi,crong,honux", "pobi"})
 		void checkRightName(final String names) {
-			assertThatNoException().isThrownBy(() -> validation.validateName(names));
+			assertThatNoException().isThrownBy(() -> InputValidation.validateName(names));
 		}
 
 		@DisplayName("5자리 이상의 문자열이 주어지면 exception이 발생한다.")
@@ -28,7 +26,7 @@ class InputValidationTest {
 		@ValueSource(strings = {"pobi,crong,honuxxx", "pobixxxx"})
 		void checkWrongName(final String names) {
 			assertThatExceptionOfType(IllegalArgumentException.class)
-				.isThrownBy(() -> validation.validateName(names))
+				.isThrownBy(() -> InputValidation.validateName(names))
 				.withMessageMatching("이름은 5자리 이하만 가능합니다.");
 		}
 	}
@@ -41,7 +39,7 @@ class InputValidationTest {
 		@ParameterizedTest(name = "{index} {displayName} repeats={0}")
 		@ValueSource(strings = {"2", "10"})
 		void checkRightRepeats(final String repeats) {
-			assertThatNoException().isThrownBy(() -> validation.validateName(repeats));
+			assertThatNoException().isThrownBy(() -> InputValidation.validateName(repeats));
 		}
 
 		@DisplayName("잘못된 반복 횟수면 exception이 발생한다")
@@ -49,7 +47,7 @@ class InputValidationTest {
 		@ValueSource(strings = {"-2", "1a0"})
 		void checkWrongRepeats(final String repeats) {
 			assertThatExceptionOfType(IllegalArgumentException.class)
-				.isThrownBy(() -> validation.validateRepeats(repeats))
+				.isThrownBy(() -> InputValidation.validateRepeats(repeats))
 				.withMessageMatching("반복횟수는 정수만 입력 가능합니다.");
 		}
 	}

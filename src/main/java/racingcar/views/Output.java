@@ -7,16 +7,18 @@ import racingcar.utils.RacingGameMessage;
 
 public class Output {
 
-	public void printResultMessage() {
+	private Output() {}
+
+	public static void printResultMessage() {
 		System.out.println(RacingGameMessage.TURN_RESULT);
 	}
 
-	public void printTurnResult(final List<Car> carList) {
-		carList.forEach(this::printCarPosition);
+	public static void printTurnResult(final List<Car> carList) {
+		carList.forEach(Output::printCarPosition);
 		System.out.print("\n");
 	}
 
-	private void printCarPosition(final Car car) {
+	private static void printCarPosition(final Car car) {
 		System.out.print(car.getName() + RacingGameMessage.NAME_POSITION_SPLITTER);
 		for (int i = 0; i < car.getPosition(); i++) {
 			System.out.print(RacingGameMessage.CAR_POSITION);
@@ -24,14 +26,12 @@ public class Output {
 		System.out.print("\n");
 	}
 
-	public void printWinner(final List<Car> winners) {
+	public static void printWinner(final List<String> winners) {
 		System.out.print(joinWinnerNames(winners) + RacingGameMessage.WINNER);
 	}
 
-	private String joinWinnerNames(final List<Car> winners) {
-		final String[] winnerNames = winners.stream()
-			.map(Car::getName)
-			.toArray(String[]::new);
+	private static String joinWinnerNames(final List<String> winners) {
+		final String[] winnerNames = winners.toArray(String[]::new);
 		return String.join(", ", winnerNames);
 	}
 }
