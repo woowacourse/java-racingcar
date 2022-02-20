@@ -39,14 +39,14 @@ public class CarTest {
 
     @Test
     public void 차_1대_생성() {
-        List<Car> cars = CarFactory.of("kun");
+        List<Car> cars = CarFactory.from("kun");
         assertThat(cars.size()).isEqualTo(1);
     }
 
     @Test
     public void 차_여러대_생성() {
         String names = "forky,kun";
-        List<Car> cars = CarFactory.of(names);
+        List<Car> cars = CarFactory.from(names);
         assertThat(cars.size()).isEqualTo(2);
     }
 

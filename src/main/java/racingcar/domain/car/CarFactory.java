@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class CarFactory {
 
-    public static List<Car> of(String names) {
+    public static List<Car> from(String names) {
         String[] arrNames = names.split(",");
         return Arrays.stream(arrNames)
                 .map(String::trim)

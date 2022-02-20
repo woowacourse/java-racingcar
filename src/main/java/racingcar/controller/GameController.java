@@ -15,7 +15,7 @@ public class GameController {
     private final Game game;
 
     public GameController() {
-        game = new Game(CarFactory.of(InputView.inputCarNames()), InputView.inputGameCount());
+        game = new Game(CarFactory.from(InputView.inputCarNames()), InputView.inputGameCount());
     }
 
     public void start() {

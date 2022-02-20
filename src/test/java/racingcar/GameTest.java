@@ -18,7 +18,7 @@ public class GameTest {
 
     @Test
     public void 게임시도횟수_음수_입력한_경우_예외발생() {
-        List<Car> cars = CarFactory.of("kun,forky");
+        List<Car> cars = CarFactory.from("kun,forky");
         int gameCount = -1;
 
         assertThatThrownBy(() -> new Game(cars, gameCount))
@@ -28,7 +28,7 @@ public class GameTest {
 
     @Test
     public void 게임시도횟수_0_입력한_경우_Game_인스턴스_생성() {
-        List<Car> cars = CarFactory.of("kun,forky");
+        List<Car> cars = CarFactory.from("kun,forky");
         int gameCount = 0;
 
         Game game = new Game(cars, gameCount);
@@ -51,7 +51,7 @@ public class GameTest {
 
     @Test
     public void 우승자_여러명() {
-        Game game = new Game(CarFactory.of("forky,kun"), 2);
+        Game game = new Game(CarFactory.from("forky,kun"), 2);
         NumberGenerator numberGenerator = new MovableNumberGenerator();
 
         game.play(numberGenerator);

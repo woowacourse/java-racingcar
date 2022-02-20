@@ -18,28 +18,28 @@ public class CarsTest {
 
     @Test
     public void Car_2개일때_Cars_객체_생성_테스트() {
-        List<Car> carList = CarFactory.of("kun,forky");
+        List<Car> carList = CarFactory.from("kun,forky");
         Cars cars = new Cars(carList);
         assertThat(cars.getNumberOfCar()).isEqualTo(2);
     }
 
     @Test
     public void Car_3개일때_Cars_객체_생성_테스트() {
-        List<Car> carList = CarFactory.of("kun,forky,pobi");
+        List<Car> carList = CarFactory.from("kun,forky,pobi");
         Cars cars = new Cars(carList);
         assertThat(cars.getNumberOfCar()).isEqualTo(3);
     }
 
     @Test
     public void 중복된_이름() {
-        assertThatThrownBy(() -> new Cars(CarFactory.of("kun,kun")))
+        assertThatThrownBy(() -> new Cars(CarFactory.from("kun,kun")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATED_NAME_ERROR);
     }
 
     @Test
     public void Car_집합에서_최대_position_값_찾기() {
-        Cars cars = new Cars(CarFactory.of("kun,forky"));
+        Cars cars = new Cars(CarFactory.from("kun,forky"));
         String name = "kun";
         NumberGenerator numberGenerator = new MovableNumberGenerator();
 
