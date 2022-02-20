@@ -11,17 +11,18 @@ import org.junit.jupiter.api.Test;
 import racingcargame.dto.CarDto;
 
 class RacingCarGameTest {
-    private final RacingCarGame racingCarGame = new RacingCarGame(List.of("마크", "애니"), "4");
 
-    @DisplayName("경주 종료여부 확인 테스트")
+    @DisplayName("경주횟수가 남아서 경주가 종료되지 않는다.")
     @Test
     void isNotOverRace() {
+        final RacingCarGame racingCarGame = new RacingCarGame(List.of("마크", "애니"), "4");
         assertThat(racingCarGame.isNotOverRace()).isEqualTo(true);
     }
 
-    @DisplayName("자동차 정보가 정상적으로 전달되는지 테스트")
+    @DisplayName("자동차 정보(이름, 위치)가 View에게 전달된다.")
     @Test
     void sendRacingCarsInformation() {
+        final RacingCarGame racingCarGame = new RacingCarGame(List.of("마크", "애니"), "4");
         final List<CarDto> actual = racingCarGame.sendRacingCarsInformation();
         final CarDto first = new CarDto("마크", 0);
         final CarDto second = new CarDto("애니", 0);
