@@ -9,6 +9,9 @@ import racingcar.view.OutputView;
 import java.util.Scanner;
 
 public class GameController {
+    private static final int RANDOM_NUMBER_MIN_BOUND = 0;
+    private static final int RANDOM_NUMBER_MAX_BOUND = 9;
+
     private final InputView inputView;
 
     public GameController(Scanner scanner) {
@@ -48,7 +51,7 @@ public class GameController {
     private void startRace(Cars cars, int moveCount) {
         OutputView.printResultMessage();
         for (int i = 0; i < moveCount; i++) {
-            cars.startEachRace();
+            cars.startEachRace(RANDOM_NUMBER_MIN_BOUND,RANDOM_NUMBER_MAX_BOUND);
             OutputView.printCarsPosition(cars);
         }
     }

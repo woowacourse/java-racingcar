@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
     public static final int START_POSITION = 0;
-    private static final int RANDOM_NUMBER_BOUND = 10;
 
     private final List<Car> cars;
 
@@ -21,21 +20,9 @@ public class Cars {
         }
     }
 
-    public void startEachRace() {
+    public void startEachRace(int minBound, int maxBound) {
         for (Car car : cars) {
-            car.move(makeRandom(RANDOM_NUMBER_BOUND));
-        }
-    }
-
-    public void startEachRace(int bound) {
-        for (Car car : cars) {
-            car.move(makeRandom(bound));
-        }
-    }
-
-    public void startEachRace(int bound, int multiple) {
-        for (Car car : cars) {
-            car.move(makeRandom(bound) * multiple);
+            car.move(generateRandomNumber(minBound, maxBound));
         }
     }
 
