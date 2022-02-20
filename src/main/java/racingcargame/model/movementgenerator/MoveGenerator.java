@@ -1,4 +1,7 @@
-package racingcargame.utils;
+package racingcargame.model.movementgenerator;
+
+import racingcargame.model.movementgenerator.Move;
+import racingcargame.model.numbergenerator.NumberGenerator;
 
 public class MoveGenerator implements Move {
     private static final int MAX_BOUNDARY_NUMBER = 10;

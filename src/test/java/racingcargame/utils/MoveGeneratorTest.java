@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcargame.model.movementgenerator.Move;
+import racingcargame.model.movementgenerator.MoveGenerator;
+import racingcargame.model.numbergenerator.NumberGenerator;
 
 class MoveGeneratorTest {
 

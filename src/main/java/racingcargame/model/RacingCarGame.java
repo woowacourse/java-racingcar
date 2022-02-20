@@ -4,7 +4,7 @@ import java.util.List;
 import racingcargame.dto.CarDto;
 import racingcargame.model.car.Cars;
 import racingcargame.model.racecount.RaceCount;
-import racingcargame.utils.Move;
+import racingcargame.model.movementgenerator.Move;
 
 public class RacingCarGame {
     private final Cars cars;
