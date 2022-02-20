@@ -6,7 +6,7 @@ import java.util.List;
 public class Cars {
     private List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
@@ -28,7 +28,7 @@ public class Cars {
 
     public List<String> getWinners() {
         List<String> winners = new ArrayList<>();
-                cars.stream()
+        cars.stream()
                 .filter(car -> car.checkIfPositionSame(getMaxPosition()))
                 .forEach(car -> winners.add(car.getName()));
         return winners;
