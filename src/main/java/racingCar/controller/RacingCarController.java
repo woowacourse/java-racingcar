@@ -18,7 +18,7 @@ public class RacingCarController {
 		RacingCars racingCars;
 		List<String> carNames = getSplitCarNames();
 		racingCars = makeCars(carNames);
-		race(getCarTimes(), racingCars);
+		racingCars.race(getCarTimes());
 		OutputView.printWinners(racingCars.findWinner());
 	}
 
@@ -68,13 +68,5 @@ public class RacingCarController {
 			cars.add(new Car(carName));
 		}
 		return new RacingCars(cars);
-	}
-
-	private void race(int count, RacingCars racingCars) {
-		OutputView.startPrintResultMessage();
-		for (int i = 0; i < count; i++) {
-			racingCars.moveRacingCars();
-			OutputView.printCars(racingCars);
-		}
 	}
 }
