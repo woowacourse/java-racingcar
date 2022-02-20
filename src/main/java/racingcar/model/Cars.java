@@ -77,14 +77,17 @@ public class Cars {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		Cars cars = (Cars)obj;
-
-		return this.cars.equals(cars.cars);
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof Cars))
+			return false;
+		Cars cars1 = (Cars)o;
+		return getCars().equals(cars1.getCars());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(this.cars);
+		return Objects.hash(getCars());
 	}
 }
