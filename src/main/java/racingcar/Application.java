@@ -1,6 +1,8 @@
 package racingcar;
 
 import java.util.List;
+import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
 import racingcar.domain.exception.RacingGameException;
 import racingcar.domain.game.DefaultRandomNumberGenerator;
 import racingcar.domain.game.RacingGame;
@@ -25,7 +27,7 @@ public class Application {
     public static void run() {
         List<String> names = RetryableTemplate.executeInput(Application::inputCarNames, Application::handleException);
         Integer tryCount = RetryableTemplate.executeInput(Application::inputTryCount, Application::handleException);
-        RacingGame racingGame = new RacingGame(tryCount, names, new DefaultRandomNumberGenerator());
+        RacingGame racingGame = new RacingGame(new TryCount(tryCount), new Cars(names, new DefaultRandomNumberGenerator()));
 
         view.printResultViewTitle();
         while (!racingGame.isFinished()) {

@@ -12,9 +12,9 @@ public class RacingGame {
     private final TryCount tryCount;
     private final Cars cars;
 
-    public RacingGame(int tryCount, List<String> names, RandomNumberGenerator generator) {
-        this.tryCount = new TryCount(tryCount);
-        this.cars = new Cars(names, generator);
+    public RacingGame(TryCount tryCount, Cars cars) {
+        this.tryCount = tryCount;
+        this.cars = cars;
     }
 
     public void proceedTurn() {
