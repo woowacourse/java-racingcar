@@ -4,8 +4,7 @@ import racingcar.domain.RacingGame;
 
 import java.util.List;
 
-import static racingcar.view.InputView.inputAttemptCount;
-import static racingcar.view.InputView.inputCarNames;
+import static racingcar.view.InputView.*;
 import static racingcar.view.OutputView.*;
 
 public class Application {
@@ -13,7 +12,7 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            racingGame = new RacingGame(inputCarNames(), inputAttemptCount());
+            racingGame = new RacingGame(inputCarNames(), inputAttempt());
             playAndPrintTotalExecutionResult();
             selectAndPrintWinner();
         } catch (IllegalArgumentException e) {

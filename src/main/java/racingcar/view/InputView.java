@@ -16,13 +16,13 @@ public class InputView {
         return SCANNER.nextLine().split(SIGN_OF_CAR_NAME);
     }
 
-    public static int inputAttemptCount() {
+    public static int inputAttempt() {
         System.out.println("시도할 회수는 몇회인가요?");
         String num = SCANNER.nextLine();
         return validateIntegerThenParse(num);
     }
 
-    public static int validateIntegerThenParse(String num) {
+    private static int validateIntegerThenParse(String num) {
         try {
             return Integer.parseInt(num);
         } catch (Exception e) {
