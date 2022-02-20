@@ -2,6 +2,7 @@ package racingcar.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,11 +39,19 @@ public class CarRepository {
 			.getAsInt();
 	}
 
-	public void startThisTurn() {
-		cars.forEach(Car::startThisTurn);
+	public void startThisTurn(final List<Integer> goForwardConditions) {
+		Iterator<Integer> goForwardCondition = goForwardConditions.iterator();
+		Iterator<Car> car = cars.listIterator();
+		while(goForwardCondition.hasNext() && car.hasNext()) {
+			car.next().startThisTurn(goForwardCondition.next());
+		}
 	}
 
 	public List<Car> getThisTurnResult() {
 		return cars;
+	}
+
+	public int getTheNumberOfCars() {
+		return cars.size();
 	}
 }

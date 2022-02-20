@@ -1,7 +1,5 @@
 package racingcar.models;
 
-import racingcar.utils.RandomNumber;
-
 public class Car {
 
 	private static final int FORWARD_STANDARD = 4;
@@ -15,14 +13,10 @@ public class Car {
 		position = INITIAL_POSITION;
 	}
 
-	public void startThisTurn() {
-		if (shouldGoForward(generateRandomNumber())) {
+	public void startThisTurn(final int goForwardCondition) {
+		if (shouldGoForward(goForwardCondition)) {
 			goForward();
 		}
-	}
-
-	protected int generateRandomNumber() {
-		return RandomNumber.getRandomNumber();
 	}
 
 	private boolean shouldGoForward(final int standard) {

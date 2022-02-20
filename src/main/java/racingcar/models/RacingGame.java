@@ -2,6 +2,8 @@ package racingcar.models;
 
 import java.util.List;
 
+import racingcar.utils.RandomNumber;
+
 public class RacingGame {
 
 	private final CarRepository carRepository;
@@ -18,7 +20,9 @@ public class RacingGame {
 	}
 
 	public void race() {
-		carRepository.startThisTurn();
+		final List<Integer> goForwardConditions = RandomNumber
+			.getRandomNumbers(carRepository.getTheNumberOfCars());
+		carRepository.startThisTurn(goForwardConditions);
 		repeats--;
 	}
 
