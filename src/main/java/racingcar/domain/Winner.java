@@ -17,18 +17,18 @@ public class Winner {
     }
 
     private Car findWinner() {
-        Car winner = Car.ZERO_POSITION;
+        Car maxPositionCar = Car.ZERO_POSITION;
         for (Car car : cars) {
-            winner = compareMaxPosition(winner, car);
+            maxPositionCar = comparePosition(car, maxPositionCar);
         }
-        return winner;
+        return maxPositionCar;
     }
 
-    private Car compareMaxPosition(Car winner, Car car) {
-        if (car.isGreaterThan(winner)) {
-            winner = car;
+    private Car comparePosition(Car car, Car otherCar) {
+        if (car.isGreaterThan(otherCar)) {
+            return car;
         }
-        return winner;
+        return otherCar;
     }
 
     private List<Name> findCoWinners(Car firstCar) {
