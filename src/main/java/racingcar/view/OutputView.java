@@ -16,7 +16,7 @@ public class OutputView {
 		cars.stream()
 			.map(car -> car.getName()
 				+ STRING_JOIN_DELIMITER
-				+ MOVE_EXPRESSION.repeat(Math.max(0, car.getPosition())))
+				+ MOVE_EXPRESSION.repeat(Math.max(0, car.getPosition().toInt())))
 			.forEach(System.out::println);
 		System.out.println();
 	}

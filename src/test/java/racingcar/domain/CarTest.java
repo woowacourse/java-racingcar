@@ -9,17 +9,17 @@ class CarTest {
 	@Test
 	@DisplayName("자동차 이름으로 클래스가 생성되는지 테스트")
 	void carGenerate() {
-		Name name = new Name("pobi");
-		Car car = new Car(name);
-		assertThat(car.getName()).isEqualTo(name.toString());
+		String name = "pobi";
+		Car car = new Car(name, 0);
+		assertThat(car.getName()).isEqualTo(name);
 	}
 
 	@Test
 	@DisplayName("자동차가 전진하는지 테스트")
 	void carMoveForward() {
-		Name name = new Name("pobi");
-		Car car = new Car(name);
+		String name = "pobi";
+		Car car = new Car(name, 0);
 		car.moveForward();
-		assertThat(car.isSamePosition(1)).isTrue();
+		assertThat(car.isSamePosition(new Position(1))).isTrue();
 	}
 }

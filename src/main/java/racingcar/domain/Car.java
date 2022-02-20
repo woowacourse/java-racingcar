@@ -2,30 +2,26 @@ package racingcar.domain;
 
 public class Car {
 	private final Name name;
-	private int position = 0;
+	private final Position position;
 
-	public Car(Name name) {
-		this.name = name;
-	}
-
-	public Car(Name name, int position) {
-		this.name = name;
-		this.position = position;
+	public Car(String name, int position) {
+		this.name = new Name(name);
+		this.position = new Position(position);
 	}
 
 	public String getName() {
 		return name.toString();
 	}
 
-	public int getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
 	public void moveForward() {
-		position++;
+		position.increase();
 	}
 
-	public boolean isSamePosition(int position) {
-		return this.position == position;
+	public boolean isSamePosition(Position position) {
+		return this.position.toInt() == position.toInt();
 	}
 }

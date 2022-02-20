@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class Cars {
 	public static final String ERROR_ONLY_NAME = "[ERROR] 이름을 2개 이상 입력해주세요.";
 	public static final String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름이 있습니다.";
+	public static final int DEFAULT_POSITION = 0;
 	public static final int MOVE_CONDITION = 4;
 
 	private final List<Car> cars = new ArrayList<>();
@@ -19,8 +20,7 @@ public class Cars {
 	public Cars(String[] carNames) {
 		validateCarNames(carNames);
 		for (String carName : carNames) {
-			Name name = new Name(carName);
-			cars.add(new Car(name));
+			cars.add(new Car(carName, DEFAULT_POSITION));
 		}
 	}
 
@@ -61,17 +61,17 @@ public class Cars {
 	}
 
 	public List<Car> getWinners() {
-		int maxPosition = getMaxPosition();
+		Position maxPosition = getMaxPosition();
 		return cars.stream()
 			.filter(car -> car.isSamePosition(maxPosition))
 			.collect(Collectors.toList());
 	}
 
-	private int getMaxPosition() {
+	private Position getMaxPosition() {
 		int maxPosition = 0;
 		for (Car car : cars) {
-			maxPosition = Math.max(maxPosition, car.getPosition());
+			maxPosition = Math.max(maxPosition, car.getPosition().toInt());
 		}
-		return maxPosition;
+		return new Position(maxPosition);
 	}
 }
