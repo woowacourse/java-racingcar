@@ -38,8 +38,8 @@ class RacingGameTest {
 
         List<Name> names = List.of(new Name("pobi"), new Name("hoho"), new Name("rich"));
 
-        assertThat(racingGame.getCars()).extracting(Car::getName) // 치킨4마리의 이름을 모두
-            .usingRecursiveFieldByFieldElementComparator() // 이름만 담아놓은 리스트의 원소와 하나씩 필드 비교
+        assertThat(racingGame.getCars()).extracting(Car::getName)
+            .usingRecursiveFieldByFieldElementComparator()
             .isEqualTo(names);
     }
 
