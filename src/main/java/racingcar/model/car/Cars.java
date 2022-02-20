@@ -3,7 +3,9 @@ package racingcar.model.car;
 import racingcar.service.CarDto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -30,6 +32,16 @@ public class Cars {
     }
 
     public void create(List<String> names) {
-        names.forEach(i -> cars.add(new Car(i)));
+        validateDuplication(names);
+        for (String name: names) {
+            cars.add(new Car(name));
+        }
+    }
+
+    private void validateDuplication(List<String> names) {
+        Set<String> checkDuplication = new HashSet<>(names);
+        if (checkDuplication.size() != names.size()) {
+            throw new RuntimeException("중복된 이름이 존재합니다.");
+        }
     }
 }
