@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RacingGame {
@@ -25,7 +26,7 @@ public class RacingGame {
             totalExecutionResult.add(cars.generateExecutionResult());
         }
 
-        return totalExecutionResult;
+        return Collections.unmodifiableList(totalExecutionResult);
     }
 
     public List<String> selectWinners() {
