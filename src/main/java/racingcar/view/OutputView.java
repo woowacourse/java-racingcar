@@ -32,10 +32,10 @@ public class OutputView {
     }
 
     public static void printWinnerName(Winners winners) {
-        System.out.println(makeWinnerNamePrintFormat(winners.getWinnerCarNames()) + WINNER_MESSAGE);
+        System.out.println(makeWinnerNamePrintFormat(winners.getWinnerCarNames()));
     }
 
     private static String makeWinnerNamePrintFormat(List<String> winnerCarNames) {
-        return String.join(WINNER_DELIMITER, winnerCarNames);
+        return String.join(WINNER_DELIMITER, winnerCarNames) + WINNER_MESSAGE;
     }
 }
