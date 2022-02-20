@@ -6,34 +6,34 @@ import java.util.Objects;
 
 public class Car {
     private static final int MOVE_CRITERIA = 4;
+    private static final int POSITION_INITIALIZATION = 0;
 
     private final Name name;
-    private int position;
+    private final Position position;
 
     public Car(String name) {
         this.name = new Name(name);
-        position = 0;
+        this.position = new Position(POSITION_INITIALIZATION);
     }
 
-    public boolean isPosition(int position) {
-        return this.position == position;
+    public boolean isPosition(int positionValue) {
+        return position.isEqual(positionValue);
     }
 
     public void move(NumberGenerator numberGenerator) {
         int number = numberGenerator.generateNumber();
 
         if (number >= MOVE_CRITERIA) {
-            position++;
+            position.increase();
         }
     }
-
 
     public String getName() {
         return name.getName();
     }
 
     public int getPosition() {
-        return this.position;
+        return position.getPosition();
     }
 
     @Override
