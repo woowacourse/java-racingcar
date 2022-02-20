@@ -17,18 +17,17 @@ public class RacingResult {
 	public void add(List<Car> cars) {
 		int newRound = attemptNumber.value() + ADDITIONAL_NUMBER;
 		attemptNumber = AttemptNumber.of(newRound);
-
 		results.put(Round.of(newRound), cars);
 	}
 
 	public List<Car> findResult(Round round) {
-		checkRangeOfRound(round);
-
+		validateRangeOfRound(round);
 		List<Car> cars = results.get(round);
+
 		return Collections.unmodifiableList(cars);
 	}
 
-	private void checkRangeOfRound(Round round) {
+	private void validateRangeOfRound(Round round) {
 		if (!results.containsKey(round)) {
 			throw new IllegalArgumentException(ROUND_RANGE_ERROR);
 		}
