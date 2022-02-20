@@ -24,8 +24,8 @@ public class OutputView {
     }
 
     private static void printCarPosition(CarDto carDto) {
-        String name = carDto.getCarName();
-        int position = carDto.getCarPosition();
+        String name = carDto.getName();
+        int position = carDto.getPosition();
         System.out.println(name + CAR_JOIN_DELIMITER + MOVE_EXPRESSION.repeat(Math.max(0, position)));
     }
 
