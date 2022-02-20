@@ -4,12 +4,12 @@ public class Car {
 	private final Name name;
 	private int position = 0;
 
-	public Car(String name) {
-		this.name = new Name(name);
+	public Car(Name name) {
+		this.name = name;
 	}
 
-	public Car(String name, int position) {
-		this.name = new Name(name);
+	public Car(Name name, int position) {
+		this.name = name;
 		this.position = position;
 	}
 

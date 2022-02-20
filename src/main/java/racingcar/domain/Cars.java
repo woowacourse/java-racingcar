@@ -19,7 +19,8 @@ public class Cars {
 	public Cars(String[] carNames) {
 		validateCarNames(carNames);
 		for (String carName : carNames) {
-			cars.add(new Car(carName));
+			Name name = new Name(carName);
+			cars.add(new Car(name));
 		}
 	}
 

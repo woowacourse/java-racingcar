@@ -41,9 +41,9 @@ class CarsTest {
 	@DisplayName("우승자가 한 명인 경우 테스트")
 	void getOneWinner() {
 		List<Car> carList = Arrays.asList(
-			new Car("pobi", 2),
-			new Car("crong", 3),
-			new Car("honux", 1)
+			new Car(new Name("pobi"), 2),
+			new Car(new Name("crong"), 3),
+			new Car(new Name("honux"), 1)
 		);
 		Cars cars = new Cars(carList);
 		assertThat(cars.getWinners().stream().map(Car::getName)).contains("crong");
@@ -53,9 +53,9 @@ class CarsTest {
 	@DisplayName("우승자가 여러명인 경우 테스트")
 	void getSeveralWinner() {
 		List<Car> carList = Arrays.asList(
-			new Car("pobi", 3),
-			new Car("crong", 3),
-			new Car("honux", 1)
+			new Car(new Name("pobi"), 3),
+			new Car(new Name("crong"), 3),
+			new Car(new Name("honux"), 1)
 		);
 		Cars cars = new Cars(carList);
 		assertThat(cars.getWinners().stream().map(Car::getName)).contains("pobi", "crong");
