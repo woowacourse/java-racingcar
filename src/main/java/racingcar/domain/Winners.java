@@ -7,17 +7,12 @@ public class Winners {
     private static final int MIN_POSITION = 0;
 
     private final List<Car> winners;
-    private final int maxPosition;
 
     public Winners(List<Car> cars) {
-        maxPosition = getMaxPosition(cars);
+        int maxPosition = getMaxPosition(cars);
         winners = cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(Collectors.toList());
-    }
-
-    public int getMaxPosition() {
-        return maxPosition;
     }
 
     public List<String> getNames() {
@@ -37,7 +32,6 @@ public class Winners {
     public String toString() {
         return "Winners{" +
                 "winners=" + winners +
-                ", maxPosition=" + maxPosition +
                 '}';
     }
 }

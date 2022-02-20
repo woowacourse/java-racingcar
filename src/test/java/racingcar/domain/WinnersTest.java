@@ -49,23 +49,4 @@ class WinnersTest {
                 .doesNotContain(name1);
     }
 
-    @Test
-    @DisplayName("maxPosition 구하기")
-    void maxPosition() {
-        // given
-        String name = "연로그";
-
-        Car car = new Car(name);
-        car.go(6);
-        car.go(6);
-
-        List<Car> cars = new ArrayList<>();
-        cars.add(car);
-
-        // when
-        Winners winners = new Winners(cars);
-
-        // then
-        assertThat(winners.getMaxPosition()).isEqualTo(2);
-    }
 }
