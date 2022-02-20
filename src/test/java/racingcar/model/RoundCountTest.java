@@ -7,15 +7,6 @@ import org.junit.jupiter.api.Test;
 
 class RoundCountTest {
 
-	@DisplayName("빈_문자열_입력된_경우")
-	@Test
-	public void testCountEmpty() {
-		String input = "";
-		assertThatThrownBy(() -> {
-			new RoundCount(input);
-		}).hasMessage("시도할 횟수가 입력되지 않았습니다.");
-	}
-
 	@DisplayName("숫자가_아닐_경우")
 	@Test
 	public void testCountMatchNumber() {

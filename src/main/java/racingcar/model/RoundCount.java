@@ -14,7 +14,6 @@ public class RoundCount {
 	private int roundCount;
 
 	public RoundCount(String roundCount) {
-		checkNull(roundCount);
 		checkNotNumber(roundCount);
 		this.roundCount = convertStringToInteger(roundCount);
 		checkCountIsZero(this.roundCount);
@@ -22,12 +21,6 @@ public class RoundCount {
 
 	private int convertStringToInteger(String count) {
 		return Integer.parseInt(count);
-	}
-
-	private void checkNull(String inputString) {
-		if (inputString == null || inputString.isEmpty()) {
-			throw new IllegalArgumentException(COUNT_NULL_ERROR_MSG);
-		}
 	}
 
 	private void checkNotNumber(String inputString) {
