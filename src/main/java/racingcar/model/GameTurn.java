@@ -17,4 +17,8 @@ public class GameTurn {
 	public void play() {
 		gameTurn--;
 	}
+
+	public int getGameTurn() {
+		return this.gameTurn;
+	}
 }
