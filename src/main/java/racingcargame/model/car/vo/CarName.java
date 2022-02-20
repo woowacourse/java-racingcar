@@ -26,9 +26,13 @@ public class CarName {
     }
 
     private void checkValidNameLength(final String name) {
-        if (name.length() < MIN_NAME_LENGTH_COUNT || name.length() > MAX_NAME_LENGTH_COUNT) {
+        if (isNotValidNameLength(name)) {
             throw new IllegalArgumentException(NO_VALIDATE_NAME_LENGTH_ERROR_MESSAGE);
         }
+    }
+
+    private boolean isNotValidNameLength(final String name) {
+        return name.length() < MIN_NAME_LENGTH_COUNT || name.length() > MAX_NAME_LENGTH_COUNT;
     }
 
     public String getName() {
