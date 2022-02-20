@@ -28,7 +28,7 @@ public class ScoreBoard {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public int findMaxScore() {
+    private int findMaxScore() {
         return scores.stream()
                 .max(Score::compareTo)
                 .map(Score::getPoint)
