@@ -1,6 +1,6 @@
 package racingcargame.model.car.vo;
 
-public class CarPosition implements Comparable<CarPosition> {
+public class CarPosition {
     private int position;
 
     public CarPosition() {
@@ -13,11 +13,6 @@ public class CarPosition implements Comparable<CarPosition> {
 
     public int getPosition() {
         return position;
-    }
-
-    @Override
-    public int compareTo(final CarPosition winnerCarPosition) {
-        return this.position - winnerCarPosition.position;
     }
 
     @Override
