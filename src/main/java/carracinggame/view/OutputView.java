@@ -39,6 +39,10 @@ public class OutputView {
         System.out.println(RESULT);
     }
 
+    public static void println() {
+        System.out.println();
+    }
+
     public static void printResult(String name, int position) {
         System.out.print(name + NAME_AND_POSITION_DELIMITER);
         while (position-- > 0) {
@@ -46,10 +50,4 @@ public class OutputView {
         }
         System.out.println();
     }
-
-    public static void println() {
-        System.out.println();
-    }
-
-
 }

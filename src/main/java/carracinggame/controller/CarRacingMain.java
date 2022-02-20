@@ -1,8 +1,5 @@
 package carracinggame.controller;
 
-
-import carracinggame.domain.Times;
-
 public class CarRacingMain {
 
     public static void main(String[] args) {
