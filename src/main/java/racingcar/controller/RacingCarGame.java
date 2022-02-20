@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import racingcar.domain.Attempt;
-import racingcar.domain.CarName;
 import racingcar.domain.Cars;
 import racingcar.service.MovePolicy;
 import racingcar.view.Input;
