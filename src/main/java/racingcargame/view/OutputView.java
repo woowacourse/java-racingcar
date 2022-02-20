@@ -28,7 +28,8 @@ public class OutputView {
     }
 
     private void showRacingCarPosition(final int racingCarPosition) {
-        IntStream.range(0, racingCarPosition).forEach(index -> System.out.print(CAR_POSITION_SYMBOL));
+        IntStream.range(0, racingCarPosition).
+                forEach(index -> System.out.print(CAR_POSITION_SYMBOL));
         newLine();
     }
 
