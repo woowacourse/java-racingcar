@@ -3,6 +3,7 @@ package racingcar.domain.vo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.dto.RoundResult;
 import util.RandomUtil;
 
 public class Cars {
@@ -36,13 +37,13 @@ public class Cars {
     }
 
     private RoundResult raceAllCar() {
-        RoundResult result = new RoundResult();
+        List<Car> result = new ArrayList<>();
         for (Car car : cars) {
             int randomNumber = RandomUtil.getRandomNumberBetweenMinimumAndMaximum(RANDOM_MINIMUM, RANDOM_MAXIMUM);
             car.move(randomNumber);
             result.add(car);
         }
-        return result;
+        return new RoundResult(result);
     }
 
     public List<Car> findWinners() {

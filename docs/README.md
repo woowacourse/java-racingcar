@@ -279,4 +279,16 @@
     - `RandomUtil`는 어떤 인스턴스 필드나 메서드가 사용되는 것이 아니기 때문에 static을 사용해도 된다고 생각했다. `Random`이 클래스 필드로 사용되지만 어떤 상태를 가지는 인스턴스 필드가
       아니기 때문에 상관없다고 생각했다.
 - [ ] 도메인 객체가 모두 `vo` 패키지 내에 있는데 이것들이 정말 VO가 맞는지도 고민해보면 좋겠습니다.
+    - VO는 크게 세 가지 특징이 있다고 합니다. [테코블](https://tecoble.techcourse.co.kr/post/2021-05-16-dto-vs-vo-vs-entity/)
+      , [블로그](https://velog.io/@livenow/Java-VOValue-Object%EB%9E%80)
+
+    1. setter가 없다. → 불변성을 가짐
+    2. `equals()`, `hashCode()`를 재정의 해야한다 → 동등성 검사 필요
+    3. `validate()`가 있어야 한다. → 자가 유효성 검증이 필요
+
+    - VO에 있는 (`Cars`, `Car`, `CarName`, `Position`, `Attempt`, `RoundResult`) 중 이런 특징을 가지지 않는 객체는 `RoundResult`
+      인 것 같다. `RoundResult`는 특성으로 따지면 View로 데이터를 전달하기 위해 만들었기 때문에 DTO쪽에 더 가까운 것 같다. `RoundResult`에서 setter와 비슷한 역할을 하는
+      메서드인 `add()`를 지우고 생성자에서 결과를 저장하도록 수정하여 DTO로 이동시켰다.
+    - 나머지는 모두 VO가 맞아야 한다고 생각한다. 하지만 구현 코드에서 `Attempt`와 `Position`는 내부의 값이 변한다. `Position`이 가변이면 `Car`도 가변이고 `Cars`도
+      가변이다. 따라서 제가 작성한 코드에서 객체들은 아직은 VO가 아니다. 이 객체들을 모두 불변 객체로 만든다면 VO가 될 것 같다.
 - [ ] CarsTest에서 회차마다 입력한 자동차의 이름이 결과에 포함되어 있는지를 검증하지만 실제로 각 car들이 이동했는지를 검증하지 않습니다. 이 부분도 테스트하려면 어떻게 해야 할까요?

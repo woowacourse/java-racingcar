@@ -2,12 +2,7 @@ package racingcar.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.vo.Attempt;
 import racingcar.domain.vo.Car;
 import racingcar.domain.vo.Cars;
-import racingcar.domain.vo.RoundResult;
+import racingcar.dto.RoundResult;
 
 public class RacingGameServiceTest {
 

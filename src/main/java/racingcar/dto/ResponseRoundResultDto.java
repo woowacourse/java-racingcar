@@ -1,7 +1,6 @@
 package racingcar.dto;
 
 import java.util.List;
-import racingcar.domain.vo.RoundResult;
 
 public class ResponseRoundResultDto {
 
