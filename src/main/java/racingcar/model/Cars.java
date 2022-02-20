@@ -12,12 +12,12 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(String[] carNames) {
+    public Cars(final String[] carNames) {
         this.cars = new ArrayList<>();
         insertCarFromCarNames(carNames);
     }
 
-    private void insertCarFromCarNames(String[] carNames) {
+    private void insertCarFromCarNames(final String[] carNames) {
         for (String carName : carNames) {
             insertCar(new Car(carName, DEFAULT_POSITION));
         }
