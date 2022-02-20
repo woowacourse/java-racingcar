@@ -1,21 +1,29 @@
 package racingcar.domain;
 
-import java.util.Comparator;
 import racingcar.domain.vo.Name;
 
 public class Car {
-    private static final Comparator<Car> POSITION_COMPARATOR = Comparator.comparingInt(car -> car.position);
+    public static Car ZERO_POSITION = Car.motionlessCar();
 
+    private static final int MOTIONLESS_POSITION = 0;
     private static final int ADVANCE_STANDARD = 4;
 
     private static final int MINIMUM_ADVANCE_RANGE = 0;
     private static final int MAXIMUM_ADVANCE_RANGE = 9;
 
-    private final Name name;
+    private Name name;
     private int position;
 
     public Car(Name name) {
         this.name = name;
+    }
+
+    private Car(int position) {
+        this.position = position;
+    }
+
+    private static Car motionlessCar() {
+        return new Car(MOTIONLESS_POSITION);
     }
 
     public void advance(int power) {
@@ -25,12 +33,12 @@ public class Car {
         }
     }
 
-    public boolean isEqualPosition(Car car) {
-        return this.position == car.position;
+    public boolean isGreaterThan(Car otherCar) {
+        return this.position >= otherCar.position;
     }
 
-    public int comparePosition(Car car) {
-        return POSITION_COMPARATOR.compare(this, car);
+    public boolean isEqualPosition(Car car) {
+        return this.position == car.position;
     }
 
     public Name getName() {

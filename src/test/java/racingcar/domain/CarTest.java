@@ -68,7 +68,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("포지션이 높은 차가 양수를 반환")
+    @DisplayName("포지션을 비교하여 높은 자동차를 반환하는 테스트")
     void comparePosition() {
         // given
         Car car = new Car(new Name("test"));
@@ -78,6 +78,6 @@ public class CarTest {
         car.advance(ADVANCE);
 
         // then
-        assertThat(car.comparePosition(otherCar)).isEqualTo(1);
+        assertThat(car.isGreaterThan(otherCar)).isTrue();
     }
 }

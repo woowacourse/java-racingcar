@@ -3,6 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 import static racingcar.domain.CarTest.*;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -27,6 +28,14 @@ class WinnerTest {
 
         // then
         assertThat(winners).containsExactly(new Name("hoho"), new Name("rich"));
+    }
+
+    @Test
+    @DisplayName("자동차가 없으면 우승자를 생성할 때 예외를 발생한다")
+    void throwExceptionWhenNewWinnerByEmptyCar() {
+        assertThatIllegalArgumentException()
+            .isThrownBy(() -> new Winner(Collections.emptyList()))
+            .withMessageContaining("자동차 한대 이상이 필요합니다.");
     }
 
     private List<Name> givenCarsNames(String... names) {
