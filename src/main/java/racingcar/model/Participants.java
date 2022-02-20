@@ -24,10 +24,13 @@ public class Participants {
         return this.cars.size();
     }
 
-    public void race() {
+    public RoundResult race() {
+        RoundResult roundResult = new RoundResult();
         for (Car car : cars) {
             car.tryMove(makeRandomNumberBetweenZeroAndNine());
+            roundResult.addResult(car);
         }
+        return roundResult;
     }
 
     public List<Car> getParticipantCars() {

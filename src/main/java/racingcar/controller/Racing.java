@@ -1,10 +1,12 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.Car;
 import racingcar.model.Participants;
 import racingcar.model.PlayTime;
+import racingcar.model.RoundResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -34,11 +36,12 @@ public class Racing {
 
     private void startRacing(Participants participants, PlayTime playTime) {
         outputView.announceRacingStart();
+        List<RoundResult> racingResults = new ArrayList<>();
         while (!playTime.isEnd()) {
-            participants.race();
+            racingResults.add(participants.race());
             playTime.decrease();
-            outputView.recordCurrentScore(participants.getParticipantCars());
         }
+        outputView.recordScore(racingResults);
     }
 
     private void showRacingResult(List<String> winners) {
