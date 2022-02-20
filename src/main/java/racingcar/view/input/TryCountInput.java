@@ -24,7 +24,7 @@ public class TryCountInput {
             tryCount = scanner.nextLine();
             retrySwitch = !checkRules(tryCount);
         }
-        return parseTryCount(tryCount);
+        return Integer.parseInt(tryCount);
     }
 
     private boolean checkRules(String tryCount) {
@@ -35,9 +35,5 @@ public class TryCountInput {
             view.printExceptionMessage(exception);
             return false;
         }
-    }
-
-    private int parseTryCount(String input) {
-        return Integer.parseInt(input);
     }
 }

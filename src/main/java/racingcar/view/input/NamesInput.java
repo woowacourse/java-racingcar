@@ -30,7 +30,7 @@ public class NamesInput {
             names = scanner.nextLine();
             retrySwitch = !checkRules(names);
         }
-        return parseNames(names);
+        return splitNames(names);
     }
 
     private boolean checkRules(String names) {
@@ -43,7 +43,7 @@ public class NamesInput {
         }
     }
 
-    private List<String> parseNames(String names) {
+    private List<String> splitNames(String names) {
         return Arrays.stream(names.split(NAME_DELIMITER))
                 .collect(toList());
     }
