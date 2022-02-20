@@ -39,8 +39,8 @@
 
 - [x] 시도할 회수가 잘못된 경우 `RuntimeException`을 throw 한다.
     - [x] 회수가 입력하지 않는 경우 -> `NoSuchElementException`
-    - [x] 회수가 숫자가 아닌 경우 -> `IllegalArgumentException`
-    - [x] 회수가 음수인 경우 -> `NumberFormatException`
+    - [x] 회수가 숫자가 아닌 경우 -> `NumberFormatException`
+    - [x] 회수가 음수인 경우 -> `IllegalArgumentException`
 
 ## 요구사항
 
@@ -203,7 +203,7 @@
       것 같다. 입력을 나누는 일이 `View`의 일인가? 라고 생각하면 아니라고 생각되었기 때문입니다.
     - `RandomUtil`은 시작 숫자와 끝 숫자만을 받아와 그 사이에 랜덤값을 반환하는 기능을 하는 메서드를 가지고 시작 숫자와 끝 숫자는 Cars가 가지도록 수정.
     - `MovementUtil`은 파라미터로 받은 값에 따라 이동할지 말지를 확인하고 있는데 이것은 `Car`에서 하도록 수정.
-    - Util이라는 이름은 어디서든 사용할 수 있다는 느낌이 있기도 하다. 구현 코드에서도 `StringUtil` 은 가장 상위 메서드에 있고 `calculator`와 `racingcar`에서 모두 사용한다.
+    - Util이라는 이름은 어디서든 사용할 수 있다는 느낌이 있기도 하다. 구현 코드에서도 `StringUtil` 은 가장 상위 패키지에 있고 `calculator`와 `racingcar`에서 모두 사용한다.
       이것처럼 여러 클라이언트가 사용하는 코드가 될 수 있기 때문에 많은 주의가 필요하다. 변경이 발생할 경우 파급력이 굉장히 클 수 있기 때문에 변경을 최소화해야 한다.
     - "비지니스 로직"이라고 부를 만큼 중요한 로직이 Util 클래스에 위치하게 된다면 어쩌면 도메인에 그 로직이 위치하기 더 적절한 곳이 있을 수도 있다. 그래서 Util 클래스/메서드를 작성할 때에는
       항상 "이 기능이 정말 Utility 성격인지" 고민해보는 것이 좋다.

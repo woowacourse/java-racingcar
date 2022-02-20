@@ -27,7 +27,7 @@ public class AttemptTest {
         assertThat(attempt.equals(new Attempt(input))).isTrue();
     }
 
-    @DisplayName("validNumberFormat() 문자 입력 예외 테스트")
+    @DisplayName("validateNumberFormat() 문자 입력 예외 테스트")
     @Test
     public void non_number_input_exception_test() throws Exception {
         String input = "abc";
@@ -36,7 +36,7 @@ public class AttemptTest {
                 .hasMessageContaining(NUMBER_FORMAT_ERROR_MESSAGE);
     }
 
-    @DisplayName("validNegative() 음수 입력 예외 테스트")
+    @DisplayName("validateNegative() 음수 입력 예외 테스트")
     @Test
     public void negative_input_exception_test() throws Exception {
         String input = "-3";
