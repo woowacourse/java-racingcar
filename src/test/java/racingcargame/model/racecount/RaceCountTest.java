@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class RaceCountTest {
 
-    @DisplayName("입력된 경주횟수가 없는 경우 테스트")
+    @DisplayName("입력된 경주횟수가 없으면 오류를 발생한다.")
     @Test
     void checkRightCount_EmptyCount() {
         assertThatThrownBy(() -> {
@@ -16,7 +16,7 @@ class RaceCountTest {
                 hasMessageContaining("[error] 경주횟수를 입력해주세요.");
     }
 
-    @DisplayName("입력된 경주횟수가 0~9의 숫자로 이루어지지 않은 경우 테스트")
+    @DisplayName("경주횟수에 기호, 문자, 음수가 있으면 오류를 발생한다.")
     @Test
     void checkRightCount_RightNumber() {
         assertThatThrownBy(() -> {
@@ -25,7 +25,7 @@ class RaceCountTest {
                 hasMessageContaining("[error] 경주횟수는 0부터 9까지의 숫자만 입력해주세요.");
     }
 
-    @DisplayName("입력된 자동차 이름이 없는 경우 테스트")
+    @DisplayName("경주횟수가 0으로 시작하면 오류를 발생한다.")
     @Test
     void checkRightCount_IncorrectStart() {
         assertThatThrownBy(() -> {
