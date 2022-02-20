@@ -7,21 +7,13 @@ public class Car {
     private final String name;
     private int position;
 
-    private Car(String name) {
+    public Car(String name) {
         this.name = name;
         this.position = START_POSITION;
     }
 
-    public static Car of(String name) {
-        return new Car(name);
-    }
-
     public void forwardCarPosition() {
         position++;
-    }
-
-    public boolean isSamePosition(int position) {
-        return this.position == position;
     }
 
     public String getName() {

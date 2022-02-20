@@ -10,7 +10,7 @@ public class RacingcarRandomNumberGenerator implements RandomNumberGenerator {
     private final Random random = new Random();
 
     @Override
-    public boolean isAvailableMove() {
+    public boolean isMoveAvailable() {
         return random.nextInt(UPPER_BOUNDARY) >= FORWARD_BOUNDARY_NUMBER;
     }
 }

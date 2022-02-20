@@ -1,8 +1,8 @@
-package racingcar.parser;
+package racingcar.validator;
 
 import racingcar.exception.TryCountException;
 
-public class TryCountParser {
+public class TryCountSettingValidator {
 
     public static final String NULL_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 NULL값일 수 없습니다.";
     public static final String BLANK_TRY_COUNT_ERROR_MESSAGE = "시도 횟수는 공백일 수 없습니다.";
@@ -13,18 +13,14 @@ public class TryCountParser {
     private static final String FLOAT_REG_EXP = "(-|\\+)?[0-9]+\\.[0-9]+";
     private static final String DIGIT_REG_EXP = "(-|\\+)?[0-9]+";
 
-    public int parse(String input) {
-        validateTryCount(input);
-        return Integer.parseInt(input);
-    }
-
-    private void validateTryCount(String input) {
-        checkNullTryCount(input);
-        checkBlankTryCount(input);
-        checkFloatTryCount(input);
-        checkCharacterTryCount(input);
-        checkNegativeTryCount(input);
-        checkZeroTryCount(input);
+    public String validate(String tryCount) {
+        checkNullTryCount(tryCount);
+        checkBlankTryCount(tryCount);
+        checkFloatTryCount(tryCount);
+        checkCharacterTryCount(tryCount);
+        checkNegativeTryCount(tryCount);
+        checkZeroTryCount(tryCount);
+        return tryCount;
     }
 
     private void checkNullTryCount(String input) {

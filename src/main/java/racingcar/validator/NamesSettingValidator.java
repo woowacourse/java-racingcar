@@ -1,30 +1,29 @@
-package racingcar.parser;
-
-import static java.util.stream.Collectors.toList;
+package racingcar.validator;
 
 import java.util.Arrays;
-import java.util.List;
 import racingcar.exception.CarNameException;
+import racingcar.view.input.NamesInput;
 
-public class CarNameParser {
+public class NamesSettingValidator {
 
+    public static final String NULL_INPUT_ERROR_MESSAGE = "null 값이 입력 될 수 없습니다.";
     public static final String INVALID_LENGTH_ERROR_MESSAGE = "자동차 이름은 5글자 이하여야 합니다.";
     public static final String EMPTY_NAME_ERROR_MESSAGE = "자동차 이름은 공백일 수 없습니다.";
     public static final String DUPLICATE_NAME_ERROR_MESSAGE = "자동차 이름은 중복일 수 없습니다.";
     private static final int NAME_UPPER_LENGTH = 5;
-    private static final String NAME_DELIMITER = ",";
 
-    public List<String> parse(String names) {
-        validateCarNames(names);
-
-        return Arrays.stream(splitByDelimiter(names))
-                .collect(toList());
-    }
-
-    private void validateCarNames(String names) {
+    public String validate(String names) {
+        checkNullInput(names);
         checkNameLength(names);
         checkEmptyName(names);
         checkDuplicateName(names);
+        return names;
+    }
+
+    private void checkNullInput(String names) {
+        if (isNullInput(names)) {
+            throw new CarNameException(NULL_INPUT_ERROR_MESSAGE);
+        }
     }
 
     private void checkNameLength(String names) {
@@ -45,23 +44,26 @@ public class CarNameParser {
         }
     }
 
+    private boolean isNullInput(String names) {
+        if (names == null) {
+            return true;
+        }
+        return false;
+    }
+
     private boolean isInvalidLength(String names) {
-        return Arrays.stream(splitByDelimiter(names))
+        return Arrays.stream(names.split(NamesInput.NAME_DELIMITER))
                 .anyMatch(n -> n.length() > NAME_UPPER_LENGTH);
     }
 
     private boolean isEmptyName(String names) {
-        return Arrays.stream(splitByDelimiter(names))
+        return Arrays.stream(names.split(NamesInput.NAME_DELIMITER))
                 .anyMatch(String::isEmpty);
     }
 
     private boolean isDuplicateName(String names) {
-        return Arrays.stream(splitByDelimiter(names))
+        return Arrays.stream(names.split(NamesInput.NAME_DELIMITER))
                 .distinct()
-                .count() != splitByDelimiter(names).length;
-    }
-
-    private String[] splitByDelimiter(String names) {
-        return names.split(NAME_DELIMITER);
+                .count() != names.split(NamesInput.NAME_DELIMITER).length;
     }
 }

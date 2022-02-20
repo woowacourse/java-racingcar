@@ -3,9 +3,8 @@ package racingcar.domain;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import racingcar.view.log.CarForLog;
 import racingcar.domain.random.RandomNumberGenerator;
-import racingcar.domain.result.MidtermResult;
-import racingcar.domain.result.WinnersResult;
 
 public class Cars {
 
@@ -13,7 +12,7 @@ public class Cars {
 
     public Cars(List<String> names) {
         cars = names.stream()
-                .map(Car::of)
+                .map(Car::new)
                 .collect(toList());
     }
 
@@ -24,29 +23,14 @@ public class Cars {
     }
 
     private void moveOneCar(RandomNumberGenerator randomNumberGenerator, Car car) {
-        if (randomNumberGenerator.isAvailableMove()) {
+        if (randomNumberGenerator.isMoveAvailable()) {
             car.forwardCarPosition();
         }
     }
 
-    public MidtermResult getMidtermResult() {
-        return new MidtermResult(cars);
-    }
-
-    public WinnersResult getWinnersResult() {
-        return new WinnersResult(getWinnerCars());
-    }
-
-    private List<Car> getWinnerCars() {
+    public List<CarForLog> generateCarForLogList() {
         return cars.stream()
-                .filter(c -> c.isSamePosition(getMostFarPosition()))
+                .map(car -> new CarForLog(car.getName(), car.getPosition()))
                 .collect(toList());
-    }
-
-    private int getMostFarPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .getAsInt();
     }
 }
