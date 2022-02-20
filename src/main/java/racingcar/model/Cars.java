@@ -32,12 +32,8 @@ public class Cars {
 
 	private List<Car> toCar(List<String> carNames) {
 		List<Car> cars = new ArrayList<>();
-		try {
-			carNames.stream()
-				.forEach(carName -> cars.add(new Car(carName, START_POSITION, new RandomNumberMovingCondition())));
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(e.getMessage());
-		}
+		carNames.stream()
+			.forEach(carName -> cars.add(new Car(carName, START_POSITION, new RandomNumberMovingCondition())));
 		return cars;
 	}
 
@@ -68,6 +64,10 @@ public class Cars {
 		return cars.stream()
 			.max(Car::compareTo)
 			.orElseThrow(() -> new IllegalArgumentException());
+	}
+
+	public List<Car> getCars() {
+		return cars;
 	}
 
 	@Override
