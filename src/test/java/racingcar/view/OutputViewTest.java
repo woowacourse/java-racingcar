@@ -11,8 +11,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.FixedNumberGeneratePolicy;
 import racingcar.domain.Name;
+import racingcar.domain.RandomNumberGeneratePolicy;
 
 class OutputViewTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -35,7 +35,7 @@ class OutputViewTest {
     @Test
     @DisplayName("자동자 경주 라운드별 기록 출력")
     public void print_racing_round_record() {
-        cars.driveAll(new FixedNumberGeneratePolicy());
+        cars.driveAll(() -> 5);
 
         OutputView.printRacingRecord(cars.getCurrentCars());
 
@@ -45,7 +45,7 @@ class OutputViewTest {
     @Test
     @DisplayName("자동차 경주 우승자 이름 출력 검사")
     public void print_racing_winners() {
-        cars.driveAll(new FixedNumberGeneratePolicy());
+        cars.driveAll(() -> 5);
 
         OutputView.printRacingResult(cars.getWinners());
 
