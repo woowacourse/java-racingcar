@@ -10,19 +10,20 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
     public int getMaxPosition() {
         int maxNum = 0;
 
         for (Car car : cars) {
-            if (car.getPosition() > maxNum) {
-                maxNum = car.getPosition();
-            }
+            maxNum = getMaxNum(maxNum, car);
         }
 
+        return maxNum;
+    }
+
+    private int getMaxNum(int maxNum, Car car) {
+        if (car.getPosition() > maxNum) {
+            maxNum = car.getPosition();
+        }
         return maxNum;
     }
 
@@ -32,5 +33,9 @@ public class Cars {
                 .filter(car -> car.checkIfPositionSame(getMaxPosition()))
                 .forEach(car -> winners.add(car.getName()));
         return winners;
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

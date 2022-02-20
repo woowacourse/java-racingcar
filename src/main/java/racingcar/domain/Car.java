@@ -14,16 +14,10 @@ public class Car {
     }
 
     public Car(final String name, final int position) {
+        Validation.carNameValidation(name);
+        Validation.tryNumValidation(Integer.toString(position));
         this.name = name;
         this.position = position;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position;
     }
 
     public void goForward(final int num) {
@@ -34,5 +28,13 @@ public class Car {
 
     public boolean checkIfPositionSame(final int position) {
         return this.position == position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
