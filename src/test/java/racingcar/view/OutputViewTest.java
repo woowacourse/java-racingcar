@@ -1,19 +1,21 @@
 package racingcar.view;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
+import racingcar.model.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputViewTest {
 
     @Test
-    void 결과_문자열을_생성한다() {
+    @DisplayName("출력에 사용할 결과 문자열을 생성한다")
+    void shouldReturnResultString() {
         // given
         String expected = "---";
         Car car = new Car("pobi");
-        car.attemptToMove(4);
-        car.attemptToMove(4);
+        car.move(4);
+        car.move(4);
 
         //when
         String result = OutputView.makePositionString(car);

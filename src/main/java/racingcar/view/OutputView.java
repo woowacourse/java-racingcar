@@ -1,12 +1,17 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
+import racingcar.model.Car;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public static void printResult(List<Car> cars) {
+
+    private OutputView() {
+        throw new UnsupportedOperationException();
+    }
+
+    public static void printCurrentStatus(List<Car> cars) {
         for (Car car : cars) {
             String result = car.getName() + " : ";
             result += makePositionString(car);
@@ -26,7 +31,7 @@ public class OutputView {
     public static void printWinners(List<Car> winners) {
         String result = winners.stream()
                 .map(Car::getName)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining(", "));
         System.out.println(result + "가 최종 우승했습니다.");
     }
 }

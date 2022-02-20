@@ -1,90 +1,43 @@
 package racingcar;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.model.Car;
+import racingcar.exception.DuplicateCarNameException;
+import racingcar.exception.LessThanMinimumCountException;
+import racingcar.exception.LessThanMinimumPlayerException;
 import racingcar.utils.Validator;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 public class ValidationUtilTest {
-    @Test
-    void 이름_길이가_6이상인_경우_예외발생() {
-        String nameString = "pobi,jason11";
 
-        assertThatThrownBy(() -> Validator.checkEachName(nameString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("이하");
+    @Test
+    @DisplayName("중복된 차 이름이 존재하는 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenHasDuplicateName() {
+        List<Car> cars = List.of(new Car("one"), new Car("two"), new Car("one"));
+
+        assertThatThrownBy(() -> Validator.validateCarFollowsRule(cars))
+                .isInstanceOf(DuplicateCarNameException.class);
     }
 
     @Test
-    void 이름의_길이가_1보다_작은_경우_예외발생() {
-        String nameString = "pobi,,jason";
-        assertThatThrownBy(() -> Validator.checkEachName(nameString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("이상");
+    @DisplayName("참가하는 자동차가 하나인 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenSinglePlayer() {
+        List<Car> singleCar = List.of(new Car("one"));
+
+        assertThatThrownBy(() -> Validator.validateCarFollowsRule(singleCar))
+                .isInstanceOf(LessThanMinimumPlayerException.class);
     }
 
     @Test
-    void 빈문자열이_입력된_경우_예외발생() {
-        String nameString = "";
-        assertThatThrownBy(() -> Validator.checkNameStringFormat(nameString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("이상");
-
+    @DisplayName("시도횟수가 0이하인 경우 예외를 발생시킨다")
+    void shouldThrowExceptionWhenCountLessThanOne() {
+        assertThatThrownBy(() -> Validator.validateRange(0))
+                .isInstanceOf(LessThanMinimumCountException.class);
     }
 
-    @Test
-    void 쉼표만_있는_경우_예외발생() {
-        String nameString = ",,";
-
-        assertThatThrownBy(() -> Validator.checkNameStringFormat(nameString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("이름을 입력해주세요");
-
-    }
-
-    @Test
-    void 이름이_중복인_경우() {
-        String nameString = "pobi,pobi";
-
-        assertThatThrownBy(() -> Validator.checkNameStringFormat(nameString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("중복");
-    }
-
-    @Test
-    void 자동차_이름_수가_하나인_경우_예외발생() {
-        String nameString = "pobi";
-
-        assertThatThrownBy(() -> Validator.checkNameStringFormat(nameString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("최소");
-    }
-
-    @Test
-    void 횟수_입력값이_숫자가_아닌_경우() {
-        String countString = "a";
-
-        assertThatThrownBy(() -> Validator.checkCount(countString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("숫자");
-    }
-
-    @Test
-    void 횟수_입력값이_1미만인_경우() {
-        String countString = "0";
-
-        assertThatThrownBy(() -> Validator.checkCount(countString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("1 이상");
-    }
-
-    @Test
-    void 횟수_입력값이_50초과인_경우() {
-        String countString = "51";
-
-        assertThatThrownBy(() -> Validator.checkCount(countString))
-                .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("50 이하");
-    }
 }
