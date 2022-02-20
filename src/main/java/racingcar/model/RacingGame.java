@@ -12,14 +12,6 @@ public class RacingGame {
     private RacingGame() {
     }
 
-//    public static RacingGame createRacingGame(String carNames, String inputTrialNum) {
-//        RacingGame racingGame = new RacingGame();
-//        racingGame.cars = Cars.initCars(carNames);
-//        racingGame.trialNum = TrialNum.initTrialNum(inputTrialNum);
-//        racingGame.count = 0;
-//        return racingGame;
-//    }
-
     public static RacingGame createRacingGame(List<Car> cars, String trialNum) {
         RacingGame racingGame = new RacingGame();
         racingGame.cars = Cars.initCars(cars);

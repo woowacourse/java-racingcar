@@ -39,4 +39,11 @@ class CarTest {
             new Car("");
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 자동차의_이름이_공백_문자열인_경우_예외처리() {
+        assertThatThrownBy(() -> {
+            new Car(" ");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

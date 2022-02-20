@@ -1,9 +1,7 @@
 package racingcar.model;
 
-import racingcar.util.InputValidator;
 import racingcar.util.NumberGenerator;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,12 +17,6 @@ public class Cars {
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
-
-//    public static Cars initCars(String carNames) {
-//        return new Cars(splitCars(carNames).stream()
-//                .map(Car::new)
-//                .collect(Collectors.toList()));
-//    }
 
     public static Cars initCars(List<Car> cars) {
         validateNameInput(cars);
@@ -49,20 +41,6 @@ public class Cars {
         }
     }
 
-    public static List<String> splitCars(String carNames) {
-        InputValidator.validateNameInput(carNames);
-        List<String> splitCarNames = Arrays.asList(splitNameWithoutSpace(carNames));
-        InputValidator.validateEmptyCarName(splitCarNames);
-        InputValidator.validateCarNameLength(splitCarNames);
-        InputValidator.validateDuplicateName(splitCarNames);
-
-        return splitCarNames;
-    }
-
-    private static String[] splitNameWithoutSpace(String carNames) {
-        return carNames.replaceAll(SPACE, BLANK).split(COMMA);
-    }
-
     public void race(NumberGenerator numberGenerator) {
         cars.forEach(car -> {
             car.move(numberGenerator.generate());
@@ -83,12 +61,6 @@ public class Cars {
                 .map(Car::getPosition)
                 .max(Comparator.comparing(position -> position))
                 .orElse(MINIMUM_POSITION);
-    }
-
-    public String getCarNames(String delimiter) {
-        return cars.stream()
-                .map(Car::getName)
-                .collect(Collectors.joining(delimiter));
     }
 
     public List<Car> getCars() {
