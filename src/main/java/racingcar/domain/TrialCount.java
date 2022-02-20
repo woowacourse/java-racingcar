@@ -25,4 +25,8 @@ public class TrialCount {
             throw new IllegalArgumentException(ExceptionMessage.NOT_POSITIVE_DIGIT);
         }
     }
+
+    public boolean isRemain() {
+        return this.trialCount > 0;
+    }
 }

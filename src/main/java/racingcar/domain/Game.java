@@ -18,7 +18,7 @@ public class Game {
     }
 
     public boolean isContinue() {
-        return this.trialCount.getTrialCount() > 0;
+        return this.trialCount.isRemain();
     }
 
     public void playOneSet() {
