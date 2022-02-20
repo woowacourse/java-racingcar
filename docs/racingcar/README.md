@@ -46,76 +46,60 @@
 
 ## Class 구조
 - domain
+  - AttemptNumber
   - Car
-  - CarDto
-  - RacingGame
+  - Cars
   - RacingResult
   - Round
-  - AttemptNumber
-- repository
-  - CarRepository
-- service 
-  - RacingService
+- service
+  - dto
+    - CarDto
+  - RacingGame
 - controller
   - RacingController
 - view
   - InputView
   - OutputView
-- validator
-  - AttemptValidator
-  - CarValidator
-  - InputValidator
 - util
-  - RandomUtil
-  - RandomUtilImpl
+  - MovingNumberPolicy
+  - MovingNumberPolicyByRandom
 
-
-### Car
-- 전진/정지한다.
-
-### CarDto
-- Car 객체의 name, position 필드를 갖는 DTO이다.
-
-### RacingGame
-- 시도 횟수만큼 자동차들 경주를 시킨다.
-
-### RacingResult
-- 자동차 경주에 대한 결과들을 저장한다.
-
-### Round
-- 라운드 VO
 
 ### AttemptNumber
 - 시도 횟수 VO
 
-### CarRepository
-- Car 객체를 저장한다.
+### Car
+- 전진/정지한다.
 
-### RacingService
-- 자동차 경주 핵심 로직을 수행한다.
+### Cars
+- Car List 를 저장하고 비즈니스 로직을 처리하며 관리한다.
+- 우승한 Car 들을 계산한다.
+
+### RacingResult
+- 자동차 경주 결과를 Round 별로 저장한다.
+
+### Round
+- 게임 라운드 VO
+
+### CarDto
+- Car 객체의 name, position 필드를 갖는 DTO 이다.
+
+### RacingGame
+- 시도 횟수만큼 자동차들 경주를 시킨다.
+- 게임별 RacingResult 를 관리한다.
 
 ### RacingController
 - 애플리케이션 흐름을 제어한다.
 
 ### InputView
 - 사용자에게 자동차 이름들을 입력 받는다.
-- `이름1,이름2,이름3` 형식으로 입력되었는지 검증한다.
 - 사용자에게 시도 횟수를 입력받는다.
 
 ### OutputView
 - 자동차 경주 결과를 출력한다.
 
-### AttemptValidator
-- 시도 횟수에 대한 유효성 검사를 한다.
+### MovingNumberPolicy
+- 자동차 이동 숫자 정책의 `interface` 이다.
 
-### CarValidator
-- Car 객체에 대한 유효성 검사를 한다.
-
-### InputValidator
-- 입력값이 유효한 값인지 검증한다.
-
-### RandomUtil
-- 난수 발생 메소드를 가지고 있는 `interface` 이다.
-
-### RandomUtilImpl
-- RandomUtil 을 구현하는 클래스이다.
+### MovingNumberPolicyByRandom
+- Random 숫자를 자동차 이동 숫자로 사용하는 구현 클래스이다.
