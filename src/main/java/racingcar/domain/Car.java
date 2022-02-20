@@ -6,6 +6,7 @@ public class Car implements Comparable<Car> {
 	private static final int STANDARD_OF_MOVING = 4;
 	private static final int NAME_LENGTH_LIMIT = 5;
 	private static final int MINIMUM_POSITION = 0;
+
 	private static final String INVALID_CAR_NAME_ERROR_MESSAGE = "자동차의 이름은 1~5글자여야 합니다.";
 	private static final String INVALID_POSITION_ERROR_MESSAGE = "자동차 위치는 0 이상이여야 합니다.";
 
@@ -18,14 +19,14 @@ public class Car implements Comparable<Car> {
 	}
 
 	public static Car of(String name) {
-		checkNameLength(name);
+		validateNameLength(name);
 
 		return new Car(name, INITIAL_POSITION);
 	}
 
 	public static Car of(String name, int position) {
-		checkNameLength(name);
-		checkPositionRange(position);
+		validateNameLength(name);
+		validatePositionRange(position);
 
 		return new Car(name, position);
 	}
@@ -41,7 +42,8 @@ public class Car implements Comparable<Car> {
 	public Car copy() {
 		return Car.of(this.name, this.position);
 	}
-	public static void checkNameLength(String name) {
+
+	public static void validateNameLength(String name) {
 		if (name.isEmpty() || isOverLength(name)) {
 			throw new IllegalArgumentException(INVALID_CAR_NAME_ERROR_MESSAGE);
 		}
@@ -51,8 +53,8 @@ public class Car implements Comparable<Car> {
 		return name.length() > NAME_LENGTH_LIMIT;
 	}
 
-	public static void checkPositionRange(int position) {
-		if(position < MINIMUM_POSITION) {
+	public static void validatePositionRange(int position) {
+		if (position < MINIMUM_POSITION) {
 			throw new IllegalArgumentException(INVALID_POSITION_ERROR_MESSAGE);
 		}
 	}
