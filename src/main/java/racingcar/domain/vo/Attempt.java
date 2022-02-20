@@ -10,8 +10,10 @@ public class Attempt {
 
     private int attempt;
 
-    public Attempt(String attempt) {
-        this.attempt = validate(attempt);
+    public Attempt(String input) {
+        int attempt = toInteger(input);
+        validateNegative(attempt);
+        this.attempt = attempt;
     }
 
     public boolean isLeft() {
@@ -20,12 +22,6 @@ public class Attempt {
 
     public void decrease() {
         attempt--;
-    }
-
-    private int validate(String attempt) {
-        int number = toInteger(attempt);
-        validateNegative(number);
-        return number;
     }
 
     private int toInteger(String s) {
