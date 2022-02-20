@@ -1,9 +1,7 @@
-package racingcar.controller;
+package racingcar.view;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import racingcar.view.ErrorMessage;
-import racingcar.view.InputView;
 
 public class UserInputRequester {
 

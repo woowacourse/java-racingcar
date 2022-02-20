@@ -4,6 +4,7 @@ import static racingcar.view.OutputView.printRaceResult;
 import static racingcar.view.OutputView.printWinners;
 
 import racingcar.numbergenerator.NumberGenerator;
+import racingcar.view.UserInputRequester;
 import racingcar.vo.Attempt;
 import racingcar.vo.Cars;
 
