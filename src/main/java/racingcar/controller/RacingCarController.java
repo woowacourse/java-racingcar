@@ -1,6 +1,7 @@
 package racingcar.controller;
 
-import racingcar.domain.RacingCarCommander;
+import java.util.List;
+import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
@@ -8,28 +9,27 @@ import racingcar.view.OutputView;
 
 public class RacingCarController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
-
-    public RacingCarController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public RacingCarController() {
     }
 
     public void run() {
-        RacingCars racingCars = new RacingCars(inputView.inputCarNames(), new RacingCarCommander());
-        int tryCount = inputView.inputTryCount();
+        final RacingCars racingCars = new RacingCars(InputView.getCarNames(), new RacingCarCommander());
+        final int tryCount = InputView.inputTryCount();
 
-        RacingGame game = new RacingGame(racingCars, tryCount);
-        outputView.printGameResultTitle();
+        final RacingGame game = new RacingGame(racingCars, tryCount);
+        OutputView.printGameResultTitle();
         raceAllRounds(game, racingCars);
-        outputView.printWinnerNames(game.getWinnerNames());
+        OutputView.printWinnerNames(game.getWinnerNames());
     }
 
-    public void raceAllRounds(RacingGame game, RacingCars racingCars) {
+    public void raceAllRounds(final RacingGame game, final RacingCars racingCars) {
         while (!game.isEnd()) {
             game.race();
-            outputView.printCarsPosition(racingCars.getRacingCars());
+            OutputView.printCarsPosition(convertToRacingCarDtos(racingCars.getCars()));
         }
+    }
+
+    private List<RacingCarDto> convertToRacingCarDtos(final List<RacingCar> cars) {
+        return RacingCarDto.from(cars);
     }
 }

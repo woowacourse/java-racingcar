@@ -4,15 +4,14 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Scanner;
+import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.controller.RacingCarController;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.controller.RacingCarCommander;
+import racingcar.view.Validator;
 
 public class RacingGameTest {
 
@@ -21,7 +20,8 @@ public class RacingGameTest {
 
     @BeforeEach
     void setUp() {
-        racingCars = new RacingCars("pobi,crong,honux", new RacingCarCommander());
+        racingCars = new RacingCars(Arrays.asList(new String[]{"pobi", "crong", "honux"}),
+            new RacingCarCommander());
         racingGame = new RacingGame(racingCars, 5);
     }
 
@@ -34,15 +34,6 @@ public class RacingGameTest {
         assertTrue(racingGame.isEnd());
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {0, -1})
-    @DisplayName("게임을 생성할 때 시도횟수가 0이하이면 예외가 발생한다.")
-    void negativeCount(int count) {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> new RacingGame(racingCars, count))
-            .withMessageMatching("시도횟수는 0이하의 값이 들어올 수 없다.");
-    }
-
     @Test
     @DisplayName("게임이 종료되었는데 race할 경우 exception이 발생한다.")
     void raceEndException() {
@@ -52,5 +43,14 @@ public class RacingGameTest {
         assertThatExceptionOfType(RuntimeException.class)
             .isThrownBy(() -> racingGame.race())
             .withMessageMatching("종료된 게임은 더이상 실행할 수 없다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1})
+    @DisplayName("입력한 시도횟수가 0이하이면 예외가 발생한다.")
+    void negativeCount(int tryCount) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> new RacingGame(racingCars, tryCount))
+            .withMessageMatching("시도횟수는 0이하의 값이 들어올 수 없다.");
     }
 }

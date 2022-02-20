@@ -1,67 +1,58 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.controller.MovingStrategy;
 import racingcar.controller.RacingCarDto;
 
 public class RacingCars {
 
-    private static final String CAR_NAME_DELIMITER = ",";
     private static final String NAME_BLANK = " ";
     private static final String NAME_NOT_BLANK = "";
-    private static final int FIRST_ELEMENT = 0;
+    private static final int EQUAL_SYMBOL_NUMBER = 0;
 
     private final List<RacingCar> cars;
     private final MovingStrategy movingStrategy;
 
-    public RacingCars(String carStringNames, MovingStrategy movingStrategy) {
-        isEmpty(carStringNames);
-        this.cars = makeRacingCars(carStringNames.split(CAR_NAME_DELIMITER));
+    public RacingCars(final List<String> carNames, final MovingStrategy movingStrategy) {
+        this.cars = makeRacingCars(carNames);
         this.movingStrategy = movingStrategy;
-        checkCarsEmpty();
     }
 
-    private void isEmpty(String stringNames) {
-        if (stringNames == null || stringNames.isEmpty()) {
-            throw new IllegalArgumentException("자동차 입력 값이 존재해야한다.");
-        }
-    }
-
-    private List<RacingCar> makeRacingCars(String[] carNames) {
-        return Arrays.stream(carNames)
+    private List<RacingCar> makeRacingCars(final List<String> carNames) {
+        return carNames.stream()
             .map(this::removeNameBlank)
             .map(RacingCar::new)
             .collect(Collectors.toList());
     }
 
-    private void checkCarsEmpty() {
-        if (cars.isEmpty()) {
-            throw new RuntimeException("최소 1개의 자동차가 존재해야 한다.");
-        }
-    }
-
-    private String removeNameBlank(String name) {
+    private String removeNameBlank(final String name) {
         return name.replaceAll(NAME_BLANK, NAME_NOT_BLANK);
     }
 
-    public List<String> getCarNames() {
+    public List<RacingCar> getCars() {
         return cars.stream()
-            .map(RacingCar::getName)
+            .map(this::cloneRacingCar)
             .collect(Collectors.toList());
     }
 
-    public List<RacingCarDto> getRacingCars() {
-        return cars.stream()
-            .map(RacingCarDto::from)
-            .collect(Collectors.toList());
+    private RacingCar cloneRacingCar(RacingCar car) {
+        try {
+            return car.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return car;
     }
 
     public void moveCars() {
         cars.forEach(this::moveCar);
     }
 
-    private void moveCar(RacingCar car) {
+    private void moveCar(final RacingCar car) {
         if (movingStrategy.isMovable()) {
             car.move();
         }
@@ -75,19 +66,14 @@ public class RacingCars {
             .collect(Collectors.toList());
     }
 
-    private boolean isSamePosition(RacingCar racingCar, RacingCar anyWinner) {
-        return racingCar.compareTo(anyWinner) == 0;
+    private boolean isSamePosition(final RacingCar racingCar, final RacingCar anyWinner) {
+        return racingCar.compareTo(anyWinner) == EQUAL_SYMBOL_NUMBER;
     }
 
     private RacingCar searchAnyWinner() {
-        RacingCar anyWinner = cars.get(FIRST_ELEMENT);
-        for (RacingCar car : cars) {
-            anyWinner = getGreaterRacingCar(car, anyWinner);
-        }
-        return anyWinner;
+        return cars.stream()
+            .max(RacingCar::compareTo)
+            .orElseThrow(() -> new RuntimeException("승자를 찾을 수 없다."));
     }
 
-    private RacingCar getGreaterRacingCar(RacingCar racingCar, RacingCar anyWinner) {
-        return racingCar.compareTo(anyWinner) > 0 ? racingCar : anyWinner;
-    }
 }

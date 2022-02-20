@@ -4,19 +4,20 @@ import java.util.List;
 
 public class RacingGame {
 
+    private static int MIN_TRY_COUNT = 1;
     private static final int END_COUNT = 0;
 
     private final RacingCars racingCars;
     private int leftCount;
 
-    public RacingGame(RacingCars racingCars, int leftCount) {
+    public RacingGame(final RacingCars racingCars, final int leftCount) {
         this.racingCars = racingCars;
-        checkPositiveCount(leftCount);
+        checkLeftCountPositive(leftCount);
         this.leftCount = leftCount;
     }
 
-    private void checkPositiveCount(int leftCount) {
-        if (leftCount <= END_COUNT) {
+    private void checkLeftCountPositive(final int leftCount) {
+        if (leftCount < MIN_TRY_COUNT) {
             throw new IllegalArgumentException("시도횟수는 0이하의 값이 들어올 수 없다.");
         }
     }

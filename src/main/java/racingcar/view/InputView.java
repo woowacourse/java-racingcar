@@ -1,30 +1,30 @@
 package racingcar.view;
 
-import java.util.InputMismatchException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
     private static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String INPUT_TRY_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
+    private static final String CAR_NAME_DELIMITER = ",";
+    private static final Scanner CONSOLE = new Scanner(System.in);
 
-    private final Scanner scanner;
-
-    public InputView(Scanner scanner) {
-        this.scanner = scanner;
+    private InputView() {
     }
 
-    public String inputCarNames() {
+    public static List<String> getCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
-        return scanner.nextLine();
+        String carNames = CONSOLE.nextLine();
+        Validator.validateCarNames(carNames);
+        return Arrays.asList(carNames.split(CAR_NAME_DELIMITER));
     }
 
-    public int inputTryCount() {
-        try {
-            System.out.println(INPUT_TRY_COUNT_MESSAGE);
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
-            throw new NumberFormatException("시도횟수는 숫자이어야 합니다.");
-        }
+    public static int inputTryCount() {
+        System.out.println(INPUT_TRY_COUNT_MESSAGE);
+        String tryCountText = CONSOLE.nextLine();
+        Validator.validateTryCount(tryCountText);
+        return Integer.parseInt(tryCountText);
     }
 }
