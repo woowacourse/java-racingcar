@@ -17,6 +17,6 @@ public class MainController {
         tryNum = InputService.inputTryNum();
 
         CarService.startRace(cars, tryNum);
-        CarService.finalWinner(cars);
+        CarService.findFinalWinner(cars);
     }
 }

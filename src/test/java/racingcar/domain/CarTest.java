@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "jun"})
-    void 자동차_이름_검증(String name) {
+    void 자동차_생성자_검증_성공(String name) {
         Car car = new Car(name);
         assertThat(car.getName()).isEqualTo(name);
     }

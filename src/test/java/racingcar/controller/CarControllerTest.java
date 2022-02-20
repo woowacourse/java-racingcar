@@ -51,7 +51,7 @@ public class CarControllerTest {
 
     @Test
     void 우승자_검증() {
-        CarService.finalWinner(cars);
+        CarService.findFinalWinner(cars);
         assertThat(outContent.toString()).contains("three가 최종 우승했습니다.");
     }
 }

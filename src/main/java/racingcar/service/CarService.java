@@ -19,24 +19,16 @@ public class CarService {
     }
 
     public static void printRace(final List<Car> cars) {
-        for (Car car : cars) {
-            Output.printName(car);
-            Output.printPositionWord(car);
-            System.out.println();
-        }
-
-        System.out.println();
+        Output.printCarsRace(cars);
     }
 
-    public static void finalWinner(final List<Car> cars) {
+    public static void findFinalWinner(final List<Car> cars) {
         int maxPosition = findMaxPosition(cars);
         List<String> winnerList = getWinnerList(cars, maxPosition);
         Output.printWinner(winnerList);
     }
 
     private static void moveCar(final List<Car> cars) {
-        Random random = new Random();
-
         for (Car car : cars) {
             car.goForward(RandomUtil.getRandomNum());
         }
