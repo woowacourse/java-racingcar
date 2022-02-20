@@ -27,7 +27,14 @@ public class Cars {
 //    }
 
     public static Cars initCars(List<Car> cars) {
+        validateNameInput(cars);
         return new Cars(cars);
+    }
+
+    private static void validateNameInput(List<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException("최소 1개 이상의 자동차가 입력되어야 합니다.");
+        }
     }
 
     public static List<String> splitCars(String carNames) {

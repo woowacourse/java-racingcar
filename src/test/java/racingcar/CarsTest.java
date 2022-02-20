@@ -6,6 +6,7 @@ import racingcar.model.Cars;
 import racingcar.util.InputValidator;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +23,12 @@ class CarsTest {
     }
 
     @Test
+    //수정 완료
     void 자동차_이름이_하나도_존재하지_않을_경우_예외처리() {
+        List<Car> cars = Collections.emptyList();
+
         assertThatThrownBy(() -> {
-            Cars.splitCars("");
+            Cars.initCars(cars);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
