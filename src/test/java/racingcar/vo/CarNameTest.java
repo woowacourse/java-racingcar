@@ -3,8 +3,12 @@ package racingcar.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.view.ErrorMessage;
 
 class CarNameTest {
@@ -17,19 +21,17 @@ class CarNameTest {
         assertThat(name.getName()).isEqualTo(carName);
     }
 
-    @DisplayName("new CarName() 공백이 입력되었을 때 예외 테스트")
-    @Test
-    void constructor_empty_test() {
-        String carName = "";
+    @ParameterizedTest(name = "{index}: 예외: {1}")
+    @MethodSource("provideCarNameAndErrorMessage")
+    void constructor_exception_test(String carName, String errorMessage) {
         assertThatThrownBy(() -> new CarName(carName))
-                .hasMessageContaining(ErrorMessage.CAR_NAME_EMPTY.getMessage());
+                .hasMessageContaining(errorMessage);
     }
 
-    @DisplayName("new CarName() 글자 수 초과 값이 입력되었을 때 예외 테스트")
-    @Test
-    void constructor_long_name_test() {
-        String carName = "abcdef";
-        assertThatThrownBy(() -> new CarName(carName))
-                .hasMessageContaining(ErrorMessage.CAR_NAME_TOO_LONG.getMessage());
+    private static Stream<Arguments> provideCarNameAndErrorMessage() {
+        return Stream.of(
+                Arguments.of("", ErrorMessage.CAR_NAME_EMPTY.getMessage()),
+                Arguments.of("abcdef", ErrorMessage.CAR_NAME_TOO_LONG.getMessage())
+        );
     }
 }
