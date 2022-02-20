@@ -6,6 +6,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -60,5 +63,14 @@ public class CarTest {
 			Car car = new Car(input);
 		}).isInstanceOf(RuntimeException.class)
 				.hasMessageContaining("빈 문자열");
+	}
+
+	@Test
+	@DisplayName("자동차 이름들을 입력 받아, 자동차를 생성한다.")
+	void create() {
+		Cars cars = new Cars();
+		List<String> input = Arrays.asList("범고래", "소주캉");
+		cars.create(input);
+		assertThat(cars.getSize()).isEqualTo(2);
 	}
 }

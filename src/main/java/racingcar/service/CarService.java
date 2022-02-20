@@ -30,7 +30,7 @@ public class CarService {
     }
 
     public void createCars(List<String> names) {
-        names.forEach(name -> cars.save(new Car(name)));
+        cars.create(names);
     }
 
     private void addScoreBoard(int round, List<CarDto> cars) {

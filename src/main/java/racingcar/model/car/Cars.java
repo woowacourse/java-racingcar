@@ -10,10 +10,6 @@ import java.util.stream.IntStream;
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
 
-    public void save(Car car) {
-        cars.add(car);
-    }
-
     public void move(List<Integer> numbers) {
         IntStream.range(0, numbers.size())
                 .forEach(i -> cars.get(i).move(numbers.get(i)));
@@ -31,5 +27,9 @@ public class Cars {
         return cars.stream()
                 .map(CarDto::new)
                 .collect(Collectors.toList());
+    }
+
+    public void create(List<String> names) {
+        names.forEach(i -> cars.add(new Car(i)));
     }
 }
