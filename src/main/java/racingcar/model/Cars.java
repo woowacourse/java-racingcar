@@ -2,9 +2,10 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import racingcar.service.CheckingService;
 import racingcar.service.RandomNumberMovingCondition;
@@ -42,10 +43,14 @@ public class Cars {
 		cars.stream().forEach(Car::move);
 	}
 
-	public List<String> getPosition() {
-		return cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.toList());
+	public Map<String, Integer> getRecentPosition() {
+		Map<String, Integer> carPosition = new LinkedHashMap<>();
+
+		for (Car car : cars) {
+			carPosition.put(car.getName(), car.getPosition());
+		}
+
+		return carPosition;
 	}
 
 	public List<String> findWinnerCars() {

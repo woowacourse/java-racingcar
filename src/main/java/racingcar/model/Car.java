@@ -7,9 +7,6 @@ import racingcar.service.CheckingService;
 import racingcar.service.MovingCondition;
 
 public class Car implements Comparable<Car> {
-	public static final String ONE_STEP = "-";
-	public static final String COLON = " : ";
-
 	private String name;
 	private int position;
 	private MovingCondition movingCondition;
@@ -38,21 +35,13 @@ public class Car implements Comparable<Car> {
 	public void appendName(List<String> winnerNames) {
 		winnerNames.add(name);
 	}
-
-	public String testMoveFunction(int expectedPosition) {
-		if (expectedPosition == this.position) {
-			return "Success!!";
-		}
-		return "Fail!!";
+	
+	public String getName() {
+		return name;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder line = new StringBuilder();
-		for (int i = 0; i < position; i++) {
-			line.append(ONE_STEP);
-		}
-		return name + COLON + line.toString();
+	public int getPosition() {
+		return position;
 	}
 
 	@Override

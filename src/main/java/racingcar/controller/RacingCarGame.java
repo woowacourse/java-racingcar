@@ -35,7 +35,7 @@ public class RacingCarGame {
 		while (gameTurn.isPositive()) {
 			gameTurn.removeTurn();
 			cars.moveCars();
-			outputView.printResult(cars.getPosition());
+			outputView.printResult(cars.getRecentPosition());
 		}
 	}
 
