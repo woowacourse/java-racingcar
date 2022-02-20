@@ -24,7 +24,7 @@ public class GameServiceInitTestProvider {
     public static Stream<Arguments> provideForInitCarNamesTooLongExceptionTest() {
         return Stream.of(
                 Arguments.of(Arrays.asList("abcdef", "poby", "hanul", "hello")),
-                Arguments.of(Arrays.asList("hanul", "", "poby", "ififif"))
+                Arguments.of(Arrays.asList("hanul", "poby", "ififif"))
         );
     }
 
