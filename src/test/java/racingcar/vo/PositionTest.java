@@ -5,28 +5,37 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PositionTest {
+class PositionTest {
 
     @DisplayName("new Position() 테스트")
     @Test
-    public void constructor_test() throws Exception {
+    void constructor_test() {
         Position position = new Position();
-        assertThat(position.getPosition()).isEqualTo(0);
+        assertThat(position.getPosition()).isZero();
     }
 
     @DisplayName("increase() 테스트")
     @Test
-    public void increase_test() throws Exception {
+    void increase_test() {
         Position position = new Position();
-        Position increasedPosition = position.increase();
-        assertThat(increasedPosition.getPosition()).isEqualTo(1);
+        position.increase();
+        assertThat(position.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("compareTo() 테스트")
     @Test
-    public void compareTo_test() throws Exception {
+    void compareTo_test() {
         Position position = new Position();
-        Position increasedPosition = position.increase();
-        assertThat(increasedPosition.compareTo(position)).isGreaterThan(0);
+        Position increasedPosition = new Position();
+        increasedPosition.increase();
+        assertThat(increasedPosition.compareTo(position)).isPositive();
+    }
+
+    @DisplayName("equals() 테스트")
+    @Test
+    void equals_test() {
+        Position position = new Position();
+        Position testPosition = new Position();
+        assertThat(position.equals(testPosition)).isTrue();
     }
 }

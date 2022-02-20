@@ -16,13 +16,13 @@ public class CarName {
 
     private void validateEmpty(String name) {
         if (name.isEmpty()) {
-            throw new RuntimeException(ErrorMessage.CAR_NAME_EMPTY.toString());
+            throw new RuntimeException(ErrorMessage.CAR_NAME_EMPTY.getMessage());
         }
     }
 
     private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new RuntimeException(ErrorMessage.CAR_NAME_TOO_LONG.toString());
+            throw new RuntimeException(ErrorMessage.CAR_NAME_TOO_LONG.getMessage());
         }
     }
 

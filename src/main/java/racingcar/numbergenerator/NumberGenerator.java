@@ -1,4 +1,4 @@
-package racingcar.numberGenerator;
+package racingcar.numbergenerator;
 
 public interface NumberGenerator {
 

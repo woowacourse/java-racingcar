@@ -34,7 +34,7 @@ public class Attempt {
 
     private void validateNegative(int attempt) {
         if (attempt < ZERO) {
-            throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE.toString());
+            throw new RuntimeException(ErrorMessage.NUMBER_NEGATIVE.getMessage());
         }
     }
 
