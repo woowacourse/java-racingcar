@@ -1,8 +1,8 @@
 package racingcargame;
 
 import racingcargame.controller.GameController;
-import racingcargame.model.carmovevalue.MoveValueGeneratorByRandomNumber;
-import racingcargame.model.carmovevalue.randomnumbergenerator.RandomNumberGenerator;
+import racingcargame.model.movevaluegenerator.MoveValueGeneratorByRandomNumber;
+import racingcargame.model.movevaluegenerator.randomnumbergenerator.RandomNumberGenerator;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 

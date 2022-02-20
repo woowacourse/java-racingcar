@@ -1,7 +1,6 @@
-package racingcargame.model.carmovevalue.randomnumbergenerator;
+package racingcargame.model.movevaluegenerator.randomnumbergenerator;
 
 import java.util.Random;
-import racingcargame.model.carmovevalue.randomnumbergenerator.NumberGenerator;
 
 public class RandomNumberGenerator implements NumberGenerator {
     private final Random random = new Random();

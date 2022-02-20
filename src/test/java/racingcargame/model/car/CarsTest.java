@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcargame.dto.CarDto;
-import racingcargame.model.carmovevalue.MoveValueGenerator;
+import racingcargame.model.movevaluegenerator.MoveValueGenerator;
 
 class CarsTest {
 

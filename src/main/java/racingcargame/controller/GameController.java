@@ -3,7 +3,7 @@ package racingcargame.controller;
 import java.util.List;
 
 import racingcargame.model.RacingCarGame;
-import racingcargame.model.carmovevalue.MoveValueGenerator;
+import racingcargame.model.movevaluegenerator.MoveValueGenerator;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 

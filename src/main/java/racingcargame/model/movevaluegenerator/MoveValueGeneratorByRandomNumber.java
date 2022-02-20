@@ -1,6 +1,6 @@
-package racingcargame.model.carmovevalue;
+package racingcargame.model.movevaluegenerator;
 
-import racingcargame.model.carmovevalue.randomnumbergenerator.NumberGenerator;
+import racingcargame.model.movevaluegenerator.randomnumbergenerator.NumberGenerator;
 
 public class MoveValueGeneratorByRandomNumber implements MoveValueGenerator {
     private static final int MAX_BOUNDARY_NUMBER = 10;

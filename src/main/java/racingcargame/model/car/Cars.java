@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcargame.dto.CarDto;
-import racingcargame.model.carmovevalue.MoveValueGenerator;
+import racingcargame.model.movevaluegenerator.MoveValueGenerator;
 
 public class Cars {
     private static final int WINNER_CAR_INDEX = 0;
