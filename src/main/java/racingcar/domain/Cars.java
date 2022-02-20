@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -46,10 +47,6 @@ public class Cars {
 		}
 	}
 
-	public List<Car> getCars() {
-		return cars;
-	}
-
 	public void startEachRace() {
 		cars.stream()
 			.filter(car -> isMoveCondition())
@@ -60,8 +57,13 @@ public class Cars {
 		return makeRandom() >= MOVE_CONDITION;
 	}
 
-	public List<Car> getWinners() {
-		Position maxPosition = getMaxPosition();
+	public Map<String, Integer> getCarsInfo() {
+		return cars.stream()
+			.collect(Collectors.toMap(car -> car.getName().toString(),
+				car -> car.getPosition().toInt(), (a, b) -> b));
+	}
+
+	public List<String> getWinners() {
 		return cars.stream()
 			.filter(car -> car.isSamePosition(getMaxPosition()))
 			.map(car -> car.getName().toString())

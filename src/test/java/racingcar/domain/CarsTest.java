@@ -18,7 +18,7 @@ class CarsTest {
 	void carsGenerate() {
 		String[] carNames = {"pobi", "crong", "huan"};
 		Cars cars = new Cars(carNames);
-		assertThat(cars.getCars().size()).isEqualTo(carNames.length);
+		assertThat(cars.getCarsInfo().size()).isEqualTo(carNames.length);
 	}
 
 	@Test

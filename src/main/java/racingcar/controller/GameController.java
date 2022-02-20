@@ -46,7 +46,7 @@ public class GameController {
 	private void startRace(Cars cars, int moveCount) {
 		for (int i = 0; i < moveCount; i++) {
 			cars.startEachRace();
-			OutputView.printCarPosition(cars.getCars());
+			OutputView.printCarPosition(cars.getCarsInfo());
 		}
 	}
 }

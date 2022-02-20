@@ -1,9 +1,7 @@
 package racingcar.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import racingcar.domain.Car;
+import java.util.Map;
 
 public class OutputView {
 	private static final String STRING_JOIN_DELIMITER = " : ";
@@ -12,13 +10,13 @@ public class OutputView {
 	public static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
 	public static final String WINNER_JOIN_DELIMITER = ", ";
 
-	public static void printCarPosition(List<Car> cars) {
-		cars.stream()
-			.map(car -> car.getName()
-				+ STRING_JOIN_DELIMITER
-				+ MOVE_EXPRESSION.repeat(Math.max(0, car.getPosition().toInt())))
-			.forEach(System.out::println);
-		System.out.println();
+	public static void printCarPosition(Map<String, Integer> cars) {
+		StringBuilder outputString = new StringBuilder();
+		cars.keySet().forEach(name -> outputString.append(name)
+			.append(STRING_JOIN_DELIMITER)
+			.append(MOVE_EXPRESSION.repeat(cars.get(name)))
+			.append('\n'));
+		System.out.println(outputString);
 	}
 
 	public static void printResultMessage() {
