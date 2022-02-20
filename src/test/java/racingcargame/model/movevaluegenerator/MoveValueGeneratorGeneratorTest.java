@@ -1,4 +1,4 @@
-package racingcargame.utils;
+package racingcargame.model.movevaluegenerator;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -24,6 +24,6 @@ class MoveValueGeneratorGeneratorTest {
         final NumberGenerator numberGenerator = new RandomNumberGeneratorTest();
         final MoveValueGenerator moveValueGenerator = new MoveValueGeneratorByRandomNumber(numberGenerator);
 
-        assertThat(moveValueGenerator.getMoveValue()).isEqualTo(1);
+        assertThat(moveValueGenerator.generateMoveValue()).isEqualTo(1);
     }
 }
