@@ -30,6 +30,7 @@ class CarTest {
     static Stream<Arguments> invalidParameters() {
         return Stream.of(
             Arguments.of("", "한글자 미만"),
+            Arguments.of(null, "널 입력"),
             Arguments.of("pobi,,crong", "이름길이 0"),
             Arguments.of("donghok", "5글자 초과")
         );

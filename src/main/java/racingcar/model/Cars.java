@@ -8,11 +8,16 @@ import racingcar.utils.generator.NumberGenerator;
 import racingcar.utils.generator.RandomNumberGenerator;
 
 public class Cars {
-    private final List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+    public Cars() {
+    }
+
+    public void add(List<String> carNames) {
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
     }
 
     public void forward() {

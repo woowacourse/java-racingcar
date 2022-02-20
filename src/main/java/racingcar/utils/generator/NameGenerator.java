@@ -9,7 +9,11 @@ public class NameGenerator {
     public static final String DELIMITER = ",";
 
     public static List<String> generateCarNames(String input) {
-        NameValidator.validate(input);
-        return Arrays.asList(input.split(DELIMITER));
+        NameValidator.validateNames(input);
+        List<String> names = Arrays.asList(input.split(DELIMITER));
+        for (String name : names) {
+            NameValidator.validateName(name);
+        }
+        return names;
     }
 }
