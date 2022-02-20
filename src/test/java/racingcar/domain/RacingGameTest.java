@@ -2,9 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,19 +10,17 @@ import org.junit.jupiter.api.Test;
 class RacingGameTest {
 
     @Test
-    @DisplayName("챔피언이 한명인 경우 챔피언 이름 수는 하나")
+    @DisplayName("챔피언이 최소 한명인 경우")
     void getChampionNamesOnlyOneChampion() {
         Cars cars = new Cars(Arrays.asList("car1", "car2", "car3"));
         RacingGame racingGame = new RacingGame(cars, 1);
-
-        cars.getCarList().get(0).move(5);
-        cars.getCarList().get(0).move(5);
+        RandomNumberMoveStrategy randomNumberMoveStrategy = new RandomNumberMoveStrategy();
 
         while (!racingGame.isFinished()) {
-            racingGame.run();
+            racingGame.run(randomNumberMoveStrategy);
         }
 
-        assertThat(racingGame.getChampionNames().size()).isEqualTo(1);
+        assertThat(racingGame.getChampionNames().size()).isGreaterThanOrEqualTo(1);
     }
 
     @Test
@@ -32,12 +28,13 @@ class RacingGameTest {
     void getChampionNames() {
         Cars cars = new Cars(Arrays.asList("car1", "car2", "car3"));
         RacingGame racingGame = new RacingGame(cars, 3);
+        MoveStrategy moveStrategy = () -> true;
 
         while (!racingGame.isFinished()) {
-            racingGame.run();
+            racingGame.run(moveStrategy);
         }
 
-        assertThat(racingGame.getChampionNames().size()).isGreaterThanOrEqualTo(1);
+        assertThat(racingGame.getChampionNames().size()).isEqualTo(3);
     }
 
     @Test
@@ -46,7 +43,7 @@ class RacingGameTest {
         Cars cars = new Cars(Arrays.asList("car1", "car2", "car3"));
         RacingGame racingGame = new RacingGame(cars, 3);
 
-        racingGame.run();
+        racingGame.run(new RandomNumberMoveStrategy());
 
         assertThat(racingGame.isFinished()).isEqualTo(false);
     }
@@ -57,7 +54,7 @@ class RacingGameTest {
         Cars cars = new Cars(Arrays.asList("car1", "car2", "car3"));
         RacingGame racingGame = new RacingGame(cars, 1);
 
-        racingGame.run();
+        racingGame.run(new RandomNumberMoveStrategy());
 
         assertThat(racingGame.isFinished()).isEqualTo(true);
     }
@@ -69,7 +66,7 @@ class RacingGameTest {
         RacingGame racingGame = new RacingGame(cars, 0);
 
         assertThatThrownBy(() -> {
-            racingGame.run();
+            racingGame.run(new RandomNumberMoveStrategy());
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

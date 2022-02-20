@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
@@ -39,21 +37,19 @@ class CarTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6})
+    @Test
     @DisplayName("차가 전진하는 경우")
-    void moveCar(int input) {
+    void moveCar() {
         Car car = new Car("test");
-        car.move(input);
+        car.move(true);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
+    @Test
     @DisplayName("차가 전진하지 않는 경우")
-    void stopCar(int input) {
+    void stopCar() {
         Car car = new Car("test");
-        car.move(input);
+        car.move(false);
         assertThat(car.getPosition()).isEqualTo(0);
     }
 }

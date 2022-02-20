@@ -3,8 +3,6 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import racingcar.util.RandomUtil;
-
 public class Cars {
     private static final String NOTHING_NAME_ERROR_MASSAGE = "자동차 이름들이 존재하지 않음";
     private static final int MIN_POSITION = 0;
@@ -24,9 +22,9 @@ public class Cars {
         }
     }
 
-    public void move() {
+    public void move(final MoveStrategy moveStrategy) {
         for (Car car : carList) {
-            car.move(RandomUtil.generateRandomNumber());
+            car.move(moveStrategy.isMovable());
         }
     }
 

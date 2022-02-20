@@ -4,7 +4,6 @@ public class Car {
     private static final String CAR_NAME_ERROR_MESSAGE = "유효하지 않은 자동차 이름";
     private static final String CAR_NAME_LENGTH_ERROR_MESSAGE = "자동차 이름 5글자 초과";
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int DO_NOT_MOVE_THRESHOLD = 3;
 
     private final String name;
     private int position = 0;
@@ -27,8 +26,8 @@ public class Car {
         }
     }
 
-    public void move(final int number) {
-        if (number > DO_NOT_MOVE_THRESHOLD) {
+    public void move(final boolean canMove) {
+        if (canMove) {
             position++;
         }
     }

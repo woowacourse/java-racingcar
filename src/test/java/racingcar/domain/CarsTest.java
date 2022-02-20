@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,10 +36,10 @@ class CarsTest {
     @DisplayName("최고 위치를 정상적으로 받는지 검사")
     void getMaxPosition() {
         Cars cars = new Cars(Arrays.asList("car1", "car2"));
+        MoveStrategy moveStrategy = () -> true;
 
-        cars.getCarList().get(0).move(5);
-        cars.getCarList().get(0).move(5);
-        cars.getCarList().get(1).move(3);
+        cars.move(moveStrategy);
+        cars.move(moveStrategy);
 
         assertThat(cars.getMaxPosition()).isEqualTo(2);
     }

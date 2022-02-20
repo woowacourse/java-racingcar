@@ -15,11 +15,11 @@ public class RacingGame {
         this.rounds = rounds;
     }
 
-    public void run() {
+    public void run(final MoveStrategy moveStrategy) {
         if (isFinished()) {
             throw new IllegalArgumentException(GAME_IS_OVER_MESSAGE);
         }
-        cars.move();
+        cars.move(moveStrategy);
         rounds--;
     }
 
