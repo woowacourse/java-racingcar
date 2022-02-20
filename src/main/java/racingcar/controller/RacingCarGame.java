@@ -6,14 +6,12 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarGame {
-	private InputView inputView = new InputView();
-	private OutputView outputView = new OutputView();
 	private Cars cars;
 	private GameTurn gameTurn;
 
 	public void makeCars() {
 		try {
-			cars = new Cars(inputView.getCarNames());
+			cars = new Cars(InputView.getCarNames());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			makeCars();
@@ -22,7 +20,7 @@ public class RacingCarGame {
 
 	public void getGameTurn() {
 		try {
-			gameTurn = new GameTurn(inputView.getGameTurn());
+			gameTurn = new GameTurn(InputView.getGameTurn());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			getGameTurn();
@@ -30,16 +28,16 @@ public class RacingCarGame {
 	}
 
 	public void moveCars() {
-		outputView.printResultSentence();
+		OutputView.printResultSentence();
 
 		while (gameTurn.checkRemain()) {
 			gameTurn.play();
 			cars.moveCars();
-			outputView.printResult(cars.getRecentPosition());
+			OutputView.printResult(cars.getRecentPosition());
 		}
 	}
 
 	public void printWinners() {
-		outputView.printWinners(cars.findWinnerCars());
+		OutputView.printWinners(cars.findWinnerCars());
 	}
 }
