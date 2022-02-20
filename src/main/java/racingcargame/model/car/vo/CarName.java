@@ -34,4 +34,21 @@ public class CarName {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final CarName otherCarName = (CarName) o;
+        return name.equals(otherCarName.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.parseInt(name);
+    }
 }
