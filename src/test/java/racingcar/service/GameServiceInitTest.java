@@ -60,7 +60,7 @@ class GameServiceInitTest {
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesDuplicatedExceptionTest")
     void initCarNamesDuplicatedExceptionTest(final List<String> carNames) {
-        final String errorMessage = CarNameExceptionStatus.NAME_IS_TOO_LONG.getMessage();
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_DUPLICATED.getMessage();
         initCarNamesExceptionTest(carNames, errorMessage);
     }
 
