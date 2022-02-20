@@ -11,27 +11,22 @@ import racingcar.view.ErrorMessage;
 public class Cars {
 
     private final List<Car> cars;
-    private final RaceResult raceResult;
 
     public Cars(String[] names) {
         cars = CarMakerUtil.createCarsWith(names);
-        raceResult = new RaceResult();
     }
 
-    private Cars(List<Car> cars, String raceAllResult) {
+    private Cars(List<Car> cars) {
         this.cars = new ArrayList<>(cars);
-        this.raceResult = new RaceResult(raceAllResult);
     }
 
-    public Cars repeatRaceBy(Attempt attempt, NumberGenerator numberGenerator) {
-        StringBuilder raceResultBuilder = new StringBuilder();
-        List<Car> cars = new ArrayList<>(this.cars);
-        while (attempt.isLeft()) {
-            cars = raceAll(cars, numberGenerator);
-            raceResultBuilder.append(getOnceResultWith(cars));
-            attempt = attempt.decrease();
+    public Cars raceAll(NumberGenerator numberGenerator) {
+        List<Car> afterRaceCars = new ArrayList<>();
+        for (Car car : cars) {
+            Car movedCar = car.move(numberGenerator.generate());
+            afterRaceCars.add(movedCar);
         }
-        return new Cars(cars, raceResultBuilder.toString());
+        return new Cars(afterRaceCars);
     }
 
     public Winners judgeWinners() {
@@ -47,26 +42,7 @@ public class Cars {
         return cars.size() == size;
     }
 
-    private List<Car> raceAll(List<Car> cars, NumberGenerator numberGenerator) {
-        List<Car> afterRaceCars = new ArrayList<>();
-        for (Car car : cars) {
-            Car movedCar = car.move(numberGenerator.generate());
-            afterRaceCars.add(movedCar);
-        }
-        return afterRaceCars;
-    }
-
-    private String getOnceResultWith(List<Car> cars) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car.toString());
-            stringBuilder.append(System.lineSeparator());
-        }
-        stringBuilder.append(System.lineSeparator());
-        return stringBuilder.toString();
-    }
-
-    public RaceResult getRaceResult() {
-        return raceResult;
+    public List<Car> getCars() {
+        return new ArrayList<>(cars);
     }
 }

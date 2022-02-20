@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import static racingcar.view.OutputView.printOnceResultWith;
 import static racingcar.view.OutputView.printRaceResult;
 import static racingcar.view.OutputView.printWinners;
 
@@ -21,9 +22,18 @@ public class RacingGame {
     public void play(NumberGenerator numberGenerator) {
         Cars cars = createCars(splitCarNames(userInputRequester.getCarName()));
         Attempt attempt = new Attempt(userInputRequester.getAttempt());
-        cars = cars.repeatRaceBy(attempt, numberGenerator);
-        printRaceResult(cars.getRaceResult());
+        cars = repeatRaceBy(cars, attempt, numberGenerator);
         printWinners(cars.judgeWinners());
+    }
+
+    private Cars repeatRaceBy(Cars cars, Attempt attempt, NumberGenerator numberGenerator) {
+        printRaceResult();
+        while (attempt.isLeft()) {
+            cars = cars.raceAll(numberGenerator);
+            printOnceResultWith(cars);
+            attempt = attempt.decrease();
+        }
+        return cars;
     }
 
     private String[] splitCarNames(String carNames) {

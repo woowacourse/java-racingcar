@@ -3,14 +3,10 @@ package racingcar.vo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.numbergenerator.NumberGenerator;
-import racingcar.numbergenerator.RandomNumberGenerator;
 import racingcar.view.ErrorMessage;
 
 class CarsTest {
@@ -22,24 +18,6 @@ class CarsTest {
         String[] names = {name};
         Cars cars = new Cars(names);
         assertThat(cars.isSameSize(1)).isTrue();
-    }
-
-    @DisplayName("repeatRaceBy() 테스트")
-    @Test
-    void repeatRaceBy_test() {
-        String name = "name1";
-        String[] names = {name};
-        Cars cars = new Cars(names);
-        Attempt attempt = new Attempt("5");
-        NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        Cars afterRaceCars = cars.repeatRaceBy(attempt, randomNumberGenerator);
-        RaceResult raceResult = afterRaceCars.getRaceResult();
-        Matcher matcher = Pattern.compile(name).matcher(raceResult.getResult());
-        int nameCount = 0;
-        while (matcher.find()) {
-            nameCount++;
-        }
-        assertThat(nameCount).isEqualTo(5);
     }
 
     @DisplayName("judgeWinners() 단독, 공동우승 테스트")
