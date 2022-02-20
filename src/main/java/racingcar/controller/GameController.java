@@ -11,9 +11,10 @@ public class GameController {
 	public void runRace() {
 		try {
 			OutputView.askCarName();
-			CarList carList = new CarList(InputViewChecker.checkNameInput(new UserInputView().getUserInput()));
+			UserInputView userInputView = new UserInputView();
+			CarList carList = new CarList(userInputView.getNameInput());
 			OutputView.askTurn();
-			playGame(InputViewChecker.checkTurnInput(new UserInputView().getUserInput()), carList);
+			playGame(userInputView.getTurnInput(), carList);
 		} catch (IllegalArgumentException error) {
 			OutputView.displayError(error.getMessage());
 		}
