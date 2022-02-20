@@ -1,9 +1,10 @@
 package racingcar.domain.vo;
 
-public class TryRoundNumber {
+import static racingcar.validator.TryRoundNumberValidator.*;
 
-	public static final String INVALID_NOT_NUMBER = "[ERROR] 시행횟수가 숫자가 아닙니다";
-	public static final String INVALID_NOT_POSITIVE_NUMBER = "[ERROR] 시행횟수는 0보다 큰 숫자여야 합니다";
+import java.util.Objects;
+
+public class TryRoundNumber {
 
 	private final int tryRoundNumber;
 
@@ -16,22 +17,25 @@ public class TryRoundNumber {
 		return tryRoundNumber;
 	}
 
-	private void validateNumber(final String input) {
-		isNumber(input);
-		isPositiveNumber(input);
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		TryRoundNumber that = (TryRoundNumber)o;
+		return tryRoundNumber == that.tryRoundNumber;
 	}
 
-	private void isNumber(final String input) {
-		try {
-			Integer.parseInt(input);
-		} catch (NumberFormatException e) {
-			throw new RuntimeException(INVALID_NOT_NUMBER);
-		}
+	@Override
+	public int hashCode() {
+		return Objects.hash(tryRoundNumber);
 	}
 
-	private void isPositiveNumber(final String input) {
-		if (Integer.parseInt(input) <= 0) {
-			throw new RuntimeException(INVALID_NOT_POSITIVE_NUMBER);
-		}
+	@Override
+	public String toString() {
+		return "TryRoundNumber{" +
+			"tryRoundNumber=" + tryRoundNumber +
+			'}';
 	}
 }

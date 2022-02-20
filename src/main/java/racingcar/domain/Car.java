@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import java.util.function.Function;
 
 import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.vo.CarName;
@@ -23,10 +22,6 @@ public class Car {
 		this.name = builder.name;
 		this.position = builder.position;
 		this.movingStrategy = builder.movingStrategy;
-	}
-
-	public String getName() {
-		return name.get();
 	}
 
 	public static class Builder {
@@ -58,8 +53,8 @@ public class Car {
 		return new Builder();
 	}
 
-	public void move(final int distance) {
-		position += distance;
+	public String getName() {
+		return name.get();
 	}
 
 	public void move() {
@@ -68,22 +63,25 @@ public class Car {
 		}
 	}
 
+	public void move(final int movingTryCount) {
+		for (int i = 0; i < movingTryCount; i++) {
+			move();
+		}
+	}
+
 	public boolean isSamePosition(final Car maxCar) {
 		return position == maxCar.position;
 	}
 
 	public int compareNameTo(final Car other) {
-		return compareTo((Car otherCar) -> this.name.get().compareTo(otherCar.name.get()), other);
+		return name.get().compareTo(other.getName());
 	}
 
 	public int comparePositionTo(final Car other) {
-		return compareTo((Car otherCar) -> this.position - otherCar.position, other);
+		return Integer.compare(position, other.position);
 	}
 
-	public int compareTo(final Function<Car, Integer> function, final Car other) {
-		return function.apply(other);
-	}
-
+	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;

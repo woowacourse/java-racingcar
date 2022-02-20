@@ -1,68 +1,56 @@
 package racingcar.domain;
 
+import static racingcar.validator.CarNameValidator.*;
+
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import racingcar.domain.strategy.RandomMovingStrategy;
+import racingcar.domain.strategy.FixedMovingStrategy;
+import racingcar.domain.strategy.MovingStrategy;
 
 public class Cars {
 
 	private static final String CAR_NAME_DELIMINATOR = ",";
 	private static final String NOT_FOUND_CARS_MESSAGE = "[ERROR] 자동차를 찾을 수 없습니다.";
-	public static final String INVALID_DUPLICATE_CAR_NAMES = "[ERROR] 차 이름이 중복됩니다";
-	private static final String INVALID_EMPTY_CAR_NAMES = "[ERROR] 차 이름은 공백이 될 수 없습니다";
 
-	private List<Car> cars = new ArrayList<>();
+	private final List<Car> cars;
 
 	public Cars(final List<Car> cars) {
 		this.cars = cars;
 	}
 
 	public Cars(final String carNames) {
-		final String[] parseCarNames = splitCarNames(carNames);
+		this(carNames, new FixedMovingStrategy());
+	}
 
-		for (final String carName : parseCarNames) {
+	public Cars(final String carNames, final MovingStrategy randomMovingStrategy) {
+		final List<String> parsedCarNames = List.of(splitCarNames(carNames));
+		cars  = new ArrayList<>();
+
+		validateCarNames(parsedCarNames);
+
+		for (final String carName : parsedCarNames) {
 			final Car car = Car.builder()
 				.name(carName)
-				.movingStrategy(new RandomMovingStrategy())
+				.movingStrategy(randomMovingStrategy)
 				.build();
 
 			cars.add(car);
 		}
-		validateCarNamesEmpty(parseCarNames);
-		validateDuplication(cars);
 	}
 
 	public List<Car> getCars() {
-		return cars;
-	}
-
-	private void validateCarNamesEmpty(final String[] carNames) {
-		if (carNames.length == 0) {
-			throw new RuntimeException(INVALID_EMPTY_CAR_NAMES);
-		}
-	}
-
-	private void validateDuplication(List<Car> cars) {
-		if (isDuplicated(cars)) {
-			throw new RuntimeException(INVALID_DUPLICATE_CAR_NAMES);
-		}
-	}
-
-	private boolean isDuplicated(final List<Car> cars) {
-		return cars.size() != new HashSet<>(cars).size();
+		return Collections.unmodifiableList(cars);
 	}
 
 	private String[] splitCarNames(String input) {
-		input = input.replaceAll("\\s", "");
-		return input.split(CAR_NAME_DELIMINATOR);
+		return input.replaceAll("\\s", "").split(CAR_NAME_DELIMINATOR);
 	}
 
 	public List<Car> getWinners() {
-
 		final Car maxCar = getMaxPositionCar();
 
 		return cars.stream()
