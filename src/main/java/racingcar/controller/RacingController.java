@@ -11,7 +11,7 @@ public class RacingController {
             Cars cars = new Cars(InputView.inputCarNames());
             TryCount tryCount = inputTryCount();
             race(cars, tryCount);
-            terminate(cars);
+            printRaceResult(cars);
 
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
@@ -37,7 +37,7 @@ public class RacingController {
         }
     }
 
-    private void terminate(Cars cars) {
+    private void printRaceResult(Cars cars) {
         OutputView.printCarsStatus(cars.getCars());
         OutputView.printWinners(cars.getWinners());
     }
