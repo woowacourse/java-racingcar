@@ -12,6 +12,7 @@ public class Application {
         final CarController controller = new CarController(scanner);
         final String carNames = controller.scanCarNames();
         final List<Car> cars = controller.saveCars(carNames);
+        final int racingCnt = controller.scanRacingCnt();
     }
 
 }

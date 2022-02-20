@@ -28,4 +28,8 @@ public class CarController {
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
+
+    public int scanRacingCnt() {
+        return Integer.parseInt(inputView.scanRacingCnt());
+    }
 }
