@@ -7,6 +7,7 @@ import racingcar.model.RacingGame;
 import racingcar.view.InputView;
 
 public class Application {
+
     public static void main(String[] args) {
         final Application application = new Application();
         application.runGame();

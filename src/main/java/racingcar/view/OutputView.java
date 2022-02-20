@@ -4,6 +4,7 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 
 public class OutputView {
+
     private static final String SPLIT_DELIMITER = ",";
     private static final String RESULT_PREFIX = "실행결과";
     private static final String WINNER_SUFFIX = "가 최종 우승했습니다.";

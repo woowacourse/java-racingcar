@@ -3,6 +3,7 @@ package racingcar.util;
 import java.util.Random;
 
 public class RandomNumberGenerator implements RandomUtil {
+
     private static final int MAX_RANDOM_VALUE = 9;
 
     @Override

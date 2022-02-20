@@ -3,6 +3,7 @@ package racingcar.model;
 import racingcar.util.RandomUtil;
 
 public class Car {
+
     private static final int STANDARD = 4;
 
     private final String name;

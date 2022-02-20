@@ -1,6 +1,7 @@
 package racingcar.model;
 
 public class RacingGame {
+
     private final Cars cars;
     private int tryCount;
 

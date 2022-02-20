@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.util.InputValidator;
 
 public class InputController {
+
     public String[] getUserCarNames(final String userCarText) throws RuntimeException {
         return splitCar(userCarText);
     }

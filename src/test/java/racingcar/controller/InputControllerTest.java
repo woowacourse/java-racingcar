@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class InputControllerTest {
+
     private final InputController inputController = new InputController();
 
     @DisplayName("자동차 이름 나누기 테스트")

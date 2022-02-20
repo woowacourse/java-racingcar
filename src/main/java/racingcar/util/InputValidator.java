@@ -1,6 +1,7 @@
 package racingcar.util;
 
 public class InputValidator {
+
     private static final String NO_INTEGER_ERROR_MESSAGE = "[ERROR] 정수가 아닌 문자열이 입력되었습니다.";
     private static final String CAR_NAME_ERROR_MESSAGE = "[ERROR] 자동차 이름을 확인해주세요.";
     private static final int MAX_CAR_NAME_LENGTH = 5;
