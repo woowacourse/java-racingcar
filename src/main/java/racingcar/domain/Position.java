@@ -15,7 +15,7 @@ public class Position {
 	}
 
 	private static void checkNegativeInteger(int position) {
-		if (position <= 0) {
+		if (position < 0) {
 			throw new IllegalArgumentException(ERROR_NEGATIVE);
 		}
 	}
