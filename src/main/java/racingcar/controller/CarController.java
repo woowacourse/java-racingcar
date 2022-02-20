@@ -20,15 +20,15 @@ public class CarController {
         int tryNum = makeTryNum();
 
         startRace(cars, tryNum);
-        findFinalWinner(cars);
+        Output.printWinner(cars.getWinners());
     }
 
-    private static List<Car> makeCars() {
+    public static List<Car> makeCars() {
         String names = Input.inputCarNames();
 
         try {
             Validation.carNameValidation(names);
-            List<Car> cars = convertStringList(names);
+            List<Car> cars = convertStringCars(names);
             return cars;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -36,7 +36,16 @@ public class CarController {
         }
     }
 
-    private static int makeTryNum() {
+    private static List<Car> convertStringCars(final String names) {
+        List<Car> cars = new ArrayList<>();
+
+        for (String carName : names.split(SPLIT_DELIM)) {
+            cars.add(new Car(carName));
+        }
+        return cars;
+    }
+
+    public static int makeTryNum() {
         String tryValue = Input.inputTry();
 
         try {
@@ -48,21 +57,12 @@ public class CarController {
         }
     }
 
-    private static List<Car> convertStringList(final String names) {
-        List<Car> cars = new ArrayList<>();
-
-        for (String carName : names.split(SPLIT_DELIM)) {
-            cars.add(new Car(carName));
-        }
-        return cars;
-    }
-
     public static void startRace(final Cars cars, final int tryNum) {
         Output.printResultWord();
 
         for (int i = 0; i < tryNum; i++) {
             moveCar(cars);
-            printRace(cars);
+            Output.printCarsRace(cars);
         }
     }
 
@@ -70,13 +70,5 @@ public class CarController {
         for (Car car : cars.getCars()) {
             car.goForward(RandomNum.getRandomNum());
         }
-    }
-
-    public static void printRace(final Cars cars) {
-        Output.printCarsRace(cars);
-    }
-
-    public static void findFinalWinner(final Cars cars) {
-        Output.printWinner(cars.getWinners());
     }
 }

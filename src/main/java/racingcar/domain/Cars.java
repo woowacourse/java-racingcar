@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private static List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
@@ -14,7 +14,7 @@ public class Cars {
         return cars;
     }
 
-    public static int getMaxPosition() {
+    public int getMaxPosition() {
         int maxNum = 0;
 
         for (Car car : cars) {
@@ -26,7 +26,7 @@ public class Cars {
         return maxNum;
     }
 
-    public static List<String> getWinners() {
+    public List<String> getWinners() {
         List<String> winners = new ArrayList<>();
                 cars.stream()
                 .filter(car -> car.checkIfPositionSame(getMaxPosition()))
