@@ -5,6 +5,7 @@ import racingcar.exception.InvalidCarNameException;
 import java.util.Objects;
 
 public class Car implements Comparable<Car> {
+
     private static final int INIT_POSITION = 1;
     private static final int LOWER_MOVABLE_BOUND = 4;
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
