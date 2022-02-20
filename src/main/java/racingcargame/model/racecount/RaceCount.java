@@ -12,21 +12,29 @@ public class RaceCount {
 
     private int count;
 
-    public RaceCount(String count) {
+    public RaceCount(final String count) {
         this.count = checkRightCount(count);
     }
 
-    private int checkRightCount(String count) {
+    private int checkRightCount(final String count) {
         if (count == null) {
             throw new IllegalArgumentException(EMPTY_RACE_COUNT_ERROR_MESSAGE);
         }
-        if (!Pattern.matches(RACE_COUNT_PATTERN, count)) {
+        if (isNonNumberInCount(count)) {
             throw new IllegalArgumentException(NOT_RIGHT_COUNT_ERROR_MESSAGE);
         }
-        if (count.startsWith(INCORRECT_START_COUNT)) {
+        if (isCountStartAsZero(count)) {
             throw new IllegalArgumentException(RACE_COUNT_START_ZERO_ERROR_MESSAGE);
         }
         return Integer.parseInt(count);
+    }
+
+    private boolean isNonNumberInCount(final String count) {
+        return !Pattern.matches(RACE_COUNT_PATTERN, count);
+    }
+
+    private boolean isCountStartAsZero(final String count) {
+        return count.startsWith(INCORRECT_START_COUNT);
     }
 
     public void reduceCount() {
