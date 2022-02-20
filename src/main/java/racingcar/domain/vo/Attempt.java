@@ -6,10 +6,9 @@ public class Attempt {
 
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "시도 회수는 숫자로 입력해야합니다.";
     private static final String NUMBER_NEGATIVE_ERROR_MESSAGE = "시도 회수는 0이상이어야 합니다.";
-    private static final int EMPTY_COUNT = 0;
     private static final int ZERO = 0;
 
-    private int attempt;
+    private final int attempt;
 
     public Attempt(String input) {
         int attempt = toInteger(input);
@@ -17,12 +16,9 @@ public class Attempt {
         this.attempt = attempt;
     }
 
-    public boolean isLeft() {
-        return attempt > EMPTY_COUNT;
-    }
-
-    public void decrease() {
-        attempt--;
+    public Attempt(int input) {
+        validateNegative(input);
+        this.attempt = input;
     }
 
     private int toInteger(String s) {

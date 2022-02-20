@@ -1,4 +1,4 @@
-package racingcar.domain.vo;
+package racingcar.domain.fcc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.vo.Attempt;
 import racingcar.dto.RoundResult;
 
 public class CarsTest {

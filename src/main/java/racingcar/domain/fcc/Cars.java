@@ -1,8 +1,12 @@
-package racingcar.domain.vo;
+package racingcar.domain.fcc;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.domain.vo.Attempt;
+import racingcar.domain.vo.Car;
+import racingcar.domain.vo.CarName;
 import racingcar.dto.RoundResult;
 import util.RandomUtil;
 
@@ -15,7 +19,7 @@ public class Cars {
     private static final int RANDOM_MAXIMUM = 9;
     private static final int EMPTY_SIZE = 0;
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(String[] names) {
         validateSize(names);
@@ -29,18 +33,21 @@ public class Cars {
 
     public List<RoundResult> repeatRaceBy(Attempt attempt) {
         List<RoundResult> results = new ArrayList<>();
-        while (attempt.isLeft()) {
+        int i = 0;
+        while (!attempt.equals(new Attempt(i))) {
             results.add(raceAllCar());
-            attempt.decrease();
+            i++;
         }
-        return results;
+        return Collections.unmodifiableList(results);
     }
 
     private RoundResult raceAllCar() {
         List<Car> result = new ArrayList<>();
-        for (Car car : cars) {
+        for (int i = 0; i < cars.size(); i++) {
             int randomNumber = RandomUtil.getRandomNumberBetweenMinimumAndMaximum(RANDOM_MINIMUM, RANDOM_MAXIMUM);
-            car.move(randomNumber);
+            Car car = cars.get(i);
+            car = car.move(randomNumber);
+            cars.set(i, car);
             result.add(car);
         }
         return new RoundResult(result);
@@ -52,7 +59,7 @@ public class Cars {
                 .orElseThrow(() -> new IllegalStateException(NO_SUCH_CAR_ERROR_MESSAGE));
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void validateSize(String[] inputs) {

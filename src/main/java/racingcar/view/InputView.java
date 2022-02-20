@@ -5,7 +5,7 @@ import java.util.Scanner;
 import racingcar.dto.RequestAttemptDto;
 import racingcar.dto.RequestCarsDto;
 import racingcar.domain.vo.Attempt;
-import racingcar.domain.vo.Cars;
+import racingcar.domain.fcc.Cars;
 import util.StringUtil;
 
 public class InputView {

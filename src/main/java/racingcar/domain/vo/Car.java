@@ -1,16 +1,23 @@
 package racingcar.domain.vo;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
 
     private static final int MOVE_CONDITION = 4;
     private static final int SAME_POSITION = 0;
 
-    private CarName name;
-    private Position position;
+    private final CarName name;
+    private final Position position;
 
     public Car(CarName carName) {
         this.name = carName;
         this.position = new Position();
+    }
+
+    public Car(CarName carName, Position position) {
+        this.name = carName;
+        this.position = position;
     }
 
     public CarName getName() {
@@ -19,6 +26,23 @@ public class Car implements Comparable<Car> {
 
     public Position getPosition() {
         return position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 
     @Override
@@ -42,10 +66,11 @@ public class Car implements Comparable<Car> {
         return position.compareTo(car.position) == SAME_POSITION;
     }
 
-    public void move(int number) {
+    public Car move(int number) {
         if (canMove(number)) {
-            position.increase();
+            return new Car(name, position.increase());
         }
+        return this;
     }
 
     private boolean canMove(int number) {

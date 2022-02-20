@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.vo.Cars;
+import racingcar.domain.fcc.Cars;
 
 public class RequestCarsDtoTest {
 

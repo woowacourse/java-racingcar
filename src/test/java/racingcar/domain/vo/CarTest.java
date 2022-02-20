@@ -29,7 +29,7 @@ public class CarTest {
         Car car2 = new Car(carName2);
         Car moveCar = new Car(moveCarName);
         MovableNumberGenerator generator = new MovableNumberGenerator();
-        moveCar.move(generator.generate());
+        moveCar = moveCar.move(generator.generate());
         assertThat(car1.isSamePosition(car2)).isTrue();
         assertThat(car1.isSamePosition(moveCar)).isFalse();
         assertThat(car2.isSamePosition(moveCar)).isFalse();
@@ -41,7 +41,7 @@ public class CarTest {
         Car carPositionZero = new Car(new CarName("name1"));
         Car carPositionOne = new Car(new CarName("name2"));
         MovableNumberGenerator generator = new MovableNumberGenerator();
-        carPositionOne.move(generator.generate());
+        carPositionOne = carPositionOne.move(generator.generate());
         assertThat(carPositionZero.compareTo(carPositionZero)).isEqualTo(0);
         assertThat(carPositionZero.compareTo(carPositionOne)).isLessThan(0);
         assertThat(carPositionOne.compareTo(carPositionZero)).isGreaterThan(0);
@@ -54,7 +54,7 @@ public class CarTest {
         CarName carName = new CarName(name);
         Car car = new Car(carName);
         MovableNumberGenerator movable = new MovableNumberGenerator();
-        car.move(movable.generate());
+        car = car.move(movable.generate());
         assertThat(car).extracting("position").extracting("position").isEqualTo(1);
     }
 

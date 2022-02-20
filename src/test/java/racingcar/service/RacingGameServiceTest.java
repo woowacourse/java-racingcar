@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.vo.Attempt;
 import racingcar.domain.vo.Car;
-import racingcar.domain.vo.Cars;
+import racingcar.domain.fcc.Cars;
 import racingcar.dto.RoundResult;
 
 public class RacingGameServiceTest {

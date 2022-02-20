@@ -5,43 +5,26 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class AttemptTest {
 
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "시도 회수는 숫자로 입력해야합니다.";
     private static final String NUMBER_NEGATIVE_ERROR_MESSAGE = "시도 회수는 0이상이어야 합니다.";
 
-    @DisplayName("Attempt() 테스트")
+    @DisplayName("Attempt(String input) 테스트")
     @Test
-    public void constructor_test() throws Exception {
+    public void constructor_string_test() throws Exception {
         String input = "3";
         Attempt attempt = new Attempt(input);
         assertThat(attempt.equals(new Attempt(input))).isTrue();
     }
 
-    @ParameterizedTest(name = "isLeft() 테스트 : {0}")
-    @ValueSource(strings = {"0"})
-    public void has_false_test(String input) throws Exception {
+    @DisplayName("Attempt(int input) 테스트")
+    @Test
+    public void constructor_int_test() throws Exception {
+        int input = 3;
         Attempt attempt = new Attempt(input);
-        assertThat(attempt.isLeft()).isFalse();
-    }
-
-    @ParameterizedTest(name = "isLeft() 테스트 : {0}")
-    @ValueSource(strings = {"1", "10"})
-    public void has_true_test(String input) throws Exception {
-        Attempt attempt = new Attempt(input);
-        assertThat(attempt.isLeft()).isTrue();
-    }
-
-    @ParameterizedTest(name = "decrease() 테스트 : {0}")
-    @ValueSource(strings = {"1", "3", "10"})
-    public void decrease_test(String input) throws Exception {
-        Attempt attempt = new Attempt(input);
-        attempt.decrease();
-        String decreasedNumber = String.valueOf(Integer.parseInt(input) - 1);
-        assertThat(attempt.equals(new Attempt(decreasedNumber))).isTrue();
+        assertThat(attempt.equals(new Attempt(input))).isTrue();
     }
 
     @DisplayName("validNumberFormat() 문자 입력 예외 테스트")

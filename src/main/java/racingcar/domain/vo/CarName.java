@@ -6,7 +6,7 @@ public class CarName {
     private static final String TOO_LONG_CAR_NAME_ERROR_MESSAGE = "입력한 자동차 이름이 너무 깁니다.";
     private static final int MAX_LENGTH = 5;
 
-    private String name;
+    private final String name;
 
     public CarName(String name) {
         validateEmpty(name);

@@ -1,5 +1,5 @@
 import racingcar.domain.vo.Attempt;
-import racingcar.domain.vo.Cars;
+import racingcar.domain.fcc.Cars;
 import racingcar.service.RacingGameService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;

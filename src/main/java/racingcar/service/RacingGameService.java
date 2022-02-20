@@ -3,11 +3,11 @@ package racingcar.service;
 import racingcar.dto.ResponseRoundResultDto;
 import racingcar.dto.ResponseWinnersDto;
 import racingcar.domain.vo.Attempt;
-import racingcar.domain.vo.Cars;
+import racingcar.domain.fcc.Cars;
 
 public class RacingGameService {
 
-    private Cars cars;
+    private final Cars cars;
 
     public RacingGameService(Cars cars) {
         this.cars = cars;

@@ -1,6 +1,6 @@
 package racingcar.dto;
 
-import racingcar.domain.vo.Cars;
+import racingcar.domain.fcc.Cars;
 
 public class RequestCarsDto {
     private Cars cars;

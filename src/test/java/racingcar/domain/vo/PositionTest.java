@@ -18,7 +18,7 @@ public class PositionTest {
     @Test
     public void increase_test() throws Exception {
         Position position = new Position();
-        position.increase();
+        position = position.increase();
         assertThat(position.get()).isEqualTo(1);
     }
 
@@ -27,7 +27,7 @@ public class PositionTest {
     public void compareTo_test() throws Exception {
         Position positionZero = new Position();
         Position positionOne = new Position();
-        positionOne.increase();
+        positionOne = positionOne.increase();
         assertThat(positionZero.compareTo(positionZero)).isEqualTo(0);
         assertThat(positionZero.compareTo(positionOne)).isLessThan(0);
         assertThat(positionOne.compareTo(positionZero)).isGreaterThan(0);
