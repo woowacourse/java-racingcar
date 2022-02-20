@@ -8,7 +8,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-	private static final int ZERO = 0;
 
 	public void runRace() {
 		Cars cars = getCarNames();
@@ -31,7 +30,7 @@ public class GameController {
 			return InputView.getNumberOfTurn();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			System.exit(ZERO);
+			System.exit(0);
 		}
 		return 0;
 	}
@@ -45,13 +44,13 @@ public class GameController {
 			return generateCars(carNames);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			System.exit(ZERO);
+			System.exit(0);
 		}
 		return new Cars(new ArrayList<>());
 	}
 
-	private void playTotalTurn(int numberOfTurn, Cars cars) {
-		for (int eachTurn = ZERO; eachTurn < numberOfTurn; eachTurn++) {
+	private void playTotalTurn(int number, Cars cars) {
+		for (int index = 0; index < number; index++) {
 			cars.moveCars();
 			OutputView.printCarPosition(cars.getCarsInfo());
 		}
@@ -83,8 +82,8 @@ public class GameController {
 		}
 	}
 
-	private void isSamePosition(ArrayList<String> winner, int Position, Car car) {
-		if (car.getPosition() == Position) {
+	private void isSamePosition(ArrayList<String> winner, int position, Car car) {
+		if (car.getPosition() == position) {
 			winner.add(car.getName());
 		}
 	}
