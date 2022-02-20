@@ -1,6 +1,7 @@
 package racingcar.views;
 
 import racingcar.models.Car;
+import racingcar.models.CarDto;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Output {
         System.out.println(TURN_RESULT);
     }
 
-    public static void printTurnResult(final List<Car> cars) {
+    public static void printTurnResult(final List<CarDto> cars) {
         cars.forEach(car ->
                 System.out.println(car.getName() + NAME_POSITION_SPLITTER + CAR_POSITION.repeat(car.getPosition())));
 

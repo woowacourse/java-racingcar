@@ -2,6 +2,7 @@ package racingcar.models;
 
 import racingcar.utils.RandomNumber;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +46,9 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<CarDto> turnInfo() {
+        return cars.stream()
+                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .collect(Collectors.toList());
     }
 }
