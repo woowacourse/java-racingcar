@@ -44,10 +44,14 @@ class CarsTest {
         Car pobiCar = new Car("pobi");
         Car romaCar = new Car("roma");
         // when
+        StubMoveStrategy pobiMoveStrategy = new StubMoveStrategy(3, 6, 6, 6);
+        StubMoveStrategy romaMoveStrategy = new StubMoveStrategy(3, 6, 6, 6);
+        StubMoveStrategy carsMoveStrategy = new StubMoveStrategy(9, 1, 6, 6, 1, 6, 6, 1, 6, 6);
+
         for (int i = 0; i < 3; i++) {
-            pobiCar.goOrNot(new StubMoveStrategy(3, 6, 6, 6));
-            romaCar.goOrNot(new StubMoveStrategy(3, 6, 6, 6));
-            cars.race(new StubMoveStrategy(9, 1, 6, 6, 1, 6, 6, 1, 6, 6));
+            pobiCar.goOrNot(pobiMoveStrategy);
+            romaCar.goOrNot(romaMoveStrategy);
+            cars.race(carsMoveStrategy);
         }
         List<Car> winners = cars.findWinners();
         // then
