@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.view.OutputView;
+
 public class RacingGame {
 
     private final Cars cars;
@@ -10,7 +12,14 @@ public class RacingGame {
         this.tryCount = tryCount;
     }
 
-    public void raceRound() {
+    public void race() {
+        while (!isEnd()) {
+            raceRound();
+            OutputView.printPosition(cars);
+        }
+    }
+
+    private void raceRound() {
         cars.moveRound();
         this.tryCount--;
     }

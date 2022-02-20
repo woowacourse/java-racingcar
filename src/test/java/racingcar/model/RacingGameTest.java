@@ -18,7 +18,7 @@ public class RacingGameTest {
     @Test
     void raceRoundTest() {
         RacingGame racingGame = new RacingGame(new Cars(new String[]{}), 3);
-        racingGame.raceRound();
-        assertThat(racingGame.getTryCount()).isEqualTo(2);
+        racingGame.race();
+        assertThat(racingGame.getTryCount()).isEqualTo(0);
     }
 }
