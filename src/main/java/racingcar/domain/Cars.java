@@ -1,22 +1,31 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.*;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
-    public static final int INITIAL_POSITION = 0;
-
     private final List<Car> cars;
 
-    public Cars(String[] names) {
-        this.cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name, INITIAL_POSITION));
+    private Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public static Cars of(String[] names) {
+        return new Cars(Arrays.stream(names)
+            .map(Car::new).
+            collect(toList()));
+    }
+
+    public void moveAll(MovingStrategy movingStrategy) {
+        for (Car car : cars) {
+            moveEach(movingStrategy, car);
         }
     }
 
-    public void moveAll() {
-        for (Car car : cars) {
+    private void moveEach(MovingStrategy movingStrategy, Car car) {
+        if (movingStrategy.isMovable()) {
             car.move();
         }
     }
@@ -25,26 +34,18 @@ public class Cars {
         return findChampions(getHighScore());
     }
 
-    private int getHighScore() {
-        int highScore = 0;
-        for (Car car : cars) {
-            highScore = Math.max(highScore, car.getPosition());
-        }
-        return highScore;
-    }
-
     private List<String> findChampions(int highScore) {
-        List<String> champions = new ArrayList<>();
-        for (Car car : cars) {
-            verifyChampion(champions, car, highScore);
-        }
-        return champions;
+        return cars.stream()
+            .filter(car -> car.isSamePosition(highScore))
+            .map(Car::getName)
+            .collect(toList());
     }
 
-    private void verifyChampion(List<String> champions, Car car, int highScore) {
-        if (car.isSamePosition(highScore)) {
-            champions.add(car.getName());
-        }
+    private int getHighScore() {
+        return cars.stream()
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElseThrow();
     }
 
     public List<Car> getCars() {

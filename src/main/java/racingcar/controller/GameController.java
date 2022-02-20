@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.util.CarNameValidator;
+import racingcar.domain.RandomMovingStrategy;
 import racingcar.util.RoundValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -10,12 +11,12 @@ public class GameController {
     private static final String DELIMITER = ",";
 
     public void start() {
-        Cars cars = new Cars(split(InputView.inputCarNames()));
+        Cars cars = Cars.of(split(InputView.inputCarNames()));
         int rounds = toInts(InputView.inputRounds());
 
         runRounds(rounds, cars);
 
-        OutputView.printChampionList(cars);
+        OutputView.printChampionList(cars.getChampions());
     }
 
     private String[] split(String input) {
@@ -40,8 +41,8 @@ public class GameController {
     private void runRounds(int rounds, Cars cars) {
         OutputView.printResultMessage();
         for (int i = 0; i < rounds; i++) {
-            cars.moveAll();
-            OutputView.printRoundResult(cars);
+            cars.moveAll(new RandomMovingStrategy());
+            OutputView.printRoundResult(cars.getCars());
         }
     }
 }
