@@ -6,9 +6,7 @@ import java.util.stream.Collectors;
 import racingcar.model.CarDto;
 
 public class ResultView {
-	private static final String BEFORE_GAME_RESULT_MESSAGE = "실행 결과";
 	private static final String JOIN_DELIMITER = ", ";
-	private static final String WINNERS_RESULT_SUFFIX = "가 최종 우승했습니다.";
 
 	private ResultView() {
 	}
@@ -24,12 +22,12 @@ public class ResultView {
 		List<String> winners = cars.stream()
 			.map(CarDto::getName)
 			.collect(Collectors.toList());
-		System.out.println(String.join(JOIN_DELIMITER, winners) + WINNERS_RESULT_SUFFIX);
+		System.out.println(String.join(JOIN_DELIMITER, winners) + "가 최종 우승했습니다.");
 	}
 
 	public static void printBeforeGameResult() {
 		printEmptyLine();
-		System.out.println(BEFORE_GAME_RESULT_MESSAGE);
+		System.out.println("실행 결과");
 	}
 
 	public static void printEmptyLine() {
