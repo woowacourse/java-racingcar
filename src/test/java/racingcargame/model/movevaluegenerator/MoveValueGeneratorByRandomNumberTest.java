@@ -17,7 +17,7 @@ class MoveValueGeneratorByRandomNumberTest {
         }
     }
 
-    @DisplayName("생성된 난수 값이 4보다 큰 경우 1을 반환하는지 테스트")
+    @DisplayName("난수 값이 4보다 크면 1을 반환한다.")
     @Test
     void getMoveValue_high() {
         final NumberGenerator numberGenerator = new RandomNumberGeneratorTest();
