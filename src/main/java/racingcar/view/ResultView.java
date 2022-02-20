@@ -11,7 +11,14 @@ public class ResultView {
 	private ResultView() {
 	}
 
-	public static void printGameResult(List<CarDto> cars) {
+	public static void printGameResult(List<List<CarDto>> gameResult) {
+		printBeforeGameResult();
+		for (List<CarDto> OneGameResult : gameResult) {
+			printOneGameResult(OneGameResult);
+		}
+	}
+
+	private static void printOneGameResult(List<CarDto> cars) {
 		cars.stream()
 			.map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
 			.forEach(System.out::println);

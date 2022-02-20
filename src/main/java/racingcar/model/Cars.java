@@ -25,13 +25,14 @@ public class Cars {
 			.forEach(cars::add);
 	}
 
-	public void moveAll(List<Integer> randoms) {
+	public List<Car> moveAll(List<Integer> randoms) {
 		validateRandomsSize(randoms);
 		int i = 0;
 		for (Car car : cars) {
 			car.move(randoms.get(i));
 			i++;
 		}
+		return cars;
 	}
 
 	private void validateRandomsSize(List<Integer> randoms) {

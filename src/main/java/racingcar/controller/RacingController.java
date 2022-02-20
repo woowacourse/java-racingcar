@@ -1,11 +1,13 @@
 package racingcar.controller;
 
+import static racingcar.model.CarToCarDtoMapper.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import racingcar.model.CarDto;
-import racingcar.model.CarToCarDtoMapper;
 import racingcar.model.Cars;
 import racingcar.model.Random;
 import racingcar.view.InputView;
@@ -17,7 +19,9 @@ public class RacingController {
 	public static void main(String[] args) {
 		RacingController controller = new RacingController();
 		controller.createCarsByUserInput();
-		controller.runInIteration(InputView.getIterationNumber());
+
+		List<List<CarDto>> gameResult = controller.runForIteration(InputView.getIterationNumber());
+		ResultView.printGameResult(gameResult);
 		ResultView.printWinners(controller.getWinners());
 	}
 
@@ -30,33 +34,32 @@ public class RacingController {
 		}
 	}
 
+	void createCars(String carNames) {
+		cars.createCars(splitCarNames(carNames));
+	}
+
 	List<String> splitCarNames(String input) {
 		return Arrays.stream(input.split(","))
 			.map(String::trim)
 			.collect(Collectors.toList());
 	}
 
-	void createCars(String carNames) {
-		cars.createCars(splitCarNames(carNames));
+	private List<List<CarDto>> runForIteration(int iteration) {
+		return IntStream.range(0, iteration)
+			.mapToObj(i -> moveCars())
+			.collect(Collectors.toList());
 	}
 
-	private void runInIteration(int iteration) {
-		for (int i = 0; i < iteration; i++) {
-			moveAll();
-			ResultView.printGameResult(getCars());
-		}
-	}
-
-	void moveAll() {
+	List<CarDto> moveCars() {
 		int numberOfCars = cars.getSize();
-		cars.moveAll(new Random().createNumbers(numberOfCars));
+		return carsToCarDtos(cars.moveAll(Random.createNumbers(numberOfCars)));
 	}
 
 	List<CarDto> getCars() {
-		return CarToCarDtoMapper.carsToCarDtos(cars.getCars());
+		return carsToCarDtos(cars.getCars());
 	}
 
 	List<CarDto> getWinners() {
-		return CarToCarDtoMapper.carsToCarDtos(cars.getWinners());
+		return carsToCarDtos(cars.getWinners());
 	}
 }
