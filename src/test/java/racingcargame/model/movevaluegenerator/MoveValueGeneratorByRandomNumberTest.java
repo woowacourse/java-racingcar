@@ -8,7 +8,7 @@ import racingcargame.model.movevaluegenerator.MoveValueGenerator;
 import racingcargame.model.movevaluegenerator.MoveValueGeneratorByRandomNumber;
 import racingcargame.model.movevaluegenerator.randomnumbergenerator.NumberGenerator;
 
-class MoveValueGeneratorGeneratorTest {
+class MoveValueGeneratorByRandomNumberTest {
 
     class RandomNumberGeneratorTest implements NumberGenerator {
 
