@@ -2,22 +2,19 @@ package racingcar.controller;
 
 import racingcar.model.Cars;
 import racingcar.model.RoundCount;
-import racingcar.model.Winners;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
 public class RacingCarsController {
 
-	private Input inputView;
-	private Output outputView;
+	private final Input inputView;
+	private final Output outputView;
 	private RoundCount roundCount;
 	private Cars cars;
-	private final Winners winners;
 
-	public RacingCarsController(Input inputView, Output outputView, Winners winners) {
+	public RacingCarsController(Input inputView, Output outputView) {
 		this.inputView = inputView;
 		this.outputView = outputView;
-		this.winners = winners;
 	}
 
 	public void run() {
@@ -67,7 +64,7 @@ public class RacingCarsController {
 	}
 
 	private void endGame() {
-		outputView.printWinners(winners.findWinner(cars.getCars()));
+		outputView.printWinners(cars.findWinner(cars.getCars()));
 	}
 
 }

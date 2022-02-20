@@ -36,6 +36,18 @@ public class Cars {
 		cars.forEach(car -> car.decideMove(getRandomInt()));
 	}
 
+	private int findMaxPosition(List<RacingCar> cars) {
+		return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
+	}
+
+	public List<Name> findWinner(List<RacingCar> cars) {
+		int maxPosition = findMaxPosition(cars);
+		return cars.stream()
+			.filter(car -> car.matchPosition(maxPosition))
+			.map(Car::getName)
+			.collect(Collectors.toUnmodifiableList());
+	}
+
 	private void checkNameList(List<String> carNames) {
 		checkNameIsOne(carNames);
 		checkDuplicatedName(carNames);
