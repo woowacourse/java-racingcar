@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class RacingResult {
 		checkRangeOfRound(round);
 
 		List<Car> cars = results.get(round);
-		return new ArrayList<>(cars);
+		return Collections.unmodifiableList(cars);
 	}
 
 	private void checkRangeOfRound(Round round) {
