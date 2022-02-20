@@ -39,4 +39,11 @@ public class InputValidatorTest {
             InputValidator.validateName("abcdef");
         }).isInstanceOf(RuntimeException.class);
     }
+
+    @DisplayName("정상 이름 검증 테스트")
+    @Test
+    void validateNameTest3() {
+        String actual = InputValidator.validateName("pobi");
+        assertThat(actual).isEqualTo("pobi");
+    }
 }

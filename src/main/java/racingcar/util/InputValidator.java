@@ -13,9 +13,10 @@ public class InputValidator {
         }
     }
 
-    public static void validateName(final String name) {
+    public static String validateName(final String name) {
         if (name.length() > MAX_CAR_NAME_LENGTH || name.isBlank()) {
             throw new RuntimeException(CAR_NAME_ERROR_MESSAGE);
         }
+        return name;
     }
 }
