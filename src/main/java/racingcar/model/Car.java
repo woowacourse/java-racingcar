@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import java.util.List;
 import java.util.Objects;
 
 import racingcar.service.CheckingService;
@@ -30,10 +29,6 @@ public class Car implements Comparable<Car> {
 
 	public boolean isSamePosition(Car otherCar) {
 		return this.position == otherCar.position;
-	}
-
-	public void appendName(List<String> winnerNames) {
-		winnerNames.add(name);
 	}
 	
 	public String getName() {
