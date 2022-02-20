@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
@@ -27,18 +28,10 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void 랜덤값_4이상_전진_검증(int value) {
+    @CsvSource(value = {"0:False", "1:False", "2:False", "3:False", "4:True", "5:True", "6:True", "7:True", "8:True", "9:True"}, delimiter = ':')
+    void 랜덤값_전진_검증(int value, boolean expected) {
         Car car = new Car("pobi", 0);
         car.goForward(value);
-        assertThat(car.checkIfPositionSame(1)).isTrue();
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
-    void 랜덤값_4미만_전진_검증(int value) {
-        Car car = new Car("pobi", 0);
-        car.goForward(value);
-        assertThat(car.checkIfPositionSame(1)).isFalse();
+        assertThat(car.checkIfPositionSame(1)).isEqualTo(expected);
     }
 }
