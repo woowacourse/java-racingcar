@@ -1,30 +1,34 @@
 package racingcar.view;
 
-import racingcar.dto.CarDto;
-import racingcar.dto.WinnerCarDto;
+import racingcar.dto.CarsDto;
+import racingcar.dto.WinnerCarsDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String GAME_RESULT_TITLE = "\n실행 결과";
+    private static final String RESULT_FORMAT = "%s : %s\n";
     private static final String WINNER_FORMAT = "%s가 최종 우승했습니다.\n";
-    private static final String TO_STRING_CONJUNCTION = " : ";
-    private static final String POSITION_CHARACTOR = "-";
+    private static final String POSITION_CHARACTER = "-";
     private static final String WINNER_NAME_DELIMITER = ", ";
 
     public static void printGameResultTitle() {
         System.out.println(GAME_RESULT_TITLE);
     }
 
-    public static void printLineString(CarDto carDto) {
-        System.out.println(carDto.getName() + TO_STRING_CONJUNCTION + buildStringPosition(carDto.getPosition()));
+    public static void printCarStatus(CarsDto carsDto) {
+        List<String> carNames = carsDto.getCarNames();
+        List<Integer> carPositions = carsDto.getCarPositions();
+
+        for (int i = 0; i < carNames.size(); i++) {
+            System.out.printf(RESULT_FORMAT, carNames.get(i),buildStringPosition(carPositions.get(i)));
+        }
     }
 
     private static String buildStringPosition(int position) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < position; i++) {
-            stringBuilder.append(POSITION_CHARACTOR);
+            stringBuilder.append(POSITION_CHARACTER);
         }
         return stringBuilder.toString();
     }
@@ -33,11 +37,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinner(List<WinnerCarDto> winnerCars) {
-        String winnerNames = winnerCars.stream()
-                .map(WinnerCarDto::getName)
-                .collect(Collectors.joining(WINNER_NAME_DELIMITER));
-
+    public static void printWinner(WinnerCarsDto winnerCarDto) {
+        List<String> winnerCarNames = winnerCarDto.getWinnerCarNames();
+        String winnerNames = String.join(WINNER_NAME_DELIMITER, winnerCarNames);
         System.out.printf(WINNER_FORMAT, winnerNames);
     }
 }

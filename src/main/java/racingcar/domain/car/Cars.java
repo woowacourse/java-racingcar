@@ -1,7 +1,6 @@
 package racingcar.domain.car;
 
 import racingcar.domain.numbergenerator.NumberGenerator;
-import racingcar.dto.CarDto;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,9 +47,7 @@ public class Cars {
         }
     }
 
-    public List<CarDto> toCarDto() {
-        return cars.stream()
-                .map(CarDto::new)
-                .collect(Collectors.toList());
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

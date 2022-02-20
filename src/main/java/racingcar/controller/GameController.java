@@ -3,12 +3,10 @@ package racingcar.controller;
 import racingcar.domain.Game;
 import racingcar.domain.car.CarFactory;
 import racingcar.domain.numbergenerator.RandomNumberGenerator;
-import racingcar.dto.CarDto;
-import racingcar.dto.WinnerCarDto;
+import racingcar.dto.CarsDto;
+import racingcar.dto.WinnerCarsDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.List;
 
 public class GameController {
 
@@ -29,16 +27,11 @@ public class GameController {
     }
 
     public void showResult() {
-        List<CarDto> carDtos = game.getCarDto();
-
-        for (CarDto carDto : carDtos) {
-            OutputView.printLineString(carDto);
-        }
+        OutputView.printCarStatus(CarsDto.from(game.getCars()));
         OutputView.printBlankLine();
     }
 
     public void showWinner() {
-        List<WinnerCarDto> winnerCarDtos = game.getCarWinnerDto();
-        OutputView.printWinner(winnerCarDtos);
+        OutputView.printWinner(WinnerCarsDto.from(game.judgeWinner()));
     }
 }
