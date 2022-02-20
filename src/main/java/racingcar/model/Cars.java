@@ -3,9 +3,11 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import racingcar.service.CheckingService;
 import racingcar.service.RandomNumberMovingCondition;
@@ -31,10 +33,14 @@ public class Cars {
 	}
 
 	private List<Car> toCar(List<String> carNames) {
-		List<Car> cars = new ArrayList<>();
+		Set<Car> cars = new LinkedHashSet<>();
 		carNames.stream()
 			.forEach(carName -> cars.add(new Car(carName, START_POSITION, new RandomNumberMovingCondition())));
-		return cars;
+
+		if (cars.size() != carNames.size()) {
+			throw new IllegalArgumentException("[Error] 중복된 이름입니다.");
+		}
+		return List.copyOf(cars);
 	}
 
 	public void moveCars() {
