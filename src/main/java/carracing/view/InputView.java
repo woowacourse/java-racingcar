@@ -13,6 +13,9 @@ public class InputView {
     private static final String NUMBER_REGEX = "^[0-9]+$";
     private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
+    private InputView() {
+    }
+
     public static List<String> getCarNames() {
         String line = "";
         try {
