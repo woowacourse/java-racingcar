@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +15,24 @@ class CarsTest {
         String[] carNames = {"pobi", "crong", "huan"};
         Cars cars = new Cars(carNames);
         assertThat(cars.getSize()).isEqualTo(carNames.length);
+    }
+
+    @Test
+    @DisplayName("입력한 이름값이 한개인 경우")
+    void onlyName() {
+        Assertions.assertThatThrownBy(() -> {
+                    new Cars(new String[]{"pobi"});
+                }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Cars.ERROR_ONLY_NAME);
+    }
+
+    @Test
+    @DisplayName("중복된 이름이 있을 경우")
+    void duplicateName() {
+        Assertions.assertThatThrownBy(() -> {
+                    new Cars(new String[]{"pobi", "pobi"});
+                }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Cars.ERROR_DUPLICATE_NAME);
     }
 
     @Test
