@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 public class CarStatusDTO {
-    String carName;
-    int position;
+    private final String carName;
+    private final int position;
 
     public CarStatusDTO(String carName, int position) {
         this.carName = carName;
