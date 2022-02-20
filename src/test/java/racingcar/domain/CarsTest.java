@@ -79,20 +79,6 @@ public class CarsTest {
             .withMessage("숫자는 0과 9사이어야 합니다.");
     }
 
-    @Test
-    @DisplayName("조회한 자동차는 기존 자동차의 상태 변경이 불가능하다")
-    void getCarsImmutable() {
-        // given
-        Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-
-        // when && then
-        Car anyCar = cars.getCars().get(0);
-        anyCar.advance(ADVANCE);
-
-        List<Name> winners = cars.findWinners().getWinners();
-        assertThat(winners.size()).isEqualTo(cars.size());
-    }
-
     private List<Name> givenCarsNames(String... names) {
         return Arrays.stream(names)
             .map(Name::new)

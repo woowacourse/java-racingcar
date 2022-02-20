@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Queue;
@@ -26,9 +27,7 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return this.cars.stream()
-            .map(Car::newInstance)
-            .collect(Collectors.toUnmodifiableList());
+        return Collections.unmodifiableList(cars);
     }
 
     public int size() {

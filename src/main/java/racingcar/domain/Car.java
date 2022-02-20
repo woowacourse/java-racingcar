@@ -18,15 +18,6 @@ public class Car {
         this.name = name;
     }
 
-    private Car(Car car) {
-        this.name = car.name;
-        this.position = car.position;
-    }
-
-    public static Car newInstance(Car car) {
-        return new Car(car);
-    }
-
     public void advance(int power) {
         validateRange(power);
         if (power >= ADVANCE_STANDARD) {

@@ -76,7 +76,6 @@ public class CarTest {
 
         // when
         car.advance(ADVANCE);
-        otherCar.advance(ADVANCE);
 
         // then
         assertThat(car.comparePosition(otherCar)).isEqualTo(1);
