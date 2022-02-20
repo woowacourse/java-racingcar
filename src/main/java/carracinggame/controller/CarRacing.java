@@ -40,6 +40,12 @@ public class CarRacing {
 
     public void announceWinners() {
         List<Car> winners = cars.findWinner();
+        ArrayList<String> winnerNames = new ArrayList<>();
+        for (int i = 0; i < winners.size(); i++) {
+            Car car = winners.get(i);
+            winnerNames.add(car.getName());
+        }
+        OutputView.printWinners(winnerNames);
     }
 
 }

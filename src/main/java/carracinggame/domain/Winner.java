@@ -9,6 +9,7 @@ public class Winner {
 
     public List<Car> findWinner(List<Car> cars) {
         List<Car> winners = new ArrayList<>();
+        winners.add(cars.get(0));
         for (Car car : cars) {
             winners = updateWinner(car, winners);
         }
