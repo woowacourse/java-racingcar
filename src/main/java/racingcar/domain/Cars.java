@@ -46,9 +46,9 @@ public class Cars {
     }
 
     private void initCar(String[] carNames) throws IllegalArgumentException {
-        cars = new ArrayList<>();
-
         validateDuplication(carNames);
+
+        cars = new ArrayList<>();
 
         for (String name : carNames) {
             cars.add(new Car(name));
