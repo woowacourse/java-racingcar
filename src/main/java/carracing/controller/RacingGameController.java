@@ -24,7 +24,7 @@ public class RacingGameController {
         OutputView.printResultMessage();
         for (int round = 0; round < numberOfGames; round++) {
             racingCars.moveCars();
-            OutputView.printGameResult(racingCars.getCars());
+            OutputView.printGameResult(racingCars.getCarsStatus());
         }
         endGame();
     }

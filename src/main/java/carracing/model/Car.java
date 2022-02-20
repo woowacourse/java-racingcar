@@ -1,5 +1,6 @@
 package carracing.model;
 
+import carracing.dto.CarDto;
 import carracing.utils.MoveStrategy;
 
 import static carracing.view.messages.ExceptionMessage.*;
@@ -19,8 +20,8 @@ public class Car {
         this.position = 0;
     }
 
-    public String getName() {
-        return this.name;
+    public CarDto toCarDto() {
+        return new CarDto(this.name, this.position);
     }
 
     public void move(MoveStrategy moveStrategy) {
@@ -29,11 +30,7 @@ public class Car {
         }
     }
 
-    public int getPosition() {
-        return this.position;
-    }
-
-    public boolean isEqualTo(int position) {
-        return this.position == position;
+    public boolean isEqualPositionTo(Car car) {
+        return this.position == car.position;
     }
 }

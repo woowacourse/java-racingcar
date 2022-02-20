@@ -1,6 +1,6 @@
 package carracing.view;
 
-import carracing.model.Car;
+import carracing.dto.CarDto;
 import carracing.view.messages.ExceptionMessage;
 import carracing.view.messages.OutputMessage;
 
@@ -28,12 +28,12 @@ public class OutputView {
     }
 
 
-    public static void printGameResult(List<Car> cars) {
+    public static void printGameResult(List<CarDto> cars) {
         cars.forEach(car -> System.out.println(visualizeCarPosition(car)));
         printNewLine();
     }
 
-    private static String visualizeCarPosition(Car car) {
+    private static String visualizeCarPosition(CarDto car) {
         return car.getName() + DELIMITER_BETWEEN_NAME_AND_POSITION + POSITION_INDICATOR.repeat(car.getPosition());
     }
 

@@ -2,6 +2,7 @@ package carracing.model;
 
 import static carracing.view.messages.ExceptionMessage.*;
 
+import carracing.dto.CarDto;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -19,11 +20,12 @@ public class RacingCars {
     }
 
     public List<String> getWinners() {
-        int maxPosition = getMaxPosition();
+        Car maxPositionCar = getMaxPositionCar();
 
         return cars.stream()
-                .filter(car -> car.isEqualTo(maxPosition))
-                .map(Car::getName)
+                .filter(car -> car.isEqualPositionTo(maxPositionCar))
+                .map(Car::toCarDto)
+                .map(CarDto::getName)
                 .collect(Collectors.toList());
     }
 
@@ -34,7 +36,8 @@ public class RacingCars {
 
     private void validateDuplication(List<Car> cars) {
         boolean isDuplicated = cars.stream()
-                .map(Car::getName)
+                .map(Car::toCarDto)
+                .map(CarDto::getName)
                 .distinct()
                 .count() != cars.size();
 
@@ -43,14 +46,16 @@ public class RacingCars {
         }
     }
 
-    private int getMaxPosition() {
+    private Car getMaxPositionCar() {
         return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
+                .sorted()
+                .findFirst()
                 .orElseThrow(NoSuchElementException::new);
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<CarDto> getCarsStatus() {
+        return cars.stream()
+                .map(Car::toCarDto)
+                .collect(Collectors.toList());
     }
 }
