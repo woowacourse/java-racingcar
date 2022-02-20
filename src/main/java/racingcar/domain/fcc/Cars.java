@@ -53,6 +53,27 @@ public class Cars {
         return new RoundResult(result);
     }
 
+    public List<RoundResult> repeatRaceBy(Attempt attempt, List<List<Integer>> numberSet) {
+        List<RoundResult> results = new ArrayList<>();
+        int i = 0;
+        while (!attempt.equals(new Attempt(i))) {
+            results.add(raceAllCar(numberSet.get(i)));
+            i++;
+        }
+        return Collections.unmodifiableList(results);
+    }
+
+    private RoundResult raceAllCar(List<Integer> numbers) {
+        List<Car> result = new ArrayList<>();
+        for (int i = 0; i < cars.size(); i++) {
+            Car car = cars.get(i);
+            car = car.move(numbers.get(i));
+            cars.set(i, car);
+            result.add(car);
+        }
+        return new RoundResult(result);
+    }
+
     public List<Car> findWinners() {
         Car maxPositionCar = cars.stream()
                 .max(Car::compareTo)
