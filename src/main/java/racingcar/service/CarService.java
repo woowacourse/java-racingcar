@@ -4,7 +4,7 @@ import racingcar.model.car.Cars;
 import racingcar.model.car.RandomNumber;
 import racingcar.model.score.GameScoreBoard;
 import racingcar.model.score.ScoreBoard;
-import racingcar.model.score.ScoreConverter;
+import racingcar.service.converter.ScoreConverter;
 
 import java.util.List;
 

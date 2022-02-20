@@ -3,6 +3,7 @@ package racingcar.model.score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.service.CarDto;
+import racingcar.service.converter.ScoreConverter;
 
 import java.util.List;
 

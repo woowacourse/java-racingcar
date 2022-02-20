@@ -1,5 +1,6 @@
-package racingcar.model.score;
+package racingcar.service.converter;
 
+import racingcar.model.score.Score;
 import racingcar.service.CarDto;
 
 import java.util.List;
