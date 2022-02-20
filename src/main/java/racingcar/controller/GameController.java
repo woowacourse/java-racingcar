@@ -1,10 +1,14 @@
 package racingcar.controller;
 
+import java.util.List;
 import java.util.Objects;
 
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 import racingcar.domain.Count;
 import racingcar.domain.MoveStrategy;
 import racingcar.domain.RacingCarGame;
+import racingcar.util.UserInputConvertor;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -19,22 +23,23 @@ public class GameController {
     }
 
     public void run() {
-        final RacingCarGame racingCarGame = getCarNamesWithDelimiter();
+        final Cars cars = generateCars();
         final Count count = getCountFromUser();
 
-        racingCarGame.setCount(count);
+        final RacingCarGame racingCarGame = new RacingCarGame(cars, count);
 
         playGame(racingCarGame);
         showResult(racingCarGame);
     }
 
-    private RacingCarGame getCarNamesWithDelimiter() {
+    private Cars generateCars() {
         try {
             final String carNamesWithDelimiter = InputView.getCarNames();
-            return new RacingCarGame(carNamesWithDelimiter, moveStrategy);
+            final List<Car> cars = UserInputConvertor.convertToCars(carNamesWithDelimiter);
+            return new Cars(cars, moveStrategy);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getCarNamesWithDelimiter();
+            return generateCars();
         }
     }
 
