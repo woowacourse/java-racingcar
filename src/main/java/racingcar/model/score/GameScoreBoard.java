@@ -15,7 +15,11 @@ public class GameScoreBoard {
     }
 
     public List<String> findWinners() {
-        return scoreBoards.get(getSize() - 1).findWinners();
+        return findFinalRound().findWinners();
+    }
+
+    private ScoreBoard findFinalRound() {
+        return scoreBoards.get(getSize() - 1);
     }
 
     private int getSize() {
