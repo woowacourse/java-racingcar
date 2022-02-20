@@ -40,6 +40,6 @@ class CarTest {
         car.moveCar(4);
         actual.moveCar(2);
 
-        assertThat(car.compareTo(actual)).isEqualTo(false);
+        assertThat(car.hasSamePosition(actual)).isEqualTo(false);
     }
 }
