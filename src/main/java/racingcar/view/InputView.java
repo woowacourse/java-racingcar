@@ -19,9 +19,7 @@ public class InputView {
     }
 
     private static List<String> splitCarNamesInput(String carNamesInput) {
-        List<String> carNames = Arrays.asList(carNamesInput.split(CAR_NAME_DELIMITER, -1));
-        CarNameValidator.checkEachCarNames(carNames);
-        return carNames;
+        return Arrays.asList(carNamesInput.split(CAR_NAME_DELIMITER, -1));
     }
 
     private static String validateCarNames(String input) {
@@ -35,7 +33,13 @@ public class InputView {
     }
 
     private static int validateCountAndTransferToInt(String input) {
-        InputValidator.checkTrialCount(input);
+        try {
+            InputValidator.checkTrialCount(input);
+        } catch (RuntimeException exception) {
+            System.out.println("[ERROR] " + exception.getMessage() + "\n");
+            return getTrialCount();
+        }
+
         return Integer.parseInt(input);
     }
 }

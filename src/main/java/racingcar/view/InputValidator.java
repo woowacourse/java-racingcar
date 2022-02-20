@@ -7,7 +7,7 @@ public class InputValidator {
         }
     }
 
-    public static void checkTrialCount(String line) {
+    public static void checkTrialCount(String line) throws RuntimeException {
         trialCountNotNumericValueException(line);
         trialCountZeroException(line);
     }

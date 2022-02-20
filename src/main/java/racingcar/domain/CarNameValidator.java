@@ -5,7 +5,7 @@ import java.util.List;
 public class CarNameValidator {
     public static final int CAR_NAME_LENGTH_LIMIT = 5;
 
-    public static void checkEachCarNames(List<String> carNames) {
+    public static void checkEachCarNames(List<String> carNames) throws RuntimeException {
         for (String carName : carNames) {
             checkNameLength(carName);
             checkIsEmpty(carName);

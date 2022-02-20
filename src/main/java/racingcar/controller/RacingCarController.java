@@ -34,7 +34,13 @@ public class RacingCarController {
     }
 
     private List<String> validateCarNames(List<String> carNames) {
-        CarNameValidator.checkEachCarNames(carNames);
+        try {
+            CarNameValidator.checkEachCarNames(carNames);
+        } catch (RuntimeException exception) {
+            System.out.println("[ERROR] " + exception.getMessage() + "\n");
+            return validateCarNames(InputView.getCarNames());
+        }
+
         return carNames;
     }
 }
