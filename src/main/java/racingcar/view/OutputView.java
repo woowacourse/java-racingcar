@@ -24,8 +24,7 @@ public class OutputView {
 	}
 
 	public static void printWinners(List<String> winners) {
-		System.out.println(winners.stream()
-			.collect(Collectors.joining(WINNER_JOIN_DELIMITER))
+		System.out.println(String.join(WINNER_JOIN_DELIMITER, winners)
 			+ WINNER_MESSAGE
 		);
 	}
