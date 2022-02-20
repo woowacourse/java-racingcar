@@ -2,11 +2,9 @@ package racingcar.domain.log;
 
 import static java.util.stream.Collectors.toList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
 public class GameLog {
