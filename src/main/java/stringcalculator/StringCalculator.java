@@ -22,7 +22,7 @@ public class StringCalculator {
 
     private static int[] castStringToInts(String input) {
         if (isNullOrEmpty(input)) {
-            return new int[] {0};
+            return new int[]{0};
         }
         Matcher matcher = getCustomSeparatorMatcher(input);
         if (matcher.find()) {
@@ -37,9 +37,9 @@ public class StringCalculator {
 
     private static int[] separate(String input, String separator) {
         return Arrays.stream(input.split(separator))
-            .mapToInt(string -> Integer.parseInt(string))
-            .peek(number -> validatePositive(number))
-            .toArray();
+                .mapToInt(string -> Integer.parseInt(string))
+                .peek(number -> validatePositive(number))
+                .toArray();
     }
 
     private static Matcher getCustomSeparatorMatcher(String input) {
