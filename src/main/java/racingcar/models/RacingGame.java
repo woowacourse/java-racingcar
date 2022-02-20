@@ -16,12 +16,9 @@ public class RacingGame {
 		return repeats <= 0;
 	}
 
-	public void endThisTurn() {
-		repeats--;
-	}
-
 	public void race() {
 		carRepository.startThisTurn();
+		repeats--;
 	}
 
 	public List<Car> getThisTurnResult() {
