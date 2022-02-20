@@ -1,21 +1,16 @@
 package racingcar.domain;
 
-import racingcar.domain.movestrategy.MoveStrategy;
-
 public class Car {
 
-    private final MoveStrategy strategy;
     private final Name name;
     private int position;
 
-    public Car(final String name, final MoveStrategy strategy) {
-        this.strategy = strategy;
+    public Car(final String name) {
         this.name = new Name(name);
         position = 0;
     }
 
-    public Car(final String name, final MoveStrategy strategy, final int position) {
-        this.strategy = strategy;
+    public Car(final String name, final int position) {
         this.name = new Name(name);
         this.position = position;
     }
@@ -28,8 +23,8 @@ public class Car {
         return position;
     }
 
-    public void move() {
-        if (strategy.canMove()) {
+    public void moveForward(final boolean canMoveForward) {
+        if (canMoveForward) {
             position++;
         }
     }
@@ -40,9 +35,9 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car("
-                + "name = " + name
-                + ", position = " + position
-                + ")";
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
     }
 }

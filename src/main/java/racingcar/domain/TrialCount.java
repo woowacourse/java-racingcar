@@ -29,7 +29,7 @@ public class TrialCount {
         }
     }
 
-    public int getTrialCount() {
-        return trialCount;
+    public boolean canContinue(final int count) {
+        return this.trialCount > count;
     }
 }

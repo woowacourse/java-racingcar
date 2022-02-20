@@ -1,12 +1,11 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.domain.movestrategy.MoveStrategy;
+import racingcar.domain.movestrategy.MovingStrategy;
 
 public class Cars {
 
@@ -17,44 +16,44 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(final List<Car> cars) {
-        validateCarCount(cars.size());
-        validateDuplicateName(cars.stream()
-                .map(Car::getName)
-                .collect(Collectors.toList()));
+    private Cars(final List<Car> cars) {
+        validateCarCount(cars);
+        validateDuplicateName(cars);
         this.cars = cars;
     }
 
-    public Cars(final List<String> names, final MoveStrategy strategy) {
-        validateCarCount(names.size());
-        validateDuplicateName(names);
+    public static Cars fromNames(final List<String> names) {
+        List<Car> cars = names.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
 
-        this.cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(new Car(name, strategy));
-        }
+        return new Cars(cars);
     }
 
-    private void validateCarCount(final int size) {
-        if (size > MAX_COUNT || size < MIN_COUNT) {
+    public static Cars fromCars(final List<Car> cars) {
+        return new Cars(cars);
+    }
+
+    private void validateCarCount(final List<Car> cars) {
+        if (cars.size() > MAX_COUNT || cars.size() < MIN_COUNT) {
             throw new IllegalArgumentException(ERROR_CAR_COUNT);
         }
     }
 
-    private void validateDuplicateName(final List<String> names) {
+    private void validateDuplicateName(final List<Car> cars) {
         Set<String> tempNameSet = new HashSet<>();
-        for (String name : names) {
-            tempNameSet.add(name);
+        for (Car car : cars) {
+            tempNameSet.add(car.getName());
         }
 
-        if (tempNameSet.size() < names.size()) {
+        if (tempNameSet.size() < cars.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
         }
     }
 
-    public void moveCars() {
+    public void moveCarsForward(MovingStrategy movingStrategy) {
         for (Car car : cars) {
-            car.move();
+            car.moveForward(movingStrategy.canMoveForward());
         }
     }
 
@@ -64,10 +63,8 @@ public class Cars {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car + "\n");
-        }
-        return stringBuilder.toString();
+        return "Cars{" +
+                "cars=" + cars +
+                '}';
     }
 }
