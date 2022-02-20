@@ -4,8 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcargame.model.movevaluegenerator.MoveValueGenerator;
-import racingcargame.model.movevaluegenerator.MoveValueGeneratorByRandomNumber;
+
 import racingcargame.model.movevaluegenerator.randomnumbergenerator.NumberGenerator;
 
 class MoveValueGeneratorByRandomNumberTest {
