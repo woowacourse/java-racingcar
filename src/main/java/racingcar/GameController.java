@@ -2,20 +2,19 @@ package racingcar;
 
 import racingcar.domain.Cars;
 import racingcar.utils.MoveCountValidator;
-import racingcar.utils.RandomNumberGenerator;
+import racingcar.utils.NumberGenerator;
 import racingcar.utils.StringSeparator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.Scanner;
-
 public class GameController {
 
     private final InputView inputView;
+    private final NumberGenerator numberGenerator;
 
-    public GameController(Scanner scanner) {
-        this.inputView = new InputView(scanner);
-
+    public GameController(NumberGenerator numberGenerator) {
+        this.inputView = new InputView();
+        this.numberGenerator = numberGenerator;
     }
 
     public void run() {
@@ -50,7 +49,7 @@ public class GameController {
     private void startRace(Cars cars, int moveCount) {
         OutputView.printResultMessage();
         for (int i = 0; i < moveCount; i++) {
-            cars.startEachRace(new RandomNumberGenerator());
+            cars.startEachRace(numberGenerator);
             OutputView.printCarsPosition(cars);
         }
     }
