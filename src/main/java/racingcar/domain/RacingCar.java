@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class RacingCar implements Comparable<RacingCar> {
+public class RacingCar implements Comparable<RacingCar>, Cloneable {
 
     private static int CAR_NAME_MAX_LENGTH = 5;
     private static final int DEFAULT_POSITION = 0;
@@ -45,5 +45,10 @@ public class RacingCar implements Comparable<RacingCar> {
     @Override
     public int compareTo(final RacingCar anotherCar) {
         return this.position - anotherCar.position;
+    }
+
+    @Override
+    protected RacingCar clone() throws CloneNotSupportedException {
+        return (RacingCar) super.clone();
     }
 }
