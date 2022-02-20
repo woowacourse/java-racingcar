@@ -38,6 +38,11 @@ public class CarsTest {
 	}
 
 	@Test
+	public void 중복_이름_테스트() {
+		assertThatThrownBy(() -> new Cars("아스피,아스피")).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
 	public void 우승자_찾기() {
 		Cars cars = new Cars(Arrays.asList(new Car("배카라", 4, new RandomNumberMovingCondition()),
 			new Car("아스피", 5, new RandomNumberMovingCondition()),
