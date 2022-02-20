@@ -5,7 +5,7 @@ public class CarNames {
     public static final int NAME_MAX_LENGTH = 6;
     public static final int NAME_MIN_LENGTH = 0;
 
-    public static void checkBlank(final String checking) throws IllegalArgumentException{
+    public static void checkBlank(final String checking) throws IllegalArgumentException {
         if (checking.matches(REGEX)) {
             throw new IllegalArgumentException();
         }

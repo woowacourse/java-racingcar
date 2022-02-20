@@ -41,8 +41,8 @@ public class OutputView {
 
     public static void printResult(String name, int position) {
         System.out.print(name + NAME_AND_POSITION_DELIMITER);
-        while(position-- > 0) {
-            System.out.print("-");
+        while (position-- > 0) {
+            System.out.print(DISTANCE_OUTPUT);
         }
         System.out.println();
     }
