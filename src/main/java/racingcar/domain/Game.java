@@ -6,14 +6,16 @@ import racingcar.domain.strategy.MovePredicate;
 
 public class Game {
     private final Cars cars;
+    private int count;
 
-    public Game(List<Car> cars) {
+    public Game(List<Car> cars, int count) {
         this.cars = new Cars(cars);
+        this.count = count;
     }
 
-    public Cars play(MovePredicate movePredicate) {
+    public void play(MovePredicate movePredicate) {
         cars.moveCars(movePredicate);
-        return cars;
+        count--;
     }
 
     public List<Car> getWinners() {
@@ -22,5 +24,9 @@ public class Game {
 
     public Cars getCars() {
         return cars;
+    }
+
+    public boolean isEnd() {
+        return count <= 0;
     }
 }

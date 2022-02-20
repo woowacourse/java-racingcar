@@ -13,15 +13,14 @@ import racingcar.view.OutputView;
 public class GameController {
 
     public static void run() {
-        Game game = new Game(CarFactory.of(InputView.inputCarNames()));
-        final int count = InputView.inputGameCount();
-        play(game, count);
+        Game game = new Game(CarFactory.of(InputView.inputCarNames()), InputView.inputGameCount());
+        play(game);
         showWinner(game.getWinners());
     }
 
-    private static void play(Game game, int count) {
+    private static void play(Game game) {
         OutputView.printGameResultTitle();
-        for (int i = 0; i < count; i++) {
+        while (!game.isEnd()) {
             game.play(new MovePredicate());
             showResult(game);
         }
