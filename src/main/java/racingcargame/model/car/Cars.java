@@ -16,7 +16,8 @@ public class Cars {
     public Cars(final List<String> carNames) {
         checkDuplicateCarNames(carNames);
         cars = carNames.stream().
-                map(carName -> new Car(carName.trim())).collect(Collectors.toList());
+                map(carName -> new Car(carName.trim())).
+                collect(Collectors.toList());
     }
 
     private void checkDuplicateCarNames(final List<String> carNames) {
@@ -31,7 +32,9 @@ public class Cars {
     }
 
     public List<CarDto> bringCarsInformation() {
-        return cars.stream().map(Car::changeToDto).collect(Collectors.toList());
+        return cars.stream().
+                map(Car::changeToDto).
+                collect(Collectors.toList());
     }
 
     public List<CarDto> findWinner() {
