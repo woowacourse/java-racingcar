@@ -28,13 +28,15 @@ class CarTest {
 
     @Test
     public void shouldBeWinner() {
-        car.tryMove(5);
-        assertThat(car.isSamePosition(1)).isEqualTo(true);
+        int winnerPosition = 0;
+        boolean zeroPositionWinner = car.isSamePosition(winnerPosition);
+        assertThat(zeroPositionWinner).isEqualTo(true);
     }
 
     @Test
     public void shouldNotBeWinner() {
-        car.tryMove(3);
-        assertThat(car.isSamePosition(1)).isEqualTo(false);
+        int winnerPosition = 1;
+        boolean onePositionWinner = car.isSamePosition(winnerPosition);
+        assertThat(onePositionWinner).isEqualTo(false);
     }
 }
