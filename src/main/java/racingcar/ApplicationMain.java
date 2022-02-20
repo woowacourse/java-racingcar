@@ -10,9 +10,18 @@ import static racingcar.view.InputView.getIterationNo;
 public class ApplicationMain {
     public static void main(String[] args) {
         CarController carController = new CarController();
-        carController.createCars(Splitter.split(getCarNames()));
+        createCars(carController);
         carController.moveCars(getIterationNo());
         ResultView.printGameResult(carController.findGameScoreBoard());
         ResultView.printWinners(carController.findWinners());
+    }
+
+    private static void createCars(CarController carController) {
+        try {
+            carController.createCars(Splitter.split(getCarNames()));
+        } catch (RuntimeException runtimeException) {
+            System.out.println(runtimeException.getMessage());
+            createCars(carController);
+        }
     }
 }

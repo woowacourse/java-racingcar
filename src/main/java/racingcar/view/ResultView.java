@@ -16,7 +16,6 @@ public class ResultView {
         printBeforeGameResult();
         for (ScoreBoard scoreBoard : scoreBoards) {
             printScoreBoard(scoreBoard.getScores());
-            printEmptyLine();
         }
     }
 
