@@ -5,12 +5,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import racingCar.domain.Car;
 import racingCar.domain.CarDto;
-import racingCar.domain.Cars;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class OutputTest {
@@ -35,9 +35,27 @@ public class OutputTest {
         System.setOut(new PrintStream(out));
 
         //when
-        LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
-        result.put("jiwoo",2);
-        result.put("juri",0);
+        List<CarDto> result = new ArrayList<>();
+        result.add(new CarDto(new Car("jiwoo",2)));
+        result.add(new CarDto(new Car("juri",0)));
+
+        OutputView.printRoundResult(result);
+
+        //then
+        assertThat(out.toString())
+                .isEqualTo("jiwoo : --\njuri : \n" + System.lineSeparator());
+    }
+
+    @Test
+    void 실행결과출력_검사_new() {
+        //given
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        //when
+        List<CarDto> result = new ArrayList<>();
+        result.add(new CarDto(new Car("jiwoo",2)));
+        result.add(new CarDto(new Car("juri",0)));
 
         OutputView.printRoundResult(result);
 
