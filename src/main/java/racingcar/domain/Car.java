@@ -40,6 +40,10 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     @Override
     public int compareTo(Car car) {
         return Integer.compare(this.position, car.position);
