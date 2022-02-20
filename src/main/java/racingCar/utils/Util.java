@@ -1,7 +1,7 @@
-package racingCar.domain.utils;
+package racingCar.utils;
 
 import java.util.regex.Pattern;
-import racingCar.domain.exception.count.CountNotNumberException;
+import racingCar.exception.count.CountNotNumberException;
 
 public class Util {
     private static final String NAME_REGEX = ",";

@@ -1,11 +1,8 @@
-package racingCar.domain.service;
+package racingCar.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import racingCar.domain.CarDto;
-import racingCar.domain.Cars;
-import racingCar.domain.RoundCount;
-import racingCar.domain.utils.Util;
+import racingCar.utils.Util;
 
 public class RacingGame {
     private final Cars cars;

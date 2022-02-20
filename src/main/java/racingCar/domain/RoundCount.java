@@ -1,7 +1,7 @@
 package racingCar.domain;
 
 import java.util.Objects;
-import racingCar.domain.exception.count.CountRangeException;
+import racingCar.exception.count.CountRangeException;
 
 public class RoundCount {
     private static final int MINIMUM_NUM = 0;

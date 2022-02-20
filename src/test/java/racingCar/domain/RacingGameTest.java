@@ -1,4 +1,4 @@
-package racingCar.domain.service;
+package racingCar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingCar.domain.CarDto;
+import racingCar.domain.RacingGame;
 import racingCar.domain.RoundCount;
 
 @SuppressWarnings("NonAsciiCharacters")

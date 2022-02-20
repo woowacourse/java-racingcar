@@ -1,6 +1,6 @@
-package racingCar.domain.utils;
+package racingCar.utils;
 
-import racingCar.domain.exception.NullInputException;
+import racingCar.exception.NullInputException;
 
 public class InputValidator {
     public static String validate(String input) {

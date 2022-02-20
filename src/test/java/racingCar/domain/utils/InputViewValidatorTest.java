@@ -1,11 +1,11 @@
-package racingCar.domain.service;
+package racingCar.domain.utils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static racingCar.domain.utils.InputValidator.validate;
+import static racingCar.utils.InputValidator.validate;
 
 import org.junit.jupiter.api.Test;
-import racingCar.domain.exception.NullInputException;
+import racingCar.exception.NullInputException;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class InputViewValidatorTest {
