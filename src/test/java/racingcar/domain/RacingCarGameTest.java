@@ -2,48 +2,58 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NoneAsciiCharacters")
 public class RacingCarGameTest {
+    private Car correctCar2;
+    private Cars correctCars;
+    private Count correctCount;
+    private RacingCarGame racingCarGame;
+
+    @BeforeEach
+    void setUp() {
+        final CarName correctName1 = new CarName("칙촉");
+        final CarName correctName2 = new CarName("어썸오");
+        final Car correctCar1 = new Car(correctName1);
+        correctCar2 = new Car(correctName2);
+        correctCars = new Cars(Arrays.asList(correctCar1, correctCar2), () -> true);
+        correctCount = new MockCount(1);
+        racingCarGame = new RacingCarGame(correctCars, correctCount);
+    }
+
     @Test
     void 자동차이름_입력값을_null로_생성_시도할_경우_예외발생() {
-        String incorrectInput = null;
-        MoveStrategy correctMoveStrategy = new RandomMoveStrategy();
+        final Cars cars = null;
 
-        assertThatThrownBy(() -> new RacingCarGame(incorrectInput, correctMoveStrategy))
-                .hasMessageContaining("null은 사용할 수 없습니다. String 타입을 이용하세요.");
+        assertThatThrownBy(() -> new RacingCarGame(cars, correctCount))
+                .hasMessageContaining("null은 사용할 수 없습니다. Cars 타입을 이용하세요.");
     }
 
     @Test
     void MoveStrategy를_null로_생성_시도할_경우_예외발생() {
-        String correctInput = "어썸오,칙촉";
-        MoveStrategy incorrectMoveStrategy = null;
+        final Count count = null;
 
-        assertThatThrownBy(() -> new RacingCarGame(correctInput, incorrectMoveStrategy)).isInstanceOf(
+        assertThatThrownBy(() -> new RacingCarGame(correctCars, count)).isInstanceOf(
                         IllegalArgumentException.class)
-                .hasMessageContaining("null은 사용할 수 없습니다. MoveStrategy 타입을 이용하세요.");
+                .hasMessageContaining("null은 사용할 수 없습니다. Count 타입을 이용하세요.");
     }
 
     @Test
     void 올바른_매개변수로_생성되는_경우() {
-        String correctInput = "어썸오,칙촉";
-        MoveStrategy correctMoveStrategy = new RandomMoveStrategy();
-
-        assertThatCode(() -> new RacingCarGame(correctInput, correctMoveStrategy))
+        assertThatCode(() -> new RacingCarGame(correctCars, correctCount))
                 .doesNotThrowAnyException();
     }
 
     @Test
     void 모든_자동차_전진하는_라운드() {
         //given
-        String inputCarNames = "어썸오,칙촉";
-        RacingCarGame racingCarGame = new RacingCarGame(inputCarNames, () -> true);
         List<Car> cars = racingCarGame.getCars();
         Position positionAfterMove = new Position(2);
-        racingCarGame.setCount(new Count(1));
 
         //when
         racingCarGame.playRound();
@@ -56,25 +66,15 @@ public class RacingCarGameTest {
 
     @Test
     void 우승자_뽑기_한명일_경우() {
-        //given
-        String inputCarNames = "어썸오,칙촉";
-        RacingCarGame racingCarGame = new RacingCarGame(inputCarNames, () -> true);
-        racingCarGame.setCount(new MockCount(1));
-        List<Car> cars = racingCarGame.getCars();
-        Car awesome0 = cars.get(0);
+        correctCar2.attemptToMove(true);
 
-        //when
-        awesome0.attemptToMove(true);
-
-        //then
-        assertThat(racingCarGame.getWinners()).containsOnly(awesome0);
+        assertThat(racingCarGame.getWinners()).containsOnly(correctCar2);
     }
 
     @Test
     void 게임종료전_우승자를_뽑을경우_예외발생() {
-        String inputCarNames = "어썸오,칙촉";
-        RacingCarGame racingCarGame = new RacingCarGame(inputCarNames, () -> true);
-        racingCarGame.setCount(new Count(1));
+        final Count count = new Count(1);
+        final RacingCarGame racingCarGame = new RacingCarGame(correctCars, count);
 
         assertThatThrownBy(racingCarGame::getWinners).isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("게임이 끝나지 않았습니다.");
