@@ -1,5 +1,5 @@
 package carracing.utils;
 
-public interface RandomUtil {
+public interface MoveStrategy {
     boolean isMovable();
 }

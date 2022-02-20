@@ -1,6 +1,6 @@
 package carracing.model;
 
-import carracing.utils.RandomUtil;
+import carracing.utils.MoveStrategy;
 
 import static carracing.view.messages.ExceptionMessage.*;
 
@@ -23,8 +23,8 @@ public class Car {
         return this.name;
     }
 
-    public void move(RandomUtil randomUtil) {
-        if (randomUtil.isMovable()) {
+    public void move(MoveStrategy moveStrategy) {
+        if (moveStrategy.isMovable()) {
             this.position++;
         }
     }

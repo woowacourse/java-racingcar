@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import carracing.utils.RandomMove;
-import carracing.utils.RandomUtil;
+import carracing.utils.MoveStrategy;
 
 public class RacingCars {
     private final List<Car> cars;
@@ -28,8 +28,8 @@ public class RacingCars {
     }
 
     public void moveCars() {
-        RandomUtil randomUtil = new RandomMove();
-        cars.forEach(car -> car.move(randomUtil));
+        MoveStrategy moveStrategy = new RandomMove();
+        cars.forEach(car -> car.move(moveStrategy));
     }
 
     private void validateDuplication(List<Car> cars) {
