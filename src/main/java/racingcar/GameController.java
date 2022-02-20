@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.domain.Cars;
 import racingcar.utils.MoveCountValidator;
+import racingcar.utils.RandomNumberGenerator;
 import racingcar.utils.StringSeparator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -9,8 +10,6 @@ import racingcar.view.OutputView;
 import java.util.Scanner;
 
 public class GameController {
-    private static final int RANDOM_NUMBER_MIN_BOUND = 0;
-    private static final int RANDOM_NUMBER_MAX_BOUND = 9;
 
     private final InputView inputView;
 
@@ -51,7 +50,7 @@ public class GameController {
     private void startRace(Cars cars, int moveCount) {
         OutputView.printResultMessage();
         for (int i = 0; i < moveCount; i++) {
-            cars.startEachRace(RANDOM_NUMBER_MIN_BOUND, RANDOM_NUMBER_MAX_BOUND);
+            cars.startEachRace(new RandomNumberGenerator());
             OutputView.printCarsPosition(cars);
         }
     }

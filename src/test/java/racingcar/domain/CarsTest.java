@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import racingcar.utils.RandomNumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -65,11 +66,13 @@ class CarsTest {
         assertThat(cars.toString()).contains("pobi", "elsa");
     }
 
+
+
     @Test
     @DisplayName("항상 4보다 작은 값이 주어졌을 때 모든차가 움직이지 않는가?")
     void noMoveAllCars() {
         Cars cars = new Cars(new String[]{"pobi", "elsa"});
-        cars.startEachRace(0,3);
+        cars.startEachRace(new NonMovableNumberGenerator());
         int maxPosition = findWinnersPosition(cars);
         assertThat(maxPosition).isEqualTo(0);
     }
@@ -78,7 +81,7 @@ class CarsTest {
     @DisplayName("항상 4보다 큰 값이 주어졌을 때 모든차가 움직이는가?")
     void allMoveAllCars() {
         Cars cars = new Cars(new String[]{"pobi", "elsa"});
-        cars.startEachRace(4,9);
+        cars.startEachRace(new MovableNumberGenerator());
         int maxPosition = findWinnersPosition(cars);
         assertThat(maxPosition).isNotEqualTo(0);
     }

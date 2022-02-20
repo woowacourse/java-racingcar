@@ -2,10 +2,13 @@ package racingcar.utils;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator{
+    private static final int MIN_BOUND = 0;
+    private static final int MAX_BOUND = 9;
 
-    public static int generateRandomNumber(int minBound, int maxBound) {
+    @Override
+    public int generateNumber() {
         Random random = new Random();
-        return random.nextInt(maxBound - minBound + 1) + minBound;
+        return random.nextInt(MAX_BOUND - MIN_BOUND + 1) + MIN_BOUND;
     }
 }

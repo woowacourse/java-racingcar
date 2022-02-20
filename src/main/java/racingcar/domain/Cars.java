@@ -1,14 +1,12 @@
 package racingcar.domain;
 
-
-import static racingcar.utils.RandomNumberGenerator.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import racingcar.utils.NumberGenerator;
 
 public class Cars {
     public static final String ERROR_ONLY_NAME = "[ERROR] 이름을 2개 이상 입력해주세요.";
@@ -44,9 +42,9 @@ public class Cars {
         }
     }
 
-    public void startEachRace(int minBound, int maxBound) {
+    public void startEachRace(NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.move(generateRandomNumber(minBound, maxBound));
+            car.move(numberGenerator.generateNumber());
         }
     }
 
