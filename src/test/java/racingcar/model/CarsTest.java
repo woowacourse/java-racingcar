@@ -18,7 +18,7 @@ class CarsTest {
 	void setUp() {
 		moveConditionNumbers = Arrays.asList(3, 4);
 		cars = new Cars();
-		cars.createCars(new String[] {"범고래", "소주캉"});
+		cars.createCars(Arrays.asList("범고래", "소주캉"));
 	}
 
 	@Test
@@ -30,10 +30,19 @@ class CarsTest {
 	@Test
 	@DisplayName("자동차 이름이 중복이면 예외 발생")
 	void checkDuplicationCarNamesTest() {
-		String[] CarNames = {"범고래", "범고래"};
-		assertThatThrownBy(() -> cars.createCars(CarNames))
+		List<String> carNames = Arrays.asList("범고래", "범고래");
+		assertThatThrownBy(() -> cars.createCars(carNames))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("중복");
+	}
+
+	@Test
+	@DisplayName("자동차 이름이 비었을 때 예외 발생")
+	void checkEmptyCarNamesTest() {
+		List<String> carNames = List.of();
+		assertThatThrownBy(() -> cars.createCars(carNames))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("빈 자동차");
 	}
 
 	@Test
