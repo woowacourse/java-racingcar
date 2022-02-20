@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
-import racingcar.domain.log.GameLog;
+import racingcar.view.log.GameLog;
 import racingcar.domain.random.RandomNumberGenerator;
 import racingcar.exception.RacingGameIsFinishedException;
 

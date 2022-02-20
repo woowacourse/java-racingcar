@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.MockRandomNumberGenerator;
-import racingcar.domain.log.CarForLog;
 
 class CarsTest {
 

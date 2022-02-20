@@ -1,4 +1,4 @@
-package racingcar.domain.log;
+package racingcar.view.log;
 
 public class CarForLog {
 

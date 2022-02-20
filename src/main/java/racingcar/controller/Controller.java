@@ -19,8 +19,8 @@ public class Controller {
         view.printResultViewTitle();
         while (!game.isFinished()) {
             game.proceedTurn();
-            view.printMidtermResults(game.getGameLog(), game.getTryCount().getCurrentTryCount());
+            game.getGameLog().printMidtermResults(game.getTryCount().getCurrentTryCount());
         }
-        view.printWinnersResult(game.getGameLog(), game.getTryCount().getTotalTryCount());
+        game.getGameLog().printWinnersResult(game.getTryCount().getTotalTryCount());
     }
 }

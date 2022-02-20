@@ -1,4 +1,4 @@
-package racingcar.domain.game;
+package racingcar.view.log;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.MockRandomNumberGenerator;
 import racingcar.domain.Cars;
-import racingcar.domain.log.GameLog;
+import racingcar.view.log.GameLog;
 
 class GameLogTest {
 

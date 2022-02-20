@@ -4,7 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.domain.log.CarForLog;
+import racingcar.view.log.CarForLog;
 import racingcar.domain.random.RandomNumberGenerator;
 
 public class Cars {
