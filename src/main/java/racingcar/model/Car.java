@@ -9,9 +9,13 @@ public class Car {
     private final Moving moving;
 
     public Car(String name) {
-        this.name = new Name(name);
-        this.location = new Location();
-        this.moving = new BiggerNumberMoving();
+        this(new Name(name), new Location(), new BiggerNumberMoving());
+    }
+
+    public Car(Name name, Location location, Moving moving) {
+        this.name = name;
+        this.location = location;
+        this.moving = moving;
     }
 
     public void tryMove(int number) {
