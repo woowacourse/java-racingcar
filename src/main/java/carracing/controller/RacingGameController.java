@@ -1,9 +1,7 @@
 package carracing.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import carracing.model.Car;
 import carracing.model.RacingCars;
 import carracing.view.InputView;
 import carracing.view.OutputView;
@@ -11,9 +9,6 @@ import carracing.view.OutputView;
 public class RacingGameController {
     private RacingCars racingCars;
     private int numberOfGames;
-
-    public RacingGameController() {
-    }
 
     public void init() {
         getCars();
@@ -33,7 +28,7 @@ public class RacingGameController {
         OutputView.printInputCarName();
         List<String> carNames = InputView.getCarNames();
         try {
-            createCars(carNames);
+            this.racingCars = new RacingCars(carNames);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
             getCars();
@@ -52,13 +47,5 @@ public class RacingGameController {
 
     private void endGame() {
         OutputView.printWinners(racingCars.getWinners());
-    }
-
-    private void createCars(List<String> carNames) {
-        List<Car> carList = new ArrayList<>();
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
-        racingCars = new RacingCars(carList);
     }
 }

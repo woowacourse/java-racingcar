@@ -13,10 +13,22 @@ import carracing.utils.MoveStrategy;
 public class RacingCars {
     private final List<Car> cars;
 
-    public RacingCars(List<Car> cars) {
-        validateDuplication(cars);
+    public RacingCars(List<String> carNames) {
+        validateDuplication(carNames);
 
-        this.cars = cars;
+        this.cars = carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+    }
+
+    private void validateDuplication(List<String> carNames) {
+        boolean isDuplicated = carNames.stream()
+                .distinct()
+                .count() != carNames.size();
+
+        if (isDuplicated) {
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
+        }
     }
 
     public List<String> getWinners() {
@@ -32,18 +44,6 @@ public class RacingCars {
     public void moveCars() {
         MoveStrategy moveStrategy = new RandomMove();
         cars.forEach(car -> car.move(moveStrategy));
-    }
-
-    private void validateDuplication(List<Car> cars) {
-        boolean isDuplicated = cars.stream()
-                .map(Car::toCarDto)
-                .map(CarDto::getName)
-                .distinct()
-                .count() != cars.size();
-
-        if (isDuplicated) {
-            throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
-        }
     }
 
     private Car getMaxPositionCar() {
