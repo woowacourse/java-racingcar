@@ -27,7 +27,7 @@ class CalculatorTest {
     }
 
     @DisplayName("숫자 이외의 값은 입력할 수 없습니다")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : \"{0}\"")
     @ValueSource(strings = {"a", "1,a"})
     void numberIsNotNumericExceptionTest(final String text) {
         final String errorMessage = NumberExceptionStatus.NUMBER_IS_NOT_NUMERIC.getMessage();
@@ -35,7 +35,7 @@ class CalculatorTest {
     }
 
     @DisplayName("음수는 입력할 수 없습니다")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : \"{0}\"")
     @ValueSource(strings = {"-1", "1,-1"})
     void numberIsNegativeExceptionTest(final String text) {
         final String errorMessage = NumberExceptionStatus.NUMBER_IS_NEGATIVE.getMessage();
@@ -48,14 +48,14 @@ class CalculatorTest {
     }
 
     @DisplayName("NULL 또는 공백 입력 시, 0을 반환")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : \"{0}\"")
     @NullAndEmptySource
     void nullOrEmptyInputTest(final String text) {
         calculatorSumTest(text, 0);
     }
 
     @DisplayName("문자열 덧셈 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : \"{0}\"")
     @MethodSource("provideForSplitAndSumTest")
     void splitAndSumTest(final String text, final int expected) {
         calculatorSumTest(text, expected);

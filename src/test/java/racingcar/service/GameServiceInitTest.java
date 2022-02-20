@@ -34,7 +34,7 @@ class GameServiceInitTest {
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없습니다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : {0}")
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesNullExceptionTest")
     void initCarNamesNullExceptionTest(final List<String> carNames) {
         final String errorMessage = CarNameExceptionStatus.NAME_IS_NULL.getMessage();
@@ -42,7 +42,7 @@ class GameServiceInitTest {
     }
 
     @DisplayName("자동차 이름은 비어있을 수 없습니다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : {0}")
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesEmptyExceptionTest")
     void initCarNamesEmptyExceptionTest(final List<String> carNames) {
         final String errorMessage = CarNameExceptionStatus.NAME_IS_EMPTY.getMessage();
@@ -50,7 +50,7 @@ class GameServiceInitTest {
     }
 
     @DisplayName("자동차 이름은 5자를 넘을 수 없습니다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : {0}")
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesTooLongExceptionTest")
     void initCarNamesTooLongExceptionTest(final List<String> carNames) {
         final String errorMessage = CarNameExceptionStatus.NAME_IS_TOO_LONG.getMessage();
@@ -58,7 +58,7 @@ class GameServiceInitTest {
     }
 
     @DisplayName("자동차 이름은 중복될 수 없습니다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 목록 : {0}")
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesDuplicatedExceptionTest")
     void initCarNamesDuplicatedExceptionTest(final List<String> carNames) {
         final String errorMessage = CarNameExceptionStatus.NAME_IS_DUPLICATED.getMessage();
@@ -66,7 +66,7 @@ class GameServiceInitTest {
     }
 
     @DisplayName("자동차 이름 초기화 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 목록 : {0}")
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesTest")
     void initCarNamesTest(final List<String> carNames) {
         gameService.initCarNames(carNames);
@@ -93,7 +93,7 @@ class GameServiceInitTest {
     }
 
     @DisplayName("실행 횟수는 양수여야 합니다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 실행 횟수 : {0}")
     @ValueSource(ints = {0, -1, -2,- 3})
     void initRoundNotPositiveExceptionTest(final int roundCount) {
         assertThatThrownBy(() -> gameService.initRound(roundCount))
@@ -102,7 +102,7 @@ class GameServiceInitTest {
     }
 
     @DisplayName("실행 횟수 초기화 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 실행 횟수 : {0}")
     @ValueSource(ints = {1, 2, 3, 4, 5})
     void initRoundTest(final int roundCount) {
         gameService.initRound(roundCount);

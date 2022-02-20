@@ -25,7 +25,7 @@ class CarsTest {
     private static final MoveStrategy TRUE_MOVE_STRATEGY = TrueMoveStrategy.getInstance();
 
     @DisplayName("자동차 이름은 중복될 수 없다")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 목록 : {0}")
     @MethodSource(PROVIDER_PATH + "provideForDuplicateExceptionTest")
     void carNamesDuplicatedExceptionTest(final List<String> names) {
         assertThatThrownBy(() -> new Cars(names, TRUE_MOVE_STRATEGY))
@@ -34,14 +34,14 @@ class CarsTest {
     }
 
     @DisplayName("생성자 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 목록 : {0}")
     @MethodSource(PROVIDER_PATH + "provideForConstructorTest")
     void constructorTest(final List<String> names) {
         assertDoesNotThrow(() -> new Cars(names, TRUE_MOVE_STRATEGY));
     }
 
     @DisplayName("라운드실행 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 실행 횟수 : {1}")
     @MethodSource(PROVIDER_PATH + "provideForPlayRoundTest")
     void playRoundTest(final List<String> carNames,
                        final int repeatTime,
@@ -58,7 +58,7 @@ class CarsTest {
     }
 
     @DisplayName("우승자 선정 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 실행 횟수 : {1}")
     @MethodSource(PROVIDER_PATH + "provideForGetWinnerNamesTest")
     void selectWinnersTest(final List<String> carNames,
                            final int repeatTime,

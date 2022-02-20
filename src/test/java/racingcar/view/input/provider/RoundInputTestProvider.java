@@ -10,6 +10,7 @@ public class RoundInputTestProvider {
         return Stream.of(
                 Arguments.of("1a"),
                 Arguments.of(""),
+                Arguments.of("  "),
                 Arguments.of(" b")
         );
     }
