@@ -13,12 +13,25 @@ public class CarTest {
 		MovingCondition movingCondition = () -> true;
 		Car car = new Car("아스피", 0, movingCondition);
 		car.move();
-		assertThat(car.isSamePosition(new Car("배카라", 1, new MovingCondition() {
-			@Override
-			public boolean canMove() {
-				return false;
-			}
-		}))).isEqualTo(true);
+		assertThat(car.getPosition()).isEqualTo(1);
+	}
+
+	@Test
+	public void 같은_위치_자동차_테스트() {
+		MovingCondition movingCondition1 = () -> true;
+		MovingCondition movingCondition2 = () -> true;
+		Car azpi = new Car("아스피", 0, movingCondition1);
+		Car baekara = new Car("배카라", 0, movingCondition2);
+		assertThat(azpi.isSamePosition(baekara)).isEqualTo(true);
+	}
+
+	@Test
+	public void 다른_위치_자동차_테스트() {
+		MovingCondition movingCondition1 = () -> true;
+		MovingCondition movingCondition2 = () -> true;
+		Car azpi = new Car("아스피", 0, movingCondition1);
+		Car baekara = new Car("배카라", 1, movingCondition2);
+		assertThat(azpi.isSamePosition(baekara)).isEqualTo(false);
 	}
 
 }
