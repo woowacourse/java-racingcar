@@ -4,9 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SuppressWarnings("NonAsciiCharacters")
+@SuppressWarnings({"NonAsciiCharacters", "deprecation"})
 public class CarsTest {
 
     private Cars cars;
@@ -15,7 +14,9 @@ public class CarsTest {
     @Test
     void getWinnerTest() {
         cars = new Cars(new String[]{"A", "B", "C"});
-        cars.getCars().get(0).move(() -> 5);
+        cars.getCars()
+                .get(0)
+                .move(() -> 5);
         assertThat(cars.getWinner()).contains("A");
     }
 
@@ -28,10 +29,11 @@ public class CarsTest {
 
     @DisplayName("자동차 저장 확인 테스트")
     @Test
-    void insertCarTest() {
-        cars = new Cars(new String[]{});
+    void carsGenerationTest() {
+        cars = new Cars(new String[]{"A"});
         Car carA = new Car("A", 0);
-        cars.getCars().add(carA);
-        assertEquals(carA, cars.getCars().get(0));
+        assertThat(cars.getCars()
+                .get(0))
+                .isEqualToComparingFieldByField(carA);
     }
 }
