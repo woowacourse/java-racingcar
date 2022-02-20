@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.domain.AttemptNumber;
-import racingcar.domain.CarDto;
 import racingcar.domain.Round;
 import racingcar.service.RacingGame;
+import racingcar.service.dto.CarDto;
+import racingcar.util.MovingNumberPolicy;
 import racingcar.util.MovingNumberPolicyByRandom;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -14,13 +15,14 @@ import racingcar.view.OutputView;
 public class RacingController {
 
 	private static final int START_ROUND = 1;
+	private static final MovingNumberPolicy movingNumberPolicy = new MovingNumberPolicyByRandom();
 
 	public void start() {
 		final List<CarDto> cars = InputView.getCars();
 		final AttemptNumber attemptNumber = inputAttemptNumber();
 
 		final RacingGame racingGame = RacingGame.of(cars, attemptNumber);
-		racingGame.start(new MovingNumberPolicyByRandom());
+		racingGame.start(movingNumberPolicy);
 
 		printRacingResult(racingGame, attemptNumber);
 		printRacingWinnerResult(racingGame);

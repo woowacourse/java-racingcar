@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 
 import racingcar.domain.AttemptNumber;
 import racingcar.domain.Car;
-import racingcar.domain.CarDto;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingResult;
 import racingcar.domain.Round;
+import racingcar.service.dto.CarDto;
 import racingcar.util.MovingNumberPolicy;
 
 public class RacingGame {

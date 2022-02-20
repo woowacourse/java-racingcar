@@ -7,8 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.AttemptNumber;
-import racingcar.domain.CarDto;
 import racingcar.domain.Round;
+import racingcar.service.dto.CarDto;
 
 public class RacingGameTest {
 

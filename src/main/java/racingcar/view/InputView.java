@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import racingcar.domain.CarDto;
+import racingcar.service.dto.CarDto;
 import racingcar.util.validator.InputValidator;
 
 public class InputView {
