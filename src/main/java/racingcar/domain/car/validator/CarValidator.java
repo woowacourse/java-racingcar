@@ -1,8 +1,8 @@
 package racingcar.domain.car.validator;
 
 import racingcar.domain.car.condition.NameLength;
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.car.CarNameExceptionStatus;
+import racingcar.exception.car.CarNameExceptionStatus;
+import racingcar.exception.car.WrongCarNameException;
 
 public class CarValidator {
 
@@ -19,19 +19,19 @@ public class CarValidator {
 
     private void validateNameIsNull(final String name) {
         if (name == null) {
-            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_NULL);
+            throw new WrongCarNameException(CarNameExceptionStatus.NAME_IS_NULL);
         }
     }
 
     private void validateNameIsEmpty(final String name) {
         if (name.isEmpty()) {
-            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_EMPTY);
+            throw new WrongCarNameException(CarNameExceptionStatus.NAME_IS_EMPTY);
         }
     }
 
     private void validateNameIsTooLong(final String name) {
         if (NameLength.isTooLong(name)) {
-            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_TOO_LONG);
+            throw new WrongCarNameException(CarNameExceptionStatus.NAME_IS_TOO_LONG);
         }
     }
 

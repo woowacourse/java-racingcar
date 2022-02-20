@@ -3,8 +3,8 @@ package racingcar.domain.car.validator;
 import java.util.List;
 
 import racingcar.domain.car.condition.NameDuplication;
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.car.CarNameExceptionStatus;
+import racingcar.exception.car.CarNameExceptionStatus;
+import racingcar.exception.car.WrongCarNameException;
 
 public class CarsValidator {
 
@@ -19,7 +19,7 @@ public class CarsValidator {
 
     private void validateNameIsDuplicated(final List<String> names) {
         if (checkNameIsDuplicated(names)) {
-            throw new WrongArgumentException(CarNameExceptionStatus.NAME_IS_DUPLICATED);
+            throw new WrongCarNameException(CarNameExceptionStatus.NAME_IS_DUPLICATED);
         }
     }
 

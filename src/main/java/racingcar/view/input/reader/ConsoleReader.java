@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.reader.ReaderExceptionStatus;
+import racingcar.exception.reader.ReaderExceptionStatus;
+import racingcar.exception.reader.WrongReaderException;
 
 public class ConsoleReader implements Reader {
 
@@ -15,7 +15,7 @@ public class ConsoleReader implements Reader {
             final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             return bufferedReader.readLine();
         } catch (IOException exception) {
-            throw new WrongArgumentException(ReaderExceptionStatus.READER_CANNOT_READ);
+            throw new WrongReaderException(ReaderExceptionStatus.READER_CANNOT_READ);
         }
     }
 

@@ -13,8 +13,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.car.CarNameExceptionStatus;
+import racingcar.exception.car.CarNameExceptionStatus;
+import racingcar.exception.car.WrongCarNameException;
 
 class CarTest {
 
@@ -23,7 +23,7 @@ class CarTest {
 
     private void exceptionTest(final String name, final String errorMessage) {
         assertThatThrownBy(() -> new Car(name))
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongCarNameException.class)
                 .hasMessageContaining(errorMessage);
     }
 

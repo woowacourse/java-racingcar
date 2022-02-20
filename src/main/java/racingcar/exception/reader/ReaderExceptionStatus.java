@@ -1,6 +1,6 @@
-package racingcar.exception.status.reader;
+package racingcar.exception.reader;
 
-import racingcar.exception.status.ExceptionStatus;
+import racingcar.exception.ExceptionStatus;
 
 public enum ReaderExceptionStatus implements ExceptionStatus {
 

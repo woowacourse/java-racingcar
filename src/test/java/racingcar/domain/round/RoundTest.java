@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.round.RoundCountExceptionStatus;
+import racingcar.exception.round.RoundCountExceptionStatus;
+import racingcar.exception.round.WrongRoundCountException;
 
 class RoundTest {
 
@@ -21,7 +21,7 @@ class RoundTest {
     @ValueSource(ints = {-3, -2, -1, 0})
     void roundNotPositiveExceptionTest(final int count) {
         assertThatThrownBy(() -> new Round(count))
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongRoundCountException.class)
                 .hasMessageContaining(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE.getMessage());
     }
 
