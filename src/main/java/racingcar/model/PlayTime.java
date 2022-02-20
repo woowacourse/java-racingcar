@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 public class PlayTime {
 
     private static final int MIN_PLAY_TIME = 1;
@@ -34,5 +36,10 @@ public class PlayTime {
         PlayTime playTime1 = (PlayTime) o;
 
         return playTime == playTime1.playTime;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playTime);
     }
 }
