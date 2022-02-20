@@ -5,12 +5,13 @@ import java.util.Objects;
 public class RoundCount {
 
 	private static final int COUNT_ZERO_CRITERIA = 0;
+	private static final int END_COUNT = 0;
 	private static final String COUNT_ZERO_ERROR_MSG = "0회 이하는 게임을 진행할 수 없습니다.";
 
 	private int roundCount;
 
 	public RoundCount(int roundCount) {
-		checkCountIsZero(this.roundCount);
+		checkCountIsZero(roundCount);
 		this.roundCount = roundCount;
 	}
 
@@ -20,8 +21,12 @@ public class RoundCount {
 		}
 	}
 
-	public boolean isOverZero() {
-		return roundCount-- > 0;
+	public boolean isEnd() {
+		return roundCount > END_COUNT;
+	}
+
+	public void moveNextRound() {
+		roundCount--;
 	}
 
 	@Override

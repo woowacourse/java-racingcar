@@ -19,7 +19,11 @@ public class Cars {
 	private List<RacingCar> cars;
 
 	public List<RacingCar> getCars() {
-		return cars;
+		return this.cars;
+	}
+
+	public Cars getThisRoundResult() {
+		return this;
 	}
 
 	public Cars(String inputCarNames) {
@@ -40,7 +44,7 @@ public class Cars {
 		return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
 	}
 
-	public List<Name> findWinner(List<RacingCar> cars) {
+	public List<String> findWinner() {
 		int maxPosition = findMaxPosition(cars);
 		return cars.stream()
 			.filter(car -> car.matchPosition(maxPosition))
