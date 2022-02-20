@@ -12,7 +12,7 @@ public class RacingGame {
     private int totalAttempt;
 
     public RacingGame(String[] names, int totalAttempt) {
-        this.cars = new Cars(names);
+        this.cars = Cars.from(names);
 
         validateAttempt(totalAttempt);
         this.totalAttempt = totalAttempt;

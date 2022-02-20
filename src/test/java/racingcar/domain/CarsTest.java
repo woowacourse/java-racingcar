@@ -3,10 +3,7 @@ package racingcar.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -18,19 +15,20 @@ public class CarsTest {
     void carNameMustNotDuplicated() {
         String[] carNames = {"woo", "te", "co", "woo"};
 
-        assertThatThrownBy(() -> new Cars(carNames))
+        assertThatThrownBy(() -> Cars.from(carNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("한명의 올바른 최종 우승자를 선택하는지 확인")
     void selectOneRightWinner() {
-        Map<String, Integer> carInfo = new HashMap<>();
-        carInfo.put("woo", 10);
-        carInfo.put("te", 0);
-        carInfo.put("co", 0);
+        Set<Car> input = new HashSet<>();
 
-        Cars cars = new Cars(carInfo);
+        input.add(new Car(new CarName("woo"), 10));
+        input.add(new Car(new CarName("te"), 0));
+        input.add(new Car(new CarName("co"), 0));
+
+        Cars cars = new Cars(input);
 
         assertThat(cars.selectWinners()).containsExactly("woo");
     }
@@ -38,18 +36,17 @@ public class CarsTest {
     @Test
     @DisplayName("여러명의 올바른 최종 우승자를 선택하는지 확인")
     void selectManyRightWinner() {
-        Map<String, Integer> carInfo = new HashMap<>();
-        carInfo.put("woo", 0);
-        carInfo.put("te", 10);
-        carInfo.put("co", 10);
+        Set<Car> input = new HashSet<>();
 
-        Cars cars = new Cars(carInfo);
+        input.add(new Car(new CarName("woo"), 10));
+        input.add(new Car(new CarName("te"), 10));
+        input.add(new Car(new CarName("co"), 0));
+
+        Cars cars = new Cars(input);
         List<String> winners = cars.selectWinners();
 
-        List<String> expected = new ArrayList<>();
-        expected.add("te");
-        expected.add("co");
-
-        assertThat(winners).isEqualTo(expected);
+        assertThat(cars.selectWinners().size()).isEqualTo(2);
+        assertThat(winners).contains("woo");
+        assertThat(winners).contains("te");
     }
 }

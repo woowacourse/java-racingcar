@@ -10,23 +10,21 @@ public class Cars {
 
     private static final String DUPLICATED = "[ERROR] 중복된 자동차 이름은 허용되지 않습니다.";
 
-    private Set<Car> cars = new HashSet<>();
+    private Set<Car> cars;
 
-    public Cars(String[] names) {
-        validateDuplication(names);
+    public Cars(Set<Car> cars) {
+        validateDuplication(cars);
+        this.cars = cars;
+    }
+
+    public static Cars from(String[] names) {
+        Set<Car> cars = new HashSet<>();
 
         for (String name : names) {
             cars.add(new Car(name));
         }
-    }
 
-    public Cars(Map<String, Integer> carInfo) {
-        Set<String> names = carInfo.keySet();
-        validateDuplication(names.toArray(new String[names.size()]));
-
-        for (String name : names) {
-            cars.add(new Car(name, carInfo.get(name)));
-        }
+        return new Cars(cars);
     }
 
     public void move() {
@@ -55,10 +53,14 @@ public class Cars {
                 .orElse(0);
     }
 
-    private void validateDuplication(String[] carNames) {
-        Set<String> set = new HashSet<>(Arrays.asList(carNames));
+    private void validateDuplication(Set<Car> cars) {
+        Set<String> names = new HashSet<>();
 
-        if (set.size() < carNames.length) {
+        for (Car car : cars) {
+            names.add(car.getName());
+        }
+
+        if (names.size() < cars.size()) {
             throw new IllegalArgumentException(DUPLICATED);
         }
     }

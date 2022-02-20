@@ -2,18 +2,18 @@ package racingcar.domain;
 
 public class Car {
 
+    private static final int CONDITION_FOR_MOVE = 4;
+    private static final int DEFAULT_POSITION = 0;
+
     private final CarName name;
     private int position;
 
-    private final int CONDITION_FOR_MOVE = 4;
-
     public Car(String name) {
-        this.name = new CarName(name);
-        this.position = 0;
+        this(new CarName(name), DEFAULT_POSITION);
     }
 
-    public Car(String name, int position) {
-        this.name = new CarName(name);
+    public Car(CarName name, int position) {
+        this.name = name;
         this.position = position;
     }
 
