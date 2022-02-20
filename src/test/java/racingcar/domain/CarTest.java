@@ -2,25 +2,37 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class CarTest {
-    private static final int PROCEED_FlAG_NUMBER = 4;
+class CarTest {
+
+    private Car car;
+
+    @BeforeEach
+    void beforeEach() {
+        car = new Car("test");
+        car.proceed(() -> true);
+    }
 
     @Test
-    @DisplayName("전진 여부 - 전진O")
-    void proceed_O() {
-        Car car = new Car("Car");
-        car.proceed(PROCEED_FlAG_NUMBER);
+    @DisplayName("자동차 전진")
+    void proceed() {
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("전진 여부 - 전진X")
-    void proceed_X() {
-        Car car = new Car("Car");
-        car.proceed(PROCEED_FlAG_NUMBER - 1);
-        assertThat(car.getPosition()).isEqualTo(0);
+    @DisplayName("자동차 위치 확인")
+    void isHere() {
+        assertThat(car.isHere(1)).isTrue();
+    }
+
+    @Test
+    @DisplayName("DTO 생성")
+    void toDto() {
+        CarDto carDto = car.toDto();
+        assertThat(carDto.getName()).isEqualTo(car.getName());
+        assertThat(carDto.getPosition()).isEqualTo(car.getPosition());
     }
 }

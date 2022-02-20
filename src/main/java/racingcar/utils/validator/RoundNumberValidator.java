@@ -1,4 +1,4 @@
-package racingcar.validator;
+package racingcar.utils.validator;
 
 public class RoundNumberValidator {
     private static final String POSITIVE_INTEGER_REGEX = "^([1-9][0-9]*)$";

@@ -3,24 +3,28 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car {
-    private static final int PROCEED_FlAG_NUMBER = 4;
 
+    private static final int INIT_POSITION = 0;
     private final String name;
     private int position;
 
     public Car(String name) {
         this.name = name;
-        this.position = 0;
+        this.position = INIT_POSITION;
     }
 
-    public void proceed(int randomNumber) {
-        if (randomNumber >= PROCEED_FlAG_NUMBER) {
+    public void proceed(ProceedStrategy moveStrategy) {
+        if (moveStrategy.canProceed()) {
             this.position++;
         }
     }
 
-    public boolean isWinner(int maxPosition) {
-        return this.position == maxPosition;
+    public boolean isHere(int position) {
+        return this.position == position;
+    }
+
+    public CarDto toDto() {
+        return new CarDto(this.getName(), this.getPosition());
     }
 
     public String getName() {
@@ -33,12 +37,12 @@ public class Car {
 
     @Override
     public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return getPosition() == car.getPosition() && Objects.equals(getName(), car.getName());
     }
