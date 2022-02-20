@@ -42,14 +42,4 @@ public class CarsTest {
             assertThat(car.getCarPosition()).isEqualTo(0);
         }
     }
-
-    @Test
-    public void 최종_우승자_찾기_테스트() {
-        Cars cars = new Cars(Arrays.asList("이브", "클레이"));
-        cars.executeCarRacing(new BoundedRandomNumberGenerator(9, 4));
-        List<String> winners = new WinnerNames().findWinners(cars.getCars());
-
-        assertThat(winners.size()).isEqualTo(2);
-        assertThat(winners).contains("이브", "클레이");
-    }
 }
