@@ -8,13 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class CarTest {
     @Test
-    @DisplayName("CarFactory 통한 차 여러대 생성")
-    public void generate_cars_through_carFactory() {
-        assertThat(CarFactory.of("forky,kun"))
-                .containsExactlyInAnyOrder(new Car("forky"), new Car("kun"));
-    }
-
-    @Test
     @DisplayName("이름이 5글자를 넘을 때 Exception 발생")
     public void name_longer_then_5_exception() {
         assertThatThrownBy(() -> new Car("abcdef"))
@@ -28,5 +21,23 @@ public class CarTest {
         assertThatThrownBy(() -> new Car(""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 이름은 공백일 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("true일 때 차 이동")
+    public void move_true() {
+        Car car = new Car("forky");
+        car.move(true);
+        assertThat(car.getPosition())
+                .isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("false일 때 차 이동")
+    public void move_false() {
+        Car car = new Car("forky");
+        car.move(false);
+        assertThat(car.getPosition())
+                .isEqualTo(0);
     }
 }
