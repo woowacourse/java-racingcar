@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 public class Position implements Comparable<Position> {
-    private static final String ERROR_POSITION_INVALID_RANGE_MESSAGE = "정상 범위(" + 0 + "이상)가 아닙니다";
     private static final int MIN_POSITION_VALUE = 0;
+    private static final String ERROR_POSITION_INVALID_RANGE_MESSAGE = "정상 범위(" + MIN_POSITION_VALUE + "이상)가 아닙니다";
 
     private final int position;
 
@@ -20,7 +20,7 @@ public class Position implements Comparable<Position> {
     }
 
     private static void checkValidRangeOfPosition(int position) {
-        if (!(MIN_POSITION_VALUE <= position)) {
+        if (position < MIN_POSITION_VALUE) {
             throw new IllegalArgumentException(ERROR_POSITION_INVALID_RANGE_MESSAGE);
         }
     }
