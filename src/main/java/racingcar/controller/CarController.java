@@ -27,8 +27,7 @@ public class CarController {
         String names = Input.inputCarNames();
 
         try {
-            Validation.carNameValidation(names);
-            List<Car> cars = convertStringCars(names);
+            List<Car> cars = createCars(names);
             return cars;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -36,10 +35,10 @@ public class CarController {
         }
     }
 
-    private static List<Car> convertStringCars(final String names) {
+    private static List<Car> createCars(final String names) {
         List<Car> cars = new ArrayList<>();
 
-        for (String carName : names.split(SPLIT_DELIM)) {
+        for (String carName : names.split(SPLIT_DELIM, -1)) {
             cars.add(new Car(carName));
         }
         return cars;
