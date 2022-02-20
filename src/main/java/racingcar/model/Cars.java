@@ -28,12 +28,24 @@ public class Cars {
 
     public static Cars initCars(List<Car> cars) {
         validateNameInput(cars);
+        validateDuplicateName(cars);
         return new Cars(cars);
     }
 
     private static void validateNameInput(List<Car> cars) {
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("최소 1개 이상의 자동차가 입력되어야 합니다.");
+        }
+    }
+
+    private static void validateDuplicateName(List<Car> cars) {
+        long distinctNum = cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count();
+
+        if (distinctNum != cars.size()) {
+            throw new IllegalArgumentException("자동차의 이름에 중복이 포함되면 안됩니다.");
         }
     }
 

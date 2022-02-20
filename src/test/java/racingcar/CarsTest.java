@@ -33,16 +33,14 @@ class CarsTest {
     }
 
     @Test
-    void 자동차의_이름이_5자_이상인_경우_예외처리() {
-        assertThatThrownBy(() -> {
-            Cars.splitCars("asd,qwerty");
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     void 자동차_이름에_중복이_존재하는_경우_예외처리() {
+        Car car1 = new Car("aaa");
+        Car car2 = new Car("bbb");
+        Car car3 = new Car("aaa");
+        List<Car> cars = Arrays.asList(car1, car2, car3);
+
         assertThatThrownBy(() -> {
-            Cars.splitCars("aaa,bbb,aaa");
+            Cars.initCars(cars);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
