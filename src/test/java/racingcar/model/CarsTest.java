@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import racingcar.service.MovingCondition;
 import racingcar.service.RandomNumberMovingCondition;
 
 public class CarsTest {
@@ -20,7 +21,9 @@ public class CarsTest {
 
 	@Test
 	public void 전체_자동차들_움직임_테스트() {
-		Cars cars = new Cars("배카라,아스피");
+		MovingCondition movingCondition1 = () -> true;
+		MovingCondition movingCondition2 = () -> true;
+		Cars cars = new Cars(Arrays.asList(new Car("배카라", 0, movingCondition1), new Car("아스피", 0, movingCondition2)));
 		cars.moveCars();
 		cars.getCars().forEach(car -> assertThat(car.getPosition()).isEqualTo(1));
 	}
