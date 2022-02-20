@@ -18,7 +18,7 @@ public class Car implements Comparable<Car> {
     }
 
     public boolean hasSamePosition(final Car winnerCar) {
-        return carPosition.compareTo(winnerCar.carPosition) == 0;
+        return carPosition.equals(winnerCar.carPosition);
     }
 
     public CarDto changeToDto() {
