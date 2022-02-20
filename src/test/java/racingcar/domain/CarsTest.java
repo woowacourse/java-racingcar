@@ -46,7 +46,7 @@ class CarsTest {
 			new Car("honux", 1)
 		);
 		Cars cars = new Cars(carList);
-		assertThat(cars.getWinners().stream().map(Name::toString)).contains("crong");
+		assertThat(cars.getWinners()).contains("crong");
 	}
 
 	@Test
@@ -58,6 +58,6 @@ class CarsTest {
 			new Car("honux", 1)
 		);
 		Cars cars = new Cars(carList);
-		assertThat(cars.getWinners().stream().map(Name::toString)).contains("pobi", "crong");
+		assertThat(cars.getWinners().stream()).contains("pobi", "crong");
 	}
 }

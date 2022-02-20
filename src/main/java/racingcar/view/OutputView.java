@@ -25,9 +25,8 @@ public class OutputView {
 		System.out.println(RESULT_MESSAGE);
 	}
 
-	public static void printWinners(List<Name> winners) {
+	public static void printWinners(List<String> winners) {
 		System.out.println(winners.stream()
-			.map(Name::toString)
 			.collect(Collectors.joining(WINNER_JOIN_DELIMITER))
 			+ WINNER_MESSAGE
 		);
