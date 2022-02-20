@@ -3,6 +3,10 @@ package racingcarTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.MoveStrategy;
 import racingcarTest.domain.AlwaysMoveStrategy;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
@@ -10,6 +14,7 @@ import racingcarTest.domain.NoMoveStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,26 +26,16 @@ public class CarsTest {
         }
     }
 
-    @DisplayName("모든_Car_전진실행")
-    @Test
-    void cars_strategyReturnTrue_AllCarMove() {
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car("dog"));
-        carList.add(new Car("cat"));
-        carList.add(new Car("bird"));
-        carList.add(new Car("mouse"));
-
-        Cars cars = new Cars(carList);
-        cars.moveAll(new AlwaysMoveStrategy());
-
-        for (Car car : cars.getCars()) {
-            assertThat(car.getPosition()).isEqualTo(1);
-        }
+    private static Stream<Arguments> moveStrategyArguments() {
+        return Stream.of(
+                Arguments.of(new AlwaysMoveStrategy(), 1),
+                Arguments.of(new NoMoveStrategy(), 0));
     }
 
-    @DisplayName("모든_Car_전진하지_않음")
-    @Test
-    void cars_strategyReturnFalse_NoCarMove() {
+    @DisplayName("MoveStrategy에_따른_Cars_전진_실행_여부")
+    @ParameterizedTest
+    @MethodSource("moveStrategyArguments")
+    void moveAll_eachStrategy_makeAllCarMoveOrNot(MoveStrategy moveStrategy, int expectedPosition) {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car("dog"));
         carList.add(new Car("cat"));
@@ -48,10 +43,10 @@ public class CarsTest {
         carList.add(new Car("mouse"));
 
         Cars cars = new Cars(carList);
-        cars.moveAll(new NoMoveStrategy());
+        cars.moveAll(moveStrategy);
 
         for (Car car : cars.getCars()) {
-            assertThat(car.getPosition()).isEqualTo(0);
+            assertThat(car.getPosition()).isEqualTo(expectedPosition);
         }
     }
 
