@@ -1,54 +1,55 @@
 package racingcar.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
 import racingcar.domain.Cars;
 import racingcar.domain.RacingRecordDTO;
 import racingcar.domain.WinnerNames;
 import racingcar.util.BoundedRandomNumberGenerator;
 import racingcar.util.RandomNumberGenerator;
-import racingcar.validator.CarNameValidator;
-import racingcar.validator.TrialCountValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
-	private static final String CAR_NAME_DELIMITER = ",";
-	private static final int MAX_BOUND = 9;
-	private static final int MIN_BOUND = 0;
+    private static final int MAX_BOUND = 9;
+    private static final int MIN_BOUND = 0;
 
-	public final RandomNumberGenerator randomNumberGenerator;
+    public final RandomNumberGenerator randomNumberGenerator;
 
-	public RacingCarController() {
-		this.randomNumberGenerator = new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND);
-	}
+    public RacingCarController() {
+        this.randomNumberGenerator = new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND);
+    }
 
-	public void playGame() {
-		Cars cars = new Cars((getCarNames(InputView.inputCarNames())));
-		int trialCount = getTrialCount(InputView.inputTrials());
+    public void playGame() {
+        Cars cars = generateCars();
+        int trialCount = getTrialCount();
 
-		OutputView.printRacingRecordsMsg();
-		for (int i = 0; i < trialCount; i++) {
-			OutputView.printRacingRecords(new RacingRecordDTO(cars.executeCarRacing(randomNumberGenerator)));
-		}
+        OutputView.printRacingRecordsMsg();
+        for (int i = 0; i < trialCount; i++) {
+            cars.executeCarRacing(randomNumberGenerator);
+            OutputView.printRacingRecords(new RacingRecordDTO(cars.getRacingRecord()));
+        }
 
-		OutputView.printWinnerNames(cars.findWinners(new WinnerNames()));
-	}
+        OutputView.printWinnerNames(new WinnerNames().findWinners(cars.getCars()));
+    }
 
-	public List<String> getCarNames(String carNamesLine) {
-		CarNameValidator.checkCarNamesLine(carNamesLine);
-		return split(carNamesLine);
-	}
+    private int getTrialCount() {
+        int trialCount;
+        try {
+            trialCount = InputView.getTrialCount();
+        } catch (RuntimeException exception) {
+            System.out.println("[ERROR] " + exception.getMessage() + "\n");
+            return getTrialCount();
+        }
+        return trialCount;
+    }
 
-	public List<String> split(String carNamesLine) {
-		List<String> carNames = Arrays.asList(carNamesLine.split(CAR_NAME_DELIMITER, -1));
-		CarNameValidator.checkCarNames(carNames);
-		return carNames;
-	}
-
-	public int getTrialCount(String line) {
-		TrialCountValidator.checkTrialCountLine(line);
-		return Integer.parseInt(line);
-	}
+    private Cars generateCars() {
+        Cars cars;
+        try {
+            cars = new Cars(InputView.getCarNames());
+        } catch (RuntimeException exception) {
+            System.out.println("[ERROR] " + exception.getMessage() + "\n");
+            return generateCars();
+        }
+        return cars;
+    }
 }
