@@ -2,6 +2,7 @@ package racingcar.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,12 +14,13 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.dto.CarResponse;
 import racingcar.dto.CarsResponse;
+import racingcar.dto.RacingRecord;
 
 class OutputViewTest extends ConsoleTest {
 
     private OutputView outputView;
     private static final String SAMPLE_WINNERS_MESSAGE = "pobi, seung, char가 최종 우승했습니다.\n";
-    private static final String SAMPLE_CAR_POSITION = "pobi : -\nseung : -\nchar : -\n\n";
+    private static final String SAMPLE_CAR_POSITION = "실행 결과\npobi : -\nseung : -\nchar : -\n\n";
 
     @DisplayName("우승자 출력이 정상적인지 확인")
     @Test
@@ -41,8 +43,16 @@ class OutputViewTest extends ConsoleTest {
         String[] input = {"pobi", "seung", "char"};
         Cars cars = Cars.create(input);
         cars.move(() -> 1);
-        CarsResponse carsDto = new CarsResponse(cars);
-        outputView.printCarsPosition(carsDto);
+
+        List<RacingRecord> racingRecords = getRacingRecords(cars);
+        outputView.printRacingRecords(racingRecords);
         assertThat(outputStream.toString()).hasToString(SAMPLE_CAR_POSITION);
+    }
+
+    private List<RacingRecord> getRacingRecords(Cars cars) {
+        CarsResponse carsDto = new CarsResponse(cars);
+        List<RacingRecord> racingRecords = new ArrayList<>();
+        racingRecords.add(new RacingRecord(carsDto));
+        return racingRecords;
     }
 }

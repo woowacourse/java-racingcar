@@ -1,9 +1,10 @@
 package racingcar.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import racingcar.dto.RacingRecord;
 import racingcar.dto.CarResponse;
-import racingcar.dto.CarsResponse;
 
 public class OutputView {
 
@@ -15,18 +16,25 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printCarsPosition(CarsResponse cars) {
-        cars.getCars().forEach(this::printCarPosition);
+    public void printRacingRecords(List<RacingRecord> racingRecords) {
+        printProcessPrompt();
+        racingRecords.forEach(this::printRacingRecord);
+    }
+
+    private void printRacingRecord(RacingRecord racingRecord) {
+        Map<String, Integer> result = racingRecord.getRacingRecord();
+        result.forEach(this::printCarPosition);
         System.out.println();
     }
 
-    private void printCarPosition(CarResponse car) {
-        System.out.print(car.getName() + CAR_DELIMITER);
-        for (int i = 0; i < car.getPosition(); i++) {
+    private void printCarPosition(String carName, int position) {
+        System.out.print(carName + CAR_DELIMITER);
+        for (int i = 0; i < position; i++) {
             System.out.print(CAR_PROGRESS);
         }
         System.out.println();
     }
+
 
     public void printWinners(List<CarResponse> carList) {
         List<String> nameList = toNames(carList);

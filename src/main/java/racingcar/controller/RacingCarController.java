@@ -1,5 +1,8 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import racingcar.dto.RacingRecord;
 import racingcar.dto.CarsResponse;
 import racingcar.service.RacingCarService;
 import racingcar.view.InputView;
@@ -21,11 +24,12 @@ public class RacingCarController {
     }
 
     private void startRacing(RacingCarService service) {
-        outputView.printProcessPrompt();
+        List<RacingRecord> racingRecords = new ArrayList<>();
         while (!service.isEnd()) {
             CarsResponse result = service.run();
-            outputView.printCarsPosition(result);
+            racingRecords.add(new RacingRecord(result));
         }
+        outputView.printRacingRecords(racingRecords);
         outputView.printWinners(service.getWinners());
     }
 
