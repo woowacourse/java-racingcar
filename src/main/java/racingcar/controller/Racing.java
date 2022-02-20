@@ -26,7 +26,7 @@ public class Racing {
     }
 
     private void enrollCars() {
-        String[] carNames = inputView.requestCarNames().split(",");
+        String[] carNames = inputView.requestCarNames();
         for (String carName : carNames) {
             Car car = new Car(carName);
             participants.participateInRacing(car);
