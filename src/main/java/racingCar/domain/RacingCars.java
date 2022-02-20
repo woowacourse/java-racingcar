@@ -30,7 +30,7 @@ public class RacingCars {
 	}
 
 	private boolean isRandomOverProbability() {
-		return ((int)(Math.random() * 10) - 1) >= GO_OR_NOT;
+		return ((int)(Math.random() * 10)) >= GO_OR_NOT;
 	}
 
 	public List<Car> findWinner() {
