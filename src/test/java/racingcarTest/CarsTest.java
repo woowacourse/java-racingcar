@@ -3,10 +3,10 @@ package racingcarTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.AllMoveStrategy;
+import racingcarTest.domain.AllMoveStrategy;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.NoMoveStrategy;
+import racingcarTest.domain.NoMoveStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
