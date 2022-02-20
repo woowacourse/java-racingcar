@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
@@ -28,5 +29,17 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> InputValidator.checkTrialCount(trial))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("시도 횟수가 음수나 0이 될 수 없습니다.");
+    }
+
+    @Test
+    public void 시도_횟수_정상_입력_테스트() {
+        boolean isCleanInput = true;
+        try {
+            InputValidator.checkTrialCount("5");
+        } catch (RuntimeException exception) {
+            isCleanInput = false;
+        }
+
+        assertThat(isCleanInput).isTrue();
     }
 }
