@@ -1,48 +1,50 @@
 package racingcar.controller;
 
+import static racingcar.constants.SystemConstants.DELIMITER_COMMA;
+import static racingcar.constants.output.ErrorOutputMessages.ERROR_NOT_INTEGER;
+
+import java.util.List;
 import racingcar.domain.Car;
+import racingcar.domain.MoveStrategy;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.List;
-
-import static racingcar.util.ParseUtils.toInt;
-import static racingcar.util.SplitUtils.splitByComma;
-import static racingcar.util.ValidatorUtils.validateNoDuplicates;
-import static racingcar.util.ValidatorUtils.validatePositiveInt;
 
 public class GameController {
 
     private RacingGame racingGame;
 
-    public void run() {
-        initGame();
+    public void run(MoveStrategy moveStrategy) {
+        initGame(moveStrategy);
         playGame();
         printGameResult();
     }
 
-    private void initGame() {
-        String[] carNames = requestCarNamesInput();
-        int totalRounds = requestTotalRoundsInput();
+    private void initGame(MoveStrategy moveStrategy) {
+        String[] carNames = requestCarNames();
+        int totalRounds = requestTotalRounds();
 
-        racingGame = new RacingGame(carNames, totalRounds);
+        racingGame = new RacingGame(carNames, totalRounds, moveStrategy);
     }
 
-    private String[] requestCarNamesInput() {
-        String carNamesInput = InputView.requestCarNameInput();
-        String[] carNames = splitByComma(carNamesInput);
-        validateNoDuplicates(carNames);
-
-        return carNames;
+    private String[] requestCarNames() {
+        return InputView.requestCarNameInput().split(DELIMITER_COMMA);
     }
 
-    private int requestTotalRoundsInput() {
-        String totalRoundsInput = InputView.requestTotalRoundsInput();
-        int totalRoundsNum = toInt(totalRoundsInput);
-        validatePositiveInt(totalRoundsNum);
+    private int requestTotalRounds() {
+        return toInt(InputView.requestTotalRoundsInput());
+    }
 
-        return totalRoundsNum;
+    private int toInt(String inputValue) {
+        int totalRounds;
+
+        try {
+            totalRounds = Integer.parseInt(inputValue);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ERROR_NOT_INTEGER);
+        }
+
+        return totalRounds;
     }
 
     private void playGame() {

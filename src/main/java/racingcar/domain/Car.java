@@ -1,23 +1,25 @@
 package racingcar.domain;
 
-import static racingcar.constants.GameConstants.CAN_GO_VALUE;
-import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.constants.GameConstants.INITIAL_POSITION;
+import static racingcar.constants.SystemConstants.NUMBER_ONE_FOR_INCREMENT;
 import static racingcar.util.ValidatorUtils.validateCarName;
 
-public class Car {
+import java.util.Objects;
+
+public class Car implements Comparable<Car> {
 
     private final String name;
     private int position;
 
     public Car(String name) {
         validateCarName(name);
+
         this.name = name;
         this.position = INITIAL_POSITION;
     }
 
-    public void goOrNot(int number) {
-        if (canGo(number)) {
+    public void goOrNot(MoveStrategy moveStrategy) {
+        if (moveStrategy.canGo()) {
             go();
         }
     }
@@ -26,8 +28,12 @@ public class Car {
         position += NUMBER_ONE_FOR_INCREMENT;
     }
 
-    private boolean canGo(int number) {
-        return number >= CAN_GO_VALUE;
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
+
+    public boolean isSamePosition(Car car) {
+        return this.position == car.position;
     }
 
     public String getName() {
@@ -36,5 +42,35 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return Integer.compare(this.position, car.position);
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return position == car.position && Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }

@@ -6,5 +6,5 @@ import static org.junit.jupiter.params.ParameterizedTest.DISPLAY_NAME_PLACEHOLDE
 public class TestConstants {
 
     public static final String PARAMETERIZED_TEST_DISPLAY_FORMAT =
-        DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
+            DISPLAY_NAME_PLACEHOLDER + " [" + ARGUMENTS_PLACEHOLDER + "]";
 }

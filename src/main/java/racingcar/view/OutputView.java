@@ -1,19 +1,21 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
-
-import java.util.List;
-import java.util.StringJoiner;
-
 import static racingcar.constants.output.ResultOutputMessages.RESULT_GAME_WINNER_TEXT;
+import static racingcar.constants.output.ResultOutputMessages.RESULT_ROUND_TEXT;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_CAR_INFO_DELIMITER;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_DISTANCE;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_EMPTY_LINE;
-import static racingcar.constants.output.ResultOutputMessages.RESULT_ROUND_TEXT;
 import static racingcar.constants.output.SymbolOutputMessages.SYMBOL_WINNERS_JOINER_DELIMITER;
-import static racingcar.constants.SystemConstants.NUMBER_ZERO;
+
+import java.util.List;
+import java.util.StringJoiner;
+import racingcar.domain.Car;
 
 public class OutputView {
+
+    private OutputView() {
+        throw new AssertionError();
+    }
 
     public static void printRoundResultText() {
         print(RESULT_ROUND_TEXT);
@@ -31,7 +33,7 @@ public class OutputView {
 
         sb.append(car.getName()).append(SYMBOL_CAR_INFO_DELIMITER);
 
-        for (int i = NUMBER_ZERO; i < car.getPosition(); i++) {
+        for (int i = 0; i < car.getPosition(); i++) {
             sb.append(SYMBOL_DISTANCE);
         }
 

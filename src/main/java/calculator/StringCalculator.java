@@ -6,10 +6,10 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    public static final String CUSTOM_SEPARATOR_REGEX = "//(.)\n(.*)";
+    private static final String CUSTOM_SEPARATOR_REGEX = "//(.)\n(.*)";
     private static final String DEFAULT_SEPARATORS = ",|:";
-    public static final String KEY_OPERANDS = "OPERANDS";
-    public static final String KEY_SEPARATORS = "SEPARATORS";
+    private static final String KEY_OPERANDS = "OPERANDS";
+    private static final String KEY_SEPARATORS = "SEPARATORS";
 
     public static int splitAndSum(String rawInput) {
         if (isNullOrEmpty(rawInput)) {
