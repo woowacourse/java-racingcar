@@ -1,6 +1,8 @@
 package racingcar.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import racingcar.model.Car;
 import racingcar.model.Participants;
 import racingcar.model.PlayTime;
 import racingcar.view.InputView;
@@ -20,7 +22,9 @@ public class Racing {
         Participants participants = enrollCars();
         PlayTime playTime = new PlayTime(inputView.requestPlayTimes());
         startRacing(participants, playTime);
-        showRacingResult(participants.findRacingWinners());
+        List<String> racingWinnerNames = participants.findRacingWinners().stream()
+                .map(Car::getName).collect(Collectors.toList());
+        showRacingResult(racingWinnerNames);
     }
 
     private Participants enrollCars() {

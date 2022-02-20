@@ -34,11 +34,10 @@ public class Participants {
         return Collections.unmodifiableList(cars);
     }
 
-    public List<String> findRacingWinners() {
+    public List<Car> findRacingWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
-                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 

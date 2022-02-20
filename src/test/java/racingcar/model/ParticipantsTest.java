@@ -32,7 +32,7 @@ class ParticipantsTest {
     @Test
     public void findWinners() {
         participants.getParticipantCars().get(0).tryMove(5);
-        List<String> racingWinners = participants.findRacingWinners();
+        List<Car> racingWinners = participants.findRacingWinners();
         assertThat(racingWinners.size()).isEqualTo(1);
     }
 }
