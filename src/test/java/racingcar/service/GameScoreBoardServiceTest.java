@@ -2,7 +2,6 @@ package racingcar.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.score.ScoreBoard;
 
 import java.util.List;
 
@@ -28,9 +27,9 @@ public class GameScoreBoardServiceTest {
         String name = "범고래";
         List<CarDto> carDtos = List.of(new CarDto(name));
         gameScoreBoardService.addScoreBoard(round, carDtos);
-        List<ScoreBoard> scoreBoards = gameScoreBoardService.findScoreBoard();
-        ScoreBoard scoreBoard = scoreBoards.get(0);
-        assertThat(scoreBoard.getRound()).isEqualTo(1);
+        List<ScoreBoardDto> scoreBoards = gameScoreBoardService.findScoreBoard();
+        ScoreBoardDto scoreBoard = scoreBoards.get(0);
+        assertThat(scoreBoard.getScores().size()).isEqualTo(1);
     }
 
     @Test

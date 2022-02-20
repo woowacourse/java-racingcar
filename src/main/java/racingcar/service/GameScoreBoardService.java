@@ -1,8 +1,8 @@
 package racingcar.service;
 
 import racingcar.model.score.GameScoreBoard;
-import racingcar.model.score.ScoreBoard;
 import racingcar.service.converter.ScoreConverter;
+import racingcar.service.converter.ScoreDtoConverter;
 
 import java.util.List;
 
@@ -17,11 +17,11 @@ public class GameScoreBoardService {
         gameScoreBoard.add(round, ScoreConverter.of(carDtos));
     }
 
-    public List<ScoreBoard> findScoreBoard() {
-        return gameScoreBoard.getScoreBoards();
-    }
-
     public List<String> findWinners() {
         return gameScoreBoard.findWinners();
+    }
+
+    public List<ScoreBoardDto> findScoreBoard() {
+        return ScoreDtoConverter.of(gameScoreBoard.getScoreBoards());
     }
 }

@@ -1,8 +1,8 @@
 package racingcar.controller;
 
-import racingcar.model.score.ScoreBoard;
 import racingcar.service.CarService;
 import racingcar.service.GameScoreBoardService;
+import racingcar.service.ScoreBoardDto;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class CarController {
         }
     }
 
-    public List<ScoreBoard> findGameScoreBoard() {
+    public List<ScoreBoardDto> findGameScoreBoard() {
         return gameScoreBoardService.findScoreBoard();
     }
 

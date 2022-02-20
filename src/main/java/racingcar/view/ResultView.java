@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.model.score.Score;
-import racingcar.model.score.ScoreBoard;
+import racingcar.service.ScoreBoardDto;
+import racingcar.service.ScoreDto;
 
 import java.util.List;
 
@@ -12,15 +12,15 @@ public class ResultView {
     private static final String SUFFIX_PRINT_RESULT_CAR_NAME = " : ";
     private static final String CAR_POSITION_STATUS_EXPRESSION = "-";
 
-    public static void printGameResult(List<ScoreBoard> scoreBoards) {
+    public static void printGameResult(List<ScoreBoardDto> scoreBoards) {
         printBeforeGameResult();
-        for (ScoreBoard scoreBoard : scoreBoards) {
+        for (ScoreBoardDto scoreBoard : scoreBoards) {
             printScoreBoard(scoreBoard.getScores());
         }
     }
 
-    private static void printScoreBoard(List<Score> scores) {
-        for (Score score : scores) {
+    private static void printScoreBoard(List<ScoreDto> scores) {
+        for (ScoreDto score : scores) {
             System.out.println(score.getName() + SUFFIX_PRINT_RESULT_CAR_NAME
                     + CAR_POSITION_STATUS_EXPRESSION.repeat(score.getPoint()));
         }
