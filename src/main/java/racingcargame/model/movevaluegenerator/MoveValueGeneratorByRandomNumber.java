@@ -12,7 +12,8 @@ public class MoveValueGeneratorByRandomNumber implements MoveValueGenerator {
         this.numberGenerator = numberGenerator;
     }
 
-    public int getMoveValue() {
+    @Override
+    public int generateMoveValue() {
         int randomNumber = numberGenerator.generateNumber(MAX_BOUNDARY_NUMBER);
         if (randomNumber > NUMBER_MAKE_MOVE_POSSIBLE) {
             return 1;

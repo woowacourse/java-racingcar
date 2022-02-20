@@ -28,7 +28,7 @@ public class Cars {
     }
 
     public void moveCars(final MoveValueGenerator moveValueGenerator) {
-        cars.forEach(car -> car.moveCar(moveValueGenerator.getMoveValue()));
+        cars.forEach(car -> car.moveCar(moveValueGenerator.generateMoveValue()));
     }
 
     public List<CarDto> bringCarsInformation() {
