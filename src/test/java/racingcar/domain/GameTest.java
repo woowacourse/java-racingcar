@@ -12,14 +12,14 @@ public class GameTest {
     private Car forky;
     private Car kun;
     private Car pobi;
-    private Cars cars;
+    private List<Car> cars;
 
     @BeforeEach
     public void initialize_cars() {
         forky = new Car("forky");
         kun = new Car("kun");
         pobi = new Car("pobi");
-        cars = new Cars(List.of(forky, kun, pobi));
+        cars = List.of(forky, kun, pobi);
 
         forky.move(true);
     }

@@ -7,8 +7,8 @@ import racingcar.domain.strategy.MovePredicate;
 public class Game {
     private final Cars cars;
 
-    public Game(Cars cars) {
-        this.cars = cars;
+    public Game(List<Car> cars) {
+        this.cars = new Cars(cars);
     }
 
     public Cars play(MovePredicate movePredicate) {
@@ -18,5 +18,9 @@ public class Game {
 
     public List<Car> getWinners() {
         return cars.matchPosition(cars.getMaxPosition());
+    }
+
+    public Cars getCars() {
+        return cars;
     }
 }

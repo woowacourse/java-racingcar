@@ -3,7 +3,6 @@ package racingcar;
 import java.util.List;
 
 import racingcar.domain.Car;
-import racingcar.domain.Cars;
 import racingcar.domain.Game;
 import racingcar.domain.dto.CarDto;
 import racingcar.domain.strategy.MovePredicate;
@@ -14,7 +13,7 @@ import racingcar.view.OutputView;
 public class GameController {
 
     public static void run() {
-        Game game = new Game(new Cars(CarFactory.of(InputView.inputCarNames())));
+        Game game = new Game(CarFactory.of(InputView.inputCarNames()));
         final int count = InputView.inputGameCount();
         play(game, count);
         showWinner(game.getWinners());
@@ -23,12 +22,13 @@ public class GameController {
     private static void play(Game game, int count) {
         OutputView.printGameResultTitle();
         for (int i = 0; i < count; i++) {
-            showResult(game.play(new MovePredicate()));
+            game.play(new MovePredicate());
+            showResult(game);
         }
     }
 
-    private static void showResult(Cars cars) {
-        OutputView.printCarPosition(CarDto.of(cars));
+    private static void showResult(Game game) {
+        OutputView.printCarPosition(CarDto.of(game.getCars()));
         OutputView.printBlankLine();
     }
 
