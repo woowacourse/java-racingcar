@@ -1,10 +1,8 @@
-package racingcar.servicetest;
+package racingcar.service;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
-import racingcar.service.CheckingService;
 
 public class CheckingServiceTest {
 	@Test

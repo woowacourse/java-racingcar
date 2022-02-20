@@ -1,4 +1,4 @@
-package racingcar.modeltest;
+package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
 import racingcar.service.RandomNumberMovingCondition;
 
 public class CarsTest {
