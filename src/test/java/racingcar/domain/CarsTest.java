@@ -11,15 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SuppressWarnings("NonAsciiCharacters")
 class CarsTest {
 
-    private static final int WINNER_INDEX = 0;
-
     private Cars cars;
     private int size;
     private int winnerPosition;
 
     @BeforeEach
     void setUpCars() {
-        String[] carNames = {"dwoo,woo,te,ch"};
+        String[] carNames = {"dwoo","woo","te","ch"};
         cars = new Cars(carNames);
         size = cars.getSize();
         winnerPosition = 0;
@@ -31,7 +29,7 @@ class CarsTest {
         //when
         winnerPosition = progressWithAllCars(size, cars, winnerPosition);
 
-        cars.getCar(WINNER_INDEX).progress(() -> true);
+        cars.getCar(0).progress(() -> true);
         winnerPosition++;
 
         //then
@@ -39,7 +37,7 @@ class CarsTest {
 
         assertThat(winner.size()).isEqualTo(1);
         assertThat(winner.get(0)).isEqualTo("dwoo");
-        assertThat(winnerPosition).isEqualTo(cars.getCar(WINNER_INDEX).getPosition());
+        assertThat(winnerPosition).isEqualTo(cars.getCar(0).getPosition());
     }
 
     @Test
@@ -52,7 +50,7 @@ class CarsTest {
         List<String> winner = cars.getWinner(winnerPosition);
 
         assertThat(winner.size()).isEqualTo(4);
-        assertThat(winnerPosition).isEqualTo(cars.getCar(WINNER_INDEX).getPosition());
+        assertThat(winnerPosition).isEqualTo(cars.getCar(0).getPosition());
     }
 
     private int progressWithAllCars(int size, Cars cars, int winnerPosition) {
