@@ -1,7 +1,8 @@
 package racingcar.controller;
 
+import java.util.List;
+
 import racingcar.models.RacingGame;
-import racingcar.utils.RacingGameMessage;
 import racingcar.views.Input;
 import racingcar.views.Output;
 
@@ -9,10 +10,9 @@ public class Racing {
 	private RacingGame racingGame;
 
 	public void startRacing() {
-		final String carNames = Input.inputValidNames();
+		final List<String> carNames = Input.inputValidNames();
 		final int repeats = Input.inputValidRepeats();
-		racingGame = new RacingGame(carNames, repeats,
-			RacingGameMessage.CAR_NAME_DISTRIBUTOR);
+		racingGame = new RacingGame(carNames, repeats);
 
 		Output.printResultMessage();
 		while (!racingGame.isEnd()) {

@@ -9,9 +9,8 @@ public class RacingGame {
 	private final CarRepository carRepository;
 	private int repeats;
 
-	public RacingGame(final String names, final int repeats,
-			final String nameDistributor) {
-		carRepository = new CarRepository(names, nameDistributor);
+	public RacingGame(final List<String> names, final int repeats ) {
+		carRepository = new CarRepository(names);
 		this.repeats = repeats;
 	}
 

@@ -10,11 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.utils.RacingGameMessage;
 
 class CarRepositoryTest {
 
-	final CarRepository carRepository = new CarRepository("a,b,c", RacingGameMessage.CAR_NAME_DISTRIBUTOR);
+	final CarRepository carRepository = new CarRepository(Arrays.asList("a", "b", "c"));
 
 	@BeforeEach
 	void startThisTurn() {
