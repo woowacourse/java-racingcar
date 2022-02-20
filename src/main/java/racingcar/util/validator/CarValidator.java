@@ -3,7 +3,7 @@ package racingcar.util.validator;
 public class CarValidator {
 
 	private static final String INVALID_CAR_NAME_ERROR_MESSAGE = "자동차의 이름은 1~5글자여야 합니다.";
-	private static final String INVALID_POSITION_ERROR_MESSAGE = "자동차의 이름은 1~5글자여야 합니다.";
+	private static final String INVALID_POSITION_ERROR_MESSAGE = "자동차 위치는 0 이상이여야 합니다.";
 
 	private static final int NAME_LENGTH_LIMIT = 5;
 	private static final int MINIMUM_POSITION = 0;
@@ -23,5 +23,4 @@ public class CarValidator {
 			throw new IllegalArgumentException(INVALID_POSITION_ERROR_MESSAGE);
 		}
 	}
-
 }
