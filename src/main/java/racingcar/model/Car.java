@@ -20,7 +20,7 @@ public class Car {
         }
     }
 
-    private boolean isMovable(final RandomUtil randomNumberGenerator) {
+    public boolean isMovable(final RandomUtil randomNumberGenerator) {
         return randomNumberGenerator.generate() >= STANDARD;
     }
 

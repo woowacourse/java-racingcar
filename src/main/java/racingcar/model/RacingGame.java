@@ -21,4 +21,8 @@ public class RacingGame {
     public Cars getCars() {
         return cars;
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }

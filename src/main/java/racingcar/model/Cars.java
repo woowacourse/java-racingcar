@@ -8,13 +8,22 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    private static final int DEFAULT_POSITION = 0;
+
     private final List<Car> cars;
 
-    public Cars() {
+    public Cars(String[] carNames) {
         this.cars = new ArrayList<>();
+        insertCarFromCarNames(carNames);
     }
 
-    public void insertCar(final Car car) {
+    private void insertCarFromCarNames(String[] carNames) {
+        for (String carName : carNames) {
+            insertCar(new Car(carName, DEFAULT_POSITION));
+        }
+    }
+
+    private void insertCar(final Car car) {
         cars.add(car);
     }
 
