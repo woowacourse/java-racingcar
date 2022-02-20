@@ -31,8 +31,9 @@ public class GameController {
 
     private void runRaceTryTimes(Cars cars, int tryNum) {
         Output.printStartRace();
+        RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         for (int i = 0; i < tryNum; i++) {
-            cars.moveAll(new RandomMoveStrategy());
+            cars.moveAll(randomMoveStrategy);
             Output.printCarsStatus(cars.getCars());
             Output.printBlankLine();
         }
