@@ -4,6 +4,7 @@ import java.sql.Array;
 import racingcar.domain.Car;
 
 import java.util.List;
+import racingcar.domain.Cars;
 
 public class Output {
     private static final String SPLIT_DELIM = ", ";
@@ -12,8 +13,8 @@ public class Output {
     private static final String INFO_BETWEEN_WORD = " : ";
     private static final String PRINT_RESULT = "실행 결과";
 
-    public static void printCarsRace(List<Car> cars) {
-        for (Car car : cars) {
+    public static void printCarsRace(Cars cars) {
+        for (Car car : cars.getCars()) {
             printCarRace(car);
         }
         System.out.println();
