@@ -1,9 +1,9 @@
 package racingcar.view;
 
-import racingcar.domain.CarDTO;
 import racingcar.domain.ExecutionResult;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -19,10 +19,10 @@ public class OutputView {
         }
     }
 
-    private static void printExecutionResult(List<CarDTO> cars) {
-        for (CarDTO car : cars) {
-            String positionSign = SIGN_OF_POSITION.repeat(car.getPosition());
-            System.out.println(car.getName() + " : " + positionSign);
+    private static void printExecutionResult(Map<String, Integer> cars) {
+        for (String name : cars.keySet()) {
+            String positionSign = SIGN_OF_POSITION.repeat(cars.get(name));
+            System.out.println(name + " : " + positionSign);
         }
         System.out.println();
     }

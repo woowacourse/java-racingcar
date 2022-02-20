@@ -22,7 +22,7 @@ public class RacingGame {
 
         while (totalAttempt-- > 0) {
             cars.move();
-            totalExecutionResult.add(new ExecutionResult(cars));
+            totalExecutionResult.add(cars.generateExecutionResult());
         }
 
         return totalExecutionResult;

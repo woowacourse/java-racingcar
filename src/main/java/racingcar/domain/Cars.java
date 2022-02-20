@@ -12,9 +12,6 @@ public class Cars {
 
     private Set<Car> cars = new HashSet<>();
 
-    public Cars() {
-    }
-
     public Cars(String[] names) {
         validateDuplication(names);
 
@@ -38,6 +35,10 @@ public class Cars {
         }
     }
 
+    public ExecutionResult generateExecutionResult() {
+        return new ExecutionResult(this.cars);
+    }
+
     public List<String> selectWinners() {
         int maxPosition = findMaxPosition();
 
@@ -47,8 +48,11 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Set<Car> getCars() {
-        return this.cars;
+    private int findMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
     private void validateDuplication(String[] carNames) {
@@ -57,13 +61,6 @@ public class Cars {
         if (set.size() < carNames.length) {
             throw new IllegalArgumentException(DUPLICATED);
         }
-    }
-
-    private int findMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
     }
 
 }

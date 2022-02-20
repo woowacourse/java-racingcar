@@ -1,18 +1,18 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.Map;
 
 public class ExecutionResult {
-    List<CarDTO> executionResult = new ArrayList<>();
+    Map<String, Integer> executionResult;
 
-    public ExecutionResult(Cars cars) {
-        for (Car car : cars.getCars()) {
-            executionResult.add(new CarDTO(car));
+    public ExecutionResult(Set<Car> cars) {
+        for (Car car : cars) {
+            executionResult.put(car.getName(), car.getPosition());
         }
     }
 
-    public List<CarDTO> getExecutionResult() {
+    public Map<String, Integer> getExecutionResult() {
         return this.executionResult;
     }
 
