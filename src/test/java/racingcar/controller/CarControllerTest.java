@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import racingcar.domain.Car;
+import racingcar.domain.RacingGame;
 import racingcar.service.CarService;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -20,6 +21,7 @@ public class CarControllerTest {
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
     List<Car> cars = new ArrayList<>();
+    RacingGame racingGame = new RacingGame();
 
     @BeforeAll
     public void setUpStreams() {
@@ -51,7 +53,7 @@ public class CarControllerTest {
 
     @Test
     void 우승자_검증() {
-        CarService.findFinalWinner(cars);
+        CarService.findFinalWinner(cars, racingGame);
         assertThat(outContent.toString()).contains("three가 최종 우승했습니다.");
     }
 }

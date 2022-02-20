@@ -1,11 +1,9 @@
 package racingcar.service;
 
-import java.util.Random;
 import racingcar.domain.Car;
+import racingcar.domain.RacingGame;
 import racingcar.util.RandomUtil;
 import racingcar.view.Output;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
@@ -22,10 +20,9 @@ public class CarService {
         Output.printCarsRace(cars);
     }
 
-    public static void findFinalWinner(final List<Car> cars) {
+    public static void findFinalWinner(final List<Car> cars, RacingGame racingGame) {
         int maxPosition = findMaxPosition(cars);
-        List<String> winnerList = getWinnerList(cars, maxPosition);
-        Output.printWinner(winnerList);
+        Output.printWinner(getWinners(cars, maxPosition, racingGame));
     }
 
     private static void moveCar(final List<Car> cars) {
@@ -34,16 +31,14 @@ public class CarService {
         }
     }
 
-    private static List<String> getWinnerList(final List<Car> cars, final int maxPosition) {
-        List<String> winnerList = new ArrayList<>();
-
+    private static List<String> getWinners(final List<Car> cars, final int maxPosition, RacingGame racingGame) {
         for (Car car : cars) {
             if (car.checkIfPositionSame(maxPosition)) {
-                winnerList.add(car.getName());
+                racingGame.addWinner(car.getName());
             }
         }
 
-        return winnerList;
+        return racingGame.getWinners();
     }
 
     private static int findMaxPosition(final List<Car> cars) {
