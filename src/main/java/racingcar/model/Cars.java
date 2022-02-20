@@ -20,10 +20,14 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars initCars(String carNames) {
-        return new Cars(splitCars(carNames).stream()
-                .map(Car::new)
-                .collect(Collectors.toList()));
+//    public static Cars initCars(String carNames) {
+//        return new Cars(splitCars(carNames).stream()
+//                .map(Car::new)
+//                .collect(Collectors.toList()));
+//    }
+
+    public static Cars initCars(List<Car> cars) {
+        return new Cars(cars);
     }
 
     public static List<String> splitCars(String carNames) {

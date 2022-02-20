@@ -1,8 +1,11 @@
 package racingcar.controller;
 
+import racingcar.model.Car;
 import racingcar.model.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.util.List;
 
 public class GameController {
     private RacingGame racingGame;
@@ -14,9 +17,9 @@ public class GameController {
     }
 
     private void initGame() {
-        String carNames = InputView.inputCarNames();
+        List<Car> cars = InputView.inputCars();
         String inputTrialNum = InputView.inputTrialNum();
-        racingGame = RacingGame.createRacingGame(carNames, inputTrialNum);
+        racingGame = RacingGame.createRacingGame(cars, inputTrialNum);
     }
 
     private void runGame() {
