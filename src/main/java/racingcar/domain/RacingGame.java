@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RacingGame {
@@ -46,6 +47,6 @@ public class RacingGame {
     }
 
     public List<Car> getCarList() {
-        return cars.getCarList();
+        return new ArrayList<>(cars.getCarList());
     }
 }
