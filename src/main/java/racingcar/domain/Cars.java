@@ -13,7 +13,8 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars fromNames(Names names) {
+    public static Cars fromInput(List<String> InputNames) {
+        Names names = Names.fromInput(InputNames);
         return new Cars(names.getNames().stream()
                 .map(Car::fromName)
                 .collect(Collectors.toList()));
