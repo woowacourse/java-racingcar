@@ -18,15 +18,7 @@ public class GameLog {
     }
 
     public void writeLog(int currentTryCount, Cars currentCars) {
-        gameLog.put(currentTryCount, getLogCarList(currentCars));
-    }
-
-    private List<CarForLog> getLogCarList(Cars cars) {
-        List<CarForLog> carForLogList = new ArrayList<>();
-        for (Car car : cars.getCars()) {
-            carForLogList.add(new CarForLog(car.getName(), car.getPosition()));
-        }
-        return carForLogList;
+        gameLog.put(currentTryCount, currentCars.generateCarForLogList());
     }
 
     public List<CarForLog> getSingleLog(int tryCount) {

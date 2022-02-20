@@ -2,7 +2,9 @@ package racingcar.domain;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.ArrayList;
 import java.util.List;
+import racingcar.domain.log.CarForLog;
 import racingcar.domain.random.RandomNumberGenerator;
 
 public class Cars {
@@ -27,7 +29,11 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<CarForLog> generateCarForLogList() {
+        List<CarForLog> carForLogList = new ArrayList<>();
+        for (Car car : cars) {
+            carForLogList.add(new CarForLog(car.getName(), car.getPosition()));
+        }
+        return carForLogList;
     }
 }

@@ -28,13 +28,13 @@ class CarsTest {
     @Test
     @DisplayName("게임에_참여한_자동차들_이동")
     public void move() {
-        assertThat(cars.getCars().stream()
+        assertThat(cars.getCarForLog().stream()
                 .filter(car -> car.getName() == CAR_1_NAME)
                 .findFirst()
                 .orElseThrow()
                 .getPosition())
                 .isEqualTo(2);
-        assertThat(cars.getCars().stream()
+        assertThat(cars.getCarForLog().stream()
                 .filter(car -> car.getName() == CAR_2_NAME)
                 .findFirst()
                 .orElseThrow()
