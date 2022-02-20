@@ -24,7 +24,7 @@ public class RacingGame {
         this.tryCount--;
     }
 
-    public boolean isEnd() {
+    private boolean isEnd() {
         return tryCount == 0;
     }
 
