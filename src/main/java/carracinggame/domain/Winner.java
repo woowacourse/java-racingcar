@@ -5,13 +5,14 @@ import java.util.List;
 
 public class Winner {
 
+    public static final int FIRST_CAR_INDEX = 0;
     private int maxPosition = Integer.MIN_VALUE;
 
     public List<Car> findWinner(List<Car> cars) {
         List<Car> winners = new ArrayList<>();
-        winners.add(cars.get(0));
-        for (Car car : cars) {
-            winners = updateWinner(car, winners);
+        winners.add(cars.get(FIRST_CAR_INDEX));
+        for (int i = FIRST_CAR_INDEX + 1; i < cars.size(); i++) {
+            winners = updateWinner(cars.get(i), winners);
         }
         return winners;
     }
