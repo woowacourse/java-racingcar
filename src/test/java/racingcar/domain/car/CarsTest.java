@@ -16,8 +16,8 @@ import racingcar.domain.car.strategy.CustomMoveStrategy;
 import racingcar.domain.car.strategy.MoveStrategy;
 import racingcar.domain.car.strategy.TrueMoveStrategy;
 import racingcar.dto.CarStatusDto;
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.car.CarNameExceptionStatus;
+import racingcar.exception.car.CarNameExceptionStatus;
+import racingcar.exception.car.WrongCarNameException;
 
 class CarsTest {
 
@@ -29,7 +29,7 @@ class CarsTest {
     @MethodSource(PROVIDER_PATH + "provideForDuplicateExceptionTest")
     void carNamesDuplicatedExceptionTest(final List<String> names) {
         assertThatThrownBy(() -> new Cars(names, TRUE_MOVE_STRATEGY))
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongCarNameException.class)
                 .hasMessageContaining(CarNameExceptionStatus.NAME_IS_DUPLICATED.getMessage());
     }
 

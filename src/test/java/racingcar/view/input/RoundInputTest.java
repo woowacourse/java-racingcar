@@ -8,8 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.AppConfig;
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.round.RoundCountExceptionStatus;
+import racingcar.exception.round.RoundCountExceptionStatus;
+import racingcar.exception.round.WrongRoundCountException;
 import racingcar.view.input.reader.CustomReader;
 
 class RoundInputTest {
@@ -26,7 +26,7 @@ class RoundInputTest {
     void roundNotNumericExceptionTest(final String inputValue) {
         customReader.initText(inputValue);
         assertThatThrownBy(inputView::requestRoundCount)
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongRoundCountException.class)
                 .hasMessageContaining(RoundCountExceptionStatus.ROUND_IS_NOT_NUMERIC.getMessage());
     }
 

@@ -14,9 +14,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.AppConfig;
 import racingcar.dto.CarStatusDto;
 import racingcar.dto.RoundDto;
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.car.CarNameExceptionStatus;
-import racingcar.exception.status.round.RoundCountExceptionStatus;
+import racingcar.exception.car.WrongCarNameException;
+import racingcar.exception.car.CarNameExceptionStatus;
+import racingcar.exception.round.RoundCountExceptionStatus;
+import racingcar.exception.round.WrongRoundCountException;
 
 class GameServiceInitTest {
 
@@ -28,7 +29,7 @@ class GameServiceInitTest {
 
     private void initCarNamesExceptionTest(final List<String> carNames, final String errorMessage) {
         assertThatThrownBy(() -> gameService.initCarNames(carNames))
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongCarNameException.class)
                 .hasMessageContaining(errorMessage);
     }
 
@@ -60,7 +61,7 @@ class GameServiceInitTest {
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideForInitCarNamesDuplicatedExceptionTest")
     void initCarNamesDuplicatedExceptionTest(final List<String> carNames) {
-        final String errorMessage = CarNameExceptionStatus.NAME_IS_TOO_LONG.getMessage();
+        final String errorMessage = CarNameExceptionStatus.NAME_IS_DUPLICATED.getMessage();
         initCarNamesExceptionTest(carNames, errorMessage);
     }
 
@@ -96,7 +97,7 @@ class GameServiceInitTest {
     @ValueSource(ints = {0, -1, -2,- 3})
     void initRoundNotPositiveExceptionTest(final int roundCount) {
         assertThatThrownBy(() -> gameService.initRound(roundCount))
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongRoundCountException.class)
                 .hasMessageContaining(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE.getMessage());
     }
 

@@ -1,7 +1,7 @@
-package racingcar.exception.status.car;
+package racingcar.exception.car;
 
 import racingcar.domain.car.condition.NameLength;
-import racingcar.exception.status.ExceptionStatus;
+import racingcar.exception.ExceptionStatus;
 
 public enum CarNameExceptionStatus implements ExceptionStatus {
 
