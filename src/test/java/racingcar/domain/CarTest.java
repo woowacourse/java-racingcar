@@ -47,7 +47,7 @@ class CarTest {
 		Car carPositionZero = new Car("zero"); // position: 0
 		Car carDriveTrue = new Car("drive");
 
-		Movable movable = () -> 4;
+		Movable movable = () -> true;
 
 		carDriveTrue.drive(movable);
 
@@ -60,7 +60,7 @@ class CarTest {
 		Car carPositionZero = new Car("zero"); // position: 0
 		Car carDriveFalse = new Car("drive");
 
-		Movable movable = () -> 3;
+		Movable movable = () -> false;
 
 		carDriveFalse.drive(movable);
 

@@ -24,7 +24,7 @@ public class Cars {
 	}
 
 	public void play(RoundResult roundResult) {
-		Movable movable = new MovableImpl();
+		Movable movable = new DecisionToMoving();
 		for (Car car : cars) {
 			car.drive(movable);
 			roundResult.save(car.getName(), car.getPosition());
