@@ -38,6 +38,6 @@ public class CarService {
 
 
     private void addScoreBoard(int round, List<CarDto> cars) {
-        gameScoreBoard.add(new ScoreBoard(round, ScoreConverter.of(cars)));
+        gameScoreBoard.add(round, ScoreConverter.of(cars));
     }
 }

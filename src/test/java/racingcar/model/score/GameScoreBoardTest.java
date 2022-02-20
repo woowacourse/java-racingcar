@@ -15,7 +15,7 @@ public class GameScoreBoardTest {
         int round = 1;
         List<Score> scores = Arrays.asList(new Score("범고래", 0), new Score("소주캉", 0));
         GameScoreBoard gameScoreBoard = new GameScoreBoard();
-        gameScoreBoard.add(new ScoreBoard(round, scores));
+        gameScoreBoard.add(round, scores);
         assertThat(gameScoreBoard.getScoreBoards().size()).isEqualTo(1);
     }
 
@@ -25,7 +25,7 @@ public class GameScoreBoardTest {
         int round = 1;
         List<Score> scores = Arrays.asList(new Score("범고래", 2), new Score("소주캉", 0));
         GameScoreBoard gameScoreBoard = new GameScoreBoard();
-        gameScoreBoard.add(new ScoreBoard(round, scores));
+        gameScoreBoard.add(round, scores);
         assertThat(gameScoreBoard.findWinners()).isEqualTo(List.of("범고래"));
     }
 }

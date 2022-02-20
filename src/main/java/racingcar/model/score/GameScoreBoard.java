@@ -6,8 +6,8 @@ import java.util.List;
 public class GameScoreBoard {
     private final List<ScoreBoard> scoreBoards = new ArrayList<>();
 
-    public void add(ScoreBoard scoreBoard) {
-        scoreBoards.add(scoreBoard);
+    public void add(int round, List<Score> score) {
+        scoreBoards.add(new ScoreBoard(round, score));
     }
 
     public List<ScoreBoard> getScoreBoards() {
