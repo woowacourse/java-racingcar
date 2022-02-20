@@ -26,6 +26,14 @@ public class RacingGame {
         printWinners(cars.judgeWinners());
     }
 
+    private String[] splitCarNames(String carNames) {
+        return carNames.split(CAR_NAME_DELIMITER);
+    }
+
+    private Cars createCars(String[] names) {
+        return new Cars(names);
+    }
+
     private Cars repeatRaceBy(Cars cars, Attempt attempt, NumberGenerator numberGenerator) {
         printRaceResult();
         while (attempt.isLeft()) {
@@ -34,13 +42,5 @@ public class RacingGame {
             attempt = attempt.decrease();
         }
         return cars;
-    }
-
-    private String[] splitCarNames(String carNames) {
-        return carNames.split(CAR_NAME_DELIMITER);
-    }
-
-    private Cars createCars(String[] names) {
-        return new Cars(names);
     }
 }
