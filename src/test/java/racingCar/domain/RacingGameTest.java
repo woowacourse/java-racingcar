@@ -24,7 +24,7 @@ public class RacingGameTest {
         //when
         List<String> names = new ArrayList<>();
         for (CarDto carDTO : racingGame.getResult()) {
-            names.add(carDTO.name);
+            names.add(carDTO.getName());
         }
 
         //then
@@ -46,13 +46,13 @@ public class RacingGameTest {
 
         //when
         int max = racingGame.getResult().stream()
-                .mapToInt(carDto -> carDto.position)
+                .mapToInt(CarDto::getPosition)
                 .max()
                 .orElse(-1);
         List<String> result = racingGame.getResult()
                 .stream()
-                .filter(carDTO -> carDTO.position == max)
-                .map(carDto -> carDto.name)
+                .filter(carDTO -> carDTO.getPosition() == max)
+                .map(CarDto::getName)
                 .collect(Collectors.toList());
 
         //then

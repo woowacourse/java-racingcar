@@ -4,12 +4,20 @@ import java.util.Objects;
 import racingCar.domain.Car;
 
 public class CarDto {
-    public final String name;
-    public int position;
+    private final String name;
+    private final int position;
 
     public CarDto(Car car) {
         this.name = car.getName();
         this.position = car.getPosition();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

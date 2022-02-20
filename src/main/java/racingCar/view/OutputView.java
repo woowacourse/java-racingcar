@@ -16,7 +16,7 @@ public class OutputView {
 
     public static void printRoundResult(List<CarDto> carsDto) {
         for (CarDto carDto : carsDto) {
-            System.out.println(carDto.name + ROUND_REGEX + POSITION_SIGNATURE.repeat(carDto.position));
+            System.out.println(carDto.getName() + ROUND_REGEX + POSITION_SIGNATURE.repeat(carDto.getPosition()));
         }
         System.out.println();
     }

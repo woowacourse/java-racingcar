@@ -57,7 +57,7 @@ public class CarsTest {
 
     @Test
     void getSamePositionCars_이동했을때_검사2() {
-        while (cars.getDto().get(0).position != 2) {
+        while (cars.getDto().get(0).getPosition() != 2) {
             cars.go();
         }
         assertThat(cars.getSamePositionCarsDto(2).get(0)).isEqualTo("hunch");

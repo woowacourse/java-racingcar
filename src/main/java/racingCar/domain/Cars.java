@@ -47,8 +47,8 @@ public class Cars {
 
     public List<String> getSamePositionCarsDto(int position) {
         return getDto().stream()
-                .filter(car -> car.position == position)
-                .map(carDto -> carDto.name)
+                .filter(car -> car.getPosition() == position)
+                .map(CarDto::getName)
                 .collect(Collectors.toList());
     }
 
