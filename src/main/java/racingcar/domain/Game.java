@@ -11,9 +11,9 @@ public class Game {
     private final TrialCount trialCount;
     private final MoveOrStop moveOrStop;
 
-    public Game(InputView inputView, DetermineMovementByRandomNumber moveOrStop) {
-        cars = new Cars(inputView.inputCarNames());
-        trialCount = new TrialCount(inputView.inputTrialCount());
+    public Game(List<String> inputCarNames, int inputTrialCount, DetermineMovementByRandomNumber moveOrStop) {
+        cars = new Cars(inputCarNames);
+        trialCount = new TrialCount(inputTrialCount);
         this.moveOrStop = moveOrStop;
     }
 
