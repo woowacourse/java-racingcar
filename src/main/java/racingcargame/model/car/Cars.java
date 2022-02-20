@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcargame.dto.CarDto;
-import racingcargame.model.movementgenerator.Move;
+import racingcargame.model.carmovevalue.MoveValueGenerator;
 
 public class Cars {
     private static final int WINNER_CAR_INDEX = 0;
@@ -26,8 +26,8 @@ public class Cars {
         }
     }
 
-    public void moveCars(final Move move) {
-        cars.forEach(car -> car.moveCar(move.getMoveValue()));
+    public void moveCars(final MoveValueGenerator moveValueGenerator) {
+        cars.forEach(car -> car.moveCar(moveValueGenerator.getMoveValue()));
     }
 
     public List<CarDto> bringCarsInformation() {

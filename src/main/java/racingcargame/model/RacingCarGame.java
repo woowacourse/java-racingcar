@@ -4,7 +4,7 @@ import java.util.List;
 import racingcargame.dto.CarDto;
 import racingcargame.model.car.Cars;
 import racingcargame.model.racecount.RaceCount;
-import racingcargame.model.movementgenerator.Move;
+import racingcargame.model.carmovevalue.MoveValueGenerator;
 
 public class RacingCarGame {
     private final Cars cars;
@@ -19,9 +19,9 @@ public class RacingCarGame {
         return raceCount.hasCount();
     }
 
-    public void startRace(final Move move) {
+    public void startRace(final MoveValueGenerator moveValueGenerator) {
         raceCount.reduceCount();
-        cars.moveCars(move);
+        cars.moveCars(moveValueGenerator);
     }
 
     public List<CarDto> sendRacingCarsInformation() {

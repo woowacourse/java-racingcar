@@ -9,11 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcargame.dto.CarDto;
-import racingcargame.model.movementgenerator.Move;
+import racingcargame.model.carmovevalue.MoveValueGenerator;
 
 class CarsTest {
 
-    class MoveTest implements Move {
+    class MoveValueGeneratorTest implements MoveValueGenerator {
         private int base = 0;
 
         @Override
@@ -24,7 +24,7 @@ class CarsTest {
     }
 
     private final Cars cars = new Cars(List.of("포인", "비니", "마크"));
-    private final Move move = new MoveTest();
+    private final MoveValueGenerator moveValueGenerator = new MoveValueGeneratorTest();
 
     @DisplayName("입력된 자동차 이름 중 중복되는 이름이 있는지 테스트")
     @Test
@@ -40,7 +40,7 @@ class CarsTest {
     @DisplayName("자동차들 이동이 정상적으로 이루어 지는지 테스트")
     @Test
     void moveCars() {
-        cars.moveCars(move);
+        cars.moveCars(moveValueGenerator);
         final  List<CarDto> actual = cars.bringCarsInformation();
         final CarDto first = new CarDto("포인", 1);
         final CarDto second = new CarDto("비니", 2);
@@ -56,7 +56,7 @@ class CarsTest {
     @DisplayName("우승자 선정이 올바르게 되는지 테스트")
     @Test
     void findWinner() {
-        cars.moveCars(move);
+        cars.moveCars(moveValueGenerator);
         final List<CarDto> winner = cars.findWinner();
         final CarDto third = new CarDto("마크", 3);
         final List<CarDto> expected = List.of(third);

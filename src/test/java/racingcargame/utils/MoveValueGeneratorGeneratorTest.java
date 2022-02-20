@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcargame.model.movementgenerator.Move;
-import racingcargame.model.movementgenerator.MoveGenerator;
-import racingcargame.model.numbergenerator.NumberGenerator;
+import racingcargame.model.carmovevalue.MoveValueGenerator;
+import racingcargame.model.carmovevalue.MoveValueGeneratorByRandomNumber;
+import racingcargame.model.carmovevalue.randomnumbergenerator.NumberGenerator;
 
-class MoveGeneratorTest {
+class MoveValueGeneratorGeneratorTest {
 
     class RandomNumberGeneratorTest implements NumberGenerator {
 
@@ -22,8 +22,8 @@ class MoveGeneratorTest {
     @Test
     void getMoveValue_high() {
         final NumberGenerator numberGenerator = new RandomNumberGeneratorTest();
-        final Move move = new MoveGenerator(numberGenerator);
+        final MoveValueGenerator moveValueGenerator = new MoveValueGeneratorByRandomNumber(numberGenerator);
 
-        assertThat(move.getMoveValue()).isEqualTo(1);
+        assertThat(moveValueGenerator.getMoveValue()).isEqualTo(1);
     }
 }

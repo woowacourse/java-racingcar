@@ -3,7 +3,7 @@ package racingcargame.controller;
 import java.util.List;
 
 import racingcargame.model.RacingCarGame;
-import racingcargame.model.movementgenerator.Move;
+import racingcargame.model.carmovevalue.MoveValueGenerator;
 import racingcargame.view.InputView;
 import racingcargame.view.OutputView;
 
@@ -11,14 +11,14 @@ public class GameController {
     final InputView inputView;
     final OutputView outputView;
 
-    final Move move;
+    final MoveValueGenerator moveValueGenerator;
 
     public GameController(final InputView inputView, final OutputView outputView,
-                          final Move move) {
+                          final MoveValueGenerator moveValueGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
 
-        this.move = move;
+        this.moveValueGenerator = moveValueGenerator;
     }
 
     public void runGame() {
@@ -38,7 +38,7 @@ public class GameController {
     private void playGame(final RacingCarGame racingCarGame) {
         outputView.showRaceResultMessage();
         while (racingCarGame.isNotOverRace()) {
-            racingCarGame.startRace(move);
+            racingCarGame.startRace(moveValueGenerator);
             outputView.showCurrentRaceResult(racingCarGame.sendRacingCarsInformation());
         }
     }
