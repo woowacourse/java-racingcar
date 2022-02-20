@@ -1,10 +1,10 @@
 package racingcar.view;
 
+import racingcar.domain.RoundResult;
+
 import java.util.List;
 
 public class Output {
-	private static final String STEP = "-";
-
 	public static void errorMessage(String message) {
 		System.out.println("[ERROR] " + message);
 	}
@@ -22,8 +22,10 @@ public class Output {
 		System.out.println("실행 결과");
 	}
 
-	public static void roundResult(String name, int position) {
-		System.out.println(name + " : " + STEP.repeat(position));
+	public static void result(RoundResult round) {
+		for (String result : round.getResult()) {
+			System.out.println(result);
+		}
 	}
 
 	public static void newLine() {

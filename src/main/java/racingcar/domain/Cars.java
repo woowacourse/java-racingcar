@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.view.Output;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -25,13 +23,12 @@ public class Cars {
 		this.cars = new ArrayList<>(cars);
 	}
 
-	public void play() {
+	public void play(RoundResult roundResult) {
 		Movable movable = new MovableImpl();
 		for (Car car : cars) {
 			car.drive(movable);
-			Output.roundResult(car.getName(), car.getPosition());
+			roundResult.save(car.getName(), car.getPosition());
 		}
-		Output.newLine();
 	}
 
 	public List<String> findWinners() {

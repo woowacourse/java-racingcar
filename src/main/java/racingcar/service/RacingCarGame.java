@@ -2,6 +2,7 @@ package racingcar.service;
 
 import racingcar.domain.Attempt;
 import racingcar.domain.Cars;
+import racingcar.domain.RoundResult;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class RacingCarGame {
 	private Cars cars;
 	private Attempt attempt;
+	private final RoundResult roundResult = new RoundResult();
 
 	private final Input input;
 
@@ -45,10 +47,11 @@ public class RacingCarGame {
 		Output.resultTitle();
 
 		int nowAttempt = 0;
-		while (!attempt.isSame(nowAttempt)) {
-			cars.play();
-			nowAttempt++;
+		while (!attempt.isSame(nowAttempt++)) {
+			cars.play(roundResult);
+			roundResult.roundEnd();
 		}
+		Output.result(roundResult);
 	}
 
 	private void win() {
