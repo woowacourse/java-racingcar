@@ -1,57 +1,90 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
-import racingcar.util.BoundedRandomNumberGenerator;
+import java.util.stream.Collectors;
+import racingcar.exception.carname.CarNameDuplicationException;
+import racingcar.exception.carname.CarNameLineEmptyException;
+import racingcar.exception.carname.CarNameNullPointerException;
+import racingcar.util.RandomNumberGenerator;
+import racingcar.util.StringUtil;
 
 public class ParticipatedCars {
-    private static final int MAX_BOUND = 9;
-    private static final int MIN_BOUND = 0;
     private static final int START_POSITION = 0;
+    private static final int OPERATING_STANDARD = 4;
+    private static String EMPTY_STRING = "";
 
     private final List<Car> cars;
 
-    public ParticipatedCars() {
-        this.cars = new ArrayList<>();
+    private ParticipatedCars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public void generateCars(List<String> carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName, START_POSITION));
+    public static ParticipatedCars from(String carNamesLine) {
+        List<String> carNames = getCarNamesFrom(carNamesLine);
+        List<Car> cars = carNames.stream()
+                .map(name -> new Car(name, START_POSITION))
+                .collect(Collectors.toList());
+        return new ParticipatedCars(cars);
+    }
+
+    private static List<String> getCarNamesFrom(String carNamesLine) {
+        checkCarNamesLineNotNull(carNamesLine);
+        checkCarNamesLineNonEmpty(carNamesLine);
+        List<String> carNames = StringUtil.split(carNamesLine);
+        checkCarNameDuplicated(carNames);
+        return carNames;
+    }
+
+    private static void checkCarNamesLineNotNull(String carNamesLine) {
+        if (carNamesLine == null) {
+            throw new CarNameNullPointerException();
         }
     }
 
-    public WinnerNames findWinners() {
-        return getWinnerNamesWithFirstCar(findFastestCar());
+    private static void checkCarNamesLineNonEmpty(String carNamesLine) {
+        if (carNamesLine.equals(EMPTY_STRING)) {
+            throw new CarNameLineEmptyException();
+        }
     }
 
-    private WinnerNames getWinnerNamesWithFirstCar(Car firstCar) {
-        return WinnerNames.of(this, firstCar);
+    private static void checkCarNameDuplicated(final List<String> carNames) {
+        long count = carNames.stream()
+                .distinct()
+                .count();
+        if (count != carNames.size()) {
+            throw new CarNameDuplicationException();
+        }
     }
 
-    private Car findFastestCar() {
-        Collections.sort(cars, Comparator.comparingInt(Car::getPosition));
-        return cars.get(this.getSize() - 1);
-    }
-
-    public void executeCarRacing() {
+    public void tryToMoveBy(RandomNumberGenerator randomNumberGenerator) {
         for (Car car : cars) {
-            car.tryMovingBy(new BoundedRandomNumberGenerator(MAX_BOUND, MIN_BOUND));
+            executeGeneratorToMoveCar(car, randomNumberGenerator);
         }
     }
 
-    public int getSize() {
-        return cars.size();
+    private void executeGeneratorToMoveCar(Car car, RandomNumberGenerator randomNumberGenerator) {
+        if (randomNumberGenerator.generate() > OPERATING_STANDARD) {
+            car.move();
+        }
     }
 
-    public void addCar(Car car) {
-        cars.add(car);
+    public List<String> getWinnerNames() {
+        int fastestPosition = findFastestPosition(cars);
+        return cars.stream()
+                .filter(car -> car.isSamePositionWith(fastestPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int findFastestPosition(List<Car> cars) {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
     }
 
     public List<Car> getCars() {
-        return this.cars;
+        return Collections.unmodifiableList(cars);
     }
 }

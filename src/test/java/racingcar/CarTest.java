@@ -8,22 +8,16 @@ import java.util.Comparator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.util.MovableNumberGenerator;
-import racingcar.util.NonMovableNumberGenerator;
+
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarTest {
 
     @Test
-    public void 자동차_멈춤_테스트() {
-        Car car = new Car("클레이", 0);
-        assertThat(car.isMovableBy(new NonMovableNumberGenerator())).isEqualTo(false);
-    }
-
-    @Test
     public void 자동차_전진_테스트() {
         Car car = new Car("클레이", 0);
-        assertThat(car.isMovableBy(new MovableNumberGenerator())).isEqualTo(true);
+        car.move();
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test

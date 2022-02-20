@@ -7,7 +7,8 @@ import racingcar.util.BoundedRandomNumberGenerator;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RandomNumberGeneratorTest {
-    public BoundedRandomNumberGenerator randomNumberGenerator = new BoundedRandomNumberGenerator(9, 0);
+    private BoundedRandomNumberGenerator randomNumberGenerator
+            = new BoundedRandomNumberGenerator(9, 0);
 
     @Test
     public void 랜덤값_범위_테스트() {

@@ -1,33 +1,27 @@
 package racingcar.domain;
 
-import racingcar.util.RandomNumberGenerator;
-
 public class Car {
-    private static final int OPERATING_STANDARD = 4;
-
-    private String name;
+    private final CarName name;
     private int position;
 
     public Car(String carName, int position) {
-        this.name = carName;
+        this.name = new CarName(carName);
         this.position = position;
     }
 
-    public void tryMovingBy(RandomNumberGenerator randomNumberGenerator) {
-        if (isMovableBy(randomNumberGenerator)) {
-            position++;
-        }
-    }
-
-    public boolean isMovableBy(RandomNumberGenerator randomNumberGenerator) {
-        return randomNumberGenerator.generate() >= OPERATING_STANDARD;
+    public void move() {
+        position++;
     }
 
     public String getName() {
-        return this.name;
+        return name.getCarName();
     }
 
     public int getPosition() {
         return position;
+    }
+
+    public boolean isSamePositionWith(int position) {
+        return this.position == position;
     }
 }
