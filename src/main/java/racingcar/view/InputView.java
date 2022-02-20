@@ -24,7 +24,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static String inputCarNames() {
+    private static String inputCarNames() {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
         return scanner.nextLine();
     }

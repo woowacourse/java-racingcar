@@ -9,7 +9,7 @@ class TrialNumTest {
     @Test
     void 시도횟수가_숫자가_아닌경우_예외처리() {
         assertThatThrownBy(() -> {
-            TrialNum.validateTrialInput("-");
+            TrialNum.initTrialNum("-");
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }

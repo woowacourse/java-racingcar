@@ -20,7 +20,7 @@ public class TrialNum {
         return trialNum == count;
     }
 
-    public static void validateTrialInput(String number) {
+    private static void validateTrialInput(String number) {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
