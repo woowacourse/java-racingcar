@@ -30,10 +30,8 @@ public class Cars {
     }
 
     public List<CarForLog> generateCarForLogList() {
-        List<CarForLog> carForLogList = new ArrayList<>();
-        for (Car car : cars) {
-            carForLogList.add(new CarForLog(car.getName(), car.getPosition()));
-        }
-        return carForLogList;
+        return cars.stream()
+                .map(car -> new CarForLog(car.getName(), car.getPosition()))
+                .collect(toList());
     }
 }
