@@ -1,10 +1,12 @@
 package racingcar.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import racingcar.domain.car.Car;
-import racingcar.domain.car.Cars;
+import racingcar.domain.movement.MovementStrategy;
 import racingcar.domain.movement.RandomMovementStrategy;
+import racingcar.dto.CarDTO;
 import racingcar.service.RacingCarService;
 
 public class RacingCarController {
@@ -23,14 +25,20 @@ public class RacingCarController {
         return !service.isRoundEnd();
     }
 
-    public Cars run() {
+    public List<CarDTO> run(MovementStrategy strategy) {
         if (!isRunnable()) {
-            return null;
+            throw new IllegalArgumentException("경주할 자동차가 없습니다.");
         }
-        return service.run(new RandomMovementStrategy());
+        return toDTO(service.run(strategy));
     }
 
-    public List<Car> end() {
-        return service.findWinners();
+    public List<CarDTO> end() {
+        return toDTO(service.findWinners());
+    }
+
+    private List<CarDTO> toDTO(List<Car> cars) {
+        return cars.stream()
+            .map(CarDTO::from)
+            .collect(Collectors.toList());
     }
 }

@@ -10,6 +10,8 @@ import racingcar.exception.InvalidNameInputException;
 
 public class Cars {
 
+    private static final String ERROR_NON_EMPTY = "입력된 자동차 목록이 비어있습니다.";
+
     private static final int MINIMUM_CAR_QUANTITY = 0;
     private static final String DELIMITER = ",";
 
@@ -19,10 +21,14 @@ public class Cars {
         this.cars = createCarsByName(names);
     }
 
+    public Cars(List<Car> cars) {
+        validateNotEmpty(cars);
+        this.cars = cars;
+    }
+
     private List<Car> createCarsByName(String input) {
         String[] carNames = splitByDelimiter(input);
         return createCarList(carNames);
-
     }
 
     private String[] splitByDelimiter(String names) {
@@ -31,6 +37,12 @@ public class Cars {
             throw new InvalidNameInputException("입력된 자동차 목록이 유효하지 않습니다.");
         }
         return carNames;
+    }
+
+    private void validateNotEmpty(List<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_NON_EMPTY);
+        }
     }
 
     private List<Car> createCarList(String... carNames) {
@@ -45,10 +57,6 @@ public class Cars {
         }
     }
 
-    public List<Car> getCarList() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public List<Car> findWinners() {
         final int max = findMaxPosition();
         return cars.stream()
@@ -61,5 +69,9 @@ public class Cars {
             .mapToInt(Car::getPosition)
             .max()
             .orElse(-1);
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

@@ -1,5 +1,5 @@
 package racingcar.domain;
 
 public interface Game {
-    void play();
+    void play(Rule rule);
 }

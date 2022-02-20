@@ -5,6 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import racingcar.domain.movement.FixedMovementStrategy;
+import racingcar.domain.movement.MovementStrategy;
+
 public class CarTest {
 
     private Car testCar;
@@ -40,6 +43,18 @@ public class CarTest {
     void testIsSamePositionWithValue() {
         Car car = new Car(new Name("pobi"), new Position(3));
         Assertions.assertThat(car.isSamePosition(3)).isTrue();
+    }
+
+    @Test
+    @DisplayName("자동차는 전진 전략으로 이동할 수 있다.")
+    public void testCarMovement() {
+        // given
+        Car car = new Car("pobi");
+        MovementStrategy strategy = new FixedMovementStrategy();
+        // when
+        car.move(strategy);
+        // then
+        Assertions.assertThat(car.getPosition()).isEqualTo(1);
     }
 
 }

@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.client.OutputClient;
-import racingcar.domain.car.Car;
-import racingcar.domain.car.Cars;
+import racingcar.dto.CarDTO;
 
 public class OutputView {
 
@@ -23,27 +22,28 @@ public class OutputView {
         outputClient.output("실행 결과\n");
     }
 
-    public void printCarsPosition(Cars cars) {
-        cars.getCarList().forEach(this::printCarPosition);
+    public void printCarsPosition(List<CarDTO> dtos) {
+        dtos.forEach(this::printCarPosition);
         outputClient.output("\n");
     }
 
-    private void printCarPosition(Car car) {
-        outputClient.output(car.getName() + CAR_DELIMITER);
-        for (int i = 0; i < car.getPosition(); i++) {
+    private void printCarPosition(CarDTO dto) {
+        outputClient.output(dto.getName() + CAR_DELIMITER);
+        for (int i = 0; i < dto.getPosition(); i++) {
             outputClient.output(CAR_PROGRESS);
         }
         outputClient.output("\n");
     }
 
-    public void printWinners(List<Car> carList) {
-        List<String> nameList = toNames(carList);
+    public void printWinners(List<CarDTO> dtos) {
+        List<String> nameList = toNames(dtos);
         System.out.println(String.join(WINNER_DELIMITER, nameList) + "가 최종 우승했습니다.\n");
     }
 
-    private List<String> toNames(List<Car> carList) {
-        return carList.stream()
-            .map(Car::getName)
+    private List<String> toNames(List<CarDTO> dtos) {
+        return dtos.stream()
+            .map(CarDTO::getName)
             .collect(Collectors.toList());
     }
+
 }
