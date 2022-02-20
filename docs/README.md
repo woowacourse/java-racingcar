@@ -251,7 +251,20 @@
 ## step2 MVC 패턴으로 리팩터링 해보기 피드백 정리 2
 
 - [ ] 오류 메시지를 가진 enum이 과연 필요한 것인가? 왜 오류 메시를 사용하는 곳이 아니라 별도의 enum으로 분리했을까요?
-- [ ] `RandomNumberGenerator`(`RandomUtil`)에서 `validateRange`만 static으로 선언된 이유가 무엇일까요?
+- [x] `RandomNumberGenerator`(`RandomUtil`)에서 `validateRange`만 static으로 선언된 이유가 무엇일까요?
+    - 저 부분만 static으로 선언된 이유는 두 가지가 있다.
+
+    1. `RandomNumberGenerator`
+       클래스가 [이 코드로 수정되기 전](https://github.com/OzRagwort/java-racingcar/commit/6630f1f20dddeb39ecd4a100ce5784c577934389)
+       에는 랜덤값을 생성하는 `generate`역할을 `createNumber`가 했습니다. `createNumber`는 static으로 선언되었는데 수정하는 과정에서 신경쓰지 못했다.
+    2. 수정할 때는 아직 static을 왜 쓰는지 잘 이해하지 못하고 그냥 사용했기 때문에 수정해야 할 필요를 못 느꼈다.
+
+    - `RandomNumberGenerator`는 `RandomUtil`로 수정되었지만 모든 필드와 메서드에서 static을 쓰고 있어서 이것이 static을 사용해도 되는지 고민해봤다.
+    - static로 선언된 클래스 필드/메서드는 클래스가 생성되어 종료될 때까지 딱 한 번 생성되어 유지된다. 그래서 그것을 사용하는 모든 곳에서 같은 값을 가져야 할 때 사용한다. 따라서 어떤 상태를 가지지
+      않을 때 사용할 수 있을 것 같다. 또 수정되면 모든 곳에서 수정이 되기 때문에 수정을 할 때도 많이 조심해야 한다. 그래서 상수는 모든 곳에서 같아야 하고 수정이 되면 안 되기 때문에 static과
+      final을 함께 선언한다고 이해했다.
+    - `RandomUtil`는 어떤 인스턴스 필드나 메서드가 사용되는 것이 아니기 때문에 static을 사용해도 된다고 생각했다. `Random`이 클래스 필드로 사용되지만 어떤 상태를 가지는 인스턴스 필드가
+      아니기 때문에 상관없다고 생각했다.
 - [ ] `Attemp`에서 `validate`는 실제로 유효성 검사 뿐만 아니라 문자열 -> 정수 변환도 이루어지고 있습니다. 더 적절한 이름은 없을까요?
 - [ ] 도메인 객체가 모두 `vo` 패키지 내에 있는데 이것들이 정말 VO가 맞는지도 고민해보면 좋겠습니다.
 - [ ] CarsTest에서 회차마다 입력한 자동차의 이름이 결과에 포함되어 있는지를 검증하지만 실제로 각 car들이 이동했는지를 검증하지 않습니다. 이 부분도 테스트하려면 어떻게 해야 할까요?
