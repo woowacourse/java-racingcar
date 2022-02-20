@@ -16,13 +16,13 @@ public class RacingCarController {
 
 	public void start() {
 		RacingCars racingCars;
-		String[] carNames = getSplitCarNames();
+		List<String> carNames = getSplitCarNames();
 		racingCars = makeCars(carNames);
 		race(getCarTimes(), racingCars);
 		OutputView.printWinners(racingCars.findWinner());
 	}
 
-	private String[] getSplitCarNames() {
+	private List<String> getSplitCarNames() {
 		String inputCarName = InputView.userStringInput(INPUT_CAR_NAME_MESSAGE);
 		try {
 			RacingCarNameValidator.isRightInput(inputCarName);
@@ -33,12 +33,11 @@ public class RacingCarController {
 		return separateCarNames(inputCarName);
 	}
 
-	private String[] separateCarNames(String input) {
-		System.out.println(input);
-		String[] carNames = input.split(SPLIT_COMMA);
-		for (int idx = 0; idx < carNames.length; idx++) {
-			carNames[idx] = carNames[idx].trim();
-			checkCarName(carNames[idx]);
+	private List<String> separateCarNames(String input) {
+		List<String> carNames = List.of(input.split(SPLIT_COMMA));
+		for (String carName : carNames) {
+			carName = carName.trim();
+			checkCarName(carName);
 		}
 		return carNames;
 	}
@@ -63,7 +62,7 @@ public class RacingCarController {
 		}
 	}
 
-	private RacingCars makeCars(String[] carNames) {
+	private RacingCars makeCars(List<String> carNames) {
 		List<Car> cars = new ArrayList<>();
 		for (String carName : carNames) {
 			cars.add(new Car(carName));
