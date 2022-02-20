@@ -1,10 +1,13 @@
 package racingcar.model;
 
+import racingcar.service.CheckingService;
+
 public class GameTurn {
 	private int gameTurn;
-
-	public GameTurn(int gameTurn) {
-		this.gameTurn = gameTurn;
+	
+	public GameTurn(String gameTurn) {
+		CheckingService.checkGameTurnNumber(gameTurn);
+		this.gameTurn = Integer.parseInt(gameTurn);
 	}
 
 	public boolean isPositive() {

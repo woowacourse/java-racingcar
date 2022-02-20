@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import racingcar.model.Cars;
 import racingcar.model.GameTurn;
-import racingcar.service.CheckingService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,19 +20,13 @@ public class RacingCarGame {
 		}
 	}
 
-	public void saveGameTurn() {
-		gameTurn = new GameTurn(getGameTurn());
-	}
-
-	public int getGameTurn() {
-		String gameTurn = inputView.getGameTurn();
+	public void getGameTurn() {
 		try {
-			CheckingService.checkGameTurnNumber(gameTurn);
+			gameTurn = new GameTurn(inputView.getGameTurn());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return getGameTurn();
+			getGameTurn();
 		}
-		return Integer.parseInt(gameTurn);
 	}
 
 	public void moveCars() {
