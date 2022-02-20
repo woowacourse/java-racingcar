@@ -3,6 +3,7 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Participants {
@@ -42,11 +43,10 @@ public class Participants {
     }
 
     private int findMaxPosition() {
-        return Collections
-                .max(cars.stream()
-                        .map(Car::getCarPosition)
-                        .collect(Collectors.toList())
-                );
+        return cars.stream()
+                .max(Car::compareWinnerPosition)
+                .orElseThrow(NoSuchElementException::new)
+                .getCarPosition();
     }
 
     private int makeRandomNumberBetweenZeroAndNine() {

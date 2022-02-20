@@ -31,4 +31,9 @@ public class Car {
     public boolean isSamePosition(int position) {
         return Objects.equals(position, getCarPosition());
     }
+
+    public int compareWinnerPosition(Car comparableCar) {
+        int comparableCarLocation = comparableCar.location.getLocation();
+        return this.location.getLocation() - comparableCarLocation;
+    }
 }
