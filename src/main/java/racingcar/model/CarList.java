@@ -28,11 +28,7 @@ public class CarList {
 	}
 
 	private int getMaxPosition() {
-		int maxPosition = Car.BASE_POSITION;
-		for (Car car : this.carList) {
-			maxPosition = Math.max(maxPosition, car.getPosition());
-		}
-		return maxPosition;
+		return this.carList.stream().mapToInt(Car::getPosition).max().getAsInt();
 	}
 
 	public List<String> getWinnerNames() {
