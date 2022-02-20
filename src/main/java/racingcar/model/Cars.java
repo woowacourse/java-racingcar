@@ -1,17 +1,17 @@
 package racingcar.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.utils.NumberGenerator;
-import racingcar.model.utils.RandomNumberGenerator;
 
 public class Cars {
 
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
     }
 
     public void participateInRacing(Car car) {
@@ -35,10 +35,10 @@ public class Cars {
     private Car getMaxPositionCar() {
         return cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new RuntimeException("차량이 존재하지 않습니다"));
+                .orElseThrow(() -> new IllegalArgumentException("차량이 존재하지 않습니다"));
     }
 
     public List<Car> getParticipantCars() {
-        return Collections.unmodifiableList(cars);
+        return new ArrayList<>(cars);
     }
 }

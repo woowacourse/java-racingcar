@@ -56,4 +56,16 @@ class CarsTest {
 
         assertThat(winners.get(0).toString()).isEqualTo("Eden");
     }
+
+    @DisplayName("불변인지를 테스트합니다1")
+    @Test
+    public void immutable_1() {
+        List<Car> testCars = new ArrayList<>();
+        testCars.add(new Car("Thor"));
+        Cars cars = new Cars(testCars);
+
+        testCars.add(1, new Car("Rocky"));
+
+        assertThat(cars.getParticipantCars().size()).isEqualTo(1);
+    }
 }

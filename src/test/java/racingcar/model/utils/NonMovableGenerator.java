@@ -1,5 +1,7 @@
 package racingcar.model.utils;
 
+import racingcar.model.utils.NumberGenerator;
+
 public class NonMovableGenerator implements NumberGenerator {
 
     @Override
