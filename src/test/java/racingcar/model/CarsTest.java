@@ -27,13 +27,23 @@ public class CarsTest {
         assertThat(cars.getWinner()).contains("A", "B", "C");
     }
 
-    @DisplayName("자동차 저장 확인 테스트")
+    @DisplayName("자동차 저장 확인 테스트1")
     @Test
-    void carsGenerationTest() {
+    void carsGenerationTest1() {
         cars = new Cars(new String[]{"A"});
         Car carA = new Car("A", 0);
         assertThat(cars.getCars()
                 .get(0))
                 .isEqualToComparingFieldByField(carA);
+    }
+
+    @DisplayName("자동차 저장 확인 테스트2")
+    @Test
+    void carsGenerationTest2() {
+        cars = new Cars(new String[]{"A", "B"});
+        Car carB = new Car("B", 0);
+        assertThat(cars.getCars()
+                .get(1))
+                .isEqualToComparingFieldByField(carB);
     }
 }
