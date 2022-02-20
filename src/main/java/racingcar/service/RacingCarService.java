@@ -7,6 +7,7 @@ import racingcar.domain.movement.RandomMovementStrategy;
 import racingcar.domain.round.Round;
 import racingcar.dto.CarResponse;
 import racingcar.dto.CarsResponse;
+import racingcar.dto.RacingRecord;
 
 public class RacingCarService {
 
@@ -22,10 +23,11 @@ public class RacingCarService {
         return round.isEnd();
     }
 
-    public CarsResponse run() {
+    public RacingRecord run() {
         cars.move(new RandomMovementStrategy());
         round.decrease();
-        return new CarsResponse(cars);
+        CarsResponse result = new CarsResponse(cars);
+        return new RacingRecord(result);
     }
 
     public List<CarResponse> getWinners() {

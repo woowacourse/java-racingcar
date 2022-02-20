@@ -26,8 +26,7 @@ public class RacingCarController {
     private void startRacing(RacingCarService service) {
         List<RacingRecord> racingRecords = new ArrayList<>();
         while (!service.isEnd()) {
-            CarsResponse result = service.run();
-            racingRecords.add(new RacingRecord(result));
+            racingRecords.add(service.run());
         }
         outputView.printRacingRecords(racingRecords);
         outputView.printWinners(service.getWinners());
