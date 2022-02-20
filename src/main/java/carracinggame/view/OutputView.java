@@ -1,7 +1,6 @@
 package carracinggame.view;
 
 import carracinggame.domain.CarNames;
-import carracinggame.domain.Cars;
 
 public class OutputView {
 

@@ -15,6 +15,10 @@ public class CarRacing {
         cars.makeCars(carNames);
         carsCount = carNames.length;
         OutputView.printResultMessage();
+        playRacingGame(times);
+    }
+
+    private void playRacingGame(int times) {
         while (!Times.isEnd(times)) {
             cars.run();
             turnResult();

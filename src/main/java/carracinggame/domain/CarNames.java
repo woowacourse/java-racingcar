@@ -21,5 +21,4 @@ public class CarNames {
         return name.length() <= NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH;
     }
 
-
 }
