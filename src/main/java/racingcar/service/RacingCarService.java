@@ -11,26 +11,18 @@ import racingcar.dto.RacingRecord;
 
 public class RacingCarService {
 
-    private final Cars cars;
-    private final Round round;
-
-    public RacingCarService(String[] carNames, int roundNumber) {
-        this.cars = Cars.create(carNames);
-        this.round = new Round(roundNumber);
-    }
-
-    public boolean isEnd() {
+    public boolean isEnd(Round round) {
         return round.isEnd();
     }
 
-    public RacingRecord run() {
+    public RacingRecord run(Cars cars, Round round) {
         cars.move(new RandomMovementStrategy());
         round.decrease();
         CarsResponse result = new CarsResponse(cars);
         return new RacingRecord(result);
     }
 
-    public List<CarResponse> getWinners() {
+    public List<CarResponse> getWinners(Cars cars) {
         return cars.findWinners().stream()
             .map(CarResponse::new)
             .collect(Collectors.toList());
