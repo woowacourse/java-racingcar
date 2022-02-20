@@ -1,12 +1,13 @@
 package racingcar.vo;
 
+import java.util.Objects;
+
 public class Position implements Comparable<Position> {
 
     private static final int INIT_POSITION = 0;
     private static final String POSITION_BAR = "-";
-    private static final int MOVE_ONE_TIME = 1;
 
-    private final int position;
+    private int position;
 
     public Position() {
         this.position = INIT_POSITION;
@@ -16,8 +17,8 @@ public class Position implements Comparable<Position> {
         this.position = position;
     }
 
-    public Position increase() {
-        return new Position(position + MOVE_ONE_TIME);
+    public void increase() {
+        position++;
     }
 
     @Override
@@ -32,6 +33,20 @@ public class Position implements Comparable<Position> {
     @Override
     public int compareTo(Position position) {
         return this.position - position.position;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Position position = (Position) object;
+        return this.position == position.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position);
     }
 
     public int getPosition() {

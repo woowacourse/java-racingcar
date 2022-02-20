@@ -30,11 +30,10 @@ public class Car implements Comparable<Car> {
         return position.compareTo(car.position) == SAME_POSITION;
     }
 
-    public Car move(int number) {
+    public void move(int number) {
         if (isMoveForward((number))) {
-            return new Car(name, position.increase());
+            position.increase();
         }
-        return this;
     }
 
     @Override

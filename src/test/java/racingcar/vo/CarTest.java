@@ -56,8 +56,9 @@ class CarTest {
     void move_with_movableNumber_test() {
         String name = "name1";
         Car car = new Car(name);
+        Car movedCar = new Car(name);
         NumberGenerator numberGenerator = new MovableNumberGenerator();
-        Car movedCar = car.move(numberGenerator.generate());
+        movedCar.move(numberGenerator.generate());
         assertThat(car.equals(movedCar)).isFalse();
     }
 
@@ -66,8 +67,9 @@ class CarTest {
     void move_with_unMovableNumber_test() {
         String name = "name1";
         Car car = new Car(name);
+        Car unMovedCar = new Car(name);
         NumberGenerator numberGenerator = new UnMovableNumberGenerator();
-        Car unMovedCar = car.move(numberGenerator.generate());
+        unMovedCar.move(numberGenerator.generate());
         assertThat(car.equals(unMovedCar)).isTrue();
     }
 }

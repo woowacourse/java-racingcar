@@ -18,15 +18,24 @@ class PositionTest {
     @Test
     void increase_test() {
         Position position = new Position();
-        Position increasedPosition = position.increase();
-        assertThat(increasedPosition.getPosition()).isEqualTo(1);
+        position.increase();
+        assertThat(position.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("compareTo() 테스트")
     @Test
     void compareTo_test() {
         Position position = new Position();
-        Position increasedPosition = position.increase();
+        Position increasedPosition = new Position();
+        increasedPosition.increase();
         assertThat(increasedPosition.compareTo(position)).isPositive();
+    }
+
+    @DisplayName("equals() 테스트")
+    @Test
+    void equals_test() {
+        Position position = new Position();
+        Position testPosition = new Position();
+        assertThat(position.equals(testPosition)).isTrue();
     }
 }

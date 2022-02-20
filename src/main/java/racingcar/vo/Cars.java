@@ -21,12 +21,10 @@ public class Cars {
     }
 
     public Cars raceAll(NumberGenerator numberGenerator) {
-        List<Car> afterRaceCars = new ArrayList<>();
         for (Car car : cars) {
-            Car movedCar = car.move(numberGenerator.generate());
-            afterRaceCars.add(movedCar);
+            car.move(numberGenerator.generate());
         }
-        return new Cars(afterRaceCars);
+        return new Cars(cars);
     }
 
     public Winners judgeWinners() {
