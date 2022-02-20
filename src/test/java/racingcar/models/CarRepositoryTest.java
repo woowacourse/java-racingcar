@@ -16,6 +16,11 @@ class CarRepositoryTest {
 
 	final CarRepository carRepository = new CarRepository("a,b,c", RacingGameMessage.CAR_NAME_DISTRIBUTOR);
 
+	@BeforeEach
+	void startThisTurn() {
+		carRepository.startThisTurn(Arrays.asList(1, 5, 6));
+	}
+
 	@Test
 	@DisplayName("승자 리스트가 정상적으로 가져와 지는지 확인한다.")
 	void testGetWinnersName() {
@@ -38,8 +43,4 @@ class CarRepositoryTest {
 			.isEqualTo(expected);
 	}
 
-	@BeforeEach
-	void startThisTurn() {
-		carRepository.startThisTurn(Arrays.asList(1, 5, 6));
-	}
 }
