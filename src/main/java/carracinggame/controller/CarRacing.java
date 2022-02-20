@@ -26,8 +26,10 @@ public class CarRacing {
 
     private void result() {
         for (int i = 0; i < carsCount; i++) {
-
+            Car car = cars.getCar(i);
+            OutputView.printResult(car.getName(), car.getPosition());
         }
+        OutputView.println();
     }
 
 }

@@ -21,4 +21,8 @@ public class Cars {
         }
     }
 
+    public Car getCar(int i) {
+        return cars.get(i);
+    }
+
 }
