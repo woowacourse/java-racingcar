@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import java.util.List;
+import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
@@ -23,7 +25,11 @@ public class RacingCarController {
     public void raceAllRounds(final RacingGame game, final RacingCars racingCars) {
         while (!game.isEnd()) {
             game.race();
-            OutputView.printCarsPosition(racingCars.convertToRacingCarDtos());
+            OutputView.printCarsPosition(convertToRacingCarDtos(racingCars.getCars()));
         }
+    }
+
+    private List<RacingCarDto> convertToRacingCarDtos(final List<RacingCar> cars) {
+        return RacingCarDto.from(cars);
     }
 }

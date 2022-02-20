@@ -1,6 +1,8 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.controller.MovingStrategy;
@@ -31,8 +33,8 @@ public class RacingCars {
         return name.replaceAll(NAME_BLANK, NAME_NOT_BLANK);
     }
 
-    public List<RacingCarDto> convertToRacingCarDtos() {
-        return RacingCarDto.from(cars);
+    public List<RacingCar> getCars() {
+        return List.copyOf(cars);
     }
 
     public void moveCars() {

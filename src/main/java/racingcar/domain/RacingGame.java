@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.List;
-import racingcar.view.Validator;
 
 public class RacingGame {
 

@@ -16,9 +16,9 @@ class RacingCarsTest {
     @DisplayName("자동차 이름을 받아 자동차를 생성한다.")
     void createRacingCars() {
         RacingCars racingCars = new RacingCars(Arrays.asList(new String[]{"pobi", "crong", "honux"}), new RacingCarCommander());
-        List<String> carNames = racingCars.convertToRacingCarDtos()
+        List<String> carNames = racingCars.getCars()
             .stream()
-            .map(racingCarDto -> racingCarDto.getName())
+            .map(racingCar -> racingCar.getName())
             .collect(Collectors.toList());
         assertThat(carNames).containsExactly("pobi", "crong", "honux");
     }
@@ -27,9 +27,9 @@ class RacingCarsTest {
     @DisplayName("자동차 이름의 공백을 제거한다.")
     void trimBlank() {
         RacingCars racingCars = new RacingCars(Arrays.asList(new String[]{"pobi" , "cr ong" , "honux"}), new RacingCarCommander());
-        List<String> carNames = racingCars.convertToRacingCarDtos()
+        List<String> carNames = racingCars.getCars()
             .stream()
-            .map(racingCarDto -> racingCarDto.getName())
+            .map(racingCar -> racingCar.getName())
             .collect(Collectors.toList());
         assertThat(carNames).containsExactly("pobi", "crong", "honux");
     }
@@ -48,7 +48,7 @@ class RacingCarsTest {
         MovingStrategy movingStrategy = () -> true;
         RacingCars racingCars = new RacingCars(Arrays.asList(new String[]{"pobi", "crong", "honux"}), movingStrategy);
         racingCars.moveCars();
-        racingCars.convertToRacingCarDtos()
+        racingCars.getCars()
             .forEach(car -> assertThat(car.getPosition()).isEqualTo(1));
     }
 
@@ -58,7 +58,8 @@ class RacingCarsTest {
         MovingStrategy movingStrategy = () -> false;
         RacingCars racingCars = new RacingCars(Arrays.asList(new String[]{"pobi", "crong", "honux"}), movingStrategy);
         racingCars.moveCars();
-        racingCars.convertToRacingCarDtos()
+        racingCars.getCars()
             .forEach(car -> assertThat(car.getPosition()).isEqualTo(0));
     }
+
 }
