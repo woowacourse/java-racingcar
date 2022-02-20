@@ -13,9 +13,8 @@ class ParticipantsTest {
 
     @BeforeEach
     public void setUp() {
-        this.participants = new Participants();
-        participants.participateInRacing(new Car("Eden"));
-        participants.participateInRacing(new Car("Thor"));
+        String[] carNames = {"Eden", "Thor"};
+        this.participants = new Participants(carNames);
     }
 
     @Test

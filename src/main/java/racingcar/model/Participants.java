@@ -6,16 +6,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Participants {
+
     private static final int MAKE_ONE_DIGIT_MULTIPLIER = 10;
 
     private final List<Car> cars;
 
-    public Participants() {
+    public Participants(String[] carNames) {
         this.cars = new ArrayList<>();
-    }
-
-    public void participateInRacing(Car car) {
-        this.cars.add(car);
+        for (String carName : carNames) {
+            Car car = new Car(carName);
+            this.cars.add(car);
+        }
     }
 
     public int participateSize() {

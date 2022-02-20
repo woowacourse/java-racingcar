@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.model.Car;
+import java.util.List;
 import racingcar.model.Participants;
 import racingcar.model.PlayTime;
 import racingcar.view.InputView;
@@ -9,31 +9,26 @@ import racingcar.view.OutputView;
 public class Racing {
 
     private final InputView inputView;
-    private final Participants participants;
     private final OutputView outputView;
 
     public Racing() {
         this.inputView = new InputView();
-        this.participants = new Participants();
         this.outputView = new OutputView();
     }
 
     public void start() {
-        enrollCars();
+        Participants participants = enrollCars();
         PlayTime playTime = new PlayTime(inputView.requestPlayTimes());
-        startRacing(playTime);
-        showRacingResult();
+        startRacing(participants, playTime);
+        showRacingResult(participants.findRacingWinners());
     }
 
-    private void enrollCars() {
+    private Participants enrollCars() {
         String[] carNames = inputView.requestCarNames();
-        for (String carName : carNames) {
-            Car car = new Car(carName);
-            participants.participateInRacing(car);
-        }
+        return new Participants(carNames);
     }
 
-    private void startRacing(PlayTime playTime) {
+    private void startRacing(Participants participants, PlayTime playTime) {
         outputView.announceRacingStart();
         while (!playTime.isEnd()) {
             participants.race();
@@ -42,7 +37,7 @@ public class Racing {
         }
     }
 
-    private void showRacingResult() {
-        outputView.recordRacingWinners(participants.findRacingWinners());
+    private void showRacingResult(List<String> winners) {
+        outputView.recordRacingWinners(winners);
     }
 }
