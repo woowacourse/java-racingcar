@@ -7,8 +7,9 @@ public class RacingGame {
 	private final CarRepository carRepository;
 	private int repeats;
 
-	public RacingGame(final String names, final int repeats) {
-		carRepository = new CarRepository(names);
+	public RacingGame(final String names, final int repeats,
+			final String nameDistributor) {
+		carRepository = new CarRepository(names, nameDistributor);
 		this.repeats = repeats;
 	}
 

@@ -6,9 +6,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import racingcar.utils.RacingGameMessage;
+
 class CarRepositoryTest {
 
-	final CarRepository carRepository = new CarRepository("a, b, c");
+	final CarRepository carRepository = new CarRepository("a, b, c", RacingGameMessage.CAR_NAME_DISTRIBUTOR);
 
 	@Test
 	@DisplayName("승자 리스트가 정상적으로 가져와 지는지 확인한다.")

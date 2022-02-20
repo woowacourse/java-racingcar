@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.models.RacingGame;
+import racingcar.utils.RacingGameMessage;
 import racingcar.views.Input;
 import racingcar.views.Output;
 
@@ -10,7 +11,8 @@ public class Racing {
 	public void startRacing() {
 		final String carNames = Input.inputValidNames();
 		final int repeats = Input.inputValidRepeats();
-		racingGame = new RacingGame(carNames, repeats);
+		racingGame = new RacingGame(carNames, repeats,
+			RacingGameMessage.CAR_NAME_DISTRIBUTOR);
 
 		Output.printResultMessage();
 		while (!racingGame.isEnd()) {
