@@ -1,6 +1,5 @@
 package racingcar.domain.game;
 
-import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.domain.exception.GetWinnerBeforeFinishException;
