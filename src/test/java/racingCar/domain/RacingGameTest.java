@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import racingCar.domain.CarDto;
-import racingCar.domain.RacingGame;
-import racingCar.domain.RoundCount;
+import racingCar.domain.dto.CarDto;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingGameTest {

@@ -1,7 +1,7 @@
 package racingCar.view;
 
 import java.util.List;
-import racingCar.domain.CarDto;
+import racingCar.domain.dto.CarDto;
 
 public class OutputView {
     private static final String RESULT_FRONT_MESSAGE = System.lineSeparator() + "실행 결과";

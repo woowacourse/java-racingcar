@@ -2,6 +2,7 @@ package racingCar.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import racingCar.domain.dto.CarDto;
 import racingCar.utils.Util;
 
 public class RacingGame {

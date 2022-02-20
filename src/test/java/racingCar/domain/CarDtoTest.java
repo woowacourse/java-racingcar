@@ -3,6 +3,7 @@ package racingCar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+import racingCar.domain.dto.CarDto;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class CarDtoTest {

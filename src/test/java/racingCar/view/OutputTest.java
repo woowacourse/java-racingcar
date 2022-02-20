@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingCar.domain.Car;
-import racingCar.domain.CarDto;
+import racingCar.domain.dto.CarDto;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class OutputTest {
