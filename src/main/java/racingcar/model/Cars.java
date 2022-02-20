@@ -3,13 +3,11 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.Random;
 
-public class Cars implements CarMoveCondition {
+public class Cars {
 	private static final String ERROR_DUPLICATED_NAME = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
 	private static final String ERROR_CAR_COUNT = "[ERROR] 자동차를 1대 이상 입력해야 합니다.";
 	private static final int MINIMUM_NUMBER_OF_CAR = 1;
-	private static final int BOUND_RANDOM = 10;
 	private final ArrayList<Car> cars;
 
 	public Cars(ArrayList<Car> cars) {
@@ -56,16 +54,18 @@ public class Cars implements CarMoveCondition {
 	}
 
 	public void moveCars() {
+
 		for (Car car : cars) {
-			car.movePosition(satisfy(generateRandNum()));
+			car.movePosition(carMoveStrategy);
 		}
 	}
 
-	private int generateRandNum() {
-		Random random = new Random();
-
-		return random.nextInt(BOUND_RANDOM);
-	}
+	private final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
+		@Override
+		public Boolean satisfy() {
+			return CarMoveStrategy.super.satisfy();
+		}
+	};
 
 	public LinkedHashMap<String, Integer> getCarsInfo() {
 		final LinkedHashMap<String, Integer> carsInfo = new LinkedHashMap<>();

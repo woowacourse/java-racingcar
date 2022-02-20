@@ -1,6 +1,6 @@
 package racingcar.model;
 
-public class Car implements CarMoveCondition {
+public class Car {
 	private static final int START_POSITION = 0;
 	private static final String ERROR_NULL = "[ERROR] 이름에는 null이 사용될 수 없습니다.";
 	private static final String ERROR_BLANK = "[ERROR] 이름은 공백일 수 없습니다.";
@@ -26,8 +26,8 @@ public class Car implements CarMoveCondition {
 		return this.position;
 	}
 
-	public void movePosition(Boolean satisfy) {
-		if (satisfy) {
+	public void movePosition(CarMoveStrategy carMoveStrategy) {
+		if (carMoveStrategy.satisfy()) {
 			this.position++;
 		}
 	}
