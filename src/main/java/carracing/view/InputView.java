@@ -25,8 +25,7 @@ public class InputView {
             OutputView.printException(e.getMessage());
             return getCarNames();
         }
-        List<String> carNames = splitCarNames(line);
-        return carNames;
+        return splitCarNames(line);
     }
 
     private static List<String> splitCarNames(String readLine) {
