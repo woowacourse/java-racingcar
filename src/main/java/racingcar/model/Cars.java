@@ -20,7 +20,7 @@ public class Cars implements CarMoveCondition {
 	}
 
 	private void checkDuplicatedName(ArrayList<Car> cars) {
-		final ArrayList<String> nameList = new ArrayList<>();
+		ArrayList<String> nameList = new ArrayList<>();
 		final HashSet<String> nameSet = new HashSet<>();
 		for (Car car : cars) {
 			nameList.add(car.getName());
@@ -62,7 +62,7 @@ public class Cars implements CarMoveCondition {
 	}
 
 	private int generateRandNum() {
-		final Random random = new Random();
+		Random random = new Random();
 
 		return random.nextInt(BOUND_RANDOM);
 	}
