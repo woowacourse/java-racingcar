@@ -12,7 +12,7 @@ import racingcar.model.Cars;
 
 public class CarsTest {
 
-	@DisplayName("차가 0대인 경우")
+	@DisplayName("차가 0대인 경우 예외가 발생한다")
 	@Test
 	public void carsTest_zero() {
 		assertThrows(IllegalArgumentException.class, () -> {
@@ -20,7 +20,7 @@ public class CarsTest {
 		});
 	}
 
-	@DisplayName("이름 중복 테스트")
+	@DisplayName("이름 중복 테스트 예외가 발생한다")
 	@Test
 	public void carsTest_duplicateName() {
 		ArrayList<Car> cars = new ArrayList<>();
