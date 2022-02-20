@@ -42,7 +42,7 @@ public class CarList {
 		return this.carList.size();
 	}
 
-	public List<Integer> getEachCarPosition() {
+	public List<Integer> getCarPositionList() {
 		List<Integer> eachCarPositionList = new ArrayList<>();
 		for (Car car : this.carList) {
 			eachCarPositionList.add(car.getPosition());

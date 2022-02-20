@@ -24,7 +24,7 @@ public class GameController {
 		OutputView.displayResult();
 		for (int nowTurn = 0; nowTurn < totalTurn; nowTurn++) {
 			moveCarList(carList);
-			OutputView.displayCarPosition(carList.getNameList(), carList.getEachCarPosition());
+			OutputView.displayCarPosition(carList.getNameList(), carList.getCarPositionList());
 		}
 		OutputView.displayWinner(carList.getWinnerNames());
 	}
