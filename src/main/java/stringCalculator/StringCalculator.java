@@ -3,7 +3,6 @@ package stringCalculator;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-
     public static final String COMMEND_END = "\n";
     public static final String CUSTOM_REGEX = "//(.)\n(.*)";
     public static String regex = "[,:]";
