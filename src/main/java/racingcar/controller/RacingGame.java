@@ -5,6 +5,7 @@ import racingcar.domain.Cars;
 import racingcar.domain.GameTotalCount;
 import racingcar.domain.movestrategy.MovingStrategy;
 import racingcar.domain.movestrategy.RandomMovingStrategy;
+import racingcar.dto.CarDto;
 import racingcar.view.OutputView;
 
 import java.util.List;
@@ -50,10 +51,8 @@ public class RacingGame {
     private void printProgress() {
         for (int i = 0; i < cars.getSize(); i++) {
             Car car = cars.getCar(i);
-            String carName = car.getName();
-            int position = car.getPosition();
 
-            OutputView.printProgress(carName, position);
+            OutputView.printProgress(CarDto.of(car));
         }
     }
 
