@@ -3,7 +3,6 @@ package racingcar.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import racingcar.domain.CarNameValidator;
 
 public class InputView {
     private static final String CAR_NAME_DELIMITER = ",";
@@ -12,7 +11,7 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> getCarNames() {
+    public static List<String> getCarNames() throws RuntimeException {
         System.out.println(INPUT_CAR_NAMES_MESSAGE);
         String carNames = validateCarNames(scanner.nextLine());
         return splitCarNamesInput(carNames);
@@ -27,19 +26,13 @@ public class InputView {
         return input;
     }
 
-    public static int getTrialCount() {
+    public static int getTrialCount() throws RuntimeException {
         System.out.println(INPUT_TRIAL_MESSAGE);
         return validateCountAndTransferToInt(scanner.nextLine());
     }
 
     private static int validateCountAndTransferToInt(String input) {
-        try {
-            InputValidator.checkTrialCount(input);
-        } catch (RuntimeException exception) {
-            System.out.println("[ERROR] " + exception.getMessage() + "\n");
-            return getTrialCount();
-        }
-
+        InputValidator.checkTrialCount(input);
         return Integer.parseInt(input);
     }
 }

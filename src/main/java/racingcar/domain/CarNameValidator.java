@@ -5,13 +5,10 @@ import java.util.List;
 public class CarNameValidator {
     public static final int CAR_NAME_LENGTH_LIMIT = 5;
 
-    public static void checkEachCarNames(List<String> carNames) throws RuntimeException {
-        for (String carName : carNames) {
-            checkNameLength(carName);
-            checkIsEmpty(carName);
-            checkIsSpace(carName);
-        }
-        checkDuplication(carNames);
+    public static void validateCarName(String carName) throws RuntimeException {
+        checkNameLength(carName);
+        checkIsEmpty(carName);
+        checkIsSpace(carName);
     }
 
     private static void checkNameLength(String carName) {
@@ -32,7 +29,7 @@ public class CarNameValidator {
         }
     }
 
-    private static void checkDuplication(List<String> carNames) {
+    public static void checkDuplication(List<String> carNames) {
         if (carNames.stream().distinct().count() != carNames.size()) {
             throw new RuntimeException("자동차 이름은 중복될 수 없습니다.");
         }

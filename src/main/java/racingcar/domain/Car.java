@@ -6,7 +6,8 @@ public class Car implements Comparable<Car> {
     private final String carName;
     private int position;
 
-    public Car(String carName) {
+    public Car(String carName) throws RuntimeException {
+        CarNameValidator.validateCarName(carName);
         this.carName = carName;
         this.position = 0;
     }

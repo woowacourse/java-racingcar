@@ -1,7 +1,5 @@
 package racingcar.controller;
 
-import java.util.List;
-import racingcar.domain.CarNameValidator;
 import racingcar.domain.Cars;
 import racingcar.domain.RacingRecordDTO;
 import racingcar.domain.WinnerNames;
@@ -21,8 +19,8 @@ public class RacingCarController {
     }
 
     public void playGame() {
-        Cars cars = new Cars(validateCarNames(InputView.getCarNames()));
-        int trialCount = InputView.getTrialCount();
+        Cars cars = generateCars();
+        int trialCount = getTrialCount();
 
         OutputView.printRacingRecordsMsg();
         for (int i = 0; i < trialCount; i++) {
@@ -33,14 +31,25 @@ public class RacingCarController {
         OutputView.printWinnerNames(new WinnerNames().findWinners(cars.getCars()));
     }
 
-    private List<String> validateCarNames(List<String> carNames) {
+    private int getTrialCount() {
+        int trialCount;
         try {
-            CarNameValidator.checkEachCarNames(carNames);
+            trialCount = InputView.getTrialCount();
         } catch (RuntimeException exception) {
             System.out.println("[ERROR] " + exception.getMessage() + "\n");
-            return validateCarNames(InputView.getCarNames());
+            return getTrialCount();
         }
+        return trialCount;
+    }
 
-        return carNames;
+    private Cars generateCars() {
+        Cars cars;
+        try {
+            cars = new Cars(InputView.getCarNames());
+        } catch (RuntimeException exception) {
+            System.out.println("[ERROR] " + exception.getMessage() + "\n");
+            return generateCars();
+        }
+        return cars;
     }
 }
