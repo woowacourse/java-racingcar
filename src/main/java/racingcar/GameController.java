@@ -5,14 +5,13 @@ import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.Game;
 import racingcar.domain.dto.CarDto;
-import racingcar.domain.util.CarFactory;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
 
     public static void run() {
-        Game game = new Game(CarFactory.of(InputView.inputCarNames()), InputView.inputGameCount());
+        Game game = Game.of(InputView.inputCarNames(), InputView.inputGameCount());
         play(game);
         showWinner(game.getWinners());
     }
