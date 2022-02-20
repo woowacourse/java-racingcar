@@ -11,7 +11,7 @@ public class Cars {
 
     public Cars(List<String> names) {
         cars = names.stream()
-                .map(name -> new Car(name))
+                .map(Car::new)
                 .collect(toList());
     }
 
