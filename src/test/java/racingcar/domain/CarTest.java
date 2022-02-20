@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +13,24 @@ class CarTest {
         String name = "pobi";
         Car car = new Car(name, 0);
         assertThat(car.getName()).isEqualTo(name);
+    }
+
+    @Test
+    @DisplayName("빈 이름이 주어지거나 입력값이 없을 경우")
+    void emptyName() {
+        Assertions.assertThatThrownBy(() -> {
+                    new Car("", 0);
+                }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Car.ERROR_EMPTY_NAME);
+    }
+
+    @Test
+    @DisplayName("이름이 5자 초과일 경우")
+    void longName() {
+        Assertions.assertThatThrownBy(() -> {
+                    new Car("summer", 0);
+                }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Car.ERROR_LONG_NAME);
     }
 
     @Test
