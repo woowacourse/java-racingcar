@@ -18,6 +18,10 @@ public class Round {
 		return new Round(number);
 	}
 
+	public int value() {
+		return number;
+	}
+
 	private static void validateValue(int number) {
 		if (number < MINIMUM_VALUE) {
 			throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
