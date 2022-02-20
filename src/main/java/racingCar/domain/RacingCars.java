@@ -11,8 +11,12 @@ import racingCar.view.OutputView;
 public class RacingCars {
 	private final List<Car> racingCars;
 
-	public RacingCars(List<Car> racingCars) {
-		this.racingCars = racingCars;
+	public RacingCars(List<String> carNames) {
+		List<Car> cars = new ArrayList<>();
+		for (String carName : carNames) {
+			cars.add(new Car(carName));
+		}
+		this.racingCars = cars;
 	}
 
 	public void race(int count) {

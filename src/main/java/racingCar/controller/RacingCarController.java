@@ -15,9 +15,8 @@ import racingCar.view.OutputView;
 public class RacingCarController {
 
 	public void start() {
-		RacingCars racingCars;
 		List<String> carNames = getSplitCarNames();
-		racingCars = makeCars(carNames);
+		RacingCars racingCars = new RacingCars(carNames);
 		racingCars.race(getCarTimes());
 		OutputView.printWinners(racingCars.findWinner());
 	}
@@ -60,13 +59,5 @@ public class RacingCarController {
 			OutputView.printError(e.getMessage());
 			return getCarTimes();
 		}
-	}
-
-	private RacingCars makeCars(List<String> carNames) {
-		List<Car> cars = new ArrayList<>();
-		for (String carName : carNames) {
-			cars.add(new Car(carName));
-		}
-		return new RacingCars(cars);
 	}
 }
