@@ -21,7 +21,7 @@ public class Game {
         return this.trialCount.getTrialCount() > 0;
     }
 
-    public void carsMove() {
+    public void playOneSet() {
         this.cars.move(moveOrStop);
         this.trialCount.minus();
     }

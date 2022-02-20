@@ -22,7 +22,7 @@ public class RacingController {
         outputView.printResultMessage();
 
         while (game.isContinue()) {
-            game.carsMove();
+            game.playOneSet();
             outputView.printRoundStatus(convertToDto(game.now()));
         }
 
