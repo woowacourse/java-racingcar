@@ -9,11 +9,10 @@ import racingcargame.dto.CarDto;
 
 class CarTest {
 
-    private final Car car = new Car("마크");
-
-    @DisplayName("자동차 이동이 정상적으로 이루어지는지 테스트")
+    @DisplayName("자동차를 원하는 만큼 이동시킨다.")
     @Test
     void moveCar() {
+        final Car car = new Car("마크");
         car.moveCar(2);
         final CarDto actual = car.changeToDto();
         final CarDto expected = new CarDto("마크", 2);
@@ -22,9 +21,10 @@ class CarTest {
         assertThat(actual.getPosition()).isEqualTo(expected.getPosition());
     }
 
-    @DisplayName("자동차 position이 같은 경우가 정상적으로 이루어지는지 테스트")
+    @DisplayName("자동차 위치 값이 같은지 학인한다.")
     @Test
     void hasSamePosition() {
+        final Car car = new Car("마크");
         final Car actual = new Car("위챠");
         car.moveCar(2);
         actual.moveCar(2);
@@ -32,13 +32,14 @@ class CarTest {
         assertThat(car.hasSamePosition(actual)).isEqualTo(true);
     }
 
-    @DisplayName("자동차 position 비교가 정상적으로 이루어지는지 테스트")
+    @DisplayName("자동차 위치 값이 같은지 확인한다.")
     @Test
     void compareTo() {
+        final Car car = new Car("마크");
         final Car actual = new Car("위챠");
         car.moveCar(4);
         actual.moveCar(2);
 
-        assertThat(car.compareTo(actual)).isEqualTo(-1);
+        assertThat(car.compareTo(actual)).isEqualTo(false);
     }
 }
