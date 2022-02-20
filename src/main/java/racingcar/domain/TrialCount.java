@@ -12,10 +12,6 @@ public class TrialCount {
         this.trialCount = Integer.parseInt(inputTrialCount);
     }
 
-    public int getTrialCount() {
-        return trialCount;
-    }
-
     public void minus(){
         trialCount--;
     }
