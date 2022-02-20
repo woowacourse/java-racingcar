@@ -31,10 +31,11 @@ public class CarTest {
     void 랜덤값_4이상이면_전진() {
         //given
         Car car = new Car("pobi");
+        Car stoppedCar = new Car("stop");
         //when
         car.move(() -> true);
         //then
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.compareTo(stoppedCar)).isNegative();
     }
 
     @Test
@@ -42,9 +43,10 @@ public class CarTest {
     void 랜덤값_4미만이면_멈춤() {
         //given
         Car car = new Car("pobi");
+        Car stoppedCar = new Car("stop");
         //when
         car.move(() -> false);
         //then
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.compareTo(stoppedCar)).isZero();
     }
 }
