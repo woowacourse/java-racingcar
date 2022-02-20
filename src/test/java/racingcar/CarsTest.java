@@ -50,17 +50,17 @@ class CarsTest {
                 .hasMessage("자동차의 이름이 존재하지 않습니다.");
     }
 
-    @Test
-    void 자동차_객체_생성() {
-        List<String> actual = Arrays.asList("bom", "sun");
-        String given = "bom,sun";
-        Cars cars = Cars.initCars(given);
-        List<String> expected = cars.getCars().stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-
-        assertThat(expected).isEqualTo(actual);
-    }
+//    @Test
+//    void 자동차_객체_생성() {
+//        List<String> actual = Arrays.asList("bom", "sun");
+//        String given = "bom,sun";
+//        Cars cars = Cars.initCars(given);
+//        List<String> expected = cars.getCars().stream()
+//                .map(Car::getName)
+//                .collect(Collectors.toList());
+//
+//        assertThat(expected).isEqualTo(actual);
+//    }
 
     @Test
     void 우승자_자동차_확인() {

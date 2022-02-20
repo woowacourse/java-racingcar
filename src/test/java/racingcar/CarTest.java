@@ -1,10 +1,13 @@
 package racingcar;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.model.Car;
+import racingcar.model.Cars;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
     @ParameterizedTest
@@ -21,5 +24,12 @@ class CarTest {
         Car car = new Car("qwer");
         car.move(value);
         assertThat(car.getPosition()).isZero();
+    }
+
+    @Test
+    void 자동차의_이름이_6자_이상인_경우_예외처리() {
+        assertThatThrownBy(() -> {
+            Car car = new Car("asdbds");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
