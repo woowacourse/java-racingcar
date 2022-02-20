@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.Output;
+import racingcarTest.domain.AlwaysMoveStrategy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -20,8 +21,9 @@ public class OutputTest {
     private final PrintStream originalErr = System.err;
 
     private void makeCarMoveCountTimes(Car car, int count) {
+        AlwaysMoveStrategy alwaysMoveStrategy = new AlwaysMoveStrategy();
         for (int i = 0; i < count; i++) {
-            car.goForward(true);
+            car.goForward(alwaysMoveStrategy.generateNumber());
         }
     }
 

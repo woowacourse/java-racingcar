@@ -3,7 +3,7 @@ package racingcarTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcarTest.domain.AllMoveStrategy;
+import racingcarTest.domain.AlwaysMoveStrategy;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcarTest.domain.NoMoveStrategy;
@@ -15,8 +15,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
     private void makeCarMoveCountTimes(Car car, int count) {
+        AlwaysMoveStrategy alwaysMoveStrategy = new AlwaysMoveStrategy();
         for (int i = 0; i < count; i++) {
-            car.goForward(true);
+            car.goForward(alwaysMoveStrategy.generateNumber());
         }
     }
 
@@ -30,7 +31,7 @@ public class CarsTest {
         carList.add(new Car("mouse"));
 
         Cars cars = new Cars(carList);
-        cars.moveAll(new AllMoveStrategy());
+        cars.moveAll(new AlwaysMoveStrategy());
 
         for (Car car : cars.getCars()) {
             assertThat(car.getPosition()).isEqualTo(1);

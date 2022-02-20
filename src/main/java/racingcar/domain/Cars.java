@@ -12,7 +12,7 @@ public class Cars {
     }
 
     public void moveAll(MoveStrategy moveStrategy) {
-        cars.forEach(car -> car.goForward(moveStrategy.canMove()));
+        cars.forEach(car -> car.goForward(moveStrategy.generateNumber()));
     }
 
     public List<Car> findAllWinners() {
