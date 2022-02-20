@@ -1,5 +1,8 @@
 package racingcar.model;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Winners {
 
     private final Cars cars;
@@ -8,7 +11,9 @@ public class Winners {
         this.cars = cars;
     }
 
-    public String makeWinnerName(String delimiter) {
-        return cars.getCarNames(delimiter);
+    public List<String> getWinnerCarNames() {
+        return cars.getCars().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }

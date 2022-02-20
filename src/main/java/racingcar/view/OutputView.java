@@ -4,6 +4,8 @@ import racingcar.model.Car;
 import racingcar.model.RacingGame;
 import racingcar.model.Winners;
 
+import java.util.List;
+
 public class OutputView {
     private static final String TRIAL_RESULT = "\n실행 결과";
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
@@ -30,10 +32,10 @@ public class OutputView {
     }
 
     public static void printWinnerName(Winners winners) {
-        System.out.println(makeWinnerName(winners) + WINNER_MESSAGE);
+        System.out.println(makeWinnerNamePrintFormat(winners.getWinnerCarNames()) + WINNER_MESSAGE);
     }
 
-    private static String makeWinnerName(Winners winners) {
-        return winners.makeWinnerName(WINNER_DELIMITER);
+    private static String makeWinnerNamePrintFormat(List<String> winnerCarNames) {
+        return String.join(WINNER_DELIMITER, winnerCarNames);
     }
 }
