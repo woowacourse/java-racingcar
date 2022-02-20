@@ -34,11 +34,9 @@ public class RacingCars {
     }
 
     public List<RacingCar> getCars() {
-        return List.copyOf(
-            cars.stream()
-                .map(this::cloneRacingCar)
-                .collect(Collectors.toList())
-        );
+        return cars.stream()
+            .map(this::cloneRacingCar)
+            .collect(Collectors.toList());
     }
 
     private RacingCar cloneRacingCar(RacingCar car) {
