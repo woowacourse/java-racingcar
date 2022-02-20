@@ -29,10 +29,14 @@ public class Car {
         return value >= MOVE_FORWARD;
     }
 
-    public void validateCarNameLength(String name) {
+    private void validateCarNameLength(String name) {
         if (name.isBlank() || name.length() > 5) {
             throw new IllegalArgumentException("자동차의 이름은 5자 이하여야 합니다.");
         }
+    }
+
+    public boolean isCarPositionMax(int max) {
+        return position == max;
     }
 
     public String getName() {

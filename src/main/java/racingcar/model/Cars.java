@@ -50,7 +50,7 @@ public class Cars {
     public Cars findWinnerCars() {
         int maxPosition = findWinnerCarPosition();
         List<Car> winnerCars = cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isCarPositionMax(maxPosition))
                 .collect(Collectors.toList());
 
         return new Cars(winnerCars);
