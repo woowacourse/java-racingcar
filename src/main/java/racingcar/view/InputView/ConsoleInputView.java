@@ -11,6 +11,7 @@ public class ConsoleInputView implements InputView {
     private static final String CARNAME_INPUT_ALERT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String TRIAL_COUNT_INPUT_ALERT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String NAME_DELIMITER = ",";
+    private static final String IS_NUMBER = "^[0-9]*$";
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -18,25 +19,35 @@ public class ConsoleInputView implements InputView {
         System.out.println(CARNAME_INPUT_ALERT_MESSAGE);
         String inputCarNames = scanner.nextLine();
 
-        validateBlankInput(inputCarNames);
+        validateCarNamesnput(inputCarNames);
 
         return Arrays.stream(inputCarNames.split(NAME_DELIMITER))
                 .collect(Collectors.toList());
     }
 
-    private void validateBlankInput(String inputString) {
+    private void validateCarNamesnput(String inputString) {
         if (inputString.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT_EXCEPTION_MESSAGE);
         }
     }
 
-    public String inputTrialCount() {
+    public int inputTrialCount() {
         System.out.println(TRIAL_COUNT_INPUT_ALERT_MESSAGE);
         String inputTrialCount = scanner.nextLine();
 
-        validateBlankInput(inputTrialCount);
+        validateTrialCount(inputTrialCount);
 
-        return inputTrialCount;
+        return Integer.parseInt(inputTrialCount);
+    }
+
+    public void validateTrialCount(String inputString){
+        if (inputString.isBlank()) {
+            throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT_EXCEPTION_MESSAGE);
+        }
+
+        if (!inputString.matches(IS_NUMBER)){
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_NUMBER);
+        }
     }
 }
  
