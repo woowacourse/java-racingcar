@@ -23,10 +23,9 @@ class CarsTest {
         }
     }
 
-    private final Cars cars = new Cars(List.of("포인", "비니", "마크"));
     private final MoveValueGenerator moveValueGenerator = new MoveValueGeneratorTest();
 
-    @DisplayName("입력된 자동차 이름 중 중복되는 이름이 있는지 테스트")
+    @DisplayName("자동차 이름이 중복되면 오류를 발생한다.")
     @Test
     void Cars_checkDuplicate() {
         final List<String> carNames = List.of("포인", "비니", "마크", "비니");
@@ -37,9 +36,10 @@ class CarsTest {
                 hasMessageContaining("[error] 입력한 자동차 이름 중 중복되는 이름이 있습니다.");
     }
 
-    @DisplayName("자동차들 이동이 정상적으로 이루어 지는지 테스트")
+    @DisplayName("자동차를 움직임 값만큼 전진시킨다.")
     @Test
     void moveCars() {
+        final Cars cars = new Cars(List.of("포인", "비니", "마크"));
         cars.moveCars(moveValueGenerator);
         final  List<CarDto> actual = cars.bringCarsInformation();
         final CarDto first = new CarDto("포인", 1);
@@ -53,9 +53,10 @@ class CarsTest {
         });
     }
 
-    @DisplayName("우승자 선정이 올바르게 되는지 테스트")
+    @DisplayName("가장 멀리간 자동차(들)을 우승자로 뽑는다.")
     @Test
     void findWinner() {
+        final Cars cars = new Cars(List.of("포인", "비니", "마크"));
         cars.moveCars(moveValueGenerator);
         final List<CarDto> winner = cars.findWinner();
         final CarDto third = new CarDto("마크", 3);
