@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
-import racingcar.InputNameHandler;
+import racingcar.NameHandler;
 import racingcar.domain.vo.Name;
 import racingcar.domain.vo.Trial;
 import racingcar.util.RandomUtil;
@@ -17,7 +17,7 @@ public class RacingGame {
     private final Trial trial;
 
     public RacingGame(String carNames, int trial) {
-        this.cars = new Cars(InputNameHandler.inputToNames(carNames));
+        this.cars = new Cars(NameHandler.stringToNames(carNames));
         this.trial = new Trial(trial);
     }
 

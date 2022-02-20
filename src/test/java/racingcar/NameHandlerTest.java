@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.vo.Name;
 
-class InputNameHandlerTest {
+class NameHandlerTest {
 
     @Test
     @DisplayName("String 형태의 이름을 List<Name>으로 변환한다")
@@ -15,7 +15,7 @@ class InputNameHandlerTest {
         String input = " hoho,rich , pobi ";
 
         // when
-        List<Name> result = InputNameHandler.inputToNames(input);
+        List<Name> result = NameHandler.stringToNames(input);
 
         // then
         assertThat(result).containsExactly(new Name("hoho"), new Name("rich"), new Name("pobi"));
@@ -29,7 +29,7 @@ class InputNameHandlerTest {
 
         // when & then
         assertThatIllegalArgumentException()
-            .isThrownBy(() -> InputNameHandler.inputToNames(input))
+            .isThrownBy(() -> NameHandler.stringToNames(input))
             .withMessageMatching("이름은 중복될 수 없습니다.");
     }
 }
