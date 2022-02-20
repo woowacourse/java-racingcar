@@ -19,8 +19,7 @@ public class Cars {
 
 	public void createCars(List<String> carNames) {
 		cars.clear();
-		checkEmptyCarNames(carNames);
-		checkDuplicationCarNames(carNames);
+		validateCarNames(carNames);
 		carNames.stream()
 			.map(Car::new)
 			.forEach(cars::add);
@@ -63,14 +62,19 @@ public class Cars {
 		return maxPosition;
 	}
 
-	private void checkDuplicationCarNames(List<String> carNames) {
-		Set<String> duplicationCheck = new HashSet<>(carNames);
-		if (duplicationCheck.size() != carNames.size()) {
+	private void validateCarNames(List<String> carNames) {
+		validateEmptyCarNames(carNames);
+		validateDuplicationCarNames(carNames);
+	}
+
+	private void validateDuplicationCarNames(List<String> carNames) {
+		Set<String> distinct = new HashSet<>(carNames);
+		if (distinct.size() != carNames.size()) {
 			throw new IllegalArgumentException(ERROR_CAR_NAMES_DUPLICATE_MESSAGE);
 		}
 	}
 
-	private void checkEmptyCarNames(List<String> carNames) {
+	private void validateEmptyCarNames(List<String> carNames) {
 		if (carNames.isEmpty()) {
 			throw new IllegalArgumentException(ERROR_CAR_NAMES_EMPTY);
 		}
