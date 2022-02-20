@@ -1,12 +1,11 @@
-package racingcargame.model.car;
+package racingcargame.model.car.vo;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcargame.model.car.vo.CarName;
 
-class NameTest {
+class CarNameTest {
 
     @DisplayName("입력된 자동차 이름이 없는 경우 테스트")
     @Test

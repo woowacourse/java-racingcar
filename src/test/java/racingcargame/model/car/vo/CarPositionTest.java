@@ -1,10 +1,9 @@
-package racingcargame.model.car;
+package racingcargame.model.car.vo;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcargame.model.car.vo.CarPosition;
 
 class CarPositionTest {
 
@@ -26,7 +25,7 @@ class CarPositionTest {
         first.move(3);
         second.move(4);
 
-        assertThat(first.compareTo(second)).isEqualTo(-1);
+        assertThat(first.equals(second)).isEqualTo(false);
     }
 
     @DisplayName("자동차 위치값끼리 정상적으로 비교하는지 테스트")
@@ -37,6 +36,6 @@ class CarPositionTest {
         first.move(5);
         second.move(4);
 
-        assertThat(first.compareTo(second)).isEqualTo(1);
+        assertThat(first.equals(second)).isEqualTo(false);
     }
 }
