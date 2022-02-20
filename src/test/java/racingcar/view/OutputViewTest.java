@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Name;
-import racingcar.domain.RandomNumberGeneratePolicy;
 
 class OutputViewTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -20,12 +19,12 @@ class OutputViewTest {
     private Cars cars;
 
     @BeforeEach
-    public void setUpStreams() {
+    public void setUp_streams() {
         System.setOut(new PrintStream(output));
     }
 
     @BeforeEach
-    public void setUpCars() {
+    public void setUp_cars() {
         carsList.add(Car.fromName(Name.from("코니")));
         carsList.add(Car.fromName(Name.from("is2hs")));
         cars = Cars.from(carsList);
