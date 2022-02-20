@@ -51,7 +51,7 @@ public class GameController {
     private void startRace(Cars cars, int moveCount) {
         OutputView.printResultMessage();
         for (int i = 0; i < moveCount; i++) {
-            cars.startEachRace(RANDOM_NUMBER_MIN_BOUND,RANDOM_NUMBER_MAX_BOUND);
+            cars.startEachRace(RANDOM_NUMBER_MIN_BOUND, RANDOM_NUMBER_MAX_BOUND);
             OutputView.printCarsPosition(cars);
         }
     }
