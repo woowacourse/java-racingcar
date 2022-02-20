@@ -8,7 +8,7 @@ public class Car {
     private static final int SAME = 0;
 
     private final CarName carName;
-    private Distance distance;
+    private final Distance distance;
 
     public Car(String carName) {
         this.carName = new CarName(carName);
