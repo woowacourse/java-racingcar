@@ -5,8 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-    private static final String POSITIVE_NUMBER_REGEX = "^[0-9]";
     private static final int DEFAULT_SET_VALUE = 0;
+    private static final String IS_NOT_NUMBER = "입력은 숫자만 가능합니다";
+    private static final String IS_NOT_POSITIVE = "입력은 양수만 가능합니다";
 
     public int calculate(final String expression) {
         if (isEmptyOrNull(expression)) {
@@ -38,10 +39,19 @@ public class StringCalculator {
     }
 
     private int convertTokenIsPositiveNumber(final String token) {
-        if (!token.matches(POSITIVE_NUMBER_REGEX)) {
-            throw new RuntimeException("피연산자에 양의 정수 혹은 0이 아닌 값이 있습니다.");
+        try{
+            int convertedToken = Integer.parseInt(token);
+            validatePositive(convertedToken);
+            return convertedToken;
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(IS_NOT_NUMBER);
         }
-        return Integer.parseInt(token);
+    }
+
+    private void validatePositive(int convertedToken) {
+        if(convertedToken < 0){
+            throw new IllegalArgumentException(IS_NOT_POSITIVE);
+        }
     }
 
 
