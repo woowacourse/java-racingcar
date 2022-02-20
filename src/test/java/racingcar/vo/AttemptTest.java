@@ -47,7 +47,7 @@ class AttemptTest {
     void constructor_NonNumber_exception_test() {
         String input = "abc";
         assertThatThrownBy(() -> new Attempt(input))
-                .isInstanceOf(RuntimeException.class);
+                .hasMessageContaining("For input string: " + "\"" + input + "\"");
     }
 
     @DisplayName("validNegative() 입력 값이 음수인 경우 예외 테스트")

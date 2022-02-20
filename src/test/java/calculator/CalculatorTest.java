@@ -39,7 +39,7 @@ class CalculatorTest {
     @Test
     void sum_nonNumber_test() {
         assertThatThrownBy(() -> Calculator.sum("a,b"))
-                .isInstanceOf(RuntimeException.class);
+                .hasMessageContaining("For input string: " + "\"" + "a" + "\"");
     }
 
     @DisplayName("sum() 음수를 입력 했을 때 예외 테스트")
