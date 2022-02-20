@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Round {
     private static final int POSITIVE_NUMBER_STANDARD = 1;
-    private static final String ERROR_INVALID_RANGE_MESSAGE = "정상 범위(" + 1 + "이상)가 아닙니다";
+    private static final String ERROR_INVALID_RANGE_MESSAGE = "정상 범위(" + POSITIVE_NUMBER_STANDARD + "이상)가 아닙니다";
     private static final int ROUND_END_NUMBER = 0;
     private static final int DECREASED_NUMBER = 1;
-    
+
     private final int roundNum;
 
     private Round(int roundNum) {
@@ -24,7 +24,7 @@ public class Round {
     }
 
     private static void checkValidRangeOfInputRound(int inputRound) {
-        if (!(POSITIVE_NUMBER_STANDARD <= inputRound)) {
+        if (inputRound < POSITIVE_NUMBER_STANDARD) {
             throw new IllegalArgumentException(ERROR_INVALID_RANGE_MESSAGE);
         }
     }
