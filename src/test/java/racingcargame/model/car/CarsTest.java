@@ -17,7 +17,7 @@ class CarsTest {
         private int base = 0;
 
         @Override
-        public int getMoveValue() {
+        public int generateMoveValue() {
             base += 1;
             return base;
         }
