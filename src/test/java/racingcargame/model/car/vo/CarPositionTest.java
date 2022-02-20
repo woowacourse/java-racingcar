@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class CarPositionTest {
 
-    @DisplayName("자동차 위치값이 정상적으로 증가하는지 테스트")
+    @DisplayName("자동차 위치값을 원하는 만큼 증가시킨다.")
     @Test
     void move_Test() {
         CarPosition carPosition = new CarPosition();
@@ -17,18 +17,18 @@ class CarPositionTest {
         assertThat(carPosition.getPosition()).isEqualTo(2);
     }
 
-    @DisplayName("자동차 위치값끼리 정상적으로 비교하는지 테스트")
+    @DisplayName("자동차 위치값이 같은지 확인한다.")
     @Test
     void compareTo_Test() {
         CarPosition first = new CarPosition();
         CarPosition second = new CarPosition();
-        first.move(3);
+        first.move(4);
         second.move(4);
 
-        assertThat(first.equals(second)).isEqualTo(false);
+        assertThat(first.equals(second)).isEqualTo(true);
     }
 
-    @DisplayName("자동차 위치값끼리 정상적으로 비교하는지 테스트")
+    @DisplayName("자동차 위치값이 다른지 확인한다.")
     @Test
     void compareTo_Test2() {
         CarPosition first = new CarPosition();

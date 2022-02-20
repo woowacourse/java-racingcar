@@ -32,7 +32,7 @@ class CarTest {
         assertThat(car.hasSamePosition(actual)).isEqualTo(true);
     }
 
-    @DisplayName("자동차 위치 값이 같은지 확인한다.")
+    @DisplayName("자동차 위치 값이 다른지 확인한다.")
     @Test
     void compareTo() {
         final Car car = new Car("마크");
