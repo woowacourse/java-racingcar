@@ -1,6 +1,8 @@
-package racingcar.model.movegenerator;
+package racingcar.model;
 
 import java.util.Random;
+
+import racingcar.model.movegenerator.MoveGenerator;
 
 public class MovableGenerator implements MoveGenerator {
 
