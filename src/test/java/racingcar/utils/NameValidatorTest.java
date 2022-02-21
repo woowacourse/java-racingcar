@@ -35,15 +35,4 @@ class NameValidatorTest {
         assertThatCode(() -> NameValidator.validateNames("pobi"))
                 .doesNotThrowAnyException();
     }
-
-    @Test
-    void split() {
-        String winners ="aaa,bbb,ccc,";
-        String[] list = winners.split(",",-1);
-        System.out.println(list.length);
-        for (String s : list) {
-            System.out.println(s);
-        }
-        System.out.println("end");
-    }
 }
