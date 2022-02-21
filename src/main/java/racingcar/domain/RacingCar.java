@@ -5,8 +5,7 @@ public class RacingCar implements Comparable<RacingCar> {
     private static final int START_POSITION = 0;
     private static final int MOVE_STANDARD = 4;
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final String EXCEPTION_NO_NAME = "[ERROR] 자동차 이름은 반드시 존재해야 합니다.\n";
-    private static final String EXCEPTION_TOO_LONG_NAME = "[ERROR] 자동차 이름은 5자 이하여야 합니다.\n";
+    private static final String EXCEPTION_NAME_RULE = "[ERROR] 자동차 이름은 반드시 존재해야하며 5자 이하여야 합니다.\n";
     private final String name;
     private int position;
 
@@ -17,23 +16,23 @@ public class RacingCar implements Comparable<RacingCar> {
     }
 
     public void validateName(String name) {
-        checkCarNameIsEmpty(name);
-        checkCarNameSize(name);
+        if (isCarNameEmpty(name) || isCarNameSizeOverLimit(name)) {
+            throw new IllegalArgumentException(EXCEPTION_NAME_RULE);
+        }
     }
 
-    private void checkCarNameIsEmpty(String name) {
+    private boolean isCarNameEmpty(String name) {
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException(EXCEPTION_NO_NAME);
+            return true;
         }
+        return false;
     }
 
-    private void checkCarNameSize(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException(EXCEPTION_NO_NAME);
+    private boolean isCarNameSizeOverLimit(String name) {
+        if (name == null || name.length() > MAXIMUM_NAME_LENGTH) {
+            return true;
         }
-        if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException(EXCEPTION_TOO_LONG_NAME);
-        }
+        return false;
     }
 
     public int getPosition() {
