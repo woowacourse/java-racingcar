@@ -1,10 +1,9 @@
 package racingcar.domain;
 
-public class Car implements Comparable<Car> {
+public class Car {
     private static final String CAR_NAME_ERROR_MESSAGE = "유효하지 않은 자동차 이름";
     private static final String CAR_NAME_LENGTH_ERROR_MESSAGE = "자동차 이름 5글자 초과";
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int DO_NOT_MOVE_THRESHOLD = 3;
 
     private final String name;
     private int position = 0;
@@ -27,8 +26,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public void move(int number) {
-        if (number > DO_NOT_MOVE_THRESHOLD) {
+    public void move(final boolean canMove) {
+        if (canMove) {
             position++;
         }
     }
@@ -41,12 +40,7 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public boolean isSamePosition(int position) {
+    public boolean isSamePosition(final int position) {
         return this.position == position;
-    }
-
-    @Override
-    public int compareTo(Car car) {
-        return this.position - car.position;
     }
 }

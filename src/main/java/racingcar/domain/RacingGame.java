@@ -1,53 +1,49 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import racingcar.util.RandomUtil;
-
 public class RacingGame {
-    private static final String NOTHING_NAME_ERROR_MASSAGE = "자동차 이름들이 존재하지 않음";
-    private final List<Car> cars = new ArrayList<>();
+    private static final String GAME_IS_OVER_MESSAGE = "게임이 종료되어 실행시킬 수 없음";
+
+    private final Cars cars;
+    private int rounds;
     private final List<String> championNames = new ArrayList<>();
 
-    public RacingGame(final List<String> names) {
-        validateNames(names);
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
+    public RacingGame(final Cars cars, final int rounds) {
+        this.cars = cars;
+        this.rounds = rounds;
     }
 
-    private void validateNames(final List<String> names) {
-        if (names.isEmpty()) {
-            throw new IllegalArgumentException(NOTHING_NAME_ERROR_MASSAGE);
+    public void run(final MoveStrategy moveStrategy) {
+        if (isFinished()) {
+            throw new IllegalArgumentException(GAME_IS_OVER_MESSAGE);
         }
+        cars.move(moveStrategy);
+        rounds--;
     }
 
-    public void moveCars() {
-        for (Car car : cars) {
-            car.move(RandomUtil.generateRandomNumber());
-        }
-    }
-
-    public List<Car> getCars() {
-        return cars;
+    public boolean isFinished() {
+        return rounds == 0;
     }
 
     public List<String> getChampionNames() {
-        championNames.clear();
-        Car firstCar = Collections.max(cars);
+        int maxPosition = cars.getMaxPosition();
 
-        for (Car car : cars) {
-            addTieCarName(firstCar, car);
+        for (Car car : cars.getCarList()) {
+            addChampionCarName(car, maxPosition);
         }
 
         return championNames;
     }
 
-    private void addTieCarName(Car firstCar, Car car) {
-        if (car.isSamePosition(firstCar.getPosition())) {
+    private void addChampionCarName(final Car car, final int maxPosition) {
+        if (car.isSamePosition(maxPosition)) {
             championNames.add(car.getName());
         }
+    }
+
+    public List<Car> getCarList() {
+        return cars.getCarList();
     }
 }
