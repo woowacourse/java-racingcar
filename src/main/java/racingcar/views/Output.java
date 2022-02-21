@@ -1,34 +1,29 @@
 package racingcar.views;
 
-import java.util.List;
+import racingcar.models.CarDto;
 
-import racingcar.models.Car;
+import java.util.List;
 
 public class Output {
 
-	private static final String TURN_RESULT = "\n실행결과";
-	private static final String WINNER = "가 최종 우승했습니다.";
-	private static final String CAR_POSITION = "-";
-	private static final String NAME_POSITION_SPLITTER = " : ";
+    private static final String TURN_RESULT = "\n실행결과";
+    private static final String FINAL_WINNER_MESSAGE = "가 최종 우승했습니다.";
+    private static final String CAR_POSITION = "-";
+    private static final String NAME_POSITION_SPLITTER = " : ";
+    private final static String CAR_NAME_DISTRIBUTOR = ", ";
 
-	public void printResultMessage() {
-		System.out.println(TURN_RESULT);
-	}
+    public static void printResultMessage() {
+        System.out.println(TURN_RESULT);
+    }
 
-	public void printTurnResult(final List<Car> carList) {
-		carList.forEach(this::printCarPosition);
-		System.out.print("\n");
-	}
+    public static void printTurnResult(final List<CarDto> cars) {
+        cars.forEach(car ->
+                System.out.println(car.getName() + NAME_POSITION_SPLITTER + CAR_POSITION.repeat(car.getPosition())));
 
-	private void printCarPosition(final Car car) {
-		System.out.print(car + NAME_POSITION_SPLITTER);
-		for (int i = 0; i < car.getPosition(); i++) {
-			System.out.print(CAR_POSITION);
-		}
-		System.out.print("\n");
-	}
+        System.out.print(System.lineSeparator());
+    }
 
-	public void printWinners(final String winners) {
-		System.out.print(winners + WINNER);
-	}
+    public static void printWinners(final List<String> winners) {
+        System.out.println(String.join(CAR_NAME_DISTRIBUTOR, winners) + FINAL_WINNER_MESSAGE);
+    }
 }

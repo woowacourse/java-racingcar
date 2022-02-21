@@ -1,39 +1,47 @@
 package racingcar.models;
 
-import static org.assertj.core.api.AssertionsForClassTypes.*;
-import static org.mockito.Mockito.*;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.utils.RandomNumber;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DisplayName("Car 클래스를 테스트한다.")
 class CarTest {
 
-	RandomNumber randomNumber = mock(RandomNumber.class);
+    Car car;
 
-	@Test
-	@DisplayName("자동차가 앞으로 전진하는지 확인한다")
-	void goForward() {
-		when(randomNumber.getRandomNumber()).thenReturn(6);
-		Car car = new Car(randomNumber, "a");
-		int exPosition = car.getPosition();
+    @BeforeEach
+    void init() {
+        car = new Car("a");
+    }
 
-		car.goForward();
+    @Test
+    @DisplayName("자동차가 앞으로 전진하는지 확인한다")
+    void goForward() {
+        int exPosition = car.getPosition();
 
-		assertThat(exPosition + 1).isEqualTo(car.getPosition());
-	}
+        car.goForward(4);
 
-	@Test
-	@DisplayName("자동차가 앞으로 전진하지 않는지 확인한다")
-	void dontGoForward() {
-		when(randomNumber.getRandomNumber()).thenReturn(2);
-		Car car = new Car(randomNumber, "a");
-		int exPosition = car.getPosition();
+        assertThat(exPosition + 1).isEqualTo(car.getPosition());
+    }
 
-		car.goForward();
+    @Test
+    @DisplayName("자동차가 앞으로 전진하지 않는지 확인한다")
+    void dontGoForward() {
+        int exPosition = car.getPosition();
 
-		assertThat(exPosition).isEqualTo(car.getPosition());
-	}
+        car.goForward(3);
+
+        assertThat(exPosition).isEqualTo(car.getPosition());
+    }
+
+    @Test
+    @DisplayName("자동차가 우승자가 맞는지 확인한다")
+    void isWinner() {
+        car.goForward(4);
+        boolean result = car.isSamePosition(1);
+
+        assertThat(result).isTrue();
+    }
 }

@@ -1,53 +1,38 @@
 package racingcar.models;
 
-import racingcar.utils.RandomNumber;
-
-import java.util.Objects;
-
 public class Car {
 
-	private static final int FORWARD_STANDARD = 4;
-	private static final int INITIAL_POSITION = 0;
+    private static final int FORWARD_STANDARD = 4;
+    private static final int INITIAL_POSITION = 0;
 
-	final RandomNumber randomNumber;
-	final String name;
-	int position;
+    private final String name;
+    private int position;
 
-	public Car(final RandomNumber randomNumber, final String name) {
-		this.randomNumber = randomNumber;
-		this.name = name;
-		position = INITIAL_POSITION;
-	}
+    public Car(final String name) {
+        this.name = name;
+        position = INITIAL_POSITION;
+    }
 
-	public void goForward() {
-		if (randomNumber.getRandomNumber() >= FORWARD_STANDARD) {
-			position++;
-		}
-	}
+    public void goForward(int number) {
+        if (number >= FORWARD_STANDARD) {
+            position++;
+        }
+    }
 
-	public String getName() {
-		return name;
-	}
+    public boolean isSamePosition(final int position) {
+        return this.position == position;
+    }
 
-	public int getPosition() {
-		return position;
-	}
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Car car = (Car) o;
-		return Objects.equals(getName(), car.getName());
-	}
+    public int getPosition() {
+        return position;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(getName());
-	}
-
-	@Override
-	public String toString() {
-		return name;
-	}
+    @Override
+    public String toString() {
+        return "Car name= " + name + ", position=" + position;
+    }
 }
