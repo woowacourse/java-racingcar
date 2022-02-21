@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import racingcar.domain.CarDto;
-import racingcar.validator.InputValidator;
+import racingcar.service.dto.CarDto;
 
 public class InputView {
 
@@ -14,23 +13,38 @@ public class InputView {
 	private static final String ATTEMPT_NUMBER_MESSAGE = "시도할 회수는 몇회인가요?";
 	private static final String SEPARATOR_OF_CAR_NAME = ",";
 
+	private static final String EMPTY_CAR_NAME_ERROR_MESSAGE = "자동차 이름이 입력되지 않았습니다.";
+	private static final String EMPTY_ATTEMPT_NUMBER_ERROR_MESSAGE = "시도 횟수가 입력되지 않았습니다.";
+
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static List<CarDto> getCars() {
 		System.out.println(CAR_NAMES_MESSAGE);
 		String input = scanner.nextLine();
-		InputValidator.checkCarNames(input);
+		validateCarNames(input);
 
 		return Arrays.stream(input.split(SEPARATOR_OF_CAR_NAME))
-			.map(CarDto::from)
+			.map(CarDto::of)
 			.collect(Collectors.toList());
 	}
 
 	public static String getAttemptNumber() {
 		System.out.println(ATTEMPT_NUMBER_MESSAGE);
 		String input = scanner.nextLine();
-		InputValidator.checkAttemptNumber(input);
+		validateAttemptNumber(input);
 
 		return input;
+	}
+
+	public static void validateCarNames(String carNames) {
+		if (carNames.isEmpty()) {
+			throw new IllegalArgumentException(EMPTY_CAR_NAME_ERROR_MESSAGE);
+		}
+	}
+
+	public static void validateAttemptNumber(String attemptNumber) {
+		if (attemptNumber.isEmpty()) {
+			throw new IllegalArgumentException(EMPTY_ATTEMPT_NUMBER_ERROR_MESSAGE);
+		}
 	}
 }
