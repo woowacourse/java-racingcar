@@ -9,22 +9,13 @@ public class InputView {
     private static final String REQUEST_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static InitDto get() {
-        return InitDto.of(getNames(), getCount());
+    public static InitDto getInitDto() {
+        return InitDto.of(getInput(REQUEST_NAMES_MESSAGE), getInput(REQUEST_COUNT_MESSAGE));
     }
 
-    private static String getNames() {
-        System.out.println(REQUEST_NAMES_MESSAGE);
-        String names = scanner.next();
-        validate(names);
-        return names;
-    }
-
-    private static String getCount() {
-        System.out.println(REQUEST_COUNT_MESSAGE);
-        String count = scanner.next();
-        validate(count);
-        return count;
+    private static String getInput(String message) {
+        System.out.println(message);
+        return validate(scanner.next());
     }
 
     public static String validate(String inputString) {
