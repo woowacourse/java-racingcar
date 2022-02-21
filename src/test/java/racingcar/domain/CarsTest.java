@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.*;
+import static racingcar.domain.CarTest.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,15 +9,10 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.vo.Name;
-import racingcar.dto.Winners;
-import racingcar.vo.MovingNumber;
-import static org.assertj.core.api.Assertions.*;
+import racingcar.domain.vo.MovingNumber;
+import racingcar.domain.vo.Name;
 
 public class CarsTest {
-
-    final int advanceValue = 5;
-    final int stopValue = 3;
 
     @Test
     @DisplayName("자동차의 이름으로 자동차 리스트를 생성한다")
@@ -32,14 +29,14 @@ public class CarsTest {
     void existsWinner() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue, stopValue, stopValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(ADVANCE, STOP, STOP);
 
         // when
         cars.move(movingNumbers);
 
         // then
-        Winners winners = cars.getWinners();
-        assertThat(winners.getWinners()).containsExactly(Name.create("hoho"));
+        List<Name> winners = cars.findWinners();
+        assertThat(winners).containsExactly(new Name("hoho"));
     }
 
     @Test
@@ -47,22 +44,22 @@ public class CarsTest {
     void existsWinners() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue, advanceValue, stopValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(ADVANCE, ADVANCE, STOP);
 
         // when
         cars.move(movingNumbers);
 
         // then
-        Winners winners = cars.getWinners();
-        assertThat(winners.getWinners()).containsExactly(Name.create("hoho"), Name.create("rich"));
+        List<Name> winners = cars.findWinners();
+        assertThat(winners).containsExactly(new Name("hoho"), new Name("rich"));
     }
 
     @Test
-    @DisplayName("자동차의 갯수와 랜덤한 숫자들의 갯수가 일치하지 않을경우 예외를 발새한다")
+    @DisplayName("자동차의 갯수와 랜덤한 숫자들의 갯수가 일치하지 않을경우 예외를 발생한다")
     void throwExceptionWhenCarsSizeNotEqualsNumbersSize() {
         // given
         Cars cars = new Cars(givenCarsNames("hoho", "rich", "pobi"));
-        Queue<MovingNumber> movingNumbers = givenNumbers(advanceValue);
+        Queue<MovingNumber> movingNumbers = givenNumbers(ADVANCE);
 
         // when & then
         assertThatIllegalArgumentException()
@@ -84,13 +81,13 @@ public class CarsTest {
 
     private List<Name> givenCarsNames(String... names) {
         return Arrays.stream(names)
-            .map(Name::create)
+            .map(Name::new)
             .collect(Collectors.toList());
     }
 
     private Queue<MovingNumber> givenNumbers(int... numbers) {
         return Arrays.stream(numbers)
-            .mapToObj(MovingNumber::create)
+            .mapToObj(MovingNumber::new)
             .collect(Collectors.toCollection(LinkedList::new));
     }
 }

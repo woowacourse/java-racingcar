@@ -3,22 +3,21 @@ package racingcar;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.vo.Name;
+import racingcar.domain.vo.Name;
 
-public class InputNameHandler {
+public class NameHandler {
     private static final String NAME_DELIMITER = ",";
 
-    private InputNameHandler() {}
+    private NameHandler() {}
 
-    public static List<Name> inputToNames(String input) {
-        return convertArrayToNames(splitByComma(input));
+    public static List<Name> stringToNames(String names) {
+        return convertArrayToNames(splitByComma(names));
     }
 
     private static List<Name> convertArrayToNames(String[] names) {
         validateDuplicateName(names);
-
         return Arrays.stream(names)
-            .map(Name::create)
+            .map(Name::new)
             .collect(Collectors.toList());
     }
 

@@ -1,21 +1,24 @@
 package racingcar.io;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import racingcar.dto.CarValue;
-import racingcar.vo.Name;
-import racingcar.dto.Winners;
+import racingcar.dto.RacingResult;
+import racingcar.dto.RacingStatus;
 
 public class Output {
     private static final String NAME_DELIMITER = ", ";
     private static final String CAR_ADVANCE_EXPRESSION = "-";
 
-    public void printCurrentPosition(List<CarValue> cars) {
+    public void printCurrentPosition(List<RacingStatus> cars) {
         cars.forEach(this::printRacingProgress);
         System.out.println();
     }
 
-    private void printRacingProgress(CarValue car) {
+    public void printWinner(RacingResult racingResult) {
+        List<String> winners = racingResult.getWinners();
+        System.out.printf("%s가 최종 우승했습니다.", String.join(NAME_DELIMITER, winners));
+    }
+
+    private void printRacingProgress(RacingStatus car) {
         System.out.printf("%s : %s%n", car.getName(), getPositionString(car.getPosition()));
     }
 
@@ -25,11 +28,5 @@ public class Output {
             builder.append(CAR_ADVANCE_EXPRESSION);
         }
         return builder.toString();
-    }
-
-    public void printWinner(Winners winners) {
-        System.out.printf("%s가 최종 우승했습니다.", winners.getWinners().stream()
-            .map(Name::toString)
-            .collect(Collectors.joining(NAME_DELIMITER)));
     }
 }

@@ -1,12 +1,14 @@
 package racingcar.dto;
 
-public class CarValue {
+import racingcar.domain.Car;
+
+public class RacingStatus {
     private final String name;
     private final int position;
 
-    public CarValue(String name, int position) {
-        this.name = name;
-        this.position = position;
+    public RacingStatus(final Car car) {
+        this.name = car.getName().value();
+        this.position = car.getPosition();
     }
 
     public String getName() {
