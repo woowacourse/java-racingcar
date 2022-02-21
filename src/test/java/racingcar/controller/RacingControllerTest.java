@@ -27,6 +27,6 @@ public class RacingControllerTest {
 		String userInputCarNames = "범고래,소주캉,고래";
 		racingController.createCars(userInputCarNames);
 
-		assertThat(racingController.getCars().getCarDtos().size()).isEqualTo(3);
+		assertThat(racingController.getGameResult().getGameResult().size()).isEqualTo(3);
 	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.model.CarDto;
-import racingcar.model.CarDtos;
+import racingcar.controller.GameResult;
 
 public class ResultView {
 	private static final String JOIN_DELIMITER = ", ";
@@ -12,22 +12,22 @@ public class ResultView {
 	private ResultView() {
 	}
 
-	public static void printGameResult(List<CarDtos> gameResult) {
+	public static void printGameResult(List<GameResult> gameResult) {
 		printBeforeGameResult();
-		for (CarDtos OneGameResult : gameResult) {
+		for (GameResult OneGameResult : gameResult) {
 			printOneGameResult(OneGameResult);
 		}
 	}
 
-	private static void printOneGameResult(CarDtos cars) {
-		cars.getCarDtos().stream()
+	private static void printOneGameResult(GameResult cars) {
+		cars.getGameResult().stream()
 			.map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
 			.forEach(System.out::println);
 		printEmptyLine();
 	}
 
-	public static void printWinners(CarDtos cars) {
-		List<String> winners = cars.getCarDtos().stream()
+	public static void printWinners(List<CarDto> cars) {
+		List<String> winners = cars.stream()
 			.map(CarDto::getName)
 			.collect(Collectors.toList());
 		System.out.println(String.join(JOIN_DELIMITER, winners) + "가 최종 우승했습니다.");

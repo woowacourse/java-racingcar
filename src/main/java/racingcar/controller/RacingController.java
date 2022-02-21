@@ -1,11 +1,13 @@
 package racingcar.controller;
 
+import static racingcar.model.CarToCarDtoMapper.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import racingcar.model.CarDtos;
+import racingcar.model.CarDto;
 import racingcar.model.Cars;
 import racingcar.model.Random;
 import racingcar.view.InputView;
@@ -18,7 +20,8 @@ public class RacingController {
 		RacingController controller = new RacingController();
 		controller.createCarsByUserInput();
 
-		List<CarDtos> gameResult = controller.runForIteration(InputView.getIterationNumber());
+		int iteration = InputView.getIterationNumber();
+		List<GameResult> gameResult = controller.runForIteration(iteration);
 		ResultView.printGameResult(gameResult);
 		ResultView.printWinners(controller.getWinners());
 	}
@@ -42,22 +45,22 @@ public class RacingController {
 			.collect(Collectors.toList());
 	}
 
-	private List<CarDtos> runForIteration(int iteration) {
+	private List<GameResult> runForIteration(int iteration) {
 		return IntStream.range(0, iteration)
 			.mapToObj(i -> moveCars())
 			.collect(Collectors.toList());
 	}
 
-	CarDtos moveCars() {
+	GameResult moveCars() {
 		int numberOfCars = cars.getSize();
-		return new CarDtos(cars.moveAll(Random.createNumbers(numberOfCars)));
+		return new GameResult(ToCarDtos(cars.moveAll(Random.createNumbers(numberOfCars))));
 	}
 
-	CarDtos getCars() {
-		return new CarDtos(cars.getCars());
+	GameResult getGameResult() {
+		return new GameResult(ToCarDtos(cars.getCars()));
 	}
 
-	CarDtos getWinners() {
-		return new CarDtos(cars.getWinners());
+	List<CarDto> getWinners() {
+		return ToCarDtos(cars.getWinners());
 	}
 }
