@@ -50,4 +50,8 @@ public class CarController {
     public List<String> getWinners(final List<Car> cars) {
         return carService.getWinners(cars);
     }
+
+    public void printWinners(final List<String> winners) {
+        OutputView.printWinners(winners);
+    }
 }

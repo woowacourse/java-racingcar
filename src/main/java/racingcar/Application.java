@@ -23,6 +23,7 @@ public class Application {
             controller.printResult(carNameAndPositions);
         }
         final List<String> winners = controller.getWinners(cars);
+        controller.printWinners(winners);
     }
 
     private static Map<String, Integer> getCarNameAndPositions(final List<Car> cars) {
