@@ -2,7 +2,6 @@ package racingcar.model.car;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.model.value.Name;
 import racingcar.model.value.Position;
 
 public class Winners {
@@ -24,6 +23,6 @@ public class Winners {
         return cars.stream()
                 .map(Car::getPosition)
                 .max(Position::compareTo)
-                .orElse(Position.create());
+                .orElse(Position.fromStartLine());
     }
 }

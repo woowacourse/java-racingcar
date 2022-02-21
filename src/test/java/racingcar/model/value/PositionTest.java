@@ -10,7 +10,7 @@ public class PositionTest {
     @DisplayName("위치 값을 증가시킨다")
     void moveTest() {
         // given
-        Position position = Position.create();
+        Position position = Position.fromStartLine();
 
         // when
         position = position.move(1);

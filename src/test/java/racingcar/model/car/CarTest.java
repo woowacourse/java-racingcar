@@ -34,7 +34,7 @@ class CarTest {
     public void goOrStop(NumberGenerator numberGenerator, int expected) {
         // given
         Car car = new Car("test");
-        Position expectedPosition = Position.create().move(expected);
+        Position expectedPosition = Position.fromStartLine().move(expected);
 
         // when
         car.goOrStop(numberGenerator);
@@ -49,7 +49,7 @@ class CarTest {
     public void compareToMaxPosition(int input, boolean expected) {
         // given
         Car car = new Car("foo");
-        Position maxPosition = Position.create().move(input);
+        Position maxPosition = Position.fromStartLine().move(input);
 
         // then
         assertThat(car.isSameWith(maxPosition)).isEqualTo(expected);

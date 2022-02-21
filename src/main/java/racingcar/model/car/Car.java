@@ -13,7 +13,7 @@ public class Car {
 
     public Car(String nameString) {
         this.name = new Name(nameString);
-        this.position = Position.create();
+        this.position = Position.fromStartLine();
     }
 
     public void goOrStop(NumberGenerator numberGenerator) {

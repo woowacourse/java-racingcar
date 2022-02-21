@@ -11,7 +11,7 @@ public class Position implements Comparable<Position> {
         this.position = position;
     }
 
-    public static Position create() {
+    public static Position fromStartLine() {
         return new Position(INITIAL_POSITION);
     }
 
