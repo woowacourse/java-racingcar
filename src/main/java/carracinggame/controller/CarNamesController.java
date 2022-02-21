@@ -14,34 +14,26 @@ public class CarNamesController {
     }
 
     public String[] createCarNames(String input) {
+        String[] carNames;
         try {
             CarNames.checkBlank(input);
+            carNames = makeCarNames(input);
+            checkCarNames(carNames);
         } catch (IllegalArgumentException e) {
-            OutputView.printNameBlankError();
+            OutputView.println(e.getMessage());
             return getCarNames();
-        }
-        return makeCarNames(input);
-    }
-
-    private String[] makeCarNames(String input) {
-        String[] carNames = StringUtils.splitCarNames(input);
-        carNames = StringUtils.trimCarNames(carNames);
-        return checkCarNames(carNames);
-    }
-
-    private String[] checkCarNames(String[] carNames) {
-        for (int idx = 0; idx < carNames.length; idx++) {
-            checkCarName(carNames[idx]);
         }
         return carNames;
     }
 
-    private void checkCarName(String carName) {
-        try {
+    private String[] makeCarNames(String input) {
+        String[] carNames = StringUtils.splitCarNames(input);
+        return StringUtils.trimCarNames(carNames);
+    }
+
+    private void checkCarNames(String[] carNames) throws IllegalArgumentException{
+        for (String carName : carNames) {
             CarNames.checkRightLength(carName);
-        } catch (IllegalArgumentException e) {
-            OutputView.printNameLengthError();
-            getCarNames();
         }
     }
 }
