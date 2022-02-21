@@ -13,4 +13,10 @@ public class CarToCarDtoMapper {
 			.map(CarDto::new)
 			.collect(Collectors.toList());
 	}
+
+	public static List<List<CarDto>> ToCarDtoGroups(List<List<Car>> carsGroup) {
+		return carsGroup.stream()
+			.map(CarToCarDtoMapper::ToCarDtos)
+			.collect(Collectors.toList());
+	}
 }
