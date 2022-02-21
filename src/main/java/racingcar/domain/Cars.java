@@ -1,41 +1,38 @@
 package racingcar.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.util.Validator;
+import racingcar.controller.CarDto;
 
 public class Cars {
     private static final String ERROR_CAR_EMPTY = "자동차가 존재하지 않습니다.";
+
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    public static Cars from(List<Car> cars) {
-        Validator.validateCarsName(getCarNames(cars));
-        return new Cars(cars);
-    }
-
-    public static Cars fromNames(List<String> carsNames) {
-        return new Cars(carsNames.stream()
-                .map(carName -> new Car(carName))
+    public static Cars fromInput(List<String> InputNames) {
+        Names names = Names.fromInput(InputNames);
+        return new Cars(names.getNames().stream()
+                .map(Car::fromName)
                 .collect(Collectors.toList()));
     }
 
-    private static List<String> getCarNames(List<Car> cars) {
-        return cars.stream().map(car -> car.getName()).collect(Collectors.toList());
+    public static Cars from(List<Car> cars) {
+        return new Cars(cars);
     }
 
     public void driveAll(NumberGeneratePolicy numberGeneratePolicy) {
-        cars.forEach(car -> car.drive(numberGeneratePolicy.generateNumber()));
+        cars.forEach(car -> car.drive(numberGeneratePolicy.generate()));
     }
 
-    public List<Car> getWinners() {
+    public List<CarDto> getWinners() {
         final Car maxPositionCar = findMaxPositionCar();
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
+                .map(CarDto::from)
                 .collect(Collectors.toList());
     }
 
@@ -45,7 +42,9 @@ public class Cars {
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_CAR_EMPTY));
     }
 
-    public List<Car> getDriveRecord() {
-        return Collections.unmodifiableList(cars);
+    public List<CarDto> getCurrentCars() {
+        return cars.stream()
+                .map(CarDto::from)
+                .collect(Collectors.toList());
     }
 }

@@ -1,16 +1,32 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import racingcar.util.Validator;
 
 public class Round {
+    private static final int POSITIVE_NUMBER_STANDARD = 1;
+    private static final String ERROR_INVALID_RANGE_MESSAGE = "정상 범위(" + POSITIVE_NUMBER_STANDARD + "이상)가 아닙니다";
     private static final int ROUND_END_NUMBER = 0;
     private static final int DECREASED_NUMBER = 1;
+
     private final int roundNum;
 
-    public Round(String roundNum) {
-        this.roundNum = Integer.parseInt(roundNum);
-        Validator.validateRound(roundNum);
+    private Round(int roundNum) {
+        this.roundNum = roundNum;
+    }
+
+    public static Round fromInput(int inputRound) {
+        validateRound(inputRound);
+        return new Round(inputRound);
+    }
+
+    private static void validateRound(int inputRound) {
+        checkValidRangeOfInputRound(inputRound);
+    }
+
+    private static void checkValidRangeOfInputRound(int inputRound) {
+        if (inputRound < POSITIVE_NUMBER_STANDARD) {
+            throw new IllegalArgumentException(ERROR_INVALID_RANGE_MESSAGE);
+        }
     }
 
     public boolean isValidRound() {
@@ -18,7 +34,7 @@ public class Round {
     }
 
     public Round toNextRound() {
-        return new Round(String.valueOf(roundNum - DECREASED_NUMBER));
+        return new Round(roundNum - DECREASED_NUMBER);
     }
 
     @Override

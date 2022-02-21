@@ -1,23 +1,41 @@
 package racingcar.controller;
 
+import racingcar.domain.Cars;
 import racingcar.domain.RacingGame;
-import racingcar.domain.RacingRecord;
 import racingcar.domain.RandomNumberGeneratePolicy;
+import racingcar.domain.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGameController {
-    public static void main(String[] args) {
+    public void startRacing() {
         RacingGame racingGame = RacingGame.createRacingGame(
-                InputView.getCarsName(),
-                InputView.getRound(),
+                getCars(),
+                getRound(),
                 new RandomNumberGeneratePolicy()
         );
         OutputView.printRacingRecordHeadLine();
         while (racingGame.hasNextGame()) {
-            RacingRecord racingRecord = racingGame.race();
-            OutputView.printRacingRecord(racingRecord);
+            OutputView.printRacingRecord(racingGame.race());
         }
-        OutputView.printRacingResult(racingGame.getRacingResult());
+        OutputView.printRacingResult(racingGame.findCarsOfWinner());
+    }
+
+    private Cars getCars() {
+        try {
+            return Cars.fromInput(InputView.getCarNames());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return getCars();
+        }
+    }
+
+    private Round getRound() {
+        try {
+            return Round.fromInput(Integer.parseInt(InputView.getRound()));
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return getRound();
+        }
     }
 }
