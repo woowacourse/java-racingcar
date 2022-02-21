@@ -6,19 +6,19 @@ import carracinggame.view.OutputView;
 
 public class TimesController {
 
-    public int getTimes() {
+    public Times getTimes() {
         OutputView.printWhatTimes();
-        String input = InputView.getInput();
-        return makeTimes(input);
+        return makeTimes(InputView.getInput());
     }
 
-    public int makeTimes(String input) {
+    public Times makeTimes(String input) {
+        Times times;
         try {
-            Times.isRightTimes(input);
+            times = new Times(input);
         } catch (IllegalArgumentException e) {
-            OutputView.printTimesError();
+            OutputView.println(e.getMessage());
             return getTimes();
         }
-        return Integer.parseInt(input);
+        return times;
     }
 }

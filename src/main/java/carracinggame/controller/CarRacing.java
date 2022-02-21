@@ -14,18 +14,17 @@ public class CarRacing {
 
     Cars cars = new Cars();
 
-    public void start(String[] carNames, int times) {
+    public void start(String[] carNames, Times times) {
         cars.makeCars(carNames);
         carsCount = carNames.length;
         OutputView.printResultMessage();
         playRacingGame(times);
     }
 
-    private void playRacingGame(int times) {
-        while (!Times.isEnd(times)) {
+    private void playRacingGame(Times times) {
+        while (!times.isEnd()) {
             cars.run();
             turnResult();
-            times--;
         }
     }
 
