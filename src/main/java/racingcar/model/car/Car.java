@@ -53,4 +53,8 @@ public class Car implements Comparable<Car> {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public boolean isInPosition(Position position) {
+        return this.position.equals(position);
+    }
 }

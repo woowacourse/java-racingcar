@@ -42,7 +42,7 @@ public class Cars {
 
     private List<Car> getCarsByPosition(final Position position) {
         return cars.stream()
-            .filter((car) -> car.getPosition() == position.value())
+            .filter((car) -> car.isInPosition(position))
             .collect(Collectors.toList());
     }
 
