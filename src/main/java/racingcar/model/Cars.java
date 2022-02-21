@@ -79,16 +79,20 @@ public class Cars {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (!(o instanceof Cars))
+		}
+
+		if (!(o instanceof Cars)) {
 			return false;
+		}
+
 		Cars cars1 = (Cars)o;
-		return getCars().equals(cars1.getCars());
+		return cars.equals(cars1.getCars());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getCars());
+		return Objects.hash(cars);
 	}
 }

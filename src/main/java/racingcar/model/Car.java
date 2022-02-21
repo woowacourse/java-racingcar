@@ -37,17 +37,21 @@ public class Car implements Comparable<Car> {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (!(o instanceof Car))
+		}
+
+		if (!(o instanceof Car)) {
 			return false;
+		}
+
 		Car car = (Car)o;
-		return getName().equals(car.getName());
+		return name.equals(car.getName());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getName());
+		return Objects.hash(name);
 	}
 
 	@Override
