@@ -21,7 +21,7 @@ class TryCountTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"aaa", "-1"})
+    @ValueSource(strings = {"aaa", "-1", "1001"})
     @DisplayName("생성 실패")
     public void failed(String tryCountString) {
         assertThatThrownBy(() -> new TryCount(tryCountString)).isInstanceOf(IllegalArgumentException.class);

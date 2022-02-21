@@ -1,33 +1,39 @@
 package racingcar.domain;
 
-import static racingcar.message.ErrorMessages.*;
+import static racingcar.message.ErrorMessages.TRY_CNT_NOT_NUMBER;
+import static racingcar.message.ErrorMessages.TRY_CNT_NOT_VALID_NUMBER;
 
 import java.util.Objects;
 
 public class TryCount {
+    private static final int TRY_MAX_CNT = 1000;
     private final int tryCount;
 
     public TryCount(String countString) {
+        validateStringIsNumber(countString);
+        isValidNumber(countString);
         this.tryCount = convertStringToInt(countString);
-        validatePositive(tryCount);
     }
 
     public boolean isNotSame(int tryCount) {
         return this.tryCount != tryCount;
     }
 
-    private int convertStringToInt(String string) {
-        try {
-            return Integer.parseInt(string);
-        } catch (NumberFormatException e) {
+    private void validateStringIsNumber(String input) {
+        if (!input.matches("[0-9]")) {
             throw new IllegalArgumentException(TRY_CNT_NOT_NUMBER);
         }
     }
 
-    private void validatePositive(int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException(TRY_CNT_NOT_NATURAL_NUMBER);
+    private void isValidNumber(String input) {
+        long count = Long.parseLong(input);
+        if (count < 0 || count > TRY_MAX_CNT) {
+            throw new IllegalArgumentException(TRY_CNT_NOT_VALID_NUMBER);
         }
+    }
+
+    private int convertStringToInt(String string) {
+        return Integer.parseInt(string);
     }
 
     @Override
