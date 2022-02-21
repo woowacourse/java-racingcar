@@ -10,12 +10,12 @@ import racingcar.model.RoundResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class Racing {
+public class RacingController {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public Racing() {
+    public RacingController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
