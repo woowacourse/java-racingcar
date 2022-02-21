@@ -46,7 +46,7 @@ class CarsTest {
 	}
 
 	@Test
-	@DisplayName("전달되는 숫자 리스트 크기가 작을 경우 예외 발생")
+	@DisplayName("전달되는 숫자 리스트 크기가 현재 존재하는 자동차 수보다 작을 경우 예외 발생")
 	void validRandomsSizeTest() {
 		List<Integer> integers = Collections.singletonList(1);
 		assertThatThrownBy(() -> cars.moveAll(integers))
