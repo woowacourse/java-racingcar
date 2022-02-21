@@ -2,6 +2,7 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -32,6 +33,6 @@ public class Game {
 	}
 
 	public List<String> getWinners() {
-		return cars.findWinner();
+		return cars.findWinner().stream().map(RacingCar::getName).collect(Collectors.toUnmodifiableList());
 	}
 }

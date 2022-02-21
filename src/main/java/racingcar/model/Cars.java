@@ -61,11 +61,10 @@ public class Cars {
 		return cars.stream().mapToInt(RacingCar::getPosition).max().orElse(0);
 	}
 
-	public List<String> findWinner() {
+	public List<RacingCar> findWinner() {
 		int maxPosition = findMaxPosition(cars);
 		return cars.stream()
 			.filter(car -> car.matchPosition(maxPosition))
-			.map(RacingCar::getName)
 			.collect(Collectors.toUnmodifiableList());
 	}
 }

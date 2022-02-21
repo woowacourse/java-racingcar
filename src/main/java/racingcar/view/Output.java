@@ -3,7 +3,6 @@ package racingcar.view;
 import java.util.List;
 
 import racingcar.model.Cars;
-import racingcar.model.Name;
 import racingcar.model.RacingCar;
 
 public class Output {
