@@ -33,6 +33,4 @@ public class RacingCarController {
         outputView.printRacingRecords(racingRecords);
         outputView.printWinners(service.getWinners(cars));
     }
-
-
 }

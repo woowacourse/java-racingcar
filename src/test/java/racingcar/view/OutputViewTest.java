@@ -13,7 +13,6 @@ import racingcar.config.ViewConfig;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.dto.CarResponse;
-import racingcar.dto.CarsResponse;
 import racingcar.dto.RacingRecord;
 
 class OutputViewTest extends ConsoleTest {

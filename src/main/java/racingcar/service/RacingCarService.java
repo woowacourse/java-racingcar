@@ -13,7 +13,7 @@ public class RacingCarService {
 
     public List<RacingRecord> getRacingRecords(Cars cars, Round round) {
         List<RacingRecord> racingRecords = new ArrayList<>();
-        while (isEnd(round)) {
+        while (!isEnd(round)) {
             racingRecords.add(run(cars, round));
         }
         return racingRecords;
