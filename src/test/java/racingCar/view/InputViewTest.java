@@ -1,23 +1,24 @@
-package racingCar.domain.utils;
+package racingCar.view;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static racingCar.utils.InputValidator.validate;
+import static racingCar.view.InputView.validate;
 
 import org.junit.jupiter.api.Test;
 import racingCar.exception.NullInputException;
 
 @SuppressWarnings("NonAsciiCharacters")
-public class InputViewValidatorTest {
+public class InputViewTest {
     @Test
-    void validate_null() {
+    void getNames_null() {
+
         assertThatThrownBy(() -> validate(null))
                 .isInstanceOf(NullInputException.class)
                 .hasMessage("1자 이상 입력해주세요.");
     }
 
     @Test
-    void validate_빈문자열() {
+    void getNames_빈문자열() {
         assertThatThrownBy(() -> validate(""))
                 .isInstanceOf(NullInputException.class)
                 .hasMessage("1자 이상 입력해주세요.");

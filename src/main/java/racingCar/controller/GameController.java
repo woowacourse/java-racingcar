@@ -1,7 +1,6 @@
 package racingCar.controller;
 
 import racingCar.domain.RacingGame;
-import racingCar.utils.InputValidator;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
@@ -9,8 +8,8 @@ public class GameController {
     private final RacingGame racingGame;
 
     public GameController() {
-        String names = InputValidator.validate(InputView.getNames());
-        String count = InputValidator.validate(InputView.getCount());
+        String names = InputView.getNames();
+        String count = InputView.getCount();
         racingGame = new RacingGame(names, count);
     }
 
