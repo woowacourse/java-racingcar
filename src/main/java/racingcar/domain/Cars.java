@@ -33,11 +33,17 @@ public class Cars {
 	}
 
 	private Car findMaxPositionCar() {
-		return cars.stream().max(Car::compareTo).orElseThrow(() -> new NoSuchElementException(Constant.MAX_FIND_ERROR));
+		return cars
+			.stream()
+			.max(Car::compareTo)
+			.orElseThrow(() -> new NoSuchElementException(Constant.MAX_FIND_ERROR));
 	}
 
 	private List<String> findSamePositionCar(Car target) {
-		return cars.stream().filter(car -> car.isSamePosition(target)).map(Car::getName).collect(Collectors.toList());
+		return cars.stream()
+			.filter(car -> car.isSamePosition(target))
+			.map(Car::getName)
+			.collect(Collectors.toList());
 	}
 
 	private void carsValid(List<Car> cars) {
