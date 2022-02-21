@@ -61,10 +61,10 @@ class CarsTest {
 		Car carMove = new Car("소주캉");
 
 		carMove.move(4);
-		cars.moveAll(moveConditionNumbers);
+		List<Car> actual = this.cars.moveAll(moveConditionNumbers);
 		List<Car> expected = Arrays.asList(carStop, carMove);
 
-		assertThat(cars.getCars()).isEqualTo(expected);
+		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test

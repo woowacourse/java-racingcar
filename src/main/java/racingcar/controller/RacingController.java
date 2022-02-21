@@ -1,13 +1,12 @@
 package racingcar.controller;
 
-import static racingcar.model.CarToCarDtoMapper.*;
+import static racingcar.model.DtoMapper.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.model.CarDto;
-import racingcar.model.CarToCarDtoMapper;
 import racingcar.model.Racing;
 import racingcar.view.InputView;
 import racingcar.view.ResultView;
@@ -18,8 +17,8 @@ public class RacingController {
 		controller.createCarsByUserInput();
 
 		int iteration = InputView.getIterationNumber();
-		List<List<CarDto>> gameResult = controller.runForIteration(iteration);
-		ResultView.printGameResult(gameResult);
+		List<GameResult> gameResults = controller.runForIteration(iteration);
+		ResultView.printGameResult(gameResults);
 
 		ResultView.printWinners(controller.getWinners());
 	}
@@ -39,8 +38,8 @@ public class RacingController {
 			.collect(Collectors.toList());
 	}
 
-	private List<List<CarDto>> runForIteration(int iteration) {
-		return CarToCarDtoMapper.ToCarDtoGroups(Racing.runForIteration(iteration));
+	private List<GameResult> runForIteration(int iteration) {
+		return ToGameResults(Racing.runForIteration(iteration));
 	}
 
 	private List<CarDto> getWinners() {

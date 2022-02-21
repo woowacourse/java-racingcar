@@ -45,10 +45,6 @@ public class Cars {
 		return cars.size();
 	}
 
-	public List<Car> getCars() {
-		return cars;
-	}
-
 	public List<Car> getWinners() {
 		return cars.stream()
 			.filter(car -> car.isSamePosition(maxPosition()))

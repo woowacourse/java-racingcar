@@ -3,9 +3,11 @@ package racingcar.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarToCarDtoMapper {
+import racingcar.controller.GameResult;
 
-	private CarToCarDtoMapper() {
+public class DtoMapper {
+
+	private DtoMapper() {
 	}
 
 	public static List<CarDto> ToCarDtos(List<Car> cars) {
@@ -14,9 +16,9 @@ public class CarToCarDtoMapper {
 			.collect(Collectors.toList());
 	}
 
-	public static List<List<CarDto>> ToCarDtoGroups(List<List<Car>> carsGroup) {
+	public static List<GameResult> ToGameResults(List<List<Car>> carsGroup) {
 		return carsGroup.stream()
-			.map(CarToCarDtoMapper::ToCarDtos)
+			.map(cars -> new GameResult(ToCarDtos(cars)))
 			.collect(Collectors.toList());
 	}
 }

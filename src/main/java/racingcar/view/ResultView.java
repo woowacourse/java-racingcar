@@ -3,6 +3,7 @@ package racingcar.view;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import racingcar.controller.GameResult;
 import racingcar.model.CarDto;
 
 public class ResultView {
@@ -11,15 +12,15 @@ public class ResultView {
 	private ResultView() {
 	}
 
-	public static void printGameResult(List<List<CarDto>> gameResult) {
+	public static void printGameResult(List<GameResult> gameResults) {
 		printBeforeGameResult();
-		for (List<CarDto> OneGameResult : gameResult) {
-			printOneGameResult(OneGameResult);
+		for (GameResult oneGameResult : gameResults) {
+			printOneGameResult(oneGameResult);
 		}
 	}
 
-	private static void printOneGameResult(List<CarDto> cars) {
-		cars.stream()
+	private static void printOneGameResult(GameResult gameResult) {
+		gameResult.getGameResult().stream()
 			.map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
 			.forEach(System.out::println);
 		printEmptyLine();
