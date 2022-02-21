@@ -2,8 +2,8 @@ package racingcar.domain.car;
 
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.dto.CarsDto;
+import racingcar.dto.WinnerCarsDto;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,5 +47,10 @@ public class Cars {
             car.move(numberGenerator);
         }
         return CarsDto.from(cars);
+    }
+
+    public WinnerCarsDto judgeWinner() {
+        List<Car> winnerCars = getSamePositionCar(getMaxPosition());
+        return WinnerCarsDto.from(winnerCars);
     }
 }

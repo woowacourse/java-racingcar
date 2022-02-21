@@ -1,12 +1,14 @@
 package racingcar;
 
 import org.junit.jupiter.api.Test;
-
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarFactory;
 import racingcar.domain.car.Cars;
 import racingcar.domain.numbergenerator.MovableNumberGenerator;
+import racingcar.domain.numbergenerator.NonMovableNumberGenerator;
 import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.dto.CarsDto;
+import racingcar.dto.WinnerCarsDto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -72,5 +74,40 @@ public class CarsTest {
         cars.move(numberGenerator);
 
         assertThat(cars.getSamePositionCar(position).size()).isEqualTo(2);
+    }
+
+    @Test
+    public void Cars_전진_1() {
+        Car car1 = new Car("forky");
+        Car car2 = new Car("kun");
+        Cars cars = new Cars(Arrays.asList(car1, car2));
+
+        CarsDto carsDto = cars.move(new MovableNumberGenerator());
+
+        assertThat(carsDto.getCarPositions().get(0)).isEqualTo(1);
+    }
+
+    @Test
+    public void 우승자_판정_1명() {
+        Car car1 = new Car("forky");
+        Car car2 = new Car("kun");
+        Cars cars = new Cars(Arrays.asList(car1, car2));
+
+        car1.move(new MovableNumberGenerator());
+        car2.move(new NonMovableNumberGenerator());
+
+        WinnerCarsDto winnerCarsDto = cars.judgeWinner();
+        assertThat(winnerCarsDto.getWinnerCarNames().get(0)).isEqualTo(car1.getName());
+    }
+
+    @Test
+    public void 우승자_여러명() {
+        Car car1 = new Car("forky");
+        Car car2 = new Car("kun");
+        Cars cars = new Cars(Arrays.asList(car1, car2));
+
+        cars.move(new MovableNumberGenerator());
+
+        assertThat(cars.judgeWinner().getWinnerCarNames().size()).isEqualTo(2);
     }
 }

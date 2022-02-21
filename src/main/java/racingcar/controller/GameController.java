@@ -1,13 +1,10 @@
 package racingcar.controller;
 
-import racingcar.domain.car.Car;
 import racingcar.domain.car.CarFactory;
 import racingcar.domain.car.Cars;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.dto.CarsDto;
 import racingcar.dto.WinnerCarsDto;
-
-import java.util.List;
 
 public class GameController {
     private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
@@ -35,9 +32,7 @@ public class GameController {
     }
 
     public WinnerCarsDto judgeWinner() {
-        int maxPosition = cars.getMaxPosition();
-        List<Car> winnerCars = cars.getSamePositionCar(maxPosition);
-        return WinnerCarsDto.from(winnerCars);
+        return cars.judgeWinner();
     }
 
 }
