@@ -1,37 +1,43 @@
 package racingcar.controller;
 
-import racingcar.domain.Game;
+import racingcar.domain.car.Car;
 import racingcar.domain.car.CarFactory;
-import racingcar.domain.numbergenerator.RandomNumberGenerator;
+import racingcar.domain.car.Cars;
+import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.dto.CarsDto;
 import racingcar.dto.WinnerCarsDto;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
+
+import java.util.List;
 
 public class GameController {
+    private static final String NEGATIVE_ERROR_MESSAGE = "[ERROR] 음수를 입력할 수 없습니다";
+    private static final int ERROR_CRITERIA_VALUE_ZERO = 0;
 
-    private final Game game;
+    private Cars cars;
 
-    public GameController() {
-        game = new Game(CarFactory.from(InputView.inputCarNames()), InputView.inputGameCount());
+    public void createCars(String carNames) {
+        cars = new Cars(CarFactory.from(carNames));
     }
 
-    public void start() {
-        OutputView.printGameResultTitle();
+    public int createGameCount(int gameCount) {
+        return validateGameCount(gameCount);
+    }
 
-        for (int i = 0; i < game.getGameCount(); i++) {
-            game.play(new RandomNumberGenerator());
-            showResult();
+    private int validateGameCount(int gameCount) {
+        if (gameCount < ERROR_CRITERIA_VALUE_ZERO) {
+            throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
         }
-        showWinner();
+        return gameCount;
     }
 
-    public void showResult() {
-        OutputView.printCarStatus(CarsDto.from(game.getCars()));
-        OutputView.printBlankLine();
+    public CarsDto move(NumberGenerator numberGenerator) {
+        return cars.move(numberGenerator);
     }
 
-    public void showWinner() {
-        OutputView.printWinner(WinnerCarsDto.from(game.judgeWinner()));
+    public WinnerCarsDto judgeWinner() {
+        int maxPosition = cars.getMaxPosition();
+        List<Car> winnerCars = cars.getSamePositionCar(maxPosition);
+        return WinnerCarsDto.from(winnerCars);
     }
+
 }

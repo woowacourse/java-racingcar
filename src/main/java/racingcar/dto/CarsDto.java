@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarsDto {
-    List<String> carNames;
-    List<Integer> carPositions;
+    private List<String> carNames;
+    private List<Integer> carPositions;
 
     public CarsDto(List<String> carNames, List<Integer> carPositions) {
         this.carNames = carNames;

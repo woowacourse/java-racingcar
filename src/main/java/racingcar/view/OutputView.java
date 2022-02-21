@@ -23,6 +23,7 @@ public class OutputView {
         for (int i = 0; i < carNames.size(); i++) {
             System.out.printf(RESULT_FORMAT, carNames.get(i),buildStringPosition(carPositions.get(i)));
         }
+        System.out.println();
     }
 
     private static String buildStringPosition(int position) {
@@ -31,10 +32,6 @@ public class OutputView {
             stringBuilder.append(POSITION_CHARACTER);
         }
         return stringBuilder.toString();
-    }
-
-    public static void printBlankLine() {
-        System.out.println();
     }
 
     public static void printWinner(WinnerCarsDto winnerCarDto) {

@@ -1,6 +1,7 @@
 package racingcar.domain.car;
 
 import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.dto.CarsDto;
 
 import java.util.Collections;
 import java.util.List;
@@ -41,13 +42,10 @@ public class Cars {
 
     }
 
-    public void move(NumberGenerator numberGenerator) {
+    public CarsDto move(NumberGenerator numberGenerator) {
         for (Car car : cars) {
             car.move(numberGenerator);
         }
-    }
-
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return CarsDto.from(cars);
     }
 }
