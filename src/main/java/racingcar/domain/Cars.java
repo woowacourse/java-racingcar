@@ -16,6 +16,25 @@ public class Cars {
 		carsValid(cars);
 		this.cars = cars;
 	}
+	
+	private void carsValid(List<Car> cars) {
+		if (!isCars(cars)) {
+			throw new IllegalArgumentException(Constant.CARS_ERROR_MESSAGE);
+		}
+		if (isDuplicated(cars)) {
+			throw new IllegalArgumentException(Constant.CAR_DUPLICATED_ERROR_MESSAGE);
+		}
+	}
+
+	private boolean isCars(List<Car> cars) {
+		return cars.size() >= Constant.CAR_LIMIT;
+	}
+
+	private boolean isDuplicated(List<Car> cars) {
+		return cars.stream()
+			.distinct()
+			.count() != cars.size();
+	}
 
 	public void play(MovePolicy movePolicy) {
 		for (Car car : cars) {
@@ -44,25 +63,6 @@ public class Cars {
 			.filter(car -> car.isSamePosition(target))
 			.map(Car::getName)
 			.collect(Collectors.toList());
-	}
-
-	private void carsValid(List<Car> cars) {
-		if (!isCars(cars)) {
-			throw new IllegalArgumentException(Constant.CARS_ERROR_MESSAGE);
-		}
-		if (isDuplicated(cars)) {
-			throw new IllegalArgumentException(Constant.CAR_DUPLICATED_ERROR_MESSAGE);
-		}
-	}
-
-	private boolean isCars(List<Car> cars) {
-		return cars.size() >= Constant.CAR_LIMIT;
-	}
-
-	private boolean isDuplicated(List<Car> cars) {
-		return cars.stream()
-			.distinct()
-			.count() != cars.size();
 	}
 
 	@Override
