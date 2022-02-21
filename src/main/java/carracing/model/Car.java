@@ -2,7 +2,9 @@ package carracing.model;
 
 import carracing.dto.CarDto;
 import carracing.utils.MoveStrategy;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static carracing.view.messages.ExceptionMessage.*;
 
@@ -19,6 +21,12 @@ public class Car implements Comparable<Car> {
         }
         this.name = name;
         this.position = 0;
+    }
+
+    public static List<Car> getCars(List<String> carNames) {
+        return carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public CarDto toCarDto() {

@@ -13,12 +13,8 @@ import carracing.utils.MoveStrategy;
 public class RacingCars {
     private final List<Car> cars;
 
-    public RacingCars(List<String> carNames) {
-        validateDuplication(carNames);
-
-        this.cars = carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
+    public RacingCars(List<Car> cars) {
+        this.cars = cars;
     }
 
     private void validateDuplication(List<String> carNames) {

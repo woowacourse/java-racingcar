@@ -1,5 +1,6 @@
 package carracing.controller;
 
+import carracing.model.Car;
 import java.util.List;
 
 import carracing.model.RacingCars;
@@ -28,7 +29,7 @@ public class RacingGameController {
         OutputView.printInputCarName();
         List<String> carNames = InputView.getCarNames();
         try {
-            this.racingCars = new RacingCars(carNames);
+            this.racingCars = new RacingCars(Car.getCars(carNames));
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
             getCars();
