@@ -2,7 +2,8 @@ package racingCar.domain.dto;
 
 import java.util.List;
 import java.util.Objects;
-import racingCar.domain.Cars;
+import java.util.stream.Collectors;
+import racingCar.domain.Car;
 
 public class CarsDto {
     private final List<CarDto> carsDto;
@@ -11,15 +12,18 @@ public class CarsDto {
         this.carsDto = carsDto;
     }
 
-    public static CarsDto from(Cars cars) {
-        return new CarsDto(cars.getDto());
+    public static CarsDto fromCars(List<Car> cars) {
+        return new CarsDto(cars.stream()
+                .map(CarDto::from)
+                .collect(Collectors.toList())
+        );
     }
 
-    public static CarsDto of(List<CarDto> carsDto) {
-        return new CarsDto(carsDto);
+    public static CarsDto fromCarDtos(List<CarDto> carDtos) {
+        return new CarsDto(carDtos);
     }
 
-    public List<CarDto> getCarsDto() {
+    public List<CarDto> get() {
         return carsDto;
     }
 

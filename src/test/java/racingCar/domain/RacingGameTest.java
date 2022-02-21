@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingCar.domain.dto.CarDto;
-import racingCar.domain.dto.CarsDto;
 import racingCar.domain.dto.InitDto;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -25,7 +24,7 @@ public class RacingGameTest {
     void 생성자_cars_값이_들어가는지_테스트() {
         //when
         List<String> names = new ArrayList<>();
-        for (CarDto carDTO : racingGame.getCarsDto().getCarsDto()) {
+        for (CarDto carDTO : racingGame.getCarsDto().get()) {
             names.add(carDTO.getName());
         }
 
@@ -47,19 +46,18 @@ public class RacingGameTest {
         racingGame.go();
 
         //when
-        int max = racingGame.getCarsDto().getCarsDto()
+        int max = racingGame.getCarsDto().get()
                 .stream()
                 .mapToInt(CarDto::getPosition)
                 .max()
                 .orElse(-1);
-        List<CarDto> result = racingGame.getCarsDto().getCarsDto()
+        List<CarDto> result = racingGame.getCarsDto().get()
                 .stream()
                 .filter(carDTO -> carDTO.getPosition() == max)
                 .collect(Collectors.toList());
-        CarsDto carsDto = CarsDto.of(result);
 
         //then
-        assertThat(carsDto)
-                .isEqualTo(racingGame.getWinnerCarsDto());
+        assertThat(result)
+                .isEqualTo(racingGame.getWinnerCarsDto().get());
     }
 }

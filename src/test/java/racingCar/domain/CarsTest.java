@@ -27,7 +27,7 @@ public class CarsTest {
 
     @Test
     void getSamePositionCars_이동없을때_검사() {
-        assertThat(cars.getSamePositionCarsDto(0))
+        assertThat(cars.getSamePositionCarsDto(0).get())
                 .containsOnly(CarDto.of("hunch", 0), CarDto.of("judi", 0));
     }
 
@@ -36,7 +36,7 @@ public class CarsTest {
         CarDto hunchDTO = CarDto.of("hunch", 0);
         CarDto judiDTO = CarDto.of("judi", 0);
 
-        assertThat(cars.getDto())
+        assertThat(cars.toDto().get())
                 .isEqualTo(Arrays.asList(hunchDTO, judiDTO));
     }
 
@@ -62,7 +62,7 @@ public class CarsTest {
         @Test
         void getSamePositionCars_2_검사() {
             //then
-            assertThat(cars.getSamePositionCarsDto(2))
+            assertThat(cars.getSamePositionCarsDto(2).get())
                     .containsOnly(CarDto.of("hunch", 2), CarDto.of("judi", 2));
         }
     }

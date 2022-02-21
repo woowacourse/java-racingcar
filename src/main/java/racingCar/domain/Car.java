@@ -14,8 +14,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(NumGenerator numGenerator) {
-        final int number = numGenerator.generate();
-        if (number >= GO_NUM) {
+        if (numGenerator.generate() >= GO_NUM) {
             position.move();
         }
     }

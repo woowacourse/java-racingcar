@@ -15,16 +15,16 @@ public class OutputView {
     }
 
     public static void printRoundResult(CarsDto carsDto) {
-        for (CarDto carDto : carsDto.getCarsDto()) {
+        for (CarDto carDto : carsDto.get()) {
             System.out.println(carDto.getName() + ROUND_REGEX + POSITION_SIGNATURE.repeat(carDto.getPosition()));
         }
         System.out.println();
     }
 
-    public static void printWinner(CarsDto winnerCars) {
+    public static void printWinner(CarsDto carsDto) {
         StringBuilder result = new StringBuilder();
-        for (CarDto winnerCar : winnerCars.getCarsDto()) {
-            result.append(winnerCar.getName()).append(WINNER_REGEX);
+        for (CarDto carDto : carsDto.get()) {
+            result.append(carDto.getName()).append(WINNER_REGEX);
         }
         System.out.println(result.substring(0, result.length() - 2) + WINNER_RESULT_LAST_MESSAGE);
     }

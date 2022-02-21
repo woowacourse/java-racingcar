@@ -39,7 +39,7 @@ public class OutputViewTest {
         result.add(CarDto.of("jiwoo", 2));
         result.add(CarDto.of("juri", 0));
 
-        CarsDto carsDto = CarsDto.of(result);
+        CarsDto carsDto = CarsDto.fromCarDtos(result);
 
         OutputView.printRoundResult(carsDto);
 
@@ -58,7 +58,7 @@ public class OutputViewTest {
         List<CarDto> result = new ArrayList<>();
         result.add(CarDto.of("jiwoo", 2));
         result.add(CarDto.of("juri", 0));
-        CarsDto carsDto = CarsDto.of(result);
+        CarsDto carsDto = CarsDto.fromCarDtos(result);
 
         OutputView.printRoundResult(carsDto);
 
@@ -72,7 +72,7 @@ public class OutputViewTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        CarsDto carsDto = CarsDto.of(List.of(CarDto.of("hunch", 0)));
+        CarsDto carsDto = CarsDto.fromCarDtos(List.of(CarDto.of("hunch", 0)));
 
         //when
         OutputView.printWinner(carsDto);
@@ -87,7 +87,7 @@ public class OutputViewTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        CarsDto carsDto = CarsDto.of(Arrays.asList(CarDto.of("hunch", 0), CarDto.of("juri", 0)));
+        CarsDto carsDto = CarsDto.fromCarDtos(Arrays.asList(CarDto.of("hunch", 0), CarDto.of("juri", 0)));
 
         //when
         OutputView.printWinner(carsDto);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingCar.domain.dto.CarDto;
+import racingCar.domain.dto.CarsDto;
 import racingCar.domain.moveStrategy.NumGenerator;
 import racingCar.exception.name.NameDuplicatedException;
 import racingCar.exception.name.NameOnlyOneException;
@@ -42,18 +42,13 @@ public class Cars {
         return maxCar.getPosition();
     }
 
-    public List<CarDto> getSamePositionCarsDto(int position) {
-        return cars.stream()
+    public CarsDto getSamePositionCarsDto(int position) {
+        return CarsDto.fromCars(cars.stream()
                 .filter(car -> car.isThatPosition(position))
-                .map(CarDto::from)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
-    public List<CarDto> getDto() {
-        List<CarDto> carsDto = new ArrayList<>();
-        for (Car car : cars) {
-            carsDto.add(CarDto.from(car));
-        }
-        return carsDto;
+    public CarsDto toDto() {
+        return CarsDto.fromCars(cars);
     }
 }
