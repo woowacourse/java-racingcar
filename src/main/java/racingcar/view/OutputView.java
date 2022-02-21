@@ -25,4 +25,8 @@ public class OutputView {
 		System.out.println(ANNOUNCE_WINNERS);
 	}
 
+	public static void printErrorMessage(String errorMessage) {
+		System.out.println(errorMessage);
+	}
+
 }

@@ -13,7 +13,7 @@ public class RacingCarGame {
 		try {
 			cars = new Cars(InputView.getCarNames());
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			OutputView.printErrorMessage(e.getMessage());
 			makeCars();
 		}
 	}
@@ -22,7 +22,7 @@ public class RacingCarGame {
 		try {
 			gameTurn = new GameTurn(InputView.getGameTurn());
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			OutputView.printErrorMessage(e.getMessage());
 			getGameTurn();
 		}
 	}
