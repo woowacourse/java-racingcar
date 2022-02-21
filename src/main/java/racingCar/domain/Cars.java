@@ -44,16 +44,11 @@ public class Cars {
     }
 
     public List<CarDto> getSamePositionCarsDto(int position) {
-        return getDto().stream()
-                .filter(car -> car.getPosition() == position)
+        return cars.stream()
+                .filter(car -> car.isThatPosition(position))
+                .map(CarDto::new)
                 .collect(Collectors.toList());
     }
-
-//    public List<CarDto> getSamePositionCarsDto(int position) {
-//        return getDto().stream()
-//                .filter(car -> car.getPosition() == position)
-//                .collect(Collectors.toList());
-//    }
 
     public List<CarDto> getDto() {
         List<CarDto> carsDto = new ArrayList<>();

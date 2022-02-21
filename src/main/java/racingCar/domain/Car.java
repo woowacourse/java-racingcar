@@ -29,6 +29,10 @@ public class Car implements  Comparable<Car>{
         return position.get();
     }
 
+    public boolean isThatPosition(int position) {
+        return getPosition() == position;
+    }
+
     public Car getMoreGoCar(Car compareCar) {
         if (compareTo(compareCar) > 0) {
             return this;
