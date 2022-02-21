@@ -29,7 +29,7 @@ public class RacingCarController {
 
 	private Cars initCars() {
 		outputView.printMessageOfRequestCarNames();
-		return Cars.of(inputView.requestCarNames());
+		return Cars.from(inputView.requestCarNames());
 	}
 
 	private Round initRound() {

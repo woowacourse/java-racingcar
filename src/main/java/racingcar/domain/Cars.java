@@ -19,7 +19,7 @@ public class Cars {
 		this.cars = cars;
 	}
 
-	public static Cars of(String[] names) {
+	public static Cars from(String[] names) {
 		return new Cars(Arrays.stream(names)
 			.map(Name::new)
 			.map(Car::new)

@@ -30,7 +30,7 @@ public class NameTest {
 	void 자동차_이름이_중복되면_예외를_던진다() {
 		String[] names = {"slow ", "pobi", "if", "slow"};
 
-		assertThatThrownBy(() -> Cars.of(names))
+		assertThatThrownBy(() -> Cars.from(names))
 			.isInstanceOf(DuplicateCarNameException.class);
 	}
 

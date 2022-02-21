@@ -17,7 +17,7 @@ public class CarsTest {
 	@BeforeEach
 	void setUpCars() {
 		String[] names = {"slow", "pobi", "if"};
-		cars = Cars.of(names);
+		cars = Cars.from(names);
 	}
 
 	@Test
