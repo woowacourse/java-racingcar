@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import racingcar.model.car.Cars;
 import racingcar.model.trycount.TryCount;
-import racingcar.util.NumberValidator;
 import racingcar.util.RacingCarMovableStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -31,9 +30,7 @@ public class RaceController {
 
     public TryCount getTryCount() {
         try {
-            String input = InputView.inputTryCount();
-            NumberValidator.validateStringIsNumber(input);
-            return new TryCount(Integer.parseInt(input));
+            return new TryCount(InputView.inputTryCount());
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception);
             return getTryCount();

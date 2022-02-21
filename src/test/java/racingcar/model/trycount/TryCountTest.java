@@ -13,23 +13,23 @@ public class TryCountTest {
     @Nested
     class New {
         @Nested
-        @DisplayName("양수가 주어지면")
-        class Context_with_positive_number {
+        @DisplayName("양수인 문자열이 주어지면")
+        class Context_with_positive_number_of_string {
             @ParameterizedTest
             @DisplayName("TryCount 객체를 반환한다.")
-            @ValueSource(ints = {1, 11})
-            void it_returns_try_count(int input) {
+            @ValueSource(strings = {"1", "11"})
+            void it_returns_try_count(String input) {
                 assertDoesNotThrow(() -> new TryCount(input));
             }
         }
 
         @Nested
-        @DisplayName("양수가 아니라면")
-        class Context_with_not_positive_number {
+        @DisplayName("양수가 아닌 문자열이 주어지면")
+        class Context_with_not_positive_number_of_string {
             @ParameterizedTest
             @DisplayName("예외를 발생시킨다.")
-            @ValueSource(ints = {0, -1, -22})
-            void it_throw_exception(int input) {
+            @ValueSource(strings = {"0", "-1", "-22"})
+            void it_throw_exception(String input) {
                 assertThatThrownBy(() -> new TryCount(input))
                     .isInstanceOf(IllegalArgumentException.class);
             }

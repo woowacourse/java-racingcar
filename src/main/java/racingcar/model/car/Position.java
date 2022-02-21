@@ -2,8 +2,6 @@ package racingcar.model.car;
 
 import java.util.Objects;
 
-import racingcar.util.NumberValidator;
-
 public class Position implements Comparable<Position> {
     public static final int DEFAULT_POSITION = 0;
     private static final int INCREASE_DISTANCE = 1;
@@ -14,8 +12,14 @@ public class Position implements Comparable<Position> {
     }
 
     public Position(final int position) {
-        NumberValidator.validateIsNotNegative(position);
+        validateIsNotNegative(position);
         this.position = position;
+    }
+
+    public static void validateIsNotNegative(final int input) {
+        if (input < DEFAULT_POSITION) {
+            throw new IllegalArgumentException("위치는 음수일 수 없습니다.");
+        }
     }
 
     public Position increase() {
