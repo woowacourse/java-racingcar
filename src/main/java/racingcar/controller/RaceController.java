@@ -22,7 +22,7 @@ public class RaceController {
         setUpCars();
         setUpTryCount();
         race();
-        raceEnd();
+        getWinners();
     }
 
     public void setUpCars() {
@@ -56,7 +56,7 @@ public class RaceController {
         }
     }
 
-    public void raceEnd() {
+    public void getWinners() {
         OutputView.printWinners(cars.getWinnersNames());
     }
 
