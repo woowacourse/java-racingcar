@@ -32,14 +32,6 @@ class Car {
 		return this.position == position;
 	}
 
-	String getName() {
-		return this.name;
-	}
-
-	int getPosition() {
-		return this.position;
-	}
-
 	private void validateName(String name) {
 		validateEmptyName(name);
 		validateOverNameLength(name);
@@ -55,6 +47,14 @@ class Car {
 		if (name.isEmpty()) {
 			throw new IllegalArgumentException(ERROR_EMPTY_CAR_NAME_MESSAGE);
 		}
+	}
+
+	String getName() {
+		return name;
+	}
+
+	int getPosition() {
+		return position;
 	}
 
 	@Override

@@ -16,7 +16,7 @@ import racingcar.view.ResultView;
 public class RacingController {
 	private static final Cars cars = new Cars();
 
-	public static void main(String[] args) {
+	public static void runGame() {
 		RacingController controller = new RacingController();
 		controller.createCarsByUserInput();
 
