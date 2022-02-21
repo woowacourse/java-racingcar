@@ -16,7 +16,7 @@ public class RacingGame {
     public RacingGame(String carNames, int trialCount) {
         isNaturalNumber(trialCount);
         this.trialCount = trialCount;
-        racingCars = new RacingCars(Arrays.asList(carNames.split(CAR_NAME_DELIMITER)));
+        this.racingCars = new RacingCars(Arrays.asList(carNames.split(CAR_NAME_DELIMITER)));
     }
 
     private void isNaturalNumber(int number) {
