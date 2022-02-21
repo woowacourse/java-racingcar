@@ -11,8 +11,8 @@ public class Name {
 
     public Name(final String name) {
         validateIsEmpty(name);
-        validateLength(name, MIN_LENGTH, MAX_LENGTH);
-        validateFormat(name);
+        validateLength(name);
+        validateSpecialCharacters(name);
         this.name = name;
     }
 
@@ -22,15 +22,15 @@ public class Name {
         }
     }
 
-    private static void validateLength(final String text, final int min, final int max) {
-        if (text.length() < min || text.length() > max) {
+    private static void validateLength(final String text) {
+        if (text.length() < MIN_LENGTH || text.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
-                String.format("문자열의 길이가 %d 이상 %d 이하가 아닙니다.", min, max)
+                String.format("문자열의 길이가 %d 이상 %d 이하가 아닙니다.", MIN_LENGTH, MAX_LENGTH)
             );
         }
     }
 
-    private static void validateFormat(final String text) {
+    private static void validateSpecialCharacters(final String text) {
         if (!text.matches(FORMAT_PATTERN)) {
             throw new IllegalArgumentException("올바르지 않은 형식의 문자열입니다.");
         }
