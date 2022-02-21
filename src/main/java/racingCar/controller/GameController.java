@@ -9,7 +9,7 @@ public class GameController {
     private final RacingGame racingGame;
 
     public GameController() {
-        InitDto initDto = InputView.get();
+        InitDto initDto = InputView.getInitDto();
         racingGame = new RacingGame(initDto);
     }
 

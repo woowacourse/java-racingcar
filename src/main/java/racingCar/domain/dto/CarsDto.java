@@ -39,11 +39,4 @@ public class CarsDto {
     public int hashCode() {
         return Objects.hash(carsDto);
     }
-
-    @Override
-    public String toString() {
-        return "CarsDto{" +
-                "carsDto=" + carsDto +
-                '}';
-    }
 }

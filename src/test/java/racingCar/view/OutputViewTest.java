@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import racingCar.domain.Car;
 import racingCar.domain.dto.CarDto;
 import racingCar.domain.dto.CarsDto;
 

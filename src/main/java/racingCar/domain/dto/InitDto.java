@@ -42,12 +42,4 @@ public class InitDto {
     public int hashCode() {
         return Objects.hash(names, count);
     }
-
-    @Override
-    public String toString() {
-        return "InitDto{" +
-                "names=" + names +
-                ", count=" + count +
-                '}';
-    }
 }

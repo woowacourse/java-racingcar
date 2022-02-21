@@ -44,12 +44,4 @@ public class CarDto {
     public int hashCode() {
         return Objects.hash(name, position);
     }
-
-    @Override
-    public String toString() {
-        return "CarDTO{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
-                '}';
-    }
 }
