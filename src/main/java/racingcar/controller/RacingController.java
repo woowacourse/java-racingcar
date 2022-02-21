@@ -2,20 +2,21 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
+import racingcar.domain.strategy.MoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
-    public void start() {
+    public void start(MoveStrategy moveStrategy) {
         try {
             Cars cars = new Cars(InputView.inputCarNames());
             TryCount tryCount = inputTryCount();
-            race(cars, tryCount);
+            race(cars, tryCount, moveStrategy);
             printRaceResult(cars);
 
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            start();
+            start(moveStrategy);
         }
     }
 
@@ -28,11 +29,11 @@ public class RacingController {
         }
     }
 
-    private void race(Cars cars, TryCount tryCount) {
+    private void race(Cars cars, TryCount tryCount, MoveStrategy moveStrategy) {
         int nowTryCnt = 0;
         OutputView.printStartMessage();
         while (tryCount.isNotSame(nowTryCnt++)) {
-            cars.moveAll();
+            cars.moveAll(moveStrategy);
             OutputView.printCarsStatus(cars.getCars());
         }
     }

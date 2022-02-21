@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.strategy.FixMoveStrategy;
+import racingcar.domain.strategy.MoveStrategy;
+import racingcar.domain.strategy.RandomMoveStrategy;
 
 class CarTest {
     @Test
@@ -36,9 +39,10 @@ class CarTest {
     public void go(int input, int expect) {
         // given
         Car car = new Car("test");
+        MoveStrategy moveStrategy = new FixMoveStrategy(input);
 
         // when
-        car.go(input);
+        car.go(moveStrategy);
 
         // then
         assertThat(car.getPosition()).isEqualTo(expect);

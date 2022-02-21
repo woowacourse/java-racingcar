@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.strategy.FixMoveStrategy;
+import racingcar.domain.strategy.MoveStrategy;
 
 class WinnersTest {
     @Test
@@ -31,6 +33,8 @@ class WinnersTest {
     @DisplayName("우승자 1명")
     void one() {
         // given
+        MoveStrategy moveStrategy = new FixMoveStrategy(6);
+
         String name1 = "오찌";
         String name2 = "연로그";
 
@@ -38,7 +42,7 @@ class WinnersTest {
         cars.add(new Car(name1));
 
         Car car1 = new Car(name2);
-        car1.go(6);
+        car1.go(moveStrategy);
         cars.add(car1);
 
         // when

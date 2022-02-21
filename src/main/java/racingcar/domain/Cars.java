@@ -6,13 +6,13 @@ import static racingcar.util.StringUtils.stripStringArray;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import racingcar.domain.strategy.MoveStrategy;
 import racingcar.message.ErrorMessages;
 import racingcar.util.RandomUtils;
 
 public class Cars {
     private static final String DELIMITER = ",";
-    private static final int MIN = 0;
-    private static final int MAX = 9;
+
 
     private final List<Car> cars = new ArrayList<>();
 
@@ -24,9 +24,9 @@ public class Cars {
         }
     }
 
-    public void moveAll() {
+    public void moveAll(MoveStrategy strategy) {
         for (Car car : cars) {
-            car.go(RandomUtils.generateNumber(MIN, MAX + 1));
+            car.go(strategy);
         }
     }
 
