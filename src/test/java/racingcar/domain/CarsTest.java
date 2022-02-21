@@ -57,8 +57,8 @@ public class CarsTest {
         List<Car> inCorrectCars = Arrays.asList(car1, car2);
 
         assertThatThrownBy(() -> new Cars(inCorrectCars, () -> true))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("중복");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복");
     }
 
     @Test
@@ -66,14 +66,14 @@ public class CarsTest {
         List<Car> onlyOneCar = List.of(car1);
 
         assertThatThrownBy(() -> new Cars(onlyOneCar, () -> true))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("최소");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("최소");
     }
 
     @Test
     void 자동차들이_null_일경우_예외발생() {
         assertThatThrownBy(() -> new Cars(null, () -> true))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("null");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("null");
     }
 }

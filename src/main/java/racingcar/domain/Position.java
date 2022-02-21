@@ -15,22 +15,24 @@ public class Position implements Comparable<Position> {
         return new Position(position + UP_POSITION);
     }
 
-    @Override
-    public int compareTo(Position other) {
-        return position - other.position;
-    }
-
     public int get() {
         return position;
     }
 
     @Override
+    public int compareTo(Position other) {
+        return position - other.position;
+    }
+
+    @Override
     public boolean equals(Object other) {
-        if (this == other)
+        if (this == other) {
             return true;
-        if (other == null || getClass() != other.getClass())
+        }
+        if (other == null || getClass() != other.getClass()) {
             return false;
-        Position position1 = (Position)other;
+        }
+        Position position1 = (Position) other;
         return position == position1.position;
     }
 

@@ -10,8 +10,8 @@ public class CarNameTest {
         final String nameString = "jason11";
 
         assertThatThrownBy(() -> new CarName(nameString))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("이하");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이하");
     }
 
     @Test
@@ -19,8 +19,8 @@ public class CarNameTest {
         final String nameString = "";
 
         assertThatThrownBy(() -> new CarName(nameString))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("자동차의 이름을 입력해주세요!");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("자동차의 이름을 입력해주세요!");
     }
 
     @Test
@@ -28,8 +28,8 @@ public class CarNameTest {
         final String nameString = null;
 
         assertThatThrownBy(() -> new CarName(nameString))
-            .isInstanceOf(RuntimeException.class)
-            .hasMessageContaining("자동차의 이름을 입력해주세요!");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("null은 사용할 수 없습니다. String 타입을 사용하세요.");
     }
 
     @Test
@@ -37,7 +37,7 @@ public class CarNameTest {
         final String nameString = "jason";
 
         assertThatCode(() -> new CarName(nameString))
-            .doesNotThrowAnyException();
+                .doesNotThrowAnyException();
     }
 
     @Test
@@ -45,6 +45,6 @@ public class CarNameTest {
         final String nameString = "a";
 
         assertThatCode(() -> new CarName(nameString))
-            .doesNotThrowAnyException();
+                .doesNotThrowAnyException();
     }
 }
