@@ -1,9 +1,8 @@
 package racingcar.view;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
-
 import java.util.List;
+
+import racingcar.model.Car;
 
 public class OutputView {
     private static final String RESULT_HEADER_MESSAGE = "실행 결과";
@@ -29,7 +28,7 @@ public class OutputView {
         System.out.println(RESULT_HEADER_MESSAGE);
     }
 
-    public static void printWinners(List<String> winners) {
+    public static void printWinnerNames(List<String> winners) {
         System.out.println(String.join(", ", winners) + WINNER_MESSAGE);
     }
 

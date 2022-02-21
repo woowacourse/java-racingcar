@@ -1,33 +1,39 @@
 package racingcar.model;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import racingcar.utils.generator.MovableNumberGenerator;
+import racingcar.utils.generator.NumberGenerator;
 
 class CarsTest {
-    Car car1, car2, car3;
-    Cars cars;
+    private final Cars cars = new Cars();
+    private Car car1;
+    private Car car2;
+    private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
 
     @BeforeEach
     void initialize() {
-        car1 = new Car("pobi");
-        car2 = new Car("crong");
-        car3 = new Car("honux");
-        cars = new Cars(Arrays.asList(car1, car2, car3));
+        cars.add(Arrays.asList("pobi", "crong", "honux"));
+        List<Car> carList = this.cars.getCars();
+        car1 = carList.get(0);
+        car2 = carList.get(1);
     }
 
     @Test
     void 단독_우승자() {
-        car1.forward(true);
-        Assertions.assertThat(cars.findWinners()).containsExactly("pobi");
+        car1.forward(movableNumberGenerator);
+        Assertions.assertThat(cars.findWinnerNames()).containsExactly(car1.getName());
     }
 
     @Test
     void 공동_우승자() {
-        car1.forward(true);
-        car2.forward(true);
-        Assertions.assertThat(cars.findWinners()).containsExactly("pobi", "crong");
+        car1.forward(movableNumberGenerator);
+        car2.forward(movableNumberGenerator);
+        Assertions.assertThat(cars.findWinnerNames()).containsExactly(car1.getName(), car2.getName());
     }
 }

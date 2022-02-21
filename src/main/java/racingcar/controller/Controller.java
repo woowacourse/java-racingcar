@@ -1,12 +1,10 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import racingcar.model.Car;
 import racingcar.model.Cars;
-import racingcar.utils.NameGenerator;
-import racingcar.utils.TrialNumberGenerator;
+import racingcar.utils.generator.NameGenerator;
+import racingcar.utils.generator.TrialNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -18,11 +16,12 @@ public class Controller {
         initialize();
         OutputView.printResultMessage();
         forwardCarsByTrialNumber();
-        OutputView.printWinners(cars.findWinners());
+        OutputView.printWinnerNames(cars.findWinnerNames());
     }
 
     private void initialize() {
-        cars = new Cars(getCars());
+        cars = new Cars();
+        addCarNamesToCars();
         trialNumber = getTrialNumber();
     }
 
@@ -37,21 +36,13 @@ public class Controller {
         cars.forward();
     }
 
-    private List<Car> getCars() {
-        List<Car> cars = new ArrayList<>();
+    private void addCarNamesToCars() {
         try {
             List<String> carNames = NameGenerator.generateCarNames(InputView.getCarNames());
-            addNewCarToCars(cars, carNames);
-            return cars;
+            cars.add(carNames);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return getCars();
-        }
-    }
-
-    private void addNewCarToCars(List<Car> cars, List<String> carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
+            addCarNamesToCars();
         }
     }
 

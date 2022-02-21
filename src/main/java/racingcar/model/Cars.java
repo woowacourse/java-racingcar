@@ -1,40 +1,45 @@
 package racingcar.model;
 
-import racingcar.utils.RandomForwardJudgment;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Cars {
-    private final List<Car> cars;
+import racingcar.utils.generator.NumberGenerator;
+import racingcar.utils.generator.RandomNumberGenerator;
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+public class Cars {
+    private final List<Car> cars = new ArrayList<>();
+    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
+
+    public void add(List<String> carNames) {
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
     }
 
     public void forward() {
         for (Car car : cars) {
-            car.forward(RandomForwardJudgment.canForward());
+            car.forward(numberGenerator);
         }
     }
 
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 
-    public List<String> findWinners() {
-        List<String> winners = new ArrayList<>();
+    public List<String> findWinnerNames() {
+        List<String> winnerNames = new ArrayList<>();
         int farthestPosition = getFarthestPosition();
 
         for (Car car : cars) {
-            addWinners(winners, farthestPosition, car);
+            addWinnerNames(winnerNames, farthestPosition, car);
         }
-        return winners;
+        return Collections.unmodifiableList(winnerNames);
     }
 
-    private void addWinners(List<String> winners, int farthestPosition, Car car) {
+    private void addWinnerNames(List<String> winnerNames, int farthestPosition, Car car) {
         if (car.isSamePositionWith(farthestPosition)) {
-            winners.add(car.getName());
+            winnerNames.add(car.getName());
         }
     }
 

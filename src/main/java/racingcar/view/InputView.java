@@ -1,9 +1,5 @@
 package racingcar.view;
 
-import racingcar.utils.NameGenerator;
-import racingcar.utils.TrialNumberGenerator;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
