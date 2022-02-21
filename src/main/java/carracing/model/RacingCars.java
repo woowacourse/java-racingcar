@@ -1,7 +1,5 @@
 package carracing.model;
 
-import static carracing.view.messages.ExceptionMessage.*;
-
 import carracing.dto.CarDto;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -15,16 +13,6 @@ public class RacingCars {
 
     public RacingCars(List<Car> cars) {
         this.cars = cars;
-    }
-
-    private void validateDuplication(List<String> carNames) {
-        boolean isDuplicated = carNames.stream()
-                .distinct()
-                .count() != carNames.size();
-
-        if (isDuplicated) {
-            throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
-        }
     }
 
     public List<String> getWinners() {

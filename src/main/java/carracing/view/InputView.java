@@ -11,7 +11,7 @@ import java.util.List;
 public class InputView {
     private static final String CAR_DELIMITER = ",";
     private static final String NUMBER_REGEX = "^[0-9]+$";
-    private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     private InputView() {
     }
@@ -29,7 +29,14 @@ public class InputView {
     }
 
     private static List<String> splitCarNames(String readLine) {
-        return Arrays.asList(readLine.split(CAR_DELIMITER));
+        List<String> carNames = Arrays.asList(readLine.split(CAR_DELIMITER));
+        try {
+            validateDuplication(carNames);
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e.getMessage());
+            return getCarNames();
+        }
+        return carNames;
     }
 
     public static int getNumberOfGames() {
@@ -48,6 +55,16 @@ public class InputView {
     private static void validateEmptyString(String line) {
         if (line.isEmpty()) {
             throw new IllegalArgumentException(INPUT_EMPTY_STRING_EXCEPTION.getMessage());
+        }
+    }
+
+    private static void validateDuplication(List<String> carNames) {
+        boolean isDuplicated = carNames.stream()
+                .distinct()
+                .count() != carNames.size();
+
+        if (isDuplicated) {
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
