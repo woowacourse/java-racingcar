@@ -13,8 +13,12 @@ public class Car implements Comparable<Car> {
 		this.name = name;
 	}
 
-	public Car(CarName name, int position) {
-		this.name = name;
+	public Car(String name) {
+		this.name = new CarName(name);
+	}
+
+	public Car(String name, int position) {
+		this.name = new CarName(name);;
 		this.position = position;
 	}
 

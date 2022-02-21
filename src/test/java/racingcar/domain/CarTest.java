@@ -20,7 +20,7 @@ class CarTest {
 	@Test
 	void car_hasNext_true() {
 		//given
-		Car car = new Car(new CarName("sudal"));
+		Car car = new Car("sudal");
 		//when
 		boolean actual = new CarMoveGenerator().hasNext(4);
 		//then
@@ -30,7 +30,7 @@ class CarTest {
 	@DisplayName("랜덤 넘버가 4 이상일 경우 전진")
 	@Test
 	void car_drive_true() {
-		Car car = new Car(new CarName("sudal"));
+		Car car = new Car("sudal");
 		//when
 		MovePolicy movePolicy = (int random) -> true;
 		car.drive(movePolicy);
@@ -42,7 +42,7 @@ class CarTest {
 	@Test
 	void car_hasNext_false() {
 		//given
-		Car car = new Car(new CarName("sudal"));
+		Car car = new Car("sudal");
 		//when
 		boolean actual = new CarMoveGenerator().hasNext(3);
 		//then
@@ -52,7 +52,7 @@ class CarTest {
 	@DisplayName("랜덤 넘버가 3 이하일 경우 멈춤")
 	@Test
 	void car_drive_false() {
-		Car car = new Car(new CarName("sudal"));
+		Car car = new Car("sudal");
 		//when
 		MovePolicy movePolicy = (int random) -> false;
 		car.drive(movePolicy);
@@ -63,8 +63,8 @@ class CarTest {
 	@DisplayName("같은 위치인지 비교 성공")
 	@Test
 	void isSamePosition_true() {
-		Car targetPositionCar = new Car(new CarName("hee"), 1);
-		Car otherPositionCar = new Car(new CarName("bong"), 1);
+		Car targetPositionCar = new Car("hee", 1);
+		Car otherPositionCar = new Car("bong", 1);
 		//when
 		boolean actual = targetPositionCar.isSamePosition(otherPositionCar);
 		//then
@@ -74,8 +74,8 @@ class CarTest {
 	@DisplayName("같은 위치인지 비교 실패")
 	@Test
 	void isSamePosition_false() {
-		Car targetPositionCar = new Car(new CarName("hee"), 25);
-		Car otherPositionCar = new Car(new CarName("bong"), 26);
+		Car targetPositionCar = new Car("hee", 25);
+		Car otherPositionCar = new Car("bong", 26);
 		//when
 		boolean actual = targetPositionCar.isSamePosition(otherPositionCar);
 		//then

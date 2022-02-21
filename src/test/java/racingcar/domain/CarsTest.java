@@ -35,11 +35,11 @@ class CarsTest {
 	}
 
 	private List<Car> check_ranking_if_correct() {
-		return Arrays.asList(new Car(new CarName("hee"), 2),
-			new Car(new CarName("bong"), 3),
-			new Car(new CarName("su"), 3),
-			new Car(new CarName("dal"), 3),
-			new Car(new CarName("good"), 1)
+		return Arrays.asList(new Car("hee", 2),
+			new Car("bong", 3),
+			new Car("su", 3),
+			new Car("dal", 3),
+			new Car("good", 1)
 		);
 	}
 
@@ -48,8 +48,8 @@ class CarsTest {
 	void car_name_duplicated() {
 		//given, when
 		List<Car> cars = new ArrayList<>();
-		cars.add(new Car(new CarName("bong")));
-		cars.add(new Car(new CarName("bong")));
+		cars.add(new Car("bong"));
+		cars.add(new Car("bong"));
 		//then
 		assertThatThrownBy(() -> {
 			new Cars(cars);
@@ -61,7 +61,7 @@ class CarsTest {
 	void car_count_test() {
 		//given, when
 		List<Car> cars = new ArrayList<>();
-		cars.add(new Car(new CarName("hee")));
+		cars.add(new Car("hee"));
 		//then
 		assertThatThrownBy(() -> {
 			new Cars(cars);

@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.service.MovePolicy;
 import racingcar.util.Constant;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -12,11 +13,17 @@ import java.util.stream.Collectors;
 public class Cars {
 	private final List<Car> cars;
 
+	public Cars(String[] names) {
+		List<Car> cars = toCars(names);
+		carsValid(cars);
+		this.cars = cars;
+	}
+
 	public Cars(List<Car> cars) {
 		carsValid(cars);
 		this.cars = cars;
 	}
-	
+
 	private void carsValid(List<Car> cars) {
 		if (!isCars(cars)) {
 			throw new IllegalArgumentException(Constant.CARS_ERROR_MESSAGE);
@@ -44,6 +51,19 @@ public class Cars {
 
 	public List<Car> getCars() {
 		return Collections.unmodifiableList(cars);
+	}
+
+	private static List<Car> toCars(String[] names) {
+		List<Car> cars = new ArrayList<>();
+
+		for (String name : names) {
+			cars.add(createCar(name));
+		}
+		return cars;
+	}
+
+	private static Car createCar(String name) {
+		return new Car(name.trim());
 	}
 
 	public List<String> findWinners() {
