@@ -35,4 +35,10 @@ class ParticipantsTest {
         List<Car> racingWinners = participants.findRacingWinners();
         assertThat(racingWinners.get(0).getName()).isEqualTo("Thor");
     }
+
+    @Test
+    public void race() {
+        RoundResult roundResult = participants.race();
+        assertThat(roundResult.getParticipantsNames()).contains("Eden", "Thor");
+    }
 }
