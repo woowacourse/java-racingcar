@@ -9,7 +9,7 @@ class RacingCarTest {
 	@Test
 	void testMovableCar() {
 		//given
-		RacingCar car = new RacingCar("judy", new MovableGenerator());
+		RacingCar car = new RacingCar("judy", () -> true);
 		//when
 		car.decideMove();
 		//then
@@ -19,7 +19,7 @@ class RacingCarTest {
 	@Test
 	void testNonMovableCar() {
 		//given
-		RacingCar car = new RacingCar("pobi", new NonMovableGenerator());
+		RacingCar car = new RacingCar("pobi", () -> false);
 		//when
 		car.decideMove();
 		//then

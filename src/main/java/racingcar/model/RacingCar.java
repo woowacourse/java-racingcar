@@ -5,7 +5,6 @@ import racingcar.model.movegenerator.RandomMoveGenerator;
 
 public class RacingCar {
 
-	private static final int MOVE_CRITERIA = 4;
 	private static final int INITIAL_POSITION_VALUE = 0;
 
 	private final Name name;
@@ -22,7 +21,7 @@ public class RacingCar {
 	}
 
 	public void decideMove() {
-		if (moveGenerator.generate() >= MOVE_CRITERIA) {
+		if (moveGenerator.isMovable()) {
 			move();
 		}
 	}
@@ -39,7 +38,14 @@ public class RacingCar {
 		return position;
 	}
 
-	public boolean matchPosition(final int position) {
-		return this.position == position;
+	public boolean matchPosition(final RacingCar car) {
+		return this.position == car.position;
+	}
+
+	public RacingCar findWinner(RacingCar car) {
+		if (position > car.position) {
+			return this;
+		}
+		return car;
 	}
 }

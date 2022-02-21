@@ -8,28 +8,24 @@ public class Game {
 
 	private final Cars cars;
 	private final RoundCount roundCount;
-	private final List<Cars> gameResult;
 
 	public Game(final Cars cars, final RoundCount roundCount) {
 		this.cars = cars;
 		this.roundCount = roundCount;
-		this.gameResult = new ArrayList<>();
 	}
 
-	public void run() {
+	public RacingGameResult run() {
+		List<List<RacingGameRecord>> racingGameRecords = new ArrayList<>();
 		while (roundCount.isEnd()) {
 			play();
-			gameResult.add(cars.getPresentCars());
+			racingGameRecords.add(cars.getPresentCars());
 		}
+		return new RacingGameResult(racingGameRecords);
 	}
 
 	private void play() {
 		roundCount.moveNextRound();
 		cars.startRound();
-	}
-
-	public List<Cars> getGameResult() {
-		return gameResult;
 	}
 
 	public List<String> getWinners() {

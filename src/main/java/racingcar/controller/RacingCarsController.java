@@ -17,15 +17,14 @@ public class RacingCarsController {
 	}
 
 	public void run() {
-		Cars cars = new Cars(inputView.inputCarNames());
+		Cars cars = Cars.from(inputView.inputCarNames());
 		RoundCount roundCount = new RoundCount(inputView.inputCount());
 		Game game = new Game(cars, roundCount);
-		game.run();
 		printResult(game);
 	}
 
 	private void printResult(Game game) {
-		outputView.printRoundResult(game.getGameResult());
+		outputView.printRoundResult(game.run());
 		outputView.printWinners(game.getWinners());
 	}
 }
