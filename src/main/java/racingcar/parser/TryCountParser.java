@@ -13,9 +13,9 @@ public class TryCountParser {
     private static final String FLOAT_REG_EXP = "(-|\\+)?[0-9]+\\.[0-9]+";
     private static final String DIGIT_REG_EXP = "(-|\\+)?[0-9]+";
 
-    public int parse(String input) {
+    public Integer parse(String input) {
         validateTryCount(input);
-        return Integer.parseInt(input);
+        return Integer.valueOf(input);
     }
 
     private void validateTryCount(String input) {

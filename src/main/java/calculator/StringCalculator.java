@@ -6,10 +6,10 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 
     private static final int INITIAL_SUM_VALUE = 0;
-    public static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
-    public static final String DEFAULT_DELIMITER_REGEX = ",|:";
-    public static final int CUSTOM_DELIMITER_GROUP = 1;
-    public static final int CUSTOM_TEXT_GROUP = 2;
+    private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n(.*)";
+    private static final String DEFAULT_DELIMITER_REGEX = ",|:";
+    private static final int CUSTOM_DELIMITER_GROUP = 1;
+    private static final int CUSTOM_TEXT_GROUP = 2;
 
     public int calculate(String input) {
         if (isNullOrEmpty(input)) {

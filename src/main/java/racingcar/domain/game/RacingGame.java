@@ -1,6 +1,5 @@
 package racingcar.domain.game;
 
-import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.domain.exception.GetWinnerBeforeFinishException;
@@ -9,12 +8,12 @@ import racingcar.domain.result.WinnerResult;
 
 public class RacingGame {
 
-    private final RandomNumberGenerator randomNumberGenerator;
-    private TryCount tryCount;
-    private Cars cars;
+    private final TryCount tryCount;
+    private final Cars cars;
 
-    public RacingGame(RandomNumberGenerator randomNumberGenerator) {
-        this.randomNumberGenerator = randomNumberGenerator;
+    public RacingGame(TryCount tryCount, Cars cars) {
+        this.tryCount = tryCount;
+        this.cars = cars;
     }
 
     public void proceedTurn() {
@@ -35,13 +34,5 @@ public class RacingGame {
 
     public MidtermResult getMidtermResult() {
         return cars.getMidtermResult();
-    }
-
-    public void enrollCars(List<String> names) {
-        cars = new Cars(names, randomNumberGenerator);
-    }
-
-    public void initTryCount(int inputTryCount) {
-        tryCount = new TryCount(inputTryCount);
     }
 }
