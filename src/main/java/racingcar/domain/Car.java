@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.util.NumberGenerator;
+
 public class Car {
 
     private static final int CONDITION_FOR_MOVE = 4;
@@ -17,7 +19,9 @@ public class Car {
         this.position = position;
     }
 
-    public void move(int target) {
+    public void move(NumberGenerator numberGenerator) {
+        int target = numberGenerator.generate();
+
         if (target >= CONDITION_FOR_MOVE) {
             position++;
         }

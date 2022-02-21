@@ -1,10 +1,10 @@
 package racingcar.domain;
 
+import racingcar.util.NumberGenerator;
+import racingcar.util.RandomNumberGenerator;
+
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static racingcar.util.RandomUtil.generateRandomNumber;
-
 
 public class Cars {
 
@@ -28,8 +28,10 @@ public class Cars {
     }
 
     public void move() {
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+
         for (Car car : cars) {
-            car.move(generateRandomNumber());
+            car.move(numberGenerator);
         }
     }
 
