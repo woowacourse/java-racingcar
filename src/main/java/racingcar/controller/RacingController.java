@@ -8,15 +8,18 @@ import racingcar.view.OutputView;
 
 public class RacingController {
     public void start(MoveStrategy moveStrategy) {
-        try {
-            Cars cars = new Cars(InputView.inputCarNames());
-            TryCount tryCount = inputTryCount();
-            race(cars, tryCount, moveStrategy);
-            printRaceResult(cars);
+        Cars cars = inputCars();
+        TryCount tryCount = inputTryCount();
+        race(cars, tryCount, moveStrategy);
+        printRaceResult(cars);
+    }
 
+    private Cars inputCars() {
+        try {
+            return new Cars(InputView.inputCarNames());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            start(moveStrategy);
+            return inputCars();
         }
     }
 
