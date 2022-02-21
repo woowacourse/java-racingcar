@@ -10,11 +10,11 @@ public class OutputView {
 	public static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
 	public static final String WINNER_JOIN_DELIMITER = ", ";
 
-	public static void printCarPosition(Map<String, Integer> cars) {
+	public static void printCarPosition(Map<String, Integer> carsInfo) {
 		StringBuilder outputString = new StringBuilder();
-		cars.keySet().forEach(name -> outputString.append(name)
+		carsInfo.keySet().forEach(name -> outputString.append(name)
 			.append(STRING_JOIN_DELIMITER)
-			.append(MOVE_EXPRESSION.repeat(cars.get(name)))
+			.append(MOVE_EXPRESSION.repeat(carsInfo.get(name)))
 			.append('\n'));
 		System.out.println(outputString);
 	}
