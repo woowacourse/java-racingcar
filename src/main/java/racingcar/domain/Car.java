@@ -2,43 +2,34 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import racingcar.domain.validation.CarValidator;
-import racingcar.service.StepGenerator;
+import racingcar.service.RandomGenerator;
+import racingcar.service.MovePolicy;
 
 public class Car implements Comparable<Car> {
-	private static final String STEP = "-";
-	private static final String FORMAT = "%s : %s";
-	private static final int DRIVE_FLAG = 3;
-
-	private final StepGenerator stepGenerator = new StepGenerator();
-	private final String name;
+	private final CarName name;
 	private int position = 0;
 
-	public Car(String name) {
-		CarValidator validator = new CarValidator();
-		validator.carValid(name);
+	public Car(CarName name) {
 		this.name = name;
+	}
+
+	public Car(String name) {
+		this.name = new CarName(name);
 	}
 
 	public Car(String name, int position) {
-		CarValidator validator = new CarValidator();
-		validator.carValid(name);
-		this.name = name;
+		this.name = new CarName(name);;
 		this.position = position;
 	}
 
-	private void move() {
-		position++;
-	}
-
-	public void drive() {
-		if (hasNext(stepGenerator.generate())) {
+	public void drive(MovePolicy movePolicy) {
+		if (movePolicy.hasNext(RandomGenerator.generate())) {
 			move();
 		}
 	}
 
-	public boolean hasNext(int random) {
-		return random > DRIVE_FLAG;
+	private void move() {
+		position++;
 	}
 
 	public boolean isSamePosition(Car other) {
@@ -46,21 +37,24 @@ public class Car implements Comparable<Car> {
 	}
 
 	public String getName() {
-		return name;
+		return name.getName();
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder positions = new StringBuilder();
-		for (int i = 0; i < position; i++) {
-			positions.append(STEP);
-		}
-		return String.format(FORMAT, name, positions);
+	public int getPosition() {
+		return position;
 	}
 
 	@Override
 	public int compareTo(Car car) {
 		return this.position - car.position;
+	}
+
+	@Override
+	public String toString() {
+		return "Car{" +
+			"name='" + name + '\'' +
+			", position=" + position +
+			'}';
 	}
 
 	@Override

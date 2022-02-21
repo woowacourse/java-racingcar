@@ -1,7 +1,8 @@
-package racingcar.service;
+package racingcar.controller;
 
 import racingcar.domain.Attempt;
 import racingcar.domain.Cars;
+import racingcar.service.MovePolicy;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
@@ -10,12 +11,12 @@ import java.util.List;
 public class RacingCarGame {
 	private static final int START_VALUE = 0;
 
+	private final MovePolicy movePolicy;
 	private Cars cars;
 	private Attempt attempt;
-	private final Input input;
 
-	public RacingCarGame() {
-		input = new Input();
+	public RacingCarGame(MovePolicy movePolicy) {
+		this.movePolicy = movePolicy;
 	}
 
 	public void run() {
@@ -25,15 +26,16 @@ public class RacingCarGame {
 	}
 
 	private void init() {
-		cars = input.carName();
-		attempt = input.attempt();
+		cars = Input.carName();
+		attempt = Input.attempt();
 	}
 
 	private void round() {
 		int nowAttempt = START_VALUE;
 
 		while (!attempt.isSame(nowAttempt)) {
-			cars.play();
+			cars.play(movePolicy);
+			Output.roundResult(cars.getCars());
 			nowAttempt++;
 		}
 	}

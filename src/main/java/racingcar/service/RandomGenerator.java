@@ -2,10 +2,10 @@ package racingcar.service;
 
 import java.util.Random;
 
-public class StepGenerator {
+public class RandomGenerator {
 	private static final int RANDOM_RANGE = 10;
 
-	public int generate() {
+	public static int generate() {
 		Random result = new Random();
 		return result.nextInt(RANDOM_RANGE);
 	}

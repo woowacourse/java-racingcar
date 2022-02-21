@@ -1,34 +1,52 @@
 package calculator;
 
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Calculator {
-	public int splitAndSum(String text) {
-		if (!isValidValues(text)) {
+	public static final String CUSTOM_PREFIX = "//";
+	public static final String BASIC_DELIMITER = ",|:";
+	public static final String CUSTOM_DELIMITER = "\n";
+	public static final int CUSTOM_INDEX = 0;
+	public static final int CUSTOM_DELIMITER_INDEX = 2;
+	public static final int CUSTOM_TEXT_INDEX = 1;
+	public static final String FORMAT = "%s|%s";
+
+	public static int splitAndSum(final String text) {
+		if (isBlank(text))
 			return 0;
+		final String[] splitValues = split(text);
+		return sum(splitValues);
+	}
+
+	private static String[] split(String text) {
+		String basicDelimiter = BASIC_DELIMITER;
+		if (isCustom(text)) {
+			String[] splitValues = text.split(CUSTOM_DELIMITER);
+			String delimiter = splitValues[CUSTOM_INDEX].substring(CUSTOM_DELIMITER_INDEX);
+			String customText = splitValues[CUSTOM_TEXT_INDEX];
+			return customText.split(String.format(FORMAT, basicDelimiter, delimiter));
 		}
-
-		int[] numbers = stringToIntArray(getValues(text));
-		checkNumbers(numbers);
-		return add(numbers);
+		return text.split(basicDelimiter);
 	}
 
-	private boolean isValidValues(String text) {
-		return text != null && !text.trim().isEmpty();
-	}
-
-	private int[] stringToIntArray(String[] strings) {
-		ArrayList<Integer> numbers = new ArrayList<>();
-		for (String i : strings) {
-			numbers.add(convertValue(i));
+	private static int sum(String[] values) {
+		int sum = 0;
+		for (String i : values) {
+			int target = convertValue(i);
+			checkNegativeNumber(target);
+			sum += target;
 		}
-		return numbers.stream().mapToInt(Integer::intValue).toArray();
+		return sum;
 	}
 
-	private int convertValue(String string) {
-		if (!isValidValues(string)) {
+	private static boolean isCustom(String text) {
+		return text.startsWith(CUSTOM_PREFIX);
+	}
+
+	private static boolean isBlank(String text) {
+		return text == null || text.isEmpty();
+	}
+
+	private static int convertValue(String string) {
+		if (isBlank(string)) {
 			return 0;
 		}
 		if (!isNumber(string)) {
@@ -37,39 +55,13 @@ public class Calculator {
 		return Integer.parseInt(string);
 	}
 
-	private boolean isNumber(String string) {
+	private static boolean isNumber(String string) {
 		return string.matches("[+-]?\\d*(\\.\\d+)?");
 	}
 
-	private String[] getValues(String text) {
-		String delimiter = ",|:";
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-		if (m.find()) {
-			return m.group(2).split(String.format("%s|%s", delimiter, m.group(1)));
-		}
-		return text.split(delimiter);
-	}
-
-	private void checkNumbers(int[] numbers) {
-		for (int i : numbers) {
-			checkNegativeNumber(i);
-		}
-	}
-
-	private void checkNegativeNumber(int number) {
+	private static void checkNegativeNumber(int number) {
 		if (number < 0) {
 			throw new RuntimeException("양수를 입력해주세요.");
 		}
-	}
-
-	private int add(int[] numbers) {
-		if (numbers.length == 1) {
-			return numbers[0];
-		}
-		int result = 0;
-		for (int i : numbers) {
-			result += i;
-		}
-		return result;
 	}
 }

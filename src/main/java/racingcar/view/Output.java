@@ -5,6 +5,8 @@ import racingcar.domain.Car;
 import java.util.List;
 
 public class Output {
+	private static final String STEP = "-";
+	private static final String FORMAT = "%s : %s";
 	private static StringBuilder stringBuilder = new StringBuilder();
 
 	private Output() {
@@ -14,19 +16,27 @@ public class Output {
 		System.out.println("[ERROR] " + message);
 	}
 
-	public static void getCarName() {
+	public static void carNameGuide() {
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 	}
 
-	public static void getAttempt() {
+	public static void attemptGuide() {
 		System.out.println("시도할 회수는 몇회인가요?");
 	}
 
 	public static void roundResult(List<Car> cars) {
 		for (Car car : cars) {
-			stringBuilder.append(car.toString()).append("\n");
+			stringBuilder.append(makeCarStep(car)).append("\n");
 		}
 		stringBuilder.append("\n");
+	}
+
+	private static String makeCarStep(Car car) {
+		StringBuilder positions = new StringBuilder();
+		for (int i = 0; i < car.getPosition(); i++) {
+			positions.append(STEP);
+		}
+		return String.format(FORMAT, car.getName(), positions);
 	}
 
 	public static void allRoundResult() {
