@@ -1,8 +1,9 @@
 package racingcar.util;
 
 public class RandomUtil {
-    private static int MAX_NUMBER = 9;
-    private static int MIN_NUMBER = 0;
+
+    private static final int MAX_NUMBER = 9;
+    private static final int MIN_NUMBER = 0;
 
     private RandomUtil() {
     }
