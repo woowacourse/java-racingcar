@@ -1,39 +1,60 @@
 package carracing.model;
 
-import carracing.utils.RandomUtil;
+import carracing.dto.CarDto;
+import carracing.utils.MoveStrategy;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
-import static carracing.view.messages.ExceptionMessage.*;
+public class Car implements Comparable<Car> {
 
-public class Car {
-	private static final int MIN_NAME_LENGTH = 1;
-	private static final int MAX_NAME_LENGTH = 5;
+    private final String name;
+    private int position;
 
-	private final String name;
-	private int position;
+    public Car(String name) {
+        this.name = name;
+        this.position = 0;
+    }
 
-	public Car(String name) {
-		if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
-		}
-		this.name = name;
-		this.position = 0;
-	}
+    public static List<Car> getCars(List<String> carNames) {
+        return carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toUnmodifiableList());
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public CarDto toCarDto() {
+        return new CarDto(this.name, this.position);
+    }
 
-	public void move(RandomUtil randomUtil) {
-		if (randomUtil.isMovable()) {
-			this.position++;
-		}
-	}
+    public void move(MoveStrategy moveStrategy) {
+        if (moveStrategy.isMovable()) {
+            this.position++;
+        }
+    }
 
-	public int getPosition() {
-		return this.position;
-	}
+    public boolean isEqualPosition(int position) {
+        return this.position == position;
+    }
 
-	public boolean isEqualTo(int position) {
-		return this.position == position;
-	}
+    @Override
+    public int compareTo(Car o) {
+        return o.position - this.position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return position == car.position && Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
 }
