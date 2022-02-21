@@ -17,4 +17,20 @@ public class CarService {
                 .map(c -> c.race(random.nextInt(10)))
                 .collect(Collectors.toList());
     }
+
+    public List<String> getWinners(final List<Car> cars) {
+        final int max = getMaxPosition(cars);
+        return cars.stream()
+                .filter(c -> c.getPosition() == max)
+                .map(c -> c.getName())
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition(final List<Car> cars) {
+        int max = 0;
+        for (Car car : cars) {
+            max = Math.max(car.getPosition(), max);
+        }
+        return max;
+    }
 }

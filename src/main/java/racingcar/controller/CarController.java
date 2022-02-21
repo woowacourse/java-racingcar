@@ -46,4 +46,8 @@ public class CarController {
     public void printResult(final Map<String, Integer> carNameAndPositions) {
         OutputView.printResult(carNameAndPositions);
     }
+
+    public List<String> getWinners(final List<Car> cars) {
+        return carService.getWinners(cars);
+    }
 }
