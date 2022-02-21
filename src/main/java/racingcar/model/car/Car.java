@@ -10,7 +10,6 @@ public class Car implements Comparable<Car> {
 
     public Car(final Name name) {
         this(name, new Position());
-
     }
 
     public Car(final Name name, final Position position) {
