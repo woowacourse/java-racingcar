@@ -23,7 +23,7 @@ public class InputView {
         return splitNames(bufferedReader.readLine());
     }
 
-    public static String inputTryCount() throws IOException {
+    public static String inputGameRound() throws IOException {
         System.out.println(NoticeMessages.INPUT_TRY_CNT);
         return bufferedReader.readLine();
     }

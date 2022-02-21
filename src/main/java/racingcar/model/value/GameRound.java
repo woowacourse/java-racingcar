@@ -4,24 +4,26 @@ import static racingcar.message.ErrorMessages.*;
 
 import java.util.Objects;
 
-public class TryCount {
-    private final int tryCount;
+public class GameRound {
+    private final int totalRound;
+    private int completedRound;
 
-    private TryCount(int tryCount) {
-        this.tryCount = tryCount;
+    private GameRound(int totalRound) {
+        this.totalRound = totalRound;
+        completedRound = 0;
         validate();
     }
 
-    public static TryCount fromString(String countString) {
-        return new TryCount(convertStringToInt(countString));
+    public static GameRound fromString(String countString) {
+        return new GameRound(convertStringToInt(countString));
     }
 
-    public static TryCount initialize() {
-        return new TryCount(0);
+    public void proceed() {
+        completedRound++;
     }
 
-    public TryCount increase() {
-        return new TryCount(tryCount + 1);
+    public boolean continuable() {
+        return totalRound > completedRound;
     }
 
     @Override
@@ -32,13 +34,13 @@ public class TryCount {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        TryCount tryCount1 = (TryCount) obj;
-        return tryCount == tryCount1.tryCount;
+        GameRound gameRound1 = (GameRound) obj;
+        return totalRound == gameRound1.totalRound;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tryCount);
+        return Objects.hash(totalRound);
     }
 
     private static int convertStringToInt(String string) {
@@ -50,7 +52,7 @@ public class TryCount {
     }
 
     private void validate() {
-        if (tryCount < 0) {
+        if (totalRound < 0) {
             throw new IllegalArgumentException(TRY_CNT_NOT_POSITIVE);
         }
     }
