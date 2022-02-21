@@ -32,14 +32,14 @@ class CarTest {
     @Test
     void Should_SuccessToMove() {
         testCar.move(() -> MOVE_OPTION);
-        assertThat(testCar.getPosition()).isEqualTo(MOVE_OPTION);
+        assertThat(testCar.getPositionValue()).isEqualTo(MOVE_OPTION);
     }
 
     @DisplayName("자동차가 정상적으로 정지하는지 확인")
     @Test
     void Should_SuccessToStop() {
         testCar.move(() -> STOP_OPTION);
-        assertThat(testCar.getPosition()).isEqualTo(STOP_OPTION);
+        assertThat(testCar.getPositionValue()).isEqualTo(STOP_OPTION);
     }
 
     @Test

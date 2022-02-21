@@ -2,7 +2,7 @@ package racingcar.domain.car;
 
 import java.util.Objects;
 
-public class Position {
+public class Position implements Comparable<Position> {
 
     private static final int DEFAULT_POSITION = 0;
     private static final int MIN_POSITION = 0;
@@ -24,12 +24,13 @@ public class Position {
         }
     }
 
-    public boolean isSame(int otherPosition) {
-        return position == otherPosition;
-    }
-
     public void move(int distance) {
         position += distance;
+    }
+
+    @Override
+    public int compareTo(Position o) {
+        return Integer.compare(position, o.position);
     }
 
     public int getPosition() {

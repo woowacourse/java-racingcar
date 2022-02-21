@@ -9,7 +9,7 @@ public class CarResponse {
 
     public CarResponse(Car car) {
         this.name = car.getName();
-        this.position = car.getPosition();
+        this.position = car.getPositionValue();
     }
 
     public String getName() {

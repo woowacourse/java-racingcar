@@ -9,8 +9,6 @@ import racingcar.domain.movement.MovementStrategy;
 
 public class Cars {
 
-    private static final int DEFAULT_MAX_POSITION = -1;
-
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -28,17 +26,16 @@ public class Cars {
     }
 
     public List<Car> findWinners() {
-        final int max = findMaxPosition();
+        Car winnerCar = findWinner();
         return cars.stream()
-            .filter(car -> car.isSamePosition(max))
+            .filter(car -> car.isSamePosition(winnerCar))
             .collect(Collectors.toList());
     }
 
-    private int findMaxPosition() {
+    private Car findWinner() {
         return cars.stream()
-            .mapToInt(Car::getPosition)
-            .max()
-            .orElse(DEFAULT_MAX_POSITION);
+            .max(Car::selectWinner)
+            .orElseThrow(() -> new IllegalArgumentException("자동차가 존재하지 않습니다."));
     }
 
     public void move(MovementStrategy strategy) {
