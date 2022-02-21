@@ -32,10 +32,10 @@ public class RacingCars {
     }
 
     public List<String> getWinners() {
-        Car maxPositionCar = getMaxPositionCar();
+        int maxPosition = getMaxPosition();
 
         return cars.stream()
-                .filter(car -> car.isEqualPositionTo(maxPositionCar))
+                .filter(car -> car.isEqualPosition(maxPosition))
                 .map(Car::toCarDto)
                 .map(CarDto::getName)
                 .collect(Collectors.toList());
@@ -46,11 +46,13 @@ public class RacingCars {
         cars.forEach(car -> car.move(moveStrategy));
     }
 
-    private Car getMaxPositionCar() {
+    private int getMaxPosition() {
         return cars.stream()
                 .sorted()
                 .findFirst()
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(NoSuchElementException::new)
+                .toCarDto()
+                .getPosition();
     }
 
     public List<CarDto> getCarsStatus() {
