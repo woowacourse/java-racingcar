@@ -3,15 +3,15 @@ package racingcar.domain;
 public class Attempt {
     private final int attempt;
 
+    public Attempt(final String attempt) {
+        this(stringToInt(attempt));
+    }
+
     public Attempt(final int attempt) {
         if (isNegative(attempt)) {
             throw new IllegalArgumentException("시도횟수는 1이상의 수를 입력해주세요.");
         }
         this.attempt = attempt;
-    }
-
-    public Attempt(final String attempt) {
-        this(stringToInt(attempt));
     }
     
     public boolean isSame(final int nowAttempt) {

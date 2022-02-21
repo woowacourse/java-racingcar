@@ -1,20 +1,20 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
+	private static final int DEFAULT_POSITION = 0;
 	private static final int CAR_LENGTH_LIMIT = 5;
 
 	private final String name;
-	private int position = 0;
+	private int position;
 
 	public Car(final String name) {
-		checkValidName(name);
-		this.name = name;
+		this(name, DEFAULT_POSITION);
 	}
 
 	public Car(final String name, final int position) {
-		this(name);
-
+		checkValidName(name);
 		checkValidPosition(position);
+		this.name = name;
 		this.position = position;
 	}
 
