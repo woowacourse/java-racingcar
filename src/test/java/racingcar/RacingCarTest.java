@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -16,7 +18,7 @@ public class RacingCarTest {
     @DisplayName("자동차 이름을 쉼표로 구분하여 저장")
     public void saveCarNames() {
         final CarController controller = new CarController(new Scanner(System.in));
-        final List<Car> cars = controller.saveCars("pobi,crong,honux");
+        final List<Car> cars = controller.saveCars(new String[]{"pobi","crong","honux"});
         final List<String> carNames = cars.stream()
                     .map(Car::getName)
                     .collect(Collectors.toList());
@@ -34,5 +36,17 @@ public class RacingCarTest {
         final Car moveCar = car.race(4);
         assertThat(stopCar.getPosition()).isEqualTo(0);
         assertThat(moveCar.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("이름이 5글자를 초과하면 에러를 발생")
+    public void longerThanFive() {
+        final String input = "javaji";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        final CarController controller = new CarController(new Scanner(System.in));
+        assertThatThrownBy(() -> controller.scanCarNames())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
     }
 }

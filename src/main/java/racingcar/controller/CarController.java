@@ -20,19 +20,26 @@ public class CarController {
         carService = new CarService();
     }
 
-    public String scanCarNames() {
-        return inputView.scanCarNames();
-    }
-
-    public List<Car> saveCars(final String carNames) {
-        final String[] names = carService.splitCarNames(carNames);
-        return Arrays.stream(names)
-                .map(Car::new)
-                .collect(Collectors.toList());
+    public String[] scanCarNames() {
+        try {
+            final String carNames = inputView.scanCarNames().trim();
+            final String[] names = carService.splitCarNames(carNames);
+            carService.checkValidateName(names);
+            return names;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return scanCarNames();
+        }
     }
 
     public int scanRacingCnt() {
         return Integer.parseInt(inputView.scanRacingCnt());
+    }
+
+    public List<Car> saveCars(final String[] names) {
+        return Arrays.stream(names)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public List<Car> race(List<Car> cars) {
