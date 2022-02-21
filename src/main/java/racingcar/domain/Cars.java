@@ -25,10 +25,6 @@ public class Cars {
 		}
 	}
 
-	public Cars(List<Car> cars) {
-		this.cars.addAll(cars);
-	}
-
 	private void validateCarNames(String[] names) {
 		checkDuplicateName(names);
 		checkOnlyName(names);
