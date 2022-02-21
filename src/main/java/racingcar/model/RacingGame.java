@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Game {
+public class RacingGame {
 
 	private final Cars cars;
 	private final RoundCount roundCount;
 
-	public Game(final Cars cars, final RoundCount roundCount) {
+	public RacingGame(final Cars cars, final RoundCount roundCount) {
 		this.cars = cars;
 		this.roundCount = roundCount;
 	}
