@@ -1,31 +1,51 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
+import racingcar.utils.NumberGenerator;
 
 public class Cars {
-    private static final int RANDOM_NUMBER_BOUND = 10;
+    public static final String ERROR_ONLY_NAME = "[ERROR] 이름을 2개 이상 입력해주세요.";
+    public static final String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름이 있습니다.";
+
     public static final int START_POSITION = 0;
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(String[] carNames) {
+        validateCarNames(carNames);
         cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName, START_POSITION));
         }
     }
 
-    public void startEachRace() {
-        for (Car car : cars) {
-            car.move(makeRandom());
+    private void validateCarNames(String[] splitCarNames) {
+        checkOnlyName(splitCarNames);
+        checkDuplicateName(splitCarNames);
+    }
+
+    private static void checkOnlyName(String[] names) {
+        if (names.length == 1) {
+            throw new IllegalArgumentException(ERROR_ONLY_NAME);
         }
     }
 
-    private int makeRandom() {
-        Random random = new Random();
-        return random.nextInt(RANDOM_NUMBER_BOUND);
+    private static void checkDuplicateName(String[] names) {
+        Set<String> hashNames = new HashSet<>(Arrays.asList(names));
+        if (hashNames.size() != names.length) {
+            throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
+        }
+    }
+
+    public void startEachRace(NumberGenerator numberGenerator) {
+        for (Car car : cars) {
+            car.move(numberGenerator.generateNumber());
+        }
     }
 
     public List<Car> findWinners() {
@@ -53,13 +73,16 @@ public class Cars {
         return cars.size();
     }
 
+    public List<CarDto> getCarDtos() {
+        return this.cars.stream()
+                .map(CarDto::from)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car.toString()).append("\n");
-        }
-        return stringBuilder.toString();
+        return "Cars{" +
+                "cars=" + cars +
+                '}';
     }
 }
