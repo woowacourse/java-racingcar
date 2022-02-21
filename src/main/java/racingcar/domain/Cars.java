@@ -8,12 +8,9 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    private static final String DUPLICATED = "[ERROR] 중복된 자동차 이름은 허용되지 않습니다.";
-
     private Set<Car> cars;
 
     public Cars(Set<Car> cars) {
-        validateDuplication(cars);
         this.cars = cars;
     }
 
@@ -53,18 +50,6 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
-    }
-
-    private void validateDuplication(Set<Car> cars) {
-        Set<String> names = new HashSet<>();
-
-        for (Car car : cars) {
-            names.add(car.getName());
-        }
-
-        if (names.size() < cars.size()) {
-            throw new IllegalArgumentException(DUPLICATED);
-        }
     }
 
 }

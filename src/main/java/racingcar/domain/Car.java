@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import racingcar.util.NumberGenerator;
 
+import java.util.Objects;
+
 public class Car {
 
     private static final int CONDITION_FOR_MOVE = 4;
@@ -39,4 +41,14 @@ public class Car {
         return position;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Car car = (Car) o;
+        return (this.getName()).equals(car.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
 }

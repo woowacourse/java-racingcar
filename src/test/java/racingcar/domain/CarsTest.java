@@ -6,17 +6,25 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarsTest {
 
     @Test
-    @DisplayName("중복된 자동차 이름을 입력한 경우 예외 발생")
-    void carNameMustNotDuplicated() {
-        String[] carNames = {"woo", "te", "co", "woo"};
+    @DisplayName("중복된 이름의 자동차 하나로 인식")
+    void DuplicatedCarName() {
+        Cars cars = Cars.from(new String[]{"woo", "woo"});
+        ExecutionResult executionResult = cars.generateExecutionResult();
 
-        assertThatThrownBy(() -> Cars.from(carNames))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(executionResult.getExecutionResult().size()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("중복되지 않은 이름의 자동차 개별로 인식")
+    void NonDuplicatedCarName() {
+        Cars cars = Cars.from(new String[]{"woo", "te"});
+        ExecutionResult executionResult = cars.generateExecutionResult();
+
+        assertThat(executionResult.getExecutionResult().size()).isEqualTo(2);
     }
 
     @Test
