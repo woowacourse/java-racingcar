@@ -32,3 +32,31 @@
    1. 우승자가 여러명일 때 출력하는 기능
    2. 우승자가 한 명일 때 출력하는 기능
 
+
+
+
+## Step2 리팩토링 목록
+
+- MainController
+- view
+   - InputView
+      - 사용자 입력 받는 View
+   - OutputView
+      - 자동차 경주 게임 결과 출력 View
+- domain
+   - Game
+      - 생성자 생성 public Game(carNames, tryNo)
+      - tryNo valid 유효성 검증
+   - Car
+      - CarName 유효성 검증
+   - Cars
+      - car name 중복 검사
+      - winner 판별 로직
+   - MoveCondition
+     - Car이 이동가능한지 판별하는 인터페이스
+- utils
+   - ErrorCode
+     - 에러코드 상수
+   - GameMessage
+     - 게임 메세지 상수
+
