@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.config.ServiceConfig;
 import racingcar.domain.car.Cars;
 import racingcar.domain.round.Round;
 import racingcar.dto.RacingRecord;
