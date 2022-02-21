@@ -1,38 +1,38 @@
 package racingcar.domain;
 
-public class RacingCar {
+public class RacingCar implements Comparable<RacingCar> {
 
     private static final int START_POSITION = 0;
     private static final int MOVE_STANDARD = 4;
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final String NAME_POSITION_CONNECTOR = " : ";
-    private static final String EXCEPTION_NO_NAME = "[ERROR] 자동차 이름은 반드시 존재해야 합니다.\n";
-    private static final String EXCEPTION_TOO_LONG_NAME = "[ERROR] 자동차 이름은 5자 이하여야 합니다.\n";
+    private static final String EXCEPTION_NAME_RULE = "[ERROR] 자동차 이름은 반드시 존재해야하며 5자 이하여야 합니다.\n";
     private final String name;
     private int position;
 
-
     public RacingCar(String name) {
+        validateName(name);
         this.position = START_POSITION;
         this.name = name;
-        validateName();
     }
 
-    public void validateName() {
-        checkCarNameIsEmpty();
-        checkCarNameSize();
-    }
-
-    private void checkCarNameIsEmpty() {
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException(EXCEPTION_NO_NAME);
+    public void validateName(String name) {
+        if (isCarNameEmpty(name) || isCarNameSizeOverLimit(name)) {
+            throw new IllegalArgumentException(EXCEPTION_NAME_RULE);
         }
     }
 
-    private void checkCarNameSize() {
-        if (name.length() > MAXIMUM_NAME_LENGTH) {
-            throw new IllegalArgumentException(EXCEPTION_TOO_LONG_NAME);
+    private boolean isCarNameEmpty(String name) {
+        if (name == null || name.isEmpty()) {
+            return true;
         }
+        return false;
+    }
+
+    private boolean isCarNameSizeOverLimit(String name) {
+        if (name == null || name.length() > MAXIMUM_NAME_LENGTH) {
+            return true;
+        }
+        return false;
     }
 
     public int getPosition() {
@@ -49,27 +49,15 @@ public class RacingCar {
         }
     }
 
-    public boolean isSamePosition(RacingCar racingCar){
-        return this.position == racingCar.getPosition();
-    }
-
-    private String visualizePosition() {
-        StringBuffer bufferForPositionVisualize = new StringBuffer();
-        for (int i = 0; i<position; ++i) {
-            bufferForPositionVisualize.append("-");
+    public boolean isSamePosition(RacingCar racingCar) {
+        if (compareTo(racingCar) == 0) {
+            return true;
         }
-        return bufferForPositionVisualize.toString();
+        return false;
     }
 
-
-    public String currentState() {
-        return name + NAME_POSITION_CONNECTOR + visualizePosition();
-    }
-
-    public RacingCar compareCar(RacingCar targetCar) {
-        if (this.position > targetCar.position) {
-            return this;
-        }
-        return targetCar;
+    @Override
+    public int compareTo(RacingCar otherCar) {
+        return this.position - otherCar.position;
     }
 }
