@@ -24,7 +24,7 @@ public class Cars {
 		cars = toCar(carNames);
 	}
 
-	public Cars(List<Car> cars) {
+	Cars(List<Car> cars) {
 		this.cars = cars;
 	}
 
