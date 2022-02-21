@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import racingcar.domain.RacingGame;
-import racingcar.domain.RandomNumberMoveStrategy;
 import racingcar.view.OutputView;
 
 public class RacingGameController {

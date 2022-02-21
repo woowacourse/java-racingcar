@@ -29,7 +29,7 @@ public class Cars {
     }
 
     public List<Car> getCarList() {
-        return carList;
+        return new ArrayList<>(carList);
     }
 
     public int getMaxPosition() {
