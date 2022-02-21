@@ -1,11 +1,16 @@
 package racingcar.config;
 
 import racingcar.controller.RacingCarController;
+import racingcar.service.RacingCarService;
 
-public class ControllerConfig {
+public class AppConfig {
 
     public static RacingCarController getRacingCarController() {
         return new RacingCarController(ViewConfig.getInputView(), ViewConfig.getOutputView(),
-            ServiceConfig.getRacingCarService());
+            getRacingCarService());
+    }
+
+    private static RacingCarService getRacingCarService() {
+        return new RacingCarService();
     }
 }
