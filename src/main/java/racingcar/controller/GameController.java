@@ -30,9 +30,8 @@ public class GameController {
 			return InputView.getNumberOfTurn();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			System.exit(0);
+			return getNumberOfTurn();
 		}
-		return 0;
 	}
 
 	private Cars getCarNames() {
@@ -44,9 +43,8 @@ public class GameController {
 			return generateCars(carNames);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			System.exit(0);
+			return getCarNames();
 		}
-		return new Cars(new ArrayList<>());
 	}
 
 	private void playTotalTurn(int number, Cars cars) {
