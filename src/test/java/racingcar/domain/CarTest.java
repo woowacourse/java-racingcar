@@ -33,14 +33,6 @@ class CarTest {
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("자동차 위치 음수 테스트")
-	@Test
-	void car_position_negative() {
-		assertThatThrownBy(() -> {
-			Car car = new Car("name", -1);
-		}).isInstanceOf(IllegalArgumentException.class);
-	}
-
 	@DisplayName("랜덤 넘버가 4 이상일 경우 전진")
 	@Test
 	void car_drive_true() {

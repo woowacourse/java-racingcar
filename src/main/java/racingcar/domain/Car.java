@@ -1,21 +1,14 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
-	private static final int DEFAULT_POSITION = 0;
 	private static final int CAR_LENGTH_LIMIT = 5;
 
 	private final String name;
-	private int position;
+	private int position = 0;
 
 	public Car(final String name) {
-		this(name, DEFAULT_POSITION);
-	}
-
-	public Car(final String name, final int position) {
 		checkValidName(name);
-		checkValidPosition(position);
 		this.name = name;
-		this.position = position;
 	}
 
 	public void drive(final Movable movable) {
@@ -64,12 +57,6 @@ public class Car implements Comparable<Car> {
 	private void checkNameLength(final String name) {
 		if (!(name.trim().length() <= CAR_LENGTH_LIMIT)) {
 			throw new IllegalArgumentException("자동차의 이름은 " + CAR_LENGTH_LIMIT + "글자를 초과할 수 없습니다.");
-		}
-	}
-
-	private void checkValidPosition(final int position) {
-		if (position < 0) {
-			throw new IllegalArgumentException("자동차 위치는 자연수를 입력해주세요.");
 		}
 	}
 
