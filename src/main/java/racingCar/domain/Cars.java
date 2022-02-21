@@ -36,11 +36,11 @@ public class Cars {
     }
 
     public int getMaxPosition() {
-        ArrayList<Integer> positions = new ArrayList<>();
+        Car maxCar = cars.get(0);
         for (Car car : cars) {
-            positions.add(car.getPosition());
+            maxCar = car.getMoreGoCar(maxCar);
         }
-        return Collections.max(positions);
+        return maxCar.getPosition();
     }
 
     public List<CarDto> getSamePositionCarsDto(int position) {
@@ -48,6 +48,12 @@ public class Cars {
                 .filter(car -> car.getPosition() == position)
                 .collect(Collectors.toList());
     }
+
+//    public List<CarDto> getSamePositionCarsDto(int position) {
+//        return getDto().stream()
+//                .filter(car -> car.getPosition() == position)
+//                .collect(Collectors.toList());
+//    }
 
     public List<CarDto> getDto() {
         List<CarDto> carsDto = new ArrayList<>();
