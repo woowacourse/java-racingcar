@@ -1,7 +1,7 @@
 package racingCar.view;
 
-import java.util.List;
 import racingCar.domain.dto.CarDto;
+import racingCar.domain.dto.CarsDto;
 
 public class OutputView {
     private static final String RESULT_FRONT_MESSAGE = System.lineSeparator() + "실행 결과";
@@ -14,18 +14,18 @@ public class OutputView {
         System.out.println(RESULT_FRONT_MESSAGE);
     }
 
-    public static void printRoundResult(List<CarDto> carsDto) {
-        for (CarDto carDto : carsDto) {
+    public static void printRoundResult(CarsDto carsDto) {
+        for (CarDto carDto : carsDto.getCarsDto()) {
             System.out.println(carDto.getName() + ROUND_REGEX + POSITION_SIGNATURE.repeat(carDto.getPosition()));
         }
         System.out.println();
     }
 
-    public static void printWinner(List<String> winnerCars) {
-        StringBuilder Result = new StringBuilder();
-        for (String winnerCar : winnerCars) {
-            Result.append(winnerCar).append(WINNER_REGEX);
+    public static void printWinner(CarsDto winnerCars) {
+        StringBuilder result = new StringBuilder();
+        for (CarDto winnerCar : winnerCars.getCarsDto()) {
+            result.append(winnerCar.getName()).append(WINNER_REGEX);
         }
-        System.out.println(Result.substring(0, Result.length() - 2) + WINNER_RESULT_LAST_MESSAGE);
+        System.out.println(result.substring(0, result.length() - 2) + WINNER_RESULT_LAST_MESSAGE);
     }
 }

@@ -24,12 +24,12 @@ public class GameController {
     }
 
     private void endGame(RacingGame racingGame) {
-        OutputView.printWinner(racingGame.getWinnerCars());
+        OutputView.printWinner(racingGame.getWinnerCarsDto());
     }
 
     private void playRounds(RacingGame racingGame) {
         racingGame.go();
-        OutputView.printRoundResult(racingGame.getResult());
+        OutputView.printRoundResult(racingGame.getCarsDto());
         if (racingGame.getRoundCount().isFinish()) {
             return;
         }

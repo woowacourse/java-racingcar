@@ -2,6 +2,7 @@ package racingCar.domain;
 
 import java.util.List;
 import racingCar.domain.dto.CarDto;
+import racingCar.domain.dto.CarsDto;
 import racingCar.domain.dto.InitDto;
 import racingCar.domain.moveStrategy.RandomNumGenerator;
 
@@ -19,12 +20,13 @@ public class RacingGame {
         roundCount.minusOne();
     }
 
-    public List<String> getWinnerCars() {
-        return cars.getSamePositionCarsDto(cars.getMaxPosition());
+    public CarsDto getWinnerCarsDto() {
+        List<CarDto> winnerCarsDto = cars.getSamePositionCarsDto(cars.getMaxPosition());
+        return new CarsDto(winnerCarsDto);
     }
 
-    public List<CarDto> getResult() {
-        return cars.getDto();
+    public CarsDto getCarsDto() {
+        return new CarsDto(cars.getDto());
     }
 
     public RoundCount getRoundCount() {

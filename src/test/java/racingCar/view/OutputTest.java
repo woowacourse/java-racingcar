@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingCar.domain.Car;
 import racingCar.domain.dto.CarDto;
+import racingCar.domain.dto.CarsDto;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class OutputTest {
@@ -39,7 +40,9 @@ public class OutputTest {
         result.add(new CarDto(new Car("jiwoo", 2)));
         result.add(new CarDto(new Car("juri", 0)));
 
-        OutputView.printRoundResult(result);
+        CarsDto carsDto = new CarsDto(result);
+
+        OutputView.printRoundResult(carsDto);
 
         //then
         assertThat(out.toString())
@@ -56,8 +59,9 @@ public class OutputTest {
         List<CarDto> result = new ArrayList<>();
         result.add(new CarDto(new Car("jiwoo", 2)));
         result.add(new CarDto(new Car("juri", 0)));
+        CarsDto carsDto = new CarsDto(result);
 
-        OutputView.printRoundResult(result);
+        OutputView.printRoundResult(carsDto);
 
         //then
         assertThat(out.toString())
@@ -69,9 +73,10 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
+        CarsDto carsDto = new CarsDto(List.of(new CarDto(new Car("hunch", 0))));
 
         //when
-        OutputView.printWinner(List.of("hunch"));
+        OutputView.printWinner(carsDto);
 
         //then
         assertThat(out.toString())
@@ -83,12 +88,13 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
+        CarsDto carsDto = new CarsDto(Arrays.asList(new CarDto(new Car("hunch", 0)), new CarDto(new Car("juri", 0))));
 
         //when
-        OutputView.printWinner(Arrays.asList("jiwoo", "juri"));
+        OutputView.printWinner(carsDto);
 
         //then
         assertThat(out.toString())
-                .isEqualTo("jiwoo, juri가 최종 우승했습니다.\n");
+                .isEqualTo("hunch, juri가 최종 우승했습니다.\n");
     }
 }

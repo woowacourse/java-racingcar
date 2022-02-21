@@ -28,7 +28,7 @@ public class CarsTest {
     @Test
     void getSamePositionCars_이동없을때_검사() {
         assertThat(cars.getSamePositionCarsDto(0))
-                .containsOnly("hunch", "judi");
+                .containsOnly(new CarDto(new Car("hunch", 0)), new CarDto(new Car("judi", 0)));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class CarsTest {
         void getSamePositionCars_2_검사() {
             //then
             assertThat(cars.getSamePositionCarsDto(2))
-                    .containsOnly("hunch", "judi");
+                    .containsOnly(new CarDto(new Car("hunch", 2)), new CarDto(new Car("judi", 2)));
         }
     }
 }

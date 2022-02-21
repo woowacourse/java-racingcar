@@ -41,7 +41,7 @@
 - [x]  리뷰어 피드백 적용(밑에 줄줄 쓰며 투두 해결)
 - 2단계 2차 피드백
    - [x]  inputView에서도 Dto를 이용해 데이터 리턴
-   - [ ]  carDto를 List 형태로 전달하는 것이 아닌 List를 가진 Dto를 반환
+   - [x]  carDto를 List 형태로 전달하는 것이 아닌 List를 가진 Dto를 반환
    - [ ]  Comparable을 이용해 getMaxPosition() 생성
    - [ ]  정적 팩토리 메소드를 이용해 dto에서 car를 받아서 직접 자기 자신을 생성하도록 하기
 - 2단계 1차 피드백
