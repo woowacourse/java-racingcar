@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 public class CarsTest {
 
-	private final int numberOfGoForward = 5;
+	private final int numberOfGoForward = 4;
 	private final int numberOfStop = 3;
 	private Cars cars;
 
