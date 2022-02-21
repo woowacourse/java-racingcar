@@ -1,6 +1,11 @@
 package racingcar.view;
 
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+
+import racingcar.utlis.Convertor;
 
 public class Input {
 
@@ -8,14 +13,18 @@ public class Input {
 	private static final String REQUEST_COUNT = "시도할 회수는 몇회인가요?";
 	private static final Scanner scanner = new Scanner(System.in);
 
-	public static String inputCarNames() {
+	public List<String> inputCarNames() {
 		System.out.println(REQUEST_CARS_NAME);
-		return scanner.nextLine();
+		return Arrays.asList(Convertor.separateNamesByDelimiter(scanner.nextLine()));
 	}
 
-	public static String inputCount() {
-		System.out.println(REQUEST_COUNT);
-		return scanner.nextLine();
+	public int inputCount() {
+		try {
+			System.out.println(REQUEST_COUNT);
+			return scanner.nextInt();
+		}catch (InputMismatchException exception){
+			throw new NumberFormatException("숫자가 아닌 값이 입력되었습니다.");
+		}
 	}
 
 }

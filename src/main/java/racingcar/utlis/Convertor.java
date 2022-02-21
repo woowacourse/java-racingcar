@@ -7,7 +7,4 @@ public class Convertor {
 		return names.split(SEPARATION_REGEX);
 	}
 
-	public static int convertStringToInteger(String count) {
-		return Integer.parseInt(count);
-	}
 }
