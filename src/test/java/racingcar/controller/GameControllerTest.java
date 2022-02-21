@@ -26,9 +26,9 @@ public class GameControllerTest {
     @DisplayName("우승자가 한명일 때")
     public void Only_One_Winner() {
         // given
-        Car car1 = new Car("foo");
-        Car car2 = new Car("boo");
-        Car car3 = new Car("bar");
+        Car car1 = Car.carBuilder().setName("foo").build();
+        Car car2 = Car.carBuilder().setName("boo").build();
+        Car car3 = Car.carBuilder().setName("bar").build();
 
         // when
         car1.moveOrHold(true);
@@ -51,9 +51,9 @@ public class GameControllerTest {
     @DisplayName("우승자가 여럿일 때")
     public void Two_Or_More_Winners() {
         // given
-        Car car1 = new Car("foo");
-        Car car2 = new Car("boo");
-        Car car3 = new Car("bar");
+        Car car1 = Car.carBuilder().setName("foo").build();
+        Car car2 = Car.carBuilder().setName("boo").build();
+        Car car3 = Car.carBuilder().setName("bar").build();
 
         // when
         car1.moveOrHold(true);

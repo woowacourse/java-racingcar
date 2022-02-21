@@ -42,7 +42,6 @@ public class StringCalculator {
         for (String token : tokens) {
             sum += Integer.parseInt(token);
         }
-        //Arrays.asList(tokens).forEach(x -> sum += Integer.parseInt(x));
         return sum;
     }
 

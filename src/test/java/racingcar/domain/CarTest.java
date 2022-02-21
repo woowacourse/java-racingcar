@@ -11,23 +11,23 @@ public class CarTest {
     @DisplayName("자동차가 움직인다")
     public void car_move() {
         // given
-        Car car = new Car("foo");
+        Car car = Car.carBuilder().setName("foo").build();
 
         // when & then
-        assertThat(car.getPositionForTest()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
         car.moveOrHold(true);
-        assertThat(car.getPositionForTest()).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
     @DisplayName("자동차가 움직이지 않는다")
     public void car_not_move() {
         // given
-        Car car = new Car("foo");
+        Car car = Car.carBuilder().setName("foo").build();
 
         // when & then
-        assertThat(car.getPositionForTest()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
         car.moveOrHold(false);
-        assertThat(car.getPositionForTest()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }

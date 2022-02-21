@@ -1,11 +1,15 @@
 package racingcar.domain;
 
-public class Car implements Comparable<Car> {
-    private String name;
+public class Car implements Comparable<Car>, Vehicle {
+    private final String name;
     private int position;
 
-    public Car(String name) {
-        this.name = name;
+    private Car(CarBuilder carbuilder) {
+        this.name = carbuilder.name;
+    }
+
+    public static CarBuilder carBuilder() {
+        return new CarBuilder();
     }
 
     public void moveOrHold(Boolean isMove) {
@@ -15,32 +19,37 @@ public class Car implements Comparable<Car> {
     }
 
     public boolean isSamePosition(Car targetCar) {
-        return targetCar.decideIsSame(position);
+        return position == targetCar.getPosition();
     }
 
-    public boolean decideIsSame(int targetPosition) {
-        return position == targetPosition;
-    }
-
-    public int getPositionForTest() {
+    public int getPosition() {
         return position;
     }
 
-    public String getNameForTest() {
+    public String getName() {
         return name;
     }
 
     @Override
     public int compareTo(Car s) {
-        return s.getCompareToValue(position);
-    }
-
-    public int getCompareToValue(int targetPosition) {
-        return targetPosition - position;
+        return position - s.getPosition();
     }
 
     @Override
     public String toString() {
-        return name + " : " + "-".repeat(position);
+        return String.format("%s : %s", name, "-".repeat(position));
+    }
+  
+    public static class CarBuilder {
+        private String name;
+
+        public CarBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Car build() {
+            return new Car(this);
+        }
     }
 }
