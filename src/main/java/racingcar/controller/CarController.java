@@ -1,56 +1,73 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.view.Output;
-
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.RandomNum;
+import racingcar.util.Validation;
+import racingcar.view.Input;
+import racingcar.view.Output;
 
 public class CarController {
-    private static final String PRINT_RESULT = "실행 결과";
+    private static final String SPLIT_DELIM = ",";
 
-    public static void startRace(List<Car> cars, int tryNum) {
-        System.out.println(PRINT_RESULT);
+    public CarController() {
+    }
+
+    public void play() {
+        Cars cars = new Cars(makeCars());
+        int tryNum = makeTryNum();
+
+        startRace(cars, tryNum);
+        Output.printWinner(cars.getWinners());
+    }
+
+    public static List<Car> makeCars() {
+        String names = Input.inputCarNames();
+
+        try {
+            List<Car> cars = createCars(names);
+            return cars;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return makeCars();
+        }
+    }
+
+    private static List<Car> createCars(final String names) {
+        List<Car> cars = new ArrayList<>();
+
+        for (String carName : names.split(SPLIT_DELIM, -1)) {
+            cars.add(new Car(carName));
+        }
+        return cars;
+    }
+
+    public static int makeTryNum() {
+        String tryValue = Input.inputTry();
+
+        try {
+            Validation.tryNumValidation(tryValue);
+            return Integer.parseInt(tryValue);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return makeTryNum();
+        }
+    }
+
+    public static void startRace(final Cars cars, final int tryNum) {
+        Output.printResultWord();
 
         for (int i = 0; i < tryNum; i++) {
             moveCar(cars);
-            Output.printRace(cars);
+            Output.printCarsRace(cars);
         }
     }
 
-    public static void finalWinner(List<Car> cars) {
-        int maxPosition = findMaxPosition(cars);
-        List<String> winnerList = getWinnerList(cars, maxPosition);
-        Output.printWinner(winnerList);
-    }
-
-    private static void moveCar(List<Car> cars) {
-        for (Car car : cars) {
-            car.goForward();
+    public static void moveCar(final Cars cars) {
+        for (Car car : cars.getCars()) {
+            car.goForward(RandomNum.getRandomNum());
         }
-    }
-
-    private static List<String> getWinnerList(List<Car> cars, int maxPosition) {
-        List<String> winnerList = new ArrayList<>();
-
-        for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
-                winnerList.add(car.getName());
-            }
-        }
-
-        return winnerList;
-    }
-
-    private static int findMaxPosition(List<Car> cars) {
-        int maxNum = 0;
-
-        for (Car car : cars) {
-            if (car.getPosition() > maxNum) {
-                maxNum = car.getPosition();
-            }
-        }
-
-        return maxNum;
     }
 }
