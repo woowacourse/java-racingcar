@@ -29,7 +29,7 @@ public class RaceController {
         try {
             InputFormator.toNameList(InputView.inputNames())
                 .stream()
-                .map(name -> new Car(name))
+                .map(name -> new Car(name.value()))
                 .forEach(cars::add);
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception);

@@ -18,8 +18,8 @@ public class CarsTest {
             @DisplayName("예외를 발생시킨다.")
             void it_throw_exception() {
                 Cars cars = new Cars();
-                cars.add(new Car(new Name("car1")));
-                assertThatThrownBy(() -> cars.add(new Car(new Name("car1"))))
+                cars.add(new Car("car1"));
+                assertThatThrownBy(() -> cars.add(new Car("car1")))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("이미 존재하는 자동차 이름입니다.");
             }
@@ -30,11 +30,11 @@ public class CarsTest {
         class Context_with_not_duplicate_name_of_car {
             @Test
             @DisplayName("추가 시키고 예외를 발생시키지 않는다.")
-            void it_throw_exception() {
+            void it_add_car() {
                 Cars cars = new Cars();
-                cars.add(new Car(new Name("car1")));
+                cars.add(new Car("car1"));
 
-                assertDoesNotThrow(() -> cars.add(new Car(new Name("car2"))));
+                assertDoesNotThrow(() -> cars.add(new Car("car2")));
             }
         }
     }
@@ -49,9 +49,9 @@ public class CarsTest {
             @DisplayName("모든 차의 위치는 1 증가한다.")
             void it_increase_position_of_cars() {
                 Cars cars = new Cars();
-                cars.add(new Car(new Name("car1")));
-                cars.add(new Car(new Name("car2")));
-                cars.add(new Car(new Name("car3")));
+                cars.add(new Car("car1"));
+                cars.add(new Car("car2"));
+                cars.add(new Car("car3"));
                 cars.race(() -> true);
                 for (Car carInformation : cars.getCars()) {
                     assertThat(carInformation.getPosition()).isEqualTo(1);
@@ -81,9 +81,9 @@ public class CarsTest {
         @DisplayName("가장 멀린 간 위치에 있는 차들의 이름 리스트로 리턴한다.")
         void it_returns_car_name_list() {
             Cars cars = new Cars();
-            cars.add(new Car(new Name("car1"), new Position(10)));
-            cars.add(new Car(new Name("car2"), new Position(1)));
-            cars.add(new Car(new Name("car3"), new Position(10)));
+            cars.add(new Car("car1", 10));
+            cars.add(new Car("car2", 1));
+            cars.add(new Car("car3", 10));
 
             assertThat(cars.getWinnersNames()).containsExactly("car1", "car3");
         }

@@ -5,9 +5,8 @@ import java.util.Objects;
 import racingcar.util.NumberValidator;
 
 public class Position implements Comparable<Position> {
+    public static final int DEFAULT_POSITION = 0;
     private static final int INCREASE_DISTANCE = 1;
-    private static final int DEFAULT_POSITION = 0;
-
     private final int position;
 
     public Position() {

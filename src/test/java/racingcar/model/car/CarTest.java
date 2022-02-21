@@ -13,7 +13,7 @@ public class CarTest {
         @Test
         @DisplayName("1칸 이동할 수 있다.")
         void it_increase_position() {
-            Car car = new Car(new Name("car1"));
+            Car car = new Car("car1");
             car.move(() -> true);
             assertThat(car.getPosition()).isEqualTo(1);
         }
@@ -28,7 +28,7 @@ public class CarTest {
             @Test
             @DisplayName("true를 반환한다.")
             void it_returns_true() {
-                Car car = new Car(new Name("car1"));
+                Car car = new Car("car1");
                 assertThat(car.isInPosition(new Position(0))).isTrue();
             }
         }
@@ -39,7 +39,7 @@ public class CarTest {
             @Test
             @DisplayName("false를 반환한다.")
             void it_returns_false() {
-                Car car = new Car(new Name("car1"));
+                Car car = new Car("car1");
                 assertThat(car.isInPosition(new Position(1))).isFalse();
             }
         }
