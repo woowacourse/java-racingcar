@@ -10,8 +10,8 @@ public class Car {
 		this.name = name;
 	}
 
-	public void moveCar() {
-		if (((int)(Math.random() * 10) - 1) >= GO_OR_NOT) {
+	public void moveCar(boolean movable) {
+		if (movable) {
 			this.position++;
 		}
 	}
@@ -20,12 +20,11 @@ public class Car {
 		return this.position;
 	}
 
-	public boolean isWinner(int maxDistance) {
-		return this.position == maxDistance;
+	public String getName() {
+		return this.name;
 	}
 
-	@Override
-	public String toString() {
-		return name;
+	public boolean isWinner(int maxDistance) {
+		return this.position == maxDistance;
 	}
 }

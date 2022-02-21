@@ -9,14 +9,31 @@ import java.util.List;
 public class RacingCars {
 	private final List<Car> racingCars;
 
-	public RacingCars(List<Car> racingCars) {
-		this.racingCars = racingCars;
+	public RacingCars(List<String> carNames) {
+		List<Car> cars = new ArrayList<>();
+		for (String carName : carNames) {
+			cars.add(new Car(carName));
+		}
+		this.racingCars = cars;
 	}
 
 	public void moveRacingCars() {
 		for (Car racingCar : this.racingCars) {
-			racingCar.moveCar();
+			racingCar.moveCar(isRandomOverProbability());
 		}
+	}
+
+	private boolean isRandomOverProbability() {
+		return ((int)(Math.random() * 10)) >= GO_OR_NOT;
+	}
+
+	public List<Car> findWinner() {
+		int maxDistance = getMaxDistance();
+		List<Car> winners = new ArrayList<>();
+		for (Car racingCar : this.racingCars) {
+			addWinner(maxDistance, winners, racingCar);
+		}
+		return winners;
 	}
 
 	private int getMaxDistance() {
@@ -27,20 +44,10 @@ public class RacingCars {
 		return maxDistance;
 	}
 
-	public List<Car> findWinner() {
-		int maxDistance = getMaxDistance();
-		List<Car> winners = new ArrayList<>();
-		for (Car racingCar : this.racingCars) {
-			winners = addWinner(maxDistance, winners, racingCar);
-		}
-		return winners;
-	}
-
-	private List<Car> addWinner(int maxDistance, List<Car> winners, Car racingCar) {
+	private void addWinner(int maxDistance, List<Car> winners, Car racingCar) {
 		if (racingCar.isWinner(maxDistance)) {
 			winners.add(racingCar);
 		}
-		return winners;
 	}
 
 	public List<Car> getRacingCars() {
