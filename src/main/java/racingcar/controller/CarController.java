@@ -33,7 +33,14 @@ public class CarController {
     }
 
     public int scanRacingCnt() {
-        return Integer.parseInt(inputView.scanRacingCnt());
+        try {
+            final String racingCnt = inputView.scanRacingCnt();
+            carService.checkValidateNumber(racingCnt);
+            return Integer.parseInt(racingCnt);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return scanRacingCnt();
+        }
     }
 
     public List<Car> saveCars(final String[] names) {

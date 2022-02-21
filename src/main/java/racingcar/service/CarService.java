@@ -8,6 +8,7 @@ import racingcar.domain.Car;
 public class CarService {
 
     private static final String NAME_LENGTH_ERROR_MESSEAGE = "[ERROR] 자동차의 이름은 1글자 이상 5글자 이하여야 합니다.";
+    private static final String NUMBER_RANGE_ERROR_MESSEAGE = "[ERROR] 시행 횟수는 1 이상 2,147,483,647 이하의 숫자만 가능합니다.";
     public static final int MAXIMUM_NAME_LENGTH = 5;
     public static final int MINIMUM_NAME_LENGTH = 1;
 
@@ -54,6 +55,21 @@ public class CarService {
     private void checkValidateNameLength(final String name) throws IllegalArgumentException {
         if (name.length() > MAXIMUM_NAME_LENGTH || name.length() < MINIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR_MESSEAGE);
+        }
+    }
+
+    public void checkValidateNumber(final String number) {
+        try {
+            final int racingCnt = Integer.parseInt(number);
+            checkZeroOrNegative(racingCnt);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSEAGE);
+        }
+    }
+
+    private void checkZeroOrNegative(final int racingCnt) {
+        if (racingCnt <= 0) {
+            throw new NumberFormatException();
         }
     }
 }
