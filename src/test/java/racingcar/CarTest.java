@@ -1,13 +1,11 @@
 package racingcar;
 
 import org.junit.jupiter.api.Test;
-
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarFactory;
 import racingcar.domain.numbergenerator.MovableNumberGenerator;
 import racingcar.domain.numbergenerator.NonMovableNumberGenerator;
 import racingcar.domain.numbergenerator.NumberGenerator;
-
 
 import java.util.List;
 

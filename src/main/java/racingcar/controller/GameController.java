@@ -34,5 +34,4 @@ public class GameController {
     public WinnerCarsDto judgeWinner() {
         return cars.judgeWinner();
     }
-
 }

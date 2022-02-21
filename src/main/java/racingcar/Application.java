@@ -19,7 +19,5 @@ public class Application {
             OutputView.printCarStatus(carsDto);
         }
         OutputView.printWinner(gameController.judgeWinner());
-
-
     }
 }

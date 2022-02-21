@@ -21,6 +21,5 @@ public class GameControllerTest {
         assertThatThrownBy(() -> gameController.createGameCount(gameCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NEGATIVE_ERROR_MESSAGE);
-
     }
 }

@@ -21,7 +21,7 @@ public class OutputView {
         List<Integer> carPositions = carsDto.getCarPositions();
 
         for (int i = 0; i < carNames.size(); i++) {
-            System.out.printf(RESULT_FORMAT, carNames.get(i),buildStringPosition(carPositions.get(i)));
+            System.out.printf(RESULT_FORMAT, carNames.get(i), buildStringPosition(carPositions.get(i)));
         }
         System.out.println();
     }
