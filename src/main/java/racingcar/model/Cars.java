@@ -11,9 +11,6 @@ public class Cars {
     private final List<Car> cars = new ArrayList<>();
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
-    public Cars() {
-    }
-
     public void add(List<String> carNames) {
         for (String carName : carNames) {
             cars.add(new Car(carName));
