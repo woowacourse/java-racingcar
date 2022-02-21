@@ -8,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.round.RoundCountExceptionStatus;
+import racingcar.exception.round.RoundCountExceptionStatus;
+import racingcar.exception.round.WrongRoundCountException;
 
 class RoundTest {
 
@@ -17,23 +17,23 @@ class RoundTest {
     private static final int CONDITION_TO_FINISH = 0;
 
     @DisplayName("실행횟수는 양수여야 한다")
-    @ParameterizedTest()
+    @ParameterizedTest(name = "[{index}] 실행 횟수 : {0}")
     @ValueSource(ints = {-3, -2, -1, 0})
     void roundNotPositiveExceptionTest(final int count) {
         assertThatThrownBy(() -> new Round(count))
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongRoundCountException.class)
                 .hasMessageContaining(RoundCountExceptionStatus.ROUND_IS_NOT_POSITIVE.getMessage());
     }
 
     @DisplayName("생성자 기능 테스트")
-    @ParameterizedTest()
+    @ParameterizedTest(name = "[{index}] 실행 횟수 : {0}")
     @ValueSource(ints = {1, 2, 3, 10, 20})
     void constructorTest(final int count) {
         assertDoesNotThrow(() -> new Round(count));
     }
 
     @DisplayName("실행횟수는 하나씩 감소해야 한다.")
-    @ParameterizedTest()
+    @ParameterizedTest(name = "[{index}] 실행 횟수 : {0}")
     @ValueSource(ints = {1, 2, 3, 10, 20})
     void decreaseCountTest(final int count) {
         final Round round = new Round(count);
@@ -45,7 +45,7 @@ class RoundTest {
     }
 
     @DisplayName("실행횟수가 0인지 확인하는 기능 테스트")
-    @ParameterizedTest()
+    @ParameterizedTest(name = "[{index}] 실행 횟수 : {0}")
     @ValueSource(ints = {1, 2, 3, 10, 20})
     void isNotFinishedTest(final int count) {
         final Round round = new Round(count);

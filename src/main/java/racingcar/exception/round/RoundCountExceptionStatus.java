@@ -1,6 +1,6 @@
-package racingcar.exception.status.round;
+package racingcar.exception.round;
 
-import racingcar.exception.status.ExceptionStatus;
+import racingcar.exception.ExceptionStatus;
 
 public enum RoundCountExceptionStatus implements ExceptionStatus {
 

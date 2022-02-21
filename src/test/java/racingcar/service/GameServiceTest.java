@@ -63,7 +63,7 @@ class GameServiceTest {
     }
 
     @DisplayName("게임 라운드 실행 시, 조건에 따라 자동차가 전진한다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 실행횟수 : {1}, 이동거리 : {2}")
     @MethodSource(PROVIDER_PATH + "provideForPlayRoundTest")
     void playRoundTest(final List<Boolean> moveConditions, final int repeatTime, final List<Integer> expected) {
         customMoveStrategy.initMoveConditions(moveConditions);
@@ -79,7 +79,7 @@ class GameServiceTest {
     }
 
     @DisplayName("게임 라운드 우승자 반환 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 실행횟수 : {1}, 우승자 : {2}")
     @MethodSource(PROVIDER_PATH + "provideForGetWinnerNamesTest")
     void getWinnerNamesTest(final List<Boolean> moveConditions, final int repeatTime, final List<String> expected) {
         customMoveStrategy.initMoveConditions(moveConditions);

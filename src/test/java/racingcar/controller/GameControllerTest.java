@@ -32,7 +32,7 @@ class GameControllerTest {
     }
 
     @DisplayName("자동차 이름 설정 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : {0}, 기대 : {1}")
     @MethodSource(PROVIDER_PATH + "provideForInitGameTest")
     void initParticipantsTest(final List<String> readerDatas,
                               final List<String> expectedCarNames,
@@ -47,7 +47,7 @@ class GameControllerTest {
     }
 
     @DisplayName("실행 횟수 설정 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : {0}, 기대 : {2}")
     @MethodSource(PROVIDER_PATH + "provideForInitGameTest")
     void initRoundTest(final List<String> readerDatas,
                        final List<String> expectedCarNames,
@@ -60,7 +60,7 @@ class GameControllerTest {
     }
 
     @DisplayName("게임 라운드 실행, 자동차 이동거리 확인 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : {0}, 기대 : {2}")
     @MethodSource(PROVIDER_PATH + "provideForGetCarStatusesTest")
     void getCarStatusesTest(final List<String> readerDatas,
                             final List<Boolean> moveConditions,
@@ -77,7 +77,7 @@ class GameControllerTest {
     }
 
     @DisplayName("게임 라운드 실행, 우승자 확인 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : {0}, 기대 : {2}")
     @MethodSource(PROVIDER_PATH + "provideForGetWinnerNamesTest")
     void getWinnerNamesTest(final List<String> readerDatas,
                             final List<Boolean> moveConditions,

@@ -1,4 +1,4 @@
-package racingcar.exception.status;
+package racingcar.exception;
 
 public interface ExceptionStatus {
 

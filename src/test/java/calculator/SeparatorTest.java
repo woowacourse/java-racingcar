@@ -16,7 +16,7 @@ class SeparatorTest {
     private final Separator separator = new Separator();
 
     @DisplayName("문자열 분리 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : \"{0}\", 기대 : {1}")
     @MethodSource("provideForExtractCustomUnitsTest")
     void extractCustomUnitsTest(final String text, final List<String> expected) {
         final List<String> actual = separator.splitByUnits(text);

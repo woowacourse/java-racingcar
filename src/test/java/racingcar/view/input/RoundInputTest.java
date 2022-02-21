@@ -8,8 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.AppConfig;
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.round.RoundCountExceptionStatus;
+import racingcar.exception.round.RoundCountExceptionStatus;
+import racingcar.exception.round.WrongRoundCountException;
 import racingcar.view.input.reader.CustomReader;
 
 class RoundInputTest {
@@ -21,17 +21,17 @@ class RoundInputTest {
     private final InputView inputView = APP_CONFIG.inputView;
 
     @DisplayName("숫자 이외의 값은 입력할 수 없다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : \"{0}\"")
     @MethodSource(PROVIDER_PATH + "provideValuesForNotNumericException")
     void roundNotNumericExceptionTest(final String inputValue) {
         customReader.initText(inputValue);
         assertThatThrownBy(inputView::requestRoundCount)
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongRoundCountException.class)
                 .hasMessageContaining(RoundCountExceptionStatus.ROUND_IS_NOT_NUMERIC.getMessage());
     }
 
     @DisplayName("실행횟수 입력 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 입력 : \"{0}\"")
     @MethodSource(PROVIDER_PATH + "provideValuesForNormalInput")
     void requestRoundNumberTest(final String inputValue, final int expected) {
         customReader.initText(inputValue);

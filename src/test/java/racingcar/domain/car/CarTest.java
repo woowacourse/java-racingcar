@@ -13,8 +13,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import racingcar.exception.WrongArgumentException;
-import racingcar.exception.status.car.CarNameExceptionStatus;
+import racingcar.exception.car.CarNameExceptionStatus;
+import racingcar.exception.car.WrongCarNameException;
 
 class CarTest {
 
@@ -23,12 +23,12 @@ class CarTest {
 
     private void exceptionTest(final String name, final String errorMessage) {
         assertThatThrownBy(() -> new Car(name))
-                .isInstanceOf(WrongArgumentException.class)
+                .isInstanceOf(WrongCarNameException.class)
                 .hasMessageContaining(errorMessage);
     }
 
     @DisplayName("자동차 이름은 NULL이 될 수 없다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : {0}")
     @NullSource
     void carNameNullExceptionTest(final String name) {
         final String errorMessage = CarNameExceptionStatus.NAME_IS_NULL.getMessage();
@@ -36,7 +36,7 @@ class CarTest {
     }
 
     @DisplayName("자동차 이름은 공백이 될 수 없다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : \"{0}\"")
     @EmptySource
     void carNameEmptyExceptionTest(final String name) {
         final String errorMessage = CarNameExceptionStatus.NAME_IS_EMPTY.getMessage();
@@ -44,7 +44,7 @@ class CarTest {
     }
 
     @DisplayName("자동차 이름은 5자를 넘길 수 없다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : \"{0}\"")
     @ValueSource(strings = {"123456", "1234567", "12345678"})
     void carNameTooLongExceptionTest(final String name) {
         final String errorMessage = CarNameExceptionStatus.NAME_IS_TOO_LONG.getMessage();
@@ -52,7 +52,7 @@ class CarTest {
     }
 
     @DisplayName("생성자 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : \"{0}\"")
     @ValueSource(strings = {"aaa", "poby", "i  f", "hanul"})
     void constructorTest(final String name) {
         final Car car = new Car(name);
@@ -61,7 +61,7 @@ class CarTest {
     }
 
     @DisplayName("조건을 만족한 경우, 자동차는 한번에 1만큼 이동할 수 있다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : \"{0}\"")
     @MethodSource("provideForGoForwardTest")
     void goForwardTrueTest(final String name) {
         final Car car = new Car(name);
@@ -82,7 +82,7 @@ class CarTest {
     }
 
     @DisplayName("조건을 만족하지 못한 경우, 자동차는 이동할 수 없다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 자동차 이름 : \"{0}\"")
     @MethodSource("provideForGoForwardTest")
     void goForwardFalseTest(final String name) {
         final Car car = new Car(name);
@@ -94,7 +94,7 @@ class CarTest {
     }
 
     @DisplayName("이동거리가 동일한지 확인하는 기능 테스트")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] 이동 기대 횟수 : {1}")
     @MethodSource(value = "provideForSameLocationTest")
     void isLocationSameTest(final String name, final int location) {
         final Car car = new Car(name);
