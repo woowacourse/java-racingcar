@@ -1,40 +1,98 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import racingcar.service.RandomNumberService;
+import racingcar.service.CheckingService;
+import racingcar.service.RandomNumberMovingCondition;
 
 public class Cars {
+	private static final String COMMA_DELIMITER = ",";
+	private static final int START_POSITION = 0;
+
 	private List<Car> cars;
 
-	public Cars(List<Car> cars) {
+	public Cars(String inputCarNames) {
+		CheckingService.checkCarNamesBlank(inputCarNames);
+		List<String> carNames = splitCarNames(inputCarNames);
+		cars = toCar(carNames);
+	}
+
+	Cars(List<Car> cars) {
 		this.cars = cars;
 	}
 
-	public void moveCars() {
-		cars.stream().forEach(car -> car.move(RandomNumberService.getRandomNumber()));
+	private List<String> splitCarNames(String carNames) {
+		return Arrays.asList(carNames.split(COMMA_DELIMITER));
 	}
 
-	public List<String> getPosition() {
-		return cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.toList());
+	private List<Car> toCar(List<String> carNames) {
+		Set<Car> cars = new LinkedHashSet<>();
+
+		for (String carName : carNames) {
+			Car car = new Car(carName, START_POSITION, new RandomNumberMovingCondition());
+			CheckingService.checkDuplicationAboutCarName(cars, car);
+			cars.add(car);
+		}
+
+		return List.copyOf(cars);
+	}
+
+	public void moveCars() {
+		cars.stream().forEach(Car::move);
+	}
+
+	public Map<String, Integer> getRecentPosition() {
+		Map<String, Integer> carPosition = new LinkedHashMap<>();
+
+		for (Car car : cars) {
+			carPosition.put(car.getName(), car.getPosition());
+		}
+
+		return carPosition;
 	}
 
 	public List<String> findWinnerCars() {
 		Car maxPositionCar = findWinnerCar();
-		List<String> winners = new ArrayList<String>();
+		List<String> winners = new ArrayList<>();
 		cars.stream()
 			.filter(maxPositionCar::isSamePosition)
-			.forEach(car -> car.appendName(winners));
+			.forEach(car -> winners.add(car.getName()));
 		return winners;
 	}
 
-	public Car findWinnerCar() {
+	private Car findWinnerCar() {
 		return cars.stream()
 			.max(Car::compareTo)
 			.orElseThrow(() -> new IllegalArgumentException());
+	}
+
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (!(o instanceof Cars)) {
+			return false;
+		}
+
+		Cars cars1 = (Cars)o;
+		return cars.equals(cars1.getCars());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cars);
 	}
 }

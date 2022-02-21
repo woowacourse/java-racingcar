@@ -1,37 +1,53 @@
 package racingcar.model;
 
-import java.util.List;
 import java.util.Objects;
 
+import racingcar.service.CheckingService;
+import racingcar.service.MovingCondition;
+
 public class Car implements Comparable<Car> {
-	public static final String ONE_STEP = "-";
-	public static final String COLON = " : ";
-	public static final int MOVING_CONDITION_NUMBER = 4;
 	private String name;
-	private int position = 0;
+	private int position;
+	private MovingCondition movingCondition;
 
-	public Car(String name) {
-		this.name = name;
-	}
-
-	public Car(String name, int position) {
+	public Car(String name, int position, MovingCondition movingCondition) {
+		CheckingService.checkCarNamesBlank(name);
+		CheckingService.checkCarNameLength(name);
 		this.name = name;
 		this.position = position;
+		this.movingCondition = movingCondition;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder line = new StringBuilder();
-		for (int i = 0; i < position; i++) {
-			line.append(ONE_STEP);
+	public void move() {
+		if (movingCondition.canMove()) {
+			position += 1;
 		}
-		return name + COLON + line.toString();
+	}
+
+	public boolean isSamePosition(Car otherCar) {
+		return this.position == otherCar.position;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPosition() {
+		return position;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		Car car = (Car)obj;
-		return this.name.equals(car.name);
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (!(o instanceof Car)) {
+			return false;
+		}
+
+		Car car = (Car)o;
+		return name.equals(car.getName());
 	}
 
 	@Override
@@ -44,28 +60,4 @@ public class Car implements Comparable<Car> {
 		return position - o.position;
 	}
 
-	public void move(int selectedNumber) {
-		if (checkMovingCondition(selectedNumber)) {
-			position += 1;
-		}
-	}
-
-	public boolean checkMovingCondition(int selectedNumber) {
-		return selectedNumber >= MOVING_CONDITION_NUMBER;
-	}
-
-	public boolean isSamePosition(Car otherCar) {
-		return this.position == otherCar.position;
-	}
-
-	public void appendName(List<String> winnerNames) {
-		winnerNames.add(name);
-	}
-
-	public String testMoveFunction(int expectedPosition) {
-		if (expectedPosition == this.position) {
-			return "Success!!";
-		}
-		return "Fail!!";
-	}
 }

@@ -1,6 +1,8 @@
 package racingcar.service;
 
-import java.util.List;
+import java.util.Set;
+
+import racingcar.model.Car;
 
 public class CheckingService {
 	private static final String NULL_EMPTY_CAR_NAME_ERROR_MESSAGE = "[Error] 다시 이름을 입력하세요";
@@ -9,16 +11,16 @@ public class CheckingService {
 		MAX_CAR_NAME_LENGTH);
 	private static final String GAME_TURN_NUMBER_ERROR_MESSAGE = "[Error] 숫자를 입력하세요.";
 	private static final String GAME_TURN_NUMBER_REGEX = "[1-9]\\d*";
+	private static final String DUPLICATION_NAME_ERROR_MESSAGE = "[Error] 중복된 이름입니다.";
 
 	public static void checkCarNamesBlank(String input) {
-		if (input == null || input.isEmpty()) {
+		if (input == null || input.isBlank()) {
 			throw new IllegalArgumentException(NULL_EMPTY_CAR_NAME_ERROR_MESSAGE);
 		}
 	}
 
-	public static void checkCarNamesLength(List<String> carNames) {
-		if (carNames.stream()
-			.anyMatch(carName -> carName.length() > MAX_CAR_NAME_LENGTH)) {
+	public static void checkCarNameLength(String carName) {
+		if (carName.length() > MAX_CAR_NAME_LENGTH) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
 		}
 	}
@@ -28,4 +30,11 @@ public class CheckingService {
 			throw new IllegalArgumentException(GAME_TURN_NUMBER_ERROR_MESSAGE);
 		}
 	}
+
+	public static void checkDuplicationAboutCarName(Set<Car> cars, Car newCar) {
+		if (cars.contains(newCar)) {
+			throw new IllegalArgumentException(DUPLICATION_NAME_ERROR_MESSAGE);
+		}
+	}
+	
 }
