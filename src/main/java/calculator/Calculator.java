@@ -11,42 +11,43 @@ public class Calculator {
 	private static final int NUMBER_PART = 2;
 	public static final String EMPTY_VALUE = "0";
 
-	public int splitAndSum(String text) {
-		text = replaceEmpty(text);
-		return sum(getSplitNumbers(text));
+	public int splitAndSum(final String text) {
+		String calculatorText = replaceEmpty(text);
+		return sum(getSplitNumbers(calculatorText));
 	}
 
-	private String replaceEmpty(String text) {
+	private String replaceEmpty(final String text) {
 		if (isEmpty(text)) {
-			text = EMPTY_VALUE;
 			Output.emptyValueOfSum();
+			return EMPTY_VALUE;
 		}
 		return text;
 	}
 
-	private boolean isEmpty(String text) {
+	private boolean isEmpty(final String text) {
 		return text == null || text.trim().isEmpty();
 	}
 
-	private int[] getSplitNumbers(String text) {
+	private int[] getSplitNumbers(final String text) {
 		String delimiter = ",|:";
+		String splitText = text;
 
 		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
 		if (m.find()) {
 			delimiter += "|" + m.group(CUSTOM_DELIMITER_PART);
-			text = m.group(NUMBER_PART);
+			splitText = m.group(NUMBER_PART);
 		}
-		return stringToIntArray(text.split(delimiter));
+		return stringToIntArray(splitText.split(delimiter));
 	}
 
-	private int[] stringToIntArray(String[] strings) {
+	private int[] stringToIntArray(final String[] strings) {
 		return Arrays.stream(strings)
 				.filter(this::isValidNumber)
 				.map(Integer::parseInt)
 				.mapToInt(Integer::intValue).toArray();
 	}
 
-	private boolean isValidNumber(String string) {
+	private boolean isValidNumber(final String string) {
 		if (isEmpty(string)) {
 			return false;
 		}
@@ -56,11 +57,11 @@ public class Calculator {
 		return true;
 	}
 
-	private boolean isNumber(String string) {
+	private boolean isNumber(final String string) {
 		return string.matches("[+-]?\\d*?(\\.\\d+)?");
 	}
 
-	private int sum(int[] numbers) {
+	private int sum(final int[] numbers) {
 		if (numbers.length == 1) {
 			return numbers[0];
 		}
@@ -72,7 +73,7 @@ public class Calculator {
 		return result;
 	}
 
-	private void checkNegative(int number) {
+	private void checkNegative(final int number) {
 		if (number < 0) {
 			throw new RuntimeException("자연수를 입력해주세요.");
 		}

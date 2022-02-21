@@ -6,19 +6,19 @@ public class Car implements Comparable<Car> {
 	private final String name;
 	private int position = 0;
 
-	public Car(String name) {
+	public Car(final String name) {
 		checkValidName(name);
 		this.name = name;
 	}
 
-	public Car(String name, int position) {
+	public Car(final String name, final int position) {
 		this(name);
 
 		checkValidPosition(position);
 		this.position = position;
 	}
 
-	public void drive(Movable movable) {
+	public void drive(final Movable movable) {
 		if (movable.isMoving()) {
 			move();
 		}
@@ -32,12 +32,12 @@ public class Car implements Comparable<Car> {
 		return position;
 	}
 
-	public boolean isSamePosition(Car other) {
+	public boolean isSamePosition(final Car other) {
 		return this.position == other.position;
 	}
 
 	@Override
-	public int compareTo(Car car) {
+	public int compareTo(final Car car) {
 		return this.position - car.position;
 	}
 
@@ -46,12 +46,12 @@ public class Car implements Comparable<Car> {
 		return "name : " + name + ", position : " + position;
 	}
 
-	private void checkValidName(String names) {
+	private void checkValidName(final String names) {
 		checkBlank(names);
 		checkNameLength(names);
 	}
 
-	private void checkBlank(String name) {
+	private void checkBlank(final String name) {
 		String text = "자동차 이름은 %s일 수 없습니다.";
 		if (name == null) {
 			throw new NullPointerException(String.format(text, "null"));
@@ -61,13 +61,13 @@ public class Car implements Comparable<Car> {
 		}
 	}
 
-	private void checkNameLength(String name) {
+	private void checkNameLength(final String name) {
 		if (!(name.trim().length() <= CAR_LENGTH_LIMIT)) {
 			throw new IllegalArgumentException("자동차의 이름은 " + CAR_LENGTH_LIMIT + "글자를 초과할 수 없습니다.");
 		}
 	}
 
-	private void checkValidPosition(int position) {
+	private void checkValidPosition(final int position) {
 		if (position < 0) {
 			throw new IllegalArgumentException("자동차 위치는 자연수를 입력해주세요.");
 		}

@@ -3,18 +3,18 @@ package racingcar.domain;
 public class Attempt {
     private final int attempt;
 
-    public Attempt(int attempt) {
+    public Attempt(final int attempt) {
         if (isNegative(attempt)) {
             throw new IllegalArgumentException("시도횟수는 1이상의 수를 입력해주세요.");
         }
         this.attempt = attempt;
     }
 
-    public Attempt(String attempt) {
+    public Attempt(final String attempt) {
         this(stringToInt(attempt));
     }
     
-    public boolean isSame(int nowAttempt) {
+    public boolean isSame(final int nowAttempt) {
         return attempt == nowAttempt;
     }
 
@@ -23,12 +23,12 @@ public class Attempt {
         return "attempt : " + attempt;
     }
 
-    private static int stringToInt(String text) {
+    private static int stringToInt(final String text) {
         checkValid(text);
         return Integer.parseInt(text);
     }
 
-    private static void checkValid(String attempt) {
+    private static void checkValid(final String attempt) {
         if (attempt.isBlank()) {
             throw new IllegalArgumentException("반복 횟수는 %s일 수 없습니다.");
         }
@@ -37,11 +37,11 @@ public class Attempt {
         }
     }
 
-    private static boolean isNumber(String string) {
+    private static boolean isNumber(final String string) {
         return string.matches("[+-]?\\d*(\\.\\d+)?");
     }
 
-    private static boolean isNegative(int number) {
+    private static boolean isNegative(final int number) {
         return number <= 0;
     }
 }

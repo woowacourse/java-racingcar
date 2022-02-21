@@ -5,7 +5,7 @@ import racingcar.domain.RoundResult;
 import java.util.List;
 
 public class Output {
-	public static void errorMessage(String message) {
+	public static void errorMessage(final String message) {
 		System.out.println("[ERROR] " + message);
 	}
 
@@ -22,17 +22,15 @@ public class Output {
 		System.out.println("실행 결과");
 	}
 
-	public static void result(RoundResult round) {
-		for (String result : round.getResult()) {
-			System.out.println(result);
-		}
+	public static void result(final RoundResult round) {
+		System.out.println(String.join("\n", round.getResult()));
 	}
 
 	public static void newLine() {
 		System.out.println();
 	}
 
-	public static void showResult(List<String> winners) {
+	public static void showResult(final List<String> winners) {
 		System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
 	}
 }

@@ -35,11 +35,11 @@ public class RacingCarGame {
 		attempt = createAttempt(input.attempt());
 	}
 
-	private Cars createCars(String carName) {
+	private Cars createCars(final String carName) {
 		return new Cars(carName);
 	}
 
-	private Attempt createAttempt(String attempt) {
+	private Attempt createAttempt(final String attempt) {
 		return new Attempt(attempt);
 	}
 

@@ -9,7 +9,7 @@ public class RoundResult {
 
     private final List<String> result = new ArrayList<>();
 
-    public void save(String name, int position) {
+    public void save(final String name, final int position) {
         result.add(name + " : " + STEP.repeat(position));
     }
 
@@ -19,5 +19,10 @@ public class RoundResult {
 
     public List<String> getResult() {
         return Collections.unmodifiableList(result);
+    }
+
+    @Override
+    public String toString() {
+        return String.join("\n", result);
     }
 }

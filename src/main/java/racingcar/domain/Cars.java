@@ -10,20 +10,20 @@ public class Cars {
 	private static final int CAR_LIMIT = 2;
 	private final List<Car> cars;
 
-	public Cars(String names) {
+	public Cars(final String names) {
 		this(names.split(DELIMITER));
 	}
 
-	public Cars(String[] names) {
+	public Cars(final String[] names) {
 		this(stringArrayToCarList(names));
 	}
 
-	public Cars(List<Car> cars) {
+	public Cars(final List<Car> cars) {
 		checkValid(cars);
 		this.cars = new ArrayList<>(cars);
 	}
 
-	public void play(RoundResult roundResult) {
+	public void play(final RoundResult roundResult) {
 		Movable movable = new DecisionToMoving();
 		for (Car car : cars) {
 			car.drive(movable);
@@ -46,7 +46,7 @@ public class Cars {
 		return result;
 	}
 
-	private static List<Car> stringArrayToCarList(String[] names) {
+	private static List<Car> stringArrayToCarList(final String[] names) {
 		List<Car> tempCars = new ArrayList<>();
 		for (String name : names) {
 			tempCars.add(createCar(name));
@@ -54,11 +54,11 @@ public class Cars {
 		return tempCars;
 	}
 
-	private static Car createCar(String name) {
+	private static Car createCar(final String name) {
 		return new Car(name.trim());
 	}
 
-	private void checkValid(List<Car> cars) {
+	private void checkValid(final List<Car> cars) {
 		if (!isCars(cars)) {
 			throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
 		}
@@ -67,11 +67,11 @@ public class Cars {
 		}
 	}
 
-	private boolean isCars(List<Car> cars) {
+	private boolean isCars(final List<Car> cars) {
 		return cars.size() >= CAR_LIMIT;
 	}
 
-	private boolean isDuplicated(List<Car> cars) {
+	private boolean isDuplicated(final List<Car> cars) {
 		return cars.stream()
 				.map(Car::getName)
 				.distinct()
@@ -84,7 +84,7 @@ public class Cars {
 			.orElseThrow(() -> new NoSuchElementException("max 값을 찾을 수 없습니다."));
 	}
 
-	private List<String> findSamePositionCar(Car target) {
+	private List<String> findSamePositionCar(final Car target) {
 		return cars.stream()
 			.filter(car -> car.isSamePosition(target))
 			.map(Car::getName)
