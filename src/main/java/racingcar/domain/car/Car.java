@@ -32,14 +32,6 @@ public class Car {
         }
     }
 
-    public String getName() {
-        return name.getName();
-    }
-
-    public int getPosition() {
-        return position.getPosition();
-    }
-
     public boolean isSamePosition(int otherPosition) {
         return position.isSame(otherPosition);
     }
@@ -47,6 +39,14 @@ public class Car {
     public void move(MovementStrategy strategy) {
         int distance = strategy.move();
         this.position.move(distance);
+    }
+
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return position.getPosition();
     }
 
     @Override

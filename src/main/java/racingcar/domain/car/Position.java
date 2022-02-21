@@ -26,16 +26,16 @@ public class Position {
         }
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public boolean isSame(int otherPosition) {
         return position == otherPosition;
     }
 
     public void move(int distance) {
         position += distance;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

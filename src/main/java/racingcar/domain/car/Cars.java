@@ -27,10 +27,6 @@ public class Cars {
             .collect(Collectors.toList());
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public List<Car> findWinners() {
         final int max = findMaxPosition();
         return cars.stream()
@@ -49,5 +45,9 @@ public class Cars {
         for (Car car : cars) {
             car.move(strategy);
         }
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
