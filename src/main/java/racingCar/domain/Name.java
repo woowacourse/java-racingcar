@@ -17,7 +17,7 @@ public class Name {
         this.name = name;
     }
 
-    private void validate(String name) {
+    private static void validate(String name) {
         if (name.trim().isEmpty()) {
             throw new NameSpaceException();
         }

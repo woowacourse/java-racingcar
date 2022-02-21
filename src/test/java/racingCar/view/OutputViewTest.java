@@ -41,7 +41,7 @@ public class OutputViewTest {
 
         CarsDto carsDto = CarsDto.fromCarDtos(result);
 
-        OutputView.printRoundResult(carsDto);
+        new OutputView().printRoundResult(carsDto);
 
         //then
         assertThat(out.toString())
@@ -60,7 +60,7 @@ public class OutputViewTest {
         result.add(CarDto.of("juri", 0));
         CarsDto carsDto = CarsDto.fromCarDtos(result);
 
-        OutputView.printRoundResult(carsDto);
+        new OutputView().printRoundResult(carsDto);
 
         //then
         assertThat(out.toString())
@@ -75,7 +75,7 @@ public class OutputViewTest {
         CarsDto carsDto = CarsDto.fromCarDtos(List.of(CarDto.of("hunch", 0)));
 
         //when
-        OutputView.printWinner(carsDto);
+        new OutputView().printWinner(carsDto);
 
         //then
         assertThat(out.toString())
@@ -90,7 +90,7 @@ public class OutputViewTest {
         CarsDto carsDto = CarsDto.fromCarDtos(Arrays.asList(CarDto.of("hunch", 0), CarDto.of("juri", 0)));
 
         //when
-        OutputView.printWinner(carsDto);
+        new OutputView().printWinner(carsDto);
 
         //then
         assertThat(out.toString())

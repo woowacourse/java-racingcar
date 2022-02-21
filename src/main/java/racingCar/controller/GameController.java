@@ -1,36 +1,36 @@
 package racingCar.controller;
 
 import racingCar.domain.RacingGame;
-import racingCar.domain.dto.InitDto;
+import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
 public class GameController {
     private final RacingGame racingGame;
 
-    public GameController(InitDto initDto) {
-        racingGame = new RacingGame(initDto);
+    public GameController(InputView inputView) {
+        racingGame = new RacingGame(inputView.getInitDto());
     }
 
-    public void run() {
-        playGame();
-        endGame();
+    public void run(OutputView outputView) {
+        playGame(outputView);
+        endGame(outputView);
     }
 
-    private void playGame() {
+    private void playGame(OutputView outputView) {
         OutputView.printStartMessage();
-        playRounds();
+        playRounds(outputView);
     }
 
-    private void endGame() {
-        OutputView.printWinner(racingGame.getWinnerCarsDto());
+    private void endGame(OutputView outputView) {
+        outputView.printWinner(racingGame.getWinnerCarsDto());
     }
 
-    private void playRounds() {
+    private void playRounds(OutputView outputView) {
         racingGame.go();
-        OutputView.printRoundResult(racingGame.getCarsDto());
+        outputView.printRoundResult(racingGame.getCarsDto());
         if (racingGame.getRoundCount().isFinish()) {
             return;
         }
-        playRounds();
+        playRounds(outputView);
     }
 }

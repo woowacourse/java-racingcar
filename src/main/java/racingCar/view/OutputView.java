@@ -14,14 +14,14 @@ public class OutputView {
         System.out.println(RESULT_FRONT_MESSAGE);
     }
 
-    public static void printRoundResult(CarsDto carsDto) {
+    public void printRoundResult(CarsDto carsDto) {
         for (CarDto carDto : carsDto.get()) {
             System.out.println(carDto.getName() + ROUND_REGEX + POSITION_SIGNATURE.repeat(carDto.getPosition()));
         }
         System.out.println();
     }
 
-    public static void printWinner(CarsDto carsDto) {
+    public void printWinner(CarsDto carsDto) {
         StringBuilder result = new StringBuilder();
         for (CarDto carDto : carsDto.get()) {
             result.append(carDto.getName()).append(WINNER_REGEX);

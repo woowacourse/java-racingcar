@@ -1,7 +1,5 @@
 package racingCar.domain;
 
-import java.util.List;
-import racingCar.domain.dto.CarDto;
 import racingCar.domain.dto.CarsDto;
 import racingCar.domain.dto.InitDto;
 import racingCar.domain.moveStrategy.RandomNumGenerator;
