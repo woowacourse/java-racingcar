@@ -11,6 +11,10 @@ public class OutputView {
 	private static final String ONE_STEP = "-";
 	private static final String COLON = " : ";
 
+	//기본 생성자 생성 제지(인스턴스화 방지)
+	private OutputView() {
+	}
+
 	public static void printResultSentence() {
 		System.out.println(RESULT_SENTENCE_MESSAGE);
 	}
