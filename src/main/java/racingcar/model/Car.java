@@ -13,8 +13,7 @@ public class Car {
     }
 
     public void forward(NumberGenerator numberGenerator) {
-        int number = numberGenerator.generate();
-        if (number >= 4) {
+        if (numberGenerator.canForward()) {
             this.position += 1;
         }
     }

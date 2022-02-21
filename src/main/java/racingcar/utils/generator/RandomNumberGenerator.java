@@ -12,7 +12,7 @@ public class RandomNumberGenerator implements NumberGenerator {
     }
 
     @Override
-    public int generate() {
-        return random.nextInt(RANDOM_BOUND);
+    public boolean canForward() {
+        return random.nextInt(RANDOM_BOUND) >= 4;
     }
 }

@@ -2,7 +2,7 @@ package racingcar.utils.generator;
 
 public class MovableNumberGenerator implements NumberGenerator {
     @Override
-    public int generate() {
-        return 4;
+    public boolean canForward() {
+        return true;
     }
 }
