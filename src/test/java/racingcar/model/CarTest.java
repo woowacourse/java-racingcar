@@ -3,20 +3,20 @@ package racingcar.model;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.service.MovingCondition;
 
 public class CarTest {
-	@Test
-	public void Car_생성자_테스트_null() {
-		MovingCondition movingCondition = () -> true;
-		assertThatThrownBy(() -> new Car(null, 0, movingCondition)).isInstanceOf(IllegalArgumentException.class);
-	}
 
-	@Test
-	public void Car_생성자_테스트_빈문자열() {
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {" ", "   ", "\t", "\n"})
+	public void Car_생성자_테스트(String name) {
 		MovingCondition movingCondition = () -> true;
-		assertThatThrownBy(() -> new Car("", 0, movingCondition)).isInstanceOf(IllegalArgumentException.class);
+		assertThatThrownBy(() -> new Car(name, 0, movingCondition)).isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test

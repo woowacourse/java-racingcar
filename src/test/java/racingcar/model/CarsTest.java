@@ -7,20 +7,20 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import racingcar.service.MovingCondition;
 import racingcar.service.RandomNumberMovingCondition;
 
 public class CarsTest {
-	@Test
-	public void Cars_생성자에_인자로_null() {
-		String input = null;
-		assertThatThrownBy(() -> new Cars(input)).isInstanceOf(IllegalArgumentException.class);
-	}
 
-	@Test
-	public void Cars_생성자에_인자로_빈문자열() {
-		assertThatThrownBy(() -> new Cars("")).isInstanceOf(IllegalArgumentException.class);
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {" ", "   ", "\t", "\n"})
+	public void Cars_생성자_테스트(String input) {
+		assertThatThrownBy(() -> new Cars(input)).isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test
@@ -48,9 +48,10 @@ public class CarsTest {
 		assertThat(carsRecentPosition.get("아스피")).isEqualTo(2);
 	}
 
-	@Test
-	public void 중복_이름_테스트() {
-		assertThatThrownBy(() -> new Cars("아스피,아스피")).isInstanceOf(IllegalArgumentException.class);
+	@ParameterizedTest
+	@ValueSource(strings = {"아스피,아스피", "아스피,배카라,아스피", "아스피,아스피,배카라,아스피"})
+	public void 중복_이름_테스트(String inputName) {
+		assertThatThrownBy(() -> new Cars(inputName)).isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@Test

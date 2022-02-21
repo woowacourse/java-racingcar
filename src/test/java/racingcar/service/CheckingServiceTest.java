@@ -2,42 +2,39 @@ package racingcar.service;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CheckingServiceTest {
-	@Test
-	public void 자동차_이름_공백_빈칸() {
-		assertThatThrownBy(() -> CheckingService.checkCarNamesBlank(""))
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {" ", "   ", "\t", "\n"})
+	public void 자동차_이름_공백(String inputName) {
+		assertThatThrownBy(() -> CheckingService.checkCarNamesBlank(inputName))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@Test
-	public void 자동차_이름_공백_NULL() {
-		assertThatThrownBy(() -> CheckingService.checkCarNamesBlank(null))
+	@ParameterizedTest
+	@ValueSource(strings = {"배카라쿠베네", "asdasdasd", "아스피배카라"})
+	public void 자동차_이름_예외처리(String inputName) {
+		assertThatThrownBy(() -> CheckingService.checkCarNameLength(inputName))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@Test
-	public void 자동차_이름_예외처리() {
-		assertThatThrownBy(() -> CheckingService.checkCarNameLength("배카라쿠배네"))
+	@ParameterizedTest
+	@ValueSource(strings = {"a", "sdfs", "two"})
+	public void 횟수_숫자_확인(String turn) {
+		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber(turn))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@Test
-	public void 횟수_숫자_확인() {
-		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber("two"))
+	@ParameterizedTest
+	@ValueSource(strings = {"-1", "0", "-100"})
+	public void 횟수_양수_확인(String turn) {
+		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber(turn))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
-
-	@Test
-	public void 횟수_양수_확인() {
-		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber("-2"))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
-
-	@Test
-	public void 횟수_양수_확인_0() {
-		assertThatThrownBy(() -> CheckingService.checkGameTurnNumber("0"))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
+	
 }
