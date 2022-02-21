@@ -4,59 +4,56 @@ import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 import racingcar.model.trycount.TryCount;
 import racingcar.util.InputFormator;
-import racingcar.util.MovableStrategy;
 import racingcar.util.NumberValidator;
 import racingcar.util.RacingCarMovableStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
-    private final MovableStrategy racingCarMovableStrategy = new RacingCarMovableStrategy();
-    private Cars cars = new Cars();
-    private TryCount tryCount;
-
     public RaceController() {
     }
 
     public void start() {
-        setUpCars();
-        setUpTryCount();
-        race();
-        getWinners();
+        Cars cars = getCars();
+        TryCount tryCount = getTryCount();
+        race(cars, tryCount);
+        getWinners(cars);
     }
 
-    public void setUpCars() {
+    public Cars getCars() {
+        Cars cars = new Cars();
         try {
             InputFormator.toNameList(InputView.inputNames())
                 .stream()
                 .map(name -> new Car(name.value()))
                 .forEach(cars::add);
+            return cars;
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception);
-            setUpCars();
+            return getCars();
         }
     }
 
-    public void setUpTryCount() {
+    public TryCount getTryCount() {
         try {
             String input = InputView.inputTryCount();
             NumberValidator.validateStringIsNumber(input);
-            tryCount = new TryCount(Integer.parseInt(input));
+            return new TryCount(Integer.parseInt(input));
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception);
-            setUpTryCount();
+            return getTryCount();
         }
     }
 
-    public void race() {
+    public void race(Cars cars, TryCount tryCount) {
         OutputView.printRaceResult();
         for (int i = 0; i < tryCount.value(); i++) {
-            cars.race(racingCarMovableStrategy);
+            cars.race(new RacingCarMovableStrategy());
             OutputView.printCars(cars);
         }
     }
 
-    public void getWinners() {
+    public void getWinners(Cars cars) {
         OutputView.printWinners(cars.getWinnersNames());
     }
 
