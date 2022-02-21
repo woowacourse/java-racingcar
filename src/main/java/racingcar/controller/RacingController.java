@@ -1,11 +1,9 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.Car;
-import racingcar.model.Participants;
-import racingcar.model.PlayTime;
+import racingcar.model.RacingGame;
 import racingcar.model.RoundResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -21,30 +19,30 @@ public class RacingController {
     }
 
     public void start() {
-        Participants participants = enrollCars();
-        PlayTime playTime = new PlayTime(inputView.requestPlayTimes());
-        startRacing(participants, playTime);
-        List<String> racingWinnerNames = participants.findRacingWinners().stream()
-                .map(Car::getName).collect(Collectors.toList());
-        showRacingResult(racingWinnerNames);
+        RacingGame racingGame = initRacingGame();
+        startRacing(racingGame);
+        showWinners(racingGame);
     }
 
-    private Participants enrollCars() {
+    private RacingGame initRacingGame() {
         String[] carNames = inputView.requestCarNames();
-        return new Participants(carNames);
+        int playTimes = inputView.requestPlayTimes();
+        return new RacingGame(carNames, playTimes);
     }
 
-    private void startRacing(Participants participants, PlayTime playTime) {
+    private void startRacing(RacingGame racingGame) {
         outputView.announceRacingStart();
-        List<RoundResult> racingResults = new ArrayList<>();
-        while (!playTime.isEnd()) {
-            racingResults.add(participants.race());
-            playTime.decrease();
-        }
+        List<RoundResult> racingResults = racingGame.startRacing();
         outputView.recordScore(racingResults);
     }
 
-    private void showRacingResult(List<String> winners) {
-        outputView.recordRacingWinners(winners);
+    private void showWinners(RacingGame racingGame) {
+        List<String> racingWinnerNames = extractCarNamesFromCars(racingGame);
+        outputView.recordRacingWinners(racingWinnerNames);
+    }
+
+    private List<String> extractCarNamesFromCars(RacingGame racingGame) {
+        return racingGame.findRacingWinners().stream()
+                .map(Car::getName).collect(Collectors.toList());
     }
 }
