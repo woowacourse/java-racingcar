@@ -8,12 +8,10 @@ public class InputView {
 	private static final int NUMBER_OF_TURN_BOUND = 1;
 	private static final String ERROR_NEGATIVE_NUM = "[ERROR] 횟수는 1이상이어야 합니다.";
 	private static final String ERROR_STRING_INPUT = "[ERROR] 횟수는 문자로 입력할 수 없습니다.";
+	private static final Scanner SCANNER = new Scanner(System.in);
 
 	public static String[] getCarNames() {
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
-
-		return splitByColon(input);
+		return splitByColon(SCANNER.nextLine());
 	}
 
 	private static String[] splitByColon(String input) {
@@ -21,14 +19,11 @@ public class InputView {
 	}
 
 	public static int getNumberOfTurn() {
-		Scanner scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
-
-		return isValidNum(input);
+		return isValidNum(SCANNER.nextLine());
 	}
 
 	private static int isValidNum(String input) {
-		int numberOfTurn = isInteger(input);
+		final int numberOfTurn = isInteger(input);
 		isPositive(numberOfTurn);
 
 		return numberOfTurn;

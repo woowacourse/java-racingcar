@@ -3,91 +3,59 @@ package racingcar.controller;
 import java.util.ArrayList;
 
 import racingcar.model.Car;
-import racingcar.model.CarList;
+import racingcar.model.Cars;
+import racingcar.model.Game;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-	private static final int ZERO = 0;
-	CarList carList;
-	int numberOfTurn = ZERO;
 
 	public void runRace() {
-		getCarNames();
-		getNumberOfTurn();
-		printProcess();
-		printResult();
+		Game game = new Game(getCarNames(), getNumberOfTurn());
+		printProcess(game);
+		printResult(game);
 	}
 
-	private void printResult() {
-		OutputView.printWinner(getWinner());
-	}
-
-	private void printProcess() {
-		OutputView.printResultMessage();
-		playTotalTurn(numberOfTurn);
-	}
-
-	private void getNumberOfTurn() {
-		OutputView.askTurn();
-
-		try {
-			numberOfTurn = InputView.getNumberOfTurn();
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			System.exit(ZERO);
-		}
-	}
-
-	private void getCarNames() {
+	private Cars getCarNames() {
 		OutputView.askCarName();
 
 		String[] carNames = InputView.getCarNames();
 
 		try {
-			generateCarList(carNames);
+			return generateCars(carNames);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			System.exit(ZERO);
+			return getCarNames();
 		}
 	}
 
-	private void playTotalTurn(int numberOfTurn) {
-		for (int eachTurn = ZERO; eachTurn < numberOfTurn; eachTurn++) {
-			carList.moveCarList();
-			OutputView.printCarPosition(carList.getCarListInfo());
-		}
-	}
-
-	private void generateCarList(String[] names) {
+	private Cars generateCars(String[] names) {
 		ArrayList<Car> cars = new ArrayList<>();
 
 		for (String name : names) {
 			cars.add(new Car(name));
 		}
 
-		this.carList = new CarList(cars);
+		return new Cars(cars);
 	}
 
-	private ArrayList<String> getWinner() {
-		ArrayList<String> winner = new ArrayList<>();
-
-		isMaxPosition(winner);
-
-		return winner;
-	}
-
-	private void isMaxPosition(ArrayList<String> winner) {
-		int maxPosition = carList.getMaxPosition();
-
-		for (Car car : carList.getCarList()) {
-			isSamePosition(winner, maxPosition, car);
+	private int getNumberOfTurn() {
+		OutputView.askTurn();
+		try {
+			return InputView.getNumberOfTurn();
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getNumberOfTurn();
 		}
 	}
 
-	private void isSamePosition(ArrayList<String> winner, int maxPosition, Car car) {
-		if (car.getPosition() == maxPosition) {
-			winner.add(car.getName());
-		}
+	private void printResult(Game game) {
+		OutputView.printWinner(game.getWinner(game.getCars()));
 	}
+
+	private void printProcess(Game game) {
+		OutputView.printResultMessage();
+		game.playTotalTurn(game.getNumberOfTurn(), game.getCars());
+	}
+
 }

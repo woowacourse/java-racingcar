@@ -8,28 +8,27 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import racingcar.model.Car;
-import racingcar.model.CarList;
+import racingcar.model.Cars;
 
-public class CarListTest {
-	CarList carList;
+public class CarsTest {
 
-	@DisplayName("차가 0대인 경우")
+	@DisplayName("차가 0대인 경우 예외가 발생한다")
 	@Test
-	public void carListTest_zero() {
+	public void carsTest_zero() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			carList = new CarList(new ArrayList<>());
+			new Cars(new ArrayList<>());
 		});
 	}
 
-	@DisplayName("이름 중복 테스트")
+	@DisplayName("이름 중복 테스트 예외가 발생한다")
 	@Test
-	public void carListTest_duplicateName() {
+	public void carsTest_duplicateName() {
 		ArrayList<Car> cars = new ArrayList<>();
 		cars.add(new Car("car"));
 		cars.add(new Car("car"));
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			carList = new CarList(cars);
+			new Cars(cars);
 		});
 	}
 
