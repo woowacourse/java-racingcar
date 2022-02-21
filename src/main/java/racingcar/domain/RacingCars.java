@@ -3,7 +3,6 @@ package racingcar.domain;
 import racingcar.util.RandomGenerator;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class RacingCars {
@@ -53,9 +52,16 @@ public class RacingCars {
         }
     }
 
-    public Map<String, Integer> getRaceStateData() {
+    public List<Integer> getPositions() {
         return racingCars.stream()
-                .collect(Collectors.toMap(RacingCar::getName, RacingCar::getPosition));
+                .map(RacingCar::getPosition)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getNames() {
+        return racingCars.stream()
+                .map(RacingCar::getName)
+                .collect(Collectors.toList());
     }
 
     public List<String> getWinnerNames() {

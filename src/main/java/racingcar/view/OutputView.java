@@ -2,6 +2,9 @@ package racingcar.view;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import racingcar.domain.RacingCars;
 
 public class OutputView {
 
@@ -15,10 +18,18 @@ public class OutputView {
         System.out.println(TRIAL_RESULT);
     }
 
-    public static void printCurrentRaceState(Map<String, Integer> carNamesAndPositions) {
-        carNamesAndPositions.keySet()
+    private static Map<String, Integer> zipToMap(List<String> keys, List<Integer> values) {
+        return IntStream.range(0, keys.size())
+                .boxed()
+                .collect(Collectors.toMap(keys::get, values::get));
+    }
+
+    public static void printCurrentRaceState(RacingCars racingCars) {
+        Map<String, Integer> namesAndPositions = zipToMap(racingCars.getNames(), racingCars.getPositions());
+        namesAndPositions
+                .keySet()
                 .stream()
-                .forEach(s -> raceStateFormat(s, carNamesAndPositions.get(s)));
+                .forEach(key -> raceStateFormat(key, namesAndPositions.get(key)));
         System.out.println();
     }
 

@@ -14,7 +14,7 @@ public class Application {
         OutputView.printGameStartMessage();
         while (!racingGame.isEnd()) {
             racingGame.doOneTrial();
-            OutputView.printCurrentRaceState(racingGame.getGameState());
+            OutputView.printCurrentRaceState(racingGame.getRacingCars());
         }
         OutputView.printWinners(racingGame.getWinners());
     }

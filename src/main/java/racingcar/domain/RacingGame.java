@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class RacingGame {
 
@@ -33,12 +32,12 @@ public class RacingGame {
         return racingCars.getWinnerNames();
     }
 
-    public Map<String, Integer> getGameState() {
-        return racingCars.getRaceStateData();
-    }
-
     public void doOneTrial() {
         racingCars.moveCars();
         --trialCount;
+    }
+
+    public RacingCars getRacingCars() {
+        return this.racingCars;
     }
 }
