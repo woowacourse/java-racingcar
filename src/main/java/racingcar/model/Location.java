@@ -4,7 +4,7 @@ public class Location {
 
     private int location;
 
-    public int getCurrentPosition() {
+    public int getLocation() {
         return location;
     }
 

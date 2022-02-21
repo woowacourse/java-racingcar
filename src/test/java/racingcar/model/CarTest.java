@@ -8,10 +8,12 @@ import org.junit.jupiter.api.Test;
 class CarTest {
 
     private Car car;
+
     @BeforeEach
     public void setUp() {
         car = new Car("Thor");
     }
+
     @Test
     public void move() {
         car.tryMove(5);
@@ -26,13 +28,15 @@ class CarTest {
 
     @Test
     public void shouldBeWinner() {
-        car.tryMove(5);
-        assertThat(car.isWinnerPosition(1)).isEqualTo(true);
+        int winnerPosition = 0;
+        boolean zeroPositionWinner = car.isSamePosition(winnerPosition);
+        assertThat(zeroPositionWinner).isEqualTo(true);
     }
 
     @Test
     public void shouldNotBeWinner() {
-        car.tryMove(3);
-        assertThat(car.isWinnerPosition(1)).isEqualTo(false);
+        int winnerPosition = 1;
+        boolean onePositionWinner = car.isSamePosition(winnerPosition);
+        assertThat(onePositionWinner).isEqualTo(false);
     }
 }

@@ -9,13 +9,13 @@ class LocationTest {
     @Test
     public void isZeroWhenStarted() {
         Location location = new Location();
-        assertThat(location.getCurrentPosition()).isEqualTo(0);
+        assertThat(location.getLocation()).isEqualTo(0);
     }
 
     @Test
     public void increase() {
         Location location = new Location();
         location.increase();
-        assertThat(location.getCurrentPosition()).isEqualTo(1);
+        assertThat(location.getLocation()).isEqualTo(1);
     }
 }

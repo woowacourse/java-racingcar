@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Test;
 class ParticipantsTest {
 
     private Participants participants;
+
     @BeforeEach
     public void setUp() {
-        this.participants = new Participants();
-        participants.participateInRacing(new Car("Eden"));
-        participants.participateInRacing(new Car("Thor"));
+        String[] carNames = {"Eden", "Thor"};
+        this.participants = new Participants(carNames);
     }
 
     @Test
@@ -25,18 +25,20 @@ class ParticipantsTest {
     @Test
     public void cannotModifyWhenGetParticipantsCars() {
         List<Car> participantCars = participants.getParticipantCars();
-        assertThatThrownBy(() ->  participantCars.add(new Car("Pobi")))
+        assertThatThrownBy(() -> participantCars.add(new Car("Pobi")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 
     @Test
     public void findWinners() {
-        participants.getParticipantCars().get(0).tryMove(5);
-        List<Name> racingWinners = participants.findRacingWinners();
-        assertThat(racingWinners.size()).isEqualTo(1);
+        participants.getParticipantCars().get(1).tryMove(5);
+        List<Car> racingWinners = participants.findRacingWinners();
+        assertThat(racingWinners.get(0).getName()).isEqualTo("Thor");
     }
 
     @Test
     public void race() {
+        RoundResult roundResult = participants.race();
+        assertThat(roundResult.getParticipantsNames()).contains("Eden", "Thor");
     }
 }

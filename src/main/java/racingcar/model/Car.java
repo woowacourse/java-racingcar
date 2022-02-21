@@ -2,38 +2,42 @@ package racingcar.model;
 
 import java.util.Objects;
 
-public class Car implements RacingCar{
+public class Car {
 
     private final Name name;
     private final Location location;
-    private final int movableNumber;
+    private final Moving moving;
 
-    public Car(String carName) {
-        this.name = new Name(carName);
-        this.location = new Location();
-        this.movableNumber = 4;
+    public Car(String name) {
+        this(new Name(name), new Location(), new BiggerNumberMoving());
     }
 
-    @Override
-    public void tryMove(Integer number) {
-        if (isMovable(number)) {
+    public Car(Name name, Location location, Moving moving) {
+        this.name = name;
+        this.location = location;
+        this.moving = moving;
+    }
+
+    public void tryMove(int number) {
+        if (moving.canMove(number)) {
             this.location.increase();
         }
     }
 
-    public Integer getCarPosition() {
-        return location.getCurrentPosition();
+    public int getCarPosition() {
+        return location.getLocation();
     }
 
-    public Name getName() {
-        return this.name;
+    public String getName() {
+        return name.getName();
     }
 
-    private boolean isMovable(Integer number) {
-        return number >= movableNumber;
-    }
-
-    public boolean isWinnerPosition(Integer position) {
+    public boolean isSamePosition(int position) {
         return Objects.equals(position, getCarPosition());
+    }
+
+    public int compareWinnerPosition(Car comparableCar) {
+        int comparableCarLocation = comparableCar.location.getLocation();
+        return this.location.getLocation() - comparableCarLocation;
     }
 }

@@ -1,9 +1,8 @@
 package racingcar.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import racingcar.model.Car;
-import racingcar.model.Name;
+import java.util.Set;
+import racingcar.model.RoundResult;
 
 public class OutputView {
 
@@ -16,16 +15,23 @@ public class OutputView {
         System.out.println(EXECUTE_RESULT);
     }
 
-    public void recordCurrentScore(List<Car> participants) {
-        for (Car participant : participants) {
-            System.out.println(participant.getName() + " : " + ROAD.repeat(participant.getCarPosition()));
+    public void recordScore(List<RoundResult> roundResults) {
+        for (RoundResult roundResult : roundResults) {
+            printEachRoundResult(roundResult);
+            System.out.println();
         }
-        System.out.println();
     }
 
-    public void recordRacingWinners(List<Name> winners) {
-        System.out.println(winners.stream()
-            .map(Name::toString)
-            .collect(Collectors.joining(WINNER_RESULT_DELIMITER)) + WINNER_RESULT_MESSAGE);
+    public void recordRacingWinners(List<String> winners) {
+        System.out.println(String.join(WINNER_RESULT_DELIMITER, winners) + WINNER_RESULT_MESSAGE);
+    }
+
+    private void printEachRoundResult(RoundResult roundResult) {
+
+        Set<String> participantsNames = roundResult.getParticipantsNames();
+        for (String participantsName : participantsNames) {
+
+            System.out.println(participantsName + " : " + ROAD.repeat(roundResult.findLocationBy(participantsName)));
+        }
     }
 }
