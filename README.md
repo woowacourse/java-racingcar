@@ -39,7 +39,12 @@
 
 - [x]  퍼블릭 메소드 별로 테스트 코드 작성
 - [x]  리뷰어 피드백 적용(밑에 줄줄 쓰며 투두 해결)
-- 2단계 피드백
+- 2단계 2차 피드백
+   - [ ]  inputView에서도 Dto를 이용해 데이터 리턴
+   - [ ]  Comparable을 이용해 getMaxPosition() 생성
+   - [ ]  carDto를 List 형태로 전달하는 것이 아닌 List를 가진 Dto를 반환
+   - [ ]  정적 팩토리 메소드를 이용해 dto에서 car를 받아서 직접 자기 자신을 생성하도록 하기
+- 2단계 1차 피드백
    - [x]  equals() 메소드에 원시값 비교 제거
    - [x]  getter 내부적으로 필요한 값을 바로 return해 체이닝을 줄임
    - [x]  OutputView에 List<carDTO> 전달하도록 수정
