@@ -2,6 +2,7 @@ package racingcar.model.car;
 
 import racingcar.model.value.Name;
 import racingcar.model.value.Position;
+import racingcar.util.NumberGenerator;
 
 public class Car {
     private static final int MOVING_DISTANCE = 1;
@@ -15,8 +16,8 @@ public class Car {
         this.position = Position.create();
     }
 
-    public void goOrStop(int random) {
-        if (random >= STANDARD_VALUE) {
+    public void goOrStop(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= STANDARD_VALUE) {
             position = position.move(MOVING_DISTANCE);
         }
     }

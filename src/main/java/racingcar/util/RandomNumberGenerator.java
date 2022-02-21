@@ -2,7 +2,7 @@ package racingcar.util;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
     private final Random random = new Random();
 
     private final int lowerBound;
@@ -20,6 +20,7 @@ public class RandomNumberGenerator {
         return new RandomNumberGenerator(lowerBound, upperBound);
     }
 
+    @Override
     public int generate() {
         if (lowerBound == upperBound) {
             return lowerBound;

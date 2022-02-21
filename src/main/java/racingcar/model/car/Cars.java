@@ -5,7 +5,7 @@ import java.util.List;
 
 import java.util.stream.Collectors;
 import racingcar.message.ErrorMessages;
-import racingcar.util.RandomNumberGenerator;
+import racingcar.util.NumberGenerator;
 
 public class Cars {
     private final List<Car> cars;
@@ -17,9 +17,9 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void moveAll(RandomNumberGenerator random) {
+    public void moveAll(NumberGenerator generator) {
         for (Car car : cars) {
-            car.goOrStop(random.generate());
+            car.goOrStop(generator);
         }
     }
 
