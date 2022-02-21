@@ -2,8 +2,6 @@ package racingcar.domain.car;
 
 import java.util.Objects;
 
-import racingcar.domain.movement.MovementStrategy;
-
 public class Position {
 
     private static final int DEFAULT_POSITION = 0;
