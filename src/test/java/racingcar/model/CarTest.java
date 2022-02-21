@@ -7,6 +7,17 @@ import org.junit.jupiter.api.Test;
 import racingcar.service.MovingCondition;
 
 public class CarTest {
+	@Test
+	public void Car_생성자_테스트_null() {
+		MovingCondition movingCondition = () -> true;
+		assertThatThrownBy(() -> new Car(null, 0, movingCondition)).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void Car_생성자_테스트_빈문자열() {
+		MovingCondition movingCondition = () -> true;
+		assertThatThrownBy(() -> new Car("", 0, movingCondition)).isInstanceOf(IllegalArgumentException.class);
+	}
 
 	@Test
 	public void 전진_테스트() {

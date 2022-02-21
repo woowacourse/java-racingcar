@@ -11,6 +11,7 @@ public class Car implements Comparable<Car> {
 	private MovingCondition movingCondition;
 
 	public Car(String name, int position, MovingCondition movingCondition) {
+		CheckingService.checkCarNamesBlank(name);
 		CheckingService.checkCarNameLength(name);
 		this.name = name;
 		this.position = position;
