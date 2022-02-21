@@ -51,7 +51,10 @@ public class RacingCar implements Comparable<RacingCar> {
     }
 
     public boolean isSamePosition(RacingCar racingCar) {
-        return this.position == racingCar.getPosition();
+        if (compareTo(racingCar) == 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
