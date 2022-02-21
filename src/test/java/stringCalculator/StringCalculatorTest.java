@@ -5,112 +5,105 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
-@SuppressWarnings("warning:ascki")
+@SuppressWarnings("NonAsciiCharacters")
 public class StringCalculatorTest {
-    public StringCalculator stringCalculator = new StringCalculator();
+    private final StringCalculator stringCalculator = new StringCalculator();
 
     @Test
-    public void 쉼표를_기준으로_구분() {
+    void 쉼표를_기준으로_구분() {
         final int result = stringCalculator.calculateString("1,2,3");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
-    public void 콜론를_기준으로_구분() {
+    void 콜론를_기준으로_구분() {
         final int result = stringCalculator.calculateString("1:2:3");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
-    public void 커스텀구분자를_기준으로_구분() {
+    void 커스텀구분자를_기준으로_구분() {
         String str = "//a\n2a3a4";
         final int result = stringCalculator.calculateString(str);
         assertThat(result).isEqualTo(9);
     }
 
     @Test
-    public void split() {
+    void split() {
         String str = "//a\n2a3a4";
         String[] splitValues = str.split("\n");
         assertThat(splitValues).contains("//a", "2a3a4");
     }
 
     @Test
-    public void 파라미터가_숫자가_아닌경우() {
+    void 파라미터가_숫자가_아닌경우() {
         String str = "1,2,a";
-        assertThatThrownBy(() -> {
-            stringCalculator.calculateString(str);
-        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> stringCalculator.calculateString(str))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 구분자_앞에_아무것도_없는경우() {
+    void 구분자_앞에_아무것도_없는경우() {
         String str = ",,1,2";
-        assertThatThrownBy(() -> {
-            stringCalculator.calculateString(str);
-        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> stringCalculator.calculateString(str))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 구분자_뒤에_아무것도_없는경우() {
+    void 구분자_뒤에_아무것도_없는경우() {
         String str = "1,2,,,";
-        assertThatThrownBy(() -> {
-            stringCalculator.calculateString(str);
-        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> stringCalculator.calculateString(str))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 구분자_중간에_아무것도_없는경우() {
+    void 구분자_중간에_아무것도_없는경우() {
         String str = "1,;2";
-        assertThatThrownBy(() -> {
-            stringCalculator.calculateString(str);
-        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> stringCalculator.calculateString(str))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 구분자_뒤에_아무것도_없는경우_커스텀구분자_포함() {
+    void 구분자_뒤에_아무것도_없는경우_커스텀구분자_포함() {
         String str = "\\!\n1,2!!";
-        assertThatThrownBy(() -> {
-            stringCalculator.calculateString(str);
-        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> stringCalculator.calculateString(str))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 구분자_중간에_아무것도_없는경우_커스텀구분자_포함() {
+    void 구분자_중간에_아무것도_없는경우_커스텀구분자_포함() {
         String str = "\\!\n1!!2";
-        assertThatThrownBy(() -> {
-            stringCalculator.calculateString(str);
-        }).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> stringCalculator.calculateString(str))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
-    public void 빈문자_입력() {
+    void 빈문자_입력() {
         final int result = stringCalculator.calculateString("");
         assertThat(result).isEqualTo(0);
     }
 
     @Test
-    public void null_입력() {
+    void null_입력() {
         final int result = stringCalculator.calculateString(null);
         assertThat(result).isEqualTo(0);
     }
 
     @Test
-    public void 숫자1개_입력_1() {
+    void 숫자1개_입력_1() {
         final int result = stringCalculator.calculateString("1");
         assertThat(result).isEqualTo(1);
     }
 
     @Test
-    public void 숫자1개_입력_2() {
+    void 숫자1개_입력_2() {
         final int result = stringCalculator.calculateString("2");
         assertThat(result).isEqualTo(2);
     }
 
     @Test
-    public void 음수_입력() {
-        assertThatThrownBy(() -> {
-            stringCalculator.calculateString("-1,2,3");
-        }).isInstanceOf(RuntimeException.class);
+    void 음수_입력() {
+        assertThatThrownBy(() -> stringCalculator.calculateString("-1,2,3"))
+                .isInstanceOf(RuntimeException.class);
     }
 }

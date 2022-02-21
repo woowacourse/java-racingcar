@@ -1,103 +1,99 @@
 package racingCar.controller;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingCar.controller.service.RacingCarsService;
-import racingCar.controller.service.RequestService;
-import racingCar.model.exception.count.CountNotNumberException;
-import racingCar.model.exception.count.CountRangeException;
-import racingCar.model.exception.name.NameDuplicatedException;
-import racingCar.model.exception.name.NameOnlyOneException;
-import racingCar.model.exception.name.NameRangeException;
-import racingCar.model.exception.name.NameSpecialCharException;
+import racingCar.domain.RacingGame;
+import racingCar.domain.dto.InitDto;
+import racingCar.exception.count.CountNotNumberException;
+import racingCar.exception.count.CountRangeException;
+import racingCar.exception.name.NameDuplicatedException;
+import racingCar.exception.name.NameOnlyOneException;
+import racingCar.exception.name.NameRangeException;
+import racingCar.exception.name.NameSpecialCharException;
 
-class ExceptionTest {
-    RacingCarsService racingCarsService = new RacingCarsService();
+@SuppressWarnings("NonAsciiCharacters")
+public class ExceptionTest {
+    private static final String RIGHT_NAMES_INPUT = "juri,hunch";
+    private static final String RIGHT_COUNT_INPUT = "5";
 
-    @DisplayName("이름이_5자보다_큰_경우")
     @Test
-    public void t1() {
+    void 올바른_이름이_들어온_경우() {
+        InitDto initDto = InitDto.of(RIGHT_NAMES_INPUT, RIGHT_COUNT_INPUT);
+
+        assertThatCode(() -> new RacingGame(initDto))
+                .doesNotThrowAnyException();
+
+    }
+
+    @Test
+    void 이름이_5자보다_큰_경우() {
         //given
-        String input = "abcdef,cde";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        String nameInput = "abcdef,cde";
+        InitDto initDto = InitDto.of(nameInput, RIGHT_COUNT_INPUT);
 
         //then
-        assertThatThrownBy(() -> racingCarsService.initiateCars(RequestService.requestNames()))
+        assertThatThrownBy(() -> new RacingGame(initDto))
                 .isInstanceOf(NameRangeException.class)
                 .hasMessage("이름은 5자 이하만 가능합니다.");
     }
 
-    @DisplayName("이름에_특수문자가_들어간_경우")
     @Test
-    public void t2() {
+    void 이름에_특수문자가_들어간_경우() {
         //given
-        String input = "주리!,juri";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        String nameInput = "주리!,juri";
+        InitDto initDto = InitDto.of(nameInput, RIGHT_COUNT_INPUT);
 
         //then
-        assertThatThrownBy(() -> racingCarsService.initiateCars(RequestService.requestNames()))
+        assertThatThrownBy(() -> new RacingGame(initDto))
                 .isInstanceOf(NameSpecialCharException.class)
                 .hasMessage("이름에는 특수문자가 입력될 수 없습니다.");
     }
 
-    @DisplayName("입력된_이름이_하나인_경우")
     @Test
-    public void t3() {
+    void 입력된_이름이_하나인_경우() {
         //given
-        String input = "주리";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        String nameInput = "주리";
+        InitDto initDto = InitDto.of(nameInput, RIGHT_COUNT_INPUT);
 
         //then
-        assertThatThrownBy(() -> racingCarsService.initiateCars(RequestService.requestNames()))
+        assertThatThrownBy(() -> new RacingGame(initDto))
                 .isInstanceOf(NameOnlyOneException.class)
                 .hasMessage("이름을 2개 이상 입력해주세요.");
     }
 
-    @DisplayName("중복된_이름이_있는_경우")
     @Test
-    public void t4() {
+    void 중복된_이름이_있는_경우() {
         //given
-        String input = "juri,juri";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        String nameInput = "juri,juri";
+        InitDto initDto = InitDto.of(nameInput, RIGHT_COUNT_INPUT);
 
         //then
-        assertThatThrownBy(() -> racingCarsService.initiateCars(RequestService.requestNames()))
+        assertThatThrownBy(() -> new RacingGame(initDto))
                 .isInstanceOf(NameDuplicatedException.class)
                 .hasMessage("중복된 이름이 입력되었습니다.");
     }
 
-    @DisplayName("라운드수_숫자가_아닐_경우")
     @Test
-    public void t5() {
+    void 라운드수_숫자가_아닐_경우() {
         //given
-        String input = "오";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        String countInput = "오";
 
         //then
-        assertThatThrownBy(() -> racingCarsService.initiateCount(RequestService.requestCount()))
+        assertThatThrownBy(() -> InitDto.of(RIGHT_NAMES_INPUT, countInput))
                 .isInstanceOf(CountNotNumberException.class)
                 .hasMessage("숫자를 입력해주세요.");
     }
 
-    @DisplayName("라운드수_숫자가_제로_이하인_경우")
     @Test
-    public void t6() {
+    void 라운드수_숫자가_제로_이하인_경우() {
         //given
-        String input = "0";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        String countInput = "0";
+        InitDto initDto = InitDto.of(RIGHT_NAMES_INPUT, countInput);
 
         //then
-        assertThatThrownBy(() -> racingCarsService.initiateCount(RequestService.requestCount()))
+        assertThatThrownBy(() -> new RacingGame(initDto))
                 .isInstanceOf(CountRangeException.class)
                 .hasMessage("0회 이상 입력해주세요.");
     }
