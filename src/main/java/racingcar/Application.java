@@ -1,19 +1,18 @@
 package racingcar;
 
-import java.util.List;
+import racingcar.domain.RacingGame;
 
-import racingcar.domain.CarDTO;
-import racingcar.game.RacingGame;
+import java.util.List;
 
 import static racingcar.view.InputView.*;
 import static racingcar.view.OutputView.*;
 
 public class Application {
-    static RacingGame racingGame = new RacingGame();
+    private static RacingGame racingGame;
 
     public static void main(String[] args) {
         try {
-            init();
+            racingGame = new RacingGame(inputCarNames(), inputAttempt());
             playAndPrintTotalExecutionResult();
             selectAndPrintWinner();
         } catch (IllegalArgumentException e) {
@@ -21,14 +20,8 @@ public class Application {
         }
     }
 
-    private static void init() {
-        racingGame.initCarNames(inputCarNames());
-        racingGame.initTotalAttempt(inputAttemptCount());
-    }
-
     private static void playAndPrintTotalExecutionResult() {
-        List<List<CarDTO>> executionResult = racingGame.play();
-        printTotalExecutionResult(executionResult);
+        printTotalExecutionResult(racingGame.play());
     }
 
     private static void selectAndPrintWinner() {
