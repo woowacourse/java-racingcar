@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.RacingGame;
+import racingcar.domain.RandomNumberMoveStrategy;
 import racingcar.view.OutputView;
 
 public class RacingGameController {
@@ -11,9 +12,11 @@ public class RacingGameController {
     }
 
     public void proceedRacingGame() {
+        RandomNumberMoveStrategy randomNumberMoveStrategy = new RandomNumberMoveStrategy();
+
         OutputView.printRaceResultMessage();
         while (!racingGame.isFinished()) {
-            racingGame.run();
+            racingGame.run(randomNumberMoveStrategy);
             updateViewOneTurnResult();
         }
     }
