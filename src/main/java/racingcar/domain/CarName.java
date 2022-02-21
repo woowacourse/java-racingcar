@@ -16,6 +16,10 @@ public class CarName {
         this.name = name;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     private void validateCarName(String name) {
         validateEmpty(name);
         validateSpace(name);
@@ -44,7 +48,4 @@ public class CarName {
         }
     }
 
-    public String getName() {
-        return this.name;
-    }
 }
