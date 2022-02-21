@@ -21,12 +21,12 @@ public class Output {
 		System.out.println(RESULT_MSG);
 	}
 
-	public void printRoundResult(List<Cars> gameResult) {
+	public void printRoundResult(final List<Cars> gameResult) {
 		printResultMessage();
 		gameResult.forEach(this::printOneRoundResult);
 	}
 
-	private void printOneRoundResult(Cars cars) {
+	private void printOneRoundResult(final Cars cars) {
 		for (RacingCar car : cars.getCars()) {
 			System.out.println(
 				car.getName() + NAME_AND_POSITION_CONNECTION + POSITION_SIGNATURE.repeat(car.getPosition()));
@@ -34,7 +34,7 @@ public class Output {
 		System.out.println();
 	}
 
-	public void printWinners(List<String> winners) {
+	public void printWinners(final List<String> winners) {
 		StringBuilder result = new StringBuilder();
 		winners.forEach(
 			winner -> result.append(winner).append(WINNER_SEPARATED_STR)

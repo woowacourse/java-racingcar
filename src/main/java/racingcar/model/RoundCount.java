@@ -10,12 +10,12 @@ public class RoundCount {
 
 	private int roundCount;
 
-	public RoundCount(int roundCount) {
+	public RoundCount(final int roundCount) {
 		checkCountIsZero(roundCount);
 		this.roundCount = roundCount;
 	}
 
-	private void checkCountIsZero(int count) {
+	private void checkCountIsZero(final int count) {
 		if (count == COUNT_ZERO_CRITERIA) {
 			throw new IllegalArgumentException(COUNT_ZERO_ERROR_MSG);
 		}

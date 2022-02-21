@@ -17,17 +17,17 @@ public class Game {
 
 	public void run() {
 		while (roundCount.isEnd()) {
-			playGame();
-			gameResult.add(cars.getThisRoundResult());
+			play();
+			gameResult.add(cars.getPresentCars());
 		}
 	}
 
-	private void playGame() {
+	private void play() {
 		roundCount.moveNextRound();
 		cars.startRound();
 	}
 
-	public List<Cars> getResult() {
+	public List<Cars> getGameResult() {
 		return gameResult;
 	}
 

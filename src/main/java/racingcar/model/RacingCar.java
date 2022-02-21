@@ -12,12 +12,12 @@ public class RacingCar {
 	private int position = INITIAL_POSITION_VALUE;
 	private final MoveGenerator moveGenerator;
 
-	public RacingCar(String name, MoveGenerator moveGenerator) {
+	public RacingCar(final String name, final MoveGenerator moveGenerator) {
 		this.name = new Name(name);
 		this.moveGenerator = moveGenerator;
 	}
 
-	public static RacingCar createRandomMoveCar(String name) {
+	public static RacingCar createRandomMoveCar(final String name) {
 		return new RacingCar(name, new RandomMoveGenerator());
 	}
 
@@ -39,7 +39,7 @@ public class RacingCar {
 		return position;
 	}
 
-	public boolean matchPosition(int position) {
+	public boolean matchPosition(final int position) {
 		return this.position == position;
 	}
 }

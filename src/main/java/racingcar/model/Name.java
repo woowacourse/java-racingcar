@@ -13,30 +13,30 @@ public class Name {
 
 	private final String name;
 
-	public Name(String name) {
+	public Name(final String name) {
 		checkName(name);
 		this.name = name;
 	}
 
-	private void checkName(String name) {
+	private void checkName(final String name) {
 		checkSpace(name);
 		checkNameSize(name);
 		checkSpecialChar(name);
 	}
 
-	private void checkSpace(String name) {
+	private void checkSpace(final String name) {
 		if (name.trim().isEmpty()) {
 			throw new IllegalArgumentException(NAME_EMPTY_ERROR_MSG);
 		}
 	}
 
-	private void checkNameSize(String name) {
+	private void checkNameSize(final String name) {
 		if (name.length() > MAXIMUM_NAME_SIZE) {
 			throw new IllegalArgumentException(NAME_MAX_SIZE_WARNING_MSG);
 		}
 	}
 
-	private void checkSpecialChar(String name) {
+	private void checkSpecialChar(final String name) {
 		if (!Pattern.matches(SPACIAL_CHAR_REGEX, name)) {
 			throw new IllegalArgumentException(NAME_SPATIAL_CHAR_WARNING_MSG);
 		}
