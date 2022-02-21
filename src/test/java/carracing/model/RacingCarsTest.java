@@ -1,6 +1,5 @@
 package carracing.model;
 
-import static carracing.view.messages.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
@@ -24,23 +23,36 @@ public class RacingCarsTest {
     }
 
     @Test
-    @DisplayName("자동차의 이름이 중복될 경우 에러 발생")
-    void validate_자동차이름_중복() {
-        assertThatThrownBy(() -> {
-            RacingCars racingCars = new RacingCars(Arrays.asList("pobi", "east", "east", "peper"));
-        }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
+    @DisplayName("position이 가장 높은 자동차가 우승")
+    void 최종우승자_결정_한명() {
+        //given
+        move(pobiCar, 1);
+        move(eastCar, 2);
+        move(peperCar, 3);
+        RacingCars cars = new RacingCars(Arrays.asList(pobiCar, eastCar, peperCar));
+        //when
+        //then
+        List<String> winners = cars.getWinners();
+        assertThat(winners).contains("peper");
     }
 
     @Test
-    @DisplayName("우승자는 최소 한 대 이상")
-    void 최종우승자_결정() {
+    @DisplayName("position이 가장 높은 자동차가 두 대일 때 공동 우승자")
+    void 최종우승자_결정_여러명() throws Exception {
         //given
-        RacingCars racingCars = new RacingCars(Arrays.asList("pobi", "east", "peper"));
-        racingCars.moveCars();
-        //when
-        int minimumWinnersCount = 1;
-        //then
-        List<String> winners = racingCars.getWinners();
-        assertThat(winners.size()).isGreaterThanOrEqualTo(minimumWinnersCount);
+        move(pobiCar, 1);
+        move(eastCar, 3);
+        move(peperCar, 3);
+        RacingCars cars = new RacingCars(Arrays.asList(pobiCar, eastCar, peperCar));
+        // when
+        // then
+        List<String> winners = cars.getWinners();
+        assertThat(winners).contains("peper", "east");
+    }
+
+    void move(Car car, int cnt) {
+        while ((cnt--) > 0) {
+            car.move(() -> true);
+        }
     }
 }
