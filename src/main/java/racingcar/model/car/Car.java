@@ -19,7 +19,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(final MovableStrategy movableStrategy) {
-        if (movableStrategy.isMove()) {
+        if (movableStrategy.isMovable()) {
             position = position.increase();
         }
     }

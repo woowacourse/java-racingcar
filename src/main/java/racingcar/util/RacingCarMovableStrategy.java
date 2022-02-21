@@ -6,7 +6,7 @@ public class RacingCarMovableStrategy implements MovableStrategy {
     private static final int MOVABLE_STANDARD = 4;
 
     @Override
-    public boolean isMove() {
+    public boolean isMovable() {
         return ((int)(Math.random() * (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE) >= MOVABLE_STANDARD;
     }
 }
