@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingCar.domain.dto.CarDto;
+import racingCar.domain.dto.InitDto;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class RacingGameTest {
@@ -16,7 +17,7 @@ public class RacingGameTest {
 
     @BeforeEach
     void setup() {
-        racingGame = new RacingGame("juri,hunch", "5");
+        racingGame = new RacingGame(new InitDto("juri,hunch", "5"));
     }
 
     @Test

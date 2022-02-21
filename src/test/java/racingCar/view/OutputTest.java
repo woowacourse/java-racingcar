@@ -36,8 +36,8 @@ public class OutputTest {
 
         //when
         List<CarDto> result = new ArrayList<>();
-        result.add(new CarDto(new Car("jiwoo",2)));
-        result.add(new CarDto(new Car("juri",0)));
+        result.add(new CarDto(new Car("jiwoo", 2)));
+        result.add(new CarDto(new Car("juri", 0)));
 
         OutputView.printRoundResult(result);
 
@@ -54,8 +54,8 @@ public class OutputTest {
 
         //when
         List<CarDto> result = new ArrayList<>();
-        result.add(new CarDto(new Car("jiwoo",2)));
-        result.add(new CarDto(new Car("juri",0)));
+        result.add(new CarDto(new Car("jiwoo", 2)));
+        result.add(new CarDto(new Car("juri", 0)));
 
         OutputView.printRoundResult(result);
 
@@ -85,7 +85,7 @@ public class OutputTest {
         System.setOut(new PrintStream(out));
 
         //when
-        OutputView.printWinner(Arrays.asList("jiwoo","juri"));
+        OutputView.printWinner(Arrays.asList("jiwoo", "juri"));
 
         //then
         assertThat(out.toString())

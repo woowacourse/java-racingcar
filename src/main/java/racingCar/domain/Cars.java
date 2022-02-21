@@ -6,10 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingCar.domain.dto.CarDto;
+import racingCar.domain.moveStrategy.NumGenerator;
 import racingCar.exception.name.NameDuplicatedException;
 import racingCar.exception.name.NameOnlyOneException;
-import racingCar.domain.moveStrategy.NumGenerator;
-import racingCar.domain.moveStrategy.RandomNumGenerator;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
