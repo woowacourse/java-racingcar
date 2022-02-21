@@ -24,6 +24,10 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public boolean isInPosition(Position position) {
+        return this.position.equals(position);
+    }
+
     public int getPosition() {
         return position.value();
     }
@@ -52,9 +56,5 @@ public class Car implements Comparable<Car> {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public boolean isInPosition(Position position) {
-        return this.position.equals(position);
     }
 }
