@@ -23,13 +23,6 @@ public class Car implements Comparable<Car> {
         return getPosition() == position;
     }
 
-    public Car getMoreGoCar(Car compareCar) {
-        if (compareTo(compareCar) > 0) {
-            return this;
-        }
-        return compareCar;
-    }
-
     public String getName() {
         return name.toString();
     }
