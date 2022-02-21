@@ -9,18 +9,18 @@ import java.util.stream.Collectors;
 import racingcar.util.MovableStrategy;
 
 public class Cars {
-    private static final String DELIMITER = ",";
+    private static final String NAMES_DELIMITER = ",";
 
     private final List<Car> cars = new ArrayList<Car>();
 
     public Cars() {
     }
 
-    public void addAllFromNamesSeparatedComma(String namesSeparatedComma) {
-        String[] names = namesSeparatedComma.split(DELIMITER);
-        for (String name : names) {
-            cars.add(new Car(name));
+    public void addAllFromNames(String names) {
+        for (String name : names.split(NAMES_DELIMITER)) {
+            add(new Car(name));
         }
+        validateIsEmpty();
     }
 
     public void add(final Car car) {

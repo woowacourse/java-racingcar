@@ -1,9 +1,7 @@
 package racingcar.controller;
 
-import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 import racingcar.model.trycount.TryCount;
-import racingcar.util.InputFormator;
 import racingcar.util.NumberValidator;
 import racingcar.util.RacingCarMovableStrategy;
 import racingcar.view.InputView;
@@ -21,12 +19,9 @@ public class RaceController {
     }
 
     public Cars getCars() {
-        Cars cars = new Cars();
         try {
-            InputFormator.toNameList(InputView.inputNames())
-                .stream()
-                .map(name -> new Car(name.value()))
-                .forEach(cars::add);
+            Cars cars = new Cars();
+            cars.addAllFromNames(InputView.inputNames());
             return cars;
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception);

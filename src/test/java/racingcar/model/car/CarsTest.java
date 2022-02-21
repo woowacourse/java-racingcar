@@ -40,8 +40,8 @@ public class CarsTest {
     }
 
     @Nested
-    @DisplayName("addAllFromNamesSeparatedComma")
-    class AddAllFromNamesSeparatedComma {
+    @DisplayName("addAllFromNames")
+    class AddAllFromNames {
         @Nested
         @DisplayName("콤마로 구분된 문자열이 주어지면")
         class Context_with_names_separated_comma {
@@ -49,7 +49,7 @@ public class CarsTest {
             @DisplayName("콤마로 구분한 문자열을 이름으로 리스트에 추가한다.")
             void it_add_all() {
                 Cars cars = new Cars();
-                cars.addAllFromNamesSeparatedComma("car1,car2,car3");
+                cars.addAllFromNames("car1,car2,car3");
                 assertThat(cars.getCars()).containsExactly(
                     new Car("car1"), new Car("car2"), new Car("car3")
                 );
