@@ -1,10 +1,11 @@
 package racingcar.domain.car;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 import racingcar.domain.movement.MovementStrategy;
 
-public class Car {
+public class Car implements Comparator<Car> {
 
     private final Name name;
     private final Position position;
@@ -32,20 +33,34 @@ public class Car {
         }
     }
 
+    public boolean isSamePosition(Car otherCar) {
+        return position.equals(otherCar.getPosition());
+    }
+
+    public int selectWinner(Car otherCar) {
+        return compare(this, otherCar);
+    }
+
+    @Override
+    public int compare(Car car, Car otherCar) {
+        return car.getPositionValue() - otherCar.getPositionValue();
+    }
+
+    public void move(MovementStrategy strategy) {
+        int distance = strategy.move();
+        this.position.move(distance);
+    }
+
     public String getName() {
         return name.getName();
     }
 
-    public int getPosition() {
+    public Position getPosition() {
+        return position;
+    }
+
+    public int getPositionValue() {
         return position.getPosition();
-    }
-
-    public boolean isSamePosition(int otherPosition) {
-        return position.isSame(otherPosition);
-    }
-
-    public void move(MovementStrategy strategy) {
-        this.position.move(strategy);
     }
 
     @Override

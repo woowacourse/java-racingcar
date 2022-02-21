@@ -2,12 +2,10 @@ package racingcar.domain.car;
 
 import java.util.Objects;
 
-import racingcar.domain.movement.MovementStrategy;
-
 public class Position {
 
-    public static final int DEFAULT_POSITION = 0;
-    public static final int MIN_POSITION = 0;
+    private static final int DEFAULT_POSITION = 0;
+    private static final int MIN_POSITION = 0;
 
     private int position;
 
@@ -26,16 +24,12 @@ public class Position {
         }
     }
 
+    public void move(int distance) {
+        position += distance;
+    }
+
     public int getPosition() {
         return position;
-    }
-
-    public boolean isSame(int otherPosition) {
-        return position == otherPosition;
-    }
-
-    public void move(MovementStrategy strategy) {
-        position += strategy.move();
     }
 
     @Override

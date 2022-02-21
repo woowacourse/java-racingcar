@@ -13,16 +13,17 @@ class RoundTest {
     @DisplayName("라운드가 양수일 경우 정상적으로 생성되는지 확인")
     @Test
     void roundWithPositiveNumber() {
-        Round round = new Round("3");
-        assertThat(round.getRound()).isEqualTo(3);
+        Round round = new Round(3);
+        assertThat(round).isEqualTo(new Round(3));
     }
 
-    @DisplayName("라운드가 음수, 0, 문자열일 경우 예외 발생")
+    @DisplayName("라운드가 음수, 0")
     @ParameterizedTest()
-    @ValueSource(strings = {"-1","0","hello"})
-    void roundWithNegativeNumber(String input) {
+    @ValueSource(ints = {-1,0})
+    void roundWithNegativeNumber(int input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> new Round(input))
             .withMessageContaining("1 이상의 양수");
     }
+
 }

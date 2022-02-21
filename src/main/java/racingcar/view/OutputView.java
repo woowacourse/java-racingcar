@@ -1,10 +1,10 @@
 package racingcar.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-
-import racingcar.domain.car.Car;
-import racingcar.domain.car.Cars;
+import racingcar.dto.RacingRecord;
+import racingcar.dto.CarResponse;
 
 public class OutputView {
 
@@ -16,27 +16,34 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printCarsPosition(Cars cars) {
-        cars.getCarList().forEach(this::printCarPosition);
+    public void printRacingRecords(List<RacingRecord> racingRecords) {
+        printProcessPrompt();
+        racingRecords.forEach(this::printRacingRecord);
+    }
+
+    private void printRacingRecord(RacingRecord racingRecord) {
+        Map<String, Integer> result = racingRecord.getRacingRecord();
+        result.forEach(this::printCarPosition);
         System.out.println();
     }
 
-    private void printCarPosition(Car car) {
-        System.out.print(car.getName() + CAR_DELIMITER);
-        for (int i = 0; i < car.getPosition(); i++) {
+    private void printCarPosition(String carName, int position) {
+        System.out.print(carName + CAR_DELIMITER);
+        for (int i = 0; i < position; i++) {
             System.out.print(CAR_PROGRESS);
         }
         System.out.println();
     }
 
-    public void printWinners(List<Car> carList) {
+
+    public void printWinners(List<CarResponse> carList) {
         List<String> nameList = toNames(carList);
         System.out.println(String.join(WINNER_DELIMITER, nameList) + "가 최종 우승했습니다.");
     }
 
-    private List<String> toNames(List<Car> carList) {
+    private List<String> toNames(List<CarResponse> carList) {
         return carList.stream()
-            .map(Car::getName)
+            .map(CarResponse::getName)
             .collect(Collectors.toList());
     }
 }

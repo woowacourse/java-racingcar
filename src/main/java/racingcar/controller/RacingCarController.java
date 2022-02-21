@@ -1,6 +1,10 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import racingcar.domain.car.Cars;
+import racingcar.domain.round.Round;
+import racingcar.dto.RacingRecord;
 import racingcar.service.RacingCarService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -9,29 +13,24 @@ public class RacingCarController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final RacingCarService service;
 
-    public RacingCarController(InputView inputView, OutputView outputView) {
+    public RacingCarController(InputView inputView, OutputView outputView,
+        RacingCarService service) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.service = service;
     }
 
     public void run() {
-        RacingCarService service = createRacingService();
-        startRacing(service);
+        Cars cars = Cars.create(inputView.inputCarNames());
+        Round round = new Round(inputView.inputRoundNumber());
+        startRacing(cars, round);
     }
 
-    private void startRacing(RacingCarService service) {
-        outputView.printProcessPrompt();
-        while (!service.isEnd()) {
-            Cars result = service.run();
-            outputView.printCarsPosition(result);
-        }
-        outputView.printWinners(service.getWinners());
-    }
-
-    private RacingCarService createRacingService() {
-        String carNames = inputView.inputCarNames();
-        String roundNumber = inputView.inputRoundNumber();
-        return new RacingCarService(carNames, roundNumber);
+    private void startRacing(Cars cars, Round round) {
+        List<RacingRecord> racingRecords = service.getRacingRecords(cars, round);
+        outputView.printRacingRecords(racingRecords);
+        outputView.printWinners(service.getWinners(cars));
     }
 }

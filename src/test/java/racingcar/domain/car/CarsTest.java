@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,23 +23,16 @@ class CarsTest {
     }
 
     @Test
-    void createCarsBySplitComma() {
-        String input = "pobi,seung,char";
+    void createCarsBySplitDelimiter() {
+        String[] input = {"pobi", "seung", "char"};
         Cars cars = Cars.create(input);
-        List<Car> carList = cars.getCarList();
-        assertThat(carList.size()).isEqualTo(3);
-        assertThat(carList.get(0)).isEqualTo(new Car("pobi"));
-        assertThat(carList.get(1)).isEqualTo(new Car("seung"));
-        assertThat(carList.get(2)).isEqualTo(new Car("char"));
-    }
-
-    @Test
-    void errorOnContinuousComma() {
-        String input = ",,,";
-        assertThatThrownBy(() -> {
-            Cars.create(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("자동차 이름에 ,만 사용할 수 없습니다.");
+        List<Car> carList = cars.getCars();
+        Assertions.assertAll(
+            () -> assertThat(carList.size()).isEqualTo(3),
+            () -> assertThat(carList.get(0)).isEqualTo(new Car("pobi")),
+            () -> assertThat(carList.get(1)).isEqualTo(new Car("seung")),
+            () -> assertThat(carList.get(2)).isEqualTo(new Car("char"))
+        );
     }
 
     @DisplayName("우승자가 1명일 경우 정상적인지 확인")
