@@ -20,4 +20,8 @@ public class Distance {
     public boolean isSameWith(int distance) {
         return this.distance == distance;
     }
+
+    public boolean isBigger(Distance otherCar) {
+        return this.distance > otherCar.distance;
+    }
 }
