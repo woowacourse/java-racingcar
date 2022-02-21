@@ -4,6 +4,7 @@ import racingcar.util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -31,6 +32,11 @@ public class Cars {
         for (Car car : cars) {
             car.move(new RandomNumberGenerator());
         }
+    }
+
+    public Map<String, Integer> getPositionResult() {
+        return cars.stream()
+                .collect(Collectors.toMap(Car::getName, Car::getPosition));
     }
 
     public List<String> getWinner() {

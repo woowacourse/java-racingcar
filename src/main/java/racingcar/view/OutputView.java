@@ -1,7 +1,10 @@
 package racingcar.view;
 
-import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.GameResult;
+
+import java.util.List;
+import java.util.Map.Entry;
 
 public class OutputView {
 
@@ -15,9 +18,16 @@ public class OutputView {
         System.out.println(RESULT_PREFIX);
     }
 
-    public static void printPosition(final Cars cars) {
-        for (final Car car : cars.getCars()) {
-            System.out.println(car.getName() + SEPARATOR + MOVE_SIGN.repeat(car.getPosition()));
+    public static void printResult(List<GameResult> gameResults) {
+        System.out.println();
+        for (GameResult gameResult : gameResults) {
+            printRoundResult(gameResult);
+        }
+    }
+
+    public static void printRoundResult(GameResult gameResult) {
+        for (Entry<String, Integer> entrySet : gameResult.getPositionByName().entrySet()) {
+            System.out.println(entrySet.getKey() + SEPARATOR + MOVE_SIGN.repeat(entrySet.getValue()));
         }
         System.out.println();
     }

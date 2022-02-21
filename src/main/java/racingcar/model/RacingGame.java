@@ -2,6 +2,10 @@ package racingcar.model;
 
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class RacingGame {
 
     private final Cars cars;
@@ -12,16 +16,18 @@ public class RacingGame {
         this.tryCount = tryCount;
     }
 
-    public void race() {
+    public List<GameResult> race() {
+        List<GameResult> gameResults = new ArrayList<>();
         while (!isEnd()) {
-            raceRound();
-            OutputView.printPosition(cars);
+            gameResults.add(raceRound());
         }
+        return gameResults;
     }
 
-    private void raceRound() {
+    private GameResult raceRound() {
         cars.moveRound();
         this.tryCount--;
+        return new GameResult(cars.getPositionResult());
     }
 
     private boolean isEnd() {
