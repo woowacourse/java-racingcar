@@ -42,6 +42,7 @@ public class Controller {
             cars.add(carNames);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
+            addCarNamesToCars();
         }
     }
 

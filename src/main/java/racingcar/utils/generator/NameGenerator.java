@@ -10,7 +10,7 @@ public class NameGenerator {
 
     public static List<String> generateCarNames(String input) {
         NameValidator.validateNames(input);
-        List<String> names = Arrays.asList(input.split(DELIMITER));
+        List<String> names = Arrays.asList(input.split(DELIMITER, -1));
         for (String name : names) {
             NameValidator.validateName(name);
         }

@@ -6,7 +6,6 @@ import java.util.List;
 public class NameValidator extends Validator{
     private static final String DELIMITER = ",";
     private static final String DUPLICATED_NAME_MESSAGE = "중복된 이름이 있습니다.";
-    private static final String MIN_NAME_LENGTH_MESSAGE = "이름의 길이는 1글자 이상이어야 합니다.";
     public static final String NAME_LENGTH_MESSAGE = "이름의 길이는 1글자 이상 5글자 이하여야 합니다.";
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
@@ -14,13 +13,12 @@ public class NameValidator extends Validator{
     public static void validateNames(String input) {
         checkNull(input);
         checkEmpty(input);
-        checkLastCharIsComma(input);
         checkDuplicatedNames(input);
     }
 
     public static void validateName(String input) {
         checkNull(input);
-        checkEmpty(input);
+        checkEmpty(input, "이름에");
         checkNameLength(input);
     }
 
@@ -28,16 +26,6 @@ public class NameValidator extends Validator{
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_MESSAGE);
         }
-    }
-
-    private static void checkLastCharIsComma(String input) {
-        if (isEndComma(input)) {
-            throw new IllegalArgumentException(MIN_NAME_LENGTH_MESSAGE);
-        }
-    }
-
-    private static boolean isEndComma(String input) {
-        return input.lastIndexOf(DELIMITER) == input.length() - 1;
     }
 
     private static void checkDuplicatedNames(String input) {

@@ -26,7 +26,6 @@ class NameValidatorTest {
         return Stream.of(
             Arguments.of("", "빈 문자 입력"),
             Arguments.of(null, "널 입력"),
-            Arguments.of("pobi,", "이름길이 0"),
             Arguments.of("pobi,pobi", "자동차이름 중복")
         );
     }
@@ -35,5 +34,16 @@ class NameValidatorTest {
     void 자동차이름_1개() {
         assertThatCode(() -> NameValidator.validateNames("pobi"))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    void split() {
+        String winners ="aaa,bbb,ccc,";
+        String[] list = winners.split(",",-1);
+        System.out.println(list.length);
+        for (String s : list) {
+            System.out.println(s);
+        }
+        System.out.println("end");
     }
 }
