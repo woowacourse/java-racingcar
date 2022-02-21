@@ -3,8 +3,8 @@ package racingcar.view;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import racingcar.model.CarDto;
 import racingcar.controller.GameResult;
+import racingcar.model.CarDto;
 
 public class ResultView {
 	private static final String JOIN_DELIMITER = ", ";

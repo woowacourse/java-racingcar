@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 
 public class CarToCarDtoMapper {
 
-	private CarToCarDtoMapper(){}
+	private CarToCarDtoMapper() {
+	}
 
 	public static List<CarDto> ToCarDtos(List<Car> cars) {
 		return cars.stream()

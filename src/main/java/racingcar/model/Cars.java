@@ -25,18 +25,18 @@ public class Cars {
 			.forEach(cars::add);
 	}
 
-	public List<Car> moveAll(List<Integer> randoms) {
-		validateRandomsSize(randoms);
+	public List<Car> moveAll(List<Integer> MovingConditions) {
+		validateMovingConditionsSize(MovingConditions);
 		int i = 0;
 		for (Car car : cars) {
-			car.move(randoms.get(i));
+			car.move(MovingConditions.get(i));
 			i++;
 		}
 		return cars;
 	}
 
-	private void validateRandomsSize(List<Integer> randoms) {
-		if (randoms.size() < cars.size()) {
+	private void validateMovingConditionsSize(List<Integer> MovingConditions) {
+		if (MovingConditions.size() < cars.size()) {
 			throw new IllegalStateException(ERROR_INVALID_LIST_SIZE);
 		}
 	}

@@ -23,6 +23,7 @@ public class RacingController {
 		int iteration = InputView.getIterationNumber();
 		List<GameResult> gameResult = controller.runForIteration(iteration);
 		ResultView.printGameResult(gameResult);
+
 		ResultView.printWinners(controller.getWinners());
 	}
 
@@ -54,10 +55,6 @@ public class RacingController {
 	GameResult moveCars() {
 		int numberOfCars = cars.getSize();
 		return new GameResult(ToCarDtos(cars.moveAll(Random.createNumbers(numberOfCars))));
-	}
-
-	GameResult getGameResult() {
-		return new GameResult(ToCarDtos(cars.getCars()));
 	}
 
 	List<CarDto> getWinners() {
