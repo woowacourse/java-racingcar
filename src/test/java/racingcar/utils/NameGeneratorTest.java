@@ -12,8 +12,14 @@ class NameGeneratorTest {
     }
 
     @Test
-    void 차_여러개_입력() {
+    void 차_여러개_입력1() {
         assertThat(NameGenerator.generateCarNames("pobi,crong,honux"))
                 .containsExactly("pobi", "crong", "honux");
+    }
+
+    @Test
+    void 차_여러개_입력2() {
+        assertThat(NameGenerator.generateCarNames("pobi,crong,"))
+                .containsExactly("pobi", "crong", "");
     }
 }

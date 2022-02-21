@@ -15,7 +15,7 @@ class CarsTest {
 
     @Test
     void 단독_우승자() {
-        Cars cars = new Cars(Arrays.asList("pobi","crong","honux"));
+        Cars cars = new Cars(Arrays.asList("pobi", "crong", "honux"));
         cars.getCars().get(0).forward(true);
         assertThat(cars.getWinnerNames()).containsExactly("pobi");
     }

@@ -5,41 +5,15 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class Controller {
-    private final Cars cars = getCars();
-    private final int trialNumber = getTrialNumber();
-
-    private Cars getCars() {
-        try {
-            return new Cars(InputView.getCarNames());
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getCars();
-        }
-    }
-
-    private int getTrialNumber() {
-        try {
-            return InputView.getTrialNumber();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return getTrialNumber();
-        }
-    }
-
-    public void run() {
-        OutputView.printResultMessage();
-        forwardCarsByTrialNumber();
+    public void run(Cars cars, int trialNumber) {
+        forwardCarsByTrialNumber(cars, trialNumber);
         OutputView.printWinners(cars.getWinnerNames());
     }
 
-    private void forwardCarsByTrialNumber() {
+    private void forwardCarsByTrialNumber(Cars cars, int trialNumber) {
         for (int i = 0; i < trialNumber; i++) {
-            forwardCars();
+            cars.forward();
             OutputView.printCarsPosition(cars);
         }
-    }
-
-    private void forwardCars() {
-        cars.forward();
     }
 }
