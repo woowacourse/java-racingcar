@@ -1,41 +1,35 @@
 package racingcargame.model;
 
-import java.util.HashMap;
 import java.util.List;
 
+import racingcargame.dto.CarDto;
+import racingcargame.model.car.Cars;
+import racingcargame.model.racecount.RaceCount;
+import racingcargame.model.movevaluegenerator.MoveValueGenerator;
+
 public class RacingCarGame {
-	private static final int GAME_OVER_COUNT = 0;
+    private final Cars cars;
+    private final RaceCount raceCount;
 
-	private Cars cars;
-	private RaceCount raceCount;
+    public RacingCarGame(final List<String> racingCarNames, final String raceCount) {
+        this.cars = new Cars(racingCarNames);
+        this.raceCount = new RaceCount(raceCount);
+    }
 
-	public RacingCarGame(List<String> racingCarNames, String raceCount) {
-		prepareRacingCars(racingCarNames);
-		prepareRaceCount(raceCount);
-	}
+    public boolean isNotOverRace() {
+        return raceCount.hasCount();
+    }
 
-	private void prepareRacingCars(final List<String> racingCarNames) {
-		cars = new Cars(racingCarNames);
-	}
+    public void startRace(final MoveValueGenerator moveValueGenerator) {
+        raceCount.reduceCount();
+        cars.moveCars(moveValueGenerator);
+    }
 
-	private void prepareRaceCount(final String raceCount) {
-		this.raceCount = new RaceCount(raceCount);
-	}
+    public List<CarDto> sendRacingCarsInformation() {
+        return cars.bringCarsInformation();
+    }
 
-	public boolean isOverRace() {
-		return raceCount.getCount() == GAME_OVER_COUNT;
-	}
-
-	public void startRace() {
-		raceCount.reduceCount();
-		cars.moveCars();
-	}
-
-	public HashMap<String, Integer> sendCurrentPositionOfRacingCars() {
-		return cars.bringCarsPositionSeparatedByName();
-	}
-
-	public List<String> sendRacingGameWinner() {
-		return cars.findWinner();
-	}
+    public List<CarDto> sendRacingGameWinner() {
+        return cars.findWinner();
+    }
 }

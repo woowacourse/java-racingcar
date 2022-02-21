@@ -3,17 +3,22 @@ package racingcargame.controller;
 import java.util.List;
 
 import racingcargame.model.RacingCarGame;
-import racingcargame.view.Display;
+import racingcargame.model.movevaluegenerator.MoveValueGenerator;
+import racingcargame.view.InputView;
+import racingcargame.view.OutputView;
 
 public class GameController {
-    private static final GameController gameController = new GameController();
-    private static final InputController inputController = InputController.getInputController();
+    final InputView inputView;
+    final OutputView outputView;
 
-    private GameController() {
-    }
+    final MoveValueGenerator moveValueGenerator;
 
-    public static GameController getGameController() {
-        return gameController;
+    public GameController(final InputView inputView, final OutputView outputView,
+                          final MoveValueGenerator moveValueGenerator) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+
+        this.moveValueGenerator = moveValueGenerator;
     }
 
     public void runGame() {
@@ -25,24 +30,20 @@ public class GameController {
     }
 
     private RacingCarGame setUpGame() {
-        Display.showRacingCarNamesInputGuideMessage();
-        List<String> racingCarNames = inputController.inputRacingCarNames();
-
-        Display.showRaceCountInputGuideMessage();
-        String raceCount = inputController.inputRaceCount();
-
+        final List<String> racingCarNames = inputView.inputRacingCarNames();
+        final String raceCount = inputView.inputRaceCount();
         return new RacingCarGame(racingCarNames, raceCount);
     }
 
     private void playGame(final RacingCarGame racingCarGame) {
-        Display.showRaceProgressGuideMessage();
-        while (!racingCarGame.isOverRace()) {
-            racingCarGame.startRace();
-            Display.showRaceProgress(racingCarGame.sendCurrentPositionOfRacingCars());
+        outputView.showRaceResultMessage();
+        while (racingCarGame.isNotOverRace()) {
+            racingCarGame.startRace(moveValueGenerator);
+            outputView.showCurrentRaceResult(racingCarGame.sendRacingCarsInformation());
         }
     }
 
     private void finishGame(final RacingCarGame racingCarGame) {
-        Display.showGameWinner(racingCarGame.sendRacingGameWinner());
+        outputView.showRaceWinners(racingCarGame.sendRacingGameWinner());
     }
 }
