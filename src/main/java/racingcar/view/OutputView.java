@@ -1,10 +1,13 @@
 package racingcar.view;
 
-import racingcar.model.Car;
+import racingcar.model.Cars;
+import racingcar.model.GameResult;
 
 import java.util.List;
+import java.util.Map.Entry;
 
 public class OutputView {
+
     private static final String SPLIT_DELIMITER = ",";
     private static final String RESULT_PREFIX = "실행결과";
     private static final String WINNER_SUFFIX = "가 최종 우승했습니다.";
@@ -15,15 +18,22 @@ public class OutputView {
         System.out.println(RESULT_PREFIX);
     }
 
-    public static void printResult(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(car.getName() + SEPARATOR + MOVE_SIGN.repeat(car.getPosition()));
+    public static void printResult(List<GameResult> gameResults) {
+        System.out.println();
+        for (GameResult gameResult : gameResults) {
+            printRoundResult(gameResult);
+        }
+    }
+
+    public static void printRoundResult(GameResult gameResult) {
+        for (Entry<String, Integer> entrySet : gameResult.getPositionByName().entrySet()) {
+            System.out.println(entrySet.getKey() + SEPARATOR + MOVE_SIGN.repeat(entrySet.getValue()));
         }
         System.out.println();
     }
 
-    public static void printWinner(List<String> winners) {
-        System.out.print(String.join(SPLIT_DELIMITER, winners));
+    public static void printWinner(Cars cars) {
+        System.out.print(String.join(SPLIT_DELIMITER, cars.getWinner()));
         System.out.println(WINNER_SUFFIX);
     }
 }

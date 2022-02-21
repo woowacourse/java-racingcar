@@ -1,21 +1,25 @@
 package racingcar.controller;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("NonAsciiCharacters")
 public class InputControllerTest {
-    final InputController inputController = new InputController();
 
+    private final InputController inputController = new InputController();
+
+    @DisplayName("자동차 이름 나누기 테스트")
     @Test
-    public void 자동차_이름_나누기() {
+    void getUserCarNamesTest() {
         String cars = "pobi,crong,honux";
         assertThat(inputController.getUserCarNames(cars)).contains("pobi", "crong", "honux");
     }
 
+    @DisplayName("숫자 문자열 변환 테스트")
     @Test
-    public void 숫자_입력() {
+    void getUserTryCountTest() {
         String scanNumber = "3";
         int actual = inputController.getUserTryCount(scanNumber);
         assertThat(Integer.parseInt(scanNumber)).isEqualTo(actual);
