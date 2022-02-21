@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +18,7 @@ public class Cars {
 	private final List<RacingCar> cars;
 
 	public List<RacingCar> getCars() {
-		return this.cars;
+		return Collections.unmodifiableList(this.cars);
 	}
 
 	public Cars getPresentCars() {
