@@ -28,6 +28,9 @@ public class RacingCar implements Comparable<RacingCar> {
     }
 
     private void checkCarNameSize(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException(EXCEPTION_NO_NAME);
+        }
         if (name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(EXCEPTION_TOO_LONG_NAME);
         }
