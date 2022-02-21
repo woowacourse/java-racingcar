@@ -59,18 +59,7 @@ public class Cars {
 				car -> car.getPosition().toInt(), (a, b) -> b));
 	}
 
-	public List<String> getWinners() {
-		return cars.stream()
-			.filter(car -> car.isSamePosition(getMaxPosition()))
-			.map(car -> car.getName().toString())
-			.collect(Collectors.toList());
-	}
-
-	private Position getMaxPosition() {
-		int maxPosition = 0;
-		for (Car car : cars) {
-			maxPosition = Math.max(maxPosition, car.getPosition().toInt());
-		}
-		return new Position(maxPosition);
+	public Winners getWinners() {
+		return new Winners(cars);
 	}
 }

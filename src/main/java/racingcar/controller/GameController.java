@@ -19,7 +19,7 @@ public class GameController {
 		int moveCount = getMoveCount();
 		OutputView.printResultMessage();
 		startRace(cars, moveCount);
-		OutputView.printWinners(cars.getWinners());
+		OutputView.printWinners(cars.getWinners().getNames());
 	}
 
 	private Cars getCars() {
