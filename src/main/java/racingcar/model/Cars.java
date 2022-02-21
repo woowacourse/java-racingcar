@@ -19,8 +19,8 @@ public class Cars {
 	private List<Car> cars;
 
 	public Cars(String inputCarNames) {
-		List<String> carNames = splitCarNames(inputCarNames);
 		CheckingService.checkCarNamesBlank(inputCarNames);
+		List<String> carNames = splitCarNames(inputCarNames);
 		cars = toCar(carNames);
 	}
 

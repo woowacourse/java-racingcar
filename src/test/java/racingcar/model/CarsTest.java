@@ -13,6 +13,17 @@ import racingcar.service.RandomNumberMovingCondition;
 
 public class CarsTest {
 	@Test
+	public void Cars_생성자에_인자로_null() {
+		String input = null;
+		assertThatThrownBy(() -> new Cars(input)).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
+	public void Cars_생성자에_인자로_빈문자열() {
+		assertThatThrownBy(() -> new Cars("")).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@Test
 	public void 자동차_이름_구분_및_저장() {
 		Cars result = new Cars("배카라,아스피");
 		assertThat(result).isEqualTo(new Cars(Arrays.asList(new Car("배카라", 0, new RandomNumberMovingCondition()),
