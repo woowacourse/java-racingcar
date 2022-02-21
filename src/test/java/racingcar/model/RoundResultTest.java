@@ -13,6 +13,9 @@ class RoundResultTest {
         RoundResult roundResult = new RoundResult();
         Car car = new Car("Eden");
         roundResult.addResult(car);
+        RoundResult otherRoundResult = new RoundResult();
+        otherRoundResult.addResult(car);
+        assertThat(roundResult).isEqualTo(otherRoundResult);
     }
 
     @Test
