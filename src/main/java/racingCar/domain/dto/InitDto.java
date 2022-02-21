@@ -9,9 +9,13 @@ public class InitDto {
     private final List<String> names;
     private final int count;
 
-    public InitDto(String namesInput, String countInput) {
+    private InitDto(String namesInput, String countInput) {
         names = Arrays.asList(Util.separate(namesInput));
         count = Util.convertToInteger(countInput);
+    }
+
+    public static InitDto of(String namesInput, String countInput) {
+        return new InitDto(namesInput, countInput);
     }
 
     public List<String> getNames() {

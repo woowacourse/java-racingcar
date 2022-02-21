@@ -10,17 +10,17 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static InitDto get() {
-        return new InitDto(getNames(), getCount());
+        return InitDto.of(getNames(), getCount());
     }
 
-    public static String getNames() {
+    private static String getNames() {
         System.out.println(REQUEST_NAMES_MESSAGE);
         String names = scanner.next();
         validate(names);
         return names;
     }
 
-    public static String getCount() {
+    private static String getCount() {
         System.out.println(REQUEST_COUNT_MESSAGE);
         String count = scanner.next();
         validate(count);

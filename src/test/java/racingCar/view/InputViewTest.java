@@ -11,7 +11,6 @@ import racingCar.exception.NullInputException;
 public class InputViewTest {
     @Test
     void getNames_null() {
-
         assertThatThrownBy(() -> validate(null))
                 .isInstanceOf(NullInputException.class)
                 .hasMessage("1자 이상 입력해주세요.");

@@ -9,13 +9,13 @@ import racingCar.domain.dto.CarDto;
 public class CarDtoTest {
     @Test
     void 이름확인() {
-        assertThat(new CarDto(new Car("hunch", 0)).getName())
+        assertThat(CarDto.of("hunch", 0).getName())
                 .isEqualTo("hunch");
     }
 
     @Test
     void position_확인() {
-        assertThat(new CarDto(new Car("hunch", 5)).getPosition())
+        assertThat(CarDto.of("hunch", 5).getPosition())
                 .isEqualTo(5);
     }
 }

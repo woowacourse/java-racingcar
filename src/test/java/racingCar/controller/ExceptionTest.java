@@ -20,7 +20,7 @@ public class ExceptionTest {
 
     @Test
     void 올바른_이름이_들어온_경우() {
-        InitDto initDto = new InitDto(RIGHT_NAMES_INPUT, RIGHT_COUNT_INPUT);
+        InitDto initDto = InitDto.of(RIGHT_NAMES_INPUT, RIGHT_COUNT_INPUT);
 
         assertThatCode(() -> new RacingGame(initDto))
                 .doesNotThrowAnyException();
@@ -31,7 +31,7 @@ public class ExceptionTest {
     void 이름이_5자보다_큰_경우() {
         //given
         String nameInput = "abcdef,cde";
-        InitDto initDto = new InitDto(nameInput, RIGHT_COUNT_INPUT);
+        InitDto initDto = InitDto.of(nameInput, RIGHT_COUNT_INPUT);
 
         //then
         assertThatThrownBy(() -> new RacingGame(initDto))
@@ -43,7 +43,7 @@ public class ExceptionTest {
     void 이름에_특수문자가_들어간_경우() {
         //given
         String nameInput = "주리!,juri";
-        InitDto initDto = new InitDto(nameInput, RIGHT_COUNT_INPUT);
+        InitDto initDto = InitDto.of(nameInput, RIGHT_COUNT_INPUT);
 
         //then
         assertThatThrownBy(() -> new RacingGame(initDto))
@@ -55,7 +55,7 @@ public class ExceptionTest {
     void 입력된_이름이_하나인_경우() {
         //given
         String nameInput = "주리";
-        InitDto initDto = new InitDto(nameInput, RIGHT_COUNT_INPUT);
+        InitDto initDto = InitDto.of(nameInput, RIGHT_COUNT_INPUT);
 
         //then
         assertThatThrownBy(() -> new RacingGame(initDto))
@@ -67,7 +67,7 @@ public class ExceptionTest {
     void 중복된_이름이_있는_경우() {
         //given
         String nameInput = "juri,juri";
-        InitDto initDto = new InitDto(nameInput, RIGHT_COUNT_INPUT);
+        InitDto initDto = InitDto.of(nameInput, RIGHT_COUNT_INPUT);
 
         //then
         assertThatThrownBy(() -> new RacingGame(initDto))
@@ -81,7 +81,7 @@ public class ExceptionTest {
         String countInput = "오";
 
         //then
-        assertThatThrownBy(() -> new InitDto(RIGHT_NAMES_INPUT, countInput))
+        assertThatThrownBy(() -> InitDto.of(RIGHT_NAMES_INPUT, countInput))
                 .isInstanceOf(CountNotNumberException.class)
                 .hasMessage("숫자를 입력해주세요.");
     }
@@ -90,7 +90,7 @@ public class ExceptionTest {
     void 라운드수_숫자가_제로_이하인_경우() {
         //given
         String countInput = "0";
-        InitDto initDto = new InitDto(RIGHT_NAMES_INPUT, countInput);
+        InitDto initDto = InitDto.of(RIGHT_NAMES_INPUT, countInput);
 
         //then
         assertThatThrownBy(() -> new RacingGame(initDto))

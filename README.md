@@ -44,7 +44,7 @@
    - [x]  carDto를 List 형태로 전달하는 것이 아닌 List를 가진 Dto를 반환
    - [x]  Comparable을 이용해 getMaxPosition() 생성
    - [x]  car에 position 확인 메소드 생성
-   - [ ]  정적 팩토리 메소드를 이용해 dto에서 car를 받아서 직접 자기 자신을 생성하도록 하기
+   - [x]  정적 팩토리 메소드를 이용해 dto에서 직접 자기 자신을 생성하도록 하기
 - 2단계 1차 피드백
    - [x]  equals() 메소드에 원시값 비교 제거
    - [x]  getter 내부적으로 필요한 값을 바로 return해 체이닝을 줄임

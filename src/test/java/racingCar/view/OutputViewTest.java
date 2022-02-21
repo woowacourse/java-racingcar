@@ -14,7 +14,7 @@ import racingCar.domain.dto.CarDto;
 import racingCar.domain.dto.CarsDto;
 
 @SuppressWarnings("NonAsciiCharacters")
-public class OutputTest {
+public class OutputViewTest {
     @Test
     void 시작메세지_검사() {
         //given
@@ -37,10 +37,10 @@ public class OutputTest {
 
         //when
         List<CarDto> result = new ArrayList<>();
-        result.add(new CarDto(new Car("jiwoo", 2)));
-        result.add(new CarDto(new Car("juri", 0)));
+        result.add(CarDto.of("jiwoo", 2));
+        result.add(CarDto.of("juri", 0));
 
-        CarsDto carsDto = new CarsDto(result);
+        CarsDto carsDto = CarsDto.of(result);
 
         OutputView.printRoundResult(carsDto);
 
@@ -57,9 +57,9 @@ public class OutputTest {
 
         //when
         List<CarDto> result = new ArrayList<>();
-        result.add(new CarDto(new Car("jiwoo", 2)));
-        result.add(new CarDto(new Car("juri", 0)));
-        CarsDto carsDto = new CarsDto(result);
+        result.add(CarDto.of("jiwoo", 2));
+        result.add(CarDto.of("juri", 0));
+        CarsDto carsDto = CarsDto.of(result);
 
         OutputView.printRoundResult(carsDto);
 
@@ -73,7 +73,7 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        CarsDto carsDto = new CarsDto(List.of(new CarDto(new Car("hunch", 0))));
+        CarsDto carsDto = CarsDto.of(List.of(CarDto.of("hunch", 0)));
 
         //when
         OutputView.printWinner(carsDto);
@@ -88,7 +88,7 @@ public class OutputTest {
         //given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        CarsDto carsDto = new CarsDto(Arrays.asList(new CarDto(new Car("hunch", 0)), new CarDto(new Car("juri", 0))));
+        CarsDto carsDto = CarsDto.of(Arrays.asList(CarDto.of("hunch", 0), CarDto.of("juri", 0)));
 
         //when
         OutputView.printWinner(carsDto);

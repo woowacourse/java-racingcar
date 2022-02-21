@@ -46,14 +46,14 @@ public class Cars {
     public List<CarDto> getSamePositionCarsDto(int position) {
         return cars.stream()
                 .filter(car -> car.isThatPosition(position))
-                .map(CarDto::new)
+                .map(CarDto::from)
                 .collect(Collectors.toList());
     }
 
     public List<CarDto> getDto() {
         List<CarDto> carsDto = new ArrayList<>();
         for (Car car : cars) {
-            carsDto.add(new CarDto(car));
+            carsDto.add(CarDto.from(car));
         }
         return carsDto;
     }

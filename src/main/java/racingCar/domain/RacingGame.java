@@ -22,11 +22,11 @@ public class RacingGame {
 
     public CarsDto getWinnerCarsDto() {
         List<CarDto> winnerCarsDto = cars.getSamePositionCarsDto(cars.getMaxPosition());
-        return new CarsDto(winnerCarsDto);
+        return CarsDto.of(winnerCarsDto);
     }
 
     public CarsDto getCarsDto() {
-        return new CarsDto(cars.getDto());
+        return CarsDto.from(cars);
     }
 
     public RoundCount getRoundCount() {

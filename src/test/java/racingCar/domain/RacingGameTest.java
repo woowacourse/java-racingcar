@@ -18,7 +18,7 @@ public class RacingGameTest {
 
     @BeforeEach
     void setup() {
-        racingGame = new RacingGame(new InitDto("juri,hunch", "5"));
+        racingGame = new RacingGame(InitDto.of("juri,hunch", "5"));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class RacingGameTest {
                 .stream()
                 .filter(carDTO -> carDTO.getPosition() == max)
                 .collect(Collectors.toList());
-        CarsDto carsDto = new CarsDto(result);
+        CarsDto carsDto = CarsDto.of(result);
 
         //then
         assertThat(carsDto)
