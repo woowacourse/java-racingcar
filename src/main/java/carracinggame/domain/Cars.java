@@ -29,5 +29,4 @@ public class Cars {
         Winner winner = new Winner();
         return winner.findWinner(this.cars);
     }
-
 }

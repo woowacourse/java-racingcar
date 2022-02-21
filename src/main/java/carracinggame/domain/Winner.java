@@ -6,7 +6,6 @@ import java.util.List;
 public class Winner {
 
     public static final int FIRST_CAR_INDEX = 0;
-    private int maxPosition = Integer.MIN_VALUE;
 
     public List<Car> findWinner(List<Car> cars) {
         List<Car> winners = new ArrayList<>();

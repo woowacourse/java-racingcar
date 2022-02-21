@@ -1,7 +1,5 @@
 package carracinggame.controller;
 
-import carracinggame.domain.Winner;
-
 public class CarRacingMain {
 
     public static void main(String[] args) {

@@ -27,24 +27,14 @@ public class Car {
     }
 
     private boolean isOverProbability(int number) {
-        if (number >= REFERENCE_NUMBER) {
-            return true;
-        }
-        return false;
+        return number >= REFERENCE_NUMBER;
     }
 
-    public boolean isWinner(Car comparisonCar) {
-        if (this.position > comparisonCar.position) {
-            return true;
-        }
-        return false;
+    public boolean isWinner(Car car) {
+        return this.position > car.position;
     }
 
-    public boolean isCoWinner(Car comparisonCar) {
-        if (this.position == comparisonCar.position) {
-            return true;
-        }
-        return false;
+    public boolean isCoWinner(Car car) {
+        return this.position == car.position;
     }
-
 }
