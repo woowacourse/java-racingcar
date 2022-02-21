@@ -29,11 +29,10 @@ public class RacingCarController {
     }
 
     private void startRacing(Cars cars, Round round) {
-        List<RacingRecord> racingRecords = new ArrayList<>();
-        while (!service.isEnd(round)) {
-            racingRecords.add(service.run(cars, round));
-        }
+        List<RacingRecord> racingRecords = service.getRacingRecords(cars, round);
         outputView.printRacingRecords(racingRecords);
         outputView.printWinners(service.getWinners(cars));
     }
+
+
 }

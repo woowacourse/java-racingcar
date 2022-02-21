@@ -50,9 +50,8 @@ class OutputViewTest extends ConsoleTest {
     }
 
     private List<RacingRecord> getRacingRecords(Cars cars) {
-        CarsResponse carsDto = new CarsResponse(cars);
         List<RacingRecord> racingRecords = new ArrayList<>();
-        racingRecords.add(new RacingRecord(carsDto));
+        racingRecords.add(new RacingRecord(cars));
         return racingRecords;
     }
 }
