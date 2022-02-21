@@ -16,8 +16,8 @@ public class OutputView {
 		System.out.println(EXECUTION_RESULT_MESSAGE);
 	}
 
-	public static void printCars(List<Car> cars) {
-		for (Car car : cars) {
+	public static void printCars(RacingCars cars) {
+		for (Car car : cars.getRacingCars()) {
 			System.out.println(car.getName() + " : " + CAR_MOVE.repeat(Math.max(0, car.getPosition())));
 		}
 		printNewLine();

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import racingCar.view.OutputView;
-
 public class RacingCars {
 	private final List<Car> racingCars;
 
@@ -19,15 +17,7 @@ public class RacingCars {
 		this.racingCars = cars;
 	}
 
-	public void race(int count) {
-		OutputView.startPrintResultMessage();
-		for (int i = 0; i < count; i++) {
-			moveRacingCars();
-			OutputView.printCars(Collections.unmodifiableList(racingCars));
-		}
-	}
-
-	private void moveRacingCars() {
+	public void moveRacingCars() {
 		for (Car racingCar : this.racingCars) {
 			racingCar.moveCar(isRandomOverProbability());
 		}

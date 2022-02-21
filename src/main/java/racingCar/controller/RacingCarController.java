@@ -2,10 +2,8 @@ package racingCar.controller;
 
 import static racingCar.constants.RacingCarConstants.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import racingCar.domain.Car;
 import racingCar.domain.RacingCars;
 import racingCar.validator.RacingCarNameValidator;
 import racingCar.validator.RacingCarTimeValidator;
@@ -17,7 +15,7 @@ public class RacingCarController {
 	public void start() {
 		List<String> carNames = getSplitCarNames();
 		RacingCars racingCars = new RacingCars(carNames);
-		racingCars.race(getCarTimes());
+		race(getCarTimes(), racingCars);
 		OutputView.printWinners(racingCars.findWinner());
 	}
 
@@ -47,6 +45,14 @@ public class RacingCarController {
 		} catch (RuntimeException e) {
 			OutputView.printError(e.getMessage());
 			getSplitCarNames();
+		}
+	}
+
+	private void race(int count, RacingCars racingCars) {
+		OutputView.startPrintResultMessage();
+		for (int i = 0; i < count; i++) {
+			racingCars.moveRacingCars();
+			OutputView.printCars(racingCars);
 		}
 	}
 
