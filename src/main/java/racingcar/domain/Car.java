@@ -1,30 +1,28 @@
 package racingcar.domain;
 
-import static racingcar.util.VerificationUtil.validateCarName;
+import racingcar.domain.movestrategy.MovingStrategy;
 
 public class Car {
 
-    private static final int INITIAL_VALUE = 0;
-    private static final int PROGRESS_CONDITION_VALUE = 4;
+    private static final int POSITION_INITIAL_VALUE = 0;
 
-    private final String name;
-    private int position = INITIAL_VALUE;
+    private final CarName carName;
+    private int position = POSITION_INITIAL_VALUE;
 
     public Car(String name) {
-        validateCarName(name);
-        this.name = name;
+        this.carName = new CarName(name);
     }
 
     public String getName() {
-        return name;
+        return carName.getName();
     }
 
     public int getPosition() {
         return position;
     }
 
-    public void progress(int number) {
-        if (number >= PROGRESS_CONDITION_VALUE) {
+    public void progress(MovingStrategy movingStrategy) {
+        if (movingStrategy.isMovable()) {
             position++;
         }
     }

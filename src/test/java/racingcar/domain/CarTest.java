@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,9 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SuppressWarnings("NonAsciiCharacters")
 class CarTest {
 
-    public static final int MOVE_CONDITION= 10;
-    public static final int STOP_CONDITION = 0;
-
     @Test
     @DisplayName("자동차에 기준값 보다 큰 값을 주면 전진 하는지 확인")
     public void 자동차_진행_테스트() {
@@ -18,7 +16,7 @@ class CarTest {
         Car car = new Car("woo");
 
         //when
-        car.progress(MOVE_CONDITION);
+        car.progress(() -> true);
 
         //then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -31,7 +29,7 @@ class CarTest {
         Car car = new Car("woo");
 
         //when
-        car.progress(STOP_CONDITION);
+        car.progress(() -> false);
 
         //then
         assertThat(car.getPosition()).isEqualTo(0);
@@ -46,10 +44,40 @@ class CarTest {
 
         //when
         for (int i = 0; i < repeatCount; i++) {
-            car.progress(MOVE_CONDITION);
+            car.progress(() -> true);
         }
 
         //then
         assertThat(car.getPosition()).isEqualTo(repeatCount);
+    }
+
+    @Test
+    @DisplayName("한 글자 미만의 자동차 이름 테스트")
+    public void 한글자_미만의_자동차_이름_테스트() {
+        //given
+        String name = "";
+
+        //then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(name));
+    }
+
+    @Test
+    @DisplayName("다섯 글자 초과의 자동차 이름 테스트")
+    public void 다섯글자_초과의_자동차_이름_테스트() {
+        //given
+        String name = "wooteco";
+
+        //then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(name));
+    }
+
+    @Test
+    @DisplayName("자동차 이름에 공백이 포함되어있는지 테스트")
+    public void 자동차_이름_공백_테스트() {
+        //given
+        String name = "woo   te   co";
+
+        //then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Car(name));
     }
 }

@@ -1,11 +1,13 @@
 package racingcar.view;
 
+import racingcar.dto.CarDto;
+
 import java.util.List;
 
 public class OutputView {
 
     private static final String DELIMITER = ", ";
-    public static final String PROGRESS_SYMBOL = "-";
+    private static final String PROGRESS_SYMBOL = "-";
 
     private OutputView() {
     }
@@ -19,7 +21,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printProgress(String carName, int position) {
+    public static void printProgress(CarDto car) {
+        String carName = car.getCarName();
+        int position = car.getPosition();
+
         String positionSign = PROGRESS_SYMBOL.repeat(position);
 
         System.out.println(carName + " : " + positionSign);
