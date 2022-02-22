@@ -1,22 +1,45 @@
 package racingcar.domain;
 
-import static racingcar.Utils.*;
+import static racingcar.Util.Utils.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import racingcar.validator.RacingGameValidator;
-
 public class Cars {
+	public static final String ERROR_ONLY_NAME = "[ERROR] 이름을 2개 이상 입력해주세요.";
+	public static final String ERROR_DUPLICATE_NAME = "[ERROR] 중복된 이름이 있습니다.";
+	public static final int DEFAULT_POSITION = 0;
 	public static final int MOVE_CONDITION = 4;
 
 	private final List<Car> cars = new ArrayList<>();
 
 	public Cars(String[] carNames) {
-		RacingGameValidator.validateCarNames(carNames);
+		validateCarNames(carNames);
 		for (String carName : carNames) {
-			this.cars.add(new Car(carName));
+			cars.add(new Car(carName, DEFAULT_POSITION));
+		}
+	}
+
+	private void validateCarNames(String[] names) {
+		checkDuplicateName(names);
+		checkOnlyName(names);
+	}
+
+	private static void checkOnlyName(String[] names) {
+		if (names.length == 1) {
+			throw new IllegalArgumentException(ERROR_ONLY_NAME);
+		}
+	}
+
+	private static void checkDuplicateName(String[] names) {
+		Set<String> hashNames = new HashSet<>(Arrays.asList(names));
+		if (hashNames.size() != names.length) {
+			throw new IllegalArgumentException(ERROR_DUPLICATE_NAME);
 		}
 	}
 
@@ -30,29 +53,13 @@ public class Cars {
 		return makeRandom() >= MOVE_CONDITION;
 	}
 
-	private int getMaxPosition() {
-		int maxPosition = 0;
-		for (Car car : cars) {
-			maxPosition = Math.max(maxPosition, car.getPosition());
-		}
-		return maxPosition;
+	public Map<String, Integer> getCarsInfo() {
+		return cars.stream()
+			.collect(Collectors.toMap(car -> car.getName().toString(),
+				car -> car.getPosition().toInt(), (a, b) -> b));
 	}
 
-	public List<String> getWinners() {
-		int maxPosition = getMaxPosition();
-		return this.cars.stream()
-			.filter(car -> car.isSamePosition(maxPosition))
-			.map(Car::getName)
-			.collect(Collectors.toList());
-	}
-
-	public int getSize() {
-		return cars.size();
-	}
-
-	public List<String> getAllPositionToString() {
-		return this.cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.toList());
+	public Winners getWinners() {
+		return new Winners(cars);
 	}
 }

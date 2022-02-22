@@ -1,16 +1,16 @@
-package racingcar.validator;
+package racingcar.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
+import static racingcar.domain.Name.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static racingcar.validator.CarNameValidator.*;
-
-public class CarNameValidatorTest {
+public class NameTest {
 	@Test
 	@DisplayName("이름이 5자 초과일 경우")
 	void longName() {
-		Assertions.assertThatThrownBy(() -> validateName("summer"))
+		assertThatThrownBy(() -> new Name("summer"))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(ERROR_LONG_NAME);
 	}
@@ -18,9 +18,8 @@ public class CarNameValidatorTest {
 	@Test
 	@DisplayName("빈 이름이 주어지거나 입력값이 없을 경우")
 	void emptyName() {
-		Assertions.assertThatThrownBy(() -> validateName(""))
+		assertThatThrownBy(() -> new Name(""))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining(ERROR_EMPTY_NAME);
 	}
-
 }
