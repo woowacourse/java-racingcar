@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 import java.util.Objects;
 import racingcar.message.ErrorMessages;
@@ -11,11 +11,6 @@ public class Name {
     public Name(String name) {
         validate(name);
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
     }
 
     private void validate(String name) {
@@ -50,5 +45,10 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

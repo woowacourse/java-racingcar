@@ -1,9 +1,8 @@
-package racingcar.model;
+package racingcar.domain;
+
+import racingcar.domain.strategy.MoveStrategy;
 
 public class Car {
-    private static final int MOVING_DISTANCE = 1;
-    private static final int STANDARD_VALUE = 4;
-
     private final Name name;
     private final Position position;
 
@@ -12,10 +11,8 @@ public class Car {
         this.position = new Position();
     }
 
-    public void goOrStop(int random) {
-        if (random >= STANDARD_VALUE) {
-            position.move(MOVING_DISTANCE);
-        }
+    public void go(MoveStrategy strategy) {
+        position.move(strategy.move());
     }
 
     public String getName() {
@@ -26,4 +23,11 @@ public class Car {
         return this.position.toInt();
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
+    }
 }

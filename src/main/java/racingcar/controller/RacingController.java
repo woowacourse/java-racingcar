@@ -1,45 +1,47 @@
 package racingcar.controller;
 
-import racingcar.model.Cars;
-import racingcar.model.TryCount;
+import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
+import racingcar.domain.strategy.MoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
-    private Cars cars;
-    private TryCount tryCount;
+    public void start(MoveStrategy moveStrategy) {
+        Cars cars = inputCars();
+        TryCount tryCount = inputTryCount();
+        race(cars, tryCount, moveStrategy);
+        printRaceResult(cars);
+    }
 
-    public void start() {
+    private Cars inputCars() {
         try {
-            cars = new Cars(InputView.inputCarNames());
-            inputTryCount();
-            race();
-            terminate();
+            return new Cars(InputView.inputCarNames());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            start();
+            return inputCars();
         }
     }
 
-    private void inputTryCount() {
+    private TryCount inputTryCount() {
         try {
-            tryCount = new TryCount(InputView.inputTryCount());
+            return new TryCount(InputView.inputTryCount());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            inputTryCount();
+            return inputTryCount();
         }
     }
 
-    private void race() {
+    private void race(Cars cars, TryCount tryCount, MoveStrategy moveStrategy) {
         int nowTryCnt = 0;
         OutputView.printStartMessage();
         while (tryCount.isNotSame(nowTryCnt++)) {
-            cars.moveAll();
+            cars.moveAll(moveStrategy);
             OutputView.printCarsStatus(cars.getCars());
         }
     }
 
-    private void terminate() {
+    private void printRaceResult(Cars cars) {
         OutputView.printCarsStatus(cars.getCars());
         OutputView.printWinners(cars.getWinners());
     }

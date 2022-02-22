@@ -3,25 +3,27 @@ package racingcar.util;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@SuppressWarnings("NonAsciiCharacters")
-class RandomGeneratorTest {
+class RandomUtilsTest {
     @Test
-    public void 랜덤_값() {
+    @DisplayName("랜덤 값")
+    public void random() {
         // given
         int min = 0;
         int max = 10;
 
         // when
-        int number = RandomGenerator.generateNumber(min, max);
+        int number = RandomUtils.generateNumber(min, max);
 
         // then
         assertThat(number).isGreaterThanOrEqualTo(min).isLessThan(max);
     }
 
     @Test
-    public void max가_더_작은_경우() {
+    @DisplayName("max가_더_작은_경우")
+    public void less() {
         // given
         int min = 10;
         int max = 0;
@@ -29,6 +31,6 @@ class RandomGeneratorTest {
         // when
 
         // then
-        assertDoesNotThrow(() -> RandomGenerator.generateNumber(min, max));
+        assertDoesNotThrow(() -> RandomUtils.generateNumber(min, max));
     }
 }
