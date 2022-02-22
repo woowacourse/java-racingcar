@@ -1,55 +1,52 @@
 package racingcar.controller;
 
-import java.util.Arrays;
-
-import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 import racingcar.model.trycount.TryCount;
-import racingcar.util.MovableNumber;
+import racingcar.util.RacingCarMovableStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RaceController {
-	private TryCount tryCount;
-	private Cars cars = Cars.create();
+    public RaceController() {
+    }
 
-	public RaceController() {
-	}
+    public void start() {
+        Cars cars = getCars();
+        TryCount tryCount = getTryCount();
+        race(cars, tryCount);
+        getWinners(cars);
+    }
 
-	public void setUpCars() {
-		try {
-			String input = InputView.inputNamesUi();
-			Arrays.stream(input.split(","))
-				.map(Car::from)
-				.forEach(cars::add);
-			cars.validateIsEmpty();
-		} catch (IllegalArgumentException exception) {
-			OutputView.printErrorUi(exception);
-			setUpCars();
-		}
-	}
+    public Cars getCars() {
+        try {
+            Cars cars = new Cars();
+            cars.addAllFromNames(InputView.inputNames());
+            return cars;
+        } catch (IllegalArgumentException exception) {
+            OutputView.printError(exception);
+            return getCars();
+        }
+    }
 
-	public void setUpTryCount() {
-		try {
-			String input = InputView.inputTryCountUi();
-			tryCount = TryCount.from(input);
-		} catch (IllegalArgumentException exception) {
-			OutputView.printErrorUi(exception);
-			setUpTryCount();
-		}
-	}
+    public TryCount getTryCount() {
+        try {
+            return new TryCount(InputView.inputTryCount());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printError(exception);
+            return getTryCount();
+        }
+    }
 
-	public void raceStart() {
-		OutputView.printRaceResultUi();
-		for (int i = 0; i < tryCount.toInt(); i++) {
-			cars.race(new MovableNumber());
-			OutputView.printCarsUi(cars.getCarsDto());
-			OutputView.printEnterUi();
-		}
-	}
+    public void race(Cars cars, TryCount tryCount) {
+        OutputView.printRaceResult();
+        for (int i = 0; i < tryCount.value(); i++) {
+            cars.race(new RacingCarMovableStrategy());
+            OutputView.printCars(cars);
+        }
+    }
 
-	public void raceEnd() {
-		OutputView.printWinnersUi(cars.getWinnersNames());
-	}
+    public void getWinners(Cars cars) {
+        OutputView.printWinners(cars.getWinnersNames());
+    }
 
 }

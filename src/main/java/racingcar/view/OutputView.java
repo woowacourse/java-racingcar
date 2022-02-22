@@ -2,28 +2,28 @@ package racingcar.view;
 
 import java.util.List;
 
-import racingcar.dto.CarDto;
+import racingcar.model.car.Car;
+import racingcar.model.car.Cars;
 
 public class OutputView {
-	public static void printRaceResultUi() {
-		System.out.format("%n실행 결과%n");
-	}
+    private static final String CAR_POSITION_BAR = "-";
 
-	public static void printCarsUi(List<CarDto> carsInformation) {
-		for (CarDto carInformation : carsInformation) {
-			System.out.println(carInformation.getName() + " : " + "-".repeat(carInformation.getPosition()));
-		}
-	}
+    public static void printRaceResult() {
+        System.out.println(System.lineSeparator() + "실행 결과");
+    }
 
-	public static void printEnterUi() {
-		System.out.println();
-	}
+    public static void printCars(final Cars cars) {
+        for (Car car : cars.getCars()) {
+            System.out.println(car.getName() + " : " + CAR_POSITION_BAR.repeat(car.getPosition()));
+        }
+        System.out.println();
+    }
 
-	public static void printWinnersUi(List<String> names) {
-		System.out.printf("%s가 최종 우승했습니다.", String.join(", ", names));
-	}
+    public static void printWinners(final List<String> names) {
+        System.out.printf("%s가 최종 우승했습니다.", String.join(", ", names));
+    }
 
-	public static void printErrorUi(Exception exception) {
-		System.out.println(exception.getMessage());
-	}
+    public static void printError(final Exception exception) {
+        System.out.println(exception.getMessage());
+    }
 }
