@@ -39,7 +39,9 @@ class CarTest {
 		Car carPositionZero = new Car("zero"); // position: 0
 		Car carDriveTrue = new Car("drive");
 
-		carDriveTrue.drive(true);
+		Movable movable = () -> true;
+
+		carDriveTrue.drive(movable);
 
 		assertFalse(carDriveTrue.isSamePosition(carPositionZero));
 	}
@@ -50,7 +52,9 @@ class CarTest {
 		Car carPositionZero = new Car("zero"); // position: 0
 		Car carDriveFalse = new Car("drive");
 
-		carDriveFalse.drive(false);
+		Movable movable = () -> false;
+
+		carDriveFalse.drive(movable);
 
 		assertTrue(carDriveFalse.isSamePosition(carPositionZero));
 	}

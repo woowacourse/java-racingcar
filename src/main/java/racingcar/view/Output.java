@@ -1,17 +1,11 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
+import racingcar.domain.RoundResult;
 
 import java.util.List;
 
 public class Output {
-	private static final String STEP = "-";
-	private static StringBuilder stringBuilder = new StringBuilder();
-
-	private Output() {
-	}
-
-	public static void errorMessage(String message) {
+	public static void errorMessage(final String message) {
 		System.out.println("[ERROR] " + message);
 	}
 
@@ -23,22 +17,20 @@ public class Output {
 		System.out.println("시도할 회수는 몇회인가요?");
 	}
 
-	public static void roundResult(List<Car> cars) {
-		for (Car car : cars) {
-			stringBuilder.append(car.getName()).append(" : ");
-			stringBuilder.append(STEP.repeat(car.getPosition()));
-			stringBuilder.append("\n");
-		}
-		stringBuilder.append("\n");
+	public static void resultTitle() {
+		newLine();
+		System.out.println("실행 결과");
 	}
 
-	public static void allRoundResult() {
-		System.out.println("\n실행 결과");
-		System.out.print(stringBuilder);
+	public static void result(final RoundResult round) {
+		System.out.println(String.join("\n", round.getResult()));
 	}
 
-	public static void showResult(List<String> winners) {
-		allRoundResult();
+	public static void newLine() {
+		System.out.println();
+	}
+
+	public static void showResult(final List<String> winners) {
 		System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
 	}
 }

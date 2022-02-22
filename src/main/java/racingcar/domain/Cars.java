@@ -1,37 +1,34 @@
 package racingcar.domain;
 
-import racingcar.view.Output;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
 	private static final String DELIMITER = ",";
 	private static final int CAR_LIMIT = 2;
-	private static final int DRIVE_FLAG = 3;
-	private List<Car> cars = new ArrayList<>();
+	private final List<Car> cars;
 
-	public Cars(String names) {
+	public Cars(final String names) {
 		this(names.split(DELIMITER));
 	}
 
-	public Cars(String[] names) {
-		checkValid(names);
-		for (String name : names) {
-			cars.add(createCar(name));
-		}
+	public Cars(final String[] names) {
+		this(stringArrayToCarList(names));
 	}
 
-	public void play() {
+	public Cars(final List<Car> cars) {
+		checkValid(cars);
+		this.cars = new ArrayList<>(cars);
+	}
+
+	public void play(final RoundResult roundResult) {
+		Movable movable = new DecisionToMoving();
 		for (Car car : cars) {
-			car.drive(hasNext());
+			car.drive(movable);
+			roundResult.save(car.getName(), car.getPosition());
 		}
-		Output.roundResult(cars);
 	}
 
 	public List<String> findWinners() {
@@ -39,34 +36,46 @@ public class Cars {
 		return findSamePositionCar(maxPositionCar);
 	}
 
-	private void checkValid(String[] names) {
-		if (!isCars(names)) {
+	@Override
+	public String toString() {
+		String result = "";
+		for (Car car : cars) {
+			result += car + "\n";
+		}
+
+		return result;
+	}
+
+	private static List<Car> stringArrayToCarList(final String[] names) {
+		List<Car> tempCars = new ArrayList<>();
+		for (String name : names) {
+			tempCars.add(createCar(name));
+		}
+		return tempCars;
+	}
+
+	private static Car createCar(final String name) {
+		return new Car(name.trim());
+	}
+
+	private void checkValid(final List<Car> cars) {
+		if (!isCars(cars)) {
 			throw new IllegalArgumentException("자동차를 두 개 이상 입력해주세요.");
 		}
-		if (isDuplicated(names)) {
+		if (isDuplicated(cars)) {
 			throw new IllegalArgumentException("자동차 이름을 모두 다르게 입력해주세요.");
 		}
 	}
 
-	private boolean isCars(String[] names) {
-		return names.length >= CAR_LIMIT;
+	private boolean isCars(final List<Car> cars) {
+		return cars.size() >= CAR_LIMIT;
 	}
 
-	private boolean isDuplicated(String[] names) {
-		Set<String> carNames = new HashSet<>(Arrays.asList(names));
-		return carNames.size() != names.length;
-	}
-
-	private Car createCar(String name) {
-		return new Car(name.trim());
-	}
-
-	private boolean hasNext() {
-		return generate() > DRIVE_FLAG;
-	}
-
-	private int generate() {
-		return (int)(Math.random() * 100) % 10;
+	private boolean isDuplicated(final List<Car> cars) {
+		return cars.stream()
+				.map(Car::getName)
+				.distinct()
+				.count() != cars.size();
 	}
 
 	private Car findMaxPositionCar() {
@@ -75,7 +84,7 @@ public class Cars {
 			.orElseThrow(() -> new NoSuchElementException("max 값을 찾을 수 없습니다."));
 	}
 
-	private List<String> findSamePositionCar(Car target) {
+	private List<String> findSamePositionCar(final Car target) {
 		return cars.stream()
 			.filter(car -> car.isSamePosition(target))
 			.map(Car::getName)

@@ -2,98 +2,113 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
-	private List<Car> cars;
 
-	@BeforeEach
-	void init() {
-		String[] names = "car1,car2,car3".split(",");
-		cars = new ArrayList<>();
-		for (String name : names) {
-			cars.add(new Car(name.trim()));
-		}
-	}
-
-	@DisplayName("자동차 개수 테스트")
+	@DisplayName("문자열로 입력 시 자동차 개수 테스트")
 	@Test
-	void cars_count_test() {
+	void cars_count_string() {
 		assertThatThrownBy(() -> {
 			Cars cars = new Cars("pobi");
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("자동차 이름 중복 테스트")
+	@DisplayName("Car 객체로 입력 시 자동차 개수 테스트")
 	@Test
-	void cars_name_duplicated() {
+	void cars_count() {
+		assertThatThrownBy(() -> {
+			List<Car> carList = new ArrayList<>();
+			Car car = new Car("pobi");
+			carList.add(car);
+
+			Cars cars = new Cars(carList);
+		}).isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@DisplayName("문자열로 입력 시 자동차 이름 중복 테스트")
+	@Test
+	void cars_name_duplicated_string() {
 		assertThatThrownBy(() -> {
 			Cars cars = new Cars("pobi,jun,pobi");
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("자동차 랜덤 숫자 범위 확인")
+	@DisplayName("Car 객체로 입력 시 자동차 이름 중복 테스트")
 	@Test
-	void cars_random_range() {
-		//given, when
-		int value = generate();
-		//then
-		assertTrue(value > -1 && value < 11);
+	void cars_name_duplicated() {
+		assertThatThrownBy(() -> {
+			List<Car> carList = new ArrayList<>();
+			Car car = new Car("pobi");
+			Car car2 = new Car("pobi");
+			carList.add(car);
+			carList.add(car2);
+
+			Cars cars = new Cars(carList);
+		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("이동거리 최댓값을 가지는 Car 찾기")
+	@DisplayName("우승자 1명")
 	@Test
-	void cars_max_position_car() {
-		//given
-		setPositionCars();
-		//when
-		Car maxMoveCar = findMaxPositionCar();
-		//then
-		assertTrue(maxMoveCar.getPosition() == 2);
+	void cars_winner() {
+		Cars cars = new Cars(get_winner_cars());
+
+		List<String> winners = cars.findWinners();
+
+		assertThat(winners).containsExactly("car2");
 	}
 
-	@DisplayName("공동 승리")
+	private List<Car> get_winner_cars() {
+		List<Car> cars = new ArrayList<>();
+		Car car1 = new Car("car1"); // position : 2
+		Car car2 = new Car("car2"); // position : 3
+		Car car3 = new Car("car3"); // position : 1
+
+		Movable movable = () -> true;
+		car1.drive(movable);
+		car1.drive(movable);
+		car2.drive(movable);
+		car2.drive(movable);
+		car2.drive(movable);
+		car3.drive(movable);
+
+		cars.add(car1);
+		cars.add(car2);
+		cars.add(car3);
+		return cars;
+	}
+
+	@DisplayName("우승자 2명")
 	@Test
 	void cars_winners() {
-		//given
-		setPositionCars();
-		//when
-		Car maxMoveCar = findMaxPositionCar();
-		List<String> winners = findSamePositionCar(maxMoveCar);
-		//then
+		Cars cars = new Cars(get_cars_winners());
+
+		List<String> winners = cars.findWinners();
+
 		assertThat(winners).containsExactly("car1", "car2");
 	}
 
-	void setPositionCars() {
-		int[] moveList = {0, 0, 1, 1, 2};
-		for (int i : moveList) {
-			cars.get(i).drive(true);
-		}
-	}
+	private List<Car> get_cars_winners() {
+		List<Car> cars = new ArrayList<>();
+		Car car1 = new Car("car1"); // position : 2
+		Car car2 = new Car("car2"); // position : 2
+		Car car3 = new Car("car3"); // position : 1
 
-	private int generate() {
-		return (int)(Math.random() * 100) % 10;
-	}
+		Movable movable = () -> true;
+		car1.drive(movable);
+		car1.drive(movable);
+		car2.drive(movable);
+		car2.drive(movable);
+		car3.drive(movable);
 
-	private Car findMaxPositionCar() {
-		return cars.stream()
-			.max(Car::compareTo)
-			.orElseThrow(() -> new NoSuchElementException("max 값을 찾을 수 없습니다."));
-	}
-
-	private List<String> findSamePositionCar(Car target) {
-		return cars.stream()
-			.filter(car -> car.isSamePosition(target))
-			.map(Car::getName)
-			.collect(Collectors.toList());
+		cars.add(car1);
+		cars.add(car2);
+		cars.add(car3);
+		return cars;
 	}
 }
