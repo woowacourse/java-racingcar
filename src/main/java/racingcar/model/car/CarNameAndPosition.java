@@ -3,13 +3,13 @@ package racingcar.model.car;
 /**
  * Car 클래스의 Dto 클래스
  */
-public class CarStatus {
+public class CarNameAndPosition {
     private final String name;
     private final int position;
 
-    public CarStatus(Car car) {
-        this.name = car.getName();
-        this.position = car.getPosition();
+    public CarNameAndPosition(Car car) {
+        this.name = car.getName().toString();
+        this.position = car.getPosition().toInt();
     }
 
     public String getName() {

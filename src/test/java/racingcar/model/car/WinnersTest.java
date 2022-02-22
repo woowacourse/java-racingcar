@@ -6,23 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.car.Car;
-import racingcar.model.car.Winners;
+import racingcar.util.MovableNumberGenerator;
+import racingcar.util.UnMovableNumberGenerator;
 
-@SuppressWarnings("NonAsciiCharacters")
 class WinnersTest {
-    String name1 = "오찌";
-    String name2 = "연로그";
+    private final String name1 = "오찌";
+    private final String name2 = "연로그";
 
     private Car car1;
     private Car car2;
 
     private List<Car> cars;
 
+    private MovableNumberGenerator movableNumberGenerator;
+    private UnMovableNumberGenerator unMovableNumberGenerator;
+
     @BeforeEach
-    public void 자동차_생성() {
+    public void beforeEach() {
         cars = new ArrayList<>();
+        movableNumberGenerator = new MovableNumberGenerator();
+        unMovableNumberGenerator = new UnMovableNumberGenerator();
 
         car1 = new Car(name1);
         car2 = new Car(name2);
@@ -32,9 +37,11 @@ class WinnersTest {
     }
 
     @Test
-    public void 우승자_1명() {
+    @DisplayName("단독 우승자가 나온다")
+    public void soleWinner() {
         // given
-        car1.goOrStop(4);
+        car1.goOrStop(movableNumberGenerator);
+        car2.goOrStop(unMovableNumberGenerator);
 
         // when
         Winners winners = new Winners(cars);
@@ -44,10 +51,11 @@ class WinnersTest {
     }
 
     @Test
-    public void 공동우승() {
+    @DisplayName("공동 우승자가 나온다")
+    public void coWinner() {
         // given
-        car1.goOrStop(4);
-        car2.goOrStop(4);
+        car1.goOrStop(movableNumberGenerator);
+        car2.goOrStop(movableNumberGenerator);
 
         cars.add(car1);
         cars.add(car2);

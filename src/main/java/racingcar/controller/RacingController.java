@@ -2,8 +2,11 @@ package racingcar.controller;
 
 import java.io.IOException;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import racingcar.model.car.CarNameAndPosition;
 import racingcar.model.car.Cars;
-import racingcar.model.value.TryCount;
+import racingcar.model.value.GameRound;
 import racingcar.util.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -12,42 +15,50 @@ public class RacingController {
     private static final int RANDOM_LOWER_BOUND = 0;
     private static final int RANDOM_UPPER_BOUND = 10;
 
-    private Cars cars;
-    private TryCount tryCount;
+    public void playGame() {
+        Cars cars = inputCars();
+        GameRound gameRound = inputGameRound();
 
-    public void start() {
+        race(cars, gameRound);
+        terminateGame(cars);
+    }
+
+    private Cars inputCars() {
         try {
-            cars = new Cars(InputView.inputCarNames());
-            inputTryCount();
-            race();
-            terminate();
+            return new Cars(InputView.inputCarNames());
         } catch (IllegalArgumentException | IOException e) {
             OutputView.printException(e);
-            start();
+            return inputCars();
         }
     }
 
-    private void inputTryCount() {
+    private GameRound inputGameRound() {
         try {
-            tryCount = new TryCount(InputView.inputTryCount());
+            return GameRound.fromString(InputView.inputGameRound());
         } catch (IllegalArgumentException | IOException e) {
             OutputView.printException(e);
-            inputTryCount();
+            return inputGameRound();
         }
     }
 
-    private void race() {
-        int currentTryCount = 0;
+    private void race(Cars cars, GameRound gameRound) {
         OutputView.printStartMessage();
-        while (tryCount.isNotSame(currentTryCount++)) {
+        while (gameRound.continuable()) {
             cars.moveAll(RandomNumberGenerator.fromBounds(RANDOM_LOWER_BOUND, RANDOM_UPPER_BOUND));
-            OutputView.printStatus(cars.getCarsStatus());
+            OutputView.printCurrentCarNameAndPosition(getCarsNameAndPosition(cars));
+            gameRound.proceed();
         }
     }
 
-    private void terminate() {
-        OutputView.printStatus(cars.getCarsStatus());
+    private void terminateGame(Cars cars) {
+        OutputView.printCurrentCarNameAndPosition(getCarsNameAndPosition(cars));
         OutputView.printWinners(cars.getWinners());
+    }
+
+    private List<CarNameAndPosition> getCarsNameAndPosition(Cars cars) {
+        return cars.getCars().stream()
+                .map(CarNameAndPosition::new)
+                .collect(Collectors.toList());
     }
 }
 

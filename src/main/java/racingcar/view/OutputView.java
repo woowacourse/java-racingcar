@@ -2,9 +2,13 @@ package racingcar.view;
 
 import java.util.List;
 import racingcar.message.NoticeMessages;
-import racingcar.model.car.CarStatus;
+import racingcar.model.car.CarNameAndPosition;
 
 public class OutputView {
+    private OutputView() {
+
+    }
+
     private static final String DISTANCE_MARK = "-";
 
     public static void printException(Exception exception) {
@@ -15,9 +19,9 @@ public class OutputView {
         System.out.println(NoticeMessages.RUN_RESULT);
     }
 
-    public static void printStatus(List<CarStatus> statuses) {
-        statuses.forEach(carStatus -> {
-            System.out.println(createStatusString(carStatus));
+    public static void printCurrentCarNameAndPosition(List<CarNameAndPosition> carNameAndPositions) {
+        carNameAndPositions.forEach(carNameAndPosition -> {
+            System.out.println(createCarNameAndPositionString(carNameAndPosition));
         });
         System.out.println();
     }
@@ -26,11 +30,11 @@ public class OutputView {
         System.out.println(createWinnersString(winners));
     }
 
-    private static String createStatusString(CarStatus carStatus) {
-        return String.format("%s : ", carStatus.getName()) + DISTANCE_MARK.repeat(carStatus.getPosition());
+    private static String createCarNameAndPositionString(CarNameAndPosition carNameAndPosition) {
+        return String.format("%s : %s", carNameAndPosition.getName(), DISTANCE_MARK.repeat(carNameAndPosition.getPosition()));
     }
 
     private static String createWinnersString(List<String> winners) {
-        return String.join(", ", winners) + NoticeMessages.WINNERS_MESSAGE;
+        return String.format("%s%s", String.join(", ", winners), NoticeMessages.WINNERS_MESSAGE);
     }
 }

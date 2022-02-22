@@ -1,51 +1,41 @@
 package racingcar.model.car;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import java.util.stream.Collectors;
 import racingcar.message.ErrorMessages;
-import racingcar.util.RandomNumberGenerator;
+import racingcar.util.NumberGenerator;
 
 public class Cars {
-    private static final String DELIMITER = ",";
+    private final List<Car> cars;
 
-    private final List<Car> cars = new ArrayList<>();
-
-    public Cars(String carNames) {
-        String[] carNameArray = reduceBlank(carNames).split(DELIMITER);
-        validateDuplicatedName(carNameArray);
-        for (String carName : carNameArray) {
-            cars.add(new Car(carName));
-        }
+    public Cars(List<String> carNames) {
+        validateDuplicatedName(carNames);
+        cars = carNames.stream()
+                .map(name -> new Car(name.trim()))
+                .collect(Collectors.toList());
     }
 
-    public void moveAll(RandomNumberGenerator random) {
+    public void moveAll(NumberGenerator generator) {
         for (Car car : cars) {
-            car.goOrStop(random.generate());
+            car.goOrStop(generator);
         }
     }
 
-    public List<CarStatus> getCarsStatus() {
-        return cars.stream()
-                .map(CarStatus::new)
-                .collect(Collectors.toUnmodifiableList());
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     public List<String> getWinners() {
         return new Winners(cars).getNames();
     }
 
-    private void validateDuplicatedName(String[] carNames) {
-        long distinctSize = Arrays.stream(carNames)
+    private void validateDuplicatedName(List<String> carNames) {
+        long distinctSize = carNames.stream()
                 .distinct().count();
-        if (distinctSize != carNames.length) {
+        if (distinctSize != carNames.size()) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATED_NAME);
         }
-    }
-
-    private String reduceBlank(String string) {
-        return string.replaceAll(" ", "");
     }
 }
