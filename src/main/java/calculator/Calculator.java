@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 
 public class Calculator {
 
-	public static final String CUSTOM_REGEX_PATTERN = "//(.*)\n(.*)";
-	public static final Pattern CUSTOM_PATTERN = Pattern.compile(CUSTOM_REGEX_PATTERN);
-	private String DEFAULT_DELIMITER = ",|:";
+	private static final String CUSTOM_REGEX_PATTERN = "//(.*)\n(.*)";
+	private static final Pattern CUSTOM_PATTERN = Pattern.compile(CUSTOM_REGEX_PATTERN);
+	private static final String DEFAULT_DELIMITER = ",|:";
 
 	public int splitAndSumNumber(String userInputText) {
 		if (isEmptyOrNull(userInputText)) {

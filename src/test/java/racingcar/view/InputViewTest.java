@@ -7,9 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import racingcar.domain.Name;
-import racingcar.domain.Names;
-
 public class InputViewTest {
 
 	private final CustomReader customReader;
@@ -29,13 +26,13 @@ public class InputViewTest {
 			"hanul"
 		);
 
-		Names carNames = inputView.requestCarNames();
+		String[] carNames = inputView.requestCarNames();
 
-		assertThat(carNames.getSize()).isEqualTo(expected.size());
+		assertThat(carNames.length).isEqualTo(expected.size());
 
 		int index = 0;
-		for (Name name : carNames.getNames()) {
-			assertThat(name.getName()).isEqualTo(expected.get(index++));
+		for (String name : carNames) {
+			assertThat(name).isEqualTo(expected.get(index++));
 		}
 	}
 
@@ -48,7 +45,7 @@ public class InputViewTest {
 			"hanul"
 		);
 
-		String[] carNames = inputView.splitIncludeBlank();
+		String[] carNames = inputView.requestCarNames();
 
 		assertThat(carNames.length).isEqualTo(expected.size() + 1);
 	}

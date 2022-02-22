@@ -2,14 +2,23 @@ package racingcar.view;
 
 import java.util.List;
 
+import racingcar.controller.CarDto;
+
 public class OutputView {
+
+	private static final String PROGRESS_BAR = "-";
+	private static final String COLON = " : ";
 
 	public void printMessage(String message) {
 		System.out.println(message);
 	}
 
-	public void printCarStatuses(List<String> carStatuses) {
-		carStatuses.forEach(this::printMessage);
+	public void printCarStatus(CarDto carDto) {
+		printMessage(buildCarStatus(carDto));
+	}
+
+	private String buildCarStatus(CarDto carDto) {
+		return carDto.getName() + COLON + PROGRESS_BAR.repeat(carDto.getLocation());
 	}
 
 	public void printMessageOfRequestCarNames() {

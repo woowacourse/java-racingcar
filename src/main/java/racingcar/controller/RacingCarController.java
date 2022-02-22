@@ -1,5 +1,8 @@
 package racingcar.controller;
 
+import java.util.List;
+
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
 import racingcar.view.InputView;
@@ -26,7 +29,7 @@ public class RacingCarController {
 
 	private Cars initCars() {
 		outputView.printMessageOfRequestCarNames();
-		return new Cars(inputView.requestCarNames());
+		return Cars.from(inputView.requestCarNames());
 	}
 
 	private Round initRound() {
@@ -39,9 +42,15 @@ public class RacingCarController {
 		outputView.printMessageTitleOfStatus();
 		while (!round.isFinish()) {
 			cars.play(numberPicker);
-			outputView.printCarStatuses(cars.getStatuses());
+			printCarStatuses(cars.getCars());
 			round.decreaseCount();
 			outputView.printEmptyLine();
+		}
+	}
+
+	private void printCarStatuses(List<Car> cars) {
+		for (Car car : cars) {
+			outputView.printCarStatus(CarDto.from(car));
 		}
 	}
 

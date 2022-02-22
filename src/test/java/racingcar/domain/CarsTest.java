@@ -10,19 +10,14 @@ import org.junit.jupiter.api.Test;
 
 public class CarsTest {
 
-	private final int numberOfGoForward = 5;
+	private final int numberOfGoForward = 4;
 	private final int numberOfStop = 3;
 	private Cars cars;
 
 	@BeforeEach
 	void setUpCars() {
-		cars = new Cars(
-			new Names(Arrays.asList(
-				new Name("slow"),
-				new Name("pobi"),
-				new Name("if")
-			))
-		);
+		String[] names = {"slow", "pobi", "if"};
+		cars = Cars.from(names);
 	}
 
 	@Test
