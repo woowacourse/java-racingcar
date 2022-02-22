@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 class Car {
 	private static final int MAX_CAR_NAME_LENGTH = 5;
 	private static final int INITIAL_POSITION = 0;
@@ -30,14 +32,6 @@ class Car {
 		return this.position == position;
 	}
 
-	String getName() {
-		return this.name;
-	}
-
-	int getPosition() {
-		return this.position;
-	}
-
 	private void validateName(String name) {
 		validateEmptyName(name);
 		validateOverNameLength(name);
@@ -45,13 +39,36 @@ class Car {
 
 	private void validateOverNameLength(String name) {
 		if (name.length() > MAX_CAR_NAME_LENGTH) {
-			throw new RuntimeException(ERROR_OVER_CAR_NAME_LENGTH_MESSAGE);
+			throw new IllegalArgumentException(ERROR_OVER_CAR_NAME_LENGTH_MESSAGE);
 		}
 	}
 
 	private void validateEmptyName(String name) {
 		if (name.isEmpty()) {
-			throw new RuntimeException(ERROR_EMPTY_CAR_NAME_MESSAGE);
+			throw new IllegalArgumentException(ERROR_EMPTY_CAR_NAME_MESSAGE);
 		}
+	}
+
+	String getName() {
+		return name;
+	}
+
+	int getPosition() {
+		return position;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Car car = (Car)o;
+		return position == car.position && Objects.equals(name, car.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, position);
 	}
 }

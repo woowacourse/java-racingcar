@@ -16,7 +16,7 @@ public class CarDto {
 	}
 
 	public int getPosition() {
-		return this.position;
+		return position;
 	}
 
 	@Override

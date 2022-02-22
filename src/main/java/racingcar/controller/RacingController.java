@@ -1,37 +1,48 @@
 package racingcar.controller;
 
-import java.util.stream.IntStream;
+import static racingcar.model.DtoMapper.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import racingcar.model.CarDto;
+import racingcar.model.Racing;
 import racingcar.view.InputView;
 import racingcar.view.ResultView;
 
 public class RacingController {
-	private final CarController carController;
+	public static void runGame() {
+		RacingController controller = new RacingController();
+		controller.createCarsByUserInput();
 
-	public RacingController() {
-		this.carController = new CarController();
+		int iteration = InputView.getIterationNumber();
+		List<GameResult> gameResults = controller.runForIteration(iteration);
+		ResultView.printGameResult(gameResults);
+
+		ResultView.printWinners(controller.getWinners());
 	}
 
-	public void createCarsByUserInput() {
+	private void createCarsByUserInput() {
 		try {
-			carController.createCars(InputView.getCarNames());
+			Racing.createCars(splitCarNames(InputView.getCarNames()));
 		} catch (RuntimeException e) {
 			System.out.println(e.getMessage());
 			createCarsByUserInput();
 		}
 	}
 
-	public void run() {
-		int iteration = InputView.getIterationNumber();
-		ResultView.printBeforeGameResult();
-		runInIteration(iteration);
-		ResultView.printWinners(carController.getWinners());
+	private List<String> splitCarNames(String input) {
+		return Arrays.stream(input.split(","))
+			.map(String::trim)
+			.collect(Collectors.toList());
 	}
 
-	private void runInIteration(int iteration) {
-		IntStream.range(0, iteration).forEach(i -> {
-			carController.run();
-			ResultView.printGameResult(carController.getCars());
-		});
+	private List<GameResult> runForIteration(int iteration) {
+		return ToGameResults(Racing.runForIteration(iteration));
+	}
+
+	private List<CarDto> getWinners() {
+		return ToCarDtos(Racing.getWinners());
 	}
 }

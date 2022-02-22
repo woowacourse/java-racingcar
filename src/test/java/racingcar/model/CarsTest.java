@@ -2,8 +2,8 @@ package racingcar.model;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,14 +11,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
-	Cars cars;
-	List<Integer> moveConditionNumbers;
+	private Cars cars;
+	private List<Integer> moveConditionNumbers;
 
 	@BeforeEach
 	void setUp() {
-		moveConditionNumbers = new ArrayList<>(Arrays.asList(3, 4));
+		moveConditionNumbers = Arrays.asList(3, 4);
 		cars = new Cars();
-		cars.createCars(new String[] {"범고래", "소주캉"});
+		cars.createCars(Arrays.asList("범고래", "소주캉"));
 	}
 
 	@Test
@@ -30,10 +30,28 @@ class CarsTest {
 	@Test
 	@DisplayName("자동차 이름이 중복이면 예외 발생")
 	void checkDuplicationCarNamesTest() {
-		String[] CarNames = {"범고래", "범고래"};
-		assertThatThrownBy(() -> cars.createCars(CarNames))
-			.isInstanceOf(RuntimeException.class)
+		List<String> carNames = Arrays.asList("범고래", "범고래");
+		assertThatThrownBy(() -> cars.createCars(carNames))
+			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("중복");
+	}
+
+	@Test
+	@DisplayName("자동차 이름이 비었을 때 예외 발생")
+	void checkEmptyCarNamesTest() {
+		List<String> carNames = List.of();
+		assertThatThrownBy(() -> cars.createCars(carNames))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("빈 자동차");
+	}
+
+	@Test
+	@DisplayName("전달되는 숫자 리스트 크기가 현재 존재하는 자동차 수보다 작을 경우 예외 발생")
+	void validRandomsSizeTest() {
+		List<Integer> integers = Collections.singletonList(1);
+		assertThatThrownBy(() -> cars.moveAll(integers))
+			.isInstanceOf(IllegalStateException.class)
+			.hasMessageContaining("리스트 크기가 작습니다");
 	}
 
 	@Test
@@ -43,10 +61,10 @@ class CarsTest {
 		Car carMove = new Car("소주캉");
 
 		carMove.move(4);
-		cars.move(moveConditionNumbers);
-		List<CarDto> expected = Arrays.asList(new CarDto(carStop), new CarDto(carMove));
+		List<Car> actual = this.cars.moveAll(moveConditionNumbers);
+		List<Car> expected = Arrays.asList(carStop, carMove);
 
-		assertThat(cars.getCars().equals(expected)).isTrue();
+		assertThat(actual).isEqualTo(expected);
 	}
 
 	@Test
@@ -54,11 +72,11 @@ class CarsTest {
 	void winnerTest() {
 		Car carMove = new Car("소주캉");
 		carMove.move(4);
-		List<CarDto> expected = Arrays.asList(new CarDto(carMove));
+		List<Car> expected = Collections.singletonList(carMove);
 
-		cars.move(moveConditionNumbers);
-		List<CarDto> winners = cars.getWinners();
+		cars.moveAll(moveConditionNumbers);
+		List<Car> winners = cars.getWinners();
 
-		assertThat(winners.equals(expected)).isTrue();
+		assertThat(winners).isEqualTo(expected);
 	}
 }

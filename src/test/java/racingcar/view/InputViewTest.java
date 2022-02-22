@@ -10,11 +10,11 @@ class InputViewTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"0", "-1"})
-	@DisplayName("시도 횟수 양수 입력시 예외 발생")
+	@DisplayName("시도 횟수 양수 아닌 입력시 예외 발생")
 	void validatePositiveInputTest(String input) {
 		Assertions.assertThatThrownBy(() -> {
 				InputView.validateIterationNumber(input);
-			}).isInstanceOf(RuntimeException.class)
+			}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("양수");
 	}
 
@@ -23,7 +23,7 @@ class InputViewTest {
 	void validateEmptyInputTest() {
 		Assertions.assertThatThrownBy(() -> {
 				InputView.validateIterationNumber("");
-			}).isInstanceOf(RuntimeException.class)
+			}).isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("빈 값");
 	}
 }
