@@ -1,35 +1,44 @@
 package racingcar.controller;
 
-import racingcar.domain.Cars;
-import racingcar.service.DetermineMovement;
-import racingcar.service.MoveOrStop;
+import racingcar.domain.Car;
+import racingcar.domain.Game;
+import racingcar.dto.CarDto;
+import racingcar.service.DetermineMovementByRandomNumber;
+import racingcar.view.InputView.ConsoleInputView;
 import racingcar.view.InputView.InputView;
 import racingcar.view.OutputView.ConsoleOutputView;
 import racingcar.view.OutputView.OutputView;
 
+import java.util.List;
+
 public class RacingController {
     private final OutputView outputView;
-    private final MoveOrStop moveOrStop;
+    private final InputView inputView;
 
-    private final Cars cars;
-    private int trialCount;
-
-    public RacingController(InputView inputView, ConsoleOutputView outputView, DetermineMovement moveOrStop) {
-        cars = new Cars(inputView.inputCarNames());
-        trialCount = inputView.inputTrialCount();
+    public RacingController(ConsoleOutputView outputView, ConsoleInputView inputView) {
         this.outputView = outputView;
-        this.moveOrStop = moveOrStop;
+        this.inputView = inputView;
+    }
+
+    public Game gameSet(){
+        List<String> inputCarNames = inputView.inputCarNames();
+        int inputTrialCount = inputView.inputTrialCount();
+        return new Game(inputCarNames,inputTrialCount,new DetermineMovementByRandomNumber());
     }
 
     public void run() {
+        Game game = gameSet();
         outputView.printResultMessage();
 
-        while(trialCount > 0) {
-            cars.move(moveOrStop);
-            outputView.printRoundStatus(cars.getCarInfos());
-            trialCount--;
+        while (game.isContinue()) {
+            game.playOneSet();
+            outputView.printRoundStatus(convertToDto(game.now()));
         }
 
-        outputView.printWinners(cars.getFarthestCars());
+        outputView.printWinners(convertToDto(game.winnerCars()));
+    }
+
+    private List<CarDto> convertToDto(List<Car> cars) {
+        return CarDto.toDtoList(cars);
     }
 }

@@ -2,15 +2,13 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car> {
-    private static final int INITIAL_DISTANCE = 0;
-
+public class Car {
     private final CarName carName;
-    private int distance;
+    private final Distance distance;
 
     public Car(String carName) {
         this.carName = new CarName(carName);
-        distance = INITIAL_DISTANCE;
+        this.distance = new Distance();
     }
 
     public String getCarName() {
@@ -18,22 +16,27 @@ public class Car implements Comparable<Car> {
     }
 
     public int getDistance() {
-        return distance;
+        return distance.getDistance();
     }
 
     public void move(boolean moveOrStop) {
         if (moveOrStop) {
-            distance++;
+            distance.plus();
         }
     }
 
-    public boolean isSameDistance(Car otherCar) {
-        return this.distance == otherCar.distance;
+    public int orderByDistanceAsc(Car otherCar) {
+        int thisCarIsFarther = 1;
+        int otherCarIsFartherOrSame = -1;
+
+        if (this.distance.isBigger(otherCar.distance)) {
+            return thisCarIsFarther;
+        }
+        return otherCarIsFartherOrSame;
     }
 
-    @Override
-    public int compareTo(Car otherCar) {
-        return this.distance - otherCar.distance;
+    public boolean isSameWith(int distance) {
+        return this.distance.isSameWith(distance);
     }
 
     @Override

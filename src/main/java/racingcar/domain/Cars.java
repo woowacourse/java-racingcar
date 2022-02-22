@@ -1,12 +1,14 @@
 package racingcar.domain;
 
-import racingcar.dto.CarDto;
 import racingcar.service.MoveOrStop;
 import racingcar.utils.ExceptionMessage;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final int INITIAL_DISTANCE = 0;
+
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
@@ -14,6 +16,10 @@ public class Cars {
         this.cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     private void validateDuplication(List<String> carNames) {
@@ -26,20 +32,14 @@ public class Cars {
         cars.forEach(car -> car.move(moveOrStop.determine()));
     }
 
-    public List<CarDto> getCarInfos() {
-        return cars.stream()
-                .map(CarDto::toDto)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    public List<CarDto> getFarthestCars() {
-        Car maxDistanceCar = cars.stream()
-                .max(Car::compareTo)
+    public List<Car> getFarthestCars() {
+        int maxDistance = cars.stream()
+                .max(Car::orderByDistanceAsc)
+                .map(Car::getDistance)
                 .orElseThrow(IllegalArgumentException::new);
 
-        List<CarDto> farthestCars = cars.stream()
-                .filter(maxDistanceCar::isSameDistance)
-                .map(CarDto::toDto)
+        List<Car> farthestCars = cars.stream()
+                .filter(car -> car.isSameWith(maxDistance))
                 .collect(Collectors.toUnmodifiableList());
 
         return farthestCars;
