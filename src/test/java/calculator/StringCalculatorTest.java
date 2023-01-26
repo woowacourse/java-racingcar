@@ -16,4 +16,10 @@ class StringCalculatorTest {
             () -> assertEquals(emptyInputResult, 0)
         );
     }
+
+    @Test
+    public void splitAndSum_숫자하나() throws Exception {
+        int result = StringCalculator.splitAndSum("1");
+        assertEquals(result, 1);
+    }
 }
