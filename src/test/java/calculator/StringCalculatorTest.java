@@ -34,4 +34,10 @@ class StringCalculatorTest {
         int result = StringCalculator.splitAndSum("1,2:3");
         assertEquals(result, 6);
     }
+
+    @Test
+    public void splitAndSum_custom_구분자() throws Exception {
+        int result = StringCalculator.splitAndSum("//;\n1;2;3");
+        assertEquals(result, 6);
+    }
 }
