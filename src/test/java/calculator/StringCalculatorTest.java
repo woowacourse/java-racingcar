@@ -47,4 +47,14 @@ class StringCalculatorTest {
         assertThatThrownBy(() -> StringCalculator.splitAndSum("-1,2,3"))
             .isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    public void splitAndSum_숫자_이외의_값_전달() throws Exception {
+        assertAll(
+            () -> assertThatThrownBy(() -> StringCalculator.splitAndSum("1,@,3"))
+                .isInstanceOf(RuntimeException.class),
+            () -> assertThatThrownBy(() -> StringCalculator.splitAndSum("1,A,3"))
+                .isInstanceOf(RuntimeException.class)
+        );
+    }
 }
