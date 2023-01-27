@@ -37,11 +37,9 @@ public class Input {
             throw new IllegalArgumentException("[ERROR] 아무 이름도 입력하지 않으셨습니다. 다시 입력해주세요.");
         }
 
-        List<String> carNames = Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(","))
             .map(String::trim)
             .collect(Collectors.toList());
-
-        return carNames;
     }
 
     private int inputGameCountString() {
