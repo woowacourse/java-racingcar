@@ -44,7 +44,7 @@ class InputRacingCarNameTest {
     @Test
     void 자동차_이름_여러개_입력_테스트() {
         //given
-        String inputString = "jinho, dongho, skull";
+        String inputString = "jinho, dongh, skull";
         inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
 
@@ -106,6 +106,36 @@ class InputRacingCarNameTest {
         try {
             // when
             String inputString = "jinhojinhoyayaya";
+            inputStream = new ByteArrayInputStream(inputString.getBytes());
+            System.setIn(inputStream);
+
+            input.getCarNamesList();
+
+            failBecauseExceptionWasNotThrown(IllegalArgumentException.class);
+        } catch (IllegalArgumentException e) {
+            // then
+            String actualOutput = output.toString();
+            assertThat(actualOutput).isEqualTo(expectedOutput);
+        } finally {
+            resetOutputStream();
+        }
+    }
+
+    @Test
+    void 자동차_이름에_공란을_섞은_경우_에러_발생() {
+        //given
+        setOutPrintStream();
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        System.out.println("[ERROR] 자동차 이름에 공란이 있습니다. 다시 입력해주세요.");
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        String expectedOutput = output.toString();
+        resetOutputStream();
+
+        Input input = new Input();
+
+        try {
+            // when
+            String inputString = "jinho, , dongh, skull";
             inputStream = new ByteArrayInputStream(inputString.getBytes());
             System.setIn(inputStream);
 
