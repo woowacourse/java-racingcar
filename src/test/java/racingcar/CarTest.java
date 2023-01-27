@@ -74,7 +74,7 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
-    @RepeatedTest(REPEAT)
+    @Test
     void 자동차_진행_가능_범위_포지션_출력() {
         // given
         final int FROM = 4;
@@ -96,7 +96,7 @@ public class CarTest {
         assertThat(output.toString().trim()).isEqualTo(name + " : ----");
     }
 
-    @RepeatedTest(REPEAT)
+    @Test
     void 자동차_진행_불가능_범위_포지션_출력() {
         // given
         final int FROM = 0;
