@@ -1,7 +1,6 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 import java.io.ByteArrayInputStream;
