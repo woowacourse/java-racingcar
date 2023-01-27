@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class Racing {
@@ -14,9 +13,11 @@ public class Racing {
     }
 
     public void race() {
+        System.out.println("실행 결과");
         while (isLeftRacing()) {
             gameCount--;
             raceAllCar();
+            printCurrentRaceResult();
         }
     }
 
@@ -26,5 +27,10 @@ public class Racing {
 
     private void raceAllCar() {
         cars.forEach(Car::race);
+    }
+
+    private void printCurrentRaceResult() {
+        cars.forEach(Car::printCurrentPosition);
+        System.out.println();
     }
 }
