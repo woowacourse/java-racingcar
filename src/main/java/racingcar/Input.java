@@ -13,7 +13,9 @@ public class Input {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        return List.of(input);
+        return Arrays.stream(input.split(","))
+            .map(String::trim)
+            .collect(Collectors.toList());
     }
 
     public int getRacingGameCount() {
