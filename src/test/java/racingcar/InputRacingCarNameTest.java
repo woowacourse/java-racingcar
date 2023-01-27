@@ -91,6 +91,36 @@ class InputRacingCarNameTest {
         }
     }
 
+    @Test
+    void 자동차_이름_5글자_제한_초과시_에러_발생() {
+        //given
+        setOutPrintStream();
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        System.out.println("[ERROR] 자동차의 이름은 최대 5자입니다. 다시 입력해주세요");
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        String expectedOutput = output.toString();
+        resetOutputStream();
+
+        Input input = new Input();
+
+        try {
+            // when
+            String inputString = "jinhojinhoyayaya";
+            inputStream = new ByteArrayInputStream(inputString.getBytes());
+            System.setIn(inputStream);
+
+            input.getCarNamesList();
+
+            failBecauseExceptionWasNotThrown(IllegalArgumentException.class);
+        } catch (IllegalArgumentException e) {
+            // then
+            String actualOutput = output.toString();
+            assertThat(actualOutput).isEqualTo(expectedOutput);
+        } finally {
+            resetOutputStream();
+        }
+    }
+
     void setOutPrintStream() {
         System.setOut(new PrintStream(output));
     }
