@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.RepeatedTest;
 
 public class RangedRandomNumberPickerTest {
+
     final int FROM = 0;
     final int TO = 9;
 

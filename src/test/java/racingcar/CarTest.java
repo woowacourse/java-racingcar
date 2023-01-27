@@ -10,6 +10,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
+
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final int REPEAT = 100;
 
