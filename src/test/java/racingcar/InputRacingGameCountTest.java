@@ -1,6 +1,8 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.failBecauseExceptionWasNotThrown;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -56,6 +58,7 @@ class InputRacingGameCountTest {
             inputStream = new ByteArrayInputStream(inputString.getBytes());
             System.setIn(inputStream);
             input.getRacingGameCount();
+            failBecauseExceptionWasNotThrown(NoSuchElementException.class);
         } catch (NoSuchElementException e) {
             // then
             String actualOutput = output.toString();
@@ -83,6 +86,7 @@ class InputRacingGameCountTest {
             inputStream = new ByteArrayInputStream(inputString.getBytes());
             System.setIn(inputStream);
             input.getRacingGameCount();
+            failBecauseExceptionWasNotThrown(NoSuchElementException.class);
         } catch (NoSuchElementException e) {
             // then
             String actualOutput = output.toString();
