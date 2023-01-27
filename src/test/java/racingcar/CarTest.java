@@ -2,10 +2,28 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private final int REPEAT = 100;
+
+    @BeforeEach
+    void setOutPrintStream() {
+        System.setOut(new PrintStream(output));
+    }
+
+    @AfterEach
+    void outPutStreamReset() {
+        System.setOut(System.out);
+        output.reset();
+    }
 
     @Test
     void 자동차_이름을_저장할_수_있다() {
@@ -20,7 +38,7 @@ public class CarTest {
         assertThat(result).isEqualTo(carName);
     }
 
-    @RepeatedTest(100)
+    @RepeatedTest(REPEAT)
     void 자동차는_진행_가능_범위에서_진행할_수_있다() {
         // given
         final int FROM = 4;
@@ -38,7 +56,7 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(3);
     }
 
-    @RepeatedTest(100)
+    @RepeatedTest(REPEAT)
     void 자동차는_진행_불가능_범위에서_진행할_수_없다() {
         // given
         final int FROM = 0;
@@ -54,5 +72,49 @@ public class CarTest {
 
         // then
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @RepeatedTest(REPEAT)
+    void 자동차_진행_가능_범위_포지션_출력() {
+        // given
+        final int FROM = 4;
+        final int TO = 9;
+
+        String name = "jinho";
+        RangedRandomNumberPicker randomNumberPicker = new RangedRandomNumberPicker(FROM, TO);
+        Car car = new RandomMovingCar(name, randomNumberPicker);
+
+        // when
+        car.race();
+        car.race();
+        car.race();
+        car.race();
+
+        car.printPosition();
+
+        // then
+        assertThat(output.toString().trim()).isEqualTo(name + " : ----");
+    }
+
+    @RepeatedTest(REPEAT)
+    void 자동차_진행_불가능_범위_포지션_출력() {
+        // given
+        final int FROM = 0;
+        final int TO = 3;
+
+        String name = "jinho";
+        RangedRandomNumberPicker randomNumberPicker = new RangedRandomNumberPicker(FROM, TO);
+        Car car = new RandomMovingCar(name, randomNumberPicker);
+
+        // when
+        car.race();
+        car.race();
+        car.race();
+        car.race();
+
+        car.printPosition();
+
+        // then
+        assertThat(output.toString().trim()).isEqualTo(name + " :");
     }
 }
