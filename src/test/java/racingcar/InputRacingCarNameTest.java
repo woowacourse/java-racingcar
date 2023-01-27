@@ -56,7 +56,7 @@ class InputRacingCarNameTest {
         // then
         assertAll(
             () -> assertThat(carNamesList.get(0)).isEqualTo("jinho"),
-            () -> assertThat(carNamesList.get(1)).isEqualTo("dongho"),
+            () -> assertThat(carNamesList.get(1)).isEqualTo("dongh"),
             () -> assertThat(carNamesList.get(2)).isEqualTo("skull")
         );
     }
@@ -96,7 +96,7 @@ class InputRacingCarNameTest {
         //given
         setOutPrintStream();
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        System.out.println("[ERROR] 자동차의 이름은 최대 5자입니다. 다시 입력해주세요");
+        System.out.println("[ERROR] 자동차의 이름은 최대 5자입니다. 다시 입력해주세요.");
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String expectedOutput = output.toString();
         resetOutputStream();

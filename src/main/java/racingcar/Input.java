@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class Input {
 
+    private static final int CAR_NAME_LENGTH_LIMIT = 5;
+
     public List<String> getCarNamesList() {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
 
@@ -39,6 +41,7 @@ public class Input {
 
         return Arrays.stream(input.split(","))
             .map(Input::trimStringAndCheckEmptyName)
+            .peek(Input::checkCarNameLengthIsLessThanOrEqualToLimit)
             .collect(Collectors.toList());
     }
 
@@ -50,6 +53,12 @@ public class Input {
         }
 
         return trimString;
+    }
+
+    private static void checkCarNameLengthIsLessThanOrEqualToLimit(String string) {
+        if (string.length() > CAR_NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException("[ERROR] 자동차의 이름은 최대 5자입니다. 다시 입력해주세요.");
+        }
     }
 
     private int inputGameCountString() {
