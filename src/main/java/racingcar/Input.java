@@ -10,12 +10,12 @@ public class Input {
     public List<String> getCarNamesList() {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
 
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-
-        return Arrays.stream(input.split(","))
-            .map(String::trim)
-            .collect(Collectors.toList());
+        try {
+            return inputCarNamesString();
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return getCarNamesList();
+        }
     }
 
     public int getRacingGameCount() {
@@ -27,6 +27,21 @@ public class Input {
             System.out.println(error.getMessage());
             return getRacingGameCount();
         }
+    }
+
+    private List<String> inputCarNamesString() {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 아무 이름도 입력하지 않으셨습니다. 다시 입력해주세요.");
+        }
+
+        List<String> carNames = Arrays.stream(input.split(","))
+            .map(String::trim)
+            .collect(Collectors.toList());
+
+        return carNames;
     }
 
     private int inputGameCountString() {

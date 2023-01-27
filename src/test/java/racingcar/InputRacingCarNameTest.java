@@ -66,7 +66,7 @@ class InputRacingCarNameTest {
         //given
         setOutPrintStream();
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        System.out.println("[ERROR] 아무 이름도 입력하지 않으셨습니다. 다시 입력해주세요");
+        System.out.println("[ERROR] 아무 이름도 입력하지 않으셨습니다. 다시 입력해주세요.");
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String expectedOutput = output.toString();
         resetOutputStream();
@@ -80,6 +80,7 @@ class InputRacingCarNameTest {
             System.setIn(inputStream);
 
             input.getCarNamesList();
+
             failBecauseExceptionWasNotThrown(NoSuchElementException.class);
         } catch (NoSuchElementException e) {
             // then
