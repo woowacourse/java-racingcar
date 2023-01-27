@@ -20,7 +20,7 @@ public class RacingTest {
     }
 
     @AfterEach
-    void outPutStreamReset() {
+    void resetOutputStream() {
         System.setOut(System.out);
         output.reset();
     }

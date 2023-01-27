@@ -20,7 +20,7 @@ public class CarTest {
     }
 
     @AfterEach
-    void outPutStreamReset() {
+    void resetOutputStream() {
         System.setOut(System.out);
         output.reset();
     }
