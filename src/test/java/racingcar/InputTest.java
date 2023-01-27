@@ -41,7 +41,7 @@ class InputTest {
     }
 
     @Test
-    void 게임_횟수_예외_발생시_입력_다시_받기() {
+    void 게임_횟수_공란_입력시_입력_다시_받기() {
         //given
         setOutPrintStream();
         System.out.println("시도할 횟수는 몇회인가요?");
@@ -55,6 +55,33 @@ class InputTest {
         try {
             // when
             String inputString = "\n";
+            inputStream = new ByteArrayInputStream(inputString.getBytes());
+            System.setIn(inputStream);
+            input.getRacingGameCount();
+        } catch (NoSuchElementException e) {
+            // then
+            String actualOutput = output.toString();
+            assertThat(actualOutput).isEqualTo(expectedOutput);
+        } finally {
+            resetOutputStream();
+        }
+    }
+
+    @Test
+    void 게임_횟수_입력시_숫자_아닌_문자_포함시_입력_다시_받기() {
+        //given
+        setOutPrintStream();
+        System.out.println("시도할 횟수는 몇회인가요?");
+        System.out.println("[ERROR] 숫자가 아닌 문자가 포함되었습니다. 다시 입력하세요.");
+        System.out.println("시도할 횟수는 몇회인가요?");
+        String expectedOutput = output.toString();
+        resetOutputStream();
+
+        Input input = new Input();
+
+        try {
+            // when
+            String inputString = "test";
             inputStream = new ByteArrayInputStream(inputString.getBytes());
             System.setIn(inputStream);
             input.getRacingGameCount();
