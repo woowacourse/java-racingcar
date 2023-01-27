@@ -1,10 +1,11 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import calculator.StringCalculator;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 
 class InputTest {
@@ -14,18 +15,32 @@ class InputTest {
     @Test
     void 게임_횟수_입력_테스트() {
         //given
+        Input input = new Input();
+
+        // whne
         String inputString = "10";
         inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
 
-        int expectedInput = 10;
-
-        Input input = new Input();
-
-        // when
         int actualInput = input.getRacingGameCount();
+        int expectedInput = 10;
 
         // then
         assertThat(expectedInput).isEqualTo(actualInput);
+    }
+
+    @Test
+    void 게임_횟수_입력에_공란을_입력하면_에러_반환_테스트() {
+        //given
+        Input input = new Input();
+
+        // when
+        String inputString = "";
+        inputStream = new ByteArrayInputStream(inputString.getBytes());
+        System.setIn(inputStream);
+
+        // then
+        assertThatThrownBy(input::getRacingGameCount)
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
