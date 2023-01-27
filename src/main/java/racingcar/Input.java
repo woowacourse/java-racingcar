@@ -1,8 +1,20 @@
 package racingcar;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Input {
+
+    public List<String> getCarNamesList() {
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        return List.of(input);
+    }
 
     public int getRacingGameCount() {
         System.out.println("시도할 횟수는 몇회인가요?");
