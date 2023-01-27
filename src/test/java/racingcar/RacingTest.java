@@ -64,8 +64,6 @@ public class RacingTest {
         System.out.println("jinho2 : ");
         System.out.println();
 
-        StringBuilder str = new StringBuilder("최종 우승자 : jinho1, ");
-        str.setLength(str.length() - 2);
-        System.out.println(str);
+        System.out.println("최종 우승자 : jinho1");
     }
 }
