@@ -6,7 +6,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
@@ -90,7 +89,7 @@ public class CarTest {
         car.race();
         car.race();
 
-        car.printPosition();
+        car.printCurrentPosition();
 
         // then
         assertThat(output.toString().trim()).isEqualTo(name + " : ----");
@@ -112,7 +111,7 @@ public class CarTest {
         car.race();
         car.race();
 
-        car.printPosition();
+        car.printCurrentPosition();
 
         // then
         assertThat(output.toString().trim()).isEqualTo(name + " :");
