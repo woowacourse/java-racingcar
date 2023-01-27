@@ -1,8 +1,6 @@
 package racingcar;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,7 +11,7 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-class InputTest {
+class InputRacingGameCountTest {
 
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private InputStream inputStream;
