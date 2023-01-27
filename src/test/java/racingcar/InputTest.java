@@ -45,7 +45,7 @@ class InputTest {
         //given
         setOutPrintStream();
         System.out.println("시도할 횟수는 몇회인가요?");
-        System.out.println("[ERROR] 다시 입력하세요.");
+        System.out.println("[ERROR] 공란이 있습니다. 다시 입력하세요.");
         System.out.println("시도할 횟수는 몇회인가요?");
         String expectedOutput = output.toString();
         resetOutputStream();
