@@ -111,8 +111,8 @@ class InputRacingCarNameTest {
 
             input.getCarNamesList();
 
-            failBecauseExceptionWasNotThrown(IllegalArgumentException.class);
-        } catch (IllegalArgumentException e) {
+            failBecauseExceptionWasNotThrown(NoSuchElementException.class);
+        } catch (NoSuchElementException e) {
             // then
             String actualOutput = output.toString();
             assertThat(actualOutput).isEqualTo(expectedOutput);
@@ -141,8 +141,8 @@ class InputRacingCarNameTest {
 
             input.getCarNamesList();
 
-            failBecauseExceptionWasNotThrown(IllegalArgumentException.class);
-        } catch (IllegalArgumentException e) {
+            failBecauseExceptionWasNotThrown(NoSuchElementException.class);
+        } catch (NoSuchElementException e) {
             // then
             String actualOutput = output.toString();
             assertThat(actualOutput).isEqualTo(expectedOutput);

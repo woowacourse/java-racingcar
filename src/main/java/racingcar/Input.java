@@ -38,8 +38,18 @@ public class Input {
         }
 
         return Arrays.stream(input.split(","))
-            .map(String::trim)
+            .map(Input::trimStringAndCheckEmptyName)
             .collect(Collectors.toList());
+    }
+
+    private static String trimStringAndCheckEmptyName(String string) {
+        String trimString = string.trim();
+
+        if (trimString.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 자동차 이름에 공란이 있습니다. 다시 입력해주세요.");
+        }
+
+        return trimString;
     }
 
     private int inputGameCountString() {
