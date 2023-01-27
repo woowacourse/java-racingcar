@@ -11,7 +11,7 @@ public class CarTest {
     void 자동차_이름을_저장할_수_있다() {
         // given
         String carName = "Jinho";
-        Car car = new RandomMovingCar(carName);
+        Car car = new RandomMovingCar(carName, new RangedRandomNumberPicker(0, 9));
 
         // when
         String result = car.getName();
@@ -35,6 +35,6 @@ public class CarTest {
         car.race();
 
         // then
-        assertThat(car.getPosition()).isEquals(3);
+        assertThat(car.getPosition()).isEqualTo(3);
     }
 }

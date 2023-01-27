@@ -24,6 +24,11 @@ public class RandomMovingCar implements Car {
     }
 
     @Override
+    public int getPosition() {
+        return position;
+    }
+
+    @Override
     public String getName() {
         return name;
     }
