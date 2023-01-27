@@ -1,7 +1,10 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
+import calculator.StringCalculator;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,5 +35,25 @@ class InputRacingCarNameTest {
 
         // then
         assertThat(carNamesList.get(0)).isEqualTo(inputString);
+    }
+
+    @Test
+    void 자동차_이름_여러개_입력_테스트() {
+        //given
+        Input input = new Input();
+
+        // when
+        String inputString = "jinho, dongho, skull";
+        inputStream = new ByteArrayInputStream(inputString.getBytes());
+        System.setIn(inputStream);
+
+        List<String> carNamesList = input.getCarNamesList();
+
+        // then
+        assertAll(
+            () -> assertThat(carNamesList.get(0)).isEqualTo("jinho"),
+            () -> assertThat(carNamesList.get(1)).isEqualTo("dongho"),
+            () -> assertThat(carNamesList.get(2)).isEqualTo("skull")
+        );
     }
 }
