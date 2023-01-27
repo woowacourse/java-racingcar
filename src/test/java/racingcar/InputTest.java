@@ -3,14 +3,20 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import calculator.StringCalculator;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class InputTest {
 
     private InputStream inputStream;
+
+    @AfterEach
+    void resetInputStream() throws IOException {
+        inputStream.reset();
+    }
 
     @Test
     void 게임_횟수_입력_테스트() {
@@ -35,7 +41,7 @@ class InputTest {
         Input input = new Input();
 
         // when
-        String inputString = "";
+        String inputString = "\n";
         inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
 
