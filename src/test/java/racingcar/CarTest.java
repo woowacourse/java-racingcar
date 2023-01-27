@@ -37,4 +37,22 @@ public class CarTest {
         // then
         assertThat(car.getPosition()).isEqualTo(3);
     }
+
+    @RepeatedTest(100)
+    void 자동차는_진행_불가능_범위에서_진행할_수_없다() {
+        // given
+        final int FROM = 0;
+        final int TO = 3;
+
+        RangedRandomNumberPicker randomNumberPicker = new RangedRandomNumberPicker(FROM, TO);
+        Car car = new RandomMovingCar("jinho", randomNumberPicker);
+
+        // when
+        car.race();
+        car.race();
+        car.race();
+
+        // then
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
 }
