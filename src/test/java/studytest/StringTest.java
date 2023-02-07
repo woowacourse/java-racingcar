@@ -20,4 +20,10 @@ public class StringTest {
 
         assertThat(splitResult).containsExactly("1");
     }
+    @Test
+    void 괄호를_포함한_문자열에서_괄호제거() {
+        String input = "(1,2)";
+        String result = input.replaceAll("[()]", "");
+        assertThat(result).isEqualTo("1,2");
+    }
 }
