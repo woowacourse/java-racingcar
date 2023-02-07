@@ -12,4 +12,12 @@ public class StringTest {
         String[] splitResult = input.split(",");
         assertThat(splitResult).contains("1", "2");
     }
+
+    @Test
+    void 숫자_한개_입력시_한개반환(){
+        String input = "1";
+        String[] splitResult = input.split(",");
+
+        assertThat(splitResult).containsExactly("1");
+    }
 }
