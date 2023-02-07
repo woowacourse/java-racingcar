@@ -12,4 +12,12 @@ public class StringTest {
 
         assertThat(result).containsExactly("1", "2");
     }
+
+    @Test
+    void 값이_하나인_문자열_분리() {
+        String input = "1";
+        String result[] = input.split(",");
+
+        assertThat(result).containsExactly("1");
+    }
 }
