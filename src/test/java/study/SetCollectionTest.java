@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.assertj.core.internal.IterableElementComparisonStrategy;
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetCollectionTest {
@@ -41,5 +41,12 @@ public class SetCollectionTest {
     @ValueSource(ints = {1, 2, 3})
     void containsCorrectValues(int value) {
         assertThat(numbers.contains(value)).isTrue();
+    }
+
+    @ParameterizedTest
+    @DisplayName("CsvSource 어노테이션 활용 테스트")
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter=':')
+    void containsRandomValues(int value, boolean expected){
+        assertThat(numbers.contains(value)).isEqualTo(expected);
     }
 }
