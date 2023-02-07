@@ -29,4 +29,22 @@ public class StringTest {
         Assertions.assertThat(afterSplit)
             .containsExactly("1");
     }
+
+    @Test
+    void removeBracket(){
+        //given
+        String beforeRemoveBracket = "(1,2)";
+
+        //when
+        String afterRemoveBracketBySubstring = beforeRemoveBracket.substring(1, 4);
+        String afterRemoveBracketByReplace = beforeRemoveBracket
+                .replace("(", "")
+                .replace(")", "");
+
+        //then
+        Assertions.assertThat(afterRemoveBracketBySubstring)
+                .isEqualTo("1,2");
+        Assertions.assertThat(afterRemoveBracketByReplace)
+                .isEqualTo("1,2");
+    }
 }
