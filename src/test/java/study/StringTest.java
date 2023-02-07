@@ -28,4 +28,12 @@ public class StringTest {
 
         assertThat(result).isEqualTo("1,2");
     }
+
+    @Test
+    void 문자열_범위_안의_문자_가져오기() {
+        String input = "abc";
+        char result = input.charAt(1);
+
+        assertThat(result).isEqualTo('b');
+    }
 }
