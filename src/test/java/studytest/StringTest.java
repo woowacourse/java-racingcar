@@ -2,6 +2,7 @@ package studytest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringTest {
@@ -25,5 +26,14 @@ public class StringTest {
         String input = "(1,2)";
         String result = input.replaceAll("[()]", "");
         assertThat(result).isEqualTo("1,2");
+    }
+
+    @Test
+    @DisplayName("특정위치_문자를_반환_테스트")
+    void 특정위치_문자를_반환(){
+        String input = "abc";
+        Integer index = 1;
+        Character result = input.charAt(index);
+        assertThat(result).isEqualTo('b');
     }
 }
