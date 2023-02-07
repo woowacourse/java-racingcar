@@ -1,4 +1,7 @@
 package study;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +16,7 @@ public class StringTest {
         String[] afterSplit = beforeSplit.split(",");
 
         // then
-        Assertions.assertThat(afterSplit)
+        assertThat(afterSplit)
             .containsExactly("1", "2");
     }
 
@@ -26,7 +29,7 @@ public class StringTest {
         String[] afterSplit = beforeSplit.split(",");
 
         //then
-        Assertions.assertThat(afterSplit)
+        assertThat(afterSplit)
             .containsExactly("1");
     }
 
@@ -42,9 +45,11 @@ public class StringTest {
                 .replace(")", "");
 
         //then
-        Assertions.assertThat(afterRemoveBracketBySubstring)
-                .isEqualTo("1,2");
-        Assertions.assertThat(afterRemoveBracketByReplace)
-                .isEqualTo("1,2");
+        assertAll(
+                ()->assertThat(afterRemoveBracketBySubstring)
+                        .isEqualTo("1,2"),
+                ()->assertThat(afterRemoveBracketByReplace)
+                .isEqualTo("1,2")
+        );
     }
 }
