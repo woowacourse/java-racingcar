@@ -27,5 +27,13 @@ public class StringStudyTest {
 
             assertThat(splitedInput).containsExactly("1");
         }
+
+        @Test
+        void String_특정_문자_제거_테스트() {
+            String input = "(1,2)";
+            String replacedInput = input.replaceAll("[()]", "");
+
+            assertThat(replacedInput).isEqualTo("1,2");
+        }
     }
 }
