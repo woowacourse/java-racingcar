@@ -3,6 +3,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringTest {
@@ -16,7 +17,7 @@ public class StringTest {
         String[] afterSplit = beforeSplit.split(",");
 
         // then
-        assertThat(afterSplit)
+        Assertions.assertThat(afterSplit)
             .containsExactly("1", "2");
     }
 
@@ -29,7 +30,7 @@ public class StringTest {
         String[] afterSplit = beforeSplit.split(",");
 
         //then
-        assertThat(afterSplit)
+        Assertions.assertThat(afterSplit)
             .containsExactly("1");
     }
 
@@ -51,5 +52,17 @@ public class StringTest {
                 ()->assertThat(afterRemoveBracketByReplace)
                 .isEqualTo("1,2")
         );
+    }
+
+    @Test
+    @DisplayName("indexOf 테스트")
+    void indexTest() {
+        String test = "abc";
+
+        int index = test.indexOf("b");
+
+        Assertions.assertThat(index).isEqualTo(1);
+        Assertions.assertThatThrownBy(() -> test.charAt(100))
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 }
