@@ -20,4 +20,12 @@ public class StringTest {
 
         assertThat(result).containsExactly("1");
     }
+
+    @Test
+    void 문자열_괄호_제거() {
+        String input = "(1,2)";
+        String result = input.replaceAll("[()]", "");
+
+        assertThat(result).isEqualTo("1,2");
+    }
 }
