@@ -31,7 +31,7 @@ public class StringTest {
     void testDeleteBracket() {
         String data = "(1,2)";
 
-        String afterData = data.substring(1, data.length() - 1);
+        String afterData = data.replaceAll("[()]","");
 
         assertThat(afterData).isEqualTo("1,2");
     }
