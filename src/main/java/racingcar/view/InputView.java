@@ -1,5 +1,8 @@
 package racingcar.view;
 
+import racingcar.view.dto.CarNames;
+import racingcar.view.dto.TrialTimes;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -11,13 +14,13 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public String getCarNames() {
+    public CarNames getCarNames() {
         System.out.println(GET_CAR_NAME_MESSAGE);
-        return scanner.nextLine();
+        return new CarNames(scanner.nextLine());
     }
 
-    public String getTryTimes() {
+    public TrialTimes getTrialTimes() {
         System.out.println(GET_TRY_TIME_MESSAGE);
-        return scanner.nextLine();
+        return new TrialTimes(scanner.nextLine());
     }
 }
