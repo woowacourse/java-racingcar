@@ -10,7 +10,7 @@ public class Car {
 
     private final StringBuilder drivingMark;
 
-    public Car(String name) {
+    public Car(final String name) {
         validateNameBlank(name);
         validateNameLength(name);
         this.name =  name;
@@ -29,10 +29,8 @@ public class Car {
         }
     }
 
-    public void move(int forwardCondition) {
-        if (forwardCondition >= FORWARD_NUMBER.getValue()) {
-            drivingMark.append("-");
-        }
+    public void move() {
+        drivingMark.append("-");
     }
 
     @Override
