@@ -1,13 +1,16 @@
 package racing.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import racing.NumberGenerator;
 import racing.domain.Car;
 import racing.domain.Cars;
 import racing.dto.GameResultDto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class RacingGameService {
+
+    private static final int MOVE_CONDITION = 4;
 
     private final NumberGenerator numberGenerator;
     private final Cars cars;
@@ -31,8 +34,8 @@ public class RacingGameService {
     }
 
     private void move(Car car, int number) {
-        if (number >= 4) {
-            car.addPosition();
+        if (number >= MOVE_CONDITION) {
+            car.increasePosition();
         }
     }
 

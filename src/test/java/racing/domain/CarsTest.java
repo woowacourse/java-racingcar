@@ -1,10 +1,11 @@
 package racing.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
 
@@ -22,8 +23,8 @@ class CarsTest {
     void getFirstPositionTest() {
         Cars cars = new Cars(dummy);
 
-        boxster.addPosition();
-        sonata.addPosition();
+        boxster.increasePosition();
+        sonata.increasePosition();
 
         List<Car> firstPosition = cars.getFirstPosition();
 

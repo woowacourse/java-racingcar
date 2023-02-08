@@ -1,10 +1,10 @@
 package racing.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
 
@@ -20,7 +20,7 @@ class CarTest {
     void moveTest() {
         Car car = new Car("test");
 
-        car.addPosition();
+        car.increasePosition();
 
         int position = car.getPosition();
         assertThat(position).isEqualTo(1);

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameResultDto {
+    
     private final Map<String, Integer> result = new HashMap<>();
 
     public void put(String name, int position) {
