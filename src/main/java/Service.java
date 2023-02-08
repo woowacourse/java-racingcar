@@ -13,8 +13,7 @@ public class Service {
 
 
     public void creatCar() {
-        outputView.printStartMessage();
-        String[] inputCars = inputView.inputCarName();
+        String[] inputCars = checkInputCarName();
         for (String carName : inputCars) {
             cars.add(new Car(carName));
         }
@@ -63,8 +62,7 @@ public class Service {
 
     public void play() {
         creatCar();
-        outputView.printCountMessage();
-        int count = inputView.inputCount();
+        int count = checkInputCount();
         outputView.resultMessage();
         for (int index = START_INDEX; index < count; index++) {
             moveAllCars();
@@ -73,5 +71,24 @@ public class Service {
         }
         selectWinners();
         outputView.printWinners(winners);
+    }
+
+    private String[] checkInputCarName() {
+        try {
+            outputView.printStartMessage();
+            return inputView.inputCarName();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return checkInputCarName();
+        }
+    }
+    private int checkInputCount() {
+        try {
+            outputView.printCountMessage();
+            return inputView.inputCount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return checkInputCount();
+        }
     }
 }
