@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 public class RacingGameEngine {
 
+    private static final String SPLIT_DELIMITER = ",";
+
+
     public void gameStart() {
 
         final String carName = getCarName();
@@ -33,7 +36,7 @@ public class RacingGameEngine {
     }
 
     private Cars makeCars(String carName) {
-        return new Cars(Arrays.stream(carName.split(","))
+        return new Cars(Arrays.stream(carName.split(SPLIT_DELIMITER))
                               .map(Car::new)
                               .collect(Collectors.toList()));
     }
