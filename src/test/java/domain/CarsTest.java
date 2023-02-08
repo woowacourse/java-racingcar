@@ -39,15 +39,15 @@ class CarsTest {
 
         cars.move();
 
-        List<Car> winners = cars.getWinners();
+        List<String> winners = cars.getWinners();
 
-        assertThat(winners).containsExactly(fox);
+        assertThat(winners).containsExactly("fox");
     }
 
     @Test
     @DisplayName("move 실행시 value가 1 증가한다.")
     void checkMove() {
-        List<Integer> testNumbers = Arrays.asList(4);
+        List<Integer> testNumbers = List.of(4);
         cars = new Cars(new TestRandomNumberGenerator(testNumbers));
 
         cars.add(car);
@@ -71,9 +71,9 @@ class CarsTest {
 
         cars.move();
 
-        List<Car> winners = cars.getWinners();
+        List<String> winners = cars.getWinners();
 
-        assertThat(winners).containsExactly(car, fox);
+        assertThat(winners).containsExactly("test", "fox");
     }
 
     static class TestRandomNumberGenerator extends RandomNumberGenerator {
