@@ -12,11 +12,6 @@ public class Car {
         status = 0;
     }
 
-    public Car(Car needToCopy) {
-        carName = needToCopy.carName;
-        status = needToCopy.status;
-    }
-
     public void move() {
         status++;
     }
@@ -25,4 +20,11 @@ public class Car {
         return new RacingStatusDto(status, carName.getName());
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public String getCarName() {
+        return carName.getName();
+    }
 }

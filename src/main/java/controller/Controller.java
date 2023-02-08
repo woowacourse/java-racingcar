@@ -2,12 +2,10 @@ package controller;
 
 import domain.NumberPicker;
 import domain.RacingStatus;
-import dto.RacingStatusDto;
 import view.Input;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class Controller {
@@ -19,21 +17,23 @@ public class Controller {
     }
 
     public void raceTracks() {
-        String carNames = inputCarNames();
-        racingStatus = new RacingStatus(carNames, numberPicker);
+        handleError(this::carNameInput);
 
         InputView.printInputTryCountGuide();
+        int gameCount = handleError(Input::gameCountInput);
 
-        int gameCount = Input.gameCountInput();
         OutputView.printStatusGuide();
-
         for (int i = 0; i < gameCount; i++) {
             racingStatus.move();
             OutputView.printStatus(racingStatus.toDto());
         }
 
-        int max = findWinner(racingStatus.toDto());
-        OutputView.printWinner(max, racingStatus.toDto());
+        OutputView.printWinner(racingStatus.findWinner());
+    }
+
+    private void carNameInput() {
+        String carNames = inputCarNames();
+        racingStatus = new RacingStatus(carNames, numberPicker);
     }
 
     private String inputCarNames() {
@@ -50,14 +50,12 @@ public class Controller {
         }
     }
 
-    private int findWinner(List<RacingStatusDto> toDto) {
-        int max = 0;
-        //status, carName
-
-        for (RacingStatusDto dto : toDto) {
-            max = Math.max(dto.getStatus(), max);
+    private void handleError(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            handleError(runnable);
         }
-
-        return max;
     }
 }

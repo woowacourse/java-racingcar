@@ -2,7 +2,6 @@ package view;
 
 import dto.RacingStatusDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -39,15 +38,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinner(int max, List<RacingStatusDto> toDto) {
-
-        List<String> winners = new ArrayList<>();
-        for (RacingStatusDto dto : toDto) {
-            if (dto.getStatus() == max) {
-                winners.add(dto.getCarName());
-            }
-        }
-
+    public static void printWinner(List<String> winners) {
         System.out.print(String.join(WINNER_DELIMITER, winners));
         System.out.println(WINNER_GUIDE_MESSAGE);
     }
