@@ -13,4 +13,11 @@ public class InputView {
         String[] carNames = Validator.validateCarNames(input);
         return carNames;
     }
+
+    public int inputGameTime() {
+        System.out.println(OutputView.INPUT_TRY_COUNT);
+        String input = sc.nextLine();
+        int inputNumber = Validator.validateGameTime(input);
+        return inputNumber;
+    }
 }
