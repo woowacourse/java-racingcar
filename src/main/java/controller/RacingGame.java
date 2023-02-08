@@ -1,43 +1,66 @@
 package controller;
 
 import domain.Car;
-import domain.Winner;
 import java.util.ArrayList;
 import java.util.List;
-import utils.CarGenerator;
+import java.util.stream.Collectors;
 import utils.RandomNumberGenerator;
-import view.InputView;
-import view.OutputView;
 
 public class RacingGame {
-    private final CarGenerator carGenerator;
-    private final Winner winner;
     private List<Car> cars;
     private int tryCount;
 
-    public RacingGame() {
-        carGenerator = new CarGenerator();
-        winner = new Winner();
-        cars = new ArrayList<>();
-    }
-
-    public void initGame() {
-        String[] carNames = InputView.getCarNames();
-        cars = carGenerator.generateCars(carNames);
-        this.tryCount = InputView.getTryCount();
+    public RacingGame(String[] carNames, int tryCount) {
+        initCars(carNames);
+        this.tryCount = tryCount;
     }
 
     public void start() {
-        OutputView.printMessage("실행 결과");
-        while (this.tryCount-- > 0) {
-            int power = RandomNumberGenerator.generateRandomPower();
-            cars.forEach(car -> car.move(power));
-            OutputView.printEachCarDistance(cars);
+        System.out.println("실행 결과");
+        while (!isEnd()) {
+            moveCars();
+            printPositionOfCars();
         }
     }
 
-    public void printResult() {
-        winner.findWinnerNames(cars);
-        OutputView.printWinner(winner);
+    public List<Car> getWinners() {
+        int maxPosition = getMaxPosition();
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .collect(Collectors.toList());
+    }
+
+    private void initCars(String[] carNames) {
+        this.cars = new ArrayList<>();
+        for (String carName : carNames) {
+            this.cars.add(new Car(carName));
+        }
+    }
+
+    private boolean isEnd() {
+        if (this.tryCount > 0) {
+            this.tryCount--;
+            return false;
+        }
+        return true;
+    }
+
+    private void moveCars() {
+        for (Car car : cars) {
+            int power = RandomNumberGenerator.getPower();
+            car.move(power);
+        }
+    }
+
+    private void printPositionOfCars() {
+        for (Car car : cars) {
+            System.out.printf("%s : %s%n", car.getName(), "-".repeat(car.getPosition()));
+        }
+    }
+
+    private int getMaxPosition() {
+        return this.cars.stream()
+                .mapToInt(Car::getPosition)
+                .max().orElse(0);
     }
 }
