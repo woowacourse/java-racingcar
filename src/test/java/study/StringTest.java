@@ -3,6 +3,7 @@ package study;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
     @Test
@@ -18,5 +19,11 @@ public class StringTest {
     @Test
     public void pickStringByIndex() {
         assertThat("abc".charAt(0)).isEqualTo('a');
+    }
+
+    @Test
+    public void pickStringOutOfRange() {
+        assertThatThrownBy(() -> "abc".charAt(-1))
+                .isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
