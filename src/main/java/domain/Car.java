@@ -3,10 +3,15 @@ package domain;
 public class Car {
     public static final int MAX_NAME_LENGTH = 5;
     private final String name;
+    private int position = 0;
 
     public Car(String name) {
         validate(name);
         this.name = name;
+    }
+
+    public void move() {
+        position++;
     }
 
     private void validate(String name) {
