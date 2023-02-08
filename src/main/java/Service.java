@@ -5,6 +5,7 @@ public class Service {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final List<Car> cars = new ArrayList<>();
+    private final List<Car> winners = new ArrayList<>();
 
     public void creatCar() {
         outputView.printStartMessage();
@@ -19,5 +20,10 @@ public class Service {
         for (Car car : cars) {
             outputView.printStatus(car.getName(), car.getPosition());
         }
+    }
+
+
+    public int initRandomNumber() {
+        return (int) (Math.random() * 10);
     }
 }
