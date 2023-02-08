@@ -1,10 +1,12 @@
 import java.util.List;
 
 public class Validator {
+    private static final int LOWER_BOUND = 1;
+    private static final int UPPER_BOUND = 5;
 
     private static boolean isCorrectLength(List<String> carNames) {
         return carNames.stream()
-                .allMatch(carName -> 1 <= carName.length() && carName.length() <= 5);
+                .allMatch(carName -> LOWER_BOUND <= carName.length() && carName.length() <= UPPER_BOUND);
     }
 
     public static void carNameLength(List<String> carNames){

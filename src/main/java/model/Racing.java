@@ -1,17 +1,20 @@
-package domain;
+package model;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Racing {
+
+    private final int UPPER_BOUND = 10;
+    private final int START_DISTANCE = 0;
+    private final String STICK = "-";
 
     private Map<Car, Integer> board;
     private int winnerDistance;
     private Random random;
-    private final int UPPER_BOUND = 10;
-    private final int START_DISTANCE = 0;
 
     public Racing(List<String> carNames) {
         board = new LinkedHashMap<>();
@@ -46,5 +49,24 @@ public class Racing {
 
     private int randomNumber() {
         return random.nextInt(UPPER_BOUND);
+    }
+
+    @Override
+    public String toString() {
+        return board.keySet()
+                .stream()
+                .map(this::makeResult)
+                .collect(Collectors.joining());
+    }
+
+    private String makeResult(Car car) {
+        return car.toString() + " : " + STICK.repeat(board.get(car)) + "\n";
+    }
+
+    public List<Car> winner(){
+        return board.keySet()
+                .stream()
+                .filter(car->board.get(car)==winnerDistance)
+                .collect(Collectors.toList());
     }
 }
