@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.exception.ErrorMessages.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -9,7 +11,14 @@ import java.util.Set;
 public class Cars {
 	private final Set<Car> cars = new LinkedHashSet<>();
 
-	public void generateCar(String name) {
+	public void generateCars(List<String> carNames) {
+		validateCarsSizeOneOrZero(carNames);
+		for (String carName : carNames) {
+			generateCar(carName);
+		}
+	}
+
+	private void generateCar(String name) {
 		Car newCar = new Car(name);
 		validateDuplicatedCarName(newCar);
 		cars.add(newCar);
@@ -19,9 +28,16 @@ public class Cars {
 		return Collections.unmodifiableSet(cars);
 	}
 
+	private void validateCarsSizeOneOrZero(List<String> carNames) {
+		int carsSize = carNames.size();
+		if (carsSize == 0 || carsSize == 1) {
+			throw new IllegalArgumentException(CARS_SIZE_EXCEPTION.getMessage());
+		}
+	}
+
 	private void validateDuplicatedCarName(Car newCar) {
 		if (cars.contains(newCar)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
 		}
 	}
 
