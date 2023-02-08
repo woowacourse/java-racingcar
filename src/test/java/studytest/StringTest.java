@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class StringTest {
 
     @Test
+    @DisplayName("입력 분리 테스트")
     void 입력을_분리한다() {
         String input = "1,2";
         String[] splitResult = input.split(",");
@@ -19,6 +20,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("숫자 한개 입력시 한개 반환 테스트")
     void 숫자_한개_입력시_한개반환() {
         String input = "1";
         String[] splitResult = input.split(",");
@@ -27,6 +29,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("괄호를 포함한 문자열에서 괄호 제거 테스트")
     void 괄호를_포함한_문자열에서_괄호제거() {
         String input = "(1,2)";
         String result = input.replaceAll("[()]", "");

@@ -2,12 +2,14 @@ package car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class CarTest {
 
+    @DisplayName("이름이 있는지 확인하는 테스트")
     @Test
     void 이름을_가진다() {
         Car car = new Car("물떡");
@@ -15,6 +17,7 @@ public class CarTest {
         assertThat(car.getName()).isEqualTo("물떡");
     }
 
+    @DisplayName("위치가 있는지 확인하는 테스트")
     @Test
     void 위치를_가진다() {
         Car car = new Car("물떡", 2);
@@ -22,7 +25,7 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(2);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "움직일 수 있는지 확인하는 테스트")
     @CsvSource(value = {"true:1", "false:0"}, delimiter = ':')
     void 움직일_수_있으면_전진하고_아니면_정지한다(boolean provided, int result) {
         Car car = new Car("물떡");
