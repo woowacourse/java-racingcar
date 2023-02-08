@@ -82,4 +82,18 @@ class CarRaceResultRepositoryTest {
         //then
         assertThat(carNames.size()).isEqualTo(cars.size());
     }
+
+    @Test
+    @DisplayName("차 이름에 따른 이동을 테스트한다")
+    void checkCarRaceByName() {
+        //given
+        List<Car> cars = List.of(new Car("car1"), new Car("car2"));
+        for (Car car : cars) {
+            carRaceResultRepository.save(car);
+        }
+        //when
+        carRaceResultRepository.moveByName("car1");
+        //then
+        assertThat(carRaceResultRepository.getRaceResult().get("car1")).isEqualTo(2);
+    }
 }
