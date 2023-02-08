@@ -2,8 +2,10 @@ package repository;
 
 import exception.ErrorCode;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 import model.Car;
 
 public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
@@ -40,6 +42,14 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
         Map<String, Integer> nameResult = new HashMap<>();
         moveCountBoard.forEach((key, value) -> nameResult.put(key.getName(), value));
         return nameResult;
+    }
+
+    @Override
+    public List<String> findAllCars() {
+        return moveCountBoard.keySet()
+            .stream()
+            .map(Car::getName)
+            .collect(Collectors.toList());
     }
 
     private void validateCarDuplicate(Car car) {
