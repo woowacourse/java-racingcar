@@ -13,4 +13,11 @@ public class Service {
             cars.add(new Car(carName));
         }
     }
+
+
+    private void printStatus() {
+        for (Car car : cars) {
+            outputView.printStatus(car.getName(), car.getPosition());
+        }
+    }
 }
