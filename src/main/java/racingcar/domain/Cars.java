@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -10,6 +11,10 @@ public class Cars {
 		Car newCar = new Car(name);
 		validateDuplicatedCarName(newCar);
 		cars.add(newCar);
+	}
+
+	public Set<Car> getCars() {
+		return Collections.unmodifiableSet(cars);
 	}
 
 	private void validateDuplicatedCarName(Car newCar) {
