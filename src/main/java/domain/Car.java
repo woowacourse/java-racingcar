@@ -1,6 +1,7 @@
 package domain;
 
 public class Car {
+    public static final int LEAST_CONDITION = 4;
     public static final int MAX_NAME_LENGTH = 5;
     public static final int START_POSITION = 0;
     public static final int ONE_STEP = 1;
@@ -22,7 +23,10 @@ public class Car {
         }
     }
 
-    public void move() {
-        position += ONE_STEP;
+    //TODO : 파라미터 네이밍 꼭 변경하기.
+    public void moveDependingOn(int number) {
+        if(number >= LEAST_CONDITION) {
+            position += ONE_STEP;
+        }
     }
 }
