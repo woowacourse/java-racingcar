@@ -8,4 +8,8 @@ public class InputView {
     public String readCarName() {
         return scanner.nextLine();
     }
+
+    public String readTryCount() {
+        return scanner.nextLine();
+    }
 }
