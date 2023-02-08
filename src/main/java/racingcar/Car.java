@@ -19,8 +19,8 @@ public class Car {
         }
     }
 
-    public void move(int random) {
-        if (random >= 4) {
+    public void move(int movingCondition) {
+        if (movingCondition >= 4) {
             position++;
         }
     }
