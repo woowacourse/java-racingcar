@@ -17,4 +17,8 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public void resultMessage() {
+        System.out.println(RESULT_MESSAGE);
+    }
 }
