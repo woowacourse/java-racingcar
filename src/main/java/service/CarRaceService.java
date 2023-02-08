@@ -8,4 +8,6 @@ public interface CarRaceService {
     Map<String, Integer> saveCars(List<String> names);
 
     Map<String, Integer> move();
+
+    List<String> getResult();
 }
