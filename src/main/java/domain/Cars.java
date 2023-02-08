@@ -21,9 +21,18 @@ public class Cars {
         return new Cars(names);
     }
 
-    public void move(){
+    public void move() {
         Random random = new Random();
         cars.forEach(car -> car.move(random.nextInt(RANDOM_UPPER_BOUND)));
+    }
+
+    public List<String> winners() {
+        Car winner=cars.stream().max(Car::compareTo).get();
+
+        return cars.stream()
+                .filter(car->car.compareTo(winner)==0)
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     private void validate(String names) {
