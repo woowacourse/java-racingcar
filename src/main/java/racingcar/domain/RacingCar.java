@@ -22,4 +22,13 @@ public class RacingCar {
             plusPoint();
         }
     }
+
+    public String getDesc() {
+        StringBuilder description = new StringBuilder();
+        description.append(name);
+        String delimiter = " : ";
+        description.append(delimiter);
+        description.append("-".repeat(point));
+        return description.toString();
+    }
 }

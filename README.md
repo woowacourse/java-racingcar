@@ -15,7 +15,7 @@
   - [x] 랜덤 값 생성 (0~9 사이의 수) RandomNumberGenerator#getNumber
   - [x] 전진 여부 판단 (4 이상일 경우 전진) AdvanceJudgement#isAdvancePossible
   - [x] 자동차 전진 (자동차 포인트 증가) RacingCar#advance
-  - [ ] 실행 결과 출력 OutputView#printRoundResult
+  - [x] 라운드별 실행 결과 출력 OutputView#printRoundResult
 - [ ] 최종 결과 출력 OutputView#printGameResult
 
 # 예외처리
