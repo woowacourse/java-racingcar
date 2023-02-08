@@ -1,3 +1,5 @@
+package domain;
+
 public class Car {
     private static final String FORMAT = "%s : %s";
 

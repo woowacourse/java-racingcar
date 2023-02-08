@@ -1,3 +1,5 @@
+package domain;
+
 public class Position {
     private static final String DELIMITER = "-";
 

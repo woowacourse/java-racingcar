@@ -1,3 +1,5 @@
+package view;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +11,9 @@ public class InputView {
 
     public static List<String> readCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return Arrays.stream(readLine().split(DELIMITER))
+        String input = readLine();
+        validateCount(input);
+        return Arrays.stream(input.split(DELIMITER))
                 .collect(Collectors.toList());
     }
 
@@ -19,6 +23,12 @@ public class InputView {
         validateCount(input);
 
         return Integer.parseInt(input);
+    }
+
+    private static void validateNames(List<String> input) {
+        if (input.size() != input.stream().distinct().count()) {
+            throw new IllegalStateException("중복된 이름이 존재합니다.");
+        }
     }
 
     private static void validateCount(String input) {
