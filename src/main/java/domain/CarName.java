@@ -16,5 +16,9 @@ public class CarName {
             throw new IllegalArgumentException("자동차 이름은 한 글자 이상입니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
 
