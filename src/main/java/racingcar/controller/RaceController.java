@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
+import racingcar.domain.Race;
 import racingcar.util.InputUtil;
 
 public class RaceController implements Controller {
@@ -10,5 +11,6 @@ public class RaceController implements Controller {
     @Override
     public void process() {
         Cars cars = inputUtil.getUserInput(inputUtil::getCarNames);
+        Race race = inputUtil.getUserInput(inputUtil::getTryCount);
     }
 }
