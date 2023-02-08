@@ -15,6 +15,28 @@ public class Validator {
         return split;
     }
 
+    public static int validateGameTime(String input) {
+        int inputNumber = validateStringToInt(input);
+        validateGameTimeRange(inputNumber);
+        return inputNumber;
+    }
+
+    private static void validateGameTimeRange(int inputNumber) {
+        if (inputNumber <= 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static int validateStringToInt(String input) {
+        Integer integer = null;
+        try {
+            integer = Integer.valueOf(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+        return integer;
+    }
+
     private static void validateNoInput(String[] split) {
         long noInputCount = Arrays.stream(split).filter(s -> s.trim().equals("")).count();
         if (noInputCount >= 1) {
