@@ -7,6 +7,11 @@ public class Service {
     private final List<Car> cars = new ArrayList<>();
     private final List<Car> winners = new ArrayList<>();
 
+    private static final int MOVEABLE_NUMBER = 4;
+    private static final int RANDOM_NUMBER_RANGE = 10;
+    private static final int START_INDEX = 0;
+
+
     public void creatCar() {
         outputView.printStartMessage();
         String[] inputCars = inputView.inputCarName();
