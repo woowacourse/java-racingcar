@@ -13,7 +13,7 @@
 
 * charAt 메소드
   - [x] 어떤 문자열이 주어졌을 때, 특정 위치의 문자를 잘 가져오는지 확인하는 테스트 구현
-  - [ ] 특정 위치의 문자열을 가져올 때, 위치 값을 벗어나면 `StringIndexOutOfBoundException` 이 발생하는지 확인하는 테스트 구현
+  - [x] 특정 위치의 문자열을 가져올 때, 위치 값을 벗어나면 `StringIndexOutOfBoundException` 이 발생하는지 확인하는 테스트 구현
 
 #### Set Collection에 대한 학습테스트
 * Set 데이터는 다음과 같이 주어진다.

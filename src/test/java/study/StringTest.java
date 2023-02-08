@@ -35,4 +35,14 @@ public class StringTest {
         assertThat(target.charAt(1)).isEqualTo('b');
     }
 
+    @Test
+    @DisplayName("charAt 메소드 - StringIndexOutOfBoundException 발생")
+    void charAtTestStringIndexOutOfBoundException() {
+        String target = "abc";
+        assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
+                .isThrownBy(() -> {
+                    target.charAt(3);
+                });
+    }
+
 }
