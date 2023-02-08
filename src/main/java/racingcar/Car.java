@@ -40,7 +40,7 @@ public class Car {
 
     }
 
-    public boolean isWinner(int winnerPosition) {
+    public boolean isPosition(int winnerPosition) {
         return winnerPosition == position;
     }
 

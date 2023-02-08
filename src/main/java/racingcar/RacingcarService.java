@@ -25,7 +25,7 @@ public class RacingcarService {
         int winnerPosition = findPosition(cars);
 
         return cars.stream()
-                .filter(car -> car.isWinner(winnerPosition))
+                .filter(car -> car.isPosition(winnerPosition))
                 .collect(Collectors.toList());
     }
 }
