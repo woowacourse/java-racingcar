@@ -5,8 +5,7 @@ import domain.repository.CarRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import service.validate.InputVerifier;
-import view.input.InputView;
+import util.Converter;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ class GameServiceTest {
     @Test
     void 문자열_분리_확인() {
         String inputNames = "pobi,crong,honux";
-        String[] names = InputVerifier.splitInput(inputNames);
+        String[] names = Converter.splitInput(inputNames);
         Assertions.assertThat(names[0]).isEqualTo("pobi");
         Assertions.assertThat(names[1]).isEqualTo("crong");
         Assertions.assertThat(names[2]).isEqualTo("honux");
