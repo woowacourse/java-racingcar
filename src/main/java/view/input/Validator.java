@@ -17,8 +17,14 @@ public class Validator {
     }
 
     public static void isNotEmpty(final String input) throws IllegalArgumentException {
-        if (input.equals("")) {
+        if (input == null || input.equals("")) {
             throwError(ErrorMessages.EMPTY_INPUT);
+        }
+    }
+
+    public static void isProperCount(final String input) throws IllegalArgumentException {
+        if (input == null || !input.matches("^[1-9]\\d{0,8}")) {
+            throwError(ErrorMessages.NOT_PROPER_COUNT);
         }
     }
 
