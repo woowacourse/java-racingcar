@@ -2,16 +2,21 @@ package racingcar;
 
 public class Car {
 
+    private static final int INIT_POSITION = 0;
+    private static final int BOUNDARY = 4;
+
     private final String name;
     private int position;
 
     public Car(String name) {
         this.name = name;
-        this.position = 0;
+        this.position = INIT_POSITION;
     }
 
-    public void move() {
-        this.position += 1;
+    public void move(int random) {
+        if (random >= BOUNDARY) {
+            this.position += 1;
+        }
     }
 
     public String getName() {
