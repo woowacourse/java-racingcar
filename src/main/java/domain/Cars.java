@@ -1,6 +1,5 @@
 package domain;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,7 +9,6 @@ public class Cars {
     private static final String INVALID_INPUT_LENGTH_MESSAGE = "입력값은 최대 1000만 글자여야 합니다";
 
     private final List<Car> cars = new ArrayList<>();
-
 
     private Cars(String names) {
         validate(names);
@@ -33,6 +31,13 @@ public class Cars {
                 .filter(car->car.compareTo(winner)==0)
                 .map(Car::getName)
                 .collect(Collectors.toList());
+    }
+
+    public Map<String, Integer> getResult() {
+        LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
+        cars.forEach(car->result.put(car.getName(), car.getPosition()));
+
+        return result;
     }
 
     private void validate(String names) {

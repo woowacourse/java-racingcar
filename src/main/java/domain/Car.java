@@ -1,5 +1,9 @@
 package domain;
 
+import java.util.AbstractMap;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Car implements Comparable<Car> {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
@@ -14,14 +18,14 @@ public class Car implements Comparable<Car> {
         this.name = input;
     }
 
-    private void validateName(String name) {
-        if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH)
-            throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
-    }
-
     public void move(int number) {
         if(number>=MOVE_LOWER_BOUND_INCLUSIVE)
             position++;
+    }
+
+    private void validateName(String name) {
+        if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH)
+            throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
     }
 
     @Override
@@ -29,11 +33,11 @@ public class Car implements Comparable<Car> {
         return this.position - other.position;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

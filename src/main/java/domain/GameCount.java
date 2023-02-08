@@ -7,11 +7,19 @@ public class GameCount {
     private final int MAX_COUNT=1_000_000_000;
     private final int MIN_COUNT=1;
 
-    private final int count;
+    private int count;
 
     public GameCount(String countInput) {
         validate(countInput);
         this.count = Integer.parseInt(countInput);
+    }
+
+    public void play() {
+        --count;
+    }
+
+    public boolean isOver() {
+        return count==0;
     }
 
     private void validate(String countInput) {
