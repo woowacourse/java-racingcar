@@ -37,4 +37,11 @@ public class SetTest {
         assertTrue(numbers.contains(target));
     }
 
+    @ParameterizedTest
+    @DisplayName("contains 메소드 - 값이 존재하는지 확인(존재하지 않는 값도 입력)")
+    @CsvSource(value = {"1:true","2:true","3:true","4:false","5:false"}, delimiter = ':')
+    void containsTestWithCsvParameter(int target, boolean isContain) {
+        assertThat(numbers.contains(target)).isEqualTo(isContain);
+    }
+
 }
