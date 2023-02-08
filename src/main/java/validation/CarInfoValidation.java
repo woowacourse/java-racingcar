@@ -3,22 +3,24 @@ package validation;
 public class CarInfoValidation {
 
     private static final int CAR_NAME_LENGTH_MAX = 5;
+    private static final int CAR_COUNT_MIN = 0;
+    private static final String SPLIT_DELIMITER = ",";
 
     public static void validateCar(String input) {
-        final String[] cars = input.split(",");
+        final String[] cars = input.split(SPLIT_DELIMITER);
         validateLength(cars);
         validateName(cars);
     }
 
     private static void validateLength(final String[] cars) {
-        if (cars.length == 0) {
+        if (cars.length == CAR_COUNT_MIN) {
             throw new IllegalArgumentException("자동차를 한 대 이상 작성해주세요.");
         }
     }
 
     private static void validateName(final String[] cars) {
         for (final String car : cars) {
-            if (car.length() > 5) {
+            if (car.length() > CAR_NAME_LENGTH_MAX) {
                 throw new IllegalArgumentException("자동차 이름은 5자 이상 작성해주세요.");
             }
         }
