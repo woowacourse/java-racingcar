@@ -1,6 +1,7 @@
 package domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -21,5 +22,27 @@ class CarTest {
     @ValueSource(strings = {"a", "apple", "한글다섯자", "&"})
     void 길이가_1미만_5초과인_차는_예외_미발생(String name) {
         assertThatNoException().isThrownBy(() -> new Car(name));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 9})
+    void 자동차_전진_테스트(int number) {
+        Car car = new Car("임시");
+        int previous = car.getPosition();
+
+        car.move(number);
+
+        assertThat(car.getPosition()).isEqualTo(previous+1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 2, 3})
+    void 자동차_정지_테스트(int number) {
+        Car car = new Car("임시");
+        int previous = car.getPosition();
+
+        car.move(number);
+
+        assertThat(car.getPosition()).isEqualTo(previous);
     }
 }

@@ -14,6 +14,10 @@ public class Car {
         this.name = input;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     private void validateName(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH)
             throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
