@@ -19,7 +19,6 @@ public class RacingGame {
     }
 
     public void start() {
-        // 메인 로직 (랜덤에 따른 전진 혹은 멈춤)
         OutputView.printResultMessage();
 
         for (int i = 0; i < count; i++) {

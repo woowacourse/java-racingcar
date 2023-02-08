@@ -10,7 +10,6 @@ public class RandomUtil {
 
     }
 
-
     public static boolean canMoveForward(int randomNumber) {
         if (randomNumber >= MOVE_STANDARD) {
             return true;
@@ -22,5 +21,4 @@ public class RandomUtil {
     public static int createRandomNumber() {
         return new Random().nextInt(RandomUtil.RANDOM_RANGE);
     }
-
 }

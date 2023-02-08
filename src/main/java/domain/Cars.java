@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Cars implements Iterable<Car>{
+public class Cars implements Iterable<Car> {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -19,12 +19,28 @@ public class Cars implements Iterable<Car>{
         }
     }
 
+    public Cars getWinners() {
+        Integer maxPosition = getMaxPosition();
+        List<Car> result = cars.stream()
+                .filter(m -> m.getPosition() == maxPosition)
+                .collect(Collectors.toList());
+
+        return new Cars(result);
+    }
+
     private void tryMove(Car car) {
         int randomNumber = RandomUtil.createRandomNumber();
 
         if (RandomUtil.canMoveForward(randomNumber)) {
             car.move();
         }
+    }
+
+    private Integer getMaxPosition() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .max(Integer::compare)
+                .get();
     }
 
     @Override
@@ -35,22 +51,6 @@ public class Cars implements Iterable<Car>{
         }
 
         return stringBuilder.toString();
-    }
-
-    public Cars getWinners() {
-        Integer maxPosition = getMaxPosition();
-        List<Car> result = cars.stream()
-                .filter(m -> m.getPosition() == maxPosition)
-                .collect(Collectors.toList());
-
-        return new Cars(result);
-    }
-
-    private Integer getMaxPosition() {
-        return cars.stream()
-                .map(Car::getPosition)
-                .max(Integer::compare)
-                .get();
     }
 
     @Override
