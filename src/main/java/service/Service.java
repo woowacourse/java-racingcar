@@ -19,7 +19,7 @@ public class Service {
     }
 
     public void setTrial(Long trial) {
-        if (rule != null) {
+        if (rule == null) {
             rule = new Rule(trial);
             return;
         }
