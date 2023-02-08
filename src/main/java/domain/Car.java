@@ -1,6 +1,6 @@
 package domain;
 
-public class Car {
+public class Car implements Comparable<Car>{
     public static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
@@ -13,6 +13,15 @@ public class Car {
 
     public void move() {
         position++;
+    }
+
+    public boolean isSamePosition(Car other) {
+        return this.position == other.position;
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return this.position - other.position;
     }
 
     public String getName() {
@@ -29,4 +38,5 @@ public class Car {
                     "입력값 : "  + name);
         }
     }
+
 }
