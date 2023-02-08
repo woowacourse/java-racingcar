@@ -25,8 +25,7 @@ public class StringTest {
     void replaceTestWithParentheses() {
         String target = "(1,2)";
         String real = target.replaceAll("[()]", "");
-        String expected = "1,2";
-        assertThat(real).isEqualTo(expected);
+        assertThat(real).isEqualTo("1,2");
     }
 
     @Test
