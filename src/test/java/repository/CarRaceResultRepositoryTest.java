@@ -5,12 +5,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import model.Car;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarRaceResultRepositoryTest {
 
-    private final CarRaceResultRepository carRaceResultRepository = CarRaceResultRepositoryImpl.getInstance();
+    private CarRaceResultRepository carRaceResultRepository;
+
+    @BeforeEach
+    void setUp() {
+        this.carRaceResultRepository = new CarRaceResultRepositoryImpl();
+    }
 
     @Test
     @DisplayName("차가 중복된 경우")

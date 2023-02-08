@@ -11,16 +11,10 @@ import model.Car;
 public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
 
     private static final int INITIAL_MOVE_COUNT = 1;
-    private static final Map<Car, Integer> moveCountBoard = new ConcurrentHashMap<>();
-    private static CarRaceResultRepositoryImpl instance;
+    private final Map<Car, Integer> moveCountBoard;
 
-    private CarRaceResultRepositoryImpl() {}
-
-    public static synchronized CarRaceResultRepositoryImpl getInstance() {
-        if (instance == null) {
-            instance = new CarRaceResultRepositoryImpl();
-        }
-        return instance;
+    public CarRaceResultRepositoryImpl() {
+        this.moveCountBoard = new ConcurrentHashMap<>();
     }
 
     @Override

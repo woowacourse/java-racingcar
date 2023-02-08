@@ -1,10 +1,9 @@
 package service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 import java.util.Map;
-import model.Car;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import repository.CarRaceResultRepositoryImpl;
@@ -12,7 +11,6 @@ import repository.CarRaceResultRepositoryImpl;
 class CarRaceServiceImplTest {
 
     private CarRaceService carRaceService;
-    private static final List<String> names = List.of("car1", "car2");
 
     static class TestMoveRandomNumberGenerator implements RandomNumberGenerator {
 
@@ -30,42 +28,36 @@ class CarRaceServiceImplTest {
         }
     }
 
-    @BeforeAll
-    static void setUp() {
-        for (String name : names) {
-            CarRaceResultRepositoryImpl.getInstance().save(new Car(name));
-        }
-    }
-
-
     @Test
     @DisplayName("차 저장을 테스트한다")
     void saveCars() {
         //given
-        this.carRaceService = new CarRaceServiceImpl(
-            CarRaceResultRepositoryImpl.getInstance(), new RandomNumberGeneratorImpl());
-        List<String> names = List.of("car3", "car4");
+        carRaceService = new CarRaceServiceImpl(
+            new CarRaceResultRepositoryImpl(), new RandomNumberGeneratorImpl());
+        List<String> names = List.of("car1", "car2");
 
         //when
         Map<String, Integer> cars = carRaceService.saveCars(names);
 
         //then
-        Assertions.assertThat(cars.keySet()).containsAll(names);
+        assertThat(cars.keySet()).containsAll(names);
     }
 
     @Test
     @DisplayName("모든 차를 이동시킨다")
     void moveCars() {
         //given
-        carRaceService = new CarRaceServiceImpl(CarRaceResultRepositoryImpl.getInstance(),
+        carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
             new TestMoveRandomNumberGenerator());
+        List<String> names = List.of("car1", "car2");
+        carRaceService.saveCars(names);
 
         //when
         Map<String, Integer> result = carRaceService.move();
 
         //then
         for (Integer raceResult : result.values()) {
-            Assertions.assertThat(raceResult).isEqualTo(2);
+            assertThat(raceResult).isEqualTo(2);
         }
     }
 
@@ -73,15 +65,17 @@ class CarRaceServiceImplTest {
     @DisplayName("모든 차를 이동시키지 않는다.")
     void notMoveCars() {
         //given
-        carRaceService = new CarRaceServiceImpl(CarRaceResultRepositoryImpl.getInstance(),
+        carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
             new TestNotMoveRandomNumberGenerator());
+        List<String> names = List.of("car1", "car2");
+        carRaceService.saveCars(names);
 
         //when
         Map<String, Integer> result = carRaceService.move();
 
         //then
         for (Integer raceResult : result.values()) {
-            Assertions.assertThat(raceResult).isEqualTo(2);
+            assertThat(raceResult).isEqualTo(1);
         }
     }
 
