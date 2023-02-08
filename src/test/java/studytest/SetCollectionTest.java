@@ -2,8 +2,11 @@ package studytest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,5 +33,21 @@ public class SetCollectionTest {
         Set<Integer> set = Set.of(1, 2, 3);
 
         assertThat(set).contains(provided);
+    }
+
+    @ParameterizedTest
+    @DisplayName("Set에 값의 유무를 알 수 있다")
+    @CsvSource(value = {"1,2,3=true","4,5=false"}, delimiter = '=')
+    void Set에_값의_유무를_알_수_있다(String provided, boolean expected){
+        Set<Integer> set = Set.of(1,2,3);
+        List<Integer> integers = parseIntegers(provided);
+        assertThat(set.containsAll(integers)).isEqualTo(expected);
+    }
+
+    private List<Integer> parseIntegers(String provided) {
+        String[] split = provided.split(",");
+        return Arrays.stream(split)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
