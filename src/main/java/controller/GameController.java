@@ -34,9 +34,14 @@ public class GameController {
     }
 
     private void makeCars() {
-        String carNames = inputView.readCarNames();
-        Arrays.stream(carNames.split(","))
-                .map(Car::new)
-                .forEach(CarRepository::updateCars);
+        try {
+            String carNames = inputView.readCarNames();
+            Arrays.stream(carNames.split(","))
+                    .map(Car::new)
+                    .forEach(CarRepository::updateCars);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printException(illegalArgumentException);
+            makeCars();
+        }
     }
 }

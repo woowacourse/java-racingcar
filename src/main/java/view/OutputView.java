@@ -30,10 +30,6 @@ public class OutputView {
         return "-".repeat(position);
     }
 
-    public void printException(IOException ioException) {
-        println(ioException.getMessage());
-    }
-
     public void printWinners(List<String> winnerNames) {
         String winnerList = winnerNames.stream().collect(Collectors.joining(", "));
         println(winnerList + PRINT_WINNER_LIST_GUIDE);
@@ -41,5 +37,9 @@ public class OutputView {
 
     private void println(String value) {
         System.out.println(value);
+    }
+
+    public void printException(Exception exception) {
+        println("[ERROR] " + exception.getMessage());
     }
 }

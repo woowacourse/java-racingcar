@@ -1,5 +1,7 @@
 package racingcar;
 
+import static constant.Constants.CAR_NAME_LIMIT_EXCEPTION;
+
 public class Car {
     private static final int START_POSITION = 0;
 
@@ -7,6 +9,9 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException(CAR_NAME_LIMIT_EXCEPTION);
+        }
         this.name = name;
         this.position = START_POSITION;
     }
