@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import racing.NumberGenerator;
 import racing.domain.Car;
 import racing.dto.GameResultDto;
@@ -17,12 +19,14 @@ class RacingGameServiceTest {
     MockNumberGenerator numberGenerator = new MockNumberGenerator();
     Car boxster = new Car("박스터");
     Car sonata = new Car("소나타");
+    Car benz = new Car("벤츠");
 
     List<Car> dummy = List.of(
             boxster,
             sonata,
-            new Car("벤츠")
+            benz
     );
+
 
     @Test
     @DisplayName("레이싱 게임을 한 라운드 진행한다")
@@ -34,18 +38,28 @@ class RacingGameServiceTest {
 
         Set<String> names = result.getNames();
 
+        List<Integer> positions = names.stream()
+                .map(result::getPosition)
+                .collect(Collectors.toList());
+
         assertAll(() -> {
             assertThat(names).contains("박스터", "소나타", "벤츠");
-
-            assertThat(names.stream()
-                    .map(result::getPosition)
-                    .collect(Collectors.toList()))
-                    .containsOnly(1);
+            assertThat(positions).containsOnly(1);
         });
-
-
     }
 
+    @DisplayName("isEnd 메소드는 게임 종료 여부를 반환한다")
+    @ParameterizedTest(name = "시도 횟수가 {0}일 때 {1}번 시도하면 {2}")
+    @CsvSource(value = {"3:1:false", "3:3:true"}, delimiter = ':')
+    void isEndTest(int count, int tryCount, boolean result) {
+        RacingGameService gameService = new RacingGameService(numberGenerator, count, dummy);
+
+        for (int i = 0; i < tryCount; i++) {
+            gameService.play();
+        }
+
+        assertThat(gameService.isEnd()).isEqualTo(result);
+    }
 
     static class MockNumberGenerator implements NumberGenerator {
         private int number;

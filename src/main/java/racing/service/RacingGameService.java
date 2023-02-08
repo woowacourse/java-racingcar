@@ -34,5 +34,8 @@ public class RacingGameService {
             car.addPosition();
         }
     }
-    
+
+    public boolean isEnd() {
+        return tryCount == 0;
+    }
 }
