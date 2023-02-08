@@ -21,4 +21,12 @@ public class Car {
 
         return max == position;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
