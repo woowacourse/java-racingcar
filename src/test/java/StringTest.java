@@ -22,4 +22,10 @@ class StringTest {
         return input.split(",");
     }
 
+    @Test
+    void replaceBracketTest() {
+        String input = "(1,2)";
+        assertThat(input.replaceAll("[()]", "")).isEqualTo("1,2");
+    }
+
 }
