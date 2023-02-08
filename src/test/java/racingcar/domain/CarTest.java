@@ -1,9 +1,12 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class CarTest {
 
@@ -14,4 +17,18 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("자동차의 이동 조건 value 기록 추가에 대한 테스트")
+    void addValueTest() {
+        Car car = new Car("test");
+        car.addValue(4);
+        int firstSize = car.getLogSize();
+        car.addValue(5);
+        int secondSize = car.getLogSize();
+        assertSoftly(softly -> {
+            softly.assertThat(firstSize).isEqualTo(1);
+            softly.assertThat(secondSize).isEqualTo(2);
+        });
+
+    }
 }
