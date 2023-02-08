@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.util.ErrorMessage;
 
 import java.util.List;
 
@@ -16,7 +17,8 @@ class CarNamesTest {
     void validateFormatTest(String input) {
         assertThatThrownBy(() -> {
             new CarNames(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_CAR_NAME_FORMAT.message());
     }
 
     @DisplayName("자동차 이름은 한글자 이상이어야 합니다.")
@@ -34,7 +36,8 @@ class CarNamesTest {
     void validateOverLengthTest(String input) {
         assertThatThrownBy(() -> {
             new CarNames(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.CAR_NAME_OVER_RANGE.message());
     }
 
     @DisplayName("자동차 이름은 중복될 수 없습니다.")
@@ -44,7 +47,8 @@ class CarNamesTest {
 
         assertThatCode(() -> {
             new CarNames(testSampleValue);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.CAR_NAME_DUPLICATED.message());
     }
 
     @DisplayName("정상적인 형식의 자동차 이름으로 생성되어야 합니다.")
