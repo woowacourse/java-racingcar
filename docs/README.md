@@ -29,7 +29,6 @@
   numbers.add(3);
   }
 
-  // Test Case 구현
   }```
 
 * size 메소드
