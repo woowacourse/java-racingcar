@@ -3,8 +3,8 @@ package model;
 
 public class Car {
     private final String EXCEPTION_MESSAGE = "자동차 이름은 1~5자 이내의 이름으로 입력하여야 합니다.";
-    public String name;
-    public int location;
+    private String name;
+    private int location;
 
     public Car(String name) {
         validCarName(name);
