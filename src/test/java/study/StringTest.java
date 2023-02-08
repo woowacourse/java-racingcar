@@ -35,4 +35,13 @@ class StringTest {
         String substring = test.substring(1, 4);
         assertThat(substring).isEqualTo("1,2");
     }
+
+    @Test
+    @DisplayName("String.charAt 사용 테스트")
+    void chatAtTest() {
+        String test = "abc";
+        assertThatThrownBy(() ->test.charAt(4))
+                .isInstanceOf(StringIndexOutOfBoundsException.class)
+                .hasMessageContaining("range: 4");
+    }
 }
