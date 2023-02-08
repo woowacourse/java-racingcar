@@ -1,9 +1,7 @@
 package model;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> cars;
@@ -36,5 +34,14 @@ public class Cars {
         if(random.nextInt(9)>=4)
             return true;
         return false;
+    }
+
+    public List<Car> getWinners() {
+        int maxLocation = cars.stream()
+                .max(Comparator.comparingInt(Car::getCarLocation))
+                .get().getCarLocation();
+
+        return cars.stream().filter(car -> car.getCarLocation() == maxLocation)
+                .collect(Collectors.toList());
     }
 }
