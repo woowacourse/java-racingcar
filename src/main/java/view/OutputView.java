@@ -10,15 +10,20 @@ import static constant.Constants.READ_NUMBER_OF_TRY;
 
 public class OutputView {
     public void readCarNames() {
-        print(READ_CAR_NAMES);
+        println(READ_CAR_NAMES);
     }
 
     public void readNumberOfTry() {
-        print(READ_NUMBER_OF_TRY);
+        println(READ_NUMBER_OF_TRY);
     }
 
     public void printCarsStatus(List<Car> cars) {
-        cars.forEach(car -> print(car.getName() + " : " + getPositionBars(car.getPosition())));
+        cars.forEach(car -> println(car.getName() + " : " + getPositionBars(car.getPosition())));
+        printNewLine();
+    }
+
+    private void printNewLine() {
+        System.out.println();
     }
 
     private String getPositionBars(int position) {
@@ -26,10 +31,10 @@ public class OutputView {
     }
 
     public void printException(IOException ioException) {
-        print(ioException.getMessage());
+        println(ioException.getMessage());
     }
 
-    private void print(String value) {
+    private void println(String value) {
         System.out.println(value);
     }
 }

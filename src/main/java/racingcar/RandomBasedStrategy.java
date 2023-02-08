@@ -7,6 +7,7 @@ public class RandomBasedStrategy implements MoveStrategy {
     }
 
     private static int getRandom() {
-        return (int) Math.random();
+
+        return (int) ((Math.random() * 10000) % 9);
     }
 }
