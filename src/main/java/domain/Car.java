@@ -24,6 +24,18 @@ public class Car {
         return this.position;
     }
 
+    public String getMovePosition(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i=0; i<position; i++){
+            stringBuilder.append("-");
+        }
+        return stringBuilder.toString();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
     // 자동차 이름의 길이를 검증하는 메소드
     private void validateName(String name) {
         if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH) {
