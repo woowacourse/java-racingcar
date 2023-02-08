@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Cars {
     private List<Car> cars = new ArrayList<>();
 
-    public Cars (String carsName) {
+    public Cars(String carsName) {
         List<String> carNames = splitCarName(carsName);
 
         for (String name : carNames) {
@@ -24,16 +24,14 @@ public class Cars {
 
     public void moveResult() {
         for (Car car : cars) {
-            if(isMove())
-                car.moveCar();
+            moveByRandom(car);
         }
     }
 
-    private boolean isMove(){
+    private void moveByRandom(Car car) {
         Random random = new Random();
-        if(random.nextInt(9)>=4)
-            return true;
-        return false;
+        if (random.nextInt(9) >= 4)
+            car.moveCar();
     }
 
     public List<String> getWinners() {

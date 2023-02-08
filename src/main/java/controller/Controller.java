@@ -10,25 +10,25 @@ public class Controller {
     private final MessageView messageView = new MessageView();
     private final OutputView outputView = new OutputView();
 
-    public void run(){
+    public void run() {
         Cars cars = setCars();
-        int tryCount = setTryCount();
-        repeatMoving(cars, tryCount);
+        repeatMoving(cars, setTryCount());
         outputView.printWinner(cars);
     }
 
-    private Cars setCars(){
+    private Cars setCars() {
         messageView.printCarNameMessage();
         return new Cars(inputView.inputCarName());
     }
 
-    private int setTryCount(){
+    private int setTryCount() {
         messageView.printTryCountMessage();
         return inputView.inputTryCount();
     }
 
     private void repeatMoving(Cars cars, int tryCount) {
         messageView.printResultMessage();
+
         for (int count = 0; count < tryCount; count++) {
             cars.moveResult();
             outputView.printResult(cars);
