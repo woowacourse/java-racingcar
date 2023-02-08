@@ -7,8 +7,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class GameController {
     private final InputView inputView;
