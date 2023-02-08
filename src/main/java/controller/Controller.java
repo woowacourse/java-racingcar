@@ -14,6 +14,7 @@ public class Controller {
         Cars cars = setCars();
         int tryCount = setTryCount();
         repeatMoving(cars, tryCount);
+        outputView.printWinner(cars);
     }
 
     private Cars setCars(){
@@ -27,6 +28,7 @@ public class Controller {
     }
 
     private void repeatMoving(Cars cars, int tryCount) {
+        messageView.printResultMessage();
         for (int count = 0; count < tryCount; count++) {
             cars.moveResult();
             outputView.printResult(cars);
