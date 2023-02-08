@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
     private static final String DELIMITER = ",";
+    private static final String NUMERIC_FORMAT = "^[0-9]*$";
     private static final Scanner sc = new Scanner(System.in);
 
     public static List<String> readCarNames() {
@@ -45,7 +46,7 @@ public class InputView {
     }
 
     private static boolean isNumeric(String input) {
-        if (!input.matches("^[0-9]*$")) {
+        if (!input.matches(NUMERIC_FORMAT)) {
             return false;
         }
         return true;
