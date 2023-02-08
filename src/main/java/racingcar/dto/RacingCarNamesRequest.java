@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RacingCarNamesRequest {
+    private static final int MAX_NAME_LENGTH = 6;
+
     private final List<String> names;
 
     private RacingCarNamesRequest(List<String> names) {
@@ -42,7 +44,7 @@ public class RacingCarNamesRequest {
     }
 
     private static void validateNameLength(String name) {
-        if(name.length() >= 6) {
+        if(name.length() >= MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
         }
     }
