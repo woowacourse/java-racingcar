@@ -6,6 +6,9 @@ public class RandomNumberGenerator {
 
 	private static final Random RANDOM = new Random();
 
+	private RandomNumberGenerator() {
+	}
+
 	public static int generateRandomNumber() {
 		return RANDOM.nextInt(10);
 	}
