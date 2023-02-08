@@ -20,4 +20,13 @@ public class StringTest {
         assertThat(target.split(",")).containsExactly("1");
     }
 
+    @Test
+    @DisplayName("replace 메소드 - 괄호 제거")
+    void replaceTestWithParentheses() {
+        String target = "(1,2)";
+        String real = target.replaceAll("[()]", "");
+        String expected = "1,2";
+        assertThat(real).isEqualTo(expected);
+    }
+
 }
