@@ -39,7 +39,7 @@ public class StringTest {
     @Test
     void test3() {
         String str = "(1,2)";
-        str = str.replace("(", " ");
+        str = str.replace("(", "");
         str = str.replace(")", "");
 
         assertThat(str).isEqualTo("1,2");

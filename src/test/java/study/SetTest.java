@@ -40,6 +40,5 @@ public class SetTest {
     @CsvSource(value = {"0,false", "1,true", "2,true", "3,true", "4,false"})
     void test3(final int index, final boolean expected) {
         assertThat(numbers.contains(index)).isEqualTo(expected);
-        assertThat('\0').isEqualTo(',');
     }
 }
