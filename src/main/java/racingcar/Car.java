@@ -34,4 +34,17 @@ public class Car {
 
         return name + " : " + sb.toString();
     }
+
+    public int findWinnerPosition(int position) {
+        return Math.max(this.position, position);
+
+    }
+
+    public boolean isWinner(int winnerPosition) {
+        return winnerPosition == position;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

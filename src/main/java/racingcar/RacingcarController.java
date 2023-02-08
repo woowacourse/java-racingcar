@@ -20,5 +20,8 @@ public class RacingcarController {
             racingcarService.move(cars);
             OutputView.result(cars);
         }
+
+        List<Car> winners = racingcarService.findWinner(cars);
+        OutputView.winner(winners);
     }
 }
