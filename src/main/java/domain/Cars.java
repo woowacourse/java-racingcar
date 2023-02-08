@@ -15,6 +15,9 @@ public class Cars {
     }
 
     public Car findByName(String name) {
-        return null;
+        return cars.stream()
+                .filter(car -> car.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException());
     }
 }
