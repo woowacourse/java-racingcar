@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import racingcar.model.car.Cars;
+import racingcar.model.track.Track;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.dto.CarNames;
@@ -14,14 +16,23 @@ public class RacingController {
         this.outputView = outputView;
     }
 
-    public void init() {
+    public void startGame() {
+        Cars cars = requestCars();
+        int trialTime = requestTrialTime();
 
+        Track track = new Track(cars, trialTime);
     }
 
-    private void requestCarNames() {
+    private Cars requestCars() {
         CarNames carNames = inputView.getCarNames();
-        TrialTimes trialTimes = inputView.getTrialTimes();
+
+        return new Cars(carNames.toCarNameList());
     }
 
 
+    private int requestTrialTime() {
+        TrialTimes trialTimes = inputView.getTrialTimes();
+
+        return trialTimes.getTrialTimes();
+    }
 }
