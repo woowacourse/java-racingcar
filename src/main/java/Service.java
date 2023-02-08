@@ -5,18 +5,39 @@ public class Service {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final List<Car> cars = new ArrayList<>();
-    private final List<Car> winners = new ArrayList<>();
+    private final List<Car> winnerCars = new ArrayList<>();
 
     private static final int MOVEABLE_NUMBER = 4;
     private static final int RANDOM_NUMBER_RANGE = 10;
     private static final int START_INDEX = 0;
 
 
+    public void play() {
+        creatCar();
+        int count = checkInputCount();
+        outputView.resultMessage();
+        for (int index = START_INDEX; index < count; index++) {
+            playUnit();
+        }
+        winners();
+    }
+
     public void creatCar() {
         String[] inputCars = checkInputCarName();
         for (String carName : inputCars) {
             cars.add(new Car(carName));
         }
+    }
+
+    private void playUnit() {
+        moveAllCars();
+        printStatus();
+        System.out.println();
+    }
+
+    private void winners() {
+        selectWinners();
+        outputView.printWinners(winnerCars);
     }
 
 
@@ -55,23 +76,10 @@ public class Service {
 
     private void addWinCar(Car car) {
         if (car.amIWinner(cars)) {
-            winners.add(car);
+            winnerCars.add(car);
         }
     }
 
-
-    public void play() {
-        creatCar();
-        int count = checkInputCount();
-        outputView.resultMessage();
-        for (int index = START_INDEX; index < count; index++) {
-            moveAllCars();
-            printStatus();
-            System.out.println();
-        }
-        selectWinners();
-        outputView.printWinners(winners);
-    }
 
     private String[] checkInputCarName() {
         try {
