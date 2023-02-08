@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class CarTest {
 
@@ -25,4 +27,12 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest(name = "{0}이 들어올때 테스트")
+    @CsvSource(value = {"4,1", "3,0"})
+    void checkMoveTest(int randomNumber, int expected) {
+        Car car = new Car("test");
+        car.move(randomNumber);
+
+        assertThat(car.getStatus()).isEqualTo(expected);
+    }
 }
