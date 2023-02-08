@@ -26,7 +26,7 @@ public class Validator {
 
     private static void validateGameTimeRange(int inputNumber) {
         if (inputNumber <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NOT_POSITIVE_NUMBER);
         }
     }
 
