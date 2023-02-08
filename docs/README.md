@@ -5,11 +5,11 @@
 
 ## 📚 기능 목록
 - [ ] 사용자의 입력을 받는다.
-  - [ ] 자동차 이름을 입력받는다. InputView#requestCarName()
+  - [x] 자동차 이름을 입력받는다. InputView#requestCarName()
   - [ ] 시도 횟수를 입력받는다.
 - [ ] 사용자 입력을 검증한다.
-  - [ ] 자동차 이름을 검증한다.
-    - 쉼표 구분
+  - [x] 자동차 이름을 검증한다.
+    - 쉼표 구분 CommaSeparator#sliceNameByComma()
     - 5글자 이하 Name#validateName()
   - [ ] 시도 횟수 검증한다.
     - 정수 입력

@@ -27,5 +27,9 @@ public class Name {
     private boolean validate(final String name) {
         return name.length() < MIN_LENGTH || name.length() > MAX_LENGTH;
     }
+
+    public String getName(){
+        return this.name;
+    }
 }
 
