@@ -14,4 +14,13 @@ class CarNamesTest {
             new CarNames(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("자동차 이름은 한글자 이상이어야 합니다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"  ", "car1,,car2", ""})
+    void validateBlankTest(String input) {
+        Assertions.assertThatThrownBy(() -> {
+            new CarNames(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

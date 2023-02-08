@@ -1,6 +1,5 @@
 package racingcar.view.dto;
 
-import javax.swing.*;
 import java.util.regex.Pattern;
 
 public class CarNames {
@@ -21,6 +20,13 @@ public class CarNames {
 
         for (String splitCarName : splitCarNames) {
             hasInvalidValue(splitCarName);
+            hasBlank(splitCarName);
+        }
+    }
+
+    private void hasBlank(String splitCarName) {
+        if (splitCarName.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 비어있는 자동차 이름이 들어있습니다.");
         }
     }
 
