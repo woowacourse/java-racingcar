@@ -13,4 +13,8 @@ public class Cars {
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
+
+    public Car findByName(String name) {
+        return null;
+    }
 }
