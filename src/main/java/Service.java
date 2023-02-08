@@ -22,6 +22,18 @@ public class Service {
         }
     }
 
+    public void moveAllCars() {
+        for (Car car : cars) {
+            move(car);
+        }
+    }
+
+    public void move(Car car) {
+        if (judgement()) {
+            car.addPosition();
+        }
+    }
+
     public boolean judgement() {
         return initRandomNumber() >= 4;
     }
