@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class InputView {
     InputException inputException = new InputException();
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String DIVISION_CHAR = ",";
 
     public String[] inputCarName() {
-        String[] inputCars = scanner.nextLine().split(",");
+        String[] inputCars = scanner.nextLine().split(DIVISION_CHAR);
         validateInputCarName(inputCars);
         return inputCars;
     }
