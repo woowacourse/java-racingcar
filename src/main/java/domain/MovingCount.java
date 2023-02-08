@@ -13,4 +13,8 @@ public class MovingCount {
             throw new IllegalArgumentException("이동 횟수는 1이상의 수자만 가능합니다.");
         }
     }
+
+    public Integer getCount() {
+        return count;
+    }
 }
