@@ -8,4 +8,8 @@ public class OutputView {
     public static void tryCount() {
         System.out.println("시도할 횟수는 몇회인가요?");
     }
+
+    public static void error(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
