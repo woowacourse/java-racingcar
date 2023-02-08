@@ -10,6 +10,21 @@ public class Car {
         this.position = 0;
     }
 
+    public void move() {
+        int randomNumber = (int) (Math.random() * 9);
+        if (randomNumber >= 4) {
+            position++;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
