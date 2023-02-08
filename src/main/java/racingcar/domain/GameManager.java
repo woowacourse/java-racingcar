@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import java.util.List;
+
+import racingcar.dto.CarNamesDTO;
 import racingcar.dto.GameResultDTO;
 import racingcar.dto.RoundResultDTO;
 import racingcar.view.InputView;
@@ -18,20 +21,16 @@ public class GameManager {
 		this.cars = cars;
 	}
 
-	public void createCars() {
-		inputView.inputCarName()
-			.getCarNames()
-			.forEach(cars::generateCar);
-	}
-
-	public void createGameRound() {
-		int totalRound = inputView.inputGameRound().getRound();
-		gameRound = new GameRound(totalRound);
-	}
-
 	public void playGame() {
+		createCars();
+		createGameRound();
+		startEachGameRound();
+		endGame();
+	}
+
+	private void startEachGameRound() {
 		outputView.printResultMessage();
-		while(!gameRound.isEnd()) {
+		while (!gameRound.isEnd()) {
 			cars.moveCars();
 			gameRound.increaseRound();
 			RoundResultDTO roundResultDTO = new RoundResultDTO(cars.getCars());
@@ -67,6 +66,5 @@ public class GameManager {
 	private void endGame() {
 		GameResultDTO gameResultDTO = new GameResultDTO(cars.findWinnerNames());
 		outputView.printEndGameResult(gameResultDTO);
-
 	}
 }
