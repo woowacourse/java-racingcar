@@ -12,6 +12,12 @@ public class RacingCarNamesRequest {
         this.names = names;
     }
 
+    public static RacingCarNamesRequest of(String input) {
+        String[] names = input.split(",");
+        validate(names);
+        return new RacingCarNamesRequest(List.of(names));
+    }
+
     private static void validate(String[] names) {
         for (String name : names) {
             validateEmptyName(name);
@@ -39,12 +45,6 @@ public class RacingCarNamesRequest {
         if(name.length() > 6) {
             throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
         }
-    }
-
-    public static RacingCarNamesRequest of(String input) {
-        String[] names = input.split(",");
-        validate(names);
-        return new RacingCarNamesRequest(List.of(names));
     }
 
     public List<String> getNames() {
