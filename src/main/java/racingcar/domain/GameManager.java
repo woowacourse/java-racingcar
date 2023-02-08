@@ -8,18 +8,22 @@ public class GameManager {
 	private final InputView inputView;
 	private final OutputView outputView;
 	private final Cars cars;
-	private final GameRound gameRound;
+	private GameRound gameRound;
 
-	public GameManager(InputView inputView, OutputView outputView, Cars cars, GameRound gameRound) {
+	public GameManager(InputView inputView, OutputView outputView, Cars cars) {
 		this.inputView = inputView;
 		this.outputView = outputView;
 		this.cars = cars;
-		this.gameRound = gameRound;
 	}
 
 	public void createCars() {
 		inputView.inputCarName()
 			.getCarNames()
 			.forEach(cars::generateCar);
+	}
+
+	public void createGameRound() {
+		int totalRound = inputView.inputGameRound().getRound();
+		gameRound = new GameRound(totalRound);
 	}
 }
