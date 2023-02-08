@@ -27,4 +27,16 @@ public class OutputView {
     public void printCountMessage() {
         System.out.println(COUNT_MESSAGE);
     }
+
+    public void printWinners(List<Car> winners) {
+        System.out.println(winnerFormat(winners) + END_MESSAGE);
+    }
+
+    private String winnerFormat(List<Car> winners) {
+        List<String> winnerNames = new ArrayList<>();
+        for (Car car : winners) {
+            winnerNames.add(car.getName());
+        }
+        return String.join(", ", winnerNames);
+    }
 }
