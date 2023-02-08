@@ -8,6 +8,7 @@ import racing.domain.Cars;
 import racing.dto.GameResultDto;
 
 public class RacingGameService {
+    private static final int MOVE_CONDITION = 4;
 
     private final NumberGenerator numberGenerator;
     private final Cars cars;
@@ -31,7 +32,7 @@ public class RacingGameService {
     }
 
     private void move(Car car, int number) {
-        if (number >= 4) {
+        if (number >= MOVE_CONDITION) {
             car.addPosition();
         }
     }

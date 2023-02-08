@@ -15,18 +15,17 @@ public class RacingGameController {
 
     public void run() {
         List<String> names = inputView.inputNames();
-        int tryCount = inputView.inputTryCount();
-
         List<Car> cars = names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
+        int tryCount = inputView.inputTryCount();
 
         RacingGameService gameService = new RacingGameService(new RandomNumberGenerator(), tryCount, cars);
         while (!gameService.isEnd()) {
             GameResultDto resultDto = gameService.play();
             outputView.printRacing(resultDto);
         }
-        List<String> winners = gameService.getWinners();
-        outputView.printWinners(winners);
+        List<String> winnerNames = gameService.getWinners();
+        outputView.printWinners(winnerNames);
     }
 }

@@ -15,7 +15,8 @@ public class Cars {
     public List<Car> getFirstPosition() {
         int maxPosition = getMaxPosition();
 
-        return cars.stream().filter(car -> car.getPosition() == maxPosition)
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
                 .collect(Collectors.toList());
     }
 
