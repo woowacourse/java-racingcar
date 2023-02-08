@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Cars {
@@ -15,10 +16,13 @@ public class Cars {
         this.cars = new ArrayList<>(cars);
     }
 
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
+    }
+
     private void validateCarsSize(List<Car> cars) {
         if (cars.size() < CARS_MIN_SIZE) {
             throw new IllegalArgumentException(CARS_SIZE_ERROR);
         }
     }
-
 }

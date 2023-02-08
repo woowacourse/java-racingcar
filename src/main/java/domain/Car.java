@@ -20,6 +20,10 @@ public class Car {
         this.position++;
     }
 
+    public int getPosition() {
+        return this.position;
+    }
+
     // 자동차 이름의 길이를 검증하는 메소드
     private void validateName(String name) {
         if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH) {
