@@ -13,4 +13,11 @@ class ValidatorTest {
     void validateNotEmptyInputTest(String input) {
         assertThatThrownBy(() -> Validator.validateNotEmptyInput(input)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest(name = "입력이 자연수가 아니면 예외를 발생시킨다. - 입력값 : {0}")
+    @ValueSource(strings = {"a", "-1", "", "-", "12o"})
+    void validateNaturalNumberTest(String input) {
+        assertThatThrownBy(() -> Validator.validateNaturalNumber(input)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
