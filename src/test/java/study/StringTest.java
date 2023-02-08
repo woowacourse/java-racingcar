@@ -38,7 +38,7 @@ public class StringTest {
 
     @Test
     @DisplayName("특정 위치의 문자가 문자열의 인덱스를 벗어난 경우 예외발생 테스트")
-    void getCharOutOfIndex_should() {
+    void testGetCharByIndex() {
         String data = "abc";
 
         assertThatThrownBy(() -> {
