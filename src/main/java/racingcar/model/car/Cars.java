@@ -10,15 +10,8 @@ public class Cars {
     private static final String CAR_SEPARATOR = ", ";
     private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    public Cars(List<Car> cars) {
         this.cars = cars;
-    }
-
-    public static Cars from(List<String> carNames, MovingStrategy movingStrategy) {
-        List<Car> cars = carNames.stream()
-                .map(carName -> new Car(carName, movingStrategy))
-                .collect(Collectors.toList());
-        return new Cars(cars);
     }
 
     public void moveCars() {

@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 import racingcar.model.car.MovingStrategy;
 import racingcar.model.track.Track;
@@ -7,6 +8,9 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.dto.CarNames;
 import racingcar.view.dto.TrialTimes;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingController {
     private final InputView inputView;
@@ -27,8 +31,11 @@ public class RacingController {
 
     private Cars requestCars(MovingStrategy movingStrategy) {
         CarNames carNames = inputView.getCarNames();
+        List<Car> cars = carNames.toCarNameList().stream()
+                .map(carName -> new Car(carName, movingStrategy))
+                .collect(Collectors.toList());
 
-        return Cars.from(carNames.toCarNameList(), movingStrategy);
+        return new Cars(cars);
     }
 
 
