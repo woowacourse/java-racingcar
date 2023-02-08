@@ -14,9 +14,9 @@
   - [x] 시도 횟수 검증한다. TryCount
     - 정수 입력
     - 0 제외
-- [ ] 랜덤값 생성한다.
+- [x] 랜덤값 생성한다. RandomGenerator#getRandomInteger
   - 0 ~ 9 사이 정수
-- [ ] 자동차 전진한다.
+- [x] 자동차 전진한다. RacingCar#Move
 - [ ] 레이싱 게임을 주관한다.
 - [ ] 실행 결과 출력
 - [ ] 최종 우승자 출력
