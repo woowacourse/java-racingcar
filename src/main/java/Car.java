@@ -11,4 +11,11 @@ public class Car {
     public String toString() {
         return String.format("%s  : %s", name, "-".repeat(distance));
     }
+
+    public void move() {
+        int moveCount = RandomNumberGenerator.randomNumberGenerate();
+        if (moveCount >= 4) {
+            this.distance++;
+        }
+    }
 }
