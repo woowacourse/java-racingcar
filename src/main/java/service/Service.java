@@ -1,6 +1,8 @@
 package service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import domain.Car;
 import domain.Cars;
@@ -13,6 +15,7 @@ public class Service {
     private Rule rule;
 
     public void setCars(List<String> carNames) {
+        validateDuplication(carNames);
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
@@ -41,5 +44,12 @@ public class Service {
 
     public List<String> getWinners() {
         return cars.getWinners();
+    }
+
+    private void validateDuplication(List<String> carNames) {
+        Set<String> carNamesWithoutDuplication = new HashSet<>(carNames);
+        if(carNames.size() != carNamesWithoutDuplication.size()) {
+            throw new IllegalArgumentException("중복된 이름은 사용할 수 없습니다.");
+        }
     }
 }
