@@ -13,9 +13,15 @@ public class Car {
         position.move();
     }
 
+    public int getPosition() {
+        return position.getPosition();
+    }
+
+    public String getName() {
+        return name.toString();
+    }
+
     public String getCurrentState() {
         return String.format(FORMAT, name, position);
     }
-
-
 }
