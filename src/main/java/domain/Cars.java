@@ -58,11 +58,15 @@ public class Cars {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (final Car car : cars) {
-            stringBuilder.append(car.getName()).append(" : ");
-            stringBuilder.append("-".repeat(car.getDistance()));
-            stringBuilder.append("\n");
+            makeStatusBar(stringBuilder, car);
         }
 
         return stringBuilder.toString();
+    }
+
+    private void makeStatusBar(final StringBuilder stringBuilder, final Car car) {
+        stringBuilder.append(car.getName()).append(" : ");
+        stringBuilder.append("-".repeat(car.getDistance()));
+        stringBuilder.append("\n");
     }
 }
