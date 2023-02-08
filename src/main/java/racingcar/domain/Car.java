@@ -4,8 +4,6 @@ import static racingcar.exception.ErrorMessages.*;
 
 import java.util.Objects;
 
-import racingcar.exception.ErrorMessages;
-
 public class Car {
 	final String name;
 	int position;
@@ -28,5 +26,22 @@ public class Car {
 		if (nameLength > 5) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 		}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Car)) {
+			return false;
+		}
+		Car car = (Car)o;
+		return position == car.position && Objects.equals(name, car.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, position);
 	}
 }
