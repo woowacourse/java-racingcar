@@ -5,6 +5,7 @@ import service.GameService;
 import service.validate.InputVerifier;
 import util.Converter;
 import view.input.InputView;
+import view.output.OutputView;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ public class Application {
         String[] names = getNames();
         List<Car> cars = makeCars(names);
         int count = getCount();
+        OutputView.printPhrase();
+        execute(count, cars);
+        OutputView.printResult(cars);
     }
 
     private static String[] getNames() {
@@ -33,5 +37,13 @@ public class Application {
         String inputCount = InputView.inputCount();
         InputVerifier.checkInputTypeIsNumber(inputCount);
         return Converter.convertType(inputCount);
+    }
+
+    private static void execute(int count, List<Car> cars) {
+        for (int step = 0; step < count; step++) {
+            gameController.updateStep(cars);
+            OutputView.printStep(cars);
+            System.out.println();
+        }
     }
 }

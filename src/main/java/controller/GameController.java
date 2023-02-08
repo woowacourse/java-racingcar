@@ -16,4 +16,9 @@ public class GameController {
     public List<Car> getCars(String[] names) {
         return gameService.splitNames(names);
     }
+
+    public void updateStep(List<Car> cars) {
+        gameService.move(cars);
+    }
+
 }
