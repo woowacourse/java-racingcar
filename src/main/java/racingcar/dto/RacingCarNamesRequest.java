@@ -42,7 +42,7 @@ public class RacingCarNamesRequest {
     }
 
     private static void validateNameLength(String name) {
-        if(name.length() > 6) {
+        if(name.length() >= 6) {
             throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
         }
     }
