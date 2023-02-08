@@ -23,7 +23,7 @@ public class Track {
     }
 
     public boolean runnable() {
-        return trialTime > 0;
+        return trialTime >= 0;
     }
 
     public Cars findWinner() {

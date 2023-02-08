@@ -10,4 +10,8 @@ public class OutputView {
     public void printWinnerCars(String winnerCarsFormat) {
         System.out.println(String.format(WINNER_MESSAGE, winnerCarsFormat));
     }
+
+    public void printInitialCarPosition(String carsPositionFormat) {
+        System.out.println(carsPositionFormat + "\n");
+    }
 }

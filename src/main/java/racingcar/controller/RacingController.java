@@ -19,6 +19,7 @@ public class RacingController {
     public Track init() {
         Cars cars = requestCars();
         int trialTime = requestTrialTime();
+        outputView.printInitialCarPosition(cars.getCarsPositionFormat());
 
         return new Track(cars, trialTime);
     }
