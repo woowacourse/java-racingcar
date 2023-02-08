@@ -15,11 +15,13 @@ public class InputView {
     }
 
     public List<String> readCars() {
-        OutputView.printNames();
+        outputView.printNames();
         String line = scanner.nextLine();
+        validateLine(line);
         String[] splitLine = line.split(",");
         return Arrays.asList(splitLine);
     }
+
 
     public int readGameRound() {
         outputView.printGameRoundGuide();
@@ -27,4 +29,14 @@ public class InputView {
         return Integer.parseInt(line);
     }
 
+    private void validateLine(String line) {
+        isBlank(line);
+        String format = "[a-zA-z][2]+";
+    }
+
+    private void isBlank(String line) {
+        if (line.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
+        }
+    }
 }
