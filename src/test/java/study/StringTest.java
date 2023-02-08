@@ -3,6 +3,7 @@ package study;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringTest {
@@ -31,6 +32,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("문자열에서 특정 위치의 문자가 범위 안에 있는 경우")
     void 문자열_범위_안의_문자_가져오기() {
         String input = "abc";
         char result = input.charAt(1);
@@ -39,6 +41,7 @@ public class StringTest {
     }
 
     @Test
+    @DisplayName("문자열에서 특정 위치의 문자가 범위 밖에 있는 경우")
     void 문자열_범위_밖의_문자_가져오기() {
         String input = "abc";
 
