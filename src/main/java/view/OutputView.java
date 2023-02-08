@@ -41,8 +41,4 @@ public class OutputView {
     private static void println(String value) {
         System.out.println(value);
     }
-
-    public void printException(Exception exception) {
-        println("[ERROR] " + exception.getMessage());
-    }
 }
