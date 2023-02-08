@@ -39,5 +39,4 @@ public class SetTest {
     void findNumber(int sameNumber, boolean result) {
         assertThat(numbers.contains(sameNumber)).isEqualTo(result);
     }
-
 }
