@@ -9,4 +9,8 @@ public class InputView {
         return inputName.split(",");
     }
 
+    public int inputCount() {
+        return scanner.nextInt();
+    }
+
 }
