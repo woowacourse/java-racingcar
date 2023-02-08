@@ -27,6 +27,7 @@
 - [ ] Output 객체 구현
 - [ ] Validate 객체 구현
 - [ ] Winner 객체 구현
+- [✅] RandomNumberGenerator 객체 구현
 
 ## 우아한테크코스 코드리뷰
 
