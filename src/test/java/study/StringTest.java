@@ -14,4 +14,9 @@ public class StringTest {
     public void deleteString() {
         assertThat("(1,2)".replaceAll("[(|)]", "")).isEqualTo("1,2");
     }
+
+    @Test
+    public void pickStringByIndex() {
+        assertThat("abc".charAt(0)).isEqualTo('a');
+    }
 }
