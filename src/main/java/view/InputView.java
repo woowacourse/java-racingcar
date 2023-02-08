@@ -44,6 +44,11 @@ public class InputView {
         return readLine();
     }
 
+    public int readNumberOfMoving() {
+        outputView.readNumberOfTry();
+        return Integer.parseInt(readLine());
+    }
+
     private String readLine() {
         // TODO : 안내 문구 출력 메서드로 돌아가기
         try {
