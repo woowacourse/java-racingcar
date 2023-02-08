@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class Car {
     private String name;
@@ -6,6 +7,10 @@ public class Car {
     public Car(String name) {
         this.name = name;
         position = 0;
+    }
+
+    public void addPosition() {
+        position = position + 1;
     }
 
 }
