@@ -37,7 +37,31 @@ public class GameManager {
 			RoundResultDTO roundResultDTO = new RoundResultDTO(cars.getCars());
 			outputView.printRoundResult(roundResultDTO);
 		}
-		endGame();
+	}
+
+	private void createCars() {
+		while(true) {
+			try {
+				CarNamesDTO carNamesDTO = inputView.inputCarName();
+				List<String> carNames = carNamesDTO.getCarNames();
+				cars.generateCars(carNames);
+				return;
+			} catch (Exception e) {
+				outputView.printErrorMeesage(e.getMessage());
+			}
+		}
+	}
+
+	private void createGameRound() {
+		while(true) {
+			try {
+				int totalRound = inputView.inputGameRound().getRound();
+				gameRound = new GameRound(totalRound);
+				return;
+			} catch (Exception e) {
+				outputView.printErrorMeesage(e.getMessage());
+			}
+		}
 	}
 
 	private void endGame() {
