@@ -15,4 +15,10 @@ public class CarRepository {
     public static void addCars(Car car) {
         cars.add(car);
     }
+
+    public static void moveAllCars() {
+        for (Car car : cars) {
+            car.move();
+        }
+    }
 }
