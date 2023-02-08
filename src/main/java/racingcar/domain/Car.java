@@ -6,6 +6,7 @@ public class Car {
 
     private final String name;
     private ValueLog valuelog;
+
     public Car(String name) {
         Validator.validateNameLength(name);
         Validator.validateNotEmptyInput(name);
@@ -19,4 +20,7 @@ public class Car {
     }
 
 
+    public int getLogSize() {
+        return valuelog.size();
+    }
 }

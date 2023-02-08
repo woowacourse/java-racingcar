@@ -9,4 +9,8 @@ public class ValueLog {
     public void add(int value) {
         log.add(value);
     }
+
+    public int size() {
+        return log.size();
+    }
 }
