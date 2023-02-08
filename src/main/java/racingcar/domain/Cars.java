@@ -22,4 +22,8 @@ public class Cars {
 			throw new IllegalArgumentException();
 		}
 	}
+
+	public void moveCars() {
+		cars.forEach(Car::move);
+	}
 }

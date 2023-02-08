@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.dto.RoundResultDTO;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -26,4 +27,15 @@ public class GameManager {
 		int totalRound = inputView.inputGameRound().getRound();
 		gameRound = new GameRound(totalRound);
 	}
+
+	public void playGame() {
+		outputView.printResultMessage();
+		while(!gameRound.isEnd()) {
+			cars.moveCars();
+			gameRound.increaseRound();
+			RoundResultDTO roundResultDTO = new RoundResultDTO(cars.getCars());
+			outputView.printRoundResult(roundResultDTO);
+		}
+	}
+
 }
