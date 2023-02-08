@@ -26,4 +26,19 @@ class CarTest {
         // expect
         assertThat(postStatus.getPosition()).isGreaterThan(status.getPosition());
     }
+
+    @Test
+    @DisplayName("차의 정보가 정확하게 반환되어야 한다.")
+    void car_status() {
+        // given
+        car.move();
+        car.move();
+
+        // when
+        RacingCarStatusResponse status = car.getStatus();
+
+        // then
+        assertThat(status.getPosition()).isEqualTo(2);
+        assertThat(status.getName()).isEqualTo("mycar");
+    }
 }
