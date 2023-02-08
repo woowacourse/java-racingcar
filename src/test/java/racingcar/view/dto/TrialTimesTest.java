@@ -17,4 +17,12 @@ class TrialTimesTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("시도 횟수는 1 이상 100 이하여야 합니다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "101"})
+    void validateRangeTest(String input) {
+        assertThatThrownBy(() -> {
+            new TrialTimes(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
