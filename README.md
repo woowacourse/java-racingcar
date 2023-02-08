@@ -11,10 +11,10 @@
 ```mermaid
 graph TD
     Cars --> Car
-    RacingGame --> GenerateStrategy
+    RacingGame --> NumberGenerator
     RacingGame --> Cars
     RacingCarController --> RacingGame
-    RandomGenerateStrategy -.-> GenerateStrategy
+    RandomNumberGenerator -.-> NumberGenerator
     RacingCarController --> InputView
     RacingCarController --> OutputView
 ```
@@ -23,16 +23,18 @@ graph TD
 
 Car
 
-- 자동차는 5자 이하의 이름을 가진다.
-- 자동차는 위치를 가진다.
+- [x] 자동차는 5자 이하의 이름을 가진다.
+- [x] 자동차는 위치를 가진다.
+- [x] 자동차는 값을 입력받고 이동한다.
     - 4 이상이면 전진한다.
     - 3 이하의 값이면 멈춘다.
 
 Cars
 
 - 경주를 진행하는 자동차들의 일급 컬렉션
+- [x] 자동차들을 움직인다.
 
-GenerateStrategy, RandomGenerateStrategy
+NumberGenerator, RandomNumberGenerator
 
 - 숫자 생성 전략
 - 랜덤 생성 전략의 경우 0~9 사이의 값을 랜덤으로 생성한다.

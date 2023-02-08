@@ -12,7 +12,7 @@ public class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"dazzle", ""})
-    @DisplayName("이름의 길이가 없거나 5보다 크다면 예외를 던진다.")
+    @DisplayName("생성자는 이름의 길이가 없거나 5보다 크다면 예외를 던진다.")
     void should_throwException_when_invalidNameLength(String name) {
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -21,7 +21,7 @@ public class CarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"4,1", "3,0"})
-    @DisplayName("값을 입력받고 4 이상인 경우 전진하고, 3 이하인 경우 멈춘다.")
+    @DisplayName("move 메서드는 값을 입력받고 4 이상인 경우 전진하고, 3 이하인 경우 멈춘다.")
     void should_move_when_valueIsMoreThanFour(int value, int position) {
         Car car = new Car("Herb");
 
