@@ -17,4 +17,12 @@ public class Car {
     public int getMoveCount() {
         return moveCount;
     }
+
+    public boolean canMove(int generatedNumber, int minMoveNumber) {
+        return generatedNumber >= minMoveNumber;
+    }
+
+    public boolean isWinner(int maxMoveCount) {
+        return moveCount == maxMoveCount;
+    }
 }
