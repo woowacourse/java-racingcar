@@ -1,5 +1,6 @@
 package racingcar;
 
+<<<<<<< HEAD
 import validator.CarNameValidator;
 
 public class Car {
@@ -31,5 +32,12 @@ public class Car {
 
     public int getPosition() {
         return position;
+=======
+public class Car {
+    private final String name;
+
+    public Car(String name) {
+        this.name = name;
+>>>>>>> 984262c (feat: 자동차 이름 입력)
     }
 }
