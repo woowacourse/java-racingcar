@@ -5,11 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SetTest {
@@ -40,5 +42,14 @@ public class SetTest {
     void setContainsParmaterizedTest(int checkingValue) {
         assertTrue(numbers.contains(checkingValue));
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1:true", "2:true", "6:false", "7:false"}, delimiter = ':')
+    @DisplayName("csvSource 이용한 set 요소 포함 확인 테스트")
+    void csvSourceTest(int number, boolean expected) {
+        boolean contains = numbers.contains(number);
+        assertEquals(contains, expected);
+    }
+
 
 }
