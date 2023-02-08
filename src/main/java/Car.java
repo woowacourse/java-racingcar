@@ -1,10 +1,16 @@
 public class Car {
-    private String name;
-    private int position;
+    private static final String FORMAT = "%s : %s";
+
+    private final Name name;
+    private Position position;
 
     public Car(String name) {
-        this.name = name;
-        position = 0;
+        this.name = new Name(name);
+        position = new Position();
+    }
+
+    public String getCurrentState() {
+        return String.format(FORMAT, name, position);
     }
 
 
