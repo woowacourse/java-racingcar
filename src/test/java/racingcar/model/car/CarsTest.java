@@ -2,6 +2,7 @@ package racingcar.model.car;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.TestDataManager;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ class CarsTest {
     @Test
     void movingCarsTest() {
         // given
-        Cars cars = getCarsByStrategies();
+        Cars cars = TestDataManager.getCarsByStrategies();
 
         // when
         for (int i = 0; i < 2; i++) {
@@ -31,7 +32,7 @@ class CarsTest {
     @Test
     void winnerCarTest() {
         // given
-        Cars cars = getCarsByStrategies();
+        Cars cars = TestDataManager.getCarsByStrategies();
 
         // when
         for (int i = 0; i < 2; i++) {
@@ -50,7 +51,7 @@ class CarsTest {
     @Test
     void winnerCarFormatTest() {
         // given
-        Cars cars = getCarsByStrategies();
+        Cars cars = TestDataManager.getCarsByStrategies();
 
         // when
         for (int i = 0; i < 2; i++) {
@@ -64,25 +65,5 @@ class CarsTest {
                 .contains("eddy");
 
     }
-
-
-    /*
-        position = 3 인 pobi,
-        position = 1 인 crong 을 포함한 Cars를 반환
-     */
-    private Cars getCarsByStrategies() {
-        MovingStrategy movingStrategy = new ForwardMovingStrategy();
-        MovingStrategy notMovingStrategy = new NotMovingStrategy();
-
-        Car pobi = new Car("pobi", movingStrategy);
-        Car crong = new Car("crong", notMovingStrategy);
-        Car eddy = new Car("eddy", movingStrategy);
-        return new Cars(List.of(
-                pobi,
-                crong,
-                eddy
-        ));
-    }
-
 
 }
