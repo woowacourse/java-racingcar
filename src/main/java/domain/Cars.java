@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Cars {
     private static final int MAX_INPUT_LENGTH = 10_000_000;
     private static final String INVALID_INPUT_LENGTH_MESSAGE = "입력값은 최대 1000만 글자여야 합니다";
-    
+
     private final List<Car> cars = new ArrayList<>();
 
     private Cars(String names) {
