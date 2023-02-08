@@ -16,7 +16,7 @@ public class RacingStatus {
 
     public RacingStatus(String carNames, NumberPicker numberPicker) {
         racingStatus = Arrays.stream(carNames.split(NAME_DELIMITER))
-                .map(name -> new Car(name))
+                .map(Car::new)
                 .collect(Collectors.toList());
 
         this.numberPicker = numberPicker;
