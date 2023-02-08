@@ -45,6 +45,17 @@ public class RacingGame {
         }
     }
 
+    public List<String> decisionWinners(){
+        List<String> winners = new ArrayList<>();
+        int topPoint = cars.stream().mapToInt(c->c.getPosition()).max().getAsInt();
+        for (Car car: cars){
+            if(car.getPosition() == topPoint){
+                winners.add(car.getName());
+            }
+        }
+        return Collections.unmodifiableList(winners);
+    }
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }

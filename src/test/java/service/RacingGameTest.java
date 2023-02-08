@@ -31,6 +31,22 @@ class RacingGameTest {
         assertThat(resultCars.get(2).getPosition()).isEqualTo(1);
     }
 
+    @Test
+    void 게임_승자_테스트(){
+        RacingGame racingGame = new RacingGame(new TestNumberGenerator());
+        List<String> carNames = new ArrayList<>(List.of("aaa", "bbb", "ccc"));
+        racingGame.generateCars(carNames);
+
+        racingGame.processAllCars();
+        List<Car> resultCars = racingGame.getCars();
+
+        assertThat(resultCars.get(0).getPosition()).isEqualTo(0);
+        assertThat(resultCars.get(1).getPosition()).isEqualTo(0);
+        assertThat(resultCars.get(2).getPosition()).isEqualTo(1);
+
+        assertThat(racingGame.decisionWinners()).containsOnly("ccc");
+    }
+
     private static class TestNumberGenerator implements NumberGenerator {
         Queue<Integer> numbers = new LinkedList<>(List.of(0, 3, 4));
 
