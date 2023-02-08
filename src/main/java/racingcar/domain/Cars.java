@@ -12,14 +12,14 @@ public class Cars {
         this.cars = splitCarNames(carNames);
     }
 
+    public static Cars of(String carNames) {
+        return new Cars(carNames);
+    }
+
     private List<Car> splitCarNames(String carNames) {
         String[] names = carNames.split(",");
         return Arrays.stream(names)
                 .map(Car::of)
                 .collect(Collectors.toList());
-    }
-
-    public static Cars of(String carNames) {
-        return new Cars(carNames);
     }
 }

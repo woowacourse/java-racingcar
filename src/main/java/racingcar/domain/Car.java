@@ -16,6 +16,10 @@ public class Car {
         this.drivingMark = new StringBuilder();
     }
 
+    public static Car of(final String name) {
+        return new Car(name);
+    }
+
     private void validateNameLength(String name) {
         if (name.length() > NAME_MAX_LENGTH.getValue()) {
             throw new IllegalArgumentException(LENGTH_MESSAGE.getValue());
@@ -35,9 +39,5 @@ public class Car {
     @Override
     public String toString() {
         return name + " : " + drivingMark;
-    }
-
-    public static Car of(final String name) {
-        return new Car(name);
     }
 }
