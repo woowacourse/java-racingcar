@@ -27,5 +27,13 @@ public class InputView {
       throw new IllegalArgumentException("자동차의 이름의 길이는 1 이상 5 이하여아 한다");
     }
   }
-  
+
+  public int readRoundNum() {
+    try {
+      System.out.println("시도할 횟수는 몇회인가요?");
+      return scanner.nextInt();
+    } catch (InputMismatchException e) {
+      throw new InputMismatchException("이동 횟수는 숫자여야 합니다.");
+    }
+  }
 }
