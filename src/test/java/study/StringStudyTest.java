@@ -43,12 +43,22 @@ public class StringStudyTest {
 
         @Test
         @DisplayName("특정_문자_위치_찾기_문자열로_특정_문자_찾기_테스트")
-        void findCharIndexByStringTest() {
+        void indIndexByStringTest() {
             String input = "abc";
 
             assertThat(input.indexOf("a")).isEqualTo(0);
             assertThat(input.indexOf("b")).isEqualTo(1);
             assertThat(input.indexOf("c")).isEqualTo(2);
+        }
+        
+        @Test
+        @DisplayName("특정_문자_위치_찾기_인덱스로_특정_문자_찾기_예외_테스트")
+        void findCharByIndexTest() {
+            String input = "abc";
+
+            Assertions.assertThatThrownBy(() -> input.charAt(3))
+                    .isInstanceOf(StringIndexOutOfBoundsException.class)
+                    .hasMessageContaining("String index out of range: 3");
         }
     }
 }
