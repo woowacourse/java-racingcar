@@ -7,4 +7,14 @@ public class Car {
     public Car(String name) {
         this.name = new CarName(name);
     }
+
+    public void move(boolean isMovable) {
+        if (isMovable) {
+            distance++;
+        }
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
 }
