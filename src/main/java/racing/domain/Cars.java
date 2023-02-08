@@ -1,5 +1,6 @@
 package racing.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,4 +26,7 @@ public class Cars {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
+    }
 }
