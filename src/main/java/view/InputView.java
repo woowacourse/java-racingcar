@@ -2,6 +2,8 @@ package view;
 
 import java.util.List;
 import java.util.Scanner;
+import util.CarNameValidator;
+import util.Util;
 
 public class InputView {
 
@@ -17,8 +19,10 @@ public class InputView {
 
     public List<String> readCarNames() {
         System.out.println(Message.INPUT_CARS.message);
-        String input = scanner.nextLine();
-        return null;
+        String input = Util.removeSpace(scanner.nextLine());
+        List<String> names = Util.splitByComma(input);
+        new CarNameValidator().validate(names);
+        return names;
     }
 
     private enum Message {
