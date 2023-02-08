@@ -13,7 +13,7 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    public List<Car> getCars() {
-        return gameService.splitNames();
+    public List<Car> getCars(String[] names) {
+        return gameService.splitNames(names);
     }
 }

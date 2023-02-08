@@ -1,7 +1,13 @@
 package service.validate;
 
 public class InputVerifier {
-    public static void validateNameLength(String[] names) {
+
+    public static String[] splitInput(String input) {
+        String[] names = input.split(",");
+        validateNameLength(names);
+        return names;
+    }
+    private static void validateNameLength(String[] names) {
         for (String name : names) {
             checkNameLength(name);
         }
