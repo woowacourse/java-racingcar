@@ -1,17 +1,17 @@
 package domain;
 
-import view.InputView;
+import util.RandomNumberMaker;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    List<Car> Cars = new ArrayList<>();
+    List<Car> cars = new ArrayList<>();
 
     public Cars(String userInput) {
         validateNotNull(userInput);
         validateHasComma(userInput);
-        validateLength(userInput);
+        addCar(userInput);
     }
 
 
@@ -27,13 +27,25 @@ public class Cars {
         }
     }
 
-    private void validateLength(String userInput) {
+    private void addCar(String userInput) {
         String[] userInputSplit = userInput.split(",");
-        if (userInputSplit.length > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("dkdkd");
-        }
+
         for(String inputSplit :userInputSplit){
-            Cars.add(new Car(inputSplit));
+            cars.add(new Car(inputSplit));
         }
+    }
+
+    public int getCarsSize() {
+        return cars.size();
+    }
+
+    public void addDistance() {
+        for (Car car : cars){
+            car.addDistance(new RandomNumberMaker().makeNumber());
+        }
+    }
+
+    public Car getCar (int i){
+        return this.cars.get(i);
     }
 }

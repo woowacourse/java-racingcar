@@ -2,13 +2,23 @@ package controller;
 
 import domain.Cars;
 import domain.Trial;
+import util.RandomNumberMaker;
 import view.InputView;
+import view.OutputView;
 
 public class Controller {
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     public void run() {
-        askCars();
-        askTrial();
+        Cars cars = askCars();
+        Trial trial = askTrial();
+        for (int j=0 ; j< trial.getTrial(); j++){
+
+            cars.addDistance();
+
+            outputView.printCarsDistance(cars);
+            trial.updateTrialCount();
+        }
     }
 
 

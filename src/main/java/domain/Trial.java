@@ -3,6 +3,7 @@ package domain;
 public class Trial {
     private final String PREFIX = "[0-9]";
     private final int trial;
+    private int trialCount = 0;
 
     public Trial(String input) {
         validateNumber(input);
@@ -18,8 +19,20 @@ public class Trial {
     }
 
     private void validateExtreme(String input) {
-        if (input.equals("0") || Integer.parseInt(input) > Integer.MAX_VALUE) {
+        if (input.equals("0") || Long.parseLong(input) > Integer.MAX_VALUE) {
             throw new IllegalArgumentException("1 이상의 정수(int)범위로 입력해주세요.");
         }
+    }
+
+    public int getTrial() {
+        return trial;
+    }
+
+    public int getTrialCount(){
+        return trialCount;
+    }
+
+    public void updateTrialCount(){
+        trialCount++;
     }
 }
