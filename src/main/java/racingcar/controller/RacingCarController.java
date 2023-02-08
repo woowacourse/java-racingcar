@@ -1,7 +1,9 @@
 package racingcar.controller;
 
 import racingcar.domain.CarRepository;
+import racingcar.domain.NumberGenerator;
 import racingcar.domain.RacingGame;
+import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 
 import java.util.InputMismatchException;
@@ -16,7 +18,8 @@ public class RacingCarController {
     private RacingGame initGame() {
         CarRepository carRepository = createCars();
         int tries = getTries();
-        return new RacingGame(carRepository, tries);
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        return new RacingGame(carRepository, tries, numberGenerator);
     }
     //,를 제거했을 때 빈 리스트가 되는 경우 예외 처리한다.
     //플레이어가 1명 이하인 경우 예외 처리한다.

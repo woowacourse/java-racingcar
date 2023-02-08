@@ -17,4 +17,8 @@ public class CarRepository {
                 .map(carName -> new Car(carName, START_POINT))
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public void moveCars(NumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(numberGenerator));
+    }
 }
