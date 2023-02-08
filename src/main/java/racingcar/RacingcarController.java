@@ -15,8 +15,10 @@ public class RacingcarController {
     public void run(String carNames, int tryCount) {
         List<Car> cars = carFactory.makeCars(carNames);
 
+        OutputView.playRound();
         for (int i = 0; i < tryCount; i++) {
             racingcarService.move(cars);
+            OutputView.result(cars);
         }
     }
 }

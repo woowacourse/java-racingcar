@@ -14,7 +14,7 @@ public class Car {
     }
 
     private void validateName(String name) {
-        if (name.length() < MINIMUM_NAME_LENGTH|| name.length() > MAXIMUM_NAME_LENGTH) {
+        if (name.length() < MINIMUM_NAME_LENGTH || name.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 최소 한글자, 최대 다섯글자까지 가능해요.");
         }
     }
@@ -23,5 +23,15 @@ public class Car {
         if (random >= 4) {
             position++;
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < position; i++) {
+            sb.append("-");
+        }
+
+        return name + " : " + sb.toString();
     }
 }
