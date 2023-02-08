@@ -1,5 +1,7 @@
 package study;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +16,7 @@ public class StringTest {
 
     @DisplayName("문자열이 ',' 기준으로 split 되는지 확인한다.")
     @Test
-    void divideString() {
+    void divideStringTest() {
         String input = "1,2";
 
         assertThat(input.split(","))
@@ -23,17 +25,19 @@ public class StringTest {
 
     @DisplayName("split할 수 없는 문자열인 경우, 해당 문자열만을 포함한 배열로 반환하는지 확인한다.")
     @Test
-    void divideStringToSingleArray() {
+    void divideStringToSingleArrayTest() {
         String input = "1";
 
         assertThat(input.split(","))
                 .containsExactly("1");
     }
 
-//    @ParameterizedTest
-//    @MethodSource("provideSplitStringContainsExpected")
-//    void containsSplitString(String input, List<String> expected) {
-//        assertThat(input.split(","))
-//                .contains(expected.get(0));
-//    }
+    @DisplayName("특정 문자열을 제거한 상태의 문자열을 반환한다.")
+    @Test
+    void replaceStringTest() {
+        String input = "(1,2)";
+
+        assertThat(input.replaceAll("[()]", ""))
+                .isEqualTo("1,2");
+    }
 }
