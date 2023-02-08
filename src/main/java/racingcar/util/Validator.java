@@ -5,10 +5,16 @@ import racingcar.constant.ErrorLog;
 public class Validator {
 
     private static final String EMPTY_STRING = "";
-
-    public static void validateNotEmptyInput(String input) {
-        if (input.trim().equals("")) {
+    public static final String  NATURAL_NUMBER_REGEX = "^[1-9]+[0-9]*$";
+    public static void validateNotEmptyInput(String str) {
+        if (str.trim().equals("")) {
             throw new IllegalArgumentException(ErrorLog.EMPTY_STRING.getMessage());
+        }
+    }
+
+    public static void validateNaturalNumber(String str) {
+        if (!str.matches(NATURAL_NUMBER_REGEX)) {
+            throw new IllegalArgumentException(ErrorLog.NOT_NATURAL_NUMBER.getMessage());
         }
     }
 }
