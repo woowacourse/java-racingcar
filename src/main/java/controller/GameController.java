@@ -19,6 +19,8 @@ public class GameController {
 
     public void run() {
         List<Car> cars = makeCars();
+        // TODO : 시도 횟수 예외 처리
+        int trial = inputView.readNumberOfMoving();
     }
 
     private List<Car> makeCars() {
