@@ -15,7 +15,7 @@ public class RacingcarService {
         int maxPosition = 0;
 
         for (Car car : cars) {
-            maxPosition = car.findWinnerPosition(maxPosition);
+            maxPosition = car.findGreaterPosition(maxPosition);
         }
 
         return maxPosition;
