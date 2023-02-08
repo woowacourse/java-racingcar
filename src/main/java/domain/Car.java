@@ -18,6 +18,10 @@ public class Car {
         }
     }
 
+    public void move() {
+        ++this.position;
+    }
+
     public String getName() {
         return name;
     }
@@ -25,4 +29,6 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+
 }
