@@ -22,8 +22,8 @@ class CarsTest {
     void getFirstPositionTest() {
         Cars cars = new Cars(dummy);
 
-        boxster.move();
-        sonata.move();
+        boxster.addPosition();
+        sonata.addPosition();
 
         List<Car> firstPosition = cars.getFirstPosition();
 

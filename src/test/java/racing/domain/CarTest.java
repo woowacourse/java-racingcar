@@ -16,11 +16,11 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("move 메소드를 호출하면 position이 1 증가한다.")
+    @DisplayName("addPosition 메소드를 호출하면 position이 1 증가한다.")
     void moveTest() {
         Car car = new Car("test");
 
-        car.move();
+        car.addPosition();
 
         int position = car.getPosition();
         assertThat(position).isEqualTo(1);

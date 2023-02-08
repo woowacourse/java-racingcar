@@ -16,10 +16,10 @@ public class Car {
         }
     }
 
-    public void move() {
+    public void addPosition() {
         position++;
     }
-    
+
     public int getPosition() {
         return position;
     }
