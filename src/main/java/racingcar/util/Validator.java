@@ -8,10 +8,11 @@ public class Validator {
     private Validator() {
     }
 
-    static void validateCarNames(String carNames) {
+    public static String[] validateCarNames(String carNames) {
         String[] split = carNames.split(DELIMITER);
         validateCarNameLength(split);
         validateNoInput(split);
+        return split;
     }
 
     private static void validateNoInput(String[] split) {
