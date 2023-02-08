@@ -36,7 +36,7 @@
 
 * contains 메소드
     - [ ] 입력한 값이 존재하는지 여부를 확인하는 테스트 구현
-        - [ ] JUnit ParameterizedTest 사용하여 반복되는 메서드 사용 제거
+        - [x] JUnit ParameterizedTest 사용하여 반복되는 메서드 사용 제거
         - [ ] JUnit CsvSource 사용하여 입력/출력 쌍을 활용한 테스트 구현
 
 
