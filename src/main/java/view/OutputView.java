@@ -3,7 +3,6 @@ package view;
 import racingcar.Car;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
     private OutputView() {
@@ -41,5 +40,9 @@ public class OutputView {
 
     private static void println(String value) {
         System.out.println(value);
+    }
+
+    public void printException(Exception exception) {
+        println("[ERROR] " + exception.getMessage());
     }
 }
