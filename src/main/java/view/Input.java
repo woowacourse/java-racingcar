@@ -5,11 +5,14 @@ import java.util.Scanner;
 public class Input {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public String carNameInput() {
-        return scanner.nextLine();
+    private Input() {
     }
 
-    public int gameCountInput() {
+    public static int gameCountInput() {
         return scanner.nextInt();
+    }
+
+    public static String carNameInput() {
+        return scanner.nextLine();
     }
 }
