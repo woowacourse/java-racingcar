@@ -3,11 +3,14 @@ package racingcar.view;
 import java.util.List;
 
 import racingcar.dto.CarDTO;
+import racingcar.dto.GameResultDTO;
 import racingcar.dto.RoundResultDTO;
 
 public class OutputView {
 	private static final String RESULT_MESSAGE = "실행결과";
+	private static final String GAME_RESULT_MESSAGE = "가 최종 우승했습니다.";
 	private static final String PATH = "-";
+
 	public void printResultMessage() {
 		System.out.println(RESULT_MESSAGE);
 	}
@@ -31,4 +34,8 @@ public class OutputView {
 		return carPath.toString();
 	}
 
+	public void printEndGameResult(GameResultDTO gameResultDTO) {
+		String winnerNames = String.join(", ", gameResultDTO.getWinnerNames());
+		System.out.println(winnerNames + GAME_RESULT_MESSAGE);
+	}
 }
