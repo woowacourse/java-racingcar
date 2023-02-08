@@ -1,6 +1,6 @@
 package type;
 
 public enum ValidationType {
-    EMPTY_VALUE
+    POSITIVE_NUMBER, EMPTY_VALUE
 
 }

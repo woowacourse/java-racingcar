@@ -8,7 +8,9 @@ public enum ErrorCode {
     CAR_NAME_DUPLICATE("이미 존재하는 차 이름입니다."),
     CAR_NOT_FOUND("존재하지 않는 차입니다."),
     CAR_EMPTY("차가 존재하지 않습니다."),
-    CAR_NAMES_EMPTY("빈 값이 입력 되었습니다.");
+    CAR_NAMES_EMPTY("빈 값이 입력 되었습니다."),
+    NOT_POSITIVE_NUMBER("양수만 입력 가능합니다."),
+    ;
     private final String message;
 
     ErrorCode(String message) {
