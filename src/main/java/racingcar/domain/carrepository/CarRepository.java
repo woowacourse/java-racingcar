@@ -13,6 +13,25 @@ public class CarRepository {
         this.repository = repository;
     }
 
+    private void validate(List<Car> repository) {
+        if (isOutOfSize(repository)) {
+            throw new IllegalArgumentException("[ERROR] 자동차는 2대 이상 입력되어야 합니다.");
+        }
+        if (hasDuplication(repository)) {
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private boolean hasDuplication(List<Car> repository) {
+        return repository.stream()
+                .distinct()
+                .count() != repository.size();
+    }
+
+    private boolean isOutOfSize(List<Car> repository) {
+        return repository.size() < 2;
+    }
+
     public void movePosition() {
         NumberGenerator numberGenerator = new NumberGenerator();
         for (Car car : repository) {
