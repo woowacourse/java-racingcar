@@ -12,5 +12,10 @@ public class OutputView {
             String location = CAR_LOCATION.repeat(car.getCarLocation());
             System.out.printf(PRINT_CAR_LOCATION, car.getCarName(), location);
         }
+        System.out.println();
+    }
+
+    public void printWinner(Cars cars) {
+        System.out.println(String.join(", ", cars.getWinners()));
     }
 }
