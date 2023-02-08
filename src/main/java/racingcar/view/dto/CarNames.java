@@ -3,13 +3,15 @@ package racingcar.view.dto;
 import java.util.regex.Pattern;
 
 public class CarNames {
-
     private static final String VALID_STRING_REGEX = "([\\\\w])+";
     private static final String SEPARATOR = ",";
     private static final int CAR_NAME_MAX_LENGTH = 5;
 
+    private String carNames;
+
     public CarNames(String carNames) {
         validate(carNames);
+        this.carNames = carNames;
     }
 
     private void validate(String carNames) {
