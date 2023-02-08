@@ -26,7 +26,7 @@ public class StringTest {
     }
 
     @Test
-    @DisplayName("문자열의 범위 벗어날 시 예외")
+    @DisplayName("문자열의 범위 벗어날 시 예가")
     public void pickStringOutOfRange() {
         assertThatThrownBy(() -> "abc".charAt(-1))
                 .isInstanceOf(StringIndexOutOfBoundsException.class);
