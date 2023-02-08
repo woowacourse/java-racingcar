@@ -24,4 +24,7 @@ public class OutputView {
     public void printStartMessage() {
         System.out.println(START_INPUT_CAR_NAME_MESSAGE);
     }
+    public void printCountMessage() {
+        System.out.println(COUNT_MESSAGE);
+    }
 }
