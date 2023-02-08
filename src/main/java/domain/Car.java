@@ -2,9 +2,10 @@ package domain;
 
 public class Car {
     public static final int MAX_NAME_LENGTH = 5;
-    private final String name;
-    private int position = 0;
 
+    private final String name;
+
+    private int position = 0;
     public Car(String name) {
         validate(name);
         this.name = name;
@@ -12,6 +13,14 @@ public class Car {
 
     public void move() {
         position++;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     private void validate(String name) {
