@@ -3,7 +3,6 @@ package view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.function.Supplier;
 
 import static constant.Constants.NOT_NUMERIC_EXCEPTION;
 
@@ -33,7 +32,6 @@ public class InputView {
     }
 
     private String readLine() {
-        // TODO : 안내 문구 출력 메서드로 돌아가기
         try {
             return bufferedReader.readLine();
         } catch (IOException ioException) {

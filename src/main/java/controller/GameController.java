@@ -21,7 +21,6 @@ public class GameController {
 
     public void run() {
         makeCars();
-        // TODO : 시도 횟수 예외 처리
         startRacing(inputView.readNumberOfMoving());
         outputView.printWinners(racingCarGame.getWinners());
     }

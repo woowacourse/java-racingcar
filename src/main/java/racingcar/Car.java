@@ -9,11 +9,15 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        validateName(name);
+        this.name = name;
+        this.position = START_POSITION;
+    }
+
+    private static void validateName(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException(CAR_NAME_LIMIT_EXCEPTION);
         }
-        this.name = name;
-        this.position = START_POSITION;
     }
 
     public void move(MoveStrategy moveStrategy) {
