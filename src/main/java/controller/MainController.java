@@ -23,9 +23,10 @@ public class MainController {
         }
 
         int moveCount = inputView.readMoveCount();
+        outputView.printResultMessage();
         for (int i = 0; i < moveCount; i++) {
             CarRepository.moveAllCars();
-            System.out.println(CarRepository.cars());
+            outputView.printResult(CarRepository.cars());
         }
     }
 }
