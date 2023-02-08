@@ -16,5 +16,10 @@ public class Application {
         GameController gameController = new GameController(gameService);
 
         List<Car> cars = gameController.getCars(names);
+
+
+        String inputCount = InputView.inputCount();
+        int count = InputVerifier.convert(inputCount);
+        System.out.println("count = " + count);
     }
 }

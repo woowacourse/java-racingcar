@@ -29,4 +29,15 @@ public class InputVerifier {
         }
     }
 
+    public static int convert(String input) {
+        checkInputTypeIsNumber(input);
+        return Integer.parseInt(input);
+    }
+
+    private static void checkInputTypeIsNumber(String input) {
+        final String REGEX = "[0-9]+";
+        if(!input.matches(REGEX)){
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_DIGIT.getMessage());
+        }
+    }
 }
