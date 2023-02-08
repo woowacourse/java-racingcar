@@ -1,0 +1,26 @@
+package domain;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
+class CarTest {
+
+    @ParameterizedTest
+    @ValueSource(strings = {"자동차", "1", "일이삼사오"})
+    void 자동차_생성_성공_테스트(String name) {
+        Car car = new Car(name);
+
+        assertThat(car.getName()).isEqualTo(name);
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
+    @ParameterizedTest
+    @ValueSource(strings = {"123456", "일이삼사오육"})
+    void 자동차_생성_이름길이_예외_테스트(String name) {
+        assertThatThrownBy(() -> {
+            new Car(name);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+}
