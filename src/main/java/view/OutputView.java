@@ -3,6 +3,7 @@ package view;
 import domain.Car;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 public class OutputView {
     public void printCarNameMessage() {
@@ -18,5 +19,13 @@ public class OutputView {
             car.printCarInfo();
         }
         System.out.println();
+    }
+
+    public void printWinners(List<String> winners) {
+        StringJoiner winnerPrintFormat = new StringJoiner(", ");
+        for (String winner : winners) {
+            winnerPrintFormat.add(winner);
+        }
+        System.out.println(winnerPrintFormat);
     }
 }
