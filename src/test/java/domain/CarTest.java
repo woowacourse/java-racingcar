@@ -25,4 +25,16 @@ public class CarTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @Nested
+    class MoveTest {
+        @Test
+        @DisplayName("1회 이동했을 때, 위치가 정상적으로 증가하는지 테스트")
+        void moveOneStep() {
+            Car car = new Car("hong");
+            car.move();
+            Assertions.assertThat(car).extracting("position")
+                    .isEqualTo(1);
+        }
+    }
 }
