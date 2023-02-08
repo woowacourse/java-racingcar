@@ -2,10 +2,15 @@ package view;
 
 import dto.RacingStatusDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
+    public static final String WINNER_GUIDE_MESSAGE = "가 최종 우승했습니다.";
+    public static final String WINNER_DELIMETER = ", ";
     private static final String STATUS_GUIDE_MESSAGE = "실행 결과";
+    private static final String COLON = " : ";
+    private static final String CAR_POSITION = "-";
 
     private OutputView() {
     }
@@ -26,10 +31,24 @@ public class OutputView {
 
     private static void printOneStatus(RacingStatusDto racingStatus) {
         System.out.print(racingStatus.getCarName());
-        System.out.print(" : ");
+        System.out.print(COLON);
+
         for (int i = 0; i < racingStatus.getStatus(); i++) {
-            System.out.print("-");
+            System.out.print(CAR_POSITION);
         }
         System.out.println();
+    }
+
+    public static void printWinner(int max, List<RacingStatusDto> toDto) {
+
+        List<String> winners = new ArrayList<>();
+        for (RacingStatusDto dto : toDto) {
+            if (dto.getStatus() == max) {
+                winners.add(dto.getCarName());
+            }
+        }
+
+        System.out.print(String.join(WINNER_DELIMETER, winners));
+        System.out.println(WINNER_GUIDE_MESSAGE);
     }
 }
