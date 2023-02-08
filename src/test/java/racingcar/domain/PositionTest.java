@@ -51,4 +51,15 @@ public class PositionTest {
                 () -> position.move(param)
         ).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("equals 시 같은 위치인 경우 true를 반환한다.")
+    void test_5() {
+        // given
+        Position pos1 = Position.init();
+        Position pos2 = Position.init();
+
+        // when & then
+        assertThat(pos1).isEqualTo(pos2);
+    }
 }
