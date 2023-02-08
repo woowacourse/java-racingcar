@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class RacingCar {
-    private static final Integer defaultPoint = 0;
+    private static final Integer defaultPoint = 1;
     private String name;
     private Integer point;
 

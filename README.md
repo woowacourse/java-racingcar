@@ -11,7 +11,7 @@
 - [x] 자동차 이름을 입력받는 기능 InputView#readCarName
 - [x] 자동차 이름 파싱 (쉼표로 구분한다) Parser#parsing
 - [x] 시도할 횟수를 입력받는 기능 InputView#readTryCount
-- [ ] 경주 RacingCarGame
+- [x] 자동차 경주 게임 기능 RacingCarGameController
   - [x] 랜덤 값 생성 (0~9 사이의 수) RandomNumberGenerator#getNumber
   - [x] 전진 여부 판단 (4 이상일 경우 전진) AdvanceJudgement#isAdvancePossible
   - [x] 자동차 전진 (자동차 포인트 증가) RacingCar#advance
