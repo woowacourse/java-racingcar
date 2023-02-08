@@ -1,7 +1,9 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Cars {
@@ -25,5 +27,21 @@ public class Cars {
 
 	public void moveCars() {
 		cars.forEach(Car::move);
+	}
+	
+	public List<String> findWinnerNames() {
+		List<String> winnerNames = new ArrayList<>();
+		int maxPosition = 0;
+		for (Car car : cars) {
+			if (car.getPosition() == maxPosition) {
+				winnerNames.add(car.getName());
+			}
+			if (car.getPosition() > maxPosition) {
+				maxPosition = car.getPosition();
+				winnerNames.clear();
+				winnerNames.add(car.getName());
+			}
+		}
+		return winnerNames;
 	}
 }
