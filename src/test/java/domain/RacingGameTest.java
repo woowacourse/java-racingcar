@@ -14,7 +14,9 @@ class RacingGameTest {
         int round = 0;
 
         //When
-        Throwable result = catchThrowable(()-> {new RacingGame(round);});
+        Throwable result = catchThrowable(() -> {
+            new RacingGame(round, new RandomNumberGenerator());
+        });
 
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
