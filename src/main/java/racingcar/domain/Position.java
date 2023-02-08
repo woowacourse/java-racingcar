@@ -30,7 +30,7 @@ public class Position {
         return nextPosition(randomNumber);
     }
 
-    private Position nextPosition(int randomNumber) {
+    private Position nextPosition(final int randomNumber) {
         if (randomNumber >= BOUNDARY_NUMBER) {
             return new Position(this.value + MOVE_INTERVAL);
         }
