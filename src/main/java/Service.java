@@ -54,17 +54,17 @@ public class Service {
     }
 
     public void move(Car car) {
-        if (judgement()) {
+        if (judgement(initRandomNumber())) {
             car.addPosition();
         }
     }
 
-    public boolean judgement() {
-        return initRandomNumber() >= MOVEABLE_NUMBER;
+    public boolean judgement(int randomNumber) {
+        return randomNumber >= MOVEABLE_NUMBER;
     }
 
 
-    public int initRandomNumber() {
+    private int initRandomNumber() {
         return (int) (Math.random() * RANDOM_NUMBER_RANGE);
     }
 
@@ -74,7 +74,7 @@ public class Service {
         }
     }
 
-    private void addWinCar(Car car) {
+    public void addWinCar(Car car) {
         if (car.amIWinner(cars)) {
             winnerCars.add(car);
         }
