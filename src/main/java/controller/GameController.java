@@ -30,6 +30,7 @@ public class GameController {
     private void startGame(int numberOfMoving) {
         for (int round = 0; round < numberOfMoving; round++) {
             racingCarGame.moveCars();
+            outputView.printCarsStatus(CarRepository.findAll());
         }
     }
 
