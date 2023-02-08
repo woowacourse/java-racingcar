@@ -2,27 +2,29 @@ package domain;
 
 public class RacingGame {
 
-    private static final int ROUND_MIN_SIZE = 1;
     private static final int MOVABLE_MIN_NUMBER = 4;
-    private static final String ROUND_SIZE_ERROR = "[ERROR] 시도 횟수는 1이상이어야 합니다.";
 
-    private int round;
     private NumberGenerator numberGenerator;
+    private Cars cars;
 
-    public RacingGame(int round, NumberGenerator numberGenerator) {
-        validateRound(round);
-        this.round = round;
+    public RacingGame(NumberGenerator numberGenerator, Cars cars) {
         this.numberGenerator = numberGenerator;
+        this.cars = cars;
     }
 
-    private void validateRound(int round) {
-        if (round < ROUND_MIN_SIZE) {
-            throw new IllegalArgumentException(ROUND_SIZE_ERROR);
+    public void playRound() {
+        for (Car car : cars.getCars()) {
+            isMovable(car);
         }
     }
 
-    private boolean isMovable() {
-        int number = numberGenerator.generate();
-        return number >= MOVABLE_MIN_NUMBER;
+    public Cars getCars() {
+        return cars;
+    }
+
+    private void isMovable(Car car) {
+        if (numberGenerator.generate() >= MOVABLE_MIN_NUMBER) {
+            car.increasePosition();
+        }
     }
 }
