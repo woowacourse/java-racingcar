@@ -33,4 +33,20 @@ public class RacingGame {
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
+
+
+
+    public List<Car> getWinners() {
+        Car furthestCar = getFurthestCar();
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == furthestCar.getPosition())
+                .collect(Collectors.toList());
+    }
+
+    private Car getFurthestCar() {
+        return cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .get();
+    }
 }
