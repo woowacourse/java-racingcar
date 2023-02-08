@@ -13,4 +13,12 @@ public class InputView {
 
         return carNames;
     }
+
+    public int inputNumberOfRounds() {
+        Scanner scanner = new Scanner(System.in);
+        String numberOfRounds = scanner.nextLine();
+        Validator.validateNaturalNumber(numberOfRounds);
+
+        return Integer.parseInt(numberOfRounds);
+    }
 }
