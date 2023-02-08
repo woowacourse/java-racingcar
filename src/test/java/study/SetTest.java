@@ -29,4 +29,11 @@ public class SetTest {
         assertThat(numbers.size())
                 .isEqualTo(3);
     }
+
+    @DisplayName("Set에 입력한 원소값들이 존재하는지 확인한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void contains(int num) {
+        assertThat(numbers.contains(num)).isTrue();
+    }
 }
