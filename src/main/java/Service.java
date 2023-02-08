@@ -35,12 +35,12 @@ public class Service {
     }
 
     public boolean judgement() {
-        return initRandomNumber() >= 4;
+        return initRandomNumber() >= MOVEABLE_NUMBER;
     }
 
 
     public int initRandomNumber() {
-        return (int) (Math.random() * 10);
+        return (int) (Math.random() * RANDOM_NUMBER_RANGE);
     }
 
     public void selectWinners() {
@@ -61,7 +61,7 @@ public class Service {
         outputView.printCountMessage();
         int count = inputView.inputCount();
         outputView.resultMessage();
-        for (int index = 0; index < count; index++) {
+        for (int index = START_INDEX; index < count; index++) {
             moveAllCars();
             printStatus();
             System.out.println();
