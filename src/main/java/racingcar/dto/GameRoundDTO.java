@@ -6,9 +6,16 @@ public class GameRoundDTO {
 	private final int round;
 
 	public GameRoundDTO(String gameRound) {
-		validateInteger(gameRound);
+		validateBlank(gameRound);
 		validateNotStartZero(gameRound);
+		validateInteger(gameRound);
 		round = Integer.parseInt(gameRound);
+	}
+
+	private void validateBlank(String gameRound) {
+		if (gameRound.isBlank()) {
+			throw new IllegalArgumentException(GAME_ROUND_INPUT_BLANK_EXCEPTION.getMessage());
+		}
 	}
 
 	private void validateInteger(String gameRound) {
