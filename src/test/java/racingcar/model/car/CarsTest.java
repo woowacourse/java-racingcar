@@ -1,13 +1,11 @@
 package racingcar.model.car;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CarsTest {
 
@@ -15,22 +13,17 @@ class CarsTest {
     @Test
     void movingCarsTest() {
         // given
-        MovingStrategy movingStrategy = new ForwardMovingStrategy();
-        Car pobi = new Car("pobi", movingStrategy);
-        Car crong = new Car("crong", movingStrategy);
-        Cars cars = new Cars(List.of(
-                pobi,
-                crong
-        ));
+        Cars cars = getCarsByStrategies();
 
         // when
         for (int i = 0; i < 2; i++) {
             cars.moveCars();
         }
-
+        String carsPositionFormat = cars.getCarsPositionFormat();
         // then
-        assertThat(pobi.getPosition()).isEqualTo(3);
-        assertThat(crong.getPosition()).isEqualTo(3);
+        assertThat(carsPositionFormat)
+                .contains("pobi : ---")
+                .contains("crong : -");
     }
 
 
@@ -38,14 +31,7 @@ class CarsTest {
     @Test
     void winnerCarTest() {
         // given
-        MovingStrategy forwardStrategy = new ForwardMovingStrategy();
-        MovingStrategy notMovingStrategy = new NotMovingStrategy();
-        Car pobi = new Car("pobi", forwardStrategy);
-        Car crong = new Car("crong", notMovingStrategy);
-        Cars cars = new Cars(List.of(
-                pobi,
-                crong
-        ));
+        Cars cars = getCarsByStrategies();
 
         // when
         for (int i = 0; i < 2; i++) {
@@ -54,13 +40,46 @@ class CarsTest {
         Cars winnerCars = cars.getWinnerCars();
 
         // then
-        assertThat(pobi.getPosition()).isEqualTo(3);
-        assertThat(crong.getPosition()).isEqualTo(1);
-
         assertThat(winnerCars.getCarsWinnerFormat())
                 .contains("pobi")
                 .doesNotContain("crong");
 
+    }
+
+    @DisplayName("우승한 자동차 출력 형식 테스트")
+    @Test
+    void winnerCarFormatTest() {
+        // given
+        Cars cars = getCarsByStrategies();
+
+        // when
+        for (int i = 0; i < 2; i++) {
+            cars.moveCars();
+        }
+        Cars winnerCars = cars.getWinnerCars();
+
+        // then
+        assertThat(winnerCars.getCarsWinnerFormat())
+                .contains("pobi")
+                .doesNotContain("crong");
+
+    }
+
+
+    /*
+        position = 3 인 pobi,
+        position = 1 인 crong 을 포함한 Cars를 반환
+     */
+    private Cars getCarsByStrategies() {
+        MovingStrategy movingStrategy = new ForwardMovingStrategy();
+        MovingStrategy notMovingStrategy = new NotMovingStrategy();
+
+        Car pobi = new Car("pobi", movingStrategy);
+        Car crong = new Car("crong", notMovingStrategy);
+        return new Cars(List.of(
+                pobi,
+                crong
+        ));
     }
 
 
