@@ -40,4 +40,10 @@ public class Cars {
                 .map((Car::getStatus))
                 .collect(Collectors.toList()));
     }
+
+    public List<String> getResult() {
+        return cars.stream()
+                .map(Car::getResult)
+                .collect(Collectors.toList());
+    }
 }

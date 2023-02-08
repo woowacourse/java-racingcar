@@ -23,7 +23,13 @@ public class Controller {
     }
 
     private void playGame() {
-        service.move();
+        outputView.printResultMessage();
+        Long trial = service.getTrial();
+        for (int i = 0; i < trial; i++) {
+            service.move();
+            List<String> moveResult = service.getMoveResult();
+            outputView.printMoveResult(moveResult);
+        }
     }
 
     private void setTrial() {

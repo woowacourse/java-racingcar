@@ -28,4 +28,13 @@ public class Car {
     public Long getStatus() {
         return status;
     }
+
+    public String getResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(" : ");
+        for (int i = 0; i < status; i++) {
+            stringBuilder.append("-");
+        }
+        return name + stringBuilder;
+    }
 }

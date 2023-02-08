@@ -11,6 +11,7 @@ import utils.exception.AlreadyDefinedFieldException;
 public class Service {
     private final Cars cars = new Cars(new RandomNumberGenerator());
     private Rule rule;
+
     public void setCars(List<String> carNames) {
         for (String carName : carNames) {
             cars.add(new Car(carName));
@@ -27,9 +28,14 @@ public class Service {
     }
 
     public void move() {
-        Long trial = rule.getTrial();
-        for (int i = 0; i < trial; i++) {
-                cars.move();
-        }
+        cars.move();
+    }
+
+    public Long getTrial() {
+        return rule.getTrial();
+    }
+
+    public List<String> getMoveResult() {
+        return cars.getResult();
     }
 }
