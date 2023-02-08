@@ -16,4 +16,8 @@ public class CarNamesDTO {
 		String[] splitCarNames = carNames.split("\\s*,\\s*");
 		return Arrays.stream(splitCarNames).collect(Collectors.toList());
 	}
+
+	public List<String> getCarNames() {
+		return carNames;
+	}
 }
