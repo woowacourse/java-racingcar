@@ -12,8 +12,7 @@ public enum ErrorLog {
         this.message = message;
     }
 
-    @Override
-    public String toString() {
+    public String getMessage() {
         return ERROR_MARKER + SPACE + message;
     }
 }
