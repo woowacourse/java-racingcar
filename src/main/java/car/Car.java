@@ -4,7 +4,7 @@ public class Car {
     private static final int INITIAL_POSITION = 0;
 
     private final String name;
-    private final int position;
+    private int position;
 
     public Car(String name) {
         this(name, INITIAL_POSITION);
@@ -21,5 +21,14 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public void move(int number){
+        if( isMovable(number)) position ++;
+    }
+
+    private boolean isMovable(int number){
+        if(number<4) return false;
+        return true;
     }
 }
