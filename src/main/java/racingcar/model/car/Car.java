@@ -26,4 +26,8 @@ public class Car {
     public boolean isWinner(int maxPosition) {
         return position == maxPosition;
     }
+
+    public String getWinnerCarNameFormat() {
+        return this.carName;
+    }
 }

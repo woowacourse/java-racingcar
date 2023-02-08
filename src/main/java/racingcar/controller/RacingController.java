@@ -39,11 +39,12 @@ public class RacingController {
     public void startRace(Track track) {
         while (track.runnable()) {
             Cars cars = track.race();
-            outputView.printCarsResult(cars);
+            outputView.printCarsResult(cars.getCarsPositionFormat());
         }
     }
 
     public void concludeWinner(Track track) {
-        track.findWinner();
+        Cars winnerCars = track.findWinner();
+        outputView.printWinnerCars(winnerCars.getCarsWinnerFormat());
     }
 }

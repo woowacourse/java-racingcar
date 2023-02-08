@@ -1,11 +1,13 @@
 package racingcar.view;
 
-import racingcar.model.car.Cars;
-
 public class OutputView {
+    private static final String WINNER_MESSAGE = "%s가 최종 우승했습니다.";
 
-    public void printCarsResult(Cars cars) {
-        String carsPositionFormat = cars.getCarsPositionFormat();
-        System.out.println(carsPositionFormat);
+    public void printCarsResult(String carsPositionFormat) {
+        System.out.println(carsPositionFormat + "\n");
+    }
+
+    public void printWinnerCars(String winnerCarsFormat) {
+        System.out.println(String.format(WINNER_MESSAGE, winnerCarsFormat));
     }
 }
