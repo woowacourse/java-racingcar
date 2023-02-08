@@ -1,4 +1,4 @@
-package util;
+package service;
 
 public class RandomNumberGeneratorImpl implements RandomNumberGenerator {
 

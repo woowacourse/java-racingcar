@@ -1,4 +1,4 @@
-package util;
+package service;
 
 public interface RandomNumberGenerator {
 

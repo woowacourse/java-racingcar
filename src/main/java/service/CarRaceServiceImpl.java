@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import model.Car;
 import repository.CarRaceResultRepository;
-import util.RandomNumberGenerator;
 
 public class CarRaceServiceImpl implements CarRaceService {
 
