@@ -8,4 +8,10 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         return scanner.next();
     }
+
+    public int sendTryCount() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
 }
