@@ -1,11 +1,9 @@
 package racingcar.util;
 
+import java.util.Arrays;
 import racingcar.view.ErrorMessage;
 
-import java.util.Arrays;
-
 public class Validator {
-
     private static final String DELIMITER = ",";
 
     private Validator() {

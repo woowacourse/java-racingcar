@@ -10,7 +10,6 @@ class ValidatorTest {
     @Test
     @DisplayName("차 이름 공백 입력")
     void carBlank() {
-
         assertThatThrownBy(() -> Validator.validateCarNames(" "))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -18,11 +17,9 @@ class ValidatorTest {
     @Test
     @DisplayName("차 이름 다섯글자 이상 입력")
     void carRange() {
-
         assertThatThrownBy(() -> Validator.validateCarNames("aaaaaaa"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 
     @Test
     @DisplayName("시도 횟수 공백 입력")
@@ -44,6 +41,5 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateGameTime("정수아님"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 
 }

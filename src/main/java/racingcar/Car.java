@@ -1,7 +1,6 @@
 package racingcar;
 
 public class Car {
-
     private static final int INIT_POSITION = 0;
     private static final int BOUNDARY = 4;
 
@@ -26,4 +25,5 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
 }

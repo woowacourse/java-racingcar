@@ -6,17 +6,15 @@ import racingcar.view.OutputView;
 import java.util.*;
 
 public class RacingGame {
-
     private static final int RANGE_MAX = 9;
     private static final int RANGE_MIN = 0;
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final int gameCount;
 
     private List<Car> cars = new ArrayList<>();
     private List<String> winners = new ArrayList<>();
-
+    private final int gameCount;
 
     public RacingGame() {
         initRacing();
@@ -63,4 +61,5 @@ public class RacingGame {
         printPosition();
         outputView.printWinners(winners);
     }
+
 }
