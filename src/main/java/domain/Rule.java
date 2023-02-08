@@ -6,4 +6,8 @@ public class Rule {
     public Rule(Long trial) {
         this.trial = trial;
     }
+
+    public Long getTrial() {
+        return trial;
+    }
 }

@@ -14,11 +14,16 @@ public class Controller {
 
     public void run() {
         setGame();
+        playGame();
     }
 
     private void setGame() {
         setCars();
         setTrial();
+    }
+
+    private void playGame() {
+        service.move();
     }
 
     private void setTrial() {

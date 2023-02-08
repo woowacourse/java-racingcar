@@ -5,10 +5,11 @@ import java.util.List;
 import domain.Car;
 import domain.Cars;
 import domain.Rule;
+import utils.RandomNumberGenerator;
 import utils.exception.AlreadyDefinedFieldException;
 
 public class Service {
-    private final Cars cars = new Cars();
+    private final Cars cars = new Cars(new RandomNumberGenerator());
     private Rule rule;
     public void setCars(List<String> carNames) {
         for (String carName : carNames) {
@@ -23,5 +24,12 @@ public class Service {
         }
 
         throw new AlreadyDefinedFieldException();
+    }
+
+    public void move() {
+        Long trial = rule.getTrial();
+        for (int i = 0; i < trial; i++) {
+                cars.move();
+        }
     }
 }
