@@ -23,12 +23,8 @@ public class Car {
         return position;
     }
 
-    public void move(int number){
-        if( isMovable(number)) position ++;
-    }
-
-    private boolean isMovable(int number){
-        if(number<4) return false;
-        return true;
+    public void move(MoveChance moveChance) {
+        if (moveChance.isMovable())
+            position++;
     }
 }
