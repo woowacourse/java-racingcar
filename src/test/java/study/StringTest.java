@@ -29,10 +29,10 @@ public class StringTest {
     }
 
     @Test
-    @DisplayName("indexOf 메소드 - 특정 문자 위치 반환")
-    void indexOfTestToGetIndex() {
+    @DisplayName("charAt 메소드 - 특정 위치의 문자 반환")
+    void charAtTestWithCorrectCharacter() {
         String target = "abc";
-        assertThat(target.indexOf("b")).isEqualTo(1);
+        assertThat(target.charAt(1)).isEqualTo('b');
     }
 
 }
