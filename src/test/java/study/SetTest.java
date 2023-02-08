@@ -28,4 +28,11 @@ public class SetTest {
         assertThat(setSize).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("Set 안에 특정 값이 존재하는지 확인")
+    void contains_메서드로_특정_값_존재_확인하기() {
+        assertThat(numbers.contains(1)).isTrue();
+        assertThat(numbers.contains(2)).isTrue();
+        assertThat(numbers.contains(3)).isTrue();
+    }
 }
