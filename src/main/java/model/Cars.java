@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -17,6 +18,10 @@ public class Cars {
 
     private List<String> splitCarName(String carsName) {
         return Arrays.asList(carsName.split(","));
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     public void moveResult() {
