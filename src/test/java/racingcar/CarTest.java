@@ -16,7 +16,7 @@ class CarTest {
     void validateName(String name) {
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 자동차 이름은 최소 한글자, 최대 다섯글자까지 가능해요.");
+                .hasMessage("[ERROR] 자동차 이름은 최소 1글자, 최대 5글자까지 가능해요.");
     }
 
     @Test

@@ -5,14 +5,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarFactory {
-    public List<Car> makeCars(String inputNames) {
-        String[] names = inputNames.split(",");
 
-        if (!inputNames.contains(",")) {
-            throw new IllegalArgumentException("[ERROR] 구분자(,)가 필요해요.");
+    private static final String SEPARATOR = ",";
+    private static final int MINIMUM_PARTICIPANT = 2;
+
+    public List<Car> makeCars(String inputNames) {
+        String[] names = inputNames.split(SEPARATOR);
+
+        if (!inputNames.contains(SEPARATOR)) {
+            throw new IllegalArgumentException("[ERROR] 구분자(" + SEPARATOR + ")가 필요해요.");
         }
-        if (names.length < 2) {
-            throw new IllegalArgumentException("[ERROR] 경주는 최소 두명이 필요해요.");
+        if (names.length < MINIMUM_PARTICIPANT) {
+            throw new IllegalArgumentException("[ERROR] 경주는 최소 " + MINIMUM_PARTICIPANT + "명이 필요해요.");
         }
 
         return Arrays.stream(names)

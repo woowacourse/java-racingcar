@@ -28,7 +28,7 @@ class CarFactoryTest {
 
         assertThatThrownBy(() -> carFactory.makeCars(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 경주는 최소 두명이 필요해요.");
+                .hasMessage("[ERROR] 경주는 최소 2명이 필요해요.");
     }
 
     @Test
