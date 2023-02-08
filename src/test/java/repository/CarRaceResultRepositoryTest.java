@@ -3,6 +3,7 @@ package repository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import model.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -65,5 +66,20 @@ class CarRaceResultRepositoryTest {
 
         //then
         assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("모든 차 이름을 반환한다")
+    void checkCarNameReturn() {
+        //given
+        List<Car> cars = List.of(new Car("car1"), new Car("car2"));
+        for (Car car : cars) {
+            carRaceResultRepository.save(car);
+        }
+        //when
+        List<String> carNames = carRaceResultRepository.findAllCars();
+
+        //then
+        assertThat(carNames.size()).isEqualTo(cars.size());
     }
 }
