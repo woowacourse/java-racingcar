@@ -43,7 +43,7 @@ public class Validator {
     private static void validateNoInput(String[] split) {
         long noInputCount = Arrays.stream(split).filter(s -> s.trim().equals("")).count();
         if (noInputCount >= 1) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NO_INPUT);
         }
     }
 
