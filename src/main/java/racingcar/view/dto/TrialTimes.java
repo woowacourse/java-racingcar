@@ -40,5 +40,7 @@ public class TrialTimes {
         }
     }
 
-
+    public Integer getTrialTimes() {
+        return trialTimes;
+    }
 }

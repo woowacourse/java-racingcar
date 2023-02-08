@@ -1,6 +1,9 @@
 package racingcar.view.dto;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CarNames {
     private static final String VALID_STRING_REGEX = "([\\\\w])+";
@@ -18,6 +21,7 @@ public class CarNames {
         validateFormat(carNames);
         //TODO 각각의 길이가 5자 이하
     }
+
     private void validateFormat(String carNames) {
         String[] splitCarNames = carNames.split(SEPARATOR);
 
@@ -47,4 +51,8 @@ public class CarNames {
         }
     }
 
+    public List<String> toCarNameList() {
+        return Arrays.stream(carNames.split(SEPARATOR))
+                .collect(Collectors.toList());
+    }
 }
