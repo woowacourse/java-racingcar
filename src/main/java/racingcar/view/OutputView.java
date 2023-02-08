@@ -32,4 +32,8 @@ public class OutputView {
 		String winnerNames = String.join(", ", gameResultDTO.getWinnerNames());
 		System.out.println(winnerNames + GAME_RESULT_MESSAGE);
 	}
+
+	public void printErrorMeesage(String message) {
+		System.out.println(message);
+	}
 }
