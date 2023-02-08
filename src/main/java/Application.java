@@ -1,5 +1,4 @@
 import controller.GameController;
-import view.InputView;
 import view.OutputView;
 
 public class Application {
