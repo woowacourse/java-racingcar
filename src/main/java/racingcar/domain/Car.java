@@ -17,6 +17,12 @@ public class Car {
         }
     }
 
+    public void validateName(String input) {
+        if (input.length() > 5 || input.length() <1) {
+            throw new IllegalArgumentException("이름의 길이는 1이상 5이하여야 합니다.");
+        }
+    }
+
     private boolean isMovable(int number) {
         return number >= MINIMUM_NUMBER_TO_MOVE;
     }
