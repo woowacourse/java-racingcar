@@ -50,6 +50,13 @@ public class RacingGame {
     }
 
     public void viewResult() {
+        int maxPosition = getCarMaxPosition();
+        cars.stream().filter(car -> car.getPosition() == maxPosition).forEach(car -> winners.add(car.getName()));
+        printPosition();
+        outputView.printWinners(winners);
+    }
+
+    private int getCarMaxPosition() {
         int temp = -1;
         for (int i = 0; i < cars.size(); i++) {
             if (temp < cars.get(i).getPosition()) {
@@ -57,9 +64,7 @@ public class RacingGame {
             }
         }
         int max = temp;
-        cars.stream().filter(car -> car.getPosition() == max).forEach(car -> winners.add(car.getName()));
-        printPosition();
-        outputView.printWinners(winners);
+        return max;
     }
 
 }
