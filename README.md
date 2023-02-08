@@ -37,7 +37,7 @@ Cars
 NumberGenerator, RandomNumberGenerator
 
 - 숫자 생성 전략
-- 랜덤 생성 전략의 경우 0~9 사이의 값을 랜덤으로 생성한다.
+- [x] 랜덤 생성 전략의 경우 0~9 사이의 값을 랜덤으로 생성한다.
 
 RacingGame
 
