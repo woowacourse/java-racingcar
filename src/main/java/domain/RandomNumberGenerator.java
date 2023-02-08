@@ -1,8 +1,8 @@
 package domain;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator{
 
-    public static int generate() {
+    public int generate() {
         return (int) (Math.random() * 10);
     }
 }
