@@ -1,5 +1,6 @@
 package controller;
 
+import domain.NumberPicker;
 import domain.RacingStatus;
 import view.Input;
 import view.InputView;
@@ -8,9 +9,11 @@ import view.OutputView;
 import java.util.function.Supplier;
 
 public class Controller {
+    private final NumberPicker numberPicker;
     private RacingStatus racingStatus;
 
-    public Controller() {
+    public Controller(NumberPicker numberPicker) {
+        this.numberPicker = numberPicker;
     }
 
     public void raceTracks() {
@@ -19,6 +22,8 @@ public class Controller {
 
         InputView.printInputTryCountGuide();
         Input.gameCountInput();
+
+        numberPicker.pickNumber();
     }
 
     private String inputCarNames() {
