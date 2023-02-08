@@ -1,22 +1,29 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Car {
 
     private final String name;
-    private final List<String> position;
+    private int position;
 
     public Car(String name) {
         validateLengthOfName(name);
         this.name = name;
-        this.position = new ArrayList<>();
+        position = 0;
     }
 
     private void validateLengthOfName(String name) {
         if (name.length() < 1 || name.length() > 5) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public void move(int moveNumber){
+        if (moveNumber > 3) {
+            position++;
+        }
+    }
+
+    public int getPosition(){
+        return position;
     }
 }
