@@ -29,4 +29,11 @@ public class StringTest {
         assertThat(real).isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("indexOf 메소드 - 특정 문자 위치 반환")
+    void indexOfTestToGetIndex() {
+        String target = "abc";
+        assertThat(target.indexOf("b")).isEqualTo(1);
+    }
+
 }
