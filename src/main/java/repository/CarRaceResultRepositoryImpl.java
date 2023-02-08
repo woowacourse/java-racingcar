@@ -32,7 +32,11 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     @Override
     public int findByName(String name) {
         return moveCountBoard.get(
-            moveCountBoard.keySet().stream().filter(car -> car.getName().equals(name)).findAny()
+            moveCountBoard
+                .keySet()
+                .stream()
+                .filter(car -> car.getName().equals(name))
+                .findAny()
                 .orElseThrow(
                     () -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage())));
     }
@@ -50,6 +54,17 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
             .stream()
             .map(Car::getName)
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public void moveByName(String name) {
+        Car car = moveCountBoard
+            .keySet()
+            .stream()
+            .filter(key -> key.getName().equals(name))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage()));
+        moveCountBoard.replace(car, moveCountBoard.get(car) + 1);
     }
 
     private void validateCarDuplicate(Car car) {

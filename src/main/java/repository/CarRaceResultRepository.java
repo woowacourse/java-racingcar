@@ -14,5 +14,5 @@ public interface CarRaceResultRepository {
 
     List<String> findAllCars();
 
-//    void moveByName(String name);
+    void moveByName(String name);
 }
