@@ -2,7 +2,7 @@ package racingcar.enumType;
 
 import racingcar.util.EnumUtil;
 
-public enum CarConstant implements EnumUtil {
+public enum CarConstant implements EnumUtil<Object> {
     FORWARD_NUMBER(4),
     NAME_MAX_LENGTH(5);
 
