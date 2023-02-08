@@ -11,7 +11,7 @@ public class Car {
 	int position;
 
 	public Car(String name) {
-		validateNameBlank(name);
+		validateNameNullOrBlank(name);
 		validateNameLength(name);
 		this.name = name;
 		position = 0;
@@ -25,8 +25,8 @@ public class Car {
 		return position;
 	}
 
-	private void validateNameBlank(String name) {
-		if (name.isBlank()) {
+	private void validateNameNullOrBlank(String name) {
+		if (name == null || name.isBlank()) {
 			throw new IllegalArgumentException(CAR_NAME_BLANK_EXCEPTION.getMessage());
 		}
 	}
