@@ -14,6 +14,7 @@
 - [ ] 경주 RacingCarGame
   - [ ] 랜덤 값 생성 (0~9 사이의 수) RandomNumberGenerator#getNumber
   - [ ] 전진 여부 판단 (4 이상일 경우 전진) AdvanceJudgement#getJudgementResult
+  - [ ] 자동차 전진 (자동차 포인트 증가) RacingCar#advance
   - [ ] 실행 결과 출력 OutputView#printRoundResult
 - [ ] 최종 결과 출력 OutputView#printGameResult
 
