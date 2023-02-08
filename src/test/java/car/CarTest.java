@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
 
@@ -24,11 +23,10 @@ public class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:0","3:0","4:1","9:1"}, delimiter = ':')
-    void 랜덤값이_0이상_3이하일때_정지하고_4이상_9이하일때_전진한다(int provided, int position){
+    @CsvSource(value = {"true:1", "false:0"}, delimiter = ':')
+    void 움직일_수_있으면_전진하고_아니면_정지한다(boolean provided, int result) {
         Car car = new Car("물떡");
-        car.move(provided);
-        assertThat(car.getPosition()).isEqualTo(position);
+        car.move(() -> provided);
+        assertThat(car.getPosition()).isEqualTo(result);
     }
-
 }
