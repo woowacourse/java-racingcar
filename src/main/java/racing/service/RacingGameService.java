@@ -1,6 +1,7 @@
 package racing.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import racing.NumberGenerator;
 import racing.domain.Car;
 import racing.domain.Cars;
@@ -37,5 +38,11 @@ public class RacingGameService {
 
     public boolean isEnd() {
         return tryCount == 0;
+    }
+
+    public List<String> getWinners() {
+        return cars.getFirstPosition().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }
