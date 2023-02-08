@@ -35,7 +35,7 @@ public class Validator {
         try {
             integer = Integer.valueOf(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NOT_NUMBER);
         }
         return integer;
     }
