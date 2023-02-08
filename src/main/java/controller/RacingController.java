@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.FinalResult;
 import domain.MovingCount;
 import domain.RoundResult;
 import util.RandomNumberGenerator;
@@ -38,5 +39,8 @@ public class RacingController {
             }
             outputView.printCurrentResult(carInfo);
         }
+        FinalResult finalResult = new FinalResult();
+        List<String> winners = finalResult.findWinners(carInfo);
+        outputView.printWinners(winners);
     }
 }
