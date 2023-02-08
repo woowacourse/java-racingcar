@@ -46,7 +46,7 @@ class CarsTest {
 
     }
 
-    @DisplayName("우승한 자동차 출력 형식 테스트")
+    @DisplayName("공동 우승 출력 테스트")
     @Test
     void winnerCarFormatTest() {
         // given
@@ -61,7 +61,7 @@ class CarsTest {
         // then
         assertThat(winnerCars.getCarsWinnerFormat())
                 .contains("pobi")
-                .doesNotContain("crong");
+                .contains("eddy");
 
     }
 
@@ -76,9 +76,11 @@ class CarsTest {
 
         Car pobi = new Car("pobi", movingStrategy);
         Car crong = new Car("crong", notMovingStrategy);
+        Car eddy = new Car("eddy", movingStrategy);
         return new Cars(List.of(
                 pobi,
-                crong
+                crong,
+                eddy
         ));
     }
 
