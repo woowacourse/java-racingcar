@@ -9,4 +9,9 @@ public class StringTest {
     public void splitString() {
         assertThat("1,2".split(",")).containsExactly("1", "2");
     }
+
+    @Test
+    public void deleteString() {
+        assertThat("(1,2)".replaceAll("[(|)]", "")).isEqualTo("1,2");
+    }
 }
