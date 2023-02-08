@@ -8,6 +8,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class CarsTest {
 
@@ -61,20 +63,21 @@ class CarsTest {
                 .isInstanceOf(RuntimeException.class);
     }
 
-    @DisplayName("우승자가 carB일 때 findByName으로 carB를 찾을 수 있다.")
-    @Test
-    void judgeWinnerTest1() {
+    @DisplayName("우승자가 carB, carC일 때 findByName으로 carB, carC를 찾을 수 있다.")
+    @ParameterizedTest
+    @CsvSource({"carB", "carC"})
+    void judgeWinnerTest1(String name) {
         //given
 
         //when
         Cars winningCars = cars.judgeWinner();
 
         //then
-        assertThatThrownBy(() -> winningCars.findByName("carB"))
+        assertThatCode(() -> winningCars.findByName(name))
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("우승자가 carB일 때 findByName으로 carA를 찾을 수 없다.")
+    @DisplayName("우승자가 carB, carC일 때 findByName으로 carA를 찾을 수 없다.")
     @Test
     void judgeWinnerTest2() {
         //given
