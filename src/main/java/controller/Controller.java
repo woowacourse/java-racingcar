@@ -9,6 +9,7 @@ public class Controller {
     private final MessageView messageView = new MessageView();
     public void run(){
         Cars cars = setCars();
+        int tryCount = setTryCount();
     }
 
     private Cars setCars(){
@@ -16,5 +17,8 @@ public class Controller {
         return new Cars(inputView.inputCarName());
     }
 
-
+    private int setTryCount(){
+        messageView.printTryCountMessage();
+        return inputView.inputTryCount();
+    }
 }

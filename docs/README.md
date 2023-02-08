@@ -22,7 +22,7 @@
 ### controller
 #### Controller
 - [x] 자동차 이름 입력 view 호출
-- 시도 횟수 입력 view 호출
+- [x] 시도 횟수 입력 view 호출
 - 횟수 별 결과 view 호출
 - 우승자 출력 view 호출
 
