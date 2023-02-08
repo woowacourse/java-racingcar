@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CarNames {
-    private static final String VALID_STRING_REGEX = "([\\\\w])+";
+    private static final String VALID_STRING_REGEX = "(\\w)+";
     private static final String SEPARATOR = ",";
     private static final int CAR_NAME_MAX_LENGTH = 5;
 
