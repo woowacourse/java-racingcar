@@ -1,5 +1,7 @@
 package view;
 
+import error.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -11,10 +13,11 @@ public class InputView {
 
     public static List<String> readCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = readLine();
-        validateCount(input);
-        return Arrays.stream(input.split(DELIMITER))
+        List<String> input = Arrays.stream(readLine().split(DELIMITER))
                 .collect(Collectors.toList());
+        validateNames(input);
+
+        return input;
     }
 
     public static int readCount() {
@@ -27,17 +30,17 @@ public class InputView {
 
     private static void validateNames(List<String> input) {
         if (input.size() != input.stream().distinct().count()) {
-            throw new IllegalStateException("중복된 이름이 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NAMES.getValue());
         }
     }
 
     private static void validateCount(String input) {
         if (!isNumeric(input)) {
-            throw new IllegalStateException("숫자만 입력해야함");
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMERIC.getValue());
         }
 
         if (!isValidRange(Integer.parseInt(input))) {
-            throw new IllegalStateException("0이상을 입력해야함");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getValue());
         }
     }
 

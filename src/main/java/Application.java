@@ -1,13 +1,12 @@
-import domain.RacingGame;
-import view.InputView;
-
-import java.util.List;
+import domain.RacingGameManager;
 
 public class Application {
     public static void main(String[] args) {
-        List<String> carNames = InputView.readCarNames();
-        int count = InputView.readCount();
-        RacingGame racingGame = new RacingGame(carNames, count);
-        racingGame.start();
+        try {
+            RacingGameManager.run();
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println(e.getMessage());
+            RacingGameManager.run();
+        }
     }
 }

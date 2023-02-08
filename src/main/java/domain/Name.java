@@ -1,5 +1,7 @@
 package domain;
 
+import error.ErrorMessage;
+
 public class Name {
     private final String name;
 
@@ -10,7 +12,7 @@ public class Name {
 
     private void validate(String name) {
         if (name.isBlank() || name.length() > 5) {
-            throw new IllegalArgumentException("이름은 1자 이상, 5자 이하만 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH.getValue());
         }
     }
 
