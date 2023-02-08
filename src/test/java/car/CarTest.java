@@ -12,4 +12,11 @@ public class CarTest {
 
         assertThat(car.getName()).isEqualTo("물떡");
     }
+
+    @Test
+    void 위치를_가진다() {
+        Car car = new Car("물떡", 2);
+
+        assertThat(car.getPosition()).isEqualTo(2);
+    }
 }
