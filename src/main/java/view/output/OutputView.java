@@ -9,4 +9,8 @@ public class OutputView {
     static public void printEnterCarNames() {
         print(PrintMessages.ENTER_CAR_NAMES);
     }
+
+    static public void printEnterCount() {
+        print(PrintMessages.ENTER_COUNT);
+    }
 }
