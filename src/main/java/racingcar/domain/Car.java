@@ -15,6 +15,14 @@ public class Car {
 		position = 0;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
 	private void validateNameBlank(String name) {
 		if (name.isBlank()) {
 			throw new IllegalArgumentException(CAR_NAME_BLANK_EXCEPTION.getMessage());
