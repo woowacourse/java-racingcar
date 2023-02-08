@@ -3,6 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -29,19 +30,27 @@ class CarTest {
 
 	@Nested
 	class carMoveTest {
-		Car car = new Car("woowa");
+		Car car;
+
+		@BeforeEach
+		void beforeEach() {
+			car = new Car("woowa");
+		}
+
 		@Test
 		@DisplayName("4 이상의 값이 입력되면 차의 위치가 1 증가해야 한다.")
 		void carMoveTest() {
 			final int number = 4;
-			assertTrue(car.move(number));
+			car.move(number);
+			assertThat(car.getPosition()).isEqualTo(1);
 		}
 
 		@Test
 		@DisplayName("3 이하의 값이 입력되면 차의 위치가 유지되어야 한다.")
 		void carNotMoveTest() {
 			final int number = 3;
-			assertFalse(car.move(number));
+			car.move(number);
+			assertThat(car.getPosition()).isEqualTo(0);
 		}
 	}
 }
