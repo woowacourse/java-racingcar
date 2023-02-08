@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.dto.CarStatus;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,4 +23,6 @@ public class CarRepository {
     public void moveCars(NumberGenerator numberGenerator) {
         cars.forEach(car -> car.move(numberGenerator));
     }
+
+    public List<CarStatus> makeCarStatus
 }
