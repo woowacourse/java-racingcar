@@ -22,6 +22,10 @@ public class Service {
         }
     }
 
+    public boolean judgement() {
+        return initRandomNumber() >= 4;
+    }
+
 
     public int initRandomNumber() {
         return (int) (Math.random() * 10);
