@@ -16,7 +16,7 @@ public class RacingGame {
     private final int gameCount;
 
     private List<Car> cars = new ArrayList<>();
-    private List<Car> winners = new ArrayList<>();
+    private List<String> winners = new ArrayList<>();
 
 
     public RacingGame() {
