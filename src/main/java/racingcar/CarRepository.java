@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarRepository {
-    private static final int MINIMUM_NUMBER_OF_CARS = 2;
-
     private static final List<Car> cars = new ArrayList<>();
 
     public static void updateCars(List<Car> newCars) {
