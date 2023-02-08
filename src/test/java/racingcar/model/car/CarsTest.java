@@ -15,8 +15,13 @@ class CarsTest {
     @Test
     void movingCarsTest() {
         // given
-        Cars cars = Cars.from(List.of("pobi", "crong"), new ForwardMovingStrategy());
-        String expected = "pobi : ---\ncrong : ---";
+        MovingStrategy movingStrategy = new ForwardMovingStrategy();
+        Car pobi = new Car("pobi", movingStrategy);
+        Car crong = new Car("crong", movingStrategy);
+        Cars cars = new Cars(List.of(
+                pobi,
+                crong
+        ));
 
         // when
         for (int i = 0; i < 2; i++) {
@@ -24,8 +29,39 @@ class CarsTest {
         }
 
         // then
-        String actual = cars.getCarsPositionFormat();
-
-        assertThat(actual).isEqualTo(expected);
+        assertThat(pobi.getPosition()).isEqualTo(3);
+        assertThat(crong.getPosition()).isEqualTo(3);
     }
+
+
+    @DisplayName("우승한 자동차 선별 테스트")
+    @Test
+    void winnerCarTest() {
+        // given
+        MovingStrategy forwardStrategy = new ForwardMovingStrategy();
+        MovingStrategy notMovingStrategy = new NotMovingStrategy();
+        Car pobi = new Car("pobi", forwardStrategy);
+        Car crong = new Car("crong", notMovingStrategy);
+        Cars cars = new Cars(List.of(
+                pobi,
+                crong
+        ));
+
+        // when
+        for (int i = 0; i < 2; i++) {
+            cars.moveCars();
+        }
+        Cars winnerCars = cars.getWinnerCars();
+
+        // then
+        assertThat(pobi.getPosition()).isEqualTo(3);
+        assertThat(crong.getPosition()).isEqualTo(1);
+
+        assertThat(winnerCars.getCarsWinnerFormat())
+                .contains("pobi")
+                .doesNotContain("crong");
+
+    }
+
+
 }
