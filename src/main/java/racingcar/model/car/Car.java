@@ -3,7 +3,7 @@ package racingcar.model.car;
 public class Car {
     private static final String POSITION_FORMAT_SYMBOL = "-";
     private final String carName;
-    private int position = 0;
+    private int position = 1;
 
     public Car(String carName) {
         this.carName = carName;
