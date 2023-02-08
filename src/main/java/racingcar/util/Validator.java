@@ -1,10 +1,13 @@
 package racingcar.util;
 
+import racingcar.view.ErrorMessage;
+
 import java.util.Arrays;
 
 public class Validator {
 
     private static final String DELIMITER = ",";
+
     private Validator() {
     }
 
@@ -48,7 +51,7 @@ public class Validator {
         long count = Arrays.stream(split).filter(s -> s.length() >= 5)
                 .count();
         if (count >= 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.CAR_NAME_LENGTH);
         }
     }
 }
