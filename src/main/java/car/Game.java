@@ -4,34 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private static final int INITIAL_TRIAL_COUNT = 0;
 
     private final List<Car> cars;
-    private final int trialCount;
+    private final MoveChance moveChance;
 
-    public Game(List<Car> cars) {
-        this(cars, INITIAL_TRIAL_COUNT);
-    }
-
-    public Game(List<Car> cars, int trialCount) {
+    public Game(List<Car> cars, MoveChance moveChance) {
         this.cars = new ArrayList<>(cars);
-        this.trialCount = trialCount;
+        this.moveChance = moveChance;
     }
 
     public List<Car> getWinners() {
         int maxPosition = findMaxPosition();
         List<Car> winners = new ArrayList<>();
         for (Car car : cars) {
-            if(car.getPosition() > maxPosition){
+            if (car.getPosition() > maxPosition) {
                 maxPosition = car.getPosition();
                 winners = new ArrayList<>(List.of(car));
             }
-            if(car.getPosition()==maxPosition){
+            if (car.getPosition() == maxPosition) {
                 winners.add(car);
             }
         }
         return winners;
     }
+
     private Integer findMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
@@ -40,5 +36,11 @@ public class Game {
             }
         }
         return maxPosition;
+    }
+
+    public void playOnce() {
+        for (Car car : cars) {
+            car.move(moveChance);
+        }
     }
 }
