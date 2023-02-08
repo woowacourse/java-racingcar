@@ -42,4 +42,16 @@ public class Service {
     public int initRandomNumber() {
         return (int) (Math.random() * 10);
     }
+
+    public void selectWinners() {
+        for (Car car : cars) {
+            addWinCar(car);
+        }
+    }
+
+    private void addWinCar(Car car) {
+        if (car.amIWinner(cars)) {
+            winners.add(car);
+        }
+    }
 }
