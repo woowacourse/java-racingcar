@@ -9,6 +9,10 @@ public class Car {
         position = new Position();
     }
 
+    public void move() {
+        position.move();
+    }
+
     public String getCurrentState() {
         return String.format(FORMAT, name, position);
     }
