@@ -18,4 +18,9 @@ public class OutputView {
         moveResults.forEach(System.out::println);
         System.out.println();
     }
+
+    public void printWinners(List<String> winners) {
+        String winnersName = String.join(", ", winners);
+        System.out.println(winnersName + "가 최종 우승했습니다.");
+    }
 }

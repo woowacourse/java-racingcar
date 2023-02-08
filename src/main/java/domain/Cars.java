@@ -28,10 +28,11 @@ public class Cars {
         cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
     }
 
-    public List<Car> getWinners() {
+    public List<String> getWinners() {
         Long maxValue = getMaxValue();
         return cars.stream()
                 .filter((car) -> Objects.equals(car.getStatus(), maxValue))
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 

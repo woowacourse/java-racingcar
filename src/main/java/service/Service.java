@@ -38,4 +38,8 @@ public class Service {
     public List<String> getMoveResult() {
         return cars.getResult();
     }
+
+    public List<String> getWinners() {
+        return cars.getWinners();
+    }
 }

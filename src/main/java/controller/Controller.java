@@ -15,6 +15,7 @@ public class Controller {
     public void run() {
         setGame();
         playGame();
+        printFinalResult();
     }
 
     private void setGame() {
@@ -51,5 +52,11 @@ public class Controller {
             outputView.printErrorMessage(exception.getMessage());
             setCars();
         }
+    }
+
+    private void printFinalResult() {
+        List<String> moveResult = service.getMoveResult();
+        outputView.printMoveResult(moveResult);
+        outputView.printWinners(service.getWinners());
     }
 }
