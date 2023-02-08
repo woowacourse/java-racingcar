@@ -24,6 +24,18 @@ class OutputViewTest {
 
         OutputView.printStatus(statuses);
 
-        Assertions.assertThat(outputStream.toString()).isEqualTo("rosie : --\nhong : -\n\n");
+        Assertions.assertThat(outputStream.toString())
+                .isEqualTo("rosie : --\nhong : -\n\n");
+    }
+
+    @Test
+    @DisplayName("우승자들을 형식에 맞게 출력하는지 테스트")
+    void printWinners() {
+        List<String> winners = List.of("rosie", "hong");
+
+        OutputView.printWinners(winners);
+
+        Assertions.assertThat(outputStream.toString())
+                .isEqualTo("rosie, hong가 최종 우승했습니다.");
     }
 }
