@@ -6,7 +6,6 @@ import java.util.List;
 public class Car {
 
     private final String name;
-
     private final List<String> position;
 
     public Car(String name) {
@@ -15,8 +14,8 @@ public class Car {
         this.position = new ArrayList<>();
     }
 
-    private void validateLengthOfName(String name){
-        if(name.length() < 1 || name.length() > 5 ){
+    private void validateLengthOfName(String name) {
+        if (name.length() < 1 || name.length() > 5) {
             throw new IllegalArgumentException();
         }
     }

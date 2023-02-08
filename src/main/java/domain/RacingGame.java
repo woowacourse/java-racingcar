@@ -3,11 +3,11 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cars {
+public class RacingGame {
 
     private final List<Car> cars;
 
-    public Cars(String[] names) {
+    public RacingGame(String[] names) {
         this.cars = new ArrayList<>();
 
         //TODO: 메소드 분리
