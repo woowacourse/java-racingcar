@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.List;
+import model.Car;
+import model.CarRepository;
 import view.InputView;
 import view.OutputView;
 
@@ -16,6 +18,8 @@ public class MainController {
 
     public void play() {
         List<String> carNames = inputView.readCarNames();
-        System.out.println(carNames);
+        for (String carName : carNames) {
+            CarRepository.addCars(new Car(carName));
+        }
     }
 }

@@ -18,7 +18,7 @@
 
 ### 자동차 생성
 
-- [ ] `Car` 객체를 생성해 `CarRepository`에 저장
+- [x] `Car` 객체를 생성해 `CarRepository`에 저장
 
 ### 이동 횟수 입력
 
