@@ -13,9 +13,7 @@ public class Track {
 
 
     public Cars race() {
-        for (int i = 0; i < trialTime; i++) {
-            cars.moveCars();
-        }
+        cars.moveCars();
         removeTrialTimes();
         return cars;
     }
