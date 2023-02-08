@@ -1,6 +1,5 @@
 package model;
 
-import java.util.List;
 
 public class Car {
     private final String EXCEPTION_MESSAGE = "자동차 이름은 1~5자 이내의 이름으로 입력하여야 합니다.";
@@ -20,5 +19,12 @@ public class Car {
 
     public void moveCar() {
         this.location += 1;
+    }
+
+    public String getCarName() {
+        return this.name;
+    }
+    public int getCarLocation(){
+        return this.location;
     }
 }
