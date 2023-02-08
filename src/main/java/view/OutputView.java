@@ -6,7 +6,7 @@ import model.Cars;
 public class OutputView {
     private final String CAR_LOCATION = "-";
     private final String PRINT_CAR_LOCATION = "%s : %s\n";
-
+    private final String PRINT_WINNER = "%s가 최종 우승했습니다.\n";
     public void printResult(Cars cars){
         for(Car car : cars.getCars()){
             String location = CAR_LOCATION.repeat(car.getCarLocation());
@@ -16,6 +16,6 @@ public class OutputView {
     }
 
     public void printWinner(Cars cars) {
-        System.out.println(String.join(", ", cars.getWinners()));
+        System.out.printf(PRINT_WINNER,String.join(", ", cars.getWinners()));
     }
 }
