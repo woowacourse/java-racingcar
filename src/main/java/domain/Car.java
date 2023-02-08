@@ -1,5 +1,7 @@
 package domain;
 
+import dto.RacingStatusDto;
+
 public class Car {
 
     private final CarName carName;
@@ -10,11 +12,17 @@ public class Car {
         status = 0;
     }
 
+    public Car(Car needToCopy) {
+        carName = needToCopy.carName;
+        status = needToCopy.status;
+    }
+
     public void move() {
         status++;
     }
 
-    public int getStatus() {
-        return status;
+    public RacingStatusDto toDto() {
+        return new RacingStatusDto(status, carName.getName());
     }
+
 }

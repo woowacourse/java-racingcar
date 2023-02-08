@@ -21,9 +21,13 @@ public class Controller {
         racingStatus = new RacingStatus(carNames, numberPicker);
 
         InputView.printInputTryCountGuide();
-        Input.gameCountInput();
+        int gameCount = Input.gameCountInput();
+        OutputView.printStatusGuide();
 
-        racingStatus.move();
+        for (int i = 0; i < gameCount; i++) {
+            racingStatus.move();
+            OutputView.printStatus(racingStatus.toDto());
+        }
     }
 
     private String inputCarNames() {

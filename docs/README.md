@@ -1,10 +1,10 @@
 # 🐣기능목록
 
-## 자동차 이름 입력
+## 자동차 이름 입력 - Input#
 
 - 예외 처리(5자 초과) - Controller#handleError()
 
-## 횟수 입력
+## 횟수 입력 - Input#
 
 - 예외 처리 (문자, 음수, int 범위를 넘어가는 수 입력) - Controller#handleError()
 

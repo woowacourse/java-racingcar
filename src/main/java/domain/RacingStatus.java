@@ -1,5 +1,7 @@
 package domain;
 
+import dto.RacingStatusDto;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,13 +30,9 @@ public class RacingStatus {
         }
     }
 
-    public void updateOnce() {
-//        racingStatus.stream().forEach(it=>it.move());
+    public List<RacingStatusDto> toDto() {
+        return racingStatus.stream()
+                .map(Car::toDto)
+                .collect(Collectors.toList());
     }
-
-//    public List<Dto> toDto(){
-//        return List.of(new Dto(name,status));
-//    }
-
-
 }
