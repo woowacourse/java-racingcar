@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CarNames {
     private static final String VALID_STRING_REGEX = "(\\w)+";
@@ -29,6 +30,17 @@ public class CarNames {
             hasInvalidValue(splitCarName);
             hasBlank(splitCarName);
             isOverMaxLength(splitCarName);
+        }
+
+        validateDuplicateCarNames(splitCarNames);
+    }
+
+    private void validateDuplicateCarNames(String[] splitCarNames) {
+        int carNamesCount = splitCarNames.length;
+        long distinctCount = Arrays.stream(splitCarNames).distinct().count();
+
+        if (carNamesCount != distinctCount) {
+            throw new IllegalArgumentException("[ERROR] 중복된 차 이름이 존재합니다.");
         }
     }
 

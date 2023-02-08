@@ -37,6 +37,16 @@ class CarNamesTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("자동차 이름은 중복될 수 없습니다.")
+    @Test
+    void validateDuplication() {
+        String testSampleValue = "pobi,crong,pobi";
+
+        assertThatCode(() -> {
+            new CarNames(testSampleValue);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("정상적인 형식의 자동차 이름으로 생성되어야 합니다.")
     @ParameterizedTest
     @ValueSource(strings = {"pobi,crong", "royce,logan", "abc"})
