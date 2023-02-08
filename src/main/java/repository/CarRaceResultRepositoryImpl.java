@@ -1,6 +1,7 @@
 package repository;
 
 import exception.ErrorCode;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import model.Car;
@@ -32,6 +33,13 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
             moveCountBoard.keySet().stream().filter(car -> car.getName().equals(name)).findAny()
                 .orElseThrow(
                     () -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage())));
+    }
+
+    @Override
+    public Map<String, Integer> getRaceResult() {
+        Map<String, Integer> nameResult = new HashMap<>();
+        moveCountBoard.forEach((key, value) -> nameResult.put(key.getName(), value));
+        return nameResult;
     }
 
     private void validateCarDuplicate(Car car) {
