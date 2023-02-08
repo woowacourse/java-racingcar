@@ -6,6 +6,7 @@ public class CarNames {
 
     private static final String VALID_STRING_REGEX = "([\\\\w])+";
     private static final String SEPARATOR = ",";
+    private static final int CAR_NAME_MAX_LENGTH = 5;
 
     public CarNames(String carNames) {
         validate(carNames);
@@ -21,6 +22,7 @@ public class CarNames {
         for (String splitCarName : splitCarNames) {
             hasInvalidValue(splitCarName);
             hasBlank(splitCarName);
+            isOverMaxLength(splitCarName);
         }
     }
 
@@ -37,5 +39,10 @@ public class CarNames {
         }
     }
 
+    private void isOverMaxLength(String splitCarName) {
+        if (splitCarName.length() > CAR_NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException("[ERROR] 다섯 글자가 넘는 자동차 이름이 들어있습니다.");
+        }
+    }
 
 }
