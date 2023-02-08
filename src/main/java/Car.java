@@ -18,4 +18,12 @@ public class Car {
             this.distance++;
         }
     }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
