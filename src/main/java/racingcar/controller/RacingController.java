@@ -16,12 +16,11 @@ public class RacingController {
         this.outputView = outputView;
     }
 
-    public void startGame() {
+    public Track init() {
         Cars cars = requestCars();
         int trialTime = requestTrialTime();
 
-        Track track = new Track(cars, trialTime);
-        track.race();
+        return new Track(cars, trialTime);
     }
 
     private Cars requestCars() {
@@ -35,5 +34,12 @@ public class RacingController {
         TrialTimes trialTimes = inputView.getTrialTimes();
 
         return trialTimes.getTrialTimes();
+    }
+
+    public void startRace(Track track) {
+        while (track.runnable()) {
+            Cars cars = track.race();
+            outputView.printCarsResult(cars);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package racingcar.model.car;
 
 public class Car {
+    private static final String POSITION_FORMAT_SYMBOL = "-";
     private final String carName;
     private int position = 0;
 
@@ -10,5 +11,11 @@ public class Car {
 
     public void moveForward() {
         position++;
+    }
+
+    public String getCurrentStateFormat() {
+        String stateFormat = "%s : %s";
+        String positionFormat = POSITION_FORMAT_SYMBOL.repeat(position);
+        return String.format(stateFormat, carName, positionFormat);
     }
 }

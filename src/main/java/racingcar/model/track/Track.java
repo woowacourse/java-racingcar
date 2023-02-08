@@ -4,7 +4,7 @@ import racingcar.model.car.Cars;
 
 public class Track {
     private final Cars cars;
-    private final int trialTime;
+    private int trialTime;
 
     public Track(Cars cars, int trialTime) {
         this.cars = cars;
@@ -12,9 +12,19 @@ public class Track {
     }
 
 
-    public void race() {
+    public Cars race() {
         for (int i = 0; i < trialTime; i++) {
             cars.moveCars();
         }
+        removeTrialTimes();
+        return cars;
+    }
+
+    private void removeTrialTimes() {
+        this.trialTime -= 1;
+    }
+
+    public boolean runnable() {
+        return trialTime > 0;
     }
 }

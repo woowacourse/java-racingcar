@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String LINE_BREAK = "\n";
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
@@ -25,5 +26,15 @@ public class Cars {
         int x = ran.nextInt(10);
 
         return x >= 4;
+    }
+
+    public String getCarsPositionFormat() {
+        StringBuilder carsPositionFormat = new StringBuilder();
+        for (Car car : cars) {
+            carsPositionFormat.append(car.getCurrentStateFormat())
+                    .append(LINE_BREAK);
+        }
+
+        return carsPositionFormat.toString();
     }
 }
