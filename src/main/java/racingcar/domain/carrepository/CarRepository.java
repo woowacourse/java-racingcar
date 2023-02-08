@@ -3,7 +3,9 @@ package racingcar.domain.carrepository;
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
+다import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarRepository {
 
@@ -44,5 +46,21 @@ public class CarRepository {
         if (randomNumber >= 4) {
             car.updatePosition();
         }
+    }
+
+    public List<Car> getRepository() {
+        return repository;
+    }
+
+    public List<String> findWinner() {
+        int maxPosition = repository.stream()
+                .map(Car::getPosition)
+                .max(Comparator.comparing(x -> x))
+                .orElseThrow(NoClassDefFoundError::new);
+
+        return repository.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }

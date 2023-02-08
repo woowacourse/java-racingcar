@@ -25,11 +25,18 @@ public class Car {
     }
 
     private boolean isValidateName(String name) {
-        return name.matches("[a-zA-Z]]");
+        return name.matches("[a-zA-Z]+");
     }
 
     public void updatePosition() {
         this.position++;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }
