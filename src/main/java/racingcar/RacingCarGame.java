@@ -10,4 +10,16 @@ public class RacingCarGame {
             car.move(new RandomBasedStrategy());
         }
     }
+
+    public List<String> getWinners() {
+        int maxPosition = getMaxPosition();
+        return CarRepository.findSamePositionWith(maxPosition);
+    }
+
+    private int getMaxPosition() {
+        return CarRepository.findAll().stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+    }
 }

@@ -4,9 +4,9 @@ import racingcar.Car;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static constant.Constants.READ_CAR_NAMES;
-import static constant.Constants.READ_NUMBER_OF_TRY;
+import static constant.Constants.*;
 
 public class OutputView {
     public void readCarNames() {
@@ -32,6 +32,11 @@ public class OutputView {
 
     public void printException(IOException ioException) {
         println(ioException.getMessage());
+    }
+
+    public void printWinners(List<String> winnerNames) {
+        String winnerList = winnerNames.stream().collect(Collectors.joining(", "));
+        println(winnerList + PRINT_WINNER_LIST_GUIDE);
     }
 
     private void println(String value) {
