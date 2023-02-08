@@ -39,7 +39,7 @@ public class OutputView {
         System.out.println(value);
     }
 
-    public void printException(Exception exception) {
-        println("[ERROR] " + exception.getMessage());
+    public void printException(String exceptionMessage) {
+        println("[ERROR] " + exceptionMessage);
     }
 }

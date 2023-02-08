@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.function.Supplier;
 
+import static constant.Constants.NOT_NUMERIC_EXCEPTION;
+
 public class InputView {
 
     private final OutputView outputView;
@@ -21,8 +23,13 @@ public class InputView {
     }
 
     public int readNumberOfMoving() {
-        outputView.readNumberOfTry();
-        return Integer.parseInt(readLine());
+        try {
+            outputView.readNumberOfTry();
+            return Integer.parseInt(readLine());
+        } catch (NumberFormatException numberFormatException) {
+            outputView.printException(NOT_NUMERIC_EXCEPTION);
+            return readNumberOfMoving();
+        }
     }
 
     private String readLine() {
@@ -30,7 +37,7 @@ public class InputView {
         try {
             return bufferedReader.readLine();
         } catch (IOException ioException) {
-            outputView.printException(ioException);
+            outputView.printException(ioException.getMessage());
             return readLine();
         }
     }

@@ -5,6 +5,6 @@ public class Constants {
     public static final String READ_NUMBER_OF_TRY = "시도할 회수는 몇회인가요?";
     public static final String PRINT_WINNER_LIST_GUIDE = "가 최종 우승했습니다.";
     public static final String CAR_NAME_LIMIT_EXCEPTION = "5글자 이하로 입력하세요.";
-
+    public static final String NOT_NUMERIC_EXCEPTION = "숫자만 입력할 수 있습니다.";
 
 }

@@ -18,7 +18,7 @@ public class CarRepository {
 
     public static List<String> findSamePositionWith(int maxPosition) {
         return cars.stream().filter(car -> car.getPosition() == maxPosition)
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 }

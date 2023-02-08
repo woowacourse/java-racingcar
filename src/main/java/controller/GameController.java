@@ -22,11 +22,11 @@ public class GameController {
     public void run() {
         makeCars();
         // TODO : 시도 횟수 예외 처리
-        startGame(inputView.readNumberOfMoving());
+        startRacing(inputView.readNumberOfMoving());
         outputView.printWinners(racingCarGame.getWinners());
     }
 
-    private void startGame(int numberOfMoving) {
+    private void startRacing(int numberOfMoving) {
         for (int round = 0; round < numberOfMoving; round++) {
             racingCarGame.moveCars();
             outputView.printCarsStatus(CarRepository.findAll());
@@ -40,7 +40,7 @@ public class GameController {
                     .map(Car::new)
                     .forEach(CarRepository::updateCars);
         } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printException(illegalArgumentException);
+            outputView.printException(illegalArgumentException.getMessage());
             makeCars();
         }
     }
