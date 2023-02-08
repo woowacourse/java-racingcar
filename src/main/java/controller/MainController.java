@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import view.InputView;
 import view.OutputView;
 
@@ -14,6 +15,7 @@ public class MainController {
     }
 
     public void play() {
-        System.out.println("잘 되나?");
+        List<String> carNames = inputView.readCarNames();
+        System.out.println(carNames);
     }
 }
