@@ -13,7 +13,7 @@ public class OutputView {
 
     public void printStatus(String carName, int position) {
         System.out.print(carName + CAR_NAME_FORMAT);
-        for(int index = 0; index < position; index++) {
+        for (int index = 0; index < position; index++) {
             System.out.print(MOVEMENT);
         }
         System.out.println();
@@ -22,9 +22,11 @@ public class OutputView {
     public void resultMessage() {
         System.out.println(RESULT_MESSAGE);
     }
+
     public void printStartMessage() {
         System.out.println(START_INPUT_CAR_NAME_MESSAGE);
     }
+
     public void printCountMessage() {
         System.out.println(COUNT_MESSAGE);
     }

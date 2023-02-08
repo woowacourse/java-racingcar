@@ -82,6 +82,7 @@ public class Service {
             return checkInputCarName();
         }
     }
+
     private int checkInputCount() {
         try {
             outputView.printCountMessage();
