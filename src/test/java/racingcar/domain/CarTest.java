@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -52,5 +51,14 @@ class CarTest {
 			car.move(number);
 			assertThat(car.getPosition()).isEqualTo(0);
 		}
+	}
+
+	@Test
+	@DisplayName("")
+	void toStringTest() {
+		Car car = new Car("woowa");
+		car.move(4);
+		car.move(4);
+		assertThat(car.toString()).isEqualTo("woowa : ---");
 	}
 }
