@@ -16,17 +16,9 @@ public class InputView {
         System.out.println(CAR_NAMES_MENTION);
         List<String> carNames = Arrays.asList(scanner.nextLine().split(","));
         carNames = removeBlank(carNames);
-
-        if (!isCorrectLength(carNames)) {
-            throw new IllegalArgumentException("자동차명은 1 ~ 5 글자로 입력해야합니다.");
-        }
+        Validator.carNameLength(carNames);
 
         return carNames;
-    }
-
-    private boolean isCorrectLength(List<String> carNames) {
-        return carNames.stream()
-                .allMatch(carName -> 1 <= carName.length() && carName.length() <= 5);
     }
 
     private List<String> removeBlank(List<String> carNames) {
@@ -35,9 +27,18 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public String numberOfTimes() {
+    public int numberOfTimes() {
         System.out.println(NUMBER_OF_TIME_MENTION);
-        String number = scanner.nextLine();
-        return "";
+        int number;
+
+        try {
+            number = Integer.parseInt("1239120");
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        }
+
+        Validator.numberOfTimesRange(number);
+
+        return number;
     }
 }
