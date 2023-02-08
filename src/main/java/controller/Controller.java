@@ -18,12 +18,12 @@ public class Controller {
 
     public void raceTracks() {
         String carNames = inputCarNames();
-        racingStatus = new RacingStatus(carNames);
+        racingStatus = new RacingStatus(carNames, numberPicker);
 
         InputView.printInputTryCountGuide();
         Input.gameCountInput();
 
-        numberPicker.pickNumber();
+        racingStatus.move();
     }
 
     private String inputCarNames() {

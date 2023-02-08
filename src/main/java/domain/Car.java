@@ -9,4 +9,12 @@ public class Car {
         this.carName = new CarName(carName);
         status = 0;
     }
+
+    public void move() {
+        status++;
+    }
+
+    public int getStatus() {
+        return status;
+    }
 }
