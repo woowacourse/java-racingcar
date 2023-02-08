@@ -14,6 +14,10 @@ public class Car {
         }
     }
 
+    public String getCarName() {
+        return carName.getName();
+    }
+
     public Integer getDistance() {
         return distance;
     }
