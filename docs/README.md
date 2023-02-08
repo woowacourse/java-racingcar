@@ -5,8 +5,8 @@
 - [ ] 자동차 이름을 입력 받은 뒤 시도할 횟수를 입력 받는다.
 
 ### 입력 Exception 구현 사항
-- [ ] 자동차 이름이 공백이거나 6글자를 초과하면 `IllegalArgumentException`을 던진다.
-- [ ] 자동차 이름이 중복되는 경우 `IllegalArgumentException`을 던진다.
+- [x] 자동차 이름이 공백이거나 6글자를 초과하면 `IllegalArgumentException`을 던진다.
+- [x] 자동차 이름이 중복되는 경우 `IllegalArgumentException`을 던진다.
 - [ ] 시도할 횟수가 정수가 아니면 `IllegalArgumentException`을 던진다.
 - [ ] 시도할 횟수가 음수이면 `IllegalArgumentException`을 던진다.
 - [ ] 예외가 발생한다면 이전에 입력했던 부분부터 다시 입력을 받는다.
@@ -19,5 +19,5 @@
 
 ### 비즈니스 로직 요구사항
 - [ ] 시도할 횟수 만큼 게임을 진행한다. 
-- [ ] 자동차가 전진하는 조건은 0에서 9사이의 random 값을 구한 후 random 값이 4 이상이면 전진, 3 이하의 값이면 멈춘다.
+- [x] 자동차가 전진하는 조건은 0에서 9사이의 random 값을 구한 후 random 값이 4 이상이면 전진, 3 이하의 값이면 멈춘다.
 - [ ] 게임이 완료되면 우승자 목록을 찾을 수 있어야 한다.
