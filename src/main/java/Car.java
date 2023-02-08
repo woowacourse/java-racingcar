@@ -14,9 +14,9 @@ public class Car {
     }
 
     public boolean amIWinner(List<Car> cars) {
-        int max = 0;
+        int max = position;
         for (Car car : cars) {
-            max = Math.max(car.position, this.position);
+            max = Math.max(car.position, max);
         }
 
         return max == position;
