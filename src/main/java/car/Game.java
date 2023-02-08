@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private static final int INITIAL_TRIAL_COUNT = 0;
 
     private final List<Car> cars;
+    private final int trialCount;
+
     public Game(List<Car> cars) {
+        this(cars, INITIAL_TRIAL_COUNT);
+    }
+
+    public Game(List<Car> cars, int trialCount) {
         this.cars = new ArrayList<>(cars);
+        this.trialCount = trialCount;
     }
 
     public List<Car> getWinners() {
