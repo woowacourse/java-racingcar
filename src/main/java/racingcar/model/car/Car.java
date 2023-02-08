@@ -1,7 +1,10 @@
 package racingcar.model.car;
 
+import racingcar.model.car.strategy.MovingStrategy;
+
 public class Car {
     private static final String POSITION_FORMAT_SYMBOL = "-";
+    private static final String POSITION_STATE_FORMAT = "%s : %s";
     private final String carName;
     private int position = 1;
     private final MovingStrategy movingStrategy;
@@ -16,13 +19,8 @@ public class Car {
     }
 
     public String getCurrentStateFormat() {
-        String stateFormat = "%s : %s";
         String positionFormat = POSITION_FORMAT_SYMBOL.repeat(position);
-        return String.format(stateFormat, carName, positionFormat);
-    }
-
-    public int getPosition() {
-        return position;
+        return String.format(POSITION_STATE_FORMAT, carName, positionFormat);
     }
 
     public boolean isWinner(int maxPosition) {
@@ -30,10 +28,14 @@ public class Car {
     }
 
     public String getWinnerCarNameFormat() {
-        return this.carName;
+        return carName;
     }
 
     public boolean movable() {
-        return this.movingStrategy.movable();
+        return movingStrategy.movable();
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

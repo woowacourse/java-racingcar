@@ -20,11 +20,6 @@ public class CarNames {
     }
 
     private void validate(String carNames) {
-        validateFormat(carNames);
-        //TODO 각각의 길이가 5자 이하
-    }
-
-    private void validateFormat(String carNames) {
         String[] splitCarNames = carNames.split(SEPARATOR);
 
         for (String splitCarName : splitCarNames) {

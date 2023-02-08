@@ -11,7 +11,7 @@ public enum ErrorMessage {
     TRIAL_NUMBER_UNDER_RANGE("[ERROR] 시도 횟수가 1 이상이어야 합니다."),
     ;
 
-    private String message;
+    private final String message;
 
     ErrorMessage(String message) {
         this.message = message;

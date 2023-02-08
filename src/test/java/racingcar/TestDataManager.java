@@ -1,6 +1,9 @@
 package racingcar;
 
 import racingcar.model.car.*;
+import racingcar.model.car.strategy.ForwardMovingStrategy;
+import racingcar.model.car.strategy.MovingStrategy;
+import racingcar.model.car.strategy.NotMovingStrategy;
 
 import java.util.List;
 

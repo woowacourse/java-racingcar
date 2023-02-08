@@ -19,7 +19,7 @@ public class Track {
     }
 
     private void removeTrialTimes() {
-        this.trialTime -= 1;
+        trialTime -= 1;
     }
 
     public boolean runnable() {

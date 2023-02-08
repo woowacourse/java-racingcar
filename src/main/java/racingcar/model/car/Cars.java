@@ -15,7 +15,7 @@ public class Cars {
 
     public void moveCars() {
         cars.stream()
-                .filter(car -> car.movable())
+                .filter(Car::movable)
                 .forEach(Car::moveForward);
     }
 

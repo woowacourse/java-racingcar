@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
-import racingcar.model.car.MovingStrategy;
+import racingcar.model.car.strategy.MovingStrategy;
 import racingcar.model.track.Track;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;

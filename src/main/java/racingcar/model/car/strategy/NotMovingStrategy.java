@@ -1,4 +1,4 @@
-package racingcar.model.car;
+package racingcar.model.car.strategy;
 
 public class NotMovingStrategy implements MovingStrategy {
     @Override

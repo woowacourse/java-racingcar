@@ -3,6 +3,8 @@ package racingcar.view.dto;
 import racingcar.util.ErrorMessage;
 
 public class TrialTimes {
+    private static final int TRIAL_MAX_TIMES = 100;
+    private static final int TRIAL_MIN_TIMES = 1;
     private final Integer trialTimes;
 
     public TrialTimes(String trialTimes) {
@@ -31,13 +33,13 @@ public class TrialTimes {
     }
 
     private void isOverMaxRange(int trialTimesNumber) {
-        if (trialTimesNumber > 100) {
+        if (trialTimesNumber > TRIAL_MAX_TIMES) {
             throw new IllegalArgumentException(ErrorMessage.TRIAL_NUMBER_OVER_RANGE.message());
         }
     }
 
     private void isUnderMinRange(int trialTimesNumber) {
-        if (trialTimesNumber < 1) {
+        if (trialTimesNumber < TRIAL_MIN_TIMES) {
             throw new IllegalArgumentException(ErrorMessage.TRIAL_NUMBER_UNDER_RANGE.message());
         }
     }
