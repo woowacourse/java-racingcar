@@ -34,7 +34,12 @@ public class OutputView {
     }
 
     public void printCurrentRacingCarsPosition(Map<String, Integer> carPositonMap) {
-
+        for (String carName : carPositonMap.keySet()) {
+            Integer position = carPositonMap.get(carName);
+            String convertPositionToDash = "-".repeat(position);
+            printMessage(carName + " : " + convertPositionToDash);
+        }
+        printMessage("");
     }
 
     public void printWinners(List<String> winners) {
