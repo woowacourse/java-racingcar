@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OutputView {
     public static final String WINNER_GUIDE_MESSAGE = "가 최종 우승했습니다.";
-    public static final String WINNER_DELIMETER = ", ";
+    public static final String WINNER_DELIMITER = ", ";
     private static final String STATUS_GUIDE_MESSAGE = "실행 결과";
     private static final String COLON = " : ";
     private static final String CAR_POSITION = "-";
@@ -48,7 +48,7 @@ public class OutputView {
             }
         }
 
-        System.out.print(String.join(WINNER_DELIMETER, winners));
+        System.out.print(String.join(WINNER_DELIMITER, winners));
         System.out.println(WINNER_GUIDE_MESSAGE);
     }
 }
