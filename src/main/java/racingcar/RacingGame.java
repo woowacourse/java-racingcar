@@ -1,11 +1,9 @@
 package racingcar;
 
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class RacingGame {
 
@@ -13,6 +11,7 @@ public class RacingGame {
     private static final int RANGE_MIN = 0;
 
     private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final int gameCount;
 
     private List<Car> cars = new ArrayList<>();
@@ -43,8 +42,25 @@ public class RacingGame {
     public void playingGame() {
         for (int i = 0; i < gameCount; i++) {
             updateCarPosition();
-            cars.forEach(s -> inputView.printPosition(s.getName(), s.getPosition()));
+            printPosition();
         }
     }
 
+    private void printPosition() {
+        cars.forEach(s -> outputView.printPosition(s.getName(), s.getPosition()));
+        System.out.println();
+    }
+
+    public void viewResult() {
+        int temp = -1;
+        for (int i = 0; i < cars.size(); i++) {
+            if (temp < cars.get(i).getPosition()) {
+                temp = cars.get(i).getPosition();
+            }
+        }
+        int max = temp;
+        cars.stream().filter(car -> car.getPosition() == max).forEach(car -> winners.add(car.getName()));
+        printPosition();
+        outputView.printWinners(winners);
+    }
 }
