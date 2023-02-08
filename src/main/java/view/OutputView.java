@@ -15,6 +15,7 @@ public class OutputView {
     }
 
     public void printMoveResult(List<String> moveResults) {
-        moveResults.forEach(moveResult -> System.out.println(moveResults));
+        moveResults.forEach(System.out::println);
+        System.out.println();
     }
 }
