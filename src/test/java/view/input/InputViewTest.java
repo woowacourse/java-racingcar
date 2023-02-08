@@ -22,7 +22,7 @@ class InputViewTest {
     }
 
     @Test
-    void 빈문자열을_입력시_오류를던진다() {
+    void 자동차이름_입력값이_빈문자일_경우_오류를던진다() {
         //given
         final String input = "\n";
         before(input);
@@ -33,7 +33,7 @@ class InputViewTest {
     }
 
     @Test
-    void 자동차이름이_5자보다클시_오류를던진다() {
+    void 자동차이름이_5자보다_길면_오류를던진다() {
         //given
         final String input = "make,takeasd";
         before(input);
@@ -54,6 +54,16 @@ class InputViewTest {
             .hasMessageContaining(ErrorMessages.NOT_PROPER_CAR_NAME_LENGTH.getContent());
     }
 
+    @Test
+    void 자동차이름_입력값_앞뒤에_공백이존재하면_무시한다() {
+        //given
+        before("  one,two,three                  ");
+        //when
+        List<String> result = inputView.readCarNames();
+        //then
+        assertThat(result).isEqualTo(List.of("one", "two", "three"));
+    }
+
     @MethodSource("correctCarNames")
     @ParameterizedTest
     void 올바른_자동차_이름_입력값을_받았을_때(List<String> carNames) {
@@ -70,6 +80,7 @@ class InputViewTest {
         return Stream.of(
             Arguments.of(List.of("one")),
             Arguments.of(List.of("a", "b")),
+            Arguments.of(List.of("a b", "ab wd")),
             Arguments.of(List.of("가나다라마", "마라다나가", "기니디리미"))
         );
     }
