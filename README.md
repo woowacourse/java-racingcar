@@ -16,6 +16,7 @@ graph TD
     RacingCarController --> RacingGame
     RandomNumberGenerator -.-> NumberGenerator
     RacingCarController --> InputView
+    InputView --> InputValidator
     RacingCarController --> OutputView
 ```
 
@@ -41,16 +42,24 @@ NumberGenerator, RandomNumberGenerator
 
 RacingGame
 
-- 시도할 횟수를 가진다.
-- 게임을 진행한다.
-- 게임을 완료한 후 우승자를 반환한다.
+- [x] 시도할 횟수를 가진다.
+- [x] 게임을 진행한다.
+- [x] 게임을 완료한 후 우승자를 반환한다.
     - 우승자는 1명 이상일 수 있다.
 
 InputView
 
-- 경주할 자동차 이름을 입력한다.
+- [x] 경주할 자동차 이름을 입력한다.
     - 이름은 쉼표를 기준으로 구분한다.
-- 시도할 횟수를 입력한다.
+- [x] 시도할 횟수를 입력한다.
+
+InputValidator
+
+- 시도 횟수
+    - 1 이상 입력하는지 검증한다.
+- [x] 자동차 이름
+    - 쉼표(,)로 구분된 이름을 입력하는지 검증한다.
+    - 1대 이상의 자동차를 입력하는지 검증한다.
 
 OutputView
 
