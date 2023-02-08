@@ -1,16 +1,25 @@
 package view;
 
 import dto.CarStatusDto;
+import dto.WinnersNameDto;
 
 import java.util.List;
 
 public class OutputView {
-    void printEachRound(List<CarStatusDto> carStatusDtos) {
+    public void printEachRound(List<CarStatusDto> carStatusDtos) {
         carStatusDtos.forEach(carStatusDto -> printEachCarStatus(carStatusDto));
         System.out.println("");
     }
 
-    private static void printEachCarStatus(CarStatusDto carStatusDto) {
+    public void printWinners(WinnersNameDto winnersNameDto) {
+        System.out.println(getFormattedName(winnersNameDto.getWinnersNames()) + "가 최종 우승했습니다.");
+    }
+
+    private void printEachCarStatus(CarStatusDto carStatusDto) {
         System.out.println(carStatusDto.getName() + " : " + "-".repeat(carStatusDto.getPosition()));
+    }
+
+    private String getFormattedName(List<String> names) {
+        return String.join(", ", names);
     }
 }
