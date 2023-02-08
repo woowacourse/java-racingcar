@@ -6,6 +6,7 @@ import java.util.List;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.TestNumberGenerator;
 
 public class CarsTest {
 
@@ -25,17 +26,4 @@ public class CarsTest {
         assertThat(car3.getPosition()).isEqualTo(1);
     }
 
-    static class TestNumberGenerator implements NumberGenerator {
-
-        private final List<Integer> numbers;
-
-        public TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-
-        @Override
-        public int generate() {
-            return numbers.remove(0);
-        }
-    }
 }
