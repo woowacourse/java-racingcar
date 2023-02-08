@@ -26,7 +26,7 @@ public class RacingController {
     private Cars requestCars() {
         CarNames carNames = inputView.getCarNames();
 
-        return new Cars(carNames.toCarNameList());
+        return Cars.from(carNames.toCarNameList());
     }
 
 
@@ -41,5 +41,9 @@ public class RacingController {
             Cars cars = track.race();
             outputView.printCarsResult(cars);
         }
+    }
+
+    public void concludeWinner(Track track) {
+        track.findWinner();
     }
 }

@@ -18,4 +18,12 @@ public class Car {
         String positionFormat = POSITION_FORMAT_SYMBOL.repeat(position);
         return String.format(stateFormat, carName, positionFormat);
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public boolean isWinner(int maxPosition) {
+        return position == maxPosition;
+    }
 }

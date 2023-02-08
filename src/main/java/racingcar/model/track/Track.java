@@ -27,4 +27,8 @@ public class Track {
     public boolean runnable() {
         return trialTime > 0;
     }
+
+    public Cars findWinner() {
+        return cars.getWinnerCars();
+    }
 }
