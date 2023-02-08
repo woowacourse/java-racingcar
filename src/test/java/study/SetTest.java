@@ -4,10 +4,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SetTest {
 
@@ -28,6 +31,14 @@ public class SetTest {
     void setSizeTest() {
         int size = numbers.size();
         Assertions.assertThat(size).isEqualTo(5);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    @DisplayName("set 요소 포함 확인 테스트")
+    void setContainsParmaterizedTest(int checkingValue) {
+        assertTrue(numbers.contains(checkingValue));
     }
 
 }
