@@ -4,14 +4,14 @@
 + MVC 패턴 적용
 
 ## 📚 기능 목록
-- [ ] 사용자의 입력을 받는다.
+- [x] 사용자의 입력을 받는다.
   - [x] 자동차 이름을 입력받는다. InputView#requestCarName()
-  - [ ] 시도 횟수를 입력받는다.
-- [ ] 사용자 입력을 검증한다.
+  - [x] 시도 횟수를 입력받는다. InputView#requestTryCount()
+- [x] 사용자 입력을 검증한다.
   - [x] 자동차 이름을 검증한다.
     - 쉼표 구분 CommaSeparator#sliceNameByComma()
     - 5글자 이하 Name#validateName()
-  - [ ] 시도 횟수 검증한다.
+  - [x] 시도 횟수 검증한다. TryCount
     - 정수 입력
     - 0 제외
 - [ ] 랜덤값 생성한다.
