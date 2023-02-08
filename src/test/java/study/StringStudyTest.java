@@ -15,7 +15,8 @@ public class StringStudyTest {
     class split_테스트 {
 
         @Test
-        void 1과_2로_분리할_경우_테스트() {
+        @DisplayName("1과 2로 분리할 경우 테스트")
+        void splitTestOneAndTwo() {
             String input = "1,2";
             String[] splitedInput = input.split(",");
 
@@ -23,7 +24,8 @@ public class StringStudyTest {
         }
 
         @Test
-        void 1로만_분리할_경우_테스트() {
+        @DisplayName("1로만 분리할 경우 테스트")
+        void splitTestOnlyOne() {
             String input = "1";
             String[] splitedInput = input.split(",");
 
@@ -31,7 +33,8 @@ public class StringStudyTest {
         }
 
         @Test
-        void 특정_문자_제거_테스트() {
+        @DisplayName("특정 문자 제거 테스트")
+        void removeSpecialCharacterTest() {
             String input = "(1,2)";
             String replacedInput = input.replaceAll("[()]", "");
 
@@ -39,7 +42,8 @@ public class StringStudyTest {
         }
 
         @Test
-        void 특정_문자_위치_찾기_문자열로_특정_문자_찾기_테스트() {
+        @DisplayName("특정_문자_위치_찾기_문자열로_특정_문자_찾기_테스트")
+        void findCharIndexByStringTest() {
             String input = "abc";
 
             assertThat(input.indexOf("a")).isEqualTo(0);
