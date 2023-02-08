@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import static racingcar.enumType.CarConstant.FORWARD_NUMBER;
 import static racingcar.enumType.CarConstant.NAME_MAX_LENGTH;
 import static racingcar.enumType.ExceptionMessage.BLANK_MESSAGE;
 import static racingcar.enumType.ExceptionMessage.LENGTH_MESSAGE;
@@ -10,7 +9,7 @@ public class Car {
 
     private final StringBuilder drivingMark;
 
-    public Car(final String name) {
+    private Car(final String name) {
         validateNameBlank(name);
         validateNameLength(name);
         this.name =  name;
@@ -36,5 +35,9 @@ public class Car {
     @Override
     public String toString() {
         return name + " : " + drivingMark;
+    }
+
+    public static Car of(final String name) {
+        return new Car(name);
     }
 }
