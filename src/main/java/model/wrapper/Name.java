@@ -1,5 +1,6 @@
 package model.wrapper;
 
+import exception.BlankNameException;
 import exception.WrongNameLengthException;
 
 public class Name {
@@ -10,16 +11,29 @@ public class Name {
     private final String name;
 
     public Name(String name) {
+        validateName(name);
+        this.name = name;
+    }
+
+    private void validateName(String name) {
+        if (!validateBlank(name)) {
+            throw new BlankNameException();
+        }
         if (!validateLength(name)) {
             throw new WrongNameLengthException();
         }
-        this.name = name;
     }
 
     private boolean validateLength(String name) {
         int length = name.length();
 
         return length >= NAME_MIN_LENGTH && length <= NAME_MAX_LENGTH;
+    }
+
+    private boolean validateBlank(String name) {
+        int length = name.trim().length();
+
+        return length != 0;
     }
 
     public String getName() {
