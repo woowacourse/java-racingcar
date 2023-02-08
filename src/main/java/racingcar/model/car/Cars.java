@@ -14,24 +14,17 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars from(List<String> carNames) {
+    public static Cars from(List<String> carNames, MovingStrategy movingStrategy) {
         List<Car> cars = carNames.stream()
-                .map(Car::new)
+                .map(carName -> new Car(carName, movingStrategy))
                 .collect(Collectors.toList());
         return new Cars(cars);
     }
 
     public void moveCars() {
         cars.stream()
-                .filter(car -> movable())
+                .filter(car -> car.movable())
                 .forEach(Car::moveForward);
-    }
-
-    private boolean movable() {
-        Random ran = new Random();
-        int x = ran.nextInt(10);
-
-        return x >= 4;
     }
 
     public String getCarsPositionFormat() {

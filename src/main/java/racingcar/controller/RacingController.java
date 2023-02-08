@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.car.Cars;
+import racingcar.model.car.MovingStrategy;
 import racingcar.model.track.Track;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -16,18 +17,18 @@ public class RacingController {
         this.outputView = outputView;
     }
 
-    public Track init() {
-        Cars cars = requestCars();
+    public Track init(MovingStrategy movingStrategy) {
+        Cars cars = requestCars(movingStrategy);
         int trialTime = requestTrialTime();
         outputView.printInitialCarPosition(cars.getCarsPositionFormat());
 
         return new Track(cars, trialTime);
     }
 
-    private Cars requestCars() {
+    private Cars requestCars(MovingStrategy movingStrategy) {
         CarNames carNames = inputView.getCarNames();
 
-        return Cars.from(carNames.toCarNameList());
+        return Cars.from(carNames.toCarNameList(), movingStrategy);
     }
 
 

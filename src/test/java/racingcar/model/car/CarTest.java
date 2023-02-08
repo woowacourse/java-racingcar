@@ -11,7 +11,7 @@ class CarTest {
     @Test
     void currentStateFormatTest(){
         // given
-        Car car = new Car("pobi");
+        Car car = new Car("pobi", new ForwardMovingStrategy());
         String expected = "pobi : -";
 
         // when

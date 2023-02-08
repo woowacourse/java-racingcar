@@ -4,9 +4,11 @@ public class Car {
     private static final String POSITION_FORMAT_SYMBOL = "-";
     private final String carName;
     private int position = 1;
+    private final MovingStrategy movingStrategy;
 
-    public Car(String carName) {
+    public Car(String carName, MovingStrategy movingStrategy) {
         this.carName = carName;
+        this.movingStrategy = movingStrategy;
     }
 
     public void moveForward() {
@@ -29,5 +31,9 @@ public class Car {
 
     public String getWinnerCarNameFormat() {
         return this.carName;
+    }
+
+    public boolean movable() {
+        return this.movingStrategy.movable();
     }
 }
