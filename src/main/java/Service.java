@@ -54,4 +54,19 @@ public class Service {
             winners.add(car);
         }
     }
+
+
+    public void play() {
+        creatCar();
+        outputView.printCountMessage();
+        int count = inputView.inputCount();
+        outputView.resultMessage();
+        for (int index = 0; index < count; index++) {
+            moveAllCars();
+            printStatus();
+            System.out.println();
+        }
+        selectWinners();
+        outputView.printWinners(winners);
+    }
 }
