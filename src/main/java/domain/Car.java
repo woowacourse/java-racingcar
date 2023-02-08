@@ -1,7 +1,7 @@
 package domain;
 
 public class Car {
-    String carName;
+    private final String carName;
 
     public Car(String inputCar) {
         String trimInput = eliminateBlank(inputCar);
