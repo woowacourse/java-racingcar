@@ -8,12 +8,17 @@ public class Car {
 
     private String name;
     private int position;
+
     public Car(String name) {
         validateName(name);
         this.name = name;
         this.position = 0;
     }
 
+    // 자동차의 위치를 증가시키는 메소드
+    public void increasePosition() {
+        this.position++;
+    }
 
     // 자동차 이름의 길이를 검증하는 메소드
     private void validateName(String name) {
