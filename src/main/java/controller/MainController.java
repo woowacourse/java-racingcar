@@ -21,5 +21,8 @@ public class MainController {
         for (String carName : carNames) {
             CarRepository.addCars(new Car(carName));
         }
+
+        int moveCount = inputView.readMoveCount();
+        System.out.println(moveCount);
     }
 }
