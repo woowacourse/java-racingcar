@@ -11,7 +11,7 @@ public class RacingcarService {
         }
     }
 
-    public int findPosition(List<Car> cars) {
+    private int findPosition(List<Car> cars) {
         int maxPosition = 0;
 
         for (Car car : cars) {
