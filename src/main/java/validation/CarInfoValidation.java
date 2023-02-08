@@ -1,5 +1,9 @@
 package validation;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class CarInfoValidation {
 
     private static final int CAR_NAME_LENGTH_MAX = 5;
@@ -10,6 +14,7 @@ public class CarInfoValidation {
         final String[] cars = input.split(SPLIT_DELIMITER);
         validateLength(cars);
         validateName(cars);
+        validateDuplicatedCarName(cars);
     }
 
     private static void validateLength(final String[] cars) {
@@ -23,6 +28,14 @@ public class CarInfoValidation {
             if (car.length() > CAR_NAME_LENGTH_MAX) {
                 throw new IllegalArgumentException("자동차 이름은 5자 이하로 작성해주세요.");
             }
+        }
+    }
+
+    private static void validateDuplicatedCarName(final String[] cars) {
+        Set<String> checkDuplicated = new HashSet<>(List.of(cars));
+
+        if (checkDuplicated.size() != cars.length) {
+            throw new IllegalArgumentException("자동차 이름은 중복되지 않아야합니다.");
         }
     }
 

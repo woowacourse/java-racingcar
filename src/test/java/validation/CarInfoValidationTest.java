@@ -51,4 +51,21 @@ class CarInfoValidationTest {
         // when, then
         CarInfoValidation.validateCar(input);
     }
+
+    @Test
+    @DisplayName("validateDuplicatedCarName() : 자동차 이름이 중복될 경우에 IllegalArgumentException 발생")
+    void test_validateDuplicatedCarName_IllegalArgumentException() {
+        //given
+        String input = "pobi,pobi";
+        String expectedMessage = "자동차 이름은 중복되지 않아야합니다.";
+
+        //when & then
+        try {
+            CarInfoValidation.validateCar(input);
+        } catch (IllegalArgumentException exception) {
+            final String errorMessage = exception.getMessage();
+
+            assertEquals(expectedMessage, errorMessage);
+        }
+    }
 }
