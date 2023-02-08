@@ -40,4 +40,11 @@ public class RacingGame {
         }
     }
 
+    public void playingGame() {
+        for (int i = 0; i < gameCount; i++) {
+            updateCarPosition();
+            cars.forEach(s -> inputView.printPosition(s.getName(), s.getPosition()));
+        }
+    }
+
 }
