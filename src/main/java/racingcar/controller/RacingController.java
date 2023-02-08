@@ -21,6 +21,7 @@ public class RacingController {
         int trialTime = requestTrialTime();
 
         Track track = new Track(cars, trialTime);
+        track.race();
     }
 
     private Cars requestCars() {

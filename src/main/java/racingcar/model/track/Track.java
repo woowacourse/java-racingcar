@@ -12,4 +12,9 @@ public class Track {
     }
 
 
+    public void race() {
+        for (int i = 0; i < trialTime; i++) {
+            cars.moveCars();
+        }
+    }
 }
