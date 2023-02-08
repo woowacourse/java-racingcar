@@ -1,11 +1,9 @@
 package racingcar;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
@@ -28,6 +26,13 @@ class CarTest {
         assertThat(position).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("3 이하의 숫자를 받았을 때, 자동차 포지션이 변경되지 않는지 검증한다")
+    void carMoveTest() {
+        Car testCar = new Car("aa");
+        testCar.move(2);
+        int currentPosition = testCar.getPosition();
 
-
+        assertThat(currentPosition).isEqualTo(0);
+    }
 }
