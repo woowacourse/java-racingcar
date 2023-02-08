@@ -13,4 +13,12 @@ public class Car {
         position = position + 1;
     }
 
+    public boolean amIWinner(List<Car> cars) {
+        int max = 0;
+        for (Car car : cars) {
+            max = Math.max(car.position, this.position);
+        }
+
+        return max == position;
+    }
 }
