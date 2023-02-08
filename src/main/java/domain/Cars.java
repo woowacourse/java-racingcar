@@ -20,4 +20,8 @@ public class Cars {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException());
     }
+
+    public Cars judgeWinner() {
+        return null;
+    }
 }
