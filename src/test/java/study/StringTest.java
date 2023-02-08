@@ -9,15 +9,15 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class StringTest {
     @Test
     @DisplayName("1,2를 ,로 split했을 때 1과 2로 잘 분리되는지 확인하는 테스트")
-    void splitArray12(){
+    void splitArray12() {
         String input = "1,2";
         String[] result = input.split(",");
 
-        assertThat(result).contains("1","2");
+        assertThat(result).contains("1", "2");
     }
 
     @Test
-    void splitOnly1(){
+    void splitOnly1() {
         String input = "1,";
         String[] result = input.split(",");
 
@@ -25,15 +25,15 @@ public class StringTest {
     }
 
     @Test
-    void removeBrackets(){
+    void removeBrackets() {
         String input = "(1,2)";
-        String result = input.substring(1,input.length()-1);
+        String result = input.substring(1, input.length() - 1);
 
         assertThat(result).isEqualTo("1,2");
     }
 
     @Test
-    void findSpecificElement(){
+    void findSpecificElement() {
         String input = "abc";
         char result = input.charAt(1);
 
@@ -41,10 +41,12 @@ public class StringTest {
     }
 
     @Test
-    void dd(){
+    void dd() {
         String input = "abc";
 
-        assertThatThrownBy(() -> {input.charAt(3);}).isInstanceOf(StringIndexOutOfBoundsException.class)
+        assertThatThrownBy(() -> {
+            input.charAt(3);
+        }).isInstanceOf(StringIndexOutOfBoundsException.class)
                 .hasMessageContaining("index out of range: 3");
     }
 }
