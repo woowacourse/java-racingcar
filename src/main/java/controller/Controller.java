@@ -16,6 +16,9 @@ public class Controller {
     public void raceTracks() {
         String carNames = inputCarNames();
         racingStatus = new RacingStatus(carNames);
+
+        InputView.printInputTryCountGuide();
+        Input.gameCountInput();
     }
 
     private String inputCarNames() {
