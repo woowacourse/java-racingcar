@@ -3,7 +3,7 @@ package racingcar.domain;
 import racingcar.dto.RacingCarStatusResponse;
 
 public class Car {
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String name) {
@@ -12,10 +12,10 @@ public class Car {
     }
 
     public RacingCarStatusResponse getStatus() {
-        return null;
+        return new RacingCarStatusResponse(name, position);
     }
 
     public void move() {
-
+        position++;
     }
 }
