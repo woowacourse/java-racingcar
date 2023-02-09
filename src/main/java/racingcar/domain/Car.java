@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static racingcar.validator.Validator.*;
 
+import java.util.Objects;
 import racingcar.dto.RacingCarStatusResponse;
 
 public class Car {
@@ -28,6 +29,6 @@ public class Car {
     }
 
     public boolean isSamePosition(Position position) {
-        return this.position.equals(position);
+        return Objects.equals(this.position, position);
     }
 }
