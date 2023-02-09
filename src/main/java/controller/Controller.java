@@ -18,12 +18,24 @@ public class Controller {
 
     private Cars setCars() {
         messageView.printCarNameMessage();
-        return new Cars(inputView.inputCarName());
+
+        try {
+            Cars cars = new Cars(inputView.inputCarName());
+            return cars;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return setCars();
+        }
     }
 
     private int setTryCount() {
         messageView.printTryCountMessage();
-        return inputView.inputTryCount();
+        try{
+            return inputView.inputTryCount();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return setTryCount();
+        }
     }
 
     private void repeatMoving(Cars cars, int tryCount) {
