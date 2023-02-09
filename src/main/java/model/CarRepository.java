@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarRepository {
 
@@ -17,28 +18,22 @@ public class CarRepository {
     }
 
     public static void moveAllCars() {
-        for (Car car : cars) {
-            car.move();
-        }
+        cars.forEach(Car::move);
     }
 
     public static List<String> getWinners() {
         int maxPosition = getMaxPosition();
-        List<String> winners = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.isWinner(maxPosition)) {
-                winners.add(car.getName());
-            }
-        }
-        return winners;
+        return cars.stream()
+                .filter(car -> car.isWinner(maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     private static int getMaxPosition() {
-        List<Integer> position = new ArrayList<>();
-        for (Car car : cars) {
-            position.add(car.getPosition());
-        }
-        return Collections.max(position);
+        List<Integer> positions = cars.stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
+        return Collections.max(positions);
     }
 
 

@@ -29,11 +29,4 @@ public class Car {
         return position == maxPosition;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
-                '}';
-    }
 }
