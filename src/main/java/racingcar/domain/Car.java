@@ -7,6 +7,7 @@ public class Car {
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final int MINIMUM_NAME_LENGTH = 1;
+
     private final String name;
     private final Position currentPosition;
 

@@ -53,7 +53,7 @@ public class CarRepository {
     private Car getWinner() {
         return cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException(""));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "비교할 자동차가 없습니다."));
     }
 
     private void validateDuplicatedNames(List<String> carNames) {
