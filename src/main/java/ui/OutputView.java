@@ -16,8 +16,7 @@ public class OutputView {
 
     private String convertPosition(int position) {
         String result = POSITION_MARK;
-        result.repeat(position + 1);
-        return result;
+        return result.repeat(position + 1);
     }
 
     public void printWinners(List<String> winnerNames) {
