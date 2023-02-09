@@ -4,7 +4,6 @@ import domain.CarDTO;
 import java.util.List;
 
 public class OutputView {
-    //TODO : 적절한 네이밍 변경하기
     public void printResultTitle() {
         System.out.println("실행 결과");
     }

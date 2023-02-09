@@ -25,9 +25,8 @@ public class Car implements Comparable {
         }
     }
 
-    //TODO : 파라미터 네이밍 꼭 변경하기.
-    public void moveDependingOn(int number) {
-        if (number >= LEAST_CONDITION) {
+    public void moveDependingOn(int pickedNumber) {
+        if (pickedNumber >= LEAST_CONDITION) {
             position += ONE_STEP;
         }
     }
