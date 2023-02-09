@@ -19,4 +19,21 @@ public class InputView {
         }
         return carNames;
     }
+
+    public int requestTrialCount() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        int trialCount = readInt();
+        if (trialCount <= 0) {
+            throw new IllegalArgumentException("시도할 회수는 자연수여야 합니다.");
+        }
+        return trialCount;
+    }
+
+    private int readInt() {
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("입력받은 값이 숫자가 아닙니다.");
+        }
+    }
 }
