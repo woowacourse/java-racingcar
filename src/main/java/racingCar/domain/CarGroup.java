@@ -42,4 +42,19 @@ public class CarGroup {
     public List<Car> getCarGroup() {
         return Collections.unmodifiableList(this.carGroup);
     }
+
+    public int getHighestPosition() {
+        return carGroup.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException())
+                .getPosition();
+    }
+
+    public List<String> findWinners() {
+        int highestPosition = this.getHighestPosition();
+        return carGroup.stream()
+                .filter(car -> car.getPosition() == highestPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
 }
