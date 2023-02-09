@@ -12,23 +12,27 @@ import org.junit.jupiter.api.Test;
 class CarRaceResultRepositoryTest {
 
     private CarRaceResultRepository carRaceResultRepository;
+    private final Car car1 = new Car("car1");
+    private final Car car2 = new Car("car2");
 
     @BeforeEach
     void setUp() {
         this.carRaceResultRepository = new CarRaceResultRepositoryImpl();
+        this.carRaceResultRepository.save(car1);
+        this.carRaceResultRepository.save(car2);
     }
 
     @Test
     @DisplayName("차가 중복된 경우")
     void saveDuplicate() {
         //given
-        Car car1 = new Car("car");
-        Car car2 = new Car("car");
-        carRaceResultRepository.save(car1);
+        Car original = new Car("car");
+        Car copy = new Car("car");
+        carRaceResultRepository.save(original);
 
         //when
         //then
-        assertThatThrownBy(() -> carRaceResultRepository.save(car2))
+        assertThatThrownBy(() -> carRaceResultRepository.save(copy))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -36,39 +40,33 @@ class CarRaceResultRepositoryTest {
     @DisplayName("차 레이싱 결과 저장")
     void save() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
+        Car newCar = new Car("new");
 
         //when
-        carRaceResultRepository.save(car1);
-        carRaceResultRepository.save(car2);
+        carRaceResultRepository.save(newCar);
 
         //then
-        assertThat(carRaceResultRepository.findByName(car1.getName())).isEqualTo(1);
-        assertThat(carRaceResultRepository.findByName(car2.getName())).isEqualTo(1);
+        assertThat(carRaceResultRepository.findByName(newCar.getName())).isEqualTo(1);
     }
 
     @Test
     @DisplayName("해당 이름의 차가 없을 때")
     void findByNameNotFound() {
         //given
-        String name = "car";
+        String name = "nothing";
 
         //when
         //then
-        assertThatThrownBy(() -> carRaceResultRepository.findByName(name)).isInstanceOf(
-            IllegalArgumentException.class);
+        assertThatThrownBy(() -> carRaceResultRepository.findByName(name))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("차 이름으로 레이싱 결과 찾기")
     void findByName() {
         //given
-        String name = "car";
-        carRaceResultRepository.save(new Car(name));
-
         //when
-        int result = carRaceResultRepository.findByName(name);
+        int result = carRaceResultRepository.findByName(car1.getName());
 
         //then
         assertThat(result).isEqualTo(1);
@@ -78,28 +76,22 @@ class CarRaceResultRepositoryTest {
     @DisplayName("모든 차 이름을 반환한다")
     void checkCarNameReturn() {
         //given
-        List<Car> cars = List.of(new Car("car1"), new Car("car2"));
-        for (Car car : cars) {
-            carRaceResultRepository.save(car);
-        }
         //when
         List<String> carNames = carRaceResultRepository.findAllCars();
 
         //then
-        assertThat(carNames.size()).isEqualTo(cars.size());
+        assertThat(carNames.size()).isEqualTo(2);
+        assertThat(carNames).containsAll(List.of(car1.getName(), car2.getName()));
     }
 
     @Test
     @DisplayName("차 이름에 따른 이동을 테스트한다")
     void checkCarRaceByName() {
         //given
-        List<Car> cars = List.of(new Car("car1"), new Car("car2"));
-        for (Car car : cars) {
-            carRaceResultRepository.save(car);
-        }
         //when
-        carRaceResultRepository.moveByName("car1");
+        carRaceResultRepository.moveByName(car1.getName());
         //then
-        assertThat(carRaceResultRepository.getRaceResult().get("car1")).isEqualTo(2);
+        assertThat(carRaceResultRepository.getRaceResult().get(car1.getName())).isEqualTo(2);
+        assertThat(carRaceResultRepository.getRaceResult().get(car2.getName())).isEqualTo(1);
     }
 }
