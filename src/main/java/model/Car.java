@@ -1,5 +1,7 @@
 package model;
 
+import dto.CarDto;
+import dto.WinnerCarDto;
 import model.wrapper.Name;
 import model.wrapper.Position;
 import utils.RacingNumberGenerator;
@@ -32,5 +34,13 @@ public class Car {
 
     public boolean isSamePosition(Car otherCar) {
         return this.position.isSamePosition(otherCar.position);
+    }
+
+    public CarDto mapToCarDto() {
+        return new CarDto(name.getName(), position.getPosition());
+    }
+
+    public WinnerCarDto mapToWinnerCarDto() {
+        return new WinnerCarDto(name.getName());
     }
 }

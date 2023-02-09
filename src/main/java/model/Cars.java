@@ -37,7 +37,7 @@ public class Cars {
 
     public List<CarDto> getCarsDto() {
         return cars.stream()
-                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .map(Car::mapToCarDto)
                 .collect(Collectors.toList());
     }
 
@@ -52,7 +52,7 @@ public class Cars {
     private List<WinnerCarDto> sortWinner(Car winner) {
         return cars.stream()
                 .filter(car -> car.isSamePosition(winner))
-                .map(car -> new WinnerCarDto(car.getName()))
+                .map(Car::mapToWinnerCarDto)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
