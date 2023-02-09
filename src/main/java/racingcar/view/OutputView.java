@@ -16,7 +16,6 @@ public class OutputView {
     public void printWinners(List<String> winners) {
         int beginIndex = 1;
         int endIndex = winners.toString().length() - 1;
-
         System.out.print(winners.toString().substring(beginIndex, endIndex));
         System.out.println(RESULT_POSTFIX);
     }

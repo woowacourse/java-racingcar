@@ -13,7 +13,7 @@ public class RacingGame {
     private static final OutputView outputView = new OutputView();
 
     private List<Car> cars = new ArrayList<>();
-    private List<String> winners = new ArrayList<>();
+    private List<String> winners = new ArrayList<String>();
     private final int gameCount;
 
     public RacingGame() {
@@ -46,20 +46,19 @@ public class RacingGame {
 
     public void viewResult() {
         int maxPosition = getCarMaxPosition();
-        cars.stream().filter(car -> car.getPosition() == maxPosition).forEach(car -> winners.add(car.getName()));
         outputView.printPosition(cars);
+        cars.stream().filter(car -> car.getPosition() == maxPosition).forEach(car -> winners.add(car.getName()));
         outputView.printWinners(winners);
     }
 
     private int getCarMaxPosition() {
-        int temp = -1;
-        for (int i = 0; i < cars.size(); i++) {
-            if (temp < cars.get(i).getPosition()) {
-                temp = cars.get(i).getPosition();
-            }
-        }
-        int max = temp;
-        return max;
+        Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getPosition);
+
+        Car carWithMaxPosition = cars.stream()
+                .max(comparatorByPosition)
+                .orElseThrow(NoSuchElementException::new);
+
+        return carWithMaxPosition.getPosition();
     }
 
 }
