@@ -16,19 +16,15 @@ public class RacingController {
 
     public void run() {
         List<Car> carsInfo = setUpCarName();
-        Integer movingCount = setUpTryCount();
-        progressRacingGame(movingCount, carsInfo, new RandomNumberGenerator());
+        Integer tryCount = setUpTryCount();
+        progressRacingGame(tryCount, carsInfo, new RandomNumberGenerator());
     }
 
-    public void progressRacingGame(Integer movingCount, List<Car> carsInfo, RandomNumberGenerator randomNumberGenerator) {
+    public void progressRacingGame(Integer tryCount, List<Car> carsInfo, RandomNumberGenerator randomNumberGenerator) {
         RoundResult roundResult = new RoundResult();
         System.out.println("실행 결과");
-        for (int round = 0; round < movingCount; round++) {
-            for (Car car : carsInfo) {
-                Integer randomNumber = randomNumberGenerator.generateRandomNumber();
-                boolean movingResult = roundResult.isGo(randomNumber);
-                car.move(movingResult);
-            }
+        for (int round = 0; round < tryCount; round++) {
+            progressRound(carsInfo, randomNumberGenerator, roundResult);
             outputView.printCurrentResult(carsInfo);
         }
         FinalResult finalResult = new FinalResult();
@@ -66,6 +62,14 @@ public class RacingController {
     private void checkCarNameValidation(List<Car> carsInfo) {
         for (String carName : inputView.readCarNames()) {
             carsInfo.add(new Car(carName));
+        }
+    }
+
+    private void progressRound(List<Car> carsInfo, RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
+        for (Car car : carsInfo) {
+            Integer randomNumber = randomNumberGenerator.generateRandomNumber();
+            boolean movingResult = roundResult.isGo(randomNumber);
+            car.move(movingResult);
         }
     }
 }
