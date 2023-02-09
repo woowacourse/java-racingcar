@@ -9,8 +9,8 @@ public class RacingCar extends RandomGenerator {
     private final Name name;
     private int position;
 
-    RacingCar(final Name name) {
-        this.name = name;
+    public RacingCar(final String name) {
+        this.name = new Name(name);
         position = 0;
     }
 

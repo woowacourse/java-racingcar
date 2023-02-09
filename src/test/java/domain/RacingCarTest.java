@@ -11,7 +11,7 @@ class RacingCarTest {
     @DisplayName("4이상이면 움직이고 3 이하이면 움직이지 않는다.")
     @CsvSource(value = {"4:1", "3:0"}, delimiter = ':')
     void moveTest(int value, int result){
-        RacingCar car = new RacingCar(new Name("car")){
+        RacingCar car = new RacingCar("car"){
             @Override
             protected int getRandomInteger() {
                 return value;

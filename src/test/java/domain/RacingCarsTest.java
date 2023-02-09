@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class RacingCarsTest {
     }
 
     private RacingCar createMoveRacingCar(final String carName) {
-        return new RacingCar(new Name(carName)) {
+        return new RacingCar(carName) {
             @Override
             protected int getRandomInteger() {
                 return 4;
@@ -30,7 +31,7 @@ class RacingCarsTest {
     }
 
     private RacingCar createNotMoveRacingCar(final String carName) {
-        return new RacingCar(new Name(carName)) {
+        return new RacingCar(carName) {
             @Override
             protected int getRandomInteger() {
                 return 3;
@@ -49,5 +50,22 @@ class RacingCarsTest {
 
         //then
         assertThat(result.getRacingCars()).containsExactly(pobi, honux, ethan);
+    }
+
+    @Test
+    @DisplayName("레이싱 게임이 한번 진행되는지 확인")
+    void tryOnce() {
+        //given
+        List<RacingCar> racingCars = List.of(pobi, honux, ethan);
+
+        //when
+        RacingCars result = new RacingCars(racingCars);
+        result.moveAll();
+
+        //then
+        List<Integer> positions = result.getRacingCars().stream()
+                .map(RacingCar::getPosition)
+                .collect(Collectors.toList());
+        assertThat(positions).containsExactly(1, 1, 0);
     }
 }

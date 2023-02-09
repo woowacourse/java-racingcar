@@ -11,6 +11,12 @@ public class RacingCars {
         this.racingCars.addAll(racingCars);
     }
 
+    public void moveAll() {
+        for (RacingCar racingCar : this.racingCars) {
+            racingCar.move();
+        }
+    }
+
     public List<RacingCar> getRacingCars() {
         return racingCars;
     }

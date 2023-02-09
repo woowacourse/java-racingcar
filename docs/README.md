@@ -17,6 +17,6 @@
 - [x] 랜덤값 생성한다. RandomGenerator#getRandomInteger
   - 0 ~ 9 사이 정수
 - [x] 자동차 전진한다. RacingCar#Move
-- [ ] 레이싱 게임을 주관한다.
+- [x] 레이싱 게임을 주관한다. RacingCars#moveAll()
 - [ ] 실행 결과 출력
 - [ ] 최종 우승자 출력
