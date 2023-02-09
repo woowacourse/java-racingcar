@@ -26,12 +26,17 @@ class RacingCarControllerTest {
         }
 
         @Override
-        public void printRacingResult(List<RacingCarStatusResponse> responses) {
+        public void printRacingProgress(List<RacingCarStatusResponse> responses) {
 
         }
 
         @Override
         public void printWinners(RacingCarWinnerResponse response) {
+
+        }
+
+        @Override
+        public void printStartMessage() {
 
         }
     }

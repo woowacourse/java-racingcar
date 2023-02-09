@@ -8,7 +8,12 @@ import racingcar.dto.TryCountRequest;
 
 public interface RacingCarView {
     RacingCarNamesRequest receiveCarNames();
+
     TryCountRequest receiveTryCount();
-    void printRacingResult(List<RacingCarStatusResponse> responses);
+
+    void printRacingProgress(List<RacingCarStatusResponse> responses);
+
     void printWinners(RacingCarWinnerResponse response);
+
+    void printStartMessage();
 }

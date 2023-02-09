@@ -10,21 +10,29 @@ public class RacingCarViewImpl implements RacingCarView {
 
     @Override
     public RacingCarNamesRequest receiveCarNames() {
-        return null;
+        return RacingCarNamesRequest.of(InputView.readCarNames());
     }
 
     @Override
     public TryCountRequest receiveTryCount() {
-        return null;
+        return TryCountRequest.of(InputView.readTryCount());
     }
 
     @Override
-    public void printRacingResult(List<RacingCarStatusResponse> responses) {
-
+    public void printRacingProgress(List<RacingCarStatusResponse> responses) {
+        for (RacingCarStatusResponse response : responses) {
+            OutputView.printRacingProgress(response);
+        }
+        System.out.println();
     }
 
     @Override
     public void printWinners(RacingCarWinnerResponse response) {
+        OutputView.printWinners(response);
+    }
 
+    @Override
+    public void printStartMessage() {
+        OutputView.printStartMessage();
     }
 }
