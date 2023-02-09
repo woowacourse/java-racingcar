@@ -1,11 +1,12 @@
 package racingcar;
 
+import racingcar.domain.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.*;
 
-public class RacingGame {
+public class RacingCarApplication {
     private static final int RANGE_MAX = 9;
     private static final int RANGE_MIN = 0;
 
@@ -16,7 +17,7 @@ public class RacingGame {
     private List<String> winners = new ArrayList<String>();
     private final int gameCount;
 
-    public RacingGame() {
+    public RacingCarApplication() {
         initRacing();
         this.gameCount = inputView.inputGameTime();
     }
@@ -30,17 +31,17 @@ public class RacingGame {
         return (int) ((Math.random() * (RANGE_MAX - RANGE_MIN)) + RANGE_MIN);
     }
 
-    private void updateCarPosition() {
+    public void playingGame() {
+        for (int i = 0; i < gameCount; i++) {
+            moveCarPosition();
+            outputView.printPosition(cars);
+        }
+    }
+
+    private void moveCarPosition() {
         cars.forEach(car -> {
             car.move(generateRandomNumber());
         });
-    }
-
-    public void playingGame() {
-        for (int i = 0; i < gameCount; i++) {
-            updateCarPosition();
-            outputView.printPosition(cars);
-        }
     }
 
     public void viewResult() {

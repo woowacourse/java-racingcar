@@ -2,14 +2,14 @@ package racingcar;
 
 import racingcar.view.OutputView;
 
-public class Controller {
+public class Application {
     private static final OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
         try {
-            RacingGame racingGame = new RacingGame();
-            racingGame.playingGame();
-            racingGame.viewResult();
+            RacingCarApplication racingCarApplication = new RacingCarApplication();
+            racingCarApplication.playingGame();
+            racingCarApplication.viewResult();
         } catch (Exception error) {
             outputView.printError(error);
         }
