@@ -7,7 +7,10 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import static constant.Constants.COMMA_NOT_ALLOWED_EXCEPTION;
 import static constant.Constants.TRIAL_INPUT_EXCEPTION;
 
 public class GameController {
@@ -22,25 +25,35 @@ public class GameController {
     }
 
     public void run() {
-        makeCars();
+        CarRepository.updateCars(makeCars());
         startRacing(readNumberOfMoving());
         outputView.printWinners(racingCarGame.getWinners());
     }
 
-    private void startRacing(int numberOfMoving) {
-        // TODO : 시도횟수 RacingCarGame으로 이동하기 (리팩토링
-        for (int round = 0; round < numberOfMoving; round++) {
-            racingCarGame.repeatRounds();
-            outputView.printCarsStatus(CarRepository.findAll());
+    private List<Car> makeCars() {
+        try {
+            String carNames = inputView.readCarNames();
+            return Arrays.stream(carNames.split(","))
+                    .filter(this::validateCarName)
+                    .map(Car::new)
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printException(illegalArgumentException.getMessage());
+            return makeCars();
         }
+    }
+
+    private boolean validateCarName(String carName) {
+        if (carName.isEmpty()) {
+            throw new IllegalArgumentException(COMMA_NOT_ALLOWED_EXCEPTION);
+        }
+        return true;
     }
 
     private int readNumberOfMoving() {
         try {
             int numberOfMoving = inputView.readNumberOfMoving();
-            if (numberOfMoving < 1) {
-                throw new IllegalArgumentException(TRIAL_INPUT_EXCEPTION);
-            }
+            validateTrial(numberOfMoving);
             return numberOfMoving;
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception.getMessage());
@@ -54,15 +67,10 @@ public class GameController {
         }
     }
 
-    private void makeCars() {
-        try {
-            String carNames = inputView.readCarNames();
-            Arrays.stream(carNames.split(","))
-                    .map(Car::new)
-                    .forEach(CarRepository::updateCars);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printException(illegalArgumentException.getMessage());
-            makeCars();
+    private void startRacing(int numberOfMoving) {
+        for (int round = 0; round < numberOfMoving; round++) {
+            racingCarGame.repeatRounds();
+            outputView.printCarsStatus(CarRepository.findAll());
         }
     }
 }

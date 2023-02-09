@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class CarRepository {
     private static final List<Car> cars = new ArrayList<>();
 
-    public static void updateCars(Car car) {
-        cars.add(car);
+    public static void updateCars(List<Car> newCars) {
+        cars.addAll(newCars);
     }
 
     public static List<Car> findAll() {
