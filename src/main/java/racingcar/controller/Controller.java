@@ -24,14 +24,14 @@ public class Controller {
         List<String> carNames = inputView.readCarNames();
         Cars cars = generateCars(carNames);
         int round = inputView.readRacingRound();
-        RacingGame racingGame = new RacingGame(numberGenerator, cars);
+        RacingGame racingGame = new RacingGame(cars);
         showGameResult(racingGame, round);
     }
 
     private Cars generateCars(List<String> carNames) {
         List<Car> carInstances = new ArrayList<>();
         for(String name : carNames) {
-            carInstances.add(new Car(name));
+            carInstances.add(new Car(name, numberGenerator));
         }
         return new Cars(carInstances);
     }

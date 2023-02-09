@@ -8,8 +8,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.NumberGenerator;
 
 class CarsTest {
+
+    private NumberGenerator numberGenerator = new TestNumberGenerator(new ArrayList<>(List.of(3,4,5)));
 
     @Test
     void carsGenerateTest(){
@@ -26,13 +29,14 @@ class CarsTest {
     @Test
     void decideWinnerTest() {
         //Given
-        Car pobi = new Car("pobi");
-        Car neo = new Car("neo");
-        Car hiiro = new Car("hiiro");
+        Car pobi = new Car("pobi", new TestNumberGenerator(new ArrayList<>(List.of(3,4,5))));
+        Car neo = new Car("neo", new TestNumberGenerator(new ArrayList<>(List.of(3,4,5))));
+        Car hiiro = new Car("hiiro", new TestNumberGenerator(new ArrayList<>(List.of(1,4,2))));
 
-        for(int i = 0; i < 2; i++) {
-            pobi.increasePosition();
-            neo.increasePosition();
+        for(int i = 0; i < 3; i++) {
+            pobi.goForward();
+            neo.goForward();
+            hiiro.goForward();
         }
 
         Cars cars = new Cars(new ArrayList<>(List.of(pobi, neo, hiiro)));
@@ -42,5 +46,19 @@ class CarsTest {
 
         //Then
         assertThat(result.size()).isEqualTo(2);
+    }
+
+    static class TestNumberGenerator implements NumberGenerator {
+
+        private final List<Integer> numbers;
+
+        public TestNumberGenerator(List<Integer> numbers) {
+            this.numbers = numbers;
+        }
+
+        @Override
+        public int generate() {
+            return numbers.remove(0);
+        }
     }
 }

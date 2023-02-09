@@ -2,19 +2,18 @@ package racingcar.domain;
 
 public class RacingGame {
 
-    private static final int MOVABLE_MIN_NUMBER = 4;
+//    private static final int MOVABLE_MIN_NUMBER = 4;
 
-    private NumberGenerator numberGenerator;
+//    private NumberGenerator numberGenerator;
     private Cars cars;
 
-    public RacingGame(NumberGenerator numberGenerator, Cars cars) {
-        this.numberGenerator = numberGenerator;
+    public RacingGame(Cars cars) {
         this.cars = cars;
     }
 
     public void playRound() {
         for (Car car : cars.getCars()) {
-            isMovable(car);
+            car.goForward();
         }
     }
 
@@ -22,9 +21,9 @@ public class RacingGame {
         return cars;
     }
 
-    private void isMovable(Car car) {
-        if (numberGenerator.generate() >= MOVABLE_MIN_NUMBER) {
-            car.increasePosition();
-        }
-    }
+//    private void isMovable(Car car) {
+//        if (numberGenerator.generate() >= MOVABLE_MIN_NUMBER) {
+//            car.increasePosition();
+//        }
+//    }
 }

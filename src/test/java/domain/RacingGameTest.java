@@ -16,8 +16,8 @@ class RacingGameTest {
     void carMoveTest() {
         //Given
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(new ArrayList<>(List.of(3,4,5)));
-        Cars cars = new Cars(new ArrayList<>(List.of(new Car("pobi"))));
-        RacingGame racingGame = new RacingGame(testNumberGenerator, cars);
+        Cars cars = new Cars(new ArrayList<>(List.of(new Car("pobi", testNumberGenerator))));
+        RacingGame racingGame = new RacingGame(cars);
 
         //When
         racingGame.playRound();

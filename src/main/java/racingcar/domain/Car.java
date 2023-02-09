@@ -4,21 +4,24 @@ public class Car {
 
     private static final int NAME_MIN_LENGTH = 1;
     private static final int NAME_MAX_LENGTH = 5;
+    private static final int MOVABLE_MIN_NUMBER = 4;
     private static final String NAME_LENGTH_ERROR = "[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.";
 
     private String name;
     private int position;
+    private NumberGenerator numberGenerator;
 
-    public Car(String name) {
+    public Car(String name, NumberGenerator numberGenerator) {
         validateName(name);
         this.name = name;
         this.position = 0;
+        this.numberGenerator = numberGenerator;
     }
 
-    // 자동차의 위치를 증가시키는 메소드
-    public void increasePosition() {
-        this.position++;
-    }
+//    // 자동차의 위치를 증가시키는 메소드
+//    public void increasePosition() {
+//        this.position++;
+//    }
 
     public int getPosition() {
         return this.position;
@@ -34,6 +37,12 @@ public class Car {
 
     public String getName() {
         return this.name;
+    }
+
+    public void goForward() {
+        if (numberGenerator.generate() >= MOVABLE_MIN_NUMBER) {
+            position++;
+        }
     }
 
     // 자동차 이름의 길이를 검증하는 메소드
