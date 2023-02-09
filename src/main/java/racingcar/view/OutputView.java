@@ -20,7 +20,11 @@ public class OutputView {
         System.out.println(RESULT_STARTING_MESSAGE);
     }
 
-    public void printWinners(String winners) {
-        System.out.println(String.format(WINNER_INFO_MESSAGE_FORMAT, winners));
+    public void printResult(String renderedRoundResult) {
+        System.out.println(renderedRoundResult);
+    }
+
+    public void printWinners(String renderedWinners) {
+        System.out.println(String.format(WINNER_INFO_MESSAGE_FORMAT, renderedWinners));
     }
 }
