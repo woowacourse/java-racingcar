@@ -43,4 +43,16 @@ public class CarsTest {
 
         assertThat(result).containsExactly("car1", "car3");
     }
+
+    @Test
+    @DisplayName("from 메서드는 이름 목록을 받아 Cars를 반환한다.")
+    void should_returnCars_when_inputNames() {
+        List<String> carNames = List.of("car1", "car2", "car3");
+
+        Cars cars = Cars.from(carNames);
+
+        assertThat(cars.getCars())
+                .extracting("name")
+                .containsExactly("car1", "car2", "car3");
+    }
 }

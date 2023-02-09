@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     private static final String RESULT_MESSAGE = "\n실행 결과";
-    private static final String POSITION_MESSAGE_FORMAT = "{0} : {1}\n";
+    private static final String POSITION_MESSAGE_FORMAT = "{0} : {1}";
     private static final String POSITION_SYMBOL = "-";
     private static final String POSITION_MESSAGE_DELIMITER = "\n";
     private static final String WINNERS_MESSAGE_FORMAT = "{0}가 최종 우승했습니다.";
@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public void printPosition(final List<Car> cars) {
-        System.out.println(generatePositionMessages(cars));
+        System.out.println(generatePositionMessages(cars) + POSITION_MESSAGE_DELIMITER);
     }
 
     private String generatePositionMessages(final List<Car> cars) {
