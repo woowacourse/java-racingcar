@@ -26,4 +26,12 @@ class CarRepositoryTest {
         int result = carRepository.findPositionByName("car1");
         assertThat(result).isEqualTo(2);
     }
+
+    @Test
+    void findNameByPosition() {
+        List<String> carNames = carRepository.findNameByPosition(2);
+        assertThat(carNames.contains("car1")).isTrue();
+        assertThat(carNames.contains("car2")).isTrue();
+        assertThat(carNames.contains("car3")).isFalse();
+    }
 }
