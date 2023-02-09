@@ -27,7 +27,7 @@ public class OutputView {
 
     private static String getWinnerNames(List<Car> cars) {
         return cars.stream()
-                .map(car -> car.getName())
+                .map(Car::getName)
                 .collect(Collectors.joining(JOINING_DELIMITER));
     }
 
