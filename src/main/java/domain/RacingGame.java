@@ -44,7 +44,7 @@ public class RacingGame {
     }
 
     public boolean canContinue() {
-        return gameTrial == GAME_OVER_COUNT;
+        return gameTrial > GAME_OVER_COUNT;
     }
 
     private int getMaxMoveCount() {
