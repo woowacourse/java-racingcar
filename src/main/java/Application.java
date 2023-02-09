@@ -1,10 +1,10 @@
-import controller.RacingController;
+import controller.RacingGameController;
 import domain.RandomNumberGenerator;
 
 public class Application {
 
     public static void main(String[] args) {
-        RacingController racingController = new RacingController(new RandomNumberGenerator());
+        RacingGameController racingController = new RacingGameController(new RandomNumberGenerator());
         racingController.run();
     }
 }

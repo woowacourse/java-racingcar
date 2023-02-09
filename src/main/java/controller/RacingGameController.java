@@ -10,13 +10,13 @@ import view.OutputView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingController {
+public class RacingGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public RacingController(NumberGenerator numberGenerator) {
+    public RacingGameController(NumberGenerator numberGenerator) {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.numberGenerator = numberGenerator;
