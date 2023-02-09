@@ -1,7 +1,5 @@
 package domain;
 
-import util.RandomNumberMaker;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +45,14 @@ public class Cars {
         return cars.size();
     }
 
-    public void addDistance() {
-        for (Car car : cars) {
-            car.addDistance(new RandomNumberMaker().makeNumber());
+    public void addDistance(List<Integer> randomNumbers) {
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).addDistance(randomNumbers.get(i));
         }
+        /*for (Car car : cars) {
+            // car.addDistance(new RandomNumberMaker().makeNumber());
+
+        }*/
     }
 
     public Car getCar(int i) {
