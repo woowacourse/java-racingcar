@@ -1,9 +1,9 @@
 package controller;
 
 import service.Service;
-import utils.Converter;
 import view.InputView;
 import view.OutputView;
+import vo.Name;
 import vo.Trial;
 
 import java.util.List;
@@ -35,9 +35,8 @@ public class Controller {
     }
 
     private void setTrial() {
-        String trialInput = inputView.getTrial();
+        Trial trial = inputView.getTrial();
         try {
-            Long trial = Converter.convertStringToLong(trialInput);
             service.setTrial(trial);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
@@ -47,7 +46,7 @@ public class Controller {
 
     private void setCars() {
         try {
-            List<String> carNames = inputView.getCarNames();
+            List<Name> carNames = inputView.getCarNames();
             service.setCars(carNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());

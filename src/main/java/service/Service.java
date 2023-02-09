@@ -16,16 +16,16 @@ public class Service {
     private final Cars cars = new Cars(new RandomNumberGenerator());
     private Rule rule;
 
-    public void setCars(List<String> carNames) {
-        validateDuplication(carNames);
-        for (String carName : carNames) {
-            cars.add(new Car(Name.of(carName)));
+    public void setCars(List<Name> names) {
+        validateDuplication(names);
+        for (Name carName : names) {
+            cars.add(new Car(carName));
         }
     }
 
-    public void setTrial(Long trial) {
+    public void setTrial(Trial trial) {
         if (rule == null) {
-            rule = new Rule(Trial.of(trial));
+            rule = new Rule(trial);
             return;
         }
 
@@ -48,9 +48,9 @@ public class Service {
         return cars.getWinners();
     }
 
-    private void validateDuplication(List<String> carNames) {
-        Set<String> carNamesWithoutDuplication = new HashSet<>(carNames);
-        if(carNames.size() != carNamesWithoutDuplication.size()) {
+    private void validateDuplication(List<Name> names) {
+        Set<Name> namesWithoutDuplication = new HashSet<>(names);
+        if(names.size() != namesWithoutDuplication.size()) {
             throw new IllegalArgumentException("중복된 이름은 사용할 수 없습니다.");
         }
     }
