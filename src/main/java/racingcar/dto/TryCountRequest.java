@@ -1,7 +1,7 @@
 package racingcar.dto;
 
+import static racingcar.dto.TryCountRequest.Validator.validateNegativeTryCount;
 import static racingcar.exception.ExceptionMessage.ILLEGAL_TRY_COUNT;
-import static racingcar.validator.Validator.*;
 
 public class TryCountRequest {
     private final int tryCount;
@@ -14,6 +14,16 @@ public class TryCountRequest {
         int tryCount = stringToInt(input);
         validateNegativeTryCount(tryCount);
         return new TryCountRequest(tryCount);
+    }
+
+    public static class Validator {
+        private Validator() {}
+
+        public static void validateNegativeTryCount(Integer tryCount) {
+            if (tryCount < 0) {
+                throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
+            }
+        }
     }
 
     private static int stringToInt(String input) {

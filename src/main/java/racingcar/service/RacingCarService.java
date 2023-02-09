@@ -3,7 +3,6 @@ package racingcar.service;
 import static java.util.Comparator.*;
 import static java.util.stream.Collectors.*;
 import static racingcar.exception.ExceptionMessage.EMPTY_CARS;
-import static racingcar.validator.Validator.*;
 
 import java.util.List;
 import racingcar.domain.Car;

@@ -1,6 +1,8 @@
 package racingcar.domain;
 
-import static racingcar.validator.Validator.*;
+import static racingcar.domain.Car.Validator.*;
+import static racingcar.exception.ExceptionMessage.BLANK_CAR_NAME;
+import static racingcar.exception.ExceptionMessage.OUT_OF_CAR_NAME_LENGTH;
 
 import java.util.Objects;
 import racingcar.dto.RacingCarStatusResponse;
@@ -14,6 +16,24 @@ public class Car {
         validateCarNameLength(name);
         this.name = name;
         this.position = new Position(0);
+    }
+
+    public static class Validator {
+        private static final int MAX_NAME_LENGTH = 6;
+
+        private Validator() {}
+
+        public static void validateBlankCarName(String name) {
+            if(name.isBlank()) {
+                throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
+            }
+        }
+
+        public static void validateCarNameLength(String name) {
+            if (name.length() >= MAX_NAME_LENGTH) {
+                throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
+            }
+        }
     }
 
     public RacingCarStatusResponse getStatus() {

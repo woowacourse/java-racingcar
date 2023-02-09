@@ -18,4 +18,23 @@ class RacingCarNamesRequestTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(OUT_OF_CAR_NAME_LENGTH.getMessage());
     }
+
+    @ParameterizedTest
+    @DisplayName("중복된 자동차 이름이 검증되어야 한다.")
+    @ValueSource(strings = "car1,car2,car1")
+    void validate_duplicateCarNames(String input) {
+        // expected
+        assertThatThrownBy(() -> RacingCarNamesRequest.of(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATE_CAR_NAME.getMessage());
+    }
+
+    @ParameterizedTest
+    @DisplayName("중복되지 않는 자동차 이름이 검증되어야 한다.")
+    @ValueSource(strings = "car1,car2,car3")
+    void validate_noDuplicateCarNames(String input) {
+        // expected
+        assertThatCode(() -> RacingCarNamesRequest.of(input))
+                .doesNotThrowAnyException();
+    }
 }
