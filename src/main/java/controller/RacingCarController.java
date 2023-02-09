@@ -22,32 +22,47 @@ public class RacingCarController {
 
     public void run() throws IOException {
         String carNames = inputView.readCarName();
+        int attemptNumber = inputView.readAttemptNumber();
+
+        Cars cars = getCars(carNames);
+
+        outputView.printResult();
+
+        while ((attemptNumber--) > 0) {
+            moveAll(cars);
+            List<CarDto> carDtos = getCarDtos(cars);
+            outputView.printStatus(carDtos);
+        }
+
+        outputView.printWinner(cars.judgeWinner());
+    }
+
+    private List<CarDto> getCarDtos(Cars cars) {
+        List<CarDto> carDtos = new ArrayList<>();
+        for (Car car : cars.getCars()) {
+            carDtos.add(CarDto.from(car));
+        }
+        return carDtos;
+    }
+
+    private void moveAll(Cars cars) {
+        for (Car car : cars.getCars()) {
+            int randomNumber = RandomNumberGenerator.generate();
+            car.move(randomNumber);
+        }
+    }
+
+    private Cars getCars(String carNames) throws IOException {
         List<String> parse = StringParser.parse(carNames);
+
         List<Car> carList = new ArrayList<>();
         for (String carName : parse) {
             Car car = new Car(carName);
             carList.add(car);
         }
 
-        Cars cars = new Cars(carList);
-
-        int attemptNumber = inputView.readAttemptNumber();
-
-        outputView.printResult();
-
-        while (attemptNumber > 0) {
-            for (Car car : cars.getCars()) {
-                int randomNumber = RandomNumberGenerator.generate();
-                car.move(randomNumber);
-            }
-            List<CarDto> carDtos = new ArrayList<>();
-            for (Car car : cars.getCars()) {
-                carDtos.add(CarDto.from(car));
-            }
-            outputView.printStatus(carDtos);
-            attemptNumber--;
-        }
-
-        outputView.printWinner(cars.judgeWinner());
+        return new Cars(carList);
     }
+
+
 }
