@@ -24,6 +24,7 @@ public class CarService {
         OutputView.printResultMessage();
         for (int i = 0; i < tryCount; i++) {
             runRound();
+            System.out.println("");
         }
     }
 
@@ -32,10 +33,11 @@ public class CarService {
             Random random = new Random();
             int randomNumber = random.nextInt(10);
             runForward(car, randomNumber);
+            OutputView.printRoundResult(car.getName(), car.getDistance());
         }
     }
 
-    private void runForward(Car car,int randomNumber) {
+    private void runForward(Car car, int randomNumber) {
         if (randomNumber >= 4) {
             car.increaseDistance();
         }
