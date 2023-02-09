@@ -17,18 +17,20 @@ public class MainController {
     }
 
     public void play() {
-        List<String> carNames = inputView.readCarNames();
-        for (String carName : carNames) {
-            CarRepository.addCars(new Car(carName));
+        try {
+            List<String> carNames = inputView.readCarNames();
+            for (String carName : carNames) {
+                CarRepository.addCars(new Car(carName));
+            }
+            int moveCount = inputView.readMoveCount();
+            outputView.printResultMessage();
+            for (int i = 0; i < moveCount; i++) {
+                CarRepository.moveAllCars();
+                outputView.printResult(CarRepository.cars());
+            }
+            outputView.printWinners(CarRepository.getWinners());
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
         }
-
-        int moveCount = inputView.readMoveCount();
-        outputView.printResultMessage();
-        for (int i = 0; i < moveCount; i++) {
-            CarRepository.moveAllCars();
-            outputView.printResult(CarRepository.cars());
-        }
-
-        outputView.printWinners(CarRepository.getWinners());
     }
 }
