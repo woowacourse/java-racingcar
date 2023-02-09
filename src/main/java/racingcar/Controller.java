@@ -4,9 +4,9 @@ public class Controller {
 
     public static void main(String[] args) {
         try {
-            RacingGame racingGame = new RacingGame();
-            racingGame.playingGame();
-            racingGame.viewResult();
+            GameController gameController = new GameController();
+            gameController.runGame();
+            gameController.finishGame();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

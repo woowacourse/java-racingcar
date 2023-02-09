@@ -12,7 +12,7 @@ public class GameController {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
-    private RacingGame racingGame;
+    private final RacingGame racingGame;
 
 
     public GameController() {
@@ -29,7 +29,13 @@ public class GameController {
         return cars;
     }
 
-    public void runSingleRound() {
+    public void runGame() {
+        for (int i = 0; i < racingGame.getGameTime(); i++) {
+            runSingleRound();
+        }
+    }
+
+    private void runSingleRound() {
         racingGame.moveCars();
         racingGame.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
         System.out.println();
