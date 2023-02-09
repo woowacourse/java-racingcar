@@ -24,4 +24,8 @@ public class Service {
     public void setNumberOfRounds(int numberOfRounds) {
         finalRoundChecker = new FinalRoundChecker(numberOfRounds);
     }
+
+    public boolean isEnd() {
+        return finalRoundChecker.isFinal(cars.getTurnCount());
+    }
 }
