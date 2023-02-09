@@ -15,8 +15,6 @@ public class InputHandler {
     private static final String MOVING_TRIAL_NOT_INTEGER_ERROR = "[ERROR] 시도할 횟수는 숫자만 가능합니다.";
     private static final String MOVING_TRIAL_RANGE_ERROR = "[ERROR] 시도할 횟수의 범위는 1이상 100이하만 가능합니다.";
 
-
-
     private final InputView inputView;
 
     public InputHandler() {
