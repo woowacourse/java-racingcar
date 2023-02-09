@@ -11,10 +11,12 @@ import java.util.stream.Collectors;
 
 public class CarGroup {
 
+    private static final int MIN_CAR_SIZE = 2;
     List<Car> carGroup;
 
     public CarGroup(List<String> carNames) {
         validateDuplicate(carNames);
+        validateSize(carNames);
 
         this.carGroup = carNames.stream()
                 .map(carName -> new Car(carName))
@@ -25,6 +27,12 @@ public class CarGroup {
         Set<String> distinctNames = new HashSet<>(carNames);
         if (carNames.size() != distinctNames.size()) {
             throw new IllegalArgumentException("자동차 이름에 중복이 있을 수 없습니다.");
+        }
+    }
+
+    private void validateSize(List<String> carNames) {
+        if (carNames.size() < MIN_CAR_SIZE) {
+            throw new IllegalArgumentException("자동차의 개수는 2개 이상으로 입력해주세요.");
         }
     }
 

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import racingCar.util.FixedNumberGenerator;
 import racingCar.util.RandomNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +24,16 @@ class CarGroupTest {
     @DisplayName("자동차 이름들에 중복이 있는 경우")
     void carGroupTest_fail() {
         List<String> carNames = List.of("abc", "abc");
+
+        Assertions.assertThatThrownBy(()->{
+            new CarGroup(carNames);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차 이름들이 빈 리스트일 경우")
+    void carGroupTest_failIfEmpty() {
+        List<String> carNames = new ArrayList<>();
 
         Assertions.assertThatThrownBy(()->{
             new CarGroup(carNames);
