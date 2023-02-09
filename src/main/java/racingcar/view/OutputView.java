@@ -14,10 +14,15 @@ public class OutputView {
     }
 
     public void printWinners(List<String> winners) {
+        String winnerString = stringifyWinners(winners);
+        System.out.print(winnerString);
+        System.out.println(RESULT_POSTFIX);
+    }
+
+    private static String stringifyWinners(List<String> winners) {
         int beginIndex = 1;
         int endIndex = winners.toString().length() - 1;
-        System.out.print(winners.toString().substring(beginIndex, endIndex));
-        System.out.println(RESULT_POSTFIX);
+        return winners.toString().substring(beginIndex, endIndex);
     }
 
     public void printError(Exception error) {
