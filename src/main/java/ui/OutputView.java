@@ -19,4 +19,9 @@ public class OutputView {
         result.repeat(position + 1);
         return result;
     }
+
+    public void printWinners(List<String> winnerNames) {
+        String winners = String.join(", ", winnerNames);
+        System.out.println(winners + "가 최종 우승했습니다.");
+    }
 }
