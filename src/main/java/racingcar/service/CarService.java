@@ -14,6 +14,7 @@ public class CarService {
     public void initializeService() {
         while (validateNameInput()) {
         }
+        validateCountInput();
     }
 
     private boolean validateNameInput() {
@@ -37,5 +38,9 @@ public class CarService {
 
     private List<String> splitCarNames(String carNames) {
         return List.of(carNames.split(","));
+    }
+
+    private void validateCountInput() {
+        OutputView.printCountInput();
     }
 }
