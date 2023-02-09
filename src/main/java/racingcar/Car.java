@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.Objects;
+
 import static constant.Constants.CAR_NAME_LIMIT_EXCEPTION;
 
 public class Car {

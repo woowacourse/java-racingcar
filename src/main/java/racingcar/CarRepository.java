@@ -21,4 +21,8 @@ public class CarRepository {
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
+
+    public static void clear() {
+        cars.clear();
+    }
 }
