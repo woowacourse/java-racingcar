@@ -1,8 +1,8 @@
 package car.domain;
 
-import static car.option.Option.INITIAL_POSITION;
 import static car.option.Option.MAX_NAME_LENGTH;
 import static car.option.Option.MIN_NAME_LENGTH;
+import static car.option.Option.START_POSITION;
 
 public class Car {
 
@@ -10,12 +10,12 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        this(name, INITIAL_POSITION);
+        this(name, START_POSITION);
     }
 
     public Car(String name, int position) {
         validateNameLength(name);
-        validatePositionOverInitialPosition(position);
+        validatePosition(position);
         this.name = name;
         this.position = position;
     }
@@ -43,8 +43,8 @@ public class Car {
         }
     }
 
-    private void validatePositionOverInitialPosition(int position) {
-        if (position < INITIAL_POSITION) {
+    private void validatePosition(int position) {
+        if (position < START_POSITION) {
             throw new IllegalArgumentException("[ERROR] 위치는 시작점보다 작으면 안됩니다.");
         }
     }
