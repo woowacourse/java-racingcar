@@ -31,10 +31,7 @@ public class RacingGame {
     }
 
     private void updateCarPosition() {
-        for (int i = 0; i < cars.size(); i++) {
-            int randomNumber = generateRandomNumber();
-            cars.get(i).move(randomNumber);
-        }
+        cars.forEach(car -> {car.move(generateRandomNumber());});
     }
 
     public void playingGame() {
