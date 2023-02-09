@@ -17,4 +17,11 @@ class InputExceptionTest {
             inputException.checkCarNameLength("우아한테크코스");
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void checkInputCountLength() {
+        assertThatThrownBy(() -> {
+            inputException.checkInputCountLength(0);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
