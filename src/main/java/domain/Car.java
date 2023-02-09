@@ -1,11 +1,9 @@
 package domain;
 
-import java.util.Random;
-
 public class Car {
 
   private final String name;
-  private int position = 0;
+  private int position = 1;
 
   public static final int MIN_MOVE_NUM = 4;
 
@@ -19,6 +17,10 @@ public class Car {
 
   public int getPosition() {
     return position;
+  }
+
+  public String getName() {
+    return name;
   }
 }
 
