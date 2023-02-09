@@ -33,7 +33,7 @@ public class RacingController {
         }
         FinalResult finalResult = new FinalResult();
         List<String> winners = finalResult.findWinners(carsInfo);
-        outputView.printWinners(winners);
+        outputView.printFinalResult(carsInfo, winners);
     }
 
     private List<Car> setUpCarName() {

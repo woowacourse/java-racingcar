@@ -31,11 +31,16 @@ public class OutputView {
         System.out.print(newLine);
     }
 
-    public void printWinners(List<String> winners) {
+    private void printWinners(List<String> winners) {
         StringJoiner winnerPrintFormat = new StringJoiner(", ");
         for (String winner : winners) {
             winnerPrintFormat.add(winner);
         }
-        System.out.println(winnerPrintFormat);
+        System.out.print(winnerPrintFormat + "가 최종 우승했습니다.");
+    }
+
+    public void printFinalResult(List<Car> carsInfo, List<String> winners) {
+        printCurrentResult(carsInfo);
+        printWinners(winners);
     }
 }
