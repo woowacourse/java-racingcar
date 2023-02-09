@@ -79,8 +79,8 @@ class RacingCarServiceTest {
 
         // then
         RacingCarWinnerResponse winners = service.findWinners();
-        assertThat(winners.getWinners().size())
-                .isEqualTo(1);
+        assertThat(winners.getWinners())
+                .hasSize(1);
         assertThat(winners.getWinners().get(0))
                 .isEqualTo("car1");
     }
