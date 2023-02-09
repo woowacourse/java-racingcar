@@ -25,21 +25,21 @@ public class GameController {
     }
 
     public void run() {
-        CarRepository.updateCars(makeCars());
+        makeCars(inputView.readCarNames());
         startRacing(readNumberOfMoving());
         outputView.printWinners(racingCarGame.getWinners());
     }
 
-    private List<Car> makeCars() {
+    private void makeCars(String carNames) {
         try {
-            String carNames = inputView.readCarNames();
-            return Arrays.stream(carNames.split(","))
+            List<Car> cars = Arrays.stream(carNames.split(","))
                     .filter(this::validateCarName)
                     .map(Car::new)
                     .collect(Collectors.toList());
+            CarRepository.updateCars(cars);
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printException(illegalArgumentException.getMessage());
-            return makeCars();
+            makeCars(inputView.readCarNames());
         }
     }
 

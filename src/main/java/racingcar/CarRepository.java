@@ -5,10 +5,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static constant.Constants.MINIMUM_NUMBER_OF_CARS_EXCEPTION;
+
 public class CarRepository {
     private static final List<Car> cars = new ArrayList<>();
+    private static final int MINIMUM_NUMBER_OF_CARS = 2;
 
     public static void updateCars(List<Car> newCars) {
+        if (newCars.size() < MINIMUM_NUMBER_OF_CARS) {
+            throw new IllegalArgumentException(MINIMUM_NUMBER_OF_CARS_EXCEPTION);
+        }
         cars.addAll(newCars);
     }
 
