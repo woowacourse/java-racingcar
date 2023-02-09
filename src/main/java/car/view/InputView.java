@@ -15,7 +15,14 @@ public class InputView {
         System.out.println("시도할 회수는 몇회인가요?");
         String input = scanner.nextLine();
         validateInteger(input);
+        validateTrialCountUnderMaxInteger(input);
         return Integer.parseInt(input);
+    }
+
+    private void validateTrialCountUnderMaxInteger(String input) {
+        if (input.length() >= 10) {
+            throw new IllegalArgumentException("시도 횟수는 999999999이하여야 합니다.");
+        }
     }
 
     private void validateInteger(String input) {
