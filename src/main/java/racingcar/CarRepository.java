@@ -32,4 +32,8 @@ public class CarRepository {
     public static void clear() {
         cars.clear();
     }
+
+    public static void clear() {
+        cars.clear();
+    }
 }

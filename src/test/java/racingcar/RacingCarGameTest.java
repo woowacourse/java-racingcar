@@ -1,25 +1,13 @@
 package racingcar;
 
-<<<<<<< HEAD
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
-=======
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
->>>>>>> fa60f7e (feat: 이동횟수 입력 0 이하인 경우 예외 처리)
 
 class RacingCarGameTest {
     private RacingCarGame racingCarGame;
@@ -29,7 +17,6 @@ class RacingCarGameTest {
         racingCarGame = new RacingCarGame();
     }
 
-<<<<<<< HEAD
     @ParameterizedTest
     @MethodSource("provideCars")
     @DisplayName("우승자를 정상적으로 판별하는지 확인한다.")
@@ -38,24 +25,4 @@ class RacingCarGameTest {
         assertThat(racingCarGame.getWinners()).isEqualTo(expectedWinners);
     }
 
-    private static Stream<Arguments> provideCars() {
-
-        return Stream.of(
-                Arguments.of(List.of(new Car("pobi", 0), new Car("mery", 0), new Car("abel", 0)), List.of("pobi", "mery", "abel")),
-                Arguments.of(List.of(new Car("pobi", 3), new Car("mery", 1), new Car("abel", 1)), List.of("pobi")),
-                Arguments.of(List.of(new Car("pobi", 3), new Car("mery", 3), new Car("abel", 1)), List.of("pobi", "mery")),
-                Arguments.of(List.of(new Car("pobi", 3), new Car("mery", 3), new Car("abel", 3)), List.of("pobi", "mery", "abel"))
-        );
-    }
-
-    @AfterEach
-    void clear() {
-        CarRepository.clear();
-=======
-    @Test
-    void getWinners() {
-        List<String> winners = racingCarGame.getWinners();
-
->>>>>>> fa60f7e (feat: 이동횟수 입력 0 이하인 경우 예외 처리)
-    }
 }
