@@ -21,29 +21,20 @@ public class Cars implements Iterable<Car> {
     }
 
     public Cars getWinners() {
-        Integer maxPosition = getMaxPosition();
+        Position maxPosition = getMaxPosition();
         List<Car> result = cars.stream()
-                .filter(m -> m.getPosition() == maxPosition)
+                .filter(m -> m.getPosition().equals(maxPosition))
                 .collect(Collectors.toList());
 
         return new Cars(result);
     }
 
-    private Integer getMaxPosition() {
+    private Position getMaxPosition() {
         return cars.stream()
                 .map(Car::getPosition)
-                .max(Integer::compare)
+                .sorted()
+                .findFirst()
                 .get();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car.getCurrentState() + "\n");
-        }
-
-        return stringBuilder.toString();
     }
 
     @Override

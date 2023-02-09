@@ -1,7 +1,6 @@
 package domain;
 
 public class Car {
-    private static final String FORMAT = "%s : %s";
 
     private final Name name;
     private Position position;
@@ -17,15 +16,11 @@ public class Car {
         }
     }
 
-    public int getPosition() {
-        return position.getPosition();
+    public Position getPosition() {
+        return position;
     }
 
-    public String getName() {
-        return name.toString();
-    }
-
-    public String getCurrentState() {
-        return String.format(FORMAT, name, position);
+    public Name getName() {
+        return name;
     }
 }

@@ -21,10 +21,10 @@ public class RacingGameManager {
 
         for (int i = 0; i < count; i++) {
             racingGame.moveCars(new NormalRandomGenerator());
-            OutputView.printState(racingGame.getCars());
+            OutputView.printAllCars(racingGame.getCars());
         }
 
-        OutputView.printState(racingGame.getCars());
+        OutputView.printAllCars(racingGame.getCars());
         OutputView.printWinners(racingGame.decideWinners());
     }
 
