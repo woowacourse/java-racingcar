@@ -45,7 +45,7 @@ class CarTest {
     void shouldThrowIllegalArgumentExceptionWhenUseLongName(String inputName) {
         // given
         String wrongName = inputName;
-        // when
+        // when TODO: then 분리
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
                     new Car(wrongName);
