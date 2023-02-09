@@ -16,9 +16,9 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printRoundResult(RoundResultResponse roundResultDTO) {
+    public void printRoundResult(RoundResultResponse roundResultResponse) {
         StringBuilder resultBuilder = new StringBuilder();
-        List<CarDTO> carDTOs = roundResultDTO.getRoundResult();
+        List<CarDTO> carDTOs = roundResultResponse.getRoundResult();
         for (CarDTO carDTO : carDTOs) {
             int carPosition = carDTO.getCarPosition();
             resultBuilder.append(carDTO.getCarName())
@@ -29,8 +29,8 @@ public class OutputView {
         System.out.println(resultBuilder);
     }
 
-    public void printEndGameResult(GameResultResponse gameResultDTO) {
-        String winnerNames = String.join(", ", gameResultDTO.getWinnerNames());
+    public void printEndGameResult(GameResultResponse gameResultResponse) {
+        String winnerNames = String.join(", ", gameResultResponse.getWinnerNames());
         System.out.println(winnerNames + GAME_RESULT_MESSAGE);
     }
 
