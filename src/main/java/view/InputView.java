@@ -13,8 +13,8 @@ public class InputView {
     private static final String CAR_NAMES_BLANK_ERROR = ERROR_PREFIX + "경주할 자동차 이름이 입력되지 않았습니다.";
     private static final String CAR_NAMES_DELIMITER = ",";
     private static final String CAR_NAMES_DUPLICATE_ERROR = ERROR_PREFIX + "경주할 자동차 이름이 중복되었습니다.";
-
-    private final Scanner scanner = new Scanner(System.in);
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final String CAR_NAME_LENGTH_ERROR = ERROR_PREFIX + "경주할 자동차 이름이 5글자 초과했습니다.";
 
     private InputView() {}
 
@@ -23,6 +23,7 @@ public class InputView {
     }
 
     public String[] readCarNames() {
+        Scanner scanner = new Scanner(System.in);
         String carNames = scanner.nextLine();
         validateCarNames(carNames);
         String[] splitCarNames = getSplitCarNames(carNames);
@@ -49,10 +50,15 @@ public class InputView {
         if (isDuplicated(splitCarNames)) {
             throw new IllegalArgumentException(CAR_NAMES_DUPLICATE_ERROR);
         }
+        for (String carName : splitCarNames) {
+            validateCarName(carName);
+        }
     }
 
     private void validateCarName(String carName) {
-
+        if (isCorrectCarNameLength(carName)) {
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR);
+        }
     }
 
     private boolean isDuplicated(String[] splitCarNames) {
@@ -62,7 +68,7 @@ public class InputView {
     }
 
     private boolean isCorrectCarNameLength(String carName) {
-        return true;
+        return carName.length() > MAX_CAR_NAME_LENGTH;
     }
 
     public int readTryNum() {
