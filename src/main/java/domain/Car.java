@@ -37,7 +37,7 @@ public class Car implements Comparable<Car>{
 
     private void validate(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("[Error] 이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다. " +
+            throw new IllegalArgumentException("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다. " +
                     "입력값 : "  + name);
         }
     }

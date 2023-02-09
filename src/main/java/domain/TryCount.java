@@ -11,7 +11,7 @@ public class TryCount {
 
     private void validate(int tryCount) {
         if (tryCount < MIN_TRY_COUNT) {
-            throw new IllegalArgumentException("[Error] 시도 횟수는 양의 정수여야 합니다." +
+            throw new IllegalArgumentException("시도 횟수는 양의 정수여야 합니다." +
                     "입력값 : " + tryCount);
         }
     }

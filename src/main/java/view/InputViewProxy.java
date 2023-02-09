@@ -29,7 +29,7 @@ public class InputViewProxy extends InputView {
         try {
             return inputView.sendTryCount();
         } catch (InputMismatchException exception) {
-            printExceptionMessage("[Error] 시도 횟수는 양의 정수여야 합니다.");
+            printExceptionMessage("시도 횟수는 양의 정수여야 합니다.");
             return sendTryCount();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
@@ -38,7 +38,7 @@ public class InputViewProxy extends InputView {
     }
 
     private void printExceptionMessage(String message) {
-        System.out.println(message);
+        System.out.println("[ERROR] " +message);
     }
 }
 
