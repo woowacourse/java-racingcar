@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-public final class Status {
+final class Status {
     public static final int NEXT_MOVE = 1;
     private static final int INIT_NUMBER = 0;
     private final int moveCount;

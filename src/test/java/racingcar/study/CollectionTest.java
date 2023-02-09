@@ -15,7 +15,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class CollectionTest {
+class CollectionTest {
 
     private Set<Integer> numbers;
 
@@ -30,13 +30,13 @@ public class CollectionTest {
 
     @Test
     void size_메서드로_Set_의_크기를_확인한다() {
-        assertThat(numbers.size()).isEqualTo(3);
+        assertThat(numbers).hasSize(3);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void contains_메서드를_이용해_값의_존재를_확인한다(int input) {
-        assertThat(numbers.contains(input)).isTrue();
+        assertThat(numbers).contains(input);
     }
 
     @ParameterizedTest

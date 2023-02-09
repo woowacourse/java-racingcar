@@ -1,6 +1,8 @@
 package racingcar.controller;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.MockRandomPicker;
 import racingcar.view.InputView;
@@ -10,7 +12,8 @@ import racingcar.view.OutputView;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ControllerTest {
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+class ControllerTest {
     private Controller controller;
     private MockOutput mockOutput;
 

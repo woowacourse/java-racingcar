@@ -9,7 +9,7 @@ import racingcar.dto.RacingStatusDto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class CarTest {
+class CarTest {
     private Car car;
 
     @BeforeEach
@@ -19,7 +19,7 @@ public class CarTest {
 
     @Test
     void status_초기값_확인() {
-        assertThat(car.getStatus()).isEqualTo(0);
+        assertThat(car.getStatus()).isZero();
     }
 
     @Test

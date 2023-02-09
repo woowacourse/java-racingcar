@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import racingcar.dto.RacingStatusDto;
 
-public class Car {
+class Car {
 
     private final CarName carName;
     private Status status;

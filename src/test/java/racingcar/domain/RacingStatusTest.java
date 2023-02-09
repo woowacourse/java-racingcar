@@ -11,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class RacingStatusTest {
+class RacingStatusTest {
     private MockRandomPicker mockRandomPicker;
     private RacingStatus racingStatus;
 
@@ -23,7 +23,7 @@ public class RacingStatusTest {
 
     @Test
     void move_함수를_호출했을때_진행이_되는_것을_확인() {
-        racingStatus.move();
+        racingStatus.moveCars();
 
         List<RacingStatusDto> racingStatusDtos = racingStatus.toDto();
         assertThat(racingStatusDtos.get(0).getStatus()).isEqualTo(1);
@@ -39,10 +39,10 @@ public class RacingStatusTest {
 
     @Test
     void findWinner_함수로_우승자들이_반환됨() {
-        racingStatus.move();
+        racingStatus.moveCars();
         assertThat(racingStatus.findWinner()).containsExactly("judy", "pobi");
 
-        racingStatus.move();
+        racingStatus.moveCars();
         assertThat(racingStatus.findWinner()).containsExactly("judy", "nunu", "pobi");
 
     }

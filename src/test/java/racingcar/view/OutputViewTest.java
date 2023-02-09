@@ -11,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class OutputViewTest {
+class OutputViewTest {
     private OutputView outputView;
     private MockOutput mockOutput;
 
