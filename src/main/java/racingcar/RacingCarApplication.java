@@ -7,12 +7,12 @@ import racingcar.view.OutputView;
 
 public class RacingCarApplication {
 
-	public static void main(String[] args) {
-		GameManager gameManager = new GameManager(
-			new InputView(),
-			new OutputView(),
-			new Cars());
+    public static void main(String[] args) {
+        GameManager gameManager = new GameManager(
+                new InputView(),
+                new OutputView(),
+                new Cars());
 
-		gameManager.playGame();
-	}
+        gameManager.playGame();
+    }
 }

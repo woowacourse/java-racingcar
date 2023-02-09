@@ -1,5 +1,5 @@
 package racingcar.domain;
 
 public interface NumberGenerator {
-	int generateNumber();
+    int generateNumber();
 }
