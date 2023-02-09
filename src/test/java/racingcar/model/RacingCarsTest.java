@@ -15,18 +15,12 @@ class RacingCarsTest {
     @Test
     @DisplayName("우승자 선정 기능 - 우승자가 1명일 경우 테스트")
     void getOneWinnersTest() {
-        List<Car> cars = new ArrayList<>();
         Car test1 = new Car("test1", 3);
         Car test2 = new Car("test2", 1);
         Car test3 = new Car("test3", 1);
         Car test4 = new Car("test4", 1);
         Car test5 = new Car("test5", 2);
-        cars.add(test1);
-        cars.add(test2);
-        cars.add(test3);
-        cars.add(test4);
-        cars.add(test5);
-        RacingCars racingCars = new RacingCars(cars);
+        RacingCars racingCars = new RacingCars(List.of(test1, test2, test3, test4, test5));
 
         Assertions.assertThat(racingCars.getWinners().size()).isEqualTo(1);
         Assertions.assertThat(racingCars.getWinners()).containsExactly(test1);
@@ -35,18 +29,12 @@ class RacingCarsTest {
     @Test
     @DisplayName("우승자 선정 기능 - 우승자가 복수일 경우 테스트")
     void getMultipleWinnersTest() {
-        List<Car> cars = new ArrayList<>();
         Car test1 = new Car("test1", 3);
         Car test2 = new Car("test2", 3);
         Car test3 = new Car("test3", 3);
         Car test4 = new Car("test4", 1);
         Car test5 = new Car("test5", 2);
-        cars.add(test1);
-        cars.add(test2);
-        cars.add(test3);
-        cars.add(test4);
-        cars.add(test5);
-        RacingCars racingCars = new RacingCars(cars);
+        RacingCars racingCars = new RacingCars(List.of(test1, test2, test3, test4, test5));
 
         Assertions.assertThat(racingCars.getWinners().size()).isEqualTo(3);
         Assertions.assertThat(racingCars.getWinners()).containsOnly(test1, test2, test3);
@@ -62,12 +50,7 @@ class RacingCarsTest {
         Car test3 = new Car("test3", 1);
         Car test4 = new Car("test4", 1);
         Car test5 = new Car("test5", 1);
-        cars.add(test1);
-        cars.add(test2);
-        cars.add(test3);
-        cars.add(test4);
-        cars.add(test5);
-        RacingCars racingCars = new RacingCars(cars);
+        RacingCars racingCars = new RacingCars(List.of(test1, test2, test3, test4, test5));
 
         Assertions.assertThat(racingCars.getWinners().size()).isEqualTo(5);
         Assertions.assertThat(racingCars.getWinners()).containsOnly(test1, test2, test3, test4, test5);
