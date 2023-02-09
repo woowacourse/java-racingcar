@@ -9,6 +9,7 @@ import racingcar.view.OutputView;
 import java.util.function.Supplier;
 
 public class Controller {
+    public static final String GAME_COUNT_ERROR_MESSAGE = "올바른 회수를 입력해주세요";
     private final NumberPicker numberPicker;
     private final Input input;
     private final OutputView outputView;
@@ -30,7 +31,7 @@ public class Controller {
 
         outputView.printStatusGuide();
         for (int i = 0; i < gameCount; i++) {
-            racingStatus.move();
+            racingStatus.moveCars();
             outputView.printStatus(racingStatus.toDto());
         }
 
@@ -51,7 +52,7 @@ public class Controller {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(GAME_COUNT_ERROR_MESSAGE);
             return handleError(supplier);
         }
     }

@@ -7,7 +7,7 @@ public class UserInput implements Input {
 
     @Override
     public int gameCountInput() {
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     @Override
