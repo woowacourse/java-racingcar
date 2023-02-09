@@ -1,4 +1,4 @@
-package racingCar;
+package racingCar.controller;
 
 import racingCar.domain.CarGroup;
 import racingCar.util.NumberGenerator;
@@ -13,7 +13,7 @@ public class RacingCarController {
     public void run(NumberGenerator numberGenerator) {
         CarGroup carGroup = repeat(this::makeCars);
         Integer tryCount = repeat(InputView::readTryCount);
-        moveCarsAndView(numberGenerator,tryCount, carGroup);
+        moveCarsAndView(numberGenerator, tryCount, carGroup);
         OutputView.printWinners(carGroup.findWinners());
     }
 
