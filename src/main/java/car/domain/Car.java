@@ -2,7 +2,8 @@ package car.domain;
 
 public class Car {
     private static final int INITIAL_POSITION = 0;
-
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 1;
     private final String name;
     private int position;
 
@@ -11,8 +12,18 @@ public class Car {
     }
 
     public Car(String name, int position) {
+        validateNameLength(name);
         this.name = name;
         this.position = position;
+    }
+
+    private void validateNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("[ERROR] 이름이 너무 깁니다.");
+        }
+        if (name.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException("[ERROR] 이름이 너무 짧습니다.");
+        }
     }
 
     public int selectMaxPosition(int otherPosition) {
