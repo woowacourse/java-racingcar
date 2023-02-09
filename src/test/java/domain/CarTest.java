@@ -38,6 +38,6 @@ class CarTest {
         Car car2 = new Car(name, 1);
         //then
         Assertions.assertThat(car1.toString()).isEqualTo("test");
-        Assertions.assertThat(car2.toString()).isEqualTo("test1");
+        Assertions.assertThat(car2.toString()).isEqualTo("test-1");
     }
 }

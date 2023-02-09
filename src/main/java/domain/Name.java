@@ -13,7 +13,7 @@ public class Name {
     @Override
     public String toString() {
         if (index > 0) {
-            return name + index;
+            return name + "-" + index;
         }
         return name;
     }

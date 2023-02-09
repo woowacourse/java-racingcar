@@ -14,6 +14,7 @@ public class Validator {
 
     public static void isProperCarNames(final List<String> carNames) throws IllegalArgumentException {
         isAllProperLength(carNames);
+        isNotContainDelimiter(carNames);
     }
 
     public static void isNotEmpty(final String input) throws IllegalArgumentException {
@@ -37,4 +38,11 @@ public class Validator {
     private static void isAllProperLength(final List<String> carNames) throws IllegalArgumentException {
         carNames.forEach(Validator::isProperLength);
     }
+
+    private static void isNotContainDelimiter(final List<String> carNames) {
+        if (carNames.stream().anyMatch(carName -> carName.contains("-"))) {
+            throwError(ErrorMessages.CONTAINS_DELIMITER);
+        }
+    }
+
 }
