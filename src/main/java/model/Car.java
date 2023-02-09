@@ -4,15 +4,17 @@ public class Car {
 
     private final String name;
     private int position;
+    private final CarMoveManager carMoveManager;
 
-    public Car(String name) {
+
+    public Car(String name, CarMoveManager carMoveManager) {
         this.name = name;
         this.position = 0;
+        this.carMoveManager = carMoveManager;
     }
 
     public void move() {
-        int randomNumber = (int) (Math.random() * 9);
-        if (randomNumber >= 4) {
+        if (carMoveManager.isMove()) {
             position++;
         }
     }

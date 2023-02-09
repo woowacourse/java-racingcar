@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 import model.Car;
 import model.CarRepository;
+import model.RandomCarMoveManager;
 import view.InputView;
 import view.OutputView;
 
@@ -56,7 +57,7 @@ public class MainController {
 
     private GameStatus setCars() {
         List<String> carNames = inputView.readCarNames();
-        carNames.stream().map(Car::new).forEach(CarRepository::addCars);
+        carNames.stream().map(name->new Car(name, new RandomCarMoveManager())).forEach(CarRepository::addCars);
         return GameStatus.MOVE_CARS;
     }
 
