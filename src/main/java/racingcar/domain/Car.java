@@ -1,7 +1,7 @@
 package racingcar.domain;
 
-import java.util.Random;
 import racingcar.dto.CarDto;
+import racingcar.util.IntGenerator;
 import racingcar.util.RandomIntGenerator;
 
 public class Car {
@@ -15,16 +15,30 @@ public class Car {
 
     private String name;
     private int movedCount;
-
+    private IntGenerator intGenerator;
 
     public Car(String name) {
         validateName(name);
         this.name = name;
-        this.movedCount = 0;
+        this.intGenerator = new RandomIntGenerator();
     }
 
-    public void move() {
-        this.movedCount++;
+    public Car(String name, IntGenerator intGenerator) {
+        validateName(name);
+        this.name = name;
+        this.movedCount = 0;
+        this.intGenerator = intGenerator;
+    }
+
+    public void tryMove() {
+        if (canMove()) {
+            this.movedCount++;
+        }
+    }
+
+    private boolean canMove() {
+        return intGenerator.getByRange(MINIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE,
+                MAXIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE) >= MINIMUM_NUMBER_TO_MOVE;
     }
 
     public CarDto getStatus() {

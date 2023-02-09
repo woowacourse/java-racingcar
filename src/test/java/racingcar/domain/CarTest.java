@@ -1,29 +1,31 @@
 package racingcar.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.dto.CarDto;
+import racingcar.util.DeterminedIntGenerator;
 
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
-    @Test
-    @DisplayName("1회 이동")
-    void shouldPlusOneAtMovedCountWhenMove() {
+    @ParameterizedTest
+    @DisplayName("1회 이동 시도")
+    @CsvSource(value = {"1:0", "3:0", "4:1", "9:1"}, delimiter = ':')
+    void shouldPlusOneAtMovedCountWhenMove(int number, int addedMovedCount) {
         // given
-        Car targetCar = new Car("test");
+        Car targetCar = new Car("test", new DeterminedIntGenerator(number));
         CarDto carDtoBeforeMove = targetCar.getStatus();
         // when
-        targetCar.move();
+        targetCar.tryMove();
         CarDto carDtoAfterMove = targetCar.getStatus();
         // then
         assertThat(carDtoAfterMove.getName()).isEqualTo(carDtoBeforeMove.getName()).as("이름이 같아야 한다.");
-        assertThat(carDtoAfterMove.getMovedCount()).isEqualTo(carDtoBeforeMove.getMovedCount() + 1).as("이동 횟수는 1이 더해진다.");
+        assertThat(carDtoAfterMove.getMovedCount()).isEqualTo(carDtoBeforeMove.getMovedCount() + addedMovedCount)
+                .as("이동 횟수는 1이 더해진다.");
     }
 
     @Test
@@ -47,5 +49,6 @@ class CarTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
                     new Car(wrongName);
-                });}
+                });
+    }
 }
