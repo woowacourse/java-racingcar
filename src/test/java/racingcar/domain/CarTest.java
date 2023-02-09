@@ -28,7 +28,8 @@ class CarTest {
         RacingCarStatusResponse postStatus = car.getStatus();
 
         // expect
-        assertThat(postStatus.getPosition()).isGreaterThan(status.getPosition());
+        assertThat(postStatus.getPosition())
+                .isGreaterThan(status.getPosition());
     }
 
     @Test
@@ -42,8 +43,10 @@ class CarTest {
         RacingCarStatusResponse status = car.getStatus();
 
         // then
-        assertThat(status.getPosition()).isEqualTo(2);
-        assertThat(status.getName()).isEqualTo("mycar");
+        assertThat(status.getPosition())
+                .isEqualTo(2);
+        assertThat(status.getName())
+                .isEqualTo("mycar");
     }
 
     @ParameterizedTest

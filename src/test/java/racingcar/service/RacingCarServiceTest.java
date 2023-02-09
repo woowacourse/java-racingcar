@@ -37,7 +37,8 @@ class RacingCarServiceTest {
         List<RacingCarStatusResponse> carStatuses = service.getCarStatuses();
 
         // then
-        assertThat(carStatuses.get(0).getPosition()).isEqualTo(expected);
+        assertThat(carStatuses.get(0).getPosition())
+                .isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -51,7 +52,8 @@ class RacingCarServiceTest {
         List<RacingCarStatusResponse> carStatuses = service.getCarStatuses();
 
         // then
-        assertThat(carStatuses.size()).isEqualTo(expected);
+        assertThat(carStatuses)
+                .hasSize(expected);
     }
 
     @Test
@@ -64,8 +66,10 @@ class RacingCarServiceTest {
         List<RacingCarStatusResponse> carStatuses = service.getCarStatuses();
 
         // then
-        assertThat(carStatuses.get(0).getPosition()).isEqualTo(0);
-        assertThat(carStatuses.get(0).getName()).isEqualTo("car1");
+        assertThat(carStatuses.get(0).getPosition())
+                .isEqualTo(0);
+        assertThat(carStatuses.get(0).getName())
+                .isEqualTo("car1");
     }
 
     @Test
@@ -101,7 +105,8 @@ class RacingCarServiceTest {
         List<RacingCarStatusResponse> carStatuses = service.getCarStatuses();
 
         // expected
-        assertThat(carStatuses).isEmpty();
+        assertThat(carStatuses)
+                .isEmpty();
     }
 
     @Test
