@@ -20,9 +20,29 @@ public class CarRepository {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public void moveCars(NumberGenerator numberGenerator) {
-        cars.forEach(car -> car.move(numberGenerator));
+    public List<CarStatus> moveCars(NumberGenerator numberGenerator) {
+        return cars.stream()
+                .map(car -> car.move(numberGenerator))
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<CarStatus> makeCarStatus
+    public List<CarStatus> getFinalPosition() {
+        return cars.stream()
+                .map(Car::getCarStatus)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<String> getWinnerCarsName() {
+        Car winner = getWinner();
+        return cars.stream()
+                .filter(car -> car.isSamePosition(winner))
+                .map(Car::getName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private Car getWinner() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException(""));
+    }
 }
