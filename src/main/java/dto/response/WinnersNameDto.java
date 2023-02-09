@@ -10,15 +10,15 @@ public class WinnersNameDto {
     private final List<String> winnersNames;
 
     public static WinnersNameDto of(List<Car> winningCars) {
-        List<String> winnersName = winningCars.stream()
-                .map(car -> car.getName())
-                .collect(Collectors.toList());
-        return new WinnersNameDto(winnersName);
+        return winningCars.stream()
+                .map(Car::getName)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), WinnersNameDto::new));
     }
 
     private WinnersNameDto(List<String> winnersNames) {
         this.winnersNames = winnersNames;
     }
+
     public List<String> getWinnersNames() {
         return Collections.unmodifiableList(winnersNames);
     }
