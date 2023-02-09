@@ -2,7 +2,7 @@ package racingcar.domain;
 
 public class CarMovement {
 
-    private final String OUT_OF_MOVENMENT_RANGE_EXCEPTION = "범위 밖의 움직임 값입니다.";
+    private final String OUT_OF_MOVEMENT_RANGE_EXCEPTION = "범위 밖의 움직임 값입니다.";
     private final Integer value;
 
     public CarMovement(Integer value){
@@ -12,7 +12,7 @@ public class CarMovement {
 
     private void validate(Integer value){
         if(value >= 10 || value < 0){
-            throw new IllegalArgumentException(OUT_OF_MOVENMENT_RANGE_EXCEPTION);
+            throw new IllegalArgumentException(OUT_OF_MOVEMENT_RANGE_EXCEPTION);
         }
     }
 
