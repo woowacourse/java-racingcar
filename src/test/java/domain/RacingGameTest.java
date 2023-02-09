@@ -1,13 +1,14 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.NumberGenerator;
+import racingcar.domain.RacingGame;
 
 class RacingGameTest {
 

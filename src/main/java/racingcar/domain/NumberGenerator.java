@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 @FunctionalInterface
 public interface NumberGenerator {
