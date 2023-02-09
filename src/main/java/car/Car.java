@@ -15,6 +15,10 @@ public class Car {
         this.position = position;
     }
 
+    public boolean isFartherThan(int otherPosition) {
+        return position > otherPosition;
+    }
+
     public String getName() {
         return name;
     }
