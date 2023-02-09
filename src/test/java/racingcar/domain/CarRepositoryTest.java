@@ -35,14 +35,6 @@ class CarRepositoryTest {
         }
     }
 
-    @Test
-    void moveCars() {
-    }
-
-    @Test
-    void getFinalPosition() {
-    }
-
     @Nested
     @DisplayName("우승자들의 이름을 제대로 추출하는지 검증한다")
     class GetWinnersTest {
@@ -53,12 +45,5 @@ class CarRepositoryTest {
             assertThat(carRepository.getWinnerCarsName())
                     .isEqualTo(carNames);
         }
-
-//        @Test
-//        @DisplayName("한 명이 가장 멀리간 경우 그 사람만 우승자가 된다")
-//        void oneCarIsWinner() {
-//            carRepository = new CarRepository(carNames);
-//            carRepository.
-//        }
     }
 }
