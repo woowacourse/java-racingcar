@@ -12,7 +12,8 @@ class InputVerifierTest {
     @ParameterizedTest
     @ValueSource(strings = {"pobi,crong,aaaaaa", "pobi,crong,aa aa", " ", ""})
     void 자동차_이름_검증(String input) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> InputVerifier.validateNameLength(Converter.splitInput(input)));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> InputVerifier.validateNameLength(Converter.splitInput(input)));
     }
 
 }

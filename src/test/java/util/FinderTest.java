@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FinderTest {
     @DisplayName("자동차 객체들 중 가장 높은 step값 찾기")
