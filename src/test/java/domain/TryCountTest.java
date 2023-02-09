@@ -21,7 +21,7 @@ public class TryCountTest {
 
     @Test
     @DisplayName("TryCount 1에서 차감을 한번 하면 0이다.")
-    void deductAndValidateZero(){
+    void deductAndValidateZero() {
         assertThat(new TryCount("1").deduct().isZero()).isTrue();
     }
 }

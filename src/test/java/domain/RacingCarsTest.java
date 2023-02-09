@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RacingCarsTest {
+class RacingCarsTest extends TestCarMaker {
 
     private RacingCar pobi;
     private RacingCar honux;
@@ -19,24 +19,6 @@ class RacingCarsTest {
         pobi = createMoveRacingCar("pobi");
         honux = createMoveRacingCar("honux");
         ethan = createNotMoveRacingCar("ethan");
-    }
-
-    private RacingCar createMoveRacingCar(final String carName) {
-        return new RacingCar(carName) {
-            @Override
-            protected int getRandomInteger() {
-                return 4;
-            }
-        };
-    }
-
-    private RacingCar createNotMoveRacingCar(final String carName) {
-        return new RacingCar(carName) {
-            @Override
-            protected int getRandomInteger() {
-                return 3;
-            }
-        };
     }
 
     @Test
@@ -71,7 +53,7 @@ class RacingCarsTest {
 
     @Test
     @DisplayName("레이싱 게임 우승자의 이름이 담긴 리스트를 가져온다.")
-    void getWinnerName(){
+    void getWinnerName() {
         //given
         List<RacingCar> racingCars = List.of(pobi, honux, ethan);
 
