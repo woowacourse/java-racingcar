@@ -3,7 +3,6 @@ package racingcar.domain.result;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Result {
@@ -19,21 +18,21 @@ public class Result {
     }
 
     public List<String> findWinners() {
-        Map<String, Integer> lastResult = results.get(results.size() - 1);
-
-        int maxPosition = findMaxPosition(lastResult);
-
+        Map<String, Integer> lastResult = getLastResult();
         return lastResult.keySet()
                 .stream()
-                .filter(key -> lastResult.get(key) == maxPosition)
+                .filter(key -> lastResult.get(key) == findMaxPosition(lastResult))
                 .collect(Collectors.toList());
     }
 
-    private int findMaxPosition(Map<String, Integer> lastResult) {
-        Optional<Integer> value = lastResult.values()
-                .stream()
-                .max(Comparator.comparing(x -> x));
+    private Map<String, Integer> getLastResult() {
+        return results.get(results.size() - 1);
+    }
 
-        return value.orElseThrow(IllegalArgumentException::new);
+    private int findMaxPosition(Map<String, Integer> lastResult) {
+        return lastResult.values()
+                .stream()
+                .max(Comparator.comparing(x -> x))
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
