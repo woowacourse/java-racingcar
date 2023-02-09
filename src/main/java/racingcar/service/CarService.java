@@ -31,6 +31,13 @@ public class CarService {
         for (Car car : cars.getCarInformation()) {
             Random random = new Random();
             int randomNumber = random.nextInt(10);
+            runForward(randomNumber);
+        }
+    }
+
+    private void runForward(int randomNumber) {
+        if (randomNumber >= 4) {
+            // 전진
         }
     }
 
