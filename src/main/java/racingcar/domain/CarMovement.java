@@ -1,11 +1,8 @@
 package racingcar.domain;
 
-public class CarMovement {
-	private static final int STOP_MIN_NUMBER = 0;
-	private static final int STOP_MAX_NUMBER = 3;
-	private static final int MOVE_FORWARD_MIN_NUMBER = 4;
-	private static final int MOVE_FORWARD_MAX_NUMBER = 9;
+import static racingcar.config.CarMovementConfig.*;
 
+public class CarMovement {
 	private final NumberGenerator numberGenerator;
 
 	public CarMovement(NumberGenerator numberGenerator) {
@@ -24,10 +21,10 @@ public class CarMovement {
 	}
 
 	private boolean isForward(int number) {
-		return (number >= MOVE_FORWARD_MIN_NUMBER && number <= MOVE_FORWARD_MAX_NUMBER);
+		return (MOVE_FORWARD_MIN_NUMBER.getNumber() <= number && number <= MOVE_FORWARD_MAX_NUMBER.getNumber());
 	}
 
 	private boolean isStop(int number) {
-		return (number >= STOP_MIN_NUMBER && number <= STOP_MAX_NUMBER);
+		return (STOP_MIN_NUMBER.getNumber() <= number && number <= STOP_MAX_NUMBER.getNumber());
 	}
 }
