@@ -47,7 +47,7 @@ public class Cars {
     public Map<String, Integer> getRoundResult() {
         Map<String, Integer> currentRoundResult = new LinkedHashMap<>();
         for (Car car : cars) {
-            currentRoundResult.put(car.getName(), car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold()))
+            currentRoundResult.put(car.getName(), car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold()));
         }
         return currentRoundResult;
     }

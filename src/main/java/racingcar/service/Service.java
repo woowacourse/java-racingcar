@@ -5,6 +5,7 @@ import racingcar.domain.Cars;
 import racingcar.domain.FinalRoundChecker;
 import racingcar.domain.RandomValueGenerator;
 
+import java.util.List;
 import java.util.Map;
 
 public class Service {
@@ -43,6 +44,10 @@ public class Service {
 
     public Map<String, Integer> getCurrentRoundResult() {
         return cars.getRoundResult();
+    }
+
+    public List<String> getWinners() {
+        return cars.getWinners();
     }
 }
 
