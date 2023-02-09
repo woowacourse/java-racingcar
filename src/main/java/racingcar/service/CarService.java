@@ -11,6 +11,7 @@ import racingcar.view.OutputView;
 public class CarService {
     private Cars cars = new Cars(new ArrayList<Car>());
     private int tryCount;
+    private List<String> winner = new ArrayList<>();
 
     public void initializeService() {
         while (validateNameInput()) {
@@ -46,6 +47,28 @@ public class CarService {
     public void finishService() {
         for (Car car : cars.getCarInformation()) {
             OutputView.printRoundResult(car.getName(), car.getDistance());
+        }
+        findWinner();
+    }
+
+    private void findWinner() {
+        int maxDistance = findMaxDistance();
+        for(Car car : cars.getCarInformation()) {
+            compareDistance(car, maxDistance);
+        }
+    }
+
+    private int findMaxDistance() {
+        int maxDistance = -1;
+        for (Car car : cars.getCarInformation()) {
+            maxDistance = Math.max(car.getDistance(), maxDistance);
+        }
+        return maxDistance;
+    }
+
+    private void compareDistance(Car car, int maxDistance) {
+        if(maxDistance == car.getDistance()) {
+            winner.add(car.getName());
         }
     }
 
