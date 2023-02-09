@@ -11,14 +11,6 @@ public class CarDto {
         this.position = position;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getPosition() {
-        return position.getPosition();
-    }
-
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

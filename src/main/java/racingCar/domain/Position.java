@@ -1,7 +1,13 @@
 package racingCar.domain;
 
 public class Position implements Comparable<Position> {
-    private int position = 0;
+
+    private static final int INIT_POSITION = 0;
+    private int position;
+
+    public Position() {
+        this.position = INIT_POSITION;
+    }
 
     public void increase() {
         ++this.position;

@@ -4,6 +4,7 @@ import racingCar.dto.CarDto;
 import racingCar.util.NumberGenerator;
 import racingCar.util.RandomNumberGenerator;
 
+// TODO: refactor
 import java.util.*;
 import java.util.stream.Collectors;
 
