@@ -1,11 +1,12 @@
 package domain;
 
-import view.OutputView;
+import utils.NormalRandomGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGame {
+
     private final Cars cars;
     private final int count;
 
@@ -18,21 +19,15 @@ public class RacingGame {
         this.count = count;
     }
 
-    public void start() {
-        OutputView.printResultMessage();
-
-        for (int i = 0; i < count; i++) {
-            cars.moveCars();
-            OutputView.printState(cars);
-        }
-
-        OutputView.printState(cars);
-        OutputView.printWinners(decideWinners());
+    public Cars decideWinners() {
+        return cars.getWinners();
     }
 
-    private Cars decideWinners() {
-        Cars winners = cars.getWinners();
+    public void moveCars(NormalRandomGenerator generator) {
+        cars.moveCars(generator);
+    }
 
-        return winners;
+    public Cars getCars() {
+        return cars;
     }
 }

@@ -1,21 +1,22 @@
 package domain;
 
-import utils.RandomUtil;
+import utils.RandomGenerator;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars implements Iterable<Car> {
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    public void moveCars() {
+    public void moveCars(RandomGenerator generator) {
         for (Car car : cars) {
-            tryMove(car);
+            car.move(generator.generate());
         }
     }
 
@@ -26,14 +27,6 @@ public class Cars implements Iterable<Car> {
                 .collect(Collectors.toList());
 
         return new Cars(result);
-    }
-
-    private void tryMove(Car car) {
-        int randomNumber = RandomUtil.createRandomNumber();
-
-        if (RandomUtil.canMoveForward(randomNumber)) {
-            car.move();
-        }
     }
 
     private Integer getMaxPosition() {

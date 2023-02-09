@@ -43,7 +43,7 @@ class CarsTest {
 
     public void moveByCount(Car car, int count) {
         for (int i = 0; i < count; i++) {
-            car.move();
+            car.move(true);
         }
     }
 
