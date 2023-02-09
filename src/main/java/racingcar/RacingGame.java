@@ -24,8 +24,9 @@ public class RacingGame {
     }
 
     private void initRacing() {
-        String[] input = inputView.inputCarName();
-        Arrays.stream(input).forEach(s -> cars.add(new Car(s)));
+        String input = inputView.inputCarName();
+        String[] split = input.split(",");
+        Arrays.stream(split).forEach(carName -> cars.add(new Car(carName.trim())));
     }
 
     private int generateRandomNumber() {

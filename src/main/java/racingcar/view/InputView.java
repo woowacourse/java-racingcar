@@ -9,11 +9,10 @@ import static racingcar.view.OutputConstant.*;
 public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
-    public String[] inputCarName() {
+    public String inputCarName() {
         System.out.println(INPUT_CAR_NAME);
         String input = scanner.nextLine();
-        String[] carNames = Validator.validateCarNames(input);
-        return carNames;
+        return input;
     }
 
     public int inputGameTime() {

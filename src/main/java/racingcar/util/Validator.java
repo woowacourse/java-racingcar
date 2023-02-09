@@ -1,5 +1,6 @@
 package racingcar.util;
 
+import racingcar.Car;
 import racingcar.view.ErrorMessage;
 
 import java.util.Arrays;
@@ -13,11 +14,9 @@ public class Validator {
     private Validator() {
     }
 
-    public static String[] validateCarNames(String carNames) {
-        String[] split = carNames.split(DELIMITER);
-        validateCarNameLength(split);
-        validateNoInput(split);
-        return split;
+    public static void validateCarNames(String carName) {
+        validateCarNameLength(carName);
+        validateNoInput(carName);
     }
 
     public static int validateGameTime(String input) {
@@ -42,17 +41,15 @@ public class Validator {
         return integer;
     }
 
-    private static void validateNoInput(String[] split) {
-        long noInputCount = Arrays.stream(split).filter(s -> s.trim().equals("")).count();
-        if (noInputCount >= 1) {
+    private static void validateNoInput(String carName) {
+
+        if (carName.equals("")) {
             throw new IllegalArgumentException(ERROR_PREFIX + NO_INPUT);
         }
     }
 
-    private static void validateCarNameLength(String[] split) {
-        long count = Arrays.stream(split).filter(s -> s.length() >= 5)
-                .count();
-        if (count >= 1) {
+    private static void validateCarNameLength(String carName) {
+        if (carName.length() >= 5) {
             throw new IllegalArgumentException(ERROR_PREFIX + CAR_NAME_LENGTH);
         }
     }
