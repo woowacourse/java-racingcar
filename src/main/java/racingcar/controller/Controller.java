@@ -23,23 +23,40 @@ public class Controller {
     }
 
     public void run() {
+        setupCars();
+        setupNumberOfRounds();
+        play();
+        printWinners();
+    }
+
+    private void setupCars() {
         outputView.printAskingInputCarNames();
         String carNames = inputView.inputCarNames();
         service.makeCars(carNames);
+    }
 
+    private void setupNumberOfRounds() {
         outputView.printAskingInputNumberOfRounds();
         int numberOfRounds = inputView.inputNumberOfRounds();
         service.setNumberOfRounds(numberOfRounds);
+    }
 
-        outputView.printResultStartingMessage();
-        while (!service.isEnd()) {
-            service.playRound();
-            Map<String, Integer> roundResult = service.getCurrentRoundResult();
-            outputView.printResult(viewRenderer.renderRoundResult(roundResult));
-        }
-
+    private void printWinners() {
         List<String> winners = service.getWinners();
         outputView.printWinners(viewRenderer.renderWinners(winners));
+    }
+
+    private void play() {
+        outputView.printResultStartingMessage();
+        while (!service.isEnd()) {
+            playEachRound();
+        }
+    }
+
+    private void playEachRound() {
+        service.playRound();
+        Map<String, Integer> roundResult = service.getCurrentRoundResult();
+        outputView.printResult(viewRenderer.renderRoundResult(roundResult));
     }
 
 }
