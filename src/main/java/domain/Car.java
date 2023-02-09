@@ -1,6 +1,7 @@
 package domain;
 
 public class Car implements Comparable<Car> {
+    private final static String ONE_TO_FIVE = "이름은 1이상 5이하입니다.";
     private final String carName;
     private int distance = 0;
 
@@ -16,7 +17,7 @@ public class Car implements Comparable<Car> {
 
     private void validateNameLength(String inputCar) {
         if (inputCar.length() < 1 || inputCar.length() > 5) {
-            throw new IllegalArgumentException("이름은 1이상 5이하입니다.");
+            throw new IllegalArgumentException(ONE_TO_FIVE);
         }
     }
 

@@ -6,9 +6,13 @@ import domain.Winner;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Scanner;
+
 public class Controller {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final Scanner scanner = new Scanner(System.in);
+
 
     public void run() {
         Cars cars = askCars();
@@ -18,12 +22,13 @@ public class Controller {
             outputView.printCarsDistance(cars);
         }
         outputView.printWinner(new Winner(cars));
+        scanner.close();
     }
 
 
     private Cars askCars() {
         try {
-            return new Cars(inputView.askCars());
+            return new Cars(inputView.askCars(scanner));
         } catch (IllegalArgumentException e) {
             return askCars();
         }
@@ -31,7 +36,7 @@ public class Controller {
 
     private Trial askTrial() {
         try {
-            return new Trial(inputView.askTrial());
+            return new Trial(inputView.askTrial(scanner));
         } catch (IllegalArgumentException e) {
             return askTrial();
         }
