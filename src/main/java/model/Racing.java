@@ -16,10 +16,10 @@ public class Racing {
     private int winnerDistance;
     private Random random;
 
-    public Racing(List<String> carNames) {
+    public Racing(List<String> carNames, Random random) {
         board = new LinkedHashMap<>();
         winnerDistance = START_DISTANCE;
-        random = new Random();
+        this.random = random;
         carGenerate(carNames);
     }
 
