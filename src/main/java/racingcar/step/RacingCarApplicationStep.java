@@ -25,7 +25,7 @@ public abstract class RacingCarApplicationStep implements Step {
             retryCount++;
         }
         log.error(format("잘못된 입력이 %d번 이상 입력되어 프로그램을 종료합니다.", MAX_RETRY_COUNT));
-        throw new IllegalStateException();
+        return new Exit();
     }
 
     protected abstract Step pureExecute();
