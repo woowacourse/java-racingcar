@@ -32,7 +32,7 @@ public class GameController {
     }
 
     public void showResult() {
-        showCars(game.getCars());
+        outputView.printCars(game.getCars());
         outputView.printWinners(game.findWinners());
     }
 
@@ -51,14 +51,7 @@ public class GameController {
     private void playMultipleTimes() {
         for (int i = 0; i < trialCount; i++) {
             game.playOnce();
-            showCars(game.getCars());
+            outputView.printCars(game.getCars());
         }
-    }
-
-    private void showCars(List<Car> cars) {
-        for (Car car : cars) {
-            outputView.printCar(car);
-        }
-        outputView.changeLine();
     }
 }
