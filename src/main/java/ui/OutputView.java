@@ -1,12 +1,12 @@
 package ui;
 
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.TreeMap;
 
 public class OutputView {
     private final String POSITION_MARK = "-";
 
-    public void printGameResult(TreeMap<String, Integer> carPositions) {
+    public void printGameResult(LinkedHashMap<String, Integer> carPositions) {
         carPositions.forEach((name, position) -> System.out.println(name + " : " + convertPosition(position)));
         System.out.println();
     }
