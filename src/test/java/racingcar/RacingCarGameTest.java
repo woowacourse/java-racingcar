@@ -26,7 +26,6 @@ class RacingCarGameTest {
 	Cars cars;
 	OutputView outputView;
 	InputView inputView;
-	GameManager gameManager = new GameManager(inputView, outputView, cars);
 
 	InputStream inputStream;
 	PrintStream outputStream;
@@ -51,7 +50,7 @@ class RacingCarGameTest {
 		cars = new Cars();
 		outputView = new OutputView();
 		inputView = new InputView();
-		gameManager = new GameManager(inputView, outputView, cars);
+
 		GameManager gameManager = new GameManager(inputView, outputView, cars);
 		gameManager.playGame();
 
@@ -72,7 +71,6 @@ class RacingCarGameTest {
 		cars = new Cars();
 		outputView = new OutputView();
 		inputView = new InputView();
-		gameManager = new GameManager(inputView, outputView, cars);
 		GameManager gameManager = new GameManager(inputView, outputView, cars);
 
 		gameManager.playGame();
