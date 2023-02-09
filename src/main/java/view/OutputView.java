@@ -3,6 +3,7 @@ package view;
 import domain.Car;
 import domain.Cars;
 import dto.CarDto;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -29,5 +30,15 @@ public class OutputView {
             positionString += "-";
         }
         return positionString;
+    }
+
+    public void printWinner(Cars winnerCars) {
+        List<Car> cars = winnerCars.getCars();
+        List<String> carNames = new ArrayList<>();
+        for (Car car : cars) {
+            carNames.add(car.getName());
+        }
+        String winnerString = String.join(", ", carNames);
+        System.out.printf("%s가 최종 우승했습니다.\n", winnerString);
     }
 }
