@@ -22,8 +22,10 @@ public class CarRepository {
     }
 
     private int addName(String name) {
+        final int INIT_NUMBER = 0;
         if (!nameCount.containsKey(name)) {
-            return nameCount.put(name, 0);
+            nameCount.put(name, INIT_NUMBER);
+            return INIT_NUMBER;
         }
         return nameCount.merge(name, 1, Integer::sum);
     }
