@@ -15,8 +15,12 @@ public class Car {
         this.position = position;
     }
 
-    public boolean isFartherThan(int otherPosition) {
-        return position > otherPosition;
+    public static int selectMaxPosition(Car car, int position) {
+        return Math.max(car.position, position);
+    }
+
+    public boolean isSameWith(int otherPosition) {
+        return position == otherPosition;
     }
 
     public String getName() {
