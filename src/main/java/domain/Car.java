@@ -5,23 +5,23 @@ import dto.RacingStatusDto;
 public class Car {
 
     private final CarName carName;
-    private int status;
+    private Status status;
 
     public Car(String carName) {
         this.carName = new CarName(carName);
-        status = 0;
+        status = Status.INIT();
     }
 
     public void move() {
-        status++;
+        status = status.next();
     }
 
     public RacingStatusDto toDto() {
-        return new RacingStatusDto(status, carName.getName());
+        return new RacingStatusDto(status.getMoveCount(), carName.getName());
     }
 
     public int getStatus() {
-        return status;
+        return status.getMoveCount();
     }
 
     public String getCarName() {
