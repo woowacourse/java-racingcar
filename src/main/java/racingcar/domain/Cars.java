@@ -6,6 +6,11 @@ import racingcar.dto.CarDto;
 import racingcar.util.IntGenerator;
 
 public class Cars {
+
+    private static final int MAXIMUM_TRY_COUNT = 9;
+    private static final String WRONG_TRY_COUNT_ANNOUNCEMENT = "[ERROR] 잘못된 시도 횟수입니다.";
+
+    private static final int MINIMUM_TRY_COUNT = 1;
     List<Car> cars;
 
     public Cars(List<String> carNames) {
@@ -18,7 +23,25 @@ public class Cars {
         carNames.forEach(carName -> cars.add(new Car(carName, intGenerator)));
     }
 
-    public void requestMoveEachCar() {
+    public Cars(List<Car> cars, boolean isTest) { // TODO : 인자 없애는 법 고민
+        this.cars = cars;
+    }
+
+    public void repeatRequestMoveBy(int tryCount) {
+        validateTryCount(tryCount);
+        for (int index = 0 ; index < tryCount ; index++) {
+            requestMoveEachCar();
+        }
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (MINIMUM_TRY_COUNT <= tryCount && tryCount <= MAXIMUM_TRY_COUNT) {
+            return;
+        }
+        throw new IllegalArgumentException(WRONG_TRY_COUNT_ANNOUNCEMENT);
+    }
+
+    private void requestMoveEachCar() {
         cars.forEach(Car::tryMove);
     }
 
