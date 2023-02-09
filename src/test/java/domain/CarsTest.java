@@ -13,9 +13,6 @@ import racingcar.domain.NumberGenerator;
 
 class CarsTest {
 
-    private NumberGenerator numberGenerator = new TestNumberGenerator(
-        new ArrayList<>(List.of(3, 4, 5)));
-
     @Test
     @DisplayName("자동차 이름이 없어서 빈 리스트가 넘어오면 오류가 발생한다.")
     void carsGenerateTest() {
