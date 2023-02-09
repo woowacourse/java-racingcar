@@ -9,7 +9,7 @@ public class Car {
     private final Position position;
 
     public Car(String name) {
-        validateEmptyCarName(name);
+        validateBlankCarName(name);
         validateCarNameLength(name);
         this.name = name;
         this.position = new Position(0);

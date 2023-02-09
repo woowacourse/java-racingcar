@@ -24,7 +24,7 @@ public class Validator {
         }
     }
 
-    public static void validateEmptyCarName(String name) {
+    public static void validateBlankCarName(String name) {
         if(name.isBlank()) {
             throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
         }
