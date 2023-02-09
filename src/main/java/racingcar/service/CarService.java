@@ -1,7 +1,6 @@
 package racingcar.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
@@ -13,6 +12,7 @@ public class CarService {
 
     public void initializeService() {
         while (validateNameInput()) {
+            cars = new Cars(new ArrayList<Car>());
         }
         validateCountInput();
     }
