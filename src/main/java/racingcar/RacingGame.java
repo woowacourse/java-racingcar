@@ -19,6 +19,7 @@ public class RacingGame {
 
     public RacingGame(int gameTime, List<Car> cars) {
         Validator.validateGameTime(gameTime);
+        Validator.validateCars(cars);
         this.gameTime = gameTime;
         this.cars = cars;
     }

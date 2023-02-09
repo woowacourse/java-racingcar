@@ -1,5 +1,9 @@
 package racingcar.util;
 
+import racingcar.Car;
+
+import java.util.List;
+
 import static racingcar.view.ErrorMessage.*;
 
 public class Validator {
@@ -7,6 +11,7 @@ public class Validator {
     private static final int MINIMUM_TIME = 0;
     private static final String BLANK = "";
     private static final int MAXIMUM_LENGTH = 5;
+    private static final int MINIMUM_SIZE = 1;
 
     private Validator() {
     }
@@ -19,6 +24,25 @@ public class Validator {
     public static int validateGameTime(int input) {
         validateGameTimeRange(input);
         return input;
+    }
+
+    public static void validateCars(List<Car> cars) {
+        int size = cars.size();
+        validateNameDuplicateCase(cars, size);
+        validateCarsSize(size);
+    }
+
+    private static void validateCarsSize(int size) {
+        if (size <= MINIMUM_SIZE) {
+            throw new IllegalArgumentException(ERROR_PREFIX + MORE_THAN_ONE);
+        }
+    }
+
+    private static void validateNameDuplicateCase(List<Car> cars, int size) {
+        long count = cars.stream().map(Car::getName).distinct().count();
+        if (count != size) {
+            throw new IllegalArgumentException(ERROR_PREFIX + DUPLICATE_CASE);
+        }
     }
 
     private static void validateGameTimeRange(int inputNumber) {
