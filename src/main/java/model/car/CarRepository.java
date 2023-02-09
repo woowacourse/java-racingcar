@@ -32,5 +32,8 @@ public class CarRepository {
         return Collections.max(positions);
     }
 
+    public static void deleteAll() {
+        cars.clear();
+    }
 
 }
