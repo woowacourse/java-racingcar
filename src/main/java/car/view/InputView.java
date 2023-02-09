@@ -1,6 +1,7 @@
 package car.view;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
@@ -12,6 +13,14 @@ public class InputView {
 
     public int inputTrialCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        String input = scanner.nextLine();
+        validateInteger(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validateInteger(String input) {
+        if (!Pattern.matches("\\d+", input)) {
+            throw new IllegalArgumentException("시도 횟수는 정수여야 합니다");
+        }
     }
 }
