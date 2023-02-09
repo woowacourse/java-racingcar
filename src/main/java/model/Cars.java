@@ -15,13 +15,13 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(String inputNames) {
-        String[] carNames = inputNames.split(SEPARATOR);
-        List<Car> inputCars = Arrays.stream(carNames)
+        String[] carsName = inputNames.split(SEPARATOR);
+        List<Car> inputCars = Arrays.stream(carsName)
                 .distinct()
                 .map(Car::new)
                 .collect(Collectors.toList());
 
-        validateNameDuplication(carNames.length, inputCars.size());
+        validateNameDuplication(carsName.length, inputCars.size());
         cars = inputCars;
     }
 

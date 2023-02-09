@@ -36,8 +36,8 @@ public class CarController {
 
     private void generateCars() {
         try {
-            String carNames = inputView.inputCarsName();
-            carService.generateCars(carNames);
+            String carsName = inputView.inputCarsName();
+            carService.generateCars(carsName);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             generateCars();
