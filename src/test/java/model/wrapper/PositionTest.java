@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 
 class PositionTest {
 
+    private static final int MOVE_STATE = 1;
+    private static final int STOP_STATE = 0;
+
     private Position position;
 
     @BeforeEach
@@ -21,7 +24,7 @@ class PositionTest {
     void move() {
         position.move(new StubMovableRacingNumberGenerator());
 
-        Assertions.assertThat(position.getPosition()).isSameAs(1);
+        Assertions.assertThat(position.getPosition()).isSameAs(MOVE_STATE);
     }
 
     @Test
@@ -29,6 +32,6 @@ class PositionTest {
     void stop() {
         position.move(new StubUnmovableRacingNumberGenerator());
 
-        Assertions.assertThat(position.getPosition()).isSameAs(0);
+        Assertions.assertThat(position.getPosition()).isSameAs(STOP_STATE);
     }
 }
