@@ -1,15 +1,12 @@
 package racingcar.util;
 
-import racingcar.Car;
-import racingcar.view.ErrorMessage;
-
-import java.util.Arrays;
-
 import static racingcar.view.ErrorMessage.*;
 
 public class Validator {
 
-    private static final String DELIMITER = ",";
+    private static final int MINIMUM_TIME = 0;
+    private static final String BLANK = "";
+    private static final int MAXIMUM_LENGTH = 5;
 
     private Validator() {
     }
@@ -25,13 +22,13 @@ public class Validator {
     }
 
     private static void validateGameTimeRange(int inputNumber) {
-        if (inputNumber <= 0) {
+        if (inputNumber <= MINIMUM_TIME) {
             throw new IllegalArgumentException(ERROR_PREFIX + NOT_POSITIVE_NUMBER);
         }
     }
 
     public static int validateStringToInt(String input) {
-        Integer integer = null;
+        Integer integer;
         try {
             integer = Integer.valueOf(input);
         } catch (NumberFormatException e) {
@@ -42,13 +39,13 @@ public class Validator {
 
     private static void validateNoInput(String carName) {
 
-        if (carName.equals("")) {
+        if (carName.equals(BLANK)) {
             throw new IllegalArgumentException(ERROR_PREFIX + NO_INPUT);
         }
     }
 
     private static void validateCarNameLength(String carName) {
-        if (carName.length() >= 5) {
+        if (carName.length() >= MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(ERROR_PREFIX + CAR_NAME_LENGTH);
         }
     }
