@@ -5,7 +5,8 @@ public class CarMovement {
 	private static final int STOP_MAX_NUMBER = 3;
 	private static final int MOVE_FORWARD_MIN_NUMBER = 4;
 	private static final int MOVE_FORWARD_MAX_NUMBER = 9;
-	NumberGenerator numberGenerator;
+
+	private final NumberGenerator numberGenerator;
 
 	public CarMovement(NumberGenerator numberGenerator) {
 		this.numberGenerator = numberGenerator;

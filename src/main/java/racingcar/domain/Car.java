@@ -4,8 +4,6 @@ import static racingcar.exception.ErrorMessages.*;
 
 import java.util.Objects;
 
-import racingcar.utils.RandomNumberGenerator;
-
 public class Car {
 	final String name;
 	int position;
@@ -39,8 +37,8 @@ public class Car {
 	}
 
 	public void move() {
-		int randomNumber = RandomNumberGenerator.generateRandomNumber();
-		if (randomNumber >= 4) {
+		CarMovement carMovement = new CarMovement(new RandomNumberGenerator());
+		if (carMovement.isCarMoveForward()) {
 			position++;
 		}
 	}
