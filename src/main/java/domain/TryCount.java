@@ -12,13 +12,13 @@ public class TryCount {
         this.count = count;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     private void validate(int count) {
         if (count < MIN_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getValue());
         }
-    }
-
-    public int getCount() {
-        return count;
     }
 }

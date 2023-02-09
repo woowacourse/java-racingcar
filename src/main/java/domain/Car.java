@@ -1,9 +1,8 @@
 package domain;
 
 public class Car {
-
     private final Name name;
-    private Position position;
+    private final Position position;
 
     public Car(Name name) {
         this.name = name;

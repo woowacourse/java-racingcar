@@ -11,21 +11,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGameManager {
+    private RacingGame racingGame;
 
     public void run() {
         List<Name> carNames = readCarNames();
         TryCount tryCount = readTryCount();
-        RacingGame racingGame = new RacingGame(carNames, tryCount);
+        racingGame = new RacingGame(carNames);
 
+        startRace(tryCount);
+
+        OutputView.printAllCars(racingGame.getCars());
+        OutputView.printWinners(racingGame.decideWinners());
+    }
+
+    private void startRace(TryCount tryCount) {
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount.getCount(); i++) {
             racingGame.moveCars(new NormalRandomGenerator());
             OutputView.printAllCars(racingGame.getCars());
         }
-
-        OutputView.printAllCars(racingGame.getCars());
-        OutputView.printWinners(racingGame.decideWinners());
     }
 
     private TryCount readTryCount() {
@@ -34,7 +39,6 @@ public class RacingGameManager {
         } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println(e.getMessage());
             return readTryCount();
-
         }
     }
 

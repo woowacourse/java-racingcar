@@ -3,10 +3,12 @@ package domain;
 import java.util.Objects;
 
 public class Position {
+    private static final int INITIAL_POSITION = 0;
+
     private int position;
 
     public Position() {
-        this.position = 0;
+        this.position = INITIAL_POSITION;
     }
 
     public void move() {
