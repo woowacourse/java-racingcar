@@ -4,6 +4,8 @@ import domain.RacingGame;
 import view.input.InputView;
 import view.output.OutputView;
 
+import java.util.List;
+
 public class RacingController {
 
     private final InputView inputView;
@@ -16,31 +18,38 @@ public class RacingController {
     }
 
     public void start() {
-        makeRacingGame();
-        startRacingGame();
+        makeRacingGame(readCarNames());
+        startRacingGame(readGameTry());
         makeRacingGameResult();
     }
 
-    private void makeRacingGame() {
+    private void makeRacingGame(List<String> carNames) {
+        this.racingGame = new RacingGame(carNames);
+    }
+
+    private List<String> readCarNames() {
         try {
-            this.racingGame = new RacingGame(inputView.readCarName());
+            return inputView.readCarName();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            makeRacingGame();
+            return readCarNames();
         }
     }
 
-    private void startRacingGame() {
+    private void startRacingGame(int gameTry) {
+        outputView.printGameResultMessage();
+        for (int i = 0; i < gameTry; i++) {
+            racingGame.start();
+            outputView.printRacingStatus(racingGame.getCars());
+        }
+    }
+
+    private int readGameTry() {
         try {
-            int gameTry = inputView.readGameTry();
-            outputView.printGameResultMessage();
-            for (int i = 0; i < gameTry; i++) {
-                racingGame.start();
-                outputView.printRacingStatus(racingGame.getCars());
-            }
+            return inputView.readGameTry();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            startRacingGame();
+            return readGameTry();
         }
     }
 
