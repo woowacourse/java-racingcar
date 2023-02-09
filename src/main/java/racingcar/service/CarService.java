@@ -21,58 +21,6 @@ public class CarService {
         }
     }
 
-    public void runService() {
-        OutputView.printResultMessage();
-        for (int i = 0; i < tryCount; i++) {
-            runRound();
-            System.out.println("");
-        }
-    }
-
-    private void runRound() {
-        for (Car car : cars.getCarInformation()) {
-            Random random = new Random();
-            int randomNumber = random.nextInt(10);
-            runForward(car, randomNumber);
-            OutputView.printRoundResult(car.getName(), car.getDistance());
-        }
-    }
-
-    public void runForward(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
-            car.increaseDistance();
-        }
-    }
-
-    public void finishService() {
-        for (Car car : cars.getCarInformation()) {
-            OutputView.printRoundResult(car.getName(), car.getDistance());
-        }
-        findWinner();
-        OutputView.printWinners(winner);
-    }
-
-    private void findWinner() {
-        int maxDistance = findMaxDistance();
-        for(Car car : cars.getCarInformation()) {
-            compareDistance(car, maxDistance);
-        }
-    }
-
-    private int findMaxDistance() {
-        int maxDistance = -1;
-        for (Car car : cars.getCarInformation()) {
-            maxDistance = Math.max(car.getDistance(), maxDistance);
-        }
-        return maxDistance;
-    }
-
-    private void compareDistance(Car car, int maxDistance) {
-        if(maxDistance == car.getDistance()) {
-            winner.add(car.getName());
-        }
-    }
-
     private boolean validateNameInput() {
         try {
             OutputView.printNameInput();
@@ -111,6 +59,58 @@ public class CarService {
     private void validateNegativeCount(int tryCount) {
         if (tryCount <= 0) {
             throw new IllegalArgumentException("[ERROR] 시도할 횟수는 0보다 큰 숫자여야 합니다.");
+        }
+    }
+
+    public void runService() {
+        OutputView.printResultMessage();
+        for (int i = 0; i < tryCount; i++) {
+            runRound();
+            System.out.println("");
+        }
+    }
+
+    private void runRound() {
+        for (Car car : cars.getCarInformation()) {
+            Random random = new Random();
+            int randomNumber = random.nextInt(10);
+            runForward(car, randomNumber);
+            OutputView.printRoundResult(car.getName(), car.getDistance());
+        }
+    }
+
+    public void runForward(Car car, int randomNumber) {
+        if (randomNumber >= 4) {
+            car.increaseDistance();
+        }
+    }
+
+    public void finishService() {
+        for (Car car : cars.getCarInformation()) {
+            OutputView.printRoundResult(car.getName(), car.getDistance());
+        }
+        findWinner();
+        OutputView.printWinners(winner);
+    }
+
+    private void findWinner() {
+        int maxDistance = findMaxDistance();
+        for (Car car : cars.getCarInformation()) {
+            compareDistance(car, maxDistance);
+        }
+    }
+
+    private int findMaxDistance() {
+        int maxDistance = -1;
+        for (Car car : cars.getCarInformation()) {
+            maxDistance = Math.max(car.getDistance(), maxDistance);
+        }
+        return maxDistance;
+    }
+
+    private void compareDistance(Car car, int maxDistance) {
+        if (maxDistance == car.getDistance()) {
+            winner.add(car.getName());
         }
     }
 }
