@@ -41,4 +41,28 @@ public class RacingController {
         }
     }
 
+    private void repeatTryMovingByInputCount() {
+        int tryCount;
+        do {
+            tryCount = getTryCount();
+        } while (tryCount == WRONG_TRY_COUNT);
+        outputView.announceBeforePrintResult();
+        for (int i = 0; i < tryCount; i++) {
+            cars.requestMoveEachCar();
+            outputView.printResult(cars.getStatuses());
+        }
+    }
+
+    private int getTryCount() {
+        int tryCount;
+        try {
+            tryCount = inputView.getTryCount();
+            return tryCount;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return WRONG_TRY_COUNT;
+        }
+    }
+
+
 }
