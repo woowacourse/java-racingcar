@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import model.Car;
 
 public class OutputView {
@@ -23,13 +24,17 @@ public class OutputView {
 
     public void printResult(List<Car> cars) {
         for (Car car : cars) {
-            StringBuilder result = new StringBuilder();
-            for (int i = 0; i < car.getPosition(); i++) {
-                result.append("-");
-            }
-            System.out.printf(Message.OUTPUT_RESULT_FORMAT.message, car.getName(), result);
+            System.out.printf(Message.OUTPUT_RESULT_FORMAT.message, car.getName(), createResultDisplay(car));
         }
         System.out.println();
+    }
+
+    private static StringBuilder createResultDisplay(Car car) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < car.getPosition(); i++) {
+            result.append("-");
+        }
+        return result;
     }
 
     public void printWinners(List<String> winners) {
