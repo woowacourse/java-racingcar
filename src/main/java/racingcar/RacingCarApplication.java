@@ -14,7 +14,7 @@ public class RacingCarApplication {
     private static final OutputView outputView = new OutputView();
     private static final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-    private GameCars gameCars = new GameCars();
+    private GameCars gameCars = new GameCars(new ArrayList<>(), new ArrayList<>());
     private final int gameCount;
 
     public RacingCarApplication() {
@@ -43,18 +43,19 @@ public class RacingCarApplication {
     public void printFinalResult() {
         int maxPosition = getCarMaxPosition();
         outputView.printPosition(gameCars.getCars());
-        gameCars.getCars().stream().filter(car -> car.getPosition() == maxPosition).forEach(car -> gameCars.getWinners().add(car.getName()));
+        gameCars.getCars().stream().filter(car -> car.getPosition().getPosition() == maxPosition)
+                .forEach(car -> gameCars.getWinners().add(car.getName().getName()));
         outputView.printWinners(gameCars.getWinners());
     }
 
     private int getCarMaxPosition() {
-        Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getPosition);
+        Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getIntPosition);
 
         Car carWithMaxPosition = gameCars.getCars().stream()
                 .max(comparatorByPosition)
                 .orElseThrow(NoSuchElementException::new);
 
-        return carWithMaxPosition.getPosition();
+        return carWithMaxPosition.getPosition().getPosition();
     }
 
 }

@@ -1,6 +1,7 @@
 package racingcar.util;
 
 import java.util.Arrays;
+import racingcar.domain.Position;
 import racingcar.view.ErrorMessage;
 
 public class Validator {
@@ -14,8 +15,8 @@ public class Validator {
 
     public static String[] validateCarNames(String carNamesString) {
         String[] carNames = carNamesString.split(DELIMITER);
-        validateCarNameLength(carNames);
-        validateNoInput(carNames);
+        validateCarNameLengthByArray(carNames);
+        validateCarNameNoInputByArray(carNames);
         return carNames;
     }
 
@@ -47,18 +48,25 @@ public class Validator {
         return integer;
     }
 
-    public static void validateNoInput(String[] split) {
+    public static void validateCarNameNoInputByArray(String[] split) {
         long noInputCount = Arrays.stream(split).filter(s -> s.trim().equals(NO_INPUT)).count();
         if (noInputCount >= 1) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NO_INPUT);
         }
     }
 
-    public static void validateCarNameLength(String[] split) {
+    public static void validateCarNameLengthByArray(String[] split) {
         long count = Arrays.stream(split).filter(s -> s.length() >= CAR_NAME_MAX_LENGTH)
                 .count();
         if (count >= 1) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.CAR_NAME_LENGTH);
         }
     }
+
+    public static void validatePossibilePosition(int position) {
+        if (position < 0) {
+            throw new IllegalArgumentException("");
+        }
+    }
+
 }
