@@ -1,6 +1,6 @@
 package racingcar;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CarRepositoryTest {
     @BeforeEach
@@ -35,5 +34,10 @@ class CarRepositoryTest {
     @Test
     void findSamePositionWith() {
         assertThat(CarRepository.findSamePositionWith(3)).isEqualTo(List.of("mery"));
+    }
+
+    @AfterEach
+    void clear() {
+        CarRepository.clear();
     }
 }

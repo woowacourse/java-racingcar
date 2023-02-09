@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +18,12 @@ class CarTest {
     @Test
     void move() {
         car.move(() -> true);
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
     void moveFail() {
         car.move(() -> false);
-        assertThat(car.getPosition()).isEqualTo(-1);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }
