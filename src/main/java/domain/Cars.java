@@ -38,7 +38,7 @@ public class Cars {
 
     private Long getMaxValue() {
         return Collections.max(cars.stream()
-                .map((Car::getStatus))
+                .map(Car::getStatus)
                 .collect(Collectors.toList()));
     }
 
