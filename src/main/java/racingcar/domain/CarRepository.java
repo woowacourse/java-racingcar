@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.constant.ErrorConstant;
 import racingcar.dto.CarStatus;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class CarRepository {
     private final List<Car> cars;
 
     public CarRepository(List<String> carNames) {
+        validateDuplicatedNames(carNames);
         this.cars = createCarsByNames(carNames);
     }
 
@@ -44,5 +46,14 @@ public class CarRepository {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException(""));
+    }
+
+    private void validateDuplicatedNames(List<String> carNames) {
+        List<String> distinctCarNames = carNames.stream()
+                .distinct()
+                .collect(Collectors.toUnmodifiableList());
+        if (distinctCarNames.size() != carNames.size()) {
+            throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "자동차 이름이 중복됩니다.");
+        }
     }
 }
