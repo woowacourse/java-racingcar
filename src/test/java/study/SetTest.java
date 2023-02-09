@@ -40,5 +40,4 @@ public class SetTest {
         assertThat(numbers.contains(value)).isEqualTo(expected);
     }
 
-
 }
