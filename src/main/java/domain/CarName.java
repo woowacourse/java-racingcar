@@ -1,7 +1,6 @@
 package domain;
 
-public class CarName {
-
+public final class CarName {
     public static final int MAX_LENGTH = 5;
     private final String name;
 
