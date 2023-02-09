@@ -32,4 +32,8 @@ public class RacingCar extends RandomGenerator {
     public int getPosition() {
         return position;
     }
+
+    public String getName() {
+        return name.getName();
+    }
 }
