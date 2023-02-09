@@ -1,16 +1,33 @@
 package domain;
 
 import util.RandomNumberGenerator;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarsInfo {
+    private final List<Car> carsInfo = new ArrayList<>();
 
-    private final List<Car> carsInfo;
+    public CarsInfo(List<String> carNames) {
+        checkNameDuplication(carNames);
+        addCar(carNames);
+    }
 
-    public CarsInfo(List<Car> carsInfo) {
-        this.carsInfo = carsInfo;
+    private void checkNameDuplication(List<String> carNames) {
+        long uniqueNameCount = carNames.stream()
+                .distinct()
+                .count();
+        if (uniqueNameCount != carNames.size()) {
+            throw new IllegalArgumentException("중복되는 자동차 이름이 존재합니다.");
+        }
+    }
+
+    private void addCar(List<String> carNames) {
+        for (String carName : carNames) {
+            carsInfo.add(new Car(carName));
+        }
     }
 
     public List<String> findWinners() {

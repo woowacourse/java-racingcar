@@ -1,12 +1,10 @@
 package controller;
 
-import domain.Car;
 import domain.CarsInfo;
 import domain.RoundResult;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingController {
@@ -31,9 +29,13 @@ public class RacingController {
     }
 
     private CarsInfo setUpCarName() {
-        List<Car> carsInfo = new ArrayList<>();
-        initCarsInfo(carsInfo);
-        return new CarsInfo(carsInfo);
+        try {
+            outputView.printCarNameMessage();
+            return new CarsInfo(inputView.readCarNames());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return setUpCarName();
+        }
     }
 
     private Integer setUpTryCount() {
@@ -45,23 +47,6 @@ public class RacingController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return setUpTryCount();
-        }
-    }
-
-    private void initCarsInfo(List<Car> carsInfo) {
-        try {
-            outputView.printCarNameMessage();
-            carsInfo.clear();
-            checkCarNameValidation(carsInfo);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            initCarsInfo(carsInfo);
-        }
-    }
-
-    private void checkCarNameValidation(List<Car> carsInfo) {
-        for (String carName : inputView.readCarNames()) {
-            carsInfo.add(new Car(carName));
         }
     }
 
