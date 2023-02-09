@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Car implements Comparable<Car> {
 
     private static final int MAX_LENGTH = 5;
@@ -13,6 +15,9 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateName(String name) {
+        if (Objects.isNull(name)) {
+            throw new IllegalStateException("자동차 이름 Null 오류");
+        }
         if (name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름은 빈 문자열일 수 없습니다.");
         }
