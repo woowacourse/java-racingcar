@@ -18,8 +18,14 @@ public class Car implements Comparable<Car> {
         this.numberGenerator = numberGenerator;
     }
 
-    public int getPosition() {
-        return this.position;
+    public void goForward() {
+        if (numberGenerator.generate() >= MOVABLE_MIN_NUMBER) {
+            position++;
+        }
+    }
+
+    public boolean isSamePosition(Car otherCar) {
+        return this.position == otherCar.position;
     }
 
     public String getMovePosition() {
@@ -34,25 +40,14 @@ public class Car implements Comparable<Car> {
         return this.name;
     }
 
-    public void goForward() {
-        if (numberGenerator.generate() >= MOVABLE_MIN_NUMBER) {
-            position++;
-        }
+    @Override
+    public int compareTo(Car otherCar) {
+        return otherCar.position - this.position;
     }
 
-    public boolean isSamePosition(Car otherCar) {
-        return this.position == otherCar.position;
-    }
-
-    // 자동차 이름의 길이를 검증하는 메소드
     private void validateName(String name) {
         if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }
-    }
-
-    @Override
-    public int compareTo(Car otherCar) {
-        return otherCar.position - this.position;
     }
 }

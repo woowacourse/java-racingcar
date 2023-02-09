@@ -15,10 +15,12 @@ public class CarTest {
     private NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     @ParameterizedTest
-    @ValueSource(strings = {"","abcdef"})
-    void carGenerateTest(String name){
+    @ValueSource(strings = {"", "abcdef"})
+    void carGenerateTest(String name) {
         //When
-        Throwable result = catchThrowable(()->{new Car(name, numberGenerator);});
+        Throwable result = catchThrowable(() -> {
+            new Car(name, numberGenerator);
+        });
 
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);

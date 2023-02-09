@@ -17,10 +17,6 @@ public class Cars {
         this.cars = new ArrayList<>(cars);
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public List<Car> decideWinner() {
         cars.sort(Car::compareTo);
         Car MaxPositionCar = cars.get(0);
@@ -30,7 +26,7 @@ public class Cars {
         return winners;
     }
 
-    public List<Car> moveEachCar(){
+    public List<Car> moveEachCar() {
         for (Car car : cars) {
             car.goForward();
         }

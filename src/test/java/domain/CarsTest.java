@@ -12,15 +12,18 @@ import racingcar.domain.NumberGenerator;
 
 class CarsTest {
 
-    private NumberGenerator numberGenerator = new TestNumberGenerator(new ArrayList<>(List.of(3,4,5)));
+    private NumberGenerator numberGenerator = new TestNumberGenerator(
+        new ArrayList<>(List.of(3, 4, 5)));
 
     @Test
-    void carsGenerateTest(){
+    void carsGenerateTest() {
         //Given
         List<Car> testCase = new ArrayList<>();
 
         //When
-        Throwable result = catchThrowable(()->{new Cars(testCase);});
+        Throwable result = catchThrowable(() -> {
+            new Cars(testCase);
+        });
 
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
@@ -29,11 +32,11 @@ class CarsTest {
     @Test
     void decideWinnerTest() {
         //Given
-        Car pobi = new Car("pobi", new TestNumberGenerator(new ArrayList<>(List.of(3,4,5))));
-        Car neo = new Car("neo", new TestNumberGenerator(new ArrayList<>(List.of(3,4,5))));
-        Car hiiro = new Car("hiiro", new TestNumberGenerator(new ArrayList<>(List.of(1,4,2))));
+        Car pobi = new Car("pobi", new TestNumberGenerator(new ArrayList<>(List.of(3, 4, 5))));
+        Car neo = new Car("neo", new TestNumberGenerator(new ArrayList<>(List.of(3, 4, 5))));
+        Car hiiro = new Car("hiiro", new TestNumberGenerator(new ArrayList<>(List.of(1, 4, 2))));
 
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             pobi.goForward();
             neo.goForward();
             hiiro.goForward();
