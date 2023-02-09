@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import utils.CarNameValidator;
+import utils.NumberValidator;
 import utils.StringParser;
 
 public class InputView {
@@ -38,7 +39,13 @@ public class InputView {
     }
 
     public int readAttemptNumber() throws IOException {
-        System.out.println(READ_ATTEMPT_NUMBER_MESSAGE);
-        return Integer.parseInt(br.readLine());
+        try {
+            System.out.println(READ_ATTEMPT_NUMBER_MESSAGE);
+            String input = br.readLine();
+            return NumberValidator.validate(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readAttemptNumber();
+        }
     }
 }

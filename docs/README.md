@@ -40,7 +40,7 @@
 
 ### NumberValidator
 
-- [ ] 시도할 횟수가 숫자인지 검증한다.
+- [x] 시도할 횟수가 숫자인지 검증한다.
 
 ### RandomNumberGenerator
 
