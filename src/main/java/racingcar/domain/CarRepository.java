@@ -9,11 +9,19 @@ import java.util.stream.Collectors;
 public class CarRepository {
 
     private static final int START_POINT = 0;
+    private static final int MINIMUM_CAR_COUNT = 2;
     private final List<Car> cars;
 
     public CarRepository(List<String> carNames) {
         validateDuplicatedNames(carNames);
+        validateCarCount(carNames.size());
         this.cars = createCarsByNames(carNames);
+    }
+
+    private void validateCarCount(int size) {
+        if (size < MINIMUM_CAR_COUNT) {
+            throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "자동차 수는 2대 이상이어야 합니다.");
+        }
     }
 
     private List<Car> createCarsByNames(List<String> carNames) {
