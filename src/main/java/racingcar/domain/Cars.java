@@ -47,7 +47,7 @@ public class Cars {
     public Map<String, Integer> getRoundResult() {
         Map<String, Integer> currentRoundResult = new LinkedHashMap<>();
         for (Car car : cars) {
-            currentRoundResult.put(car.getName(), car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold()));
+            currentRoundResult.put(car.getName(), getPosition(car));
         }
         return currentRoundResult;
     }
@@ -61,10 +61,14 @@ public class Cars {
 
     public List<String> getWinners() {
         Set<Integer> positions = new HashSet<>();
-        cars.forEach(car -> positions.add(car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold())));
+        cars.forEach(car -> positions.add(getPosition(car)));
         int maxPosition = Collections.max(positions);
-        return cars.stream().filter(car -> car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold()) == maxPosition)
+        return cars.stream().filter(car -> getPosition(car) == maxPosition)
                 .map(car -> car.getName())
                 .collect(Collectors.toList());
+    }
+
+    private int getPosition(Car car) {
+        return car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold());
     }
 }
