@@ -6,6 +6,7 @@ import racingcar.controller.RacingCarController;
 import racingcar.domain.NumberGenerator;
 import racingcar.step.CreateCarStep;
 import racingcar.step.Step;
+import racingcar.step.context.GameContext;
 
 public class RacingCarApplication {
 
@@ -14,7 +15,8 @@ public class RacingCarApplication {
         RacingCarController racingCarController = new RacingCarController(generator);
         Logger log = new ConsoleLogger();
 
-        Step step = new CreateCarStep(racingCarController, log);
+        GameContext context = new GameContext();
+        Step step = new CreateCarStep(racingCarController, log, context);
         run(step);
     }
 

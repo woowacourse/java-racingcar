@@ -3,18 +3,17 @@ package racingcar.step;
 import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
 import racingcar.domain.Cars;
+import racingcar.step.context.GameContext;
 import racingcar.view.OutputView;
 
 import java.util.List;
 
 public class RacingResultStep extends RacingCarApplicationStep {
-    private final Cars cars;
 
     public RacingResultStep(final RacingCarController controller,
                             final Logger log,
-                            final Cars cars) {
-        super(controller, log);
-        this.cars = cars;
+                            final GameContext context) {
+        super(controller, log, context);
     }
 
     @Override
@@ -24,7 +23,7 @@ public class RacingResultStep extends RacingCarApplicationStep {
 
     @Override
     protected Step pureExecute() {
-        List<String> winners = controller.winners(cars);
+        List<String> winners = controller.winners(context.getCars());
         OutputView.printWinners(winners);
         return new Exit();
     }

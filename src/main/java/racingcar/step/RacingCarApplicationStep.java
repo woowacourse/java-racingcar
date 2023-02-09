@@ -2,6 +2,7 @@ package racingcar.step;
 
 import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
+import racingcar.step.context.GameContext;
 
 import static java.lang.String.format;
 
@@ -10,6 +11,7 @@ public abstract class RacingCarApplicationStep implements Step {
     private static final int MAX_RETRY_COUNT = 3;
     protected final Logger log;
     protected final RacingCarController controller;
+    protected final GameContext context;
 
     @Override
     public Step execute() {
@@ -29,8 +31,10 @@ public abstract class RacingCarApplicationStep implements Step {
     protected abstract Step pureExecute();
 
     protected RacingCarApplicationStep(final RacingCarController controller,
-                                       final Logger log) {
+                                       final Logger log,
+                                       final GameContext context) {
         this.controller = controller;
         this.log = log;
+        this.context = context;
     }
 }

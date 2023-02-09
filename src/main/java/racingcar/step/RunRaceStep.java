@@ -3,23 +3,15 @@ package racingcar.step;
 import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
 import racingcar.controller.response.MovedResultResponse;
-import racingcar.domain.Cars;
-import racingcar.domain.Lap;
+import racingcar.step.context.GameContext;
 import racingcar.view.OutputView;
 
 public class RunRaceStep extends RacingCarApplicationStep {
 
-    private final Cars cars;
-    private final Lap lap;
-
     public RunRaceStep(final RacingCarController controller,
                        final Logger log,
-                       // TODO Context
-                       final Cars cars,
-                       final Lap lap) {
-        super(controller, log);
-        this.cars = cars;
-        this.lap = lap;
+                       final GameContext context) {
+        super(controller, log, context);
     }
 
     @Override
@@ -29,15 +21,15 @@ public class RunRaceStep extends RacingCarApplicationStep {
 
     @Override
     protected Step pureExecute() {
-        MovedResultResponse result = controller.moveCars(cars, lap);
+        MovedResultResponse result = controller.moveCars(context.getCars(), context.getLap());
         OutputView.printState(result);
-        return judgeNext(lap);
+        return judgeNext();
     }
 
-    private Step judgeNext(final Lap lap) {
-        if (lap.hasNext()) {
+    private Step judgeNext() {
+        if (context.getLap().hasNext()) {
             return this;
         }
-        return new RacingResultStep(controller, log, cars);
+        return new RacingResultStep(controller, log, context);
     }
 }
