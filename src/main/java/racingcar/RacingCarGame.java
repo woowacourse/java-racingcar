@@ -2,8 +2,6 @@ package racingcar;
 
 import java.util.List;
 
-import static constant.Constants.TRIAL_INPUT_EXCEPTION;
-
 public class RacingCarGame {
 
     public void repeatRounds() {
