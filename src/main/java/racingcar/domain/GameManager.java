@@ -2,9 +2,9 @@ package racingcar.domain;
 
 import java.util.List;
 
-import racingcar.dto.CarNamesDTO;
-import racingcar.dto.GameResultDTO;
-import racingcar.dto.RoundResultDTO;
+import racingcar.dto.CarNamesRequest;
+import racingcar.dto.GameResultResponse;
+import racingcar.dto.RoundResultResponse;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -33,7 +33,7 @@ public class GameManager {
 		while (!gameRound.isEnd()) {
 			cars.moveCars();
 			gameRound.increaseRound();
-			RoundResultDTO roundResultDTO = new RoundResultDTO(cars.getCars());
+			RoundResultResponse roundResultDTO = new RoundResultResponse(cars.getCars());
 			outputView.printRoundResult(roundResultDTO);
 		}
 	}
@@ -41,7 +41,7 @@ public class GameManager {
 	private void createCars() {
 		while(true) {
 			try {
-				CarNamesDTO carNamesDTO = inputView.inputCarName();
+				CarNamesRequest carNamesDTO = inputView.inputCarName();
 				List<String> carNames = carNamesDTO.getCarNames();
 				cars.generateCars(carNames);
 				return;
@@ -65,7 +65,7 @@ public class GameManager {
 	}
 
 	private void endGame() {
-		GameResultDTO gameResultDTO = new GameResultDTO(cars.findWinnerNames());
+		GameResultResponse gameResultDTO = new GameResultResponse(cars.findWinnerNames());
 		outputView.printEndGameResult(gameResultDTO);
 	}
 }

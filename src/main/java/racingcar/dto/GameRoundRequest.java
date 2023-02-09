@@ -2,10 +2,10 @@ package racingcar.dto;
 
 import static racingcar.exception.ErrorMessages.*;
 
-public class GameRoundDTO {
+public class GameRoundRequest {
 	private final int round;
 
-	public GameRoundDTO(String gameRound) {
+	public GameRoundRequest(String gameRound) {
 		validateBlank(gameRound);
 		validateNotStartZero(gameRound);
 		validateInteger(gameRound);

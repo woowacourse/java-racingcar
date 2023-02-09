@@ -3,8 +3,8 @@ package racingcar.view;
 import java.util.List;
 
 import racingcar.dto.CarDTO;
-import racingcar.dto.GameResultDTO;
-import racingcar.dto.RoundResultDTO;
+import racingcar.dto.GameResultResponse;
+import racingcar.dto.RoundResultResponse;
 
 public class OutputView {
 	private static final String RESULT_MESSAGE = System.lineSeparator() + "실행결과";
@@ -15,7 +15,7 @@ public class OutputView {
 	public void printResultMessage() {
 		System.out.println(RESULT_MESSAGE);
 	}
-	public void printRoundResult(RoundResultDTO roundResultDTO) {
+	public void printRoundResult(RoundResultResponse roundResultDTO) {
 		StringBuilder resultBuilder = new StringBuilder();
 		List<CarDTO> carDTOs = roundResultDTO.getRoundResult();
 		for (CarDTO carDTO : carDTOs) {
@@ -28,7 +28,7 @@ public class OutputView {
 		System.out.println(resultBuilder);
 	}
 
-	public void printEndGameResult(GameResultDTO gameResultDTO) {
+	public void printEndGameResult(GameResultResponse gameResultDTO) {
 		String winnerNames = String.join(", ", gameResultDTO.getWinnerNames());
 		System.out.println(winnerNames + GAME_RESULT_MESSAGE);
 	}
