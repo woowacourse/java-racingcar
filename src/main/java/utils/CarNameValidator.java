@@ -1,7 +1,5 @@
 package utils;
 
-import java.util.List;
-
 public class CarNameValidator {
 
     private static final String NO_NAME_EXISTS_MESSAGE = "[ERROR] 자동차의 이름은 반드시 있어야 합니다.";

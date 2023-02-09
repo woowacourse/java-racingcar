@@ -11,7 +11,7 @@ public class NumberValidator {
             int number = Integer.parseInt(input);
             validateRange(number);
             return number;
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER_MESSAGE, e);
         }
     }
