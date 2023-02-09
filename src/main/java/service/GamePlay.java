@@ -5,7 +5,6 @@ import static view.OutputView.printResultNotice;
 import static view.OutputView.printWinner;
 
 import domain.CarRepository;
-import java.util.List;
 import strategy.MovingStrategy;
 import strategy.RandomMovingStrategy;
 import view.InputView;
@@ -13,8 +12,7 @@ import view.OutputView;
 
 public class GamePlay {
 
-    public static void gameStart(List<String> carNames) {
-        CarRepository carRepository = new CarRepository(CarFactory.buildCars(carNames));
+    public void gameStart(CarRepository carRepository) {
         OutputView.printInputTryTimesNotice();
         int tryTimes = InputView.inputTryTimes();
         printResultNotice();
@@ -22,7 +20,7 @@ public class GamePlay {
         printWinner(carRepository.findWinners());
     }
 
-    public static void play(CarRepository carRepository, int tryTimes,
+    public void play(CarRepository carRepository, int tryTimes,
         MovingStrategy movingStrategy) {
         validateTryTimes(tryTimes);
         for (int i = 0; i < tryTimes; i++) {
