@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
@@ -31,15 +30,11 @@ public class OutputView {
         System.out.println(COUNT_MESSAGE);
     }
 
-    public void printWinners(List<Car> winners) {
+    public void printWinners(List<String> winners) {
         System.out.println(winnerFormat(winners) + END_MESSAGE);
     }
 
-    private String winnerFormat(List<Car> winners) {
-        List<String> winnerNames = new ArrayList<>();
-        for (Car car : winners) {
-            winnerNames.add(car.getName());
-        }
-        return String.join(DIVISION_CHAR, winnerNames);
+    private String winnerFormat(List<String> winners) {
+        return String.join(DIVISION_CHAR, winners);
     }
 }
