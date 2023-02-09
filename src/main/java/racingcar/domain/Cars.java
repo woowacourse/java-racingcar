@@ -56,4 +56,8 @@ public class Cars {
         }
     }
 
+    public boolean isEmpty() {
+        return this.cars.isEmpty();
+    }
+
 }
