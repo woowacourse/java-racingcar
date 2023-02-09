@@ -24,7 +24,7 @@ class ViewRendererTest {
 
         String expectedOutput = "test1 : ---\n" +
                 "test2 : -\n" +
-                "test3 : -----\n\n";
+                "test3 : -----\n";
 
         assertThat(renderer.renderRoundResult(roundResults)).isEqualTo(expectedOutput);
     }
