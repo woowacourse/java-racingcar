@@ -19,14 +19,14 @@ class RacingGameTest {
     }
 
     @Test
-    void 자동차_이름_중복_테스트() {
+    void 자동차_이름_중복_예외_테스트() {
         RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
         assertThatThrownBy(()->racingGame.generateCars(Arrays.asList("bb", "bb", "cc")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 자동차_개수_1개_테스트() {
+    void 자동차_개수_1개_일_때_예외_테스트() {
         RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
         assertThatThrownBy(()->racingGame.generateCars(Arrays.asList("bb")))
                 .isInstanceOf(IllegalArgumentException.class);
