@@ -28,6 +28,6 @@ public class RacingCarGame {
         return CarRepository.findAll().stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0);
+                .orElse(START_POSITION);
     }
 }
