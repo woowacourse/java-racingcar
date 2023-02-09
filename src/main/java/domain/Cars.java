@@ -11,17 +11,17 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
-    public static Cars from(List<String> carNames) {
+    public static Cars from(final List<String> carNames) {
         return carNames.stream()
                 .map(Car::new)
                 .collect(collectingAndThen(toList(), Cars::new));
     }
 
-    public void move(NumberGenerator strategy) {
+    public void move(final NumberGenerator strategy) {
         for (Car car : cars) {
             car.move(strategy.generate());
         }

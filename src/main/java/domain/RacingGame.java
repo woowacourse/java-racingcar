@@ -8,9 +8,9 @@ public class RacingGame {
     private final Cars cars;
     private final Count count;
 
-    public RacingGame(final NumberGenerator numberGenerator, final Cars cars, final int count) {
+    public RacingGame(final NumberGenerator numberGenerator, final List<String> names, final int count) {
         this.numberGenerator = numberGenerator;
-        this.cars = cars;
+        this.cars = Cars.from(names);
         this.count = new Count(count);
     }
 

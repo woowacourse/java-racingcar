@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Car;
-import domain.Cars;
 import domain.RacingGame;
 import domain.RandomNumberGenerator;
 import java.util.List;
@@ -19,7 +18,7 @@ public class RacingGameController {
         this.outputView = outputView;
     }
 
-    public <T> T retry(Supplier<T> supplier) {
+    public <T> T retry(final Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
@@ -37,7 +36,7 @@ public class RacingGameController {
     private RacingGame gameInitialize() {
         List<String> carNames = retry(inputView::readCarNames);
         int count = retry(inputView::readCount);
-        return new RacingGame(new RandomNumberGenerator(), Cars.from(carNames), count);
+        return new RacingGame(new RandomNumberGenerator(), carNames, count);
     }
 
     private void play(final RacingGame racingGame) {

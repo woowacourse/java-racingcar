@@ -15,10 +15,7 @@ public class CarsTest {
 
     @BeforeEach
     void setUp() {
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
-        Car car3 = new Car("car3");
-        cars = new Cars(List.of(car1, car2, car3));
+        cars = Cars.from(List.of("car1", "car2", "car3"));
     }
 
     @Test

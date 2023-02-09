@@ -10,10 +10,10 @@ import utils.TestNumberGenerator;
 
 class RacingGameTest {
 
-    private RacingGame generateRacingGame(int count) {
+    private RacingGame generateRacingGame(final int count) {
         NumberGenerator numberGenerator = new TestNumberGenerator(Lists.newArrayList(4, 3));
-        Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        return new RacingGame(numberGenerator, cars, count);
+        List<String> names = List.of("car1", "car2");
+        return new RacingGame(numberGenerator, names, count);
     }
 
     @Test

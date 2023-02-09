@@ -12,7 +12,7 @@ public class CarTest {
     @ParameterizedTest
     @CsvSource(value = {"4,1", "3,0"})
     @DisplayName("move 메서드는 값을 입력받고 4 이상인 경우 전진하고, 3 이하인 경우 멈춘다.")
-    void should_move_when_valueIsMoreThanFour(int value, int position) {
+    void should_move_when_valueIsMoreThanFour(final int value, final int position) {
         Car car = new Car("Herb");
 
         car.move(value);

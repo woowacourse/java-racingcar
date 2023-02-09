@@ -7,7 +7,7 @@ public class TestNumberGenerator implements NumberGenerator {
 
     private final List<Integer> numbers;
 
-    public TestNumberGenerator(List<Integer> numbers) {
+    public TestNumberGenerator(final List<Integer> numbers) {
         this.numbers = numbers;
     }
 

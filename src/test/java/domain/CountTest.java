@@ -21,7 +21,7 @@ class CountTest {
 
     @ParameterizedTest(name = "isPlayable 메서드는 진행 가능 횟수가 {0}인 경우 {1}을 반환한다.")
     @CsvSource({"1,true", "0,false"})
-    void should_returnState_when_callIsPlayable(int value, boolean state) {
+    void should_returnState_when_callIsPlayable(final int value, final boolean state) {
         Count count = new Count(value);
 
         assertThat(count.isPlayable()).isEqualTo(state);
