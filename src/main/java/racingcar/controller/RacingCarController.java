@@ -24,6 +24,7 @@ public class RacingCarController {
         TryCountRequest tryCountRequest = racingCarView.receiveTryCount();
         int tryCount = tryCountRequest.getTryCount();
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
+        racingCarView.printStartMessage();
         for (int i = 0; i < tryCount; i++) {
             racingCarService.moveCars(randomMoveStrategy);
             List<RacingCarStatusResponse> carStatuses = racingCarService.getCarStatuses();
