@@ -1,8 +1,8 @@
-import domain.Car;
+import static domain.ExceptionHandlingTemplate.repeatUntilReadValidInput;
+
 import domain.CarDTO;
 import domain.Race;
 import java.util.List;
-import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
@@ -11,9 +11,8 @@ public class RaceController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        List<String> carNames = inputView.readCarNames();
-        Race race = new Race(carNames);
-        int tryTime = readValidTryTime();
+        Race race = repeatUntilReadValidInput(Race::new, inputView::readCarNames);
+        int tryTime = repeatUntilReadValidInput(this::validateTryTime, inputView::readTryTime);
 
         while (tryTime-- > 0) {
             race.tryMoveOneTime();
@@ -24,9 +23,8 @@ public class RaceController {
         outputView.printWinners(race.judgeWinners());
     }
 
-    private int readValidTryTime() {
-        int tryTime = inputView.readTryTime();
-        if(tryTime < 0){
+    private int validateTryTime(int tryTime) {
+        if (tryTime < 0) {
             throw new IllegalArgumentException("시도 횟수는 음수일 수 없습니다.");
         }
         return tryTime;
