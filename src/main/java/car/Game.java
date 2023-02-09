@@ -27,7 +27,7 @@ public class Game {
     private Integer findMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
-            if (car.getPosition() > maxPosition) {
+            if (car.isFartherThan(maxPosition)) {
                 maxPosition = car.getPosition();
             }
         }
