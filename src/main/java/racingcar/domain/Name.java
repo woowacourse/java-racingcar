@@ -7,11 +7,11 @@ public class Name {
     private static final int MAX_LENGTH = 5;
     private static final int MIN_LENGTH = 0;
 
-    private final String name;
+    private final String value;
 
-    public Name(final String name) {
-        validate(name);
-        this.name = name;
+    public Name(final String value) {
+        validate(value);
+        this.value = value;
     }
 
     private void validate(final String name) {
@@ -23,8 +23,8 @@ public class Name {
         }
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -32,11 +32,11 @@ public class Name {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Name name1 = (Name) o;
-        return name.equals(name1.name);
+        return value.equals(name1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(value);
     }
 }

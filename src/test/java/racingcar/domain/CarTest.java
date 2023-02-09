@@ -18,7 +18,7 @@ class CarTest {
         Name name = new Name("말랑");
 
         // when
-        Car car = new Car(name.getName());
+        Car car = new Car(name.getValue());
 
         // then
         assertThat(car.getName()).isEqualTo(name);

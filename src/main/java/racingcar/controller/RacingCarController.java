@@ -37,7 +37,7 @@ public class RacingCarController {
 
     public List<String> winners(Cars cars) {
         return cars.winners().stream()
-                .map(it -> it.getName().getName())
+                .map(it -> it.getName().getValue())
                 .collect(Collectors.toList());
     }
 }

@@ -13,7 +13,7 @@ public class MovedResultResponse {
         positionMap = cars.getCars()
                 .stream()
                 .collect(Collectors.toMap(
-                        car -> car.getName().getName(),
+                        car -> car.getName().getValue(),
                         car -> car.getPosition().getValue())
                 );
     }

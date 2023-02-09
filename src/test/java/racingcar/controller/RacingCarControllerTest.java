@@ -127,7 +127,7 @@ class RacingCarControllerTest {
             List<String> winnerNames = controller.winners(cars);
 
             // then
-            assertThat(winnerNames).containsExactlyInAnyOrder(winner1.getName().getName(), winner2.getName().getName());
+            assertThat(winnerNames).containsExactlyInAnyOrder(winner1.getName().getValue(), winner2.getName().getValue());
         }
     }
 

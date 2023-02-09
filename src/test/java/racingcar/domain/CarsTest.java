@@ -42,7 +42,7 @@ class CarsTest {
         // given
         Cars cars = new Cars(List.of("체체", "말랑"));
         List<Car> beforeMoveCars = cars.getCars().stream()
-                .map(it -> new Car(it.getName().getName()))
+                .map(it -> new Car(it.getName().getValue()))
                 .collect(Collectors.toList());
 
         // when
