@@ -33,7 +33,7 @@ class RacingCarControllerTest {
             assertThat(cars.getCars().size()).isEqualTo(size);
         }
 
-        @ParameterizedTest(name = "confirmTotalLap() 시 숫자를 입력받아 Lap을 생성한다.")
+        @ParameterizedTest(name = "confirmTotalLap() 시 숫자를 입력받아(ex: {arguments}) Lap을 생성한다.")
         @ValueSource(ints = {1, 2, 3, 4, 5})
         void success_test_2(final int totalLapInput) {
             // when
