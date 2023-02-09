@@ -40,14 +40,14 @@ public class Cars {
     public String race() {
         StringBuilder result = new StringBuilder();
         this.cars.forEach(car -> {
-            checkNumberAndMove(car);
+            int randomNumber = numberGenerator.generate();
+            checkNumberAndMove(car, randomNumber);
             result.append(car).append("\n");
         });
         return result.toString();
     }
 
-    public void checkNumberAndMove(Car car) {
-        int randomNumber = numberGenerator.generate();
+    private void checkNumberAndMove(Car car, int randomNumber) {
         if (randomNumber >= CAR_FORWARD_NUMBER.getValue()) {
             car.move();
         }
