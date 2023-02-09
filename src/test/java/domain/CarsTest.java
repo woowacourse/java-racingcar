@@ -4,8 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarsTest {
@@ -49,15 +51,10 @@ class CarsTest {
         Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        final String result = cars.getCurrentStatus();
-        StringBuilder expectedResult = new StringBuilder();
-
-        expectedResult.append("pobi : --")
-                      .append("\n")
-                      .append("crong : -")
-                      .append("\n");
+        final Map<String, Integer> carCurrentStatus = cars.getCurrentStatus();
 
         // then
-        assertEquals(expectedResult.toString(), result);
+        assertThat(carCurrentStatus).hasSize(2)
+                                    .contains(entry("pobi", 2), entry("crong", 1));
     }
 }

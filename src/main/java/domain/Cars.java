@@ -3,7 +3,9 @@ package domain;
 import utils.RandomNumberGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Cars {
 
@@ -54,19 +56,14 @@ public class Cars {
         }
     }
 
-    public String getCurrentStatus() {
-        StringBuilder stringBuilder = new StringBuilder();
+    public Map<String, Integer> getCurrentStatus() {
+
+        Map<String, Integer> carStatus = new HashMap<>();
 
         for (final Car car : cars) {
-            makeStatusBar(stringBuilder, car);
+            carStatus.put(car.getName(), car.getDistance());
         }
 
-        return stringBuilder.toString();
-    }
-
-    private void makeStatusBar(final StringBuilder stringBuilder, final Car car) {
-        stringBuilder.append(car.getName()).append(" : ");
-        stringBuilder.append("-".repeat(car.getDistance()));
-        stringBuilder.append("\n");
+        return carStatus;
     }
 }

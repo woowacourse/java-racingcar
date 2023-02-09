@@ -2,9 +2,11 @@ package console;
 
 import domain.Cars;
 
+import java.util.Map;
+
 public class OutputView {
 
-    private static final String DELIMITER = "- ";
+    private static final String DELIMITER = ", ";
 
     public static void requestOfCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -24,7 +26,18 @@ public class OutputView {
     }
 
     public static void printCurrentStatus(Cars cars) {
-        System.out.println(cars.getCurrentStatus());
+        final Map<String, Integer> carCurrentStatus = cars.getCurrentStatus();
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (final String carName : carCurrentStatus.keySet()) {
+            stringBuilder.append(carName)
+                         .append(" : ")
+                         .append("-".repeat(carCurrentStatus.get(carName)))
+                         .append("\n");
+        }
+
+        System.out.println(stringBuilder.toString());
     }
 
 }
