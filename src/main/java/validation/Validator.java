@@ -27,7 +27,7 @@ public class Validator {
 
     private static boolean hasWrongSizeName(List<String> carNames) {
         return carNames.stream()
-                .anyMatch(carName -> isWrongSize(carName));
+                .anyMatch(Validator::isWrongSize);
     }
 
     private static boolean isWrongSize(String carName) {
