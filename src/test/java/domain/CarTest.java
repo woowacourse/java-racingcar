@@ -30,7 +30,7 @@ class CarTest {
                 .hasMessage(ErrorMessages.NAME_LENGTH.getMessage());
     }
 
-    @ParameterizedTest(name = "{0}이 들어올때 테스트")
+    @ParameterizedTest(name = "move()의 인자로 3보다 큰 수가 들어오면 status가 증가한다. 입력값 = {0}")
     @CsvSource(value = {"4,1", "3,0"})
     void checkMoveTest(int randomNumber, int expected) {
         Car car = new Car("test");
