@@ -47,4 +47,15 @@ class RacingGameTest {
 
         assertThat(racingGame.isPlayable()).isFalse();
     }
+
+    @Test
+    @DisplayName("findWinners 메서드는 우승자의 이름목록을 반환한다.")
+    void should_returnWinnersName_when_findWinners() {
+        RacingGame racingGame = generateRacingGame(1);
+        racingGame.play();
+
+        List<String> result = racingGame.findWinners();
+
+        assertThat(result).containsExactly("car1");
+    }
 }

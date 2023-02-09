@@ -20,6 +20,10 @@ public class RacingGame {
         return cars.getCars();
     }
 
+    public List<String> findWinners() {
+        return cars.findWinners();
+    }
+
     public boolean isPlayable() {
         return count > 0;
     }

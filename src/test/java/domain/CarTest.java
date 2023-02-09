@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -28,5 +29,26 @@ public class CarTest {
         car.move(value);
 
         assertThat(car.getPosition()).isEqualTo(position);
+    }
+
+    @Test
+    @DisplayName("isSamePosition 메서드는 위치가 다르면 false를 반환한다.")
+    void should_returnFalse_when_positionIsNotSame() {
+        Car car = new Car("Herb");
+        car.move(Integer.MAX_VALUE);
+
+        boolean result = car.isSamePosition(new Car("Herb2"));
+
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("isSamePosition 메서드는 위치가 같으면 true를 반환한다.")
+    void should_returnSame_when_positionIsSame() {
+        Car car = new Car("Herb");
+
+        boolean result = car.isSamePosition(new Car("Herb2"));
+
+        assertThat(result).isTrue();
     }
 }

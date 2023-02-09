@@ -64,4 +64,4 @@ InputValidator
 OutputView
 
 - [x] 실행 결과를 출력한다.
-- 최종 우승자를 출력한다.
+- [x] 최종 우승자를 출력한다.
