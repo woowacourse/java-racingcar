@@ -32,4 +32,13 @@ public class CarRepository implements CarRepositoryInterface {
     public int countOfCars() {
         return carInformation.size();
     }
+
+    @Override
+    public List<Integer> positions() {
+        List<Integer> positions = new ArrayList<>();
+        for (Car car : carInformation) {
+            positions.add(car.getPosition());
+        }
+        return positions;
+    }
 }
