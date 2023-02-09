@@ -1,5 +1,6 @@
 package view;
 
+import domain.Name;
 import error.ErrorMessage;
 
 import java.util.Arrays;

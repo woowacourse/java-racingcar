@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Name;
 import domain.RacingGame;
 import domain.TryCount;
 import utils.NormalRandomGenerator;
@@ -7,15 +8,13 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGameManager {
-    private RacingGameManager() {
 
-    }
-
-    public static void run() {
-        List<String> carNames = InputView.readCarNames();
-        TryCount tryCount = new TryCount(InputView.readCount());
+    public void run() {
+        List<Name> carNames = readCarNames();
+        TryCount tryCount = readTryCount();
         RacingGame racingGame = new RacingGame(carNames, tryCount);
 
         OutputView.printResultMessage();
@@ -29,4 +28,25 @@ public class RacingGameManager {
         OutputView.printWinners(racingGame.decideWinners());
     }
 
+    private TryCount readTryCount() {
+        try {
+            return new TryCount(InputView.readCount());
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println(e.getMessage());
+            return readTryCount();
+
+        }
+    }
+
+    public List<Name> readCarNames() {
+        try {
+            return InputView.readCarNames()
+                    .stream()
+                    .map(Name::new)
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println(e.getMessage());
+            return readCarNames();
+        }
+    }
 }

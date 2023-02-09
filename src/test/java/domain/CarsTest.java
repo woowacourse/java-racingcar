@@ -11,8 +11,8 @@ class CarsTest {
     @DisplayName("더 많이 움직인 자동차가 우승자가 된다.")
     @Test
     public void test1() {
-        Car car1 = new Car("k7");
-        Car car2 = new Car("audi");
+        Car car1 = new Car(new Name("k7"));
+        Car car2 = new Car(new Name("audi"));
 
         Cars cars = new Cars(Arrays.asList(car1, car2));
 
@@ -26,9 +26,9 @@ class CarsTest {
     @DisplayName("많이 움직인 자동차가 2개 이상인 경우 공동 우승자가 된다.")
     @Test
     public void test2() {
-        Car car1 = new Car("k7");
-        Car car2 = new Car("audi");
-        Car car3 = new Car("bmw");
+        Car car1 = new Car(new Name("k7"));
+        Car car2 = new Car(new Name("audi"));
+        Car car3 = new Car(new Name("bmw"));
 
 
         Cars cars = new Cars(Arrays.asList(car1, car2, car3));
