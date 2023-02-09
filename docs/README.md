@@ -36,7 +36,7 @@
 
 ### CarNameValidator
 
-- [ ] 자동차의 이름을 검증한다.
+- [x] 자동차의 이름을 검증한다.
 
 ### NumberValidator
 

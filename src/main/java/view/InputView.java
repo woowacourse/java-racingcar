@@ -3,6 +3,9 @@ package view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
+import utils.CarNameValidator;
+import utils.StringParser;
 
 public class InputView {
 
@@ -15,9 +18,23 @@ public class InputView {
         br = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public String readCarName() throws IOException {
-        System.out.println(READ_CAR_NAME_MESSAGE);
-        return br.readLine();
+    public List<String> readCarName() throws IOException {
+        try {
+            System.out.println(READ_CAR_NAME_MESSAGE);
+            String input = br.readLine();
+            List<String> carNames = StringParser.parse(input);
+            validate(carNames);
+            return carNames;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readCarName();
+        }
+    }
+
+    private void validate(List<String> carNames) {
+        for (String carName : carNames) {
+            CarNameValidator.validate(carName);
+        }
     }
 
     public int readAttemptNumber() throws IOException {
