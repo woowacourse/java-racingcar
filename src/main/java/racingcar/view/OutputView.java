@@ -19,4 +19,8 @@ public class OutputView {
         System.out.println(RESULT_POSTFIX);
     }
 
+    public void printError(Exception error) {
+        System.out.println(error.getMessage());
+    }
+
 }
