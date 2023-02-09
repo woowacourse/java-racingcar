@@ -8,6 +8,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class CarTest {
 
@@ -15,7 +17,22 @@ class CarTest {
 
     @BeforeEach
     void init() {
-        car = new Car("testCar");
+        car = new Car("test");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"''", "abcdef"})
+    void validateTest(String name) {
+        assertThatThrownBy(() -> new Car(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"a", "abcde"})
+    void validateTest2(String name) {
+        assertThatCode(() -> new Car(name))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("0 ~ 3의 값일때는 움직이지 않는다.")
