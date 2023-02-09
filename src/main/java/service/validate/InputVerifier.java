@@ -23,7 +23,6 @@ public class InputVerifier {
         }
     }
 
-
     public static void checkInputTypeIsNumber(String input) {
         final String REGEX = "[0-9]+";
         if(!input.matches(REGEX)){
