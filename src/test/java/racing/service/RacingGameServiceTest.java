@@ -15,13 +15,13 @@ import racing.domain.Car;
 import racing.dto.GameResultDto;
 
 class RacingGameServiceTest {
+    private final MockNumberGenerator numberGenerator = new MockNumberGenerator();
 
-    MockNumberGenerator numberGenerator = new MockNumberGenerator();
-    Car boxster = new Car("박스터");
-    Car sonata = new Car("소나타");
-    Car benz = new Car("벤츠");
+    private final Car boxster = new Car("박스터");
+    private final Car sonata = new Car("소나타");
+    private final Car benz = new Car("벤츠");
 
-    List<Car> dummy = List.of(
+    private final List<Car> dummy = List.of(
             boxster,
             sonata,
             benz

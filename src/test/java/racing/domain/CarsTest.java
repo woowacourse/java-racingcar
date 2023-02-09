@@ -7,15 +7,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
+    private final Car boxster = new Car("박스터");
+    private final Car sonata = new Car("소나타");
+    private final Car benz = new Car("벤츠");
 
-    Car boxster = new Car("박스터");
-    Car sonata = new Car("소나타");
-
-    List<Car> dummy = List.of(
+    private final List<Car> dummy = List.of(
             boxster,
             sonata,
-            new Car("벤츠")
+            benz
     );
+
 
     @Test
     @DisplayName("Position이 가장 큰 Car List를 반환한다.")
