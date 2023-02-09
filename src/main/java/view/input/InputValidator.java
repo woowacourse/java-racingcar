@@ -27,7 +27,10 @@ public class InputValidator {
      }
 
     private void validateCarNameIsEmpty(List<String> splitCarNames) {
-        if (splitCarNames.isEmpty()) {
+        boolean isBlankExist = splitCarNames.stream()
+                .anyMatch(String::isBlank);
+
+        if (isBlankExist) {
             throw new IllegalArgumentException(CAR_NAME_EMPTY);
         }
     }

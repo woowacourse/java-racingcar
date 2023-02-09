@@ -23,7 +23,6 @@ public class InputView {
         List<String> splitCarNames = List.of(carNames.split(delimiter));
 
         inputValidator.validateCarName(splitCarNames);
-
         return splitCarNames;
     }
 
@@ -33,7 +32,6 @@ public class InputView {
         String gameTry = scanner.nextLine();
 
         inputValidator.validateGameTry(gameTry);
-
         return Integer.parseInt(gameTry);
     }
 }
