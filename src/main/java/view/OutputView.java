@@ -2,6 +2,8 @@ package view;
 
 import domain.Car;
 import domain.Cars;
+import dto.CarDto;
+import java.util.List;
 
 public class OutputView {
 
@@ -11,8 +13,8 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printStatus(Cars cars) {
-        for (Car carDto : cars.getCars()) {
+    public void printStatus(List<CarDto> carDtos) {
+        for (CarDto carDto : carDtos) {
             String name = carDto.getName();
             int position = carDto.getPosition();
             String positionString = getPositionString(position);
