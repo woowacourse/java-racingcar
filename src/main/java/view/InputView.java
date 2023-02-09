@@ -13,13 +13,9 @@ public class InputView {
     private static final String READ_CAR_NAME_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String READ_ATTEMPT_NUMBER_MESSAGE = "시도할 회수는 몇회인가요?";
 
-    private BufferedReader br;
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public InputView() {
-        br = new BufferedReader(new InputStreamReader(System.in));
-    }
-
-    public List<String> readCarName() throws IOException {
+    public static List<String> readCarName() throws IOException {
         try {
             System.out.println(READ_CAR_NAME_MESSAGE);
             String input = br.readLine();
@@ -32,13 +28,13 @@ public class InputView {
         }
     }
 
-    private void validate(List<String> carNames) {
+    private static void validate(List<String> carNames) {
         for (String carName : carNames) {
             CarNameValidator.validate(carName);
         }
     }
 
-    public int readAttemptNumber() throws IOException {
+    public static int readAttemptNumber() throws IOException {
         try {
             System.out.println(READ_ATTEMPT_NUMBER_MESSAGE);
             String input = br.readLine();

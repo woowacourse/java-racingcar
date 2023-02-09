@@ -12,29 +12,21 @@ import view.OutputView;
 
 public class RacingCarController {
 
-    private InputView inputView;
-    private OutputView outputView;
-
-    public RacingCarController() {
-        inputView = new InputView();
-        outputView = new OutputView();
-    }
-
     public void run() throws IOException {
-        List<String> carNames = inputView.readCarName();
-        int attemptNumber = inputView.readAttemptNumber();
+        List<String> carNames = InputView.readCarName();
+        int attemptNumber = InputView.readAttemptNumber();
 
         Cars cars = getCars(carNames);
 
-        outputView.printResult();
+        OutputView.printResult();
 
         while ((attemptNumber--) > 0) {
             moveAll(cars);
             List<CarDto> carDtos = getCarDtos(cars);
-            outputView.printStatus(carDtos);
+            OutputView.printStatus(carDtos);
         }
 
-        outputView.printWinner(cars.judgeWinner());
+        OutputView.printWinner(cars.judgeWinner());
     }
 
     private List<CarDto> getCarDtos(Cars cars) {

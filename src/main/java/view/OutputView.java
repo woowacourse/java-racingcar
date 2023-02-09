@@ -10,11 +10,11 @@ public class OutputView {
 
     private static final String RESULT_MESSAGE = "실행 결과";
 
-    public void printResult() {
+    public static void printResult() {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printStatus(List<CarDto> carDtos) {
+    public static void printStatus(List<CarDto> carDtos) {
         for (CarDto carDto : carDtos) {
             String name = carDto.getName();
             int position = carDto.getPosition();
@@ -24,7 +24,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private String getPositionString(int position) {
+    private static String getPositionString(int position) {
         String positionString = "";
         for (int i = 0; i < position; i++) {
             positionString += "-";
@@ -32,7 +32,7 @@ public class OutputView {
         return positionString;
     }
 
-    public void printWinner(Cars winnerCars) {
+    public static void printWinner(Cars winnerCars) {
         List<Car> cars = winnerCars.getCars();
         List<String> carNames = new ArrayList<>();
         for (Car car : cars) {
