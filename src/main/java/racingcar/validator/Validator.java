@@ -3,6 +3,8 @@ package racingcar.validator;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.Arrays;
+import java.util.List;
+import racingcar.domain.Car;
 
 public class Validator {
     private static final int MAX_NAME_LENGTH = 6;
@@ -33,6 +35,12 @@ public class Validator {
     public static void validateCarNameLength(String name) {
         if(name.length() >= MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
+        }
+    }
+
+    public static void validateEmptyCars(List<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new IllegalStateException(EMPTY_CARS.getMessage());
         }
     }
 }

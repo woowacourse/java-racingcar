@@ -3,6 +3,7 @@ package racingcar.service;
 import static java.util.Comparator.*;
 import static java.util.stream.Collectors.*;
 import static racingcar.exception.ExceptionMessage.EMPTY_CARS;
+import static racingcar.validator.Validator.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class RacingCarService {
     }
 
     public void moveCars(MoveStrategy moveStrategy) {
+        validateEmptyCars(cars);
         for (Car car : cars) {
             if (moveStrategy.isMovable()) {
                 car.move();
