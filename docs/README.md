@@ -37,3 +37,7 @@
 ### RandomNumberGenerator
 
 - [x] 0 ~ 9 사이의 임의의 숫자를 생성한다.
+
+### StringParser
+
+- [ ] 쉼표로 구분하여 자동차 이름들을 반환한다.
