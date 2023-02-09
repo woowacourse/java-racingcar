@@ -25,4 +25,8 @@ public class Car {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 영숫자로 이루어져야 합니다.");
         }
     }
+
+    public void increaseDistance() {
+        this.distance++;
+    }
 }

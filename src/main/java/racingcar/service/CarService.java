@@ -31,13 +31,13 @@ public class CarService {
         for (Car car : cars.getCarInformation()) {
             Random random = new Random();
             int randomNumber = random.nextInt(10);
-            runForward(randomNumber);
+            runForward(car, randomNumber);
         }
     }
 
-    private void runForward(int randomNumber) {
+    private void runForward(Car car,int randomNumber) {
         if (randomNumber >= 4) {
-            // 전진
+            car.increaseDistance();
         }
     }
 
