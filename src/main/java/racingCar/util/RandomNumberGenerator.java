@@ -4,6 +4,6 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public int pickOneNumberInRange(int start, int end) {
-        return (int)Math.random() * (end - start + 1) + start;
+        return (int)(Math.random() * (end - start)) + start;
     }
 }
