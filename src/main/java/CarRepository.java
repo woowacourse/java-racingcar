@@ -10,4 +10,14 @@ public class CarRepository implements CarRepositoryInterface {
     public void saveCar(Car car) {
         carInformation.add(car);
     }
+
+    @Override
+    public int findPositionByName(String name) {
+        return carInformation.stream()
+                .filter(car -> name.equals(car.getName()))
+                .map(Car::getPosition)
+                .findAny()
+                .orElseThrow();
+    }
+
 }
