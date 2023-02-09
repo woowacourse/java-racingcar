@@ -8,12 +8,15 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+  public static final int MAX_TRIAL_DIGIT = 2;
+  private final int MIN_CAR_NAME_LENGTH = 1;
+  private final int MAX_CAR_NAME_LENGTH = 5;
   private final Scanner scanner = new Scanner(System.in);
 
   private final Pattern DIGIT = Pattern.compile("[0-9]+");
 
   public List<String> readCarNames() {
-    System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+    System.out.println(Messages.INPUT_CAR_NAMES);
     String[] split = readLine().split(",");
 
     return Arrays.stream(split)
@@ -25,34 +28,34 @@ public class InputView {
     return scanner.nextLine();
   }
 
-  private void validateCarName(String inputCarName) throws IllegalArgumentException {
-    if (inputCarName.length() < 1 || inputCarName.length() > 5) {
-      throw new IllegalArgumentException("자동차의 이름의 길이는 1 이상 5 이하여아 한다");
+  private void validateCarName(String inputCarName) {
+    if (inputCarName.length() < MIN_CAR_NAME_LENGTH || inputCarName.length() > MAX_CAR_NAME_LENGTH) {
+      throw new IllegalArgumentException(Messages.ERROR_CAR_NAME_LENGTH);
     }
   }
 
-  public int readRoundNum() {
-    System.out.println("시도할 횟수는 몇회인가요?(단, 100회 미만이어야 합니다)");
+  public int readTrialNum() {
+    System.out.println(Messages.INPUT_TRIAL_NUM);
     String input = readLine();
-    validateRoundNum(input);
+    validateTrialNum(input);
     return Integer.parseInt(input);
   }
 
-  private void validateRoundNum(String input) {
+  private void validateTrialNum(String input) {
     validateOnlyNum(input);
-    validateRoundMaxNum(input);
+    validateTrialMaxNum(input);
   }
 
-  private void validateRoundMaxNum(String input) {
-    if(input.length() > 3){
-      throw new IllegalArgumentException("시도횟수는 100회 미만이어야 합니다.");
+  private void validateTrialMaxNum(String input) {
+    if(input.length() > MAX_TRIAL_DIGIT){
+      throw new IllegalArgumentException(Messages.ERROR_MAX_TRIAL_NUM);
     }
   }
 
   private void validateOnlyNum(String input) {
     boolean isNumber = !DIGIT.matcher(input).matches();
     if (isNumber) {
-      throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
+      throw new IllegalArgumentException(Messages.ERROR_TRIAL_NOT_NUMBER);
     }
   }
 }
