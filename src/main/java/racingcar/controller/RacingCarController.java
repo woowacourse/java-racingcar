@@ -38,6 +38,6 @@ public class RacingCarController {
     public List<String> winners(Cars cars) {
         return cars.winners().stream()
                 .map(it -> it.getName().getName())
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
     }
 }

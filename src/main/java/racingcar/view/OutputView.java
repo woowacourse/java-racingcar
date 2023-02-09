@@ -17,6 +17,7 @@ public class OutputView {
     private static final int ZERO = 0;
 
     public static void printWinners(List<String> winners) {
+        winners.sort(String::compareTo);
         String winnerNames = String.join(DELIMITER, winners);
         String message = String.format(WINNERS_FORMAT, winnerNames);
         System.out.println(message);
