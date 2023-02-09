@@ -9,6 +9,9 @@ import java.util.List;
 
 public class GameController {
 
+    private static final String DELIMITER = ",";
+
+
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
@@ -24,7 +27,7 @@ public class GameController {
     private List<Car> initCars() {
         List<Car> cars = new ArrayList<>();
         String input = inputView.inputCarName();
-        String[] split = input.split(",");
+        String[] split = input.split(DELIMITER);
         Arrays.stream(split).forEach(carName -> cars.add(new Car(carName)));
         return cars;
     }
