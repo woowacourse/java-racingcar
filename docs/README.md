@@ -1,7 +1,7 @@
 ## 🧐 미션 목표
-+ 기능 구현 완료
-+ SRP(Single Responsibility Principle) 원칙 준수
-+ MVC 패턴 적용
++ [x] 기능 구현 완료
++ [x] SRP(Single Responsibility Principle) 원칙 준수
++ [x] MVC 패턴 적용
 
 ## 📚 기능 목록
 - [x] 사용자의 입력을 받는다.
