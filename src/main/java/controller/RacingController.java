@@ -1,6 +1,7 @@
 package controller;
 
 import domain.RacingGame;
+import domain.RandomNumberGenerator;
 import view.input.InputView;
 import view.output.OutputView;
 
@@ -24,7 +25,7 @@ public class RacingController {
     }
 
     private void makeRacingGame(List<String> carNames) {
-        this.racingGame = new RacingGame(carNames);
+        this.racingGame = new RacingGame(carNames, new RandomNumberGenerator());
     }
 
     private List<String> readCarNames() {

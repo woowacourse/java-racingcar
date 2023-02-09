@@ -8,13 +8,16 @@ import java.util.stream.Collectors;
 public class RacingGame {
 
     private final List<Car> cars;
+    private final NumberGenerator numberGenerator;
 
     private final int MOVABLE_BOUND = 4;
 
-    public RacingGame(List<String> splitCarNames) {
+    public RacingGame(List<String> splitCarNames, NumberGenerator numberGenerator) {
         cars = splitCarNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
+
+        this.numberGenerator = numberGenerator;
     }
 
     public void start() {
@@ -24,7 +27,7 @@ public class RacingGame {
     }
 
     private void moveCar(Car car) {
-        int randomNumber = RandomNumberGenerator.makeRandomDigit();
+        int randomNumber = numberGenerator.makeDigit();
         if (randomNumber >= MOVABLE_BOUND) {
             car.move();
         }
