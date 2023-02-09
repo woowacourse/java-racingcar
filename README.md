@@ -23,7 +23,7 @@
 
 - [✅] Car 객체 구현
 - [✅] Input 객체 구현
-- [ ] Output 객체 구현
+- [✅] Output 객체 구현
 - [✅] Validate 객체 구현
 - [✅] Winner 객체 구현
 - [✅] RandomNumberGenerator 객체 구현
