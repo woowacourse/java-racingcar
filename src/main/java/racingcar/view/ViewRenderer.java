@@ -17,7 +17,6 @@ public class ViewRenderer {
             stringBuilder.append(DASH.repeat(result.getValue()));
             stringBuilder.append(NEW_LINE);
         }
-        stringBuilder.append(NEW_LINE);
         return stringBuilder.toString();
     }
 
