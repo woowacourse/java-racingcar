@@ -1,14 +1,16 @@
 package racingcar.view;
 
 import java.util.List;
+import racingcar.Car;
 
 public class OutputView {
     private static final String CAR_POSITION_SIGN = "-";
     private static final String COLON = " : ";
     private static final String RESULT_POSTFIX = "가 최종 우승했습니다.";
 
-    public void printPosition(String name, int position) {
-        System.out.println(name + COLON + CAR_POSITION_SIGN.repeat(position));
+    public void printPosition(List<Car> cars) {
+        cars.forEach(car -> System.out.println(car.getName() + COLON + CAR_POSITION_SIGN.repeat(car.getPosition())));
+        enterLine();
     }
 
     public void printWinners(List<String> winners) {
@@ -21,6 +23,10 @@ public class OutputView {
 
     public void printError(Exception error) {
         System.out.println(error.getMessage());
+    }
+
+    public void enterLine() {
+        System.out.println();
     }
 
 }

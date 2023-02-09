@@ -40,19 +40,14 @@ public class RacingGame {
     public void playingGame() {
         for (int i = 0; i < gameCount; i++) {
             updateCarPosition();
-            printPosition();
+            outputView.printPosition(cars);
         }
-    }
-
-    private void printPosition() {
-        cars.forEach(s -> outputView.printPosition(s.getName(), s.getPosition()));
-        System.out.println();
     }
 
     public void viewResult() {
         int maxPosition = getCarMaxPosition();
         cars.stream().filter(car -> car.getPosition() == maxPosition).forEach(car -> winners.add(car.getName()));
-        printPosition();
+        outputView.printPosition(cars);
         outputView.printWinners(winners);
     }
 
