@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,16 +58,33 @@ class CarsTest {
         }
     }
 
-    class MockFixedNumberGenerator extends NumberGenerator {
-        private int returnNumber;
+    @Test
+    @DisplayName("winner() 시 제일 많이 움직인 차들을 우승자로 반환한다.")
+    void test_4() throws NoSuchFieldException, IllegalAccessException {
+        // given
+        Car winner1 = new Car("말랑");
+        Car winner2 = new Car("채채");
+        Car nonWinner1 = new Car("시카");
+        Car nonWinner2 = new Car("헤나");
+        winner1.move(4);
+        winner1.move(4);
 
-        public MockFixedNumberGenerator(int returnNumber) {
-            this.returnNumber = returnNumber;
-        }
+        winner2.move(4);
+        winner2.move(4);
 
-        @Override
-        public int generate(int minNumber, int maxNumber) {
-            return returnNumber;
-        }
+        nonWinner1.move(4);
+
+        List<Car> movedCars = List.of(winner1, winner2, nonWinner1, nonWinner2);
+        Cars cars = new Cars(List.of("쓰레기값1", "쓰레기값2"));
+
+        Field privateCarsField = cars.getClass().getDeclaredField("cars");
+        privateCarsField.setAccessible(true);
+        privateCarsField.set(cars, movedCars);
+
+        // when
+        List<Car> winners = cars.winners();
+
+        // then
+        assertThat(winners).containsExactlyInAnyOrder(winner1, winner2);
     }
 }
