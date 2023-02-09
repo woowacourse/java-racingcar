@@ -1,5 +1,7 @@
 package car.view;
 
+import static car.option.Option.CAR_NAME_SEPARATOR;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -9,7 +11,7 @@ public class InputView {
 
     public String[] inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return scanner.nextLine().split(",");
+        return scanner.nextLine().split(CAR_NAME_SEPARATOR);
     }
 
     public int inputTrialCount() {
