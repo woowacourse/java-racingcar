@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.Random;
+import racingcar.dto.CarDto;
 import racingcar.util.RandomIntGenerator;
 
 public class Car {
@@ -20,6 +21,10 @@ public class Car {
 
     public void move() {
         this.movedCount++;
+    }
+
+    public CarDto getStatus() {
+        return new CarDto(this.name, this.movedCount);
     }
 
 }
