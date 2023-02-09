@@ -12,7 +12,6 @@ import racingcar.view.OutputView;
 public class CarController {
 
 	private CarRepository carRepository = new CarRepository();
-	private CarService carService = new CarService(new RandomNumberGenerator());
 
 	public void run() {
 		getCarNames();
@@ -51,11 +50,12 @@ public class CarController {
 	}
 
 	private void move(int roundCount) {
+		CarService carService = new CarService(new RandomNumberGenerator());
 		OutputView.printOutputMsg();
-		OutputView.printRacingState(carRepository.getPositionToString());
+		OutputView.printRacingState(carService.getPositionToString());
 		for (int i = 0; i < roundCount; i++) {
 			carService.moveCars();
-			OutputView.printRacingState(carRepository.getPositionToString());
+			OutputView.printRacingState(carService.getPositionToString());
 		}
 		OutputView.printRacingResult(carService.getWinners());
 	}

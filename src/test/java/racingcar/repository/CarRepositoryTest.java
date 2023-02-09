@@ -31,13 +31,4 @@ class CarRepositoryTest {
 		Assertions.assertThatThrownBy(() -> CarRepository.add(new Car("woowa")))
 				.isInstanceOf(IllegalArgumentException.class);
 	}
-
-	@Test
-	@DisplayName("Repository에 저장된 차들의 위치를 문자열로 반환해야 한다.")
-	void getPositionToStringTest() {
-		CarRepository.add(new Car("woowa"));
-		CarRepository.add(new Car("code"));
-		String expected = "woowa : -\ncode : -";
-		assertThat(CarRepository.getPositionToString()).isEqualTo(expected);
-	}
 }
