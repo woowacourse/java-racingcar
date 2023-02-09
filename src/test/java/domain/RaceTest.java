@@ -38,6 +38,17 @@ class RaceTest {
         }
     }
 
+    @Nested
+    @DisplayName("이름 중복 검증기능")
+    class duplicatedNameTest {
+        @Test
+        @DisplayName("이름이 중복으로 입력되었을 때 예외 발생")
+        void throwExceptionWhenDuplicateNameExists() {
+            Assertions.assertThatThrownBy(() -> new Race(List.of("rosie", "hong", "rosie")))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
     static class TestNumberPicker implements NumberPicker {
         private final Queue<Integer> numbers = new PriorityQueue<>(Collections.reverseOrder());
 
