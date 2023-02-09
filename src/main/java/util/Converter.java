@@ -2,8 +2,7 @@ package util;
 
 public class Converter {
     public static String[] splitInput(String input) {
-        String[] names = input.split(",");
-        return names;
+        return input.split(",");
     }
 
     public static int convertType(String input) {

@@ -2,8 +2,6 @@ package service;
 
 import domain.Car;
 import domain.repository.CarRepository;
-import service.validate.InputVerifier;
-import view.input.InputView;
 
 import java.util.List;
 import java.util.Random;
@@ -22,9 +20,13 @@ public class GameService {
 
     public void move(List<Car> cars) {
         for (Car car : cars) {
-            if (decideMove(getRandomNumber())) {
-                moving(car);
-            }
+            execute(car);
+        }
+    }
+
+    private void execute(Car car) {
+        if (decideMove(getRandomNumber())) {
+            moving(car);
         }
     }
 
