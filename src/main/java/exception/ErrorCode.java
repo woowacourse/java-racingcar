@@ -11,6 +11,7 @@ public enum ErrorCode {
     CAR_NAMES_EMPTY("빈 값이 입력 되었습니다."),
     NOT_POSITIVE_NUMBER("양수만 입력 가능합니다."),
     NUMBER_OUT_OF_RANGE("너무 큰 숫자입니다."),
+    TOO_MANY_CAR("차는 %d개까지 가능합니다."),
     ;
     private final String message;
 
