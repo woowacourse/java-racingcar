@@ -73,5 +73,4 @@ class RacingGameServiceTest {
             this.number = number;
         }
     }
-
 }

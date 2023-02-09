@@ -1,10 +1,9 @@
 package study;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +33,7 @@ public class SetTest {
 
     @DisplayName("특정 숫자를 포함한다.")
     @ParameterizedTest(name = "{0}를 포함한다. ")
-    @ValueSource(ints = {1,2,3})
+    @ValueSource(ints = {1, 2, 3})
     void contains(int number) {
         assertThat(numbers.contains(number)).isTrue();
     }
