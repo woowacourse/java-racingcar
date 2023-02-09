@@ -39,7 +39,7 @@ public class RacingGame {
     private void start() {
         cars.stream()
                 .filter(car -> car.canMove(numberGenerator.generate(), MIN_MOVE_NUMBER))
-                .forEach(car -> car.move());
+                .forEach(Car::move);
     }
 
     private void finish() {
@@ -48,7 +48,7 @@ public class RacingGame {
 
     private int getMaxMoveCount() {
         return cars.stream()
-                .mapToInt(car -> car.getMoveCount())
+                .mapToInt(Car::getMoveCount)
                 .max()
                 .getAsInt();
     }
