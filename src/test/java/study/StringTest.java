@@ -1,13 +1,14 @@
 package study;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringTest {
-    
+
     @Test
     void splitTest() {
         // given
@@ -17,8 +18,8 @@ public class StringTest {
         String[] afterSplit = beforeSplit.split(",");
 
         // then
-        Assertions.assertThat(afterSplit)
-            .containsExactly("1", "2");
+        assertThat(afterSplit)
+                .containsExactly("1", "2");
     }
 
     @Test
@@ -30,12 +31,12 @@ public class StringTest {
         String[] afterSplit = beforeSplit.split(",");
 
         //then
-        Assertions.assertThat(afterSplit)
-            .containsExactly("1");
+        assertThat(afterSplit)
+                .containsExactly("1");
     }
 
     @Test
-    void removeBracket(){
+    void removeBracket() {
         //given
         String beforeRemoveBracket = "(1,2)";
 
@@ -47,10 +48,10 @@ public class StringTest {
 
         //then
         assertAll(
-                ()->assertThat(afterRemoveBracketBySubstring)
+                () -> assertThat(afterRemoveBracketBySubstring)
                         .isEqualTo("1,2"),
-                ()->assertThat(afterRemoveBracketByReplace)
-                .isEqualTo("1,2")
+                () -> assertThat(afterRemoveBracketByReplace)
+                        .isEqualTo("1,2")
         );
     }
 
@@ -61,8 +62,8 @@ public class StringTest {
 
         int index = test.indexOf("b");
 
-        Assertions.assertThat(index).isEqualTo(1);
-        Assertions.assertThatThrownBy(() -> test.charAt(100))
+        assertThat(index).isEqualTo(1);
+        assertThatThrownBy(() -> test.charAt(100))
                 .isInstanceOf(IndexOutOfBoundsException.class);
     }
 }

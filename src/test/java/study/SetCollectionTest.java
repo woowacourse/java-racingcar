@@ -1,11 +1,10 @@
 package study;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +26,7 @@ public class SetCollectionTest {
 
     @Test
     @DisplayName("Set의 Size 메서드 사용 테스트")
-    void sizeTest(){
+    void sizeTest() {
         //when
         int size = numbers.size();
 
@@ -45,8 +44,8 @@ public class SetCollectionTest {
 
     @ParameterizedTest
     @DisplayName("CsvSource 어노테이션 활용 테스트")
-    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter=':')
-    void containsRandomValues(int value, boolean expected){
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    void containsRandomValues(int value, boolean expected) {
         assertThat(numbers.contains(value)).isEqualTo(expected);
     }
 }
