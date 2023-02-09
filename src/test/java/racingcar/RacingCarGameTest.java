@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,10 +27,11 @@ class RacingCarGameTest {
 	Cars cars;
 	OutputView outputView;
 	InputView inputView;
-	GameManager gameManager = new GameManager(inputView, outputView, cars);
+	GameManager gameManager;
 
 	InputStream inputStream;
 	PrintStream outputStream;
+	OutputStream out;
 
 	@AfterEach
 	void close() throws Exception {
@@ -40,9 +42,9 @@ class RacingCarGameTest {
 	@DisplayName("자동차 경주 통합 정상 작동 테스트")
 	@Test
 	void playGameTest() {
-		String carNames = "헤나, 썬샷, 루카\n5";
+		String carNames = "헤나, 썬샷, 루카"+System.lineSeparator()+"5";
 		inputStream = new ByteArrayInputStream(carNames.getBytes(UTF_8));
-		OutputStream out = new ByteArrayOutputStream();
+		out = new ByteArrayOutputStream();
 		outputStream = new PrintStream(out);
 
 		System.setIn(inputStream);
@@ -52,7 +54,7 @@ class RacingCarGameTest {
 		outputView = new OutputView();
 		inputView = new InputView();
 		gameManager = new GameManager(inputView, outputView, cars);
-		GameManager gameManager = new GameManager(inputView, outputView, cars);
+
 		gameManager.playGame();
 
 		assertThat(out.toString()).contains("최종 우승했습니다.");
@@ -63,7 +65,7 @@ class RacingCarGameTest {
 	@MethodSource("playGameExceptionDummy")
 	void playGameExceptionTest(String playGameExceptionInput) {
 		inputStream = new ByteArrayInputStream(playGameExceptionInput.getBytes(UTF_8));
-		OutputStream out = new ByteArrayOutputStream();
+		out = new ByteArrayOutputStream();
 		outputStream = new PrintStream(out);
 
 		System.setIn(inputStream);
@@ -73,7 +75,6 @@ class RacingCarGameTest {
 		outputView = new OutputView();
 		inputView = new InputView();
 		gameManager = new GameManager(inputView, outputView, cars);
-		GameManager gameManager = new GameManager(inputView, outputView, cars);
 
 		gameManager.playGame();
 		String gameTotalMessage = out.toString();
