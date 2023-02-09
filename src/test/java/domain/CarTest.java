@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
@@ -50,5 +50,25 @@ class CarTest {
         int afterPosition = car.getPosition();
 
         assertEquals(beforePosition, afterPosition);
+    }
+
+    @DisplayName("isSamePosition()은 position이 같다면 true를 반환한다.")
+    @Test
+    void test6() {
+        Car carA = new Car("carA");
+        Car carB = new Car("carB");
+
+        assertTrue(carA.isSamePosition(carB));
+    }
+
+    @DisplayName("isSamePosition()은 position이 다르면 false를 반환한다.")
+    @Test
+    void test7() {
+        Car carA = new Car("carA");
+        Car carB = new Car("carB");
+
+        carA.move(MINIMUM_NUMBER_TO_MOVE);
+
+        assertFalse(carA.isSamePosition(carB));
     }
 }
