@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
 import racingcar.util.InputUtil;
+import racingcar.view.OutputView;
 
 public class RaceController implements Controller {
 
@@ -12,5 +13,7 @@ public class RaceController implements Controller {
     public void process() {
         Cars cars = inputUtil.getUserInput(inputUtil::getCarNames);
         Race race = inputUtil.getUserInput(inputUtil::getTryCount);
+        OutputView.printHeadResult(cars);
+        OutputView.printMessage(race.start(cars));
     }
 }

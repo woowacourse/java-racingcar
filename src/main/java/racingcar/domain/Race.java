@@ -32,4 +32,12 @@ public class Race {
         }
         return tryCount;
     }
+
+    public String start(Cars cars) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < this.tryCount; i++) {
+            result.append(cars.race()).append("\n");
+        }
+        return result.toString();
+    }
 }
