@@ -6,8 +6,8 @@ import view.output.OutputView;
 
 public class RacingController {
 
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private RacingGame racingGame;
 
     public RacingController(InputView inputView, OutputView outputView) {

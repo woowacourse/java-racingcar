@@ -34,8 +34,6 @@ public class RacingGame {
         return Collections.unmodifiableList(cars);
     }
 
-
-
     public List<Car> getWinners() {
         Car furthestCar = getFurthestCar();
 

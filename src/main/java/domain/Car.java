@@ -3,7 +3,7 @@ package domain;
 public class Car {
 
     private int position;
-    private String carName;
+    private final String carName;
 
     public Car(String carName) {
         this.carName = carName;
