@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinnersNameDto {
+
     private final List<String> winnersNames;
 
     public static WinnersNameDto of(List<Car> winningCars) {

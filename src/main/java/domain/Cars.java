@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+
     private final List<Car> cars;
+
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
+
     public void moveCars(NumberGenerator numberGenerator) {
         cars.forEach(car -> car.move(numberGenerator.generate()));
     }
@@ -21,7 +24,6 @@ public class Cars {
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
-
 
     private List<Car> findSamePositionCars(Car maxPositionCar) {
         return cars.stream()

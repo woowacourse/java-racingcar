@@ -20,6 +20,7 @@ public class RacingGameAppFactory {
     private OutputView initOutputView() {
         return new OutputView();
     }
+
     private NumberGenerator initNumberGenerator() {
         return new RandomNumberGenerator();
     }
