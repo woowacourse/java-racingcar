@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class MockFixedNumberGenerator extends NumberGenerator {
+public class MockFixedNumberGenerator implements NumberGenerator {
     private int returnNumber;
 
     public MockFixedNumberGenerator(int returnNumber) {

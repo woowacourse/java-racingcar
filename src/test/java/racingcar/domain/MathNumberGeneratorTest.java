@@ -5,10 +5,8 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
-public class NumberGeneratorTest {
+public class MathNumberGeneratorTest {
 
     @Disabled("많은 반복, 따로 테스트")
     @Test
@@ -16,7 +14,7 @@ public class NumberGeneratorTest {
     @RepeatedTest(2000)
     void test_1() {
         // given
-        NumberGenerator generator = new NumberGenerator();
+        NumberGenerator generator = new MathNumberGenerator();
 
         // when
         int generatedNumber = generator.generate(0, 9);

@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("RacingCarController 는 ")
 class RacingCarControllerTest {
 
-    private RacingCarController controller = new RacingCarController(new NumberGenerator());
+    private RacingCarController controller = new RacingCarController(new MathNumberGenerator());
 
     @Nested
     @DisplayName("성공 테스트")

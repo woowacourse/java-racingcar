@@ -3,6 +3,7 @@ package racingcar;
 import racingcar.common.log.ConsoleLogger;
 import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
+import racingcar.domain.MathNumberGenerator;
 import racingcar.domain.NumberGenerator;
 import racingcar.step.CreateCarStep;
 import racingcar.step.Step;
@@ -11,7 +12,7 @@ import racingcar.step.context.GameContext;
 public class RacingCarApplication {
 
     public static void main(String[] args) {
-        NumberGenerator generator = new NumberGenerator();
+        NumberGenerator generator = new MathNumberGenerator();
         RacingCarController racingCarController = new RacingCarController(generator);
         Logger log = new ConsoleLogger();
 
