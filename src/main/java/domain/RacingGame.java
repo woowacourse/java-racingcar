@@ -1,6 +1,5 @@
 package domain;
 
-import utils.NormalRandomGenerator;
 import utils.RandomGenerator;
 
 import java.util.List;
