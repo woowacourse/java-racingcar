@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class RacingCarNamesRequestTest {
 
     @ParameterizedTest
-    @DisplayName("자동차의 이름이 6글자를 초과하면 예외가 발생한다.")
+    @DisplayName("자동차의 이름이 6글자를 초과하면 예외가 발생해야 한다.")
     @ValueSource(strings = {"carcar", "car,carcar", "car,car2,carcar"})
     void car_nameLengthOverThanSix(String input) {
         // expect
