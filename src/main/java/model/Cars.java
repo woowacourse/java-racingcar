@@ -41,8 +41,10 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public List<WinnerCarDto> getWinner() {
-        Car winner = cars.stream().max(Car::compareTo).orElse(null);
+    public List<WinnerCarDto> processWinner() {
+        Car winner = cars.stream()
+                .max(Car::compareTo)
+                .orElse(null);
 
         return sortWinner(winner);
     }
