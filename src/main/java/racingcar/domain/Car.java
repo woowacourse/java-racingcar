@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.validator.Validator.*;
+
 import racingcar.dto.RacingCarStatusResponse;
 
 public class Car {
@@ -7,6 +9,8 @@ public class Car {
     private final Position position;
 
     public Car(String name) {
+        validateEmptyCarName(name);
+        validateCarNameLength(name);
         this.name = name;
         this.position = new Position(0);
     }
