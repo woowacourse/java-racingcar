@@ -2,6 +2,7 @@ package view;
 
 import domain.RacingCar;
 import domain.RacingCars;
+import java.util.List;
 
 public class OutputView {
 
@@ -30,5 +31,13 @@ public class OutputView {
         }
 
         return distance.toString();
+    }
+
+    public static void printWinner(final RacingCars racingCars) {
+        System.out.printf("%s가 최종 우승했습니다.%n", makeWinnerInfo(racingCars.getWinnerNames()));
+    }
+
+    private static String makeWinnerInfo(List<String> winners){
+        return String.join(", ", winners);
     }
 }

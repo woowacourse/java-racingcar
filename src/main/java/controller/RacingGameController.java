@@ -51,6 +51,8 @@ public class RacingGameController {
             this.tryCount = tryCount.deduct();
             OutputView.printScoreBoard(racingCars);
         }
+
+        OutputView.printWinner(racingCars);
     }
 
     private boolean canProceed() {
