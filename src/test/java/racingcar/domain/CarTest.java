@@ -28,4 +28,24 @@ class CarTest {
             assertDoesNotThrow(() -> new Car(name, 0));
         }
     }
+
+    @Nested
+    @DisplayName("자동차 이름 형식 테스트")
+    class TestNameFormat {
+        @ParameterizedTest(name = "{index} ==> name : ''{0}''")
+        @ValueSource(strings = {" ", "abc!", "123* "})
+        @DisplayName("자동차 이름이 영숫자가 아닌 경우 예외 발생")
+        void Should_ThrowException_이름이_영숫자가_아닌_경우(String name) {
+            assertThatThrownBy(() -> new Car(name, 0))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("[ERROR] 자동차 이름은 영숫자로 이루어져야 합니다.");
+        }
+
+        @ParameterizedTest(name = "{index} ==> name : ''{0}''")
+        @ValueSource(strings = {"a1", "a2cd", "ab34e"})
+        @DisplayName("자동차 이름이 영숫자인 경우 성공")
+        void Should_Success_이름이_영숫자인_경우(String name) {
+            assertDoesNotThrow(() -> new Car(name, 0));
+        }
+    }
 }
