@@ -5,6 +5,8 @@ import car.controller.GameController;
 public class Application {
 
     public static void main(String[] args) {
-        new GameController().play();
+        GameController gameController = new GameController();
+        gameController.play();
+        gameController.showResult();
     }
 }
