@@ -27,4 +27,8 @@ public class Car {
     public int getPosition(int step, int threshold) {
         return step * valuelog.stepNumber(threshold);
     }
+
+    public String getName() {
+        return name;
+    }
 }

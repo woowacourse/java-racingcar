@@ -3,8 +3,12 @@ package racingcar.domain;
 import racingcar.constant.ErrorLog;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -50,5 +54,12 @@ public class Cars {
         return cars.get(FIRST_INDEX).getLogSize();
     }
 
-
+    public List<String> getWinners() {
+        Set<Integer> positions = new HashSet<>();
+        cars.forEach(car -> positions.add(car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold())));
+        int maxPosition = Collections.max(positions);
+        return cars.stream().filter(car -> car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold()) == maxPosition)
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
+    }
 }
