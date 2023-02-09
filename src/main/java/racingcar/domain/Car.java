@@ -9,4 +9,9 @@ public class Car {
         this.pos = new Position();
     }
 
+    public void move(CarMovement movement) {
+        if(movement.isMove()){
+            this.pos.increasePosition();
+        }
+    }
 }
