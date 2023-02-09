@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.dto.DrivingDistance;
+
 import java.util.Objects;
 
 import static racingcar.enumType.DomainConstant.CAR_NAME_MAX_LENGTH;
@@ -14,12 +16,16 @@ public class Car {
     private Car(final String name) {
         validateNameBlank(name);
         validateNameLength(name);
-        this.name =  name;
+        this.name = name;
         this.drivingMark = new StringBuilder("-");
     }
 
     public static Car of(final String name) {
         return new Car(name);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     private void validateNameLength(String name) {
@@ -36,6 +42,10 @@ public class Car {
 
     public void move() {
         drivingMark.append("-");
+    }
+
+    public DrivingDistance getDrivingDistance() {
+        return DrivingDistance.of(drivingMark.length());
     }
 
     @Override

@@ -14,6 +14,8 @@ public class RaceController implements Controller {
         Cars cars = inputUtil.getUserInput(inputUtil::getCarNames);
         Race race = inputUtil.getUserInput(inputUtil::getTryCount);
         OutputView.printHeadResult(cars);
-        OutputView.printMessage(race.start(cars));
+        OutputView.printMessage(race.start(cars).trim());
+        String winners = cars.pickWinners();
+        OutputView.printFinalResult(winners);
     }
 }

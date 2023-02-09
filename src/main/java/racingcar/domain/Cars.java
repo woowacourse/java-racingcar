@@ -37,6 +37,21 @@ public class Cars {
         return result.toString();
     }
 
+    public String pickWinners() {
+        StringBuilder winners = new StringBuilder();
+        List<String> carNames = this.cars.stream()
+                .filter(car -> Objects.equals(car.getDrivingDistance().getDistance(), getMaxDistance()))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+        return winners.append(String.join(", ", carNames)).toString();
+    }
+
+    private Integer getMaxDistance() {
+        return this.cars.stream()
+                .mapToInt(car -> car.getDrivingDistance().getDistance())
+                .max().orElse(1);
+    }
+
     public String race() {
         StringBuilder result = new StringBuilder();
         this.cars.forEach(car -> {
