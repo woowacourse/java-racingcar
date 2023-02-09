@@ -1,7 +1,6 @@
 package studytest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -50,7 +49,7 @@ public class StringTest {
     @DisplayName("범위 외에 접근시 예외가 발생한다")
     void 범위_외에_접근시_예외_발생(int provided) {
         String input = "abc";
-        assertThatThrownBy(()->input.charAt(provided))
+        assertThatThrownBy(() -> input.charAt(provided))
                 .isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
