@@ -19,7 +19,7 @@ public class Car {
         return Math.max(position, otherPosition);
     }
 
-    public boolean isSameWith(int otherPosition) {
+    public boolean hasSamePositionWith(int otherPosition) {
         return position == otherPosition;
     }
 
