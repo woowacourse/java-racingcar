@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.domain.*;
 import racingcar.dto.RacingCarDto;
 import racingcar.utils.Parser;
+import racingcar.validator.CarNamesValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,13 +18,13 @@ public class RacingCarGameController {
 
 
     public void run() {
-        List<String> parsedCarNames = getParsedCarNames();
-        // validator
+        List<String> validateCarNames = getValidateCarNames();
+
         String tryCount = getTryCount();
         // validator
 
         RoundManager roundManager = initiate();
-        setCars(parsedCarNames, roundManager);
+        setCars(validateCarNames, roundManager);
 
         outputView.printGameResultHeader();
         outputView.printRoundResult(roundManager.getCurrentRound());
@@ -32,6 +33,25 @@ public class RacingCarGameController {
         }
         List<String> winningCarsName = getWinningCarsName(roundManager.getSortedRacingCars());
         outputView.printWinners(winningCarsName);
+    }
+
+    private List<String> getValidateCarNames() {
+        List<String> parsedCarNames = new ArrayList<>();
+        do {
+             parsedCarNames = getParsedCarNames();
+        } while (isValidCarNames(parsedCarNames));
+        return parsedCarNames;
+    }
+
+    private boolean isValidCarNames(List<String> carNames){
+        CarNamesValidator carNamesValidator = new CarNamesValidator();
+        try{
+            carNamesValidator.validateNames(carNames);
+        } catch (IllegalArgumentException exception){
+            outputView.printErrorMessage(exception.getMessage());
+            return false;
+        }
+        return true;
     }
 
     private RoundManager initiate() {
