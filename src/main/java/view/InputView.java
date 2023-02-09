@@ -1,12 +1,19 @@
 package view;
 
+import dto.request.CarNameDto;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
-    public String sendCarsName() {
+    public List<CarNameDto> sendCarsName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         Scanner scanner = new Scanner(System.in);
-        return scanner.next();
+        return Arrays.stream(scanner.next().split(","))
+                .map(CarNameDto::new)
+                .collect(Collectors.toList());
     }
 
     public int sendTryCount() {
