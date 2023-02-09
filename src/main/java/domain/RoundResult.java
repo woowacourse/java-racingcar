@@ -1,9 +1,9 @@
 package domain;
 
 public class RoundResult {
-    private final Integer movingCondition = 4;
+    private final Integer MOVING_CONDITION = 4;
 
     public boolean isGo(Integer randomNumber) {
-        return randomNumber >= movingCondition;
+        return randomNumber >= MOVING_CONDITION;
     }
 }
