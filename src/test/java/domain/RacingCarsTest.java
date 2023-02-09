@@ -68,4 +68,18 @@ class RacingCarsTest {
                 .collect(Collectors.toList());
         assertThat(positions).containsExactly(1, 1, 0);
     }
+
+    @Test
+    @DisplayName("레이싱 게임 우승자의 이름이 담긴 리스트를 가져온다.")
+    void getWinnerName(){
+        //given
+        List<RacingCar> racingCars = List.of(pobi, honux, ethan);
+
+        //when
+        RacingCars result = new RacingCars(racingCars);
+        result.moveAll();
+
+        //then
+        assertThat(result.getWinnerNames()).containsExactly("pobi", "honux");
+    }
 }
