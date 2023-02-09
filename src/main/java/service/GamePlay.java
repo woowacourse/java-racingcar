@@ -1,9 +1,10 @@
 package service;
 
+import static utils.Validator.validateTryTimes;
 import static view.OutputView.printResultNotice;
 import static view.OutputView.printWinner;
 
-import domain.Cars;
+import domain.CarRepository;
 import java.util.List;
 import strategy.MovingStrategy;
 import strategy.RandomMovingStrategy;
@@ -13,18 +14,20 @@ import view.OutputView;
 public class GamePlay {
 
     public static void gameStart(List<String> carNames) {
-        Cars cars = CarFactory.buildCars(carNames);
+        CarRepository carRepository = new CarRepository(CarFactory.buildCars(carNames));
         OutputView.printInputTryTimesNotice();
         int tryTimes = InputView.inputTryTimes();
         printResultNotice();
-        play(cars, tryTimes, new RandomMovingStrategy());
-        printWinner(WinningRule.winner(cars.getNamesAndPositions()));
+        play(carRepository, tryTimes, new RandomMovingStrategy());
+        printWinner(carRepository.findWinners());
     }
 
-    private static void play(Cars cars, int tryTimes, MovingStrategy movingStrategy) {
+    public static void play(CarRepository carRepository, int tryTimes,
+        MovingStrategy movingStrategy) {
+        validateTryTimes(tryTimes);
         for (int i = 0; i < tryTimes; i++) {
-            cars.cycleCars(movingStrategy);
-            OutputView.printCarNameAndPosition(cars);
+            carRepository.cycleCars(movingStrategy);
+            OutputView.printCarNameAndPosition(carRepository);
         }
     }
 }
