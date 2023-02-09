@@ -24,4 +24,5 @@
 
 #### 고민사항
 - [x] 문구들을 어디서 출력할지.
+  - [x] OutputView에서 printGameResultMessage 메소드는 적절한지?
 - [x] 유효성 검증을 도메인에서 할지, 입력받을 때 할지.
