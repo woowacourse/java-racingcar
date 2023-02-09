@@ -14,6 +14,7 @@ public class RacingCarController {
         Integer tryCount = repeat(InputView::readTryCount);
         for (int i = 0; i < tryCount; i++) {
             carGroup.moveCars(CarGroup.NUMBER_RANGE_MIN, CarGroup.NUMBER_RANGE_MAX);
+            OutputView.printCarPosition(carGroup.toCarDtos());
         }
         carGroup.findWinners();
     }

@@ -1,5 +1,7 @@
 package racingCar.domain;
 
+import racingCar.dto.CarDto;
+
 public class Car implements Comparable<Car> {
 
     private static final int MOVE_MIN_NUM  = 4;
@@ -37,4 +39,9 @@ public class Car implements Comparable<Car> {
     public int compareTo(Car another) {
         return this.position - another.position;
     }
+
+    public CarDto toCarDto() {
+        return new CarDto(this.name, this.position);
+    }
+
 }

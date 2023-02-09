@@ -1,12 +1,10 @@
 package racingCar.domain;
 
+import racingCar.dto.CarDto;
 import racingCar.util.NumberGenerator;
 import racingCar.util.RandomNumberGenerator;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CarGroup {
@@ -35,6 +33,7 @@ public class CarGroup {
     public void moveCars(int start, int end) {
         for (Car car : carGroup) {
             int pickedNumber = numberGenerator.pickOneNumberInRange(start, end);
+            System.out.println(pickedNumber);
             car.move(pickedNumber);
         }
     }
@@ -55,6 +54,12 @@ public class CarGroup {
         return carGroup.stream()
                 .filter(car -> car.getPosition() == highestPosition)
                 .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarDto> toCarDtos() {
+        return carGroup.stream()
+                .map(car -> car.toCarDto())
                 .collect(Collectors.toList());
     }
 }
