@@ -20,12 +20,12 @@ public class Car {
         this.position = position;
     }
 
-    public int selectMaxPosition(int otherPosition) {
-        return Math.max(position, otherPosition);
+    public boolean isFartherThan(Car other) {
+        return position > other.position;
     }
 
-    public boolean hasSamePositionWith(int otherPosition) {
-        return position == otherPosition;
+    public boolean hasSamePositionWith(Car other) {
+        return position == other.position;
     }
 
     public void move(MoveChance moveChance) {
@@ -56,5 +56,4 @@ public class Car {
     public int getPosition() {
         return position;
     }
-
 }

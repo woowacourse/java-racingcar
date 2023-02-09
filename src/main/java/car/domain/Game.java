@@ -15,28 +15,33 @@ public class Game {
         this.moveChance = moveChance;
     }
 
-    public List<Car> findWinners() {
-        int maxPosition = findMaxPosition();
-        return cars.stream()
-                .filter(car -> car.hasSamePositionWith(maxPosition))
-                .collect(Collectors.toList());
-    }
-
-    private int findMaxPosition() {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            maxPosition = car.selectMaxPosition(maxPosition);
-        }
-        return maxPosition;
-    }
-
     public void playOnce() {
         for (Car car : cars) {
             car.move(moveChance);
         }
     }
 
-    public List<Car> getCars(){
+    public List<Car> findWinners() {
+        Car farthest = findFarthestCar();
+        return cars.stream()
+                .filter(car -> car.hasSamePositionWith(farthest))
+                .collect(Collectors.toList());
+    }
+
+    private Car findFarthestCar() {
+        return cars.stream()
+                .reduce(this::getFartherCar)
+                .orElseThrow(() -> new IllegalStateException("차량이 없습니다"));
+    }
+
+    private Car getFartherCar(Car car, Car other) {
+        if (car.isFartherThan(other)) {
+            return car;
+        }
+        return other;
+    }
+
+    public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 }
