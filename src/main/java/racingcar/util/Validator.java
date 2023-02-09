@@ -4,6 +4,8 @@ import racingcar.view.ErrorMessage;
 
 import java.util.Arrays;
 
+import static racingcar.view.ErrorMessage.*;
+
 public class Validator {
 
     private static final String DELIMITER = ",";
@@ -26,7 +28,7 @@ public class Validator {
 
     private static void validateGameTimeRange(int inputNumber) {
         if (inputNumber <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NOT_POSITIVE_NUMBER);
+            throw new IllegalArgumentException(ERROR_PREFIX + NOT_POSITIVE_NUMBER);
         }
     }
 
@@ -35,7 +37,7 @@ public class Validator {
         try {
             integer = Integer.valueOf(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NOT_NUMBER);
+            throw new IllegalArgumentException(ERROR_PREFIX + NOT_NUMBER);
         }
         return integer;
     }
@@ -43,7 +45,7 @@ public class Validator {
     private static void validateNoInput(String[] split) {
         long noInputCount = Arrays.stream(split).filter(s -> s.trim().equals("")).count();
         if (noInputCount >= 1) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NO_INPUT);
+            throw new IllegalArgumentException(ERROR_PREFIX + NO_INPUT);
         }
     }
 
@@ -51,7 +53,7 @@ public class Validator {
         long count = Arrays.stream(split).filter(s -> s.length() >= 5)
                 .count();
         if (count >= 1) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.CAR_NAME_LENGTH);
+            throw new IllegalArgumentException(ERROR_PREFIX + CAR_NAME_LENGTH);
         }
     }
 }
