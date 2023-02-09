@@ -4,17 +4,14 @@ public class Car {
 
     private final String name;
     private int position;
-    private final CarMoveManager carMoveManager;
 
-
-    public Car(String name, CarMoveManager carMoveManager) {
+    public Car(String name) {
         this.name = name;
         this.position = 0;
-        this.carMoveManager = carMoveManager;
     }
 
-    public void move() {
-        if (carMoveManager.isMove()) {
+    public void move(boolean isMove) {
+        if (isMove) {
             position++;
         }
     }

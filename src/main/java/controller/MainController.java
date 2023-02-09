@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import model.Car;
+import model.CarMoveManager;
 import model.CarRepository;
-import model.RandomCarMoveManager;
 import view.InputView;
 import view.OutputView;
 
@@ -15,10 +15,12 @@ public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
     private final Map<GameStatus, Supplier<GameStatus>> gameGuide;
+    private final CarMoveManager carMoveManager;
 
-    public MainController(InputView inputView, OutputView outputView) {
+    public MainController(InputView inputView, OutputView outputView, CarMoveManager carMoveManager) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.carMoveManager = carMoveManager;
         this.gameGuide = initializeGameGuide();
     }
 
@@ -57,13 +59,13 @@ public class MainController {
 
     private GameStatus setCars() {
         List<String> carNames = inputView.readCarNames();
-        carNames.stream().map(name->new Car(name, new RandomCarMoveManager())).forEach(CarRepository::addCars);
+        carNames.stream().map(Car::new).forEach(CarRepository::addCars);
         return GameStatus.MOVE_CARS;
     }
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            CarRepository.moveAllCars();
+            CarRepository.cars().forEach(car -> car.move(carMoveManager.isMove()));
             outputView.printResult(CarRepository.cars());
         }
     }

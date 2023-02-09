@@ -17,10 +17,6 @@ public class CarRepository {
         cars.add(car);
     }
 
-    public static void moveAllCars() {
-        cars.forEach(Car::move);
-    }
-
     public static List<String> getWinners() {
         int maxPosition = getMaxPosition();
         return cars.stream()
