@@ -12,8 +12,8 @@ public class Car {
         this.position = INIT_POSITION;
     }
 
-    public void move(int random) {
-        if (random >= BOUNDARY) {
+    public void move(int moveNumber) {
+        if (moveNumber >= BOUNDARY) {
             this.position += 1;
         }
     }
