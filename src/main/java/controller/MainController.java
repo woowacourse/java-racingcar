@@ -28,5 +28,7 @@ public class MainController {
             CarRepository.moveAllCars();
             outputView.printResult(CarRepository.cars());
         }
+
+        outputView.printWinners(CarRepository.getWinners());
     }
 }

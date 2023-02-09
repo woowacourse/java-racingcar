@@ -29,9 +29,14 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printWinners(List<String> winners) {
+        System.out.printf(Message.OUTPUT_WINNER.message, String.join(", ", winners));
+    }
+
     private enum Message {
         OUTPUT_RESULT_MESSAGE("실행 결과"),
-        OUTPUT_RESULT_FORMAT("%s : %s%n");
+        OUTPUT_RESULT_FORMAT("%s : %s%n"),
+        OUTPUT_WINNER("%s가 최종 우승했습니다.");
 
         private final String message;
 

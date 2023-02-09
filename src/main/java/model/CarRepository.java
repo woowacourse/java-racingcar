@@ -21,4 +21,25 @@ public class CarRepository {
             car.move();
         }
     }
+
+    public static List<String> getWinners() {
+        int maxPosition = getMaxPosition();
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.isWinner(maxPosition)) {
+                winners.add(car.getName());
+            }
+        }
+        return winners;
+    }
+
+    private static int getMaxPosition() {
+        List<Integer> position = new ArrayList<>();
+        for (Car car : cars) {
+            position.add(car.getPosition());
+        }
+        return Collections.max(position);
+    }
+
+
 }

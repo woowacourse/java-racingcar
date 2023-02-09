@@ -25,6 +25,10 @@ public class Car {
         return position;
     }
 
+    public boolean isWinner(int maxPosition) {
+        return position == maxPosition;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
