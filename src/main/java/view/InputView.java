@@ -18,6 +18,7 @@ public class InputView {
     private static final String CAR_NAME_BLANK_ERROR = ERROR_PREFIX + "각 자동차 이름은 빈 값일 수 없습니다.";
     private static final String TRY_NUM_BLANK_ERROR = ERROR_PREFIX + "시도할 횟수가 입력되지 않았습니다.";
     private static final String TRY_NUM_NOT_INTEGER_ERROR = ERROR_PREFIX + "시도할 횟수가 정수가 아닙니다.";
+    private static final String TRY_NUM_NOT_POSITIVE_ERROR = ERROR_PREFIX + "시도할 횟수는 1 이상이어야 합니다.";
 
     private InputView() {}
 
@@ -91,6 +92,9 @@ public class InputView {
         if (isNotInteger(tryNum)) {
             throw new IllegalArgumentException(TRY_NUM_NOT_INTEGER_ERROR);
         }
+        if (isNotPositive(tryNum)) {
+            throw new IllegalArgumentException(TRY_NUM_NOT_POSITIVE_ERROR);
+        }
     }
 
     private boolean isNotInteger(String tryNum){
@@ -103,7 +107,7 @@ public class InputView {
     }
 
     private boolean isNotPositive(String tryNum) {
-        return true;
+        return Integer.parseInt(tryNum) < 1;
     }
 
 
