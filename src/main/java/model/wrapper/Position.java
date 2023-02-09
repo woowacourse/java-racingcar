@@ -13,9 +13,13 @@ public class Position implements Comparable<Position> {
     }
 
     public void move(RacingNumberGenerator generator) {
-        if (generator.generate() >= MOVABLE_VALUE) {
+        if (isMovable(generator)) {
             position++;
         }
+    }
+
+    private boolean isMovable(RacingNumberGenerator generator) {
+        return generator.generate() >= MOVABLE_VALUE;
     }
 
     public boolean isSamePosition(Position otherPosition) {
