@@ -15,8 +15,8 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printRoundResult(Cars cars) {
-        for (Car car : cars.getCars()) {
+    public void printRoundResult(List<Car> cars) {
+        for (Car car : cars) {
             System.out.println(
                 String.format(CAR_RESULT_FORMAT, car.getName(), car.getMovePosition()));
         }

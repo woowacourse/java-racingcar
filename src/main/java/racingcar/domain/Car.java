@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private static final int NAME_MIN_LENGTH = 1;
     private static final int NAME_MAX_LENGTH = 5;
@@ -18,18 +18,13 @@ public class Car {
         this.numberGenerator = numberGenerator;
     }
 
-//    // 자동차의 위치를 증가시키는 메소드
-//    public void increasePosition() {
-//        this.position++;
-//    }
-
     public int getPosition() {
         return this.position;
     }
 
-    public String getMovePosition(){
+    public String getMovePosition() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i=0; i<position; i++){
+        for (int i = 0; i < position; i++) {
             stringBuilder.append("-");
         }
         return stringBuilder.toString();
@@ -45,10 +40,19 @@ public class Car {
         }
     }
 
+    public boolean isSamePosition(Car otherCar) {
+        return this.position == otherCar.position;
+    }
+
     // 자동차 이름의 길이를 검증하는 메소드
     private void validateName(String name) {
         if (name.length() < NAME_MIN_LENGTH || name.length() > NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }
+    }
+
+    @Override
+    public int compareTo(Car otherCar) {
+        return otherCar.position - this.position;
     }
 }

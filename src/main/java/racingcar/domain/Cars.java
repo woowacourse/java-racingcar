@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,23 +22,24 @@ public class Cars {
     }
 
     public List<Car> decideWinner() {
-        int winningPosition = getFarthestPosition();
+        cars.sort(Car::compareTo);
+        Car MaxPositionCar = cars.get(0);
         List<Car> winners = cars.stream()
-            .filter(car -> car.getPosition() == winningPosition)
+            .filter(car -> car.isSamePosition(MaxPositionCar))
             .collect(Collectors.toList());
         return winners;
+    }
+
+    public List<Car> moveEachCar(){
+        for (Car car : cars) {
+            car.goForward();
+        }
+        return Collections.unmodifiableList(cars);
     }
 
     private void validateCarsSize(List<Car> cars) {
         if (cars.size() < CARS_MIN_SIZE) {
             throw new IllegalArgumentException(CARS_SIZE_ERROR);
         }
-    }
-
-    private int getFarthestPosition() {
-        cars.sort(Comparator
-            .comparing(Car::getPosition)
-            .reversed());
-        return cars.get(0).getPosition();
     }
 }
