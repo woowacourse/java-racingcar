@@ -32,15 +32,18 @@ public class RacingGame {
             throw new IllegalStateException("차량 이름 Null 에러");
         }
         validateDuplicateCarName(carNames);
-        if (carNames.size() == 1) {
-            throw new IllegalArgumentException("차량이 둘 이상이어야 경주를 진행할 수 있습니다.");
-        }
-
+        validateCarNumberThanMin(carNames);
     }
 
     private void validateDuplicateCarName(List<String> carNames) {
         if (carNames.size() != new HashSet<>(carNames).size()) {
             throw new IllegalArgumentException("중복된 차량 이름이 존재합니다.");
+        }
+    }
+
+    private void validateCarNumberThanMin(List<String> carNames) {
+        if (carNames.size() == 1) {
+            throw new IllegalArgumentException("차량이 둘 이상이어야 경주를 진행할 수 있습니다.");
         }
     }
 
