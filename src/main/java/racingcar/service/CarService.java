@@ -42,5 +42,7 @@ public class CarService {
 
     private void validateCountInput() {
         OutputView.printCountInput();
+        int tryCount = InputView.readTryCount();
+        System.out.println(tryCount);
     }
 }
