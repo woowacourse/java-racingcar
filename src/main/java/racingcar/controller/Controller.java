@@ -32,7 +32,7 @@ public class Controller {
         service.setNumberOfRounds(numberOfRounds);
 
         outputView.printResultStartingMessage();
-        while(!service.isEnd) {
+        while (!service.isEnd()) {
             service.playRound();
             Map<String, Integer> roundResult = service.getCurrentRoundResult();
             outputView.printResult(viewRenderer.renderRoundResult(roundResult));
