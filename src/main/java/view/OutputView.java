@@ -10,36 +10,38 @@ public class OutputView {
     private static final String STATUS_GUIDE_MESSAGE = "실행 결과";
     private static final String COLON = " : ";
     private static final String CAR_POSITION = "-";
+    private final Output output;
 
-    private OutputView() {
+    public OutputView(Output output) {
+        this.output = output;
     }
 
-    public static void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
-    public static void printStatusGuide() {
-        System.out.println();
-        System.out.println(STATUS_GUIDE_MESSAGE);
-    }
-
-    public static void printStatus(List<RacingStatusDto> racingStatus) {
-        racingStatus.forEach(OutputView::printOneStatus);
-        System.out.println();
-    }
-
-    private static void printOneStatus(RacingStatusDto racingStatus) {
-        System.out.print(racingStatus.getCarName());
-        System.out.print(COLON);
+    private void printOneStatus(RacingStatusDto racingStatus) {
+        output.print(racingStatus.getCarName());
+        output.print(COLON);
 
         for (int i = 0; i < racingStatus.getStatus(); i++) {
-            System.out.print(CAR_POSITION);
+            output.print(CAR_POSITION);
         }
-        System.out.println();
+        output.println();
     }
 
-    public static void printWinner(List<String> winners) {
-        System.out.print(String.join(WINNER_DELIMITER, winners));
-        System.out.println(WINNER_GUIDE_MESSAGE);
+    public void printWinner(List<String> winners) {
+        output.print(String.join(WINNER_DELIMITER, winners));
+        output.println(WINNER_GUIDE_MESSAGE);
+    }
+
+    public void printStatus(List<RacingStatusDto> racingStatus) {
+        racingStatus.forEach(this::printOneStatus);
+        output.println();
+    }
+
+    public void printStatusGuide() {
+        output.println();
+        output.println(STATUS_GUIDE_MESSAGE);
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        output.println(errorMessage);
     }
 }

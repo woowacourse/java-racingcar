@@ -10,25 +10,31 @@ import java.util.function.Supplier;
 
 public class Controller {
     private final NumberPicker numberPicker;
+    private final Input input;
+    private final OutputView outputView;
+    private final InputView inputView;
     private RacingStatus racingStatus;
 
-    public Controller(NumberPicker numberPicker) {
+    public Controller(NumberPicker numberPicker, Input input, OutputView outputView, InputView inputView) {
         this.numberPicker = numberPicker;
+        this.input = input;
+        this.outputView = outputView;
+        this.inputView = inputView;
     }
 
     public void raceTracks() {
         handleError(this::carNameInput);
 
-        InputView.printInputTryCountGuide();
-        int gameCount = handleError(Input::gameCountInput);
+        inputView.printInputTryCountGuide();
+        int gameCount = handleError(input::gameCountInput);
 
-        OutputView.printStatusGuide();
+        outputView.printStatusGuide();
         for (int i = 0; i < gameCount; i++) {
             racingStatus.move();
-            OutputView.printStatus(racingStatus.toDto());
+            outputView.printStatus(racingStatus.toDto());
         }
 
-        OutputView.printWinner(racingStatus.findWinner());
+        outputView.printWinner(racingStatus.findWinner());
     }
 
     private void carNameInput() {
@@ -37,15 +43,15 @@ public class Controller {
     }
 
     private String inputCarNames() {
-        InputView.printInputCarNameGuide();
-        return Input.carNameInput();
+        inputView.printInputCarNameGuide();
+        return input.carNameInput();
     }
 
     private <T> T handleError(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return handleError(supplier);
         }
     }
@@ -54,7 +60,7 @@ public class Controller {
         try {
             runnable.run();
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             handleError(runnable);
         }
     }
