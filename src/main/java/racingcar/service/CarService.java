@@ -9,12 +9,14 @@ import racingcar.view.OutputView;
 
 public class CarService {
     private Cars cars = new Cars(new ArrayList<Car>());
+    private int tryCount;
 
     public void initializeService() {
         while (validateNameInput()) {
             cars = new Cars(new ArrayList<Car>());
         }
-        validateCountInput();
+        while (validateCountInput()) {
+        }
     }
 
     private boolean validateNameInput() {
@@ -40,9 +42,14 @@ public class CarService {
         return List.of(carNames.split(","));
     }
 
-    private void validateCountInput() {
-        OutputView.printCountInput();
-        int tryCount = InputView.readTryCount();
-        System.out.println(tryCount);
+    private boolean validateCountInput() {
+        try {
+            OutputView.printCountInput();
+            tryCount = InputView.readTryCount();
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
     }
 }

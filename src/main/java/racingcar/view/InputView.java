@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -11,7 +12,11 @@ public class InputView {
     }
 
     public static int readTryCount() {
-        int tryCount = scanner.nextInt();
-        return tryCount;
+        try {
+            int tryCount = Integer.parseInt(scanner.nextLine());
+            return tryCount;
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException("[ERROR] 숫자 형태로 입력해주세요.");
+        }
     }
 }
