@@ -33,13 +33,14 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("자동차 위치 확인 테스트")
+    @DisplayName("자동차 위치 확인 테스성")
     void getPositionTest() {
-        Car car = new Car();
+        Car car = new Car("test");
         car.addValue(0);
         car.addValue(4);
         car.addValue(9);
 
-        assertThat(car.getPosition()).isEqualTo(2);
+        assertThat(car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold())).isEqualTo(2);
+
     }
 }
