@@ -9,6 +9,10 @@ public class TrialCount {
         this.value = value;
     }
 
+    public Integer getValue() {
+        return value;
+    }
+
     private void validate(int value) {
         if (value <= 0) {
             throw new IllegalArgumentException(COUNT_EXCEPTION_MESSAGE);

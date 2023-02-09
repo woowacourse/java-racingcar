@@ -7,6 +7,10 @@ public class CarName {
 
     private final String name;
 
+    public String getName() {
+        return name;
+    }
+
     public CarName(String input) {
         validateNameSize(input);
         this.name = input;

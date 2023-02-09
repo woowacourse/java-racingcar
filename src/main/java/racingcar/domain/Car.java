@@ -17,6 +17,14 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public String getName() {
+        return name.getName();
+    }
+
+    public Integer getPos() {
+        return pos.getValue();
+    }
+
     @Override
     public int compareTo(Car o) {
         return this.pos.compareTo(o.pos);

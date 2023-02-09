@@ -26,6 +26,10 @@ public class Position implements Comparable<Position> {
         return -1;
     }
 
+    public Integer getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o){
         Position position = (Position)o;
