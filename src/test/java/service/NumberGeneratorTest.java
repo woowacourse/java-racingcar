@@ -1,6 +1,7 @@
 package service;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class NumberGeneratorTest {
@@ -8,6 +9,7 @@ class NumberGeneratorTest {
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     @Test
+    @DisplayName("랜덤 숫자 생성")
     void generateRandomNumber() {
         //given
         //when
