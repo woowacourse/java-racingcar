@@ -32,6 +32,7 @@ public class Car {
     }
 
     private void validateName(String name) {
+        name = name.trim();
         if (MINIMUM_NAME_LENGTH <= name.length() && name.length() <= MAXIMUM_NAME_LENGTH) {
             return;
         }
