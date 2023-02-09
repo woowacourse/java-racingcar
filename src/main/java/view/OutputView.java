@@ -9,6 +9,9 @@ import java.util.List;
 public class OutputView {
 
     private static final String RESULT_MESSAGE = "실행 결과";
+    private static final String PRINT_STATUS_FORMAT = "%s : %s\n";
+    private static final String PRINT_WINNER_FORMAT = "%s가 최종 우승했습니다.\n";
+    private static final String DELIMITER = ", ";
 
     public static void printResult() {
         System.out.println(RESULT_MESSAGE);
@@ -19,7 +22,7 @@ public class OutputView {
             String name = carDto.getName();
             int position = carDto.getPosition();
             String positionString = getPositionString(position);
-            System.out.printf("%s : %s\n", name, positionString);
+            System.out.printf(PRINT_STATUS_FORMAT, name, positionString);
         }
         System.out.println();
     }
@@ -38,7 +41,7 @@ public class OutputView {
         for (Car car : cars) {
             carNames.add(car.getName());
         }
-        String winnerString = String.join(", ", carNames);
-        System.out.printf("%s가 최종 우승했습니다.\n", winnerString);
+        String winnerString = String.join(DELIMITER, carNames);
+        System.out.printf(PRINT_WINNER_FORMAT, winnerString);
     }
 }
