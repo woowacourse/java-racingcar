@@ -21,6 +21,13 @@ public class CarService {
 
     public void runService() {
         OutputView.printResultMessage();
+        for (int i = 0; i < tryCount; i++) {
+            runRound();
+        }
+    }
+
+    private void runRound() {
+
     }
 
     private boolean validateNameInput() {
