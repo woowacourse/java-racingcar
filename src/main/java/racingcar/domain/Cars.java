@@ -5,7 +5,9 @@ import racingcar.constant.ErrorLog;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,11 +24,6 @@ public class Cars {
 
     public void addNextCarValue(int value) {
 
-        int size = cars.get(FIRST_INDEX).getLogSize();
-
-        Optional<Car> targetCar = cars.stream().filter(car -> car.getLogSize() < size)
-                .findFirst();
-
         if (isRoundOver()) {
             cars.get(FIRST_INDEX).addValue(value);
             return;
@@ -34,7 +31,7 @@ public class Cars {
         getCurrentTurnCar().get().addValue(value);
     }
 
-    private boolean isRoundOver() {
+    public boolean isRoundOver() {
         return getCurrentTurnCar().isEmpty();
 
     }
@@ -45,6 +42,14 @@ public class Cars {
                 .findFirst();
 
         return targetCar;
+    }
+
+    public Map<String, Integer> getRoundResult() {
+        Map<String, Integer> currentRoundResult = new LinkedHashMap<>();
+        for (Car car : cars) {
+            currentRoundResult.put(car.getName(), car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold()))
+        }
+        return currentRoundResult;
     }
 
     public int getTurnCount() {

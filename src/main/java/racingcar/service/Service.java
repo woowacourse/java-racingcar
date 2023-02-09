@@ -5,6 +5,8 @@ import racingcar.domain.Cars;
 import racingcar.domain.FinalRoundChecker;
 import racingcar.domain.RandomValueGenerator;
 
+import java.util.Map;
+
 public class Service {
 
     private final Cars cars;
@@ -38,4 +40,9 @@ public class Service {
             cars.addNextCarValue(value);
         } while (!cars.isRoundOver());
     }
+
+    public Map<String, Integer> getCurrentRoundResult() {
+        return cars.getRoundResult();
+    }
 }
+
