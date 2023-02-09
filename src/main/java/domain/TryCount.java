@@ -5,6 +5,7 @@ public class TryCount {
     public static final int MIN_TRY_COUNT = 1;
 
     public TryCount(int tryCount) {
+        validate(tryCount);
         this.tryCount = tryCount;
     }
 
