@@ -11,6 +11,9 @@ public class InputView {
     private static final String INPUT_TRY_COUNT_ANNOUNCEMENT = "시도할 회수는 몇회인가요?";
     private static final int ILLEGAL_TRY_COUNT_INPUT = -1;
     private static final int MINIMUM_TRY_COUNT = 1;
+    private static final int MAXIMUM_TRY_COUNT = 9;
+    private static final String WRONG_TRY_COUNT_ANNOUNCEMENT = "[ERROR] 잘못된 시도 횟수입니다.";
+
     private Scanner scanner;
 
     public InputView() {
@@ -24,12 +27,10 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int repeatInputTryCountUntilCorrect() {
-        int tryCount;
-        do {
-            tryCount = inputTryCount();
-            scanner.nextLine(); //TODO : 직관적인 버퍼비우기 해결방법 찾아보기
-        } while (tryCount < MINIMUM_TRY_COUNT);
+    public int getTryCount() {
+        int tryCount = inputTryCount();
+        validateTryCount(tryCount);
+        scanner.nextLine(); //TODO : 직관적인 버퍼비우기 해결방법 찾아보기
         return tryCount;
     }
 
@@ -38,8 +39,15 @@ public class InputView {
             System.out.println(INPUT_TRY_COUNT_ANNOUNCEMENT);
             return scanner.nextInt();
         } catch (InputMismatchException e) {
-            return ILLEGAL_TRY_COUNT_INPUT;
+            throw new IllegalArgumentException(WRONG_TRY_COUNT_ANNOUNCEMENT);
         }
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (MINIMUM_TRY_COUNT <= tryCount && tryCount <= MAXIMUM_TRY_COUNT) {
+            return;
+        }
+        throw new IllegalArgumentException(WRONG_TRY_COUNT_ANNOUNCEMENT);
     }
 
 }

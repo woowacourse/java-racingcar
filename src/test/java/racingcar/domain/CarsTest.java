@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ class CarsTest {
         Cars cars = new Cars(names, new DeterminedIntGenerator(4));
         List<CarDto> carDtosBeforeRequestMove = cars.getStatuses();
         // when
-        cars.repeatRequestMoveBy(1);
+        cars.requestMoveBy(1);
         List<CarDto> carDtosAfterRequestMove = cars.getStatuses();
         // then
         for (int index = 0; index < carDtosAfterRequestMove.size(); index++) {
@@ -39,7 +38,7 @@ class CarsTest {
         List<Car> carsInput = List.of(winnerCar, loserCar);
         Cars cars = new Cars(carsInput, true);
         // when
-        cars.repeatRequestMoveBy(1);
+        cars.requestMoveBy(1);
         List<CarDto> winners = cars.getWinner();
         // then
         assertThat(winners.get(0).getName()).isEqualTo("1th").as("우승자 이름과 같아야 한다.");
@@ -59,7 +58,7 @@ class CarsTest {
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    cars.repeatRequestMoveBy(-1);
+                    cars.requestMoveBy(-1);
                 }); }
 
 }
