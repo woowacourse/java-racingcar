@@ -25,4 +25,12 @@ public class Car {
     public int getPosition() {
         return position.getPosition();
     }
+
+    public int compareTo(Car otherCar) {
+        return this.position.compareTo(otherCar.position);
+    }
+
+    public boolean isSamePosition(Car otherCar) {
+        return this.position.isSamePosition(otherCar.position);
+    }
 }

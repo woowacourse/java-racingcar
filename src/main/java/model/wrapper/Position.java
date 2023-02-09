@@ -2,7 +2,7 @@ package model.wrapper;
 
 import utils.RacingNumberGenerator;
 
-public class Position {
+public class Position implements Comparable<Position> {
 
     private static final int MOVABLE_VALUE = 4;
 
@@ -16,5 +16,14 @@ public class Position {
         if (generator.generate() >= MOVABLE_VALUE) {
             position++;
         }
+    }
+
+    public boolean isSamePosition(Position otherPosition) {
+        return this.position == otherPosition.position;
+    }
+
+    @Override
+    public int compareTo(Position otherPosition) {
+        return this.position - otherPosition.position;
     }
 }
