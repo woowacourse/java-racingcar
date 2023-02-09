@@ -7,12 +7,10 @@ import racingcar.view.OutputView;
 
 public class GameController {
 
-    InputController inputController;
-    InputView inputView;
-    OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public GameController(InputController inputController, InputView inputView, OutputView outputView) {
-        this.inputController = inputController;
+    public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -24,6 +22,7 @@ public class GameController {
 
     private CarRepository makeCars() {
         CarFactory carFactory = new CarFactory();
+
         return carFactory.createCarRepository(inputView.readCars());
     }
 
