@@ -23,4 +23,9 @@ public class RacingCarWinnerResponse {
     public List<String> getWinners() {
         return winners;
     }
+
+    @Override
+    public String toString() {
+        return String.join(", ", winners);
+    }
 }
