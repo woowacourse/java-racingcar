@@ -1,8 +1,12 @@
 package domain;
 
+import java.util.Random;
+
 public class RandomNumberGenerator implements NumberGenerator{
 
+    private final Random random = new Random();
+
     public int generate() {
-        return (int) (Math.random() * 10);
+        return random.nextInt(9) + 1;
     }
 }
