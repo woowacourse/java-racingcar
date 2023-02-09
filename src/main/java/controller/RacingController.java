@@ -37,18 +37,35 @@ public class RacingController {
     }
 
     private List<Car> setUpCarName() {
-        List<Car> carInfo = new ArrayList<>();
-        outputView.printCarNameMessage();
-        for (String carName : inputView.readCarNames()) {
-            carInfo.add(new Car(carName));
-        }
-        return carInfo;
+        List<Car> carsInfo = new ArrayList<>();
+        initCarsInfo(carsInfo);
+        return carsInfo;
     }
 
     private Integer setUpTryCount() {
-        outputView.printTryCountMessage();
-        Integer tryCount = inputView.readMovingCount();
-        System.out.println();
-        return tryCount;
+        try {
+            outputView.printTryCountMessage();
+            Integer tryCount = inputView.readMovingCount();
+            System.out.println();
+            return tryCount;
+        } catch (IllegalArgumentException e) {
+            return setUpTryCount();
+        }
+    }
+
+    private void initCarsInfo(List<Car> carsInfo) {
+        try {
+            outputView.printCarNameMessage();
+            carsInfo.clear();
+            checkCarNameValidation(carsInfo);
+        } catch (IllegalArgumentException e) {
+            initCarsInfo(carsInfo);
+        }
+    }
+
+    private void checkCarNameValidation(List<Car> carsInfo) {
+        for (String carName : inputView.readCarNames()) {
+            carsInfo.add(new Car(carName));
+        }
     }
 }
