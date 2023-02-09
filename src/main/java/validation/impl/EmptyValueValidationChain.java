@@ -10,12 +10,12 @@ public class EmptyValueValidationChain implements InputValidationChain {
     private InputValidationChain next;
 
     @Override
-    public void setNext(InputValidationChain next) {
+    public void setNext(final InputValidationChain next) {
         this.next = next;
     }
 
     @Override
-    public boolean validate(InputValidationRequest request) {
+    public boolean validate(final InputValidationRequest request) {
         if (!request.getValidationTypes().contains(ValidationType.EMPTY_VALUE)) {
             return next.validate(request);
         }

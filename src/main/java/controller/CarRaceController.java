@@ -33,20 +33,20 @@ public class CarRaceController {
     }
 
     private Map<String, Integer> saveCar() {
-        String cars = inputView.requestCarName();
+        final String cars = inputView.requestCarName();
         validator.validate(new InputValidationRequest(List.of(ValidationType.EMPTY_VALUE), cars));
         return carRaceService.saveCars(
             Arrays.stream(cars.split(CAR_NAME_DELIMITER)).collect(Collectors.toList()));
     }
 
     private int requestCarMoveCount() {
-        String moveCount = inputView.requestMoveCount();
+        final String moveCount = inputView.requestMoveCount();
         validator.validate(new InputValidationRequest(List.of(ValidationType.EMPTY_VALUE,
             ValidationType.NUMBER_RANGE, ValidationType.POSITIVE_NUMBER), moveCount));
         return Integer.parseInt(moveCount);
     }
 
-    private void move(Map<String, Integer> initialCarStatus, int moveCount) {
+    private void move(final Map<String, Integer> initialCarStatus, final int moveCount) {
         outputView.printInitialStatus(initialCarStatus);
         for (int count = 0; count < moveCount; count++) {
             outputView.printMoveResult(carRaceService.move());
