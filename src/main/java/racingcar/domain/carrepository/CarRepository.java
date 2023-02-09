@@ -4,7 +4,9 @@ import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CarRepository {
@@ -36,15 +38,21 @@ public class CarRepository {
                 .count() != repository.size();
     }
 
-    public void movePosition() {
+    public Map<String, Integer> movePosition() {
         NumberGenerator numberGenerator = new NumberGenerator();
-        repository.stream()
-                .filter(car -> isMovable(numberGenerator.generateRandomNumber()))
-                .forEach(Car::updatePosition);
+        return repository.stream()
+                .map(car -> moveByNumber(car, numberGenerator.generateRandomNumber()))
+                .collect(Collectors.toMap(Car::getName,
+                        Car::getPosition,
+                        (oldValue, newValue) -> oldValue,
+                        LinkedHashMap::new));
     }
 
-    private boolean isMovable(int randomNumber) {
-        return randomNumber >= MOVING_CONDITION;
+    private Car moveByNumber(Car car, int randomNumber) {
+        if (randomNumber >= 4) {
+            car.updatePosition();
+        }
+        return car;
     }
 
     public List<Car> getRepository() {
