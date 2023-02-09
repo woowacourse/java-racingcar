@@ -10,12 +10,12 @@ public class RacingGame {
 
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
-    
-    private int gameTrial;
 
-    public RacingGame(List<Car> cars, int gameTrial, NumberGenerator numberGenerator) {
+    private int gameTrialCount;
+
+    public RacingGame(List<Car> cars, int gameTrialCount, NumberGenerator numberGenerator) {
         this.cars = cars;
-        this.gameTrial = gameTrial;
+        this.gameTrialCount = gameTrialCount;
         this.numberGenerator = numberGenerator;
     }
 
@@ -33,7 +33,7 @@ public class RacingGame {
     }
 
     public boolean canContinue() {
-        return gameTrial > GAME_OVER_COUNT;
+        return gameTrialCount > GAME_OVER_COUNT;
     }
 
     private void start() {
@@ -43,7 +43,7 @@ public class RacingGame {
     }
 
     private void finish() {
-        gameTrial--;
+        gameTrialCount--;
     }
 
     private int getMaxMoveCount() {
