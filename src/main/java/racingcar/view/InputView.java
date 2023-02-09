@@ -1,8 +1,9 @@
 package racingcar.view;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
 	private static final String DELIMITER = ",";
@@ -15,7 +16,7 @@ public class InputView {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
-		return splitByDelimiter(carNames);
+		return formatter(carNames);
 	}
 
 	public static int readRoundCount() {
@@ -25,11 +26,14 @@ public class InputView {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println();
 		return Integer.parseInt(roundCount);
 	}
 
-	private static List<String> splitByDelimiter(String carNames) {
-		return List.of(carNames.split(DELIMITER));
+	private static List<String> formatter(String carNames) {
+		return Arrays.stream(carNames.split(DELIMITER))
+			.map(s -> s.trim())
+			.collect(Collectors.toList());
 	}
 
 	// TODO: validate input length
