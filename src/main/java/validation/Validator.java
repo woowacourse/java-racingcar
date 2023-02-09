@@ -21,7 +21,7 @@ public class Validator {
 
     private static void checkCarName(List<String> carNames) {
         if (hasWrongSizeName(carNames)) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_NAME_SIZE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT_NAME.getErrorMessage());
         }
     }
 
@@ -38,13 +38,13 @@ public class Validator {
 
     private static void checkDigit(String input) {
         if (!Pattern.matches(DIGIT_REGEX, input)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_DIGIT_INPUT.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT_NUMBER.getErrorMessage());
         }
     }
 
     private static void checkTrialCount(String trailCount) {
         if (Integer.parseInt(trailCount) < MIN_TRIAL_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_NUMBER_SIZE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT_NUMBER.getErrorMessage());
         }
     }
 }

@@ -2,9 +2,8 @@ package validation;
 
 public enum ErrorMessage {
 
-    WRONG_NAME_SIZE("자동차 이름은 1~5 글자입니다."),
-    NOT_DIGIT_INPUT("숫자를 입력해주세요."),
-    WRONG_NUMBER_SIZE("1 이상의 시도 횟수를 입력해주세요.");
+    WRONG_INPUT_NAME("자동차 이름은 1~5 글자를 입력해주세요."),
+    WRONG_INPUT_NUMBER("시도 횟수는 1이상의 숫자를 입력해주세요.");
 
     private final String message;
 
