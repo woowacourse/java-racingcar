@@ -15,8 +15,8 @@ public class Car {
         this.position = position;
     }
 
-    public static int selectMaxPosition(Car car, int position) {
-        return Math.max(car.position, position);
+    public int selectMaxPosition(int otherPosition) {
+        return Math.max(position, otherPosition);
     }
 
     public boolean isSameWith(int otherPosition) {
