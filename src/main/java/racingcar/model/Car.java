@@ -26,11 +26,17 @@ public class Car {
     }
 
     public Car getLargerCar(Car compareCar) {
-        return this;
+        if (this.position > compareCar.getPosition()) {
+            return this;
+        }
+        return compareCar;
     }
 
     public Car getSamePositionCar(Car maxPositionCar) {
-        return this;
+        if (this.position == maxPositionCar.getPosition()) {
+            return this;
+        }
+        return null;
     }
 
     public String getName() {

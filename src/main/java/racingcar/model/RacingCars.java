@@ -13,15 +13,27 @@ public class RacingCars {
     }
 
     public List<Car> getWinners() {
-        return new ArrayList<>();
+        Car maxPositionCar = getMaxPositionCar();
+        return getMaxPositionCars(maxPositionCar);
     }
 
     private Car getMaxPositionCar() {
-        return new Car("", 0);
+        Car maxPositionCar = cars.get(0);
+        for (Car car : cars) {
+            maxPositionCar = car.getLargerCar(maxPositionCar);
+        }
+        return maxPositionCar;
     }
 
     private List<Car> getMaxPositionCars(Car maxPositionCar) {
-        return new ArrayList<>();
+        List<Car> winners = new ArrayList<>();
+        for (Car car : cars) {
+            Car sameMaxPositionCar = car.getSamePositionCar(maxPositionCar);
+            if (sameMaxPositionCar != null) {
+                winners.add(sameMaxPositionCar);
+            }
+        }
+        return winners;
     }
 
     public List<Car> getCars() {
