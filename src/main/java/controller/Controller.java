@@ -1,11 +1,12 @@
 package controller;
 
-import java.util.List;
-
 import service.Service;
 import utils.Converter;
 import view.InputView;
 import view.OutputView;
+import vo.Trial;
+
+import java.util.List;
 
 public class Controller {
     private final OutputView outputView = new OutputView();
@@ -25,8 +26,8 @@ public class Controller {
 
     private void playGame() {
         outputView.printResultMessage();
-        Long trial = service.getTrial();
-        for (int i = 0; i < trial; i++) {
+        Trial trial = service.getTrial();
+        for (int i = 0; i < trial.getValue(); i++) {
             service.move();
             List<String> moveResult = service.getMoveResult();
             outputView.printMoveResult(moveResult);

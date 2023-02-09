@@ -10,10 +10,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import utils.RandomNumberGenerator;
+import vo.Name;
 
 class CarsTest {
     Cars cars;
-    Car car = new Car("test");
+    Car car = new Car(Name.of("test"));
 
     @Test
     @DisplayName("차 추가 테스트")
@@ -32,16 +33,16 @@ class CarsTest {
         List<Integer> testNumbers = Arrays.asList(3, 4);
         cars = new Cars(new TestRandomNumberGenerator(testNumbers));
 
-        Car fox = new Car("fox");
+        Car fox = new Car(Name.of("fox"));
 
         cars.add(car);
         cars.add(fox);
 
         cars.move();
 
-        List<String> winners = cars.getWinners();
+        List<Name> winners = cars.getWinners();
 
-        assertThat(winners).containsExactly("fox");
+        assertThat(winners).containsExactly(Name.of("fox"));
     }
 
     @Test
@@ -64,16 +65,16 @@ class CarsTest {
         List<Integer> testNumbers = Arrays.asList(4,4);
         cars = new Cars(new TestRandomNumberGenerator(testNumbers));
 
-        Car fox = new Car("fox");
+        Car fox = new Car(Name.of("fox"));
 
         cars.add(car);
         cars.add(fox);
 
         cars.move();
 
-        List<String> winners = cars.getWinners();
+        List<Name> winners = cars.getWinners();
 
-        assertThat(winners).containsExactly("test", "fox");
+        assertThat(winners).containsExactly(Name.of("test"), Name.of("fox"));
     }
 
     static class TestRandomNumberGenerator extends RandomNumberGenerator {

@@ -1,15 +1,15 @@
 package service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import utils.exception.AlreadyDefinedFieldException;
+import vo.Trial;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ServiceTest {
     Service service;
@@ -30,9 +30,9 @@ class ServiceTest {
     @DisplayName("시도횟수가 null 이면 rule에 시도횟수 저장")
     void setTrial() {
         service.setTrial(4L);
-        Long result = service.getTrial();
+        Trial result = service.getTrial();
 
-        assertThat(4L).isEqualTo(result);
+        assertThat(4L).isEqualTo(result.getValue());
     }
 
     @Test

@@ -9,6 +9,8 @@ import domain.Cars;
 import domain.Rule;
 import utils.RandomNumberGenerator;
 import utils.exception.AlreadyDefinedFieldException;
+import vo.Name;
+import vo.Trial;
 
 public class Service {
     private final Cars cars = new Cars(new RandomNumberGenerator());
@@ -17,13 +19,13 @@ public class Service {
     public void setCars(List<String> carNames) {
         validateDuplication(carNames);
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            cars.add(new Car(Name.of(carName)));
         }
     }
 
     public void setTrial(Long trial) {
         if (rule == null) {
-            rule = new Rule(trial);
+            rule = new Rule(Trial.of(trial));
             return;
         }
 
@@ -34,7 +36,7 @@ public class Service {
         cars.move();
     }
 
-    public Long getTrial() {
+    public Trial getTrial() {
         return rule.getTrial();
     }
 
@@ -42,7 +44,7 @@ public class Service {
         return cars.getResult();
     }
 
-    public List<String> getWinners() {
+    public List<Name> getWinners() {
         return cars.getWinners();
     }
 

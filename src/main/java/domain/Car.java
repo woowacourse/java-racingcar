@@ -1,40 +1,42 @@
 package domain;
 
-public class Car {
-    private final String name;
-    private Long status = 0L;
+import vo.Name;
 
-    public Car(String name) {
+public class Car {
+    private final Name name;
+    private Long position = 0L;
+
+    public Car(Name name) {
         validateName(name);
         this.name = name;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
+    }
+
+    public Long getPosition() {
+        return position;
     }
 
     public void move(int randomNumber) {
         if (randomNumber > 3) {
-            status++;
+            position++;
         }
     }
 
-    private void validateName(String name) {
+    private void validateName(Name name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("5글자 까지만 가능합니다.");
         }
     }
 
-    public Long getStatus() {
-        return status;
-    }
-
     public String getResult() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(" : ");
-        for (int i = 0; i < status; i++) {
+        for (int i = 0; i < position; i++) {
             stringBuilder.append("-");
         }
-        return name + stringBuilder;
+        return name.getValue() + stringBuilder;
     }
 }

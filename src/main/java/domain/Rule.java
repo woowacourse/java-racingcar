@@ -1,13 +1,15 @@
 package domain;
 
-public class Rule {
-    private final Long trial;
+import vo.Trial;
 
-    public Rule(Long trial) {
+public class Rule {
+    private final Trial trial;
+
+    public Rule(Trial trial) {
         this.trial = trial;
     }
 
-    public Long getTrial() {
+    public Trial getTrial() {
         return trial;
     }
 }

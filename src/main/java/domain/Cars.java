@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import utils.RandomNumberGenerator;
+import vo.Name;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
@@ -21,24 +22,24 @@ public class Cars {
     }
 
     public Long getStatus(Car car) {
-        return car.getStatus();
+        return car.getPosition();
     }
 
     public void move() {
         cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
     }
 
-    public List<String> getWinners() {
+    public List<Name> getWinners() {
         Long maxValue = getMaxValue();
         return cars.stream()
-                .filter((car) -> Objects.equals(car.getStatus(), maxValue))
+                .filter((car) -> Objects.equals(car.getPosition(), maxValue))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
     private Long getMaxValue() {
         return Collections.max(cars.stream()
-                .map((Car::getStatus))
+                .map((Car::getPosition))
                 .collect(Collectors.toList()));
     }
 
