@@ -1,6 +1,7 @@
 package model;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -28,4 +29,15 @@ class CarTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("Car 전진 테스트")
+    void moveCarTest(){
+        Car car = new Car("test");
+        car.moveCar();
+
+        assertThat(car.getCarLocation()).isEqualTo(1);
+    }
+
+
 }
