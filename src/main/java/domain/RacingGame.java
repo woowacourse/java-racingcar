@@ -12,7 +12,6 @@ public class RacingGame {
     private final NumberGenerator numberGenerator;
     
     private int gameTrial;
-    
 
     public RacingGame(List<Car> cars, int gameTrial, NumberGenerator numberGenerator) {
         this.cars = cars;
@@ -26,16 +25,6 @@ public class RacingGame {
         return cars;
     }
 
-    private void start() {
-        cars.stream()
-                .filter(car -> car.canMove(numberGenerator.generate(), MIN_MOVE_NUMBER))
-                .forEach(car -> car.move());
-    }
-
-    private void finish() {
-        gameTrial--;
-    }
-
     public List<Car> getWinners() {
         int maxMoveCount = getMaxMoveCount();
         return cars.stream()
@@ -45,6 +34,16 @@ public class RacingGame {
 
     public boolean canContinue() {
         return gameTrial > GAME_OVER_COUNT;
+    }
+
+    private void start() {
+        cars.stream()
+                .filter(car -> car.canMove(numberGenerator.generate(), MIN_MOVE_NUMBER))
+                .forEach(car -> car.move());
+    }
+
+    private void finish() {
+        gameTrial--;
     }
 
     private int getMaxMoveCount() {
