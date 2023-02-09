@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public void printInitialStatus(Map<String, Integer> initialStatus) {
-        System.out.println(RESULT_HEAD);
+        System.out.println("\n" + RESULT_HEAD);
         printMoveResult(initialStatus);
     }
 
