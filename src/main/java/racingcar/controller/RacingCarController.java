@@ -8,7 +8,6 @@ import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class RacingCarController {
@@ -30,13 +29,16 @@ public class RacingCarController {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         return new RacingGame(carRepository, tries, numberGenerator);
     }
-    //,를 제거했을 때 빈 리스트가 되는 경우 예외 처리한다.
-    //플레이어가 1명 이하인 경우 예외 처리한다.
 
     private CarRepository createCars() {
-        String input = InputView.inputCarNames();
-        List<String> carNames = splitCarNames(input);
-        return new CarRepository(carNames);
+        try {
+            String input = InputView.inputCarNames();
+            List<String> carNames = splitCarNames(input);
+            return new CarRepository(carNames);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createCars();
+        }
     }
 
     private List<String> splitCarNames(String input) {
@@ -46,7 +48,8 @@ public class RacingCarController {
     private int getTries() {
         try {
             return InputView.inputTries();
-        } catch (InputMismatchException e) {
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getTries();
         }
     }
