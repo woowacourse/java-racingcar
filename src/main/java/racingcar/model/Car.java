@@ -20,6 +20,9 @@ public class Car {
     }
 
     public void move(boolean isMoving) {
+        if (isMoving) {
+            this.position++;
+        }
     }
 
     public Car getLargerCar(Car compareCar) {
