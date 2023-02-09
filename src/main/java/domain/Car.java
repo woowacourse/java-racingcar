@@ -1,6 +1,6 @@
 package domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
   private final String name;
   private int position = 1;
@@ -11,8 +11,10 @@ public class Car {
     this.name = name;
   }
 
-  public void move(int num){
-    if(num >= MIN_MOVE_NUM) position++;
+  public void move(int num) {
+    if (num >= MIN_MOVE_NUM) {
+      position++;
+    }
   }
 
   public int getPosition() {
@@ -21,6 +23,11 @@ public class Car {
 
   public String getName() {
     return name;
+  }
+
+  @Override
+  public int compareTo(Car o) {
+    return position - o.position;
   }
 }
 
