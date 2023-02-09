@@ -1,7 +1,27 @@
-# java-racingcar
+# 자동차 경주
 
-자동차 경주 미션 저장소
+## 기능
+- [x] 자동차 이동 기능
+    - 랜덤값 생성
+- [x] 우승자 선별 기능
 
-## 우아한테크코스 코드리뷰
+## 입력
+- [x] 자동차 이름 입력
+    - 자동차 이름이 중복되었으면 예외 처리
+    - 5글자를 초과하면 예외 처리
+    - 공백을 입력하면 예외 처리
+- [x] 시도할 라운드 횟수 입력
+    - 숫자가 아니면 예외 처리
+    - 0 이하인 경우 예외 처리
 
-- [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
+## 출력
+- [x] 라운드 진행 상황 출력
+- [x] 우승자 출력
+
+## 에러 처리
+사용자가 잘못된 값을 입력할 경우 IllegalArugmentException을 발생시키고, "[Error]"로 시작하는
+메시지를 출력한 뒤 그 부분부터 입력을 다시 받는다.
+
+## Flow Chart
+
+![](docs/FlowChart.png)
