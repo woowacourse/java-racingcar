@@ -17,14 +17,13 @@ public class OutputView {
         print(PrintMessages.ENTER_COUNT);
     }
 
-    static public void printResult() {
+    static public void printResultMessage() {
         print(PrintMessages.RESULT);
     }
 
     static public void printRoundResult(List<Car> cars) {
         StringBuilder content = new StringBuilder();
         cars.forEach(car -> addCarResult(content, car));
-        content.append('\n');
         System.out.println(content);
     }
 
@@ -37,5 +36,9 @@ public class OutputView {
     static private String convertDistance(int distance) {
         final String DISTANCE = "-";
         return DISTANCE.repeat(distance);
+    }
+
+    static public void printErrorMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 }
