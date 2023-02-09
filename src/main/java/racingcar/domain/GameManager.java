@@ -33,16 +33,16 @@ public class GameManager {
 		while (!gameRound.isEnd()) {
 			cars.moveCars();
 			gameRound.increaseRound();
-			RoundResultResponse roundResultDTO = new RoundResultResponse(cars.getCars());
-			outputView.printRoundResult(roundResultDTO);
+			RoundResultResponse roundResultResponse = new RoundResultResponse(cars.getCars());
+			outputView.printRoundResult(roundResultResponse);
 		}
 	}
 
 	private void createCars() {
 		while(true) {
 			try {
-				CarNamesRequest carNamesDTO = inputView.inputCarName();
-				List<String> carNames = carNamesDTO.getCarNames();
+				CarNamesRequest carNamesResponse = inputView.inputCarName();
+				List<String> carNames = carNamesResponse.getCarNames();
 				cars.generateCars(carNames);
 				return;
 			} catch (Exception e) {
@@ -65,7 +65,7 @@ public class GameManager {
 	}
 
 	private void endGame() {
-		GameResultResponse gameResultDTO = new GameResultResponse(cars.findWinnerNames());
-		outputView.printEndGameResult(gameResultDTO);
+		GameResultResponse gameResultResponse = new GameResultResponse(cars.findWinnerNames());
+		outputView.printEndGameResult(gameResultResponse);
 	}
 }
