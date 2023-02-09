@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
@@ -16,6 +17,7 @@ class CarsTest {
         new ArrayList<>(List.of(3, 4, 5)));
 
     @Test
+    @DisplayName("자동차 이름이 없어서 빈 리스트가 넘어오면 오류가 발생한다.")
     void carsGenerateTest() {
         //Given
         List<Car> testCase = new ArrayList<>();
@@ -30,6 +32,7 @@ class CarsTest {
     }
 
     @Test
+    @DisplayName("우승한 자동차를 제공한다.")
     void decideWinnerTest() {
         //Given
         Car pobi = new Car("pobi", new TestNumberGenerator(new ArrayList<>(List.of(3, 4, 5))));
@@ -50,6 +53,8 @@ class CarsTest {
         //Then
         assertThat(result.size()).isEqualTo(2);
     }
+
+
 
     static class TestNumberGenerator implements NumberGenerator {
 
