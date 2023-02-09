@@ -9,28 +9,31 @@ public class OutputView {
 
     private final String RACING_RESULT_MESSAGE = System.lineSeparator() + "실행 결과";
     private final String RACING_WINNER_MESSAGE = "%s가 최종 우승했습니다." + System.lineSeparator();
+    private final String DISTANCE_MARK = "-";
+    private final String CAR_INFO_DELIMITER = " : ";
+    private final String RESULT_DELIMITER = ", ";
 
     public void printRacingStatus(List<Car> cars) {
         for (Car car : cars) {
-            StringJoiner stringJoiner = new StringJoiner(" : ");
-            makeCarNames(car, stringJoiner);
-            makeCarTrack(car, stringJoiner);
+            StringJoiner stringJoiner = new StringJoiner(CAR_INFO_DELIMITER);
+            stringJoiner.add(makeCarNames(car));
+            stringJoiner.add(makeCarTrack(car));
 
             System.out.println(stringJoiner);
         }
         System.out.println();
     }
 
-    private void makeCarNames(Car car, StringJoiner stringJoiner) {
-        stringJoiner.add(car.getCarName());
+    private String makeCarNames(Car car) {
+        return car.getCarName();
     }
 
-    private void makeCarTrack(Car car, StringJoiner stringJoiner) {
-        stringJoiner.add("-".repeat(car.getPosition()));
+    private String makeCarTrack(Car car) {
+        return DISTANCE_MARK.repeat(car.getPosition());
     }
 
     public void printRacingWinners(List<Car> cars) {
-        StringJoiner stringJoiner = new StringJoiner(", ");
+        StringJoiner stringJoiner = new StringJoiner(RESULT_DELIMITER);
         cars.forEach(car -> stringJoiner.add(car.getCarName()));
 
         System.out.printf(RACING_WINNER_MESSAGE, stringJoiner);
