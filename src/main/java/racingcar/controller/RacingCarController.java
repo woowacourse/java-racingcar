@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
+import racingcar.domain.Lap;
 
 import java.util.Arrays;
 
@@ -13,5 +14,9 @@ public class RacingCarController {
     public Cars createCars(final String carNames) {
         return new Cars(Arrays.stream(carNames.split(DELIMITER))
                 .collect(toUnmodifiableList()));
+    }
+
+    public Lap confirmTotalLap(final int totalLap) {
+        return new Lap(totalLap);
     }
 }

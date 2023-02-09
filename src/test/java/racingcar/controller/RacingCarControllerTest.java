@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Cars;
+import racingcar.domain.Lap;
 
 import java.util.stream.Stream;
 
@@ -30,6 +32,16 @@ class RacingCarControllerTest {
             // then
             assertThat(cars.getCars().size()).isEqualTo(size);
         }
+
+        @ParameterizedTest(name = "confirmTotalLap() 시 숫자를 입력받아 Lap을 생성한다.")
+        @ValueSource(ints = {1, 2, 3, 4, 5})
+        void success_test_2(final int totalLapInput) {
+            // when
+            Lap lap = controller.confirmTotalLap(totalLapInput);
+
+            // then
+            assertThat(lap.getTotalLap()).isEqualTo(totalLapInput);
+        }
     }
 
     @Nested
@@ -41,7 +53,7 @@ class RacingCarControllerTest {
         void fail_test_1(final String carNames) {
             // when & then
             Assertions.assertThatThrownBy(
-                    () ->controller.createCars(carNames)
+                    () -> controller.createCars(carNames)
             ).isInstanceOf(IllegalArgumentException.class);
         }
     }
