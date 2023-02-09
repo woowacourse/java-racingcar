@@ -19,6 +19,6 @@ public class CreateCarStep extends RacingCarApplicationStep {
     public Step execute() {
         String carNames = InputView.inputCarNames();
         Cars cars = controller.createCars(carNames);
-        return new InputLapStep(controller, cars);
+        return new InputTotalLapStep(controller, cars);
     }
 }
