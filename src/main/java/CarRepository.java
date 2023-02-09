@@ -50,4 +50,14 @@ public class CarRepository implements CarRepositoryInterface {
         }
         return carNames;
     }
+
+    @Override
+    public void addPosition(String carName) {
+        Car findedCar = carInformation.stream()
+                .filter(car -> carName.equals(car.getName()))
+                .findAny()
+                .orElseThrow();
+
+        findedCar.setPosition(findedCar.getPosition() + 1);
+    }
 }
