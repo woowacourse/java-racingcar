@@ -25,6 +25,7 @@ class CarTest {
     void createExceptionCarTest(String name){
         assertThatThrownBy(() -> {
             new Car(name);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
     }
 }
