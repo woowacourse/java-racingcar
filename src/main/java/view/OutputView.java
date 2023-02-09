@@ -2,9 +2,7 @@ package view;
 
 import racingcar.Car;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static constant.Constants.*;
 
@@ -18,7 +16,7 @@ public class OutputView {
     }
 
     public void printCarsStatus(List<Car> cars) {
-        cars.forEach(car -> println(car.getName() + " : " + getPositionBars(car.getPosition())));
+        cars.forEach(car -> println(car.getName() + GAME_STATUS_DELIMITER + getPositionBars(car.getPosition())));
         printNewLine();
     }
 
@@ -27,19 +25,18 @@ public class OutputView {
     }
 
     private String getPositionBars(int position) {
-        return "-".repeat(position);
+        return POSITION_PRINT_FORMAT.repeat(position);
     }
 
     public void printWinners(List<String> winnerNames) {
-        String winnerList = winnerNames.stream().collect(Collectors.joining(", "));
-        println(winnerList + PRINT_WINNER_LIST_GUIDE);
+        println(String.join(NAME_JOINING_DELIMITER, winnerNames) + PRINT_WINNER_LIST_GUIDE);
+    }
+
+    public void printException(String exceptionMessage) {
+        println(EXCEPTION_STARTER + exceptionMessage);
     }
 
     private void println(String value) {
         System.out.println(value);
-    }
-
-    public void printException(String exceptionMessage) {
-        println("[ERROR] " + exceptionMessage);
     }
 }

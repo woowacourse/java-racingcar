@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 import static constant.Constants.MINIMUM_NUMBER_OF_CARS_EXCEPTION;
 
 public class CarRepository {
-    private static final List<Car> cars = new ArrayList<>();
     private static final int MINIMUM_NUMBER_OF_CARS = 2;
+
+    private static final List<Car> cars = new ArrayList<>();
 
     public static void updateCars(List<Car> newCars) {
         if (newCars.size() < MINIMUM_NUMBER_OF_CARS) {

@@ -1,13 +1,17 @@
 package racingcar;
 
 public class RandomBasedStrategy implements MoveStrategy {
+
+    private static final int MINIMUM_MOVABLE_NUMBER = 4;
+    public static final int MAXIMUM_NUMBER_OF_RANGE = 9;
+
     @Override
     public boolean isMovable() {
-        return getRandom() >= 4;
+        return getRandom() >= MINIMUM_MOVABLE_NUMBER;
     }
 
     private static int getRandom() {
 
-        return (int) ((Math.random() * 10000) % 9);
+        return (int) ((Math.random() * 10000) % MAXIMUM_NUMBER_OF_RANGE);
     }
 }

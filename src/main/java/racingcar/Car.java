@@ -1,7 +1,5 @@
 package racingcar;
 
-import java.util.Objects;
-
 import static constant.Constants.CAR_NAME_LIMIT_EXCEPTION;
 
 public class Car {
@@ -21,10 +19,14 @@ public class Car {
         this.position = position;
     }
 
-    private static void validateName(String name) {
-        if (name.isEmpty() || name.length() > NAME_MAXIMUM_LENGTH) {
+    private void validateName(String name) {
+        if (isCorrectLength(name)) {
             throw new IllegalArgumentException(CAR_NAME_LIMIT_EXCEPTION);
         }
+    }
+
+    private boolean isCorrectLength(String name) {
+        return name.isEmpty() || name.length() > NAME_MAXIMUM_LENGTH;
     }
 
     public void move(MoveStrategy moveStrategy) {

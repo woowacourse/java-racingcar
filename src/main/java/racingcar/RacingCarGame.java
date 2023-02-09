@@ -4,22 +4,22 @@ import java.util.List;
 
 public class RacingCarGame {
 
+    private static final int START_POSITION = 0;
+
     public void repeatRounds() {
-        List<Car> cars = CarRepository.findAll();
-        for (Car car : cars) {
+        for (Car car : CarRepository.findAll()) {
             car.move(new RandomBasedStrategy());
         }
     }
 
     public List<String> getWinners() {
-        int maxPosition = getMaxPosition();
-        return CarRepository.findSamePositionWith(maxPosition);
+        return CarRepository.findSamePositionWith(getMaxPosition());
     }
 
     private int getMaxPosition() {
         return CarRepository.findAll().stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0);
+                .orElse(START_POSITION);
     }
 }

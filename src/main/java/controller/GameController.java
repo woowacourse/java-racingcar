@@ -10,10 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static constant.Constants.COMMA_NOT_ALLOWED_EXCEPTION;
-import static constant.Constants.TRIAL_INPUT_EXCEPTION;
+import static constant.Constants.*;
 
 public class GameController {
+    private static final int MINIMUM_NUMBER_OF_MOVING = 1;
+    private static final String CAR_NAME_DELIMITER = ",";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final RacingCarGame racingCarGame;
@@ -25,22 +27,25 @@ public class GameController {
     }
 
     public void run() {
-        makeCars(inputView.readCarNames());
+        addCars(inputView.readCarNames());
         startRacing(readNumberOfMoving());
         outputView.printWinners(racingCarGame.getWinners());
     }
 
-    private void makeCars(String carNames) {
+    private void addCars(String carNames) {
         try {
-            List<Car> cars = Arrays.stream(carNames.split(","))
-                    .filter(this::validateCarName)
-                    .map(Car::new)
-                    .collect(Collectors.toList());
-            CarRepository.updateCars(cars);
+            CarRepository.updateCars(makeCars(carNames));
         } catch (IllegalArgumentException illegalArgumentException) {
             outputView.printException(illegalArgumentException.getMessage());
-            makeCars(inputView.readCarNames());
+            addCars(inputView.readCarNames());
         }
+    }
+
+    private List<Car> makeCars(String carNames) {
+        return Arrays.stream(carNames.split(CAR_NAME_DELIMITER))
+                .filter(this::validateCarName)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     private boolean validateCarName(String carName) {
@@ -62,7 +67,7 @@ public class GameController {
     }
 
     private void validateTrial(int numberOfMoving) {
-        if (numberOfMoving < 1) {
+        if (numberOfMoving < MINIMUM_NUMBER_OF_MOVING) {
             throw new IllegalArgumentException(TRIAL_INPUT_EXCEPTION);
         }
     }
