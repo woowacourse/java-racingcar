@@ -26,9 +26,13 @@ public class RacingCarService {
     public void moveCars(MoveStrategy moveStrategy) {
         validateEmptyCars(cars);
         for (Car car : cars) {
-            if (moveStrategy.isMovable()) {
-                car.move();
-            }
+            move(moveStrategy, car);
+        }
+    }
+
+    private void move(MoveStrategy moveStrategy, Car car) {
+        if (moveStrategy.isMovable()) {
+            car.move();
         }
     }
 
