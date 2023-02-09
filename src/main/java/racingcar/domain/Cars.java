@@ -23,13 +23,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void requestMoveBy(int tryCount) {
-        for (int index = 0 ; index < tryCount ; index++) {
-            requestMoveEachCar();
-        }
-    }
-
-    private void requestMoveEachCar() {
+    public void requestMoveEachCar() {
         cars.forEach(Car::tryMove);
     }
 
