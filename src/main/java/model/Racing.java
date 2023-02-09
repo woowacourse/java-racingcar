@@ -1,45 +1,40 @@
 package model;
 
+import message.Constant;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Racing {
 
-    private final int UPPER_BOUND = 10;
-    private final int START_DISTANCE = 0;
-    private final String STICK = "-";
-
-    private Map<Car, Integer> board;
+    private Map<Car, Integer> distanceByEachCar;
     private int winnerDistance;
-    private Random random;
+    private RandomNumberGenerator randomNumberGenerator;
 
-    public Racing(List<String> carNames, Random random) {
-        board = new LinkedHashMap<>();
-        winnerDistance = START_DISTANCE;
-        this.random = random;
-        carGenerate(carNames);
+    public Racing(List<String> carNames, RandomNumberGenerator randomNumberGenerator) {
+        distanceByEachCar = new LinkedHashMap<>();
+        winnerDistance = Constant.START_POSITION;
+        this.randomNumberGenerator = randomNumberGenerator;
+        carsGenerate(carNames);
     }
 
-    private void carGenerate(List<String> carNames) {
-        carNames.forEach(carName -> board.put(new Car(carName), START_DISTANCE));
+    private void carsGenerate(List<String> carNames) {
+        carNames.forEach(carName -> distanceByEachCar.put(new Car(carName), Constant.START_POSITION));
     }
 
-    public void moveAll() {
-        for (Car car : board.keySet()) {
-            move(car);
-        }
+    public void moveAllCars() {
+        distanceByEachCar.keySet().forEach(this::moveCar);
     }
 
-    private void move(Car car) {
-        boolean isPossibleToMove = car.move(randomNumber());
+    private void moveCar(Car car) {
+        boolean isPossibleToMove = car.move(randomNumberGenerator.generate(Constant.RANDOM_NUMBER_GENERATE_UPPER_BOUND));
 
         if (isPossibleToMove) {
-            int distance = board.get(car) + 1;
+            int distance = distanceByEachCar.get(car) + Constant.CAR_MOVE_DISTANCE;
             updateWinnerDistance(distance);
-            board.put(car, distance);
+            distanceByEachCar.put(car, distance);
         }
     }
 
@@ -47,26 +42,22 @@ public class Racing {
         winnerDistance = Math.max(winnerDistance, distance);
     }
 
-    private int randomNumber() {
-        return random.nextInt(UPPER_BOUND);
+    private String carResultToString(Car car) {
+        return String.format(Constant.CAR_RESULT, car.toString(), Constant.STICK.repeat(distanceByEachCar.get(car)));
+    }
+
+    public List<Car> winner() {
+        return distanceByEachCar.keySet()
+                .stream()
+                .filter(car -> distanceByEachCar.get(car) == winnerDistance)
+                .collect(Collectors.toList());
     }
 
     @Override
     public String toString() {
-        return board.keySet()
+        return distanceByEachCar.keySet()
                 .stream()
-                .map(this::makeResult)
+                .map(this::carResultToString)
                 .collect(Collectors.joining());
-    }
-
-    private String makeResult(Car car) {
-        return car.toString() + " : " + STICK.repeat(board.get(car)) + "\n";
-    }
-
-    public List<Car> winner(){
-        return board.keySet()
-                .stream()
-                .filter(car->board.get(car)==winnerDistance)
-                .collect(Collectors.toList());
     }
 }
