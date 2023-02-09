@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 public class CarGroup {
 
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
-    public static final int NUMBER_RANGE_MIN = 0;
-    public static  final int NUMBER_RANGE_MAX = 9;
 
     List<Car> carGroup;
 
@@ -30,9 +28,9 @@ public class CarGroup {
         }
     }
 
-    public void moveCars(int start, int end) {
+    public void moveCars(NumberGenerator numberGenerator) {
         for (Car car : carGroup) {
-            int pickedNumber = numberGenerator.pickOneNumberInRange(start, end);
+            int pickedNumber = numberGenerator.generateNumber();
             car.move(pickedNumber);
         }
     }

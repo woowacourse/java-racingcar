@@ -1,6 +1,7 @@
 package racingCar;
 
 import racingCar.domain.CarGroup;
+import racingCar.util.NumberGenerator;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
@@ -9,21 +10,24 @@ import java.util.function.Supplier;
 
 public class RacingCarController {
 
-    public void run() {
+    public void run(NumberGenerator numberGenerator) {
         CarGroup carGroup = repeat(this::makeCars);
         Integer tryCount = repeat(InputView::readTryCount);
-        for (int i = 0; i < tryCount; i++) {
-            carGroup.moveCars(CarGroup.NUMBER_RANGE_MIN, CarGroup.NUMBER_RANGE_MAX);
-            OutputView.printCarPosition(carGroup.toCarDtos());
-        }
+        moveCarsAndView(numberGenerator,tryCount, carGroup);
         OutputView.printWinners(carGroup.findWinners());
     }
-
 
     private CarGroup makeCars() {
         List<String> carNames = repeat(InputView::readCarNames);
         CarGroup carGroup = new CarGroup(carNames);
         return carGroup;
+    }
+
+    private void moveCarsAndView(NumberGenerator numberGenerator, int tryCount, CarGroup carGroup) {
+        for (int i = 0; i < tryCount; i++) {
+            carGroup.moveCars(numberGenerator);
+            OutputView.printCarPosition(carGroup.toCarDtos());
+        }
     }
 
     private static <T> T repeat(Supplier<T> reader) {

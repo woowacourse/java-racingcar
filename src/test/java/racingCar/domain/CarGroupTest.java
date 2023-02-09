@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingCar.util.FixedNumberGenerator;
+import racingCar.util.RandomNumberGenerator;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,7 +33,7 @@ class CarGroupTest {
     @Test
     @DisplayName("자동차들이 0-3의 숫자를 받으면 이동하지 않음 ")
     void carGroupMoveTest_notMove() {
-        carGroup.moveCars(0, 3);
+        carGroup.moveCars(new FixedNumberGenerator(3));
         List<Car> afterCarGroup = carGroup.getCarGroup();
 
         long count = afterCarGroup.stream()
@@ -44,7 +46,7 @@ class CarGroupTest {
     @Test
     @DisplayName("자동차들이 4-9의 숫자를 받으면 이동")
     void carGroupMoveTest_Move() {
-        carGroup.moveCars(4, 9);
+        carGroup.moveCars(new FixedNumberGenerator(4));
         List<Car> afterCarGroup = carGroup.getCarGroup();
 
         long count = afterCarGroup.stream()
@@ -58,7 +60,7 @@ class CarGroupTest {
     @DisplayName("자동차들의 position 중 가장 높은 position 값을 가져온다")
     void getHighestPositionTest() {
         for (int tryCount = 0; tryCount < 20; tryCount++) {
-            carGroup.moveCars(0, 9);
+            carGroup.moveCars(new RandomNumberGenerator());
         }
 
         List<Car> cars = carGroup.getCarGroup();
