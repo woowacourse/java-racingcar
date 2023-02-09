@@ -1,6 +1,7 @@
 package car.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
@@ -31,6 +32,21 @@ public class GameTest {
         Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
 
         assertThat(game.findWinners()).containsOnly(car1, car2);
+    }
+
+    @Test
+    void 차가_유일하면_바로_우승자이다() {
+        Car car1 = new Car("땡칠", 2);
+        Game game = new Game(List.of(car1), MOVABLE_CHANCE);
+
+        assertThat(game.findWinners()).containsOnly(car1);
+    }
+
+    @Test
+    void 차는_1대_이상이어야한다() {
+        Game game = new Game(List.of(), MOVABLE_CHANCE);
+        
+        assertThatThrownBy(() -> game.findWinners());
     }
 
     @Test
