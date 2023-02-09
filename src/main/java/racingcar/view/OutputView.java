@@ -15,4 +15,8 @@ public class OutputView {
     public void printInitialCarPosition(String carsPositionFormat) {
         System.out.println(carsPositionFormat + LINE_BREAK);
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
