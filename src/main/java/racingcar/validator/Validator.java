@@ -1,0 +1,46 @@
+package racingcar.validator;
+
+import static racingcar.exception.ExceptionMessage.*;
+
+import java.util.Arrays;
+
+public class Validator {
+    private static final int MAX_NAME_LENGTH = 6;
+
+    private Validator() {}
+
+    public static int stringToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
+        }
+    }
+
+    public static void validateNegativeNumber(Integer tryCount) {
+        if (tryCount < 0) {
+            throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
+        }
+    }
+
+    public static void validateDuplicateNames(String[] names) {
+        long noDuplicateCount = Arrays.stream(names)
+                .distinct()
+                .count();
+        if (noDuplicateCount != names.length) {
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME.getMessage());
+        }
+    }
+
+    public static void validateEmptyName(String name) {
+        if(name.isBlank()) {
+            throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
+        }
+    }
+
+    public static void validateNameLength(String name) {
+        if(name.length() >= MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
+        }
+    }
+}
