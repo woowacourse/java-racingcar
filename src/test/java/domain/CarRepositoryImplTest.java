@@ -13,15 +13,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import strategy.FixedMovingStrategy;
 
-class CarRepositoryTest {
+class CarRepositoryImplTest {
 
     Map<Car, Integer> carBoard = new HashMap<>();
     Car car = new Car(new Name("lee"));
-    CarRepository carRepository = new CarRepository(carBoard);
+    CarRepository carRepository = new CarRepositoryImpl();
 
     @BeforeEach
     void setUp() {
         carBoard.put(car, 0);
+        carRepository.insertCarBoard(carBoard);
     }
 
     @DisplayName("자동 생성 숫자가 추출되었을때, 차량의 이동 가능여부를 판단")

@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.Car;
 import domain.CarRepository;
+import domain.CarRepositoryImpl;
 import domain.Name;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,18 +22,21 @@ class GamePlayTest {
     CarRepository carRepository;
     Map<Car, Integer> carBoard = new HashMap<>();
     Car car = new Car(new Name("kim"));
+    GamePlay gamePlay = new GamePlay();
 
     @BeforeEach
     void setUp() {
         carBoard.put(car, 0);
-        carRepository = new CarRepository(carBoard);
+        carRepository = new CarRepositoryImpl();
+        carRepository.insertCarBoard(carBoard);
+
     }
 
     @DisplayName("지정한 시도 회수만큼 게임이 진행되었는지 확인")
     @ParameterizedTest
     @CsvSource(value = {"1:1", "4:4", "9:9"}, delimiter = ':')
     void testPlay(int tryTimes, int expected) {
-        GamePlay.play(carRepository, tryTimes, new FixedMovingStrategy());
+        gamePlay.play(carRepository, tryTimes, new FixedMovingStrategy());
         assertThat(carRepository.getCarBoard().get(car)).isEqualTo(expected);
     }
 
@@ -41,7 +45,7 @@ class GamePlayTest {
     void testTryTimesValidation() {
         assertThatThrownBy(
             () -> {
-                GamePlay.play(carRepository, 0, new FixedMovingStrategy());
+                gamePlay.play(carRepository, 0, new FixedMovingStrategy());
             }
         ).isInstanceOf(IllegalArgumentException.class);
     }
