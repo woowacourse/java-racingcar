@@ -30,7 +30,7 @@ public class Cars {
     private void addCar(String userInput) {
         String[] userInputSplit = userInput.split(",");
 
-        for(String inputSplit :userInputSplit){
+        for (String inputSplit : userInputSplit) {
             cars.add(new Car(inputSplit));
         }
     }
@@ -40,12 +40,16 @@ public class Cars {
     }
 
     public void addDistance() {
-        for (Car car : cars){
+        for (Car car : cars) {
             car.addDistance(new RandomNumberMaker().makeNumber());
         }
     }
 
-    public Car getCar (int i){
+    public Car getCar(int i) {
         return this.cars.get(i);
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

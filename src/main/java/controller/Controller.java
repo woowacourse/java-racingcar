@@ -2,7 +2,7 @@ package controller;
 
 import domain.Cars;
 import domain.Trial;
-import util.RandomNumberMaker;
+import domain.Winner;
 import view.InputView;
 import view.OutputView;
 
@@ -19,6 +19,7 @@ public class Controller {
             outputView.printCarsDistance(cars);
             trial.updateTrialCount();
         }
+        outputView.printWinner(new Winner(cars));
     }
 
 
@@ -36,6 +37,4 @@ public class Controller {
             return askTrial();
         }
     }
-
-
 }

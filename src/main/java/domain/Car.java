@@ -1,6 +1,6 @@
 package domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String carName;
     private int distance = 0;
 
@@ -30,5 +30,10 @@ public class Car {
 
     public int getDistance() {
         return distance;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return (this.distance >= car.distance) ? 1 : -1;
     }
 }

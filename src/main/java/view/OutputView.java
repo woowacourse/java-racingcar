@@ -1,6 +1,7 @@
 package view;
 
 import domain.Cars;
+import domain.Winner;
 
 public class OutputView {
     public void printCarsDistance(Cars cars) {
@@ -21,5 +22,11 @@ public class OutputView {
             sb.append('-');
         }
         return sb.toString();
+    }
+
+    public void printWinner(Winner winner) {
+        String result = String.join(", ",winner.getWinners());
+        System.out.println(result + "가 최종 우승했습니다");
+
     }
 }
