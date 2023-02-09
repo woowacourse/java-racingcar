@@ -10,17 +10,17 @@
 
 ```mermaid
 graph TD
-  Cars --> Car
-  Car --> Name
-  Car --> Position
-  RacingGame --> Count
-  RacingGame --> NumberGenerator
-  RacingGame --> Cars
-  RacingCarController --> RacingGame
-  RandomNumberGenerator -.-> NumberGenerator
-  RacingCarController --> InputView
-  InputView --> InputValidator
-  RacingCarController --> OutputView
+    Cars --> Car
+    Car --> Name
+    Car --> Position
+    RacingGame --> Count
+    RacingGame --> NumberGenerator
+    RacingGame --> Cars
+    RacingCarController --> RacingGame
+    RandomNumberGenerator -.-> NumberGenerator
+    RacingCarController --> InputView
+    InputView --> InputValidator
+    RacingCarController --> OutputView
 ```
 
 ## 요구사항
@@ -29,8 +29,8 @@ Car
 
 - [x] 자동차는 이름과 위치를 가진다.
 - [x] 자동차는 값을 입력받고 이동한다.
-  - 4 이상이면 전진한다.
-  - 3 이하의 값이면 멈춘다.
+    - 4 이상이면 전진한다.
+    - 3 이하의 값이면 멈춘다.
 
 Cars
 
@@ -47,21 +47,21 @@ RacingGame
 - [x] 시도할 횟수를 가진다.
 - [x] 게임을 진행한다.
 - [x] 게임을 완료한 후 우승자를 반환한다.
-  - 우승자는 1명 이상일 수 있다.
+    - 우승자는 1명 이상일 수 있다.
 
 InputView
 
 - [x] 경주할 자동차 이름을 입력한다.
-  - 이름은 쉼표를 기준으로 구분한다.
+    - 이름은 쉼표를 기준으로 구분한다.
 - [x] 시도할 횟수를 입력한다.
 
 InputValidator
 
 - [x] 시도 횟수
-  - 1 이상 입력하는지 검증한다.
+    - 1 이상 입력하는지 검증한다.
 - [x] 자동차 이름
-  - 쉼표(,)로 구분된 이름을 입력하는지 검증한다.
-  - 1대 이상의 자동차를 입력하는지 검증한다.
+    - 쉼표(,)로 구분된 이름을 입력하는지 검증한다.
+    - 1대 이상의 자동차를 입력하는지 검증한다.
 
 OutputView
 
@@ -75,3 +75,8 @@ Name
 Position
 
 - [x] 0이상의 위치를 가진다.
+
+Count
+
+- [x] 시도 횟수 값을 가진다.
+- [x] 게임이 진행 가능한지 확인한다.

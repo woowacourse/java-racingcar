@@ -6,17 +6,17 @@ public class RacingGame {
 
     private final NumberGenerator numberGenerator;
     private final Cars cars;
-    private int count;
+    private final Count count;
 
     public RacingGame(final NumberGenerator numberGenerator, final Cars cars, final int count) {
         this.numberGenerator = numberGenerator;
         this.cars = cars;
-        this.count = count;
+        this.count = new Count(count);
     }
 
     public List<Car> play() {
         cars.move(numberGenerator);
-        count--;
+        count.decrease();
         return cars.getCars();
     }
 
@@ -25,6 +25,6 @@ public class RacingGame {
     }
 
     public boolean isPlayable() {
-        return count > 0;
+        return count.isPlayable();
     }
 }
