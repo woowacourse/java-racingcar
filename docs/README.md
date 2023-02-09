@@ -31,7 +31,7 @@
 
 ### RacingCarController
 
-- [ ] 게임의 전체적인 진행을 관리한다.
+- [x] 게임의 전체적인 진행을 관리한다.
 
 ## Utils
 
