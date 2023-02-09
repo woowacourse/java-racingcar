@@ -2,8 +2,8 @@ package car.controller;
 
 import static car.option.Option.MIN_TRIAL_COUNT;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import car.domain.Car;
 import car.domain.Game;
@@ -26,12 +26,6 @@ public class GameController {
         validateNotNegativeInteger(trialCount);
     }
 
-    private void validateNotNegativeInteger(int trialCount) {
-        if (trialCount < MIN_TRIAL_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 시도횟수는 음수이면 안됩니다.");
-        }
-    }
-
     public void play() {
         outputView.noticeResult();
         playMultipleTimes();
@@ -40,6 +34,18 @@ public class GameController {
     public void showResult() {
         showCars(game.getCars());
         outputView.printWinners(game.findWinners());
+    }
+
+    private List<Car> makeCarsWith(List<String> carNames) {
+        return carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+    }
+
+    private void validateNotNegativeInteger(int trialCount) {
+        if (trialCount < MIN_TRIAL_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 시도횟수는 음수이면 안됩니다.");
+        }
     }
 
     private void playMultipleTimes() {
@@ -54,13 +60,5 @@ public class GameController {
             outputView.printCar(car);
         }
         outputView.changeLine();
-    }
-
-    private List<Car> makeCarsWith(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-        return cars;
     }
 }
