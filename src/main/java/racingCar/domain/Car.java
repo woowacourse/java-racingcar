@@ -7,16 +7,16 @@ public class Car implements Comparable<Car> {
     private static final int MOVE_MIN_NUM  = 4;
 
     private String name;
-    private int position;
+    private Position position;
 
     public Car(String carName) {
         validateLength(carName);
         this.name = carName;
-        this.position = 0;
+        position = new Position();
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public String getName() {
@@ -25,7 +25,7 @@ public class Car implements Comparable<Car> {
 
     public void move(int pickedNumber) {
         if (pickedNumber >= MOVE_MIN_NUM) {
-            ++this.position;
+            position.increase();
         }
     }
 
@@ -37,7 +37,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car another) {
-        return this.position - another.position;
+        return position.compareTo(another.position);
     }
 
     public CarDto toCarDto() {
