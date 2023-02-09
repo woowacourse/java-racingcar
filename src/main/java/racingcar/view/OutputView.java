@@ -6,7 +6,7 @@ import java.util.List;
 import racingcar.dto.CarDto;
 
 public class OutputView {
-    private static final String BEFORE_PRINT_RESULT_ANNOUNCEMENT = "실행 결과";
+    private static final String BEFORE_PRINT_RESULT_ANNOUNCEMENT = System.lineSeparator() + "실행 결과";
     private static final String NAME_AND_COUNT_PREFIX = " : ";
     private static final String DISTANCE_PREFIX = "-";
     private static final String WINNER_ANNOUNCEMENT = "가 최종 우승했습니다.";
@@ -36,7 +36,7 @@ public class OutputView {
         winnerDtos.forEach(winnerDto -> {
             winnerNames.add(winnerDto.getName());
         });
-        System.out.println(String.join(",", winnerNames));
+        System.out.print(String.join(",", winnerNames));
         System.out.println(WINNER_ANNOUNCEMENT);
     }
 
