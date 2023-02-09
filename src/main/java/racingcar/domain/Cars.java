@@ -24,4 +24,10 @@ public class Cars {
         cars.forEach(Car::tryMove);
     }
 
+    public List<CarDto> getStatuses() {
+        List<CarDto> carDtos = new LinkedList<>();
+        cars.forEach(car -> carDtos.add(car.getStatus()));
+        return carDtos;
+    }
+
 }
