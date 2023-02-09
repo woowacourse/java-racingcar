@@ -13,7 +13,6 @@ public class Application {
         } catch (Exception error) {
             outputView.printError(error);
         }
-
     }
 
 }
