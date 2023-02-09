@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
-    @DisplayName("자동차 이름의 길이가 1보다 작거나 5보다 큰 경우 예외 발생")
+    @DisplayName("자동차 이름의 길이가 1보다 작거나 5보다 큰 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"123456", ""})
     void throwExceptionWhenLengthOfCarNameOutOfRange(String input) {
@@ -32,9 +31,15 @@ class CarTest {
     public void moveWhenRandomNumberIsOverThree() {
         //given
         Car car = new Car("123");
+        RandomNumberGenerator numberGenerator = new RandomNumberGenerator() {
+            @Override
+            public int generate() {
+                return 4;
+            }
+        };
 
         //when
-        car.move(4);
+        car.move(numberGenerator);
 
         //then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -45,9 +50,15 @@ class CarTest {
     public void moveWhenRandomNumberIsUnderThree() {
         //given
         Car car = new Car("123");
+        RandomNumberGenerator numberGenerator = new RandomNumberGenerator() {
+            @Override
+            public int generate() {
+                return 3;
+            }
+        };
 
         //when
-        car.move(3);
+        car.move(numberGenerator);
 
         //then
         assertThat(car.getPosition()).isEqualTo(0);
