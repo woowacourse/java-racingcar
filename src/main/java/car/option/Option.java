@@ -7,4 +7,7 @@ public class Option {
     public static final int MIN_TRIAL_COUNT = 0;
     public static final int MIN_MOVABLE_NUMBER = 4;
     public static final int MAX_TRIAL_COUNT_LENGTH = 10;
+    public static final String CAR_INFIX = " : ";
+    public static final String POSITION_CHARACTER = "-";
+    public static final String WINNER_DELIMITER = ", ";
 }
