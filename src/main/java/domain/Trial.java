@@ -3,7 +3,9 @@ package domain;
 public class Trial {
 
     private final int trial;
+    private final static String PREFIX = "[0-9]";
     private final String ERROR_TRIAL = "자연수로만 입력해주세요.";
+
     public Trial(String input) {
         validateNumber(input);
         validateExtreme(input);
@@ -11,7 +13,7 @@ public class Trial {
     }
 
     private void validateNumber(String input) {
-        String PREFIX = "[0-9]";
+
         if (!input.matches(PREFIX)) {
             throw new IllegalArgumentException(ERROR_TRIAL);
         }
