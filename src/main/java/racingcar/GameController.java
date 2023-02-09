@@ -45,8 +45,8 @@ public class GameController {
     }
 
     public void finishGame() {
-        racingGame.calculateWinners();
+        List<String> winners = racingGame.calculateWinners();
         racingGame.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
-        outputView.printWinners(racingGame.getWinners());
+        outputView.printWinners(winners);
     }
 }

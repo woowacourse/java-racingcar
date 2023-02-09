@@ -2,9 +2,9 @@ package racingcar;
 
 import racingcar.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGame {
 
@@ -13,9 +13,6 @@ public class RacingGame {
 
     private final List<Car> cars;
     private final int gameTime;
-
-    private List<String> winners = new ArrayList<>();
-
 
     public RacingGame(int gameTime, List<Car> cars) {
         Validator.validateGameTime(gameTime);
@@ -33,11 +30,13 @@ public class RacingGame {
         return (int) ((Math.random() * (RANGE_MAX - RANGE_MIN)) + RANGE_MIN);
     }
 
-    public void calculateWinners() {
+    public List<String> calculateWinners() {
         Integer max = cars.stream().map(Car::getPosition)
                 .max(Comparator.naturalOrder()).orElse(null);
-        cars.stream().filter(car -> car.getPosition() == max)
-                .forEach(car -> winners.add(car.getName()));
+
+        return cars.stream().filter(car -> car.getPosition() == max)
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
@@ -46,9 +45,5 @@ public class RacingGame {
 
     public int getGameTime() {
         return gameTime;
-    }
-
-    public List<String> getWinners() {
-        return winners;
     }
 }
