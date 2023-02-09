@@ -3,6 +3,7 @@ package model;
 
 public class Car {
     private final String EXCEPTION_MESSAGE = "자동차 이름은 1~5자 이내의 이름으로 입력하여야 합니다.";
+    private final String EXCEPTION_SPACE_MESSAGE = "자동차 이름은 공백만 입력 불가능합니다.";
     private String name;
     private int location;
 
@@ -13,8 +14,16 @@ public class Car {
     }
 
     private void validCarName(String name) {
-        if (name.isEmpty() || name.length() > 5)
+        if (name.isEmpty() || name.length() > 5) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE);
+        }
+        if (isOnlySpace(name)) {
+            throw new IllegalArgumentException(EXCEPTION_SPACE_MESSAGE);
+        }
+    }
+
+    private boolean isOnlySpace(String name) {
+        return name.replace(" ", "").length() == 0;
     }
 
     public void moveCar() {
