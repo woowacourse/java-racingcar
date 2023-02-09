@@ -1,6 +1,6 @@
-package racingcar.exception;
+package racingcar.messsages;
 
-public enum ErrorMessages {
+public enum ExceptionMessage {
 	CAR_NAME_BLANK_EXCEPTION("[ERROR] 자동차 이름은 공백이거나 빌 수 없습니다."),
 	CAR_NAME_LENGTH_EXCEPTION("[ERROR] 자동차 이름 길이는 5를 넘을 수 없습니다."),
 	CARS_SIZE_EXCEPTION("[ERROR] 2개 이상의 자동차 이름을 입력해 주세요."),
@@ -14,7 +14,7 @@ public enum ErrorMessages {
 
 	private final String message;
 
-	ErrorMessages(String message) {
+	ExceptionMessage(String message) {
 		this.message = message;
 	}
 

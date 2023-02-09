@@ -9,7 +9,7 @@ public class CarMovement {
 		this.numberGenerator = numberGenerator;
 	}
 
-	public boolean isCarMoveForward() {
+	public boolean isMoveForward() {
 		int number = numberGenerator.generateNumber();
 		if (isStop(number)) {
 			return false;

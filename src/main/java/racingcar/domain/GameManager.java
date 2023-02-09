@@ -33,21 +33,21 @@ public class GameManager {
 		while (!gameRound.isEnd()) {
 			cars.moveCars();
 			gameRound.increaseRound();
-			RoundResultResponse roundResultDTO = new RoundResultResponse(cars.getCars());
-			outputView.printRoundResult(roundResultDTO);
+			RoundResultResponse roundResultResponse = RoundResultResponse.from(cars.getCars());
+			outputView.printRoundResult(roundResultResponse);
 		}
 	}
 
 	private void createCars() {
 		while(true) {
 			try {
-				CarNamesRequest carNamesDTO = inputView.inputCarName();
-				List<String> carNames = carNamesDTO.getCarNames();
+				CarNamesRequest carNamesRequest = inputView.inputCarName();
+				List<String> carNames = carNamesRequest.getCarNames();
 				cars.generateCars(carNames);
 				return;
 			} catch (Exception e) {
 				cars.reset();
-				outputView.printErrorMeesage(e.getMessage());
+				outputView.printErrorMessage(e.getMessage());
 			}
 		}
 	}
@@ -59,13 +59,13 @@ public class GameManager {
 				gameRound = new GameRound(totalRound);
 				return;
 			} catch (Exception e) {
-				outputView.printErrorMeesage(e.getMessage());
+				outputView.printErrorMessage(e.getMessage());
 			}
 		}
 	}
 
 	private void endGame() {
-		GameResultResponse gameResultDTO = new GameResultResponse(cars.findWinnerNames());
-		outputView.printEndGameResult(gameResultDTO);
+		GameResultResponse gameResultResponse = GameResultResponse.from(cars.findWinnerNames());
+		outputView.printEndGameResult(gameResultResponse);
 	}
 }

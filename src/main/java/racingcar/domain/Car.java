@@ -1,18 +1,27 @@
 package racingcar.domain;
 
-import static racingcar.exception.ErrorMessages.*;
+import static racingcar.messsages.ExceptionMessage.*;
 
 import java.util.Objects;
 
 public class Car {
-	final String name;
-	int position;
+	private static final int MAX_NAME_LENGTH = 5;
+
+	private final String name;
+	private int position;
 
 	public Car(String name) {
 		validateNameNullOrBlank(name);
 		validateNameLength(name);
 		this.name = name;
 		position = 0;
+	}
+
+	public void move() {
+		CarMovement carMovement = new CarMovement(new RandomNumberGenerator());
+		if (carMovement.isMoveForward()) {
+			position++;
+		}
 	}
 
 	public String getName() {
@@ -31,15 +40,8 @@ public class Car {
 
 	private void validateNameLength(String name) {
 		int nameLength = name.length();
-		if (nameLength > 5) {
+		if (nameLength > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
-		}
-	}
-
-	public void move() {
-		CarMovement carMovement = new CarMovement(new RandomNumberGenerator());
-		if (carMovement.isCarMoveForward()) {
-			position++;
 		}
 	}
 

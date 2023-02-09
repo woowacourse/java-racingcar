@@ -1,13 +1,16 @@
 package racingcar.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameResultResponse {
-	private final List<String> winnerNames = new ArrayList<>();
+	private final List<String> winnerNames;
 
-	public GameResultResponse(List<String> winnerNames) {
-		this.winnerNames.addAll(winnerNames);
+	public static GameResultResponse from(List<String> winnerNames) {
+		return new GameResultResponse(winnerNames);
+	}
+
+	private GameResultResponse(List<String> winnerNames) {
+		this.winnerNames = winnerNames;
 	}
 
 	public List<String> getWinnerNames() {

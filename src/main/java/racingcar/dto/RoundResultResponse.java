@@ -1,21 +1,25 @@
 package racingcar.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import racingcar.domain.Car;
 
 public class RoundResultResponse {
-	private final List<CarDTO> roundResult = new ArrayList<>();
+	private final List<CarDto> roundResult;
 
-	public RoundResultResponse(Set<Car> cars) {
-		for (Car car : cars) {
-			roundResult.add(new CarDTO(car));
-		}
+	public static RoundResultResponse from(Set<Car> cars) {
+		return new RoundResultResponse(cars);
 	}
 
-	public List<CarDTO> getRoundResult() {
+	private RoundResultResponse(Set<Car> cars) {
+		roundResult = cars.stream()
+			.map(CarDto::from)
+			.collect(Collectors.toUnmodifiableList());
+	}
+
+	public List<CarDto> getRoundResult() {
 		return roundResult;
 	}
 }

@@ -1,11 +1,15 @@
 package racingcar.dto;
 
-import static racingcar.exception.ErrorMessages.*;
+import static racingcar.messsages.ExceptionMessage.*;
 
 public class GameRoundRequest {
 	private final int round;
 
-	public GameRoundRequest(String gameRound) {
+	public static GameRoundRequest from(String gameRound) {
+		return new GameRoundRequest(gameRound);
+	}
+
+	private GameRoundRequest(String gameRound) {
 		validateBlank(gameRound);
 		validateNotStartZero(gameRound);
 		validateInteger(gameRound);

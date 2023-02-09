@@ -7,7 +7,11 @@ import java.util.stream.Collectors;
 public class CarNamesRequest {
 	private final List<String> carNames;
 
-	public CarNamesRequest(String carNames) {
+	public static CarNamesRequest from(String carNames) {
+		return new CarNamesRequest(carNames);
+	}
+
+	private CarNamesRequest(String carNames) {
 		this.carNames = splitByComma(carNames);
 	}
 
