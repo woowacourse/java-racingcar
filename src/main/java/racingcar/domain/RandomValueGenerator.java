@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class RandomValueGenerator {
 
     private final int MAX_VALUE = 9;
 
