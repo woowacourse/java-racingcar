@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class RacingGame {
     public List<Car> run() {
         start();
         finish();
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 
     public List<Car> getWinners() {
