@@ -1,17 +1,15 @@
 package domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FinalResult {
     public List<String> findWinners(List<Car> carsInfo) {
-        ArrayList<String> winners = new ArrayList<>();
         Integer maxDistance = findMaxDistance(carsInfo);
-        for (Car car : carsInfo) {
-            if (car.getDistance() == maxDistance) {
-                winners.add(car.getCarName());
-            }
-        }
-        return winners;
+        return carsInfo.stream()
+                .filter(car -> car.getDistance() == maxDistance)
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
     }
 
     private Integer findMaxDistance(List<Car> carsInfo) {
