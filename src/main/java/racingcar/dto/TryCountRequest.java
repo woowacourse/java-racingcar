@@ -2,8 +2,6 @@ package racingcar.dto;
 
 import static racingcar.exception.ExceptionMessage.*;
 
-import java.util.Optional;
-
 public class TryCountRequest {
     private final int tryCount;
 
@@ -12,11 +10,17 @@ public class TryCountRequest {
     }
 
     public static TryCountRequest of(String input) {
-        Optional<Integer> maybeTryCount = Optional.of(Integer.parseInt(input));
-        Integer tryCount = maybeTryCount.orElseThrow(
-                () -> new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage()));
+        int tryCount = stringToInt(input);
         validateNegativeNumber(tryCount);
         return new TryCountRequest(tryCount);
+    }
+
+    private static int stringToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
+        }
     }
 
     private static void validateNegativeNumber(Integer tryCount) {
