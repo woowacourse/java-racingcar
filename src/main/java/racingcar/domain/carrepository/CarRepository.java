@@ -3,7 +3,7 @@ package racingcar.domain.carrepository;
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
-다import java.util.Comparator;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,14 +24,14 @@ public class CarRepository {
         }
     }
 
+    private boolean isOutOfSize(List<Car> repository) {
+        return repository.size() < 2;
+    }
+
     private boolean hasDuplication(List<Car> repository) {
         return repository.stream()
                 .distinct()
                 .count() != repository.size();
-    }
-
-    private boolean isOutOfSize(List<Car> repository) {
-        return repository.size() < 2;
     }
 
     public void movePosition() {
