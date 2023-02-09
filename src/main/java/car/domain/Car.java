@@ -20,9 +20,17 @@ public class Car {
         this.position = position;
     }
 
-    private void validatePositionOverInitialPosition(int position) {
-        if (position < INITIAL_POSITION) {
-            throw new IllegalArgumentException("[ERROR] 위치는 시작점보다 작으면 안됩니다.");
+    public int selectMaxPosition(int otherPosition) {
+        return Math.max(position, otherPosition);
+    }
+
+    public boolean hasSamePositionWith(int otherPosition) {
+        return position == otherPosition;
+    }
+
+    public void move(MoveChance moveChance) {
+        if (moveChance.isMovable()) {
+            position++;
         }
     }
 
@@ -35,12 +43,10 @@ public class Car {
         }
     }
 
-    public int selectMaxPosition(int otherPosition) {
-        return Math.max(position, otherPosition);
-    }
-
-    public boolean hasSamePositionWith(int otherPosition) {
-        return position == otherPosition;
+    private void validatePositionOverInitialPosition(int position) {
+        if (position < INITIAL_POSITION) {
+            throw new IllegalArgumentException("[ERROR] 위치는 시작점보다 작으면 안됩니다.");
+        }
     }
 
     public String getName() {
@@ -51,8 +57,4 @@ public class Car {
         return position;
     }
 
-    public void move(MoveChance moveChance) {
-        if (moveChance.isMovable())
-            position++;
-    }
 }
