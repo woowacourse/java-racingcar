@@ -1,5 +1,7 @@
 package domain;
 
+import utils.constants.ErrorMessages;
+
 public class Car {
     private final String name;
     private Long status = 0L;
@@ -21,7 +23,7 @@ public class Car {
 
     private void validateName(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException("5글자 까지만 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessages.NAME_LENGTH.getMessage());
         }
     }
 
