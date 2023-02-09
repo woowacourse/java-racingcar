@@ -30,6 +30,11 @@ public class Car {
         this.location += 1;
     }
 
+    public void moveByRandom(int randNum) {
+        if (randNum >= 4)
+            this.moveCar();
+    }
+
     public String getCarName() {
         return this.name;
     }

@@ -1,5 +1,7 @@
 package model;
 
+import util.RandomNumberGenerator;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,16 +25,16 @@ public class Cars {
     }
 
     public void moveResult() {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (Car car : cars) {
-            moveByRandom(car);
+            car.moveByRandom(createRandom(randomNumberGenerator));
         }
     }
 
-    private void moveByRandom(Car car) {
-        Random random = new Random();
-        if (random.nextInt(9) >= 4)
-            car.moveCar();
+    private int createRandom(RandomNumberGenerator randomNumberGenerator) {
+        return randomNumberGenerator.generateNumber();
     }
+
 
     public List<String> getWinners() {
         int maxLocation = cars.stream()
