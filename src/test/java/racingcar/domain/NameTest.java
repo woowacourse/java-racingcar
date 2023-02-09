@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("Name 은 ")
 public class NameTest {
 
     @ParameterizedTest(name = "이름이 5글자 이하인 경우(EX: [{arguments}]) 생성된다.")
