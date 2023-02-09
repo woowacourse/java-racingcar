@@ -10,6 +10,7 @@ import racingcar.dto.RacingCarNamesRequest;
 import racingcar.dto.RacingCarStatusResponse;
 import racingcar.dto.RacingCarWinnerResponse;
 import racingcar.dto.TryCountRequest;
+import racingcar.repository.CarRepository;
 import racingcar.service.RacingCarService;
 import racingcar.view.RacingCarView;
 
@@ -50,7 +51,8 @@ class RacingCarControllerTest {
 
     @BeforeEach
     void setUp() {
-        racingCarController = new RacingCarController(new RacingCarService(), new MockRacingCarView());
+        RacingCarService racingCarService = new RacingCarService(new CarRepository());
+        racingCarController = new RacingCarController(racingCarService, new MockRacingCarView());
     }
 
     @Test

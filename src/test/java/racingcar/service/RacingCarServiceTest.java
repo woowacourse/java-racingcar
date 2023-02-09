@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.dto.RacingCarNamesRequest;
 import racingcar.dto.RacingCarStatusResponse;
 import racingcar.dto.RacingCarWinnerResponse;
+import racingcar.repository.CarRepository;
 
 class RacingCarServiceTest {
     private static final CustomMoveStrategy MOVE_STRATEGY = new CustomMoveStrategy(5);
@@ -20,7 +21,7 @@ class RacingCarServiceTest {
 
     @BeforeEach
     void setUp() {
-        service = new RacingCarService();
+        service = new RacingCarService(new CarRepository());
     }
 
     @ParameterizedTest
