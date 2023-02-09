@@ -31,14 +31,14 @@ public class InputView {
 
     public int requestTrialCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        int trialCount = readInt();
+        int trialCount = readTrialCount();
         if (trialCount <= 0) {
             throw new IllegalArgumentException("시도할 회수는 자연수여야 합니다.");
         }
         return trialCount;
     }
 
-    private int readInt() {
+    private int readTrialCount() {
         try {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException exception) {
