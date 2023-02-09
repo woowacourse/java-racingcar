@@ -16,11 +16,11 @@
   - [x] 전진 여부 판단 (4 이상일 경우 전진) AdvanceJudgement#isAdvancePossible
   - [x] 자동차 전진 (자동차 포인트 증가) RacingCar#advance
   - [x] 라운드별 실행 결과 출력 OutputView#printRoundResult
-- [ ] 최종 결과 출력 OutputView#printGameResult
+- [x] 최종 결과 출력 OutputView#printGameResult
 
 # 예외처리
 - [ ] 자동차 이름을 입력받는 기능 
-  - [ ] 이름은 1~5자만 가능하다
+  - [ ] 이름은 1~5자만 가능하다 CarNamesValidator#isValidLength
   - [ ] 중복
 - [ ] 시도할 횟수를 입력받는 기능
   - [ ] 숫자만 가능 (자연수)

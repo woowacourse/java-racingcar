@@ -1,15 +1,20 @@
 package racingcar.controller;
 
 import racingcar.domain.*;
+import racingcar.dto.RacingCarDto;
 import racingcar.utils.Parser;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCarGameController {
+    private static final int FIRST_CAR_INDEX = 0;
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
+
 
     public void run() {
         List<String> parsedCarNames = getParsedCarNames();
@@ -17,22 +22,23 @@ public class RacingCarGameController {
         String tryCount = getTryCount();
         // validator
 
-        RacingCarGame racingCarGame = initiate();
-        setCars(parsedCarNames, racingCarGame);
+        RoundManager roundManager = initiate();
+        setCars(parsedCarNames, roundManager);
 
         outputView.printGameResultHeader();
-        for (int roundCount=0; roundCount<10; roundCount++) {
-            outputView.printRoundResult(racingCarGame.runRound());
+        outputView.printRoundResult(roundManager.getCurrentRound());
+        for (int roundCount = 0; roundCount < 10; roundCount++) {
+            outputView.printRoundResult(roundManager.runRound());
         }
-
-
+        List<String> winningCarsName = getWinningCarsName(roundManager.getSortedRacingCars());
+        outputView.printWinners(winningCarsName);
     }
 
-    private RacingCarGame initiate() {
+    private RoundManager initiate() {
         Range range = new Range(4, 9);
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         AdvanceJudgement advanceJudgement = new AdvanceJudgement(range, numberGenerator);
-        return new RacingCarGame(advanceJudgement);
+        return new RoundManager(advanceJudgement);
     }
 
     private List<String> getParsedCarNames() {
@@ -44,9 +50,22 @@ public class RacingCarGameController {
         return inputView.readTryCount();
     }
 
-    private void setCars(List<String> carNames, RacingCarGame racingCarGame){
-        for(String carName : carNames){
-            racingCarGame.addRacingCar(new RacingCar(carName));
+    private void setCars(List<String> carNames, RoundManager roundManager) {
+        for (String carName : carNames) {
+            roundManager.addRacingCar(new RacingCar(carName));
         }
+    }
+
+    public List<String> getWinningCarsName(List<RacingCarDto> sortedSortedRacingCars) {
+        List<String> winningCarsNames = new ArrayList<>();
+        for (int index = 0; index < sortedSortedRacingCars.size(); index++) {
+            RacingCarDto targetCar = sortedSortedRacingCars.get(index);
+            winningCarsNames.add(targetCar.getName());
+        }
+        RacingCarDto firstCar = sortedSortedRacingCars.get(FIRST_CAR_INDEX);
+        return sortedSortedRacingCars.stream()
+                .filter(car -> car.getPoint().equals(firstCar.getPoint()))
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
     }
 }

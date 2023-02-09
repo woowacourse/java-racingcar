@@ -1,9 +1,11 @@
 package racingcar.domain;
 
+import racingcar.dto.RacingCarDto;
+
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class RacingCar {
+public class RacingCar implements Comparable<RacingCar>{
     private static final Integer defaultPoint = 1;
     private String name;
     private Integer point;
@@ -30,5 +32,14 @@ public class RacingCar {
         description.append(delimiter);
         description.append("-".repeat(point));
         return description.toString();
+    }
+
+    @Override
+    public int compareTo(RacingCar o) {
+        return o.point - this.point;
+    }
+
+    public RacingCarDto toDto(){
+        return new RacingCarDto(name, point);
     }
 }
