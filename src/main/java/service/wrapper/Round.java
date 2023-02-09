@@ -18,7 +18,7 @@ public class Round {
     private int mapToRound(String inputRound) {
         try {
             return Integer.parseInt(inputRound);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException exception) {
             throw new WrongRoundException();
         }
     }
