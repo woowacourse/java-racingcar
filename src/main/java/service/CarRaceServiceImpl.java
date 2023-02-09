@@ -43,7 +43,7 @@ public class CarRaceServiceImpl implements CarRaceService {
         Integer max = Collections.max(resultBoard.values());
         return resultBoard.entrySet()
             .stream()
-            .filter(entry -> entry.getValue().equals(max))
+            .filter(status -> status.getValue().equals(max))
             .map(Entry::getKey)
             .collect(Collectors.toList());
     }

@@ -10,7 +10,8 @@ import model.Car;
 
 public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
 
-    private static final int INITIAL_MOVE_COUNT = 1;
+    private static final int INITIAL_MOVE_VALUE = 1;
+    private static final int MOVE_UNIT = 1;
     private final Map<Car, Integer> moveCountBoard;
 
     public CarRaceResultRepositoryImpl() {
@@ -20,19 +21,18 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     @Override
     public void save(Car car) {
         validateCarDuplicate(car);
-        moveCountBoard.put(car, INITIAL_MOVE_COUNT);
+        moveCountBoard.put(car, INITIAL_MOVE_VALUE);
     }
 
     @Override
     public int findByName(String name) {
-        return moveCountBoard.get(
-            moveCountBoard
-                .keySet()
-                .stream()
-                .filter(car -> car.getName().equals(name))
-                .findAny()
-                .orElseThrow(
-                    () -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage())));
+        return moveCountBoard.get(moveCountBoard
+            .keySet()
+            .stream()
+            .filter(car -> car.getName().equals(name))
+            .findAny()
+            .orElseThrow(
+                () -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage())));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
             .filter(key -> key.getName().equals(name))
             .findAny()
             .orElseThrow(() -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage()));
-        moveCountBoard.replace(car, moveCountBoard.get(car) + 1);
+        moveCountBoard.replace(car, moveCountBoard.get(car) + MOVE_UNIT);
     }
 
     private void validateCarDuplicate(Car car) {
