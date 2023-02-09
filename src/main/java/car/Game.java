@@ -13,14 +13,10 @@ public class Game {
         this.moveChance = moveChance;
     }
 
-    public List<Car> getWinners() {
+    public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         List<Car> winners = new ArrayList<>();
         for (Car car : cars) {
-            if (car.getPosition() > maxPosition) {
-                maxPosition = car.getPosition();
-                winners = new ArrayList<>(List.of(car));
-            }
             if (car.getPosition() == maxPosition) {
                 winners.add(car);
             }
