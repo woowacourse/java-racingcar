@@ -31,4 +31,9 @@ class CarRepositoryTest {
 
         assertThat(carNames).isEqualTo(List.of("pobi", "mery", "abel"));
     }
+
+    @Test
+    void findSamePositionWith() {
+        assertThat(CarRepository.findSamePositionWith(3)).isEqualTo(List.of("mery"));
+    }
 }
