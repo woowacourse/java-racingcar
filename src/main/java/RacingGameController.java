@@ -1,11 +1,10 @@
 import domain.Car;
+import java.util.List;
+import java.util.TreeMap;
 import service.RacingGame;
 import service.RandomNumberGenerator;
 import ui.InputView;
 import ui.OutputView;
-
-import java.util.List;
-import java.util.TreeMap;
 
 public class RacingGameController {
 

@@ -1,7 +1,6 @@
 package service;
 
 import domain.Car;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,7 +30,7 @@ public class RacingGame {
         if (carNames.size() != new HashSet<>(carNames).size()) {
             throw new IllegalArgumentException("중복된 차량 이름이 존재합니다.");
         }
-        if (carNames.size() == 1){
+        if (carNames.size() == 1) {
             throw new IllegalArgumentException("차량이 둘 이상이어야 경주를 진행할 수 있습니다.");
         }
 
@@ -57,11 +56,11 @@ public class RacingGame {
         }
     }
 
-    public List<String> decisionWinners(){
+    public List<String> decisionWinners() {
         List<String> winners = new ArrayList<>();
-        int topPoint = cars.stream().mapToInt(c->c.getPosition()).max().getAsInt();
-        for (Car car: cars){
-            if(car.getPosition() == topPoint){
+        int topPoint = cars.stream().mapToInt(c -> c.getPosition()).max().getAsInt();
+        for (Car car : cars) {
+            if (car.getPosition() == topPoint) {
                 winners.add(car.getName());
             }
         }

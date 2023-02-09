@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println(winners + "가 최종 우승했습니다.");
     }
 
-    public void printResultMessage(){
+    public void printResultMessage() {
         System.out.println("실행 결과");
     }
 }
