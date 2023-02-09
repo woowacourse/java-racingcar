@@ -12,7 +12,7 @@ class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"aaaaaa", "bbbbbbbbb"})
     @DisplayName("자동차 이름 길이가 유효하지 않다면 WrongNameLengthException 예외가 발생한다.")
-    void wrongNameLengthTest(String wrongInput) {
+    void wrongNameLength(String wrongInput) {
         Assertions.assertThatThrownBy(() -> new Name(wrongInput))
                 .isInstanceOf(WrongNameLengthException.class);
     }
@@ -20,7 +20,7 @@ class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {" ", "             "})
     @DisplayName("자동차 이름에 공백만이 입력된다면 BlankNameException 예외가 발생한다.")
-    void blankNameTest(String blankInput) {
+    void blankName(String blankInput) {
         Assertions.assertThatThrownBy(() -> new Name(blankInput))
                 .isInstanceOf(BlankNameException.class);
     }
