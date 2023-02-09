@@ -15,6 +15,7 @@ public class InputView {
     private static final String CAR_NAMES_DUPLICATE_ERROR = ERROR_PREFIX + "경주할 자동차 이름이 중복되었습니다.";
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final String CAR_NAME_LENGTH_ERROR = ERROR_PREFIX + "경주할 자동차 이름이 5글자 초과했습니다.";
+    private static final String CAR_NAME_BLANK_ERROR = ERROR_PREFIX + "각 자동차 이름은 빈 값일 수 없습니다.";
 
     private InputView() {}
 
@@ -29,7 +30,7 @@ public class InputView {
         String[] splitCarNames = getSplitCarNames(carNames);
         validateSplitCarNames(splitCarNames);
 
-        return new String[]{""};
+        return splitCarNames;
     }
 
     private void validateCarNames(String carNames) {
@@ -39,25 +40,28 @@ public class InputView {
     }
 
     private boolean isBlank(String inputValue) {
-        return inputValue.equals("");
+        return inputValue.length() < 1;
     }
 
     private String[] getSplitCarNames(String carNames) {
-        return carNames.split(CAR_NAMES_DELIMITER);
+        return carNames.split(CAR_NAMES_DELIMITER, -1);
     }
 
     private void validateSplitCarNames(String[] splitCarNames) {
-        if (isDuplicated(splitCarNames)) {
-            throw new IllegalArgumentException(CAR_NAMES_DUPLICATE_ERROR);
-        }
         for (String carName : splitCarNames) {
             validateCarName(carName);
+        }
+        if (isDuplicated(splitCarNames)) {
+            throw new IllegalArgumentException(CAR_NAMES_DUPLICATE_ERROR);
         }
     }
 
     private void validateCarName(String carName) {
         if (isCorrectCarNameLength(carName)) {
             throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR);
+        }
+        if (isBlank(carName)) {
+            throw new IllegalArgumentException(CAR_NAME_BLANK_ERROR);
         }
     }
 
