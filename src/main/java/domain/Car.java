@@ -2,6 +2,7 @@ package domain;
 
 import utils.constants.ErrorMessages;
 import utils.constants.GameRules;
+import utils.constants.PrintSigns;
 
 public class Car {
     private final String name;
@@ -34,9 +35,9 @@ public class Car {
 
     public String getResult() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" : ");
+        stringBuilder.append(PrintSigns.POSITION.getSign());
         for (int i = 0; i < status; i++) {
-            stringBuilder.append("-");
+            stringBuilder.append(PrintSigns.SEPARATOR.getSign());
         }
         return name + stringBuilder;
     }
