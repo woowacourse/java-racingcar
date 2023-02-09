@@ -1,9 +1,10 @@
 package domain;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingCars {
 
@@ -23,20 +24,20 @@ public class RacingCars {
         return racingCars;
     }
 
-    public List<String> getWinnerNames(){
+    public List<String> getWinnerNames() {
         List<RacingCar> racingCars = getSortedByPosition(this);
         int winnerPosition = racingCars.get(0).getPosition();
 
         return racingCars.stream()
                 .filter(racingCar -> racingCar.getPosition() == winnerPosition)
                 .map(RacingCar::getName)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
-    private List<RacingCar> getSortedByPosition(final RacingCars racingCars){
+    private List<RacingCar> getSortedByPosition(final RacingCars racingCars) {
         return racingCars.getRacingCars()
                 .stream()
-                .sorted(Comparator.comparing(RacingCar::getPosition).reversed())
-                .collect(Collectors.toList());
+                .sorted(comparing(RacingCar::getPosition).reversed())
+                .collect(toList());
     }
 }

@@ -37,7 +37,7 @@ public class OutputView {
         System.out.printf("%s가 최종 우승했습니다.%n", makeWinnerInfo(racingCars.getWinnerNames()));
     }
 
-    private static String makeWinnerInfo(List<String> winners){
+    private static String makeWinnerInfo(List<String> winners) {
         return String.join(", ", winners);
     }
 }

@@ -14,7 +14,7 @@ public class TryCount {
         this.tryCount = Integer.parseInt(inputCount);
     }
 
-    private TryCount(final int tryCount){
+    private TryCount(final int tryCount) {
         this.tryCount = tryCount;
     }
 
@@ -25,11 +25,11 @@ public class TryCount {
         }
     }
 
-    public TryCount deduct(){
-        return new TryCount(tryCount-1);
+    public TryCount deduct() {
+        return new TryCount(tryCount - 1);
     }
 
-    public boolean isZero(){
+    public boolean isZero() {
         return this.tryCount == END_FLAG;
     }
 }

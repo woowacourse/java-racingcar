@@ -28,7 +28,7 @@ public class Name {
         return name.length() < MIN_LENGTH || name.length() > MAX_LENGTH;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 }
