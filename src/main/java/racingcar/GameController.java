@@ -25,7 +25,7 @@ public class GameController {
         List<Car> cars = new ArrayList<>();
         String input = inputView.inputCarName();
         String[] split = input.split(",");
-        Arrays.stream(split).forEach(carName -> cars.add(new Car(carName.trim())));
+        Arrays.stream(split).forEach(carName -> cars.add(new Car(carName)));
         return cars;
     }
 

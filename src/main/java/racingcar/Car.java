@@ -12,8 +12,9 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        Validator.validateCarNames(name);
-        this.name = name;
+        String carName = name.trim();
+        Validator.validateCarNames(carName);
+        this.name = carName;
         this.position = INIT_POSITION;
     }
 
