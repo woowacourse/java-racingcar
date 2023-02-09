@@ -8,9 +8,15 @@ import ui.OutputView;
 
 public class RacingGameController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final RacingGame racingGame;
+
+    public RacingGameController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.racingGame = new RacingGame(new RandomNumberGenerator());
+    }
 
     public void run() {
         List<String> carNames = inputView.requestCarNames();
