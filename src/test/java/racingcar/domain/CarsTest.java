@@ -1,14 +1,11 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,6 +49,16 @@ class CarsTest {
 	@Test
 	void moveCarsTest() {
 		org.junit.jupiter.api.Assertions.assertDoesNotThrow(cars::moveCars);
+	}
+
+	@DisplayName("자동차 경기 우승자들 이름 조회 테스트")
+	@ParameterizedTest(name = "winnerCarNames = {0}")
+	@MethodSource("carNamesDummy")
+	void findWinnerNamesTest(List<String> winnerCarNames) {
+		cars.generateCars(winnerCarNames);
+		cars.moveCars();
+		List<String> winnerNames = cars.findWinnerNames();
+		assertThat(winnerNames).hasSizeGreaterThanOrEqualTo(1);
 	}
 
 	static Stream<Arguments> carNamesDummy() {
