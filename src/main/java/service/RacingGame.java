@@ -4,6 +4,7 @@ import domain.Car;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class RacingGame {
@@ -20,9 +21,20 @@ public class RacingGame {
     }
 
     public void generateCars(List<String> carNames) {
+        validateCarNames(carNames);
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
+    }
+
+    private void validateCarNames(List<String> carNames) {
+        if (carNames.size() != new HashSet<>(carNames).size()) {
+            throw new IllegalArgumentException("중복된 차량 이름이 존재합니다.");
+        }
+        if (carNames.size() == 1){
+            throw new IllegalArgumentException("차량이 둘 이상이어야 경주를 진행할 수 있습니다.");
+        }
+
     }
 
     public void processAllCars() {
