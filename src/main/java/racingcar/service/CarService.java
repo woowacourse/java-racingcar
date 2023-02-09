@@ -19,6 +19,10 @@ public class CarService {
         }
     }
 
+    public void runService() {
+        OutputView.printResultMessage();
+    }
+
     private boolean validateNameInput() {
         try {
             OutputView.printNameInput();
