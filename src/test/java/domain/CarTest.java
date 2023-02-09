@@ -8,19 +8,19 @@ class CarTest {
   private Car car1=new Car("car1");
 
   @Test
-  void basicTest() {
+  void 자동차_생성() {
     assertThat(car1).isNotNull();
   }
 
   @Test
-  void moveGoTest() {
+  void 자동차_이동() {
     car1.move(7);
     int currentPosition = car1.getPosition();
     assertThat(currentPosition).isEqualTo(1);
   }
 
   @Test
-  void moveStopTest() {
+  void 자동차_멈춤() {
     car1.move(3);
     int currentPosition = car1.getPosition();
     assertThat(currentPosition).isEqualTo(0);

@@ -28,9 +28,7 @@ class OutputViewTest {
   @Test
   void 자동차_이동후_출력() {
     int go = 4;
-    int stop = 1;
     cars.get(0).move(go);
-    cars.get(1).move(stop);
     cars.get(2).move(go);
 
     outputView.printCarsStatus(cars);
