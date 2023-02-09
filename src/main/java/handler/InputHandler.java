@@ -22,19 +22,29 @@ public class InputHandler {
     }
 
     public RacingGame readCars() throws IOException {
-        String inputName = inputView.readCarNames();
-        String[] names = inputName.split(COMMA);
+        try {
+            String inputName = inputView.readCarNames();
+            String[] names = inputName.split(COMMA);
 
-        return new RacingGame(names);
+            return new RacingGame(names);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readCars();
+        }
     }
 
     public int readMovingTrial() throws IOException {
-        String input = inputView.readMovingTrial();
-        validateInteger(input);
-        int movingTrial = Integer.parseInt(input);
-        validateTrialRange(movingTrial);
+        try {
+            String input = inputView.readMovingTrial();
+            validateInteger(input);
+            int movingTrial = Integer.parseInt(input);
+            validateTrialRange(movingTrial);
 
-        return movingTrial;
+            return movingTrial;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readMovingTrial();
+        }
     }
 
     private void validateTrialRange(int movingTrial) {
