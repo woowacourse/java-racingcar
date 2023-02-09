@@ -42,4 +42,8 @@ public class Car {
     public int getCarLocation() {
         return this.location;
     }
+
+    public boolean checkLocationEqual(int maxLocation) {
+        return this.location == maxLocation;
+    }
 }

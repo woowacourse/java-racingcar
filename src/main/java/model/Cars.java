@@ -1,7 +1,6 @@
 package model;
 
 import util.NumberGenerator;
-import util.RandomNumberGenerator;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -36,7 +35,7 @@ public class Cars {
                 .max(Comparator.comparingInt(Car::getCarLocation))
                 .get().getCarLocation();
 
-        return cars.stream().filter(car -> car.getCarLocation() == maxLocation)
+        return cars.stream().filter(car -> car.checkLocationEqual(maxLocation))
                 .map(Car::getCarName)
                 .collect(Collectors.joining(", "));
     }
