@@ -25,4 +25,13 @@ public class Car {
     public boolean isWinner(int maxMoveCount) {
         return moveCount == maxMoveCount;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return name + " : " + "-".repeat(moveCount);
+    }
 }
