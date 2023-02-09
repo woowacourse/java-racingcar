@@ -17,13 +17,17 @@ public class Car {
         }
     }
 
-    public void move(int moveNumber){
-        if (moveNumber > 3) {
+    public void move(RandomNumberGenerator randomNumberGenerator){
+        if (randomNumberGenerator.generate() > 3) {
             position++;
         }
     }
 
     public int getPosition(){
         return position;
+    }
+
+    public String getName() {
+        return name;
     }
 }
