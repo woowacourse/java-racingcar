@@ -39,21 +39,10 @@ public class InputView {
         if (!isNumeric(input)) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMERIC.getValue());
         }
-
-        if (!isValidRange(Integer.parseInt(input))) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getValue());
-        }
     }
 
     private static boolean isNumeric(String input) {
         if (!input.matches(NUMERIC_FORMAT)) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean isValidRange(int input) {
-        if (input < 1) {
             return false;
         }
         return true;

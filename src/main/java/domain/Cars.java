@@ -2,6 +2,7 @@ package domain;
 
 import utils.RandomGenerator;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,8 +33,7 @@ public class Cars implements Iterable<Car> {
     private Position getMaxPosition() {
         return cars.stream()
                 .map(Car::getPosition)
-                .sorted()
-                .findFirst()
+                .max(Comparator.comparingInt(Position::getPosition))
                 .get();
     }
 

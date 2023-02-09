@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Position implements Comparable<Position>{
+public class Position {
     private int position;
 
     public Position() {
@@ -32,10 +32,5 @@ public class Position implements Comparable<Position>{
     @Override
     public int hashCode() {
         return Objects.hash(getPosition());
-    }
-
-    @Override
-    public int compareTo(Position o) {
-        return  o.position - this.position;
     }
 }
