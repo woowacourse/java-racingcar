@@ -3,6 +3,7 @@ package controller;
 import domain.Car;
 import domain.NumberGenerator;
 import domain.RacingGame;
+import utils.Log;
 import view.InputView;
 import view.OutputView;
 
@@ -34,21 +35,27 @@ public class RacingController {
             List<Car> cars = racingGame.run();
             outputView.showCars(cars);
         }
-        showWinner(racingGame);
-    }
-
-    private void showWinner(RacingGame racingGame) {
         outputView.showWinner(racingGame.getWinners());
     }
 
     private List<Car> generateCars() {
-        return inputView.readCars()
-                .stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
+        try {
+            return inputView.readCars()
+                    .stream()
+                    .map(Car::new)
+                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            Log.error(e.getMessage());
+            return generateCars();
+        }
     }
 
     private int generateGameTrial() {
-        return inputView.readGameTrial();
+        try {
+            return inputView.readGameTrial();
+        } catch (IllegalArgumentException e) {
+            Log.error(e.getMessage());
+            return generateGameTrial();
+        }
     }
 }
