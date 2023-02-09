@@ -40,3 +40,4 @@
 - [ ] 승자 출력 로직의 가시성 검토
 - [ ] @ParameterizedTest 사용
   - [X] CarTest에 적용
+- [X] RacingGame 게임 결과 우승자 산출 로직 수정
