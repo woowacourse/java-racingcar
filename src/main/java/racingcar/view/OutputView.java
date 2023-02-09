@@ -16,6 +16,16 @@ public class OutputView {
         this.output = output;
     }
 
+    public void printStatusGuide() {
+        output.println();
+        output.println(STATUS_GUIDE_MESSAGE);
+    }
+
+    public void printStatus(List<RacingStatusDto> racingStatus) {
+        racingStatus.forEach(this::printOneStatus);
+        output.println();
+    }
+
     private void printOneStatus(RacingStatusDto racingStatus) {
         output.print(racingStatus.getCarName());
         output.print(COLON);
@@ -29,16 +39,6 @@ public class OutputView {
     public void printWinner(List<String> winners) {
         output.print(String.join(WINNER_DELIMITER, winners));
         output.println(WINNER_GUIDE_MESSAGE);
-    }
-
-    public void printStatus(List<RacingStatusDto> racingStatus) {
-        racingStatus.forEach(this::printOneStatus);
-        output.println();
-    }
-
-    public void printStatusGuide() {
-        output.println();
-        output.println(STATUS_GUIDE_MESSAGE);
     }
 
     public void printErrorMessage(String errorMessage) {
