@@ -1,5 +1,6 @@
 package view;
 
+import domain.TryCount;
 import dto.request.CarNameDto;
 
 import java.util.Arrays;
@@ -16,9 +17,9 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int sendTryCount() {
+    public TryCount sendTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return new TryCount(scanner.nextInt());
     }
 }
