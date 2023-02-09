@@ -49,6 +49,7 @@ public class CarService {
             OutputView.printRoundResult(car.getName(), car.getDistance());
         }
         findWinner();
+        OutputView.printWinners(winner);
     }
 
     private void findWinner() {
