@@ -72,5 +72,8 @@
     - [ ] 이동 시도 횟수
 
 #### 유틸리티
-- RandomIntGenerator
-  - [x] 지정된 범위 내의 랜덤 정수 반환
+- IntGenerator
+  - RandomIntGenerator
+    - [x] 지정된 범위 내의 랜덤 정수 반환
+  - DeterminedIntGenerator
+    - [x] 항상 생성자에서 지정한 정수 반환

@@ -2,8 +2,8 @@ package racingcar.util;
 
 import java.util.Random;
 
-public class RandomIntGenerator {
-    private Random random;
+public class RandomIntGenerator implements IntGenerator {
+    private final Random random;
 
     public RandomIntGenerator() {
         this.random = new Random();
