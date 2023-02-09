@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Service {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final List<Car> cars = new ArrayList<>();
-    private final List<Car> winnerCars = new ArrayList<>();
+    private final List<String> winnerCars = new ArrayList<>();
+    private final CarRepositoryInterface carRepositoryInterface = new CarRepository();
 
     private static final int MOVEABLE_NUMBER = 4;
     private static final int RANDOM_NUMBER_RANGE = 10;
@@ -25,7 +26,8 @@ public class Service {
     public void creatCar() {
         String[] inputCars = checkInputCarName();
         for (String carName : inputCars) {
-            cars.add(new Car(carName));
+            carRepositoryInterface.saveCar(new Car(carName));
+
         }
     }
 
@@ -42,20 +44,20 @@ public class Service {
 
 
     private void printStatus() {
-        for (Car car : cars) {
-            outputView.printStatus(car.getName(), car.getPosition());
+        for (String carName : carRepositoryInterface.carNames()) {
+            outputView.printStatus(carName, carRepositoryInterface.findPositionByName(carName));
         }
     }
 
     public void moveAllCars() {
-        for (Car car : cars) {
-            move(car);
+        for (String carName : carRepositoryInterface.carNames()) {
+            move(carName);
         }
     }
 
-    public void move(Car car) {
+    public void move(String carName) {
         if (judgement(initRandomNumber())) {
-            car.addPosition();
+            carRepositoryInterface.addPosition(carName);
         }
     }
 
@@ -69,17 +71,12 @@ public class Service {
     }
 
     public void selectWinners() {
-        for (Car car : cars) {
-            addWinCar(car);
-        }
+        winnerCars.addAll(carRepositoryInterface.findNameByPosition(maxPosition()));
     }
 
-    public void addWinCar(Car car) {
-        if (car.amIWinner(cars)) {
-            winnerCars.add(car);
-        }
+    public int maxPosition() {
+        return Collections.max(carRepositoryInterface.positions());
     }
-
 
     private String[] checkInputCarName() {
         try {
