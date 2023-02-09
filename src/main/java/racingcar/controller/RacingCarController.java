@@ -19,19 +19,14 @@ public class RacingCarController {
     }
 
     public void start() {
+        createCar();
+        int tryCount = getTryCount();
+        playGame(tryCount);
+    }
+
+    private void createCar() {
         RacingCarNamesRequest racingCarNamesRequest = receiveCarNames();
         racingCarService.createCars(racingCarNamesRequest);
-        TryCountRequest tryCountRequest = receiveTryCount();
-        int tryCount = tryCountRequest.getTryCount();
-        RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
-        racingCarView.printStartMessage();
-        for (int i = 0; i < tryCount; i++) {
-            racingCarService.moveCars(randomMoveStrategy);
-            printCarStatuses();
-        }
-        printCarStatuses();
-        RacingCarWinnerResponse racingCarWinnerResponse = racingCarService.findWinners();
-        racingCarView.printWinners(racingCarWinnerResponse);
     }
 
     private RacingCarNamesRequest receiveCarNames() {
@@ -43,6 +38,11 @@ public class RacingCarController {
         }
     }
 
+    private int getTryCount() {
+        TryCountRequest tryCountRequest = receiveTryCount();
+        return tryCountRequest.getTryCount();
+    }
+
     private TryCountRequest receiveTryCount() {
         try {
             return racingCarView.receiveTryCount();
@@ -50,6 +50,18 @@ public class RacingCarController {
             racingCarView.printExceptionMessage(e);
             return receiveTryCount();
         }
+    }
+
+    private void playGame(int tryCount) {
+        RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
+        racingCarView.printStartMessage();
+        for (int i = 0; i < tryCount; i++) {
+            racingCarService.moveCars(randomMoveStrategy);
+            printCarStatuses();
+        }
+        printCarStatuses();
+        RacingCarWinnerResponse racingCarWinnerResponse = racingCarService.findWinners();
+        racingCarView.printWinners(racingCarWinnerResponse);
     }
 
     private void printCarStatuses() {
