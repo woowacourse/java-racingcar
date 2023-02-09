@@ -22,7 +22,7 @@ public class RacingCarController {
     }
 
     public void run() throws IOException {
-        String carNames = inputView.readCarName();
+        List<String> carNames = inputView.readCarName();
         int attemptNumber = inputView.readAttemptNumber();
 
         Cars cars = getCars(carNames);
@@ -53,17 +53,13 @@ public class RacingCarController {
         }
     }
 
-    private Cars getCars(String carNames) throws IOException {
-        List<String> parse = StringParser.parse(carNames);
-
+    private Cars getCars(List<String> carNames) throws IOException {
         List<Car> carList = new ArrayList<>();
-        for (String carName : parse) {
+        for (String carName : carNames) {
             Car car = new Car(carName);
             carList.add(car);
         }
 
         return new Cars(carList);
     }
-
-
 }
