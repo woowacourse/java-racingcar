@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-import static racingcar.enumType.CarConstant.NAME_MAX_LENGTH;
+import static racingcar.enumType.DomainConstant.CAR_NAME_MAX_LENGTH;
 import static racingcar.enumType.ExceptionMessage.BLANK_MESSAGE;
 import static racingcar.enumType.ExceptionMessage.LENGTH_MESSAGE;
 
@@ -23,7 +23,7 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > NAME_MAX_LENGTH.getValue()) {
+        if (name.length() > CAR_NAME_MAX_LENGTH.getValue()) {
             throw new IllegalArgumentException(LENGTH_MESSAGE.getValue());
         }
     }

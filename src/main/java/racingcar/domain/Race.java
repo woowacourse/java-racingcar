@@ -1,6 +1,8 @@
 package racingcar.domain;
 
-import racingcar.enumType.ExceptionMessage;
+import static racingcar.enumType.DomainConstant.RACE_MIN_TRY_COUNT;
+import static racingcar.enumType.ExceptionMessage.RANGE_MESSAGE;
+import static racingcar.enumType.ExceptionMessage.TYPE_MESSAGE;
 
 public class Race {
     private final int tryCount;
@@ -19,14 +21,14 @@ public class Race {
         try {
             count = Integer.parseInt(tryCount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format(ExceptionMessage.TYPE_MESSAGE.getValue(), "시도 횟수"));
+            throw new IllegalArgumentException(String.format(TYPE_MESSAGE.getValue(), "시도 횟수"));
         }
         return count;
     }
 
     private int validateRange(int tryCount) {
-        if (tryCount <= 0) {
-            throw new IllegalArgumentException(ExceptionMessage.RANGE_MESSAGE.getValue());
+        if (tryCount <= RACE_MIN_TRY_COUNT.getValue()) {
+            throw new IllegalArgumentException(RANGE_MESSAGE.getValue());
         }
         return tryCount;
     }
