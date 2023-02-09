@@ -7,9 +7,14 @@ public class RandomMovingStrategy implements MovingStrategy {
     private static final int MOVABLE_BOUNDARY_NUMBER = 4;
     @Override
     public boolean movable() {
-        Random ran = new Random();
-        int x = ran.nextInt(RANDOM_MAX_BOUND);
+        int randomNumber = getRandomNumber();
 
-        return x >= MOVABLE_BOUNDARY_NUMBER;
+        return randomNumber >= MOVABLE_BOUNDARY_NUMBER;
+    }
+
+    private int getRandomNumber() {
+        Random ran = new Random();
+
+        return ran.nextInt(RANDOM_MAX_BOUND);
     }
 }
