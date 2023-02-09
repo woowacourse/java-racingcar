@@ -1,12 +1,11 @@
 package controller;
 
 import domain.Car;
-import domain.FinalResult;
+import domain.CarsInfo;
 import domain.RoundResult;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,27 +14,26 @@ public class RacingController {
     private final InputView inputView = new InputView();
 
     public void run() {
-        List<Car> carsInfo = setUpCarName();
+        CarsInfo carsInfo = setUpCarName();
         Integer tryCount = setUpTryCount();
         progressRacingGame(tryCount, carsInfo, new RandomNumberGenerator());
     }
 
-    public void progressRacingGame(Integer tryCount, List<Car> carsInfo, RandomNumberGenerator randomNumberGenerator) {
+    public void progressRacingGame(Integer tryCount, CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator) {
         RoundResult roundResult = new RoundResult();
-        System.out.println("실행 결과");
+        outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
             progressRound(carsInfo, randomNumberGenerator, roundResult);
             outputView.printCurrentResult(carsInfo);
         }
-        FinalResult finalResult = new FinalResult();
-        List<String> winners = finalResult.findWinners(carsInfo);
+        List<String> winners = carsInfo.findWinners();
         outputView.printFinalResult(carsInfo, winners);
     }
 
-    private List<Car> setUpCarName() {
+    private CarsInfo setUpCarName() {
         List<Car> carsInfo = new ArrayList<>();
         initCarsInfo(carsInfo);
-        return carsInfo;
+        return new CarsInfo(carsInfo);
     }
 
     private Integer setUpTryCount() {
@@ -45,6 +43,7 @@ public class RacingController {
             System.out.println();
             return tryCount;
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
             return setUpTryCount();
         }
     }
@@ -55,6 +54,7 @@ public class RacingController {
             carsInfo.clear();
             checkCarNameValidation(carsInfo);
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
             initCarsInfo(carsInfo);
         }
     }
@@ -65,11 +65,7 @@ public class RacingController {
         }
     }
 
-    private void progressRound(List<Car> carsInfo, RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
-        for (Car car : carsInfo) {
-            Integer randomNumber = randomNumberGenerator.generateRandomNumber();
-            boolean movingResult = roundResult.isGo(randomNumber);
-            car.move(movingResult);
-        }
+    private void progressRound(CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
+        carsInfo.progressRound(randomNumberGenerator, roundResult);
     }
 }
