@@ -1,5 +1,7 @@
 package domain;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,14 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RacingGameTest {
+
     @ParameterizedTest
     @MethodSource("parameterProvider")
     void getWinnersTest(List<String> carNames, List<Integer> intendedNumbers, List<String> expectedWinners) {
-        intendedNumberGenerator intendedNumberGenerator = new intendedNumberGenerator();
+        IntendedNumberGenerator intendedNumberGenerator = new IntendedNumberGenerator();
         RacingGame racingGame = new RacingGame(
                 carNames,
                 intendedNumberGenerator
@@ -43,7 +44,7 @@ class RacingGameTest {
         );
     }
 
-    class intendedNumberGenerator implements NumberGenerator {
+    class IntendedNumberGenerator implements NumberGenerator {
 
         private List<Integer> repository;
         private int index = 0;

@@ -19,7 +19,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @MethodSource("parameterProviderWhenFail")
-    void validateCarNameShouldBeFail(List<String> splitCarName) {
+    void validateCarNameWithFailureCaseTest(List<String> splitCarName) {
         assertThatThrownBy(() -> inputValidator.validateCarName(splitCarName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -34,7 +34,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @MethodSource("parameterProviderWhenSuccess")
-    void validateCarNameShouldBeSuccess(List<String> splitCarName) {
+    void validateCarNameWithSuccessCaseTest(List<String> splitCarName) {
         assertThatCode(() -> inputValidator.validateCarName(splitCarName))
                 .doesNotThrowAnyException();
     }
@@ -48,14 +48,14 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "abc", " ", "10001", "3.5"})
-    void validateGameTryShouldBeFail(String gameTry) {
+    void validateGameTryWithFailureCaseTest(String gameTry) {
         assertThatThrownBy(() -> inputValidator.validateGameTry(gameTry))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "10000", "5000"})
-    void validateGameTryShouldBeSuccess(String gameTry) {
+    void validateGameTryWithSuccessCaseTest(String gameTry) {
         assertThatCode(() -> inputValidator.validateGameTry(gameTry))
                 .doesNotThrowAnyException();
     }
