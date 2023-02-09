@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String ERROR_FORMAT = "[Error] ";
     private static final String POSITION_STATE = "-";
     private static final String ROUND_FORMAT = "%s : %s";
     private static final String WINNER_FORMAT = "%s가 최종 우승했습니다.";
@@ -37,5 +38,9 @@ public class OutputView {
 
     private void print(String message) {
         System.out.println(message);
+    }
+
+    public void printExceptionMessage(String message) {
+        print(ERROR_FORMAT + message);
     }
 }
