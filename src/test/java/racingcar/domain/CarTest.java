@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.Random;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
