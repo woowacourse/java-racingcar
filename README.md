@@ -21,7 +21,7 @@
 - Game
     - [x] 전달받은 이름들로 자동차 여러 대를 생성하는 기능
       - 이름의 개수가 1개인 경우, IllegalArgumentException을 발생시킨다.
-      - 중복된 이름이 존재하는 경우 IllegalArgumentException을 발생시킨다. (테스트 추가 필요)
+      - 중복된 이름이 존재하는 경우 IllegalArgumentException을 발생시킨다.
     - [x] 전달받은 범위의 랜덤 숫자를 생성하는 기능
     - [x] 랜덤값에 따라 모든 자동차에게 움직이도록 하는 기능
         - 랜덤값이 0~9가 아니면 IllegalArgumentException을 발생시킨다.

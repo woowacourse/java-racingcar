@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RacingGameTest {
     @Test
@@ -15,6 +16,13 @@ class RacingGameTest {
         racingGame.generateCars(carNames);
 
         assertThat(racingGame.getCars().size()).isEqualTo(carNames.size());
+    }
+
+    @Test
+    void 자동차_이름_중복_테스트() {
+        RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+        assertThatThrownBy(()->racingGame.generateCars(Arrays.asList("bb", "bb", "cc")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -32,7 +40,7 @@ class RacingGameTest {
     }
 
     @Test
-    void 게임_승자_테스트(){
+    void 게임_승자_테스트() {
         RacingGame racingGame = new RacingGame(new TestNumberGenerator());
         List<String> carNames = new ArrayList<>(List.of("aaa", "bbb", "ccc"));
         racingGame.generateCars(carNames);
