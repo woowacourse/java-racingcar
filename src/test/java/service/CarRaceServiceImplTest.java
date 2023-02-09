@@ -1,7 +1,9 @@
 package service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
@@ -79,4 +81,20 @@ class CarRaceServiceImplTest {
         }
     }
 
+    @Test
+    @DisplayName("차 개수 100개 초과일 경우")
+    public void validateCarCount() {
+        //given
+        carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
+            new RandomNumberGeneratorImpl());
+        List<String> names = new ArrayList<>();
+        for (int i = 0; i < 101; i++) {
+            names.add(String.valueOf(i));
+        }
+
+        //when
+        //then
+        assertThatThrownBy(() -> carRaceService.saveCars(names))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
