@@ -27,10 +27,15 @@ public class RacingCarController {
         racingCarView.printStartMessage();
         for (int i = 0; i < tryCount; i++) {
             racingCarService.moveCars(randomMoveStrategy);
-            List<RacingCarStatusResponse> carStatuses = racingCarService.getCarStatuses();
-            racingCarView.printRacingResult(carStatuses);
+            printCarStatuses();
         }
+        printCarStatuses();
         RacingCarWinnerResponse racingCarWinnerResponse = racingCarService.findWinners();
         racingCarView.printWinners(racingCarWinnerResponse);
+    }
+
+    private void printCarStatuses() {
+        List<RacingCarStatusResponse> carStatuses = racingCarService.getCarStatuses();
+        racingCarView.printRacingProgress(carStatuses);
     }
 }
