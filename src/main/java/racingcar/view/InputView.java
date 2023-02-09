@@ -11,21 +11,13 @@ public class InputView {
 
 	public static List<String> readCarNames() {
 		String carNames = scanner.nextLine();
-		try {
-			validateCarNames(carNames);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
+		validateCarNames(carNames);
 		return formatter(carNames);
 	}
 
 	public static int readRoundCount() {
 		String roundCount = scanner.nextLine();
-		try {
-			validateRoundCount(roundCount);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
+		validateRoundCount(roundCount);
 		System.out.println();
 		return Integer.parseInt(roundCount);
 	}
@@ -41,8 +33,8 @@ public class InputView {
 	}
 
 	private static void validateRoundCount(String input) {
-		if(!input.matches("[1-9]+")) {
-			throw new IllegalArgumentException("[ERROR]");
+		if(input.equals("0") || !input.matches("[0-9]+")) {
+			throw new IllegalArgumentException("[ERROR]: 자연수가 입력되어야 합니다.");
 		}
 		// TODO: validate max round count
 	}

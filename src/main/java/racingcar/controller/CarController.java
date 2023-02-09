@@ -12,41 +12,35 @@ import racingcar.view.OutputView;
 public class CarController {
 
 	private CarRepository carRepository = new CarRepository();
-
+	int roundCount;
 	public void run() {
-		getCarNames();
-		int roundCount = getRoundCount();
+		while (!getCarNames()) ;
+		while (!getRoundCount()) ;
 		move(roundCount);
 	}
 
-	private void getCarNames() {
-		while(true) {
-			try {
-				OutputView.printCarNameRequestMsg();
-				List<String> carNames = InputView.readCarNames();
-				for (String carName : carNames) {
-					carRepository.add(new Car(carName));
-                }
-				break;
-			} catch (Exception e) {
-				carRepository.clear();
-				System.out.println(e.getMessage());
-			}
+	private boolean getCarNames() {
+		try {
+			OutputView.printCarNameRequestMsg();
+			List<String> carNames = InputView.readCarNames();
+			carNames.stream().forEach(carName -> carRepository.add(new Car(carName)));
+			return true;
+		} catch (Exception e) {
+			carRepository.clear();
+			System.out.println(e.getMessage());
+			return false;
 		}
 	}
 
-	private int getRoundCount() {
-		int roundCount;
-		while(true) {
-			try {
-				OutputView.printRoundCountRequestMsg();
-				roundCount = InputView.readRoundCount();
-				break;
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
+	private boolean getRoundCount() {
+		try {
+			OutputView.printRoundCountRequestMsg();
+			roundCount = InputView.readRoundCount();
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
-		return roundCount;
+		return false;
 	}
 
 	private void move(int roundCount) {
