@@ -16,9 +16,13 @@ public class Winner {
 
     private void findWinner(Cars cars, int maxDistance) {
         for (int i = 0; i < cars.getCarsSize(); i++) {
-            if(cars.getCar(i).getDistance() == maxDistance){
-                winners.add(cars.getCar(i).getCarName());
-            }
+            addWinner(cars, maxDistance, i);
+        }
+    }
+
+    private void addWinner(Cars cars, int maxDistance, int i) {
+        if(cars.getCar(i).getDistance() == maxDistance){
+            winners.add(cars.getCar(i).getCarName());
         }
     }
 

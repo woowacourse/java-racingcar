@@ -9,31 +9,30 @@ import view.OutputView;
 public class Controller {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+
     public void run() {
         Cars cars = askCars();
         Trial trial = askTrial();
-        for (int j=0 ; j< trial.getTrial(); j++){
-
+        for (int j = 0; j < trial.getTrial(); j++) {
             cars.addDistance();
-
             outputView.printCarsDistance(cars);
-            trial.updateTrialCount();
         }
         outputView.printWinner(new Winner(cars));
     }
 
 
     private Cars askCars() {
-        try{
+        try {
             return new Cars(inputView.askCars());
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return askCars();
         }
     }
+
     private Trial askTrial() {
-        try{
+        try {
             return new Trial(inputView.askTrial());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return askTrial();
         }
     }
