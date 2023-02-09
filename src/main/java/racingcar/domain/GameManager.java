@@ -47,7 +47,7 @@ public class GameManager {
 				return;
 			} catch (Exception e) {
 				cars.reset();
-				outputView.printErrorMeesage(e.getMessage());
+				outputView.printErrorMessage(e.getMessage());
 			}
 		}
 	}
@@ -59,7 +59,7 @@ public class GameManager {
 				gameRound = new GameRound(totalRound);
 				return;
 			} catch (Exception e) {
-				outputView.printErrorMeesage(e.getMessage());
+				outputView.printErrorMessage(e.getMessage());
 			}
 		}
 	}
