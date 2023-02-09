@@ -13,20 +13,20 @@ public class RacingGameController {
     private final OutputView outputView = new OutputView();
     private final RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
 
-//    public void run() {
-//        List<String> carNames = inputView.requestCarNames();
-//        racingGame.generateCars(carNames);
-//        int trialCount = inputView.requestTrialCount();
-//        race(trialCount);
-//    }
-//
-//    private void race(int trialCount) {
-//        showCurrentGameResult();
-//        for (int i = 0; i < trialCount; i++) {
-//            racingGame.processAllCars();
-//            showCurrentGameResult();
-//        }
-//    }
+    public void run() {
+        List<String> carNames = inputView.requestCarNames();
+        racingGame.generateCars(carNames);
+        int trialCount = inputView.requestTrialCount();
+        race(trialCount);
+    }
+
+    private void race(int trialCount) {
+        showCurrentGameResult();
+        for (int i = 0; i < trialCount; i++) {
+            racingGame.processAllCars();
+            showCurrentGameResult();
+        }
+    }
 
     private void showCurrentGameResult() {
         List<Car> gameResult = racingGame.getCars();
