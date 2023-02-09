@@ -39,3 +39,4 @@
 - [ ] 유효성 검증 방법 검토
 - [ ] 승자 출력 로직의 가시성 검토
 - [ ] @ParameterizedTest 사용
+  - [X] CarTest에 적용
