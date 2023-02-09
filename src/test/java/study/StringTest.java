@@ -60,4 +60,13 @@ public class StringTest {
         }
         assertThat(str.charAt(index)).isEqualTo(c);
     }
+
+    @DisplayName("1, 을 split(,) 하면 1를 반환한다")
+    @Test
+    void test5() {
+        String str = "1,";
+        String[] split = str.split(",");
+        assertThat(split.length).isEqualTo(1);
+        assertThat(split[0]).isEqualTo("1");
+    }
 }
