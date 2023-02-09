@@ -34,4 +34,10 @@ class CarRepositoryTest {
         assertThat(carNames.contains("car2")).isTrue();
         assertThat(carNames.contains("car3")).isFalse();
     }
+
+    @Test
+    void countOfCars() {
+        int result = carRepository.countOfCars();
+        assertThat(result).isEqualTo(3);
+    }
 }
