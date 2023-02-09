@@ -1,5 +1,7 @@
 package domain;
 
+import static exception.ErrorMessage.ENTER_NAME_CORRECT_LENGTH;
+
 import exception.NameIsOutOfBoundException;
 
 public class Name {
@@ -20,7 +22,7 @@ public class Name {
 
     private void validateLength(final String name) {
         if (validate(name)) {
-            throw new NameIsOutOfBoundException("[ERROR] 이름은 5글자 이하로 입력해주세요.");
+            throw new NameIsOutOfBoundException(ENTER_NAME_CORRECT_LENGTH.toString());
         }
     }
 

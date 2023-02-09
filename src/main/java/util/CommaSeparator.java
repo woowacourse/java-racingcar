@@ -1,5 +1,6 @@
 package util;
 
+import static exception.ErrorMessage.ENTER_NAME_WITH_COMMA;
 import static java.util.Collections.addAll;
 
 import exception.CommaNotFoundException;
@@ -26,7 +27,7 @@ public class CommaSeparator {
 
     private static void validateComma(final String names) {
         if (!names.contains(COMMA)) {
-            throw new CommaNotFoundException("[ERROR] 쉼표로 이름을 구분해주세요.");
+            throw new CommaNotFoundException(ENTER_NAME_WITH_COMMA.toString());
         }
     }
 }

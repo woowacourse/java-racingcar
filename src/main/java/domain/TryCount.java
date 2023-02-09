@@ -1,11 +1,14 @@
 package domain;
 
+import static exception.ErrorMessage.ENTER_POSITIVE_INTEGER;
+
 import exception.NotPositiveIntegerException;
 import java.util.regex.Pattern;
 
 public class TryCount {
 
     private static final int END_FLAG = 0;
+    private static final String positiveIntegerRegex = "^[1-9]|[1-9][0-9]+$";
 
     private final int tryCount;
 
@@ -19,9 +22,8 @@ public class TryCount {
     }
 
     private void validateTryCount(final String inputCount) {
-        String positiveIntegerRegex = "^[1-9]|[1-9][0-9]+$";
         if (!Pattern.matches(positiveIntegerRegex, inputCount)) {
-            throw new NotPositiveIntegerException("[ERROR] 양의 정수를 입력해주세요.");
+            throw new NotPositiveIntegerException(ENTER_POSITIVE_INTEGER.toString());
         }
     }
 
