@@ -11,6 +11,7 @@ public class Game {
     private final MoveChance moveChance;
 
     public Game(List<Car> cars, MoveChance moveChance) {
+        validateCarsLength(cars);
         this.cars = new ArrayList<>(cars);
         this.moveChance = moveChance;
     }
@@ -39,6 +40,12 @@ public class Game {
             return car;
         }
         return other;
+    }
+
+    private void validateCarsLength(List<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException("차량이 없습니다");
+        }
     }
 
     public List<Car> getCars() {

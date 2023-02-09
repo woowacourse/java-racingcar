@@ -44,9 +44,7 @@ public class GameTest {
 
     @Test
     void 차는_1대_이상이어야한다() {
-        Game game = new Game(List.of(), MOVABLE_CHANCE);
-        
-        assertThatThrownBy(() -> game.findWinners());
+        assertThatThrownBy(() -> new Game(List.of(), MOVABLE_CHANCE));
     }
 
     @Test
