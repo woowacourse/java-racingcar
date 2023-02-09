@@ -2,7 +2,9 @@ package controller;
 
 import domain.Car;
 import domain.Race;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import repository.CarRepository;
 import utils.Judge;
 import view.output.OutputView;
@@ -27,6 +29,16 @@ public class RaceController {
 
     public void addAllParticipants(List<String> carNames) {
         carNames.forEach(carRepository::add);
+    }
+
+    public List<Car> getWinners() {
+        List<Car> participants = carRepository.findAll();
+        int maxDistance = participants.stream().max(Comparator.comparing(Car::getDrivenDistance)).get()
+            .getDrivenDistance();
+        List<Car> winners = participants.stream()
+            .filter(car -> car.getDrivenDistance() == maxDistance).collect(
+                Collectors.toList());
+        return winners;
     }
 
     private void playRound() {

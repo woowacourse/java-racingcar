@@ -2,6 +2,7 @@ package view.output;
 
 import domain.Car;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -36,6 +37,13 @@ public class OutputView {
     static private String convertDistance(int distance) {
         final String DISTANCE = "-";
         return DISTANCE.repeat(distance);
+    }
+
+    static public void printWinners(List<Car> winners) {
+        final String DELIMITER = ", ";
+        String message =
+            winners.stream().map(Car::toString).collect(Collectors.joining(DELIMITER)) + PrintMessages.WIN.getContent();
+        System.out.println(message);
     }
 
     static public void printErrorMessage(Exception exception) {

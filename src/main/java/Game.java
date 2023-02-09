@@ -1,12 +1,13 @@
 import controller.RaceController;
+import domain.Car;
 import java.util.List;
 import view.input.InputView;
 import view.output.OutputView;
 
 public class Game {
 
-    RaceController raceController = new RaceController();
-    InputView inputView = new InputView();
+    private RaceController raceController = new RaceController();
+    private InputView inputView = new InputView();
 
     private List<String> enterCarNames() {
         OutputView.printEnterCarNames();
@@ -41,10 +42,15 @@ public class Game {
         raceController.playGame(count);
     }
 
+    private void printWinners(List<Car> winners) {
+        OutputView.printWinners(winners);
+    }
+
     public void play() {
         List<String> carNames = enterCarNames();
         raceController.addAllParticipants(carNames);
         int count = enterCount();
         printAllResult(count);
+        printWinners(raceController.getWinners());
     }
 }
