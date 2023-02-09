@@ -1,6 +1,7 @@
 import domain.Car;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import service.RacingGame;
 import service.RandomNumberGenerator;
 import ui.InputView;
@@ -40,7 +41,7 @@ public class RacingGameController {
         outputView.printGameResult(convertGameResult(gameResult));
     }
 
-    private LinkedHashMap<String, Integer> convertGameResult(List<Car> gameResult) {
+    private Map<String, Integer> convertGameResult(List<Car> gameResult) {
         LinkedHashMap<String, Integer> converted = new LinkedHashMap<>();
         gameResult.forEach(car -> converted.put(car.getName(), car.getPosition()));
         return converted;
