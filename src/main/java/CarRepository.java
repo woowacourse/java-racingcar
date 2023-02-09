@@ -27,4 +27,9 @@ public class CarRepository implements CarRepositoryInterface {
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public int countOfCars() {
+        return carInformation.size();
+    }
 }
