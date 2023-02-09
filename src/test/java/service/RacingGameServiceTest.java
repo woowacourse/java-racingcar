@@ -11,26 +11,26 @@ import org.junit.jupiter.api.Test;
 
 import utils.exception.AlreadyDefinedFieldException;
 
-class ServiceTest {
-    Service service;
+class RacingGameServiceTest {
+    RacingGameService racingGameService;
 
     @BeforeEach
     void setUp() {
-        service = new Service();
+        racingGameService = new RacingGameService();
     }
 
     @Test
     @DisplayName("중복된 이름이 입력되면 예외발생")
     void setCarsFailTest() {
-        assertThatThrownBy(() -> service.setCars(List.of("fox", "fox")))
+        assertThatThrownBy(() -> racingGameService.setCars(List.of("fox", "fox")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("시도횟수가 null 이면 rule에 시도횟수 저장")
     void setTrial() {
-        service.setTrial(4L);
-        Long result = service.getTrial();
+        racingGameService.setTrial(4L);
+        Long result = racingGameService.getTrial();
 
         assertThat(4L).isEqualTo(result);
     }
@@ -38,9 +38,9 @@ class ServiceTest {
     @Test
     @DisplayName("시도횟수가 null이 아니면, 예외발생")
     void setTrialFailTest() {
-        service.setTrial(4L);
+        racingGameService.setTrial(4L);
 
-        assertThatThrownBy(() -> service.setTrial(4L))
+        assertThatThrownBy(() -> racingGameService.setTrial(4L))
                 .isInstanceOf(AlreadyDefinedFieldException.class);
     }
 }

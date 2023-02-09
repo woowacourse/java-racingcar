@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 
-import service.Service;
+import service.RacingGameService;
 import utils.Converter;
 import view.InputView;
 import view.OutputView;
@@ -10,7 +10,7 @@ import view.OutputView;
 public class Controller {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
-    private final Service service = new Service();
+    private final RacingGameService racingGameService = new RacingGameService();
 
     public void run() {
         setGame();
@@ -25,10 +25,10 @@ public class Controller {
 
     private void playGame() {
         outputView.printResultMessage();
-        Long trial = service.getTrial();
+        Long trial = racingGameService.getTrial();
         for (int i = 0; i < trial; i++) {
-            service.move();
-            List<String> moveResult = service.getMoveResult();
+            racingGameService.move();
+            List<String> moveResult = racingGameService.getMoveResult();
             outputView.printMoveResult(moveResult);
         }
     }
@@ -37,7 +37,7 @@ public class Controller {
         String trialInput = inputView.getTrial();
         try {
             Long trial = Converter.convertStringToLong(trialInput);
-            service.setTrial(trial);
+            racingGameService.setTrial(trial);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             setTrial();
@@ -47,7 +47,7 @@ public class Controller {
     private void setCars() {
         try {
             List<String> carNames = inputView.getCarNames();
-            service.setCars(carNames);
+            racingGameService.setCars(carNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             setCars();
@@ -55,8 +55,8 @@ public class Controller {
     }
 
     private void printFinalResult() {
-        List<String> moveResult = service.getMoveResult();
+        List<String> moveResult = racingGameService.getMoveResult();
         outputView.printMoveResult(moveResult);
-        outputView.printWinners(service.getWinners());
+        outputView.printWinners(racingGameService.getWinners());
     }
 }

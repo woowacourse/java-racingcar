@@ -11,7 +11,7 @@ import utils.RandomNumberGenerator;
 import utils.constants.ErrorMessages;
 import utils.exception.AlreadyDefinedFieldException;
 
-public class Service {
+public class RacingGameService {
     private final Cars cars = new Cars(new RandomNumberGenerator());
     private Rule rule;
 
