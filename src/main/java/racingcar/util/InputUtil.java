@@ -14,25 +14,23 @@ public class InputUtil {
 
     private final InputView inputView = new InputView();
 
-    private final OutputView outputView = new OutputView();
-
     public <T> T getUserInput(Supplier<T> inputReader) {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException e) {
-            outputView.printMessage(e.getMessage());
+            OutputView.printMessage(e.getMessage());
             return getUserInput(inputReader);
         }
     }
 
     public Cars getCarNames() {
-        outputView.printMessage(GET_CAR_NAMES_MESSAGE.getValue());
+        OutputView.printMessage(GET_CAR_NAMES_MESSAGE.getValue());
         String carNames = inputView.getUserInput();
         return Cars.of(carNames);
     }
 
     public Race getTryCount() {
-        outputView.printMessage(GET_TRY_COUNT_MESSAGE.getValue());
+        OutputView.printMessage(GET_TRY_COUNT_MESSAGE.getValue());
         String tryCount = inputView.getUserInput();
         return Race.of(tryCount);
     }

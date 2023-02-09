@@ -15,7 +15,7 @@ public class Car {
         validateNameBlank(name);
         validateNameLength(name);
         this.name =  name;
-        this.drivingMark = new StringBuilder();
+        this.drivingMark = new StringBuilder("-");
     }
 
     public static Car of(final String name) {
