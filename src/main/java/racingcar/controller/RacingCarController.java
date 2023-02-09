@@ -1,6 +1,8 @@
 package racingcar.controller;
 
+import java.util.List;
 import racingcar.dto.RacingCarNamesRequest;
+import racingcar.dto.RacingCarStatusResponse;
 import racingcar.dto.RacingCarWinnerResponse;
 import racingcar.dto.TryCountRequest;
 import racingcar.service.RacingCarService;
@@ -24,7 +26,8 @@ public class RacingCarController {
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         for (int i = 0; i < tryCount; i++) {
             racingCarService.moveCars(randomMoveStrategy);
-            racingCarView.printRacingResult();
+            List<RacingCarStatusResponse> carStatuses = racingCarService.getCarStatuses();
+            racingCarView.printRacingResult(carStatuses);
         }
         RacingCarWinnerResponse racingCarWinnerResponse = racingCarService.findWinners();
         racingCarView.printWinners(racingCarWinnerResponse);
