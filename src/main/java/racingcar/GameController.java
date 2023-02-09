@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class gameController {
+public class GameController {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
@@ -15,7 +15,7 @@ public class gameController {
     private RacingGame racingGame;
 
 
-    public gameController() {
+    public GameController() {
         List<Car> cars = initCars();
         int gameTime = inputView.inputGameTime();
         racingGame = new RacingGame(gameTime, cars);
