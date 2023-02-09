@@ -4,8 +4,8 @@ import domain.Car;
 import domain.Cars;
 import domain.RacingGame;
 import domain.RandomNumberGenerator;
-import java.io.IOException;
 import java.util.List;
+import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
@@ -19,15 +19,24 @@ public class RacingGameController {
         this.outputView = outputView;
     }
 
-    public void run() throws IOException {
+    public <T> T retry(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return retry(supplier);
+        }
+    }
+
+    public void run() {
         RacingGame racingGame = gameInitialize();
         play(racingGame);
         findWinners(racingGame);
     }
 
-    private RacingGame gameInitialize() throws IOException {
-        List<String> carNames = inputView.readCarNames();
-        int count = inputView.readCount();
+    private RacingGame gameInitialize() {
+        List<String> carNames = retry(inputView::readCarNames);
+        int count = retry(inputView::readCount);
         return new RacingGame(new RandomNumberGenerator(), Cars.from(carNames), count);
     }
 

@@ -14,7 +14,7 @@ public class OutputView {
     private static final String POSITION_MESSAGE_DELIMITER = "\n";
     private static final String WINNERS_MESSAGE_FORMAT = "{0}가 최종 우승했습니다.";
     private static final String WINNERS_MESSAGE_DELIMITER = ", ";
-
+    private static final String ERROR_MESSAGE = "[ERROR] ";
 
     public void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
@@ -41,5 +41,9 @@ public class OutputView {
     public void printWinnersMessage(final List<String> winners) {
         String winnersMessage = String.join(WINNERS_MESSAGE_DELIMITER, winners);
         System.out.println(format(WINNERS_MESSAGE_FORMAT, winnersMessage));
+    }
+
+    public void printErrorMessage(final String message) {
+        System.out.println(ERROR_MESSAGE + message);
     }
 }

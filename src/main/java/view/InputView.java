@@ -1,8 +1,7 @@
 package view;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 public class InputView {
 
@@ -10,22 +9,22 @@ public class InputView {
     private static final String READ_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
 
     private final InputValidator inputValidator;
-    private final BufferedReader reader;
+    private final Scanner scanner;
 
-    public InputView(final InputValidator inputValidator, final BufferedReader reader) {
+    public InputView(final InputValidator inputValidator, final Scanner scanner) {
         this.inputValidator = inputValidator;
-        this.reader = reader;
+        this.scanner = scanner;
     }
 
-    public List<String> readCarNames() throws IOException {
+    public List<String> readCarNames() {
         System.out.println(READ_NAMES_MESSAGE);
-        String input = reader.readLine();
+        String input = scanner.nextLine();
         return inputValidator.validateNames(input);
     }
 
-    public int readCount() throws IOException {
+    public int readCount() {
         System.out.println(READ_COUNT_MESSAGE);
-        String input = reader.readLine();
+        String input = scanner.nextLine();
         return inputValidator.validateCount(input);
     }
 }
