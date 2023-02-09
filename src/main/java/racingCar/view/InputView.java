@@ -26,15 +26,23 @@ public class InputView {
     }
 
     private static void validateEmpty(String[] carNames) throws IllegalArgumentException {
-        if (carNames.length == 0) {
+        if (isBlank(carNames)) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름을 다시 입력해주세요.");
         }
     }
 
+    private static boolean isBlank(String[] carNames) {
+        return carNames.length == 0;
+    }
+
     private static void validateEmpty(String tryCount) throws IllegalArgumentException {
-        if (tryCount.length() == 0) {
+        if (isBlank(tryCount)) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수를 다시 입력해주세요.");
         }
+    }
+
+    private static boolean isBlank(String tryCount) {
+        return tryCount.length() == 0;
     }
 
     private static Integer validateIsDigit(String input) throws IllegalArgumentException {
