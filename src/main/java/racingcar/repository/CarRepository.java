@@ -1,35 +1,30 @@
 package racingcar.repository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import racingcar.domain.Car;
 
 public class CarRepository {
-	private static final List<Car> cars = new ArrayList<>();
-	private static final Set<String> carNames = new HashSet<>();
+	private static final Map<String, Car> cars = new HashMap<>();
 
 	public static void add(Car car) {
 		validateCarName(car);
-		cars.add(car);
-		carNames.add(car.getName());
+		cars.put(car.getName(), car);
 	}
 
 	private static void validateCarName(Car car) {
-		if (carNames.contains(car.getName())) {
+		if (cars.containsKey(car.getName())) {
 			throw new IllegalArgumentException("[ERROR]: 중복된 차 이름이 있습니다.");
 		}
 	}
 
 	public static List<Car> getCars() {
-		return Collections.unmodifiableList(cars);
+		return List.copyOf(cars.values());
 	}
 
 	public static void clear() {
 		cars.clear();
-		carNames.clear();
 	}
 }
