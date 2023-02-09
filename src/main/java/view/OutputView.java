@@ -16,4 +16,9 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public void printWinner(List<String> winners) {
+        String winnerNames = winners.toString();
+        System.out.printf("%s가 최종 우승했습니다.", winnerNames.substring(1, winnerNames.length()-1));
+    }
 }
