@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
+    private final char newLine = '\n';
+
     public void printCarNameMessage() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
@@ -16,9 +18,17 @@ public class OutputView {
 
     public void printCurrentResult(List<Car> carsInfo) {
         for (Car car : carsInfo) {
-            car.printCarInfo();
+            printCarInfo(car);
         }
-        System.out.println();
+        System.out.print(newLine);
+    }
+
+    private void printCarInfo(Car car) {
+        System.out.print(car.getCarName() + " : ");
+        for (int start = 0; start < car.getDistance(); start++) {
+            System.out.print('-');
+        }
+        System.out.print(newLine);
     }
 
     public void printWinners(List<String> winners) {
