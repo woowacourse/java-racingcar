@@ -33,6 +33,7 @@ public class CarManager {
     }
 
     private CarMovement makeRandomCarMove() {
-        return new CarMovement((int) Math.random() * 10);
+        Integer moveCount = (int) (Math.random() * 10);
+        return new CarMovement(moveCount);
     }
 }
