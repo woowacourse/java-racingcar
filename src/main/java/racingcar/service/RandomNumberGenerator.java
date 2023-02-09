@@ -1,4 +1,4 @@
-package racingcar.Service;
+package racingcar.service;
 
 public class RandomNumberGenerator implements NumberGenerator {
 	@Override

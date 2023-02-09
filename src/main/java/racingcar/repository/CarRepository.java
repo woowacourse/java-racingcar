@@ -30,7 +30,9 @@ public class CarRepository {
 
 	public static String getPositionToString() {
 		StringBuilder sb = new StringBuilder();
-		cars.values().stream().forEach((car) -> sb.append(car.toString()).append("\n"));
+		cars.values()
+			.stream()
+			.forEach((car) -> sb.append(car.toString()).append("\n"));
 		sb.setLength(sb.length() - 1);
 		return sb.toString();
 	}
