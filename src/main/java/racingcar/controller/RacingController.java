@@ -38,7 +38,6 @@ public class RacingController {
         return new Cars(cars);
     }
 
-
     private int requestTrialTime() {
         TrialTimes trialTimes = inputView.getTrialTimes();
 

@@ -11,7 +11,6 @@ public class Track {
         this.trialTime = trialTime;
     }
 
-
     public Cars race() {
         cars.moveCars();
         removeTrialTimes();

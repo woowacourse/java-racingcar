@@ -8,12 +8,11 @@ import racingcar.model.car.Cars;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TrackTest {
-
     @DisplayName("시도한 횟수만큼 진행하는지 확인하는 테스트")
     @Test
     void raceCarTest() {
         // given
-        Cars cars = TestDataManager.getCarsByStrategies();
+        Cars cars = TestDataManager.getCarsTestData();
         int trialTime = 3;
         Track track = new Track(cars, trialTime);
 

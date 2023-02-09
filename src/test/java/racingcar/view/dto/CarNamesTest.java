@@ -66,7 +66,6 @@ class CarNamesTest {
         // given
         String testInputValue = "pobi,crong";
 
-
         // when
         CarNames carNames = new CarNames(testInputValue);
         List<String> carNameList = carNames.toCarNameList();
