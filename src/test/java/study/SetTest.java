@@ -30,14 +30,14 @@ public class SetTest {
 
     @Test
     @DisplayName("Set의 크기를 확인")
-    public void checkSize(){
+    public void checkSize() {
         assertThat(numbers.size()).isEqualTo(3);
     }
 
     @ParameterizedTest
-    @ValueSource(strings={"1","2","3"})
+    @ValueSource(strings = {"1", "2", "3"})
     @DisplayName("ParameterizedTest 활용해 중복 코드 제거")
-    public void contains(String value){
+    public void contains(String value) {
         assertThat(numbers.contains(Integer.parseInt(value))).isTrue();
     }
 

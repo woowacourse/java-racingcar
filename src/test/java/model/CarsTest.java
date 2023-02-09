@@ -7,7 +7,6 @@ import util.NumberGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +15,7 @@ class CarsTest {
 
     @Test
     @DisplayName("Cars 객체 생성 테스트")
-    void createCarsTest(){
+    void createCarsTest() {
         Cars cars = new Cars("pobi,crong,honux");
 
         assertThat(cars.getCars().size()).isEqualTo(3);
@@ -28,11 +27,11 @@ class CarsTest {
 
         String names = "ocean,jamie";
         Cars cars = new Cars(names);
-        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9,0,6,7));
+        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 0, 6, 7));
 
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
 
-        for(int i=0; i<2; i++)
+        for (int i = 0; i < 2; i++)
             cars.moveResult(testNumberGenerator);
 
         assertThat(cars.getWinners()).isEqualTo("ocean");
@@ -44,11 +43,11 @@ class CarsTest {
 
         String names = "ocean,jamie";
         Cars cars = new Cars(names);
-        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9,9,6,6));
+        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 9, 6, 6));
 
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
 
-        for(int i=0; i<2; i++)
+        for (int i = 0; i < 2; i++)
             cars.moveResult(testNumberGenerator);
 
         assertThat(cars.getWinners()).isEqualTo("ocean, jamie");

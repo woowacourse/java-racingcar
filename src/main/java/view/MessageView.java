@@ -9,11 +9,11 @@ public class MessageView {
         System.out.println(CAR_NAME_MESSAGE);
     }
 
-    public void printTryCountMessage(){
+    public void printTryCountMessage() {
         System.out.println(TRY_COUNT_MESSAGE);
     }
 
-    public void printResultMessage(){
+    public void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
     }
 }

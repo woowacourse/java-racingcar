@@ -32,7 +32,7 @@ public class Controller {
 
     private int setTryCount() {
         messageView.printTryCountMessage();
-        try{
+        try {
             return inputView.inputTryCount();
         } catch (Exception e) {
             System.out.println(e.getMessage());

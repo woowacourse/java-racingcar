@@ -33,8 +33,9 @@ public class Car {
     }
 
     public void moveByRandom(int randNum) {
-        if (randNum >= 4)
+        if (randNum >= 4) {
             this.moveCar();
+        }
     }
 
     public String getCarName() {
