@@ -5,6 +5,7 @@ import domain.Race;
 import java.util.List;
 import repository.CarRepository;
 import utils.Judge;
+import view.output.OutputView;
 
 public class RaceController {
 
@@ -21,6 +22,7 @@ public class RaceController {
         while (!race.isFinished()) {
             playRound();
         }
+        printRoundResult();
     }
 
     public void addAllParticipants(List<String> carNames) {
@@ -31,6 +33,7 @@ public class RaceController {
         List<Car> participants = carRepository.findAll();
         participants.forEach(this::driveOrNot);
         race.addCount();
+        printRoundResult();
     }
 
     private void driveOrNot(Car car) {
@@ -38,5 +41,9 @@ public class RaceController {
         if (Judge.isAble(number)) {
             car.drive(DRIVING_DISTANCE);
         }
+    }
+
+    private void printRoundResult() {
+        OutputView.printRoundResult(carRepository.findAll());
     }
 }
