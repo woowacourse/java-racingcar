@@ -4,8 +4,10 @@ import racingCar.dto.CarDto;
 import racingCar.util.NumberGenerator;
 import racingCar.util.RandomNumberGenerator;
 
-// TODO: refactor
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CarGroup {
