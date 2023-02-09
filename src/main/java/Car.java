@@ -1,5 +1,6 @@
 public class Car {
-    private String name;
+    private final int MOVE_LOWER_BOUND = 4;
+    private final String name;
     private int distance;
 
     public Car(String name) {
@@ -14,7 +15,7 @@ public class Car {
 
     public void move() {
         int moveCount = RandomNumberGenerator.randomNumberGenerate();
-        if (moveCount >= 4) {
+        if (moveCount >= MOVE_LOWER_BOUND) {
             this.distance++;
         }
     }
