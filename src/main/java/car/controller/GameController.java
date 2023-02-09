@@ -1,5 +1,7 @@
 package car.controller;
 
+import static car.option.Option.MIN_TRIAL_COUNT;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class GameController {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    public static final int MIN_TRIAL_COUNT = 0;
+
     private final Game game;
     private final int trialCount;
 
@@ -26,7 +28,7 @@ public class GameController {
 
     private void validateNotNegativeInteger(int trialCount) {
         if (trialCount < MIN_TRIAL_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 시도횟수는 음수이면 안됩니다");
+            throw new IllegalArgumentException("[ERROR] 시도횟수는 음수이면 안됩니다.");
         }
     }
 
