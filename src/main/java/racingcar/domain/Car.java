@@ -23,4 +23,8 @@ public class Car {
     public int getLogSize() {
         return valuelog.size();
     }
+
+    public int getPosition(int step, int threshold) {
+        return step * valuelog.stepNumber(threshold);
+    }
 }

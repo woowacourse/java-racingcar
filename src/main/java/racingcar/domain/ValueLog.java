@@ -13,4 +13,8 @@ public class ValueLog {
     public int size() {
         return log.size();
     }
+
+    public int stepNumber(int threshold) {
+        return (int) log.stream().filter(value -> value >= threshold).count();
+    }
 }
