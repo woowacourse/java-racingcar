@@ -1,10 +1,7 @@
 package racingcar;
 
-import racingcar.common.log.ConsoleLogger;
-import racingcar.common.log.Logger;
+import racingcar.common.config.RacingCarGameConfig;
 import racingcar.controller.RacingCarController;
-import racingcar.domain.MathNumberGenerator;
-import racingcar.domain.NumberGenerator;
 import racingcar.step.CreateCarStep;
 import racingcar.step.Step;
 import racingcar.step.context.GameContext;
@@ -12,12 +9,9 @@ import racingcar.step.context.GameContext;
 public class RacingCarApplication {
 
     public static void main(String[] args) {
-        NumberGenerator generator = new MathNumberGenerator();
-        RacingCarController racingCarController = new RacingCarController(generator);
-        Logger log = new ConsoleLogger();
-
-        GameContext context = new GameContext();
-        Step step = new CreateCarStep(racingCarController, log, context);
+        RacingCarGameConfig config = new RacingCarGameConfig();
+        RacingCarController racingCarController = new RacingCarController(config.numberGenerator());
+        Step step = new CreateCarStep(racingCarController, config.logger(), new GameContext());
         run(step);
     }
 
