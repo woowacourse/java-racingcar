@@ -7,12 +7,16 @@ import racingcar.repository.CarRepository;
 
 public class CarService {
 
-	RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+	NumberGenerator numberGenerator;
+
+	public CarService(NumberGenerator numberGenerator) {
+		this.numberGenerator = numberGenerator;
+	}
 
 	public void moveCars() {
 		List<Car> cars = CarRepository.getCars();
 		for (Car car : cars) {
-			car.move(randomNumberGenerator.getNumber());
+			car.move(numberGenerator.getNumber());
 		}
 	}
 }
