@@ -17,11 +17,11 @@ public class Game {
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
-                .filter(car -> car.isSameWith(maxPosition))
+                .filter(car -> car.hasSamePositionWith(maxPosition))
                 .collect(Collectors.toList());
     }
 
-    private Integer findMaxPosition() {
+    private int findMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = car.selectMaxPosition(maxPosition);
