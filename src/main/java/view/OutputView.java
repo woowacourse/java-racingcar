@@ -14,27 +14,27 @@ public class OutputView {
     public OutputView() {
     }
 
-    public void printInitialStatus(Map<String, Integer> initialStatus) {
+    public void printInitialStatus(final Map<String, Integer> initialStatus) {
         System.out.println("\n" + RESULT_HEAD);
         printMoveResult(initialStatus);
     }
 
-    public void printMoveResult(Map<String, Integer> result) {
+    public void printMoveResult(final Map<String, Integer> result) {
         result.entrySet()
             .forEach(this::printEachResult);
         System.out.println();
     }
 
-    public void printWinner(List<String> winners) {
+    public void printWinner(final List<String> winners) {
         System.out.printf(WINNER_FORMAT + "\n", String.join(WINNER_DELIMITER, winners));
     }
 
-    private void printEachResult(Map.Entry<String, Integer> carMoveCount) {
+    private void printEachResult(final Map.Entry<String, Integer> carMoveCount) {
         System.out.printf(RESULT_FORMAT + "\n", carMoveCount.getKey(),
             generateMoveStatus(carMoveCount.getValue()));
     }
 
-    private String generateMoveStatus(int moveCount) {
+    private String generateMoveStatus(final int moveCount) {
         return MOVE_UNIT.repeat(Math.max(0, moveCount));
     }
 }

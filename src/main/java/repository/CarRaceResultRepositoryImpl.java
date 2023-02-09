@@ -19,13 +19,13 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public void save(Car car) {
+    public void save(final Car car) {
         validateCarDuplicate(car);
         moveCountBoard.put(car, INITIAL_MOVE_VALUE);
     }
 
     @Override
-    public int findByName(String name) {
+    public int findByName(final String name) {
         return moveCountBoard.get(moveCountBoard
             .keySet()
             .stream()
@@ -51,7 +51,7 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public void moveByName(String name) {
+    public void moveByName(final String name) {
         Car car = moveCountBoard
             .keySet()
             .stream()
@@ -61,7 +61,7 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
         moveCountBoard.replace(car, moveCountBoard.get(car) + MOVE_UNIT);
     }
 
-    private void validateCarDuplicate(Car car) {
+    private void validateCarDuplicate(final Car car) {
         if (moveCountBoard.containsKey(car)) {
             throw new IllegalArgumentException(ErrorCode.CAR_NAME_DUPLICATE.getMessage());
         }

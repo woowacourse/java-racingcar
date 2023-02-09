@@ -24,7 +24,7 @@ public class CarRaceServiceImpl implements CarRaceService {
     }
 
     @Override
-    public Map<String, Integer> saveCars(List<String> names) {
+    public Map<String, Integer> saveCars(final List<String> names) {
         validateCarCount(names);
         names.forEach(name -> carRaceResultRepository.save(new Car(name)));
         return carRaceResultRepository.getRaceResult();
@@ -48,13 +48,13 @@ public class CarRaceServiceImpl implements CarRaceService {
             .collect(Collectors.toList());
     }
 
-    private void moveCar(String car) {
+    private void moveCar(final String car) {
         if (numberGenerator.generateNumber(MAX_RANDOM_NUMBER) >= MOVE_LIMIT) {
             carRaceResultRepository.moveByName(car);
         }
     }
 
-    private void validateCarCount(List<String> names) {
+    private void validateCarCount(final List<String> names) {
         if (names.size() > MAX_CAR_COUNT) {
             throw new IllegalArgumentException(
                 String.format(ErrorCode.TOO_MANY_CAR.getMessage(), MAX_CAR_COUNT));

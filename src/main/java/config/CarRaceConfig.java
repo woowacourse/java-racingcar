@@ -26,10 +26,10 @@ public class CarRaceConfig {
     }
 
     private static InputValidationChain makeValidator() {
-        InputValidationChain emptyValueValidationChain = new EmptyValueValidationChain();
-        InputValidationChain numberRangeValidationChain = new NumberRangeValidationChain();
-        InputValidationChain positiveNumberValidationChain = new PositiveNumberValidationChain();
-        InputValidationChain inputValidationChain = new InputValidateSuccessChain();
+        final InputValidationChain emptyValueValidationChain = new EmptyValueValidationChain();
+        final InputValidationChain numberRangeValidationChain = new NumberRangeValidationChain();
+        final InputValidationChain positiveNumberValidationChain = new PositiveNumberValidationChain();
+        final InputValidationChain inputValidationChain = new InputValidateSuccessChain();
         emptyValueValidationChain.setNext(numberRangeValidationChain);
         numberRangeValidationChain.setNext(positiveNumberValidationChain);
         positiveNumberValidationChain.setNext(inputValidationChain);
