@@ -5,6 +5,7 @@ import static racingcar.enumType.ExceptionMessage.RANGE_MESSAGE;
 import static racingcar.enumType.ExceptionMessage.TYPE_MESSAGE;
 
 public class Race {
+
     private final int tryCount;
 
     private Race(String tryCount) {
@@ -14,6 +15,14 @@ public class Race {
 
     public static Race of(String tryCount) {
         return new Race(tryCount);
+    }
+
+    public String start(Cars cars) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < this.tryCount; i++) {
+            result.append(cars.race()).append("\n");
+        }
+        return result.toString();
     }
 
     private int validateType(String tryCount) {
@@ -31,13 +40,5 @@ public class Race {
             throw new IllegalArgumentException(RANGE_MESSAGE.getValue());
         }
         return tryCount;
-    }
-
-    public String start(Cars cars) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < this.tryCount; i++) {
-            result.append(cars.race()).append("\n");
-        }
-        return result.toString();
     }
 }

@@ -3,6 +3,7 @@ package racingcar.enumType;
 import racingcar.util.EnumUtil;
 
 public enum DomainConstant implements EnumUtil<Object> {
+
     CAR_FORWARD_NUMBER(4)
     , CAR_NAME_MAX_LENGTH(5)
     , RACE_MIN_TRY_COUNT(0);

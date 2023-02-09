@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.enumType.ExceptionMessage;
 import racingcar.exception.DuplicateException;
 import racingcar.util.RaceNumberGenerator;
 
@@ -11,7 +10,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static racingcar.enumType.DomainConstant.CAR_FORWARD_NUMBER;
-import static racingcar.enumType.ExceptionMessage.*;
+import static racingcar.enumType.ExceptionMessage.DUPLICATE_MESSAGE;
 
 public class Cars {
 
@@ -29,6 +28,31 @@ public class Cars {
         return new Cars(carNames);
     }
 
+    public String initStatus() {
+        StringBuilder result = new StringBuilder();
+        this.cars.forEach(car -> result.append(car).append("\n"));
+        return result.toString();
+    }
+
+    public String race() {
+        StringBuilder result = new StringBuilder();
+        this.cars.forEach(car -> {
+            int randomNumber = numberGenerator.generate();
+            checkNumberAndMove(car, randomNumber);
+            result.append(car).append("\n");
+        });
+        return result.toString();
+    }
+
+    public String pickWinners() {
+        StringBuilder winners = new StringBuilder();
+        List<String> carNames = this.cars.stream()
+                .filter(car -> Objects.equals(car.getDrivingDistance().getDistance(), getMaxDistance()))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+        return winners.append(String.join(", ", carNames)).toString();
+    }
+
     private List<Car> splitCarNames(String carNames) {
         String[] names = carNames.split(",");
         return Arrays.stream(names)
@@ -43,41 +67,16 @@ public class Cars {
         }
     }
 
-    public String initStatus() {
-        StringBuilder result = new StringBuilder();
-        this.cars.forEach(car -> result.append(car).append("\n"));
-        return result.toString();
-    }
-
-    public String pickWinners() {
-        StringBuilder winners = new StringBuilder();
-        List<String> carNames = this.cars.stream()
-                .filter(car -> Objects.equals(car.getDrivingDistance().getDistance(), getMaxDistance()))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-        return winners.append(String.join(", ", carNames)).toString();
+    private void checkNumberAndMove(Car car, int randomNumber) {
+        if (randomNumber >= CAR_FORWARD_NUMBER.getValue()) {
+            car.move();
+        }
     }
 
     private Integer getMaxDistance() {
         return this.cars.stream()
                 .mapToInt(car -> car.getDrivingDistance().getDistance())
                 .max().orElse(1);
-    }
-
-    public String race() {
-        StringBuilder result = new StringBuilder();
-        this.cars.forEach(car -> {
-            int randomNumber = numberGenerator.generate();
-            checkNumberAndMove(car, randomNumber);
-            result.append(car).append("\n");
-        });
-        return result.toString();
-    }
-
-    private void checkNumberAndMove(Car car, int randomNumber) {
-        if (randomNumber >= CAR_FORWARD_NUMBER.getValue()) {
-            car.move();
-        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package racingcar.domain.dto;
 
 public class DrivingDistance {
+
     private final Integer distance;
 
     private DrivingDistance(int distance) {

@@ -9,6 +9,7 @@ import static racingcar.enumType.ExceptionMessage.BLANK_MESSAGE;
 import static racingcar.enumType.ExceptionMessage.LENGTH_MESSAGE;
 
 public class Car {
+
     private final String name;
 
     private final StringBuilder drivingMark;
@@ -22,6 +23,14 @@ public class Car {
 
     public static Car of(final String name) {
         return new Car(name);
+    }
+
+    public void move() {
+        drivingMark.append("-");
+    }
+
+    public DrivingDistance getDrivingDistance() {
+        return DrivingDistance.of(drivingMark.length());
     }
 
     public String getName() {
@@ -38,14 +47,6 @@ public class Car {
         if (name.isBlank()) {
             throw new IllegalArgumentException(BLANK_MESSAGE.getValue());
         }
-    }
-
-    public void move() {
-        drivingMark.append("-");
-    }
-
-    public DrivingDistance getDrivingDistance() {
-        return DrivingDistance.of(drivingMark.length());
     }
 
     @Override
