@@ -43,6 +43,12 @@ public class CarService {
         }
     }
 
+    public void finishService() {
+        for (Car car : cars.getCarInformation()) {
+            OutputView.printRoundResult(car.getName(), car.getDistance());
+        }
+    }
+
     private boolean validateNameInput() {
         try {
             OutputView.printNameInput();

@@ -17,4 +17,8 @@ public class RacingcarController {
     public void run() {
         carService.runService();
     }
+
+    public void finish() {
+        carService.finishService();
+    }
 }
