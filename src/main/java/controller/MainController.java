@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import model.Car;
 import model.CarMoveManager;
 import model.CarRepository;
+import model.RandomNumber;
 import view.InputView;
 import view.OutputView;
 
@@ -65,7 +66,7 @@ public class MainController {
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            CarRepository.cars().forEach(car -> car.move(carMoveManager.isMove()));
+            CarRepository.cars().forEach(car -> car.move(carMoveManager.isMove(RandomNumber.getRandomNumber())));
             outputView.printResult(CarRepository.cars());
         }
     }
