@@ -22,6 +22,7 @@ public class RacingGameController {
     }
 
     private void race(int trialCount) {
+        outputView.printResultMessage();
         showCurrentGameResult();
         for (int i = 0; i < trialCount; i++) {
             racingGame.processAllCars();
@@ -32,7 +33,6 @@ public class RacingGameController {
     private void showCurrentGameResult() {
         List<Car> gameResult = racingGame.getCars();
         outputView.printGameResult(convertGameResult(gameResult));
-
     }
 
     private TreeMap<String, Integer> convertGameResult(List<Car> gameResult) {
