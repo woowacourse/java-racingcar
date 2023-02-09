@@ -12,7 +12,7 @@ class StringParserTest {
         String input = "pobi,crong,honux";
 
         //when
-        List<String> parse = StringParser.parse(input);
+        List<String> parse = StringParser.splitByComma(input);
 
         //then
         assertThat(parse).containsExactly("pobi", "crong", "honux");

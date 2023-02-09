@@ -23,7 +23,7 @@ public class InputView {
         try {
             System.out.println(READ_CAR_NAME_MESSAGE);
             String input = br.readLine();
-            List<String> carNames = StringParser.parse(input);
+            List<String> carNames = StringParser.splitByComma(input);
             validate(carNames);
             return carNames;
         } catch (IllegalArgumentException e) {
