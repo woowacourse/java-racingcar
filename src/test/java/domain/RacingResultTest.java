@@ -13,7 +13,7 @@ class RacingResultTest {
 
     @DisplayName("최종 우승 자동차 대수가 2대 이상인 경우를 확인한다.")
     @Test
-    public void checkWinner() {
+    void checkWinner() {
         //given
         Map<String, Integer> history = new HashMap<>();
         history.put("a",4);
@@ -31,7 +31,7 @@ class RacingResultTest {
 
     @DisplayName("최종 우승 자동차 대수가 1대인 경우를 확인한다.")
     @Test
-    public void checkWinnerWhenWinnerIsOnlyOne() throws Exception {
+    void checkWinnerWhenWinnerIsOnlyOne() {
         //given
         Map<String, Integer> history = new HashMap<>();
         history.put("a",4);

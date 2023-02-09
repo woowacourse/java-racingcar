@@ -13,7 +13,7 @@ class CarGroupTest {
 
     @DisplayName("자동차 대수가 1대인 경우 예외가 발생한다.")
     @Test
-    public void throwExceptionWhenNumberOfCarsIsOne() throws Exception {
+    void throwExceptionWhenNumberOfCarsIsOne() {
         String[] names = {"1"};
 
         assertThatThrownBy(()-> new CarGroup(names))
@@ -22,7 +22,7 @@ class CarGroupTest {
 
     @DisplayName("자동차 대수가 50대를 초과한 경우 예외가 발생한다.")
     @Test
-    public void throwExceptionWhenNumberOfCarsIsOverFifty() throws Exception {
+    void throwExceptionWhenNumberOfCarsIsOverFifty() {
         List<String> names = new ArrayList<>();
 
         for (int i = 0; i < 51; i++) {
@@ -36,7 +36,7 @@ class CarGroupTest {
 
     @DisplayName("중복된 자동차 이름이 존재하는 경우 예외가 발생한다.")
     @Test
-    public void throwExceptionWhenNameOfCarsIsDuplicate() throws Exception {
+    void throwExceptionWhenNameOfCarsIsDuplicate() {
         String[] duplicateNames = {"1","1","3"};
 
         assertThatThrownBy(()-> new CarGroup(duplicateNames))
@@ -45,7 +45,7 @@ class CarGroupTest {
 
     @DisplayName("자동차 이름이 정상적으로 입력된 경우는 예외가 발생하지 않는다.")
     @Test
-    public void createCarGroup() {
+    void createCarGroup() {
         String[] names = {"1","2","3"};
 
         assertDoesNotThrow(() -> new CarGroup(names));
