@@ -30,14 +30,23 @@ class CarTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @Test
-    @DisplayName("Car 전진 테스트")
-    void moveCarTest(){
+    @ParameterizedTest
+    @ValueSource(ints={0,1,2,3})
+    @DisplayName("랜덤 값이 4미만일 경우 테스트")
+    void stopByRandom(int randNum){
         Car car = new Car("test");
-        car.moveCar();
+        car.moveByRandom(randNum);
+
+        assertThat(car.getCarLocation()).isEqualTo(0);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints={4,5,6,7})
+    @DisplayName("랜덤 값이 4이상일 경우 테스트")
+    void moveByRandom(int randNum){
+        Car car = new Car("test");
+        car.moveByRandom(randNum);
 
         assertThat(car.getCarLocation()).isEqualTo(1);
     }
-
-
 }
