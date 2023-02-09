@@ -15,11 +15,10 @@ public class InputView {
 		return formatter(carNames);
 	}
 
-	public static int readRoundCount() {
-		String roundCount = scanner.nextLine();
-		validateRoundCount(roundCount);
-		System.out.println();
-		return Integer.parseInt(roundCount);
+	private static void validateCarNames(String input) {
+		if (input.length() == 0) {
+			throw new IllegalArgumentException("[ERROR]: 공백을 입력할 수 없습니다.");
+		}
 	}
 
 	private static List<String> formatter(String carNames) {
@@ -28,14 +27,16 @@ public class InputView {
 			.collect(Collectors.toList());
 	}
 
-	// TODO: validate input length
-	private static void validateCarNames(String input) {
+	public static int readRoundCount() {
+		String roundCount = scanner.nextLine();
+		validateRoundCount(roundCount);
+		System.out.println();
+		return Integer.parseInt(roundCount);
 	}
 
 	private static void validateRoundCount(String input) {
-		if(input.equals("0") || !input.matches("[0-9]+")) {
+		if (input.equals("0") || !input.matches("[0-9]+")) {
 			throw new IllegalArgumentException("[ERROR]: 자연수가 입력되어야 합니다.");
 		}
-		// TODO: validate max round count
 	}
 }

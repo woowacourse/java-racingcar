@@ -15,6 +15,7 @@ public class OutputView {
 	public static void printRoundCountRequestMsg() {
 		System.out.println(ROUND_COUNT_REQUEST_MSG);
 	}
+
 	public static void printOutputMsg() {
 		System.out.println(OUTPUT_MSG);
 	}

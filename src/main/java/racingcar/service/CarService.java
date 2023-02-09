@@ -1,6 +1,5 @@
 package racingcar.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +7,6 @@ import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
 
 public class CarService {
-
 	private NumberGenerator numberGenerator;
 	List<Car> cars = CarRepository.getCars();
 
@@ -21,11 +19,12 @@ public class CarService {
 	}
 
 	public List<String> getWinners() {
-		List<String> winners = new ArrayList<>();
-
 		final int[] maxPos = {0};
 		cars.stream()
-			.forEach(car -> maxPos[0] = car.getPosition() > maxPos[0] ? car.getPosition() : maxPos[0]);
+			.forEach(car ->
+				maxPos[0] = car.getPosition() > maxPos[0]
+					? car.getPosition()
+					: maxPos[0]);
 
 		return cars.stream()
 			.filter(car -> car.getPosition() == maxPos[0])

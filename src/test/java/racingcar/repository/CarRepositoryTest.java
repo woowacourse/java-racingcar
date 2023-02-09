@@ -1,8 +1,8 @@
 package racingcar.repository;
 
-import static org.assertj.core.api.AssertionsForClassTypes.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,8 @@ class CarRepositoryTest {
 	@DisplayName("CarRepository에 중복되는 이름이 있을 경우 IllegalArgumentError를 발생시켜야 한다.")
 	void carAddFailTest() {
 		CarRepository.add(new Car("woowa"));
-		Assertions.assertThatThrownBy(() -> CarRepository.add(new Car("woowa")))
-				.isInstanceOf(IllegalArgumentException.class);
+
+		assertThatThrownBy(() -> CarRepository.add(new Car("woowa")))
+			.isInstanceOf(IllegalArgumentException.class);
 	}
 }

@@ -10,9 +10,9 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-
 	private CarRepository carRepository = new CarRepository();
 	int roundCount;
+
 	public void run() {
 		while (!getCarNames()) ;
 		while (!getRoundCount()) ;

@@ -1,8 +1,7 @@
 package racingcar.service;
 
-import static org.assertj.core.api.AssertionsForClassTypes.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -12,7 +11,6 @@ import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
 
 class CarServiceTest {
-
 	class ZeroGenerator implements NumberGenerator {
 		@Override
 		public int getNumber() {
@@ -37,6 +35,7 @@ class CarServiceTest {
 		CarRepository.add(new Car("woowa"));
 		CarRepository.add(new Car("tech"));
 	}
+
 	@Test
 	@DisplayName("Repository에 저장된 차들의 위치를 문자열로 반환해야 한다.")
 	void getPositionToStringTest() {
@@ -81,7 +80,7 @@ class CarServiceTest {
 			carService.moveCars();
 
 			CarRepository.add(new Car("code"));
-			Assertions.assertThat(carService.getWinners()).containsExactly("woowa", "tech");
+			assertThat(carService.getWinners()).containsExactly("woowa", "tech");
 		}
 	}
 }
