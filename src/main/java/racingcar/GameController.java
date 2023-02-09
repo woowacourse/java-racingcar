@@ -32,5 +32,12 @@ public class GameController {
     public void runSingleRound() {
         racingGame.moveCars();
         racingGame.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
+        System.out.println();
+    }
+
+    public void finishGame() {
+        racingGame.calculateWinners();
+        racingGame.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
+        outputView.printWinners(racingGame.getWinners());
     }
 }
