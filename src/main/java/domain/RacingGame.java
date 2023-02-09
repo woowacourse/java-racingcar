@@ -1,6 +1,7 @@
 package domain;
 
 import utils.NormalRandomGenerator;
+import utils.RandomGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,12 +17,12 @@ public class RacingGame {
         this.cars = new Cars(collect);
     }
 
-    public Cars decideWinners() {
-        return cars.getWinners();
+    public void moveCars(RandomGenerator generator) {
+        cars.moveCars(generator);
     }
 
-    public void moveCars(NormalRandomGenerator generator) {
-        cars.moveCars(generator);
+    public Cars decideWinners() {
+        return cars.getWinners();
     }
 
     public Cars getCars() {

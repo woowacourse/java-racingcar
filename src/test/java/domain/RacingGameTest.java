@@ -7,7 +7,8 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CarsTest {
+class RacingGameTest {
+
     @DisplayName("더 많이 움직인 자동차가 우승자가 된다.")
     @Test
     public void test1() {
