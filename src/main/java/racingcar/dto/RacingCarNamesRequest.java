@@ -19,10 +19,10 @@ public class RacingCarNamesRequest {
 
     private static void validate(String[] names) {
         for (String name : names) {
-            validateEmptyName(name);
-            validateNameLength(name);
+            validateEmptyCarName(name);
+            validateCarNameLength(name);
         }
-        validateDuplicateNames(names);
+        validateDuplicateCarNames(names);
     }
 
     public List<String> getNames() {
