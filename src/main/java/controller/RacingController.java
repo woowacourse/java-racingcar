@@ -11,35 +11,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingController {
-    private List<Car> carInfo = new ArrayList<>();
-    private Integer movingCount;
-    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-    private final RoundResult roundResult = new RoundResult();
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
-    public void setUp() {
-        outputView.printCarNameMessage();
-        for (String carName : inputView.readCarNames()) {
-            carInfo.add(new Car(carName));
-        }
-        outputView.printTryCountMessage();
-        movingCount = inputView.readMovingCount();
-        System.out.println();
+    public void run() {
+        List<Car> carsInfo = setUpCarName();
+        Integer movingCount = setUpTryCount();
+        progressRacingGame(movingCount, carsInfo, new RandomNumberGenerator());
     }
 
-    public void run() {
+    public void progressRacingGame(Integer movingCount, List<Car> carsInfo, RandomNumberGenerator randomNumberGenerator) {
+        RoundResult roundResult = new RoundResult();
         System.out.println("실행 결과");
         for (int round = 0; round < movingCount; round++) {
-            for (Car car : carInfo) {
+            for (Car car : carsInfo) {
                 Integer randomNumber = randomNumberGenerator.generateRandomNumber();
                 boolean movingResult = roundResult.isGo(randomNumber);
                 car.move(movingResult);
             }
-            outputView.printCurrentResult(carInfo);
+            outputView.printCurrentResult(carsInfo);
         }
         FinalResult finalResult = new FinalResult();
-        List<String> winners = finalResult.findWinners(carInfo);
+        List<String> winners = finalResult.findWinners(carsInfo);
         outputView.printWinners(winners);
+    }
+
+    private List<Car> setUpCarName() {
+        List<Car> carInfo = new ArrayList<>();
+        outputView.printCarNameMessage();
+        for (String carName : inputView.readCarNames()) {
+            carInfo.add(new Car(carName));
+        }
+        return carInfo;
+    }
+
+    private Integer setUpTryCount() {
+        outputView.printTryCountMessage();
+        Integer tryCount = inputView.readMovingCount();
+        System.out.println();
+        return tryCount;
     }
 }
