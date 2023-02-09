@@ -6,6 +6,9 @@ import dto.response.WinnersNameDto;
 import java.util.List;
 
 public class OutputView {
+
+    public static String POSITION_MARK = "-";
+
     public void printEachRound(List<CarStatusDto> carStatusDtos) {
         carStatusDtos.forEach(carStatusDto -> printEachCarStatus(carStatusDto));
         System.out.println("");
@@ -16,7 +19,7 @@ public class OutputView {
     }
 
     private void printEachCarStatus(CarStatusDto carStatusDto) {
-        System.out.println(carStatusDto.getName() + " : " + "-".repeat(carStatusDto.getPosition()));
+        System.out.println(carStatusDto.getName() + " : " + POSITION_MARK.repeat(carStatusDto.getPosition()));
     }
 
     private String getFormattedName(List<String> names) {
