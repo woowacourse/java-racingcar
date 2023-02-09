@@ -16,7 +16,7 @@ public class Validator {
 
     private static void validateCountRange(Integer count) {
         if (count < 1) {
-            throw new IllegalArgumentException("이동 횟수는 1이상의 수자만 가능합니다.");
+            throw new IllegalArgumentException("이동 횟수는 1이상의 숫자만 가능합니다.");
         }
     }
 }
