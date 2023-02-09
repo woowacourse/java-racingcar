@@ -16,7 +16,7 @@ public class InputView {
         validateCarNamesString(carNameLine);
         StringTokenizer tokenizer = new StringTokenizer(carNameLine, ",");
         List<String> carNames = new ArrayList<>();
-        while (tokenizer.hasMoreTokens()) {
+        for (; tokenizer.hasMoreTokens(); ) {
             carNames.add(tokenizer.nextToken());
         }
         return carNames;
