@@ -40,17 +40,17 @@ public class InputValidator {
         validateGameTryCount(Integer.parseInt(gameTry));
      }
 
-     private void validateGameTryCount(int gameTry) {
-        if (gameTry < MIN_GAME_TRY_COUNT || gameTry > MAX_GAME_TRY_COUNT) {
-            throw new IllegalArgumentException(GAME_TRY_COUNT_OUT_OF_RANGE);
-        }
-     }
-
-     private void validateIsInteger(String target) {
+    private void validateIsInteger(String target) {
         try {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(IS_NOT_INTEGER);
+        }
+    }
+
+     private void validateGameTryCount(int gameTry) {
+        if (gameTry < MIN_GAME_TRY_COUNT || gameTry > MAX_GAME_TRY_COUNT) {
+            throw new IllegalArgumentException(GAME_TRY_COUNT_OUT_OF_RANGE);
         }
      }
 }
