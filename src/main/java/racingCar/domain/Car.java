@@ -24,13 +24,13 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(int pickedNumber) {
-        if (pickedNumber > MOVE_MIN_NUM) {
+        if (pickedNumber >= MOVE_MIN_NUM) {
             ++this.position;
         }
     }
 
     private void validateLength(String carName) {
-        if (carName.length() >= 5) {
+        if (carName.length() > 5) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
         }
     }
