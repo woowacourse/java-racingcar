@@ -14,6 +14,7 @@ public class RaceController {
         Race race = repeatUntilReadValidInput(Race::new, inputView::readCarNames);
         int tryTime = repeatUntilReadValidInput(this::validateTryTime, inputView::readTryTime);
 
+        outputView.printResultTitle();
         while (tryTime-- > 0) {
             race.tryMoveOneTime();
             List<CarDTO> carDTOs = race.getCarDTOs();
