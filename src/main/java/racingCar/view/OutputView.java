@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+
     public static void printError(String errorMsg) {
         System.out.println(errorMsg);
     }
