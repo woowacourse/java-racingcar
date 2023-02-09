@@ -27,9 +27,7 @@ public class Validator {
 
     private static boolean hasWrongSizeName(List<String> carNames) {
         return carNames.stream()
-                .filter(carName -> isWrongSize(carName))
-                .findFirst()
-                .isPresent();
+                .anyMatch(carName -> isWrongSize(carName));
     }
 
     private static boolean isWrongSize(String carName) {
