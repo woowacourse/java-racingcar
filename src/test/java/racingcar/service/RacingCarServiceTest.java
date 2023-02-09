@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.dto.RacingCarNamesRequest;
 import racingcar.dto.RacingCarStatusResponse;
+import racingcar.dto.RacingCarWinnerResponse;
 
 class RacingCarServiceTest {
 
@@ -62,5 +63,23 @@ class RacingCarServiceTest {
         // then
         assertThat(carStatuses.get(0).getPosition()).isEqualTo(0);
         assertThat(carStatuses.get(0).getName()).isEqualTo("car1");
+    }
+
+    @Test
+    @DisplayName("우승자의 이름이 정상적으로 반환되어야 한다.")
+    void findWinners() {
+        // given
+        service.createCars(RacingCarNamesRequest.of("car1"));
+        service.moveCars(new CustomMoveStrategy(5));
+
+        // when
+        service.createCars(RacingCarNamesRequest.of("car2"));
+
+        // then
+        RacingCarWinnerResponse winners = service.findWinners();
+        assertThat(winners.getWinners().size())
+                .isEqualTo(1);
+        assertThat(winners.getWinners().get(0))
+                .isEqualTo("car1");
     }
 }
