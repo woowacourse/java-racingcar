@@ -54,6 +54,21 @@ class CarsTest {
         assertThat(result.size()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("모든 자동차들이 전진을 1회 시도한다.")
+    void eachCarMoveTest() {
+        //Given
+        Car pobi = new Car("pobi", new TestNumberGenerator(new ArrayList<>(List.of(3))));
+        Car neo = new Car("neo", new TestNumberGenerator(new ArrayList<>(List.of(4))));
+        Cars cars = new Cars(new ArrayList<>(List.of(pobi, neo)));
+
+        //When
+        List<Car> result = cars.moveEachCar();
+
+        //Then
+        assertThat(result.get(0).getMovePosition()).isEqualTo("");
+        assertThat(result.get(1).getMovePosition()).isEqualTo("-");
+    }
 
 
     static class TestNumberGenerator implements NumberGenerator {
