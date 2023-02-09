@@ -15,11 +15,15 @@ public class Application {
         InputView inputView = new InputView(scanner);
         OutputView outputView = new OutputView();
         MovingStrategy randomMovingStrategy = new RandomMovingStrategy();
-
         RacingController racingController = new RacingController(inputView, outputView);
-        Track track = racingController.init(randomMovingStrategy);
 
-        racingController.startRace(track);
-        racingController.concludeWinner(track);
+        try {
+            Track track = racingController.init(randomMovingStrategy);
+
+            racingController.startRace(track);
+            racingController.concludeWinner(track);
+        } catch (IllegalArgumentException argumentException) {
+            racingController.terminated(argumentException.getMessage());
+        }
     }
 }

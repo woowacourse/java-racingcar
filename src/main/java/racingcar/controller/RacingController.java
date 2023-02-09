@@ -55,4 +55,8 @@ public class RacingController {
         Cars winnerCars = track.findWinner();
         outputView.printWinnerCars(winnerCars.getCarsWinnerFormat());
     }
+
+    public void terminated(String errorMessage) {
+        outputView.printErrorMessage(errorMessage);
+    }
 }
