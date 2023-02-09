@@ -17,7 +17,7 @@ class RacingCarServiceTest {
 
     @BeforeEach
     void setUp() {
-        service = new RacingCarService(new RandomMoveStrategy());
+        service = new RacingCarService();
     }
 
     @ParameterizedTest
@@ -25,9 +25,9 @@ class RacingCarServiceTest {
     @DisplayName("입력 값이 3 이하이면 자동차가 움직이면 안 된다.")
     void move_shouldNotMoveWhenNumberIsUnderThree(int input, int expected) {
         // given
-        service = new RacingCarService(new CustomMoveStrategy(input));
+        CustomMoveStrategy moveStrategy = new CustomMoveStrategy(input);
         service.createCars(RacingCarNamesRequest.of("car1"));
-        service.moveCars();
+        service.moveCars(moveStrategy);
 
         // when
         List<RacingCarStatusResponse> carStatuses = service.getCarStatuses();

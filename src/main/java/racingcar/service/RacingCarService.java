@@ -9,12 +9,7 @@ import racingcar.dto.RacingCarNamesRequest;
 import racingcar.dto.RacingCarStatusResponse;
 
 public class RacingCarService {
-    private final MoveStrategy moveStrategy;
     private final List<Car> cars =  new ArrayList<>();
-
-    public RacingCarService(MoveStrategy moveStrategy) {
-        this.moveStrategy = moveStrategy;
-    }
 
     public void createCars(RacingCarNamesRequest request) {
         List<Car> cars = request.getNames().stream()
@@ -23,7 +18,7 @@ public class RacingCarService {
         this.cars.addAll(cars);
     }
 
-    public void moveCars() {
+    public void moveCars(MoveStrategy moveStrategy) {
         for (Car car : cars) {
             if (moveStrategy.isMovable()) {
                 car.move();
