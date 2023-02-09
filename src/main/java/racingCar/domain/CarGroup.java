@@ -2,7 +2,6 @@ package racingCar.domain;
 
 import racingCar.dto.CarDto;
 import racingCar.util.NumberGenerator;
-import racingCar.util.RandomNumberGenerator;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,8 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CarGroup {
-
-    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     List<Car> carGroup;
 
