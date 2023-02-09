@@ -1,9 +1,11 @@
 package car.domain;
 
+import static car.option.Option.INITIAL_POSITION;
+import static car.option.Option.MAX_NAME_LENGTH;
+import static car.option.Option.MIN_NAME_LENGTH;
+
 public class Car {
-    private static final int INITIAL_POSITION = 0;
-    private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_NAME_LENGTH = 1;
+
     private final String name;
     private int position;
 
@@ -13,8 +15,15 @@ public class Car {
 
     public Car(String name, int position) {
         validateNameLength(name);
+        validatePositionOverInitialPosition(position);
         this.name = name;
         this.position = position;
+    }
+
+    private void validatePositionOverInitialPosition(int position) {
+        if (position < INITIAL_POSITION) {
+            throw new IllegalArgumentException("[ERROR] 위치는 시작점보다 작으면 안됩니다.");
+        }
     }
 
     private void validateNameLength(String name) {
