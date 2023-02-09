@@ -1,13 +1,15 @@
 package racingcar.step;
 
+import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
 import racingcar.domain.Cars;
 import racingcar.view.InputView;
 
 public class CreateCarStep extends RacingCarApplicationStep {
 
-    public CreateCarStep(final RacingCarController controller) {
-        super(controller);
+    public CreateCarStep(final RacingCarController controller,
+                         final Logger log) {
+        super(controller, log);
     }
 
     @Override
@@ -16,9 +18,9 @@ public class CreateCarStep extends RacingCarApplicationStep {
     }
 
     @Override
-    public Step execute() {
+    protected Step pureExecute() {
         String carNames = InputView.inputCarNames();
         Cars cars = controller.createCars(carNames);
-        return new InputTotalLapStep(controller, cars);
+        return new InputTotalLapStep(controller, log, cars);
     }
 }

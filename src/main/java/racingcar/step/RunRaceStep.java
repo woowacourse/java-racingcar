@@ -1,7 +1,8 @@
 package racingcar.step;
 
-import racingcar.controller.response.MovedResultResponse;
+import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
+import racingcar.controller.response.MovedResultResponse;
 import racingcar.domain.Cars;
 import racingcar.domain.Lap;
 import racingcar.view.OutputView;
@@ -12,10 +13,11 @@ public class RunRaceStep extends RacingCarApplicationStep {
     private final Lap lap;
 
     public RunRaceStep(final RacingCarController controller,
+                       final Logger log,
                        // TODO Context
                        final Cars cars,
                        final Lap lap) {
-        super(controller);
+        super(controller, log);
         this.cars = cars;
         this.lap = lap;
     }
@@ -26,7 +28,7 @@ public class RunRaceStep extends RacingCarApplicationStep {
     }
 
     @Override
-    public Step execute() {
+    protected Step pureExecute() {
         MovedResultResponse result = controller.moveCars(cars, lap);
         OutputView.printState(result);
         return judgeNext(lap);
@@ -36,6 +38,6 @@ public class RunRaceStep extends RacingCarApplicationStep {
         if (lap.hasNext()) {
             return this;
         }
-        return new RacingResultStep(controller, cars);
+        return new RacingResultStep(controller, log, cars);
     }
 }

@@ -1,12 +1,6 @@
 package racingcar.step;
 
-import racingcar.controller.RacingCarController;
-
-public class Exit extends RacingCarApplicationStep {
-
-    protected Exit(RacingCarController controller) {
-        super(controller);
-    }
+public class Exit implements Step {
 
     @Override
     public boolean executable() {
@@ -15,7 +9,6 @@ public class Exit extends RacingCarApplicationStep {
 
     @Override
     public Step execute() {
-        System.out.println("Exit.execute");
         return null;
     }
 }

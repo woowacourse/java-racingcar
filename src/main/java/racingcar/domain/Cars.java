@@ -16,7 +16,7 @@ public class Cars {
 
     public Cars(final List<String> cars) {
         if (cars.size() < MIN_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차는 2대 이상 존재해야 합니다.");
         }
         this.cars = cars.stream()
                 .map(Car::new)

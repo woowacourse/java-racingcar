@@ -1,5 +1,6 @@
 package racingcar.step;
 
+import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
 import racingcar.domain.Cars;
 import racingcar.domain.Lap;
@@ -9,8 +10,10 @@ public class InputTotalLapStep extends RacingCarApplicationStep {
 
     private final Cars cars;
     
-    public InputTotalLapStep(final RacingCarController controller, final Cars cars) {
-        super(controller);
+    public InputTotalLapStep(final RacingCarController controller,
+                             final Logger log,
+                             final Cars cars) {
+        super(controller, log);
         this.cars = cars;
     }
 
@@ -20,9 +23,9 @@ public class InputTotalLapStep extends RacingCarApplicationStep {
     }
 
     @Override
-    public Step execute() {
+    protected Step pureExecute() {
         int totalLap = InputView.inputTotalLap();
         Lap lap = controller.confirmTotalLap(totalLap);
-        return new ReadyRaceStep(controller, cars, lap);
+        return new ReadyRaceStep(controller, log, cars, lap);
     }
 }

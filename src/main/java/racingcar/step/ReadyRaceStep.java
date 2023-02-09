@@ -1,5 +1,6 @@
 package racingcar.step;
 
+import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
 import racingcar.domain.Cars;
 import racingcar.domain.Lap;
@@ -11,9 +12,10 @@ public class ReadyRaceStep extends RacingCarApplicationStep {
     private final Lap lap;
 
     public ReadyRaceStep(final RacingCarController controller,
-                       final Cars cars,
-                       final Lap lap) {
-        super(controller);
+                         final Logger log,
+                         final Cars cars,
+                         final Lap lap) {
+        super(controller, log);
         this.cars = cars;
         this.lap = lap;
     }
@@ -24,8 +26,8 @@ public class ReadyRaceStep extends RacingCarApplicationStep {
     }
 
     @Override
-    public Step execute() {
+    protected Step pureExecute() {
         OutputView.printResult();
-        return new RunRaceStep(controller, cars, lap);
+        return new RunRaceStep(controller, log, cars, lap);
     }
 }
