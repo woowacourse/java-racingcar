@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 
 public class RacingCarGameController {
     private static final int FIRST_CAR_INDEX = 0;
-    private OutputView outputView = new OutputView();
-    private InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
 
 
     public void run() {

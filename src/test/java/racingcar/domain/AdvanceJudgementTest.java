@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AdvanceJudgementTest {
@@ -26,6 +27,6 @@ class AdvanceJudgementTest {
         NumberGenerator numberGenerator = new DefaultNumberGenerator(num);
         AdvanceJudgement advanceJudgement = new AdvanceJudgement(range, numberGenerator);
 
-        assertTrue(!advanceJudgement.isAdvancePossible());
+        assertFalse(advanceJudgement.isAdvancePossible());
     }
 }

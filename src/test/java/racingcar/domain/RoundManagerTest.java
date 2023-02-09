@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -26,8 +25,8 @@ class RoundManagerTest {
 
     static Stream<Arguments> 전진_결과_데이터() {
         return Stream.of(
-                Arguments.of(1, Arrays.asList("car : -")),
-                Arguments.of(9, Arrays.asList("car : --"))
+                Arguments.of(1, List.of("car : -")),
+                Arguments.of(9, List.of("car : --"))
         );
     }
 }

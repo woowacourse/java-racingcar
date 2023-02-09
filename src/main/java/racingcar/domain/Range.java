@@ -10,9 +10,6 @@ public class Range {
     }
 
     public Boolean isInRange(int number) {
-        if (min <= number && number <= max) {
-            return true;
-        }
-        return false;
+        return min <= number && number <= max;
     }
 }

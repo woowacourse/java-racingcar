@@ -2,10 +2,7 @@ package racingcar.domain;
 
 import racingcar.dto.RacingCarDto;
 
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-public class RacingCar implements Comparable<RacingCar>{
+public class RacingCar implements Comparable<RacingCar> {
     private static final Integer DEFAULT_POINT = 1;
     private final String name;
     private Integer point;
@@ -26,12 +23,11 @@ public class RacingCar implements Comparable<RacingCar>{
     }
 
     public String getDesc() {
-        StringBuilder description = new StringBuilder();
-        description.append(name);
         String delimiter = " : ";
-        description.append(delimiter);
-        description.append("-".repeat(point));
-        return description.toString();
+        String description = name +
+                delimiter +
+                "-".repeat(point);
+        return description;
     }
 
     @Override
@@ -39,7 +35,7 @@ public class RacingCar implements Comparable<RacingCar>{
         return o.point - this.point;
     }
 
-    public RacingCarDto toDto(){
+    public RacingCarDto toDto() {
         return new RacingCarDto(name, point);
     }
 }
