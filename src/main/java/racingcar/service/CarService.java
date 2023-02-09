@@ -46,10 +46,17 @@ public class CarService {
         try {
             OutputView.printCountInput();
             tryCount = InputView.readTryCount();
+            validateNegativeCount(tryCount);
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return true;
+        }
+    }
+
+    private void validateNegativeCount(int tryCount) {
+        if (tryCount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 시도할 횟수는 0보다 큰 숫자여야 합니다.");
         }
     }
 }
