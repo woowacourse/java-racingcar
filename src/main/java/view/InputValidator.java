@@ -1,31 +1,25 @@
 package view;
 
-import java.util.Arrays;
+import java.text.MessageFormat;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputValidator {
 
-    public void validateNames(final String input) {
-        List<String> names = generateNames(input);
-        validateNamesLength(names);
-    }
+    private static final String INVALID_NAME_MESSAGE = "차의 이름은 {0}자 이상 ~ {1}자 이하여야 합니다.";
+    private static final int NAME_LENGTH_LOWER_BOUND = 1;
+    private static final int NAME_LENGTH_UPPER_BOUND = 5;
 
-    private List<String> generateNames(final String input) {
-        return Arrays.stream(input.split(",", -1))
-                .map(String::trim)
-                .collect(Collectors.toList());
-    }
-
-    private void validateNamesLength(final List<String> names) {
+    public void validateNames(final List<String> names) {
         for (String name : names) {
-            validateNameLength(name);
+            validateName(name);
         }
     }
 
-    private void validateNameLength(final String name) {
-        if (name.length() == 0 || name.length() > 5) {
-            throw new IllegalArgumentException("차의 이름은 1자 이상 ~ 5자 이하여야 합니다.");
+    private void validateName(final String name) {
+        if (name.length() < NAME_LENGTH_LOWER_BOUND || name.length() > NAME_LENGTH_UPPER_BOUND) {
+            throw new IllegalArgumentException(
+                    MessageFormat.format(INVALID_NAME_MESSAGE, NAME_LENGTH_LOWER_BOUND, NAME_LENGTH_UPPER_BOUND)
+            );
         }
     }
 }
