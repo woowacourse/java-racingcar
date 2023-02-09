@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -54,6 +56,7 @@ class RacingCarControllerTest {
     @Test
     @DisplayName("Controller가 정상적으로 작동해야한다.")
     void controller_start() {
-        racingCarController.start();
+        assertThatCode(() -> racingCarController.start())
+                .doesNotThrowAnyException();
     }
 }
