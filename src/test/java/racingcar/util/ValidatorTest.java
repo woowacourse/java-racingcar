@@ -18,4 +18,19 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"정수아님", "5.5"})
+    @DisplayName("게임 시간 정수 제외 입력 예외")
+    void gameTimeTest(String sources) {
+        assertThatThrownBy(() -> Validator.validateStringToInt(sources))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("게임 시간 양수 검증")
+    void validateGameTimeTest() {
+        assertThatThrownBy(() -> Validator.validateGameTime(-5))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
