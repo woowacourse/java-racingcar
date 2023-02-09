@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +36,6 @@ class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @Test
     @DisplayName("move() 시 Cars에 속한 Car들을 각각 움직인다.")
     void test_3() {
@@ -60,7 +58,7 @@ class CarsTest {
 
     @Test
     @DisplayName("winner() 시 제일 많이 움직인 차들을 우승자로 반환한다.")
-    void test_4() throws NoSuchFieldException, IllegalAccessException {
+    void test_4() {
         // given
         Car winner1 = new Car("말랑");
         Car winner2 = new Car("채채");
