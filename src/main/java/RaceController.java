@@ -21,8 +21,7 @@ public class RaceController {
             outputView.printStatus(carDTOs);
         }
 
-        List<String> winnerNames = race.judgeWinners().stream().map(Car::toString).collect(Collectors.toList());
-        outputView.printWinners(winnerNames);
+        outputView.printWinners(race.judgeWinners());
     }
 
     private int readValidTryTime() {

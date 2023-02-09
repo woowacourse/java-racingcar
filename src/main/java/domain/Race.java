@@ -11,19 +11,19 @@ public class Race {
 
     public Race(List<String> carNames) {
         for (String carName : carNames) {
-            addNewCarWhenIsNotExsist(carName);
+            addNewCarWhenIsNotExists(carName);
         }
         this.numberPicker = new RandomNumberPicker();
     }
 
     public Race(List<String> carNames, NumberPicker numberPicker) {
         for (String carName : carNames) {
-            addNewCarWhenIsNotExsist(carName);
+            addNewCarWhenIsNotExists(carName);
         }
         this.numberPicker = numberPicker;
     }
 
-    private void addNewCarWhenIsNotExsist(String carName) {
+    private void addNewCarWhenIsNotExists(String carName) {
         Car car = new Car(carName);
         if (cars.contains(car)) {
             throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
@@ -38,10 +38,11 @@ public class Race {
         }
     }
 
-    public List<Car> judgeWinners() {
+    public List<CarDTO> judgeWinners() {
         Car c = Collections.max(cars, Car.positionComparator);
         return cars.stream()
                 .filter(car -> Car.positionComparator.compare(car, c) == 0)
+                .map(Car::toDTO)
                 .collect(Collectors.toList());
     }
 

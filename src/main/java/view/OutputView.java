@@ -2,6 +2,7 @@ package view;
 
 import domain.CarDTO;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     public void printResultTitle() {
@@ -16,8 +17,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinners(List<String> winners) {
-        System.out.print(String.join(", ", winners));
+    public void printWinners(List<CarDTO> winners) {
+        List<String> winnersNames = winners.stream()
+                .map(c -> c.name)
+                .collect(Collectors.toList());
+        System.out.print(String.join(", ", winnersNames));
         System.out.print("가 최종 우승했습니다.");
     }
 }

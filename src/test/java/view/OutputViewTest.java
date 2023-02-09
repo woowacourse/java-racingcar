@@ -35,7 +35,8 @@ class OutputViewTest {
     @Test
     @DisplayName("우승자들을 형식에 맞게 출력하는지 테스트")
     void printWinners() {
-        List<String> winners = List.of("rosie", "hong");
+        List<CarDTO> winners = List.of(new CarDTO("rosie", 1),
+                new CarDTO("hong", 1));
 
         outputView.printWinners(winners);
 
