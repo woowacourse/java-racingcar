@@ -48,7 +48,7 @@ public class Service {
 
     private void validateDuplication(List<String> carNames) {
         Set<String> carNamesWithoutDuplication = new HashSet<>(carNames);
-        if(carNames.size() != carNamesWithoutDuplication.size()) {
+        if (carNames.size() != carNamesWithoutDuplication.size()) {
             throw new IllegalArgumentException("중복된 이름은 사용할 수 없습니다.");
         }
     }

@@ -27,21 +27,21 @@ public class SetTest {
 
     @Test
     @DisplayName("numbers의 사이즈는 3이다.")
-    void checkSetSize () {
+    void checkSetSize() {
         int result = numbers.size();
         int expect = 3;
         assertThat(result).isEqualTo(expect);
     }
 
     @ParameterizedTest(name = "{0} 포함해야 한다.")
-    @ValueSource(ints = {1,2,3})
-    void checkContain (int value) {
+    @ValueSource(ints = {1, 2, 3})
+    void checkContain(int value) {
         assertThat(numbers.contains(value)).isTrue();
     }
 
     @ParameterizedTest(name = "{0} 값이 포함되어있으면 true, 없으면 false를 반환")
-    @CsvSource(value = {"1,true","2,true","3,true","4,false","5,false"})
+    @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false"})
     void checkContainBoolean(int value, boolean expect) {
         assertThat(numbers.contains(value)).isEqualTo(expect);
     }
- }
+}

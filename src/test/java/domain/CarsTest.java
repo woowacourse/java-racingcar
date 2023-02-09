@@ -61,7 +61,7 @@ class CarsTest {
     @Test
     @DisplayName("value 가 가장 높은 key가 여러개면 모두 반환한다.")
     void checkGetWinnerDraw() {
-        List<Integer> testNumbers = Arrays.asList(4,4);
+        List<Integer> testNumbers = Arrays.asList(4, 4);
         cars = new Cars(new TestRandomNumberGenerator(testNumbers));
 
         Car fox = new Car("fox");
