@@ -5,6 +5,7 @@ import java.io.IOException;
 import domain.RacingGame;
 import view.InputView;
 
+//TODO: 하드코딩된 값 제거
 //TODO: 예외 발생 시 재입력
 public class InputHandler {
 
@@ -41,7 +42,7 @@ public class InputHandler {
     private void validateInteger(String movingTrial) {
         //TODO: 예외 메시지
         if (!movingTrial.matches(REGEX)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 시도할 횟수는 숫자만 가능합니다.");
         }
     }
 }

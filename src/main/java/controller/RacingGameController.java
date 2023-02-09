@@ -21,15 +21,18 @@ public class RacingGameController {
         int movingTrial = inputHandler.readMovingTrial();
 
         outputView.printNotice();
+        raceWithHistory(movingTrial, racingGame);
+        outputView.printWinner(racingGame.getRacingResult().getWinner());
+    }
 
+    private void raceWithHistory(int movingTrial, RacingGame racingGame) {
         //TODO: 인덱스를 쓰지 않는데 개선할 방법
         for (int i = 0; i < movingTrial; i++) {
-            racingGame.racing();
+            racingGame.race();
 
             outputView.printRacingResult(racingGame
                     .getRacingResult()
                     .getHistory());
         }
-        outputView.printWinner(racingGame.getRacingResult().getWinner());
     }
 }

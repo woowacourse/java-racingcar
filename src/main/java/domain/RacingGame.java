@@ -9,18 +9,12 @@ public class RacingGame {
 
     public RacingGame(String[] names) {
         this.cars = new ArrayList<>();
-
-        //TODO: 메소드 분리
-        for (String name : names) {
-            Car car = new Car(name);
-            cars.add(car);
-        }
-
+        setUp(names);
         this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
     //TODO: 테스트
-    public void racing() {
+    public void race() {
         for (Car car : cars) {
             car.move(randomNumberGenerator);
         }
@@ -33,5 +27,12 @@ public class RacingGame {
         }
 
         return new RacingResult(history);
+    }
+
+    private void setUp(String[] names) {
+        for (String name : names) {
+            Car car = new Car(name);
+            cars.add(car);
+        }
     }
 }
