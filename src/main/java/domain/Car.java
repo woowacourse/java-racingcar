@@ -27,9 +27,13 @@ public class Car implements Comparable {
 
     //TODO : 파라미터 네이밍 꼭 변경하기.
     public void moveDependingOn(int number) {
-        if(number >= LEAST_CONDITION) {
+        if (number >= LEAST_CONDITION) {
             position += ONE_STEP;
         }
+    }
+
+    public CarDTO toDTO() {
+        return new CarDTO(name, position);
     }
 
     @Override
@@ -53,5 +57,10 @@ public class Car implements Comparable {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -36,4 +36,8 @@ public class Race {
                 .filter(car -> car.compareTo(c) >= 0)
                 .collect(Collectors.toList());
     }
+
+    public List<CarDTO> getCarDTOs() {
+        return cars.stream().map(Car::toDTO).collect(Collectors.toList());
+    }
 }
