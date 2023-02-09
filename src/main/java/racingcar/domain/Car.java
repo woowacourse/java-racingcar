@@ -16,7 +16,7 @@ public class Car {
     private Car(final String name) {
         validateNameBlank(name);
         validateNameLength(name);
-        this.name = name;
+        this.name = name.trim();
         this.drivingMark = new StringBuilder("-");
     }
 

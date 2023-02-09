@@ -1,13 +1,17 @@
 package racingcar.domain;
 
+import racingcar.enumType.ExceptionMessage;
+import racingcar.exception.DuplicateException;
 import racingcar.util.RaceNumberGenerator;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static racingcar.enumType.DomainConstant.CAR_FORWARD_NUMBER;
+import static racingcar.enumType.ExceptionMessage.*;
 
 public class Cars {
 
@@ -18,6 +22,7 @@ public class Cars {
     private Cars(String carNames) {
         numberGenerator = new RaceNumberGenerator();
         this.cars = splitCarNames(carNames);
+        validateDuplicateCarName();
     }
 
     public static Cars of(String carNames) {
@@ -29,6 +34,13 @@ public class Cars {
         return Arrays.stream(names)
                 .map(Car::of)
                 .collect(Collectors.toList());
+    }
+
+    private void validateDuplicateCarName() {
+        int nonDuplicateCount = new HashSet<>(cars).size();
+        if (cars.size() != nonDuplicateCount) {
+            throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
+        }
     }
 
     public String initStatus() {
