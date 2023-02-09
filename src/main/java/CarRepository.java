@@ -20,4 +20,11 @@ public class CarRepository implements CarRepositoryInterface {
                 .orElseThrow();
     }
 
+    @Override
+    public List<String> findNameByPosition(int position) {
+        return carInformation.stream()
+                .filter(car -> car.getPosition() == position)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
 }
