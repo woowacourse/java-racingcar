@@ -1,12 +1,12 @@
 package racingcar.domain.carrepository;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.car.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -46,16 +46,31 @@ class CarRepositoryTest {
         }
     }
 
-    @Test
-    void findWinner() {
+    @ParameterizedTest
+    @MethodSource("getCars")
+    void findWinner(List<Car> cars) {
+        Car movedCar = createMovedCar();
+        cars.add(movedCar);
+        CarRepository carRepository = new CarRepository(cars);
+
+        List<String> winners = carRepository.findWinner();
+
+        assertThat(winners).containsAnyOf(movedCar.getName());
     }
 
     static Stream<Arguments> getCars() {
         return Stream.of(
-                Arguments.arguments(List.of(new Car("poy"), new Car("joy"), new Car("poby"))),
-                Arguments.arguments(List.of(new Car("poy"), new Car("oioy")))
+                Arguments.arguments(new ArrayList<>(List.of(new Car("poy"), new Car("joy"), new Car("poby")))),
+                Arguments.arguments(new ArrayList<>(List.of(new Car("poy"), new Car("oioy"))))
         );
     }
+
+    private Car createMovedCar() {
+        Car winner = new Car("win");
+        winner.updatePosition();
+        return winner;
+    }
+
 
     static Stream<Arguments> getWrongCars() {
         return Stream.of(
