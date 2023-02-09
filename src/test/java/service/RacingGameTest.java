@@ -26,6 +26,13 @@ class RacingGameTest {
     }
 
     @Test
+    void 자동차_개수_1개_테스트() {
+        RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+        assertThatThrownBy(()->racingGame.generateCars(Arrays.asList("bb")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 값에_따른_자동차_진행_테스트() {
         RacingGame racingGame = new RacingGame(new TestNumberGenerator());
         List<String> carNames = new ArrayList<>(List.of("aaa", "bbb", "ccc"));
