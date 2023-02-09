@@ -7,17 +7,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 import util.CommaSeparator;
 import view.InputView;
+import view.OutputView;
 
 public class RacingGameController {
 
     private RacingCars racingCars;
     private TryCount tryCount;
 
-    void start(){
-       setUpGame();
+    public void start(){
+        setUpGame();
+        playGame();
     }
 
-    void setUpGame(){
+    private void setUpGame(){
         racingCars = createRacingCar();
         tryCount = getTryCount();
     }
@@ -39,5 +41,19 @@ public class RacingGameController {
 
     private TryCount getTryCount(){
         return new TryCount(InputView.requestTryCount());
+    }
+
+    private void playGame() {
+        OutputView.printResultMessage();
+
+        while (canProceed()) {
+            racingCars.moveAll();
+            this.tryCount = tryCount.deduct();
+            OutputView.printScoreBoard(racingCars);
+        }
+    }
+
+    private boolean canProceed() {
+        return !tryCount.isZero();
     }
 }

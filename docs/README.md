@@ -18,5 +18,5 @@
   - 0 ~ 9 사이 정수
 - [x] 자동차 전진한다. RacingCar#Move
 - [x] 레이싱 게임을 주관한다. RacingCars#moveAll()
-- [ ] 실행 결과 출력
+- [x] 실행 결과 출력 OutputView#printScoreBoard()
 - [ ] 최종 우승자 출력

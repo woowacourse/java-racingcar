@@ -6,7 +6,7 @@ import domain.RacingCars;
 public class OutputView {
 
     public static void printResultMessage() {
-        System.out.println("실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
     public static void printScoreBoard(final RacingCars racingCars) {
