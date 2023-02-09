@@ -34,8 +34,7 @@ class CarRaceServiceImplTest {
     @DisplayName("차 저장을 테스트한다")
     void saveCars() {
         //given
-        carRaceService = new CarRaceServiceImpl(
-            new CarRaceResultRepositoryImpl(), new RandomNumberGenerator());
+        carRaceService = makeCarRaceService(new RandomNumberGenerator());
         List<String> names = List.of("car1", "car2");
 
         //when
@@ -49,8 +48,7 @@ class CarRaceServiceImplTest {
     @DisplayName("모든 차를 이동시킨다")
     void moveCars() {
         //given
-        carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
-            new TestMoveNumberGenerator());
+        carRaceService = makeCarRaceService(new TestMoveNumberGenerator());
         List<String> names = List.of("car1", "car2");
         carRaceService.saveCars(names);
 
@@ -67,8 +65,7 @@ class CarRaceServiceImplTest {
     @DisplayName("모든 차를 이동시키지 않는다.")
     void notMoveCars() {
         //given
-        carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
-            new TestNotMoveNumberGenerator());
+        carRaceService = makeCarRaceService(new TestNotMoveNumberGenerator());
         List<String> names = List.of("car1", "car2");
         carRaceService.saveCars(names);
 
@@ -85,8 +82,7 @@ class CarRaceServiceImplTest {
     @DisplayName("차 개수 100개 초과일 경우")
     public void validateCarCount() {
         //given
-        carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
-            new RandomNumberGenerator());
+        carRaceService = makeCarRaceService(new RandomNumberGenerator());
         List<String> names = new ArrayList<>();
         for (int i = 0; i < 101; i++) {
             names.add(String.valueOf(i));
@@ -96,5 +92,9 @@ class CarRaceServiceImplTest {
         //then
         assertThatThrownBy(() -> carRaceService.saveCars(names))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private CarRaceServiceImpl makeCarRaceService(NumberGenerator numberGenerator) {
+        return new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(), numberGenerator);
     }
 }

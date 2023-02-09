@@ -12,8 +12,10 @@ class NumberGeneratorTest {
         //given
         //when
         int randomNumber = numberGenerator.generateNumber(10);
+
         //then
-        Assertions.assertThat(randomNumber).isGreaterThanOrEqualTo(0)
+        Assertions.assertThat(randomNumber)
+            .isGreaterThanOrEqualTo(0)
             .isLessThanOrEqualTo(9);
     }
 }
