@@ -6,6 +6,7 @@ import static constant.Constants.CAR_NAME_LIMIT_EXCEPTION;
 
 public class Car {
     private static final int START_POSITION = 0;
+    private static final int NAME_MAXIMUM_LENGTH = 5;
 
     private final String name;
     private int position;
@@ -21,7 +22,7 @@ public class Car {
     }
 
     private static void validateName(String name) {
-        if (name.length() > 5) {
+        if (name.isEmpty() || name.length() > NAME_MAXIMUM_LENGTH) {
             throw new IllegalArgumentException(CAR_NAME_LIMIT_EXCEPTION);
         }
     }
