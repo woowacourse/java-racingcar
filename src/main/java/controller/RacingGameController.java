@@ -23,10 +23,15 @@ public class RacingGameController {
     }
 
     public void run() {
+        RacingGame racingGame = init();
+        play(racingGame);
+    }
+
+    private RacingGame init() {
         List<Car> cars = generateCars();
         int gameTrial = generateGameTrial();
         RacingGame racingGame = new RacingGame(cars, gameTrial, numberGenerator);
-        play(racingGame);
+        return racingGame;
     }
 
     private void play(RacingGame racingGame) {
