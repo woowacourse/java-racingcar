@@ -74,6 +74,46 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("시도할 횟수 입력 테스트")
+    void readTryNumTest() {
+        String tryNum = "5";
+        InputStream in = generateUserInput(tryNum);
+        System.setIn(in);
 
+        Assertions.assertThat(inputView.readTryNum()).isEqualTo(5);
+    }
 
+    @Test
+    @DisplayName("시도할 횟수가 빈 값인 경우 예외 테스트")
+    void readTryNumBlankTest() {
+        String tryNum = "\n";
+        InputStream in = generateUserInput(tryNum);
+        System.setIn(in);
+
+        Assertions.assertThatThrownBy(() -> inputView.readTryNum())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0.5\n", "-0.5\n"})
+    @DisplayName("시도할 횟수가 정수가 아닌 경우 예외 테스트")
+    void readTryNumIntegerTest(String tryNum) {
+        InputStream in = generateUserInput(tryNum);
+        System.setIn(in);
+
+        Assertions.assertThatThrownBy(() -> inputView.readTryNum())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1\n", "0\n"})
+    @DisplayName("시도할 횟수가 0 이하인 경우 예외 테스트")
+    void readTryNumNotPositiveTest(String tryNum) {
+        InputStream in = generateUserInput(tryNum);
+        System.setIn(in);
+
+        Assertions.assertThatThrownBy(() -> inputView.readTryNum())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
