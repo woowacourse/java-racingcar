@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.util.Validator;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -16,6 +18,7 @@ public class RacingGame {
 
 
     public RacingGame(int gameTime, List<Car> cars) {
+        Validator.validateGameTime(gameTime);
         this.gameTime = gameTime;
         this.cars = cars;
     }

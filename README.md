@@ -36,7 +36,7 @@
 
 - [X] Car.move의 파라미터 이름 수정
 - [X] RacingGame 객체의 역할 분리
-- [ ] 유효성 검증 방법 검토
+- [X] 유효성 검증 방법 검토
 - [X] 승자 출력 로직의 가시성 검토
 - [ ] @ParameterizedTest 사용
   - [X] CarTest에 적용

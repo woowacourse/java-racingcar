@@ -19,10 +19,9 @@ public class Validator {
         validateNoInput(carName);
     }
 
-    public static int validateGameTime(String input) {
-        int inputNumber = validateStringToInt(input);
-        validateGameTimeRange(inputNumber);
-        return inputNumber;
+    public static int validateGameTime(int input) {
+        validateGameTimeRange(input);
+        return input;
     }
 
     private static void validateGameTimeRange(int inputNumber) {
@@ -31,7 +30,7 @@ public class Validator {
         }
     }
 
-    private static int validateStringToInt(String input) {
+    public static int validateStringToInt(String input) {
         Integer integer = null;
         try {
             integer = Integer.valueOf(input);

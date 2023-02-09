@@ -18,7 +18,7 @@ public class InputView {
     public int inputGameTime() {
         System.out.println(INPUT_TRY_COUNT);
         String input = scanner.nextLine();
-        int inputNumber = Validator.validateGameTime(input);
+        int inputNumber = Validator.validateStringToInt(input);
         return inputNumber;
     }
 }
