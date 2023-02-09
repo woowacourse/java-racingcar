@@ -23,7 +23,7 @@ public class InputView {
         return Arrays.asList(words);
     }
 
-    public TrialCount trialCount() {
+    public TrialCount getTrialCount() {
         String input_count = readLineWithMessage(TRIAL_COUNT_PROMPT);
         Integer number = Integer.parseInt(input_count);
         return new TrialCount(number);
