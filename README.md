@@ -30,5 +30,5 @@
 - Car
     - [x] 이름을 전달받아 자동차를 생성하는 기능
         - 5자 초과면 IllegalArgumentException을 발생시킨다.
-        - 빈 문자열이면 IllegalArgumentException을 발생시킨다. (테스트 추가 필요)
+        - 빈 문자열이면 IllegalArgumentException을 발생시킨다.
     - [x] 자동차를 전진하는 기능
