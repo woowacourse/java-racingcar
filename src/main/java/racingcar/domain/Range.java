@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 public class Range {
-    private int min;
-    private int max;
+    private final int min;
+    private final int max;
 
     public Range(int min, int max) {
         this.min = min;

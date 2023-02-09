@@ -21,32 +21,36 @@ public class RacingCarGameController {
     public void run() {
         List<String> validateCarNames = getValidateCarNames();
         int tryCount = getValidTryCount();
+        RoundManager roundManager = initializeRoundManager(validateCarNames);
 
-        RoundManager roundManager = initiate();
-        setCars(validateCarNames, roundManager);
-
-        outputView.printGameResultHeader();
+        outputView.printResultHeader();
         outputView.printRoundResult(roundManager.getCurrentRound());
         for (int roundCount = 0; roundCount < tryCount; roundCount++) {
             outputView.printRoundResult(roundManager.runRound());
         }
+
         List<String> winningCarsName = getWinningCarsName(roundManager.getSortedRacingCars());
         outputView.printWinners(winningCarsName);
+    }
+
+    private List<String> getParsedCarNames() {
+        String carNames = inputView.readCarName();
+        return Parser.parsing(carNames, ",");
     }
 
     private List<String> getValidateCarNames() {
         List<String> parsedCarNames = new ArrayList<>();
         do {
-             parsedCarNames = getParsedCarNames();
+            parsedCarNames = getParsedCarNames();
         } while (!isValidCarNames(parsedCarNames));
         return parsedCarNames;
     }
 
-    private boolean isValidCarNames(List<String> carNames){
+    private boolean isValidCarNames(List<String> carNames) {
         CarNamesValidator carNamesValidator = new CarNamesValidator();
-        try{
+        try {
             carNamesValidator.validateNames(carNames);
-        } catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             return false;
         }
@@ -63,7 +67,7 @@ public class RacingCarGameController {
 
     private boolean isValidTryCount(String tryCount) {
         TryCountValidator tryCountValidator = new TryCountValidator();
-        try{
+        try {
             tryCountValidator.validateTryCount(tryCount);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
@@ -72,26 +76,19 @@ public class RacingCarGameController {
         return true;
     }
 
-    private RoundManager initiate() {
-        Range range = new Range(4, 9);
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        AdvanceJudgement advanceJudgement = new AdvanceJudgement(range, numberGenerator);
-        return new RoundManager(advanceJudgement);
-    }
-
-    private List<String> getParsedCarNames() {
-        String carNames = inputView.readCarName();
-        return Parser.parsing(carNames, ",");
-    }
-
-    private String getTryCount() {
-        return inputView.readTryCount();
-    }
-
     private void setCars(List<String> carNames, RoundManager roundManager) {
         for (String carName : carNames) {
             roundManager.addRacingCar(new RacingCar(carName));
         }
+    }
+
+    private RoundManager initializeRoundManager(List<String> carNames) {
+        Range range = new Range(4, 9);
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        AdvanceJudgement advanceJudgement = new AdvanceJudgement(range, numberGenerator);
+        RoundManager roundManager = new RoundManager(advanceJudgement);
+        setCars(carNames, roundManager);
+        return roundManager;
     }
 
     private List<String> getWinningCarsName(List<RacingCarDto> sortedSortedRacingCars) {

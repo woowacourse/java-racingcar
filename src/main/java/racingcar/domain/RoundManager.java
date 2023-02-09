@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class RoundManager {
     private List<RacingCar> racingCars = new ArrayList<>();
-    private AdvanceJudgement advanceJudgement;
+    private final AdvanceJudgement advanceJudgement;
 
     public RoundManager(AdvanceJudgement advanceJudgement) {
         this.advanceJudgement = advanceJudgement;

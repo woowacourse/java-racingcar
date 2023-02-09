@@ -25,7 +25,7 @@ public class CarNamesValidator {
     }
 
     private void validateDuplicate(String name, List<String> validNames) {
-        if(!validNames.contains(name)){
+        if (!validNames.contains(name)) {
             return;
         }
         throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");

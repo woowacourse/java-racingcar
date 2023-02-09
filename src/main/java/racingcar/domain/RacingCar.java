@@ -6,13 +6,13 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class RacingCar implements Comparable<RacingCar>{
-    private static final Integer defaultPoint = 1;
-    private String name;
+    private static final Integer DEFAULT_POINT = 1;
+    private final String name;
     private Integer point;
 
     public RacingCar(String name) {
         this.name = name;
-        this.point = defaultPoint;
+        this.point = DEFAULT_POINT;
     }
 
     private void plusPoint() {

@@ -8,6 +8,10 @@ public class OutputView {
     private static final String NAME_DELIMITER = ", ";
     private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
 
+    public void printResultHeader() {
+        System.out.println(GAME_RESULT_HEADER);
+    }
+
     private void printAll(List<String> texts) {
         for (String text : texts) {
             System.out.println(text);
@@ -17,10 +21,6 @@ public class OutputView {
     public void printRoundResult(List<String> roundResult) {
         printAll(roundResult);
         System.out.println();
-    }
-
-    public void printGameResultHeader() {
-        System.out.println(GAME_RESULT_HEADER);
     }
 
     public void printWinners(List<String> winningCarsName) {
