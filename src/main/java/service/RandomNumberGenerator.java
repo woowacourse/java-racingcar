@@ -1,6 +1,9 @@
 package service;
 
-public interface RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
 
-    int generateRandomNumber(int maxNumber);
+    @Override
+    public int generateNumber(int maxNumber) {
+        return (int) (Math.random() * maxNumber);
+    }
 }

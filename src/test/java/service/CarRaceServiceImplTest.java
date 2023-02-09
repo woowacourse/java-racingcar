@@ -14,18 +14,18 @@ class CarRaceServiceImplTest {
 
     private CarRaceService carRaceService;
 
-    static class TestMoveRandomNumberGenerator implements RandomNumberGenerator {
+    static class TestMoveNumberGenerator implements NumberGenerator {
 
         @Override
-        public int generateRandomNumber(int maxNumber) {
+        public int generateNumber(int maxNumber) {
             return 4;
         }
     }
 
-    static class TestNotMoveRandomNumberGenerator implements RandomNumberGenerator {
+    static class TestNotMoveNumberGenerator implements NumberGenerator {
 
         @Override
-        public int generateRandomNumber(int maxNumber) {
+        public int generateNumber(int maxNumber) {
             return 3;
         }
     }
@@ -35,7 +35,7 @@ class CarRaceServiceImplTest {
     void saveCars() {
         //given
         carRaceService = new CarRaceServiceImpl(
-            new CarRaceResultRepositoryImpl(), new RandomNumberGeneratorImpl());
+            new CarRaceResultRepositoryImpl(), new RandomNumberGenerator());
         List<String> names = List.of("car1", "car2");
 
         //when
@@ -50,7 +50,7 @@ class CarRaceServiceImplTest {
     void moveCars() {
         //given
         carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
-            new TestMoveRandomNumberGenerator());
+            new TestMoveNumberGenerator());
         List<String> names = List.of("car1", "car2");
         carRaceService.saveCars(names);
 
@@ -68,7 +68,7 @@ class CarRaceServiceImplTest {
     void notMoveCars() {
         //given
         carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
-            new TestNotMoveRandomNumberGenerator());
+            new TestNotMoveNumberGenerator());
         List<String> names = List.of("car1", "car2");
         carRaceService.saveCars(names);
 
@@ -86,7 +86,7 @@ class CarRaceServiceImplTest {
     public void validateCarCount() {
         //given
         carRaceService = new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
-            new RandomNumberGeneratorImpl());
+            new RandomNumberGenerator());
         List<String> names = new ArrayList<>();
         for (int i = 0; i < 101; i++) {
             names.add(String.valueOf(i));

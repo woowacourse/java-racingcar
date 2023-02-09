@@ -15,12 +15,12 @@ public class CarRaceServiceImpl implements CarRaceService {
     private static final int MOVE_LIMIT = 4;
     private static final int MAX_CAR_COUNT = 100;
     private final CarRaceResultRepository carRaceResultRepository;
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final NumberGenerator numberGenerator;
 
     public CarRaceServiceImpl(CarRaceResultRepository carRaceResultRepository,
-        RandomNumberGenerator randomNumberGenerator) {
+        NumberGenerator numberGenerator) {
         this.carRaceResultRepository = carRaceResultRepository;
-        this.randomNumberGenerator = randomNumberGenerator;
+        this.numberGenerator = numberGenerator;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class CarRaceServiceImpl implements CarRaceService {
     }
 
     private void moveCar(String car) {
-        if (randomNumberGenerator.generateRandomNumber(MAX_RANDOM_NUMBER) >= MOVE_LIMIT) {
+        if (numberGenerator.generateNumber(MAX_RANDOM_NUMBER) >= MOVE_LIMIT) {
             carRaceResultRepository.moveByName(car);
         }
     }

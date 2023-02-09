@@ -4,7 +4,7 @@ import controller.CarRaceController;
 import repository.CarRaceResultRepositoryImpl;
 import service.CarRaceService;
 import service.CarRaceServiceImpl;
-import service.RandomNumberGeneratorImpl;
+import service.RandomNumberGenerator;
 import validation.InputValidationChain;
 import validation.impl.EmptyValueValidationChain;
 import validation.impl.InputValidateSuccessChain;
@@ -22,7 +22,7 @@ public class CarRaceConfig {
 
     private static CarRaceService makeService() {
         return new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
-            new RandomNumberGeneratorImpl());
+            new RandomNumberGenerator());
     }
 
     private static InputValidationChain makeValidator() {
