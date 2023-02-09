@@ -9,21 +9,13 @@ public class Validator {
 
     private Validator() {}
 
-    public static int stringToInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
-        }
-    }
-
-    public static void validateNegativeNumber(Integer tryCount) {
+    public static void validateNegativeTryCount(Integer tryCount) {
         if (tryCount < 0) {
             throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
         }
     }
 
-    public static void validateDuplicateNames(String[] names) {
+    public static void validateDuplicateCarNames(String[] names) {
         long noDuplicateCount = Arrays.stream(names)
                 .distinct()
                 .count();
@@ -32,13 +24,13 @@ public class Validator {
         }
     }
 
-    public static void validateEmptyName(String name) {
+    public static void validateEmptyCarName(String name) {
         if(name.isBlank()) {
             throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
         }
     }
 
-    public static void validateNameLength(String name) {
+    public static void validateCarNameLength(String name) {
         if(name.length() >= MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
         }
