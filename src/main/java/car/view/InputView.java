@@ -1,5 +1,7 @@
 package car.view;
 
+import static car.option.Option.MAX_TRIAL_COUNT_LENGTH;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -27,7 +29,7 @@ public class InputView {
     }
 
     private void validateTrialCountUnderMaxInteger(String input) {
-        if (input.length() >= 10) {
+        if (input.length() >= MAX_TRIAL_COUNT_LENGTH) {
             throw new IllegalArgumentException("시도 횟수는 999999999이하여야 합니다.");
         }
     }
