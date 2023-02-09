@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,15 +21,27 @@ class CarTest {
         assertThatIllegalArgumentException().isThrownBy(() -> new Car("잘못된자동차이름"));
     }
 
-    @DisplayName("move method를 통해 position을 1 증가시킨다.")
+    @DisplayName("move를 위한 최솟값을 만족시키면 position을 1 증가 시킨다.")
     @Test
     void test3() {
         Car car = new Car("any");
 
         int beforePosition = car.getPosition();
-        car.move();
+        car.move(MINIMUM_NUMBER_TO_MOVE);
         int afterPosition = car.getPosition();
 
         assertEquals(beforePosition + 1, afterPosition);
+    }
+
+    @DisplayName("move를 위한 최솟값을 만족시키지 못하면 position은 변화하지 않는다.")
+    @Test
+    void test4() {
+        Car car = new Car("any");
+
+        int beforePosition = car.getPosition();
+        car.move(MINIMUM_NUMBER_TO_MOVE - 1);
+        int afterPosition = car.getPosition();
+
+        assertEquals(beforePosition, afterPosition);
     }
 }
