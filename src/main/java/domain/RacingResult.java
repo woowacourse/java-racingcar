@@ -13,6 +13,10 @@ public class RacingResult {
         this.history = history;
     }
 
+    public Map<String, Integer> getHistory() {
+        return history;
+    }
+
     public List<String> getWinner() {
         Integer maxValue = Collections.max(history.values());
 
