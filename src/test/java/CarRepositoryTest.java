@@ -40,4 +40,11 @@ class CarRepositoryTest {
         int result = carRepository.countOfCars();
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    void addPosition() {
+        carRepository.addPosition("car1");
+        int result = carRepository.findPositionByName("car1");
+        assertThat(result).isEqualTo(3);
+    }
 }
