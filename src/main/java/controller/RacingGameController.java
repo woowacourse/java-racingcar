@@ -30,8 +30,7 @@ public class RacingGameController {
     private RacingGame init() {
         List<Car> cars = generateCars();
         int gameTrial = generateGameTrial();
-        RacingGame racingGame = new RacingGame(cars, gameTrial, numberGenerator);
-        return racingGame;
+        return new RacingGame(cars, gameTrial, numberGenerator);
     }
 
     private void play(RacingGame racingGame) {
