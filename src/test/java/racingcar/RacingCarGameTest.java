@@ -53,7 +53,6 @@ class RacingCarGameTest {
 		outputView = new OutputView();
 		inputView = new InputView();
 		gameManager = new GameManager(inputView, outputView, cars);
-		GameManager gameManager = new GameManager(inputView, outputView, cars);
 		gameManager.playGame();
 
 		assertThat(out.toString()).contains("최종 우승했습니다.");
@@ -74,11 +73,9 @@ class RacingCarGameTest {
 		outputView = new OutputView();
 		inputView = new InputView();
 		gameManager = new GameManager(inputView, outputView, cars);
-		GameManager gameManager = new GameManager(inputView, outputView, cars);
-
 		gameManager.playGame();
-		String gameTotalMessage = out.toString();
 
+		String gameTotalMessage = out.toString();
 		assertThat(gameTotalMessage).contains("[ERROR]",  "최종 우승했습니다.");
 	}
 
