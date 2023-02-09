@@ -1,7 +1,6 @@
 package contoller;
 
 import domain.Car;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -24,29 +23,48 @@ public class RaceController {
   }
 
   public void run() {
-//    List<String> carNames =inputView.readCarNames();
-//    int roundNum = inputView.readRoundNum();
-    List<String> carNames = repeat(inputView::readCarNames);
-    int roundNum = repeat(inputView::readRoundNum);
+    List<Car> cars = makeCars();
+    int roundNum = repeat(inputView::readTrialNum);
 
-    List<Car> cars = carNames.stream()
+    startRace(cars, roundNum);
+    pickWinner(cars);
+  }
+
+  private List<Car> makeCars() {
+    List<String> carNames = repeat(inputView::readCarNames);
+    return carNames.stream()
         .map(Car::new)
         .collect(Collectors.toList());
+  }
 
+  private void startRace(List<Car> cars, int roundNum) {
     outputView.printStart(cars);
-
     for (int i = 0; i < roundNum; i++) {
-      for (Car car : cars) {
-        car.move(RandomUtil.getZeroToNine());
-      }
-      outputView.printCarsStatus(cars);
+      runRound(cars);
     }
+  }
 
-    int maxPosition = cars.stream().max(Car::compareTo).orElseThrow().getPosition();
+  private void runRound(List<Car> cars) {
+    for (Car car : cars) {
+      car.move(RandomUtil.getDigit());
+    }
+    outputView.printCarsStatus(cars);
+  }
+
+  private void pickWinner(List<Car> cars) {
+    int maxPosition = getMaxPosition(cars);
+
     List<String> winnerNames = cars.stream().sorted()
         .filter(c -> c.getPosition() == maxPosition)
         .map(Car::getName)
         .collect(Collectors.toList());
     outputView.printWinners(winnerNames);
+  }
+
+  private int getMaxPosition(List<Car> cars) {
+    return cars.stream()
+        .max(Car::compareTo)
+        .orElseThrow()
+        .getPosition();
   }
 }

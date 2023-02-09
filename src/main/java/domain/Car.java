@@ -3,9 +3,9 @@ package domain;
 public class Car implements Comparable<Car> {
 
   private final String name;
-  private int position = 1;
+  private final int MIN_MOVE_NUM = 4;
 
-  public static final int MIN_MOVE_NUM = 4;
+  private int position = 1;
 
   public Car(String name) {
     this.name = name;

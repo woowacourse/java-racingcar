@@ -14,6 +14,10 @@ public class OutputView {
     printCarsStatus(cars);
   }
 
+  private void printNewLine() {
+    System.out.println();
+  }
+
   public void printCarsStatus(List<Car> cars) {
     cars.forEach(this::printCarStatus);
     printNewLine();
@@ -27,13 +31,10 @@ public class OutputView {
     return BAR.repeat(count);
   }
 
-  private void printNewLine() {
-    System.out.println();
-  }
-
   public void printWinners(List<String> carNames) {
     String result = carNames.get(0);
-    if (carNames.size() > 1) {
+    boolean isCoWinner = carNames.size() > 1;
+    if (isCoWinner) {
       result = String.join(DELIMITER, carNames);
     }
     System.out.printf(Messages.OUTPUT_WINNER, result);
