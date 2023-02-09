@@ -12,8 +12,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= MOVED_LOWER_BOUND) {
+    public void move(int number) {
+        if (number >= MOVED_LOWER_BOUND) {
             position++;
         }
     }
