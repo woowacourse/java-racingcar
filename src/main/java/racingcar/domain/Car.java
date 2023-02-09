@@ -4,18 +4,18 @@ import racingcar.dto.RacingCarStatusResponse;
 
 public class Car {
     private final String name;
-    private int position;
+    private final Position position;
 
     public Car(String name) {
         this.name = name;
-        this.position = 0;
+        this.position = new Position(0);
     }
 
     public RacingCarStatusResponse getStatus() {
-        return new RacingCarStatusResponse(name, position);
+        return new RacingCarStatusResponse(name, position.getValue());
     }
 
     public void move() {
-        position++;
+        position.forward();
     }
 }
