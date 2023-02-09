@@ -17,12 +17,21 @@ public class RacingGameController {
         this.outputView = outputView;
     }
 
-    public void makeCars() {
-        while(!readCarNames());
+    public void init() {
+        while (!readCarNames()) ;
+        while (!readTryCount()) ;
     }
 
-    public void readGameCount() {
-        while(!readTryCount());
+    public void run() {
+        outputView.initResult();
+
+        while (!count.isOver()) {
+            cars.move();
+            count.play();
+            outputView.printRaceResult(cars.getResult());
+        }
+
+        outputView.printWinners(cars.getWinners());
     }
 
     private boolean readCarNames() {
@@ -45,16 +54,5 @@ public class RacingGameController {
         }
 
         return false;
-    }
-
-    public void run() {
-        outputView.initResult();
-        while (!count.isOver()) {
-            cars.move();
-            outputView.printRaceResult(cars.getResult());
-            count.play();
-        }
-
-        outputView.printWinners(cars.winners());
     }
 }
