@@ -35,4 +35,9 @@ public class RacingCarViewImpl implements RacingCarView {
     public void printStartMessage() {
         OutputView.printStartMessage();
     }
+
+    @Override
+    public void printExceptionMessage(RuntimeException e) {
+        OutputView.printExceptionMessage(e);
+    }
 }

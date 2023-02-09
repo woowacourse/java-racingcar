@@ -39,6 +39,11 @@ class RacingCarControllerTest {
         public void printStartMessage() {
 
         }
+
+        @Override
+        public void printExceptionMessage(RuntimeException e) {
+
+        }
     }
 
     @BeforeEach

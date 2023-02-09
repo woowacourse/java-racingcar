@@ -16,4 +16,6 @@ public interface RacingCarView {
     void printWinners(RacingCarWinnerResponse response);
 
     void printStartMessage();
+
+    void printExceptionMessage(RuntimeException e);
 }

@@ -16,4 +16,8 @@ public class OutputView {
     public static void printRacingProgress(RacingCarStatusResponse response) {
         System.out.println(response);
     }
+
+    public static void printExceptionMessage(RuntimeException e) {
+        System.out.println(e.getMessage());
+    }
 }
