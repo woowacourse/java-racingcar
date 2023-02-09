@@ -2,6 +2,7 @@ package car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -15,19 +16,15 @@ public class Game {
 
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
-        List<Car> winners = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.isSameWith(maxPosition)) {
-                winners.add(car);
-            }
-        }
-        return winners;
+        return cars.stream()
+                .filter(car -> car.isSameWith(maxPosition))
+                .collect(Collectors.toList());
     }
 
     private Integer findMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
-            maxPosition = Car.selectMaxPosition(car, maxPosition);
+            maxPosition = car.selectMaxPosition(maxPosition);
         }
         return maxPosition;
     }
