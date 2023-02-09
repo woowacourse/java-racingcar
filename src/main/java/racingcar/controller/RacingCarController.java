@@ -19,9 +19,9 @@ public class RacingCarController {
     }
 
     public void start() {
-        RacingCarNamesRequest racingCarNamesRequest = racingCarView.receiveCarNames();
+        RacingCarNamesRequest racingCarNamesRequest = receiveCarNames();
         racingCarService.createCars(racingCarNamesRequest);
-        TryCountRequest tryCountRequest = racingCarView.receiveTryCount();
+        TryCountRequest tryCountRequest = receiveTryCount();
         int tryCount = tryCountRequest.getTryCount();
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         racingCarView.printStartMessage();
@@ -32,6 +32,24 @@ public class RacingCarController {
         printCarStatuses();
         RacingCarWinnerResponse racingCarWinnerResponse = racingCarService.findWinners();
         racingCarView.printWinners(racingCarWinnerResponse);
+    }
+
+    private RacingCarNamesRequest receiveCarNames() {
+        try {
+            return racingCarView.receiveCarNames();
+        } catch (RuntimeException e) {
+            racingCarView.printExceptionMessage(e);
+            return receiveCarNames();
+        }
+    }
+
+    private TryCountRequest receiveTryCount() {
+        try {
+            return racingCarView.receiveTryCount();
+        } catch (RuntimeException e) {
+            racingCarView.printExceptionMessage(e);
+            return receiveTryCount();
+        }
     }
 
     private void printCarStatuses() {
