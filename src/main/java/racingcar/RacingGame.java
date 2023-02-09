@@ -9,8 +9,8 @@ public class RacingGame {
     private static final int RANGE_MAX = 9;
     private static final int RANGE_MIN = 0;
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
 
     private List<Car> cars = new ArrayList<>();
     private List<String> winners = new ArrayList<>();
