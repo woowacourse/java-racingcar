@@ -9,6 +9,7 @@ public class OutputView {
   private final String BAR = "-";
 
   public void printStart(List<Car> cars) {
+    printNewLine();
     System.out.println("실행 결과");
     printCarsStatus(cars);
   }
@@ -26,7 +27,7 @@ public class OutputView {
     return BAR.repeat(count);
   }
 
-  private void printNewLine(){
+  private void printNewLine() {
     System.out.println();
   }
 
@@ -38,4 +39,7 @@ public class OutputView {
     System.out.printf("%s가 최종 우승했습니다.", result);
   }
 
+  public void printErrorMessage(Exception exception){
+    System.out.println(exception.getMessage());
+  }
 }
