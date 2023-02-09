@@ -18,6 +18,7 @@ public class RacingGameController {
         racingGame.generateCars(carNames);
         int trialCount = inputView.requestTrialCount();
         race(trialCount);
+        outputView.printWinners(racingGame.decisionWinners());
     }
 
     private void race(int trialCount) {
