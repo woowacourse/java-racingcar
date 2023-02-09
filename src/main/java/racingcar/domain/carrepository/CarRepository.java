@@ -9,9 +9,11 @@ import java.util.stream.Collectors;
 
 public class CarRepository {
 
+    private static final int MOVING_CONDITION = 4;
     private final List<Car> repository;
 
     public CarRepository(List<Car> repository) {
+        validate(repository);
         this.repository = repository;
     }
 
@@ -36,16 +38,13 @@ public class CarRepository {
 
     public void movePosition() {
         NumberGenerator numberGenerator = new NumberGenerator();
-        for (Car car : repository) {
-            int randomNumber = numberGenerator.generateRandomNumber();
-            judgeMovement(randomNumber, car);
-        }
+        repository.stream()
+                .filter(car -> isMovable(numberGenerator.generateRandomNumber()))
+                .forEach(Car::updatePosition);
     }
 
-    private void judgeMovement(int randomNumber, Car car) {
-        if (randomNumber >= 4) {
-            car.updatePosition();
-        }
+    private boolean isMovable(int randomNumber) {
+        return randomNumber >= MOVING_CONDITION;
     }
 
     public List<Car> getRepository() {
