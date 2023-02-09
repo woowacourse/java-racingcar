@@ -13,4 +13,8 @@ public class TryCount {
                     "입력값 : " + tryCount);
         }
     }
+
+    public int getTryCount() {
+        return tryCount;
+    }
 }
