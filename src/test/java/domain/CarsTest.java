@@ -21,4 +21,25 @@ class CarsTest {
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void decideWinnerTest() {
+        //Given
+        Car pobi = new Car("pobi");
+        Car neo = new Car("neo");
+        Car hiiro = new Car("hiiro");
+
+        for(int i = 0; i < 2; i++) {
+            pobi.increasePosition();
+            neo.increasePosition();
+        }
+
+        Cars cars = new Cars(new ArrayList<>(List.of(pobi, neo, hiiro)));
+
+        //When
+        List<Car> result = cars.decideWinner();
+
+        //Then
+        assertThat(result.size()).isEqualTo(2);
+    }
 }
