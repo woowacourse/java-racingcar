@@ -46,4 +46,20 @@ class CarsTest {
         assertThat(winners.size()).isEqualTo(1).as("우승자는 1명이어야 한다.");
     }
 
+
+    @Test
+    @DisplayName("예외 발생 - 잘못된 시도 횟수 입력")
+    void shouldReturnIllegalArgumentExceptionWhenWrongTryCount() { // TODO: BeforeEach 사용하기
+        // given
+        Car winnerCar = new Car("1th", new DeterminedIntGenerator(5));
+        Car loserCar = new Car("2nd", new DeterminedIntGenerator(3));
+        List<Car> carsInput = List.of(winnerCar, loserCar);
+        Cars cars = new Cars(carsInput, true);
+        // when
+        // then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    cars.repeatRequestMoveBy(-1);
+                }); }
+
 }
