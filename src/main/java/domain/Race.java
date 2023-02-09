@@ -25,7 +25,7 @@ public class Race {
 
     private void addNewCarWhenIsNotExsist(String carName) {
         Car car = new Car(carName);
-        if(cars.contains(car)){
+        if (cars.contains(car)) {
             throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
         }
         cars.add(car);
@@ -39,9 +39,9 @@ public class Race {
     }
 
     public List<Car> judgeWinners() {
-        Car c = Collections.max(cars);
+        Car c = Collections.max(cars, Car.positionComparator);
         return cars.stream()
-                .filter(car -> car.compareTo(c) >= 0)
+                .filter(car -> Car.positionComparator.compare(car, c) == 0)
                 .collect(Collectors.toList());
     }
 

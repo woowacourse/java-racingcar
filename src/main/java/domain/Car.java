@@ -1,14 +1,21 @@
 package domain;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Car implements Comparable {
+public class Car {
     public static final int LEAST_CONDITION = 4;
     public static final int MAX_NAME_LENGTH = 5;
     public static final int START_POSITION = 0;
     public static final int ONE_STEP = 1;
     private final String name;
     private int position;
+    public static final Comparator<Car> positionComparator = new Comparator<Car>() {
+        @Override
+        public int compare(Car o1, Car o2) {
+            return o1.position - o2.position;
+        }
+    };
 
     public Car(String name) {
         validateName(name);
@@ -33,12 +40,6 @@ public class Car implements Comparable {
 
     public CarDTO toDTO() {
         return new CarDTO(name, position);
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Car other = (Car) o;
-        return position - other.position;
     }
 
     @Override
