@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static racingcar.exception.ErrorMessages.*;
+import static racingcar.messsages.ExceptionMessage.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,13 +13,7 @@ public class Cars {
 
 	public void generateCars(List<String> carNames) {
 		validateCarsSizeOneOrZero(carNames);
-		for (String carName : carNames) {
-			generateCar(carName);
-		}
-	}
-
-	public void moveCars() {
-		cars.forEach(Car::move);
+		carNames.forEach(this::generateCar);
 	}
 
 	public List<String> findWinnerNames() {
@@ -36,6 +30,10 @@ public class Cars {
 			}
 		}
 		return winnerNames;
+	}
+
+	public void moveCars() {
+		cars.forEach(Car::move);
 	}
 
 	public void reset() {
