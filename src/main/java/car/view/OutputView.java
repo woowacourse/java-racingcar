@@ -19,6 +19,10 @@ public class OutputView {
         System.out.println();
     }
 
+    public void changeLine() {
+        System.out.println();
+    }
+
     public void printWinners(List<Car> winners) {
         List<String> winnerNames = new ArrayList<>();
         for (Car winner : winners) {
