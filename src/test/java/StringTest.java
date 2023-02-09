@@ -1,9 +1,10 @@
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.Test;
+
 public class StringTest {
+
     @Test
     void splitTest() {
         assertThat("1,2".split(",")).isEqualTo(new String[]{"1", "2"});
@@ -23,9 +24,9 @@ public class StringTest {
     @Test
     void charAtTest() {
         assertThatThrownBy(
-                () -> {
-                    "abc".charAt(3);
-                }
+            () -> {
+                "abc".charAt(3);
+            }
         ).isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
