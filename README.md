@@ -29,6 +29,14 @@
 - [✅] RandomNumberGenerator 객체 구현
 - [✅] CarGenerator 객체 구현
 
+- 요구사항 확인
+  - [] 한 메서드에 오직 한 단계의 들여쓰기(indent)만
+  - [] else 예약어를 쓰지 않는다.
+  - [] 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현
+  - [] 모든 로직에 단위 테스트
+  - [] 자바 코드 컨벤션
+  - [] 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현
+
 ## 우아한테크코스 코드리뷰
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
