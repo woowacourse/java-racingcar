@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinner(Cars cars) {
-        System.out.printf(PRINT_WINNER, String.join(", ", cars.getWinners()));
+    public void printWinner(String winner) {
+        System.out.printf(PRINT_WINNER, winner);
     }
 }

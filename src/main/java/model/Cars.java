@@ -1,5 +1,6 @@
 package model;
 
+import util.NumberGenerator;
 import util.RandomNumberGenerator;
 
 import java.util.*;
@@ -24,25 +25,19 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    public void moveResult() {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    public void moveResult(NumberGenerator randomNumberGenerator) {
         for (Car car : cars) {
-            car.moveByRandom(createRandom(randomNumberGenerator));
+            car.moveByRandom(randomNumberGenerator.generateNumber());
         }
     }
 
-    private int createRandom(RandomNumberGenerator randomNumberGenerator) {
-        return randomNumberGenerator.generateNumber();
-    }
-
-
-    public List<String> getWinners() {
+    public String getWinners() {
         int maxLocation = cars.stream()
                 .max(Comparator.comparingInt(Car::getCarLocation))
                 .get().getCarLocation();
 
         return cars.stream().filter(car -> car.getCarLocation() == maxLocation)
                 .map(Car::getCarName)
-                .collect(Collectors.toList());
+                .collect(Collectors.joining(", "));
     }
 }
