@@ -1,6 +1,6 @@
 package racingcar;
 
-public class Controller {
+public class ApplicationController {
 
     public static void main(String[] args) {
         try {
