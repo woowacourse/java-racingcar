@@ -37,7 +37,7 @@ public class CarService {
         }
     }
 
-    private void runForward(Car car, int randomNumber) {
+    public void runForward(Car car, int randomNumber) {
         if (randomNumber >= 4) {
             car.increaseDistance();
         }
