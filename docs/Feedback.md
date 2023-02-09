@@ -13,3 +13,7 @@
     - InputView에서 자동차 이름들을 받아서 Car 리스트를 반환할지 CarManager에서 이름 리스트를 받아서 Car 리스트를 생성할지 고민이 되었습니다.
     - 이번에는 Controller인 CarManager에게 이름 리스트를 넘겨서 카를 생성하도록 했습니다.
     - 어떤 경우가 맞을지 잘 모르겠습니다.
+
+## 4. CarManager에서 moveCarsRandomly 함수 테스트를 못하겠습니다.
+    - MoveRandomly의 경우 CarManager에서 가지고 있는 차들 각각을 랜덤으로 움직이는데 이것이 잘 작동되는지 테스트를 하기가 불편했습니다.
+    - 인자값으로 CarMovement리스트를 입력값으로 받아서 그것을 기반으로 자동차를 움직이도록 만들고자 했는데 자동차의 갯수와 movement가 다를 경우 어떻게 처리해야하는지 모르겠고 각 moveMent가 어떤 차에 할당되어야 할지도 고민입니다.
