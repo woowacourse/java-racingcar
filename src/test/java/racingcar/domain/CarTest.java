@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
@@ -29,6 +30,16 @@ class CarTest {
             softly.assertThat(firstSize).isEqualTo(1);
             softly.assertThat(secondSize).isEqualTo(2);
         });
+    }
 
+    @Test
+    @DisplayName("자동차 위치 확인 테스트")
+    void getPositionTest() {
+        Car car = new Car();
+        car.addValue(0);
+        car.addValue(4);
+        car.addValue(9);
+
+        assertThat(car.getPosition()).isEqualTo(2);
     }
 }
