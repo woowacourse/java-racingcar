@@ -4,7 +4,7 @@ public class Car {
 
     private static final int MOVED_LOWER_BOUND = 4;
 
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String name) {
