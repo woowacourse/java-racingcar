@@ -1,5 +1,6 @@
 package racingcar;
 
+<<<<<<< HEAD
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +12,14 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
+=======
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+>>>>>>> fa60f7e (feat: 이동횟수 입력 0 이하인 경우 예외 처리)
 
 class RacingCarGameTest {
     private RacingCarGame racingCarGame;
@@ -20,6 +29,7 @@ class RacingCarGameTest {
         racingCarGame = new RacingCarGame();
     }
 
+<<<<<<< HEAD
     @ParameterizedTest
     @MethodSource("provideCars")
     @DisplayName("우승자를 정상적으로 판별하는지 확인한다.")
@@ -41,5 +51,11 @@ class RacingCarGameTest {
     @AfterEach
     void clear() {
         CarRepository.clear();
+=======
+    @Test
+    void getWinners() {
+        List<String> winners = racingCarGame.getWinners();
+
+>>>>>>> fa60f7e (feat: 이동횟수 입력 0 이하인 경우 예외 처리)
     }
 }
