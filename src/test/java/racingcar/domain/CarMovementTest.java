@@ -18,7 +18,7 @@ class CarMovementTest {
 	@Test
 	void createRandomCarMovementTest() {
 		carMovement = new CarMovement(() -> 0);
-		carMovement.isCarMoveForward();
+		carMovement.isMoveForward();
 		assertThat(carMovement).isNotNull();
 	}
 
@@ -28,7 +28,7 @@ class CarMovementTest {
 	void isRandomCarMoveForwardTest(int number, boolean expected) {
 		numberGenerator = new RandomNumberGenerator();
 		carMovement = new CarMovement(() -> number);
-		boolean isCarMoveForward = carMovement.isCarMoveForward();
+		boolean isCarMoveForward = carMovement.isMoveForward();
 		assertThat(isCarMoveForward).isEqualTo(expected);
 	}
 
