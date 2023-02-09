@@ -24,7 +24,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(int pickedNumber) {
-        if (pickedNumber >= MOVE_MIN_NUM) {
+        if (pickedNumber > MOVE_MIN_NUM) {
             ++this.position;
         }
     }
