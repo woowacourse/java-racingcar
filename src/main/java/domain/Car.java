@@ -1,6 +1,8 @@
 package domain;
 
-public class Car {
+import java.util.Objects;
+
+public class Car implements Comparable {
     public static final int LEAST_CONDITION = 4;
     public static final int MAX_NAME_LENGTH = 5;
     public static final int START_POSITION = 0;
@@ -28,5 +30,28 @@ public class Car {
         if(number >= LEAST_CONDITION) {
             position += ONE_STEP;
         }
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Car other = (Car) o;
+        return position - other.position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return name.equals(car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
