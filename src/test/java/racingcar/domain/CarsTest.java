@@ -75,11 +75,7 @@ class CarsTest {
         nonWinner1.move(4);
 
         List<Car> movedCars = List.of(winner1, winner2, nonWinner1, nonWinner2);
-        Cars cars = new Cars(List.of("쓰레기값1", "쓰레기값2"));
-
-        Field privateCarsField = cars.getClass().getDeclaredField("cars");
-        privateCarsField.setAccessible(true);
-        privateCarsField.set(cars, movedCars);
+        Cars cars = WinnerCarsHelper.withWinnerCars(movedCars);
 
         // when
         List<Car> winners = cars.winners();

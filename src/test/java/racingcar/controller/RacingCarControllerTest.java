@@ -103,6 +103,32 @@ class RacingCarControllerTest {
             }
             assertThat(lap.getCurrentLap()).isEqualTo(beforeCurrentLap + 1);
         }
+
+        @Test
+        @DisplayName("winners() 호출 시 우승한 자동차의 이름을 반환한다.")
+        void success_test_4() {
+            // given
+            Car winner1 = new Car("말랑");
+            Car winner2 = new Car("채채");
+            Car nonWinner1 = new Car("시카");
+            Car nonWinner2 = new Car("헤나");
+            winner1.move(4);
+            winner1.move(4);
+
+            winner2.move(4);
+            winner2.move(4);
+
+            nonWinner1.move(4);
+
+            List<Car> movedCars = List.of(winner1, winner2, nonWinner1, nonWinner2);
+            Cars cars = WinnerCarsHelper.withWinnerCars(movedCars);
+
+            // when
+            List<String> winnerNames = controller.winners(cars);
+
+            // then
+            assertThat(winnerNames).containsExactlyInAnyOrder(winner1.getName().getName(), winner2.getName().getName());
+        }
     }
 
     @Nested
