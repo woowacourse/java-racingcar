@@ -9,8 +9,10 @@ public class RacingGame {
     private final static int GAME_OVER_COUNT = 0;
 
     private final List<Car> cars;
-    private final int gameTrial;
     private final NumberGenerator numberGenerator;
+    
+    private int gameTrial;
+    
 
     public RacingGame(List<Car> cars, int gameTrial, NumberGenerator numberGenerator) {
         this.cars = cars;
@@ -19,10 +21,19 @@ public class RacingGame {
     }
 
     public List<Car> run() {
+        start();
+        finish();
+        return cars;
+    }
+
+    private void start() {
         cars.stream()
                 .filter(car -> car.canMove(numberGenerator.generate(), MIN_MOVE_NUMBER))
                 .forEach(car -> car.move());
-        return cars;
+    }
+
+    private void finish() {
+        gameTrial--;
     }
 
     public List<Car> getWinners() {
