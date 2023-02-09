@@ -24,6 +24,6 @@ public class Car {
     }
 
     public boolean isSamePosition(Position position) {
-        return this.position == position;
+        return this.position.equals(position);
     }
 }
