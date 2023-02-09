@@ -5,6 +5,7 @@ import java.io.IOException;
 import domain.RacingGame;
 import view.InputView;
 
+//TODO: 예외 발생 시 재입력
 public class InputHandler {
 
     private static final String REGEX = "^[0-9]+$";
@@ -23,10 +24,18 @@ public class InputHandler {
     }
 
     public int readMovingTrial() throws IOException {
-        String movingTrial = inputView.readMovingTrial();
-        validateInteger(movingTrial);
+        String input = inputView.readMovingTrial();
+        validateInteger(input);
+        int movingTrial = Integer.parseInt(input);
+        validateTrialRange(movingTrial);
 
-        return Integer.parseInt(movingTrial);
+        return movingTrial;
+    }
+
+    private void validateTrialRange(int movingTrial) {
+        if (movingTrial < 1 || movingTrial > 100) {
+            throw new IllegalArgumentException("[ERROR] 시도할 횟수의 범위는 1이상 100이하만 가능합니다.");
+        }
     }
 
     private void validateInteger(String movingTrial) {
