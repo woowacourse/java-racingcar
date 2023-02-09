@@ -2,11 +2,10 @@ package util;
 
 import java.util.regex.Pattern;
 
-public class MoveCountValidator extends Validator {
+public class MoveCountValidator {
 
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[0-9]*$");
 
-    @Override
     public void validate(String input) throws IllegalArgumentException {
         validateNumeric(input);
         validateRange(input);
