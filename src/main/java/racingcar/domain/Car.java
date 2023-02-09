@@ -12,6 +12,7 @@ public class Car implements Comparable<Car> {
     private NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
+        name = name.trim();
         validateName(name);
         this.name = name;
         this.position = 0;
