@@ -1,11 +1,9 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import racingcar.dto.CarDto;
 import racingcar.util.IntGenerator;
-import racingcar.util.RandomIntGenerator;
 
 public class Cars {
     List<Car> cars;
@@ -20,7 +18,7 @@ public class Cars {
         carNames.forEach(carName -> cars.add(new Car(carName, intGenerator)));
     }
 
-    public void tryMoving() {
+    public void requestMoveEachCar() {
         cars.forEach(Car::tryMove);
     }
 
