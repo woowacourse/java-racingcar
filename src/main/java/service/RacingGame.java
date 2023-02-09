@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 public class RacingGame {
     private static final int RANDOM_START_INCLUSIVE = 0;
@@ -27,6 +28,9 @@ public class RacingGame {
     }
 
     private void validateCarNames(List<String> carNames) {
+        if (Objects.isNull(carNames)) {
+            throw new IllegalStateException("차량 이름 Null 에러");
+        }
         if (carNames.size() != new HashSet<>(carNames).size()) {
             throw new IllegalArgumentException("중복된 차량 이름이 존재합니다.");
         }

@@ -12,6 +12,7 @@
 
 - Input
     - [x] 경주할 자동차의 이름을 한줄로 입력받아 컴마 단위로 파싱하는 기능
+        - 빈줄이거나 null일 경우 IllegalArgumentException을 발생시킨다.
     - [x] 시도할 횟수를 입력받는 기능
         - 자연수가 아니면 IllegalArgumentException을 발생시킨다.
 - Output
