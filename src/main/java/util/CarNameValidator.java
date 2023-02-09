@@ -23,13 +23,17 @@ public class CarNameValidator {
         }
     }
 
-    private enum Message {
+    public enum Message {
         EXCEPTION_CAR_NUMBER("2개 이상의 자동차를 입력해 주세요."),
         EXCEPTION_CAR_NAME_LENGTH("5자 이하의 이름을 입력해주세요.");
         private final String message;
 
         Message(String message) {
             this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
         }
     }
 
