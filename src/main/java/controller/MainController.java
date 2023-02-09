@@ -4,10 +4,10 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
-import model.Car;
-import model.CarMoveManager;
-import model.CarRepository;
-import model.RandomNumber;
+import model.car.Car;
+import model.manager.CarMoveManager;
+import model.car.CarRepository;
+import model.number.RandomNumber;
 import view.InputView;
 import view.OutputView;
 

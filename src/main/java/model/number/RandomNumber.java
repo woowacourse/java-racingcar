@@ -1,4 +1,4 @@
-package model;
+package model.number;
 
 public class RandomNumber {
     private static final int MAX_NUMBER = 9;

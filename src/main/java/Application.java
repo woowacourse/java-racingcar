@@ -1,5 +1,5 @@
 import controller.MainController;
-import model.RandomCarMoveManager;
+import model.manager.RandomCarMoveManager;
 import view.InputView;
 import view.OutputView;
 

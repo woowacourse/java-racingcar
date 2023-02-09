@@ -1,4 +1,4 @@
-package model;
+package model.manager;
 
 public class RandomCarMoveManager implements CarMoveManager {
     private static final int BOUNDARY_VALUE = 4;
