@@ -32,11 +32,27 @@ public class InputView {
   }
 
   public int readRoundNum() {
-    System.out.println("시도할 횟수는 몇회인가요?");
+    System.out.println("시도할 횟수는 몇회인가요?(단, 100회 미만이어야 합니다)");
     String input = readLine();
-    if (DIGIT.matcher(input).matches()) {
-      return Integer.parseInt(input);
+    validateRoundNum(input);
+    return Integer.parseInt(input);
+  }
+
+  private void validateRoundNum(String input) {
+    validateOnlyNum(input);
+    validateRoundMaxNum(input);
+  }
+
+  private void validateRoundMaxNum(String input) {
+    if(input.length() > 3){
+      throw new IllegalArgumentException("시도횟수는 100회 미만이어야 합니다.");
     }
-    throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
+  }
+
+  private void validateOnlyNum(String input) {
+    boolean isNumber = !DIGIT.matcher(input).matches();
+    if (isNumber) {
+      throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
+    }
   }
 }
