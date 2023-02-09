@@ -26,7 +26,7 @@ public class Car {
         return name.replace(" ", "").length() == 0;
     }
 
-    public void moveCar() {
+    private void moveCar() {
         this.location += 1;
     }
 
