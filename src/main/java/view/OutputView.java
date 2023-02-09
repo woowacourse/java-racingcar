@@ -1,7 +1,7 @@
 package view;
 
-import dto.CarStatusDto;
-import dto.WinnersNameDto;
+import dto.response.CarStatusDto;
+import dto.response.WinnersNameDto;
 
 import java.util.List;
 
