@@ -2,6 +2,9 @@ package racingcar.controller;
 
 import racingcar.domain.carfactory.CarFactory;
 import racingcar.domain.carrepository.CarRepository;
+import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.domain.result.Result;
+import racingcar.domain.system.GameSystem;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -27,15 +30,12 @@ public class GameController {
     }
 
     private void moveCar(CarRepository carRepository) {
-
-        int gameRound = inputView.readGameRound();
-
+        GameSystem gameSystem = new GameSystem(inputView.readGameRound(), new NumberGenerator());
         outputView.printResultGuide();
-        for (int i = 0; i < gameRound; i++) {
-            carRepository.movePosition();
-            outputView.printResult(carRepository);
-        }
-        outputView.printWinners(carRepository);
+
+        Result result = gameSystem.executeRace(carRepository);
+        outputView.printResult(result);
+        outputView.printWinners(result);
     }
 
 
