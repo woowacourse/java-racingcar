@@ -5,7 +5,7 @@ import racingcar.util.Validator;
 import java.util.Scanner;
 
 public class InputView {
-    private final Scanner scan = new Scanner(System.in);
+    private static final Scanner scan = new Scanner(System.in);
 
     public String[] inputCarName() {
         System.out.println(OutputConstant.INPUT_CAR_NAME);
