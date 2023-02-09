@@ -8,5 +8,6 @@ public class Constants {
     public static final String NOT_NUMERIC_EXCEPTION = "숫자만 입력할 수 있습니다.";
     public static final String TRIAL_INPUT_EXCEPTION = "1회 이상만 입력할 수 있습니다.";
     public static final String COMMA_NOT_ALLOWED_EXCEPTION = ",는 하나만 입력해주세요.";
+    public static final String MINIMUM_NUMBER_OF_CARS_EXCEPTION = "자동차 이름은 최소 2개 이상 입력해야 합니다.";
 
 }

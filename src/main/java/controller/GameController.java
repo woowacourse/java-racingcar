@@ -15,6 +15,7 @@ public class GameController {
     }
 
     public void run() {
+<<<<<<< HEAD
         addCorrectCars(readCarNames());
         startRacing(getCorrectNumberOfTry());
         OutputView.printWinners(racingCarGame.getWinners());
@@ -28,6 +29,23 @@ public class GameController {
         } catch (IllegalArgumentException illegalArgumentException) {
             OutputView.printException(illegalArgumentException.getMessage());
             return getCorrectNumberOfTry();
+=======
+        makeCars(inputView.readCarNames());
+        startRacing(readNumberOfMoving());
+        outputView.printWinners(racingCarGame.getWinners());
+    }
+
+    private void makeCars(String carNames) {
+        try {
+            List<Car> cars = Arrays.stream(carNames.split(","))
+                    .filter(this::validateCarName)
+                    .map(Car::new)
+                    .collect(Collectors.toList());
+            CarRepository.updateCars(cars);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            outputView.printException(illegalArgumentException.getMessage());
+            makeCars(inputView.readCarNames());
+>>>>>>> 626b5ef (feat: 자동차 한 대 이하로 입력한 경우 예외 처리)
         }
     }
 

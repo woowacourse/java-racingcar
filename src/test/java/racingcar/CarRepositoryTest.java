@@ -58,9 +58,4 @@ class CarRepositoryTest {
                 Arguments.of(List.of(new Car("pobi", 0)))
         );
     }
-
-    @AfterEach
-    void clear() {
-        CarRepository.clear();
-    }
 }
