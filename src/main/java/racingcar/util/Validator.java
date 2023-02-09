@@ -12,11 +12,17 @@ public class Validator {
     private Validator() {
     }
 
-    public static String[] validateCarNames(String carNames) {
-        String[] split = carNames.split(DELIMITER);
-        validateCarNameLength(split);
-        validateNoInput(split);
-        return split;
+    public static String[] validateCarNames(String carNamesString) {
+        String[] carNames = carNamesString.split(DELIMITER);
+        validateCarNameLength(carNames);
+        validateNoInput(carNames);
+        return carNames;
+    }
+
+    public static void validateCarName(String carName) {
+        if (carName.length() > CAR_NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_LENGTH);
+        }
     }
 
     public static int validateGameTime(String input) {
@@ -41,14 +47,14 @@ public class Validator {
         return integer;
     }
 
-    private static void validateNoInput(String[] split) {
+    public static void validateNoInput(String[] split) {
         long noInputCount = Arrays.stream(split).filter(s -> s.trim().equals(NO_INPUT)).count();
         if (noInputCount >= 1) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NO_INPUT);
         }
     }
 
-    private static void validateCarNameLength(String[] split) {
+    public static void validateCarNameLength(String[] split) {
         long count = Arrays.stream(split).filter(s -> s.length() >= CAR_NAME_MAX_LENGTH)
                 .count();
         if (count >= 1) {

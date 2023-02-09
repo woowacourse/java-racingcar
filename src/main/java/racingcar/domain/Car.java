@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.util.Validator;
+
 public class Car {
     private static final int INIT_POSITION = 0;
     private static final int BOUNDARY = 4;
@@ -8,6 +10,7 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        Validator.validateCarName(name);
         this.name = name;
         this.position = INIT_POSITION;
     }
