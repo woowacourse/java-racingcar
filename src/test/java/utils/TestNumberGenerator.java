@@ -1,7 +1,7 @@
 package utils;
 
-import domain.NumberGenerator;
 import java.util.List;
+import racingcar.domain.NumberGenerator;
 
 public class TestNumberGenerator implements NumberGenerator {
 

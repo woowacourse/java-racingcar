@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;

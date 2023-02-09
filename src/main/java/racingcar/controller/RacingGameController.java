@@ -1,12 +1,12 @@
-package controller;
+package racingcar.controller;
 
-import domain.Car;
-import domain.RacingGame;
-import domain.RandomNumberGenerator;
 import java.util.List;
 import java.util.function.Supplier;
-import view.InputView;
-import view.OutputView;
+import racingcar.domain.Car;
+import racingcar.domain.RacingGame;
+import racingcar.domain.RandomNumberGenerator;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingGameController {
 

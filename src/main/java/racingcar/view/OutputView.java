@@ -1,10 +1,10 @@
-package view;
+package racingcar.view;
 
 import static java.text.MessageFormat.format;
 
-import domain.Car;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.domain.Car;
 
 public class OutputView {
 

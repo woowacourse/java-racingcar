@@ -1,4 +1,4 @@
-package view;
+package racingcar.view;
 
 import static java.text.MessageFormat.format;
 
