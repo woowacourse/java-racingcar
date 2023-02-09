@@ -20,7 +20,7 @@ public class CarController {
 
     public void run(RacingNumberGenerator generator) {
         generateCars();
-        Round round = new Round(inputView.inputRound());
+        Round round = new Round(inputRound());
 
         outputView.printRoundStartMessage();
         for (int count = 0; count < round.getRound(); count++) {
@@ -37,6 +37,15 @@ public class CarController {
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             generateCars();
+        }
+    }
+
+    private String inputRound() {
+        try {
+            return inputView.inputRound();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return inputRound();
         }
     }
 }
