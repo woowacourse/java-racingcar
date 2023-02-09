@@ -12,9 +12,24 @@ public class CarService {
     private Cars cars = new Cars(new ArrayList<Car>());
 
     public void initializeService() {
-        OutputView.printNameInput();
-        List<String> carNames = splitCarNames(InputView.readCarNames());
-        for(String carName : carNames) {
+        while (validateNameInput()) {
+        }
+    }
+
+    private boolean validateNameInput() {
+        try {
+            OutputView.printNameInput();
+            List<String> carNames = splitCarNames(InputView.readCarNames());
+            makeCar(carNames);
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+    }
+
+    private void makeCar(List<String> carNames) {
+        for (String carName : carNames) {
             Car car = new Car(carName, 0);
             cars.addCarInformation(car);
         }
