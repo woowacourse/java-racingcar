@@ -12,7 +12,11 @@ public class RacingCarController {
     public void run() {
         CarGroup carGroup = repeat(this::makeCars);
         Integer tryCount = repeat(InputView::readTryCount);
+        for (int i = 0; i < tryCount; i++) {
+            carGroup.moveCars(CarGroup.NUMBER_RANGE_MIN, CarGroup.NUMBER_RANGE_MAX);
+        }
     }
+
 
     private CarGroup makeCars() {
         List<String> carNames = repeat(InputView::readCarNames);
