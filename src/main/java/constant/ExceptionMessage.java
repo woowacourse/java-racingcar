@@ -14,7 +14,7 @@ public enum ExceptionMessage {
         this.exceptionMessage = TAG + exceptionMessage;
     }
 
-    public String getExceptionMessage(ExceptionMessage type) {
-        return type.exceptionMessage;
+    public String getExceptionMessage() {
+        return exceptionMessage;
     }
 }

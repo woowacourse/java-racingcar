@@ -17,17 +17,14 @@ public class InputView {
             int tryCount = Integer.parseInt(scanner.nextLine());
             return checkPositiveNumber(tryCount);
         } catch (Exception e) {
-            throw new IllegalArgumentException(exceptionMessage.getExceptionMessage(
-                    ExceptionMessage.EXCEPTION_NOT_NUMBER_MESSAGE));
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_NOT_NUMBER_MESSAGE.getExceptionMessage());
         }
     }
 
     private int checkPositiveNumber(int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException(exceptionMessage.getExceptionMessage(
-                    ExceptionMessage.EXCEPTION_TRY_COUNT_MESSAGE));
+            throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_TRY_COUNT_MESSAGE.getExceptionMessage());
         }
-
         return number;
     }
 }

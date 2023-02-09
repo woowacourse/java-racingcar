@@ -46,4 +46,5 @@ class InputViewTest {
             inputView.inputTryCount();
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
 }

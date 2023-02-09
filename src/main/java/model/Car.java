@@ -5,7 +5,6 @@ import constant.ExceptionMessage;
 public class Car {
     private String name;
     private int location;
-    private ExceptionMessage exceptionMessage;
 
     public Car(String name) {
         validCarName(name);
@@ -16,11 +15,11 @@ public class Car {
     private void validCarName(String name) {
         if (name.isEmpty() || name.length() > 5) {
             throw new IllegalArgumentException(
-                    exceptionMessage.getExceptionMessage(ExceptionMessage.EXCEPTION_MESSAGE));
+                    ExceptionMessage.EXCEPTION_MESSAGE.getExceptionMessage());
         }
         if (isOnlySpace(name)) {
             throw new IllegalArgumentException(
-                    exceptionMessage.getExceptionMessage(ExceptionMessage.EXCEPTION_SPACE_MESSAGE));
+                    ExceptionMessage.EXCEPTION_SPACE_MESSAGE.getExceptionMessage());
         }
     }
 
