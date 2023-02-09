@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class InputView {
 
-
     private final Scanner sc = new Scanner(System.in);
     public String[] inputCarName() {
         System.out.println(OutputConstant.INPUT_CAR_NAME);
@@ -21,6 +20,4 @@ public class InputView {
         int inputNumber = Validator.validateGameTime(input);
         return inputNumber;
     }
-
-
 }
