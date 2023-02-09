@@ -33,7 +33,6 @@ public class CarGroup {
     public void moveCars(int start, int end) {
         for (Car car : carGroup) {
             int pickedNumber = numberGenerator.pickOneNumberInRange(start, end);
-            System.out.println(pickedNumber);
             car.move(pickedNumber);
         }
     }

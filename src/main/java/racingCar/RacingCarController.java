@@ -16,7 +16,7 @@ public class RacingCarController {
             carGroup.moveCars(CarGroup.NUMBER_RANGE_MIN, CarGroup.NUMBER_RANGE_MAX);
             OutputView.printCarPosition(carGroup.toCarDtos());
         }
-        carGroup.findWinners();
+        OutputView.printWinners(carGroup.findWinners());
     }
 
 
