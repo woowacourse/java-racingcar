@@ -12,4 +12,8 @@ public class Cars {
     public void addCarInformation(Car car) {
         this.carInformation.add(car);
     }
+
+    public List<Car> getCarInformation() {
+        return this.carInformation;
+    }
 }

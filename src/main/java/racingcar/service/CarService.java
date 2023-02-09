@@ -2,6 +2,7 @@ package racingcar.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.InputView;
@@ -27,7 +28,10 @@ public class CarService {
     }
 
     private void runRound() {
-
+        for (Car car : cars.getCarInformation()) {
+            Random random = new Random();
+            int randomNumber = random.nextInt(10);
+        }
     }
 
     private boolean validateNameInput() {
