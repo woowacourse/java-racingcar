@@ -1,8 +1,8 @@
 package model;
 
-public class Car {
+import message.Constant;
 
-    private final int MOVE_BOUNDARY = 4;
+public class Car {
 
     private final String name;
 
@@ -11,7 +11,7 @@ public class Car {
     }
 
     public boolean move(int randomNumber) {
-        return randomNumber >= MOVE_BOUNDARY;
+        return randomNumber >= Constant.RANDOM_MOVE_BOUNDARY;
     }
 
     @Override

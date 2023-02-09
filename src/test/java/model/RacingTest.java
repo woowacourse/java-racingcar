@@ -15,7 +15,7 @@ public class RacingTest {
     @DisplayName("자동차 이동 결과 확인")
     void moveAll() {
         Racing racing = new Racing(List.of("pobi", "crong", "honux"), createRandom(4));
-        racing.moveAll();
+        racing.moveAllCars();
 
         assertThat(racing.toString()).isEqualTo("pobi : -\n"
                 + "crong : -\n"
@@ -26,7 +26,7 @@ public class RacingTest {
     @DisplayName("경주 우승자 확인")
     void winner() {
         Racing racing = new Racing(List.of("pobi", "crong", "honux"), createRandom(4));
-        racing.moveAll();
+        racing.moveAllCars();
 
         assertThat(racing.winner()
                 .stream()
@@ -35,11 +35,11 @@ public class RacingTest {
                 .contains("pobi", "crong", "honux");
     }
 
-    public Random createRandom(int returnValue) {
-        return new Random() {
+    public RandomNumberGenerator createRandom(int returnValue) {
+        return new RandomNumberGenerator(new Random() {
             public int nextInt(int bound) {
                 return returnValue;
             }
-        };
+        });
     }
 }

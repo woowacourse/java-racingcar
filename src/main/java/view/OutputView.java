@@ -1,5 +1,6 @@
 package view;
 
+import message.Constant;
 import model.Car;
 import model.Racing;
 
@@ -9,25 +10,21 @@ import static java.util.stream.Collectors.*;
 
 public class OutputView {
 
-    private final String RESULT = "실행 결과";
-    private final String WIN_MENTION = "%s가 최종 우승했습니다.%n";
-
-    public void result() {
-        System.out.println(RESULT);
+    public void resultHeader() {
+        System.out.println(Constant.RESULT_HEADER);
     }
 
-    public void makeResult(Racing racing) {
+    public void result(Racing racing) {
         System.out.println(racing);
     }
 
     public void winner(List<Car> winners) {
-        System.out.printf(WIN_MENTION, getWinners(winners));
+        System.out.printf(Constant.WIN_MENTION, winnersToString(winners));
     }
 
-    public String getWinners(List<Car> winners) {
+    private String winnersToString(List<Car> winners) {
         return winners.stream()
                 .map(Car::toString)
-                .collect(joining(", "));
+                .collect(joining(Constant.WINNER_CONNECTOR));
     }
-
 }

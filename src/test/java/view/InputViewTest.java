@@ -45,10 +45,21 @@ public class InputViewTest {
         assertThat(inputView.numberOfTimes()).isEqualTo(Integer.parseInt(input));
     }
 
-    @DisplayName("시도 횟수 실패")
+    @DisplayName("시도 횟수 실패 (숫자가 아닌 것을 입력)")
+    @ParameterizedTest
+    @ValueSource(strings = {"0  1", "asdf$1"})
+    void numberOfTimesNonNumberFail(String input) {
+        inputView = new InputView(generateUserInput(input));
+
+        assertThatThrownBy(() -> inputView.numberOfTimes())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자만 입력 가능합니다.");
+    }
+
+    @DisplayName("시도 횟수 실패 (1 미만의 입력)")
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1"})
-    void numberOfTimesFail(String input) {
+    void numberOfTimesNumberRangeFail(String input) {
         inputView = new InputView(generateUserInput(input));
 
         assertThatThrownBy(() -> inputView.numberOfTimes())
