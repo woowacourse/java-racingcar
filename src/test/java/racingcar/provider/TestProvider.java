@@ -9,12 +9,11 @@ public class TestProvider {
         return Cars.of(carNames);
     }
 
-    public static Car createTestCar() {
-        return Car.of("pobi");
+    public static Car createTestCar(String carName) {
+        return Car.of(carName);
     }
 
-    public static Car createTestMoveCar() {
-        Car car = Car.of("pobi");
+    public static Car createTestMoveCar(Car car) {
         car.move();
         return car;
     }
