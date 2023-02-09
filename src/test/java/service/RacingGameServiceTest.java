@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import utils.constants.ErrorMessages;
 import utils.exception.AlreadyDefinedFieldException;
 
 class RacingGameServiceTest {
@@ -23,7 +24,8 @@ class RacingGameServiceTest {
     @DisplayName("중복된 이름이 입력되면 예외발생")
     void setCarsFailTest() {
         assertThatThrownBy(() -> racingGameService.setCars(List.of("fox", "fox")))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessages.DUPLICATED_NAME.getMessage());
     }
 
     @Test

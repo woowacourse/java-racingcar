@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import utils.constants.ErrorMessages;
+
 class CarTest {
 
     @Test
@@ -24,7 +26,8 @@ class CarTest {
     @DisplayName("Car 이름이 5글자 넘으면 예외발생")
     void checkFailTest() {
         assertThatThrownBy(() -> new Car("testTest"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessages.NAME_LENGTH.getMessage());
     }
 
     @ParameterizedTest(name = "{0}이 들어올때 테스트")
