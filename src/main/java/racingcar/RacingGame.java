@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class RacingGame {
@@ -26,6 +27,13 @@ public class RacingGame {
 
     private int generateRandomNumber() {
         return (int) ((Math.random() * (RANGE_MAX - RANGE_MIN)) + RANGE_MIN);
+    }
+
+    public void calculateWinners() {
+        Integer max = cars.stream().map(Car::getPosition)
+                .max(Comparator.naturalOrder()).orElse(null);
+        cars.stream().filter(car -> car.getPosition() == max)
+                .forEach(car -> winners.add(car.getName()));
     }
 
     public List<Car> getCars() {
