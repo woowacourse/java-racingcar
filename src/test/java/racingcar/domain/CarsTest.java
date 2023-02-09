@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
@@ -49,6 +51,26 @@ class CarsTest {
             cars.addNextCarValue(4);
         }
         assertThatThrownBy(() -> cars.getTurnCount()).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    @DisplayName("라운드 결과 테스트")
+    void getRoundResultTest() {
+        cars.addNextCarValue(4);
+        cars.addNextCarValue(7);
+        cars.addNextCarValue(1);
+
+        cars.addNextCarValue(9);
+        cars.addNextCarValue(8);
+        cars.addNextCarValue(2);
+
+        Map<String, Integer> actualResult = cars.getRoundResult();
+
+        assertSoftly(softly -> {
+            softly.assertThat(actualResult.get("test1")).isEqualTo(2);
+            softly.assertThat(actualResult.get("test2")).isEqualTo(2);
+            softly.assertThat(actualResult.get("test3")).isEqualTo(0);
+        });
     }
 
     @Test
