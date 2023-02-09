@@ -2,6 +2,8 @@ package racingcar.util;
 
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
+import racingcar.exception.ConsoleException;
+import racingcar.exception.DuplicateException;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,7 +19,7 @@ public class InputUtil {
     public <T> T getUserInput(Supplier<T> inputReader) {
         try {
             return inputReader.get();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | DuplicateException | ConsoleException e) {
             OutputView.printMessage(e.getMessage());
             return getUserInput(inputReader);
         }

@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.enumType.ExceptionMessage;
+import racingcar.exception.ConsoleException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class InputView {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
-            throw new RuntimeException(String.format(ExceptionMessage.INPUT_MESSAGE.getValue(), e.getMessage()));
+            throw new ConsoleException(String.format(ExceptionMessage.INPUT_MESSAGE.getValue(), e.getMessage()));
         }
     }
 }
