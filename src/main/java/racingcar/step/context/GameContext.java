@@ -7,6 +7,13 @@ public class GameContext {
     private Cars cars;
     private Lap lap;
 
+    private GameContext() {
+    }
+
+    public static GameContext init() {
+        return new GameContext();
+    }
+
     public Cars getCars() {
         if (cars == null) {
             throw new IllegalStateException();

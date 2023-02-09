@@ -11,7 +11,7 @@ public class RacingCarApplication {
     public static void main(String[] args) {
         RacingCarGameConfig config = new RacingCarGameConfig();
         RacingCarController racingCarController = new RacingCarController(config.numberGenerator());
-        Step step = new CreateCarStep(racingCarController, config.logger(), new GameContext());
+        Step step = new CreateCarStep(racingCarController, config.logger(), GameContext.init());
         run(step);
     }
 
