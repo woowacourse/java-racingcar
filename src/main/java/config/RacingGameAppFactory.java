@@ -1,8 +1,8 @@
 package config;
 
 import application.RacingGameApplication;
-import domain.NumberGenerator;
-import domain.RandomNumberGenerator;
+import utils.NumberGenerator;
+import utils.RandomNumberGenerator;
 import view.InputView;
 import view.InputViewProxy;
 import view.OutputView;

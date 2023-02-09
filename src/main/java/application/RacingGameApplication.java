@@ -2,7 +2,7 @@ package application;
 
 import domain.Car;
 import domain.Cars;
-import domain.NumberGenerator;
+import utils.NumberGenerator;
 import domain.TryCount;
 import dto.request.CarNameDto;
 import dto.response.CarStatusDto;
