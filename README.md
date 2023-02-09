@@ -13,9 +13,9 @@ graph TD
   Cars --> Car
   Car --> Name
   Car --> Position
+  RacingGame --> Count
   RacingGame --> NumberGenerator
   RacingGame --> Cars
-  RacingGame --> Count
   RacingCarController --> RacingGame
   RandomNumberGenerator -.-> NumberGenerator
   RacingCarController --> InputView
@@ -27,7 +27,7 @@ graph TD
 
 Car
 
-- [x] 자동차는 위치를 가진다.
+- [x] 자동차는 이름과 위치를 가진다.
 - [x] 자동차는 값을 입력받고 이동한다.
   - 4 이상이면 전진한다.
   - 3 이하의 값이면 멈춘다.
@@ -70,4 +70,8 @@ OutputView
 
 Name
 
-- [x] 자동차는 5자 이하의 이름을 가진다. 
+- [x] 5자 이하의 이름을 가진다.
+
+Position
+
+- [x] 0이상의 위치를 가진다.
