@@ -21,6 +21,7 @@ public class NameTest {
     }
 
     @DisplayName("이름이 5글자를 초과할 경우 예외가 발생한다.")
+    @Test
     void test2() {
         assertThatThrownBy(() -> new Name("123456"))
                 .isInstanceOf(IllegalArgumentException.class);
