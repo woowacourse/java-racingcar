@@ -41,4 +41,13 @@ public class CarRepository implements CarRepositoryInterface {
         }
         return positions;
     }
+
+    @Override
+    public List<String> carNames() {
+        List<String> carNames = new ArrayList<>();
+        for (Car car : carInformation) {
+            carNames.add(car.getName());
+        }
+        return carNames;
+    }
 }
