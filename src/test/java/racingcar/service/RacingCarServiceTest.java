@@ -25,8 +25,8 @@ class RacingCarServiceTest {
 
     @ParameterizedTest
     @CsvSource(value = {"0:0", "1:0", "2:0", "3:0", "4:1", "5:1", "6:1", "7:1", "8:1", "9:1"}, delimiter = ':')
-    @DisplayName("입력 값이 3 이하이면 자동차가 움직이면 안 된다.")
-    void move_shouldNotMoveWhenNumberIsUnderThree(int input, int expected) {
+    @DisplayName("입력 값이 4 이상이면 자동차가 움직이고, 4 미만이면 자동차가 움직이면 안된다.")
+    void moveCars_shouldMoveInputMoreThan4AndShouldNotMoveInputUnder4(int input, int expected) {
         // given
         CustomMoveStrategy moveStrategy = new CustomMoveStrategy(input);
         service.createCars(RacingCarNamesRequest.of("car1"));
