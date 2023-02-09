@@ -8,18 +8,21 @@ public class Validator {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MIN_TRIAL_COUNT = 1;
-
     private static final String DIGIT_REGEX = "^[0-9]+$";
 
     public static void validateCarName(List<String> carNames) {
-        if (hasWrongSizeName(carNames)) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_NAME_SIZE.getErrorMessage());
-        }
+        checkCarName(carNames);
     }
 
     public static void validateTrialCount(String trialCount) {
         checkDigit(trialCount);
         checkTrialCount(trialCount);
+    }
+
+    private static void checkCarName(List<String> carNames) {
+        if (hasWrongSizeName(carNames)) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_NAME_SIZE.getErrorMessage());
+        }
     }
 
     private static boolean hasWrongSizeName(List<String> carNames) {
