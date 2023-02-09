@@ -22,16 +22,20 @@ public class OutputView {
     public void printResult(Result result) {
         List<Map<String, Integer>> results = result.getResults();
         for (Map<String, Integer> roundResult : results) {
-            for (String key : roundResult.keySet()) {
-                String position = "-".repeat(roundResult.get(key));
-                System.out.println(String.format("%s : %s", key, position));
-            }
+            printEachResult(roundResult);
             System.out.println();
+        }
+    }
+
+    private void printEachResult(Map<String, Integer> roundResult) {
+        for (String key : roundResult.keySet()) {
+            String position = "-".repeat(roundResult.get(key));
+            System.out.printf("%s : %s%n", key, position);
         }
     }
 
     public void printWinners(Result results) {
         String winner = String.join(", ", results.findWinners());
-        System.out.println(String.format("%s가 최종 우승했습니다.", winner));
+        System.out.printf("%s가 최종 우승했습니다.%n", winner);
     }
 }
