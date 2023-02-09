@@ -9,7 +9,7 @@ public class Application {
         try {
             RacingCarApplication racingCarApplication = new RacingCarApplication();
             racingCarApplication.playingGame();
-            racingCarApplication.viewResult();
+            racingCarApplication.printFinalResult();
         } catch (Exception error) {
             outputView.printError(error);
         }

@@ -44,7 +44,7 @@ public class RacingCarApplication {
         });
     }
 
-    public void viewResult() {
+    public void printFinalResult() {
         int maxPosition = getCarMaxPosition();
         outputView.printPosition(cars);
         cars.stream().filter(car -> car.getPosition() == maxPosition).forEach(car -> winners.add(car.getName()));
