@@ -1,6 +1,7 @@
 package domain;
 
 import utils.constants.ErrorMessages;
+import utils.constants.GameRules;
 
 public class Car {
     private final String name;
@@ -16,13 +17,13 @@ public class Car {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber > 3) {
+        if (randomNumber > GameRules.MOVE_NUMBER.getValue()) {
             status++;
         }
     }
 
     private void validateName(String name) {
-        if (name.length() > 5) {
+        if (name.length() > GameRules.NAME_LENGTH.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.NAME_LENGTH.getMessage());
         }
     }
