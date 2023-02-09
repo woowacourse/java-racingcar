@@ -2,7 +2,6 @@ package controller;
 
 import domain.Car;
 import domain.FinalResult;
-import domain.MovingCount;
 import domain.RoundResult;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class RacingController {
     private List<Car> carInfo = new ArrayList<>();
-    private MovingCount movingCount;
+    private Integer movingCount;
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
     private final RoundResult roundResult = new RoundResult();
     private final OutputView outputView = new OutputView();
@@ -25,13 +24,13 @@ public class RacingController {
             carInfo.add(new Car(carName));
         }
         outputView.printTryCountMessage();
-        movingCount = new MovingCount(inputView.readMovingCount());
+        movingCount = inputView.readMovingCount();
         System.out.println();
     }
 
     public void run() {
         System.out.println("실행 결과");
-        for (int round = 0; round < movingCount.getCount(); round++) {
+        for (int round = 0; round < movingCount; round++) {
             for (Car car : carInfo) {
                 Integer randomNumber = randomNumberGenerator.generateRandomNumber();
                 boolean movingResult = roundResult.isGo(randomNumber);
