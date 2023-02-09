@@ -46,6 +46,7 @@ public class GameManager {
 				cars.generateCars(carNames);
 				return;
 			} catch (Exception e) {
+				cars.reset();
 				outputView.printErrorMeesage(e.getMessage());
 			}
 		}

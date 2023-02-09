@@ -1,15 +1,14 @@
 package racingcar.dto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarNamesDTO {
-	private final List<String> carNames = new ArrayList<>();
+	private final List<String> carNames;
 
 	public CarNamesDTO(String carNames) {
-		this.carNames.addAll(splitByComma(carNames));
+		this.carNames = splitByComma(carNames);
 	}
 
 	private List<String> splitByComma(String carNames) {

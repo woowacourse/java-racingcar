@@ -38,6 +38,10 @@ public class Cars {
 		return winnerNames;
 	}
 
+	public void reset() {
+		cars.clear();
+	}
+
 	public Set<Car> getCars() {
 		return Collections.unmodifiableSet(cars);
 	}
