@@ -54,6 +54,17 @@ class InputViewTest {
             .hasMessageContaining(ErrorMessages.NOT_PROPER_CAR_NAME_LENGTH.getContent());
     }
 
+    @ValueSource(strings = {"-", "ma-e", "mak1-"})
+    @ParameterizedTest
+    void 자동차이름에_중복표시_구분자가_포함되면_오류를던진다(String input) {
+        //given
+        before(input);
+        //when then
+        assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(Validator.ERROR_HEADER)
+            .hasMessageContaining(ErrorMessages.CONTAINS_DELIMITER.getContent());
+    }
+
     @Test
     void 자동차이름_입력값_앞뒤에_공백이존재하면_무시한다() {
         //given
