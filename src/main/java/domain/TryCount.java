@@ -2,13 +2,14 @@ package domain;
 
 public class TryCount {
     private final int tryCount;
+    public static final int MIN_TRY_COUNT = 1;
 
     public TryCount(int tryCount) {
         this.tryCount = tryCount;
     }
 
     private void validate(int tryCount) {
-        if (tryCount <= 0) {
+        if (tryCount < MIN_TRY_COUNT) {
             throw new IllegalArgumentException("[Error] 시도 횟수는 양의 정수여야 합니다." +
                     "입력값 : " + tryCount);
         }
