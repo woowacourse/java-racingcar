@@ -23,7 +23,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 class RacingCarGameTest {
-
 	Cars cars;
 	OutputView outputView;
 	InputView inputView;
@@ -84,11 +83,23 @@ class RacingCarGameTest {
 
 	static Stream<Arguments> playGameExceptionDummy() {
 		return Stream.of(
-			Arguments.arguments("헤나, 썬샷, 헤나\n헤나, 썬샷\n5"),
-			Arguments.arguments("헤나, 썬샷, 우아한테크코스\n헤나, 썬샷\n5"),
-			Arguments.arguments("헤나\n헤나, 썬샷\n5"),
-			Arguments.arguments("헤나, 썬샷, 헤나\n헤나, 썬샷\n0\n5"),
-			Arguments.arguments("헤나, 썬샷, 헤나\n헤나, 썬샷\n다섯번\n5")
+			Arguments.arguments("헤나, 썬샷, 헤나"+System.lineSeparator()
+					+"헤나, 썬샷"+System.lineSeparator()
+					+"5"),
+			Arguments.arguments("헤나, 썬샷, 우아한테크코스"+System.lineSeparator()
+					+"헤나, 썬샷"+System.lineSeparator()
+					+"5"),
+			Arguments.arguments("헤나"+System.lineSeparator()
+					+"헤나, 썬샷" +System.lineSeparator()
+					+"5"),
+			Arguments.arguments("헤나, 썬샷, 헤나"+System.lineSeparator()
+					+"헤나, 썬샷"+System.lineSeparator()
+					+"0"+System.lineSeparator()
+					+"5"),
+			Arguments.arguments("헤나, 썬샷, 헤나"+System.lineSeparator()
+					+"헤나, 썬샷"+System.lineSeparator()
+					+"다섯번"+System.lineSeparator()
+					+"5")
 		);
 	}
 }
