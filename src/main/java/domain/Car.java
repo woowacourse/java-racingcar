@@ -2,6 +2,7 @@ package domain;
 
 public class Car implements Comparable<Car>{
     public static final int MAX_NAME_LENGTH = 5;
+    public static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final String name;
 
@@ -11,8 +12,10 @@ public class Car implements Comparable<Car>{
         this.name = name;
     }
 
-    public void move() {
-        position++;
+    public void move(int number) {
+        if (number >= MINIMUM_NUMBER_TO_MOVE) {
+            position++;
+        }
     }
 
     public boolean isSamePosition(Car other) {

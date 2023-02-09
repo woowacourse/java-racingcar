@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    public static final int MINIMUM_NUMBER_TO_MOVE = 4;
     private final List<Car> cars;
     public Cars(List<Car> cars) {
         this.cars = cars;
     }
     public void moveCars(NumberGenerator numberGenerator) {
-        cars.forEach(car -> moveByRandomNumber(numberGenerator, car));
+        cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
     public List<Car> findWinners() {
@@ -23,11 +22,6 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    private void moveByRandomNumber(NumberGenerator numberGenerator, Car car) {
-        if (numberGenerator.generate() >= MINIMUM_NUMBER_TO_MOVE) {
-            car.move();
-        }
-    }
 
     private List<Car> findSamePositionCars(Car maxPositionCar) {
         return cars.stream()
