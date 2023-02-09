@@ -29,12 +29,12 @@ public class RacingCarApplication {
 
     public void playingGame() {
         for (int i = 0; i < gameCount; i++) {
-            moveCarPosition();
+            applyRandomNumberToCarPosition();
             outputView.printPosition(gameCars.getCars());
         }
     }
 
-    private void moveCarPosition() {
+    private void applyRandomNumberToCarPosition() {
         gameCars.getCars().forEach(car -> {
             car.move(randomNumberGenerator.generate());
         });
