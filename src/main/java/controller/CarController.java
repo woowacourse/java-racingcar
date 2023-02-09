@@ -39,7 +39,7 @@ public class CarController {
             String carNames = inputView.inputCarsName();
             carService.generateCars(carNames);
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            outputView.printExceptionMessage(exception.getMessage());
             generateCars();
         }
     }
@@ -48,7 +48,7 @@ public class CarController {
         try {
             return new Round(inputView.inputRound());
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            outputView.printExceptionMessage(exception.getMessage());
             return generateRound();
         }
     }
