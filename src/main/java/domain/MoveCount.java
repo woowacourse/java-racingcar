@@ -1,6 +1,6 @@
 package domain;
 
-public class GameCount {
+public class MoveCount {
     private final String INVALID_COUNT = "시도할 횟수는 1 ~ 10억까지 입니다.";
     private final String NOT_A_NUMBER = "시도할 횟수는 숫자를 입력해야 합니다.";
 
@@ -9,12 +9,12 @@ public class GameCount {
 
     private int count;
 
-    public GameCount(String countInput) {
-        validate(countInput);
-        this.count = Integer.parseInt(countInput);
+    public MoveCount(String count) {
+        validate(count);
+        this.count = Integer.parseInt(count);
     }
 
-    public void play() {
+    public void decrease() {
         --count;
     }
 
@@ -31,7 +31,12 @@ public class GameCount {
             throw new IllegalArgumentException(NOT_A_NUMBER);
         }
 
-        if (count < MIN_COUNT || count > MAX_COUNT)
+        if (count < MIN_COUNT || count > MAX_COUNT) {
             throw new IllegalArgumentException(INVALID_COUNT);
+        }
+    }
+
+    public int getCount() {
+        return count;
     }
 }

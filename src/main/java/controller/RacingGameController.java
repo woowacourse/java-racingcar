@@ -1,12 +1,12 @@
 package controller;
 
 import domain.Cars;
-import domain.GameCount;
+import domain.MoveCount;
 import view.InputView;
 import view.OutputView;
 
 public class RacingGameController {
-    private GameCount count;
+    private MoveCount count;
     private Cars cars;
 
     private final InputView inputView;
@@ -27,7 +27,7 @@ public class RacingGameController {
 
         while (!count.isOver()) {
             cars.move();
-            count.play();
+            count.decrease();
             outputView.printRaceResult(cars.getResult());
         }
 
@@ -47,7 +47,7 @@ public class RacingGameController {
 
     private boolean readTryCount() {
         try {
-            this.count = new GameCount(inputView.readTryCount());
+            this.count = new MoveCount(inputView.readTryCount());
             return true;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
