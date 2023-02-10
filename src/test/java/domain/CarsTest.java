@@ -3,21 +3,18 @@ package domain;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import utils.NumberGenerator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarsTest {
 
-    private MockNumberGenerator mockNumberGenerator
+    private final MockNumberGenerator mockNumberGenerator
             = new MockNumberGenerator(MINIMUM_NUMBER_TO_MOVE, MINIMUM_NUMBER_TO_MOVE - 1, MINIMUM_NUMBER_TO_MOVE);
-
 
     @AfterEach
     void resetMockNumberGenerator() {
@@ -25,24 +22,26 @@ class CarsTest {
     }
 
     @DisplayName("moveCars를 통해 조건을 충족시킨 Car를 move 시킨다.")
-    @ParameterizedTest
-    @CsvSource(value = {"0:1", "1:0", "2:1"}, delimiter = ':')
-    void test1(int index, int expectedPosition) {
+    @Test
+    void moveCars() {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         Car carC = new Car("carC");
-
         Cars cars = new Cars(List.of(carA, carB, carC));
 
         cars.moveCars(mockNumberGenerator);
 
-        Car carAfterMove = cars.getCars().get(index);
-        assertEquals(carAfterMove.getPosition(), expectedPosition);
+        List<Integer> positions = cars.getCars()
+                .stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
+
+        assertThat(positions).containsExactly(1, 0, 1);
     }
 
     @DisplayName("findWinners()를 통해 position이 가장 높은 Car들을 가져온다")
     @Test
-    void test2() {
+    void findWinners() {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         Car carC = new Car("carC");
@@ -69,7 +68,7 @@ class CarsTest {
 
         @Override
         public int generate() {
-            Integer value = values[index];
+            int value = values[index];
             index++;
             return value;
         }
