@@ -2,9 +2,12 @@ package view;
 
 import domain.Car;
 import domain.Cars;
+import domain.Name;
 import domain.Position;
 
-import java.util.StringJoiner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String DELIMITER = "-";
@@ -30,15 +33,20 @@ public class OutputView {
     }
 
     public static void printWinners(Cars cars) {
-        StringJoiner stringJoiner = new StringJoiner(SEPARATOR, PREFIX, SUFFIX);
+        List<Name> carNames = new ArrayList<>();
+
         for (Car car : cars) {
-            stringJoiner.add(car.getName().toString());
+            carNames.add(car.getName());
         }
 
-        System.out.println(String.format(WINNER_MSG, stringJoiner));
+        String winners = carNames.stream()
+                .map(m -> m.toString())
+                .collect(Collectors.joining(", "));
+
+        System.out.println(String.format(WINNER_MSG, winners));
     }
 
-    public static String drawResult(Position position){
+    public static String drawResult(Position position) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < position.getPosition(); i++) {
             stringBuilder.append(DELIMITER);
