@@ -3,6 +3,7 @@ package controller;
 import domain.Car;
 import domain.NumberGenerator;
 import domain.RacingGame;
+import domain.RandomNumberGenerator;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
@@ -12,15 +13,9 @@ import java.util.stream.Collectors;
 
 public class RacingGameController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final NumberGenerator numberGenerator;
-
-    public RacingGameController(NumberGenerator numberGenerator) {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.numberGenerator = numberGenerator;
-    }
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() {
         RacingGame racingGame = init();
