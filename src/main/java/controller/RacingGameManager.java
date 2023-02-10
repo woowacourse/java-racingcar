@@ -27,9 +27,10 @@ public class RacingGameManager {
     private void startRace(TryCount tryCount) {
         OutputView.printResultMessage();
 
-        for (int i = 0; i < tryCount.getCount(); i++) {
+        while (tryCount.canTry()) {
             racingGame.moveCars(new NormalRandomGenerator());
             OutputView.printAllCars(racingGame.getCars());
+            tryCount.decreaseCount();
         }
     }
 
