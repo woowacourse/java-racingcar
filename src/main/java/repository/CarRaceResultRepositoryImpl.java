@@ -52,8 +52,7 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
 
     @Override
     public void moveByName(final String name) {
-        Car car = moveCountBoard
-            .keySet()
+        Car car = moveCountBoard.keySet()
             .stream()
             .filter(key -> key.getName().equals(name))
             .findAny()
