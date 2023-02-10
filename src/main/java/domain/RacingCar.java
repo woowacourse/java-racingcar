@@ -8,8 +8,8 @@ public class RacingCar {
     private int position;
     private Pickable picker;
 
-    public RacingCar(final String name) {
-        this.name = new Name(name);
+    public RacingCar(final Name name) {
+        this.name = name;
         position = 0;
         picker = new RandomPicker();
     }

@@ -1,15 +1,16 @@
 package controller;
 
-import domain.*;
-import exception.CommaNotFoundException;
-import exception.NameIsOutOfBoundException;
+import domain.Names;
+import domain.RacingCar;
+import domain.RacingCars;
+import domain.TryCount;
 import exception.NotPositiveIntegerException;
-import util.CommaSeparator;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class RacingGameController {
 
@@ -27,24 +28,18 @@ public class RacingGameController {
     }
 
     private RacingCars createRacingCar() {
-        List<String> names;
-        try {
-            names = CommaSeparator.sliceNameByComma(getNames());
-            return new RacingCars(createRacingCar(names));
-        } catch (CommaNotFoundException | NameIsOutOfBoundException e) {
-            System.out.println(e.getMessage());
-            return createRacingCar();
-        }
+        final Names names = inputCarNames();
+        return new RacingCars(createRacingCar(names));
     }
 
-    private String getNames() {
+    private Names inputCarNames() {
         return InputView.requestCarName();
     }
 
-    private List<RacingCar> createRacingCar(List<String> names) {
-        return names.stream()
+    private List<RacingCar> createRacingCar(final Names names) {
+        return names.getNames().stream()
                 .map(RacingCar::new)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private TryCount getTryCount() {
