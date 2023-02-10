@@ -4,7 +4,7 @@ import util.RandomGenerator;
 
 public class RacingCar extends RandomGenerator {
 
-    private static final int moveThreshold = 4;
+    private static final int MOVE_THRESHOLD = 4;
 
     private final Name name;
     private int position;
@@ -21,7 +21,7 @@ public class RacingCar extends RandomGenerator {
     }
 
     private boolean isMovable() {
-        return getRandomInteger() >= 4;
+        return getRandomInteger() >= MOVE_THRESHOLD;
     }
 
     @Override
