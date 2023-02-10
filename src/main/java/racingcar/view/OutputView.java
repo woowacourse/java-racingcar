@@ -22,8 +22,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printFinalResult(Cars cars) {
-        List<Car> winners = cars.decideWinner();
+    public void printFinalResult(List<Car> winners) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car : winners) {
             stringBuilder.append(car.getName() + NAME_DELIMITER);
