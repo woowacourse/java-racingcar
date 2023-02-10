@@ -30,13 +30,7 @@ public class OutputView {
     }
 
     private static String makeDistanceInfo(int position) {
-        StringBuilder distance = new StringBuilder();
-
-        while (position-- > 0) {
-            distance.append(DISTANCE_PROGRESS_BAR);
-        }
-
-        return distance.toString();
+        return DISTANCE_PROGRESS_BAR.repeat(position);
     }
 
     public static void printWinner(final RacingCars racingCars) {
