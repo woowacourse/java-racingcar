@@ -11,13 +11,14 @@ import racingcar.view.OutputView;
 public class GameManager {
 	private final InputView inputView;
 	private final OutputView outputView;
-	private final Cars cars;
+	private final NumberGenerator numberGenerator;
+	private Cars cars;
 	private GameRound gameRound;
 
-	public GameManager(InputView inputView, OutputView outputView, Cars cars) {
+	public GameManager(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
 		this.inputView = inputView;
 		this.outputView = outputView;
-		this.cars = cars;
+		this.numberGenerator = numberGenerator;
 	}
 
 	public void playGame() {
@@ -40,12 +41,12 @@ public class GameManager {
 	private void createCars() {
 		while (true) {
 			try {
+				cars = new Cars();
 				CarNamesRequest requestCarNames = inputView.inputCarName();
 				List<String> carNames = requestCarNames.getCarNames();
-				cars.generateCars(carNames);
+				cars.generateCars(carNames, numberGenerator);
 				return;
 			} catch (Exception e) {
-				cars.reset();
 				outputView.printErrorMessage(e.getMessage());
 			}
 		}

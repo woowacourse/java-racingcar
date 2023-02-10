@@ -5,14 +5,22 @@ import static racingcar.exception.ErrorMessages.*;
 import java.util.Objects;
 
 public class Car {
-	final String name;
-	int position;
+	private static final int CAR_NAME_MAX_LENGTH = 5;
+
+	private final String name;
+	private final CarMovement carMovement;
+	private int position;
 
 	public Car(String name) {
+		this(name, new CarMovement(new RandomNumberGenerator()));
+	}
+
+	public Car(String name, CarMovement carMovement) {
 		validateNameNullOrBlank(name);
 		validateNameLength(name);
 		this.name = name;
-		position = 0;
+		this.position = 0;
+		this.carMovement = carMovement;
 	}
 
 	public String getName() {
@@ -31,13 +39,12 @@ public class Car {
 
 	private void validateNameLength(String name) {
 		int nameLength = name.length();
-		if (nameLength > 5) {
+		if (nameLength > CAR_NAME_MAX_LENGTH) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 		}
 	}
 
 	public void move() {
-		CarMovement carMovement = new CarMovement(new RandomNumberGenerator());
 		if (carMovement.isCarMoveForward()) {
 			position++;
 		}

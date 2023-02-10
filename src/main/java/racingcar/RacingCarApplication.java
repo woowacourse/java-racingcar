@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.domain.Cars;
 import racingcar.domain.GameManager;
+import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -11,7 +12,7 @@ public class RacingCarApplication {
 		GameManager gameManager = new GameManager(
 			new InputView(),
 			new OutputView(),
-			new Cars());
+			new RandomNumberGenerator());
 
 		gameManager.playGame();
 	}

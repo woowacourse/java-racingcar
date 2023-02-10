@@ -11,10 +11,11 @@ import java.util.Set;
 public class Cars {
 	private final Set<Car> cars = new LinkedHashSet<>();
 
-	public void generateCars(List<String> carNames) {
+	public void generateCars(List<String> carNames, NumberGenerator numberGenerator) {
+		CarMovement carMovement = new CarMovement(numberGenerator);
 		validateCarsSizeOneOrZero(carNames);
 		for (String carName : carNames) {
-			generateCar(carName);
+			generateCar(carName, carMovement);
 		}
 	}
 
@@ -38,16 +39,12 @@ public class Cars {
 		return winnerNames;
 	}
 
-	public void reset() {
-		cars.clear();
-	}
-
 	public Set<Car> getCars() {
 		return Collections.unmodifiableSet(cars);
 	}
 
-	private void generateCar(String name) {
-		Car newCar = new Car(name);
+	private void generateCar(String name, CarMovement carMovement) {
+		Car newCar = new Car(name, carMovement);
 		validateDuplicatedCarName(newCar);
 		cars.add(newCar);
 	}
