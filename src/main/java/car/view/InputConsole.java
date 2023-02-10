@@ -3,24 +3,40 @@ package car.view;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import static car.option.Option.MAX_TRIAL_COUNT_LENGTH;
+import static car.option.Option.*;
+import static car.option.Option.INITIAL_POSITION;
 
 
 public class InputConsole implements Input {
     private static final Pattern NOT_INTEGER_PATTERN = Pattern.compile("\\D+");
     Scanner scanner = new Scanner(System.in);
-
     @Override
     public String inputCarNames() {
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        catchInputCarNamesException(input);
+        return input;
     }
 
     @Override
     public String inputTrialCount() {
         String input = scanner.nextLine();
+        catchInputTrialCountException(input);
+        return input;
+    }
+    private void catchInputCarNamesException(String input){
+        validateNameLength(input);
+    }
+    private void validateNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("[ERROR] 이름이 너무 깁니다.");
+        }
+        if (name.length() < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException("[ERROR] 이름이 너무 짧습니다.");
+        }
+    }
+    private void catchInputTrialCountException(String input){
         validateInteger(input);
         validateTrialCountUnderMaxInteger(input);
-        return input;
     }
     private void validateInteger(String input) {
         if (NOT_INTEGER_PATTERN.matcher(input).matches()) {
