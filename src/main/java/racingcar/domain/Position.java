@@ -5,11 +5,7 @@ import java.util.Objects;
 public class Position implements Comparable<Position> {
     private final static int INITIAL_DEFAULT_VALUE = 0;
     private final static int MOVE_STEP = 1;
-    private int value;
-
-    public Position() {
-        this.value = INITIAL_DEFAULT_VALUE;
-    }
+    private int value = INITIAL_DEFAULT_VALUE;
 
     public void increasePosition() {
         this.value += MOVE_STEP;
