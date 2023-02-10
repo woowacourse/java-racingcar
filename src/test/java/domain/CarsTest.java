@@ -14,7 +14,7 @@ import java.util.List;
 
 class CarsTest {
 
-    Cars cars;
+    private Cars cars;
 
     @BeforeEach
     void init() {

@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class CarTest {
 
-    Car car;
+    private Car car;
 
     @BeforeEach
     void init() {
