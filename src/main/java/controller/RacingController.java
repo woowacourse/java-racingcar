@@ -26,7 +26,7 @@ public class RacingController {
         RoundResult roundResult = new RoundResult();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
-            progressRound(carsInfo, randomNumberGenerator, roundResult);
+            carsInfo.progressRound(randomNumberGenerator, roundResult);
             outputView.printCurrentResult(carsInfo);
         }
         List<String> winners = carsInfo.findWinners();
@@ -53,9 +53,5 @@ public class RacingController {
             outputView.printErrorMessage(e.getMessage());
             return setUpTryCount();
         }
-    }
-
-    private void progressRound(CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
-        carsInfo.progressRound(randomNumberGenerator, roundResult);
     }
 }
