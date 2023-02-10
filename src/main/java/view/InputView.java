@@ -15,7 +15,7 @@ public class InputView {
 
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static List<String> readCarName() throws IOException {
+    public static List<String> readCarNames() throws IOException {
         try {
             System.out.println(READ_CAR_NAME_MESSAGE);
             String input = br.readLine();
@@ -24,7 +24,7 @@ public class InputView {
             return carNames;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readCarName();
+            return readCarNames();
         }
     }
 
