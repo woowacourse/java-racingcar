@@ -14,11 +14,7 @@ public class CarFactory {
 
     private List<Car> makeCars(List<String> carNames) {
         return carNames.stream()
-                .map(carName -> createCar(carName))
+                .map(Car::new)
                 .collect(Collectors.toList());
-    }
-
-    private Car createCar(String carName) {
-        return new Car(carName);
     }
 }
