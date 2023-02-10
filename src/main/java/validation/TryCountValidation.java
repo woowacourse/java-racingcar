@@ -2,11 +2,11 @@ package validation;
 
 public class TryCountValidation {
 
-    private static final int BOUNDARY_NEGATIVE_VALUE = 0;
+    private static final int MINIMUM_TRY_COUNT = 0;
 
     public static void validateTryCount(int input) {
-        if (input < BOUNDARY_NEGATIVE_VALUE) {
-            throw new IllegalArgumentException("양수를 입력하세요.");
+        if (input < MINIMUM_TRY_COUNT) {
+            throw new IllegalArgumentException("0 이상의 수를 입력해주세요.");
         }
     }
 }
