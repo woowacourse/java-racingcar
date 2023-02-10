@@ -1,4 +1,4 @@
-package dto;
+package output;
 
 import domain.Cars;
 

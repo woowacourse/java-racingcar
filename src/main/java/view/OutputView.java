@@ -2,8 +2,8 @@ package view;
 
 import domain.Car;
 import domain.Cars;
-import dto.Output;
-import dto.Outputs;
+import output.Output;
+import output.Outputs;
 
 import java.util.List;
 import java.util.stream.Collectors;
