@@ -13,7 +13,7 @@ public class RacingController {
     private final OutputView outputView;
     private RacingGame racingGame;
 
-    public RacingController(InputView inputView, OutputView outputView) {
+    public RacingController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -24,7 +24,7 @@ public class RacingController {
         makeRacingGameResult();
     }
 
-    private void makeRacingGame(List<String> carNames) {
+    private void makeRacingGame(final List<String> carNames) {
         this.racingGame = new RacingGame(carNames, new RandomNumberGenerator());
     }
 
@@ -37,7 +37,7 @@ public class RacingController {
         }
     }
 
-    private void startRacingGame(int gameTry) {
+    private void startRacingGame(final int gameTry) {
         outputView.printGameResultMessage();
         for (int i = 0; i < gameTry; i++) {
             racingGame.start();

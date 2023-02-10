@@ -16,7 +16,7 @@ class RacingGameTest {
 
     @ParameterizedTest
     @MethodSource("parameterProvider")
-    void getWinnersTest(List<String> carNames, List<Integer> intendedNumbers, List<String> expectedWinners) {
+    void getWinnersTest(final List<String> carNames, final List<Integer> intendedNumbers, final List<String> expectedWinners) {
         IntendedNumberGenerator intendedNumberGenerator = new IntendedNumberGenerator();
         RacingGame racingGame = new RacingGame(
                 carNames,
@@ -49,7 +49,7 @@ class RacingGameTest {
         private List<Integer> repository;
         private int index = 0;
 
-        public void readRepository(List<Integer> repository) {
+        public void readRepository(final List<Integer> repository) {
             this.repository = repository;
         }
 

@@ -11,7 +11,7 @@ class CarTest {
 
     @ParameterizedTest
     @CsvSource(value = {"3,3", "0,0", "213,213"}, delimiter = ',')
-    void carMoveTest(int moveCount, int expectedPosition) {
+    void carMoveTest(final int moveCount, final int expectedPosition) {
         Car car = new Car("dummy");
 
         for (int i = 0; i < moveCount; i++) {

@@ -13,7 +13,7 @@ public class InputView {
     private final InputValidator inputValidator = new InputValidator();
 
 
-    public InputView(Scanner scanner) {
+    public InputView(final Scanner scanner) {
         this.scanner = scanner;
     }
 

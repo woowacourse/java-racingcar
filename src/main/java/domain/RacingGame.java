@@ -13,7 +13,7 @@ public class RacingGame {
     private final NumberGenerator numberGenerator;
 
 
-    public RacingGame(List<String> splitCarNames, NumberGenerator numberGenerator) {
+    public RacingGame(final List<String> splitCarNames, final NumberGenerator numberGenerator) {
         cars = splitCarNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
@@ -27,7 +27,7 @@ public class RacingGame {
         }
     }
 
-    private void moveCar(Car car) {
+    private void moveCar(final Car car) {
         int randomNumber = numberGenerator.makeDigit();
         if (randomNumber >= MOVABLE_BOUND) {
             car.move();

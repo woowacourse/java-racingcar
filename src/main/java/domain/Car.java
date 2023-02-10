@@ -2,10 +2,10 @@ package domain;
 
 public class Car {
 
-    private int position;
     private final String carName;
+    private int position;
 
-    public Car(String carName) {
+    public Car(final String carName) {
         this.carName = carName;
         position = 0;
     }
