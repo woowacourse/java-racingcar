@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private final static String ERROR_PREFIX = "[ERROR] ";
-    private final static String EXECUTION_RESULT_MESSAGE = "실행 결과";
-    private final static String FINAL_RESULT_MESSAGE = "%s가 최종 우승했습니다.";
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String EXECUTION_RESULT_MESSAGE = "실행 결과";
+    private static final String FINAL_RESULT_MESSAGE = "%s가 최종 우승했습니다.";
 
     public void printError(String message) {
         System.out.println(ERROR_PREFIX + message);

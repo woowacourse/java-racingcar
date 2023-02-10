@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Position implements Comparable<Position> {
-    private final static int INITIAL_DEFAULT_VALUE = 0;
+    private static final int INITIAL_DEFAULT_VALUE = 0;
     private int value = INITIAL_DEFAULT_VALUE;
 
     public void increasePosition() {

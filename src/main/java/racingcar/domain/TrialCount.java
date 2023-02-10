@@ -2,7 +2,7 @@ package racingcar.domain;
 
 public class TrialCount {
     private final int value;
-    private final static String COUNT_EXCEPTION_MESSAGE = "시도 횟수는 0보다 커야 합니다.";
+    private static final String COUNT_EXCEPTION_MESSAGE = "시도 횟수는 0보다 커야 합니다.";
 
     public TrialCount(int value) {
         validateSize(value);
