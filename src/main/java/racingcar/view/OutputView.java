@@ -17,8 +17,7 @@ public class OutputView {
 
     public void printRoundResult(List<Car> cars) {
         for (Car car : cars) {
-            System.out.println(
-                String.format(CAR_RESULT_FORMAT, car.getName(), car.getMovePosition()));
+            System.out.println(String.format(CAR_RESULT_FORMAT, car.getName(), numberToBars(car.getPosition())));
         }
         System.out.println();
     }
@@ -31,5 +30,13 @@ public class OutputView {
         }
         String winnerNames = stringBuilder.toString();
         System.out.print(winnerNames.substring(0, winnerNames.length()-2) + WINNER_MESSAGE_FORMAT);
+    }
+
+    private String numberToBars(int number){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < number; i++) {
+            stringBuilder.append("-");
+        }
+        return stringBuilder.toString();
     }
 }
