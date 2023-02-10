@@ -17,7 +17,7 @@ public class RacingResult {
         return history;
     }
 
-    public List<String> getWinner() {
+    public List<String> pickWinner() {
         Integer maxValue = Collections.max(history.values());
 
         return history.entrySet()

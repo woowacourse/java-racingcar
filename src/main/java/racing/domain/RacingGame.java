@@ -18,7 +18,7 @@ public class RacingGame {
         carGroup.race(numberGenerator);
     }
 
-    public RacingResult getRacingResult(){
+    public RacingResult produceRacingResult() {
         Map<String, Integer> history = new LinkedHashMap<>();
         for (Car car : carGroup.getCars()) {
             history.put(car.getName(), car.getPosition());

@@ -24,7 +24,7 @@ public class RacingGameController {
 
         outputView.printNotice();
         raceWithHistory(movingTrial, racingGame);
-        outputView.printWinner(racingGame.getRacingResult().getWinner());
+        outputView.printWinner(racingGame.produceRacingResult().pickWinner());
     }
 
     private void raceWithHistory(int movingTrial, RacingGame racingGame) {
@@ -32,7 +32,7 @@ public class RacingGameController {
         for (int i = 0; i < movingTrial; i++) {
             racingGame.race();
 
-            outputView.printRacingResult(racingGame.getRacingResult().getHistory());
+            outputView.printRacingResult(racingGame.produceRacingResult().getHistory());
         }
     }
 }

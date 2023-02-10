@@ -23,7 +23,7 @@ class RacingResultTest {
         RacingResult racingResult = new RacingResult(history);
 
         //when
-        List<String> winners = racingResult.getWinner();
+        List<String> winners = racingResult.pickWinner();
 
         //then
         assertThat(winners).isEqualTo(List.of("a","d"));
@@ -40,7 +40,7 @@ class RacingResultTest {
         RacingResult racingResult = new RacingResult(history);
 
         //when
-        List<String> winners = racingResult.getWinner();
+        List<String> winners = racingResult.pickWinner();
 
         //then
         assertThat(winners).isEqualTo(List.of("a"));
