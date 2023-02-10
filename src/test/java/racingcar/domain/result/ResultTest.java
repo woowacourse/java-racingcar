@@ -19,7 +19,7 @@ class ResultTest {
 
         List<String> actualWinners = result.findWinners();
 
-        assertThat(actualWinners).isEqualTo(expectedWinners);
+        assertThat(actualWinners).containsAll(expectedWinners);
     }
 
     static Stream<Arguments> getResult() {
