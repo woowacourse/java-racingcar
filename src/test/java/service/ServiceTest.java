@@ -22,8 +22,11 @@ class ServiceTest {
 
     @Test
     @DisplayName("중복된 이름이 입력되면 예외발생")
-    void setCarsFailTest() {
-        assertThatThrownBy(() -> service.initializeCars(Name.of(List.of("fox", "fox"))))
-                .isInstanceOf(IllegalArgumentException.class);
+    void givenDuplicatingNames_whenInitializingCars_thenThrowsException() {
+        assertThatThrownBy(
+                () -> service.initializeCars(Name.of(List.of("fox", "fox")))
+        )
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Service.DUPLICATING_NAME_EXCEPTION_MESSAGE);
     }
 }
