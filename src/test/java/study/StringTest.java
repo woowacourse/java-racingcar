@@ -1,10 +1,11 @@
 package study;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringTest {
 
@@ -17,7 +18,7 @@ public class StringTest {
         final String[] answer = input.split(",");
 
         //then
-        Assertions.assertThat(answer).containsExactly("1", "2");
+        assertThat(answer).containsExactly("1", "2");
     }
 
     @Test
@@ -29,11 +30,11 @@ public class StringTest {
         final String[] answer = input.split(",");
 
         //then
-        Assertions.assertThat(answer).containsExactly("1");
+        assertThat(answer).containsExactly("1");
     }
 
     @Test
-    void stringBracketSplitTest() {
+    void stringSplitBracketWithUsingSubStringTest() {
         //given
         String input = "(1,2)";
 
@@ -51,13 +52,11 @@ public class StringTest {
         String input = "abc";
 
         //when & then
-
-        Assertions.assertThatThrownBy(() -> {
-            final String answer1 = input.substring(input.length(), input.length() + 1);
+        assertThatThrownBy(() -> {
+            input.substring(input.length(), input.length() + 1);
         }).isInstanceOf(StringIndexOutOfBoundsException.class);
 
         final String answer2 = input.substring(0, 1);
-
         assertEquals(answer2, "a");
     }
 }
