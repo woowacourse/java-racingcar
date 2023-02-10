@@ -17,15 +17,27 @@ public class RacingcarController {
     }
 
     public void run(String carNames, int tryCount) {
-        List<Car> cars = carFactory.makeCars(carNames);
+        List<Car> cars = getCars(carNames);
 
+        playRace(tryCount, cars);
+
+        printWinners(cars);
+    }
+
+    private void printWinners(List<Car> cars) {
+        List<Car> winners = racingcarService.findWinner(cars);
+        OutputView.winner(winners);
+    }
+
+    private void playRace(int tryCount, List<Car> cars) {
         OutputView.playRound();
         for (int i = 0; i < tryCount; i++) {
             racingcarService.move(cars);
             OutputView.result(cars);
         }
+    }
 
-        List<Car> winners = racingcarService.findWinner(cars);
-        OutputView.winner(winners);
+    private List<Car> getCars(String carNames) {
+        return carFactory.makeCars(carNames);
     }
 }
