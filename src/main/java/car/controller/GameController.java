@@ -8,23 +8,32 @@ import java.util.stream.Collectors;
 import car.domain.Car;
 import car.domain.Game;
 import car.domain.RandomMoveChance;
+import car.view.InputConsole;
 import car.view.InputView;
 import car.view.OutputView;
 
 public class GameController {
 
-    private static final InputView inputView = new InputView();
+    private static final InputView inputView = new InputView(new InputConsole());
     private static final OutputView outputView = new OutputView();
 
-    private final Game game;
-    private final int trialCount;
+    private Game game;
+    private int trialCount;
 
-    public GameController() {
-        List<String> carNames = List.of(inputView.inputCarNames());
-        game = new Game(makeCarsWith(carNames), new RandomMoveChance());
+    public void startGame() {
+        game = new Game(makeCarsWith(makeCarNameList()), new RandomMoveChance());
+        makeTrialCount();
+    }
+
+    private List<String> makeCarNameList() {
+        return List.of(inputView.inputCarNames());
+    }
+
+    private void makeTrialCount() {
         trialCount = inputView.inputTrialCount();
         validateNotNegativeInteger(trialCount);
     }
+
 
     public void play() {
         outputView.noticeResult();
