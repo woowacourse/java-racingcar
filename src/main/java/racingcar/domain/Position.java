@@ -15,13 +15,7 @@ public class Position implements Comparable<Position> {
 
     @Override
     public int compareTo(Position o) {
-        if(this.value > o.value){
-            return 1;
-        }
-        if(this.value == o.value){
-            return 0;
-        }
-        return -1;
+        return Integer.compare(this.value, o.value);
     }
 
     public int getValue() {
@@ -29,8 +23,8 @@ public class Position implements Comparable<Position> {
     }
 
     @Override
-    public boolean equals(Object o){
-        Position position = (Position)o;
+    public boolean equals(Object o) {
+        Position position = (Position) o;
         return this.value == position.value;
     }
 }
