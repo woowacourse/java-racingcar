@@ -28,11 +28,10 @@ public class Cars {
     }
 
     private int getMaxPosition() {
-        int maxPosition = -1;
-        for (Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-        return maxPosition;
+        return cars.stream()
+                .map(Car::getPosition)
+                .max(Integer::compare)
+                .orElse(-1);
     }
 
     public List<Car> getCars() {
