@@ -52,17 +52,17 @@ class CarTest {
 
     @Test
     @DisplayName("Position이 같은 자동차가 있을 경우 테스트")
-    void getSamePositionCarExistTest() {
+    void isSamePositionCarExistTest() {
         compareCar = new Car("compareCar", 0);
 
-        Assertions.assertThat(car.getSamePositionCar(compareCar)).isEqualTo(car);
+        Assertions.assertThat(car.isSamePositionCar(compareCar)).isEqualTo(true);
     }
 
     @Test
     @DisplayName("Position이 같은 자동차가 없을 경우 테스트")
-    void getSamePositionCarNotExistTest() {
+    void isSamePositionCarNotExistTest() {
         compareCar = new Car("compareCar", 5);
 
-        Assertions.assertThat(car.getSamePositionCar(compareCar)).isEqualTo(null);
+        Assertions.assertThat(car.isSamePositionCar(compareCar)).isEqualTo(false);
     }
 }
