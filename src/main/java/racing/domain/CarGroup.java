@@ -3,6 +3,7 @@ package racing.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //TODO: ERROR 패키지 분리
 public class CarGroup {
@@ -15,10 +16,9 @@ public class CarGroup {
     private final List<Car> cars;
 
     public CarGroup(String[] names){
-        this.cars = new ArrayList<>();
         validateDuplicatedName(names);
         validateNumberOfCars(names);
-        setUp(names);
+        this.cars = setUp(names);
     }
 
     public void race(NumberGenerator numberGenerator) {
@@ -31,11 +31,10 @@ public class CarGroup {
         return cars;
     }
 
-    private void setUp(String[] names) {
-        for (String name : names) {
-            Car car = new Car(name);
-            cars.add(car);
-        }
+    private List<Car> setUp(String[] names) {
+        return Arrays.stream(names)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     private void validateDuplicatedName(String[] names) {
