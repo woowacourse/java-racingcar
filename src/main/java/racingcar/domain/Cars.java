@@ -30,8 +30,8 @@ public class Cars {
 			.collect(Collectors.toUnmodifiableList());
 	}
 
-	public void moveCars() {
-		cars.forEach(Car::move);
+	public boolean moveCars() {
+		return cars.stream().allMatch(Car::move);
 	}
 
 	public Set<Car> getCars() {
