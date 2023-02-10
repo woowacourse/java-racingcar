@@ -6,6 +6,9 @@ import java.util.Map;
 public class OutputView {
 
     private static final String POSITION_MARK = "-";
+    private static final String WINNERS_MESSAGE_DELIMITER = ", ";
+    private static final String WINNERS_MESSAGE_FORMAT = "%s가 최종 우승했습니다.\n";
+    private static final String RESULT_MESSAGE = "실행결과";
     private static final int POSITION_MARK_DEFAULT_VALUE = 1;
 
     public void printCarsStatus(Map<String, Integer> carsStatus) {
@@ -18,11 +21,11 @@ public class OutputView {
     }
 
     public void printWinners(List<String> winnerNames) {
-        String winners = String.join(", ", winnerNames);
-        System.out.println(winners + "가 최종 우승했습니다.");
+        String winners = String.join(WINNERS_MESSAGE_DELIMITER, winnerNames);
+        System.out.printf(WINNERS_MESSAGE_FORMAT, winners);
     }
 
     public void printResultMessage() {
-        System.out.println("실행 결과");
+        System.out.println(RESULT_MESSAGE);
     }
 }
