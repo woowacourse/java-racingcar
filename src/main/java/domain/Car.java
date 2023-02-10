@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Car {
@@ -9,7 +8,6 @@ public class Car {
     private static final int START_POSITION = 0;
     private static final int ONE_STEP = 1;
 
-    public static final Comparator<Car> positionComparator = Comparator.comparingInt(o -> o.position);
     private final String name;
     private int position;
 
@@ -17,6 +15,12 @@ public class Car {
         validateName(name);
         this.name = name;
         this.position = START_POSITION;
+    }
+
+    public Car(String name, int position) {
+        validateName(name);
+        this.name = name;
+        this.position = position;
     }
 
     private void validateName(String name) {
@@ -34,8 +38,12 @@ public class Car {
         }
     }
 
-    public CarDTO toDTO() {
-        return new CarDTO(name, position);
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

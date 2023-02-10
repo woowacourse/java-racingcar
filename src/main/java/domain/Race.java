@@ -2,28 +2,36 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Race {
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
     private final NumberPicker numberPicker;
 
     public Race(List<String> carNames) {
+        cars = new ArrayList<>();
         for (String carName : carNames) {
-            addNewCarWhenIsNotExists(carName);
+            addNewCarWhenIsNotExists(carName, cars);
         }
         this.numberPicker = new RandomNumberPicker();
     }
 
-    public Race(List<String> carNames, NumberPicker numberPicker) {
-        for (String carName : carNames) {
-            addNewCarWhenIsNotExists(carName);
-        }
+    public Race(List<Car> cars, NumberPicker numberPicker) {
+        this.cars = new ArrayList<>(cars);
         this.numberPicker = numberPicker;
     }
 
-    private void addNewCarWhenIsNotExists(String carName) {
+    public Race(List<String> carNames, List<Integer> carPositions) {
+        cars = new ArrayList<>();
+        for (int i = 0; i < carNames.size(); i++) {
+            cars.add(new Car(carNames.get(i), carPositions.get(i)));
+        }
+        this.numberPicker = new RandomNumberPicker();
+    }
+
+    private void addNewCarWhenIsNotExists(String carName, List<Car> cars) {
         Car car = new Car(carName);
         if (cars.contains(car)) {
             throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
@@ -38,15 +46,17 @@ public class Race {
         }
     }
 
-    public List<CarDTO> getWinners() {
-        Car winner = Collections.max(cars, Car.positionComparator);
+    public List<CarDto> getWinners() {
+        Car winner = Collections.max(cars, Comparator.comparingInt(Car::getPosition));
         return cars.stream()
-                .filter(car -> Car.positionComparator.compare(car, winner) == 0)
-                .map(Car::toDTO)
-                .collect(Collectors.toList());
+                .filter(car -> Comparator.comparingInt(Car::getPosition).compare(car, winner) == 0)
+                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<CarDTO> getCarDTOs() {
-        return cars.stream().map(Car::toDTO).collect(Collectors.toList());
+    public List<CarDto> getCarDtos() {
+        return cars.stream()
+                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .collect(Collectors.toUnmodifiableList());
     }
 }
