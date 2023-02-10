@@ -19,8 +19,7 @@ public class RacingCarController {
 
     private CarGroup makeCars() {
         List<String> carNames = repeat(InputView::readCarNames);
-        CarGroup carGroup = new CarGroup(carNames);
-        return carGroup;
+        return new CarGroup(carNames);
     }
 
     private void moveCarsAndView(NumberGenerator numberGenerator, int tryCount, CarGroup carGroup) {
