@@ -31,10 +31,10 @@ public class OutputView {
     }
 
     public void printWinners(List<Car> winners) {
-        System.out.println(joinCarNamesOf(winners) + WINNERS_POSTFIX);
+        System.out.println(joinNamesOf(winners) + WINNERS_POSTFIX);
     }
 
-    private String joinCarNamesOf(List<Car> cars) {
+    private String joinNamesOf(List<Car> cars) {
         return cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(CAR_DELIMITER));
