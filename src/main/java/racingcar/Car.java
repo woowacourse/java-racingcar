@@ -1,8 +1,6 @@
 package racingcar;
 
-import validator.CarValidator;
-
-import java.util.Objects;
+import validator.CarNameValidator;
 
 public class Car {
     private static final int START_POSITION = 0;
@@ -16,7 +14,7 @@ public class Car {
     }
 
     public Car(String name, int position) {
-        CarValidator.validateName(name);
+        CarNameValidator.validate(name);
         this.name = name;
         this.position = position;
     }

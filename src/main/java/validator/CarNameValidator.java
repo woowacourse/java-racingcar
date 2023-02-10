@@ -2,12 +2,12 @@ package validator;
 
 import java.util.Objects;
 
-public class CarValidator {
+public class CarNameValidator {
 
     private static final int NAME_MAXIMUM_LENGTH = 5;
     private static final CharSequence BLANK = " ";
 
-    public static void validateName(String name) {
+    public static void validate(String name) {
         validateNullAndEmpty(name);
         validateLength(name);
         validateEachNameBlank(name);
