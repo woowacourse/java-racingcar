@@ -25,7 +25,6 @@ class InputViewTest {
         //When
         Throwable result = catchThrowable(()->{inputView.readRacingRound();});
 
-
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }

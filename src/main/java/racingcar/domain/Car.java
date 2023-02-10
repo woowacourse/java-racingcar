@@ -47,4 +47,5 @@ public class Car implements Comparable<Car> {
             throw new IllegalArgumentException(NAME_LENGTH_ERROR);
         }
     }
+
 }

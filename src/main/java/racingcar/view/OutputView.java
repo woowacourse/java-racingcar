@@ -36,4 +36,5 @@ public class OutputView {
     private String getCurrentCarPosition(Car car) {
         return POSITION_PRINT_FORMAT.repeat(car.getPosition());
     }
+
 }
