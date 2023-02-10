@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class CarGroup {
 
     private static final int MIN_CAR_SIZE = 2;
-    List<Car> carGroup;
+    private List<Car> carGroup;
 
     public CarGroup(List<String> carNames) {
         validateDuplicate(carNames);
