@@ -53,6 +53,7 @@ class RacingGameTest {
             this.repository = repository;
         }
 
+        @Override
         public int makeDigit() {
             return repository.get(index++);
         }
