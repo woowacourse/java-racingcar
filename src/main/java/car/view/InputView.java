@@ -1,11 +1,9 @@
 package car.view;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static final Pattern NOT_INTEGER_PATTERN = Pattern.compile("\\D+");
     private static final String CAR_NAME_SEPARATOR = ",";
 
     public String[] inputCarNames() {
@@ -15,14 +13,6 @@ public class InputView {
 
     public int inputTrialCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        String input = SCANNER.nextLine();
-        validateInteger(input);
-        return Integer.parseInt(input);
-    }
-
-    private void validateInteger(String input) {
-        if (NOT_INTEGER_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("시도 횟수는 정수여야 합니다");
-        }
+        return SCANNER.nextInt();
     }
 }
