@@ -24,9 +24,9 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    public void moveResult(NumberGenerator randomNumberGenerator) {
+    public void moveResult(NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.moveByRandom(randomNumberGenerator.generateNumber());
+            car.moveByRandom(numberGenerator.generateNumber());
         }
     }
 
