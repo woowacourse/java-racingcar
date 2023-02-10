@@ -29,18 +29,18 @@ public class Cars {
         return cars.stream()
                 .filter((car) -> Objects.equals(car.getPosition(), maxValue))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private Long getMaxValue() {
         return Collections.max(cars.stream()
                 .map(Car::getPosition)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toUnmodifiableList()));
     }
 
     public List<String> getResult() {
         return cars.stream()
                 .map(Car::getResult)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 }
