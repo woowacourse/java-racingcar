@@ -3,6 +3,7 @@ package racingCar.dto;
 import racingCar.domain.Position;
 
 public class CarDto {
+
     private final String name;
     private final Position position;
 
