@@ -14,14 +14,14 @@ public class Car {
     }
 
     public void move() {
-        distance++;
+        this.distance++;
     }
 
     public int getDistance() {
-        return distance;
+        return this.distance;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 }
