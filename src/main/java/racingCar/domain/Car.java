@@ -14,8 +14,8 @@ public class Car {
         position = new Position();
     }
 
-    public void move(int pickedNumber) {
-        if (pickedNumber >= MOVE_MIN_NUM) {
+    public void move(int randomNumber) {
+        if (randomNumber >= MOVE_MIN_NUM) {
             position.increase();
         }
     }
