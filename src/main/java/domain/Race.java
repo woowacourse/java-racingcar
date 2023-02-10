@@ -38,7 +38,7 @@ public class Race {
         }
     }
 
-    public List<CarDTO> judgeWinners() {
+    public List<CarDto> judgeWinners() {
         Car c = Collections.max(cars, Car.positionComparator);
         return cars.stream()
                 .filter(car -> Car.positionComparator.compare(car, c) == 0)
@@ -46,7 +46,7 @@ public class Race {
                 .collect(Collectors.toList());
     }
 
-    public List<CarDTO> getCarDTOs() {
+    public List<CarDto> getCarDTOs() {
         return cars.stream().map(Car::toDTO).collect(Collectors.toList());
     }
 }

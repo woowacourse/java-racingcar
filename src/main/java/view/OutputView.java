@@ -1,6 +1,6 @@
 package view;
 
-import domain.CarDTO;
+import domain.CarDto;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,15 +9,15 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printStatus(List<CarDTO> cars) {
-        for (CarDTO car : cars) {
+    public void printStatus(List<CarDto> cars) {
+        for (CarDto car : cars) {
             String status = String.format("%s : %s", car.name, "-".repeat(car.position));
             System.out.println(status);
         }
         System.out.println();
     }
 
-    public void printWinners(List<CarDTO> winners) {
+    public void printWinners(List<CarDto> winners) {
         List<String> winnersNames = winners.stream()
                 .map(c -> c.name)
                 .collect(Collectors.toList());

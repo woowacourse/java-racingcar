@@ -1,9 +1,9 @@
 package domain;
 
-public class CarDTO {
+public class CarDto {
     public final  String name;
     public final int position;
-    public CarDTO(String name, int position) {
+    public CarDto(String name, int position) {
         this.name = name;
         this.position = position;
     }

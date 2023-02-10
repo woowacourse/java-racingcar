@@ -1,6 +1,6 @@
 import static domain.ExceptionHandlingTemplate.repeatUntilReadValidInput;
 
-import domain.CarDTO;
+import domain.CarDto;
 import domain.Race;
 import java.util.List;
 import view.InputView;
@@ -17,8 +17,8 @@ public class RaceController {
         outputView.printResultTitle();
         while (tryTime-- > 0) {
             race.tryMoveOneTime();
-            List<CarDTO> carDTOs = race.getCarDTOs();
-            outputView.printStatus(carDTOs);
+            List<CarDto> cars = race.getCarDTOs();
+            outputView.printStatus(cars);
         }
 
         outputView.printWinners(race.judgeWinners());

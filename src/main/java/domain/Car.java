@@ -40,8 +40,8 @@ public class Car {
         }
     }
 
-    public CarDTO toDTO() {
-        return new CarDTO(name, position);
+    public CarDto toDTO() {
+        return new CarDto(name, position);
     }
 
     @Override
