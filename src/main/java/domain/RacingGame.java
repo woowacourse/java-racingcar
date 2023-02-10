@@ -48,6 +48,6 @@ public class RacingGame {
     private Car getFurthestCar() {
         return cars.stream()
                 .max(Comparator.comparingInt(Car::getPosition))
-                .get();
+                .orElseThrow(RuntimeException::new);
     }
 }
