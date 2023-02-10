@@ -8,7 +8,7 @@ public interface CarRaceResultRepository {
 
     void save(Car car);
 
-    int findByName(String name);
+    int findMoveCountByName(String name);
 
     Map<String, Integer> getRaceResult();
 

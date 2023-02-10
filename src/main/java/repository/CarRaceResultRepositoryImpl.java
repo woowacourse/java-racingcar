@@ -25,14 +25,8 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public int findByName(final String name) {
-        return moveCountBoard.get(moveCountBoard
-            .keySet()
-            .stream()
-            .filter(car -> car.getName().equals(name))
-            .findAny()
-            .orElseThrow(
-                () -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage())));
+    public int findMoveCountByName(final String name) {
+        return moveCountBoard.get(findByName(name));
     }
 
     @Override
@@ -52,12 +46,7 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
 
     @Override
     public void moveByName(final String name) {
-        Car car = moveCountBoard
-            .keySet()
-            .stream()
-            .filter(key -> key.getName().equals(name))
-            .findAny()
-            .orElseThrow(() -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage()));
+        Car car = findByName(name);
         moveCountBoard.replace(car, moveCountBoard.get(car) + MOVE_UNIT);
     }
 
@@ -65,5 +54,14 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
         if (moveCountBoard.containsKey(car)) {
             throw new IllegalArgumentException(ErrorCode.CAR_NAME_DUPLICATE.getMessage());
         }
+    }
+
+    private Car findByName(final String name) {
+        return moveCountBoard
+            .keySet()
+            .stream()
+            .filter(car -> car.getName().equals(name))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage()));
     }
 }

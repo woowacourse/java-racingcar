@@ -46,7 +46,7 @@ class CarRaceResultRepositoryTest {
         carRaceResultRepository.save(newCar);
 
         //then
-        assertThat(carRaceResultRepository.findByName(newCar.getName())).isEqualTo(1);
+        assertThat(carRaceResultRepository.findMoveCountByName(newCar.getName())).isEqualTo(1);
     }
 
     @Test
@@ -57,7 +57,7 @@ class CarRaceResultRepositoryTest {
 
         //when
         //then
-        assertThatThrownBy(() -> carRaceResultRepository.findByName(name))
+        assertThatThrownBy(() -> carRaceResultRepository.findMoveCountByName(name))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -66,7 +66,7 @@ class CarRaceResultRepositoryTest {
     void findByName() {
         //given
         //when
-        int result = carRaceResultRepository.findByName(car1.getName());
+        int result = carRaceResultRepository.findMoveCountByName(car1.getName());
 
         //then
         assertThat(result).isEqualTo(1);
