@@ -6,20 +6,11 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    static private void print(PrintMessages message) {
-        System.out.println(message.getContent());
-    }
-
-    static public void printEnterCarNames() {
-        print(PrintMessages.ENTER_CAR_NAMES);
-    }
-
-    static public void printEnterCount() {
-        print(PrintMessages.ENTER_COUNT);
-    }
+    private static final String RESULT = "\n실행 결과";
+    private static final String WIN = "가 최종 우승했습니다.";
 
     static public void printResultMessage() {
-        print(PrintMessages.RESULT);
+        System.out.println(RESULT);
     }
 
     static public void printRoundResult(List<Car> cars) {
@@ -30,8 +21,20 @@ public class OutputView {
 
     static private void addCarResult(StringBuilder roundResult, Car car) {
         final String DELIMITER = " : ";
-        final String CAR_RESULT = makeNameWithIndex(car) + DELIMITER + convertDistance(car.getDrivenDistance()) + '\n';
+        final String CAR_RESULT =
+            addDuplicateIdentifier(car) + DELIMITER + convertDistance(car.getDrivenDistance()) + '\n';
         roundResult.append(CAR_RESULT);
+    }
+
+    static private String addDuplicateIdentifier(Car car) {
+        final String DELIMITER = "-";
+        final int UNIQUE = 0;
+        String name = car.getName();
+        int duplicateIdentifier = car.getIdentifier();
+        if (duplicateIdentifier != UNIQUE) {
+            return name + DELIMITER + duplicateIdentifier;
+        }
+        return name;
     }
 
     static private String convertDistance(int distance) {
@@ -39,24 +42,10 @@ public class OutputView {
         return DISTANCE.repeat(distance);
     }
 
-    static private String makeNameWithIndex(Car car) {
-        final String DELIMITER = "-";
-        String name = car.getName();
-        int index = car.getOrder();
-        if (index > 0) {
-            return name + DELIMITER + index;
-        }
-        return name;
-    }
-
     static public void printWinners(List<Car> winners) {
         final String DELIMITER = ", ";
-        String message = winners.stream().map(OutputView::makeNameWithIndex)
-            .collect(Collectors.joining(DELIMITER)) + PrintMessages.WIN.getContent();
+        String message = winners.stream().map(OutputView::addDuplicateIdentifier)
+            .collect(Collectors.joining(DELIMITER)) + WIN;
         System.out.println(message);
-    }
-
-    static public void printErrorMessage(Exception exception) {
-        System.out.println(exception.getMessage());
     }
 }

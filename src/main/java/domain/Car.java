@@ -32,7 +32,7 @@ public class Car {
         return name.getName();
     }
 
-    public int getOrder() {
-        return name.getOrder();
+    public int getIdentifier() {
+        return name.getIdentifier();
     }
 }
