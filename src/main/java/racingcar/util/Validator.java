@@ -8,7 +8,7 @@ public class Validator {
     private static final int MAX_NAME_LENGTH = 5;
 
     public static void validateNotEmptyInput(String str) {
-        if (str.trim().isBlank()) {
+        if (str == null || str.trim().isBlank()) {
             throw new IllegalArgumentException(ErrorLog.EMPTY_STRING.getMessage());
         }
     }

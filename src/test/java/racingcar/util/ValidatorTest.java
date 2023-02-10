@@ -1,13 +1,14 @@
 package racingcar.util;
 
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ValidatorTest {
     @ParameterizedTest(name = "입력이 공백이면 예외를 발생시킨다.")
-    @ValueSource(strings = {"", " "})
+    @NullAndEmptySource
     void validateNotEmptyInputTest(String input) {
         assertThatThrownBy(() -> Validator.validateNotEmptyInput(input)).isInstanceOf(IllegalArgumentException.class);
     }
