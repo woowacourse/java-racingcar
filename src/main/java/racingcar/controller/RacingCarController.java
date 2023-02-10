@@ -6,10 +6,7 @@ import racingcar.model.RacingCars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RacingCarController {
@@ -21,12 +18,28 @@ public class RacingCarController {
     private RacingCars racingCars;
 
     public void run() {
-        List<Car> cars = generateCars();
-        racingCars = new RacingCars(cars);
+        String[] carNames = readCarNamesStep();
+        injectRacingCarsStep(carNames);
         int tryNum = getTryNum();
 
         race(tryNum);
         showWinners();
+    }
+
+    private String[] readCarNamesStep() {
+        outputView.printReadCarNamesMessage();
+        String[] carNames = inputView.readCarNames();
+        return carNames;
+    }
+
+    private void injectRacingCarsStep(String[] carNames) {
+        racingCars = new RacingCars(generateCars(carNames));
+    }
+
+    private List<Car> generateCars(String[] carNames) {
+        return Arrays.stream(carNames)
+                .map(carName -> new Car(carName, START_POSITION))
+                .collect(Collectors.toList());
     }
 
     private void showWinners() {
@@ -49,16 +62,6 @@ public class RacingCarController {
     private int getTryNum() {
         outputView.printReadTryNumMessage();
         return inputView.readTryNum();
-    }
-
-    private List<Car> generateCars() {
-        outputView.printReadCarNamesMessage();
-        String[] carNames = inputView.readCarNames();
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName, START_POSITION));
-        }
-        return cars;
     }
 
     private Map<String, Integer> convertRacingCarsResultForPrint(List<Car> currentCars) {
