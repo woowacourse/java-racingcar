@@ -14,7 +14,7 @@ public class Validator {
     }
 
     public static void validateNaturalNumber(String str) {
-        if (!str.matches(NATURAL_NUMBER_REGEX)) {
+        if (str == null || !str.matches(NATURAL_NUMBER_REGEX)) {
             throw new IllegalArgumentException(ErrorLog.NOT_NATURAL_NUMBER.getMessage());
         }
     }
