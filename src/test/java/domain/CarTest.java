@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 class CarTest {
 
-    private Car car1 = new Car("car1");
+    public static final int MOVED_POSITION = Car.INIT_POSITION + 1;
+    public static final int STOP_POSITION = Car.INIT_POSITION;
+    private final Car car1 = new Car("car1");
 
     @Test
     void 자동차_생성() {
@@ -17,14 +19,14 @@ class CarTest {
     void 자동차_이동() {
         car1.move(7);
         int currentPosition = car1.getPosition();
-        assertThat(currentPosition).isEqualTo(1);
+        assertThat(currentPosition).isEqualTo(MOVED_POSITION);
     }
 
     @Test
     void 자동차_멈춤() {
         car1.move(3);
         int currentPosition = car1.getPosition();
-        assertThat(currentPosition).isEqualTo(0);
+        assertThat(currentPosition).isEqualTo(STOP_POSITION);
     }
 
     @Test
