@@ -1,6 +1,6 @@
 package domain;
 
-import static validation.CarNameValidator.CAR_NAME_VALIDATOR;
+import static validation.ParticipantsValidator.PARTICIPANTS_VALIDATOR;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Participants {
     private List<Car> cars;
 
     public Participants(List<String> carNames) {
-        CAR_NAME_VALIDATOR.validate(carNames);
+        PARTICIPANTS_VALIDATOR.validate(carNames);
         cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
