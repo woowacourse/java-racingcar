@@ -9,9 +9,9 @@ public class Car {
     private CarName name;
     private Position position;
 
-    public Car(String carName) {
+    public Car(String carName, int initPosition) {
         name = new CarName(carName);
-        position = new Position();
+        position = new Position(initPosition);
     }
 
     public void move(int randomNumber) {

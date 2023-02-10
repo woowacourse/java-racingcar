@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
-    private final Car car = new Car("test");
+    private final Car car = new Car("test", 0);
 
     @Test
     @DisplayName("자동차 이름이 5자 초과인 경우 예외 발생")
@@ -14,7 +14,7 @@ class CarTest {
         String carName = "aaaaaa";
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            new Car(carName);
+            new Car(carName, 0);
         });
     }
 
@@ -24,7 +24,7 @@ class CarTest {
         String carName = "aaa";
 
         assertThatNoException().isThrownBy(() -> {
-            new Car(carName);
+            new Car(carName, 0);
         });
     }
 

@@ -2,12 +2,10 @@ package racingCar.domain;
 
 public class Position {
 
-    private static final int INIT_POSITION = 0;
-
     private int position;
 
-    public Position() {
-        this.position = INIT_POSITION;
+    public Position(int initPosition) {
+        this.position = initPosition;
     }
 
     public void increase() {

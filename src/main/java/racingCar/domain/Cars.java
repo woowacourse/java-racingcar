@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final int MIN_CAR_SIZE = 2;
+    private static final int INIT_CAR_POSITION = 0;
 
     List<Car> cars;
 
@@ -20,7 +21,7 @@ public class Cars {
         validateSize(names);
 
         this.cars = names.stream()
-                .map(carName -> new Car(carName))
+                .map(carName -> new Car(carName, INIT_CAR_POSITION))
                 .collect(Collectors.toList());
     }
 
@@ -42,10 +43,6 @@ public class Cars {
             int pickedNumber = numberGenerator.generateNumber();
             car.move(pickedNumber);
         }
-    }
-
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(this.cars);
     }
 
     public List<String> findWinners() {
