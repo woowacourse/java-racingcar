@@ -40,5 +40,4 @@ public class CarNameValidator {
             return message;
         }
     }
-
 }

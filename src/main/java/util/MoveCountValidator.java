@@ -47,5 +47,4 @@ public class MoveCountValidator {
             return message;
         }
     }
-
 }
