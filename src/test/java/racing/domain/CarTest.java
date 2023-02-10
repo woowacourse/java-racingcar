@@ -1,4 +1,4 @@
-package domain;
+package racing.domain;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -31,13 +31,7 @@ class CarTest {
     void moveWhenRandomNumberIsOverThree() {
         //given
         Car car = new Car("123");
-        RandomNumberGenerator numberGenerator = new RandomNumberGenerator() {
-            @Override
-            public int generate() {
-                return 4;
-            }
-        };
-
+        NumberGenerator numberGenerator = new MovableNumberGenerator();
         //when
         car.move(numberGenerator);
 
@@ -50,12 +44,7 @@ class CarTest {
     void moveWhenRandomNumberIsUnderThree() {
         //given
         Car car = new Car("123");
-        RandomNumberGenerator numberGenerator = new RandomNumberGenerator() {
-            @Override
-            public int generate() {
-                return 3;
-            }
-        };
+        NumberGenerator numberGenerator = new NonMovableNumberGenerator();
 
         //when
         car.move(numberGenerator);
