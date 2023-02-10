@@ -12,12 +12,19 @@ public class GameManager {
 
 	private final InputView inputView;
 	private final OutputView outputView;
-	private final Cars cars;
+	private final CarMovement carMovement;
 	private GameRound gameRound;
+	private final Cars cars;
 
-	public GameManager(InputView inputView, OutputView outputView, Cars cars) {
+	public GameManager(
+		InputView inputView,
+		OutputView outputView,
+		CarMovement carMovement,
+		Cars cars
+	) {
 		this.inputView = inputView;
 		this.outputView = outputView;
+		this.carMovement = carMovement;
 		this.cars = cars;
 	}
 
@@ -39,21 +46,20 @@ public class GameManager {
 	}
 
 	private void createCars() {
-		while(true) {
+		while (true) {
 			try {
-				CarNamesRequest carNamesRequest = inputView.inputCarName();
+				CarNamesRequest carNamesRequest = inputView.inputCarNames();
 				List<String> carNames = carNamesRequest.getCarNames();
-				cars.generateCars(carNames);
+				cars.generateCars(carMovement, carNames);
 				return;
 			} catch (Exception e) {
-				cars.reset();
 				outputView.printErrorMessage(e.getMessage());
 			}
 		}
 	}
 
 	private void createGameRound() {
-		while(true) {
+		while (true) {
 			try {
 				int totalRound = inputView.inputGameRound().getRound();
 				gameRound = new GameRound(totalRound);

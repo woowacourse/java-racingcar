@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import static racingcar.messsages.ExceptionMessage.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -20,27 +19,19 @@ public class Cars {
 	}
 
 	public List<String> findWinnerNames() {
-		List<String> winnerNames = new ArrayList<>();
-		int maxPosition = 0;
-		for (Car car : cars) {
-			if (car.getPosition() == maxPosition) {
-				winnerNames.add(car.getName());
-			}
-			if (car.getPosition() > maxPosition) {
-				maxPosition = car.getPosition();
-				winnerNames.clear();
-				winnerNames.add(car.getName());
-			}
-		}
-		return winnerNames;
+		final int maxPosition = cars.stream()
+			.mapToInt(Car::getPosition)
+			.max()
+			.orElseThrow(() -> new IllegalStateException(CARS_EMPTY_EXCEPTION.getMessage()));
+
+		return cars.stream()
+			.filter(car -> car.isSamePosition(maxPosition))
+			.map(Car::getName)
+			.collect(Collectors.toUnmodifiableList());
 	}
 
 	public void moveCars() {
 		cars.forEach(Car::move);
-	}
-
-	public void reset() {
-		cars.clear();
 	}
 
 	public Set<Car> getCars() {

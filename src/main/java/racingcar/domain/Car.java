@@ -7,25 +7,31 @@ import java.util.Objects;
 public class Car {
 	private static final int MAX_NAME_LENGTH = 5;
 
+	private final CarMovement carMovement;
 	private final String name;
-	private int position;
+	private int position = 0;
 
-	public Car(String name) {
+	public Car(CarMovement carMovement, String name) {
 		validateNameNullOrBlank(name);
 		validateNameLength(name);
+		this.carMovement = carMovement;
 		this.name = name;
-		position = 0;
 	}
 
-	public void move() {
-		CarMovement carMovement = new CarMovement(new RandomNumberGenerator());
-		if (carMovement.isMoveForward()) {
+	public boolean move() {
+		boolean isMoved = carMovement.isMove();
+		if (isMoved) {
 			position++;
 		}
+		return isMoved;
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public boolean isSamePosition(int position) {
+		return this.position == position;
 	}
 
 	public int getPosition() {
@@ -39,8 +45,7 @@ public class Car {
 	}
 
 	private void validateNameLength(String name) {
-		int nameLength = name.length();
-		if (nameLength > MAX_NAME_LENGTH) {
+		if (name.length() > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 		}
 	}
