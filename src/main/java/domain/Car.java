@@ -35,9 +35,9 @@ public class Car {
 
     public String getResult() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(PrintSigns.POSITION.getSign());
+        stringBuilder.append(PrintSigns.SEPARATOR.getSign());
         for (int i = 0; i < position; i++) {
-            stringBuilder.append(PrintSigns.SEPARATOR.getSign());
+            stringBuilder.append(PrintSigns.POSITION.getSign());
         }
         return name + stringBuilder;
     }
