@@ -38,7 +38,7 @@ public class Car {
         }
     }
 
-    public CarDto toDTO() {
+    public CarDto toDto() {
         return new CarDto(name, position);
     }
 

@@ -47,10 +47,10 @@ public class Race {
 
     public List<CarDto> getWinners() {
         return winnerJudge.getWinner(cars).stream()
-                .map(Car::toDTO).collect(Collectors.toList());
+                .map(Car::toDto).collect(Collectors.toList());
     }
 
     public List<CarDto> getCarDTOs() {
-        return cars.stream().map(Car::toDTO).collect(Collectors.toList());
+        return cars.stream().map(Car::toDto).collect(Collectors.toList());
     }
 }
