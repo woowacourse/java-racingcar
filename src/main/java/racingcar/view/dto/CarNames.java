@@ -22,16 +22,21 @@ public class CarNames {
 
     private void validate(String carNames) {
         String[] splitCarNames = carNames.split(SEPARATOR);
-
+        validateEmptyCarNames(splitCarNames);
         for (String splitCarName : splitCarNames) {
-            hasInvalidValue(splitCarName);
-            hasBlank(splitCarName);
-            isOverMaxLength(splitCarName);
+            validateWord(splitCarName);
+            validateBlank(splitCarName);
+            validateOverMaxLength(splitCarName);
         }
 
         validateDuplicateCarNames(splitCarNames);
     }
 
+    private void validateEmptyCarNames(String[] carNames) {
+        if (carNames.length == 0) {
+            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_NULL.message());
+        }
+    }
     private void validateDuplicateCarNames(String[] splitCarNames) {
         int carNamesCount = splitCarNames.length;
         long distinctCount = Arrays.stream(splitCarNames).distinct().count();
@@ -41,19 +46,19 @@ public class CarNames {
         }
     }
 
-    private void hasBlank(String splitCarName) {
+    private void validateBlank(String splitCarName) {
         if (splitCarName.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.CAR_NAME_NULL.message());
         }
     }
 
-    private void hasInvalidValue(String splitCarName) {
+    private void validateWord(String splitCarName) {
         if (!CAR_NAME_PATTERN.matcher(splitCarName).matches()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME_FORMAT.message());
         }
     }
 
-    private void isOverMaxLength(String splitCarName) {
+    private void validateOverMaxLength(String splitCarName) {
         if (splitCarName.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.CAR_NAME_OVER_RANGE.message());
         }

@@ -11,6 +11,18 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class CarNamesTest {
+
+    @DisplayName("구분자만 입력 할 수 없습니다.")
+    @Test
+    void validateEmptyCarName() {
+        String testSampleValue = ",,,";
+
+        assertThatCode(() -> {
+            new CarNames(testSampleValue);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.CAR_NAME_NULL.message());
+    }
+
     @DisplayName("자동차 이름에는 문자와 숫자만 들어갈 수 있습니다.")
     @ParameterizedTest
     @ValueSource(strings = {"a,ba, ,abs", ",a,b", "a c v"})
