@@ -11,7 +11,6 @@ import java.io.PrintStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,11 +19,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import racingcar.domain.Cars;
 import racingcar.domain.GameManager;
+import racingcar.domain.NumberGenerator;
+import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 class RacingCarGameTest {
-	Cars cars;
+	NumberGenerator numberGenerator;
 	OutputView outputView;
 	InputView inputView;
 	GameManager gameManager;
@@ -50,10 +51,10 @@ class RacingCarGameTest {
 		System.setIn(inputStream);
 		System.setOut(outputStream);
 
-		cars = new Cars();
+		numberGenerator = new RandomNumberGenerator();
 		outputView = new OutputView();
 		inputView = new InputView();
-		gameManager = new GameManager(inputView, outputView, cars);
+		gameManager = new GameManager(inputView, outputView, numberGenerator);
 
 		gameManager.playGame();
 
@@ -71,10 +72,10 @@ class RacingCarGameTest {
 		System.setIn(inputStream);
 		System.setOut(outputStream);
 
-		cars = new Cars();
+		numberGenerator = new RandomNumberGenerator();
 		outputView = new OutputView();
 		inputView = new InputView();
-		gameManager = new GameManager(inputView, outputView, cars);
+		gameManager = new GameManager(inputView, outputView, numberGenerator);
 
 		gameManager.playGame();
 		String gameTotalMessage = out.toString();

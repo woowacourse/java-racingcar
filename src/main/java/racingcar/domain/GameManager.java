@@ -44,7 +44,7 @@ public class GameManager {
 				cars = new Cars();
 				CarNamesRequest requestCarNames = inputView.inputCarName();
 				List<String> carNames = requestCarNames.getCarNames();
-				cars.generateCars(carNames, numberGenerator);
+				cars.createCars(carNames, numberGenerator);
 				return;
 			} catch (Exception e) {
 				outputView.printErrorMessage(e.getMessage());

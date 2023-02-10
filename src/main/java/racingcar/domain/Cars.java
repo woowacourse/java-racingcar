@@ -11,7 +11,7 @@ import java.util.Set;
 public class Cars {
 	private final Set<Car> cars = new LinkedHashSet<>();
 
-	public void generateCars(List<String> carNames, NumberGenerator numberGenerator) {
+	public void createCars(List<String> carNames, NumberGenerator numberGenerator) {
 		CarMovement carMovement = new CarMovement(numberGenerator);
 		validateCarsSizeOneOrZero(carNames);
 		for (String carName : carNames) {

@@ -15,17 +15,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
 	Cars cars;
+	NumberGenerator numberGenerator;
 
 	@BeforeEach
 	void setup() {
 		cars = new Cars();
+		numberGenerator = new RandomNumberGenerator();
 	}
 
 	@DisplayName("자동차 이름 List로 Cars 등록 성공 테스트")
 	@ParameterizedTest(name = "carNames = {0}, expectedSize = {1}")
 	@MethodSource("carNamesDummy")
 	void generateCarsSuccessTest(List<String> carNames, int expectedSize) {
-		cars.generateCars(carNames);
+		cars.createCars(carNames, numberGenerator);
 		assertThat(cars.getCars()).hasSize(expectedSize);
 	}
 
@@ -33,7 +35,7 @@ class CarsTest {
 	@ParameterizedTest(name = "carNames = {0}")
 	@MethodSource("carNamesOneOrZeroDummy")
 	void generateCarsOneOrZero(List<String> carNames) {
-		assertThatThrownBy(() -> cars.generateCars(carNames))
+		assertThatThrownBy(() -> cars.createCars(carNames, numberGenerator))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -41,7 +43,7 @@ class CarsTest {
 	@ParameterizedTest(name = "carNames = {0}")
 	@MethodSource("carNamesDuplicatedDummy")
 	void generateCarsDuplicate(List<String> carNames) {
-		assertThatThrownBy(() -> cars.generateCars(carNames))
+		assertThatThrownBy(() -> cars.createCars(carNames, numberGenerator))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -55,7 +57,7 @@ class CarsTest {
 	@ParameterizedTest(name = "winnerCarNames = {0}")
 	@MethodSource("carNamesDummy")
 	void findWinnerNamesTest(List<String> winnerCarNames) {
-		cars.generateCars(winnerCarNames);
+		cars.createCars(winnerCarNames, numberGenerator);
 		cars.moveCars();
 		List<String> winnerNames = cars.findWinnerNames();
 		assertThat(winnerNames).hasSizeGreaterThanOrEqualTo(1);
