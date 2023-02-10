@@ -15,8 +15,7 @@ public class CarManager {
     }
 
     public void moveCarsRandomly() {
-        this.cars.stream()
-                .forEach(car -> car.move(makeRandomCarMove()));
+        this.cars.forEach(car -> car.move(makeRandomCarMove()));
     }
 
     public List<Car> getCars() {
