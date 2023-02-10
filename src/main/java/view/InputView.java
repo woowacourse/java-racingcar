@@ -21,7 +21,7 @@ public class InputView {
     public List<String> readCarNames() {
         System.out.println(Message.INPUT_CARS.message);
         String input = Util.removeSpace(scanner.nextLine());
-        List<String> names = Util.splitByComma(input);
+        List<String> names = Util.split(input);
         new CarNameValidator().validate(names);
         return names;
     }

@@ -28,7 +28,7 @@ public class MoveCountValidator {
 
     void validateNumberRange(String input) {
         int number = Integer.parseInt(input);
-        if (number == 0) {
+        if (number <= 0) {
             throw new IllegalArgumentException(Message.EXCEPTION_NUMBER_RANGE.message);
         }
     }
