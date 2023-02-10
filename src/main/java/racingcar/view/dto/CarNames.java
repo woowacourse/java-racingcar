@@ -11,8 +11,9 @@ public class CarNames {
     private static final String VALID_STRING_REGEX = "(\\w)+";
     private static final String SEPARATOR = ",";
     private static final int CAR_NAME_MAX_LENGTH = 5;
+    private static final Pattern CAR_NAME_PATTERN = Pattern.compile(VALID_STRING_REGEX);
 
-    private String carNames;
+    private final String carNames;
 
     public CarNames(String carNames) {
         validate(carNames);
@@ -47,8 +48,7 @@ public class CarNames {
     }
 
     private void hasInvalidValue(String splitCarName) {
-        Pattern pattern = Pattern.compile(VALID_STRING_REGEX);
-        if (!pattern.matcher(splitCarName).matches()) {
+        if (!CAR_NAME_PATTERN.matcher(splitCarName).matches()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME_FORMAT.message());
         }
     }

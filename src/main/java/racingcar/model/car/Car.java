@@ -5,9 +5,10 @@ import racingcar.model.car.strategy.MovingStrategy;
 public class Car {
     private static final String POSITION_FORMAT_SYMBOL = "-";
     private static final String POSITION_STATE_FORMAT = "%s : %s";
+    private static final int DEFAULT_POSITION = 1;
 
     private final String carName;
-    private int position = 1;
+    private int position = DEFAULT_POSITION;
     private final MovingStrategy movingStrategy;
 
     public Car(String carName, MovingStrategy movingStrategy) {
