@@ -32,8 +32,8 @@ public class InputView {
     }
 
     private void validate(String name) {
-        validateToContainBlank(name);
         validateLength(name);
+        validateToContainBlank(name);
     }
 
     private void validateLength(String name) {
