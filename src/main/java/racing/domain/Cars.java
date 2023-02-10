@@ -9,7 +9,14 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validateCars(cars);
         this.cars = cars;
+    }
+
+    private void validateCars(List<Car> cars) {
+        if (cars.isEmpty()) {
+            throw new IllegalArgumentException("최소 하나 이상의 Car 객체가 존재해야합니다.");
+        }
     }
 
     public List<Car> getFirstPosition() {
@@ -24,7 +31,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElse(Car.MIN_POSITION);
     }
 
     public List<Car> getCars() {
