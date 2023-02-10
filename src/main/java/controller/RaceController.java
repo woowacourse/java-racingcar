@@ -1,25 +1,25 @@
 package controller;
 
 import domain.Car;
+import domain.Participants;
 import domain.Race;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import repository.CarRepository;
 import utils.Judge;
 import view.output.OutputView;
 
 public class RaceController {
 
-    private final CarRepository carRepository;
+    private final Participants participants;
     private Race race;
     private final int DRIVING_DISTANCE = 1;
 
     public RaceController() {
-        carRepository = new CarRepository();
+        participants = new Participants();
     }
 
-    public void playGame(int totalCount) {
+    public void playGame(String totalCount) {
         race = new Race(totalCount);
         while (!race.isFinished()) {
             playRound();
@@ -28,22 +28,22 @@ public class RaceController {
     }
 
     public void addAllParticipants(List<String> carNames) {
-        carNames.forEach(carRepository::add);
+        carNames.forEach(participants::join);
     }
 
     public List<Car> getWinners() {
-        List<Car> participants = carRepository.findAll();
-        int maxDistance = participants.stream().max(Comparator.comparing(Car::getDrivenDistance)).get()
-            .getDrivenDistance();
-        List<Car> winners = participants.stream()
-            .filter(car -> car.getDrivenDistance() == maxDistance).collect(
-                Collectors.toList());
+        List<Car> candidates = participants.showAllParticipants();
+        int maxDistance = candidates.stream().max(Comparator.comparing(Car::getDrivenDistance))
+            .get().getDrivenDistance();
+        List<Car> winners = candidates.stream()
+            .filter(car -> car.getDrivenDistance() == maxDistance)
+            .collect(Collectors.toList());
         return winners;
     }
 
     private void playRound() {
-        List<Car> participants = carRepository.findAll();
-        participants.forEach(this::driveOrNot);
+        List<Car> cars = participants.showAllParticipants();
+        cars.forEach(this::driveOrNot);
         race.addCount();
         printRoundResult();
     }
@@ -56,6 +56,6 @@ public class RaceController {
     }
 
     private void printRoundResult() {
-        OutputView.printRoundResult(carRepository.findAll());
+        OutputView.printRoundResult(participants.showAllParticipants());
     }
 }
