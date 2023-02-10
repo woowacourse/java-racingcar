@@ -15,13 +15,11 @@ public class GameController {
 
     private static final String DELIMITER = ",";
 
-
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
     private final Cars cars;
     private final GameTime gameTime;
-
 
     public GameController() {
         this.cars = new Cars(initCars());
@@ -32,8 +30,6 @@ public class GameController {
         String gameTime = inputView.inputGameTime();
         return new GameTime(gameTime);
     }
-
-
 
     private List<Car> initCars() {
         String input = inputView.inputCarName();
@@ -52,7 +48,6 @@ public class GameController {
 
     private void runSingleRound() {
         cars.moveCarsRandomly();
-
         cars.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
         System.out.println();
     }
@@ -60,13 +55,6 @@ public class GameController {
     public void finishGame() {
         Winners winners = new Winners(cars.calculateWinners());
         cars.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
-        outputView.printWinners(
-                winners.getWinners().stream()
-                .map(Winner::getName)
-                .collect(Collectors.toUnmodifiableList()
-                ));
+        outputView.printWinners(winners.toString());
     }
-
-
-
 }
