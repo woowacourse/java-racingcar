@@ -56,9 +56,9 @@ class RacingCarsTest extends TestCarMaker {
     void getWinnerName() {
         //given
         List<RacingCar> racingCars = List.of(pobi, honux, ethan);
+        RacingCars result = new RacingCars(racingCars);
 
         //when
-        RacingCars result = new RacingCars(racingCars);
         result.moveAll();
 
         //then
