@@ -60,13 +60,16 @@ public class MainController {
 
     private GameStatus setCars() {
         List<String> carNames = inputView.readCarNames();
-        carNames.stream().map(Car::new).forEach(CarRepository::addCars);
+        carNames.stream()
+                .map(Car::new)
+                .forEach(CarRepository::addCars);
         return GameStatus.MOVE_CARS;
     }
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            CarRepository.cars().forEach(car -> car.move(carMoveManager.isMove(RandomNumberGenerator.getRandomNumber())));
+            CarRepository.cars()
+                    .forEach(car -> car.move(carMoveManager.isMove(RandomNumberGenerator.getRandomNumber())));
             outputView.printResult(CarRepository.cars());
         }
     }
