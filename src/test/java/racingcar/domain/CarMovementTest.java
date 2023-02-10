@@ -15,6 +15,7 @@ class CarMovementTest {
 	NumberGenerator numberGenerator;
 	CarMovement carMovement;
 
+	@DisplayName("자동차 이동 기능 생성 성공 테스트")
 	@Test
 	void createRandomCarMovementTest() {
 		carMovement = new CarMovement(() -> 0);
