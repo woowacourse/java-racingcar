@@ -10,16 +10,18 @@ public class RacingCarGame {
     private final NumberGenerator numberGenerator;
     private final WinnerJudge winnerJudge;
     private final Cars cars;
-    private final Lap lap;
+    private final Lap totalLap;
+    private Lap currentLap;
 
     private RacingCarGame(final NumberGenerator numberGenerator,
                           final WinnerJudge winnerJudge,
                           final Cars cars,
-                          final Lap lap) {
+                          final Lap totalLap) {
         this.numberGenerator = numberGenerator;
         this.winnerJudge = winnerJudge;
         this.cars = cars;
-        this.lap = lap;
+        this.totalLap = totalLap;
+        this.currentLap = Lap.init();
     }
 
     public static RacingCarGame init(final NumberGenerator numberGenerator,
@@ -27,10 +29,6 @@ public class RacingCarGame {
                                      final Cars cars,
                                      final Lap lap) {
         return new RacingCarGame(numberGenerator, winnerJudge, cars, lap);
-    }
-
-    public boolean hasMoreLap() {
-        return lap.hasNext();
     }
 
     /**
@@ -46,8 +44,12 @@ public class RacingCarGame {
             throw new IllegalStateException("이미 모든 바퀴를 진행했습니다.");
         }
         cars.move(numberGenerator);
-        lap.next();
+        currentLap = currentLap.increase();
         return new MovedResult(cars);
+    }
+
+    public boolean hasMoreLap() {
+        return !totalLap.equals(currentLap);
     }
 
     public GameResult gameResult() {

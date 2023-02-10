@@ -56,7 +56,7 @@ public class RacingCarController {
     }
 
     private Lap confirmTotalLap() {
-        return new Lap(InputView.inputTotalLap());
+        return Lap.totalLap(InputView.inputTotalLap());
     }
 
     private void runRace(final RacingCarGame game) {
