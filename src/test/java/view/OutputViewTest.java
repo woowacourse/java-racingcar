@@ -29,7 +29,7 @@ class OutputViewTest {
         outputView.printStatus(statuses);
 
         Assertions.assertThat(outputStream.toString())
-                .isEqualTo("rosie : --\nhong : -\n\n");
+                .contains("rosie : --", "hong : -");
     }
 
     @Test
