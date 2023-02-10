@@ -24,7 +24,7 @@ public class Car {
     }
 
     private boolean isOnlySpace(String name) {
-        return name.replace(" ", "").length() == 0;
+        return name.trim().isBlank();
     }
 
     private void moveCar() {
