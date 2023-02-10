@@ -51,16 +51,8 @@ public class GameController {
 
     private List<Car> makeCars(String carNames) {
         return Arrays.stream(carNames.split(CAR_NAME_DELIMITER))
-                .filter(this::validateCarName)
                 .map(Car::new)
                 .collect(Collectors.toList());
-    }
-
-    private boolean validateCarName(String carName) {
-        if (carName.isBlank()) {
-            throw new IllegalArgumentException("빈 문자열 및 공백은 입력할 수 없습니다.");
-        }
-        return true;
     }
 
 //    private int readNumberOfMoving() {
