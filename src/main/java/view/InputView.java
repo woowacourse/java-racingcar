@@ -1,6 +1,6 @@
 package view;
 
-import util.Validator;
+import util.MovingCountValidator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +19,7 @@ public class InputView {
     public Integer readMovingCount() {
         String input = sc.nextLine();
 
-        Validator.validateMovingCountInput(input);
+        MovingCountValidator.validateMovingCountInput(input);
 
         return Integer.parseInt(input);
     }
