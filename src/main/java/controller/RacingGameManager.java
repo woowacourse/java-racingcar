@@ -41,7 +41,7 @@ public class RacingGameManager {
         }
     }
 
-    public List<Name> readCarNames() {
+    private List<Name> readCarNames() {
         try {
             return InputView.readCarNames()
                     .stream()
