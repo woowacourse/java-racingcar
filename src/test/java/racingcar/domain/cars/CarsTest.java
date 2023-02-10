@@ -1,4 +1,4 @@
-package racingcar.domain.carrepository;
+package racingcar.domain.cars;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,22 +13,22 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class CarRepositoryTest {
+class CarsTest {
 
     @ParameterizedTest
     @MethodSource("getCars")
     @DisplayName("두 개 이상이고 중복이 없는 자동차 객체의 배열이 입력되었을 때, CarRepository 객체가 생성되는지 확인")
     void validate_test(List<Car> cars) {
-        CarRepository carRepository = new CarRepository(cars);
+        Cars carRepository = new Cars(cars);
 
-        assertThat(carRepository).isInstanceOf(CarRepository.class);
+        assertThat(carRepository).isInstanceOf(Cars.class);
     }
 
     @ParameterizedTest
     @MethodSource("getWrongCars")
     @DisplayName("이름이 중복되거나 하나의 자동차만 입력되었을 때, 오류를 발생시키는지 확인")
     void validate_error_test(List<Car> cars) {
-        assertThatThrownBy(() -> new CarRepository(cars))
+        assertThatThrownBy(() -> new Cars(cars))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -38,7 +38,7 @@ class CarRepositoryTest {
     void findWinner(List<Car> cars) {
         Car movedCar = createMovedCar();
         cars.add(movedCar);
-        CarRepository carRepository = new CarRepository(cars);
+        Cars carRepository = new Cars(cars);
 
         List<String> winners = carRepository.findWinner();
 

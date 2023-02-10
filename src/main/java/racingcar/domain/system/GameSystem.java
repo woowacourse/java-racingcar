@@ -1,6 +1,6 @@
 package racingcar.domain.system;
 
-import racingcar.domain.carrepository.CarRepository;
+import racingcar.domain.cars.Cars;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.result.Result;
 
@@ -25,10 +25,10 @@ public class GameSystem {
         }
     }
 
-    public Result executeRace(CarRepository carRepository) {
+    public Result executeRace(Cars cars) {
         List<Map<String, Integer>> results = new ArrayList<>();
         for (int i = 0; i < gameRound; i++) {
-            results.add(carRepository.movePosition());
+            results.add(cars.movePosition());
         }
         return new Result(results);
     }

@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.carfactory.CarFactory;
-import racingcar.domain.carrepository.CarRepository;
+import racingcar.domain.cars.Cars;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.result.Result;
 import racingcar.domain.system.GameSystem;
@@ -21,10 +21,10 @@ public class GameController {
     }
 
     public void run() {
-        CarRepository carRepository = makeCars(inputView.readCarNames());
+        Cars cars = makeCars(inputView.readCarNames());
 
         GameSystem gameSystem = createGameSystem(inputView.readGameRound());
-        Result result = gameSystem.executeRace(carRepository);
+        Result result = gameSystem.executeRace(cars);
 
         printResultAndWinner(result);
     }
@@ -33,7 +33,7 @@ public class GameController {
         return new GameSystem(gameRound, new NumberGenerator());
     }
 
-    private CarRepository makeCars(List<String> carNames) {
+    private Cars makeCars(List<String> carNames) {
         CarFactory carFactory = new CarFactory();
         return carFactory.createCarRepository(carNames);
     }
