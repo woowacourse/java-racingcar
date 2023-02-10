@@ -11,18 +11,18 @@ import java.util.function.Supplier;
 public class RacingCarController {
 
     public void run(NumberGenerator numberGenerator) {
-        CarGroup carGroup = repeat(this::makeCars);
+        CarGroup carGroup = repeat(this::generateCars);
         Integer tryCount = repeat(InputView::readTryCount);
-        moveCarsAndView(numberGenerator, tryCount, carGroup);
+        playRacing(numberGenerator, tryCount, carGroup);
         OutputView.printWinners(carGroup.findWinners());
     }
 
-    private CarGroup makeCars() {
+    private CarGroup generateCars() {
         List<String> carNames = repeat(InputView::readCarNames);
         return new CarGroup(carNames);
     }
 
-    private void moveCarsAndView(NumberGenerator numberGenerator, int tryCount, CarGroup carGroup) {
+    private void playRacing(NumberGenerator numberGenerator, int tryCount, CarGroup carGroup) {
         for (int i = 0; i < tryCount; i++) {
             carGroup.moveCars(numberGenerator);
             OutputView.printCarPosition(carGroup.toCarDtos());
