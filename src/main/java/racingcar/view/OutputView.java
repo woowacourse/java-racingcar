@@ -21,6 +21,7 @@ public class OutputView {
     }
 
     public void printResult(Result result) {
+        printResultGuide();
         List<Map<String, Integer>> results = result.getResults();
         for (Map<String, Integer> roundResult : results) {
             printEachResult(roundResult);
