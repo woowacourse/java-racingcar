@@ -37,7 +37,7 @@ class InputViewTest {
         @ParameterizedTest
         @ValueSource(strings = {",,", ","})
         @DisplayName("이름을 입력하지 않으면")
-        void throwExceptionWhenSplitListIsEmpty(String input) throws IOException {
+        void throwExceptionWhenSplitListIsEmpty(String input) {
             InputStream in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
             System.setIn(in);
             inputView = new InputView();
@@ -49,7 +49,7 @@ class InputViewTest {
     @Nested
     class ReadTryTimeTest {
         @DisplayName("integer 범위의 수가 아닌 문자열")
-        @ParameterizedTest(name = "\"{0}\" 인 케이스 일때 InputMismatchException 발생")
+        @ParameterizedTest(name = "\"{0}\" 인 케이스 일때 IllegalArgumentException 발생")
         @ValueSource(strings = {"a1", "가나다", "3.3", "999999999999999"})
         void throwIllegalArgumentExceptionWhenInputIsNotNumber(String input) {
             //given
@@ -58,7 +58,7 @@ class InputViewTest {
             inputView = new InputView();
             //when,then
             assertThatThrownBy(() -> inputView.readTryTime())
-                    .isInstanceOf(InputMismatchException.class);
+                    .isInstanceOf(IllegalArgumentException.class);
         }
     }
 }
