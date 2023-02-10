@@ -1,8 +1,8 @@
 package view;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-
-import util.InputUtil;
+import java.io.InputStreamReader;
 
 public class InputView {
 
@@ -12,12 +12,18 @@ public class InputView {
     public String readCarNames() throws IOException {
         System.out.println(CAR_NAME_INPUT_MESSAGE);
 
-        return InputUtil.readLine();
+        return readLine();
     }
 
     public String readMovingTrial() throws IOException {
         System.out.println(MOVING_TRIAL_INPUT_MESSAGE);
 
-        return InputUtil.readLine();
+        return readLine();
+    }
+
+    public String readLine() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        return bufferedReader.readLine();
     }
 }
