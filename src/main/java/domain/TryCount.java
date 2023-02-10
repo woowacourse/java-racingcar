@@ -3,7 +3,7 @@ package domain;
 import error.ErrorMessage;
 
 public class TryCount {
-    private static final int MIN_COUNT = 1;
+    public static final int MIN_COUNT = 1;
 
     private final int count;
 
