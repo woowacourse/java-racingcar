@@ -1,8 +1,8 @@
-package view;
+package racing.view;
 
 import java.io.IOException;
 
-import util.InputUtil;
+import racing.util.InputUtil;
 
 public class InputView {
 

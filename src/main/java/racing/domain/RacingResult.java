@@ -1,4 +1,4 @@
-package domain;
+package racing.domain;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,6 +1,8 @@
+package racing;
+
 import java.io.IOException;
 
-import controller.RacingGameController;
+import racing.controller.RacingGameController;
 
 public class Application {
 

@@ -1,9 +1,9 @@
-package handler;
+package racing.handler;
 
 import java.io.IOException;
 
-import domain.RacingGame;
-import view.InputView;
+import racing.domain.RacingGame;
+import racing.view.InputView;
 
 //TODO: 예외 발생 시 재입력
 public class InputHandler {

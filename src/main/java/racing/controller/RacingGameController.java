@@ -1,10 +1,10 @@
-package controller;
+package racing.controller;
 
 import java.io.IOException;
 
-import domain.RacingGame;
-import handler.InputHandler;
-import view.OutputView;
+import racing.domain.RacingGame;
+import racing.handler.InputHandler;
+import racing.view.OutputView;
 
 public class RacingGameController {
 
@@ -30,9 +30,7 @@ public class RacingGameController {
         for (int i = 0; i < movingTrial; i++) {
             racingGame.race();
 
-            outputView.printRacingResult(racingGame
-                    .getRacingResult()
-                    .getHistory());
+            outputView.printRacingResult(racingGame.getRacingResult().getHistory());
         }
     }
 }

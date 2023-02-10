@@ -1,4 +1,4 @@
-package domain;
+package racing.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -6,17 +6,17 @@ import java.util.Map;
 public class RacingGame {
 
     private final CarGroup carGroup;
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final NumberGenerator numberGenerator;
 
     public RacingGame(String[] names) {
-        this.carGroup = new CarGroup(names);
-        this.randomNumberGenerator = new RandomNumberGenerator();
+        this.carGroup = new racing.domain.CarGroup(names);
+        this.numberGenerator = new RandomNumberGenerator();
     }
 
     //TODO: 테스트
     public void race() {
         for (Car car : carGroup.getCars()) {
-            car.move(randomNumberGenerator);
+            car.move(numberGenerator);
         }
     }
 

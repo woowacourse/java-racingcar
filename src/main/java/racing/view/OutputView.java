@@ -1,4 +1,4 @@
-package view;
+package racing.view;
 
 import java.util.List;
 import java.util.Map;

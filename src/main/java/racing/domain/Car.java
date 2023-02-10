@@ -1,4 +1,4 @@
-package domain;
+package racing.domain;
 
 public class Car {
 
@@ -25,8 +25,8 @@ public class Car {
         return position;
     }
 
-    public void move(RandomNumberGenerator randomNumberGenerator) {
-        if (randomNumberGenerator.generate() >= MOVING_CONDITION) {
+    public void move(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MOVING_CONDITION) {
             this.position++;
         }
     }
