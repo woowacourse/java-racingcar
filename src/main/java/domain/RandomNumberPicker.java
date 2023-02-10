@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Random;
 
-public class RandomNumberPicker implements NumberPicker{
+public class RandomNumberPicker implements NumberPicker {
     public static final int BOUND = 10;
 
     @Override
