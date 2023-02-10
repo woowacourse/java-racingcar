@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.Winners;
+
 import java.util.List;
 
 import static racingcar.view.OutputConstant.RESULT_POSTFIX;

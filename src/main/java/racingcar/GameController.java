@@ -53,7 +53,11 @@ public class GameController {
     public void finishGame() {
         Winners winners = new Winners(cars.calculateWinners());
         cars.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
-        outputView.printWinners(winners);
+        outputView.printWinners(
+                winners.getWinners().stream()
+                .map(Winner::getName)
+                .collect(Collectors.toUnmodifiableList()
+                ));
     }
 
 
