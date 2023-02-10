@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.Comparator;
-
 public class Position implements Comparable<Position> {
     private final Integer INITIAL_DEFAULT_VALUE = 0;
     private final Integer MOVE_STEP = 1;

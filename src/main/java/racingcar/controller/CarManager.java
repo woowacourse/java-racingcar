@@ -2,11 +2,9 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.CarMovement;
-import racingcar.domain.CarName;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CarManager {

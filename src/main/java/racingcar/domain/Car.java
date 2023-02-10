@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.Comparator;
-
 public class Car implements Comparable<Car> {
     private final CarName name;
     private final Position pos;
