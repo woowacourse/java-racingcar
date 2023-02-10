@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import utils.RandomNumberGenerator;
 import vo.Name;
+import vo.Position;
 
 class CarsTest {
     Cars cars;
@@ -24,7 +25,7 @@ class CarsTest {
 
         cars.add(car);
 
-        assertThat(cars.getStatus(car)).isEqualTo(0);
+        assertThat(cars.getPosition(car)).isEqualTo(Position.of(0L));
     }
 
     @Test
@@ -54,9 +55,9 @@ class CarsTest {
         cars.add(car);
         cars.move();
 
-        Long status = cars.getStatus(car);
+        Position status = cars.getPosition(car);
 
-        assertThat(status).isEqualTo(1L);
+        assertThat(status).isEqualTo(Position.of(1L));
     }
 
     @Test

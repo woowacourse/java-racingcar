@@ -1,27 +1,29 @@
 package domain;
 
 import vo.Name;
+import vo.Position;
 
 public class Car {
     private final Name name;
-    private Long position = 0L;
+    private Position position;
 
     public Car(Name name) {
         validateName(name);
         this.name = name;
+        this.position = Position.of(0L);
     }
 
     public Name getName() {
         return name;
     }
 
-    public Long getPosition() {
+    public Position getPosition() {
         return position;
     }
 
     public void move(int randomNumber) {
         if (randomNumber > 3) {
-            position++;
+            position = position.plus();
         }
     }
 
@@ -34,9 +36,17 @@ public class Car {
     public String getResult() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(" : ");
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < position.getValue(); i++) {
             stringBuilder.append("-");
         }
         return name.getValue() + stringBuilder;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
     }
 }

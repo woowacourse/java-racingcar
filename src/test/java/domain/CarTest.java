@@ -1,12 +1,14 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import vo.Name;
+import vo.Position;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
 
@@ -29,10 +31,10 @@ class CarTest {
 
     @ParameterizedTest(name = "{0}이 들어올때 테스트")
     @CsvSource(value = {"4,1", "3,0"})
-    void checkMoveTest(int randomNumber, int expected) {
+    void checkMoveTest(int randomNumber, long expected) {
         Car car = new Car(Name.of("test"));
         car.move(randomNumber);
 
-        assertThat(car.getPosition()).isEqualTo(expected);
+        assertThat(car.getPosition()).isEqualTo(Position.of(expected));
     }
 }

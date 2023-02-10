@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import utils.RandomNumberGenerator;
 import vo.Name;
+import vo.Position;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
@@ -21,7 +22,7 @@ public class Cars {
         cars.add(car);
     }
 
-    public Long getStatus(Car car) {
+    public Position getPosition(Car car) {
         return car.getPosition();
     }
 
@@ -30,22 +31,30 @@ public class Cars {
     }
 
     public List<Name> getWinners() {
-        Long maxValue = getMaxValue();
+        Position highestPosition = calculateHighestPosition();
         return cars.stream()
-                .filter((car) -> Objects.equals(car.getPosition(), maxValue))
+                .filter((car) -> Objects.equals(car.getPosition(), highestPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private Long getMaxValue() {
+    private Position calculateHighestPosition() {
         return Collections.max(cars.stream()
-                .map((Car::getPosition))
-                .collect(Collectors.toList()));
+                        .map((Car::getPosition))
+                        .collect(Collectors.toList()));
     }
 
     public List<String> getResult() {
         return cars.stream()
                 .map(Car::getResult)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "cars=" + cars +
+                ", randomNumberGenerator=" + randomNumberGenerator +
+                '}';
     }
 }
