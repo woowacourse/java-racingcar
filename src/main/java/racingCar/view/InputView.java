@@ -36,13 +36,9 @@ public class InputView {
     }
 
     private static void validateEmpty(String tryCount) throws IllegalArgumentException {
-        if (isBlank(tryCount)) {
+        if (tryCount.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수를 다시 입력해주세요.");
         }
-    }
-
-    private static boolean isBlank(String tryCount) {
-        return tryCount.length() == 0;
     }
 
 }
