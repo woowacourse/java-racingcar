@@ -16,51 +16,35 @@ class CarNamesTest {
     @Test
     void validateEmptyCarName() {
         String testSampleValue = ",,,";
-
-        assertThatCode(() -> {
-            new CarNames(testSampleValue);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.CAR_NAME_NULL.message());
+        createFailureTest(testSampleValue, ErrorMessage.CAR_NAME_NULL.message());
     }
 
     @DisplayName("자동차 이름에는 문자와 숫자만 들어갈 수 있습니다.")
     @ParameterizedTest
     @ValueSource(strings = {"a,ba, ,abs", ",a,b", "a c v"})
     void validateFormatTest(String input) {
-        assertThatThrownBy(() -> {
-            new CarNames(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_CAR_NAME_FORMAT.message());
+        createFailureTest(input, ErrorMessage.INVALID_CAR_NAME_FORMAT.message());
     }
 
     @DisplayName("자동차 이름은 한글자 이상이어야 합니다.")
     @ParameterizedTest
     @ValueSource(strings = {"  ", "car1,,car2", ""})
     void validateBlankTest(String input) {
-        assertThatThrownBy(() -> {
-            new CarNames(input);
-        }).isInstanceOf(IllegalArgumentException.class);
+        createFailureTest(input, ErrorMessage.INVALID_CAR_NAME_FORMAT.message());
     }
 
     @DisplayName("자동차 이름은 다섯글자 이하이어야 합니다.")
     @ParameterizedTest
     @ValueSource(strings = {"abcdef", "car,carscar"})
     void validateOverLengthTest(String input) {
-        assertThatThrownBy(() -> {
-            new CarNames(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.CAR_NAME_OVER_RANGE.message());
+        createFailureTest(input, ErrorMessage.CAR_NAME_OVER_RANGE.message());
     }
 
     @DisplayName("자동차 이름은 중복될 수 없습니다.")
     @Test
     void validateDuplication() {
         String testSampleValue = "pobi,crong,pobi";
-
-        assertThatCode(() -> {
-            new CarNames(testSampleValue);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.CAR_NAME_DUPLICATED.message());
+        createFailureTest(testSampleValue, ErrorMessage.CAR_NAME_DUPLICATED.message());
     }
 
     @DisplayName("정상적인 형식의 자동차 이름으로 생성되어야 합니다.")
@@ -70,6 +54,13 @@ class CarNamesTest {
         assertThatCode(() -> {
             new CarNames(input);
         }).doesNotThrowAnyException();
+    }
+
+    private void createFailureTest(String testSampleValue, String expectedErrorMessage) {
+        assertThatCode(() -> {
+            new CarNames(testSampleValue);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(expectedErrorMessage);
     }
 
     @DisplayName("자동차 이름 저장 테스트")
