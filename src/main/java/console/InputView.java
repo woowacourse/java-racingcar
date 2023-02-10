@@ -1,10 +1,9 @@
 package console;
 
+import java.util.InputMismatchException;
 import utils.ScannerUtil;
 import validation.CarInfoValidation;
 import validation.TryCountValidation;
-
-import java.util.InputMismatchException;
 
 public class InputView {
 
