@@ -1,6 +1,6 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
@@ -19,13 +19,9 @@ class CarsTest {
         //Given
         List<Car> testCase = new ArrayList<>();
 
-        //When
-        Throwable result = catchThrowable(() -> {
-            new Cars(testCase);
-        });
-
-        //Then
-        assertThat(result).isInstanceOf(IllegalArgumentException.class);
+        //When + Then
+        assertThatThrownBy(() ->  new Cars(testCase))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
