@@ -1,67 +1,56 @@
 package repository;
 
 import exception.ErrorCode;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 import model.Car;
 
 public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
 
-    private static final int INITIAL_MOVE_VALUE = 1;
-    private static final int MOVE_UNIT = 1;
-    private final Map<Car, Integer> moveCountBoard;
+    private final Map<String, Car> board;
 
     public CarRaceResultRepositoryImpl() {
-        this.moveCountBoard = new ConcurrentHashMap<>();
+        this.board = new ConcurrentHashMap<>();
     }
 
     @Override
     public void save(final Car car) {
-        validateCarDuplicate(car);
-        moveCountBoard.put(car, INITIAL_MOVE_VALUE);
+        validateCarDuplicate(car.getName());
+        board.put(car.getName(), car);
     }
 
     @Override
     public int findMoveCountByName(final String name) {
-        return moveCountBoard.get(findByName(name));
+        if (board.containsKey(name)) {
+            return board.get(name).getCurrentPosition();
+        }
+        throw new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage());
     }
 
     @Override
-    public Map<String, Integer> getRaceResult() {
-        Map<String, Integer> nameResult = new HashMap<>();
-        moveCountBoard.forEach((key, value) -> nameResult.put(key.getName(), value));
-        return nameResult;
+    public Map<String, Integer> findAllNameAndPosition() {
+        Map<String, Integer> carResult = new HashMap<>();
+        board.forEach((name, car) -> carResult.put(name, car.getCurrentPosition()));
+        return carResult;
     }
 
     @Override
-    public List<String> findAllCars() {
-        return moveCountBoard.keySet()
-            .stream()
-            .map(Car::getName)
-            .collect(Collectors.toList());
+    public List<Car> findAll() {
+        return new ArrayList<>(board.values());
     }
 
     @Override
-    public void moveByName(final String name) {
-        Car car = findByName(name);
-        moveCountBoard.replace(car, moveCountBoard.get(car) + MOVE_UNIT);
+    public void updatePosition(final Car car) {
+        board.put(car.getName(), car);
     }
 
-    private void validateCarDuplicate(final Car car) {
-        if (moveCountBoard.containsKey(car)) {
+    private void validateCarDuplicate(final String name) {
+        if (board.containsKey(name)) {
             throw new IllegalArgumentException(ErrorCode.CAR_NAME_DUPLICATE.getMessage());
         }
     }
 
-    private Car findByName(final String name) {
-        return moveCountBoard
-            .keySet()
-            .stream()
-            .filter(car -> car.getName().equals(name))
-            .findAny()
-            .orElseThrow(() -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage()));
-    }
 }

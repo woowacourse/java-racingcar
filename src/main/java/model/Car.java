@@ -1,7 +1,6 @@
 package model;
 
 import exception.ErrorCode;
-import java.util.Objects;
 import type.CarInformation;
 
 public class Car {
@@ -36,28 +35,12 @@ public class Car {
             && nameLength <= CarInformation.NAME_MAX.getValue();
     }
 
-    public String getName() {
-        return name;
-    }
-
     public int getCurrentPosition() {
         return position;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Car car = (Car) o;
-        return Objects.equals(name, car.name);
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 }

@@ -10,9 +10,9 @@ public interface CarRaceResultRepository {
 
     int findMoveCountByName(String name);
 
-    Map<String, Integer> getRaceResult();
+    Map<String, Integer> findAllNameAndPosition();
 
-    List<String> findAllCars();
+    List<Car> findAll();
 
-    void moveByName(String name);
+    void updatePosition(Car car);
 }
