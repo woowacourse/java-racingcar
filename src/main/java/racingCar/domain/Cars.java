@@ -1,9 +1,8 @@
 package racingCar.domain;
 
 import racingCar.dto.CarDto;
-import racingCar.util.NumberGenerator;
+import racingCar.util.NumberPicker;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +12,8 @@ public class Cars {
 
     private static final int MIN_CAR_SIZE = 2;
     private static final int INIT_CAR_POSITION = 0;
+    private static final int MIN_NUMBER_RANGE = 0;
+    private static final int MAX_NUMBER_RANGE = 9;
 
     private List<Car> cars;
 
@@ -38,9 +39,9 @@ public class Cars {
         }
     }
 
-    public void moveCars(NumberGenerator numberGenerator) {
+    public void moveCars(NumberPicker numberPicker) {
         for (Car car : cars) {
-            car.move(numberGenerator.generateNumber());
+            car.move(numberPicker.pickNumberInRange(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE));
         }
     }
 
