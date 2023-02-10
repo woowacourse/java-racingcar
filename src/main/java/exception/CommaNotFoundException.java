@@ -1,8 +1,10 @@
 package exception;
 
-public class CommaNotFoundException extends RuntimeException {
+public class CommaNotFoundException extends RuntimeExceptionImpl {
 
-    public CommaNotFoundException(String message) {
-        super(message);
+    private static final String ENTER_NAME_WITH_COMMA = "쉼표로 이름을 구분해주세요.";
+
+    public CommaNotFoundException() {
+        super(ENTER_NAME_WITH_COMMA);
     }
 }

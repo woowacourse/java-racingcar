@@ -9,7 +9,6 @@ import static java.util.stream.Collectors.toList;
 
 public class RacingCars {
 
-    public static final String CANNOT_FIND_MAX_POSITION = "최대 거리를 찾을 수 없습니다.";
     private final List<RacingCar> racingCars = new ArrayList<>();
 
     public RacingCars(final List<RacingCar> racingCars) {
@@ -39,6 +38,6 @@ public class RacingCars {
         return racingCars.getRacingCars().stream()
                 .mapToInt(RacingCar::getPosition)
                 .max()
-                .orElseThrow(() -> new CannotFindMaxPositionException(CANNOT_FIND_MAX_POSITION));
+                .orElseThrow(CannotFindMaxPositionException::new);
     }
 }

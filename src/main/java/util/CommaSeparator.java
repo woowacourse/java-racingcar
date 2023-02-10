@@ -1,11 +1,11 @@
 package util;
 
-import static exception.ErrorMessage.ENTER_NAME_WITH_COMMA;
-import static java.util.Collections.addAll;
-
 import exception.CommaNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Collections.addAll;
 
 public class CommaSeparator {
 
@@ -27,7 +27,7 @@ public class CommaSeparator {
 
     private static void validateComma(final String names) {
         if (!names.contains(COMMA)) {
-            throw new CommaNotFoundException(ENTER_NAME_WITH_COMMA.toString());
+            throw new CommaNotFoundException();
         }
     }
 }

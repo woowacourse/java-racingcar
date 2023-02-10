@@ -1,8 +1,7 @@
 package domain;
 
-import static exception.ErrorMessage.ENTER_POSITIVE_INTEGER;
-
 import exception.NotPositiveIntegerException;
+
 import java.util.regex.Pattern;
 
 public class TryCount {
@@ -23,7 +22,7 @@ public class TryCount {
 
     private void validateTryCount(final String inputCount) {
         if (!Pattern.matches(positiveIntegerRegex, inputCount)) {
-            throw new NotPositiveIntegerException(ENTER_POSITIVE_INTEGER.toString());
+            throw new NotPositiveIntegerException();
         }
     }
 

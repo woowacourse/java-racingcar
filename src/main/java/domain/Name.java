@@ -1,7 +1,5 @@
 package domain;
 
-import static exception.ErrorMessage.ENTER_NAME_CORRECT_LENGTH;
-
 import exception.NameIsOutOfBoundException;
 
 public class Name {
@@ -22,7 +20,7 @@ public class Name {
 
     private void validateLength(final String name) {
         if (validate(name)) {
-            throw new NameIsOutOfBoundException(ENTER_NAME_CORRECT_LENGTH.toString());
+            throw new NameIsOutOfBoundException();
         }
     }
 
