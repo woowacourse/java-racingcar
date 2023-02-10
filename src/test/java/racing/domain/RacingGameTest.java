@@ -1,4 +1,4 @@
-package racing.service;
+package racing.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -11,10 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racing.NumberGenerator;
-import racing.domain.Car;
 import racing.dto.GameResultDto;
 
-class RacingGameServiceTest {
+class RacingGameTest {
     private final MockNumberGenerator numberGenerator = new MockNumberGenerator();
 
     private final Car boxster = new Car("박스터");
@@ -32,9 +31,9 @@ class RacingGameServiceTest {
     @DisplayName("레이싱 게임을 한 라운드 진행한다")
     void moveTest() {
         numberGenerator.setNumber(4);
-        RacingGameService gameService = new RacingGameService(numberGenerator, 3, dummy);
+        RacingGame game = new RacingGame(numberGenerator, 3, dummy);
 
-        GameResultDto result = gameService.play();
+        GameResultDto result = game.play();
 
         Set<String> names = result.getNames();
 
@@ -52,13 +51,13 @@ class RacingGameServiceTest {
     @ParameterizedTest(name = "시도 횟수가 {0}일 때 {1}번 시도하면 {2}")
     @CsvSource(value = {"3:1:false", "3:3:true"}, delimiter = ':')
     void isEndTest(int count, int tryCount, boolean result) {
-        RacingGameService gameService = new RacingGameService(numberGenerator, count, dummy);
+        RacingGame game = new RacingGame(numberGenerator, count, dummy);
 
         for (int i = 0; i < tryCount; i++) {
-            gameService.play();
+            game.play();
         }
 
-        assertThat(gameService.isEnd()).isEqualTo(result);
+        assertThat(game.isEnd()).isEqualTo(result);
     }
 
     static class MockNumberGenerator implements NumberGenerator {

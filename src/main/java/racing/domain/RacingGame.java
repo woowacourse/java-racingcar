@@ -1,23 +1,26 @@
-package racing.service;
+package racing.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import racing.NumberGenerator;
-import racing.domain.Car;
-import racing.domain.Cars;
+import racing.RandomNumberGenerator;
 import racing.dto.GameResultDto;
 
-public class RacingGameService {
+public class RacingGame {
     private static final int MOVE_CONDITION = 4;
 
     private final NumberGenerator numberGenerator;
     private final Cars cars;
     private int tryCount;
 
-    public RacingGameService(NumberGenerator numberGenerator, int tryCount, List<Car> cars) {
+    public RacingGame(NumberGenerator numberGenerator, int tryCount, List<Car> cars) {
         this.numberGenerator = numberGenerator;
         this.cars = new Cars(cars);
         this.tryCount = tryCount;
+    }
+
+    public RacingGame(int tryCount, List<Car> cars) {
+        this(new RandomNumberGenerator(), tryCount, cars);
     }
 
     public GameResultDto play() {
@@ -42,7 +45,7 @@ public class RacingGameService {
     }
 
     public List<String> getWinners() {
-        return cars.getFirstPosition().stream()
+        return cars.getFirstCars().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
