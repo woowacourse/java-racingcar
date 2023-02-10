@@ -6,7 +6,6 @@ import racingcar.view.ErrorMessage;
 public class Validator {
     private static final String DELIMITER = ",";
     private static final String NO_INPUT = "";
-    private static final String BLANK = " ";
     private static final int MIN_GAME_TIME = 1;
     private static final int CAR_NAME_MAX_LENGTH = 5;
 
@@ -14,9 +13,13 @@ public class Validator {
     }
 
     public static void validateCarName(String carName) {
-        if (carName.length() > CAR_NAME_MAX_LENGTH || carName.contains(BLANK) || carName.equals(NO_INPUT)) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX+ErrorMessage.CAR_NAME_LENGTH);
+        if (carName.length() > CAR_NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.CAR_NAME_LENGTH);
         }
+        if (carName.contains(NO_INPUT)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NO_INPUT);
+        }
+
     }
 
     public static String[] validateCarNames(String carNamesString) {
