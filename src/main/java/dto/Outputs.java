@@ -1,6 +1,5 @@
 package dto;
 
-import domain.Car;
 import domain.Cars;
 
 import java.util.Collections;

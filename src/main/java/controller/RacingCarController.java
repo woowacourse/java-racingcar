@@ -2,16 +2,14 @@ package controller;
 
 import domain.Car;
 import domain.Cars;
-import dto.Output;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import dto.Outputs;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCarController {
 
