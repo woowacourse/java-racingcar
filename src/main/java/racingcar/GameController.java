@@ -59,7 +59,7 @@ public class GameController {
     }
 
     private void runSingleRound() {
-        cars.putRandomPowersToCar();
+        cars.moveCarsRandomly();
 
         cars.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
         System.out.println();
