@@ -20,10 +20,6 @@ public class Cars {
         cars.add(car);
     }
 
-    public Long getStatus(Car car) {
-        return car.getPosition();
-    }
-
     public void move() {
         cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
     }

@@ -23,7 +23,7 @@ class CarsTest {
 
         cars.add(car);
 
-        assertThat(cars.getStatus(car)).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
@@ -45,7 +45,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("move 실행시 value가 1 증가한다.")
+    @DisplayName("move 실행시 car의 포지션이 1 증가한다.")
     void checkMove() {
         List<Integer> testNumbers = List.of(4);
         cars = new Cars(new TestRandomNumberGenerator(testNumbers));
@@ -53,9 +53,9 @@ class CarsTest {
         cars.add(car);
         cars.move();
 
-        Long status = cars.getStatus(car);
+        Long position = car.getPosition();
 
-        assertThat(status).isEqualTo(1L);
+        assertThat(position).isEqualTo(1L);
     }
 
     @Test
