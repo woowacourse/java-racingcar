@@ -6,7 +6,7 @@ import domain.Race;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import utils.Judge;
+import util.NumberGenerator;
 import view.output.OutputView;
 
 public class RaceController {
@@ -19,10 +19,10 @@ public class RaceController {
         participants = new Participants();
     }
 
-    public void playGame(String totalCount) {
+    public void playGame(String totalCount, NumberGenerator numberGenerator) {
         race = new Race(totalCount);
         while (!race.isFinished()) {
-            playRound();
+            playRound(numberGenerator);
         }
         printRoundResult();
     }
@@ -41,18 +41,23 @@ public class RaceController {
         return winners;
     }
 
-    private void playRound() {
+    private void playRound(NumberGenerator numberGenerator) {
         List<Car> cars = participants.showAllParticipants();
-        cars.forEach(this::driveOrNot);
+        cars.forEach((car) -> driveOrNot(car, numberGenerator));
         race.addCount();
         printRoundResult();
     }
 
-    private void driveOrNot(Car car) {
-        int number = car.chooseNumber();
-        if (Judge.isAble(number)) {
+    private void driveOrNot(Car car, NumberGenerator numberGenerator) {
+        int number = numberGenerator.generate();
+        if (isEnoughToMove(number)) {
             car.drive(DRIVING_DISTANCE);
         }
+    }
+
+    private boolean isEnoughToMove(final int score) {
+        final int MIN_SCORE = 4;
+        return score >= MIN_SCORE;
     }
 
     private void printRoundResult() {

@@ -1,6 +1,5 @@
 package domain;
 
-import utils.RandomNumberGenerator;
 import validation.CarValidator;
 import validation.ErrorMessages;
 import validation.ValidateResult;
@@ -23,10 +22,6 @@ public class Car {
 
     public void drive(int distance) {
         drivenDistance += distance;
-    }
-
-    public int chooseNumber() {
-        return RandomNumberGenerator.generateNumber();
     }
 
     public int getDrivenDistance() {
