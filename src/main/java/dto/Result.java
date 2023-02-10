@@ -17,11 +17,11 @@ public class Result {
     }
 
     public static Result of(List<Car> cars) {
-        HashMap<Name, Position> map = new HashMap<>();
+        HashMap<Name, Position> resultHolder = new HashMap<>();
         for (Car car : cars) {
-            map.put(car.getName(), car.getPosition());
+            resultHolder.put(car.getName(), car.getPosition());
         }
-        return new Result(map);
+        return new Result(resultHolder);
     }
 
     public void forEach(BiConsumer<? super Name, ? super Position> action) {

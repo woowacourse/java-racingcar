@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Service {
+    public static final String DUPLICATING_NAME_EXCEPTION_MESSAGE = "중복된 이름은 사용할 수 없습니다.";
     private final Cars cars;
 
     public Service(Cars cars) {
@@ -38,7 +39,7 @@ public class Service {
     private void validateDuplication(List<Name> names) {
         Set<Name> namesWithoutDuplication = new HashSet<>(names);
         if(names.size() != namesWithoutDuplication.size()) {
-            throw new IllegalArgumentException("중복된 이름은 사용할 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATING_NAME_EXCEPTION_MESSAGE);
         }
     }
 }

@@ -2,6 +2,7 @@ package view;
 
 import vo.Name;
 import dto.Result;
+import vo.Position;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ public class OutputView {
     public static final String RESULT_MESSAGE_FORMAT = "%s : %s";
     public static final String WINNER_MESSAGE_FORMAT = "%s가 최종 우승했습니다.";
     public static final String DELIMITER = ", ";
-    public static final String PROGRESS_BAR = "-";
+    public static final String POSITION_BAR = "-";
 
     public void printErrorMessage(String message) {
         System.out.println(ERROR + message);
@@ -24,19 +25,31 @@ public class OutputView {
     }
 
     public void printResult(Result result) {
-        result.forEach(((name, position) -> {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int count = 0; count < position.getValue(); count++) {
-                stringBuilder.append(PROGRESS_BAR);
-            }
-            System.out.printf(RESULT_MESSAGE_FORMAT, stringBuilder, name.getValue());
-        }));
+        result.forEach((name, position)
+                -> System.out.printf(RESULT_MESSAGE_FORMAT, makePositionBar(position), name.getValue())
+        );
         System.out.println();
     }
 
+    private static StringBuilder makePositionBar(Position position) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int count = 0; count < position.getValue(); count++) {
+            stringBuilder.append(POSITION_BAR);
+        }
+        return stringBuilder;
+    }
+
     public void printWinners(List<Name> winners) {
-        List<String> carNames = winners.stream().map(Name::getValue).collect(Collectors.toList());
-        String winnersName = String.join(DELIMITER, carNames);
-        System.out.printf(WINNER_MESSAGE_FORMAT, winnersName);
+        System.out.printf(WINNER_MESSAGE_FORMAT, makeWinnerNamesWord(winners));
+    }
+
+    private static String makeWinnerNamesWord(List<Name> carNames) {
+        return String.join(DELIMITER, getWinnerNames(carNames));
+    }
+
+    private static List<String> getWinnerNames(List<Name> winners) {
+        return winners.stream()
+                .map(Name::getValue)
+                .collect(Collectors.toList());
     }
 }
