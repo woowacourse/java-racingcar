@@ -41,7 +41,7 @@ public class Car implements Comparable<Car> {
         return position.compareTo(another.position);
     }
 
-    public CarDto toCarDto() {
+    public CarDto toDto() {
         return new CarDto(this.name, this.position);
     }
 

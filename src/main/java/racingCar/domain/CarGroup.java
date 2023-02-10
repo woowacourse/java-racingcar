@@ -64,7 +64,7 @@ public class CarGroup {
 
     public List<CarDto> toCarDtos() {
         return carGroup.stream()
-                .map(car -> car.toCarDto())
+                .map(car -> car.toDto())
                 .collect(Collectors.toList());
     }
 }
