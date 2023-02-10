@@ -41,11 +41,6 @@ public class Car {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-
-        return name + " : " + sb;
+        return name + " : " + "-".repeat(position);
     }
 }
