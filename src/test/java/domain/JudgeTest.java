@@ -1,4 +1,4 @@
-package utils;
+package domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -7,13 +7,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class JudgeTest {
 
+    Judge judge = new Judge();
+
     @DisplayName("4이상의 숫자에 대해 참을 반환해야함")
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     @ParameterizedTest
     void able(int number) {
         //given
         //when
-        boolean judgeResult = Judge.isAble(number);
+        boolean judgeResult = judge.judgeDriving(number);
         //then
         Assertions.assertThat(judgeResult).isTrue();
     }
@@ -24,7 +26,7 @@ class JudgeTest {
     void disable(int number) {
         //given
         //when
-        boolean judgeResult = Judge.isAble(number);
+        boolean judgeResult = judge.judgeDriving(number);
         //then
         Assertions.assertThat(judgeResult).isFalse();
     }

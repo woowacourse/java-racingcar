@@ -1,18 +1,19 @@
 package controller;
 
 import domain.Car;
+import domain.Judge;
 import domain.Race;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import repository.CarRepository;
-import utils.Judge;
 import view.output.OutputView;
 
 public class RaceController {
 
     private final CarRepository carRepository;
     private Race race;
+    private Judge judge = new Judge();
     private final int DRIVING_DISTANCE = 1;
 
     public RaceController() {
@@ -50,7 +51,7 @@ public class RaceController {
 
     private void driveOrNot(Car car) {
         int number = car.chooseNumber();
-        if (Judge.isAble(number)) {
+        if (judge.judgeDriving(number)) {
             car.drive(DRIVING_DISTANCE);
         }
     }
