@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class RacingGame {
 
+    private static final int MOVABLE_CONDITION = 4;
+
     private final CarGroup carGroup;
     private final NumberGenerator numberGenerator;
 
@@ -15,7 +17,7 @@ public class RacingGame {
 
     //TODO: 테스트
     public void race() {
-        carGroup.race(numberGenerator);
+        carGroup.race(isMovable());
     }
 
     public RacingResult produceRacingResult() {
@@ -25,5 +27,9 @@ public class RacingGame {
         }
 
         return new RacingResult(history);
+    }
+
+    private boolean isMovable() {
+        return (numberGenerator.generate() >= MOVABLE_CONDITION);
     }
 }

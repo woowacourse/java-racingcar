@@ -31,9 +31,8 @@ class CarTest {
     void moveWhenRandomNumberIsOverThree() {
         //given
         Car car = new Car("123");
-        NumberGenerator numberGenerator = new MovableNumberGenerator();
         //when
-        car.move(numberGenerator);
+        car.move(true);
 
         //then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -44,10 +43,9 @@ class CarTest {
     void moveWhenRandomNumberIsUnderThree() {
         //given
         Car car = new Car("123");
-        NumberGenerator numberGenerator = new NonMovableNumberGenerator();
 
         //when
-        car.move(numberGenerator);
+        car.move(false);
 
         //then
         assertThat(car.getPosition()).isEqualTo(0);

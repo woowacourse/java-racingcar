@@ -1,6 +1,5 @@
 package racing.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,9 +20,9 @@ public class CarGroup {
         this.cars = setUp(names);
     }
 
-    public void race(NumberGenerator numberGenerator) {
+    public void race(boolean isMovable) {
         for (Car car : cars) {
-            car.move(numberGenerator);
+            car.move(isMovable);
         }
     }
 
