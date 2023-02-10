@@ -6,20 +6,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class CarNameValidatorTest {
+class NamesTest {
 
     @ParameterizedTest
-    @CsvSource({"''", "abcdef"})
-    void validateTest1(String input) {
-        assertThatThrownBy(() -> CarNameValidator.validate(input))
+    @CsvSource({"'a,'", "porsche"})
+    void validateInvalidNamesTest(String line) {
+        assertThatThrownBy(() -> new Names(line))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessage("[ERROR] 자동차의 이름은 1글자부터 5글자까지 가능합니다.");
     }
 
     @ParameterizedTest
-    @CsvSource({"a", "abcde"})
-    void validateTest2(String input) {
-        assertThatCode(() -> CarNameValidator.validate(input))
+    @CsvSource({"a,b,c", "my,name,is,odo"})
+    void validateValidNamesTest(String line) {
+        assertThatCode(() -> new Names(line))
                 .doesNotThrowAnyException();
     }
 }

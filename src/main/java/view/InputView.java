@@ -1,11 +1,9 @@
 package view;
 
-import java.util.List;
 import java.util.Scanner;
 
-import utils.CarNameValidator;
+import utils.Names;
 import utils.NumberValidator;
-import utils.StringParser;
 
 public class InputView {
 
@@ -14,23 +12,20 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> readCarName() {
+    public static Names readNames() {
+        String line = readLine(READ_CAR_NAME_MESSAGE);
+
         try {
-            System.out.println(READ_CAR_NAME_MESSAGE);
-            String input = scanner.next();
-            List<String> carNames = StringParser.splitByComma(input);
-            validate(carNames);
-            return carNames;
+            return new Names(line);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readCarName();
+            return readNames();
         }
     }
 
-    private static void validate(List<String> carNames) {
-        for (String carName : carNames) {
-            CarNameValidator.validate(carName);
-        }
+    private static String readLine(String message) {
+        System.out.println(message);
+        return scanner.next();
     }
 
     public static int readAttemptNumber() {

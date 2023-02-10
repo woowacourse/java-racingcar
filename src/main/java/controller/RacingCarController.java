@@ -7,6 +7,7 @@ import domain.Car;
 import domain.Cars;
 import domain.Referee;
 import output.Outputs;
+import utils.Names;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -14,10 +15,10 @@ import view.OutputView;
 public class RacingCarController {
 
     public void run() {
-        List<String> carNames = InputView.readCarName();
+        Names names = InputView.readNames();
         int attemptNumber = InputView.readAttemptNumber();
 
-        Cars cars = makeCarsFromNames(carNames);
+        Cars cars = makeCarsFrom(names);
 
         OutputView.printResult();
 
@@ -37,8 +38,8 @@ public class RacingCarController {
                 .forEach((car) -> car.move(RandomNumberGenerator.generate()));
     }
 
-    private Cars makeCarsFromNames(List<String> carNames) {
-        List<Car> cars = carNames.stream()
+    private Cars makeCarsFrom(Names names) {
+        List<Car> cars = names.getStream()
                 .map(Car::new)
                 .collect(Collectors.toList());
 
