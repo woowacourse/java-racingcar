@@ -1,20 +1,15 @@
-package repository;
+package domain;
 
-import domain.Car;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class CarRepository {
+public class Participants {
 
     private List<Car> cars;
-    private Map<String, Integer> nameCount;
 
-    public CarRepository() {
+    public Participants() {
         cars = new ArrayList<>();
-        nameCount = new HashMap<>();
     }
 
     public List<Car> findAll() {

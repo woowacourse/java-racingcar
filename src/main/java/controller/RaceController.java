@@ -2,22 +2,22 @@ package controller;
 
 import domain.Car;
 import domain.Judge;
+import domain.Participants;
 import domain.Race;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import repository.CarRepository;
 import view.output.OutputView;
 
 public class RaceController {
 
-    private final CarRepository carRepository;
+    private final Participants participants;
     private Race race;
     private Judge judge = new Judge();
     private final int DRIVING_DISTANCE = 1;
 
     public RaceController() {
-        carRepository = new CarRepository();
+        participants = new Participants();
     }
 
     public void playGame(int totalCount) {
@@ -29,11 +29,11 @@ public class RaceController {
     }
 
     public void addAllParticipants(List<String> carNames) {
-        carNames.forEach(carRepository::add);
+        carNames.forEach(participants::add);
     }
 
     public List<Car> getWinners() {
-        List<Car> participants = carRepository.findAll();
+        List<Car> participants = this.participants.findAll();
         int maxDistance = participants.stream().max(Comparator.comparing(Car::getDrivenDistance)).get()
             .getDrivenDistance();
         List<Car> winners = participants.stream()
@@ -43,7 +43,7 @@ public class RaceController {
     }
 
     private void playRound() {
-        List<Car> participants = carRepository.findAll();
+        List<Car> participants = this.participants.findAll();
         participants.forEach(this::driveOrNot);
         race.addCount();
         printRoundResult();
@@ -57,6 +57,6 @@ public class RaceController {
     }
 
     private void printRoundResult() {
-        OutputView.printRoundResult(carRepository.findAll());
+        OutputView.printRoundResult(participants.findAll());
     }
 }
