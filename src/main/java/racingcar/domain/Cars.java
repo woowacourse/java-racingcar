@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    public static final int ONLY_ONE_CAR = 1;
+    public static final int BOUND = 10;
+    public static final int DEFAULT_MAX = 0;
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -15,7 +18,7 @@ public class Cars {
     }
 
     private static void validateSoloPlay(List<Car> cars) {
-        if (cars.size() == 1) {
+        if (cars.size() == ONLY_ONE_CAR) {
             throw new IllegalArgumentException("[ERROR] 차를 둘 이상 입력하세요.");
         }
     }
@@ -34,14 +37,14 @@ public class Cars {
     public void putRandomPowersToCar() {
         Random random = new Random();
 
-        cars.forEach(car -> car.move(random.nextInt(10)));
+        cars.forEach(car -> car.move(random.nextInt(BOUND)));
     }
 
     public List<Winner> calculateWinners() {
         int max = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0);
+                .orElse(DEFAULT_MAX);
 
         return cars.stream().filter(car -> car.getPosition() == max)
                 .map(Car::getName)

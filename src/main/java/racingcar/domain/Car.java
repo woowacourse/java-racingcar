@@ -2,7 +2,6 @@ package racingcar.domain;
 
 public class Car {
 
-
     public static final int MOVE_RANGE = 1;
     private static final int INIT_POSITION = 0;
     private static final int BOUNDARY = 4;
@@ -30,7 +29,6 @@ public class Car {
             throw new IllegalArgumentException("[ERROR] 차 이름은 5글자 이하로 입력해야합니다.");
         }
     }
-
 
     public void move(int number) {
         if (number >= BOUNDARY) {
