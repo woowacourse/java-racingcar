@@ -24,7 +24,7 @@ public class RacingGame {
     private List<Car> getCarsFromInput() {
         try {
             return input.getCarNames().stream()
-                    .map(name -> new Car(name))
+                    .map(Car::new)
                     .collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
             output.printError(e.getMessage());
