@@ -34,7 +34,7 @@ public class Cars {
         }
     }
 
-    public void putRandomPowersToCar() {
+    public void moveCarsRandomly() {
         Random random = new Random();
 
         cars.forEach(car -> car.move(random.nextInt(BOUND)));
