@@ -3,10 +3,10 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.management.remote.MBeanServerForwarder;
+
 import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
@@ -37,7 +37,7 @@ class CarTest {
         car.move(MINIMUM_NUMBER_TO_MOVE);
         int afterPosition = car.getPosition();
 
-        assertEquals(beforePosition + 1, afterPosition);
+        assertThat(beforePosition + 1).isEqualTo(afterPosition);
     }
 
     @DisplayName("move를 위한 최솟값을 만족시키지 못하면 position은 변화하지 않는다.")
@@ -49,7 +49,7 @@ class CarTest {
         car.move(MINIMUM_NUMBER_TO_MOVE - 1);
         int afterPosition = car.getPosition();
 
-        assertEquals(beforePosition, afterPosition);
+        assertThat(beforePosition).isEqualTo(afterPosition);
     }
 
     @DisplayName("isSamePosition()은 position이 같다면 true를 반환한다.")
@@ -58,7 +58,7 @@ class CarTest {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
 
-        assertTrue(carA.isSamePosition(carB));
+        assertThat(carA.isSamePosition(carB)).isTrue();
     }
 
     @DisplayName("isSamePosition()은 position이 다르면 false를 반환한다.")
@@ -69,6 +69,6 @@ class CarTest {
 
         carA.move(MINIMUM_NUMBER_TO_MOVE);
 
-        assertFalse(carA.isSamePosition(carB));
+        assertThat(carA.isSamePosition(carB)).isFalse();
     }
 }
