@@ -20,12 +20,12 @@ public class Car {
 
 
     public Car(String name) {
-        validateName(name);
+        validate(name);
         this.name = name;
         this.position = START_POSITION;
     }
 
-    private void validateName(String name) {
+    private void validate(String name) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
         }
