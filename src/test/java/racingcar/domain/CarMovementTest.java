@@ -22,7 +22,7 @@ class CarMovementTest {
 		assertDoesNotThrow(() -> new CarMovement(numberGenerator));
 	}
 
-	@DisplayName("자동차 움직임 확인 테스트")
+	@DisplayName("자동차 움직임 성공 및 실패 테스트")
 	@ParameterizedTest(name = "number = {0}, isMoveForward = {1}")
 	@MethodSource("moveDummy")
 	void isRandomCarMoveTest(int number, boolean expected) {

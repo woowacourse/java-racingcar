@@ -9,15 +9,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class GameRoundTest {
 
-	@DisplayName("게임 라운드 생성 테스트")
+	@DisplayName("게임 라운드 생성 성공 테스트")
 	@ParameterizedTest(name = "totalRound = {0}")
 	@ValueSource(ints = {1, 2, 3, 4, 5})
-	void createGameRoundTest(int totalRound) {
+	void createGameRoundSuccessTest(int totalRound) {
 		GameRound gameRound = new GameRound(totalRound);
 		assertThat(gameRound).isNotNull();
 	}
 
-	@DisplayName("게임 라운드 종료 확인 테스트")
+	@DisplayName("게임 라운드 종료 성공 테스트")
 	@ParameterizedTest(name = "totalRound = {0}, executeTime = {1}, expectedIsEnd = {2}")
 	@CsvSource(value = {"1:1:true", "2:2:true", "10:1:false"}, delimiterString = ":")
 	void isEndRoundTest(int totalRound, int executeTimes, boolean expectedIsEnd) {
@@ -27,5 +27,4 @@ class GameRoundTest {
 		}
 		assertThat(gameRound.isEnd()).isEqualTo(expectedIsEnd);
 	}
-
 }

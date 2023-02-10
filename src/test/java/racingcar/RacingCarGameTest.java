@@ -33,7 +33,8 @@ class RacingCarGameTest {
 	OutputView outputView;
 	InputView inputView;
 	InputStream inputStream;
-	PrintStream outputStream;
+	OutputStream outputStream;
+	PrintStream printStream;
 
 	@BeforeEach
 	void setUp() {
@@ -45,19 +46,20 @@ class RacingCarGameTest {
 	@AfterEach
 	void close() throws Exception {
 		inputStream.close();
+		printStream.close();
 		outputStream.close();
 	}
 
-	@DisplayName("자동차 경주 통합 정상 작동 테스트")
+	@DisplayName("자동차 경주 통합 정상 작동 성공 테스트")
 	@ParameterizedTest(name = "carNames = {0}")
 	@MethodSource("playGameDummy")
-	void playGameTest(String carNames) {
+	void playGameSuccessTest(String carNames) {
 		inputStream = new ByteArrayInputStream(carNames.getBytes(UTF_8));
-		OutputStream out = new ByteArrayOutputStream();
-		outputStream = new PrintStream(out);
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
 
 		System.setIn(inputStream);
-		System.setOut(outputStream);
+		System.setOut(printStream);
 
 		cars = new Cars();
 		outputView = new OutputView();
@@ -66,19 +68,19 @@ class RacingCarGameTest {
 
 		gameManager.playGame();
 
-		assertThat(out.toString()).contains("최종 우승했습니다.");
+		assertThat(outputStream.toString()).contains("최종 우승했습니다.");
 	}
 
-	@DisplayName("자동차 경주 통합 예외 처리 후 정상 작동 테스트")
+	@DisplayName("자동차 경주 통합 예외 처리 후 정상 작동 성공 테스트")
 	@ParameterizedTest(name = "inputWithException = {0}")
 	@MethodSource("playGameExceptionDummy")
 	void playGameExceptionTest(String inputWithException) {
 		inputStream = new ByteArrayInputStream(inputWithException.getBytes(UTF_8));
-		OutputStream out = new ByteArrayOutputStream();
-		outputStream = new PrintStream(out);
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
 
 		System.setIn(inputStream);
-		System.setOut(outputStream);
+		System.setOut(printStream);
 
 		cars = new Cars();
 		outputView = new OutputView();
@@ -86,7 +88,7 @@ class RacingCarGameTest {
 		gameManager = new GameManager(inputView, outputView, carMovement, cars);
 
 		gameManager.playGame();
-		String gameTotalMessage = out.toString();
+		String gameTotalMessage = outputStream.toString();
 
 		assertThat(gameTotalMessage).contains("[ERROR]", "최종 우승했습니다.");
 	}
