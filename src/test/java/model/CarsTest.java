@@ -54,6 +54,7 @@ class CarsTest {
     }
 
     static class TestNumberGenerator implements NumberGenerator {
+        private static final int CAR_MOVE_STANDARD_LENGTH = 4;
         private final List<Integer> numbers;
 
         public TestNumberGenerator(List<Integer> numbers) {
@@ -61,8 +62,11 @@ class CarsTest {
         }
 
         @Override
-        public int generateNumber() {
-            return numbers.remove(0);
+        public boolean generateNumber() {
+            if(numbers.remove(0)>=CAR_MOVE_STANDARD_LENGTH) {
+                return true;
+            }
+            return false;
         }
     }
 }

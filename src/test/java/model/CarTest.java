@@ -4,6 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.RandomNumberGenerator;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,20 +33,30 @@ class CarTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @ParameterizedTest(name = "랜덤 값이 4미만일 경우 테스트 randNum = {0}")
-    @ValueSource(ints = {0, 1, 2, 3})
-    void stopByRandom(int randNum) {
+    @Test
+    @DisplayName("랜덤 값이 4미만일 경우 테스트")
+    void stopByRandom() {
         Car car = new Car("test");
-        car.moveByRandom(randNum);
+        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(0,1,2,3));
+
+        CarsTest.TestNumberGenerator testNumberGenerator =
+                new CarsTest.TestNumberGenerator(randomNumbers);
+
+        car.moveByRandom(testNumberGenerator.generateNumber());
 
         assertThat(car.getCarLocation()).isEqualTo(0);
     }
 
-    @ParameterizedTest(name = "랜덤 값이 4이상 일 경우 테스트 randNum = {0}")
-    @ValueSource(ints = {4, 5, 6, 7})
-    void moveByRandom(int randNum) {
+    @Test
+    @DisplayName("랜덤 값이 4이상일 경우 테스트")
+    void moveByRandom() {
         Car car = new Car("test");
-        car.moveByRandom(randNum);
+        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9,8,7,6));
+
+        CarsTest.TestNumberGenerator testNumberGenerator =
+                new CarsTest.TestNumberGenerator(randomNumbers);
+
+        car.moveByRandom(testNumberGenerator.generateNumber());
 
         assertThat(car.getCarLocation()).isEqualTo(1);
     }
