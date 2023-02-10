@@ -19,7 +19,7 @@ public class CarMovementTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, -2, 30, 40, 50})
+    @ValueSource(ints = {-1, -2, 10, 20, 30})
     @DisplayName("비정상 자동차 움직임 생성자 테스트")
     public void invalidCarMovementTest(int value) {
         assertThatThrownBy(() -> {
