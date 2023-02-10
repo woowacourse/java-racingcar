@@ -5,7 +5,7 @@ public class GameRound {
 	private final int totalGameRound;
 	private int currRound;
 
-	public GameRound(int totalGameRound) {
+	public GameRound(final int totalGameRound) {
 		this.totalGameRound = totalGameRound;
 		this.currRound = GAME_ROUND_DEFAULT_ROUND;
 	}

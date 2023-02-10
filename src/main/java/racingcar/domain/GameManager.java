@@ -17,10 +17,10 @@ public class GameManager {
 	private final Cars cars;
 
 	public GameManager(
-		InputView inputView,
-		OutputView outputView,
-		CarMovement carMovement,
-		Cars cars
+		final InputView inputView,
+		final OutputView outputView,
+		final CarMovement carMovement,
+		final Cars cars
 	) {
 		this.inputView = inputView;
 		this.outputView = outputView;
@@ -40,7 +40,7 @@ public class GameManager {
 		while (!gameRound.isEnd()) {
 			cars.moveCars();
 			gameRound.increaseRound();
-			RoundResultResponse roundResultResponse = RoundResultResponse.from(cars.getCars());
+			final RoundResultResponse roundResultResponse = RoundResultResponse.from(cars.getCars());
 			outputView.printRoundResult(roundResultResponse);
 		}
 	}
@@ -48,8 +48,8 @@ public class GameManager {
 	private void createCars() {
 		while (true) {
 			try {
-				CarNamesRequest carNamesRequest = inputView.inputCarNames();
-				List<String> carNames = carNamesRequest.getCarNames();
+				final CarNamesRequest carNamesRequest = inputView.inputCarNames();
+				final List<String> carNames = carNamesRequest.getCarNames();
 				cars.generateCars(carMovement, carNames);
 				return;
 			} catch (Exception e) {
@@ -61,7 +61,7 @@ public class GameManager {
 	private void createGameRound() {
 		while (true) {
 			try {
-				int totalRound = inputView.inputGameRound().getRound();
+				final int totalRound = inputView.inputGameRound().getRound();
 				gameRound = new GameRound(totalRound);
 				return;
 			} catch (Exception e) {
@@ -71,7 +71,7 @@ public class GameManager {
 	}
 
 	private void endGame() {
-		GameResultResponse gameResultResponse = GameResultResponse.from(cars.findWinnerNames());
+		final GameResultResponse gameResultResponse = GameResultResponse.from(cars.findWinnerNames());
 		outputView.printEndGameResult(gameResultResponse);
 	}
 }

@@ -9,11 +9,11 @@ import racingcar.domain.Car;
 public class RoundResultResponse {
 	private final List<CarDto> roundResult;
 
-	public static RoundResultResponse from(Set<Car> cars) {
+	public static RoundResultResponse from(final Set<Car> cars) {
 		return new RoundResultResponse(cars);
 	}
 
-	private RoundResultResponse(Set<Car> cars) {
+	private RoundResultResponse(final Set<Car> cars) {
 		roundResult = cars.stream()
 			.map(CarDto::from)
 			.collect(Collectors.toUnmodifiableList());

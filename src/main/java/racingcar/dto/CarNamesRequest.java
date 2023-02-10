@@ -5,11 +5,11 @@ import java.util.List;
 public class CarNamesRequest {
 	private final List<String> carNames;
 
-	public static CarNamesRequest from(List<String> carNames) {
+	public static CarNamesRequest from(final List<String> carNames) {
 		return new CarNamesRequest(carNames);
 	}
 
-	private CarNamesRequest(List<String> carNames) {
+	private CarNamesRequest(final List<String> carNames) {
 		this.carNames = carNames;
 	}
 

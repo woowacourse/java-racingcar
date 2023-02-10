@@ -11,7 +11,7 @@ public class Car {
 	private final String name;
 	private int position = 0;
 
-	public Car(CarMovement carMovement, String name) {
+	public Car(final CarMovement carMovement, final String name) {
 		validateNameNullOrBlank(name);
 		validateNameLength(name);
 		this.carMovement = carMovement;
@@ -19,32 +19,32 @@ public class Car {
 	}
 
 	public boolean move() {
-		boolean isMoved = carMovement.isMove();
+		final boolean isMoved = carMovement.isMove();
 		if (isMoved) {
 			position++;
 		}
 		return isMoved;
 	}
 
-	public String getName() {
-		return name;
+	public boolean isSamePosition(final int position) {
+		return this.position == position;
 	}
 
-	public boolean isSamePosition(int position) {
-		return this.position == position;
+	public String getName() {
+		return name;
 	}
 
 	public int getPosition() {
 		return position;
 	}
 
-	private void validateNameNullOrBlank(String name) {
+	private void validateNameNullOrBlank(final String name) {
 		if (name == null || name.isBlank()) {
 			throw new IllegalArgumentException(CAR_NAME_BLANK_EXCEPTION.getMessage());
 		}
 	}
 
-	private void validateNameLength(String name) {
+	private void validateNameLength(final String name) {
 		if (name.length() > MAX_NAME_LENGTH) {
 			throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEPTION.getMessage());
 		}

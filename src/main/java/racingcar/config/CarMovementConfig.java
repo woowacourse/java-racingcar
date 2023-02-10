@@ -8,7 +8,7 @@ public enum CarMovementConfig {
 
 	private final int number;
 
-	CarMovementConfig(int number) {
+	CarMovementConfig(final int number) {
 		this.number = number;
 	}
 

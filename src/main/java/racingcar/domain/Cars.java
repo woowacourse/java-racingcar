@@ -12,7 +12,7 @@ public class Cars {
 	private static final int CARS_MIN_SIZE = 2;
 	private final Set<Car> cars = new LinkedHashSet<>();
 
-	public void generateCars(CarMovement carMovement, List<String> carNames) {
+	public void generateCars(final CarMovement carMovement, final List<String> carNames) {
 		cars.clear();
 		validateCarsSizeOneOrZero(carNames);
 		carNames.forEach(carName -> generateCar(carMovement, carName));

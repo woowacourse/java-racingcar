@@ -11,17 +11,13 @@ import racingcar.view.OutputView;
 public class RacingCarApplication {
 
 	public static void main(String[] args) {
-		InputView inputView = new InputView();
-		OutputView outputView = new OutputView();
-		NumberGenerator numberGenerator = new RandomNumberGenerator();
-		CarMovement carMovement = new CarMovement(numberGenerator);
-		Cars cars = new Cars();
+		final InputView inputView = new InputView();
+		final OutputView outputView = new OutputView();
+		final NumberGenerator numberGenerator = new RandomNumberGenerator();
+		final CarMovement carMovement = new CarMovement(numberGenerator);
+		final Cars cars = new Cars();
 
-		GameManager gameManager = new GameManager(
-			inputView,
-			outputView,
-			carMovement,
-			cars);
+		final GameManager gameManager = new GameManager(inputView, outputView, carMovement, cars);
 
 		gameManager.playGame();
 	}
