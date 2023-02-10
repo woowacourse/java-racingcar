@@ -1,6 +1,6 @@
 package controller;
 
-import domain.CarsInfo;
+import domain.Cars;
 import domain.RoundResult;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -12,12 +12,12 @@ public class RacingController {
     private final InputView inputView = new InputView();
 
     public void run() {
-        CarsInfo carsInfo = setUpCarName();
+        Cars carsInfo = setUpCarName();
         Integer tryCount = setUpTryCount();
         progressRacingGame(tryCount, carsInfo, new RandomNumberGenerator());
     }
 
-    public void progressRacingGame(Integer tryCount, CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator) {
+    public void progressRacingGame(Integer tryCount, Cars carsInfo, RandomNumberGenerator randomNumberGenerator) {
         RoundResult roundResult = new RoundResult();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
@@ -28,10 +28,10 @@ public class RacingController {
         outputView.printFinalResult(carsInfo, winners);
     }
 
-    private CarsInfo setUpCarName() {
+    private Cars setUpCarName() {
         try {
             outputView.printCarNameMessage();
-            return new CarsInfo(inputView.readCarNames());
+            return new Cars(inputView.readCarNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return setUpCarName();
@@ -50,7 +50,7 @@ public class RacingController {
         }
     }
 
-    private void progressRound(CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
+    private void progressRound(Cars carsInfo, RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
         carsInfo.progressRound(randomNumberGenerator, roundResult);
     }
 }

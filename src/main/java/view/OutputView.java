@@ -1,7 +1,7 @@
 package view;
 
 import domain.Car;
-import domain.CarsInfo;
+import domain.Cars;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -26,8 +26,8 @@ public class OutputView {
         System.out.println(INPUT_TRY_COUNT_GUIDE_MESSAGE);
     }
 
-    public void printCurrentResult(CarsInfo carsInfo) {
-        for (Car car : carsInfo.getCarsInfo()) {
+    public void printCurrentResult(Cars carsInfo) {
+        for (Car car : carsInfo.getCars()) {
             printCarInfo(car);
         }
         System.out.print(newLine);
@@ -54,7 +54,7 @@ public class OutputView {
         System.out.print(winnerPrintFormat + RESULT_WINNER_GUIDE_MESSAGE);
     }
 
-    public void printFinalResult(CarsInfo carsInfo, List<String> winners) {
+    public void printFinalResult(Cars carsInfo, List<String> winners) {
         printCurrentResult(carsInfo);
         printWinners(winners);
     }
