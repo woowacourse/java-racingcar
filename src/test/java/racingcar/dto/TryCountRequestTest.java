@@ -22,7 +22,7 @@ class TryCountRequestTest {
 
     @ParameterizedTest
     @DisplayName("정상적인 시도 횟수가 검증되어야 한다.")
-    @ValueSource(strings = {"0","1","2","3"})
+    @ValueSource(strings = {"0", "1", "2", "3"})
     void validate_tryCount(String input) {
         // expected
         assertThatCode(() -> TryCountRequest.of(input))

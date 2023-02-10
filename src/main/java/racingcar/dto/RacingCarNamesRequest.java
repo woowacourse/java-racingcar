@@ -29,7 +29,8 @@ public class RacingCarNamesRequest {
     }
 
     public static class Validator {
-        private Validator() {}
+        private Validator() {
+        }
 
         public static void validateDuplicateCarNames(String[] names) {
             long noDuplicateCount = Arrays.stream(names)

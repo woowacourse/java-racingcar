@@ -21,10 +21,11 @@ public class Car {
     public static class Validator {
         private static final int MAX_NAME_LENGTH = 6;
 
-        private Validator() {}
+        private Validator() {
+        }
 
         public static void validateBlankCarName(String name) {
-            if(name.isBlank()) {
+            if (name.isBlank()) {
                 throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
             }
         }

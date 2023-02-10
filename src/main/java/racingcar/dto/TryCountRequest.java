@@ -17,7 +17,8 @@ public class TryCountRequest {
     }
 
     public static class Validator {
-        private Validator() {}
+        private Validator() {
+        }
 
         public static void validateNegativeTryCount(Integer tryCount) {
             if (tryCount < 0) {
