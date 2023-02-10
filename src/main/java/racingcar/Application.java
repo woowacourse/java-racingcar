@@ -9,10 +9,12 @@ public class Application {
     public static void main(String[] args) {
         OutputView.startRacing();
         String namesInput = InputView.carNames();
+
+        RacingcarController controller = new RacingcarController(namesInput);
+
         OutputView.tryCount();
         int tryCount = InputView.tryCount();
 
-        RacingcarController controller = new RacingcarController();
-        controller.run(namesInput, tryCount);
+        controller.run(tryCount);
     }
 }

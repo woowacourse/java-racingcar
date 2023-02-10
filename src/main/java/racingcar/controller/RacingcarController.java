@@ -8,14 +8,14 @@ import racingcar.ui.OutputView;
 public class RacingcarController {
 
     private final RacingcarService racingcarService;
+    private final List<Car> cars;
 
-    public RacingcarController() {
+    public RacingcarController(String input) {
         this.racingcarService = new RacingcarService();
+        this.cars = racingcarService.getCar(input);
     }
 
-    public void run(String carNames, int tryCount) {
-        List<Car> cars = racingcarService.getCar(carNames);
-
+    public void run(int tryCount) {
         playRace(tryCount, cars);
         int winnerPosition = findWinnerPosition(cars);
         List<Car> winners = findWinners(cars, winnerPosition);
