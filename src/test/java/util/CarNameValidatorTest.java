@@ -47,6 +47,7 @@ class CarNameValidatorTest {
     @Nested
     class validInputTest {
         @Test
+        @DisplayName("올바른 입력값이 들어왔을 때 잘 작동하는지 검사한다.")
         void 정상_입력() {
             List<String> names = new ArrayList<>(List.of("깃짱", "이리내"));
             assertThatCode(() -> carNameValidator.validate(names))

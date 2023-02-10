@@ -55,6 +55,7 @@ class MoveCountValidatorTest {
     class validInputTest {
         @ParameterizedTest
         @ValueSource(strings = {"222000", "22222000", "1000"})
+        @DisplayName("올바른 입력값이 들어왔을 때 잘 작동하는지 검사한다.")
         void 정상_입력(String input) {
             assertThatCode(() -> moveCountValidator.validate(input))
                     .doesNotThrowAnyException();

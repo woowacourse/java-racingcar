@@ -31,7 +31,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("우승자인지 테스트한다.")
+    @DisplayName("움직인 칸수에 따라 우승자가 정상적으로 판단되는지 검사한다.")
     void winnerTest() {
         moveEachCars();
         Assertions.assertTrue(gitJjang.isWinner(1));
