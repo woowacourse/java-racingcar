@@ -29,7 +29,7 @@ public class RaceController {
     }
 
     public void addAllParticipants(List<String> carNames) {
-        carNames.forEach(participants::add);
+        participants.add(carNames);
     }
 
     public List<Car> getWinners() {
