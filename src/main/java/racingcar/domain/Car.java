@@ -29,12 +29,8 @@ public class Car implements Comparable<Car> {
         return this.position == otherCar.position;
     }
 
-    public String getMovePosition() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            stringBuilder.append("-");
-        }
-        return stringBuilder.toString();
+    public int getPosition() {
+        return this.position;
     }
 
     public String getName() {
