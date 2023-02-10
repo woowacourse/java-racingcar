@@ -1,9 +1,12 @@
 package racingcar;
 
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.Winner;
+import racingcar.domain.Winners;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
