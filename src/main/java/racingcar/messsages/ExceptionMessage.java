@@ -5,6 +5,7 @@ public enum ExceptionMessage {
 	CAR_NAME_LENGTH_EXCEPTION("[ERROR] 자동차 이름 길이는 5를 넘을 수 없습니다."),
 	CARS_SIZE_EXCEPTION("[ERROR] 2개 이상의 자동차 이름을 입력해 주세요."),
 	CAR_NAME_DUPLICATE_EXCEPTION("[ERROR] 자동차 이름은 중복될 수 없습니다."),
+	CAR_MOVEMENT_NUMBER_EXCEPTION("[ERROR] 자동차 이동 숫자 범위가 올바르지 않습니다."),
 	CAR_NAME_INPUT_EXCEPTION("[ERROR] 자동차 이름들을 다시 입력해주세요."),
 	GAME_ROUND_INPUT_EXCEPTION("[ERROR] 시도할 게임 회수를 다시 입력해주세요."),
 	GAME_ROUND_INPUT_FORMAT_DIGIT_EXCEPTION("[ERROR] 시도할 게임 회수는 양의 정수이어야 합니다."),

@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static racingcar.config.CarMovementConfig.*;
+import static racingcar.messsages.ExceptionMessage.*;
 
 public class CarMovement {
 	private final NumberGenerator numberGenerator;
@@ -17,7 +18,7 @@ public class CarMovement {
 		if (isForward(number)) {
 			return true;
 		}
-		return false;
+		throw new IllegalStateException(CAR_MOVEMENT_NUMBER_EXCEPTION.getMessage());
 	}
 
 	private boolean isForward(int number) {
