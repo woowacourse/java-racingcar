@@ -16,7 +16,7 @@ public class OutputView {
 
     public void printCars(List<Car> cars) {
         cars.stream()
-                .forEach(car->{
+                .forEach(car -> {
                     printTrack(car);
                 });
         System.out.println();
