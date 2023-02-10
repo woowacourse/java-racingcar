@@ -25,17 +25,13 @@ public class Cars {
                 .collect(Collectors.joining(LINE_BREAK));
     }
 
-    public Cars getWinnerCars() {
+    public List<Car> getWinnerCars() {
         int maxPosition = Collections.max(cars.stream()
                 .map(Car::getPosition)
                 .collect(Collectors.toList()));
 
-        return new Cars(cars.stream()
-                .filter(car -> car.isWinner(maxPosition))
-                .collect(Collectors.toList()));
-    }
-
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return cars.stream()
+                .filter(car -> car.matchPosition(maxPosition))
+                .collect(Collectors.toList());
     }
 }

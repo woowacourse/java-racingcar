@@ -25,8 +25,8 @@ public class Car {
         return String.format(POSITION_STATE_FORMAT, carName, positionFormat);
     }
 
-    public boolean isWinner(int maxPosition) {
-        return position == maxPosition;
+    public boolean matchPosition(int otherPosition) {
+        return position == otherPosition;
     }
 
     public boolean movable() {

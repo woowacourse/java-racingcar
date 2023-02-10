@@ -1,5 +1,6 @@
 package racingcar.model.car;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.TestDataManager;
@@ -34,10 +35,10 @@ class CarsTest {
         for (int i = 0; i < 2; i++) {
             cars.moveCars();
         }
-        Cars winnerCars = cars.getWinnerCars();
+        List<Car> winnerCars = cars.getWinnerCars();
 
         // then
-        assertThat(winnerCars.getCars())
+        assertThat(winnerCars)
                 .extracting("carName")
                 .contains("pobi")
                 .doesNotContain("crong");
@@ -54,10 +55,10 @@ class CarsTest {
         for (int i = 0; i < 2; i++) {
             cars.moveCars();
         }
-        Cars winnerCars = cars.getWinnerCars();
+        List<Car> winnerCars = cars.getWinnerCars();
 
         // then
-        assertThat(winnerCars.getCars())
+        assertThat(winnerCars)
                 .extracting("carName")
                 .contains("pobi", "eddy");
     }

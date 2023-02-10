@@ -1,5 +1,7 @@
 package racingcar.model.track;
 
+import java.util.List;
+import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 
 public class Track {
@@ -25,7 +27,7 @@ public class Track {
         return trialTime >= 0;
     }
 
-    public Cars findWinner() {
+    public List<Car> findWinner() {
         return cars.getWinnerCars();
     }
 }
