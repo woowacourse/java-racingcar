@@ -3,6 +3,7 @@ package view.input;
 import static validation.CarNameValidator.CAR_NAME_VALIDATOR;
 import static validation.CountValidator.COUNT_VALIDATOR;
 import static validation.InputValidator.INPUT_VALIDATOR;
+import static validation.ParticipantsValidator.PARTICIPANTS_VALIDATOR;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +17,14 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public List<String> readCarNames() throws IllegalArgumentException {
-        printInputMessage(ENTER_CAR_NAMES);
+    public List<String> readCarNames() {
         final String DELIMITER = ",";
+
+        printInputMessage(ENTER_CAR_NAMES);
         String input = readLine();
         INPUT_VALIDATOR.validate(input);
         List<String> carNames = splitWordsBy(input, DELIMITER);
+        PARTICIPANTS_VALIDATOR.validate(carNames);
         carNames.forEach(CAR_NAME_VALIDATOR::validate);
         return carNames;
     }

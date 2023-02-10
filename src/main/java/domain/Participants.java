@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Participants(List<String> carNames) {
         PARTICIPANTS_VALIDATOR.validate(carNames);
@@ -18,9 +18,4 @@ public class Participants {
     public List<Car> findAll() {
         return Collections.unmodifiableList(cars);
     }
-
-    public void add(List<String> carNames) {
-
-    }
-
 }
