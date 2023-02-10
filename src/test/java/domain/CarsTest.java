@@ -30,7 +30,7 @@ class CarsTest {
 
     @Test
     @DisplayName("우승한 자동차를 제공한다.")
-    void decideWinnerTest() {
+    void getWinnersTest() {
         //Given
         Car pobi = new Car("pobi", new TestNumberGenerator(new ArrayList<>(List.of(3, 4, 5))));
         Car neo = new Car("neo", new TestNumberGenerator(new ArrayList<>(List.of(3, 4, 5))));
@@ -45,7 +45,7 @@ class CarsTest {
         Cars cars = new Cars(new ArrayList<>(List.of(pobi, neo, hiiro)));
 
         //When
-        List<Car> result = cars.decideWinner();
+        List<Car> result = cars.getWinners();
 
         //Then
         assertThat(result.size()).isEqualTo(2);
@@ -63,8 +63,8 @@ class CarsTest {
         List<Car> result = cars.moveEachCar();
 
         //Then
-        assertThat(result.get(0).getMovePosition()).isEqualTo("");
-        assertThat(result.get(1).getMovePosition()).isEqualTo("-");
+        assertThat(result.get(0).getPosition()).isEqualTo(0);
+        assertThat(result.get(1).getPosition()).isEqualTo(1);
     }
 
 
