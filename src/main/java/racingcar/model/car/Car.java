@@ -17,7 +17,7 @@ public class Car {
     }
 
     public void moveForward() {
-        position++;
+        position += 1;
     }
 
     public String getCurrentStateFormat() {
