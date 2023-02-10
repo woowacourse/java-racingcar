@@ -19,7 +19,7 @@ public class GameController {
     private final MoveChance moveChance = new RandomMoveChance();
 
     public GameController() {
-        List<String> carNames = List.of(INPUT_VIEW.inputCarNames());
+        List<String> carNames = INPUT_VIEW.inputCarNames();
         int trialCount = INPUT_VIEW.inputTrialCount();
         game = new Game(makeCarsWith(carNames), trialCount);
     }
