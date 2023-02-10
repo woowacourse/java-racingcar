@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.CarRepository;
+import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberGenerator;
@@ -24,17 +24,17 @@ public class RacingCarController {
     }
 
     private RacingGame initGame() {
-        CarRepository carRepository = createCars();
+        Cars cars = createCars();
         int tries = getTries();
         NumberGenerator numberGenerator = new RandomNumberGenerator();
-        return new RacingGame(carRepository, tries, numberGenerator);
+        return new RacingGame(cars, tries, numberGenerator);
     }
 
-    private CarRepository createCars() {
+    private Cars createCars() {
         try {
             String input = InputView.inputCarNames();
             List<String> carNames = splitCarNames(input);
-            return new CarRepository(carNames);
+            return new Cars(carNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createCars();
