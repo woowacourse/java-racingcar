@@ -1,11 +1,10 @@
 package domain;
 
-import utils.RandomNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.RandomNumberGenerator;
 
 public class Cars {
 
@@ -57,7 +56,6 @@ public class Cars {
     }
 
     public Map<String, Integer> getCurrentStatus() {
-
         Map<String, Integer> carStatus = new HashMap<>();
 
         for (final Car car : cars) {
