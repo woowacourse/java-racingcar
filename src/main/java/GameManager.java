@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Service {
+public class GameManager {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final List<String> winnerCars = new ArrayList<>();
