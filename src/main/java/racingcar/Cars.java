@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.List;
+import java.util.Random;
 
 public class Cars {
 
@@ -27,5 +28,11 @@ public class Cars {
         if (carsSize != duplicateRemovedCount) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public void putRandomPowersToCar() {
+        Random random = new Random();
+
+        cars.forEach(car -> car.move(random.nextInt(10)));
     }
 }
