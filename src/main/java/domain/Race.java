@@ -37,24 +37,20 @@ public class Race {
         cars.add(car);
     }
 
-    //ToDo : 시간 남았을 때 테스트 해보기
     public void tryMoveOneTime() {
         for (Car car : cars) {
             car.moveDependingOn(numberPicker.pickNumber());
         }
     }
 
-    public List<CarDto> getWinners() {
+    public List<Car> getWinners() {
         Car winner = Collections.max(cars, Comparator.comparingInt(Car::getPosition));
         return cars.stream()
                 .filter(car -> Comparator.comparingInt(Car::getPosition).compare(car, winner) == 0)
-                .map(car -> new CarDto(car.getName(), car.getPosition()))
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<CarDto> getCarDtos() {
-        return cars.stream()
-                .map(car -> new CarDto(car.getName(), car.getPosition()))
-                .collect(Collectors.toUnmodifiableList());
+    public List<Car> getStatuses() {
+        return Collections.unmodifiableList(cars);
     }
 }

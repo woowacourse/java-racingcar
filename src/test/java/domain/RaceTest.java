@@ -23,7 +23,7 @@ class RaceTest {
         void setup() {
             Car[] cars = {new Car("rosie", 2), new Car("hong", 1)};
             Race race = new Race(cars);
-            winners = race.getWinners().stream().map(CarDto::getName).collect(Collectors.toList());
+            winners = race.getWinners().stream().map(Car::getName).collect(Collectors.toList());
         }
 
         @Test

@@ -1,8 +1,10 @@
 import static domain.ExceptionHandlingTemplate.repeatUntilReadValidInput;
 
-import domain.CarDTO;
+import domain.Car;
+import domain.CarDto;
 import domain.Race;
 import java.util.List;
+import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
 
@@ -17,11 +19,17 @@ public class RaceController {
         outputView.printResultTitle();
         while (tryTime-- > 0) {
             race.tryMoveOneTime();
-            List<CarDTO> carDTOs = race.getCarDTOs();
-            outputView.printStatus(carDTOs);
+            List<CarDto> carDtos = toListCarDto(race.getStatuses());
+            outputView.printStatus(carDtos);
         }
 
-        outputView.printWinners(race.getWinners());
+        outputView.printWinners(toListCarDto(race.getWinners()));
+    }
+
+    private List<CarDto> toListCarDto(List<Car> cars) {
+        return cars.stream()
+                .map(car -> new CarDto(car.getName(), car.getPosition()))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private int validateTryTime(int tryTime) {
