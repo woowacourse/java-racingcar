@@ -23,9 +23,9 @@ public class Game {
     }
 
     public List<Car> findWinners() {
-        Car farthest = findFarthestCar();
+        Car farthestCar = findFarthestCar();
         return cars.stream()
-                .filter(car -> car.hasSamePositionWith(farthest))
+                .filter(car -> car.hasSamePositionWith(farthestCar))
                 .collect(Collectors.toList());
     }
 
