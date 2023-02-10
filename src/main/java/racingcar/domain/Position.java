@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Position implements Comparable<Position> {
     private final Integer INITIAL_DEFAULT_VALUE = 0;
@@ -34,5 +35,9 @@ public class Position implements Comparable<Position> {
     public boolean equals(Object o){
         Position position = (Position)o;
         return this.value == position.value;
+    }
+    @Override
+    public int hashCode(){
+        return Objects.hash(value);
     }
 }
