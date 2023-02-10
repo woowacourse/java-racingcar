@@ -8,6 +8,8 @@ import racingcar.domain.system.GameSystem;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.List;
+
 public class GameController {
 
     private final InputView inputView;
@@ -19,24 +21,25 @@ public class GameController {
     }
 
     public void run() {
-        CarRepository carRepository = makeCars();
-        moveCar(carRepository);
-    }
+        CarRepository carRepository = makeCars(inputView.readCarNames());
 
-    private CarRepository makeCars() {
-        CarFactory carFactory = new CarFactory();
-
-        return carFactory.createCarRepository(inputView.readCars());
-    }
-
-    private void moveCar(CarRepository carRepository) {
-        GameSystem gameSystem = new GameSystem(inputView.readGameRound(), new NumberGenerator());
-        outputView.printResultGuide();
-
+        GameSystem gameSystem = createGameSystem(inputView.readGameRound());
         Result result = gameSystem.executeRace(carRepository);
-        outputView.printResult(result);
-        outputView.printWinners(result);
+
+        printResultAndWinner(result);
     }
 
+    private GameSystem createGameSystem(int gameRound) {
+        return new GameSystem(gameRound, new NumberGenerator());
+    }
 
+    private CarRepository makeCars(List<String> carNames) {
+        CarFactory carFactory = new CarFactory();
+        return carFactory.createCarRepository(carNames);
+    }
+
+    private void printResultAndWinner(Result result) {
+        outputView.printResult(result);
+        outputView.printWinner(result);
+    }
 }
