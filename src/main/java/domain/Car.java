@@ -1,6 +1,8 @@
 package domain;
 
 public class Car {
+    private final static int MOVE_STANDARD = 4;
+
     private final Name name;
     private final Position position;
 
@@ -9,10 +11,14 @@ public class Car {
         this.position = new Position();
     }
 
-    public void move(boolean movable) {
-        if (movable) {
+    public void tryMove(int number) {
+        if (isMovable(number)) {
             position.move();
         }
+    }
+
+    private boolean isMovable(int number) {
+        return number >= MOVE_STANDARD;
     }
 
     public Position getPosition() {

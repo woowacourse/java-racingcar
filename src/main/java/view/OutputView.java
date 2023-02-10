@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 public class OutputView {
     private static final String DELIMITER = "-";
     private static final String SEPARATOR = ", ";
-    private static final String PREFIX = "";
-    private static final String SUFFIX = "";
     private static final String WINNER_MSG = "%s가 최종 우승했습니다.";
     private static final String FORMAT = "%s : %s";
 
@@ -41,7 +39,7 @@ public class OutputView {
 
         String winners = carNames.stream()
                 .map(m -> m.toString())
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(SEPARATOR));
 
         System.out.println(String.format(WINNER_MSG, winners));
     }

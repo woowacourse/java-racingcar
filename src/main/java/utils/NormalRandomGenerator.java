@@ -2,16 +2,11 @@ package utils;
 
 import java.util.Random;
 
-public class NormalRandomGenerator implements RandomGenerator {
+public class NormalRandomGenerator {
+    private final static Random random = new Random();
     private final static int RANDOM_RANGE = 10;
-    private final static int MOVE_STANDARD = 4;
 
-    @Override
-    public boolean generate() {
-        return createRandomNumber() >= MOVE_STANDARD;
-    }
-
-    public int createRandomNumber() {
-        return new Random().nextInt(RANDOM_RANGE);
+    public static int createRandomNumber() {
+        return random.nextInt(RANDOM_RANGE);
     }
 }

@@ -28,7 +28,7 @@ public class RacingGameManager {
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount.getCount(); i++) {
-            racingGame.moveCars(new NormalRandomGenerator());
+            racingGame.moveCars();
             OutputView.printAllCars(racingGame.getCars());
         }
     }
