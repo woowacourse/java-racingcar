@@ -18,8 +18,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinners(List<String> winnerNames) {
-        String names = winnerNames.stream()
+    public static void printWinners(List<CarDto> winners) {
+        String names = winners.stream()
+                .map(CarDto::getName)
                 .collect(Collectors.joining(", "));
         System.out.println(names + "가 최종 우승했습니다.");
     }

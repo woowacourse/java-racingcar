@@ -3,10 +3,7 @@ package racingCar.domain;
 import racingCar.dto.CarDto;
 import racingCar.util.NumberGenerator;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CarGroup {
@@ -50,15 +47,15 @@ public class CarGroup {
     public int getHighestPosition() {
         return carGroup.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException())
+                .orElseThrow(() -> new IllegalArgumentException("차가 존재하지 않습니다."))
                 .getPosition();
     }
 
-    public List<String> findWinners() {
+    public List<CarDto> findWinners() {
         int highestPosition = this.getHighestPosition();
         return carGroup.stream()
                 .filter(car -> car.getPosition() == highestPosition)
-                .map(Car::getName)
+                .map(Car::toCarDto)
                 .collect(Collectors.toList());
     }
 
