@@ -10,8 +10,12 @@ import java.util.stream.Collectors;
 import car.domain.Car;
 
 public class OutputView {
+
+    private static final String RESULT_START_MESSAGE = "실행 결과";
+    private static final String WINNERS_POSTFIX = "가 최종 우승했습니다.";
+
     public void noticeResult() {
-        System.out.println("실행 결과");
+        System.out.println(RESULT_START_MESSAGE);
     }
 
     public void printCars(List<Car> cars) {
@@ -30,14 +34,12 @@ public class OutputView {
     }
 
     public void printWinners(List<Car> winners) {
-        List<String> winnerNames = getCarNamesOf(winners);
-        String joinedNames = String.join(WINNER_DELIMITER, winnerNames);
-        System.out.println(joinedNames + "가 최종 우승했습니다.");
+        System.out.println(joinCarNamesOf(winners) + WINNERS_POSTFIX);
     }
 
-    private List<String> getCarNamesOf(List<Car> cars) {
+    private String joinCarNamesOf(List<Car> cars) {
         return cars.stream()
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.joining(CAR_DELIMITER));
     }
 }
