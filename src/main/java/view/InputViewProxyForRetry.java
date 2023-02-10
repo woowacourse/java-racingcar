@@ -6,11 +6,11 @@ import dto.request.CarNameDto;
 import java.util.InputMismatchException;
 import java.util.List;
 
-public class InputViewProxy extends InputView {
+public class InputViewProxyForRetry extends InputView {
 
     private final InputView inputView;
 
-    public InputViewProxy(InputView inputView) {
+    public InputViewProxyForRetry(InputView inputView) {
         this.inputView = inputView;
     }
 

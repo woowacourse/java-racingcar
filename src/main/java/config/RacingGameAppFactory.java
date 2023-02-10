@@ -4,7 +4,7 @@ import application.RacingGameApplication;
 import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
 import view.InputView;
-import view.InputViewProxy;
+import view.InputViewProxyForRetry;
 import view.OutputView;
 
 public class RacingGameAppFactory {
@@ -14,7 +14,7 @@ public class RacingGameAppFactory {
     }
 
     private InputView initInputView() {
-        return new InputViewProxy(new InputView());
+        return new InputViewProxyForRetry(new InputView());
     }
 
     private OutputView initOutputView() {
