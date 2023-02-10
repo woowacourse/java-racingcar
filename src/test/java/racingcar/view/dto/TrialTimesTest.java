@@ -3,7 +3,6 @@ package racingcar.view.dto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.util.ErrorMessage;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -15,7 +14,7 @@ class TrialTimesTest {
         assertThatThrownBy(() -> {
             new TrialTimes(input);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_TRIAL_NUMBER.message());
+                .hasMessage("[ERROR] 시도 횟수는 정수만 입력 가능합니다.");
     }
 
     @DisplayName("시도 횟수는 1 이상 100 이하여야 합니다.")

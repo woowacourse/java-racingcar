@@ -1,7 +1,5 @@
 package racingcar.view.dto;
 
-import racingcar.util.ErrorMessage;
-
 public class TrialTimes {
     private static final int TRIAL_MAX_TIMES = 100;
     private static final int TRIAL_MIN_TIMES = 1;
@@ -22,7 +20,7 @@ public class TrialTimes {
         try {
             Integer.parseInt(trialTimes);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_TRIAL_NUMBER.message());
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 정수만 입력 가능합니다.");
         }
     }
     
@@ -35,13 +33,13 @@ public class TrialTimes {
 
     private void isOverMaxRange(int trialTimesNumber) {
         if (trialTimesNumber > TRIAL_MAX_TIMES) {
-            throw new IllegalArgumentException(ErrorMessage.TRIAL_NUMBER_OVER_RANGE.message());
+            throw new IllegalArgumentException("[ERROR] 시도 횟수가 100 이하여야 합니다.");
         }
     }
 
     private void isUnderMinRange(int trialTimesNumber) {
         if (trialTimesNumber < TRIAL_MIN_TIMES) {
-            throw new IllegalArgumentException(ErrorMessage.TRIAL_NUMBER_UNDER_RANGE.message());
+            throw new IllegalArgumentException("[ERROR] 시도 횟수가 1 이상이어야 합니다.");
         }
     }
 
