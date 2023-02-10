@@ -3,6 +3,7 @@ package controller;
 import domain.Car;
 import domain.Participants;
 import domain.Race;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,8 +28,14 @@ public class RaceController {
         printRoundResult();
     }
 
-    public void addAllParticipants(List<String> carNames) {
-        carNames.forEach(participants::join);
+    public void addAllParticipants(final String carNames) {
+        final String DELIMITER = ",";
+        splitWordsBy(carNames, DELIMITER).forEach(participants::join);
+    }
+
+    private List<String> splitWordsBy(String input, String delimiter) {
+        return Arrays.stream(input.split(delimiter, -1)).map(String::strip)
+            .collect(Collectors.toList());
     }
 
     public List<Car> getWinners() {
