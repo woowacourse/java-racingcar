@@ -1,13 +1,14 @@
 package racingCar.dto;
 
+import racingCar.domain.CarName;
 import racingCar.domain.Position;
 
 public class CarDto {
 
-    private final String name;
+    private final CarName name;
     private final Position position;
 
-    public CarDto(String name, Position position) {
+    public CarDto(CarName name, Position position) {
         this.name = name;
         this.position = position;
     }
