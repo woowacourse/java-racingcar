@@ -6,7 +6,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import utils.NumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,12 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarsTest {
 
-    private final NumberGenerator mockNumberGenerator = new MockNumberGenerator();
+    private final NumberGenerator mockNumberGenerator = new MockNumberGenerator(List.of(5, 3, 5));
 
     @DisplayName("moveCars를 통해 조건을 충족시킨 Car를 move 시킨다.")
-    @ParameterizedTest
-    @CsvSource(value = {"0:1", "1:0", "2:1"}, delimiter = ':')
-    void moveCars(int index, int expectedPosition) {
+    @Test
+    void moveCars() {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         Car carC = new Car("carC");
@@ -27,9 +28,13 @@ class CarsTest {
         Cars cars = new Cars(List.of(carA, carB, carC));
 
         cars.moveCars(mockNumberGenerator);
+        List<Car> afterCarMoved = cars.getCars();
 
-        Car carAfterMove = cars.getCars().get(index);
-        assertEquals(carAfterMove.getPosition(), expectedPosition);
+        List<Integer> expected = afterCarMoved.stream()
+                .map(car -> car.getPosition())
+                .collect(Collectors.toList());
+
+        assertThat(expected).isEqualTo(List.of(1, 0, 1));
     }
 
     @DisplayName("findWinners()를 통해 position이 가장 높은 Car들을 가져온다")
@@ -47,25 +52,17 @@ class CarsTest {
         assertThat(winners).containsExactly(carA, carC);
     }
 
-    /**
-     * 홀수번은 move가 가능한 숫자를, 짝수번에는 move가 불가능한 숫자를 반환하는 NumberGenerator
-     */
     class MockNumberGenerator implements NumberGenerator {
-
-        private List<Integer> values = List.of(MINIMUM_NUMBER_TO_MOVE , MINIMUM_NUMBER_TO_MOVE-1);
+        private final List<Integer> values;
         private int index = 0;
+
+        public MockNumberGenerator(List<Integer> values){
+            this.values = values;
+        }
 
         @Override
         public int generate() {
-            Integer value = values.get(index);
-
-            if (index == 0) {
-                index++;
-                return value;
-            }
-
-            index--;
-            return value;
+            return values.get(index++);
         }
     }
 }
