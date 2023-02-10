@@ -1,7 +1,6 @@
 package console;
 
 import domain.Cars;
-
 import java.util.Map;
 
 public class OutputView {
@@ -20,24 +19,23 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printWinner(Cars cars) {
+    public static void printWinners(Cars cars) {
         System.out.print(String.join(DELIMITER, cars.getWinner()));
         System.out.println("가 최종 우승했습니다.");
     }
 
-    public static void printCurrentStatus(Cars cars) {
-        final Map<String, Integer> carCurrentStatus = cars.getCurrentStatus();
+    public static void printCurrentRacingStatus(Cars cars) {
+        final Map<String, Integer> currentRacingStatus = cars.getCurrentStatus();
 
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder currentRacingStatusMessage = new StringBuilder();
 
-        for (final String carName : carCurrentStatus.keySet()) {
-            stringBuilder.append(carName)
-                         .append(" : ")
-                         .append("-".repeat(carCurrentStatus.get(carName)))
-                         .append("\n");
+        for (final String carName : currentRacingStatus.keySet()) {
+            currentRacingStatusMessage.append(carName)
+                    .append(" : ")
+                    .append("-".repeat(currentRacingStatus.get(carName)))
+                    .append("\n");
         }
 
-        System.out.println(stringBuilder.toString());
+        System.out.println(currentRacingStatusMessage.toString());
     }
-
 }
