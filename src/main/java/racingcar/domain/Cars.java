@@ -16,7 +16,7 @@ public class Cars {
 
     private static void validateSoloPlay(List<Car> cars) {
         if (cars.size() == 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 차를 둘 이상 입력하세요.");
         }
     }
 
@@ -27,7 +27,7 @@ public class Cars {
                 .distinct()
                 .count();
         if (carsSize != duplicateRemovedCount) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 이름을 사용할 수 없습니다.");
         }
     }
 

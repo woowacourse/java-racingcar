@@ -21,13 +21,13 @@ public class Car {
 
     private static void validateBlank(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 공백 입력은 허용되지 않습니다.");
         }
     }
 
     private static void validateLength(String carName) {
         if (carName.length() >= MAX_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 차 이름은 5글자 이하로 입력해야합니다.");
         }
     }
 
