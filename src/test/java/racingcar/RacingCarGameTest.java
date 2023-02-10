@@ -1,28 +1,22 @@
 package racingcar;
 
-import static java.nio.charset.StandardCharsets.*;
-import static org.assertj.core.api.Assertions.*;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.stream.Stream;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import racingcar.domain.Cars;
 import racingcar.domain.GameManager;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.io.*;
+import java.util.stream.Stream;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingCarGameTest {
 	NumberGenerator numberGenerator;
