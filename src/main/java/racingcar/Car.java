@@ -4,6 +4,7 @@ import validator.CarValidator;
 
 public class Car {
     private static final int START_POSITION = 0;
+    private static final int MOVING_DISTANCE = 1;
 
     private final String name;
     private int position;
@@ -20,7 +21,7 @@ public class Car {
 
     public void move(MoveStrategy moveStrategy) {
         if (moveStrategy.isMovable()) {
-            position++;
+            position += MOVING_DISTANCE;
         }
     }
 
