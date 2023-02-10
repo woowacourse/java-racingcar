@@ -1,14 +1,14 @@
 package ui;
 
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
     private static final String POSITION_MARK = "-";
     private static final int POSITION_MARK_DEFAULT_VALUE = 1;
 
-    public void printCarsStatus(LinkedHashMap<String, Integer> carsStatus) {
+    public void printCarsStatus(Map<String, Integer> carsStatus) {
         carsStatus.forEach((name, position) -> System.out.println(name + " : " + convertPosition(position)));
         System.out.println();
     }
