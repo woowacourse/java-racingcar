@@ -46,4 +46,8 @@ public class OutputView {
     public void printExceptionMessage(String exceptionMessage) {
         System.out.println(exceptionMessage);
     }
+
+    public static void printAnnounceMessage(String announceMessage) {
+        System.out.println(announceMessage);
+    }
 }

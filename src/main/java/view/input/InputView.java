@@ -1,5 +1,7 @@
 package view.input;
 
+import view.output.OutputView;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +18,7 @@ public class InputView {
     }
 
     public List<String> readCarName() {
-        System.out.println(CAR_NAMES_INPUT_MESSAGE);
+        OutputView.printAnnounceMessage(CAR_NAMES_INPUT_MESSAGE);
 
         final String delimiter = ",";
         String carNames = scanner.nextLine();
@@ -27,7 +29,7 @@ public class InputView {
     }
 
     public int readGameTry() {
-        System.out.println(TRY_COUNT_INPUT_MESSAGE);
+        OutputView.printAnnounceMessage(TRY_COUNT_INPUT_MESSAGE);
 
         String gameTry = scanner.nextLine();
 
