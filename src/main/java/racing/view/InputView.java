@@ -18,6 +18,16 @@ public class InputView {
 
     public int inputTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return SCANNER.nextInt();
+        return inputNumber();
+    }
+
+    private int inputNumber() {
+        String input = SCANNER.nextLine();
+
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력 값은 숫자여아합니다.");
+        }
     }
 }

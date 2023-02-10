@@ -1,8 +1,8 @@
 package racing.service;
 
-import racing.domain.NumberGenerator;
 import racing.domain.Car;
 import racing.domain.Cars;
+import racing.domain.NumberGenerator;
 import racing.dto.GameResultDto;
 
 import java.util.List;
@@ -17,9 +17,16 @@ public class RacingGameService {
     private int tryCount;
 
     public RacingGameService(NumberGenerator numberGenerator, int tryCount, List<Car> cars) {
+        validateTryCount(tryCount);
+        this.tryCount = tryCount;
         this.numberGenerator = numberGenerator;
         this.cars = new Cars(cars);
-        this.tryCount = tryCount;
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (tryCount <= 0) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상이여야 합니다.");
+        }
     }
 
     public GameResultDto play() {
