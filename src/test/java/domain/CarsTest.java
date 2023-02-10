@@ -1,5 +1,6 @@
 package domain;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarsTest {
 
-    private final NumberGenerator mockNumberGenerator = new MockNumberGenerator();
+    private MockNumberGenerator mockNumberGenerator
+            = new MockNumberGenerator(MINIMUM_NUMBER_TO_MOVE, MINIMUM_NUMBER_TO_MOVE - 1, MINIMUM_NUMBER_TO_MOVE);
+
+
+    @AfterEach
+    void resetMockNumberGenerator() {
+        mockNumberGenerator.resetIndex();
+    }
 
     @DisplayName("moveCars를 통해 조건을 충족시킨 Car를 move 시킨다.")
     @ParameterizedTest
@@ -48,24 +56,26 @@ class CarsTest {
     }
 
     /**
-     * 홀수번은 move가 가능한 숫자를, 짝수번에는 move가 불가능한 숫자를 반환하는 NumberGenerator
+     * 생성자를 통해 원하는 숫자를 순서대로 출력해주는 NumberGenerator
      */
     class MockNumberGenerator implements NumberGenerator {
 
-        private List<Integer> values = List.of(MINIMUM_NUMBER_TO_MOVE , MINIMUM_NUMBER_TO_MOVE-1);
+        private final int[] values;
         private int index = 0;
+
+        public MockNumberGenerator(int... value) {
+            this.values = value;
+        }
 
         @Override
         public int generate() {
-            Integer value = values.get(index);
-
-            if (index == 0) {
-                index++;
-                return value;
-            }
-
-            index--;
+            Integer value = values[index];
+            index++;
             return value;
+        }
+
+        private void resetIndex() {
+            index = 0;
         }
     }
 }
