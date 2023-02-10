@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+    private final static String ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private final static String ENTER_COUNT = "시도할 회수는 몇회인가요?";
+
     private final Scanner scanner = new Scanner(System.in);
 
-    private String readLine() {
-        return scanner.nextLine().strip();
-    }
-
     public List<String> readCarNames() throws IllegalArgumentException {
+        printInputMessage(ENTER_CAR_NAMES);
         final String DELIMITER = ",";
         String input = readLine();
         INPUT_VALIDATOR.validate(input);
@@ -27,9 +27,18 @@ public class InputView {
     }
 
     public int readCount() throws IllegalArgumentException {
+        printInputMessage(ENTER_COUNT);
         String input = readLine();
         COUNT_VALIDATOR.validate(input);
         return Integer.parseInt(input);
+    }
+
+    private String readLine() {
+        return scanner.nextLine().strip();
+    }
+
+    private void printInputMessage(String message) {
+        System.out.println(message);
     }
 
     private List<String> splitWordsBy(String input, String delimiter) {

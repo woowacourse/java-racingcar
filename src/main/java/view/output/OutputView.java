@@ -9,15 +9,7 @@ public class OutputView {
     static private void print(PrintMessages message) {
         System.out.println(message.getContent());
     }
-
-    static public void printEnterCarNames() {
-        print(PrintMessages.ENTER_CAR_NAMES);
-    }
-
-    static public void printEnterCount() {
-        print(PrintMessages.ENTER_COUNT);
-    }
-
+    
     static public void printResultMessage() {
         print(PrintMessages.RESULT);
     }

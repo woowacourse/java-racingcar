@@ -8,10 +8,13 @@ public class Game {
 
     private RaceController raceController = new RaceController();
     private InputView inputView = new InputView();
-
-    private List<String> enterCarNames() {
-        OutputView.printEnterCarNames();
-        return inputCarNames();
+    
+    public void play() {
+        List<String> carNames = inputCarNames();
+        raceController.addAllParticipants(carNames);
+        int count = inputCount();
+        printAllResult(count);
+        printWinners(raceController.getWinners());
     }
 
     private List<String> inputCarNames() {
@@ -21,11 +24,6 @@ public class Game {
             OutputView.printErrorMessage(exception);
             return inputCarNames();
         }
-    }
-
-    private int enterCount() {
-        OutputView.printEnterCount();
-        return inputCount();
     }
 
     private int inputCount() {
@@ -44,13 +42,5 @@ public class Game {
 
     private void printWinners(List<Car> winners) {
         OutputView.printWinners(winners);
-    }
-
-    public void play() {
-        List<String> carNames = enterCarNames();
-        raceController.addAllParticipants(carNames);
-        int count = enterCount();
-        printAllResult(count);
-        printWinners(raceController.getWinners());
     }
 }
