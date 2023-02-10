@@ -15,9 +15,7 @@ public class RacingGame {
 
     public void run() {
         CarManager carManager = new CarManager(getCarsFromInput());
-        output.printBlankLine();
         TrialCount count = getTrialCountFromInput();
-        output.printBlankLine();
         output.printExecutionResultMessage();
         executeCarMoveByCount(carManager,count);
         output.printFinalResult(carManager.getWinners());
@@ -47,7 +45,6 @@ public class RacingGame {
         for (int i = 0; i < count.getValue(); i++) {
             manager.moveCarsRandomly();
             printExecutedResult(manager.getCars());
-            output.printBlankLine();
         }
     }
 

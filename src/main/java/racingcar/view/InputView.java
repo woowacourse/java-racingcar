@@ -14,7 +14,9 @@ public class InputView {
 
     private String readLineWithMessage(String message) {
         System.out.println(message);
-        return input.nextLine();
+        String line = input.nextLine();
+        System.out.println();
+        return line;
     }
 
     public List<String> getCarNames() {

@@ -21,9 +21,6 @@ public class OutputView {
     public void printExecutionResult(List<Car> cars) {
         cars.stream()
                 .forEach(car -> printCar(car));
-    }
-
-    public void printBlankLine() {
         System.out.println();
     }
 
