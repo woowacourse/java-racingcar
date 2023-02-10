@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class CarRepositoryTest {
 
-
     private Car gitJjang;
     private Car irene;
 
