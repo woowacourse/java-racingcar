@@ -5,6 +5,10 @@ public class Car {
     private static final int START_POSITION = 0;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
+    private static final String NAME_LENGTH_EXCEPTION_FORMAT = "이름은 %d글자 이상 %d글자 이하입니다";
+    private static final String NAME_LENGTH_EXCEPTION_MESSAGE = String.format(NAME_LENGTH_EXCEPTION_FORMAT,
+            MIN_NAME_LENGTH,
+            MAX_NAME_LENGTH);
 
     private final String name;
     private int position;
@@ -35,11 +39,8 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 이름이 너무 깁니다.");
-        }
-        if (name.length() < MIN_NAME_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 이름이 너무 짧습니다.");
+        if (name.length() < MIN_NAME_LENGTH || MAX_NAME_LENGTH < name.length()) {
+            throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE);
         }
     }
 
