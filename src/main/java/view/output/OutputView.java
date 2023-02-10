@@ -30,7 +30,7 @@ public class OutputView {
 
     static private void addCarResult(StringBuilder roundResult, Car car) {
         final String DELIMITER = " : ";
-        final String CAR_RESULT = car + DELIMITER + convertDistance(car.getDrivenDistance()) + '\n';
+        final String CAR_RESULT = makeNameWithIndex(car) + DELIMITER + convertDistance(car.getDrivenDistance()) + '\n';
         roundResult.append(CAR_RESULT);
     }
 
@@ -39,10 +39,20 @@ public class OutputView {
         return DISTANCE.repeat(distance);
     }
 
+    static private String makeNameWithIndex(Car car) {
+        final String DELIMITER = "-";
+        String name = car.getName();
+        int index = car.getOrder();
+        if (index > 0) {
+            return name + DELIMITER + index;
+        }
+        return name;
+    }
+
     static public void printWinners(List<Car> winners) {
         final String DELIMITER = ", ";
-        String message =
-            winners.stream().map(Car::toString).collect(Collectors.joining(DELIMITER)) + PrintMessages.WIN.getContent();
+        String message = winners.stream().map(OutputView::makeNameWithIndex)
+            .collect(Collectors.joining(DELIMITER)) + PrintMessages.WIN.getContent();
         System.out.println(message);
     }
 

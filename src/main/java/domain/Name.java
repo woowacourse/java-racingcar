@@ -3,18 +3,18 @@ package domain;
 public class Name {
 
     private final String name;
-    private final int index;
+    private final int order;
 
-    public Name(String name, int index) {
-        this.name = name;
-        this.index = index;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public String toString() {
-        if (index > 0) {
-            return name + "-" + index;
-        }
-        return name;
+    public int getOrder() {
+        return order;
+    }
+
+    public Name(String name, int order) {
+        this.name = name;
+        this.order = order;
     }
 }

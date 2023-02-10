@@ -7,8 +7,8 @@ public class Car {
     private final Name name;
     private int drivenDistance = 0;
 
-    public Car(String name, int index) {
-        this.name = new Name(name, index);
+    public Car(String name, int order) {
+        this.name = new Name(name, order);
     }
 
     public void drive(int distance) {
@@ -23,8 +23,11 @@ public class Car {
         return drivenDistance;
     }
 
-    @Override
-    public String toString() {
-        return name.toString();
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getOrder(){
+        return name.getOrder();
     }
 }
