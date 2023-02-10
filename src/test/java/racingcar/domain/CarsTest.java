@@ -3,9 +3,13 @@ package racingcar.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -56,29 +60,33 @@ class CarsTest {
         }
     }
 
-    @Test
-    @DisplayName("winner() 시 제일 많이 움직인 차들을 우승자로 반환한다.")
-    void test_4() {
-        // given
+    @ParameterizedTest(name = "winners() 시 제일 많이 움직인 차들을 우승자로 반환한다.")
+    @MethodSource("carsAndWinnerCars")
+    void test_4(final Cars cars, final List<Car> actualWinnerCars) {
+        // when
+        List<Car> winners = cars.winners();
+
+        // then
+        assertThat(winners).containsExactlyInAnyOrderElementsOf(actualWinnerCars);
+    }
+
+    static Stream<Arguments> carsAndWinnerCars() {
         Car winner1 = new Car("말랑");
         Car winner2 = new Car("채채");
         Car nonWinner1 = new Car("시카");
-        Car nonWinner2 = new Car("헤나");
+        Car nonWinner2 = new Car("카일");
         winner1.move(4);
         winner1.move(4);
 
         winner2.move(4);
         winner2.move(4);
-
         nonWinner1.move(4);
 
         List<Car> movedCars = List.of(winner1, winner2, nonWinner1, nonWinner2);
         Cars cars = WinnerCarsHelper.withWinnerCars(movedCars);
 
-        // when
-        List<Car> winners = cars.winners();
-
-        // then
-        assertThat(winners).containsExactlyInAnyOrder(winner1, winner2);
+        return Stream.of(
+                Arguments.of(cars, List.of(winner1, winner2))
+        );
     }
 }

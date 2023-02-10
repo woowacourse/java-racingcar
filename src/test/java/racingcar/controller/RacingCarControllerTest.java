@@ -65,15 +65,6 @@ class RacingCarControllerTest {
             assertThat(lap.getCurrentLap()).isEqualTo(beforeCurrentLap + 1);
         }
 
-        /**
-         * success_test_3_version_1 과
-         * (cars.moveCars()의 호출 여부만을 검증,
-         * cars.moveCars()는 Cars 테스트를 통해 정상동작함을 확인할 수 있기 때문에 이곳에서는 호출만을 검증한다.)
-         * <p>
-         * success_test_3_version_2(전체 동작이 잘 이루어지는지 검증)
-         * <p>
-         * 의 방법 중 어떤 것이 더 좋다고 생각하시나요?
-         */
         @Test
         @DisplayName(
                 "moveCars() 시 Cars와 Lap을 받으면 자동차를 랜덤값에 따라 움직이고 현재 바퀴수를 1만큼 증가시킨다."
@@ -104,30 +95,19 @@ class RacingCarControllerTest {
             assertThat(lap.getCurrentLap()).isEqualTo(beforeCurrentLap + 1);
         }
 
-        @Test
-        @DisplayName("winners() 호출 시 우승한 자동차의 이름을 반환한다.")
-        void success_test_4() {
+        @ParameterizedTest(name = "winners() 호출 시 우승한 자동차의 이름을 반환한다.")
+        @MethodSource("racingcar.domain.CarsTest#carsAndWinnerCars")
+        void success_test_4(final Cars cars, final List<Car> actualWinnerCars) {
             // given
-            Car winner1 = new Car("말랑");
-            Car winner2 = new Car("채채");
-            Car nonWinner1 = new Car("시카");
-            Car nonWinner2 = new Car("헤나");
-            winner1.move(4);
-            winner1.move(4);
-
-            winner2.move(4);
-            winner2.move(4);
-
-            nonWinner1.move(4);
-
-            List<Car> movedCars = List.of(winner1, winner2, nonWinner1, nonWinner2);
-            Cars cars = WinnerCarsHelper.withWinnerCars(movedCars);
+            List<String> actualWinnerCarNames = actualWinnerCars.stream()
+                    .map(it -> it.getName().getValue())
+                    .collect(Collectors.toList());
 
             // when
             List<String> winnerNames = controller.winners(cars);
 
             // then
-            assertThat(winnerNames).containsExactlyInAnyOrder(winner1.getName().getValue(), winner2.getName().getValue());
+            assertThat(winnerNames).containsExactlyInAnyOrderElementsOf(actualWinnerCarNames);
         }
     }
 
