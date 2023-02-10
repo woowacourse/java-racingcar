@@ -5,10 +5,11 @@ public class Car implements Comparable<Car> {
   private final String name;
   private final int MIN_MOVE_NUM = 4;
 
-  private int position = 1;
+  private int position;
 
   public Car(String name) {
     this.name = name;
+    this.position = 1;
   }
 
   public void move(int num) {

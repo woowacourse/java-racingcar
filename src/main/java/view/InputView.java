@@ -18,26 +18,23 @@ public class InputView {
 
   public List<String> readCarNames() {
     System.out.println(Messages.INPUT_CAR_NAMES);
-    String[] split = readLine().split(",");
+    String[] split = scanner.nextLine().split(",");
 
     return Arrays.stream(split)
         .peek(this::validateCarName)
         .collect(Collectors.toList());
   }
 
-  private String readLine() {
-    return scanner.nextLine();
-  }
-
   private void validateCarName(String inputCarName) {
-    if (inputCarName.length() < MIN_CAR_NAME_LENGTH || inputCarName.length() > MAX_CAR_NAME_LENGTH) {
-      throw new IllegalArgumentException(Messages.ERROR_CAR_NAME_LENGTH);
+    if (inputCarName.length() < MIN_CAR_NAME_LENGTH
+        || inputCarName.length() > MAX_CAR_NAME_LENGTH) {
+      throw new IllegalArgumentException("자동차의 이름의 길이는 1 이상 5 이하여아 한다");
     }
   }
 
   public int readTrialNum() {
     System.out.println(Messages.INPUT_TRIAL_NUM);
-    String input = readLine();
+    String input = scanner.nextLine();
     validateTrialNum(input);
     return Integer.parseInt(input);
   }
@@ -48,15 +45,15 @@ public class InputView {
   }
 
   private void validateTrialMaxNum(String input) {
-    if(input.length() > MAX_TRIAL_NUM){
-      throw new IllegalArgumentException(Messages.ERROR_MAX_TRIAL_NUM);
+    if (input.length() > MAX_TRIAL_NUM) {
+      throw new IllegalArgumentException("이동 횟수는 100회 미만이어야 합니다.");
     }
   }
 
   private void validateOnlyNum(String input) {
     boolean isNumber = !NUMBER.matcher(input).matches();
     if (isNumber) {
-      throw new IllegalArgumentException(Messages.ERROR_TRIAL_NOT_NUMBER);
+      throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
     }
   }
 }

@@ -5,7 +5,8 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class CarTest {
-  private Car car1=new Car("car1");
+
+  private Car car1 = new Car("car1");
 
   @Test
   void 자동차_생성() {
@@ -25,10 +26,11 @@ class CarTest {
     int currentPosition = car1.getPosition();
     assertThat(currentPosition).isEqualTo(0);
   }
+
   @Test
-  void 자동차_위치_비교(){
-    Car car2=new Car("car2");
-    int go=4;
+  void 자동차_위치_비교() {
+    Car car2 = new Car("car2");
+    int go = 4;
     car2.move(go);
     assertThat(car1.compareTo(car2) < 0).isTrue();
   }

@@ -9,18 +9,14 @@ public class OutputView {
   private final String BAR = "-";
 
   public void printStart(List<Car> cars) {
-    printNewLine();
+    System.out.println();
     System.out.println(Messages.OUTPUT_START);
     printCarsStatus(cars);
   }
 
-  private void printNewLine() {
-    System.out.println();
-  }
-
   public void printCarsStatus(List<Car> cars) {
     cars.forEach(this::printCarStatus);
-    printNewLine();
+    System.out.println();
   }
 
   private void printCarStatus(Car car) {
@@ -40,7 +36,7 @@ public class OutputView {
     System.out.printf(Messages.OUTPUT_WINNER, result);
   }
 
-  public void printErrorMessage(Exception exception){
+  public void printErrorMessage(Exception exception) {
     System.out.println(exception.getMessage());
   }
 }

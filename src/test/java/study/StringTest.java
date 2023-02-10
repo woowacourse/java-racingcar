@@ -11,6 +11,7 @@ public class StringTest {
   @Nested
   @DisplayName("split 메소드는 ','를 구분자로 설정했을 때")
   class Describe_split {
+
     @Test
     @DisplayName("대상 문자열이 '1,2'인 경우 '1', '2'를 반환한다")
     public void splitOneTwo() {
@@ -29,10 +30,7 @@ public class StringTest {
       Assertions.assertThat(result).containsExactly("1");
     }
   }
-
-
-
-
+  
   @Test
   @DisplayName("문자열 양 끝 문자 제거")
   public void removeEdge() {
@@ -41,9 +39,11 @@ public class StringTest {
 
     Assertions.assertThat(result).isEqualTo("1,2");
   }
+
   @Nested
   @DisplayName("charAt 메소드는")
-  public class Describe_charAt{
+  public class Describe_charAt {
+
     @Test
     @DisplayName("접근하려는 인덱스가 범위 내에 있을 때 해당 인덱스의 값을 반환한다.")
     public void getInOfIndexChar() {

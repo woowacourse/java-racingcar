@@ -13,21 +13,21 @@ public class RaceController {
   private InputView inputView = new InputView();
   private OutputView outputView = new OutputView();
 
-  private <T> T repeat(Supplier<T> inputReader){
-    try {
-      return inputReader.get();
-    } catch (Exception e){
-      outputView.printErrorMessage(e);
-      return repeat(inputReader);
-    }
-  }
-
   public void run() {
     List<Car> cars = makeCars();
     int roundNum = repeat(inputView::readTrialNum);
 
     startRace(cars, roundNum);
     pickWinner(cars);
+  }
+
+  private <T> T repeat(Supplier<T> inputReader) {
+    try {
+      return inputReader.get();
+    } catch (Exception e) {
+      outputView.printErrorMessage(e);
+      return repeat(inputReader);
+    }
   }
 
   private List<Car> makeCars() {
