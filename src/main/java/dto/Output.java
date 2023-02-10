@@ -2,18 +2,18 @@ package dto;
 
 import domain.Car;
 
-public class CarDto {
+public class Output {
 
     private final String name;
     private final int position;
 
-    private CarDto(String name, int position) {
+    private Output(String name, int position) {
         this.name = name;
         this.position = position;
     }
 
-    public static CarDto from(Car car) {
-        return new CarDto(car.getName(), car.getPosition());
+    public static Output from(Car car) {
+        return new Output(car.getName(), car.getPosition());
     }
 
     public String getName() {

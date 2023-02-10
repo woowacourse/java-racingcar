@@ -2,7 +2,7 @@ package controller;
 
 import domain.Car;
 import domain.Cars;
-import dto.CarDto;
+import dto.Output;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +24,19 @@ public class RacingCarController {
 
         while ((attemptNumber--) > 0) {
             moveAll(cars);
-            List<CarDto> carDtos = getCarDtos(cars);
-            OutputView.printStatus(carDtos);
+            List<Output> outputs = getCarDtos(cars);
+            OutputView.printStatus(outputs);
         }
 
         OutputView.printWinner(cars.judgeWinner());
     }
 
-    private List<CarDto> getCarDtos(Cars cars) {
-        List<CarDto> carDtos = new ArrayList<>();
+    private List<Output> getCarDtos(Cars cars) {
+        List<Output> outputs = new ArrayList<>();
         for (Car car : cars.getCars()) {
-            carDtos.add(CarDto.from(car));
+            outputs.add(Output.from(car));
         }
-        return carDtos;
+        return outputs;
     }
 
     private void moveAll(Cars cars) {

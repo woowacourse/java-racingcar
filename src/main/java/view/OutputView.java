@@ -2,7 +2,7 @@ package view;
 
 import domain.Car;
 import domain.Cars;
-import dto.CarDto;
+import dto.Output;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +17,10 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printStatus(List<CarDto> carDtos) {
-        for (CarDto carDto : carDtos) {
-            String name = carDto.getName();
-            int position = carDto.getPosition();
+    public static void printStatus(List<Output> outputs) {
+        for (Output output : outputs) {
+            String name = output.getName();
+            int position = output.getPosition();
             String positionString = getPositionString(position);
             System.out.printf(PRINT_STATUS_FORMAT, name, positionString);
         }
