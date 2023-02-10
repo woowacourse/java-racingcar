@@ -22,7 +22,7 @@ class RacingCarGameTest {
 
     @ParameterizedTest
     @MethodSource("provideCars")
-    @DisplayName("메서드를 인수로 전달")
+    @DisplayName("우승자를 정상적으로 판별하는지 확인한다.")
     void getWinners(List<Car> players, List<String> expectedWinners) {
         CarRepository.updateCars(players);
         assertThat(racingCarGame.getWinners()).isEqualTo(expectedWinners);

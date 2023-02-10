@@ -2,6 +2,7 @@ package racingcar;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -27,6 +28,7 @@ class CarRepositoryTest {
     }
 
     @Test
+    @DisplayName("레포지토리에 정상적으로 모든 자동차가 저장되었는지 확인한다.")
     void findAll() {
         List<String> carNames = CarRepository.findAll()
                 .stream()
@@ -37,11 +39,13 @@ class CarRepositoryTest {
     }
 
     @Test
-    void findSamePositionWith() {
+    @DisplayName("최대 포지션에 위치한 자동차를 반환하는지 확인한다.")
+    void findMaxPosition() {
         assertThat(CarRepository.findMaxPosition(3)).isEqualTo(List.of("mery"));
     }
 
     @ParameterizedTest
+    @DisplayName("레포지토리에 저장할 자동차 리스트가 비어있거나 공백인 경우 예외를 발생시키는지 확인한다.")
     @MethodSource("provideCars")
     void numberOfCarsException(List<Car> cars) {
         assertThatIllegalArgumentException()
