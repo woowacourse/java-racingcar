@@ -7,6 +7,7 @@ import dto.Outputs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -38,11 +39,9 @@ public class OutputView {
     }
 
     public static void printWinner(Cars winnerCars) {
-        List<Car> cars = winnerCars.getCars();
-        List<String> carNames = new ArrayList<>();
-        for (Car car : cars) {
-            carNames.add(car.getName());
-        }
+        List<String> carNames = winnerCars.getCars().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
         String winnerString = String.join(DELIMITER, carNames);
         System.out.printf(PRINT_WINNER_FORMAT, winnerString);
     }
