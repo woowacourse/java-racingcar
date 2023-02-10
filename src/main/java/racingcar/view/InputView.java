@@ -9,12 +9,12 @@ public class InputView {
     public String readCarName() {
         System.out.println(READ_CAR_NAME_MESSAGE);
         Scanner scanner = new Scanner(System.in);
-        return scanner.next();
+        return scanner.nextLine();
     }
 
     public String readTryCount() {
         System.out.println(READ_TRY_COUNT_MESSAGE);
         Scanner scanner = new Scanner(System.in);
-        return scanner.next();
+        return scanner.nextLine();
     }
 }

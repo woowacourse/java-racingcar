@@ -1,16 +1,18 @@
 package racingcar.validator;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 class CarNamesValidatorTest {
@@ -22,8 +24,8 @@ class CarNamesValidatorTest {
     }
 
     @ParameterizedTest()
-    @DisplayName("이름 유효성 검사 테스트")
     @MethodSource("이름_유효성_검사_데이터_생성")
+    @DisplayName("이름 유효성 검사 테스트")
     public void 이름_유효성_검사(List<String> names) {
         assertDoesNotThrow(() -> carNamesValidator.validateNames(names));
     }
@@ -37,13 +39,12 @@ class CarNamesValidatorTest {
     }
 
     @ParameterizedTest()
-    @DisplayName("이름 길이 예외 테스트")
     @MethodSource("길이_예외_검사_데이터_생성")
+    @DisplayName("이름 길이 예외 테스트")
     public void 길이_예외_검사(List<String> names) {
-        Throwable exception = assertThrows(IllegalArgumentException.class, () ->
-                carNamesValidator.validateNames(names)
-        );
-        assertEquals("자동차 이름은 5자이하만 가능합니다.", exception.getMessage());
+        Assertions.assertThatThrownBy(() -> carNamesValidator.validateNames(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("자동차 이름은 5자이하만 가능합니다.");
     }
 
     static Stream<Arguments> 길이_예외_검사_데이터_생성() {
@@ -55,13 +56,12 @@ class CarNamesValidatorTest {
     }
 
     @ParameterizedTest()
-    @DisplayName("중복 예외 테스트")
     @MethodSource("중복_예외_검사_데이터_생성")
+    @DisplayName("중복 예외 테스트")
     public void 중복_예외_검사(List<String> names) {
-        Throwable exception = assertThrows(IllegalArgumentException.class, () ->
-                carNamesValidator.validateNames(names)
-        );
-        assertEquals("자동차 이름은 중복될 수 없습니다.", exception.getMessage());
+        Assertions.assertThatThrownBy(() -> carNamesValidator.validateNames(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("자동차 이름은 중복될 수 없습니다.");
     }
 
     static Stream<Arguments> 중복_예외_검사_데이터_생성() {

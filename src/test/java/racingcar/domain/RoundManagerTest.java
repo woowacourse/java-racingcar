@@ -1,13 +1,13 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.List;
-import java.util.stream.Stream;
 
 class RoundManagerTest {
     @ParameterizedTest
@@ -17,10 +17,9 @@ class RoundManagerTest {
         Range range = new Range(4, 9);
         NumberGenerator numberGenerator = new DefaultNumberGenerator(num);
         AdvanceJudgement advanceJudgement = new AdvanceJudgement(range, numberGenerator);
-
         RoundManager roundManager = new RoundManager(advanceJudgement);
         roundManager.addRacingCar(new RacingCar("car"));
-        Assertions.assertEquals(expected, roundManager.runRound());
+        assertThat(roundManager.runRound()).isEqualTo(expected);
     }
 
     static Stream<Arguments> 전진_결과_데이터() {
