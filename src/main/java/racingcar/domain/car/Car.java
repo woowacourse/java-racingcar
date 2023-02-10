@@ -4,13 +4,17 @@ import java.util.Objects;
 
 public class Car {
 
+    private static final int DEFAULT_POSITION = 0;
+    private static final int MAXIMUM_NUMBER_OF_CHARACTERS = 5;
+    private static final int MINIMUM_NUMBER_OF_CHARACTERS = 1;
+
     private final String name;
     private int position;
 
     public Car(String name) {
         validate(name);
         this.name = name;
-        this.position = 0;
+        this.position = DEFAULT_POSITION;
     }
 
     private void validate(String name) {
@@ -23,7 +27,7 @@ public class Car {
     }
 
     private boolean isOutOfRange(String name) {
-        return name.length() > 5 || name.length() < 1;
+        return name.length() > MAXIMUM_NUMBER_OF_CHARACTERS || name.length() < MINIMUM_NUMBER_OF_CHARACTERS;
     }
 
     private boolean isValidateName(String name) {

@@ -49,7 +49,7 @@ public class CarRepository {
     }
 
     private Car moveByNumber(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= MOVING_CONDITION) {
             car.updatePosition();
         }
         return car;
