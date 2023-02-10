@@ -22,7 +22,7 @@ public class InputView {
         System.out.println("시도할 회수는 몇회인가요?");
         String input = scanner.nextLine();
         validateEmpty(input);
-        return validateIsDigit(input);
+        return Integer.parseInt(input);
     }
 
     private static void validateEmpty(String[] carNames) throws IllegalArgumentException {
@@ -45,7 +45,4 @@ public class InputView {
         return tryCount.length() == 0;
     }
 
-    private static Integer validateIsDigit(String input) throws IllegalArgumentException {
-        return Integer.parseInt(input);
-    }
 }
