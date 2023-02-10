@@ -13,7 +13,7 @@ class CarInfoValidationTest {
     void test_ValidateName_IllegalArgumentException() {
         //given
         String input = "aaa,bbbb,cccccc";
-        String expectedMessage = "자동차 이름은 5자 이상 작성해주세요.";
+        String expectedMessage = "자동차 이름은 5자 이하로 작성해주세요.";
 
         //when & then
         try {
