@@ -71,4 +71,21 @@ class CarNamesValidatorTest {
                 Arguments.of(Arrays.asList("hongo", "hongo", "oing"))
         );
     }
+
+    @ParameterizedTest()
+    @MethodSource("공백_예외_검사_데이터_생성")
+    @DisplayName("공백 예외 테스트")
+    public void 공백_예외_검사(List<String> names) {
+        Assertions.assertThatThrownBy(() -> carNamesValidator.validateNames(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("공백이 포함된 문자는 입력할 수 없습니다.");
+    }
+
+    static Stream<Arguments> 공백_예외_검사_데이터_생성() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("홍 고", "오잉", "바다")),
+                Arguments.of(Arrays.asList("123 ", "456", "123")),
+                Arguments.of(Arrays.asList(" ", "hongo", "oing"))
+        );
+    }
 }
