@@ -30,7 +30,7 @@ public class OutputView {
 
     static private void addCarResult(StringBuilder roundResult, Car car) {
         final String DELIMITER = " : ";
-        final String CAR_RESULT = car + DELIMITER + convertDistance(car.getDrivenDistance()) + '\n';
+        final String CAR_RESULT = car.getName() + DELIMITER + convertDistance(car.getDrivenDistance()) + '\n';
         roundResult.append(CAR_RESULT);
     }
 
@@ -42,7 +42,7 @@ public class OutputView {
     static public void printWinners(List<Car> winners) {
         final String DELIMITER = ", ";
         String message =
-            winners.stream().map(Car::toString).collect(Collectors.joining(DELIMITER)) + PrintMessages.WIN.getContent();
+            winners.stream().map(Car::getName).collect(Collectors.joining(DELIMITER)) + PrintMessages.WIN.getContent();
         System.out.println(message);
     }
 
