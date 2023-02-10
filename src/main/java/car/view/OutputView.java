@@ -1,8 +1,8 @@
 package car.view;
 
+import static car.option.Option.CAR_DELIMITER;
 import static car.option.Option.CAR_INFIX;
 import static car.option.Option.POSITION_CHARACTER;
-import static car.option.Option.WINNER_DELIMITER;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,19 +18,17 @@ public class OutputView {
         System.out.println(RESULT_START_MESSAGE);
     }
 
-    public void printCars(List<Car> cars) {
+    public void printStatusOf(List<Car> cars) {
         for (Car car : cars) {
-            printCar(car);
+            printStatusOf(car);
         }
         System.out.println();
     }
 
-    private void printCar(Car car) {
-        System.out.print(car.getName() + CAR_INFIX);
-        for (int i = 0; i < car.getPosition(); i++) {
-            System.out.print(POSITION_CHARACTER);
-        }
-        System.out.println();
+    private void printStatusOf(Car car) {
+        int fromZeroToPosition = car.getPosition();
+        String progress = POSITION_CHARACTER.repeat(fromZeroToPosition);
+        System.out.println(car.getName() + CAR_INFIX + progress);
     }
 
     public void printWinners(List<Car> winners) {
