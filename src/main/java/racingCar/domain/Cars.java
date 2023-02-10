@@ -14,7 +14,7 @@ public class Cars {
     private static final int MIN_CAR_SIZE = 2;
     private static final int INIT_CAR_POSITION = 0;
 
-    List<Car> cars;
+    private List<Car> cars;
 
     public Cars(List<String> names) {
         validateDuplicate(names);
