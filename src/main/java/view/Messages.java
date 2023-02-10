@@ -13,5 +13,4 @@ public class Messages {
     public static final String ERROR_CAR_NAME_LENGTH = "자동차의 이름의 길이는 1 이상 5 이하여아 한다";
     public static final String ERROR_MAX_TRIAL_NUM = "이동 횟수는 100회 미만이어야 합니다.";
     public static final String ERROR_TRIAL_NOT_NUMBER = "이동 횟수는 숫자여야 합니다.";
-
 }
