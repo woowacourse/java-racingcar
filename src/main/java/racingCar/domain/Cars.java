@@ -48,7 +48,6 @@ public class Cars {
         return Collections.unmodifiableList(this.cars);
     }
 
-
     public List<String> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
