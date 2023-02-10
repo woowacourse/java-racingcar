@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import domain.Car;
 import domain.Cars;
+import domain.Referee;
 import output.Outputs;
 import utils.RandomNumberGenerator;
 import view.InputView;
@@ -26,7 +27,9 @@ public class RacingCarController {
             OutputView.printCars(outputs);
         }
 
-        OutputView.printWinner(cars.judgeWinner());
+        Referee referee = new Referee();
+        Cars winner = referee.judgeWinner(cars);
+        OutputView.printWinner(winner);
     }
 
     private void moveAll(Cars cars) {

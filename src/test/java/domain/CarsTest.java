@@ -1,16 +1,12 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class CarsTest {
 
@@ -61,33 +57,6 @@ class CarsTest {
 
         //then
         assertThatThrownBy(() -> cars.findByName(carName))
-                .isInstanceOf(RuntimeException.class);
-    }
-
-    @DisplayName("우승자가 carB, carC일 때 findByName으로 carB, carC를 찾을 수 있다.")
-    @ParameterizedTest
-    @CsvSource({"carB", "carC"})
-    void judgeWinnerTest1(String name) {
-        //given
-
-        //when
-        Cars winningCars = cars.judgeWinner();
-
-        //then
-        assertThatCode(() -> winningCars.findByName(name))
-                .doesNotThrowAnyException();
-    }
-
-    @DisplayName("우승자가 carB, carC일 때 findByName으로 carA를 찾을 수 없다.")
-    @Test
-    void judgeWinnerTest2() {
-        //given
-
-        //when
-        Cars winningCars = cars.judgeWinner();
-
-        //then
-        assertThatThrownBy(() -> winningCars.findByName("carA"))
                 .isInstanceOf(RuntimeException.class);
     }
 }
