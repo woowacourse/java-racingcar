@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class CarNameTest {
 
     @Test
-    @DisplayName("자동차 이름이 5자 초과인 경우 예외 발생")
+    @DisplayName("5자 초과인 경우 예외 발생")
     void carNameTest_fail1() {
         String carName = "aaaaaa";
 
@@ -20,7 +20,7 @@ class CarNameTest {
     }
 
     @Test
-    @DisplayName("자동차 이름을 올바르게 생성한 경우")
+    @DisplayName("올바르게 생성한 경우")
     void carNameTest_success() {
         String carName = "aaa";
 

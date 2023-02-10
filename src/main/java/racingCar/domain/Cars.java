@@ -56,7 +56,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0);
+                .orElse(INIT_CAR_POSITION);
     }
 
     public List<CarDto> toDtos() {
