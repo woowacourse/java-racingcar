@@ -32,11 +32,11 @@ public class Car {
         return compareCar;
     }
 
-    public Car getSamePositionCar(Car maxPositionCar) {
+    public boolean isSamePositionCar(Car maxPositionCar) {
         if (this.position == maxPositionCar.getPosition()) {
-            return this;
+            return true;
         }
-        return null;
+        return false;
     }
 
     public String getName() {
