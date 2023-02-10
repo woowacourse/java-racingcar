@@ -4,95 +4,40 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
-import java.util.List;
-import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import validation.ErrorMessages;
 
 class InputViewTest {
 
     private InputView inputView;
 
-    void before(String input) {
+    void setInput(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         inputView = new InputView();
     }
 
+    @DisplayName("입력이 빈 문자열일 때 오류를 던진다")
     @Test
-    void 자동차이름_입력값이_빈문자일_경우_오류를던진다() {
-        //given
-        final String input = "\n";
-        before(input);
-        //when then
-        assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Validator.ERROR_HEADER)
-            .hasMessageContaining(ErrorMessages.EMPTY_INPUT.getContent());
+    void input_empty() {
+        setInput("\nb");
+        assertThatThrownBy(inputView::getCarNames).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ErrorMessages.EMPTY_INPUT.getMessage());
     }
 
+    @DisplayName("공백으로만 이루어져 있는 문자열은 모든 공백이 무시된다.")
     @Test
-    void 자동차이름이_5자보다_길면_오류를던진다() {
-        //given
-        final String input = "make,takeasd";
-        before(input);
-        //when then
-        assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Validator.ERROR_HEADER)
-            .hasMessageContaining(ErrorMessages.NOT_PROPER_CAR_NAME_LENGTH.getContent());
+    void input_strip_all_blank() {
+        setInput("              \nb");
+        assertThatThrownBy(inputView::getCarNames).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ErrorMessages.EMPTY_INPUT.getMessage());
     }
 
-    @ValueSource(strings = {",make,take", "make,,take", "make,take,", ",,,"})
-    @ParameterizedTest
-    void 자동차이름이_빈문자열일시_오류를던진다(String input) {
-        //given
-        before(input);
-        //when then
-        assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Validator.ERROR_HEADER)
-            .hasMessageContaining(ErrorMessages.NOT_PROPER_CAR_NAME_LENGTH.getContent());
-    }
-
-    @ValueSource(strings = {"-", "ma-e", "mak1-"})
-    @ParameterizedTest
-    void 자동차이름에_중복표시_구분자가_포함되면_오류를던진다(String input) {
-        //given
-        before(input);
-        //when then
-        assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Validator.ERROR_HEADER)
-            .hasMessageContaining(ErrorMessages.CONTAINS_DELIMITER.getContent());
-    }
-
+    @DisplayName("입력 앞뒤에 존재하는 공백은 무시한다.")
     @Test
-    void 자동차이름_입력값_앞뒤에_공백이존재하면_무시한다() {
-        //given
-        before("  one,two,three                  ");
-        //when
-        List<String> result = inputView.readCarNames();
-        //then
-        assertThat(result).isEqualTo(List.of("one", "two", "three"));
-    }
-
-    @MethodSource("correctCarNames")
-    @ParameterizedTest
-    void 올바른_자동차_이름_입력값을_받았을_때(List<String> carNames) {
-        //given
-        final String DELIMITER = ",";
-        before(String.join(DELIMITER, carNames));
-        //when
-        List<String> result = inputView.readCarNames();
-        //then
-        assertThat(result).isEqualTo(carNames);
-    }
-
-    static Stream<Arguments> correctCarNames() {
-        return Stream.of(
-            Arguments.of(List.of("one")),
-            Arguments.of(List.of("a", "b")),
-            Arguments.of(List.of("a b", "ab wd")),
-            Arguments.of(List.of("가나다라마", "마라다나가", "기니디리미"))
-        );
+    void input_strip_word_exist() {
+        setInput("       a      \nb");
+        String input = inputView.getCarNames();
+        assertThat(input).isEqualTo("a");
     }
 }
