@@ -1,8 +1,13 @@
 package utils;
 
-public class RandomNumberGenerator {
+import java.util.Random;
 
-    public static int generateNumber() {
-        return (int) (Math.random() * 10);
+public class RandomNumberGenerator implements NumberGenerator {
+
+    private static final Random random = new Random();
+
+    @Override
+    public int generateNumber() {
+        return random.nextInt(10);
     }
 }
