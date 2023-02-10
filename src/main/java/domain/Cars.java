@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    private static final int CAN_NOT_FIND_MAXIMUM = -1;
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -31,7 +33,7 @@ public class Cars {
         return cars.stream()
                 .map(Car::getPosition)
                 .max(Integer::compare)
-                .orElse(-1);
+                .orElse(CAN_NOT_FIND_MAXIMUM);
     }
 
     public List<Car> getCars() {

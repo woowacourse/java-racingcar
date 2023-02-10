@@ -2,6 +2,8 @@ package utils;
 
 public class NumberValidator {
 
+    private static final int ITERATION_LOWER_BOUND = 0;
+
     private static final String NOT_NUMBER_MESSAGE = "[ERROR] 반복횟수는 숫자여야 합니다.";
     private static final String INVALID_NUMBER_MESSAGE = "[ERROR] 반복횟수는 0보다 커야 합니다.";
 
@@ -16,7 +18,7 @@ public class NumberValidator {
     }
 
     public static void validateRange(int number) {
-        if (number > 0) {
+        if (number > ITERATION_LOWER_BOUND) {
             return;
         }
         throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);
