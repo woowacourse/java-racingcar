@@ -4,12 +4,11 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingCar.util.FixedNumberGenerator;
+import racingCar.dto.CarDto;
+import racingCar.util.NumberGenerator;
 import racingCar.util.RandomNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class CarGroupTest {
@@ -50,6 +49,7 @@ class CarGroupTest {
                 .map(Car::getPosition)
                 .filter(position -> position > 0)
                 .count();
+
         Assertions.assertThat(count).isEqualTo(0);
     }
 
@@ -88,10 +88,24 @@ class CarGroupTest {
     @Test
     @DisplayName("자동차들이 움직이지 않았을 경우에 모두가 가장 높은 position이기에 이름들을 전부 가져온다.")
     void findWinnersTest() {
-        List<String> names = carGroup.getCarGroup().stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
+        List<String > winnerNames = carGroup.findWinners().stream().map(CarDto::getName).collect(Collectors.toList());
 
-        Assertions.assertThat(carGroup.findWinners()).isEqualTo(names);
+        Assertions.assertThat(winnerNames).containsAll(List.of("a", "b", "c"));
+    }
+
+}
+
+class FixedNumberGenerator implements NumberGenerator {
+
+    private final int fixedNumber;
+
+    public FixedNumberGenerator(int fixedNumber) {
+        this.fixedNumber = fixedNumber;
+    }
+
+    @Override
+    public int generateNumber() {
+        return fixedNumber;
     }
 }
+
