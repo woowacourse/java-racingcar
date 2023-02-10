@@ -23,7 +23,8 @@ class RacingcarServiceTest {
 
         List<Car> cars = Arrays.asList(car1, car2, car3);
         RacingcarService racingcarService = new RacingcarService();
-        List<Car> winners = racingcarService.findWinner(cars);
+        int winnerPosition = racingcarService.findPosition(cars);
+        List<Car> winners = racingcarService.findWinner(cars, winnerPosition);
 
         assertThat(winners).containsExactly(car2, car3);
     }

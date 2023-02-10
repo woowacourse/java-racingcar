@@ -6,21 +6,25 @@ import racingcar.model.Car;
 
 public class RacingcarService {
 
+    private final CarFactory carFactory;
+
+    public RacingcarService() {
+        this.carFactory = new CarFactory();
+    }
+
     public void move(List<Car> cars) {
         for (Car car : cars) {
             car.move(RandomMaker.random());
         }
     }
 
-    public List<Car> findWinner(List<Car> cars) {
-        int winnerPosition = findPosition(cars);
-
+    public List<Car> findWinner(List<Car> cars, int winnerPosition) {
         return cars.stream()
                 .filter(car -> car.isPosition(winnerPosition))
                 .collect(Collectors.toList());
     }
 
-    private int findPosition(List<Car> cars) {
+    public int findPosition(List<Car> cars) {
         int maxPosition = 0;
 
         for (Car car : cars) {
@@ -28,5 +32,9 @@ public class RacingcarService {
         }
 
         return maxPosition;
+    }
+
+    public List<Car> getCar(String carNames) {
+        return carFactory.makeCars(carNames);
     }
 }

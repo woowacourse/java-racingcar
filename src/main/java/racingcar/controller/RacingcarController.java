@@ -2,31 +2,37 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.model.Car;
-import racingcar.service.CarFactory;
 import racingcar.service.RacingcarService;
 import racingcar.ui.OutputView;
 
 public class RacingcarController {
 
-    private final CarFactory carFactory;
     private final RacingcarService racingcarService;
 
     public RacingcarController() {
-        this.carFactory = new CarFactory();
         this.racingcarService = new RacingcarService();
     }
 
     public void run(String carNames, int tryCount) {
-        List<Car> cars = getCars(carNames);
+        List<Car> cars = racingcarService.getCar(carNames);
 
         playRace(tryCount, cars);
+        int winnerPosition = findWinnerPosition(cars);
+        List<Car> winners = findWinners(cars, winnerPosition);
 
-        printWinners(cars);
+        printWinners(winners);
+    }
+
+    private int findWinnerPosition(List<Car> cars) {
+        return racingcarService.findPosition(cars);
+    }
+
+    private List<Car> findWinners(List<Car> cars, int winnerPosition) {
+        return racingcarService.findWinner(cars, winnerPosition);
     }
 
     private void printWinners(List<Car> cars) {
-        List<Car> winners = racingcarService.findWinner(cars);
-        OutputView.winner(winners);
+        OutputView.winner(cars);
     }
 
     private void playRace(int tryCount, List<Car> cars) {
@@ -35,9 +41,5 @@ public class RacingcarController {
             racingcarService.move(cars);
             OutputView.result(cars);
         }
-    }
-
-    private List<Car> getCars(String carNames) {
-        return carFactory.makeCars(carNames);
     }
 }
