@@ -35,7 +35,7 @@ public class RacingController {
         return inputView.getCarNames();
     }
 
-    private static Cars setUpCars(CarNames carNames, MovingStrategy movingStrategy) {
+    private Cars setUpCars(CarNames carNames, MovingStrategy movingStrategy) {
         List<Car> carsByNames = carNames.toSplitCarNames().stream()
                 .map(carName -> new Car(carName, movingStrategy))
                 .collect(Collectors.toList());
