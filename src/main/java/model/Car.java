@@ -6,7 +6,7 @@ import model.wrapper.Name;
 import model.wrapper.Position;
 import utils.RacingNumberGenerator;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private final Name name;
     private final Position position;
@@ -20,14 +20,7 @@ public class Car {
         position.move(generator);
     }
 
-    public String getName() {
-        return name.getName();
-    }
-
-    public int getPosition() {
-        return position.getPosition();
-    }
-
+    @Override
     public int compareTo(Car otherCar) {
         return this.position.compareTo(otherCar.position);
     }
@@ -42,5 +35,9 @@ public class Car {
 
     public WinnerCarDto mapToWinnerCarDto() {
         return new WinnerCarDto(name.getName());
+    }
+
+    public String getName() {
+        return name.getName();
     }
 }
