@@ -1,6 +1,6 @@
 package racingcar.model;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private String name;
     private int position;
@@ -25,18 +25,8 @@ public class Car {
         }
     }
 
-    public Car getLargerCar(Car compareCar) {
-        if (this.position > compareCar.getPosition()) {
-            return this;
-        }
-        return compareCar;
-    }
-
-    public Car getSamePositionCar(Car maxPositionCar) {
-        if (this.position == maxPositionCar.getPosition()) {
-            return this;
-        }
-        return null;
+    public boolean isSamePositionCar(Car maxPositionCar) {
+        return this.position == maxPositionCar.position;
     }
 
     public String getName() {
@@ -45,5 +35,10 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public int compareTo(Car anotherCar) {
+        return this.position - anotherCar.position;
     }
 }

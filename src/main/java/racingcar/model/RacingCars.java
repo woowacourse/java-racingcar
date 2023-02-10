@@ -3,8 +3,11 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCars {
+
+    private static final String EMPTY_CARS_ERROR_MESSAGE = "[ERROR] 경주할 자동차 리스트가 비었습니다.";
 
     private List<Car> cars;
 
@@ -18,22 +21,15 @@ public class RacingCars {
     }
 
     private Car getMaxPositionCar() {
-        Car maxPositionCar = cars.get(0);
-        for (Car car : cars) {
-            maxPositionCar = car.getLargerCar(maxPositionCar);
-        }
-        return maxPositionCar;
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalStateException(EMPTY_CARS_ERROR_MESSAGE));
     }
 
     private List<Car> getMaxPositionCars(Car maxPositionCar) {
-        List<Car> winners = new ArrayList<>();
-        for (Car car : cars) {
-            Car sameMaxPositionCar = car.getSamePositionCar(maxPositionCar);
-            if (sameMaxPositionCar != null) {
-                winners.add(sameMaxPositionCar);
-            }
-        }
-        return winners;
+        return cars.stream()
+                .filter(car -> car.isSamePositionCar(maxPositionCar))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<Car> getCars() {
