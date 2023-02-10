@@ -1,7 +1,6 @@
 package racingcar.util;
 
 import java.util.Arrays;
-import racingcar.domain.Position;
 import racingcar.view.ErrorMessage;
 
 public class Validator {

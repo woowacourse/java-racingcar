@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.util.Validator;
-
 public class Car {
     private static final int INIT_POSITION = 0;
     private static final int BOUNDARY = 4;
