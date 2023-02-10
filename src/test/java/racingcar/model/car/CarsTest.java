@@ -13,16 +13,18 @@ class CarsTest {
     void movingCarsTest() {
         // given
         Cars cars = TestDataManager.getCarsTestData();
+        List<Integer> expectedPosition = List.of(3, 1, 3);
 
         // when
         for (int i = 0; i < 2; i++) {
             cars.moveCars();
         }
-        String carsPositionFormat = cars.getCarsPositionFormat();
+        List<Car> movedCars = cars.getCars();
 
         // then
-        assertThat(carsPositionFormat)
-                .contains("pobi : ---", "crong : -");
+        assertThat(movedCars)
+                .extracting("position")
+                .isEqualTo(expectedPosition);
     }
 
     @DisplayName("우승한 자동차 선별 테스트")
