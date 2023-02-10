@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
-    private final static int MIN_MOVE_NUMBER = 4;
-    private final static int GAME_OVER_COUNT = 0;
+    private static final int MIN_MOVE_NUMBER = 4;
+    private static final int GAME_OVER_COUNT = 0;
 
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
