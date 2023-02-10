@@ -40,21 +40,14 @@ public class RacingGame {
 
     public void processAllCars() {
         for (Car car : cars) {
-            int power = numberGenerator.generate(0, 9);
+            int power = numberGenerator.generate(POWER_VALUE_MIN, POWER_VALUE_MAX);
             process(car, power);
         }
     }
 
     private void process(Car car, int power) {
-        validatePower(power);
         if (power >= PROCESS_MOVING_MIN_NUMBER) {
             car.move();
-        }
-    }
-
-    private void validatePower(int power) {
-        if (power < POWER_VALUE_MIN || power > POWER_VALUE_MAX) {
-            throw new IllegalArgumentException("자동차 전진을 위한 값은 지정된 범위 내여야 합니다.");
         }
     }
 
