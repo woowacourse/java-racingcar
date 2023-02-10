@@ -29,7 +29,6 @@ class CarTest {
     @DisplayName("랜덤 값이 3보다 큰 경우 전진한다.")
     @Test
     void moveWhenRandomNumberIsOverThree() {
-        //given
         Car car = new Car("123");
         RandomNumberGenerator numberGenerator = new RandomNumberGenerator() {
             @Override
@@ -38,17 +37,14 @@ class CarTest {
             }
         };
 
-        //when
         car.move(numberGenerator);
 
-        //then
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("랜덤 값이 3이하인 경우 전진하지 않는다.")
     @Test
     void moveWhenRandomNumberIsUnderThree() {
-        //given
         Car car = new Car("123");
         RandomNumberGenerator numberGenerator = new RandomNumberGenerator() {
             @Override
@@ -57,10 +53,8 @@ class CarTest {
             }
         };
 
-        //when
         car.move(numberGenerator);
 
-        //then
         assertThat(car.getPosition()).isEqualTo(0);
     }
 }

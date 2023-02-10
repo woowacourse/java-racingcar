@@ -5,7 +5,6 @@ import java.io.IOException;
 import domain.RacingGame;
 import view.InputView;
 
-//TODO: 예외 발생 시 재입력
 public class InputHandler {
 
     private static final String COMMA = ",";

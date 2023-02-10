@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class StringTest {
 
 
-
+    @DisplayName("문자열을 ,로 구분해서 분리한다.")
     @Test
     void split() {
         String input = "1,2";
@@ -17,6 +17,7 @@ public class StringTest {
         assertThat(numbers).containsExactly("1", "2");
     }
 
+    @DisplayName("양 끝에 괄호가 포함되어있는 문자열에서 괄호를 제거한다.")
     @Test
     void substring() {
         String input = "(1,2)";

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//TODO: ERROR 패키지 분리
 public class CarGroup {
 
     private static final String DUPLICATED_CAR_NAME_ERROR = "[ERROR] 자동차 이름에는 중복이 허용되지 않습니다.";
