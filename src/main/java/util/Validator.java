@@ -1,5 +1,6 @@
 package util;
 
+//TODO: validateCountRange매직넘버로 변경
 public class Validator {
     private static final String CHARACTER_REG = "^[a-zA-Z]*$";
 

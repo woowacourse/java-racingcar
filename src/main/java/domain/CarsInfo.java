@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//TODO : 클래스 네이밍 수정
+//TODO : .연산자 개행
+//TODO : getCarsInfo() 반환 코드 불변으로 수정
 public class CarsInfo {
     private final List<Car> carsInfo = new ArrayList<>();
 
