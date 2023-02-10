@@ -108,4 +108,3 @@ class FixedNumberGenerator implements NumberGenerator {
         return fixedNumber;
     }
 }
-
