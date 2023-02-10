@@ -6,8 +6,8 @@ import static racingcar.exception.ErrorMessages.CAR_NAME_BLANK_EXCEPTION;
 import static racingcar.exception.ErrorMessages.CAR_NAME_LENGTH_EXCEPTION;
 
 public class Car {
-    final String name;
-    int position;
+    private final String name;
+    private int position;
 
     public Car(String name) {
         validateNameNullOrBlank(name);
