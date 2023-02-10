@@ -23,14 +23,7 @@ public class Cars {
         List<String> winnerNames = new ArrayList<>();
         int maxPosition = 0;
         for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
-                winnerNames.add(car.getName());
-            }
-            if (car.getPosition() > maxPosition) {
-                maxPosition = car.getPosition();
-                winnerNames.clear();
-                winnerNames.add(car.getName());
-            }
+            maxPosition = findMaxPositionAndWinner(car, maxPosition, winnerNames);
         }
 
         return winnerNames;
@@ -61,5 +54,19 @@ public class Cars {
         if (cars.contains(newCar)) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
         }
+    }
+
+    private int findMaxPositionAndWinner(Car car, int currMax, List<String> winnerNames) {
+        if (car.getPosition() > currMax) {
+            winnerNames.clear();
+            winnerNames.add(car.getName());
+            return car.getPosition();
+        }
+
+        if (car.getPosition() == currMax) {
+            winnerNames.add(car.getName());
+        }
+
+        return currMax;
     }
 }
