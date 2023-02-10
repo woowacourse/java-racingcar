@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Position implements Comparable<Position> {
     private final int INITIAL_DEFAULT_VALUE = 0;
     private final int MOVE_STEP = 1;
@@ -20,6 +22,11 @@ public class Position implements Comparable<Position> {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 
     @Override
