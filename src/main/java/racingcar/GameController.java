@@ -6,6 +6,7 @@ import racingcar.view.OutputView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameController {
 
@@ -19,17 +20,17 @@ public class GameController {
 
 
     public GameController() {
-        List<Car> cars = initCars();
-        int gameTime = inputView.inputGameTime();
+        Cars cars = new Cars(initCars());
+        String gameTime = inputView.inputGameTime();
         racingGame = new RacingGame(gameTime, cars);
     }
 
     private List<Car> initCars() {
-        List<Car> cars = new ArrayList<>();
         String input = inputView.inputCarName();
         String[] split = input.split(DELIMITER);
-        Arrays.stream(split).forEach(carName -> cars.add(new Car(carName)));
-        return cars;
+        return Arrays.stream(split)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public void runGame() {
