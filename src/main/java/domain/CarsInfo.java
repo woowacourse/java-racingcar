@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarsInfo {
-    private final List<Car> carsInfo = new ArrayList<>();
+
+    private final List<Car> carsInfo;
 
     public CarsInfo(List<String> carNames) {
+        carsInfo = new ArrayList<>();
         checkNameDuplication(carNames);
         addCar(carNames);
     }
