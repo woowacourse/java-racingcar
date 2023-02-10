@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import util.Converter;
+import racing.util.Converter;
+import racing.validate.InputVerifier;
 
 class InputVerifierTest {
 

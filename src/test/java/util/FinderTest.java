@@ -1,9 +1,11 @@
 package util;
 
-import domain.Car;
+import racing.domain.Car;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing.domain.Cars;
+import racing.util.Finder;
 
 import java.util.Arrays;
 
@@ -23,7 +25,8 @@ class FinderTest {
         carC.increaseStep();
         carC.increaseStep();
 
-        Assertions.assertEquals(Finder.findMaxStep(Arrays.asList(carA, carB, carC)), 3);
+        Cars cars = new Cars(Arrays.asList(carA, carB, carC));
+        Assertions.assertEquals(Finder.findMaxStep(cars), 3);
     }
 
     @DisplayName("자동차들이 모두 이동하지 않았을 때 0을 반환해야 한다.")
@@ -33,7 +36,8 @@ class FinderTest {
         Car carB = new Car("carB");
         Car carC = new Car("carC");
 
-        Assertions.assertEquals(Finder.findMaxStep(Arrays.asList(carA, carB, carC)), 0);
+        Cars cars = new Cars(Arrays.asList(carA, carB, carC));
+        Assertions.assertEquals(Finder.findMaxStep(cars), 0);
     }
 
 }
