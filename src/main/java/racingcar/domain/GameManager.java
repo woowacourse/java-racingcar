@@ -33,7 +33,7 @@ public class GameManager {
         while (!gameRound.isEnd()) {
             cars.moveCars();
             gameRound.increaseRound();
-            RoundResultResponse roundResultResponse = new RoundResultResponse(cars.getCars());
+            RoundResultResponse roundResultResponse = new RoundResultResponse(cars.getCarsState());
             outputView.printRoundResult(roundResultResponse);
         }
     }

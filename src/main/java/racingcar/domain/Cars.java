@@ -33,8 +33,12 @@ public class Cars {
         cars.clear();
     }
 
-    public Set<Car> getCars() {
-        return Collections.unmodifiableSet(cars);
+    public Map<String, Integer> getCarsState() {
+        Map<String, Integer> carsState = new HashMap<>();
+        for (Car car : cars) {
+            carsState.put(car.getName(), car.getPosition());
+        }
+        return Collections.unmodifiableMap(carsState);
     }
 
     private void generateCar(String name) {
