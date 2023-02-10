@@ -1,15 +1,14 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 import utils.RandomNumberGenerator;
 import vo.Name;
 import vo.Position;
 import vo.Result;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
@@ -19,7 +18,7 @@ public class Cars {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public void add(Car car) {
+    public void saveCar(Car car) {
         cars.add(car);
     }
 
@@ -34,9 +33,13 @@ public class Cars {
     public List<Name> getWinners() {
         Position highestPosition = calculateHighestPosition();
         return cars.stream()
-                .filter((car) -> Objects.equals(car.getPosition(), highestPosition))
+                .filter(car -> hasHighestPosition(highestPosition, car))
                 .map(Car::getName)
                 .collect(Collectors.toList());
+    }
+
+    private static boolean hasHighestPosition(Position highestPosition, Car car) {
+        return car.hasPosition(highestPosition);
     }
 
     private Position calculateHighestPosition() {

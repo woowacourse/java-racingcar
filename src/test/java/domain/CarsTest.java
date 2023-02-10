@@ -23,7 +23,7 @@ class CarsTest {
         List<Integer> testNumbers = Arrays.asList(3, 4);
         cars = new Cars(new TestRandomNumberGenerator(testNumbers));
 
-        cars.add(car);
+        cars.saveCar(car);
 
         assertThat(cars.getPosition(car)).isEqualTo(Position.of(0L));
     }
@@ -36,8 +36,8 @@ class CarsTest {
 
         Car fox = new Car(Name.of("fox"));
 
-        cars.add(car);
-        cars.add(fox);
+        cars.saveCar(car);
+        cars.saveCar(fox);
 
         cars.move();
 
@@ -52,7 +52,7 @@ class CarsTest {
         List<Integer> testNumbers = List.of(4);
         cars = new Cars(new TestRandomNumberGenerator(testNumbers));
 
-        cars.add(car);
+        cars.saveCar(car);
         cars.move();
 
         Position status = cars.getPosition(car);
@@ -68,8 +68,8 @@ class CarsTest {
 
         Car fox = new Car(Name.of("fox"));
 
-        cars.add(car);
-        cars.add(fox);
+        cars.saveCar(car);
+        cars.saveCar(fox);
 
         cars.move();
 

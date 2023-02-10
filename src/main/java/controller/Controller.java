@@ -4,7 +4,6 @@ import service.Service;
 import view.InputView;
 import view.OutputView;
 import vo.Name;
-import vo.Result;
 import vo.Trial;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class Controller {
     private void playGame() {
         outputView.printResultMessage();
         Trial trial = service.getTrial();
-        for (int i = 0; i < trial.getValue(); i++) {
+        for (int count = 0; count < trial.getValue(); count++) {
             service.move();
             printResult();
         }
@@ -60,7 +59,6 @@ public class Controller {
     }
 
     private void printResult() {
-        Result result = service.getResult();
-        outputView.printResult(result);
+        outputView.printResult(service.getResult());
     }
 }

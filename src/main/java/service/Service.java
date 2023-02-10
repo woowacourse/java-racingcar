@@ -1,32 +1,31 @@
 package service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import domain.Car;
 import domain.Cars;
-import domain.Rule;
 import utils.RandomNumberGenerator;
 import utils.exception.AlreadyDefinedFieldException;
 import vo.Name;
 import vo.Result;
 import vo.Trial;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Service {
     private final Cars cars = new Cars(new RandomNumberGenerator());
-    private Rule rule;
+    private Trial trial;
 
     public void setCars(List<Name> names) {
         validateDuplication(names);
         for (Name carName : names) {
-            cars.add(new Car(carName));
+            cars.saveCar(new Car(carName));
         }
     }
 
     public void setTrial(Trial trial) {
-        if (rule == null) {
-            rule = new Rule(trial);
+        if (this.trial == null) {
+            this.trial = trial;
             return;
         }
 
@@ -38,7 +37,7 @@ public class Service {
     }
 
     public Trial getTrial() {
-        return rule.getTrial();
+        return trial;
     }
 
     public Result getResult() {

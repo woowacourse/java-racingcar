@@ -21,8 +21,8 @@ public class Car {
         return position;
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber > 3) {
+    public void move(int power) {
+        if (power > 3) {
             position = position.plus();
         }
     }
@@ -31,6 +31,10 @@ public class Car {
         if (name.length() > 5) {
             throw new IllegalArgumentException("5글자 까지만 가능합니다.");
         }
+    }
+
+    public boolean hasPosition(Position position) {
+        return this.position.equals(position);
     }
 
     @Override
