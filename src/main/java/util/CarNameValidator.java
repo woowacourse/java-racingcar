@@ -11,7 +11,7 @@ public class CarNameValidator {
         names.forEach(this::validateCarNameLength);
     }
 
-    private static void validateCarNumber(List<String> names) {
+    private void validateCarNumber(List<String> names) {
         if (names.size() < MIN_CAR_NUMBER) {
             throw new IllegalArgumentException(Message.EXCEPTION_CAR_NUMBER.message);
         }
