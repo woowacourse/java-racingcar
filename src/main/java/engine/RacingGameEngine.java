@@ -12,22 +12,20 @@ public class RacingGameEngine {
 
     private static final String SPLIT_DELIMITER = ",";
 
-
-    public void gameStart() {
-
-        final String carName = getCarName();
+    public void startGame() {
+        final String carsName = getCarsName();
         final int tryCount = getTryCount();
 
-        Cars cars = makeCars(carName);
+        Cars cars = makeCars(carsName);
 
         startRace(cars, tryCount);
 
-        OutputView.printWinner(cars);
+        OutputView.printWinners(cars);
     }
 
-    private String getCarName() {
+    private String getCarsName() {
         OutputView.requestOfCarNames();
-        return InputView.inputCarName();
+        return InputView.inputCarsName();
     }
 
     private int getTryCount() {
@@ -42,12 +40,11 @@ public class RacingGameEngine {
     }
 
     private void startRace(Cars cars, int tryCount) {
-
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount; i++) {
             cars.moveCar();
-            OutputView.printCurrentStatus(cars);
+            OutputView.printCurrentRacingStatus(cars);
         }
     }
 }
