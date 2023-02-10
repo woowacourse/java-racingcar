@@ -9,16 +9,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CarGroup {
+public class Cars {
 
     private static final int MIN_CAR_SIZE = 2;
-    List<Car> carGroup;
 
-    public CarGroup(List<String> carNames) {
-        validateDuplicate(carNames);
-        validateSize(carNames);
+    List<Car> cars;
 
-        this.carGroup = carNames.stream()
+    public Cars(List<String> names) {
+        validateDuplicate(names);
+        validateSize(names);
+
+        this.cars = names.stream()
                 .map(carName -> new Car(carName))
                 .collect(Collectors.toList());
     }
@@ -37,34 +38,36 @@ public class CarGroup {
     }
 
     public void moveCars(NumberGenerator numberGenerator) {
-        for (Car car : carGroup) {
+        for (Car car : cars) {
             int pickedNumber = numberGenerator.generateNumber();
             car.move(pickedNumber);
         }
     }
 
-    public List<Car> getCarGroup() {
-        return Collections.unmodifiableList(this.carGroup);
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(this.cars);
     }
 
-    public int getHighestPosition() {
-        return carGroup.stream()
-                .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException())
-                .getPosition();
-    }
 
     public List<String> findWinners() {
-        int highestPosition = this.getHighestPosition();
-        return carGroup.stream()
-                .filter(car -> car.getPosition() == highestPosition)
+        int maxPosition = findMaxPosition();
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    public List<CarDto> toCarDtos() {
-        return carGroup.stream()
-                .map(car -> car.toDto())
+    // TODO: getter 사용 지양을 위한 리팩터링
+    public int findMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+    }
+
+    public List<CarDto> toDtos() {
+        return cars.stream()
+                .map(Car::toDto)
                 .collect(Collectors.toList());
     }
 }

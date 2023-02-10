@@ -12,12 +12,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class CarGroupTest {
+class CarsTest {
 
-    private CarGroup carGroup;
+    private Cars cars;
     @BeforeEach
     void beforeEach() {
-        carGroup = new CarGroup(List.of("a", "b", "c"));
+        cars = new Cars(List.of("a", "b", "c"));
     }
 
     @Test
@@ -26,7 +26,7 @@ class CarGroupTest {
         List<String> carNames = List.of("abc", "abc");
 
         Assertions.assertThatThrownBy(()->{
-            new CarGroup(carNames);
+            new Cars(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -36,15 +36,15 @@ class CarGroupTest {
         List<String> carNames = new ArrayList<>();
 
         Assertions.assertThatThrownBy(()->{
-            new CarGroup(carNames);
+            new Cars(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("자동차들이 0-3의 숫자를 받으면 이동하지 않음 ")
     void carGroupMoveTest_notMove() {
-        carGroup.moveCars(new FixedNumberGenerator(3));
-        List<Car> afterCarGroup = carGroup.getCarGroup();
+        cars.moveCars(new FixedNumberGenerator(3));
+        List<Car> afterCarGroup = cars.getCars();
 
         long count = afterCarGroup.stream()
                 .map(Car::getPosition)
@@ -56,8 +56,8 @@ class CarGroupTest {
     @Test
     @DisplayName("자동차들이 4-9의 숫자를 받으면 이동")
     void carGroupMoveTest_Move() {
-        carGroup.moveCars(new FixedNumberGenerator(4));
-        List<Car> afterCarGroup = carGroup.getCarGroup();
+        cars.moveCars(new FixedNumberGenerator(4));
+        List<Car> afterCarGroup = cars.getCars();
 
         long count = afterCarGroup.stream()
                 .map(Car::getPosition)
@@ -70,17 +70,17 @@ class CarGroupTest {
     @DisplayName("자동차들의 position 중 가장 높은 position 값을 가져온다")
     void getHighestPositionTest() {
         for (int tryCount = 0; tryCount < 20; tryCount++) {
-            carGroup.moveCars(new RandomNumberGenerator());
+            cars.moveCars(new RandomNumberGenerator());
         }
 
-        List<Car> cars = carGroup.getCarGroup();
+        List<Car> cars = this.cars.getCars();
         int firstPosition = cars.stream()
                 .map(Car::getPosition)
                 .sorted(Comparator.reverseOrder())
                 .findFirst()
                 .get();
 
-        int highestPosition = carGroup.getHighestPosition();
+        int highestPosition = this.cars.findMaxPosition();
 
         Assertions.assertThat(highestPosition).isEqualTo(firstPosition);
     }
@@ -88,10 +88,10 @@ class CarGroupTest {
     @Test
     @DisplayName("자동차들이 움직이지 않았을 경우에 모두가 가장 높은 position이기에 이름들을 전부 가져온다.")
     void findWinnersTest() {
-        List<String> names = carGroup.getCarGroup().stream()
+        List<String> names = cars.getCars().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
 
-        Assertions.assertThat(carGroup.findWinners()).isEqualTo(names);
+        Assertions.assertThat(cars.findWinners()).isEqualTo(names);
     }
 }
