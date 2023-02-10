@@ -2,14 +2,34 @@ package model;
 
 import exception.ErrorCode;
 import java.util.Objects;
-import type.CarInformation;
 
 public class Car {
+
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     public Car(final String name) {
         validate(name);
         this.name = name;
+    }
+
+    private void validate(final String name) {
+        if (isCarNameLengthInRange(name.length())) {
+            return;
+        }
+        throw new IllegalArgumentException(
+            String.format(ErrorCode.CAR_NAME_OUT_OF_RANGE.getMessage(), MIN_NAME_LENGTH,
+                MAX_NAME_LENGTH));
+    }
+
+    private boolean isCarNameLengthInRange(final int nameLength) {
+        return nameLength >= MIN_NAME_LENGTH &&
+            nameLength <= MAX_NAME_LENGTH;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -27,21 +47,6 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    private void validate(final String name) {
-        if (isCarNameLengthInRange(name.length())) {
-            return;
-        }
-        throw new IllegalArgumentException(ErrorCode.CAR_NAME_OUT_OF_RANGE.getMessage());
-    }
-
-    private boolean isCarNameLengthInRange(final int nameLength) {
-        return nameLength >= CarInformation.NAME_MIN.getValue() && nameLength <= CarInformation.NAME_MAX.getValue();
     }
 
 }
