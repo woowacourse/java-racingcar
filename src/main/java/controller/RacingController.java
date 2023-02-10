@@ -8,8 +8,13 @@ import view.OutputView;
 import java.util.List;
 
 public class RacingController {
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
+    private final OutputView outputView;
+    private final InputView inputView;
+
+    public RacingController(OutputView outputView, InputView inputView) {
+        this.outputView = outputView;
+        this.inputView = inputView;
+    }
 
     public void run() {
         CarsInfo carsInfo = setUpCarName();
