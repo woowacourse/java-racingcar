@@ -7,13 +7,12 @@ import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCarController {
 
-    public void run() throws IOException {
+    public void run() {
         List<String> carNames = InputView.readCarName();
         int attemptNumber = InputView.readAttemptNumber();
 
