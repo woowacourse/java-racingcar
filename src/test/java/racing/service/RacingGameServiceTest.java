@@ -1,18 +1,19 @@
 package racing.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racing.domain.NumberGenerator;
 import racing.domain.Car;
+import racing.domain.NumberGenerator;
 import racing.dto.GameResultDto;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class RacingGameServiceTest {
 
@@ -32,6 +33,8 @@ class RacingGameServiceTest {
     @DisplayName("레이싱 게임을 한 라운드 진행한다")
     void moveTest() {
         numberGenerator.setNumber(4);
+        final int MOVED_POSITION = 1;
+
         RacingGameService gameService = new RacingGameService(numberGenerator, 3, dummy);
 
         GameResultDto result = gameService.play();
@@ -44,7 +47,8 @@ class RacingGameServiceTest {
 
         assertAll(() -> {
             assertThat(names).contains("박스터", "소나타", "벤츠");
-            assertThat(positions).containsOnly(1);
+
+            assertThat(positions).containsOnly(MOVED_POSITION);
         });
     }
 
