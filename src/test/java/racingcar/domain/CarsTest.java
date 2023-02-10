@@ -26,7 +26,7 @@ class CarsTest {
 	@MethodSource("carNamesDummy")
 	void generateCarsSuccessTest(List<String> carNames, int expectedSize) {
 		cars.generateCars(carNames);
-		assertThat(cars.getCars()).hasSize(expectedSize);
+		assertThat(cars.getCarsState()).hasSize(expectedSize);
 	}
 
 	@DisplayName("자동차 이름 갯수 0개거나 1개일 때 에러 발생 테스트")
