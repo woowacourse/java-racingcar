@@ -53,7 +53,7 @@ public class RacingController {
 
     public void concludeWinner(Track track) {
         Cars winnerCars = track.findWinner();
-        outputView.printWinnerCars(winnerCars.getCarsWinnerFormat());
+        outputView.printWinnerCars(winnerCars.getCars());
     }
 
     public void terminated(String errorMessage) {

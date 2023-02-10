@@ -29,12 +29,12 @@ public class Car {
         return position == maxPosition;
     }
 
-    public String getWinnerCarNameFormat() {
-        return carName;
-    }
-
     public boolean movable() {
         return movingStrategy.movable();
+    }
+
+    public String getCarName() {
+        return carName;
     }
 
     public int getPosition() {

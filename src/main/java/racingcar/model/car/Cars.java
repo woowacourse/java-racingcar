@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final String LINE_BREAK = "\n";
-    private static final String CAR_SEPARATOR = ", ";
 
     private final List<Car> cars;
 
@@ -36,9 +35,7 @@ public class Cars {
                 .collect(Collectors.toList()));
     }
 
-    public String getCarsWinnerFormat() {
-        return cars.stream()
-                .map(Car::getWinnerCarNameFormat)
-                .collect(Collectors.joining(CAR_SEPARATOR));
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

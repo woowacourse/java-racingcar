@@ -37,7 +37,8 @@ class CarsTest {
         Cars winnerCars = cars.getWinnerCars();
 
         // then
-        assertThat(winnerCars.getCarsWinnerFormat())
+        assertThat(winnerCars.getCars())
+                .extracting("carName")
                 .contains("pobi")
                 .doesNotContain("crong");
 
@@ -56,7 +57,8 @@ class CarsTest {
         Cars winnerCars = cars.getWinnerCars();
 
         // then
-        assertThat(winnerCars.getCarsWinnerFormat())
+        assertThat(winnerCars.getCars())
+                .extracting("carName")
                 .contains("pobi", "eddy");
     }
 
