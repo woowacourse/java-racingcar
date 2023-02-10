@@ -45,7 +45,6 @@ public class Cars {
         if (names.length() > MAX_INPUT_LENGTH)
             throw new IllegalArgumentException(INVALID_INPUT_LENGTH_MESSAGE);
 
-        //Set<String> duplicationRemoved = new HashSet<>(parseInput(names))
         List<String> splitNames = parseInput(names);
         if (new HashSet<>(splitNames).size() != splitNames.size())
             throw new IllegalArgumentException(DUPLICATE_CAR_NAMES);
