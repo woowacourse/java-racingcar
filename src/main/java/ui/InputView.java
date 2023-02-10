@@ -1,26 +1,23 @@
 package ui;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 public class InputView {
 
+    private static final String requestDelimiter = ",";
     private final Scanner scanner = new Scanner(System.in);
 
-    public List<String> requestCarNames() {
+    public List<String> askCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String carNameLine = scanner.nextLine();
-        StringTokenizer tokenizer = new StringTokenizer(carNameLine, ",");
-        List<String> carNames = new ArrayList<>();
-        while (tokenizer.hasMoreTokens()) {
-            carNames.add(tokenizer.nextToken());
-        }
-        return carNames;
+        String carNamesLine = scanner.nextLine();
+        return Arrays.stream(carNamesLine.split(requestDelimiter))
+                .collect(Collectors.toList());
     }
 
-    public int requestTrialCount() {
+    public int askTrialCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         int trialCount = readInt();
         if (trialCount <= 0) {

@@ -13,9 +13,9 @@ public class RacingGameController {
     private final RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
 
     public void run() {
-        List<String> carNames = inputView.requestCarNames();
+        List<String> carNames = inputView.askCarNames();
         racingGame.generateCars(carNames);
-        int trialCount = inputView.requestTrialCount();
+        int trialCount = inputView.askTrialCount();
         race(trialCount);
         outputView.printWinners(racingGame.decisionWinners());
     }
