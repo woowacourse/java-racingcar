@@ -37,7 +37,7 @@ public class RacingGameManager {
     private TryCount readTryCount() {
         try {
             return new TryCount(InputView.readCount());
-        } catch (IllegalArgumentException | IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readTryCount();
         }
