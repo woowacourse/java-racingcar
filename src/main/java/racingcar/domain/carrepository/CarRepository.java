@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CarRepository {
-    private static final int MIN_NUMBER_OF_CARS = 2
+    private static final int MIN_NUMBER_OF_CARS = 2;
     private static final int MOVING_CONDITION = 4;
 
     private final List<Car> repository;

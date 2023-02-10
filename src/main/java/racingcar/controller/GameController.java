@@ -20,23 +20,37 @@ public class GameController {
 
     public void run() {
         CarRepository carRepository = makeCars();
-        moveCar(carRepository);
+        GameSystem gameSystem = moveCar(carRepository);
+        printResult(carRepository, gameSystem);
     }
 
     private CarRepository makeCars() {
         CarFactory carFactory = new CarFactory();
-
-        return carFactory.createCarRepository(inputView.readCarNames());
+        while (true) {
+            try {
+                return carFactory.createCarRepository(inputView.readCarNames());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private void moveCar(CarRepository carRepository) {
-        GameSystem gameSystem = new GameSystem(inputView.readGameRound(), new NumberGenerator());
+    private GameSystem moveCar(CarRepository carRepository) {
+        while (true) {
+            try {
+                return new GameSystem(inputView.readGameRound(), new NumberGenerator());
+            } catch (IllegalArgumentException e2) {
+                System.out.println(e2.getMessage());
+            }
+        }
+    }
+
+    private void printResult(CarRepository carRepository, GameSystem gameSystem) {
+
         outputView.printResultGuide();
 
         Result result = gameSystem.startRace(carRepository);
         outputView.printResult(result);
         outputView.printWinners(result);
     }
-
-
 }
