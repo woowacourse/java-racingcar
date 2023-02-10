@@ -1,10 +1,13 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CarTest {
@@ -19,5 +22,20 @@ class CarTest {
         }
 
         assertThat(car.getPosition()).isEqualTo(expectedPosition);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "", "\n", "abcdef"})
+    void validateCarNameWithFailureCaseTest(String carName) {
+        assertThatThrownBy(() -> new Car(carName))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "a", "abc", "abcde"})
+    void validateCarNameWithSuccessCaseTest(String carName) {
+        assertThatCode(() -> new Car(carName))
+                .doesNotThrowAnyException();
     }
 }
