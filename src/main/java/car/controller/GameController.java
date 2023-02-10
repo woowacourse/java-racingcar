@@ -1,7 +1,5 @@
 package car.controller;
 
-import static car.option.Option.MIN_TRIAL_COUNT;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +13,7 @@ public class GameController {
 
     private static final InputView INPUT_VIEW = new InputView();
     private static final OutputView OUTPUT_VIEW = new OutputView();
+    private static final int MIN_TRIAL_COUNT = 0;
 
     private final Game game;
     private final int trialCount;
@@ -32,7 +31,7 @@ public class GameController {
     }
 
     public void showResult() {
-        OUTPUT_VIEW.printCars(game.getCars());
+        OUTPUT_VIEW.printStatusOf(game.getCars());
         OUTPUT_VIEW.printWinners(game.findWinners());
     }
 
@@ -51,7 +50,7 @@ public class GameController {
     private void playMultipleTimes() {
         for (int i = 0; i < trialCount; i++) {
             game.playOnce();
-            OUTPUT_VIEW.printCars(game.getCars());
+            OUTPUT_VIEW.printStatusOf(game.getCars());
         }
     }
 }

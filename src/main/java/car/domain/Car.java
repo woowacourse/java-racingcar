@@ -1,10 +1,10 @@
 package car.domain;
 
-import static car.option.Option.MAX_NAME_LENGTH;
-import static car.option.Option.MIN_NAME_LENGTH;
-import static car.option.Option.START_POSITION;
-
 public class Car {
+
+    private static final int START_POSITION = 0;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 1;
 
     private final String name;
     private int position;
