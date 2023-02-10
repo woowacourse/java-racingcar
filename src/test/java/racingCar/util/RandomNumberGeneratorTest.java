@@ -13,6 +13,6 @@ class RandomNumberGeneratorTest {
     @DisplayName("범위를 0부터 3으로 설정했을 때 범위 내의 값이 나오는지 테스트")
     void pickOneNumberTest() {
         int pickOneNumber = randomNumberPicker.generateNumber();
-        assertTrue(0 <= pickOneNumber && pickOneNumber <= 9);
+        assertTrue(0 <= pickOneNumber && pickOneNumber <= 3);
     }
 }
