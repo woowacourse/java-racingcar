@@ -1,6 +1,6 @@
 package view;
 
-import domain.CarDto;
+import racing.domain.car.CarDto;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing.view.OutputView;
 
 class OutputViewTest {
     private OutputView outputView;

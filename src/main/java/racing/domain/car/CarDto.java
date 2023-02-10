@@ -1,4 +1,4 @@
-package domain;
+package racing.domain.car;
 
 public class CarDto {
     private final String name;

@@ -1,6 +1,6 @@
-package view;
+package racing.view;
 
-import domain.CarDto;
+import racing.domain.car.CarDto;
 import java.util.List;
 import java.util.stream.Collectors;
 

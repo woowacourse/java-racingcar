@@ -2,6 +2,10 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import racing.domain.car.Car;
+import racing.domain.car.CarDto;
+import racing.domain.race.Race;
+import racing.domain.race.WinnerJudge;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
@@ -12,7 +16,7 @@ import org.junit.jupiter.api.Test;
 class RaceTest {
     @Nested
     @DisplayName("이름 중복 검증기능")
-    class duplicatedNameTest {
+    class DuplicatedNameTest {
         @Test
         @DisplayName("이름이 중복으로 입력되었을 때 예외 발생")
         void throwExceptionWhenDuplicateNameExists() {
@@ -23,7 +27,7 @@ class RaceTest {
 
     @Nested
     @DisplayName("우승자를 판별 기능은")
-    class getWinnersTest {
+    class GetWinnersTest {
         private Race race;
         private WinnerJudge mockWinnerJudge;
 

@@ -1,10 +1,12 @@
-import static domain.ExceptionHandlingTemplate.repeatUntilReadValidInput;
+package racing;
 
-import domain.CarDto;
-import domain.Race;
+import static racing.ExceptionHandlingTemplate.repeatUntilReadValidInput;
+
+import racing.domain.car.CarDto;
+import racing.domain.race.Race;
 import java.util.List;
-import view.InputView;
-import view.OutputView;
+import racing.view.InputView;
+import racing.view.OutputView;
 
 public class RaceController {
     private final InputView inputView = new InputView();

@@ -1,6 +1,5 @@
-package domain;
+package racing.domain.car;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Car {
@@ -12,11 +11,14 @@ public class Car {
     private final String name;
     private int position;
 
-
     public Car(String name) {
         validate(name);
         this.name = name;
         this.position = START_POSITION;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getPosition() {

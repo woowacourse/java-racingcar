@@ -1,5 +1,6 @@
-package domain;
+package racing.domain;
 
+import racing.domain.race.NumberPicker;
 import java.util.Random;
 
 public class RandomNumberPicker implements NumberPicker {

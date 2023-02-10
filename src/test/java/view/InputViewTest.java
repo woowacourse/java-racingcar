@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racing.view.InputView;
 
 class InputViewTest {
     private InputView inputView;
@@ -34,7 +35,7 @@ class InputViewTest {
 
         @ParameterizedTest
         @ValueSource(strings = {",,", ","})
-        @DisplayName("이름을 입력하지 않으면")
+        @DisplayName("이름을 입력하지 않으면 예외가 발생한다.")
         void throwExceptionWhenSplitListIsEmpty(String input) {
             InputStream in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
             System.setIn(in);

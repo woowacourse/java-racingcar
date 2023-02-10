@@ -1,5 +1,7 @@
 package domain;
 
+import racing.domain.WinnerJudgeImpl;
+import racing.domain.car.Car;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

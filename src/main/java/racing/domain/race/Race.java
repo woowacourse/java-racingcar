@@ -1,5 +1,9 @@
-package domain;
+package racing.domain.race;
 
+import racing.domain.RandomNumberPicker;
+import racing.domain.WinnerJudgeImpl;
+import racing.domain.car.Car;
+import racing.domain.car.CarDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +42,6 @@ public class Race {
         return cars.contains(car);
     }
 
-    //ToDo : 시간 남았을 때 테스트 해보기
     public void tryMoveOneTime() {
         for (Car car : cars) {
             car.moveDependingOn(numberPicker.pickNumber());
