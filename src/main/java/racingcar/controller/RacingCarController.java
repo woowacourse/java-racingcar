@@ -16,9 +16,9 @@ public class RacingCarController {
 
     private static final int START_POSITION = 0;
 
-    OutputView outputView = OutputView.getInstance();
-    InputView inputView = InputView.getInstance();
-    RacingCars racingCars;
+    private OutputView outputView = OutputView.getInstance();
+    private InputView inputView = InputView.getInstance();
+    private RacingCars racingCars;
 
     public void run() {
         List<Car> cars = generateCars();
