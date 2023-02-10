@@ -19,16 +19,16 @@ public class CarName {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
     private boolean isLongerThanMaxLength(String name) {
         return name.length() > CAR_NAME_MAX_LENGTH;
     }
 
     private boolean isShorterThanMinLength(String name) {
         return name.length() < CAR_NAME_MIN_LENGTH;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 
