@@ -1,17 +1,17 @@
 package racingcar.view;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
-import racingcar.dto.RacingStatusDto;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import racingcar.dto.CarPositionDto;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class OutputViewTest {
+
     private OutputView outputView;
     private MockOutput mockOutput;
 
@@ -38,9 +38,9 @@ class OutputViewTest {
 
     @Test
     void printStatus_메서드로_경주_진행상황_출력_테스트() {
-        List<RacingStatusDto> dtos = List.of(
-                new RacingStatusDto(1, "judy"),
-                new RacingStatusDto(2, "nunu"));
+        List<CarPositionDto> dtos = List.of(
+                new CarPositionDto(1, "judy"),
+                new CarPositionDto(2, "nunu"));
         outputView.printStatus(dtos);
 
         assertThat(mockOutput.output()).contains("judy : -", "nunu : --");

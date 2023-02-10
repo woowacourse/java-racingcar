@@ -1,11 +1,19 @@
 package racingcar.domain;
 
+import java.util.List;
+
 public class MockRandomPicker implements NumberPicker {
-    private int count = 0;
+
+    private final List<Integer> expected;
+    private int pos = 0;
+
+
+    public MockRandomPicker(List<Integer> expected) {
+        this.expected = expected;
+    }
 
     @Override
     public int pickNumber() {
-        count = 1 - count;
-        return 3 + count;
+        return expected.get(pos++);
     }
 }

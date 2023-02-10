@@ -2,21 +2,23 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-final class Status {
+final class Position {
+
     public static final int NEXT_MOVE = 1;
     private static final int INIT_NUMBER = 0;
+
     private final int moveCount;
 
-    private Status(int moveCount) {
+    private Position(int moveCount) {
         this.moveCount = moveCount;
     }
 
-    public static Status INIT() {
-        return new Status(INIT_NUMBER);
+    public static Position init() {
+        return new Position(INIT_NUMBER);
     }
 
-    public Status next() {
-        return new Status(moveCount + NEXT_MOVE);
+    public Position next() {
+        return new Position(moveCount + NEXT_MOVE);
     }
 
     public int getMoveCount() {
@@ -31,8 +33,8 @@ final class Status {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Status status = (Status) o;
-        return moveCount == status.moveCount;
+        Position position = (Position) o;
+        return moveCount == position.moveCount;
     }
 
     @Override

@@ -1,51 +1,48 @@
 package racingcar.controller;
 
+import java.util.function.Supplier;
+import racingcar.domain.CarContainer;
 import racingcar.domain.NumberPicker;
-import racingcar.domain.RacingStatus;
-import racingcar.view.Input;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.function.Supplier;
-
 public class Controller {
+
     public static final String GAME_COUNT_ERROR_MESSAGE = "올바른 회수를 입력해주세요";
+
     private final NumberPicker numberPicker;
-    private final Input input;
     private final OutputView outputView;
     private final InputView inputView;
-    private RacingStatus racingStatus;
+    private CarContainer carContainer;
 
-    public Controller(NumberPicker numberPicker, Input input, OutputView outputView, InputView inputView) {
+    public Controller(NumberPicker numberPicker, OutputView outputView, InputView inputView) {
         this.numberPicker = numberPicker;
-        this.input = input;
         this.outputView = outputView;
         this.inputView = inputView;
     }
 
     public void raceTracks() {
-        handleError(this::carNameInput);
+        setRacingCar();
+        race();
+        printResult();
+    }
 
-        inputView.printInputTryCountGuide();
-        int gameCount = handleError(input::gameCountInput);
+    private void setRacingCar() {
+        String carNames = handleError(inputView::inputCarName);
+        carContainer = new CarContainer(carNames, numberPicker);
+    }
 
+    private void race() {
+        int gameCount = handleError(inputView::inputTryCount);
         outputView.printStatusGuide();
-        for (int i = 0; i < gameCount; i++) {
-            racingStatus.moveCars();
-            outputView.printStatus(racingStatus.toDto());
+        for (int currentRound = 0; currentRound < gameCount; currentRound++) {
+            carContainer.moveCars();
+            outputView.printStatus(carContainer.toDto());
         }
-
-        outputView.printWinner(racingStatus.findWinner());
     }
 
-    private void carNameInput() {
-        String carNames = inputCarNames();
-        racingStatus = new RacingStatus(carNames, numberPicker);
-    }
-
-    private String inputCarNames() {
-        inputView.printInputCarNameGuide();
-        return input.carNameInput();
+    private void printResult() {
+        outputView.printWinner(carContainer.findWinner());
     }
 
     private <T> T handleError(Supplier<T> supplier) {
@@ -54,15 +51,6 @@ public class Controller {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(GAME_COUNT_ERROR_MESSAGE);
             return handleError(supplier);
-        }
-    }
-
-    private void handleError(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            handleError(runnable);
         }
     }
 }
