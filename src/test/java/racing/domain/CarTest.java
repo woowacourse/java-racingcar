@@ -16,7 +16,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("addPosition 메소드를 호출하면 position이 1 증가한다.")
+    @DisplayName("4이상의 power로 move 메소드를 호출하면 position이 1 증가한다.")
     void moveTest() {
         Car car = new Car("test");
 
