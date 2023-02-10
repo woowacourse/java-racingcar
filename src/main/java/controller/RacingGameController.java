@@ -1,8 +1,6 @@
 package controller;
 
-import domain.RacingCar;
-import domain.RacingCars;
-import domain.TryCount;
+import domain.*;
 import exception.CommaNotFoundException;
 import exception.NameIsOutOfBoundException;
 import exception.NotPositiveIntegerException;

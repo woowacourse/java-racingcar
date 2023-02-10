@@ -9,10 +9,10 @@ import static java.util.stream.Collectors.toList;
 
 public class RacingCars {
 
-    private final List<RacingCar> racingCars = new ArrayList<>();
+    private final List<RacingCar> racingCars;
 
     public RacingCars(final List<RacingCar> racingCars) {
-        this.racingCars.addAll(racingCars);
+        this.racingCars = new ArrayList<>(racingCars);
     }
 
     public void moveAll() {

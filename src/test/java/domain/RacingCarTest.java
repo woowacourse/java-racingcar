@@ -16,7 +16,7 @@ class RacingCarTest extends TestCarMaker {
         RacingCar car = makeCarByValue("car", value);
 
         //when
-        car.move();
+        car.move(pickNumber);
 
         //then
         assertThat(car.getPosition()).isEqualTo(result);

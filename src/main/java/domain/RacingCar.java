@@ -1,17 +1,23 @@
 package domain;
 
-import util.RandomGenerator;
-
-public class RacingCar extends RandomGenerator {
+public class RacingCar {
 
     private static final int MOVE_THRESHOLD = 4;
 
     private final Name name;
     private int position;
+    private Pickable picker;
 
     public RacingCar(final String name) {
         this.name = new Name(name);
         position = 0;
+        picker = new RandomPicker();
+    }
+
+    public RacingCar(final String carName, final Pickable picker) {
+        this.name = new Name(carName);
+        this.position = 0;
+        this.picker = picker;
     }
 
     public void move() {
@@ -21,12 +27,7 @@ public class RacingCar extends RandomGenerator {
     }
 
     private boolean isMovable() {
-        return getRandomInteger() >= MOVE_THRESHOLD;
-    }
-
-    @Override
-    protected int getRandomInteger() {
-        return (int) (Math.random() * 10);
+        return picker.pickNumber() >= MOVE_THRESHOLD;
     }
 
     public int getPosition() {
