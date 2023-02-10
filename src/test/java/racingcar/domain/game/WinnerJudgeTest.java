@@ -21,7 +21,7 @@ class WinnerJudgeTest {
     class SuccessTest {
 
         @ParameterizedTest(name = "judge() 호출 시 우승한 자동차를 반환한다.")
-        @MethodSource("racingcar.domain.CarsTest#carsAndWinnerCars")
+        @MethodSource("racingcar.domain.car.CarsTest#carsAndWinnerCars")
         void test_judge_1(final Cars cars, final List<Car> actualWinnerCars) {
             // when
             List<Car> winners = winnerJudge.judge(cars);
