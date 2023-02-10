@@ -3,6 +3,7 @@ package racingcar.controller;
 public class Retry {
 
     public static final Retry NO_RETRY = new Retry(0);
+    private static final int DECREASE_INTERVAL = 1;
     private static final int ZERO = 0;
 
     private final int retryCount;
@@ -15,10 +16,10 @@ public class Retry {
     }
 
     public Retry retry() {
-        return new Retry(retryCount - 1);
+        return new Retry(retryCount - DECREASE_INTERVAL);
     }
 
     public boolean retryable() {
-        return retryCount > 0;
+        return retryCount > ZERO;
     }
 }
