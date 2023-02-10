@@ -26,7 +26,9 @@ public class RacingCarController {
             OutputView.printStatus(carDtos);
         }
 
-        OutputView.printWinner(cars.judgeWinners());
+        Cars winnerCars = cars.judgeWinners();
+        List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
+        OutputView.printWinner(winnerCarDtos);
     }
 
     private List<CarDto> getCarDtos(Cars cars) {

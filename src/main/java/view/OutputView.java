@@ -5,6 +5,7 @@ import domain.Cars;
 import dto.CarDto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -28,19 +29,17 @@ public class OutputView {
     }
 
     private static String getPositionString(int position) {
-        String positionString = "";
+        StringBuilder positionString = new StringBuilder();
         for (int i = 0; i < position; i++) {
-            positionString += "-";
+            positionString.append("-");
         }
-        return positionString;
+        return positionString.toString();
     }
 
-    public static void printWinner(Cars winnerCars) {
-        List<Car> cars = winnerCars.getCars();
-        List<String> carNames = new ArrayList<>();
-        for (Car car : cars) {
-            carNames.add(car.getName());
-        }
+    public static void printWinner(List<CarDto> carDtos) {
+        List<String> carNames = carDtos.stream()
+                .map(CarDto::getName)
+                .collect(Collectors.toList());
         String winnerString = String.join(DELIMITER, carNames);
         System.out.printf(PRINT_WINNER_FORMAT, winnerString);
     }
