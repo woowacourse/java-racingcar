@@ -24,10 +24,10 @@ public class StringTest {
         assertThat(str.split(",")).doesNotContain("3");
     }
 
-    @ParameterizedTest(name = "',' 문자로 문자열 나누기 테스트(containsExactly) - 입력값 : {0}")
-    @ValueSource(strings = {"1,2", "1"})
-    void splitContainsExactlyTest(String str) {
-        assertThat(str.split(",")).containsExactly("1");
+    @Test
+    @DisplayName("문자열 나누기 테스트")
+    void splitContainsExactlyTest() {
+        assertThat("1,2".split(",")).containsExactly("1","2");
     }
 
     @Test
