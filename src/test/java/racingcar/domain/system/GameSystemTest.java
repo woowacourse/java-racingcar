@@ -24,7 +24,7 @@ class GameSystemTest {
     void validate_test(int gameRound) {
         GameSystem gameSystem = new GameSystem(gameRound, new NumberGenerator());
 
-        assertThat(gameSystem).isInstanceOf(GameSystemTest.class);
+        assertThat(gameSystem).isInstanceOf(GameSystem.class);
     }
 
     @ParameterizedTest
@@ -32,7 +32,8 @@ class GameSystemTest {
     @DisplayName("자연수가 아닌 시도 횟수를 입력하였을 때, 오류를 발생시키는지 확인")
     void validate_error_test(int gameRound) {
         assertThatThrownBy(() -> new GameSystem(gameRound, new NumberGenerator()))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 시도 횟수는 0 이하 일 수 없습니다.");
     }
 
 
