@@ -19,7 +19,7 @@ public class GameController {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    public static final int RANGE_BOUNDARY = 0;
+    private static final int RANGE_BOUNDARY = 0;
 
     private final Cars cars;
     private final int gameTime;

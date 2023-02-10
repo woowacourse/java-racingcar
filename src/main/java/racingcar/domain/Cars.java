@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    public static final int ONLY_ONE_CAR = 1;
-    public static final int BOUND = 10;
-    public static final int DEFAULT_MAX = 0;
+    private static final int ONLY_ONE_CAR = 1;
+    private static final int BOUND = 10;
+    private static final int DEFAULT_MAX = 0;
     private List<Car> cars;
 
     public Cars(List<Car> cars) {

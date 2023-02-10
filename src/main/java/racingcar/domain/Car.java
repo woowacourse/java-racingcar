@@ -2,10 +2,10 @@ package racingcar.domain;
 
 public class Car {
 
-    public static final int MOVE_RANGE = 1;
+    private static final int MOVE_RANGE = 1;
     private static final int INIT_POSITION = 0;
     private static final int BOUNDARY = 4;
-    public static final int MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
 
     private final String name;
     private int position;
