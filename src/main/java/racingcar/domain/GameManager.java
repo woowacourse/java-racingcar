@@ -9,7 +9,6 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameManager {
-
 	private final InputView inputView;
 	private final OutputView outputView;
 	private final Cars cars;
@@ -33,16 +32,16 @@ public class GameManager {
 		while (!gameRound.isEnd()) {
 			cars.moveCars();
 			gameRound.increaseRound();
-			RoundResultResponse roundResultResponse = new RoundResultResponse(cars.getCars());
-			outputView.printRoundResult(roundResultResponse);
+			RoundResultResponse carsRoundResult = new RoundResultResponse(cars.getCars());
+			outputView.printRoundResult(carsRoundResult);
 		}
 	}
 
 	private void createCars() {
-		while(true) {
+		while (true) {
 			try {
-				CarNamesRequest carNamesResponse = inputView.inputCarName();
-				List<String> carNames = carNamesResponse.getCarNames();
+				CarNamesRequest requestCarNames = inputView.inputCarName();
+				List<String> carNames = requestCarNames.getCarNames();
 				cars.generateCars(carNames);
 				return;
 			} catch (Exception e) {
@@ -65,7 +64,7 @@ public class GameManager {
 	}
 
 	private void endGame() {
-		GameResultResponse gameResultResponse = new GameResultResponse(cars.findWinnerNames());
-		outputView.printEndGameResult(gameResultResponse);
+		GameResultResponse gameResult = new GameResultResponse(cars.findWinnerNames());
+		outputView.printEndGameResult(gameResult);
 	}
 }
