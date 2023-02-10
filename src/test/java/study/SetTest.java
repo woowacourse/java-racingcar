@@ -29,7 +29,7 @@ public class SetTest {
     void size() {
         int size = 3;
 
-        assertThat(numbers.size()).isEqualTo(size);
+        assertThat(numbers).hasSize(size);
     }
 
     @ParameterizedTest
