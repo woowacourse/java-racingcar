@@ -1,6 +1,6 @@
 package util;
 
-public class Validator {
+public class MovingCountValidator {
     private static final String CHARACTER_REG = "^[a-zA-Z]*$";
     private static final int MOVING_COUNT_MIN_RANGE = 1;
     private static final int MOVING_COUNT_MAX_RANGE = 100;
