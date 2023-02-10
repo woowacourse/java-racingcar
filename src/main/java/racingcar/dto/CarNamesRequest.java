@@ -13,7 +13,7 @@ public class CarNamesRequest {
 
     private List<String> splitByComma(String carNames) {
         String[] splitCarNames = carNames.split("\\s*,\\s*");
-        return Arrays.stream(splitCarNames).collect(Collectors.toList());
+        return Arrays.asList(splitCarNames);
     }
 
     public List<String> getCarNames() {
