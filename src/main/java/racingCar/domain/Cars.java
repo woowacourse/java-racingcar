@@ -40,8 +40,7 @@ public class Cars {
 
     public void moveCars(NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            int pickedNumber = numberGenerator.generateNumber();
-            car.move(pickedNumber);
+            car.move(numberGenerator.generateNumber());
         }
     }
 
