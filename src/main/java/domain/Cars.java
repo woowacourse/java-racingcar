@@ -21,7 +21,7 @@ public class Cars {
     }
 
     public Long getStatus(Car car) {
-        return car.getStatus();
+        return car.getPosition();
     }
 
     public void move() {
@@ -31,14 +31,14 @@ public class Cars {
     public List<String> getWinners() {
         Long maxValue = getMaxValue();
         return cars.stream()
-                .filter((car) -> Objects.equals(car.getStatus(), maxValue))
+                .filter((car) -> Objects.equals(car.getPosition(), maxValue))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
     private Long getMaxValue() {
         return Collections.max(cars.stream()
-                .map(Car::getStatus)
+                .map(Car::getPosition)
                 .collect(Collectors.toList()));
     }
 

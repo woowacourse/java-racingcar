@@ -36,6 +36,6 @@ class CarTest {
         Car car = new Car("test");
         car.move(randomNumber);
 
-        assertThat(car.getStatus()).isEqualTo(expected);
+        assertThat(car.getPosition()).isEqualTo(expected);
     }
 }

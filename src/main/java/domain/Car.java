@@ -6,7 +6,7 @@ import utils.constants.PrintSigns;
 
 public class Car {
     private final String name;
-    private Long status = 0L;
+    private Long position = 0L;
 
     public Car(String name) {
         validateName(name);
@@ -19,7 +19,7 @@ public class Car {
 
     public void move(int randomNumber) {
         if (randomNumber > GameRules.MOVE_NUMBER.getValue()) {
-            status++;
+            position++;
         }
     }
 
@@ -29,14 +29,14 @@ public class Car {
         }
     }
 
-    public Long getStatus() {
-        return status;
+    public Long getPosition() {
+        return position;
     }
 
     public String getResult() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(PrintSigns.POSITION.getSign());
-        for (int i = 0; i < status; i++) {
+        for (int i = 0; i < position; i++) {
             stringBuilder.append(PrintSigns.SEPARATOR.getSign());
         }
         return name + stringBuilder;
