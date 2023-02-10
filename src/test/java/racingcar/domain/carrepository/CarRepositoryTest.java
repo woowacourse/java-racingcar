@@ -1,6 +1,7 @@
 package racingcar.domain.carrepository;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -24,13 +25,24 @@ class CarRepositoryTest {
         assertThat(carRepository).isInstanceOf(CarRepository.class);
     }
 
-    @ParameterizedTest
-    @MethodSource("getWrongCars")
-    @DisplayName("이름이 중복되거나 하나의 자동차만 입력되었을 때, 오류를 발생시키는지 확인")
-    void validate_error_test(List<Car> cars) {
-        assertThatThrownBy(() -> new CarRepository(cars))
+    @Test
+    @DisplayName("자동차 이름이 중복되었을 때, 오류를 발생시키는지 확인")
+    void validate_error_test_about_name_duplication() {
+        List<Car> wrongCars = List.of(new Car("poy"), new Car("poy"));
+
+        assertThatThrownBy(() -> new CarRepository(wrongCars))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("하나의 자동차 이름만 입력되었을 때, 오류가 발생하는지 확인")
+    void validate_error_test_about_number_of_cars_limit() {
+        List<Car> wrongCar = List.of(new Car("poy"));
+
+        assertThatThrownBy(() -> new CarRepository(wrongCar))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 자동차는 2대 이상 입력되어야 합니다.");
     }
 
     @ParameterizedTest
@@ -56,12 +68,5 @@ class CarRepositoryTest {
         Car winner = new Car("win");
         winner.move();
         return winner;
-    }
-
-    static Stream<Arguments> getWrongCars() {
-        return Stream.of(
-                Arguments.arguments(List.of(new Car("poy"))),
-                Arguments.arguments(List.of(new Car("poy"), new Car("poy")))
-        );
     }
 }
