@@ -66,7 +66,8 @@ public class MainController {
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            CarRepository.cars().forEach(car -> car.move(carMoveManager.isMove(RandomNumberGenerator.getRandomNumber())));
+            CarRepository.cars()
+                    .forEach(car -> car.move(carMoveManager.isMove(RandomNumberGenerator.getRandomNumber())));
             outputView.printResult(CarRepository.cars());
         }
     }
