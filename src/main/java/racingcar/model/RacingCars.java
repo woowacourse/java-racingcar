@@ -3,6 +3,7 @@ package racingcar.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCars {
 
@@ -26,13 +27,9 @@ public class RacingCars {
     }
 
     private List<Car> getMaxPositionCars(Car maxPositionCar) {
-        List<Car> winners = new ArrayList<>();
-        for (Car car : cars) {
-            Car sameMaxPositionCar = car.getSamePositionCar(maxPositionCar);
-            if (sameMaxPositionCar != null) {
-                winners.add(sameMaxPositionCar);
-            }
-        }
+        List<Car> winners = cars.stream()
+                .filter(car -> car.isSamePositionCar(maxPositionCar))
+                .collect(Collectors.toList());
         return winners;
     }
 
