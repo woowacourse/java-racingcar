@@ -1,26 +1,29 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Race {
     private final List<Car> cars = new ArrayList<>();
     private final NumberPicker numberPicker;
+    private WinnerJudge winnerJudge;
 
-    public Race(List<String> carNames) {
-        for (String carName : carNames) {
-            addNewCarBy(carName);
-        }
-        this.numberPicker = new RandomNumberPicker();
+    public Race() {
+        numberPicker = new RandomNumberPicker();
+        winnerJudge = new WinnerJudgeImpl();
     }
 
-    public Race(List<String> carNames, NumberPicker numberPicker) {
+    public Race(List<String> carNames) {
+        this();
         for (String carName : carNames) {
             addNewCarBy(carName);
         }
-        this.numberPicker = numberPicker;
+    }
+
+    public Race(List<String> carNames, WinnerJudge winnerJudge) {
+        this(carNames);
+        this.winnerJudge = winnerJudge;
     }
 
     private void addNewCarBy(String carName) {
@@ -42,12 +45,9 @@ public class Race {
         }
     }
 
-    public List<CarDto> judgeWinners() {
-        Car c = Collections.max(cars, Car.positionComparator);
-        return cars.stream()
-                .filter(car -> Car.positionComparator.compare(car, c) == 0)
-                .map(Car::toDTO)
-                .collect(Collectors.toList());
+    public List<CarDto> getWinners() {
+        return winnerJudge.getWinner(cars).stream()
+                .map(Car::toDTO).collect(Collectors.toList());
     }
 
     public List<CarDto> getCarDTOs() {

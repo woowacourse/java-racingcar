@@ -21,7 +21,7 @@ public class RaceController {
             outputView.printStatus(cars);
         }
 
-        outputView.printWinners(race.judgeWinners());
+        outputView.printWinners(race.getWinners());
     }
 
     private int validateTryTime(int tryTime) {

@@ -8,12 +8,6 @@ public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int START_POSITION = 0;
     private static final int ONE_STEP = 1;
-    public static final Comparator<Car> positionComparator = new Comparator<Car>() {
-        @Override
-        public int compare(Car o1, Car o2) {
-            return o1.position - o2.position;
-        }
-    };
 
     private final String name;
     private int position;
@@ -23,6 +17,10 @@ public class Car {
         validate(name);
         this.name = name;
         this.position = START_POSITION;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     private void validate(String name) {
