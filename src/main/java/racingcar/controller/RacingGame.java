@@ -5,7 +5,6 @@ import racingcar.domain.TrialCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
