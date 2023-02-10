@@ -11,8 +11,8 @@ public class Participants {
     private final List<Car> cars;
 
     public Participants(List<String> carNames) {
-        PARTICIPANTS_VALIDATOR.validate(carNames);
         cars = carNames.stream().map(Car::new).collect(Collectors.toList());
+        PARTICIPANTS_VALIDATOR.validate(carNames);
     }
 
     public List<Car> findAll() {

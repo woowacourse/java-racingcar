@@ -24,8 +24,8 @@ public class InputView {
         String input = readLine();
         INPUT_VALIDATOR.validate(input);
         List<String> carNames = splitWordsBy(input, DELIMITER);
-        PARTICIPANTS_VALIDATOR.validate(carNames);
         carNames.forEach(CAR_NAME_VALIDATOR::validate);
+        PARTICIPANTS_VALIDATOR.validate(carNames);
         return carNames;
     }
 
