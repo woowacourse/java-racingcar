@@ -27,7 +27,9 @@ class CarsTest {
         List<String> result = cars.getWinner();
 
         // then
-        assertThat(result).contains(pobi.getName());
+        assertThat(result).containsOnly(pobi.getName());
+        assertThat(result.size()).isEqualTo(1);
+        assertThat(result).doesNotContain(crong.getName());
     }
 
     @Test
