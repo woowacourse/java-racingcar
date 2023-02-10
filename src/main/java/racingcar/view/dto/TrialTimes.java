@@ -29,17 +29,17 @@ public class TrialTimes {
     private void validateRange(String trialTimes) {
         int trialTimesNumber = Integer.parseInt(trialTimes);
 
-        isOverMaxRange(trialTimesNumber);
-        isUnderMinRange(trialTimesNumber);
+        validateOverMaxRange(trialTimesNumber);
+        validateUnderMinRange(trialTimesNumber);
     }
 
-    private void isOverMaxRange(int trialTimesNumber) {
+    private void validateOverMaxRange(int trialTimesNumber) {
         if (trialTimesNumber > TRIAL_MAX_TIMES) {
             throw new IllegalArgumentException(ErrorMessage.TRIAL_NUMBER_OVER_RANGE.message());
         }
     }
 
-    private void isUnderMinRange(int trialTimesNumber) {
+    private void validateUnderMinRange(int trialTimesNumber) {
         if (trialTimesNumber < TRIAL_MIN_TIMES) {
             throw new IllegalArgumentException(ErrorMessage.TRIAL_NUMBER_UNDER_RANGE.message());
         }

@@ -23,7 +23,7 @@ public class RacingController {
 
     public Track init(MovingStrategy movingStrategy) {
         Cars cars = requestCars(movingStrategy);
-        int trialTime = requestTrialTime();
+        int trialTime = requestTrialTimes();
         outputView.printInitialCarPosition(cars.getCarsPositionFormat());
 
         return new Track(cars, trialTime);
@@ -31,14 +31,14 @@ public class RacingController {
 
     private Cars requestCars(MovingStrategy movingStrategy) {
         CarNames carNames = inputView.getCarNames();
-        List<Car> cars = carNames.toCarNameList().stream()
+        List<Car> cars = carNames.toSplitCarNames().stream()
                 .map(carName -> new Car(carName, movingStrategy))
                 .collect(Collectors.toList());
 
         return new Cars(cars);
     }
 
-    private int requestTrialTime() {
+    private int requestTrialTimes() {
         TrialTimes trialTimes = inputView.getTrialTimes();
 
         return trialTimes.getTrialTimes();

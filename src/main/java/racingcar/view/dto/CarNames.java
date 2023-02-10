@@ -8,10 +8,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CarNames {
-    private static final String VALID_STRING_REGEX = "(\\w)+";
+    private static final String VALID_WORD_REGEX = "(\\w)+";
     private static final String SEPARATOR = ",";
     private static final int CAR_NAME_MAX_LENGTH = 5;
-    private static final Pattern CAR_NAME_PATTERN = Pattern.compile(VALID_STRING_REGEX);
+    private static final Pattern CAR_NAME_PATTERN = Pattern.compile(VALID_WORD_REGEX);
 
     private final String carNames;
 
@@ -59,7 +59,7 @@ public class CarNames {
         }
     }
 
-    public List<String> toCarNameList() {
+    public List<String> toSplitCarNames() {
         return Arrays.stream(carNames.split(SEPARATOR))
                 .collect(Collectors.toList());
     }

@@ -68,7 +68,7 @@ class CarNamesTest {
 
         // when
         CarNames carNames = new CarNames(testInputValue);
-        List<String> carNameList = carNames.toCarNameList();
+        List<String> carNameList = carNames.toSplitCarNames();
 
         // then
         assertThat(carNameList.get(0)).isEqualTo("pobi");
