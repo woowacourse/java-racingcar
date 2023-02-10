@@ -25,6 +25,7 @@ public class GameController {
         this.cars = new Cars(initCars());
         String gameTime = inputView.inputGameTime();
         int parsedGameTime = validateParsing(gameTime);
+        validateMaxGameTime(parsedGameTime);
         this.gameTime = parsedGameTime;
     }
 
@@ -53,5 +54,21 @@ public class GameController {
         Winners winners = new Winners(cars.calculateWinners());
         cars.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
         outputView.printWinners(winners);
+    }
+
+
+    private static void validateMaxGameTime(int gameTimeParsed) {
+        if (gameTimeParsed >= MAX_GAME_TIME) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static int validateParsing(String gameTime) {
+        try {
+            int gameTimeParsed = Integer.parseInt(gameTime);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+        return Integer.parseInt(gameTime);
     }
 }
