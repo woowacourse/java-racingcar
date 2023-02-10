@@ -43,7 +43,7 @@ public class CarTest {
         car.goForward();
 
         //Then
-        assertThat(car.getMovePosition().length()).isEqualTo(expectedResult);
+        assertThat(car.getPosition()).isEqualTo(expectedResult);
     }
 
     static class TestNumberGenerator implements NumberGenerator {

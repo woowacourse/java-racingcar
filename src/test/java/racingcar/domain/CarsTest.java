@@ -63,8 +63,8 @@ class CarsTest {
         List<Car> result = cars.moveEachCar();
 
         //Then
-        assertThat(result.get(0).getMovePosition()).isEqualTo("");
-        assertThat(result.get(1).getMovePosition()).isEqualTo("-");
+        assertThat(result.get(0).getPosition()).isEqualTo(0);
+        assertThat(result.get(1).getPosition()).isEqualTo(1);
     }
 
 
