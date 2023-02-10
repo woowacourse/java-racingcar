@@ -7,21 +7,18 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
+@DisplayName("자동차들의 ")
 class CarsTest {
 
-    @DisplayName("총 길이가 1000만자 이상이면 예외 발생")
+    @DisplayName("이름 길이가 1000만자 이상이면 예외 발생")
     @Test
     void lengthTest() {
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<10000001; i++)
-            sb.append("a");
-
-        assertThatThrownBy(() -> Cars.from(sb.toString()))
+        assertThatThrownBy(() -> Cars.from("a".repeat(10000001)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력값은 최대 1000만 글자여야 합니다");
     }
 
-    @DisplayName("중복된 이름이 있으면 예외 발생")
+    @DisplayName("이름에 중복이 있으면 예외 발생")
     @Test
     void duplicateTest() {
         assertThatThrownBy(() -> Cars.from("hihi,hihi"))
