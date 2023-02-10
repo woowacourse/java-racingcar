@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
+    private final int MOVABLE_BOUND = 4;
+
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
-
-    private final int MOVABLE_BOUND = 4;
 
     public RacingGame(List<String> splitCarNames, NumberGenerator numberGenerator) {
         cars = splitCarNames.stream()
