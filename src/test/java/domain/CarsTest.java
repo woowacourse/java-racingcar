@@ -8,7 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class CarTest {
+class CarsTest {
 
     @DisplayName("가장 멀리간 사람이 우승한다.")
     @Test
