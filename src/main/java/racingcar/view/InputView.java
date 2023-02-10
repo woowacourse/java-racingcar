@@ -14,11 +14,11 @@ public class InputView {
         this.outputView = outputView;
     }
 
-    public List<String> readCars() {
+    public List<String> readCarNames() {
         outputView.printNames();
 
         String line = scanner.nextLine();
-        validateLine(line);
+        validateCarNames(line);
 
         return Arrays.asList(line.split(","));
     }
@@ -31,7 +31,7 @@ public class InputView {
         return Integer.parseInt(line);
     }
 
-    private void validateLine(String line) {
+    private void validateCarNames(String line) {
         if (line.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
         }

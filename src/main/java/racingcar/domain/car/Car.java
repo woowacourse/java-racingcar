@@ -12,29 +12,29 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        validate(name);
+        validateCarName(name);
         this.name = name;
         this.position = DEFAULT_POSITION;
     }
 
-    private void validate(String name) {
-        if (!isValidateName(name)) {
+    private void validateCarName(String name) {
+        if (!isLetter(name)) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 영어로만 구성되어야 합니다.");
         }
-        if (isOutOfRange(name)) {
+        if (isOutOfWordLimit(name)) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
         }
     }
 
-    private boolean isOutOfRange(String name) {
+    private boolean isOutOfWordLimit(String name) {
         return name.length() > MAXIMUM_NUMBER_OF_CHARACTERS || name.length() < MINIMUM_NUMBER_OF_CHARACTERS;
     }
 
-    private boolean isValidateName(String name) {
+    private boolean isLetter(String name) {
         return name.matches("[a-zA-Z]+");
     }
 
-    public void updatePosition() {
+    public void move() {
         this.position++;
     }
 

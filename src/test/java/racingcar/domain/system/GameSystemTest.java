@@ -44,8 +44,8 @@ class GameSystemTest {
         GameSystem smallGameSystem = new GameSystem(smallGameRound, new NumberGenerator());
         GameSystem largeGameSystem = new GameSystem(largeGameRound, new NumberGenerator());
 
-        Result result = smallGameSystem.executeRace(carRepository);
-        Result otherResult = largeGameSystem.executeRace(carRepository);
+        Result result = smallGameSystem.startRace(carRepository);
+        Result otherResult = largeGameSystem.startRace(carRepository);
 
         assertThat(result.getResults().size()).isNotEqualTo(otherResult.getResults().size());
     }

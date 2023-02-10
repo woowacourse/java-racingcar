@@ -33,7 +33,7 @@ class CarTest {
     void updatePosition_test(String name) {
         Car car = new Car(name);
 
-        car.updatePosition();
+        car.move();
 
         assertThat(car.getPosition()).isEqualTo(1);
     }

@@ -26,14 +26,14 @@ public class GameController {
     private CarRepository makeCars() {
         CarFactory carFactory = new CarFactory();
 
-        return carFactory.createCarRepository(inputView.readCars());
+        return carFactory.createCarRepository(inputView.readCarNames());
     }
 
     private void moveCar(CarRepository carRepository) {
         GameSystem gameSystem = new GameSystem(inputView.readGameRound(), new NumberGenerator());
         outputView.printResultGuide();
 
-        Result result = gameSystem.executeRace(carRepository);
+        Result result = gameSystem.startRace(carRepository);
         outputView.printResult(result);
         outputView.printWinners(result);
     }

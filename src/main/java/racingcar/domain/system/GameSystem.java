@@ -10,25 +10,27 @@ import java.util.Map;
 
 public class GameSystem {
 
+    private static final int MINIMUM_GAME_ROUND = 1;
+
     private final int gameRound;
     private final NumberGenerator numberGenerator;
 
     public GameSystem(int gameRound, NumberGenerator numberGenerator) {
-        validate(gameRound);
+        validateGameRound(gameRound);
         this.gameRound = gameRound;
         this.numberGenerator = numberGenerator;
     }
 
-    private void validate(int gameRound) {
-        if (gameRound <= 0) {
+    private void validateGameRound(int gameRound) {
+        if (gameRound < MINIMUM_GAME_ROUND) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 0 이하 일 수 없습니다.");
         }
     }
 
-    public Result executeRace(CarRepository carRepository) {
+    public Result startRace(CarRepository carRepository) {
         List<Map<String, Integer>> results = new ArrayList<>();
         for (int i = 0; i < gameRound; i++) {
-            results.add(carRepository.movePosition());
+            results.add(carRepository.moveCars());
         }
         return new Result(results);
     }

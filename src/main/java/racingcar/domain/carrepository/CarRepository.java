@@ -10,8 +10,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CarRepository {
-
+    private static final int MIN_NUMBER_OF_CARS = 2
     private static final int MOVING_CONDITION = 4;
+
     private final List<Car> repository;
 
     public CarRepository(List<Car> repository) {
@@ -20,7 +21,7 @@ public class CarRepository {
     }
 
     private void validate(List<Car> repository) {
-        if (isOutOfSize(repository)) {
+        if (isOutOfCarNumber(repository)) {
             throw new IllegalArgumentException("[ERROR] 자동차는 2대 이상 입력되어야 합니다.");
         }
         if (hasDuplication(repository)) {
@@ -28,8 +29,8 @@ public class CarRepository {
         }
     }
 
-    private boolean isOutOfSize(List<Car> repository) {
-        return repository.size() < 2;
+    private boolean isOutOfCarNumber(List<Car> repository) {
+        return repository.size() < MIN_NUMBER_OF_CARS;
     }
 
     private boolean hasDuplication(List<Car> repository) {
@@ -38,19 +39,19 @@ public class CarRepository {
                 .count() != repository.size();
     }
 
-    public Map<String, Integer> movePosition() {
+    public Map<String, Integer> moveCars() {
         NumberGenerator numberGenerator = new NumberGenerator();
         return repository.stream()
-                .map(car -> moveByNumber(car, numberGenerator.generateRandomNumber()))
+                .map(car -> decideMoveOrStay(car, numberGenerator.generateRandomNumber()))
                 .collect(Collectors.toMap(Car::getName,
                         Car::getPosition,
                         (oldValue, newValue) -> oldValue,
                         LinkedHashMap::new));
     }
 
-    private Car moveByNumber(Car car, int randomNumber) {
+    private Car decideMoveOrStay(Car car, int randomNumber) {
         if (randomNumber >= MOVING_CONDITION) {
-            car.updatePosition();
+            car.move();
         }
         return car;
     }

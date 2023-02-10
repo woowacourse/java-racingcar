@@ -18,18 +18,18 @@ public class Result {
     }
 
     public List<String> findWinners() {
-        Map<String, Integer> lastResult = getLastResult();
+        Map<String, Integer> lastResult = getFinalResult();
         return lastResult.keySet()
                 .stream()
-                .filter(key -> lastResult.get(key) == findMaxPosition(lastResult))
+                .filter(key -> lastResult.get(key) == findWinnerPosition(lastResult))
                 .collect(Collectors.toList());
     }
 
-    private Map<String, Integer> getLastResult() {
+    private Map<String, Integer> getFinalResult() {
         return results.get(results.size() - 1);
     }
 
-    private int findMaxPosition(Map<String, Integer> lastResult) {
+    private int findWinnerPosition(Map<String, Integer> lastResult) {
         return lastResult.values()
                 .stream()
                 .max(Comparator.comparing(x -> x))

@@ -54,7 +54,7 @@ class CarRepositoryTest {
 
     private Car createMovedCar() {
         Car winner = new Car("win");
-        winner.updatePosition();
+        winner.move();
         return winner;
     }
 
