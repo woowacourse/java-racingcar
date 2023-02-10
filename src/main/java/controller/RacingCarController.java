@@ -6,6 +6,8 @@ import dto.CarDto;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -16,7 +18,7 @@ public class RacingCarController {
         List<String> carNames = InputView.readCarName();
         int attemptNumber = InputView.readAttemptNumber();
 
-        Cars cars = getCars(carNames);
+        Cars cars = makeCarsFromNames(carNames);
 
         OutputView.printResult();
 
@@ -44,13 +46,11 @@ public class RacingCarController {
         }
     }
 
-    private Cars getCars(List<String> carNames) throws IOException {
-        List<Car> carList = new ArrayList<>();
-        for (String carName : carNames) {
-            Car car = new Car(carName);
-            carList.add(car);
-        }
+    private Cars makeCarsFromNames(List<String> carNames) {
+        List<Car> cars = carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
 
-        return new Cars(carList);
+        return new Cars(cars);
     }
 }
