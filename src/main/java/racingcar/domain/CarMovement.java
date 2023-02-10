@@ -14,10 +14,7 @@ public class CarMovement {
         if (isStop(number)) {
             return false;
         }
-        if (isForward(number)) {
-            return true;
-        }
-        return false;
+        return isForward(number);
     }
 
     private boolean isForward(int number) {
