@@ -19,7 +19,7 @@ class CarsTest {
     @DisplayName("moveCars를 통해 조건을 충족시킨 Car를 move 시킨다.")
     @ParameterizedTest
     @CsvSource(value = {"0:1", "1:0", "2:1"}, delimiter = ':')
-    void test1(int index, int expectedPosition) {
+    void moveCars(int index, int expectedPosition) {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         Car carC = new Car("carC");
@@ -34,7 +34,7 @@ class CarsTest {
 
     @DisplayName("findWinners()를 통해 position이 가장 높은 Car들을 가져온다")
     @Test
-    void test2() {
+    void findWinners() {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         Car carC = new Car("carC");
