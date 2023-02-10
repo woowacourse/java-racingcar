@@ -13,7 +13,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<Car> getFirstPosition() {
+    public List<Car> getFirstCars() {
         int maxPosition = getMaxPosition();
 
         return cars.stream()

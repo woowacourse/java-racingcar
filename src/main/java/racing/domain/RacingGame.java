@@ -40,7 +40,7 @@ public class RacingGame {
     }
 
     public List<String> getWinners() {
-        return cars.getFirstPosition().stream()
+        return cars.getFirstCars().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

@@ -27,7 +27,7 @@ class CarsTest {
         boxster.move(moveNumber);
         sonata.move(moveNumber);
 
-        List<Car> firstPosition = cars.getFirstPosition();
+        List<Car> firstPosition = cars.getFirstCars();
 
         assertThat(firstPosition).containsOnly(boxster, sonata);
     }
