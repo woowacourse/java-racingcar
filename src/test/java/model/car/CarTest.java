@@ -1,20 +1,14 @@
 package model.car;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarTest {
 
-    private Car gitJjang;
-    private Car irene;
-
-    @BeforeEach
-    void setUp() {
-        gitJjang = new Car("깃짱");
-        irene = new Car("이리내");
-    }
+    private Car gitJjang = new Car("깃짱");
+    private Car irene = new Car("이리내");
+    private Car kongHana = new Car("콩하나");
 
     @Test
     void initialPositionTest() {
@@ -36,10 +30,13 @@ class CarTest {
         moveEachCars();
         Assertions.assertTrue(gitJjang.isWinner(1));
         Assertions.assertFalse(irene.isWinner(1));
+        Assertions.assertTrue(kongHana.isWinner(1));
+
     }
 
     private void moveEachCars() {
         gitJjang.move(true);
         irene.move(false);
+        kongHana.move(true);
     }
 }
