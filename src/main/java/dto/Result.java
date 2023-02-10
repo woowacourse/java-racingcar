@@ -1,6 +1,8 @@
-package vo;
+package dto;
 
 import domain.Car;
+import vo.Name;
+import vo.Position;
 
 import java.util.HashMap;
 import java.util.List;

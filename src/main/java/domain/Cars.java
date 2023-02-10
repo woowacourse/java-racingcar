@@ -3,7 +3,7 @@ package domain;
 import utils.RandomNumberGenerator;
 import vo.Name;
 import vo.Position;
-import vo.Result;
+import dto.Result;
 
 import java.util.Collections;
 import java.util.List;

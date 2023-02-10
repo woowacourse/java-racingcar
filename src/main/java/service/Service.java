@@ -3,7 +3,7 @@ package service;
 import domain.Car;
 import domain.Cars;
 import vo.Name;
-import vo.Result;
+import dto.Result;
 
 import java.util.HashSet;
 import java.util.List;

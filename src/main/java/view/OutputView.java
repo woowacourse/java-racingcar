@@ -1,7 +1,7 @@
 package view;
 
 import vo.Name;
-import vo.Result;
+import dto.Result;
 
 import java.util.List;
 import java.util.stream.Collectors;
