@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import utils.NormalRandomGenerator;
 import utils.RandomGenerator;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-class RandomUtilTest {
+class NormalRandomGeneratorTest {
 
     @DisplayName("난수의 범위는 0 이상 9 이하이다.")
     @Test
