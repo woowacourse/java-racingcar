@@ -18,8 +18,9 @@ public class Cars {
     }
 
     public List<Car> getWinners() {
+        Car winner = getWinnerCar();
         return cars.stream()
-            .filter(car -> car.isSamePosition(getWinnerCar()))
+            .filter(car -> car.isSamePosition(winner))
             .collect(Collectors.toList());
     }
 
