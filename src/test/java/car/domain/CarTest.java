@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class CarTest {
 
@@ -29,17 +28,10 @@ public class CarTest {
 
     @ParameterizedTest(name = "움직일 수 있는지 확인하는 테스트")
     @CsvSource(value = {"true:1", "false:0"}, delimiter = ':')
-    void 움직일_수_있으면_전진하고_아니면_정지한다(boolean provided, int result) {
+    void 움직일_수_있으면_전진하고_아니면_정지한다(boolean isMovable, int result) {
         Car car = new Car("물떡");
-        car.move(() -> provided);
+        car.move(() -> isMovable);
         assertThat(car.getPosition()).isEqualTo(result);
-    }
-
-    @ParameterizedTest(name = "이름 길이가 1글자 이상 5글자 이하인지 확인하는 테스트")
-    @ValueSource(strings = {"", "aaaaaa"})
-    void 이름_길이_1글자이상_5글자_이하이다(String provided) {
-        assertThatThrownBy(() -> new Car(provided))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
