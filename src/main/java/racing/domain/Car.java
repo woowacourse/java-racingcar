@@ -17,18 +17,18 @@ public class Car {
         this.position = INITIAL_VALUE;
     }
 
+    public void move(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MOVING_CONDITION) {
+            this.position++;
+        }
+    }
+
     public String getName() {
         return name;
     }
 
     public int getPosition() {
         return position;
-    }
-
-    public void move(NumberGenerator numberGenerator) {
-        if (numberGenerator.generate() >= MOVING_CONDITION) {
-            this.position++;
-        }
     }
 
     private void validateLengthOfName(String name) {
