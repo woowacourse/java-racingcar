@@ -2,7 +2,7 @@ package racingcar;
 
 import racingcar.common.config.RacingCarGameConfig;
 import racingcar.controller.RacingCarController;
-import racingcar.domain.WinnerJudge;
+import racingcar.domain.game.WinnerJudge;
 import racingcar.step.CreateCarStep;
 import racingcar.step.Step;
 import racingcar.step.context.GameContext;

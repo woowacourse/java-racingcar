@@ -8,7 +8,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.*;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
+import racingcar.domain.car.Position;
+import racingcar.domain.game.Lap;
+import racingcar.domain.game.MathNumberGenerator;
+import racingcar.domain.game.WinnerJudge;
+import racingcar.mock.MockFixedNumberGenerator;
+import racingcar.mock.MoveMethodCalledCountStoreCars;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -139,24 +146,5 @@ class RacingCarControllerTest {
                 Arguments.of(""),
                 Arguments.of(" ")
         );
-    }
-
-    static class MoveMethodCalledCountStoreCars extends Cars {
-
-        private int count = 0;
-
-        public MoveMethodCalledCountStoreCars(List<String> cars) {
-            super(cars);
-        }
-
-        @Override
-        public void move(NumberGenerator generator) {
-            super.move(generator);
-            count++;
-        }
-
-        public int getCallCount() {
-            return count;
-        }
     }
 }

@@ -1,10 +1,10 @@
 package racingcar.controller;
 
 import racingcar.controller.response.MovedResultResponse;
-import racingcar.domain.Cars;
-import racingcar.domain.Lap;
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.WinnerJudge;
+import racingcar.domain.car.Cars;
+import racingcar.domain.game.Lap;
+import racingcar.domain.game.NumberGenerator;
+import racingcar.domain.game.WinnerJudge;
 
 import java.util.Arrays;
 import java.util.List;

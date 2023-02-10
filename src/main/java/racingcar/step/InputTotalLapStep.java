@@ -2,7 +2,7 @@ package racingcar.step;
 
 import racingcar.common.log.Logger;
 import racingcar.controller.RacingCarController;
-import racingcar.domain.Lap;
+import racingcar.domain.game.Lap;
 import racingcar.step.context.GameContext;
 import racingcar.view.InputView;
 

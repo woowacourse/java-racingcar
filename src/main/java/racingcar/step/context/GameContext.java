@@ -1,7 +1,7 @@
 package racingcar.step.context;
 
-import racingcar.domain.Cars;
-import racingcar.domain.Lap;
+import racingcar.domain.car.Cars;
+import racingcar.domain.game.Lap;
 
 public class GameContext {
     private Cars cars;

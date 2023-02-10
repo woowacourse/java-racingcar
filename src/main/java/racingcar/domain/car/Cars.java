@@ -1,4 +1,6 @@
-package racingcar.domain;
+package racingcar.domain.car;
+
+import racingcar.domain.game.NumberGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;

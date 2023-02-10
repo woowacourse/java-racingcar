@@ -2,8 +2,8 @@ package racingcar.common.config;
 
 import racingcar.common.log.ConsoleLogger;
 import racingcar.common.log.Logger;
-import racingcar.domain.MathNumberGenerator;
-import racingcar.domain.NumberGenerator;
+import racingcar.domain.game.MathNumberGenerator;
+import racingcar.domain.game.NumberGenerator;
 
 public class RacingCarGameConfig {
 

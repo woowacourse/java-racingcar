@@ -1,6 +1,6 @@
 package racingcar.controller.response;
 
-import racingcar.domain.Cars;
+import racingcar.domain.car.Cars;
 
 import java.util.Map;
 import java.util.stream.Collectors;

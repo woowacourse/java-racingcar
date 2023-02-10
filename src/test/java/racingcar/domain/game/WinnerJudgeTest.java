@@ -1,9 +1,11 @@
-package racingcar.domain;
+package racingcar.domain.game;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
 
 import java.util.List;
 
