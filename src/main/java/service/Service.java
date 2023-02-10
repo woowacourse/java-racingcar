@@ -38,7 +38,7 @@ public class Service {
 
     private void validateDuplication(List<Name> names) {
         Set<Name> namesWithoutDuplication = new HashSet<>(names);
-        if(names.size() != namesWithoutDuplication.size()) {
+        if (names.size() != namesWithoutDuplication.size()) {
             throw new IllegalArgumentException(DUPLICATING_NAME_EXCEPTION_MESSAGE);
         }
     }

@@ -34,8 +34,7 @@ public class Cars {
         Position highestPosition = calculateHighestPosition();
         return cars.stream()
                 .filter(car -> hasHighestPosition(highestPosition, car))
-                .map(Car::getName)
-                .collect(Collectors.toList());
+                .map(Car::getName).collect(Collectors.toUnmodifiableList());
     }
 
     private static boolean hasHighestPosition(Position highestPosition, Car car) {
@@ -45,7 +44,7 @@ public class Cars {
     private Position calculateHighestPosition() {
         return Collections.max(cars.stream()
                         .map((Car::getPosition))
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toUnmodifiableList()));
     }
 
     public Result getResult() {
