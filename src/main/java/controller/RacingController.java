@@ -32,7 +32,7 @@ public class RacingController {
         try {
             return inputView.readCarName();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printExceptionMessage(e.getMessage());
             return readCarNames();
         }
     }
@@ -49,7 +49,7 @@ public class RacingController {
         try {
             return inputView.readGameTry();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printExceptionMessage(e.getMessage());
             return readGameTry();
         }
     }

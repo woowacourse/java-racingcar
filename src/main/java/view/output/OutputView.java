@@ -42,4 +42,8 @@ public class OutputView {
     public void printGameResultMessage() {
         System.out.println(RACING_RESULT_MESSAGE);
     }
+
+    public void printExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
 }
