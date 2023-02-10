@@ -1,5 +1,6 @@
 package racingcar.domain.result;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,6 +16,7 @@ class ResultTest {
 
     @ParameterizedTest
     @MethodSource("getResult")
+    @DisplayName("임의로 레이싱 결과를 설정했을 때, 정상적으로 최종 우승자의 이름이 선별되는지 확인")
     void findWinners(List<Map<String, Integer>> sampleResult, Set<String> expectedWinners) {
         Result result = new Result(sampleResult);
 

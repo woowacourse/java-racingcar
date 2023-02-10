@@ -1,6 +1,7 @@
 package racingcar.domain.carfactory;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -22,6 +23,7 @@ class CarFactoryTest {
 
     @ParameterizedTest
     @MethodSource("getCarNames")
+    @DisplayName("자동차 이름들을 입력 받았을 때, 정상적으로 CarRepository 객체가 생성되는지 확인.")
     void createCarRepository(List<String> carNames) {
         CarRepository carRepository = carFactory.createCarRepository(carNames);
 
