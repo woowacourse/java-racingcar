@@ -21,10 +21,12 @@ public class GameController {
     private int trialCount;
 
     public void startGame() {
-        game = new Game(makeCarsWith(makeCarNameList()), new RandomMoveChance());
+        makeGame();
         makeTrialCount();
     }
-
+    private void makeGame(){
+        game = new Game(makeCarsWith(makeCarNameList()), new RandomMoveChance());
+    }
     private List<String> makeCarNameList() {
         return List.of(inputView.inputCarNames());
     }
