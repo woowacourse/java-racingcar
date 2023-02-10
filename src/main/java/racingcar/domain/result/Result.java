@@ -3,6 +3,7 @@ package racingcar.domain.result;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Result {
@@ -17,12 +18,12 @@ public class Result {
         return results;
     }
 
-    public List<String> findWinners() {
+    public Set<String> findWinners() {
         Map<String, Integer> lastResult = getFinalResult();
         return lastResult.keySet()
                 .stream()
                 .filter(key -> lastResult.get(key) == findWinnerPosition(lastResult))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
     private Map<String, Integer> getFinalResult() {
