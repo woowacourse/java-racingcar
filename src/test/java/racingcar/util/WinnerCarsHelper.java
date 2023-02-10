@@ -1,4 +1,7 @@
-package racingcar.domain;
+package racingcar.util;
+
+import racingcar.domain.car.Car;
+import racingcar.domain.car.Cars;
 
 import java.lang.reflect.Field;
 import java.util.List;

@@ -1,4 +1,6 @@
-package racingcar.domain;
+package racingcar.mock;
+
+import racingcar.domain.game.NumberGenerator;
 
 public class MockFixedNumberGenerator implements NumberGenerator {
 
