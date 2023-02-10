@@ -4,9 +4,13 @@ public class Car {
     private final Name name;
     private final Position position;
 
-    public Car(Name name) {
+    public Car(Name name, Position position) {
         this.name = name;
-        this.position = new Position();
+        this.position = position;
+    }
+
+    public Car(Name name) {
+        this(name, Position.create());
     }
 
     public void move(boolean movable) {

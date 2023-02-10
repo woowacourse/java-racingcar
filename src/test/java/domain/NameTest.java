@@ -14,14 +14,14 @@ class NameTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "123", "12345"})
     void test1(String value) {
-        assertDoesNotThrow(() -> new Name(value));
+        assertDoesNotThrow(() -> Name.of(value));
     }
 
     @DisplayName("자동차 이름은 0자, 혹은 5자 초과이면 예외를 발생시킨다.")
     @ParameterizedTest
     @ValueSource(strings = {"", "123456"})
     void test2(String value) {
-        assertThatThrownBy(() -> new Name(value))
+        assertThatThrownBy(() -> Name.of(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_NAME_LENGTH.getValue());
     }

@@ -47,7 +47,7 @@ public class RacingGameManager {
         try {
             return InputView.readCarNames()
                     .stream()
-                    .map(Name::new)
+                    .map(Name::of)
                     .collect(Collectors.toList());
         } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println(e.getMessage());

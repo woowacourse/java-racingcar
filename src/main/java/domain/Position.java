@@ -7,8 +7,16 @@ public class Position {
 
     private int position;
 
-    public Position() {
-        this.position = INITIAL_POSITION;
+    private Position(int position) {
+        this.position = position;
+    }
+
+    public static Position of(int position) {
+        return new Position(position);
+    }
+
+    public static Position create() {
+        return new Position(INITIAL_POSITION);
     }
 
     public void move() {
