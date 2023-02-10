@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.view.message.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -36,13 +38,13 @@ public class InputView {
 
     private void validateCarNames(String content) {
         if (content.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BLANK_INPUT_ERROR_FOR_CAR_NAMES.getMessage());
         }
     }
 
     private void validateGameRound(String content) {
         if (!content.matches(FORMAT_OF_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력이 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_ERROR_FOR_GAME_ROUND.getMessage());
         }
     }
 }
