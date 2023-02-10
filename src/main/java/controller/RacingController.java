@@ -22,7 +22,7 @@ public class RacingController {
         progressRacingGame(tryCount, carsInfo, new RandomNumberGenerator());
     }
 
-    public void progressRacingGame(Integer tryCount, CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator) {
+    private void progressRacingGame(Integer tryCount, CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator) {
         RoundResult roundResult = new RoundResult();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
