@@ -3,7 +3,6 @@ package controller;
 import domain.Name;
 import domain.RacingGame;
 import domain.TryCount;
-import utils.NormalRandomGenerator;
 import view.InputView;
 import view.OutputView;
 
