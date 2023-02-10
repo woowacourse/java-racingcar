@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String requestDelimiter = ",";
+
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> askCarNames() {

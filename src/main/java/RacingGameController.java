@@ -22,21 +22,21 @@ public class RacingGameController {
 
     private void race(int trialCount) {
         outputView.printResultMessage();
-        showCurrentGameResult();
+        showCarsStatus();
         for (int i = 0; i < trialCount; i++) {
             racingGame.processAllCars();
-            showCurrentGameResult();
+            showCarsStatus();
         }
     }
 
-    private void showCurrentGameResult() {
-        List<Car> gameResult = racingGame.getCars();
-        outputView.printGameResult(convertGameResult(gameResult));
+    private void showCarsStatus() {
+        List<Car> carsStatus = racingGame.getCars();
+        outputView.printCarsStatus(convertCarsStatus(carsStatus));
     }
 
-    private LinkedHashMap<String, Integer> convertGameResult(List<Car> gameResult) {
+    private LinkedHashMap<String, Integer> convertCarsStatus(List<Car> carsStatus) {
         LinkedHashMap<String, Integer> converted = new LinkedHashMap<>();
-        gameResult.forEach(car -> converted.put(car.getName(), car.getPosition()));
+        carsStatus.forEach(car -> converted.put(car.getName(), car.getPosition()));
         return converted;
     }
 }

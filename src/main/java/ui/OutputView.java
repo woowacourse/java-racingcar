@@ -4,16 +4,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class OutputView {
-    private final String POSITION_MARK = "-";
 
-    public void printGameResult(LinkedHashMap<String, Integer> carPositions) {
-        carPositions.forEach((name, position) -> System.out.println(name + " : " + convertPosition(position)));
+    private static final String POSITION_MARK = "-";
+    private static final int POSITION_MARK_DEFAULT_VALUE = 1;
+
+    public void printCarsStatus(LinkedHashMap<String, Integer> carsStatus) {
+        carsStatus.forEach((name, position) -> System.out.println(name + " : " + convertPosition(position)));
         System.out.println();
     }
 
     private String convertPosition(int position) {
-        String result = POSITION_MARK;
-        return result.repeat(position + 1);
+        return POSITION_MARK.repeat(POSITION_MARK_DEFAULT_VALUE + position);
     }
 
     public void printWinners(List<String> winnerNames) {
