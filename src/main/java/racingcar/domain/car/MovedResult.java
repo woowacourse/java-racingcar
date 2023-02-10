@@ -1,6 +1,4 @@
-package racingcar.domain.game;
-
-import racingcar.domain.car.Cars;
+package racingcar.domain.car;
 
 import java.util.Map;
 import java.util.stream.Collectors;

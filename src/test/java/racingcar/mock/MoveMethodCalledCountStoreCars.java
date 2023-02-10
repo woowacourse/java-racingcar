@@ -1,6 +1,7 @@
 package racingcar.mock;
 
 import racingcar.domain.car.Cars;
+import racingcar.domain.car.MovedResult;
 import racingcar.domain.game.NumberGenerator;
 
 import java.util.List;
@@ -14,9 +15,9 @@ public class MoveMethodCalledCountStoreCars extends Cars {
     }
 
     @Override
-    public void move(NumberGenerator generator) {
-        super.move(generator);
+    public MovedResult move(NumberGenerator generator) {
         count++;
+        return super.move(generator);
     }
 
     public int getCallCount() {

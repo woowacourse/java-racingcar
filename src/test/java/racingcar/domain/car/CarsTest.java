@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
 import racingcar.mock.MockFixedNumberGenerator;
+import racingcar.util.ReflectionTestUtils;
 import racingcar.util.WinnerCarsHelper;
 
 import java.util.List;
@@ -18,7 +19,7 @@ class CarsTest {
 
     @Test
     @DisplayName("String List를 받아 해당 이름을 가진 Car를 생성한다.")
-    void test_1() {
+    void test_1() throws NoSuchFieldException, IllegalAccessException {
         // given
         List<String> names = List.of("체체", "말랑");
 
@@ -26,7 +27,7 @@ class CarsTest {
         Cars cars = new Cars(names);
 
         // then
-        assertThat(cars.getCars().size()).isEqualTo(names.size());
+        assertThat(ReflectionTestUtils.getDeclaredField(cars, "cars", List.class).size()).isEqualTo(names.size());
     }
 
     @Test

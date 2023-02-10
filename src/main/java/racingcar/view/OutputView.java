@@ -1,7 +1,7 @@
 package racingcar.view;
 
+import racingcar.domain.car.MovedResult;
 import racingcar.domain.game.GameResult;
-import racingcar.domain.game.MovedResult;
 
 import java.util.List;
 import java.util.Map;
