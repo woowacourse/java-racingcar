@@ -15,16 +15,16 @@ public class InputValidator {
 
     public void validateCarName(List<String> splitCarNames) {
         validateCarNameIsEmpty(splitCarNames);
-        for(String carName : splitCarNames) {
+        for (String carName : splitCarNames) {
             validateCarNameLength(carName);
         }
-     }
+    }
 
-     private void validateCarNameLength(String carName) {
+    private void validateCarNameLength(String carName) {
         if (carName.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEED);
         }
-     }
+    }
 
     private void validateCarNameIsEmpty(List<String> splitCarNames) {
         boolean isBlankExist = splitCarNames.stream()
@@ -35,10 +35,10 @@ public class InputValidator {
         }
     }
 
-     public void validateGameTry(String gameTry) {
+    public void validateGameTry(String gameTry) {
         validateIsInteger(gameTry);
         validateGameTryCount(Integer.parseInt(gameTry));
-     }
+    }
 
     private void validateIsInteger(String target) {
         try {
@@ -48,9 +48,9 @@ public class InputValidator {
         }
     }
 
-     private void validateGameTryCount(int gameTry) {
+    private void validateGameTryCount(int gameTry) {
         if (gameTry < MIN_GAME_TRY_COUNT || gameTry > MAX_GAME_TRY_COUNT) {
             throw new IllegalArgumentException(GAME_TRY_COUNT_OUT_OF_RANGE);
         }
-     }
+    }
 }
