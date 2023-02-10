@@ -1,6 +1,10 @@
 package racingcar.domain.game;
 
-public interface NumberGenerator {
+public class NumberGenerator {
 
-    int generate(final int minNumber, final int maxNumber);
+    private static final int ONE = 1;
+
+    public int generate(final int minNumber, final int maxNumber) {
+        return (int) ((Math.random() * (maxNumber - minNumber + ONE)) + minNumber);
+    }
 }

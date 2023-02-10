@@ -14,7 +14,7 @@ public class MathNumberGeneratorTest {
     @RepeatedTest(2000)
     void test_1() {
         // given
-        NumberGenerator generator = new MathNumberGenerator();
+        NumberGenerator generator = new NumberGenerator();
 
         // when
         int generatedNumber = generator.generate(0, 9);
