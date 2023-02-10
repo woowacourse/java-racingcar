@@ -10,24 +10,24 @@ import output.Outputs;
 
 public class OutputView {
 
-    private static final String RESULT_MESSAGE = "\n실행 결과";
+    private static final String TITLE_MESSAGE = "\n실행 결과";
     private static final String PRINT_STATUS_FORMAT = "%s : %s\n";
     private static final String PRINT_WINNER_FORMAT = "%s가 최종 우승했습니다.\n";
     private static final String DELIMITER = ", ";
     private static final String DASH = "-";
 
-    public static void printResult() {
-        System.out.println(RESULT_MESSAGE);
+    public static void printTitle() {
+        System.out.println(TITLE_MESSAGE);
     }
 
-    public static void printCars(Outputs outputs) {
+    public static void printOutputs(Outputs outputs) {
         for (Output output : outputs.getOutputs()) {
-            printCar(output);
+            printOutput(output);
         }
         System.out.println();
     }
 
-    private static void printCar(Output output) {
+    private static void printOutput(Output output) {
         String name = output.getName();
         int position = output.getPosition();
 
@@ -44,7 +44,7 @@ public class OutputView {
                 .map(Car::getName)
                 .collect(Collectors.toList());
 
-        String winnerString = String.join(DELIMITER, carNames);
-        System.out.printf(PRINT_WINNER_FORMAT, winnerString);
+        String winner = String.join(DELIMITER, carNames);
+        System.out.printf(PRINT_WINNER_FORMAT, winner);
     }
 }

@@ -18,15 +18,13 @@ public class RacingCarController {
     public void run() {
         Names names = InputView.readNames();
         RepeatCount repeatCount = InputView.readRepeatCount();
+        OutputView.printTitle();
 
         Cars cars = makeCarsFrom(names);
-
-        OutputView.printResult();
-
         while (repeatCount.hasNext()) {
             moveAll(cars);
             Outputs outputs = Outputs.from(cars);
-            OutputView.printCars(outputs);
+            OutputView.printOutputs(outputs);
         }
 
         Referee referee = new Referee();
