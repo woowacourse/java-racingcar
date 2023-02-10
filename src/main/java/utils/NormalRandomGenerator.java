@@ -7,7 +7,7 @@ public class NormalRandomGenerator implements RandomGenerator {
     private final static int MOVE_STANDARD = 4;
 
     @Override
-    public boolean generate() {
+    public boolean movable() {
         return createRandomNumber() >= MOVE_STANDARD;
     }
 

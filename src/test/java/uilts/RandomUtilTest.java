@@ -21,7 +21,7 @@ class RandomUtilTest {
     @DisplayName("4 이상일 경우, 전진 3 이하일 경우 움직이지 않는다.")
     @Test
     public void test2() {
-        assertThat(((RandomGenerator) () -> true).generate()).isEqualTo(true);
-        assertThat(((RandomGenerator) () -> false).generate()).isEqualTo(false);
+        assertThat(((RandomGenerator) () -> true).movable()).isEqualTo(true);
+        assertThat(((RandomGenerator) () -> false).movable()).isEqualTo(false);
     }
 }

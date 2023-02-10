@@ -16,7 +16,7 @@ public class Cars implements Iterable<Car> {
 
     public void moveCars(RandomGenerator generator) {
         for (Car car : cars) {
-            car.move(generator.generate());
+            car.move(generator.movable());
         }
     }
 
