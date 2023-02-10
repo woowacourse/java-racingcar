@@ -24,7 +24,7 @@ public class Cars implements Iterable<Car> {
         Position maxPosition = getMaxPosition();
         List<Car> result = cars.stream()
                 .filter(car -> car.getPosition().equals(maxPosition))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
 
         return new Cars(result);
     }

@@ -4,8 +4,6 @@ import domain.Car;
 import domain.Cars;
 import domain.Position;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
