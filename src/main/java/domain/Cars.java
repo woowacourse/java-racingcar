@@ -1,17 +1,27 @@
 package domain;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import utils.RandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import utils.RandomNumberGenerator;
 
 public class Cars {
+    private static final String SPLIT_DELIMITER = ",";
 
     private final List<Car> cars;
 
-    public Cars(final List<Car> cars) {
-        this.cars = cars;
+    public Cars(String carsName) {
+        this.cars = makeCars(carsName);
+    }
+
+    private List<Car> makeCars(String carsName) {
+        return Arrays.stream(carsName.split(SPLIT_DELIMITER))
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public void moveCars() {
