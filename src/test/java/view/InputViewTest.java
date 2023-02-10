@@ -31,9 +31,8 @@ class InputViewTest {
         assertThat(tryCount).isEqualTo(result);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "시도 횟수 입력 테스트 inputType = {0}")
     @ValueSource(strings = {"a", "", " "})
-    @DisplayName("시도 횟수 입력 테스트")
     void inputExceptionTryTest(String input) {
         String inputs = input + "\n";
 
