@@ -9,7 +9,7 @@ public class OutputView {
     private static final String RESULT_POSTFIX = "가 최종 우승했습니다.";
 
     public void printPosition(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car.getName() + COLON + CAR_POSITION_SIGN.repeat(car.getPosition().getPosition())));
+        cars.forEach(car -> System.out.println(car.getName() + COLON + CAR_POSITION_SIGN.repeat(car.getPosition())));
         enterLine();
     }
 

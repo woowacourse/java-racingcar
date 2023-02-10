@@ -10,7 +10,7 @@ public class GameCars {
 
     public GameCars(List<Car> cars, List<String> winners) {
         cars.forEach(car -> {
-            Validator.validateCarName(car.getName().getName());
+            Validator.validateCarName(car.getName());
         });
         this.cars = cars;
         this.winners = winners;

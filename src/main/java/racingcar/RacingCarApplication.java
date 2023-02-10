@@ -45,8 +45,8 @@ public class RacingCarApplication {
     public void printFinalResult() {
         int maxPosition = getCarMaxPosition();
         outputView.printPosition(gameCars.getCars());
-        gameCars.getCars().stream().filter(car -> car.getPosition().getPosition() == maxPosition)
-                .forEach(car -> gameCars.getWinners().add(car.getName().getName()));
+        gameCars.getCars().stream().filter(car -> car.getPosition() == maxPosition)
+                .forEach(car -> gameCars.getWinners().add(car.getName()));
         outputView.printWinners(gameCars.getWinners());
     }
 
@@ -57,7 +57,7 @@ public class RacingCarApplication {
                 .max(comparatorByPosition)
                 .orElseThrow(NoSuchElementException::new);
 
-        return carWithMaxPosition.getPosition().getPosition();
+        return carWithMaxPosition.getPosition();
     }
 
 }
