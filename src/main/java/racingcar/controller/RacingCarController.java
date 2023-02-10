@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 
 public class RacingCarController {
 
+    private static final int START_POSITION = 0;
+
     OutputView outputView = OutputView.getInstance();
     InputView inputView = InputView.getInstance();
     RacingCars racingCars;
-    private static final int START_POSITION = 0;
 
     public void run() {
         List<Car> cars = generateCars();
