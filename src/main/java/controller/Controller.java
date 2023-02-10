@@ -8,9 +8,15 @@ import view.InputView;
 import view.OutputView;
 
 public class Controller {
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
-    private final RacingGameService racingGameService = new RacingGameService();
+    private final OutputView outputView;
+    private final InputView inputView;
+    private final RacingGameService racingGameService;
+
+    public Controller(OutputView outputView, InputView inputView, RacingGameService racingGameService) {
+        this.outputView = outputView;
+        this.inputView = inputView;
+        this.racingGameService = racingGameService;
+    }
 
     public void run() {
         setGame();
