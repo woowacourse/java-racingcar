@@ -7,7 +7,7 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        Validator.validateCarNames(name);
+        Validator.validateCarName(name);
         this.name = name;
     }
 

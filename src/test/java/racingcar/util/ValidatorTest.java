@@ -9,10 +9,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 class ValidatorTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {" ", "aaaaa"})
+    @ValueSource(strings = {" ", "aaaaaa"})
     @DisplayName("차 이름 입력 에러 테스트")
     void carNameFailTest(String carName) {
-        assertThatThrownBy(() -> Validator.validateCarNames(carName))
+        assertThatThrownBy(() -> Validator.validateCarName(carName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -20,7 +20,7 @@ class ValidatorTest {
     @ValueSource(strings = {"gavi", "jude"})
     @DisplayName("차 이름 예외 통과 테스트")
     void carNameSuccessTest(String carName) {
-        Validator.validateCarNames(carName);
+        Validator.validateCarName(carName);
     }
 
     @ParameterizedTest
@@ -35,7 +35,7 @@ class ValidatorTest {
     @ValueSource(strings = {"2", "6", "8"})
     @DisplayName("시도 횟수 입력 성공 테스트")
     void trialSuccessTest(String trial) {
-        Validator.validateCarName(trial);
+        Validator.validateGameTime(trial);
     }
 
 }
