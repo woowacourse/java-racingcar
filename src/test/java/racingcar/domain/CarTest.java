@@ -14,6 +14,17 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
+	private class CarMoveNumberGenerator implements NumberGenerator {
+		public int generateNumber() {
+			return 4;
+		}
+	}
+
+	private class CarStopNumberGenerator implements NumberGenerator {
+		public int generateNumber() {
+			return 3;
+		}
+	}
 
 	@DisplayName("자동차 생성 성공 테스트")
 	@ParameterizedTest(name = "carName = {0}")
@@ -41,8 +52,21 @@ class CarTest {
 	@DisplayName("자동차 이동 정상 작동 테스트")
 	@Test
 	void moveTest() {
-		Car car = new Car("이름입니다");
-		Assertions.assertDoesNotThrow(car::move);
+		CarMoveNumberGenerator carMoveNumberGenerator = new CarMoveNumberGenerator();
+		Car car = new Car("이름입니다", carMoveNumberGenerator);
+		car.move();
+
+		assertThat(car.getPosition()).isGreaterThan(0);
+	}
+
+	@DisplayName("자동차 정지 정상 작동 테스트")
+	@Test
+	void notMoveTest() {
+		CarStopNumberGenerator carStopNumberGenerator = new CarStopNumberGenerator();
+		Car car = new Car("이름입니다", carStopNumberGenerator);
+		car.move();
+
+		assertThat(car.getPosition()).isEqualTo(0);
 	}
 
 	static Stream<Arguments> carNameDummy() {
