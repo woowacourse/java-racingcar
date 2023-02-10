@@ -4,7 +4,7 @@ public class Car {
 
     private static final int DEFAULT_DISTANCE_VALUE = 0;
 
-    private String name;
+    private final String name;
 
     private int distance;
 
