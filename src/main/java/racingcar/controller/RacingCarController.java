@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.service.Service;
+import racingcar.service.RacingCarService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.ViewRenderer;
@@ -8,18 +8,18 @@ import racingcar.view.ViewRenderer;
 import java.util.List;
 import java.util.Map;
 
-public class Controller {
+public class RacingCarController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final ViewRenderer viewRenderer;
-    private final Service service;
+    private final RacingCarService racingCarService;
 
-    public Controller() {
+    public RacingCarController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.viewRenderer = new ViewRenderer();
-        this.service = new Service();
+        this.racingCarService = new RacingCarService();
     }
 
     public void run() {
@@ -32,30 +32,30 @@ public class Controller {
     private void setupCars() {
         outputView.printAskingInputCarNames();
         String carNames = inputView.inputCarNames();
-        service.makeCars(carNames);
+        racingCarService.makeCars(carNames);
     }
 
     private void setupNumberOfRounds() {
         outputView.printAskingInputNumberOfRounds();
         int numberOfRounds = inputView.inputNumberOfRounds();
-        service.setNumberOfRounds(numberOfRounds);
+        racingCarService.setNumberOfRounds(numberOfRounds);
     }
 
     private void printWinners() {
-        List<String> winners = service.getWinners();
+        List<String> winners = racingCarService.getWinners();
         outputView.printWinners(viewRenderer.renderWinners(winners));
     }
 
     private void play() {
         outputView.printResultStartingMessage();
-        while (!service.isEnd()) {
+        while (!racingCarService.isEnd()) {
             playEachRound();
         }
     }
 
     private void playEachRound() {
-        service.playRound();
-        Map<String, Integer> roundResult = service.getCurrentRoundResult();
+        racingCarService.playRound();
+        Map<String, Integer> roundResult = racingCarService.getCurrentRoundResult();
         outputView.printResult(viewRenderer.renderRoundResult(roundResult));
     }
 

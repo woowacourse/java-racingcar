@@ -9,13 +9,13 @@ import racingcar.domain.RandomValueGenerator;
 import java.util.List;
 import java.util.Map;
 
-public class Service {
+public class RacingCarService {
 
     private final Cars cars;
     private FinalRoundChecker finalRoundChecker;
 
 
-    public Service() {
+    public RacingCarService() {
         this.cars = new Cars();
     }
 
