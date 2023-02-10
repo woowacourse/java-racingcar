@@ -13,8 +13,8 @@ public class RacingGameAppFactory {
         return new RacingGameApplication(initInputView(), initOutputView(), initNumberGenerator());
     }
 
-    private InputView initInputView() {
-        return new InputViewProxyForRetry(new InputView());
+    private InputViewProxyForRetry initInputView() {
+        return new InputViewProxyForRetry();
     }
 
     private OutputView initOutputView() {

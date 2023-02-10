@@ -6,16 +6,12 @@ import dto.request.CarNameDto;
 import java.util.InputMismatchException;
 import java.util.List;
 
-public class InputViewProxyForRetry extends InputView {
+public class InputViewProxyForRetry {
 
-    private final InputView inputView;
+    private final InputView inputView = new InputView();
 
-    public InputViewProxyForRetry(InputView inputView) {
-        this.inputView = inputView;
-    }
-
-    @Override
     public List<CarNameDto> sendCarsName() {
+        inputView.sendCarsName();
         try {
             return inputView.sendCarsName();
         } catch (IllegalArgumentException exception) {
@@ -24,8 +20,8 @@ public class InputViewProxyForRetry extends InputView {
         }
     }
 
-    @Override
     public TryCount sendTryCount() {
+        inputView.sendTryCount();
         try {
             return inputView.sendTryCount();
         } catch (InputMismatchException exception) {
