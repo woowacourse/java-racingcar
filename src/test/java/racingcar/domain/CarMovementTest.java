@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static racingcar.config.CarMovementConfig.*;
 
 import java.util.stream.Stream;
@@ -12,34 +13,35 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CarMovementTest {
-	NumberGenerator numberGenerator;
 	CarMovement carMovement;
+	NumberGenerator numberGenerator;
 
+	@DisplayName("자동차 움직임 생성 테스트")
 	@Test
-	void createRandomCarMovementTest() {
-		carMovement = new CarMovement(() -> 0);
-		carMovement.isMoveForward();
-		assertThat(carMovement).isNotNull();
+	void createCarMovementTest() {
+		assertDoesNotThrow(() -> new CarMovement(numberGenerator));
 	}
 
-	@DisplayName("자동차 이동 테스트")
+	@DisplayName("자동차 움직임 확인 테스트")
 	@ParameterizedTest(name = "number = {0}, isMoveForward = {1}")
-	@MethodSource("moveForwardDummy")
-	void isRandomCarMoveForwardTest(int number, boolean expected) {
+	@MethodSource("moveDummy")
+	void isRandomCarMoveTest(int number, boolean expected) {
 		numberGenerator = new RandomNumberGenerator();
 		carMovement = new CarMovement(() -> number);
-		boolean isCarMoveForward = carMovement.isMoveForward();
+
+		boolean isCarMoveForward = carMovement.isMove();
+
 		assertThat(isCarMoveForward).isEqualTo(expected);
 	}
 
-	static Stream<Arguments> moveForwardDummy() {
+	static Stream<Arguments> moveDummy() {
 		return Stream.of(
 			Arguments.arguments(MOVE_FORWARD_MIN_NUMBER.getNumber(), true),
 			Arguments.arguments(MOVE_FORWARD_MAX_NUMBER.getNumber(), true),
-			Arguments.arguments((MOVE_FORWARD_MIN_NUMBER.getNumber()+MOVE_FORWARD_MAX_NUMBER.getNumber())/2, true),
+			Arguments.arguments((MOVE_FORWARD_MIN_NUMBER.getNumber() + MOVE_FORWARD_MAX_NUMBER.getNumber()) / 2, true),
 			Arguments.arguments(STOP_MIN_NUMBER.getNumber(), false),
 			Arguments.arguments(STOP_MAX_NUMBER.getNumber(), false),
-			Arguments.arguments((STOP_MIN_NUMBER.getNumber()+STOP_MAX_NUMBER.getNumber())/2, false)
+			Arguments.arguments((STOP_MIN_NUMBER.getNumber() + STOP_MAX_NUMBER.getNumber()) / 2, false)
 		);
 	}
 }

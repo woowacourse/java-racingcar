@@ -14,6 +14,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
+	NumberGenerator numberGenerator = new RandomNumberGenerator();
+	CarMovement carMovement = new CarMovement(numberGenerator);
 	Cars cars;
 
 	@BeforeEach
@@ -25,7 +27,7 @@ class CarsTest {
 	@ParameterizedTest(name = "carNames = {0}, expectedSize = {1}")
 	@MethodSource("carNamesDummy")
 	void generateCarsSuccessTest(List<String> carNames, int expectedSize) {
-		cars.generateCars(carNames);
+		cars.generateCars(carMovement, carNames);
 		assertThat(cars.getCars()).hasSize(expectedSize);
 	}
 
@@ -33,7 +35,7 @@ class CarsTest {
 	@ParameterizedTest(name = "carNames = {0}")
 	@MethodSource("carNamesOneOrZeroDummy")
 	void generateCarsOneOrZero(List<String> carNames) {
-		assertThatThrownBy(() -> cars.generateCars(carNames))
+		assertThatThrownBy(() -> cars.generateCars(carMovement, carNames))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -41,7 +43,7 @@ class CarsTest {
 	@ParameterizedTest(name = "carNames = {0}")
 	@MethodSource("carNamesDuplicatedDummy")
 	void generateCarsDuplicate(List<String> carNames) {
-		assertThatThrownBy(() -> cars.generateCars(carNames))
+		assertThatThrownBy(() -> cars.generateCars(carMovement, carNames))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -55,7 +57,7 @@ class CarsTest {
 	@ParameterizedTest(name = "winnerCarNames = {0}")
 	@MethodSource("carNamesDummy")
 	void findWinnerNamesTest(List<String> winnerCarNames) {
-		cars.generateCars(winnerCarNames);
+		cars.generateCars(carMovement, winnerCarNames);
 		cars.moveCars();
 		List<String> winnerNames = cars.findWinnerNames();
 		assertThat(winnerNames).hasSizeGreaterThanOrEqualTo(1);

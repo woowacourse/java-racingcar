@@ -11,24 +11,36 @@ import java.io.PrintStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import racingcar.domain.CarMovement;
 import racingcar.domain.Cars;
 import racingcar.domain.GameManager;
+import racingcar.domain.NumberGenerator;
+import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 class RacingCarGameTest {
-
+	GameManager gameManager;
+	NumberGenerator numberGenerator;
+	CarMovement carMovement;
 	Cars cars;
 	OutputView outputView;
 	InputView inputView;
-
 	InputStream inputStream;
 	PrintStream outputStream;
+
+	@BeforeEach
+	void setUp() {
+		numberGenerator = new RandomNumberGenerator();
+		carMovement = new CarMovement(numberGenerator);
+		cars = new Cars();
+	}
 
 	@AfterEach
 	void close() throws Exception {
@@ -37,7 +49,7 @@ class RacingCarGameTest {
 	}
 
 	@DisplayName("자동차 경주 통합 정상 작동 테스트")
-	@ParameterizedTest()
+	@ParameterizedTest(name = "carNames = {0}")
 	@MethodSource("playGameDummy")
 	void playGameTest(String carNames) {
 		inputStream = new ByteArrayInputStream(carNames.getBytes(UTF_8));
@@ -50,18 +62,18 @@ class RacingCarGameTest {
 		cars = new Cars();
 		outputView = new OutputView();
 		inputView = new InputView();
+		gameManager = new GameManager(inputView, outputView, carMovement, cars);
 
-		GameManager gameManager = new GameManager(inputView, outputView, cars);
 		gameManager.playGame();
 
 		assertThat(out.toString()).contains("최종 우승했습니다.");
 	}
 
 	@DisplayName("자동차 경주 통합 예외 처리 후 정상 작동 테스트")
-	@ParameterizedTest
+	@ParameterizedTest(name = "inputWithException = {0}")
 	@MethodSource("playGameExceptionDummy")
-	void playGameExceptionTest(String playGameExceptionInput) {
-		inputStream = new ByteArrayInputStream(playGameExceptionInput.getBytes(UTF_8));
+	void playGameExceptionTest(String inputWithException) {
+		inputStream = new ByteArrayInputStream(inputWithException.getBytes(UTF_8));
 		OutputStream out = new ByteArrayOutputStream();
 		outputStream = new PrintStream(out);
 
@@ -71,7 +83,7 @@ class RacingCarGameTest {
 		cars = new Cars();
 		outputView = new OutputView();
 		inputView = new InputView();
-		GameManager gameManager = new GameManager(inputView, outputView, cars);
+		gameManager = new GameManager(inputView, outputView, carMovement, cars);
 
 		gameManager.playGame();
 		String gameTotalMessage = out.toString();
