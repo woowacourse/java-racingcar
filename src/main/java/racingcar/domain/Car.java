@@ -1,8 +1,9 @@
 package racingcar.domain;
 
-import static racingcar.exception.ErrorMessages.*;
-
 import java.util.Objects;
+
+import static racingcar.exception.ErrorMessages.CAR_NAME_BLANK_EXCEPTION;
+import static racingcar.exception.ErrorMessages.CAR_NAME_LENGTH_EXCEPTION;
 
 public class Car {
     final String name;

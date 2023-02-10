@@ -1,12 +1,9 @@
 package racingcar.domain;
 
-import static racingcar.exception.ErrorMessages.*;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import static racingcar.exception.ErrorMessages.CARS_SIZE_EXCEPTION;
+import static racingcar.exception.ErrorMessages.CAR_NAME_DUPLICATE_EXCEPTION;
 
 public class Cars {
     private final Set<Car> cars = new LinkedHashSet<>();

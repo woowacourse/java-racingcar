@@ -1,12 +1,12 @@
 package racingcar.domain;
 
-import java.util.List;
-
 import racingcar.dto.CarNamesRequest;
 import racingcar.dto.GameResultResponse;
 import racingcar.dto.RoundResultResponse;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.util.List;
 
 public class GameManager {
 

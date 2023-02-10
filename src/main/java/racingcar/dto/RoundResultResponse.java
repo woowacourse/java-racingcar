@@ -1,10 +1,10 @@
 package racingcar.dto;
 
+import racingcar.domain.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import racingcar.domain.Car;
 
 public class RoundResultResponse {
     private final List<CarDTO> roundResult = new ArrayList<>();

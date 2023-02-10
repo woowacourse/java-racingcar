@@ -1,13 +1,14 @@
 package racingcar.view;
 
-import static racingcar.exception.ErrorMessages.*;
+import racingcar.dto.CarNamesRequest;
+import racingcar.dto.GameRoundRequest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import racingcar.dto.CarNamesRequest;
-import racingcar.dto.GameRoundRequest;
+import static racingcar.exception.ErrorMessages.CAR_NAME_INPUT_EXCEPTION;
+import static racingcar.exception.ErrorMessages.GAME_ROUND_INPUT_EXCEPTION;
 
 public class InputView {
     private static final String CAR_NAMES_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -24,6 +25,7 @@ public class InputView {
         } catch (IOException e) {
             throw new RuntimeException(CAR_NAME_INPUT_EXCEPTION.getMessage());
         }
+
         return new CarNamesRequest(carNames);
     }
 

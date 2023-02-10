@@ -1,10 +1,10 @@
 package racingcar.view;
 
-import java.util.List;
-
 import racingcar.dto.CarDTO;
 import racingcar.dto.GameResultResponse;
 import racingcar.dto.RoundResultResponse;
+
+import java.util.List;
 
 public class OutputView {
     private static final String RESULT_MESSAGE = System.lineSeparator() + "실행결과";
