@@ -1,7 +1,9 @@
 package util;
 
+import java.util.regex.Pattern;
+
 public class Validator {
-    private static final String CHARACTER_REG = "^[a-zA-Z]*$";
+    private static final Pattern CHARACTER_REG = Pattern.compile("^[a-zA-Z]*$");
 
     public static void validateMovingCountInput(String input) {
         validateIsDigit(input);
@@ -9,7 +11,7 @@ public class Validator {
     }
 
     private static void validateIsDigit(String input) {
-        if (input.matches(CHARACTER_REG)) {
+        if (CHARACTER_REG.matcher(input).matches()) {
             throw new IllegalArgumentException("이동할 횟수는 숫자만 입력 가능합니다.");
         }
     }
