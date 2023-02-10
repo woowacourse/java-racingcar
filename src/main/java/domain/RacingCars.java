@@ -1,13 +1,15 @@
 package domain;
 
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.toList;
+import exception.CannotFindMaxPositionException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class RacingCars {
 
+    public static final String CANNOT_FIND_MAX_POSITION = "최대 거리를 찾을 수 없습니다.";
     private final List<RacingCar> racingCars = new ArrayList<>();
 
     public RacingCars(final List<RacingCar> racingCars) {
@@ -25,19 +27,18 @@ public class RacingCars {
     }
 
     public List<String> getWinnerNames() {
-        List<RacingCar> racingCars = getSortedByPosition(this);
-        int winnerPosition = racingCars.get(0).getPosition();
+        int maxPosition = findMaxPosition(this);
 
         return racingCars.stream()
-                .filter(racingCar -> racingCar.getPosition() == winnerPosition)
+                .filter(racingCar -> racingCar.getPosition() == maxPosition)
                 .map(RacingCar::getName)
                 .collect(toList());
     }
 
-    private List<RacingCar> getSortedByPosition(final RacingCars racingCars) {
-        return racingCars.getRacingCars()
-                .stream()
-                .sorted(comparing(RacingCar::getPosition).reversed())
-                .collect(toList());
+    private int findMaxPosition(final RacingCars racingCars) {
+        return racingCars.getRacingCars().stream()
+                .mapToInt(RacingCar::getPosition)
+                .max()
+                .orElseThrow(() -> new CannotFindMaxPositionException(CANNOT_FIND_MAX_POSITION));
     }
 }
