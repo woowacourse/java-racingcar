@@ -1,41 +1,63 @@
 package racingcar.view;
 
 import racingcar.domain.result.Result;
+import racingcar.view.message.Message;
 
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
 
-    public void printNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+    public void printCarNameInputGuide() {
+        print(Message.CAR_NAME_INPUT_GUIDE.getMessage());
     }
 
     public void printGameRoundGuide() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        print(Message.GAME_ROUND_INPUT_GUIDE.getMessage());
     }
 
     public void printResultGuide() {
-        System.out.println("실행 결과");
+        print(Message.GAME_RESULT_GUIDE.getMessage());
     }
 
     public void printResult(Result result) {
         List<Map<String, Integer>> results = result.getResults();
         for (Map<String, Integer> roundResult : results) {
             printEachResult(roundResult);
-            System.out.println();
+            print(Message.EMPTY_MESSAGE.getMessage());
         }
     }
 
     private void printEachResult(Map<String, Integer> roundResult) {
-        for (String key : roundResult.keySet()) {
-            String position = "-".repeat(roundResult.get(key));
-            System.out.printf("%s : %s%n", key, position);
+        String positionMarker = Message.POSITION_MARKER.getMessage();
+        for (String carName : roundResult.keySet()) {
+            String position = makePosition(roundResult, positionMarker, carName);
+            print(makeResultMessage(carName, position));
         }
     }
 
-    public void printWinners(Result results) {
-        String winner = String.join(", ", results.findWinners());
-        System.out.printf("%s가 최종 우승했습니다.%n", winner);
+    private String makePosition(Map<String, Integer> roundResult, String positionMarker, String key) {
+        return positionMarker.repeat(roundResult.get(key));
+    }
+
+    private String makeResultMessage(String key, String position) {
+        return String.format(Message.RESULT_DELIMITER.getMessage(), key, position);
+    }
+
+    public void printWinner(Result results) {
+        String delimiter = Message.WINNER_DELIMITER.getMessage();
+        print(makeWinnerMessage(results, delimiter));
+    }
+
+    private String makeWinnerMessage(Result results, String delimiter) {
+        return String.format(Message.WINNER_GUIDE.getMessage(), makeWinner(results, delimiter));
+    }
+
+    private String makeWinner(Result results, String delimiter) {
+        return String.join(delimiter, results.findWinners());
+    }
+
+    private void print(String message) {
+        System.out.println(message);
     }
 }
