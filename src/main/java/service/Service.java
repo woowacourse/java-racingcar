@@ -33,7 +33,7 @@ public class Service {
     }
 
     public List<Name> getWinners() {
-        return cars.getWinners();
+        return cars.getWinnerNames();
     }
 
     private void validateDuplication(List<Name> names) {

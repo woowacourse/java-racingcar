@@ -30,7 +30,7 @@ public class Cars {
         cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
     }
 
-    public List<Name> getWinners() {
+    public List<Name> getWinnerNames() {
         Position highestPosition = calculateHighestPosition();
         return cars.stream()
                 .filter(car -> hasHighestPosition(highestPosition, car))

@@ -41,7 +41,7 @@ class CarsTest {
 
         cars.move();
 
-        List<Name> winners = cars.getWinners();
+        List<Name> winners = cars.getWinnerNames();
 
         assertThat(winners).containsExactly(Name.of("fox"));
     }
@@ -73,7 +73,7 @@ class CarsTest {
 
         cars.move();
 
-        List<Name> winners = cars.getWinners();
+        List<Name> winners = cars.getWinnerNames();
 
         assertThat(winners).containsExactly(Name.of("test"), Name.of("fox"));
     }

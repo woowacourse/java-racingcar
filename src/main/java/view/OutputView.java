@@ -40,15 +40,15 @@ public class OutputView {
     }
 
     public void printWinners(List<Name> winners) {
-        System.out.printf(WINNER_MESSAGE_FORMAT, makeWinnerNamesWord(winners));
+        System.out.printf(WINNER_MESSAGE_FORMAT, combineNamesWithDelimiter(winners));
     }
 
-    private static String makeWinnerNamesWord(List<Name> carNames) {
-        return String.join(DELIMITER, getWinnerNames(carNames));
+    private static String combineNamesWithDelimiter(List<Name> names) {
+        return String.join(DELIMITER, getWinnerNameValues(names));
     }
 
-    private static List<String> getWinnerNames(List<Name> winners) {
-        return winners.stream()
+    private static List<String> getWinnerNameValues(List<Name> names) {
+        return names.stream()
                 .map(Name::getValue)
                 .collect(Collectors.toList());
     }
