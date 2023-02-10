@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import service.RacingGame;
 import service.RandomNumberGenerator;
-import ui.InputView;
-import ui.OutputView;
+import view.InputView;
+import view.OutputView;
 
 public class RacingGameController {
 
