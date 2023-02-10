@@ -63,4 +63,18 @@ public class PositionTest {
         // when & then
         assertThat(pos1).isEqualTo(pos2);
     }
+
+    @Test
+    @DisplayName("increase() 시 값이 1 증가된 Position을 반환한다")
+    void test_6() {
+        // given
+        Position beforePosition = Position.init();
+
+        // when
+        Position increasePosition = beforePosition.increase();
+
+        // then
+        assertThat(increasePosition.getValue())
+                .isEqualTo(beforePosition.getValue() + 1);
+    }
 }

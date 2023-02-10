@@ -24,6 +24,10 @@ public class Position implements Comparable<Position> {
         return this.value;
     }
 
+    public Position increase() {
+        return new Position(this.value + 1);
+    }
+    
     public Position move(final int randomNumber) {
         validateRange(randomNumber);
 
