@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
-// TODO 전체적으로 빈줄 일관성 맞추기
 public class RacingGame {
 
     private static final int POWER_VALUE_MIN = 0;
@@ -52,18 +52,11 @@ public class RacingGame {
     }
 
     public List<String> decisionWinners() {
-        List<String> winners = new ArrayList<>();
         int topPoint = cars.stream().mapToInt(Car::getPosition).max().getAsInt();
-        for (Car car : cars) {
-            addWinners(winners, topPoint, car);
-        }
-        return Collections.unmodifiableList(winners);
-    }
-
-    private void addWinners(List<String> winners, int topPoint, Car car) {
-        if (car.getPosition() == topPoint) {
-            winners.add(car.getName());
-        }
+        return cars.stream()
+                .filter(car -> car.getPosition() == topPoint)
+                .map(Car::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<Car> getCars() {
