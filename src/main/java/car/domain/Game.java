@@ -1,7 +1,6 @@
 package car.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,10 +35,6 @@ public class Game {
         for (Car car : cars) {
             car.move(moveChance);
         }
-    }
-
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
     }
     public List<CarDto> getCarsDto(){
         return cars.stream().map(Car::getCarDto).collect(Collectors.toList());
