@@ -21,10 +21,14 @@ public class CarRepository {
         return Collections.unmodifiableList(cars);
     }
 
-    public static List<String> findSamePositionWith(int maxPosition) {
-        return cars.stream().filter(car -> car.getPosition() == maxPosition)
+    public static List<String> findMaxPosition(int maxPosition) {
+        return cars.stream().filter(car -> isSamePosition(maxPosition, car))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static boolean isSamePosition(int maxPosition, Car car) {
+        return car.getPosition() == maxPosition;
     }
 
     public static void clear() {

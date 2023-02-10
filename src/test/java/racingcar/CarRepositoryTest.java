@@ -38,7 +38,7 @@ class CarRepositoryTest {
 
     @Test
     void findSamePositionWith() {
-        assertThat(CarRepository.findSamePositionWith(3)).isEqualTo(List.of("mery"));
+        assertThat(CarRepository.findMaxPosition(3)).isEqualTo(List.of("mery"));
     }
 
     @ParameterizedTest

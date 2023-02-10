@@ -15,7 +15,7 @@ public class RacingCarGame {
     }
 
     public List<String> getWinners() {
-        return CarRepository.findSamePositionWith(getMaxPosition());
+        return CarRepository.findMaxPosition(getMaxPosition());
     }
 
     private int getMaxPosition() {
