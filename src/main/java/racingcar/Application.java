@@ -17,15 +17,13 @@ public class Application {
         MovingStrategy randomMovingStrategy = new RandomMovingStrategy();
 
         RacingController racingController = new RacingController(inputView, outputView);
-
         try {
             Track track = racingController.init(randomMovingStrategy);
 
             racingController.startRace(track);
             racingController.concludeWinner(track);
-        } catch (IllegalArgumentException argumentException) {
-            racingController.terminated(argumentException.getMessage());
+        } catch (Exception exception) {
+            racingController.terminated(exception.getMessage());
         }
-
     }
 }
