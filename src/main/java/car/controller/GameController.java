@@ -13,27 +13,27 @@ import car.view.OutputView;
 
 public class GameController {
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
+    private static final InputView INPUT_VIEW = new InputView();
+    private static final OutputView OUTPUT_VIEW = new OutputView();
 
     private final Game game;
     private final int trialCount;
 
     public GameController() {
-        List<String> carNames = List.of(inputView.inputCarNames());
+        List<String> carNames = List.of(INPUT_VIEW.inputCarNames());
         game = new Game(makeCarsWith(carNames), new RandomMoveChance());
-        trialCount = inputView.inputTrialCount();
+        trialCount = INPUT_VIEW.inputTrialCount();
         validateNotNegativeInteger(trialCount);
     }
 
     public void play() {
-        outputView.noticeResult();
+        OUTPUT_VIEW.noticeResult();
         playMultipleTimes();
     }
 
     public void showResult() {
-        outputView.printCars(game.getCars());
-        outputView.printWinners(game.findWinners());
+        OUTPUT_VIEW.printCars(game.getCars());
+        OUTPUT_VIEW.printWinners(game.findWinners());
     }
 
     private List<Car> makeCarsWith(List<String> carNames) {
@@ -51,7 +51,7 @@ public class GameController {
     private void playMultipleTimes() {
         for (int i = 0; i < trialCount; i++) {
             game.playOnce();
-            outputView.printCars(game.getCars());
+            OUTPUT_VIEW.printCars(game.getCars());
         }
     }
 }
