@@ -2,7 +2,6 @@ package racing.handler;
 
 import java.io.IOException;
 
-import racing.domain.RacingGame;
 import racing.view.InputView;
 
 //TODO: 예외 발생 시 재입력
@@ -21,12 +20,12 @@ public class InputHandler {
         this.inputView = new InputView();
     }
 
-    public RacingGame readCars() throws IOException {
+    public String[] readCars() throws IOException {
         try {
             String inputName = inputView.readCarNames();
             String[] names = inputName.split(COMMA);
 
-            return new RacingGame(names);
+            return names;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readCars();

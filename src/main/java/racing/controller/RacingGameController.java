@@ -17,8 +17,10 @@ public class RacingGameController {
     }
 
     public void run() throws IOException {
-        RacingGame racingGame = inputHandler.readCars();
+        String[] carNames = inputHandler.readCars();
         int movingTrial = inputHandler.readMovingTrial();
+
+        RacingGame racingGame = new RacingGame(carNames);
 
         outputView.printNotice();
         raceWithHistory(movingTrial, racingGame);

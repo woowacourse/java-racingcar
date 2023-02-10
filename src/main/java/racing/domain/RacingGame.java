@@ -9,7 +9,7 @@ public class RacingGame {
     private final NumberGenerator numberGenerator;
 
     public RacingGame(String[] names) {
-        this.carGroup = new racing.domain.CarGroup(names);
+        this.carGroup = new CarGroup(names);
         this.numberGenerator = new RandomNumberGenerator();
     }
 
