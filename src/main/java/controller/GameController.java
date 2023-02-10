@@ -38,7 +38,7 @@ public class GameController {
     }
 
     private void startRacing(int numberOfTry) {
-        for (int round = 0; round < numberOfTry; round++) {
+        while (numberOfTry-- > 0) {
             racingCarGame.repeatRounds();
             OutputView.printCarsStatus(CarRepository.findAll());
         }
