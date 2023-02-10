@@ -30,6 +30,7 @@ public class OutputView {
     private static void printCar(Output output) {
         String name = output.getName();
         int position = output.getPosition();
+
         String status = toDash(position);
         System.out.printf(PRINT_STATUS_FORMAT, name, status);
     }
@@ -42,6 +43,7 @@ public class OutputView {
         List<String> carNames = winnerCars.getCars().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
+
         String winnerString = String.join(DELIMITER, carNames);
         System.out.printf(PRINT_WINNER_FORMAT, winnerString);
     }
