@@ -21,8 +21,7 @@ class CarsTest {
 
         // then
         assertThat(carsPositionFormat)
-                .contains("pobi : ---")
-                .contains("crong : -");
+                .contains("pobi : ---", "crong : -");
     }
 
     @DisplayName("우승한 자동차 선별 테스트")
@@ -58,9 +57,7 @@ class CarsTest {
 
         // then
         assertThat(winnerCars.getCarsWinnerFormat())
-                .contains("pobi")
-                .contains("eddy");
-
+                .contains("pobi", "eddy");
     }
 
 }
