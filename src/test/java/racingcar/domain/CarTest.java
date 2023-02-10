@@ -50,7 +50,7 @@ class CarTest {
         car.move(randomNumber);
 
         // then
-        assertThat(car.getPosition()).isEqualTo(beforeMovePosition.move(randomNumber));
+        assertThat(car.getPosition()).isEqualTo(beforeMovePosition.increase());
     }
 
     @ParameterizedTest(name = "move() 시 들어오는 값이 0 ~ 9 사이가 아니라면(ex: {arguments}) 오류가 발생한다.")
