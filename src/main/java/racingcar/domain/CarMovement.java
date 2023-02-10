@@ -4,7 +4,7 @@ public class CarMovement {
 
     private static final  String OUT_OF_MOVEMENT_RANGE_EXCEPTION = "범위 밖의 움직임 값입니다.";
     private static final int MAX_VALUE = 9;
-    public static final int MIN_VALUE = 0;
+    private static final int MIN_VALUE = 0;
     private final int value;
 
     public CarMovement(int value) {
