@@ -32,18 +32,12 @@ public class RacingGameService {
     public GameResultDto play() {
         GameResultDto result = new GameResultDto();
         for (Car car : cars.getCars()) {
-            int number = numberGenerator.generate();
-            move(car, number);
+            int power = numberGenerator.generate();
+            car.move(power);
             result.put(car.getName(), car.getPosition());
         }
         tryCount--;
         return result;
-    }
-
-    private void move(Car car, int number) {
-        if (number >= MOVE_CONDITION) {
-            car.increasePosition();
-        }
     }
 
     public boolean isEnd() {

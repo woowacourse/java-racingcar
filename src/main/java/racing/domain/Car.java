@@ -4,6 +4,7 @@ public class Car {
 
     public static final int MIN_POSITION = 0;
     private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_POWER = 4;
 
     private final String name;
     private int position = MIN_POSITION;
@@ -19,8 +20,10 @@ public class Car {
         }
     }
 
-    public void increasePosition() {
-        position++;
+    public void move(int power) {
+        if (power >= MIN_POWER) {
+            position++;
+        }
     }
 
     public int getPosition() {

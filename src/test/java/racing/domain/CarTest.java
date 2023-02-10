@@ -20,7 +20,7 @@ class CarTest {
     void moveTest() {
         Car car = new Car("test");
 
-        car.increasePosition();
+        car.move(4);
 
         int position = car.getPosition();
         assertThat(position).isEqualTo(1);
