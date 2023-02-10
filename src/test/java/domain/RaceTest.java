@@ -1,5 +1,7 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,28 +16,47 @@ import org.junit.jupiter.api.Test;
 class RaceTest {
 
     @Nested
-    class getWinners {
+    class GetWinnersTest {
         private List<String> winners;
 
         @BeforeEach
         void setup() {
-            Race race = new Race(List.of("rosie", "hong"), new TestNumberPicker(4, 1));
-            race.tryMoveOneTime();
-            winners = race.getWinners().stream().map(car -> car.name).collect(Collectors.toList());
+            Race race = new Race(List.of("hong", "rosie"), List.of(1, 2));
+            winners = race.getWinners().stream().map(CarDto::getName).collect(Collectors.toList());
         }
 
         @Test
         @DisplayName("반환값에 우승자가 포함되어 있는지 테스트")
         void shouldContainsWinners() {
-            Assertions.assertThat(winners)
+            assertThat(winners)
                     .containsExactly("rosie");
         }
 
         @Test
         @DisplayName("반환값에 우승자가 아닌 사람이 포함되어 있지 않은지 테스트")
         void shouldNotContainNonWinners() {
-            Assertions.assertThat(winners)
+            assertThat(winners)
                     .doesNotContain("hong");
+        }
+    }
+
+    @Nested
+    class MoveOneStepTest {
+        @Test
+        void move_() {
+            List<Car> cars = List.of(new Car("hong", 3), new Car("rosie", 1));
+            Race race = new Race(cars, new TestNumberPicker(1, 5));
+
+            race.tryMoveOneTime(cars);
+
+            assertThat(cars)
+                    .extracting("position")
+                    .containsExactly(3, 2);
+        }
+
+        @Test
+        void moveTest() {
+            new Race(List.of(new Car), new TestNumberPicker(1, 4));
         }
     }
 
