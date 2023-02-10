@@ -3,6 +3,7 @@ package car.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -14,6 +15,7 @@ public class Game {
 
     public Game(List<Car> cars, int trialCount) {
         validateCarsLength(cars);
+        validateNoDuplicateCar(cars);
         validateNotNegativeInteger(trialCount);
         this.cars = new ArrayList<>(cars);
         this.trialCount = trialCount;
@@ -48,6 +50,12 @@ public class Game {
             return car;
         }
         return other;
+    }
+
+    private void validateNoDuplicateCar(List<Car> cars) {
+        if (cars.size() > Set.of(cars).size()) {
+            throw new IllegalArgumentException("자동차 이름은 중복되면 안됩니다");
+        }
     }
 
     private void validateCarsLength(List<Car> cars) {

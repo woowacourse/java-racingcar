@@ -55,4 +55,11 @@ public class GameTest {
         game.playOnceWith(MOVABLE_CHANCE);
         assertThat(car.getPosition()).isEqualTo(1);
     }
+
+    @Test
+    void 자동차_간_동일한_이름을_가지면_안된다() {
+        List<Car> cars = List.of(new Car("물떡"), new Car("물떡"));
+        assertThatThrownBy(() -> new Game(cars, 0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
