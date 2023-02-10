@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
+import static domain.Car.*;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
@@ -22,13 +22,15 @@ class CarTest {
         @DisplayName("이름이 5자 초과이면 예외를 발생시킨다.")
         @Test
         void fail_by_name_length_exception() {
-            assertThatIllegalArgumentException().isThrownBy(() -> new Car("잘못된자동차이름"));
+            assertThatIllegalArgumentException().isThrownBy(() -> new Car("잘못된자동차이름"))
+                    .withMessageContaining(NAME_LENGTH_EXCEPTION_MESSAGE);
         }
 
         @DisplayName("이름에 공백이 포함되면 예외를 발생시킨다.")
         @Test
         void fail_by_contain_blank() {
-            assertThatIllegalArgumentException().isThrownBy(() -> new Car(" bad"));
+            assertThatIllegalArgumentException().isThrownBy(() -> new Car(" bad"))
+                    .withMessageContaining(BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE);
         }
     }
 
