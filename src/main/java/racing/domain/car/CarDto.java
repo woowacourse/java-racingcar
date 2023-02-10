@@ -9,6 +9,10 @@ public class CarDto {
         this.position = position;
     }
 
+    public static CarDto of(Car car) {
+        return new CarDto(car.getName(), car.getPosition());
+    }
+
     public String getName() {
         return name;
     }
