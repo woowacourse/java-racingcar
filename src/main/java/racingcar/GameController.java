@@ -15,14 +15,17 @@ public class GameController {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
+    private static final int MAX_GAME_TIME = 500;
 
-    private final RacingGame racingGame;
+    private final Cars cars;
+    private final int gameTime;
 
 
     public GameController() {
-        Cars cars = new Cars(initCars());
+        this.cars = new Cars(initCars());
         String gameTime = inputView.inputGameTime();
-        racingGame = new RacingGame(gameTime, cars);
+        int parsedGameTime = validateParsing(gameTime);
+        this.gameTime = parsedGameTime;
     }
 
     private List<Car> initCars() {
@@ -34,20 +37,21 @@ public class GameController {
     }
 
     public void runGame() {
-        for (int i = 0; i < racingGame.getGameTime(); i++) {
+        for (int i = 0; i < gameTime; i++) {
             runSingleRound();
         }
     }
 
     private void runSingleRound() {
-        racingGame.moveCars();
-        racingGame.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
+        cars.putRandomPowersToCar();
+
+        cars.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
         System.out.println();
     }
 
     public void finishGame() {
-        List<String> winners = racingGame.calculateWinners();
-        racingGame.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
+        Winners winners = new Winners(cars.calculateWinners());
+        cars.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
         outputView.printWinners(winners);
     }
 }
