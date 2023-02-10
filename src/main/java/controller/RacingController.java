@@ -19,9 +19,14 @@ public class RacingController {
     }
 
     public void start() {
-        makeRacingGame(readCarNames());
-        startRacingGame(readGameTry());
-        makeRacingGameResult();
+        try {
+            makeRacingGame(readCarNames());
+            startRacingGame(readGameTry());
+            makeRacingGameResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            start();
+        }
     }
 
     private void makeRacingGame(List<String> carNames) {

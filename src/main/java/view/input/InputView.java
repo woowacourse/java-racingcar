@@ -20,10 +20,8 @@ public class InputView {
 
         final String delimiter = ",";
         String carNames = scanner.nextLine();
-        List<String> splitCarNames = List.of(carNames.split(delimiter));
 
-        inputValidator.validateCarName(splitCarNames);
-        return splitCarNames;
+        return List.of(carNames.split(delimiter));
     }
 
     public int readGameTry() {
