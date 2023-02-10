@@ -5,7 +5,7 @@ public class TrialCount {
     private final String COUNT_EXCEPTION_MESSAGE = "시도 횟수는 0보다 커야 합니다.";
 
     public TrialCount(int value) {
-        validate(value);
+        validateSize(value);
         this.value = value;
     }
 
@@ -13,7 +13,7 @@ public class TrialCount {
         return value;
     }
 
-    private void validate(int value) {
+    private void validateSize(int value) {
         if (value <= 0) {
             throw new IllegalArgumentException(COUNT_EXCEPTION_MESSAGE);
         }
