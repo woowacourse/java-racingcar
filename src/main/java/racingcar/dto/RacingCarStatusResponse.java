@@ -17,6 +17,11 @@ public class RacingCarStatusResponse {
         return position;
     }
 
+    /**
+     * 자동차의 정보를 문자열 형식으로 반환한다.
+     * 이름과 '-'를 postion의 수만큼 반환한다.
+     * ex) Glen : -----, Bero : -
+     */
     @Override
     public String toString() {
         return String.format("%s : %s", name, "-".repeat(position));
