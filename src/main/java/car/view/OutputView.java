@@ -15,18 +15,16 @@ public class OutputView {
     }
 
     public void printCars(List<Car> cars) {
-        for (Car car : cars) {
-            printCar(car);
-        }
+        cars.stream()
+                .forEach(car->{
+                    printTrack(car);
+                });
         System.out.println();
     }
 
-    private void printCar(Car car) {
+    private void printTrack(Car car) {
         System.out.print(car.getName() + CAR_INFIX);
-        for (int i = 0; i < car.getPosition(); i++) {
-            System.out.print(POSITION_CHARACTER);
-        }
-        System.out.println();
+        System.out.println(POSITION_CHARACTER.repeat(car.getPosition()));
     }
 
     public void printWinners(List<Car> winners) {

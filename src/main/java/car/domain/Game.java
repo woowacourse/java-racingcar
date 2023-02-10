@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
-
     private final List<Car> cars;
     private final MoveChance moveChance;
 
@@ -36,7 +35,7 @@ public class Game {
         }
     }
 
-    public List<Car> getCars(){
+    public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 }
