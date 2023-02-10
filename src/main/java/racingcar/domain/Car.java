@@ -2,7 +2,7 @@ package racingcar.domain;
 
 public class Car {
 	private static final int NAME_MAX_LENGTH = 5;
-	private static final int MOVE_MIN_NUMBER = 4;
+	private static final int MOVE_MIN_POWER = 4;
 	private String name;
 	private int position;
 
@@ -18,14 +18,14 @@ public class Car {
 		}
 	}
 
-	public void move(int number) {
-		if (isMove(number)) {
+	public void move(int power) {
+		if (isMovable(power)) {
 			position ++;
 		}
 	}
 
-	private boolean isMove(int number) {
-		return number >= MOVE_MIN_NUMBER;
+	private boolean isMovable(int power) {
+		return power >= MOVE_MIN_POWER;
 	}
 
 	public int getPosition() {

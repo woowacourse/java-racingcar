@@ -12,7 +12,7 @@ public class InputView {
 	public static List<String> readCarNames() {
 		String carNames = scanner.nextLine();
 		validateCarNames(carNames);
-		return formatter(carNames);
+		return splitByDelimAndTrimNames(carNames, DELIMITER);
 	}
 
 	private static void validateCarNames(String input) {
@@ -21,8 +21,8 @@ public class InputView {
 		}
 	}
 
-	private static List<String> formatter(String carNames) {
-		return Arrays.stream(carNames.split(DELIMITER))
+	private static List<String> splitByDelimAndTrimNames(String names, String delimiter) {
+		return Arrays.stream(names.split(delimiter))
 			.map(s -> s.trim())
 			.collect(Collectors.toList());
 	}
