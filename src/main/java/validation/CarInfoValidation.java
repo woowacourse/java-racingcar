@@ -38,5 +38,4 @@ public class CarInfoValidation {
             throw new IllegalArgumentException("자동차 이름은 중복되지 않아야합니다.");
         }
     }
-
 }

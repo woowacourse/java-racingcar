@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CarsFactory {
+
     private static final String SPLIT_DELIMITER = ",";
 
     public static List<Car> createCars(String carsName) {

@@ -7,6 +7,7 @@ import java.util.Map;
 import utils.RandomNumberGenerator;
 
 public class Cars {
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
