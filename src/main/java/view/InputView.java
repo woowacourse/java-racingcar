@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class InputView {
     private static final String DELIMITER = ",";
-    private static final String NUMERIC_FORMAT = "^[0-9]*$";
     private static final Scanner sc = new Scanner(System.in);
 
     public static List<String> readCarNames() {
@@ -24,9 +23,8 @@ public class InputView {
     public static int readCount() {
         printMessage(Message.ASK_TRY_COUNT);
         String input = readLine();
-        validateCount(input);
 
-        return Integer.parseInt(input);
+        return validateCount(input);
     }
 
     private static void validateNames(List<String> input) {
@@ -35,14 +33,12 @@ public class InputView {
         }
     }
 
-    private static void validateCount(String input) {
-        if (!isNumeric(input)) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMERIC.getValue());
+    private static int validateCount(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자를 입력해야 합니다.", e);
         }
-    }
-
-    private static boolean isNumeric(String input) {
-        return input.matches(NUMERIC_FORMAT);
     }
 
     private static String readLine() {
