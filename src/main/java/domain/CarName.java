@@ -1,9 +1,9 @@
 package domain;
 
 public class CarName {
-    private String name;
-    private final Integer CAR_NAME_MAX_LENGTH = 5;
-    private final Integer CAR_NAME_MIN_LENGTH = 1;
+    private final String name;
+    private final static Integer CAR_NAME_MAX_LENGTH = 5;
+    private final static Integer CAR_NAME_MIN_LENGTH = 1;
 
     public CarName(String name) {
         validateNameLength(name);
