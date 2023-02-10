@@ -4,6 +4,7 @@ import service.Service;
 import view.InputView;
 import view.OutputView;
 import vo.Name;
+import vo.Result;
 import vo.Trial;
 
 import java.util.List;
@@ -29,8 +30,7 @@ public class Controller {
         Trial trial = service.getTrial();
         for (int i = 0; i < trial.getValue(); i++) {
             service.move();
-            List<String> moveResult = service.getMoveResult();
-            outputView.printMoveResult(moveResult);
+            printResult();
         }
     }
 
@@ -55,8 +55,12 @@ public class Controller {
     }
 
     private void printFinalResult() {
-        List<String> moveResult = service.getMoveResult();
-        outputView.printMoveResult(moveResult);
+        printResult();
         outputView.printWinners(service.getWinners());
+    }
+
+    private void printResult() {
+        Result result = service.getResult();
+        outputView.printResult(result);
     }
 }

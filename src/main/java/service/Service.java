@@ -10,6 +10,7 @@ import domain.Rule;
 import utils.RandomNumberGenerator;
 import utils.exception.AlreadyDefinedFieldException;
 import vo.Name;
+import vo.Result;
 import vo.Trial;
 
 public class Service {
@@ -40,7 +41,7 @@ public class Service {
         return rule.getTrial();
     }
 
-    public List<String> getMoveResult() {
+    public Result getResult() {
         return cars.getResult();
     }
 

@@ -33,15 +33,6 @@ public class Car {
         }
     }
 
-    public String getResult() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(" : ");
-        for (int i = 0; i < position.getValue(); i++) {
-            stringBuilder.append("-");
-        }
-        return name.getValue() + stringBuilder;
-    }
-
     @Override
     public String toString() {
         return "Car{" +

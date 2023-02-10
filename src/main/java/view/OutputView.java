@@ -1,6 +1,7 @@
 package view;
 
 import vo.Name;
+import vo.Result;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,8 +18,14 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public void printMoveResult(List<String> moveResults) {
-        moveResults.forEach(System.out::println);
+    public void printResult(Result result) {
+        result.forEach(((name, position) -> {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < position.getValue(); i++) {
+                stringBuilder.append("-");
+            }
+            System.out.printf("%s : %s", stringBuilder, name.getValue());
+        }));
         System.out.println();
     }
 

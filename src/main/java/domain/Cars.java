@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import utils.RandomNumberGenerator;
 import vo.Name;
 import vo.Position;
+import vo.Result;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
@@ -44,10 +45,8 @@ public class Cars {
                         .collect(Collectors.toList()));
     }
 
-    public List<String> getResult() {
-        return cars.stream()
-                .map(Car::getResult)
-                .collect(Collectors.toList());
+    public Result getResult() {
+        return Result.of(cars);
     }
 
     @Override
