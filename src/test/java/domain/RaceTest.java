@@ -21,7 +21,7 @@ class RaceTest {
         void setup() {
             Race race = new Race(List.of("rosie", "hong"), new TestNumberPicker(4, 1));
             race.tryMoveOneTime();
-            winners = race.judgeWinners().stream().map(car -> car.name).collect(Collectors.toList());
+            winners = race.judgeWinners().stream().map(CarDto::getName).collect(Collectors.toList());
         }
 
         @Test

@@ -11,7 +11,7 @@ public class OutputView {
 
     public void printStatus(List<CarDto> cars) {
         for (CarDto car : cars) {
-            String status = String.format("%s : %s", car.name, "-".repeat(car.position));
+            String status = String.format("%s : %s", car.getName(), "-".repeat(car.getPosition()));
             System.out.println(status);
         }
         System.out.println();
@@ -19,7 +19,7 @@ public class OutputView {
 
     public void printWinners(List<CarDto> winners) {
         List<String> winnersNames = winners.stream()
-                .map(c -> c.name)
+                .map(CarDto::getName)
                 .collect(Collectors.toList());
         System.out.print(String.join(", ", winnersNames));
         System.out.print("가 최종 우승했습니다.");
