@@ -26,7 +26,7 @@ public class Controller {
     }
 
     private void setGame() {
-        setCars();
+        initializeCars();
     }
 
     private void playGame() {
@@ -50,14 +50,14 @@ public class Controller {
         }
     }
 
-    private void setCars() {
+    private void initializeCars() {
         try {
             List<Name> carNames = inputView.getCarNames();
-            service.setCars(carNames);
+            service.initializeCars(carNames);
         } catch (IllegalArgumentException exception) {
             if (exception.getClass() == IllegalArgumentException.class) {
                 outputView.printErrorMessage(exception.getMessage());
-                setCars();
+                initializeCars();
             }
             throw exception;
         }

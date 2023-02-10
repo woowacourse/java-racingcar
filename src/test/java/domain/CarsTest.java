@@ -16,7 +16,7 @@ import vo.Position;
 
 class CarsTest {
     Cars cars;
-    Car car = new Car(Name.of("test"));
+    Car car = Car.of(Name.of("test"));
 
     @Test
     @DisplayName("차 추가 테스트")
@@ -34,7 +34,7 @@ class CarsTest {
         List<Integer> testNumbers = Arrays.asList(3, 4);
         cars = new Cars(new ArrayList<>(), new TestRandomNumberGenerator(testNumbers));
 
-        Car fox = new Car(Name.of("fox"));
+        Car fox = Car.of(Name.of("fox"));
 
         cars.saveCar(car);
         cars.saveCar(fox);
@@ -66,7 +66,7 @@ class CarsTest {
         List<Integer> testNumbers = Arrays.asList(4,4);
         cars = new Cars(new ArrayList<>(), new TestRandomNumberGenerator(testNumbers));
 
-        Car fox = new Car(Name.of("fox"));
+        Car fox = Car.of(Name.of("fox"));
 
         cars.saveCar(car);
         cars.saveCar(fox);

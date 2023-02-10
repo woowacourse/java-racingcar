@@ -17,10 +17,10 @@ public class Service {
         this.cars = cars;
     }
 
-    public void setCars(List<Name> names) {
+    public void initializeCars(List<Name> names) {
         validateDuplication(names);
         for (Name carName : names) {
-            cars.saveCar(new Car(carName));
+            cars.saveCar(Car.of(carName));
         }
     }
 

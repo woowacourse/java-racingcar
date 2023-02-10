@@ -11,10 +11,14 @@ public class Car {
     private final Name name;
     private Position position;
 
-    public Car(Name name) {
-        validateName(name);
+    private Car(Name name) {
         this.name = name;
         this.position = Position.of(0L);
+    }
+
+    public static Car of(Name name) {
+        validateName(name);
+        return new Car(name);
     }
 
     public Name getName() {
@@ -31,7 +35,7 @@ public class Car {
         }
     }
 
-    private void validateName(Name name) {
+    private static void validateName(Name name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH_EXCEPTION_MESSAGE);
         }

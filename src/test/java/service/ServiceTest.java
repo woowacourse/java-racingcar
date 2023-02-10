@@ -23,7 +23,7 @@ class ServiceTest {
     @Test
     @DisplayName("중복된 이름이 입력되면 예외발생")
     void setCarsFailTest() {
-        assertThatThrownBy(() -> service.setCars(Name.of(List.of("fox", "fox"))))
+        assertThatThrownBy(() -> service.initializeCars(Name.of(List.of("fox", "fox"))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
