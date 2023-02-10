@@ -12,13 +12,6 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Car findByName(String name) {
-        return cars.stream()
-                .filter(car -> car.getName().equals(name))
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
     public Cars judgeWinners() {
         int maxPosition = getMaxPosition();
         List<Car> winningCars = cars.stream()
