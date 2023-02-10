@@ -1,7 +1,8 @@
-package racingcar;
+package racingcar.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.model.Car;
 
 public class RacingcarService {
 
