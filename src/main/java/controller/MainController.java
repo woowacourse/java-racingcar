@@ -1,9 +1,11 @@
 package controller;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import model.car.Car;
 import model.car.CarRepository;
 import model.manager.CarMoveManager;
@@ -17,6 +19,7 @@ public class MainController {
     private final OutputView outputView;
     private final Map<GameStatus, Supplier<GameStatus>> gameGuide;
     private final CarMoveManager carMoveManager;
+    private final CarRepository carRepository = new CarRepository();
 
     public MainController(InputView inputView, OutputView outputView, CarMoveManager carMoveManager) {
         this.inputView = inputView;
@@ -50,26 +53,49 @@ public class MainController {
         }
     }
 
+    private GameStatus setCars() {
+        List<String> carNames = inputView.readCarNames();
+        carNames.stream().map(Car::new).forEach(carRepository::addCars);
+        return GameStatus.PLAY_GAME;
+    }
+
+    public List<String> getWinners() {
+        int maxPosition = getMaxPosition();
+        return carRepository.cars().stream()
+                .filter(car -> car.isWinner(maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        List<Integer> positions = carRepository.cars().stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
+        return Collections.max(positions);
+    }
+
     private GameStatus moveCars() {
         int moveCount = inputView.readMoveCount();
         outputView.printResultMessage();
         moveAllCars(moveCount);
-        outputView.printWinners(CarRepository.getWinners());
+        outputView.printWinners(getWinners());
         return GameStatus.APPLICATION_EXIT;
-    }
-
-    private GameStatus setCars() {
-        List<String> carNames = inputView.readCarNames();
-        carNames.stream().map(Car::new).forEach(CarRepository::addCars);
-        return GameStatus.PLAY_GAME;
     }
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            CarRepository.cars()
-                    .forEach(car -> car.move(carMoveManager.isMove(RandomNumberGenerator.getRandomNumber())));
-            outputView.printResult(CarRepository.cars());
+            carRepository.cars()
+                    .forEach(car -> car.move(isMove()));
+            outputView.printResult(carRepository.cars());
         }
+    }
+
+    private boolean isMove() {
+        return carMoveManager.isMove(getRandomNumber());
+    }
+
+    private int getRandomNumber() {
+        return RandomNumberGenerator.getRandomNumber();
     }
 
     private enum GameStatus {
