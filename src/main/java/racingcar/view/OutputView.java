@@ -1,6 +1,7 @@
 package racingcar.view;
 
-import racingcar.controller.response.MovedResultResponse;
+import racingcar.domain.game.GameResult;
+import racingcar.domain.game.MovedResult;
 
 import java.util.List;
 import java.util.Map;
@@ -16,18 +17,19 @@ public class OutputView {
     private static final String BAR = "-";
     private static final int ZERO = 0;
 
-    public static void printWinners(List<String> winners) {
+    public static void printWinners(final GameResult result) {
+        List<String> winners = result.winnerNames();
         winners.sort(String::compareTo);
         String winnerNames = String.join(DELIMITER, winners);
         String message = String.format(WINNERS_FORMAT, winnerNames);
         System.out.println(message);
     }
 
-    public static void printState(final MovedResultResponse result) {
-        Map<String, Integer> positionMap = result.getPositionMap();
+    public static void printState(final MovedResult result) {
+        Map<String, Integer> positionByNameMap = result.positionByNameMap();
 
-        String results = positionMap.keySet().stream()
-                .map(name -> String.format(CARS_STATE_FORMAT, name, makeBar(positionMap.get(name)))
+        String results = positionByNameMap.keySet().stream()
+                .map(name -> String.format(CARS_STATE_FORMAT, name, makeBar(positionByNameMap.get(name)))
                 ).collect(Collectors.joining());
 
         System.out.println(results);
@@ -39,7 +41,7 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    public static void printResult() {
+    public static void printResultMessage() {
         System.out.println(RACE_RESULT_MESSAGE);
     }
 }

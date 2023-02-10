@@ -1,14 +1,11 @@
 package racingcar.controller;
 
-import racingcar.controller.response.MovedResultResponse;
 import racingcar.domain.car.Cars;
-import racingcar.domain.game.Lap;
-import racingcar.domain.game.NumberGenerator;
-import racingcar.domain.game.WinnerJudge;
+import racingcar.domain.game.*;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toUnmodifiableList;
 
@@ -23,24 +20,31 @@ public class RacingCarController {
         this.winnerJudge = winnerJudge;
     }
 
-    public Cars createCars(final String carNames) {
+    public void gameStart() {
+        Cars cars = createCars();
+        Lap lap = confirmTotalLap();
+        RacingCarGame game = RacingCarGame.init(generator, winnerJudge, cars, lap);
+
+        OutputView.printResultMessage();
+        runRace(game);
+    }
+
+    private Cars createCars() {
+        String carNames = InputView.inputCarNames();
         return new Cars(Arrays.stream(carNames.split(DELIMITER))
                 .collect(toUnmodifiableList()));
     }
 
-    public Lap confirmTotalLap(final int totalLap) {
-        return new Lap(totalLap);
+    private Lap confirmTotalLap() {
+        return new Lap(InputView.inputTotalLap());
     }
 
-    public MovedResultResponse moveCars(final Cars cars, final Lap lap) {
-        cars.move(generator);
-        lap.next();
-        return new MovedResultResponse(cars);
-    }
-
-    public List<String> winners(final Cars cars) {
-        return winnerJudge.judge(cars).stream()
-                .map(it -> it.getName().getValue())
-                .collect(Collectors.toList());
+    private void runRace(final RacingCarGame game) {
+        while (game.hasMoreLap()) {
+            MovedResult movedResult = game.race();
+            OutputView.printState(movedResult);
+        }
+        GameResult gameResult = game.gameResult();
+        OutputView.printWinners(gameResult);
     }
 }
