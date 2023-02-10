@@ -70,6 +70,6 @@ public class RacingGameController {
     }
 
     private boolean canProceed() {
-        return !tryCount.isZero();
+        return tryCount.isOpportunity();
     }
 }

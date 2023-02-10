@@ -32,7 +32,7 @@ public class TryCount {
         return new TryCount(tryCount - 1);
     }
 
-    public boolean isZero() {
-        return this.tryCount == EXCEPTION_FLAG;
+    public boolean isOpportunity() {
+        return this.tryCount != EXCEPTION_FLAG;
     }
 }
