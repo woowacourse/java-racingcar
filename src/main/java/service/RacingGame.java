@@ -6,13 +6,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+// TODO 전체적으로 빈줄 일관성 맞추기
 public class RacingGame {
-    private static final int RANDOM_START_INCLUSIVE = 0;
-    private static final int RANDOM_END_INCLUSIVE = 9;
+
+    private static final int POWER_VALUE_MIN = 0;
+    private static final int POWER_VALUE_MAX = 9;
     private static final int PROCESS_MOVING_MIN_NUMBER = 4;
 
+    private final NumberGenerator numberGenerator;
     private List<Car> cars;
-    private NumberGenerator numberGenerator;
 
     public RacingGame(NumberGenerator numberGenerator) {
         this.cars = new ArrayList<>();
@@ -38,27 +40,27 @@ public class RacingGame {
 
     public void processAllCars() {
         for (Car car : cars) {
-            int random = numberGenerator.generate(0, 9);
-            process(car, random);
+            int power = numberGenerator.generate(0, 9);
+            process(car, power);
         }
     }
 
-    private void process(Car car, int value) {
-        validateProcessValue(value);
-        if (value >= PROCESS_MOVING_MIN_NUMBER) {
+    private void process(Car car, int power) {
+        validatePower(power);
+        if (power >= PROCESS_MOVING_MIN_NUMBER) {
             car.move();
         }
     }
 
-    private void validateProcessValue(int value) {
-        if (value < RANDOM_START_INCLUSIVE || value > RANDOM_END_INCLUSIVE) {
+    private void validatePower(int power) {
+        if (power < POWER_VALUE_MIN || power > POWER_VALUE_MAX) {
             throw new IllegalArgumentException("자동차 전진을 위한 값은 지정된 범위 내여야 합니다.");
         }
     }
 
     public List<String> decisionWinners() {
         List<String> winners = new ArrayList<>();
-        int topPoint = cars.stream().mapToInt(c -> c.getPosition()).max().getAsInt();
+        int topPoint = cars.stream().mapToInt(Car::getPosition).max().getAsInt();
         for (Car car : cars) {
             addWinners(winners, topPoint, car);
         }

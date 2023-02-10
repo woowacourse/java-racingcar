@@ -1,6 +1,6 @@
 package domain;
 
-public class Car implements Comparable<Car> {
+public class Car {
 
     private static final int MAX_LENGTH = 5;
     private final String name;
@@ -31,11 +31,5 @@ public class Car implements Comparable<Car> {
 
     public int getPosition() {
         return position;
-    }
-
-
-    @Override
-    public int compareTo(Car o) {
-        return position - o.getPosition();
     }
 }
