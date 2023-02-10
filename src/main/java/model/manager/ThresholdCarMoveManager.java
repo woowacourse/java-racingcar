@@ -1,6 +1,6 @@
 package model.manager;
 
-public class RandomCarMoveManager implements CarMoveManager {
+public class ThresholdCarMoveManager implements CarMoveManager {
     private static final int BOUNDARY_VALUE = 4;
 
     @Override
