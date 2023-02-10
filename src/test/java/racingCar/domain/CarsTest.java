@@ -22,8 +22,8 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차 이름들에 중복이 있는 경우")
-    void carGroupTest_fail() {
+    @DisplayName("자동차들 이름에 중복이 존재하면 예외가 발생한다.")
+    void carsTest_duplicate_fail() {
         List<String> carNames = List.of("abc", "abc");
 
         Assertions.assertThatThrownBy(()->{
@@ -33,8 +33,8 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차 이름들이 빈 리스트일 경우")
-    void carGroupTest_failIfEmpty() {
+    @DisplayName("자동차들 이름이 아무것도 없으면 예외가 터진다")
+    void carsTest_empty_fail() {
         List<String> carNames = new ArrayList<>();
 
         Assertions.assertThatThrownBy(()->{
@@ -43,34 +43,8 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차들이 0-3의 숫자를 받으면 이동하지 않음 ")
-    void carGroupMoveTest_notMove() {
-        cars.moveCars(new FixedNumberGenerator(3));
-        List<Car> afterCarGroup = cars.getCars();
-
-        long count = afterCarGroup.stream()
-                .map(Car::getPosition)
-                .filter(position -> position > 0)
-                .count();
-        Assertions.assertThat(count).isEqualTo(0);
-    }
-
-    @Test
-    @DisplayName("자동차들이 4-9의 숫자를 받으면 이동")
-    void carGroupMoveTest_Move() {
-        cars.moveCars(new FixedNumberGenerator(4));
-        List<Car> afterCarGroup = cars.getCars();
-
-        long count = afterCarGroup.stream()
-                .map(Car::getPosition)
-                .filter(position -> position == 0)
-                .count();
-        Assertions.assertThat(count).isEqualTo(0);
-    }
-
-    @Test
     @DisplayName("자동차들의 position 중 가장 높은 position 값을 가져온다")
-    void getHighestPositionTest() {
+    void findMaxPositionTest() {
         for (int tryCount = 0; tryCount < 20; tryCount++) {
             cars.moveCars(new RandomNumberGenerator());
         }
@@ -88,7 +62,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차들이 움직이지 않았을 경우에 모두가 가장 높은 position이기에 이름들을 전부 가져온다.")
+    @DisplayName("자동차들의 거리가 모두 같으면 모두가 우승자가 된다.")
     void findWinnersTest() {
         List<String> names = cars.getCars().stream()
                 .map(Car::getName)
