@@ -19,16 +19,29 @@ class CarsTest {
 
 
     @Test
-    @DisplayName("Position이 가장 큰 Car List를 반환한다.")
-    void getFirstPositionTest() {
+    @DisplayName("Position이 가장 큰 Car를 여러개 반환한다.")
+    void getFirstCarsTest() {
         Cars cars = new Cars(dummy);
 
         int moveNumber = 4;
         boxster.move(moveNumber);
         sonata.move(moveNumber);
 
-        List<Car> firstPosition = cars.getFirstCars();
+        List<Car> firstCars = cars.getFirstCars();
 
-        assertThat(firstPosition).containsOnly(boxster, sonata);
+        assertThat(firstCars).containsOnly(boxster, sonata);
+    }
+
+    @Test
+    @DisplayName("Position이 가장 큰 Car 하나를 반환한다.")
+    void getFirstPositionTest() {
+        Cars cars = new Cars(dummy);
+
+        int moveNumber = 4;
+        boxster.move(moveNumber);
+
+        List<Car> firstCars = cars.getFirstCars();
+
+        assertThat(firstCars).containsOnly(boxster);
     }
 }
