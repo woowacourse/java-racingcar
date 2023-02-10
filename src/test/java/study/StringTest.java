@@ -1,23 +1,26 @@
 
 package study;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringTest {
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2", "1, 2"})
     @DisplayName(", 로 문자열이 나눠지는 경우를 테스트한다")
-    void checkStringSplitByComma() {
+    void checkStringSplitByComma(String input) {
         //given
         //when
-        String[] result = splitStringByDelimiter("1,2");
+        String[] result = splitStringByDelimiter(input.replace(" ", ""));
 
         //then
-        assertThat(result).contains("1")
-            .contains("2");
+        assertThat(result).containsExactly("1", "2");
     }
 
     @Test
@@ -65,7 +68,7 @@ public class StringTest {
         //when
         //then
         assertThatThrownBy(() -> input.charAt(input.length())).isInstanceOf(
-            StringIndexOutOfBoundsException.class);
+                StringIndexOutOfBoundsException.class);
     }
 
     @Test
