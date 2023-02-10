@@ -1,6 +1,9 @@
 package domain;
 
 import utils.RandomNumberGenerator;
+import validation.CarValidator;
+import validation.ErrorMessages;
+import validation.ValidateResult;
 
 public class Car {
 
@@ -8,6 +11,13 @@ public class Car {
     private int drivenDistance = 0;
 
     public Car(String name, int order) {
+        ValidateResult validateResult = CarValidator.validate(name);
+        if (validateResult == ValidateResult.FAIL_INVALID_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+        }
+        if (validateResult == ValidateResult.FAIL_CONTAIN_IDENTIFIER) {
+            throw new IllegalArgumentException(ErrorMessages.CONTAINS_IDENTIFIER.getMessage());
+        }
         this.name = new Name(name, order);
     }
 
@@ -27,7 +37,7 @@ public class Car {
         return name.getName();
     }
 
-    public int getOrder(){
+    public int getOrder() {
         return name.getOrder();
     }
 }
