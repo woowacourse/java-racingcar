@@ -10,7 +10,7 @@ class CarTest {
     private Car car;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         car = new Car(new Name("쥬니"));
     }
 
@@ -23,7 +23,7 @@ class CarTest {
         position.move();
 
         Assertions.assertThat(car.getPosition())
-                        .isEqualTo(position);
+                .isEqualTo(position);
     }
 
     @DisplayName("3 이하일 경우 전진하지 않는다.")
