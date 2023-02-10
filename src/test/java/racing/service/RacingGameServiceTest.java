@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racing.NumberGenerator;
+import racing.domain.NumberGenerator;
 import racing.domain.Car;
 import racing.dto.GameResultDto;
 

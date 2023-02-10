@@ -1,6 +1,6 @@
 package racing.controller;
 
-import racing.RandomNumberGenerator;
+import racing.domain.RandomNumberGenerator;
 import racing.domain.Car;
 import racing.dto.GameResultDto;
 import racing.service.RacingGameService;

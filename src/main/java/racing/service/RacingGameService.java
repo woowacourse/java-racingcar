@@ -1,6 +1,6 @@
 package racing.service;
 
-import racing.NumberGenerator;
+import racing.domain.NumberGenerator;
 import racing.domain.Car;
 import racing.domain.Cars;
 import racing.dto.GameResultDto;
