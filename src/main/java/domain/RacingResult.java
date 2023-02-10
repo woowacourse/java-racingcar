@@ -18,6 +18,9 @@ public class RacingResult {
     }
 
     public List<String> getWinner() {
+        if (history.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 게임 결과가 존재하지 않습니다.");
+        }
         Integer maxValue = Collections.max(history.values());
 
         return history.entrySet()
