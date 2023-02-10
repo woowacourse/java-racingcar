@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -20,8 +21,7 @@ class CarsTest {
     @Test
     @DisplayName("차 추가 테스트")
     void checkAdd() {
-        List<Integer> testNumbers = Arrays.asList(3, 4);
-        cars = new Cars(new TestRandomNumberGenerator(testNumbers));
+        cars = new Cars(new ArrayList<>(), new RandomNumberGenerator());
 
         cars.saveCar(car);
 
@@ -32,7 +32,7 @@ class CarsTest {
     @DisplayName("value 가 제일 높은 key를 반환한다.")
     void checkGetWinners() {
         List<Integer> testNumbers = Arrays.asList(3, 4);
-        cars = new Cars(new TestRandomNumberGenerator(testNumbers));
+        cars = new Cars(new ArrayList<>(), new TestRandomNumberGenerator(testNumbers));
 
         Car fox = new Car(Name.of("fox"));
 
@@ -50,7 +50,7 @@ class CarsTest {
     @DisplayName("move 실행시 value가 1 증가한다.")
     void checkMove() {
         List<Integer> testNumbers = List.of(4);
-        cars = new Cars(new TestRandomNumberGenerator(testNumbers));
+        cars = new Cars(new ArrayList<>(), new TestRandomNumberGenerator(testNumbers));
 
         cars.saveCar(car);
         cars.move();
@@ -64,7 +64,7 @@ class CarsTest {
     @DisplayName("value 가 가장 높은 key가 여러개면 모두 반환한다.")
     void checkGetWinnerDraw() {
         List<Integer> testNumbers = Arrays.asList(4,4);
-        cars = new Cars(new TestRandomNumberGenerator(testNumbers));
+        cars = new Cars(new ArrayList<>(), new TestRandomNumberGenerator(testNumbers));
 
         Car fox = new Car(Name.of("fox"));
 

@@ -2,19 +2,19 @@ package service;
 
 import domain.Car;
 import domain.Cars;
-import utils.RandomNumberGenerator;
-import utils.exception.AlreadyDefinedFieldException;
 import vo.Name;
 import vo.Result;
-import vo.Trial;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Service {
-    private final Cars cars = new Cars(new RandomNumberGenerator());
-    private Trial trial;
+    private final Cars cars;
+
+    public Service(Cars cars) {
+        this.cars = cars;
+    }
 
     public void setCars(List<Name> names) {
         validateDuplication(names);
@@ -23,21 +23,8 @@ public class Service {
         }
     }
 
-    public void setTrial(Trial trial) {
-        if (this.trial == null) {
-            this.trial = trial;
-            return;
-        }
-
-        throw new AlreadyDefinedFieldException();
-    }
-
     public void move() {
         cars.move();
-    }
-
-    public Trial getTrial() {
-        return trial;
     }
 
     public Result getResult() {

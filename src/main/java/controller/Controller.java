@@ -9,9 +9,15 @@ import vo.Trial;
 import java.util.List;
 
 public class Controller {
-    private final OutputView outputView = new OutputView();
-    private final InputView inputView = new InputView();
-    private final Service service = new Service();
+    private final OutputView outputView;
+    private final InputView inputView;
+    private final Service service;
+
+    public Controller(OutputView outputView, InputView inputView, Service service) {
+        this.outputView = outputView;
+        this.inputView = inputView;
+        this.service = service;
+    }
 
     public void run() {
         setGame();
@@ -21,25 +27,26 @@ public class Controller {
 
     private void setGame() {
         setCars();
-        setTrial();
     }
 
     private void playGame() {
+        Trial trial = getTrial();
         outputView.printResultMessage();
-        Trial trial = service.getTrial();
         for (int count = 0; count < trial.getValue(); count++) {
             service.move();
             printResult();
         }
     }
 
-    private void setTrial() {
-        Trial trial = inputView.getTrial();
+    private Trial getTrial() {
         try {
-            service.setTrial(trial);
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            setTrial();
+            return inputView.getTrial();
+        } catch (Exception exception) {
+            if (exception.getClass() == IllegalArgumentException.class) {
+                outputView.printErrorMessage(exception.getMessage());
+                getTrial();
+            }
+            throw exception;
         }
     }
 
@@ -48,8 +55,11 @@ public class Controller {
             List<Name> carNames = inputView.getCarNames();
             service.setCars(carNames);
         } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            setCars();
+            if (exception.getClass() == IllegalArgumentException.class) {
+                outputView.printErrorMessage(exception.getMessage());
+                setCars();
+            }
+            throw exception;
         }
     }
 
