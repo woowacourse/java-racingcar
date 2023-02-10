@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import java.util.List;
@@ -25,13 +26,11 @@ public class OutputView {
     }
 
     public void printFinalResult(Cars cars) {
-        List<Car> winners = cars.getWinners();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : winners) {
-            stringBuilder.append(car.getName() + NAME_DELIMITER);
-        }
-        String winnerNames = stringBuilder.toString();
-        System.out.print(winnerNames.substring(0, winnerNames.length()-2) + WINNER_MESSAGE_FORMAT);
+        List<String> winners = cars.getWinners().stream()
+            .map(car -> car.getName())
+            .collect(Collectors.toList());
+        String winningCarNames = String.format(NAME_DELIMITER, winners);
+        System.out.print(winningCarNames + WINNER_MESSAGE_FORMAT);
     }
 
     private String getCurrentCarPosition(Car car) {
