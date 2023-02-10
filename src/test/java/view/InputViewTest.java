@@ -1,6 +1,5 @@
 package view;
 
-import dto.request.CarNameDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,6 @@ import java.io.InputStream;
 import static domain.Car.MAX_NAME_LENGTH;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
     @DisplayName("Car의 이름이 검증을 통과하면 예외를 발생시키지 않는다.")
