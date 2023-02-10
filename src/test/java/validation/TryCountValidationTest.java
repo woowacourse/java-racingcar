@@ -1,9 +1,9 @@
 package validation;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TryCountValidationTest {
 
@@ -15,7 +15,7 @@ class TryCountValidationTest {
 
         // when & then
         assertThrows(IllegalArgumentException.class,
-                     () -> TryCountValidation.validateTryCount(input));
+                () -> TryCountValidation.validateTryCount(input));
     }
 
     @Test
@@ -27,5 +27,4 @@ class TryCountValidationTest {
         // when, then
         TryCountValidation.validateTryCount(input);
     }
-
 }
