@@ -47,10 +47,10 @@ public class CarsInfo {
                 .orElse(0);
     }
 
-    public void progressRound(RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
+    public void progressRound(RandomNumberGenerator randomNumberGenerator, MovementManager movementManager) {
         for (Car car : carsInfo) {
             Integer randomNumber = randomNumberGenerator.generateRandomNumber();
-            boolean movingResult = roundResult.isGo(randomNumber);
+            Boolean movingResult = movementManager.isGo(randomNumber);
             car.move(movingResult);
         }
     }

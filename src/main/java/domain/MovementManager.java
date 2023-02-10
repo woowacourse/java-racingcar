@@ -1,6 +1,6 @@
 package domain;
 
-public class RoundResult {
+public class MovementManager {
     private final Integer MOVING_CONDITION = 4;
 
     public boolean isGo(Integer randomNumber) {

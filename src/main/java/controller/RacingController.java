@@ -1,7 +1,7 @@
 package controller;
 
 import domain.CarsInfo;
-import domain.RoundResult;
+import domain.MovementManager;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -23,10 +23,10 @@ public class RacingController {
     }
 
     private void progressRacingGame(Integer tryCount, CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator) {
-        RoundResult roundResult = new RoundResult();
+        MovementManager movementManager = new MovementManager();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
-            carsInfo.progressRound(randomNumberGenerator, roundResult);
+            carsInfo.progressRound(randomNumberGenerator, movementManager);
             outputView.printCurrentResult(carsInfo);
         }
         List<String> winners = carsInfo.findWinners();
