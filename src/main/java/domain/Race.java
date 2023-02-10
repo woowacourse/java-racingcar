@@ -11,24 +11,28 @@ public class Race {
 
     public Race(List<String> carNames) {
         for (String carName : carNames) {
-            addNewCarWhenIsNotExists(carName);
+            addNewCarBy(carName);
         }
         this.numberPicker = new RandomNumberPicker();
     }
 
     public Race(List<String> carNames, NumberPicker numberPicker) {
         for (String carName : carNames) {
-            addNewCarWhenIsNotExists(carName);
+            addNewCarBy(carName);
         }
         this.numberPicker = numberPicker;
     }
 
-    private void addNewCarWhenIsNotExists(String carName) {
+    private void addNewCarBy(String carName) {
         Car car = new Car(carName);
-        if (cars.contains(car)) {
+        if (carWithSameNameAlreadyExists(car)) {
             throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
         }
         cars.add(car);
+    }
+
+    private boolean carWithSameNameAlreadyExists(Car car) {
+        return cars.contains(car);
     }
 
     //ToDo : 시간 남았을 때 테스트 해보기
