@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -23,11 +24,8 @@ public class Race {
         this.numberPicker = numberPicker;
     }
 
-    public Race(List<String> carNames, List<Integer> carPositions) {
-        cars = new ArrayList<>();
-        for (int i = 0; i < carNames.size(); i++) {
-            cars.add(new Car(carNames.get(i), carPositions.get(i)));
-        }
+    public Race(Car[] cars) {
+        this.cars = Arrays.asList(cars);
         this.numberPicker = new RandomNumberPicker();
     }
 

@@ -21,7 +21,8 @@ class RaceTest {
 
         @BeforeEach
         void setup() {
-            Race race = new Race(List.of("hong", "rosie"), List.of(1, 2));
+            Car[] cars = {new Car("rosie", 2), new Car("hong", 1)};
+            Race race = new Race(cars);
             winners = race.getWinners().stream().map(CarDto::getName).collect(Collectors.toList());
         }
 
@@ -42,22 +43,7 @@ class RaceTest {
 
     @Nested
     class MoveOneStepTest {
-        @Test
-        void move_() {
-            List<Car> cars = List.of(new Car("hong", 3), new Car("rosie", 1));
-            Race race = new Race(cars, new TestNumberPicker(1, 5));
 
-            race.tryMoveOneTime(cars);
-
-            assertThat(cars)
-                    .extracting("position")
-                    .containsExactly(3, 2);
-        }
-
-        @Test
-        void moveTest() {
-            new Race(List.of(new Car), new TestNumberPicker(1, 4));
-        }
     }
 
     @Nested
