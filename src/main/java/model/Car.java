@@ -6,11 +6,22 @@ import type.CarInformation;
 
 public class Car {
 
+    private static final int MOVE_POWER_LIMIT = 4;
+    private static final int DEFAULT_POSITION = 1;
+    private static final int MOVE_UNIT = 1;
     private final String name;
+    private int position;
 
     public Car(final String name) {
         validate(name);
         this.name = name;
+        this.position = DEFAULT_POSITION;
+    }
+
+    public void move(int power) {
+        if (power >= MOVE_POWER_LIMIT) {
+            this.position += MOVE_UNIT;
+        }
     }
 
     private void validate(final String name) {
@@ -27,6 +38,10 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    public int getCurrentPosition() {
+        return position;
     }
 
     @Override
