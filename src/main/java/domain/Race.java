@@ -9,24 +9,16 @@ import java.util.stream.Collectors;
 
 public class Race {
     private final List<Car> cars;
-    private final NumberPicker numberPicker;
 
     public Race(List<String> carNames) {
         cars = new ArrayList<>();
         for (String carName : carNames) {
             addNewCarWhenIsNotExists(carName, cars);
         }
-        this.numberPicker = new RandomNumberPicker();
-    }
-
-    public Race(List<Car> cars, NumberPicker numberPicker) {
-        this.cars = new ArrayList<>(cars);
-        this.numberPicker = numberPicker;
     }
 
     public Race(Car[] cars) {
         this.cars = Arrays.asList(cars);
-        this.numberPicker = new RandomNumberPicker();
     }
 
     private void addNewCarWhenIsNotExists(String carName, List<Car> cars) {
@@ -37,7 +29,7 @@ public class Race {
         cars.add(car);
     }
 
-    public void tryMoveOneTime() {
+    public void tryMoveOneTime(NumberPicker numberPicker) {
         for (Car car : cars) {
             car.moveDependingOn(numberPicker.pickNumber());
         }

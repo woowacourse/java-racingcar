@@ -3,6 +3,7 @@ import static domain.ExceptionHandlingTemplate.repeatUntilReadValidInput;
 import domain.Car;
 import domain.CarDto;
 import domain.Race;
+import domain.RandomNumberPicker;
 import java.util.List;
 import java.util.stream.Collectors;
 import view.InputView;
@@ -18,7 +19,7 @@ public class RaceController {
 
         outputView.printResultTitle();
         while (tryTime-- > 0) {
-            race.tryMoveOneTime();
+            race.tryMoveOneTime(new RandomNumberPicker());
             List<CarDto> carDtos = toListCarDto(race.getStatuses());
             outputView.printStatus(carDtos);
         }

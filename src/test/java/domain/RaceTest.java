@@ -42,8 +42,17 @@ class RaceTest {
     }
 
     @Nested
-    class MoveOneStepTest {
-
+    class tryMoveOneTimeTest {
+        @Test
+        @DisplayName("moveOneTime")
+        void moveSuccess() {
+            //given
+            Race race = new Race(List.of("rosie", "hong"));
+            //when
+            race.tryMoveOneTime(new TestNumberPicker(4, 1));
+            //then
+            //Mock 라이브러리를 이용하여 검증
+        }
     }
 
     @Nested
