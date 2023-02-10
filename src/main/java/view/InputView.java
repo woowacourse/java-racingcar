@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import util.CarNameValidator;
 import util.MoveCountValidator;
-import util.Util;
+import util.ValueEditor;
 
 public class InputView {
 
@@ -20,15 +20,15 @@ public class InputView {
 
     public List<String> readCarNames() {
         System.out.println(Message.INPUT_CARS.message);
-        String input = Util.removeSpace(scanner.nextLine());
-        List<String> names = Util.splitByComma(input);
+        String input = ValueEditor.removeSpace(scanner.nextLine());
+        List<String> names = ValueEditor.splitByComma(input);
         new CarNameValidator().validate(names);
         return names;
     }
 
     public int readMoveCount() {
         System.out.println(Message.INPUT_MOVE_COUNT.message);
-        String input = Util.removeSpace(scanner.nextLine());
+        String input = ValueEditor.removeSpace(scanner.nextLine());
         new MoveCountValidator().validate(input);
         return Integer.parseInt(input);
     }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Util {
+public class ValueEditor {
 
     public static String removeSpace(String input) {
         return input.replaceAll(Regex.SPACE.regex, Regex.NO_SPACE.regex);
@@ -23,6 +23,6 @@ public class Util {
         }
     }
 
-    private Util() {
+    private ValueEditor() {
     }
 }
