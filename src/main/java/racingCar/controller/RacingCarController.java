@@ -2,6 +2,7 @@ package racingCar.controller;
 
 import racingCar.domain.CarGroup;
 import racingCar.util.NumberGenerator;
+import racingCar.util.RandomNumberGenerator;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
@@ -10,10 +11,10 @@ import java.util.function.Supplier;
 
 public class RacingCarController {
 
-    public void run(NumberGenerator numberGenerator) {
+    public void run() {
         CarGroup carGroup = repeat(this::makeCars);
         Integer tryCount = repeat(InputView::readTryCount);
-        moveCarsAndView(numberGenerator, tryCount, carGroup);
+        playRacing(new RandomNumberGenerator(), tryCount, carGroup);
         OutputView.printWinners(carGroup.findWinners());
     }
 
@@ -23,7 +24,7 @@ public class RacingCarController {
         return carGroup;
     }
 
-    private void moveCarsAndView(NumberGenerator numberGenerator, int tryCount, CarGroup carGroup) {
+    private void playRacing(NumberGenerator numberGenerator, int tryCount, CarGroup carGroup) {
         for (int i = 0; i < tryCount; i++) {
             carGroup.moveCars(numberGenerator);
             OutputView.printCarPosition(carGroup.toCarDtos());
