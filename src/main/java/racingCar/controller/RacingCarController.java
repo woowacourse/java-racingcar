@@ -2,6 +2,7 @@ package racingCar.controller;
 
 import racingCar.domain.Cars;
 import racingCar.util.NumberGenerator;
+import racingCar.util.RandomNumberGenerator;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
@@ -10,10 +11,10 @@ import java.util.function.Supplier;
 
 public class RacingCarController {
 
-    public void run(NumberGenerator numberGenerator) {
+    public void run() {
         Cars cars = repeat(this::generateCars);
         Integer tryCount = repeat(InputView::readTryCount);
-        playRacing(numberGenerator, tryCount, cars);
+        playRacing(new RandomNumberGenerator(), tryCount, cars);
         OutputView.printWinners(cars.findWinners());
     }
 
