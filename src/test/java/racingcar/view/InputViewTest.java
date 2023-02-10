@@ -19,8 +19,8 @@ class InputViewTest {
     }
 
     @Test
-    @DisplayName("자동차 이름 입력 테스트")
-    void readCarNamesTest() {
+    @DisplayName("자동차 이름 입력 스플릿 테스트")
+    void readCarNamesSplitTest() {
         String carNames = "성하,이오,제이";
         InputStream in = generateUserInput(carNames);
         System.setIn(in);
