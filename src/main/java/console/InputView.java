@@ -8,14 +8,14 @@ import java.util.InputMismatchException;
 
 public class InputView {
 
-    public static String inputCarName() {
+    public static String inputCarsName() {
         try {
-            final String carInfo = ScannerUtil.readLine();
-            CarInfoValidation.validateCar(carInfo);
-            return carInfo;
+            final String carsName = ScannerUtil.readLine();
+            CarInfoValidation.validateCar(carsName);
+            return carsName;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            return inputCarName();
+            return inputCarsName();
         }
     }
 
