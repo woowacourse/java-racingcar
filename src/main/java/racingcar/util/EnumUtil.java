@@ -1,8 +1,8 @@
 package racingcar.util;
 
-public interface EnumUtil<T> {
+public interface EnumUtil<T1, T2> {
 
-    T getKey();
+    T1 getKey();
 
-    T getValue();
+    T2 getValue();
 }
