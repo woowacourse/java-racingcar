@@ -5,7 +5,6 @@ import domain.Cars;
 import dto.Output;
 import dto.Outputs;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
