@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.car.Car;
-import racingcar.domain.carrepository.CarRepository;
+import racingcar.domain.cars.Cars;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.result.Result;
 
@@ -24,7 +24,7 @@ class GameSystemTest {
     void validate_test(int gameRound) {
         GameSystem gameSystem = new GameSystem(gameRound, new NumberGenerator());
 
-        assertThat(gameSystem).isInstanceOf(GameSystemTest.class);
+        assertThat(gameSystem).isInstanceOf(GameSystem.class);
     }
 
     @ParameterizedTest
@@ -40,7 +40,7 @@ class GameSystemTest {
     @MethodSource("getCars")
     @DisplayName("GameSystem이 서로 다른 시도 횟수를 가질 때, 자동차 경주의 결과의 개수가 서로 다른지 확인")
     void executeRace_test(List<Car> cars, int smallGameRound, int largeGameRound) {
-        CarRepository carRepository = new CarRepository(cars);
+        Cars carRepository = new Cars(cars);
         GameSystem smallGameSystem = new GameSystem(smallGameRound, new NumberGenerator());
         GameSystem largeGameSystem = new GameSystem(largeGameRound, new NumberGenerator());
 
