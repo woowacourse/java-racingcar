@@ -3,7 +3,7 @@ package view;
 import java.util.Scanner;
 
 import utils.Names;
-import utils.NumberValidator;
+import utils.RepeatCount;
 
 public class InputView {
 
@@ -23,19 +23,18 @@ public class InputView {
         }
     }
 
+    public static RepeatCount readRepeatCount() {
+        String line = readLine(READ_ATTEMPT_NUMBER_MESSAGE);
+        try {
+            return new RepeatCount(line);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readRepeatCount();
+        }
+    }
+
     private static String readLine(String message) {
         System.out.println(message);
         return scanner.next();
-    }
-
-    public static int readAttemptNumber() {
-        try {
-            System.out.println(READ_ATTEMPT_NUMBER_MESSAGE);
-            String input = scanner.next();
-            return NumberValidator.validate(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readAttemptNumber();
-        }
     }
 }

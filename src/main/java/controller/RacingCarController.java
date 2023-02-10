@@ -9,6 +9,7 @@ import domain.Referee;
 import output.Outputs;
 import utils.Names;
 import utils.RandomNumberGenerator;
+import utils.RepeatCount;
 import view.InputView;
 import view.OutputView;
 
@@ -16,13 +17,13 @@ public class RacingCarController {
 
     public void run() {
         Names names = InputView.readNames();
-        int attemptNumber = InputView.readAttemptNumber();
+        RepeatCount repeatCount = InputView.readRepeatCount();
 
         Cars cars = makeCarsFrom(names);
 
         OutputView.printResult();
 
-        while ((attemptNumber--) > 0) {
+        while (repeatCount.hasNext()) {
             moveAll(cars);
             Outputs outputs = Outputs.from(cars);
             OutputView.printCars(outputs);
