@@ -5,7 +5,8 @@ import java.util.function.Supplier;
 import view.OutputView;
 
 public interface ExceptionHandlingTemplate {
-    OutputView outputView  = new OutputView();
+    OutputView outputView = new OutputView();
+
     static <T, R> R repeatUntilReadValidInput(Function<T, R> object, Supplier<T> input) {
         while (true) {
             try {
