@@ -51,12 +51,11 @@ public class Cars {
     public List<String> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    // TODO: getter 사용 지양을 위한 리팩터링
     public int findMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)

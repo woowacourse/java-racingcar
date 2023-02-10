@@ -20,6 +20,10 @@ public class Car {
         }
     }
 
+    public boolean isSamePosition(int other) {
+        return position.getPosition() == other;
+    }
+
     public String getName() {
         return name.getName();
     }
