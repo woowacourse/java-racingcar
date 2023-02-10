@@ -43,7 +43,7 @@ class CarsTest {
         final Car crong = new Car("crong");
         crong.move();
 
-        Cars cars = new Cars(List.of(pobi, crong));
+        final Cars cars = new Cars(List.of(pobi, crong));
 
         // when
         final Map<String, Integer> carCurrentStatus = cars.getCurrentStatus();
