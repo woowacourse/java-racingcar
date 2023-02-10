@@ -1,49 +1,45 @@
-import controller.GameController;
-import domain.Car;
-import domain.repository.CarRepository;
-import service.GameService;
-import service.validate.InputVerifier;
-import util.Converter;
-import view.input.InputView;
-import view.output.OutputView;
-
-import java.util.List;
+import racing.RacingGame;
+import racing.domain.Cars;
+import racing.util.Converter;
+import racing.validate.InputVerifier;
+import racing.view.input.InputView;
+import racing.view.output.OutputView;
 
 public class Application {
-    static GameService gameService = new GameService(new CarRepository());
-    static GameController gameController = new GameController(gameService);
+    static RacingGame racingGame = new RacingGame();
 
     public static void main(String[] args) {
-        String[] names = getNames();
-        List<Car> cars = makeCars(names);
+        Cars cars = initializeCar();
         int count = getCount();
-        OutputView.printPhrase();
         execute(count, cars);
-        OutputView.printResult(cars);
+    }
+
+    private static Cars initializeCar() {
+        String[] names = getNames();
+        return makeCars(names);
     }
 
     private static String[] getNames() {
         String inputNames = InputView.inputCarName();
-        String[] names = Converter.splitInput(inputNames);
-        InputVerifier.validateNameLength(names);
-        return names;
+        InputVerifier.validateNameLength(inputNames);
+        return Converter.splitInput(inputNames);
     }
 
-    private static List<Car> makeCars(String[] names) {
-        return gameController.getCars(names);
+    private static Cars makeCars(String[] names) {
+        return racingGame.createCars(names);
     }
 
     private static int getCount() {
         String inputCount = InputView.inputCount();
-        InputVerifier.checkInputTypeIsNumber(inputCount);
         return Converter.convertType(inputCount);
     }
 
-    private static void execute(int count, List<Car> cars) {
-        for (int step = 0; step < count; step++) {
-            gameController.updateStep(cars);
+    private static void execute(int count, Cars cars) {
+        OutputView.printPhrase();
+        while (count-- > 0) {
+            racingGame.move(cars);
             OutputView.printStep(cars);
-            System.out.println();
         }
+        RacingGame.printResult(cars);
     }
 }

@@ -1,15 +1,13 @@
 package service;
 
-import domain.Car;
-import domain.repository.CarRepository;
+import racing.RacingGame;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.Converter;
+import racing.domain.Cars;
+import racing.util.Converter;
 
-import java.util.List;
-
-class GameServiceTest {
+class RacingGameTest {
 
     @DisplayName("입력받은 문자열이 잘 쪼개지는지")
     @Test
@@ -25,11 +23,11 @@ class GameServiceTest {
     @DisplayName("자동차 이름을 받으면 자동차 객체가 생성 되어야 한다.")
     @Test
     void 자동차_생성_확인() {
-        GameService gameService = new GameService(new CarRepository());
+        RacingGame racingGame = new RacingGame();
         String[] names = new String[]{"pobi", "crong", "honux"};
-        List<Car> cars = gameService.splitNames(names);
-        Assertions.assertThat(cars.get(0).getName()).isEqualTo("pobi");
-        Assertions.assertThat(cars.get(1).getName()).isEqualTo("crong");
-        Assertions.assertThat(cars.get(2).getName()).isEqualTo("honux");
+        Cars cars = racingGame.createCars(names);
+        Assertions.assertThat(cars.getCar(0).getName()).isEqualTo("pobi");
+        Assertions.assertThat(cars.getCar(1).getName()).isEqualTo("crong");
+        Assertions.assertThat(cars.getCar(2).getName()).isEqualTo("honux");
     }
 }
