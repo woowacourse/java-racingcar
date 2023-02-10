@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public void printFinalResult(Cars cars) {
-        List<Car> winners = cars.decideWinner();
+        List<Car> winners = cars.getWinners();
         StringBuilder stringBuilder = new StringBuilder();
         for (Car car : winners) {
             stringBuilder.append(car.getName() + NAME_DELIMITER);

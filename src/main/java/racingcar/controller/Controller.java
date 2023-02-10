@@ -28,11 +28,11 @@ public class Controller {
     }
 
     private Cars generateCars(List<String> carNames) {
-        List<Car> carInstances = new ArrayList<>();
+        List<Car> racingCars = new ArrayList<>();
         for (String name : carNames) {
-            carInstances.add(new Car(name, numberGenerator));
+            racingCars.add(new Car(name, numberGenerator));
         }
-        return new Cars(carInstances);
+        return new Cars(racingCars);
     }
 
     private void showGameResult(Cars cars, int round) {

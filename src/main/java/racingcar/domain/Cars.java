@@ -17,13 +17,12 @@ public class Cars {
         this.cars = new ArrayList<>(cars);
     }
 
-    public List<Car> decideWinner() {
+    public List<Car> getWinners() {
         cars.sort(Car::compareTo);
         Car MaxPositionCar = cars.get(0);
-        List<Car> winners = cars.stream()
+        return cars.stream()
             .filter(car -> car.isSamePosition(MaxPositionCar))
             .collect(Collectors.toList());
-        return winners;
     }
 
     public List<Car> moveEachCar() {
