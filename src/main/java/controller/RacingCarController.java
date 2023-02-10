@@ -33,10 +33,8 @@ public class RacingCarController {
     }
 
     private void moveAll(Cars cars) {
-        for (Car car : cars.getCars()) {
-            int randomNumber = RandomNumberGenerator.generate();
-            car.move(randomNumber);
-        }
+        cars.getStream()
+                .forEach((car) -> car.move(RandomNumberGenerator.generate()));
     }
 
     private Cars makeCarsFromNames(List<String> carNames) {

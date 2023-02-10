@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,8 @@ class RefereeTest {
         Cars cars = new Cars(List.of(carA, carB, carC));
         Cars winner = referee.judgeWinner(cars);
 
-        assertThat(winner.getCars()).containsExactly(carB, carC);
+        assertThat(winner.getStream()
+                .collect(Collectors.toList()))
+                .containsExactly(carB, carC);
     }
 }

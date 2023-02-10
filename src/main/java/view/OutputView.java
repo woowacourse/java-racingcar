@@ -40,7 +40,7 @@ public class OutputView {
     }
 
     public static void printWinner(Cars winnerCars) {
-        List<String> carNames = winnerCars.getCars().stream()
+        List<String> carNames = winnerCars.getStream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
 

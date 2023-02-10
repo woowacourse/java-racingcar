@@ -10,7 +10,7 @@ public class Referee {
     public Cars judgeWinner(Cars cars) {
         int maxPosition = findMaxPosition(cars);
 
-        List<Car> winner = cars.getCars().stream()
+        List<Car> winner = cars.getStream()
                 .filter(car -> car.hasSamePosition(maxPosition))
                 .collect(Collectors.toList());
 
@@ -18,7 +18,7 @@ public class Referee {
     }
 
     private int findMaxPosition(Cars cars) {
-        return cars.getCars().stream()
+        return cars.getStream()
                 .map(Car::getPosition)
                 .max(Integer::compare)
                 .orElse(CAN_NOT_FIND_MAX);
