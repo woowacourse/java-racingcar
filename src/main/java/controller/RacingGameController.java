@@ -51,7 +51,7 @@ public class RacingGameController {
     private TryCount getTryCount() {
         try {
             return new TryCount(InputView.requestTryCount());
-        } catch (NotPositiveIntegerException e) {
+        } catch (NotPositiveIntegerException | NumberFormatException e) {
             System.out.println(e.getMessage());
             return getTryCount();
         }
