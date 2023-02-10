@@ -31,12 +31,14 @@ public class Cars {
     }
 
     public String getWinners() {
-        int maxLocation = cars.stream()
-                .max(Comparator.comparingInt(Car::getCarLocation))
-                .get().getCarLocation();
-
-        return cars.stream().filter(car -> car.checkLocationEqual(maxLocation))
+        return cars.stream().filter(car -> car.checkLocationEqual(getMaxLocation()))
                 .map(Car::getCarName)
                 .collect(Collectors.joining(", "));
+    }
+
+    private int getMaxLocation(){
+        return cars.stream()
+                .max(Comparator.comparingInt(Car::getCarLocation))
+                .get().getCarLocation();
     }
 }
