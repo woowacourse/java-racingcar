@@ -21,10 +21,9 @@ public class Controller {
     }
 
     public void run() {
-        List<String> carNames = inputView.readCarNames();
-        Cars cars = generateCars(carNames);
+        Cars cars = generateCars(inputView.readCarNames());
         int round = inputView.readRacingRound();
-        showGameResult(cars, round);
+        playGame(cars, round);
     }
 
     private Cars generateCars(List<String> carNames) {
@@ -35,7 +34,7 @@ public class Controller {
         return new Cars(carInstances);
     }
 
-    private void showGameResult(Cars cars, int round) {
+    private void playGame(Cars cars, int round) {
         outputView.printResultMessage();
         for (int i = 0; i < round; i++) {
             outputView.printRoundResult(cars.moveEachCar());
