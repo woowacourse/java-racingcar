@@ -6,9 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
@@ -50,7 +47,7 @@ class CarTest {
     void getLargerCarTest() {
         compareCar = new Car("compareCar", 5);
 
-        Assertions.assertThat(car.getLargerCar(compareCar)).isEqualTo(compareCar);
+        Assertions.assertThat(car.compareTo(compareCar)).isLessThan(0);
     }
 
     @Test
@@ -58,7 +55,7 @@ class CarTest {
     void getSamePositionCarExistTest() {
         compareCar = new Car("compareCar", 0);
 
-        Assertions.assertThat(car.getSamePositionCar(compareCar)).isEqualTo(car);
+        Assertions.assertThat(car.isSamePositionCar(compareCar)).isTrue();
     }
 
     @Test
@@ -66,6 +63,6 @@ class CarTest {
     void getSamePositionCarNotExistTest() {
         compareCar = new Car("compareCar", 5);
 
-        Assertions.assertThat(car.getSamePositionCar(compareCar)).isEqualTo(null);
+        Assertions.assertThat(car.isSamePositionCar(compareCar)).isFalse();
     }
 }
