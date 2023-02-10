@@ -1,5 +1,7 @@
 package racing.view.input;
 
+import racing.validate.InputVerifier;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -17,6 +19,6 @@ public class InputView {
 
     public static String inputCount() {
         System.out.println(INPUT_COUNT);
-        return sc.next();
+        return InputVerifier.checkInputTypeIsNumber(sc.next());
     }
 }

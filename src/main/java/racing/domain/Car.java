@@ -1,5 +1,7 @@
 package racing.domain;
 
+import static racing.view.output.OutputView.HYPHEN;
+
 public class Car {
 
     private final String name;
@@ -20,5 +22,9 @@ public class Car {
 
     public void increaseStep() {
         this.step++;
+    }
+
+    public void addHyphen() {
+        System.out.print(HYPHEN.repeat(step));
     }
 }

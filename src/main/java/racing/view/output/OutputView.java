@@ -21,6 +21,7 @@ public class OutputView {
 
     public static void printStep(Cars cars) {
         cars.printCarsState();
+        System.out.println();
     }
 
     public static void printCarState(Car car) {
@@ -30,7 +31,7 @@ public class OutputView {
     }
 
     private static void printHyphen(Car car) {
-        System.out.println(HYPHEN.repeat(car.getStep()));
+        car.addHyphen();
     }
 
     public static void printFinalResult(StringBuilder sb) {

@@ -4,8 +4,8 @@ import racing.view.output.OutputView;
 
 public class InputVerifier {
 
-    public static void validateNameLength(String[] names) {
-        for (String name : names) {
+    public static void validateNameLength(String input) {
+        for (String name : input.split(",")) {
             checkNameLength(name);
             checkSpace(name);
         }
@@ -18,15 +18,19 @@ public class InputVerifier {
     }
 
     private static void checkNameLength(String name) {
-        if (name.length() < 1 || 5 < name.length()) {
+        if (isValueLength(name)) {
             throw new IllegalArgumentException(OutputView.UNSUITABLE_LENGTH);
         }
     }
 
-    public static void checkInputTypeIsNumber(String input) {
-        final String REGEX = "[0-9]+";
-        if(!input.matches(REGEX)){
+    private static boolean isValueLength(String name) {
+        return name.length() < 1 || 5 < name.length();
+    }
+
+    public static String checkInputTypeIsNumber(String input) {
+        if(!input.matches("[0-9]+")){
             throw new IllegalArgumentException(OutputView.INPUT_ONLY_DIGIT);
         }
+        return input;
     }
 }

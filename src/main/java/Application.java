@@ -9,19 +9,20 @@ public class Application {
     static RacingGame racingGame = new RacingGame();
 
     public static void main(String[] args) {
-        String[] names = getNames();
-        Cars cars = makeCars(names);
+        Cars cars = initializeCar();
         int count = getCount();
-        OutputView.printPhrase();
         execute(count, cars);
-        RacingGame.printResult(cars);
+    }
+
+    private static Cars initializeCar() {
+        String[] names = getNames();
+        return makeCars(names);
     }
 
     private static String[] getNames() {
         String inputNames = InputView.inputCarName();
-        String[] names = Converter.splitInput(inputNames);
-        InputVerifier.validateNameLength(names);
-        return names;
+        InputVerifier.validateNameLength(inputNames);
+        return Converter.splitInput(inputNames);
     }
 
     private static Cars makeCars(String[] names) {
@@ -30,15 +31,15 @@ public class Application {
 
     private static int getCount() {
         String inputCount = InputView.inputCount();
-        InputVerifier.checkInputTypeIsNumber(inputCount);
         return Converter.convertType(inputCount);
     }
 
     private static void execute(int count, Cars cars) {
-        for (int step = 0; step < count; step++) {
+        OutputView.printPhrase();
+        while (count-- > 0) {
             racingGame.move(cars);
             OutputView.printStep(cars);
-            System.out.println();
         }
+        RacingGame.printResult(cars);
     }
 }
