@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dto.Outputs;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -24,19 +25,11 @@ public class RacingCarController {
 
         while ((attemptNumber--) > 0) {
             moveAll(cars);
-            List<Output> outputs = getCarDtos(cars);
+            Outputs outputs = Outputs.from(cars);
             OutputView.printStatus(outputs);
         }
 
         OutputView.printWinner(cars.judgeWinner());
-    }
-
-    private List<Output> getCarDtos(Cars cars) {
-        List<Output> outputs = new ArrayList<>();
-        for (Car car : cars.getCars()) {
-            outputs.add(Output.from(car));
-        }
-        return outputs;
     }
 
     private void moveAll(Cars cars) {

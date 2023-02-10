@@ -3,6 +3,8 @@ package view;
 import domain.Car;
 import domain.Cars;
 import dto.Output;
+import dto.Outputs;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +19,8 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printStatus(List<Output> outputs) {
-        for (Output output : outputs) {
+    public static void printStatus(Outputs outputs) {
+        for (Output output : outputs.getOutputs()) {
             String name = output.getName();
             int position = output.getPosition();
             String positionString = getPositionString(position);
