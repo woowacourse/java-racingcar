@@ -40,4 +40,14 @@ public class CarTest {
         assertThatThrownBy(() -> new Car("포비", -1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 이름이_같으면_동일한_차로_간주한다() {
+        assertThat(new Car("이름")).isEqualTo(new Car("이름"));
+    }
+
+    @Test
+    void 이름이_다르면_다른_차량이다() {
+        assertThat(new Car("이름")).isNotEqualTo(new Car("다른 이름"));
+    }
 }

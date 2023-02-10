@@ -2,8 +2,8 @@ package car.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -53,7 +53,7 @@ public class Game {
     }
 
     private void validateNoDuplicateCar(List<Car> cars) {
-        if (cars.size() > Set.of(cars).size()) {
+        if (cars.size() > new HashSet<>(cars).size()) {
             throw new IllegalArgumentException("자동차 이름은 중복되면 안됩니다");
         }
     }

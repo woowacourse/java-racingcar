@@ -1,5 +1,7 @@
 package car.domain;
 
+import java.util.Objects;
+
 public class Name {
 
     private static final int MIN_LENGTH = 1;
@@ -19,6 +21,23 @@ public class Name {
         if (name.length() < MIN_LENGTH || MAX_LENGTH < name.length()) {
             throw new IllegalArgumentException(LENGTH_EXCEPTION_MESSAGE);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Name name1 = (Name)o;
+
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 
     public String getName() {
