@@ -2,12 +2,9 @@ package domain;
 
 import exception.NotPositiveIntegerException;
 
-import java.util.regex.Pattern;
-
 public class TryCount {
 
     private static final int END_FLAG = 0;
-    private static final String positiveIntegerRegex = "^[1-9]|[1-9][0-9]+$";
 
     private final int tryCount;
 
@@ -21,7 +18,9 @@ public class TryCount {
     }
 
     private void validateTryCount(final String inputCount) {
-        if (!Pattern.matches(positiveIntegerRegex, inputCount)) {
+        int tryCount = Integer.parseInt(inputCount);
+
+        if (tryCount <= END_FLAG) {
             throw new NotPositiveIntegerException();
         }
     }

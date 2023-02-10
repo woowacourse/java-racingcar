@@ -6,11 +6,12 @@ import domain.TryCount;
 import exception.CommaNotFoundException;
 import exception.NameIsOutOfBoundException;
 import exception.NotPositiveIntegerException;
-import java.util.List;
-import java.util.stream.Collectors;
 import util.CommaSeparator;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGameController {
 
@@ -51,7 +52,7 @@ public class RacingGameController {
     private TryCount getTryCount() {
         try {
             return new TryCount(InputView.requestTryCount());
-        } catch (NotPositiveIntegerException e) {
+        } catch (NumberFormatException | NotPositiveIntegerException e) {
             System.out.println(e.getMessage());
             return getTryCount();
         }
