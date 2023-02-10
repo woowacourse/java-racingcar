@@ -1,6 +1,6 @@
 package racing.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private static final int MOVE_CONDITION = 4;
 
@@ -36,7 +36,12 @@ public class Car {
         return name;
     }
 
-    public boolean isSamePosition(int position) {
-        return this.position == position;
+    public boolean isSamePosition(Car other) {
+        return this.position == other.position;
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return this.position - other.position;
     }
 }
