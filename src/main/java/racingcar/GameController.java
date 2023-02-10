@@ -14,15 +14,13 @@ import java.util.stream.Collectors;
 public class GameController {
 
     private static final String DELIMITER = ",";
-    private static final int MAX_GAME_TIME = 500;
 
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    private static final int RANGE_BOUNDARY = 0;
 
     private final Cars cars;
-    private final int gameTime;
+    private final GameTime gameTime;
 
 
     public GameController() {
@@ -30,19 +28,12 @@ public class GameController {
         this.gameTime = initGameTime();
     }
 
-    private static int initGameTime() {
+    private static GameTime initGameTime() {
         String gameTime = inputView.inputGameTime();
-        int parsedGameTime = validateParsing(gameTime);
-        validateMaxGameTime(parsedGameTime);
-        validatePositive(parsedGameTime);
-        return parsedGameTime;
+        return new GameTime(gameTime);
     }
 
-    private static void validatePositive(int parsedGameTime) {
-        if (parsedGameTime <= RANGE_BOUNDARY) {
-            throw new IllegalArgumentException("[ERROR] 양수만 입력 가능합니다.");
-        }
-    }
+
 
     private List<Car> initCars() {
         String input = inputView.inputCarName();
@@ -53,8 +44,9 @@ public class GameController {
     }
 
     public void runGame() {
-        for (int i = 0; i < gameTime; i++) {
+        while (gameTime.isNotZero()) {
             runSingleRound();
+            gameTime.runOnce();
         }
     }
 
@@ -76,18 +68,5 @@ public class GameController {
     }
 
 
-    private static void validateMaxGameTime(int gameTimeParsed) {
-        if (gameTimeParsed >= MAX_GAME_TIME) {
-            throw new IllegalArgumentException("[ERROR] 500회 미만으로 입력해주세요.");
-        }
-    }
 
-    private static int validateParsing(String gameTime) {
-        try {
-            int gameTimeParsed = Integer.parseInt(gameTime);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
-        }
-        return Integer.parseInt(gameTime);
-    }
 }
