@@ -18,10 +18,8 @@ public class Cars {
     }
 
     public List<Car> getWinners() {
-        cars.sort(Car::compareTo);
-        Car MaxPositionCar = cars.get(0);
         return cars.stream()
-            .filter(car -> car.isSamePosition(MaxPositionCar))
+            .filter(car -> car.isSamePosition(getWinnerCar()))
             .collect(Collectors.toList());
     }
 
@@ -30,6 +28,11 @@ public class Cars {
             car.goForward();
         }
         return Collections.unmodifiableList(cars);
+    }
+
+    private Car getWinnerCar() {
+        cars.sort(Car::compareTo);
+        return cars.get(0);
     }
 
     private void validateCarsSize(List<Car> cars) {
