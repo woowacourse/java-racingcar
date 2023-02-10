@@ -1,5 +1,9 @@
 package view.input;
 
+import static validation.CarNameValidator.CAR_NAME_VALIDATOR;
+import static validation.CountValidator.COUNT_VALIDATOR;
+import static validation.InputValidator.INPUT_VALIDATOR;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -16,15 +20,15 @@ public class InputView {
     public List<String> readCarNames() throws IllegalArgumentException {
         final String DELIMITER = ",";
         String input = readLine();
-        Validator.isNotEmpty(input);
+        INPUT_VALIDATOR.validate(input);
         List<String> carNames = splitWordsBy(input, DELIMITER);
-        Validator.isProperCarNames(carNames);
+        carNames.forEach(CAR_NAME_VALIDATOR::validate);
         return carNames;
     }
 
     public int readCount() throws IllegalArgumentException {
         String input = readLine();
-        Validator.isProperCount(input);
+        COUNT_VALIDATOR.validate(input);
         return Integer.parseInt(input);
     }
 

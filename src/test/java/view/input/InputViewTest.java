@@ -28,8 +28,8 @@ class InputViewTest {
         before(input);
         //when then
         assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Validator.ERROR_HEADER)
-            .hasMessageContaining(ErrorMessages.EMPTY_INPUT.getContent());
+            .hasMessageContaining("[ERROR] ")
+            .hasMessageContaining("입력값이 없습니다.");
     }
 
     @Test
@@ -39,8 +39,8 @@ class InputViewTest {
         before(input);
         //when then
         assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Validator.ERROR_HEADER)
-            .hasMessageContaining(ErrorMessages.NOT_PROPER_CAR_NAME_LENGTH.getContent());
+            .hasMessageContaining("[ERROR] ")
+            .hasMessageContaining("자동차 이름 길이는 1자 이상, 5자 이하여야합니다.");
     }
 
     @ValueSource(strings = {",make,take", "make,,take", "make,take,", ",,,"})
@@ -50,8 +50,8 @@ class InputViewTest {
         before(input);
         //when then
         assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Validator.ERROR_HEADER)
-            .hasMessageContaining(ErrorMessages.NOT_PROPER_CAR_NAME_LENGTH.getContent());
+            .hasMessageContaining("[ERROR] ")
+            .hasMessageContaining("자동차 이름 길이는 1자 이상, 5자 이하여야합니다.");
     }
 
     @ValueSource(strings = {"-", "ma-e", "mak1-"})
@@ -61,8 +61,8 @@ class InputViewTest {
         before(input);
         //when then
         assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Validator.ERROR_HEADER)
-            .hasMessageContaining(ErrorMessages.CONTAINS_DELIMITER.getContent());
+            .hasMessageContaining("[ERROR] ")
+            .hasMessageContaining("자동차 이름은 '-'를 포함할 수 없습니다");
     }
 
     @Test
