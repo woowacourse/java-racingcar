@@ -48,4 +48,8 @@ public class Cars {
                 .map(Winner::new)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public List<Car> getCars() {
+        return cars;
+    }
 }
