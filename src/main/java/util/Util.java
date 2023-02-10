@@ -13,7 +13,8 @@ public class Util {
     }
 
     public static List<String> split(String input) {
-        return Arrays.stream(input.split(COMMA_REGEX)).collect(Collectors.toList());
+        return Arrays.stream(input.split(COMMA_REGEX))
+                .collect(Collectors.toList());
     }
 
     private enum Regex {

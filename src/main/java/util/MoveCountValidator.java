@@ -12,13 +12,13 @@ public class MoveCountValidator {
         validateNumberRange(input);
     }
 
-    void validateNumeric(String input) {
+    private void validateNumeric(String input) {
         if (!NUMBER_REGEX.matcher(input).matches()) {
             throw new IllegalArgumentException(Message.EXCEPTION_NUMERIC.message);
         }
     }
 
-    void validateRange(String input) {
+    private void validateRange(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
@@ -26,7 +26,7 @@ public class MoveCountValidator {
         }
     }
 
-    void validateNumberRange(String input) {
+    private void validateNumberRange(String input) {
         int number = Integer.parseInt(input);
         if (number <= 0) {
             throw new IllegalArgumentException(Message.EXCEPTION_NUMBER_RANGE.message);
