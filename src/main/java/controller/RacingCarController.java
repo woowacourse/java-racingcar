@@ -23,7 +23,7 @@ public class RacingCarController {
         while ((attemptNumber--) > 0) {
             moveAll(cars);
             Outputs outputs = Outputs.from(cars);
-            OutputView.printStatus(outputs);
+            OutputView.printCars(outputs);
         }
 
         OutputView.printWinner(cars.judgeWinner());
