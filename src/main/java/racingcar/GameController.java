@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 public class GameController {
 
     private static final String DELIMITER = ",";
+    private static final int MAX_GAME_TIME = 500;
 
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
-    private static final int MAX_GAME_TIME = 500;
 
     private final Cars cars;
     private final int gameTime;
@@ -26,10 +26,21 @@ public class GameController {
 
     public GameController() {
         this.cars = new Cars(initCars());
+        this.gameTime = initGameTime();
+    }
+
+    private static int initGameTime() {
         String gameTime = inputView.inputGameTime();
         int parsedGameTime = validateParsing(gameTime);
         validateMaxGameTime(parsedGameTime);
-        this.gameTime = parsedGameTime;
+        validatePositive(parsedGameTime);
+        return parsedGameTime;
+    }
+
+    private static void validatePositive(int parsedGameTime) {
+        if (parsedGameTime <= 0) {
+            throw new IllegalArgumentException("[ERROR] 양수만 입력 가능합니다.");
+        }
     }
 
     private List<Car> initCars() {
@@ -66,7 +77,7 @@ public class GameController {
 
     private static void validateMaxGameTime(int gameTimeParsed) {
         if (gameTimeParsed >= MAX_GAME_TIME) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 500회 미만으로 입력해주세요.");
         }
     }
 
@@ -74,7 +85,7 @@ public class GameController {
         try {
             int gameTimeParsed = Integer.parseInt(gameTime);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
         return Integer.parseInt(gameTime);
     }
