@@ -1,12 +1,15 @@
 package service;
 
-import domain.Car;
-import org.junit.jupiter.api.Test;
-
-import java.util.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import domain.Car;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import org.junit.jupiter.api.Test;
 
 class RacingGameTest {
     @Test
@@ -21,14 +24,14 @@ class RacingGameTest {
     @Test
     void 자동차_이름_중복_예외_테스트() {
         RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
-        assertThatThrownBy(()->racingGame.generateCars(Arrays.asList("bb", "bb", "cc")))
+        assertThatThrownBy(() -> racingGame.generateCars(Arrays.asList("bb", "bb", "cc")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 자동차_개수_1개_일_때_예외_테스트() {
         RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
-        assertThatThrownBy(()->racingGame.generateCars(Arrays.asList("bb")))
+        assertThatThrownBy(() -> racingGame.generateCars(Arrays.asList("bb")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

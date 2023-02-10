@@ -1,15 +1,15 @@
 package study;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class StringTest {
     @DisplayName("split 메소드를 이용해 문자열이 구분자,로 분할되는지 테스트한다.")
     @Test
-    void 문자열_컴마로_나누기_테스트(){
+    void 문자열_컴마로_나누기_테스트() {
         final String str = "1,2";
         String[] arr = str.split(",");
 
