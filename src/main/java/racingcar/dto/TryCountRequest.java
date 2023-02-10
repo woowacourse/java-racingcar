@@ -6,7 +6,7 @@ import static racingcar.exception.ExceptionMessage.ILLEGAL_TRY_COUNT;
 public class TryCountRequest {
     private final int tryCount;
 
-    private TryCountRequest(int tryCount) {
+    public TryCountRequest(int tryCount) {
         this.tryCount = tryCount;
     }
 
