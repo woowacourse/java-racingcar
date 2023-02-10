@@ -39,7 +39,7 @@ public class Controller {
         for (int i = 0; i < round; i++) {
             outputView.printRoundResult(cars.moveEachCar());
         }
-        outputView.printFinalResult(cars);
+        outputView.printFinalResult(cars.findAllWinner());
     }
 
 }

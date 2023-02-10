@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.NumberGenerator;
 
 class CarsTest {
 
@@ -45,7 +42,7 @@ class CarsTest {
         Cars cars = new Cars(new ArrayList<>(List.of(pobi, neo, hiiro)));
 
         //When
-        List<Car> result = cars.decideWinner();
+        List<Car> result = cars.findAllWinner();
 
         //Then
         assertThat(result.size()).isEqualTo(2);
