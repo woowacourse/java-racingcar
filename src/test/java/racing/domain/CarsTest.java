@@ -27,7 +27,7 @@ class CarsTest {
         boxster.move(moveNumber);
         sonata.move(moveNumber);
 
-        List<Car> firstCars = cars.getFirstCars();
+        List<Car> firstCars = cars.findFirstCars();
 
         assertThat(firstCars).containsOnly(boxster, sonata);
     }
@@ -40,7 +40,7 @@ class CarsTest {
         int moveNumber = 4;
         boxster.move(moveNumber);
 
-        List<Car> firstCars = cars.getFirstCars();
+        List<Car> firstCars = cars.findFirstCars();
 
         assertThat(firstCars).containsOnly(boxster);
     }

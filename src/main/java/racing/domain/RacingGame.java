@@ -40,7 +40,7 @@ public class RacingGame {
     }
 
     public List<String> getWinners() {
-        return cars.getFirstCars().stream()
+        return cars.findFirstCars().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

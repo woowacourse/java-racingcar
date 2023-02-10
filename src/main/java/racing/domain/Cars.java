@@ -13,15 +13,15 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<Car> getFirstCars() {
-        Car maxPositionCar = getMaxPosition();
+    public List<Car> findFirstCars() {
+        Car maxPositionCar = findMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPositionCar))
                 .collect(Collectors.toList());
     }
 
-    private Car getMaxPosition() {
+    private Car findMaxPosition() {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException("자동차 위치의 최대값을 구할 수 없습니다."));
