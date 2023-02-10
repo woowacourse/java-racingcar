@@ -27,7 +27,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력 값은 숫자여아합니다.");
+            throw new IllegalArgumentException("입력 값은 숫자여아합니다.\n" + "INPUT : " + input);
         }
     }
 }

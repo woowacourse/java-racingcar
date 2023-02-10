@@ -25,7 +25,7 @@ public class RacingGameService {
 
     private void validateTryCount(int tryCount) {
         if (tryCount <= 0) {
-            throw new IllegalArgumentException("시도 횟수는 1 이상이여야 합니다.");
+            throw new IllegalArgumentException("시도 횟수는 1 이상이여야 합니다.\n" + "시도 횟수 : " + tryCount);
         }
     }
 
