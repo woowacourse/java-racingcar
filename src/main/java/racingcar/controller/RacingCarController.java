@@ -37,11 +37,15 @@ public class RacingCarController {
         outputView.printRacingResultMessage();
         for (int repeatIndex = 0; repeatIndex < tryNum; repeatIndex++) {
             List<Car> currentCars = racingCars.getCars();
-            for (Car currentCar : currentCars) {
-                int randomValue = RandomNumberGenerator.generate();
-                currentCar.move(currentCar.canMoving(randomValue));
-            }
+            tryOneTime(currentCars);
             outputView.printCurrentRacingCarsPosition(convertRacingCarsResultForPrint(currentCars));
+        }
+    }
+
+    private static void tryOneTime(List<Car> currentCars) {
+        for (Car currentCar : currentCars) {
+            int randomValue = RandomNumberGenerator.generate();
+            currentCar.move(currentCar.canMoving(randomValue));
         }
     }
 
