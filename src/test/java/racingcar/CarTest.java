@@ -26,7 +26,7 @@ class CarTest {
 
         car.move(4);
 
-        assertThat(car.isPosition(1)).isTrue();
+        assertThat(car.isSamePosition(1)).isTrue();
     }
 
     @Test
@@ -36,7 +36,7 @@ class CarTest {
 
         car.move(3);
 
-        assertThat(car.isPosition(0)).isTrue();
+        assertThat(car.isSamePosition(0)).isTrue();
     }
 
     @Test
