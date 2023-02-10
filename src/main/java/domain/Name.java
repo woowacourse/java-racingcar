@@ -21,13 +21,9 @@ public class Name {
     }
 
     private void validateLength(final String name) {
-        if (validate(name)) {
+        if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
             throw new NameIsOutOfBoundException(ENTER_NAME_CORRECT_LENGTH.toString());
         }
-    }
-
-    private boolean validate(final String name) {
-        return name.length() < MIN_LENGTH || name.length() > MAX_LENGTH;
     }
 
     public String getName() {
