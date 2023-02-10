@@ -2,14 +2,15 @@ package racingcar.view;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
     private static final String RESULT_MESSAGE = "\n실행 결과";
     private static final String CAR_RESULT_FORMAT = "%s : %s";
     private static final String WINNER_MESSAGE_FORMAT = "가 최종 우승했습니다.";
-    private static final String NAME_DELIMITER = ", ";
 
     public void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
@@ -23,15 +24,14 @@ public class OutputView {
     }
 
     public void printFinalResult(List<Car> winners) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : winners) {
-            stringBuilder.append(car.getName() + NAME_DELIMITER);
-        }
-        String winnerNames = stringBuilder.toString();
-        System.out.print(winnerNames.substring(0, winnerNames.length()-2) + WINNER_MESSAGE_FORMAT);
+        String winnerNames = winners.stream()
+                .map(car -> car.getName())
+                .collect(Collectors.joining(","));
+
+        System.out.print(winnerNames + WINNER_MESSAGE_FORMAT);
     }
 
-    private String numberToBars(int number){
+    private String numberToBars(int number) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < number; i++) {
             stringBuilder.append("-");
