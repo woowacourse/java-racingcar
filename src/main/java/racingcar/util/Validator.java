@@ -4,12 +4,11 @@ import racingcar.constant.ErrorLog;
 
 public class Validator {
 
-    private static final String EMPTY_STRING = "";
     public static final String NATURAL_NUMBER_REGEX = "^[1-9]+[0-9]*$";
     private static final int MAX_NAME_LENGTH = 5;
 
     public static void validateNotEmptyInput(String str) {
-        if (str.trim().equals("")) {
+        if (str.trim().isBlank()) {
             throw new IllegalArgumentException(ErrorLog.EMPTY_STRING.getMessage());
         }
     }
