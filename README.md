@@ -54,6 +54,6 @@
 - [ ] `carName`까지도 하나의 클래스로 만들어 `CarName` 생성자에서 이름을 검증한다.
 - [ ] 모든 `Validator`를 추상화한 조상 클래스를 구현한다.
 - [ ] `Car`의 `move(boolean isMove)` 메서드에 대해 고민하자... 현재 `false`가 들어오면 함수를 호출하는 의미가 없다
-- [ ] 사용자가 입력한 이름이 `null`인 경우에 어떻게 할 지! `name.isBlank()`같은 메서드를 사용해 추가적인 예외 처리가 필요해 보임
-- [ ] `MainController`에서 발생할 수 있는 다른 예외에 대한 처리
+- [x] 사용자가 입력한 이름이 `null`인 경우에 어떻게 할 지! `name.isBlank()`같은 메서드를 사용해 추가적인 예외 처리가 필요해 보임
+- [x] `MainController`에서 발생할 수 있는 다른 예외에 대한 처리
 - [x] `CarRepository`를 인스턴스화하자
