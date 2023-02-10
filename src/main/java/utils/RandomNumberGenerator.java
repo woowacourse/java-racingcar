@@ -1,7 +1,12 @@
 package utils;
 
+import java.util.Random;
+
 public class RandomNumberGenerator {
+
+    public static final int RANDOM_NUMBER_BOUND = 10;
+
     public int generateRandomNumber() {
-        return (int) (Math.random() * 10);
+        return new Random().nextInt(RANDOM_NUMBER_BOUND);
     }
 }
