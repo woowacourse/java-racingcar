@@ -12,6 +12,14 @@ public class RacingcarService {
         }
     }
 
+    public List<Car> findWinner(List<Car> cars) {
+        int winnerPosition = findPosition(cars);
+
+        return cars.stream()
+                .filter(car -> car.isPosition(winnerPosition))
+                .collect(Collectors.toList());
+    }
+
     private int findPosition(List<Car> cars) {
         int maxPosition = 0;
 
@@ -20,13 +28,5 @@ public class RacingcarService {
         }
 
         return maxPosition;
-    }
-
-    public List<Car> findWinner(List<Car> cars) {
-        int winnerPosition = findPosition(cars);
-
-        return cars.stream()
-                .filter(car -> car.isPosition(winnerPosition))
-                .collect(Collectors.toList());
     }
 }
