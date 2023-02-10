@@ -2,13 +2,15 @@ package domain;
 
 public class Car implements Comparable<Car> {
 
-    private final String name;
-    private final int MIN_MOVE_NUM = 4;
+    protected static final int INIT_POSITION = 1;
+    private static final int MIN_MOVE_NUM = 4;
 
-    private int position = 1;
+    private final String name;
+    private int position;
 
     public Car(String name) {
         this.name = name;
+        position = INIT_POSITION;
     }
 
     public void move(int num) {
