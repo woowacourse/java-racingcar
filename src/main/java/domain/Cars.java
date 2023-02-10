@@ -15,7 +15,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveCar() {
+    public void moveCars() {
         for (final Car car : cars) {
             doRace(car);
         }
