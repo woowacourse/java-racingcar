@@ -11,7 +11,8 @@ public class ValueEditor {
     }
 
     public static List<String> splitByComma(String input) {
-        return Arrays.stream(input.split(",")).collect(Collectors.toList());
+        return Arrays.stream(input.split(","))
+                .collect(Collectors.toList());
     }
 
     private enum Regex {
