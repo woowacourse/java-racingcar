@@ -70,7 +70,7 @@ class CarsTest {
         //given
 
         //when
-        Cars winningCars = cars.judgeWinner();
+        Cars winningCars = cars.judgeWinners();
 
         //then
         assertThatCode(() -> winningCars.findByName(name))
@@ -83,7 +83,7 @@ class CarsTest {
         //given
 
         //when
-        Cars winningCars = cars.judgeWinner();
+        Cars winningCars = cars.judgeWinners();
 
         //then
         assertThatThrownBy(() -> winningCars.findByName("carA"))

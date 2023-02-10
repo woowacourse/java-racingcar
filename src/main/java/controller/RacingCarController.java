@@ -4,7 +4,6 @@ import domain.Car;
 import domain.Cars;
 import dto.CarDto;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import utils.RandomNumberGenerator;
@@ -27,7 +26,7 @@ public class RacingCarController {
             OutputView.printStatus(carDtos);
         }
 
-        OutputView.printWinner(cars.judgeWinner());
+        OutputView.printWinner(cars.judgeWinners());
     }
 
     private List<CarDto> getCarDtos(Cars cars) {

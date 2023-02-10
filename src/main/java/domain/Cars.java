@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,10 +16,10 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(IllegalArgumentException::new);
     }
 
-    public Cars judgeWinner() {
+    public Cars judgeWinners() {
         int maxPosition = getMaxPosition();
         List<Car> winningCars = cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
@@ -29,11 +28,10 @@ public class Cars {
     }
 
     private int getMaxPosition() {
-        int maxPosition = -1;
-        for (Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-        return maxPosition;
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
     }
 
     public List<Car> getCars() {
