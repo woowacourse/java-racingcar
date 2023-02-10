@@ -1,12 +1,13 @@
 package racingcar.domain;
 
 public class GameRound {
-	private final int totalRound;
+	private static final int GAME_ROUND_DEFAULT_ROUND = 0;
+	private final int totalGameRound;
 	private int currRound;
 
-	public GameRound(int totalRound) {
-		this.totalRound = totalRound;
-		this.currRound = 0;
+	public GameRound(int totalGameRound) {
+		this.totalGameRound = totalGameRound;
+		this.currRound = GAME_ROUND_DEFAULT_ROUND;
 	}
 
 	public void increaseRound() {
@@ -14,6 +15,6 @@ public class GameRound {
 	}
 
 	public boolean isEnd() {
-		return this.currRound == this.totalRound;
+		return this.currRound == this.totalGameRound;
 	}
 }
