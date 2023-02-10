@@ -34,7 +34,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("랜덤 값이 4미만일 경우 테스트")
+    @DisplayName("랜덤 값이 4미만일 경우 실패 예외 테스트")
     void stopByRandom() {
         Car car = new Car("test");
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(0,1,2,3));
@@ -48,7 +48,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("랜덤 값이 4이상일 경우 테스트")
+    @DisplayName("랜덤 값이 4이상일 경우 성공 테스트")
     void moveByRandom() {
         Car car = new Car("test");
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9,8,7,6));

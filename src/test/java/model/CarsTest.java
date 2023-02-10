@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CarsTest {
 
     @Test
-    @DisplayName("Cars 객체 생성 테스트")
+    @DisplayName("Cars 객체 생성 성공 테스트")
     void createCarsTest() {
         Cars cars = new Cars("pobi,crong,honux");
 

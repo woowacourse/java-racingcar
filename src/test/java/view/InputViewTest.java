@@ -17,7 +17,7 @@ class InputViewTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1:1", "2:2", "3:3"}, delimiter = ':')
-    @DisplayName("시도 횟수 입력 테스트")
+    @DisplayName("시도 횟수 입력 성공 테스트")
     void inputTryTest(String input, int result) {
         String inputs = input + "\n";
 
@@ -31,7 +31,7 @@ class InputViewTest {
         assertThat(tryCount).isEqualTo(result);
     }
 
-    @ParameterizedTest(name = "시도 횟수 입력 테스트 inputType = {0}")
+    @ParameterizedTest(name = "시도 횟수 입력 실패 테스트 inputType = {0}")
     @ValueSource(strings = {"a", "", " "})
     void inputExceptionTryTest(String input) {
         String inputs = input + "\n";
