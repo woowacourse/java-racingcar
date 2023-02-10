@@ -2,7 +2,7 @@ package utils;
 
 public class NumberValidator {
 
-    private static final String NOT_NUMBER_MESSAGE = "[ERROR] 반복횟수는 숫자여야 합니다.";
+    private static final String NOT_NUMBER_MESSAGE = "[ERROR] 반복횟수는 정수여야 합니다.";
     private static final String INVALID_NUMBER_MESSAGE = "[ERROR] 반복횟수는 0보다 커야 합니다.";
 
     public static int validate(String input) {
@@ -15,7 +15,7 @@ public class NumberValidator {
         }
     }
 
-    public static void validateRange(int number) {
+    private static void validateRange(int number) {
         if (number > 0) {
             return;
         }
