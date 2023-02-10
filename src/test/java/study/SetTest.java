@@ -39,5 +39,4 @@ public class SetTest {
     void Set_값_존재_참_또는_거짓_테스트(int value, boolean expected) {
         assertThat(numbers.contains(value)).isEqualTo(expected);
     }
-
 }

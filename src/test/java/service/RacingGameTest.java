@@ -73,5 +73,4 @@ class RacingGameTest {
             return numbers.poll();
         }
     }
-
 }
