@@ -15,9 +15,7 @@ public class RacingGame {
 
     //TODO: 테스트
     public void race() {
-        for (Car car : carGroup.getCars()) {
-            car.move(numberGenerator);
-        }
+        carGroup.race(numberGenerator);
     }
 
     public RacingResult getRacingResult(){

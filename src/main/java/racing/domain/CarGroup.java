@@ -21,6 +21,12 @@ public class CarGroup {
         setUp(names);
     }
 
+    public void race(NumberGenerator numberGenerator) {
+        for (Car car : cars) {
+            car.move(numberGenerator);
+        }
+    }
+
     public List<Car> getCars() {
         return cars;
     }
