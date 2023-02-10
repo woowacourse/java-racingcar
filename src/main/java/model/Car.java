@@ -3,17 +3,23 @@ package model;
 import constant.ExceptionMessage;
 
 public class Car {
+    private static final int CAR_NAME_LENGTH = 5;
+    private static final int CAR_MOVE_STANDARD_LENGTH = 4;
+    private static final int CAR_MOVE_LENGTH = 1;
+    private static final int CAR_INITIAL_LENGTH = 0;
+
+
     private String name;
     private int location;
 
     public Car(String name) {
         validCarName(name);
         this.name = name;
-        this.location = 0;
+        this.location = CAR_INITIAL_LENGTH;
     }
 
     private void validCarName(String name) {
-        if (name.isEmpty() || name.length() > 5) {
+        if (name.isEmpty() || name.length() > CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(
                     ExceptionMessage.EXCEPTION_MESSAGE.getExceptionMessage());
         }
@@ -28,11 +34,11 @@ public class Car {
     }
 
     private void moveCar() {
-        this.location += 1;
+        this.location += CAR_MOVE_LENGTH;
     }
 
     public void moveByRandom(int randNum) {
-        if (randNum >= 4) {
+        if (randNum >= CAR_MOVE_STANDARD_LENGTH) {
             this.moveCar();
         }
     }
