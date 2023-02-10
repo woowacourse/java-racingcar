@@ -1,3 +1,7 @@
+package view;
+
+import domain.Car;
+
 import java.util.List;
 
 public class Output {
@@ -10,7 +14,7 @@ public class Output {
         System.out.println();
     }
 
-    public static void printWinner(Winner winner) {
+    public static <Winner> void printWinner(Winner winner) {
         System.out.println(winner.toString());
     }
 

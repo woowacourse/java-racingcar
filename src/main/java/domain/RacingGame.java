@@ -1,3 +1,8 @@
+package domain;
+
+import view.Input;
+import view.Output;
+
 import java.util.ArrayList;
 import java.util.List;
 

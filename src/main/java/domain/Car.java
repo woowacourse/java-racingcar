@@ -1,3 +1,7 @@
+package domain;
+
+import utils.RandomNumberGenerator;
+
 public class Car {
     private final int MOVE_LOWER_BOUND = 4;
     private final String name;
