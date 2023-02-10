@@ -3,9 +3,7 @@ package racingcar.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,14 +58,20 @@ class CarsTest {
         }
     }
 
-    @ParameterizedTest(name = "winners() 시 제일 많이 움직인 차들을 우승자로 반환한다.")
-    @MethodSource("carsAndWinnerCars")
-    void test_4(final Cars cars, final List<Car> actualWinnerCars) {
+    @DisplayName("sortedCarsByPositionDesc() 시 위치를 기준으로 내림차순으로 정렬된 자동차들을 반환한다.[{currentRepetition}]")
+    @Test
+    void test_4() {
+        // given
+        Cars cars = new Cars(List.of("말랑", "채채", "카일", "포비"));
+
         // when
-        List<Car> winners = cars.winners();
+        List<Car> sortedCars = cars.sortedCarsByPositionDesc();
 
         // then
-        assertThat(winners).containsExactlyInAnyOrderElementsOf(actualWinnerCars);
+        for (int i = sortedCars.size() - 1; i > 0; i--) {
+            assertThat(sortedCars.get(i).getPosition().getValue())
+                    .isLessThanOrEqualTo(sortedCars.get(i - 1).getPosition().getValue());
+        }
     }
 
     static Stream<Arguments> carsAndWinnerCars() {

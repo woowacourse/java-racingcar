@@ -4,6 +4,7 @@ import racingcar.controller.response.MovedResultResponse;
 import racingcar.domain.Cars;
 import racingcar.domain.Lap;
 import racingcar.domain.NumberGenerator;
+import racingcar.domain.WinnerJudge;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +16,11 @@ public class RacingCarController {
 
     private static final String DELIMITER = ",";
     private final NumberGenerator generator;
+    private final WinnerJudge winnerJudge;
 
-    public RacingCarController(final NumberGenerator generator) {
+    public RacingCarController(final NumberGenerator generator, final WinnerJudge winnerJudge) {
         this.generator = generator;
+        this.winnerJudge = winnerJudge;
     }
 
     public Cars createCars(final String carNames) {
@@ -35,8 +38,8 @@ public class RacingCarController {
         return new MovedResultResponse(cars);
     }
 
-    public List<String> winners(Cars cars) {
-        return cars.winners().stream()
+    public List<String> winners(final Cars cars) {
+        return winnerJudge.judge(cars).stream()
                 .map(it -> it.getName().getValue())
                 .collect(Collectors.toList());
     }

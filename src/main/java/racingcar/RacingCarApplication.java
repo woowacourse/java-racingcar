@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.common.config.RacingCarGameConfig;
 import racingcar.controller.RacingCarController;
+import racingcar.domain.WinnerJudge;
 import racingcar.step.CreateCarStep;
 import racingcar.step.Step;
 import racingcar.step.context.GameContext;
@@ -10,7 +11,7 @@ public class RacingCarApplication {
 
     public static void main(String[] args) {
         RacingCarGameConfig config = new RacingCarGameConfig();
-        RacingCarController racingCarController = new RacingCarController(config.numberGenerator());
+        RacingCarController racingCarController = new RacingCarController(config.numberGenerator(), new WinnerJudge());
         Step step = new CreateCarStep(racingCarController, config.logger(), GameContext.init());
         run(step);
     }

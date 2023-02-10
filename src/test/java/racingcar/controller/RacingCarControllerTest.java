@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("RacingCarController 는 ")
 class RacingCarControllerTest {
 
-    private RacingCarController controller = new RacingCarController(new MathNumberGenerator());
+    private RacingCarController controller = new RacingCarController(new MathNumberGenerator(), new WinnerJudge());
 
     @Nested
     @DisplayName("성공 테스트")
@@ -76,7 +76,7 @@ class RacingCarControllerTest {
             Cars cars = new Cars(carNames);
             Lap lap = new Lap(totalLapInput);
             RacingCarController controller = new RacingCarController(
-                    new MockFixedNumberGenerator(4));
+                    new MockFixedNumberGenerator(4), new WinnerJudge());
             List<Position> beforeMovePositions =
                     cars.getCars().stream().map(Car::getPosition).collect(Collectors.toList());
             int beforeCurrentLap = lap.getCurrentLap();

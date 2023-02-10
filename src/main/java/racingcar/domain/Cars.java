@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    private static final int FIRST_INDEX = 0;
     private static final int MIN_NUMBER = 0;
     private static final int MAX_NUMBER = 9;
     private static final int MIN_SIZE = 2;
@@ -31,16 +30,7 @@ public class Cars {
         return this.cars;
     }
 
-    public List<Car> winners() {
-        List<Car> cars = sortedCars();
-        Car winner = cars.get(FIRST_INDEX);
-
-        return cars.stream()
-                .filter(it -> it.getPosition().equals(winner.getPosition()))
-                .collect(Collectors.toList());
-    }
-
-    private List<Car> sortedCars() {
+    public List<Car> sortedCarsByPositionDesc() {
         List<Car> cars = new ArrayList<>(this.cars);
         cars.sort(Comparator.comparing(Car::getPosition));
         Collections.reverse(cars);
