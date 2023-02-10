@@ -3,6 +3,9 @@ package racingcar.model.track;
 import racingcar.model.car.Cars;
 
 public class Track {
+    private static final int ONE_GAME = 1;
+    private static final int CAN_GAME = 0;
+
     private final Cars cars;
     private int trialTime;
 
@@ -18,11 +21,11 @@ public class Track {
     }
 
     private void removeTrialTimes() {
-        trialTime -= 1;
+        trialTime -= ONE_GAME;
     }
 
     public boolean runnable() {
-        return trialTime >= 0;
+        return trialTime >= CAN_GAME;
     }
 
     public Cars findWinner() {
