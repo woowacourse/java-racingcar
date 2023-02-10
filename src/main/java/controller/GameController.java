@@ -57,8 +57,8 @@ public class GameController {
     }
 
     private boolean validateCarName(String carName) {
-        if (carName.isEmpty()) {
-            throw new IllegalArgumentException(",는 하나만 입력해주세요.");
+        if (carName.isBlank()) {
+            throw new IllegalArgumentException("빈 문자열 및 공백은 입력할 수 없습니다.");
         }
         return true;
     }
