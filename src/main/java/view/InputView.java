@@ -9,24 +9,35 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final int MAX_TRIAL_NUM = 2;
+    private static final int MIN_CAR_NAME_LENGTH = 1;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final Pattern NUMBER = Pattern.compile("[0-9]+");
 
-    private final int MIN_CAR_NAME_LENGTH = 1;
-    private final int MAX_CAR_NAME_LENGTH = 5;
-    private final Scanner scanner = new Scanner(System.in);
-
-    private final Pattern NUMBER = Pattern.compile("[0-9]+");
+    private Scanner scanner;
 
     public List<String> readCarNames() {
         System.out.println(Messages.INPUT_CAR_NAMES);
-        String[] split = readLine().split(",");
+        String[] carNames = readLine().split(",");
 
-        return Arrays.stream(split)
-            .peek(this::validateCarName)
+        validateCarNames(carNames);
+        return Arrays.stream(carNames)
             .collect(Collectors.toList());
     }
 
     private String readLine() {
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
+        }
         return scanner.nextLine();
+    }
+
+    private void validateCarNames(String[] inputCarNames) {
+        if (inputCarNames.length == 0) {
+            throw new IllegalArgumentException(Messages.ERROR_CAR_NAME_LENGTH);
+        }
+        for (String inputCarName : inputCarNames) {
+            validateCarName(inputCarName);
+        }
     }
 
     private void validateCarName(String inputCarName) {
