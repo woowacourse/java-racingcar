@@ -7,40 +7,40 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import model.Car;
-import repository.CarRaceResultRepository;
+import repository.CarRepository;
 
 public class CarRaceServiceImpl implements CarRaceService {
 
     private static final int MAX_RANDOM_NUMBER = 10;
     private static final int MAX_CAR_COUNT = 100;
-    private final CarRaceResultRepository carRaceResultRepository;
+    private final CarRepository carRepository;
     private final NumberGenerator numberGenerator;
 
-    public CarRaceServiceImpl(CarRaceResultRepository carRaceResultRepository,
+    public CarRaceServiceImpl(CarRepository carRepository,
         NumberGenerator numberGenerator) {
-        this.carRaceResultRepository = carRaceResultRepository;
+        this.carRepository = carRepository;
         this.numberGenerator = numberGenerator;
     }
 
     @Override
     public Map<String, Integer> saveCars(final List<String> names) {
         validateCarCount(names);
-        names.forEach(name -> carRaceResultRepository.save(new Car(name)));
-        return carRaceResultRepository.findAllNameAndPosition();
+        names.forEach(name -> carRepository.save(new Car(name)));
+        return carRepository.findAllNameAndPosition();
     }
 
     @Override
     public Map<String, Integer> move() {
-        for (Car car : carRaceResultRepository.findAll()) {
+        for (Car car : carRepository.findAll()) {
             car.move(numberGenerator.generateNumber(MAX_RANDOM_NUMBER));
-            carRaceResultRepository.updatePosition(car);
+            carRepository.updatePosition(car);
         }
-        return carRaceResultRepository.findAllNameAndPosition();
+        return carRepository.findAllNameAndPosition();
     }
 
     @Override
     public List<String> getResult() {
-        Map<String, Integer> resultBoard = carRaceResultRepository.findAllNameAndPosition();
+        Map<String, Integer> resultBoard = carRepository.findAllNameAndPosition();
         Integer max = Collections.max(resultBoard.values());
         return resultBoard.entrySet()
             .stream()

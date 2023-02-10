@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import model.Car;
 
-public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
+public class CarRepositoryImpl implements CarRepository {
 
     private final Map<String, Car> board;
 
-    public CarRaceResultRepositoryImpl() {
+    public CarRepositoryImpl() {
         this.board = new ConcurrentHashMap<>();
     }
 

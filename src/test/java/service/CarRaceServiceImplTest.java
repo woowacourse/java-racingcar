@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import repository.CarRaceResultRepositoryImpl;
+import repository.CarRepositoryImpl;
 
 class CarRaceServiceImplTest {
 
@@ -95,6 +95,6 @@ class CarRaceServiceImplTest {
     }
 
     private CarRaceServiceImpl makeCarRaceService(NumberGenerator numberGenerator) {
-        return new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(), numberGenerator);
+        return new CarRaceServiceImpl(new CarRepositoryImpl(), numberGenerator);
     }
 }

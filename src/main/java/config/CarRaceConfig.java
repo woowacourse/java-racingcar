@@ -1,7 +1,7 @@
 package config;
 
 import controller.CarRaceController;
-import repository.CarRaceResultRepositoryImpl;
+import repository.CarRepositoryImpl;
 import service.CarRaceService;
 import service.CarRaceServiceImpl;
 import service.RandomNumberGenerator;
@@ -21,7 +21,7 @@ public class CarRaceConfig {
     }
 
     private static CarRaceService makeService() {
-        return new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(),
+        return new CarRaceServiceImpl(new CarRepositoryImpl(),
             new RandomNumberGenerator());
     }
 

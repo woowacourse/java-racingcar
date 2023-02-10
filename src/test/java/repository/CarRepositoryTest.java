@@ -13,17 +13,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class CarRaceResultRepositoryTest {
+class CarRepositoryTest {
 
-    private CarRaceResultRepository carRaceResultRepository;
+    private CarRepository carRepository;
     private final Car car1 = new Car("car1");
     private final Car car2 = new Car("car2");
 
     @BeforeEach
     void setUp() {
-        this.carRaceResultRepository = new CarRaceResultRepositoryImpl();
-        this.carRaceResultRepository.save(car1);
-        this.carRaceResultRepository.save(car2);
+        this.carRepository = new CarRepositoryImpl();
+        this.carRepository.save(car1);
+        this.carRepository.save(car2);
     }
 
     @Test
@@ -32,11 +32,11 @@ class CarRaceResultRepositoryTest {
         //given
         Car original = new Car("car");
         Car copy = new Car("car");
-        carRaceResultRepository.save(original);
+        carRepository.save(original);
 
         //when
         //then
-        assertThatThrownBy(() -> carRaceResultRepository.save(copy))
+        assertThatThrownBy(() -> carRepository.save(copy))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -47,10 +47,10 @@ class CarRaceResultRepositoryTest {
         Car newCar = new Car("new");
 
         //when
-        carRaceResultRepository.save(newCar);
+        carRepository.save(newCar);
 
         //then
-        assertThat(carRaceResultRepository.findAllNameAndPosition().size()).isEqualTo(3);
+        assertThat(carRepository.findAllNameAndPosition().size()).isEqualTo(3);
     }
 
     @Test
@@ -61,7 +61,7 @@ class CarRaceResultRepositoryTest {
 
         //when
         //then
-        assertThatThrownBy(() -> carRaceResultRepository.findMoveCountByName(name))
+        assertThatThrownBy(() -> carRepository.findMoveCountByName(name))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -70,7 +70,7 @@ class CarRaceResultRepositoryTest {
     void findByName() {
         //given
         //when
-        int result = carRaceResultRepository.findMoveCountByName(car1.getName());
+        int result = carRepository.findMoveCountByName(car1.getName());
 
         //then
         assertThat(result).isEqualTo(1);
@@ -81,7 +81,7 @@ class CarRaceResultRepositoryTest {
     void checkCarNameReturn() {
         //given
         //when
-        List<Car> cars = carRaceResultRepository.findAll();
+        List<Car> cars = carRepository.findAll();
 
         //then
         assertThat(cars.size()).isEqualTo(2);
@@ -100,7 +100,7 @@ class CarRaceResultRepositoryTest {
         car1.move(power);
 
         //then
-        assertThat(carRaceResultRepository.findMoveCountByName(car1.getName())).isEqualTo(
+        assertThat(carRepository.findMoveCountByName(car1.getName())).isEqualTo(
             movePosition);
     }
 
@@ -113,7 +113,7 @@ class CarRaceResultRepositoryTest {
         car2.move(3);
 
         //then
-        assertThat(carRaceResultRepository.findAllNameAndPosition()).containsOnly(
+        assertThat(carRepository.findAllNameAndPosition()).containsOnly(
             entry(car1.getName(), 2), entry(car2.getName(), 1));
     }
 }

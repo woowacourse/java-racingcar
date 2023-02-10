@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import model.Car;
 
-public interface CarRaceResultRepository {
+public interface CarRepository {
 
     void save(Car car);
 
