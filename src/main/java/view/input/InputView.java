@@ -1,11 +1,14 @@
 package view.input;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
+import validation.ErrorMessages;
+import validation.InputValidator;
+import validation.ValidateResult;
 
 public class InputView {
+
+    private static String ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static String ENTER_COUNT = "시도할 회수는 몇회인가요?";
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -13,23 +16,26 @@ public class InputView {
         return scanner.nextLine().strip();
     }
 
-    public List<String> readCarNames() throws IllegalArgumentException {
-        final String DELIMITER = ",";
-        String input = readLine();
-        Validator.isNotEmpty(input);
-        List<String> carNames = splitWordsBy(input, DELIMITER);
-        Validator.isProperCarNames(carNames);
-        return carNames;
+    public String getCarNames() {
+        System.out.println(ENTER_CAR_NAMES);
+        return getInput();
     }
 
-    public int readCount() throws IllegalArgumentException {
-        String input = readLine();
-        Validator.isProperCount(input);
-        return Integer.parseInt(input);
+    public String getCount() {
+        System.out.println(ENTER_COUNT);
+        return getInput();
     }
 
-    private List<String> splitWordsBy(String input, String delimiter) {
-        return Arrays.stream(input.split(delimiter, -1)).map(String::strip)
-            .collect(Collectors.toList());
+    private String getInput() {
+        String input = readLine();
+        validateEmpty(input);
+        return input;
+    }
+
+    private void validateEmpty(String input) {
+        ValidateResult validateResult = InputValidator.validate(input);
+        if (validateResult == ValidateResult.FAIL_EMPTY) {
+            throw new IllegalArgumentException(ErrorMessages.EMPTY_INPUT.getMessage());
+        }
     }
 }
