@@ -1,10 +1,8 @@
 import controller.RacingCarController;
 
-import java.io.IOException;
-
 public class RacingCarApplication {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         RacingCarController racingCarController = new RacingCarController();
         racingCarController.run();
     }

@@ -1,14 +1,14 @@
 package controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import domain.Car;
 import domain.Cars;
 import output.Outputs;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingCarController {
 

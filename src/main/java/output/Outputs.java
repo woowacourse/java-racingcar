@@ -1,10 +1,10 @@
 package output;
 
-import domain.Cars;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import domain.Cars;
 
 public class Outputs {
 

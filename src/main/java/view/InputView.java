@@ -1,11 +1,11 @@
 package view;
 
+import java.util.List;
+import java.util.Scanner;
+
 import utils.CarNameValidator;
 import utils.NumberValidator;
 import utils.StringParser;
-
-import java.util.List;
-import java.util.Scanner;
 
 public class InputView {
 
