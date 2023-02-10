@@ -61,7 +61,7 @@ public class Car implements Comparable<Car> {
         }
 
         private CarMovement makeRandomCarMove() {
-            Integer moveCount = (int) (Math.random() * 10);
+            int moveCount = (int) (Math.random() * 10);
             return new CarMovement(moveCount);
         }
     }
