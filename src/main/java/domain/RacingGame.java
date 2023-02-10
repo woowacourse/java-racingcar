@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -34,7 +35,7 @@ public class RacingGame {
     }
 
     public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return List.copyOf(cars);
     }
 
     public List<Car> getWinners() {
