@@ -18,7 +18,7 @@ public class GameTest {
         Car car1 = new Car("땡칠", 0);
         Car car2 = new Car("물떡", 2);
         Car car3 = new Car("루쿠", 1);
-        Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
+        Game game = new Game(List.of(car1, car2, car3), 1);
 
         assertThat(game.findWinners()).containsOnly(car2);
     }
@@ -29,7 +29,7 @@ public class GameTest {
         Car car1 = new Car("땡칠", 2);
         Car car2 = new Car("물떡", 2);
         Car car3 = new Car("루쿠", 1);
-        Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
+        Game game = new Game(List.of(car1, car2, car3), 1);
 
         assertThat(game.findWinners()).containsOnly(car1, car2);
     }
@@ -37,22 +37,22 @@ public class GameTest {
     @Test
     void 차가_유일하면_바로_우승자이다() {
         Car car1 = new Car("땡칠", 2);
-        Game game = new Game(List.of(car1), MOVABLE_CHANCE);
+        Game game = new Game(List.of(car1), 1);
 
         assertThat(game.findWinners()).containsOnly(car1);
     }
 
     @Test
     void 차는_1대_이상이어야한다() {
-        assertThatThrownBy(() -> new Game(List.of(), MOVABLE_CHANCE));
+        assertThatThrownBy(() -> new Game(List.of(), 1));
     }
 
     @Test
     @DisplayName("자동차에게 이동 기회를 주는 테스트")
     void 자동차에게_이동_기회를_준다() {
         Car car = new Car("물떡");
-        Game game = new Game(List.of(car), MOVABLE_CHANCE);
-        game.playOnce();
+        Game game = new Game(List.of(car), 1);
+        game.playOnceWith(MOVABLE_CHANCE);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 }

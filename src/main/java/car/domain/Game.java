@@ -7,19 +7,27 @@ import java.util.stream.Collectors;
 
 public class Game {
 
-    private final List<Car> cars;
-    private final MoveChance moveChance;
+    private static final int MIN_TRIAL_COUNT = 0;
 
-    public Game(List<Car> cars, MoveChance moveChance) {
+    private final List<Car> cars;
+    private int trialCount;
+
+    public Game(List<Car> cars, int trialCount) {
         validateCarsLength(cars);
+        validateNotNegativeInteger(trialCount);
         this.cars = new ArrayList<>(cars);
-        this.moveChance = moveChance;
+        this.trialCount = trialCount;
     }
 
-    public void playOnce() {
+    public void playOnceWith(MoveChance moveChance) {
         for (Car car : cars) {
             car.move(moveChance);
         }
+        trialCount--;
+    }
+
+    public boolean isNotDone() {
+        return trialCount > MIN_TRIAL_COUNT;
     }
 
     public List<Car> findWinners() {
@@ -45,6 +53,12 @@ public class Game {
     private void validateCarsLength(List<Car> cars) {
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("차량이 없습니다");
+        }
+    }
+
+    private void validateNotNegativeInteger(int trialCount) {
+        if (trialCount < MIN_TRIAL_COUNT) {
+            throw new IllegalArgumentException("시도횟수는 음수이면 안됩니다");
         }
     }
 
