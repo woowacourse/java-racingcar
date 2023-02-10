@@ -11,8 +11,8 @@ class ThresholdCarMoveManagerTest {
     @CsvSource(value = {"0:false", "1:false", "2:false", "3:false", "4:true", "5:true", "7:true", "8:true",
             "9:true"}, delimiter = ':')
     void boundaryTest(String input, String expected) {
-        assertThat(new ThresholdCarMoveManager().isMove(Integer.parseInt(input))).isEqualTo(
-                Boolean.parseBoolean(expected));
+        assertThat(new ThresholdCarMoveManager().isMove(Integer.parseInt(input)))
+                .isEqualTo(Boolean.parseBoolean(expected));
     }
 
 }
