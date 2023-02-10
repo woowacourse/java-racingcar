@@ -4,26 +4,25 @@ import message.Constant;
 import util.Validator;
 
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
 
-    private Scanner console;
+    private final Scanner reader;
 
-    public InputView(InputStream consoleConnector) {
-        console = new Scanner(consoleConnector);
+    public InputView(InputStream readerConnector) {
+        reader = new Scanner(readerConnector);
     }
 
     public List<String> carNames() {
         System.out.println(Constant.CAR_NAMES_HEADER);
-        List<String> carNames = Arrays.asList(console.nextLine().split(Constant.DELIMITER));
-        carNames = trimCarNames(carNames);
-        Validator.carNames(carNames);
+        String carNames = reader.nextLine();
+        Validator.validateCarNames(carNames.trim());
+        List<String> carNamesBySplit = List.of(carNames.split(Constant.DELIMITER));
 
-        return carNames;
+        return trimCarNames(carNamesBySplit);
     }
 
     private List<String> trimCarNames(List<String> carNames) {
@@ -34,8 +33,8 @@ public class InputView {
 
     public int numberOfTimes() {
         System.out.println(Constant.NUMBER_OF_TIME_HEADER);
-        String number = console.nextLine();
-        Validator.numberOfTimes(number);
+        String number = reader.nextLine();
+        Validator.validateNumberOfTimes(number);
 
         return Integer.parseInt(number);
     }

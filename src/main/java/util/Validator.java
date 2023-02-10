@@ -6,15 +6,20 @@ import message.Error;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Validator {
+    private static final int CAR_NAME_EMPTY = 0;
 
-    public static void carNames(List<String> carNames) {
-        exceededCarNameLength(carNames);
-        existDuplicateCarName(carNames);
+    public static void validateCarNames(String carNames) {
+        validateCarNameInputEmpty(carNames);
+        validateLastCharacterOfCarNameInputIsDelimiter(carNames);
+        List<String> carNamesForValidation = trimCarNames(List.of(carNames.split(Constant.DELIMITER)));
+        validateCarNameOutOfLength(carNamesForValidation);
+        validateCarNameHasDuplicate(carNamesForValidation);
     }
 
-    public static void numberOfTimes(String input) {
+    public static void validateNumberOfTimes(String input) {
         nonNumber(input);
         int number = Integer.parseInt(input);
 
@@ -23,18 +28,39 @@ public class Validator {
         }
     }
 
-    private static void exceededCarNameLength(List<String> carNames) {
-        if (!isCorrectLength(carNames)) {
+    private static List<String> trimCarNames(List<String> carNames) {
+        return carNames.stream()
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
+
+    private static void validateCarNameInputEmpty(String carNames) {
+        if (carNames.length() == CAR_NAME_EMPTY) {
             throw new IllegalArgumentException(Error.EXCEEDED_CAR_NAME_LENGTH_ERROR);
         }
     }
 
-    private static boolean isCorrectLength(List<String> carNames) {
-        return carNames.stream()
-                .allMatch(carName -> Constant.LENGTH_LOWER_BOUND <= carName.length() && carName.length() <= Constant.LENGTH_UPPER_BOUND);
+    private static void validateLastCharacterOfCarNameInputIsDelimiter(String carNames) {
+        String lastCharacterOfCarNameInput = Character.toString(carNames.charAt(carNames.length() - 1));
+        if (lastCharacterOfCarNameInput.equals(Constant.DELIMITER)) {
+            throw new IllegalArgumentException(Error.EXCEEDED_CAR_NAME_LENGTH_ERROR);
+        }
     }
 
-    private static void existDuplicateCarName(List<String> carName) {
+    private static void validateCarNameOutOfLength(List<String> carNames) {
+        if (isNotCorrectLength(carNames)) {
+            throw new IllegalArgumentException(Error.EXCEEDED_CAR_NAME_LENGTH_ERROR);
+        }
+    }
+
+    private static boolean isNotCorrectLength(List<String> carNames) {
+        return !carNames.stream()
+                .allMatch(carName ->
+                        Constant.CAR_NAME_LENGTH_LOWER_BOUND_INCLUSIVE <= carName.length()
+                                && carName.length() <= Constant.CAR_NAME_LENGTH_UPPER_BOUND_INCLUSIVE);
+    }
+
+    private static void validateCarNameHasDuplicate(List<String> carName) {
         Set<String> duplicateChecker = new HashSet<>(carName);
 
         if (duplicateChecker.size() != carName.size()) {
@@ -46,7 +72,7 @@ public class Validator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(Error.NON_NUMBER_ERROR);
+            throw new IllegalArgumentException(Error.NON_INTEGER_ERROR);
         }
     }
 }

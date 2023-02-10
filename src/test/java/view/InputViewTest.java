@@ -28,7 +28,7 @@ public class InputViewTest {
 
     @DisplayName("이름 입력 실패")
     @ParameterizedTest
-    @ValueSource(strings = {"\n", "포비는너무멋져남자가봐도반하겠어"})
+    @ValueSource(strings = {"\n", "포비는너무멋져남자가봐도반하겠어", "s,,,,", ",,,,"})
     void carNamesFail(String input) {
         inputView = new InputView(generateUserInput(input));
 
