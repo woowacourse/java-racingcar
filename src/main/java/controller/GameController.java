@@ -14,28 +14,38 @@ public class GameController {
     private static final int MINIMUM_NUMBER_OF_MOVING = 1;
     private static final String CAR_NAME_DELIMITER = ",";
 
-    private final InputView inputView;
-    private final OutputView outputView;
     private final RacingCarGame racingCarGame;
 
-    public GameController(OutputView outputView) {
-        this.inputView = new InputView(outputView);
-        this.outputView = outputView;
+    public GameController() {
         this.racingCarGame = new RacingCarGame();
     }
 
     public void run() {
-        addCars(inputView.readCarNames());
-        startRacing(readNumberOfMoving());
-        outputView.printWinners(racingCarGame.getWinners());
+        addCars(readCarNames());
+        getNumberOfMoving(readNumberOfTry());
+    }
+
+    private void getNumberOfMoving(int numberOfMoving) {
+        try {
+            startRacing(numberOfMoving);
+            OutputView.printWinners(racingCarGame.getWinners());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            OutputView.printException(illegalArgumentException.getMessage());
+            getNumberOfMoving(readNumberOfTry());
+        }
+    }
+
+    private static String readCarNames() {
+        OutputView.readCarNames();
+        return InputView.readCarNames();
     }
 
     private void addCars(String carNames) {
         try {
             CarRepository.updateCars(makeCars(carNames));
         } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printException(illegalArgumentException.getMessage());
-            addCars(inputView.readCarNames());
+            OutputView.printException(illegalArgumentException.getMessage());
+            addCars(InputView.readCarNames());
         }
     }
 
@@ -53,27 +63,32 @@ public class GameController {
         return true;
     }
 
-    private int readNumberOfMoving() {
-        try {
-            int numberOfMoving = inputView.readNumberOfMoving();
-            validateTrial(numberOfMoving);
-            return numberOfMoving;
-        } catch (IllegalArgumentException exception) {
-            outputView.printException(exception.getMessage());
-            return readNumberOfMoving();
-        }
+//    private int readNumberOfMoving() {
+//        try {
+//            int numberOfMoving = readNumberOfTry();
+//            validateTrial(numberOfMoving);
+//            return numberOfMoving;
+//        } catch (IllegalArgumentException exception) {
+//            OutputView.printException(exception.getMessage());
+//            return readNumberOfMoving();
+//        }
+//    }
+
+    private static int readNumberOfTry() {
+        OutputView.readNumberOfTry();
+        return InputView.readNumberOfMoving();
     }
 
-    private void validateTrial(int numberOfMoving) {
-        if (numberOfMoving < MINIMUM_NUMBER_OF_MOVING) {
-            throw new IllegalArgumentException("1회 이상만 입력할 수 있습니다.");
-        }
-    }
+//    private void validateTrial(int numberOfMoving) {
+//        if (numberOfMoving < MINIMUM_NUMBER_OF_MOVING) {
+//            throw new IllegalArgumentException("1회 이상만 입력할 수 있습니다.");
+//        }
+//    }
 
     private void startRacing(int numberOfMoving) {
         for (int round = 0; round < numberOfMoving; round++) {
             racingCarGame.repeatRounds();
-            outputView.printCarsStatus(CarRepository.findAll());
+            OutputView.printCarsStatus(CarRepository.findAll());
         }
     }
 }
