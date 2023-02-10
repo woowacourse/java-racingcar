@@ -31,7 +31,7 @@ class CarTest {
                 .hasMessage(Car.INVALID_NAME_LENGTH_EXCEPTION_MESSAGE);
     }
 
-    @ParameterizedTest(name = "{0}이 power로 주어질 때 position의 전진 여부 테스트")
+    @ParameterizedTest(name = "move() 메소드를 호출하여, 주어진 power 값({0})에 따라 position의 전진 여부 테스트")
     @CsvSource(value = {"4,1", "3,0"})
     void givenCar_whenMovingCar_thenAddsPosition(int power, long expected) {
         Car car = Car.of(Name.of("test"));
