@@ -6,14 +6,11 @@ import java.util.Set;
 
 import domain.Car;
 import domain.Cars;
-import domain.Rule;
 import utils.RandomNumberGenerator;
 import utils.constants.ErrorMessages;
-import utils.exception.AlreadyDefinedFieldException;
 
 public class RacingGameService {
     private final Cars cars = new Cars(new RandomNumberGenerator());
-    private Rule rule;
 
     public void setCars(List<String> carNames) {
         validateDuplication(carNames);
@@ -22,21 +19,10 @@ public class RacingGameService {
         }
     }
 
-    public void setTrial(Long trial) {
-        if (rule == null) {
-            rule = new Rule(trial);
-            return;
+    public void move(Long trial) {
+        for (int i = 0; i < trial; i++) {
+            cars.move();
         }
-
-        throw new AlreadyDefinedFieldException();
-    }
-
-    public void move() {
-        cars.move();
-    }
-
-    public Long getTrial() {
-        return rule.getTrial();
     }
 
     public List<String> getMoveResult() {

@@ -19,34 +19,26 @@ public class Controller {
     }
 
     public void run() {
-        setGame();
+        setCars();
         playGame();
         printFinalResult();
     }
 
-    private void setGame() {
-        setCars();
-        setTrial();
-    }
-
     private void playGame() {
+        Long trial = getTrial();
         outputView.printResultMessage();
-        Long trial = racingGameService.getTrial();
-        for (int i = 0; i < trial; i++) {
-            racingGameService.move();
-            List<String> moveResult = racingGameService.getMoveResult();
-            outputView.printMoveResult(moveResult);
-        }
+        racingGameService.move(trial);
+        List<String> moveResult = racingGameService.getMoveResult();
+        outputView.printMoveResult(moveResult);
     }
 
-    private void setTrial() {
+    private Long getTrial() {
         String trialInput = inputView.getTrial();
         try {
-            Long trial = Converter.convertStringToLong(trialInput);
-            racingGameService.setTrial(trial);
+            return Converter.convertStringToLong(trialInput);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            setTrial();
+            return getTrial();
         }
     }
 
