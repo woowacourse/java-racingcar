@@ -33,7 +33,8 @@ class RacingGameTest {
         numberGenerator.setNumber(4);
         RacingGame game = new RacingGame(numberGenerator, 3, dummy);
 
-        GameResultDto result = game.play();
+        game.playOneRound();
+        GameResultDto result = game.getGameResult();
 
         Set<String> names = result.getNames();
 
@@ -54,7 +55,7 @@ class RacingGameTest {
         RacingGame game = new RacingGame(numberGenerator, count, dummy);
 
         for (int i = 0; i < tryCount; i++) {
-            game.play();
+            game.playOneRound();
         }
 
         assertThat(game.isEnd()).isEqualTo(result);

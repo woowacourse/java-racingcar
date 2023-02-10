@@ -7,7 +7,6 @@ import racing.RandomNumberGenerator;
 import racing.dto.GameResultDto;
 
 public class RacingGame {
-    private static final int MOVE_CONDITION = 4;
 
     private final NumberGenerator numberGenerator;
     private final Cars cars;
@@ -23,21 +22,17 @@ public class RacingGame {
         this(new RandomNumberGenerator(), tryCount, cars);
     }
 
-    public GameResultDto play() {
-        GameResultDto result = new GameResultDto();
-        for (Car car : cars.getCars()) {
-            int number = numberGenerator.generate();
-            move(car, number);
-            result.put(car.getName(), car.getPosition());
-        }
+    public void playOneRound() {
+        cars.moveAll(numberGenerator);
         tryCount--;
-        return result;
     }
 
-    private void move(Car car, int number) {
-        if (number >= MOVE_CONDITION) {
-            car.addPosition();
+    public GameResultDto getGameResult() {
+        GameResultDto result = new GameResultDto();
+        for (Car car : cars.getCars()) {
+            result.put(car.getName(), car.getPosition());
         }
+        return result;
     }
 
     public boolean isEnd() {
@@ -45,7 +40,7 @@ public class RacingGame {
     }
 
     public List<String> getWinners() {
-        return cars.getFirstCars().stream()
+        return cars.getFirstPosition().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

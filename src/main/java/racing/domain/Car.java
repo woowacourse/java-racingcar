@@ -2,12 +2,14 @@ package racing.domain;
 
 public class Car {
 
+    private static final int MOVE_CONDITION = 4;
+
     private final String name;
     private int position = 0;
 
     public Car(String name) {
-        this.name = name;
         validateNameLength(name);
+        this.name = name;
     }
 
     private void validateNameLength(String name) {
@@ -16,7 +18,13 @@ public class Car {
         }
     }
 
-    public void addPosition() {
+    public void move(int number) {
+        if (number >= MOVE_CONDITION) {
+            addPosition();
+        }
+    }
+
+    private void addPosition() {
         position++;
     }
 
@@ -26,5 +34,9 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 }

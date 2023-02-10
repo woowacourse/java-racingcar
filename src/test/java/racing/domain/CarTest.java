@@ -16,13 +16,24 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("addPosition 메소드를 호출하면 position이 1 증가한다.")
+    @DisplayName("4 이상의 숫자가 들어오면 position은 1 증가한다.")
     void moveTest() {
         Car car = new Car("test");
 
-        car.addPosition();
+        car.move(4);
 
         int position = car.getPosition();
         assertThat(position).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("3 이하의 숫자가 들어오면 position은 증가하지않는다.")
+    void notMoveTest() {
+        Car car = new Car("test");
+
+        car.move(3);
+
+        int position = car.getPosition();
+        assertThat(position).isEqualTo(0);
     }
 }

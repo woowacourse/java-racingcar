@@ -21,7 +21,8 @@ public class RacingGameController {
 
         RacingGame game = new RacingGame(tryCount, cars);
         while (!game.isEnd()) {
-            GameResultDto resultDto = game.play();
+            game.playOneRound();
+            GameResultDto resultDto = game.getGameResult();
             outputView.printRacing(resultDto);
         }
         List<String> winnerNames = game.getWinners();

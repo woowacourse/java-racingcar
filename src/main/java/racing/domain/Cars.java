@@ -3,6 +3,7 @@ package racing.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racing.NumberGenerator;
 
 public class Cars {
 
@@ -16,7 +17,7 @@ public class Cars {
         int maxPosition = getMaxPosition();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .collect(Collectors.toList());
     }
 
@@ -25,6 +26,13 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public void moveAll(NumberGenerator numberGenerator) {
+        for (Car car : cars) {
+            int moveNumber = numberGenerator.generate();
+            car.move(moveNumber);
+        }
     }
 
     public List<Car> getCars() {
