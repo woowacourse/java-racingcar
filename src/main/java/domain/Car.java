@@ -4,11 +4,11 @@ import utils.RandomNumberGenerator;
 
 public class Car {
 
-    private final Name name;
+    private final String name;
     private int drivenDistance = 0;
 
-    public Car(String name, int index) {
-        this.name = new Name(name, index);
+    public Car(String name) {
+        this.name = name;
     }
 
     public void drive(int distance) {
@@ -23,8 +23,7 @@ public class Car {
         return drivenDistance;
     }
 
-    @Override
-    public String toString() {
-        return name.toString();
+    public String getName() {
+        return name;
     }
 }

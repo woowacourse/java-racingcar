@@ -21,17 +21,8 @@ public class CarRepository {
         return Collections.unmodifiableList(cars);
     }
 
-    private int addName(String name) {
-        final int INIT_NUMBER = 0;
-        if (!nameCount.containsKey(name)) {
-            nameCount.put(name, INIT_NUMBER);
-            return INIT_NUMBER;
-        }
-        return nameCount.merge(name, 1, Integer::sum);
-    }
-
     public void add(String name) {
-        Car car = new Car(name, addName(name));
+        Car car = new Car(name);
         cars.add(car);
     }
 }

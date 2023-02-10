@@ -54,17 +54,6 @@ class InputViewTest {
             .hasMessageContaining("자동차 이름 길이는 1자 이상, 5자 이하여야합니다.");
     }
 
-    @ValueSource(strings = {"-", "ma-e", "mak1-"})
-    @ParameterizedTest
-    void 자동차이름에_중복표시_구분자가_포함되면_오류를던진다(String input) {
-        //given
-        before(input);
-        //when then
-        assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("[ERROR] ")
-            .hasMessageContaining("자동차 이름은 '-'를 포함할 수 없습니다");
-    }
-
     @Test
     void 자동차이름_입력값_앞뒤에_공백이존재하면_무시한다() {
         //given
