@@ -6,23 +6,26 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("자동차가")
 public class CarTest {
 
-    @DisplayName("Random Number가 4 이상인 경우")
+    @DisplayName("전진하는 경우")
     @ParameterizedTest
     @ValueSource(ints = {4, 7, 9})
     void moveTrue(int input) {
-        Car car = new Car("True");
+        Car car = new Car("move");
+        car.move(input);
 
-        assertThat(car.move(input)).isTrue();
+        assertThat(car.getDistance()).isEqualTo(1);
     }
 
-    @DisplayName("Random Number가 3 이하인 경우")
+    @DisplayName("전진하지 않는 경우")
     @ParameterizedTest
     @ValueSource(ints = {0, 2, 3})
     void moveFalse(int input) {
-        Car car = new Car("False");
+        Car car = new Car("stay");
+        car.move(input);
 
-        assertThat(car.move(input)).isFalse();
+        assertThat(car.getDistance()).isEqualTo(0);
     }
 }
