@@ -1,7 +1,8 @@
 package racingcar.domain;
 
+import racingcar.domain.dto.CarRaceDto;
 import racingcar.exception.DuplicateException;
-import racingcar.util.RaceNumberGenerator;
+import racingcar.util.NumberGenerator;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,55 +10,57 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static racingcar.enumType.DomainConstant.CAR_FORWARD_NUMBER;
+import static racingcar.domain.constant.CarConstant.CAR_FORWARD_NUMBER;
+import static racingcar.domain.constant.CarConstant.INIT_POSITION;
+import static racingcar.domain.constant.CarsConstant.*;
 import static racingcar.enumType.ExceptionMessage.DUPLICATE_MESSAGE;
 
 public class Cars {
 
     private final List<Car> cars;
 
-    private final RaceNumberGenerator numberGenerator;
+    private final NumberGenerator numberGenerator;
 
-    private Cars(String carNames) {
-        numberGenerator = new RaceNumberGenerator();
-        this.cars = splitCarNames(carNames);
+    private Cars(final String carNames, NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+        this.cars = createCars(carNames);
         validateDuplicateCarName();
     }
 
-    public static Cars of(String carNames) {
-        return new Cars(carNames);
+    public static Cars of(final String carNames, NumberGenerator numberGenerator) {
+        return new Cars(carNames, numberGenerator);
     }
 
-    public String initStatus() {
-        StringBuilder result = new StringBuilder();
-        this.cars.forEach(car -> result.append(car).append("\n"));
-        return result.toString();
+    public List<CarRaceDto> initStatus() {
+        return cars.stream()
+                .map(car -> CarRaceDto.of(car.getName(), car.getPosition()))
+                .collect(Collectors.toList());
     }
 
-    public String race() {
-        StringBuilder result = new StringBuilder();
-        this.cars.forEach(car -> {
+    public List<CarRaceDto> race() {
+        return cars.stream().map(car -> {
             int randomNumber = numberGenerator.generate();
             checkNumberAndMove(car, randomNumber);
-            result.append(car).append("\n");
-        });
-        return result.toString();
+            return CarRaceDto.of(car.getName(), car.getPosition());
+        }).collect(Collectors.toList());
     }
 
-    public String pickWinners() {
-        StringBuilder winners = new StringBuilder();
-        List<String> carNames = this.cars.stream()
-                .filter(car -> Objects.equals(car.getDrivingDistance().getDistance(), getMaxDistance()))
+    public List<String> pickWinners() {
+        return cars.stream()
+                .filter(car -> Objects.equals(car.getPosition(), getMaxDistance()))
                 .map(Car::getName)
                 .collect(Collectors.toList());
-        return winners.append(String.join(", ", carNames)).toString();
     }
 
-    private List<Car> splitCarNames(String carNames) {
-        String[] names = carNames.split(",");
+    private List<Car> createCars(String carNames) {
+        String[] names = splitCarNames(carNames);
         return Arrays.stream(names)
                 .map(Car::of)
                 .collect(Collectors.toList());
+    }
+
+    private String[] splitCarNames(String carNames) {
+        return carNames.split(SPLIT_DELIMITER.getValue());
     }
 
     private void validateDuplicateCarName() {
@@ -75,8 +78,8 @@ public class Cars {
 
     private Integer getMaxDistance() {
         return this.cars.stream()
-                .mapToInt(car -> car.getDrivingDistance().getDistance())
-                .max().orElse(1);
+                .mapToInt(Car::getPosition)
+                .max().orElse(INIT_POSITION.getValue());
     }
 
     @Override
