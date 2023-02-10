@@ -2,6 +2,7 @@ package racingcar;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -34,5 +35,17 @@ public class Cars {
         Random random = new Random();
 
         cars.forEach(car -> car.move(random.nextInt(10)));
+    }
+
+    public List<Winner> calculateWinners() {
+        int max = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+
+        return cars.stream().filter(car -> car.getPosition() == max)
+                .map(Car::getName)
+                .map(Winner::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
