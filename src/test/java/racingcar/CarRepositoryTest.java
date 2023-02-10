@@ -44,7 +44,7 @@ class CarRepositoryTest {
         assertThat(CarRepository.findMaxPosition(3)).isEqualTo(List.of("mery"));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "cars : {0}")
     @DisplayName("레포지토리에 저장할 자동차 리스트가 비어있거나 공백인 경우 예외를 발생시키는지 확인한다.")
     @MethodSource("provideCars")
     void numberOfCarsException(List<Car> cars) {

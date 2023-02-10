@@ -1,13 +1,15 @@
 package validator;
 
+import java.util.Objects;
+
 public class CarValidator {
 
     private static final int NAME_MAXIMUM_LENGTH = 5;
     private static final CharSequence BLANK = " ";
 
     public static void validateName(String name) {
+        validateNullAndEmpty(name);
         validateLength(name);
-        validateBlank(name);
         validateEachNameBlank(name);
     }
 
@@ -23,13 +25,13 @@ public class CarValidator {
         }
     }
 
-    private static void validateBlank(String name) {
-        if (name.isBlank()) {
+    private static void validateNullAndEmpty(String name) {
+        if (Objects.isNull(name) || name.isBlank()) {
             throw new IllegalArgumentException("빈 문자열 및 공백은 입력할 수 없습니다.");
         }
     }
 
     private static boolean isCorrectLength(String name) {
-        return name.isEmpty() || name.length() > NAME_MAXIMUM_LENGTH;
+        return name.length() > NAME_MAXIMUM_LENGTH;
     }
 }

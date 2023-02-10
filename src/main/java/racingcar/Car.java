@@ -2,6 +2,8 @@ package racingcar;
 
 import validator.CarValidator;
 
+import java.util.Objects;
+
 public class Car {
     private static final int START_POSITION = 0;
     private static final int MOVING_DISTANCE = 1;

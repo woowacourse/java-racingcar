@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
@@ -31,9 +33,10 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "name : {0}")
     @DisplayName("이름 길이가 1보다 작거나 5보다 큰 경우 예외를 발생시키는지 확인한다.")
-    @ValueSource(strings = {"merrrrrrry", "pooooooobi", "pooooo", ""})
+    @NullAndEmptySource
+    @ValueSource(strings = {"merrrrrrry", "pooooooobi", "pooooo"})
     void makeCars(String name) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Car(name));
