@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static constant.Constants.*;
-
 public class GameController {
     private static final int MINIMUM_NUMBER_OF_MOVING = 1;
     private static final String CAR_NAME_DELIMITER = ",";
@@ -50,7 +48,7 @@ public class GameController {
 
     private boolean validateCarName(String carName) {
         if (carName.isEmpty()) {
-            throw new IllegalArgumentException(COMMA_NOT_ALLOWED_EXCEPTION);
+            throw new IllegalArgumentException(",는 하나만 입력해주세요.");
         }
         return true;
     }
@@ -68,7 +66,7 @@ public class GameController {
 
     private void validateTrial(int numberOfMoving) {
         if (numberOfMoving < MINIMUM_NUMBER_OF_MOVING) {
-            throw new IllegalArgumentException(TRIAL_INPUT_EXCEPTION);
+            throw new IllegalArgumentException("1회 이상만 입력할 수 있습니다.");
         }
     }
 

@@ -4,19 +4,17 @@ import racingcar.Car;
 
 import java.util.List;
 
-import static constant.Constants.*;
-
 public class OutputView {
     public void readCarNames() {
-        println(READ_CAR_NAMES);
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
 
     public void readNumberOfTry() {
-        println(READ_NUMBER_OF_TRY);
+        println("시도할 회수는 몇회인가요?");
     }
 
     public void printCarsStatus(List<Car> cars) {
-        cars.forEach(car -> println(car.getName() + GAME_STATUS_DELIMITER + getPositionBars(car.getPosition())));
+        cars.forEach(car -> println(car.getName() + " : " + getPositionBars(car.getPosition())));
         printNewLine();
     }
 
@@ -25,15 +23,15 @@ public class OutputView {
     }
 
     private String getPositionBars(int position) {
-        return POSITION_PRINT_FORMAT.repeat(position);
+        return "-".repeat(position);
     }
 
     public void printWinners(List<String> winnerNames) {
-        println(String.join(NAME_JOINING_DELIMITER, winnerNames) + PRINT_WINNER_LIST_GUIDE);
+        println(String.join(", ", winnerNames) + "가 최종 우승했습니다.");
     }
 
     public void printException(String exceptionMessage) {
-        println(EXCEPTION_STARTER + exceptionMessage);
+        println("[ERROR] " + exceptionMessage);
     }
 
     private void println(String value) {

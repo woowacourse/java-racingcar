@@ -1,7 +1,5 @@
 package racingcar;
 
-import static constant.Constants.CAR_NAME_LIMIT_EXCEPTION;
-
 public class Car {
     private static final int START_POSITION = 0;
     private static final int NAME_MAXIMUM_LENGTH = 5;
@@ -21,7 +19,7 @@ public class Car {
 
     private void validateName(String name) {
         if (isCorrectLength(name)) {
-            throw new IllegalArgumentException(CAR_NAME_LIMIT_EXCEPTION);
+            throw new IllegalArgumentException("5글자 이하로 입력하세요.");
         }
     }
 

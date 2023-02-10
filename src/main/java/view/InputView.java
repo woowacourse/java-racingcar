@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static constant.Constants.NOT_NUMERIC_EXCEPTION;
-
 public class InputView {
 
     private final OutputView outputView;
@@ -26,7 +24,7 @@ public class InputView {
             outputView.readNumberOfTry();
             return Integer.parseInt(readLine());
         } catch (NumberFormatException numberFormatException) {
-            outputView.printException(NOT_NUMERIC_EXCEPTION);
+            outputView.printException("숫자만 입력할 수 있습니다.");
             return readNumberOfMoving();
         }
     }
