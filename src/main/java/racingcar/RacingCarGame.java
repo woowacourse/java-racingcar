@@ -1,10 +1,16 @@
 package racingcar;
 
+import factory.CarFactory;
+
 import java.util.List;
 
 public class RacingCarGame {
 
     private static final int START_POSITION = 0;
+
+    public void addCars(String carNames) {
+        CarRepository.updateCars(CarFactory.from(carNames));
+    }
 
     public void repeatRounds() {
 //        TODO : 유효성 검사 validator 객체로 추출 => NumberOfTryValidator.validate(numberOfTry)

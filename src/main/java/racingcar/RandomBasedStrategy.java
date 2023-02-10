@@ -11,7 +11,6 @@ public class RandomBasedStrategy implements MoveStrategy {
     }
 
     private static int getRandom() {
-
         return (int) ((Math.random() * 10000) % MAXIMUM_NUMBER_OF_RANGE);
     }
 }
