@@ -43,8 +43,8 @@ public class CarsInfo {
     private Integer findMaxDistance() {
         return carsInfo.stream()
                 .mapToInt(Car::getDistance)
-                .max().
-                orElseThrow(NoSuchFieldError::new);
+                .max()
+                .orElse(0);
     }
 
     public void progressRound(RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
