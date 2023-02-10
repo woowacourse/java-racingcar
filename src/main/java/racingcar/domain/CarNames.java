@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 public class CarNames {
 
-    private final List<String> names;
-
     private final String CAR_NAME_DELIMITER = ",";
+
+    private final List<String> names;
 
     public CarNames(String carNames) {
         List<String> splitNames = Arrays.asList(carNames.split(CAR_NAME_DELIMITER));

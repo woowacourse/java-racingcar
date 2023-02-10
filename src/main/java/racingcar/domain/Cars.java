@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    private List<Car> cars = new ArrayList<>();
-
     private final int FIRST_INDEX = 0;
+
+    private List<Car> cars = new ArrayList<>();
 
     public void add(Car car) {
         cars.add(car);

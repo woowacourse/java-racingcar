@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.constant.ErrorLog;
 
 public class FinalRoundChecker {
+
     private final int finalRoundNumber;
 
     public FinalRoundChecker(int finalRoundNumber) {

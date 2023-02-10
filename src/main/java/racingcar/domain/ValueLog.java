@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValueLog {
+
     private List<Integer> log = new ArrayList<>();
 
     public void add(int value) {
