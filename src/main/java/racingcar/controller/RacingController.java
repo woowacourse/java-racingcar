@@ -6,13 +6,13 @@ import racingcar.model.car.strategy.MovingStrategy;
 import racingcar.model.track.Track;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.view.dto.CarNames;
-import racingcar.view.dto.TrialTimes;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingController {
+    private static final String SEPARATOR = ",";
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -23,25 +23,23 @@ public class RacingController {
 
     public Track init(MovingStrategy movingStrategy) {
         Cars cars = requestCars(movingStrategy);
-        int trialTime = requestTrialTime();
+        String trialTime = requestTrialTime();
         outputView.printInitialCarPosition(cars.getCarsPositionFormat());
 
         return new Track(cars, trialTime);
     }
 
     private Cars requestCars(MovingStrategy movingStrategy) {
-        CarNames carNames = inputView.getCarNames();
-        List<Car> cars = carNames.toCarNameList().stream()
+        String carNames = inputView.inputCarNames();
+        List<Car> cars = Arrays.stream(carNames.split(SEPARATOR))
                 .map(carName -> new Car(carName, movingStrategy))
                 .collect(Collectors.toList());
 
         return new Cars(cars);
     }
 
-    private int requestTrialTime() {
-        TrialTimes trialTimes = inputView.getTrialTimes();
-
-        return trialTimes.getTrialTimes();
+    private String requestTrialTime() {
+        return inputView.inputTrialTimes();
     }
 
     public void startRace(Track track) {

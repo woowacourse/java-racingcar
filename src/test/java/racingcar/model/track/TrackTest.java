@@ -13,11 +13,11 @@ class TrackTest {
     void raceCarTest() {
         // given
         Cars cars = TestDataManager.getCarsTestData();
-        int trialTime = 3;
+        String trialTime = "3";
         Track track = new Track(cars, trialTime);
 
         // when
-        for (int i = 0; i <= trialTime; i++) {
+        for (int i = 0; i <= Integer.parseInt(trialTime); i++) {
             track.race();
         }
 

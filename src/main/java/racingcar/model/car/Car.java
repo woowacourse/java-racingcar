@@ -1,6 +1,7 @@
 package racingcar.model.car;
 
 import racingcar.model.car.strategy.MovingStrategy;
+import racingcar.validator.CarNameValidator;
 
 public class Car {
     private static final String POSITION_FORMAT_SYMBOL = "-";
@@ -12,6 +13,8 @@ public class Car {
     private final MovingStrategy movingStrategy;
 
     public Car(String carName, MovingStrategy movingStrategy) {
+        CarNameValidator.validate(carName);
+
         this.carName = carName;
         this.movingStrategy = movingStrategy;
     }
@@ -37,6 +40,9 @@ public class Car {
         return movingStrategy.movable();
     }
 
+    public String getCarName() {
+        return carName;
+    }
     public int getPosition() {
         return position;
     }

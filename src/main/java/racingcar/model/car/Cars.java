@@ -1,5 +1,7 @@
 package racingcar.model.car;
 
+import racingcar.validator.CarsValidator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +13,8 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        CarsValidator.validate(cars);
+
         this.cars = cars;
     }
 

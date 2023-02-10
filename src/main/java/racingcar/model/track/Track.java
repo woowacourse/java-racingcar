@@ -1,6 +1,7 @@
 package racingcar.model.track;
 
 import racingcar.model.car.Cars;
+import racingcar.validator.TrialTimesValidator;
 
 public class Track {
     private static final int ONE_GAME = 1;
@@ -9,9 +10,11 @@ public class Track {
     private final Cars cars;
     private int trialTime;
 
-    public Track(Cars cars, int trialTime) {
+    public Track(Cars cars, String trialTime) {
+        TrialTimesValidator.validate(trialTime);
+
         this.cars = cars;
-        this.trialTime = trialTime;
+        this.trialTime = Integer.parseInt(trialTime);
     }
 
     public Cars race() {
