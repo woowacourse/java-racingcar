@@ -13,11 +13,11 @@ public class CarRepository {
     private static final int MIN_NUMBER_OF_CARS = 2;
     private static final int MOVING_CONDITION = 4;
 
-    private final List<Car> repository;
+    private final List<Car> racingCars;
 
-    public CarRepository(List<Car> repository) {
-        validate(repository);
-        this.repository = repository;
+    public CarRepository(List<Car> racingCars) {
+        validate(racingCars);
+        this.racingCars = racingCars;
     }
 
     private void validate(List<Car> repository) {
@@ -41,7 +41,7 @@ public class CarRepository {
 
     public Map<String, Integer> moveCars() {
         NumberGenerator numberGenerator = new NumberGenerator();
-        return repository.stream()
+        return racingCars.stream()
                 .map(car -> decideMoveOrStay(car, numberGenerator.generateRandomNumber()))
                 .collect(Collectors.toMap(Car::getName,
                         Car::getPosition,
@@ -56,17 +56,17 @@ public class CarRepository {
         return car;
     }
 
-    public List<Car> getRepository() {
-        return repository;
+    public List<Car> getRacingCars() {
+        return racingCars;
     }
 
     public List<String> findWinner() {
-        int maxPosition = repository.stream()
+        int maxPosition = racingCars.stream()
                 .map(Car::getPosition)
                 .max(Comparator.comparing(x -> x))
                 .orElseThrow(NoClassDefFoundError::new);
 
-        return repository.stream()
+        return racingCars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
