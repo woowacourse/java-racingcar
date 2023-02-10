@@ -19,8 +19,8 @@ class CarTest {
         assertThat(car.getCarName()).isEqualTo(name);
     }
 
-    @ParameterizedTest(name = "Car 객체 생성 예외 테스트 name = {0}")
-    @ValueSource(strings = {"pobiiii", "", "  "})
+    @ParameterizedTest(name = "Car 객체 생성 5자 초과 및 공백 예외 테스트 name = {0}")
+    @ValueSource(strings = {"pobiiii","abcdef", "", "  "})
     void createExceptionCarTest(String name) {
         assertThatThrownBy(() -> {
             new Car(name);
