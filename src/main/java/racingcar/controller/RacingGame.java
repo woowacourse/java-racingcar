@@ -1,6 +1,7 @@
-package racingcar.domain;
+package racingcar.controller;
 
-import racingcar.controller.CarManager;
+import racingcar.domain.Car;
+import racingcar.domain.TrialCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -12,7 +13,7 @@ public class RacingGame {
     private final OutputView output = new OutputView();
 
     public void run() {
-        CarManager carManager = new CarManager(getCarsFromInput());
+        Car.CarManager carManager = new Car.CarManager(getCarsFromInput());
         output.printBlankLine();
         TrialCount count = getTrialCountFromInput();
         output.printBlankLine();
@@ -41,7 +42,7 @@ public class RacingGame {
         }
     }
 
-    private void executeCarMoveByCount(CarManager manager, TrialCount count) {
+    private void executeCarMoveByCount(Car.CarManager manager, TrialCount count) {
         for (int i = 0; i < count.getValue(); i++) {
             manager.moveCarsRandomly();
             printExecutedResult(manager.getCars());

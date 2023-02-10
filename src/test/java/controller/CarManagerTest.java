@@ -2,7 +2,6 @@ package controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.controller.CarManager;
 import racingcar.domain.Car;
 import racingcar.domain.CarMovement;
 
@@ -22,7 +21,7 @@ public class CarManagerTest {
         car2.move(new CarMovement(3));
         car3.move(new CarMovement(4));
 
-        CarManager carManager = new CarManager(List.of(car1,car2,car3));
+        Car.CarManager carManager = new Car.CarManager(List.of(car1,car2,car3));
 
         assertThat(carManager.getWinners()).containsExactly(car1,car3);
     }
