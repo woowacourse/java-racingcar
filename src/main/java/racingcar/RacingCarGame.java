@@ -1,6 +1,7 @@
 package racingcar;
 
 import factory.CarFactory;
+import validator.NumberOfTryValidator;
 
 import java.util.List;
 
@@ -13,8 +14,6 @@ public class RacingCarGame {
     }
 
     public void repeatRounds() {
-//        TODO : 유효성 검사 validator 객체로 추출 => NumberOfTryValidator.validate(numberOfTry)
-        // NumberOfTryValidator.validate(); => "숫자만 입력할 수 있습니다."
         MoveStrategy moveStrategy = new RandomBasedStrategy();
 
         for (Car car : CarRepository.findAll()) {

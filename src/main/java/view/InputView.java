@@ -15,9 +15,9 @@ public class InputView {
         return readLine();
     }
 
-    public static int readNumberOfMoving() {
+    public static String readNumberOfTry() {
 //        outputView.printException("숫자만 입력할 수 있습니다.");
-        return Integer.parseInt(readLine());
+        return readLine();
     }
 
     private static String readLine() {
