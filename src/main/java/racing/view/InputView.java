@@ -11,7 +11,7 @@ public class InputView {
 
     public List<String> inputNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = SCANNER.next();
+        String input = SCANNER.nextLine();
         return Arrays.stream(input.split(","))
                 .collect(Collectors.toList());
     }
