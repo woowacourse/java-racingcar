@@ -24,7 +24,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    private Car findMaxPositionCar(){
+    private Car findMaxPositionCar() {
         cars.sort(Car::compareTo);
         return cars.get(0);
     }

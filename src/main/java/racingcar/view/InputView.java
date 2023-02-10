@@ -31,7 +31,7 @@ public class InputView {
 
     private void validateRoundInput(String round) {
         Matcher matcher = pattern.matcher(round);
-        if(!matcher.matches()) {
+        if (!matcher.matches()) {
             throw new IllegalArgumentException(ROUND_INPUT_ERROR);
         }
         if (Integer.parseInt(round) < ROUND_MIN_NUM) {

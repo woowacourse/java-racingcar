@@ -29,7 +29,7 @@ public class Car implements Comparable<Car> {
         return this.position == otherCar.position;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return this.position;
     }
 

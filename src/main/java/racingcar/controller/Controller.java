@@ -3,8 +3,10 @@ package racingcar.controller;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

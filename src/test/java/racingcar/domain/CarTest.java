@@ -1,17 +1,15 @@
-package domain;
+package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Car;
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumberGenerator;
 
 public class CarTest {
 
@@ -36,7 +34,7 @@ public class CarTest {
     void goForwardTest(int randomNumber, int expectedResult) {
         //Given
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(
-            new ArrayList<>(List.of(randomNumber)));
+                new ArrayList<>(List.of(randomNumber)));
         Car car = new Car("pobi", testNumberGenerator);
 
         //When
