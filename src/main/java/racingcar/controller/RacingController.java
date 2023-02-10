@@ -26,7 +26,7 @@ public class RacingController {
         Cars cars = setUpCars(carNames, movingStrategy);
 
         int trialTime = requestTrialTimes();
-        outputView.printInitialCarPosition(cars.getCarsPositionFormat());
+        outputView.printCarsPosition(cars);
 
         return new Track(cars, trialTime);
     }
@@ -52,7 +52,7 @@ public class RacingController {
     public void startRace(Track track) {
         while (track.runnable()) {
             Cars cars = track.race();
-            outputView.printCarsResult(cars.getCarsPositionFormat());
+            outputView.printCarsPosition(cars);
         }
     }
 

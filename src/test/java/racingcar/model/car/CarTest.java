@@ -12,10 +12,10 @@ class CarTest {
     void currentStateFormatTest(){
         // given
         Car car = new Car("pobi", new ForwardMovingStrategy());
-        String expected = "pobi : -";
+        int expected = 1;
 
         // when
-        String actual = car.getCurrentStateFormat();
+        int actual = car.getPosition();
 
         // then
         assertThat(actual).isEqualTo(expected);

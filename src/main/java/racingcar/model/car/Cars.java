@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final String LINE_BREAK = "\n";
-
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -19,12 +17,6 @@ public class Cars {
                 .forEach(Car::moveForward);
     }
 
-    public String getCarsPositionFormat() {
-        return cars.stream()
-                .map(Car::getCurrentStateFormat)
-                .collect(Collectors.joining(LINE_BREAK));
-    }
-
     public List<Car> getWinnerCars() {
         int maxPosition = Collections.max(cars.stream()
                 .map(Car::getPosition)
@@ -33,5 +25,9 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.matchPosition(maxPosition))
                 .collect(Collectors.toList());
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
