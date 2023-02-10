@@ -1,16 +1,16 @@
-package racingcar.enumType;
+package racingcar.domain.constant;
 
 import racingcar.util.EnumUtil;
 
-public enum DomainConstant implements EnumUtil<Object> {
+public enum RaceConstant implements EnumUtil<String, Integer> {
 
-    CAR_FORWARD_NUMBER(4)
-    , CAR_NAME_MAX_LENGTH(5)
+    MIN_RACE_CONDITION(0)
+    , MAX_RACE_CONDITION(9)
     , RACE_MIN_TRY_COUNT(0);
 
     private final int number;
 
-    DomainConstant(final int number) {
+    RaceConstant(final int number) {
         this.number = number;
     }
 
