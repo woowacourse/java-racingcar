@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 class CarsTest {
 
     private Cars cars;
+
     @BeforeEach
     void beforeEach() {
         cars = new Cars(List.of("a", "b", "c"));
@@ -28,6 +29,7 @@ class CarsTest {
         Assertions.assertThatThrownBy(()->{
             new Cars(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
+
     }
 
     @Test
