@@ -1,5 +1,5 @@
 package util;
 
 public interface NumberGenerator {
-    int generateNumber();
+    boolean generateNumber();
 }

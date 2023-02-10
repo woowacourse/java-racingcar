@@ -4,7 +4,6 @@ import constant.ExceptionMessage;
 
 public class Car {
     private static final int CAR_NAME_LENGTH = 5;
-    private static final int CAR_MOVE_STANDARD_LENGTH = 4;
     private static final int CAR_MOVE_LENGTH = 1;
     private static final int CAR_INITIAL_LENGTH = 0;
 
@@ -37,8 +36,8 @@ public class Car {
         this.location += CAR_MOVE_LENGTH;
     }
 
-    public void moveByRandom(int randNum) {
-        if (randNum >= CAR_MOVE_STANDARD_LENGTH) {
+    public void moveByRandom(boolean move) {
+        if (move) {
             this.moveCar();
         }
     }
