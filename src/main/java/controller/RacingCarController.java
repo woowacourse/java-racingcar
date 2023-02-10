@@ -15,20 +15,28 @@ public class RacingCarController {
     public void run() throws IOException {
         List<String> carNames = InputView.readCarNames();
         int attemptNumber = InputView.readAttemptNumber();
-
         Cars cars = getCars(carNames);
+        printRacingResult(attemptNumber, cars);
+        printWinners(cars);
+    }
 
+    private void printRacingResult(int attemptNumber, Cars cars) {
         OutputView.printResult();
-
         while ((attemptNumber--) > 0) {
             moveAll(cars);
-            List<CarDto> carDtos = getCarDtos(cars);
-            OutputView.printStatus(carDtos);
+            printStatus(cars);
         }
+    }
 
+    private void printWinners(Cars cars) {
         Cars winnerCars = cars.judgeWinners();
         List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
         OutputView.printWinner(winnerCarDtos);
+    }
+
+    private void printStatus(Cars cars) {
+        List<CarDto> carDtos = getCarDtos(cars);
+        OutputView.printStatus(carDtos);
     }
 
     private List<CarDto> getCarDtos(Cars cars) {
