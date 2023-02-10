@@ -1,5 +1,7 @@
 package racingcar;
 
+import validator.CarRepositoryValidator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,9 +13,7 @@ public class CarRepository {
     private static final List<Car> cars = new ArrayList<>();
 
     public static void updateCars(List<Car> newCars) {
-        if (newCars.size() < MINIMUM_NUMBER_OF_CARS) {
-            throw new IllegalArgumentException("자동차 이름은 최소 2개 이상 입력해야 합니다.");
-        }
+        CarRepositoryValidator.validate(newCars);
         cars.addAll(newCars);
     }
 
