@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 public class TrialCount {
-    private final Integer value;
+    private final int value;
     private final String COUNT_EXCEPTION_MESSAGE = "시도 횟수는 0보다 커야 합니다.";
 
     public TrialCount(int value) {
@@ -9,7 +9,7 @@ public class TrialCount {
         this.value = value;
     }
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 

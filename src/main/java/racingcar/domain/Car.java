@@ -19,7 +19,7 @@ public class Car implements Comparable<Car> {
         return name.getName();
     }
 
-    public Integer getPos() {
+    public int getPos() {
         return pos.getValue();
     }
 

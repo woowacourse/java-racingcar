@@ -1,9 +1,9 @@
 package racingcar.domain;
 
 public class Position implements Comparable<Position> {
-    private final Integer INITIAL_DEFAULT_VALUE = 0;
-    private final Integer MOVE_STEP = 1;
-    private Integer value;
+    private final int INITIAL_DEFAULT_VALUE = 0;
+    private final int MOVE_STEP = 1;
+    private int value;
 
     public Position() {
         this.value = INITIAL_DEFAULT_VALUE;
@@ -24,7 +24,7 @@ public class Position implements Comparable<Position> {
         return -1;
     }
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 

@@ -24,7 +24,7 @@ public class InputView {
 
     public TrialCount getTrialCount() {
         String input_count = readLineWithMessage(TRIAL_COUNT_PROMPT);
-        Integer number = Integer.parseInt(input_count);
+        int number = Integer.parseInt(input_count);
         return new TrialCount(number);
     }
 }
