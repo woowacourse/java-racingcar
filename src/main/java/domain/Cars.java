@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import utils.RandomNumberGenerator;
+import utils.numberGenerator.NumberGenerator;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final NumberGenerator numberGenerator;
 
-    public Cars(RandomNumberGenerator randomNumberGenerator) {
-        this.randomNumberGenerator = randomNumberGenerator;
+    public Cars(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
     }
 
     public void add(Car car) {
@@ -21,7 +21,7 @@ public class Cars {
     }
 
     public void move() {
-        cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
+        cars.forEach((car) -> car.move(numberGenerator.generateNumber()));
     }
 
     public List<String> getWinners() {

@@ -1,6 +1,5 @@
 package service;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -9,15 +8,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import testNumberGenerator.TestNumberGenerator;
 import utils.constants.ErrorMessages;
-import utils.exception.AlreadyDefinedFieldException;
+import utils.numberGenerator.NumberGenerator;
 
 class RacingGameServiceTest {
     RacingGameService racingGameService;
 
     @BeforeEach
     void setUp() {
-        racingGameService = new RacingGameService();
+        NumberGenerator numberGenerator = new TestNumberGenerator(List.of(3, 5));
+        racingGameService = new RacingGameService(numberGenerator);
     }
 
     @Test

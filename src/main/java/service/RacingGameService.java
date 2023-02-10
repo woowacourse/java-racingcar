@@ -6,11 +6,15 @@ import java.util.Set;
 
 import domain.Car;
 import domain.Cars;
-import utils.RandomNumberGenerator;
 import utils.constants.ErrorMessages;
+import utils.numberGenerator.NumberGenerator;
 
 public class RacingGameService {
-    private final Cars cars = new Cars(new RandomNumberGenerator());
+    private final Cars cars;
+
+    public RacingGameService(NumberGenerator numberGenerator) {
+        this.cars = new Cars(numberGenerator);
+    }
 
     public void setCars(List<String> carNames) {
         validateDuplication(carNames);
