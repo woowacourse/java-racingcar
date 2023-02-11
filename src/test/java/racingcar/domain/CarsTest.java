@@ -28,7 +28,7 @@ public class CarsTest {
         cars.move(numberGenerator);
 
         assertThat(cars.getCars())
-                .extracting("position")
+                .extracting(Car::getPosition)
                 .containsExactly(1, 0, 1);
     }
 
@@ -61,7 +61,7 @@ public class CarsTest {
         Cars cars = Cars.from(carNames);
 
         assertThat(cars.getCars())
-                .extracting("name")
+                .extracting(Car::getName)
                 .containsExactly("car1", "car2", "car3");
     }
 }

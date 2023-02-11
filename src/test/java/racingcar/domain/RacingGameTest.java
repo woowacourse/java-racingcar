@@ -25,7 +25,7 @@ class RacingGameTest {
         List<Car> result = racingGame.play();
 
         assertThat(result)
-                .extracting("position")
+                .extracting(Car::getPosition)
                 .containsExactly(1, 0);
     }
 
