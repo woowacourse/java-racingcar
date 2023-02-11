@@ -18,9 +18,7 @@ class CarMovementTest {
 	@DisplayName("자동차 이동 기능 생성 성공 테스트")
 	@Test
 	void createRandomCarMovementTest() {
-		carMovement = new CarMovement(() -> 0);
-		carMovement.isCarMoveForward();
-		assertThat(carMovement).isNotNull();
+		assertThat(carMovement = new CarMovement(numberGenerator)).isInstanceOf(CarMovement.class);
 	}
 
 	@DisplayName("자동차 이동 테스트")
