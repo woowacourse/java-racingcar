@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class InputView {
 	private static final String DELIMITER = ",";
+	private static final int ROUND_MIN = 1;
+	private static final int ROUND_MAX = 10;
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static List<String> readCarNames() {
@@ -35,8 +37,25 @@ public class InputView {
 	}
 
 	private static void validateRoundCount(String input) {
-		if (input.equals("0") || !input.matches("[0-9]+")) {
-			throw new IllegalArgumentException("[ERROR]: 자연수가 입력되어야 합니다.");
+		if (!isStringInteger(input) || !isStringIntInGivenRange(input, ROUND_MIN, ROUND_MAX)) {
+			throw new IllegalArgumentException("[ERROR]: 1 이상 10 이하의 자연수가 입력되어야 합니다.");
 		}
+	}
+
+	private static boolean isStringInteger(String string) {
+		try {
+			Integer.parseInt(string);
+		} catch (NumberFormatException e) {
+			return false;
+		}
+		return true;
+	}
+
+	private static boolean isStringIntInGivenRange(String string, int minInclusive, int maxInclusive) {
+		int stringInt = Integer.parseInt(string);
+		if (stringInt >= minInclusive && stringInt <= maxInclusive) {
+			return true;
+		}
+		return false;
 	}
 }
