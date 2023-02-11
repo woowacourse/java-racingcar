@@ -5,24 +5,25 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import racingcar.controller.Controller;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-class RacingCarApplicationTest {
+class ControllerTest {
 
     @Test
     @DisplayName("게임이 정상적으로 실행되는지 테스트한다")
     void runGame() {
-        final RacingCarApplication racingCarApplication = mock(RacingCarApplication.class);
+        final Controller controller = mock(Controller.class);
 
         InputStream nameInput = new ByteArrayInputStream("gavi,jude".getBytes());
         InputStream repeatsInput = new ByteArrayInputStream("5".getBytes());
         System.setIn(nameInput);
         System.setIn(repeatsInput);
-        racingCarApplication.startRacing();
+        controller.startRacing();
 
-        verify(racingCarApplication).startRacing();
+        verify(controller).startRacing();
     }
 
 }

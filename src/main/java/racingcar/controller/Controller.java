@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,17 +9,20 @@ import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingCarApplication {
+public class Controller {
     private static final String DELIMITER = ",";
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
-    private static final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final RandomNumberGenerator randomNumberGenerator;
 
     private final Cars cars;
     private final int gameCount;
 
-    public RacingCarApplication() {
+    public Controller() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.randomNumberGenerator = new RandomNumberGenerator();
         this.cars = new Cars(initializeCars());
         this.gameCount = inputView.inputGameTime();
     }
