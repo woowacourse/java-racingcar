@@ -30,6 +30,13 @@ public class Cars {
         return new Cars(carNames, numberGenerator);
     }
 
+    private void validateDuplicateCarName() {
+        int nonDuplicateCount = new HashSet<>(cars).size();
+        if (cars.size() != nonDuplicateCount) {
+            throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
+        }
+    }
+
     public List<CarRaceDto> initStatus() {
         return cars.stream()
                 .map(Car::getCarRaceResult)
@@ -66,13 +73,6 @@ public class Cars {
 
     private String[] splitCarNames(String carNames) {
         return carNames.split(SPLIT_DELIMITER.getValue());
-    }
-
-    private void validateDuplicateCarName() {
-        int nonDuplicateCount = new HashSet<>(cars).size();
-        if (cars.size() != nonDuplicateCount) {
-            throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
-        }
     }
 
     @Override

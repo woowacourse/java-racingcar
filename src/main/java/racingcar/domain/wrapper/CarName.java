@@ -13,7 +13,7 @@ public class CarName {
     private CarName(final String name) {
         validateNameBlank(name);
         validateNameLength(name);
-        this.name = name;
+        this.name = name.trim();
     }
 
     public static CarName of(final String carName) {
@@ -47,6 +47,6 @@ public class CarName {
     }
 
     public String getName() {
-        return name.trim();
+        return name;
     }
 }
