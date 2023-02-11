@@ -11,11 +11,15 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        this(name, INIT_POSITION);
+    }
+
+    public Car(String name, int position) {
         String carName = name.trim();
         validateBlank(name);
         validateLength(carName);
         this.name = carName;
-        this.position = INIT_POSITION;
+        this.position = position;
     }
 
     private static void validateBlank(String name) {
