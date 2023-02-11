@@ -1,9 +1,7 @@
 package view;
 
-import domain.Car;
-import domain.Cars;
 import dto.CarDto;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +34,7 @@ public class OutputView {
         return positionString.toString();
     }
 
-    public static void printWinner(List<CarDto> carDtos) {
+    public static void printWinners(List<CarDto> carDtos) {
         List<String> carNames = carDtos.stream()
                 .map(CarDto::getName)
                 .collect(Collectors.toList());
