@@ -19,7 +19,7 @@ public class RacingGameEngine {
     }
 
     private String getCarsName() {
-        OutputView.requestOfCarNames();
+        OutputView.requestOfCarsName();
         return InputView.inputCarsName();
     }
 

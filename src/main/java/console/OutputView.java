@@ -5,9 +5,12 @@ import java.util.Map;
 
 public class OutputView {
 
+    private static final String SEPARATOR = " : ";
     private static final String DELIMITER = ", ";
+    private static final String MOVE_DISTANCE = "-";
+    private static final String NEW_LINE = System.lineSeparator();
 
-    public static void requestOfCarNames() {
+    public static void requestOfCarsName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
 
@@ -16,7 +19,7 @@ public class OutputView {
     }
 
     public static void printResultMessage() {
-        System.out.println("\n실행 결과");
+        System.out.println(NEW_LINE + "실행 결과");
     }
 
     public static void printWinners(Cars cars) {
@@ -26,14 +29,15 @@ public class OutputView {
 
     public static void printCurrentRacingStatus(Cars cars) {
         final Map<String, Integer> currentRacingStatus = cars.getCurrentStatus();
-
         StringBuilder currentRacingStatusMessage = new StringBuilder();
 
         for (final String carName : currentRacingStatus.keySet()) {
-            currentRacingStatusMessage.append(carName)
-                    .append(" : ")
-                    .append("-".repeat(currentRacingStatus.get(carName)))
-                    .append("\n");
+            int countOfMovingDistance = currentRacingStatus.get(carName);
+            currentRacingStatusMessage
+                    .append(carName)
+                    .append(SEPARATOR)
+                    .append(MOVE_DISTANCE.repeat(countOfMovingDistance))
+                    .append(NEW_LINE);
         }
 
         System.out.println(currentRacingStatusMessage.toString());
