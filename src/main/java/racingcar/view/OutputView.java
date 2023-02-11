@@ -11,38 +11,35 @@ public class OutputView {
     private static final String COLON = " : ";
     private static final String CAR_POSITION = "-";
 
-    private final Output output;
-
-    public OutputView(Output output) {
-        this.output = output;
+    private OutputView() {
     }
 
-    public void printStatusGuide() {
-        output.println();
-        output.println(STATUS_GUIDE_MESSAGE);
+    public static void printStatusGuide() {
+        System.out.println();
+        System.out.println(STATUS_GUIDE_MESSAGE);
     }
 
-    public void printStatus(List<CarPositionDto> racingStatus) {
-        racingStatus.forEach(this::printOneStatus);
-        output.println();
+    public static void printStatus(List<CarPositionDto> racingStatus) {
+        racingStatus.forEach(OutputView::printOneStatus);
+        System.out.println();
     }
 
-    private void printOneStatus(CarPositionDto racingStatus) {
-        output.print(racingStatus.getCarName());
-        output.print(COLON);
+    private static void printOneStatus(CarPositionDto racingStatus) {
+        System.out.print(racingStatus.getCarName());
+        System.out.print(COLON);
 
         for (int i = 0; i < racingStatus.getStatus(); i++) {
-            output.print(CAR_POSITION);
+            System.out.print(CAR_POSITION);
         }
-        output.println();
+        System.out.println();
     }
 
-    public void printWinner(List<String> winners) {
-        output.print(String.join(WINNER_DELIMITER, winners));
-        output.println(WINNER_GUIDE_MESSAGE);
+    public static void printWinner(List<String> winners) {
+        System.out.print(String.join(WINNER_DELIMITER, winners));
+        System.out.println(WINNER_GUIDE_MESSAGE);
     }
 
-    public void printErrorMessage(String errorMessage) {
-        output.println(errorMessage);
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }
