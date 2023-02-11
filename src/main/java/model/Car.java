@@ -6,7 +6,7 @@ public class Car {
     private static final int CAR_INITIAL_LENGTH = 0;
     private static final int CAR_MOVE_STANDARD_LENGTH = 4;
 
-    private Name name;
+    private final Name name;
     private int location;
 
     public Car(Name name) {
