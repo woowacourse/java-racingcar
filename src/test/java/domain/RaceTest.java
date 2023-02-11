@@ -21,7 +21,7 @@ class RaceTest {
 
         @BeforeEach
         void setup() {
-            Race race = new Race(List.of(new Car("rosie"), new Car("hong", 1)));
+            Race race = new Race(List.of(new Car("rosie", 2), new Car("hong", 1)));
             winners = race.getWinners().stream().map(Car::getName).collect(Collectors.toList());
         }
 
