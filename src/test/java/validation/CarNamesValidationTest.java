@@ -3,6 +3,7 @@ package validation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("CarNamesValidation Unit Test")
@@ -32,14 +33,10 @@ class CarNamesValidationTest {
         String input = "";
         String expectedMessage = "자동차를 한 대 이상 작성해주세요.";
 
-        //when & then
-        try {
-            CarNamesValidation.validateInputCarNames(input);
-        } catch (IllegalArgumentException exception) {
-            final String errorMessage = exception.getMessage();
-
-            assertEquals(expectedMessage, errorMessage);
-        }
+        // when & then
+        assertThatThrownBy(() -> CarNamesValidation.validateInputCarNames(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
     }
 
     @Test
@@ -60,11 +57,8 @@ class CarNamesValidationTest {
         String expectedMessage = "자동차 이름은 중복되지 않아야합니다.";
 
         //when & then
-        try {
-            CarNamesValidation.validateInputCarNames(input);
-        } catch (IllegalArgumentException exception) {
-            final String errorMessage = exception.getMessage();
-            assertEquals(expectedMessage, errorMessage);
-        }
+        assertThatThrownBy(() -> CarNamesValidation.validateInputCarNames(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
     }
 }
