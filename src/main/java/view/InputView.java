@@ -15,7 +15,6 @@ public class InputView {
 		try {
 			String input = scanner.nextLine();
 			return new Cars(inputValidation.returnList(input));
-			// return new Cars(scanner.nextLine());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return askCars();
