@@ -1,13 +1,11 @@
 package racingcar.domain;
 
+import racingcar.constant.GameConstant;
+
 import java.util.Objects;
 
 public class Position {
-    private int position;
-
-    public Position(int position) {
-        this.position = position;
-    }
+    private int position = GameConstant.RACE_START_POINT;
 
     public void move() {
         position++;
