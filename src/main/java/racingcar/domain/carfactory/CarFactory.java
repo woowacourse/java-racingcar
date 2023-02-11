@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 
 public class CarFactory {
 
-    public Cars createCars(List<String> carNames){
+    public Cars createCars(List<String> carNames) {
         return new Cars(makeCars(carNames));
     }
 
     private List<Car> makeCars(List<String> carNames) {
         return carNames.stream()
                 .map(Car::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 }
