@@ -10,11 +10,13 @@ import java.util.stream.Collectors;
 public class CarNamesRequest {
     private final List<String> carNames;
 
-    public CarNamesRequest(String carNames) {
+    public CarNamesRequest(String inputCarNames) {
         CarValidator carValidator = new DefaultCarValidator();
-        carValidator.validateCarName(carNames);
-
-        this.carNames = splitByComma(carNames);
+        this.carNames = splitByComma(inputCarNames);
+        carValidator.validateCarNamesSize(this.carNames);
+        for (String carName : carNames) {
+            carValidator.validateCarName(carName);
+        }
     }
 
     private List<String> splitByComma(String carNames) {

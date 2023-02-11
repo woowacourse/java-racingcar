@@ -11,9 +11,6 @@ public class Cars {
     private final Set<Car> cars = new LinkedHashSet<>();
 
     public void createCars(List<String> carNames, NumberGenerator numberGenerator) {
-        CarValidator validator = new DefaultCarValidator();
-        validator.validateCarNamesSize(carNames);
-
         CarMovement carMovement = new CarMovement(numberGenerator);
         for (String carName : carNames) {
             generateCar(carName, carMovement);
