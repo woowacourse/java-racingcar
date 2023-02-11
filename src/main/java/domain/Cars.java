@@ -7,7 +7,6 @@ public class Cars {
 	List<Car> cars;
 
 	public Cars(List<Car> input) {
-		// cars = new ArrayList<>(input);
 		cars = new ArrayList<>(input);
 	}
 
