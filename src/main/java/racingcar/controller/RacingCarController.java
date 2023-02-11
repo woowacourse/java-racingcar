@@ -39,7 +39,7 @@ public class RacingCarController {
     private List<Car> generateCars(String[] carNames) {
         return Arrays.stream(carNames)
                 .map(carName -> new Car(carName, START_POSITION))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void showWinners() {
