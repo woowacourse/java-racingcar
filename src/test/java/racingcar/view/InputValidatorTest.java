@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -13,31 +13,43 @@ class InputValidatorTest {
 
     private final InputValidator inputValidator = new InputValidator();
 
-    @ParameterizedTest
-    @ValueSource(strings = {",  ,", "", "   ,안녕", "우아한테코톡"})
-    @DisplayName("validateNames 메서드는 올바른 차 이름이 아니라면 예외를 던진다.")
-    void should_throwException_when_invalidNames(final String input) {
-        assertThatThrownBy(() -> inputValidator.validateNames(input))
+    @ParameterizedTest(name = "validateNames 메서드는 허용되지 않는 길이의 이름[{0}]을 입력받는 경우 예외를 던진다.")
+    @ValueSource(strings = {"", "Dazzle"})
+    void should_throwException_when_invalidNames(final String name) {
+        assertThatThrownBy(() -> inputValidator.validateNames(List.of(name)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차의 이름은 1자 이상 ~ 5자 이하여야 합니다.");
     }
 
     @Test
-    @DisplayName("validateNames 메서드는 올바른 차 이름인지 확인하고 이름 목록을 반환한다.")
-    void should_returnValidNames_when_validateInput() {
-        String input = "도기,다즐,허브";
+    @DisplayName("validateNames 메서드는 올바른 길이의 차 이름 목록을 입력받는 경우 예외를 던지지 않는다.")
+    void should_noException_when_validNames() {
+        List<String> names = List.of("차", "다즐", "라틴어수업");
 
-        List<String> result = inputValidator.validateNames(input);
-
-        assertThat(result).containsExactly("도기", "다즐", "허브");
+        assertThatNoException().isThrownBy(() -> inputValidator.validateNames(names));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"h", "Q", "한", "!", "", "-1", "0", "1.2"})
-    @DisplayName("정수로 변환할 수 없거나, 1이상의 정수가 아닌 경우 예외를 던진다.")
-    void should_throwException_when_invalidCount(final String input) {
-        assertThatThrownBy(() -> inputValidator.validateCount(input))
+    @Test
+    @DisplayName("validateNames 메서드는 중복된 이름이 포함된 이름 목록을 받는 경우 예외를 던진다.")
+    void should_throwException_when_duplicatedNames() {
+        final List<String> duplicatedNames = List.of("다즐", "허브", "허브");
+
+        assertThatThrownBy(() -> inputValidator.validateNames(duplicatedNames))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("횟수는 1이상의 정수만 가능합니다.");
+                .hasMessage("중복된 차 이름이 없어야 합니다.");
+    }
+
+    @ParameterizedTest(name = "validateCount 메서드는 1보다 작은 정수[{0}]를 입력받는 경우 예외를 던진다.")
+    @ValueSource(strings = {"0", "-1"})
+    void should_throwException_when_invalidCount(final int count) {
+        assertThatThrownBy(() -> inputValidator.validateCount(count))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("시도할 횟수는 1이상의 정수여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("validateCount 메서드는 1 이상의 정수를 입력받는 경우 예외를 던지지 않는다.")
+    void should_noException_when_validCount() {
+        assertThatNoException().isThrownBy(() -> inputValidator.validateCount(1));
     }
 }
