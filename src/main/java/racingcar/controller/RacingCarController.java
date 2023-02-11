@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.RandomNumberGenerator;
+import racingcar.util.NumberGenerator;
 import racingcar.model.Car;
 import racingcar.model.RacingCars;
 import racingcar.view.InputView;
@@ -13,8 +13,15 @@ public class RacingCarController {
 
     private static final int START_POSITION = 0;
 
-    private OutputView outputView = OutputView.getInstance();
-    private InputView inputView = InputView.getInstance();
+    private final OutputView outputView;
+    private final InputView inputView;
+    private final NumberGenerator numberGenerator;
+
+    public RacingCarController(final NumberGenerator numberGenerator) {
+        this.outputView = OutputView.getInstance();
+        this.inputView = InputView.getInstance();
+        this.numberGenerator = numberGenerator;
+    }
 
     public void run() {
         String[] carNames = readCarNamesStep();
@@ -51,7 +58,7 @@ public class RacingCarController {
         for (int repeatIndex = 0; repeatIndex < tryNum; repeatIndex++) {
             List<Car> currentCars = racingCars.getCars();
             for (Car currentCar : currentCars) {
-                int randomValue = RandomNumberGenerator.generate();
+                int randomValue = numberGenerator.generate();
                 currentCar.move(currentCar.canMoving(randomValue));
             }
             outputView.printCurrentRacingCarsPosition(convertRacingCarsResultForPrint(currentCars));
