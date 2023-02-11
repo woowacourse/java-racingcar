@@ -22,7 +22,7 @@ class PositionTest {
     @Test
     @DisplayName("4 이상의 값이 생성되면 한칸 전진한다.")
     void move() {
-        position.move(new StubMovableRacingNumberGenerator());
+        position.move(new StubMovableRacingNumberGenerator().generate());
 
         Assertions.assertThat(position.getPosition()).isSameAs(MOVE_STATE);
     }
@@ -30,7 +30,7 @@ class PositionTest {
     @Test
     @DisplayName("3 이하의 값이 생성되면 멈춘다.")
     void stop() {
-        position.move(new StubUnmovableRacingNumberGenerator());
+        position.move(new StubUnmovableRacingNumberGenerator().generate());
 
         Assertions.assertThat(position.getPosition()).isSameAs(STOP_STATE);
     }
