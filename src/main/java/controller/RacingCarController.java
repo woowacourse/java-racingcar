@@ -3,9 +3,11 @@ package controller;
 import domain.Car;
 import domain.Cars;
 import dto.CarDto;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -20,29 +22,19 @@ public class RacingCarController {
         printWinners(cars);
     }
 
+    private Cars getCars(List<String> carNames) {
+        List<Car> carList = carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+        return new Cars(carList);
+    }
+
     private void printRacingResult(int attemptNumber, Cars cars) {
         OutputView.printResult();
         while ((attemptNumber--) > 0) {
             moveAll(cars);
             printStatus(cars);
         }
-    }
-
-    private void printWinners(Cars cars) {
-        Cars winnerCars = cars.judgeWinners();
-        List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
-        OutputView.printWinner(winnerCarDtos);
-    }
-
-    private void printStatus(Cars cars) {
-        List<CarDto> carDtos = getCarDtos(cars);
-        OutputView.printStatus(carDtos);
-    }
-
-    private List<CarDto> getCarDtos(Cars cars) {
-        return cars.getCars().stream()
-                .map(CarDto::from)
-                .collect(Collectors.toList());
     }
 
     private void moveAll(Cars cars) {
@@ -52,10 +44,20 @@ public class RacingCarController {
         }
     }
 
-    private Cars getCars(List<String> carNames) {
-        List<Car> carList = carNames.stream()
-                .map(Car::new)
+    private void printStatus(Cars cars) {
+        List<CarDto> carDtos = getCarDtos(cars);
+        OutputView.printStatus(carDtos);
+    }
+
+    private void printWinners(Cars cars) {
+        Cars winnerCars = cars.judgeWinners();
+        List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
+        OutputView.printWinner(winnerCarDtos);
+    }
+
+    private List<CarDto> getCarDtos(Cars cars) {
+        return cars.getCars().stream()
+                .map(CarDto::from)
                 .collect(Collectors.toList());
-        return new Cars(carList);
     }
 }
