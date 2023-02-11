@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class CarsFactory {
 
-    private static final String SPLIT_DELIMITER = ",";
     private static final int DEFAULT_DISTANCE_VALUE = 0;
 
     public static Cars createCars(String carsName) {
