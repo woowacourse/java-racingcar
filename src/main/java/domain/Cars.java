@@ -16,11 +16,11 @@ public class Cars {
 
     public void moveAll() {
         for (final Car car : cars) {
-            doRace(car);
+            startMove(car);
         }
     }
 
-    private void doRace(final Car car) {
+    private void startMove(final Car car) {
         if (canMove()) {
             car.move();
         }
@@ -32,10 +32,10 @@ public class Cars {
 
     public List<String> getWinnerNames() {
         List<String> winnerNames = new ArrayList<>();
-        int max = getMaxDistance();
+        int maxCountOfDistance = getMaxDistance();
 
         for (final Car car : cars) {
-            addWinnerName(winnerNames, car, max);
+            addWinnerName(winnerNames, car, maxCountOfDistance);
         }
 
         return winnerNames;
@@ -49,8 +49,8 @@ public class Cars {
         return maxDistance;
     }
 
-    private void addWinnerName(List<String> result, Car car, int max) {
-        if (car.getDistance() == max) {
+    private void addWinnerName(List<String> result, Car car, int maxDistance) {
+        if (car.getDistance() == maxDistance) {
             result.add(car.getName());
         }
     }
