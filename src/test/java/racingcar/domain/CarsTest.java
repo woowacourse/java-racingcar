@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
@@ -46,5 +47,12 @@ class CarsTest {
         cars.moveCars(mockRandomPicker);
         assertThat(cars.findWinner()).containsExactly("judy", "nunu", "pobi");
 
+    }
+
+    @Test
+    void 생성시_중복된_이름이_있으면_예외발생() {
+        assertThatThrownBy(() -> new Cars(List.of("judy", "judy")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 이름이 존재합니다.");
     }
 }
