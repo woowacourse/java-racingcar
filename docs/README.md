@@ -42,7 +42,7 @@
 
 ### NumberGenerator
 
-- [ ] 임의의 정수 생성을 담당하는 인터페이스이다.
+- [x] 임의의 정수 생성을 담당하는 인터페이스이다.
 
 ### RandomNumberGenerator
 

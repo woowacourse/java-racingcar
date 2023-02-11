@@ -47,8 +47,9 @@ public class RacingCarController {
     }
 
     private void moveAll(Cars cars) {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (Car car : cars.getCars()) {
-            int randomNumber = RandomNumberGenerator.generate();
+            int randomNumber = randomNumberGenerator.generate();
             car.move(randomNumber);
         }
     }
