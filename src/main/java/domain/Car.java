@@ -10,6 +10,11 @@ public class Car {
         position = 0;
     }
 
+    public Car(final Car car) {
+        carName = car.getCarName();
+        position = car.getPosition();
+    }
+
     public void move() {
         position++;
     }

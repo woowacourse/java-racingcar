@@ -10,7 +10,6 @@ public class RacingGame {
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
 
-
     public RacingGame(final List<String> splitCarNames, final NumberGenerator numberGenerator) {
         cars = splitCarNames.stream()
                 .map(Car::new)
@@ -33,7 +32,10 @@ public class RacingGame {
     }
 
     public List<Car> getCars() {
-        return List.copyOf(cars);
+        List<Car> copiedCars = cars.stream()
+                .map((car -> new Car(car)))
+                .collect(Collectors.toList());
+        return List.copyOf(copiedCars);
     }
 
     public List<Car> getWinners() {

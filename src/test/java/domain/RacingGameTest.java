@@ -1,13 +1,17 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -57,5 +61,16 @@ class RacingGameTest {
         public int makeDigit() {
             return repository.get(index++);
         }
+    }
+
+    @Test
+    void 반환된_자동차_객체를_변형해도_내부의_상태는_영향을_받지_않는다() {
+        Queue<Integer> nums = new LinkedList<>();
+        RacingGame racingGame = new RacingGame(List.of("pobi", "crong"), nums::poll);
+        racingGame.getCars().forEach(Car::move);
+
+        racingGame.getCars().forEach((car) -> {
+            assertThat(car.getPosition()).isEqualTo(0);
+        });
     }
 }
