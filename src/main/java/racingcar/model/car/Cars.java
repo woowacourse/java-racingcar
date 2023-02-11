@@ -42,7 +42,7 @@ public class Cars {
     }
 
     private void validateDuplicateCarNames(String[] splitCarNames) {
-        int carNamesCount = cars.size();
+        int carNamesCount = splitCarNames.length;
         int distinctCarNamesCount = new HashSet<>(Arrays.asList(splitCarNames)).size();
 
         if (carNamesCount != distinctCarNamesCount) {

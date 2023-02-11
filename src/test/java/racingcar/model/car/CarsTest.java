@@ -20,12 +20,9 @@ class CarsTest {
     @Test
     void validateNotExistCarsTest() {
         String carNames = ",,,";
-        List<Car> cars = Arrays.stream(carNames.split(","))
-                .map(carName -> new Car(carName, new ForwardMovingStrategy()))
-                .collect(Collectors.toList());
 
         assertThatThrownBy(() -> {
-            new Cars(cars);
+            new Cars(carNames, new ForwardMovingStrategy());
         }).isInstanceOf(NotExistCarsException.class);
     }
 
