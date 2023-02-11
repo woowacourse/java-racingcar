@@ -30,9 +30,20 @@ class CarTest {
     @DisplayName("3 이하의 숫자를 받았을 때, 자동차 포지션이 변경되지 않는지 검증한다")
     void carMoveTest() {
         Car testCar = new Car("aa");
-        testCar.move(2);
+        testCar.move(new TestNumberGenerator().generate());
         int currentPosition = testCar.getPosition();
 
         assertThat(currentPosition).isEqualTo(0);
     }
+
+    private class TestNumberGenerator implements NumberGenerator {
+        private int num = 2;
+
+        @Override
+        public int generate() {
+            return num;
+        }
+
+    }
+
 }
