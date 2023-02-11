@@ -1,6 +1,5 @@
 package domain;
 
-import utils.constants.ErrorMessages;
 import utils.constants.GameRules;
 import utils.constants.PrintSigns;
 
@@ -9,19 +8,13 @@ public class Car {
     private Long position = 0L;
 
     public Car(String name) {
-        validateName(name);
+        GameRules.validateNameLength(name);
         this.name = name;
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber > GameRules.MOVE_NUMBER.getValue()) {
+    public void move(int number) {
+        if (GameRules.canMove(number)) {
             position++;
-        }
-    }
-
-    private void validateName(String name) {
-        if (name.length() > GameRules.NAME_LENGTH.getValue()) {
-            throw new IllegalArgumentException(ErrorMessages.NAME_LENGTH.getMessage());
         }
     }
 
