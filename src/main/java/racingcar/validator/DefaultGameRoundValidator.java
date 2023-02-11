@@ -5,13 +5,13 @@ import static racingcar.exception.ErrorMessages.*;
 public class DefaultGameRoundValidator implements GameRoundValidator {
     @Override
     public void validateGameRoundInput(String inputGameRound) {
-        validateBlank(inputGameRound);
+        validateNullOrBlank(inputGameRound);
         validateNotStartZero(inputGameRound);
         validateInteger(inputGameRound);
     }
 
-    private void validateBlank(String gameRound) {
-        if (gameRound.isBlank()) {
+    private void validateNullOrBlank(String gameRound) {
+        if (gameRound == null || gameRound.isBlank()) {
             throw new IllegalArgumentException(GAME_ROUND_INPUT_BLANK_EXCEPTION.getMessage());
         }
     }
