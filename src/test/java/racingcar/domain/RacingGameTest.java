@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameTest {
     private RacingGame racingGame;
-    private final CarRepository carRepository = new CarRepository(List.of("pobi", "crong", "honux"));
+    private final Cars cars = new Cars(List.of("pobi", "crong", "honux"));
 
     @BeforeEach
     void setup() {
-        racingGame = new RacingGame(carRepository, 1, new TestNumberGenerator(7));
+        racingGame = new RacingGame(cars, 1, new TestNumberGenerator(7));
     }
 
     @Test
