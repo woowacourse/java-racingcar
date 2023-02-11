@@ -1,4 +1,4 @@
-package view.input;
+package view;
 
 import static validation.CarNameValidator.CAR_NAME_VALIDATOR;
 import static validation.CountValidator.COUNT_VALIDATOR;

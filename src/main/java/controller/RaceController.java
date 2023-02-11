@@ -7,8 +7,8 @@ import domain.Race;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import view.input.InputView;
-import view.output.OutputView;
+import view.InputView;
+import view.OutputView;
 
 public class RaceController {
 

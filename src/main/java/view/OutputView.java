@@ -1,11 +1,11 @@
-package view.output;
+package view;
 
 import domain.Car;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    
+
     private final static String RESULT = "\n실행 결과";
     private final static String WIN = "가 최종 우승했습니다.";
 
