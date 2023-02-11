@@ -1,6 +1,6 @@
 package model;
 
-import dto.CarDto;
+import dto.RacingCarStateDto;
 import dto.WinnerCarDto;
 import model.wrapper.Name;
 import model.wrapper.Position;
@@ -23,8 +23,8 @@ public class Car implements Comparable<Car> {
         return this.position.isSamePosition(otherCar.position);
     }
 
-    public CarDto mapToCarDto() {
-        return new CarDto(name.getName(), position.getPosition());
+    public RacingCarStateDto mapToRacingCarStateDto() {
+        return new RacingCarStateDto(name.getName(), position.getPosition());
     }
 
     public WinnerCarDto mapToWinnerCarDto() {

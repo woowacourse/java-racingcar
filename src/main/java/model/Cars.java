@@ -1,6 +1,6 @@
 package model;
 
-import dto.CarDto;
+import dto.RacingCarStateDto;
 import dto.WinnerCarDto;
 import exception.WrongRangeMovableNumberException;
 import java.util.Collections;
@@ -37,9 +37,9 @@ public class Cars {
         return movableValue < MIN_INCLUSIVE_VALUE || movableValue > MAX_INCLUSIVE_VALUE;
     }
 
-    public List<CarDto> getCarsDto() {
+    public List<RacingCarStateDto> getRacingCarStateDto() {
         return cars.stream()
-                .map(Car::mapToCarDto)
+                .map(Car::mapToRacingCarStateDto)
                 .collect(Collectors.toUnmodifiableList());
     }
 

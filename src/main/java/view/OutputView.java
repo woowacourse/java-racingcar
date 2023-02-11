@@ -1,6 +1,6 @@
 package view;
 
-import dto.CarDto;
+import dto.RacingCarStateDto;
 import dto.WinnerCarDto;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +20,7 @@ public class OutputView {
         print(RACE_START_MESSAGE);
     }
 
-    public void printRound(List<CarDto> carsDto) {
+    public void printRoundState(List<RacingCarStateDto> carsDto) {
         carsDto.forEach(dto -> print(String.format(ROUND_FORMAT, dto.getName(),
                 getCarPositionState(dto.getPosition()))));
         print(LINE_FEED);

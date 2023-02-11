@@ -32,7 +32,7 @@ public class CarController {
 
         while (round.isRacing()) {
             carService.race(generator);
-            outputView.printRound(carService.getCarsDto());
+            outputView.printRoundState(carService.getRacingCarStateDto());
         }
     }
 

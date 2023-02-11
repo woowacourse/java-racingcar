@@ -1,6 +1,6 @@
 package service;
 
-import dto.CarDto;
+import dto.RacingCarStateDto;
 import dto.WinnerCarDto;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -28,8 +28,8 @@ public class CarService {
         cars.race(generator);
     }
 
-    public List<CarDto> getCarsDto() {
-        return cars.getCarsDto();
+    public List<RacingCarStateDto> getRacingCarStateDto() {
+        return cars.getRacingCarStateDto();
     }
 
     public List<WinnerCarDto> getWinner() {
