@@ -1,6 +1,6 @@
 package validation;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,10 +12,12 @@ class TryCountValidationTest {
     void test_ValidateTryCount_IllegalArgumentException() {
         // given
         int input = -1;
+        String expectedMessage = "0 이상의 수를 입력해주세요.";
 
         // when & then
-        assertThrows(IllegalArgumentException.class,
-                () -> TryCountValidation.validateTryCount(input));
+        assertThatThrownBy(() -> TryCountValidation.validateTryCount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
     }
 
     @Test
