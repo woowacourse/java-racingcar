@@ -10,9 +10,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static racingcar.domain.constant.CarConstant.CAR_FORWARD_NUMBER;
 import static racingcar.domain.constant.CarConstant.INIT_POSITION;
-import static racingcar.domain.constant.CarsConstant.*;
+import static racingcar.domain.constant.CarsConstant.SPLIT_DELIMITER;
 import static racingcar.enumType.ExceptionMessage.DUPLICATE_MESSAGE;
 
 public class Cars {
@@ -40,7 +39,7 @@ public class Cars {
     public List<CarRaceDto> race() {
         return cars.stream().map(car -> {
             int randomNumber = numberGenerator.generate();
-            checkNumberAndMove(car, randomNumber);
+            car.move(randomNumber);
             return CarRaceDto.of(car.getName(), car.getPosition());
         }).collect(Collectors.toList());
     }
@@ -67,12 +66,6 @@ public class Cars {
         int nonDuplicateCount = new HashSet<>(cars).size();
         if (cars.size() != nonDuplicateCount) {
             throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
-        }
-    }
-
-    private void checkNumberAndMove(Car car, int randomNumber) {
-        if (randomNumber >= CAR_FORWARD_NUMBER.getValue()) {
-            car.move();
         }
     }
 

@@ -5,6 +5,8 @@ import racingcar.domain.wrapper.CarPosition;
 
 import java.util.Objects;
 
+import static racingcar.domain.constant.CarConstant.CAR_FORWARD_NUMBER;
+
 public class Car {
 
     private final CarName name;
@@ -20,8 +22,10 @@ public class Car {
         return new Car(name);
     }
 
-    public void move() {
-        position.addPosition();
+    public void move(int power) {
+        if (power >= CAR_FORWARD_NUMBER.getValue()) {
+            position.addPosition();
+        }
     }
 
     public int getPosition() {
