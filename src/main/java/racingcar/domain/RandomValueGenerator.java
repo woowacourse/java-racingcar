@@ -6,8 +6,9 @@ public class RandomValueGenerator implements ValueGenerator {
 
     private final int RIGHT_BOUND_EXCLUSIVE = 10;
 
+    Random random = new Random();
+
     public int generate() {
-        Random random = new Random();
         return random.nextInt(RIGHT_BOUND_EXCLUSIVE);
     }
 }
