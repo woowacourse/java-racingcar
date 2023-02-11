@@ -1,6 +1,6 @@
-import controller.CarController;
+import controller.RaceController;
 import java.util.Scanner;
-import service.CarService;
+import service.RaceService;
 import utils.RacingRandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -10,9 +10,9 @@ public class RacingRunner {
     public static void main(String[] args) {
         InputView inputView = new InputView(new Scanner(System.in));
         OutputView outputView = new OutputView();
-        CarService carService = new CarService();
-        CarController carController = new CarController(inputView, outputView, carService);
+        RaceService raceService = new RaceService();
+        RaceController raceController = new RaceController(inputView, outputView, raceService);
 
-        carController.run(new RacingRandomNumberGenerator());
+        raceController.run(new RacingRandomNumberGenerator());
     }
 }

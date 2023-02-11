@@ -11,7 +11,7 @@ import model.Cars;
 import service.wrapper.Round;
 import utils.RacingNumberGenerator;
 
-public class CarService {
+public class RaceService {
 
     private Cars cars;
     private Round round;

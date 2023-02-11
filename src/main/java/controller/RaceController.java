@@ -3,41 +3,41 @@ package controller;
 import dto.RacingRoundStateDto;
 import java.util.List;
 import java.util.Set;
-import service.CarService;
+import service.RaceService;
 import utils.RacingNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class CarController {
+public class RaceController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final CarService carService;
+    private final RaceService raceService;
 
-    public CarController(InputView inputView, OutputView outputView, CarService carService) {
+    public RaceController(InputView inputView, OutputView outputView, RaceService raceService) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.carService = carService;
+        this.raceService = raceService;
     }
 
     public void run(RacingNumberGenerator generator) {
         initCars();
         initRacingRound();
         race(generator);
-        outputView.printWinner(carService.getWinner());
+        outputView.printWinner(raceService.getWinner());
     }
 
     private void race(RacingNumberGenerator generator) {
         outputView.printRoundStartMessage();
 
-        List<RacingRoundStateDto> racingTotalState = carService.race(generator);
+        List<RacingRoundStateDto> racingTotalState = raceService.race(generator);
         outputView.printRacingTotalState(racingTotalState);
     }
 
     private void initCars() {
         try {
             Set<String> carsName = inputView.inputCarsName();
-            carService.initCars(carsName);
+            raceService.initCars(carsName);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             initCars();
@@ -47,7 +47,7 @@ public class CarController {
     private void initRacingRound() {
         try {
             int round = inputView.inputRound();
-            carService.initRound(round);
+            raceService.initRound(round);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             initRacingRound();
