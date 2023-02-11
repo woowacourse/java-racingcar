@@ -45,7 +45,7 @@ public class RacingGameService {
     }
 
     public List<String> getWinners() {
-        return cars.getFirstPosition().stream()
+        return cars.decideMaxPosition().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

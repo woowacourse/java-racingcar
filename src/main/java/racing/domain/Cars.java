@@ -19,15 +19,15 @@ public class Cars {
         }
     }
 
-    public List<Car> getFirstPosition() {
-        int maxPosition = this.getMaxPosition();
+    public List<Car> decideMaxPosition() {
+        int maxPosition = this.calculateMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(Collectors.toList());
     }
 
-    private int getMaxPosition() {
+    private int calculateMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
