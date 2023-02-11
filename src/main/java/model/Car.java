@@ -3,6 +3,7 @@ package model;
 import constant.ExceptionMessage;
 
 public class Car {
+    private final int CAR_LOCATION_INITIALIZATION = 0;
     private final int MAX_CAR_NAME_LENGTH = 5;
     private final int CAR_MOVE_FORWARD = 1;
     private final int MIN_NUMBER_FOR_CAR_MOVE = 4;
@@ -13,7 +14,7 @@ public class Car {
     public Car(String name) {
         validCarName(name);
         this.name = name;
-        this.location = 0;
+        this.location = CAR_LOCATION_INITIALIZATION;
     }
 
     private void validCarName(String name) {
