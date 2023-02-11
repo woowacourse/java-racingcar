@@ -18,7 +18,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static Integer readTryCount() {
+    public static int readTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         String input = scanner.nextLine();
         validateEmpty(input);

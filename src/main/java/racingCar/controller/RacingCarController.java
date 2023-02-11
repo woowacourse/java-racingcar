@@ -12,7 +12,7 @@ public class RacingCarController {
 
     public void run(NumberGenerator numberGenerator) {
         CarGroup carGroup = repeat(this::makeCars);
-        Integer tryCount = repeat(InputView::readTryCount);
+        int tryCount = repeat(InputView::readTryCount);
         playRacing(numberGenerator, tryCount, carGroup);
         OutputView.printWinners(carGroup.findWinners());
     }
