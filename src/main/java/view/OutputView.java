@@ -1,6 +1,6 @@
 package view;
 
-import model.Car;
+import model.MovableStrategy;
 import model.Racing;
 
 import java.util.List;
@@ -21,13 +21,13 @@ public class OutputView {
         System.out.println(racing);
     }
 
-    public void winner(List<Car> winners) {
+    public void winner(List<MovableStrategy> winners) {
         System.out.printf(WIN_MENTION, winnersToString(winners));
     }
 
-    private String winnersToString(List<Car> winners) {
+    private String winnersToString(List<MovableStrategy> winners) {
         return winners.stream()
-                .map(Car::toString)
+                .map(MovableStrategy::toString)
                 .collect(joining(WINNER_CONNECTOR));
     }
 }
