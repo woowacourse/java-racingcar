@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
+import racingcar.domain.TryCount;
 import racingcar.dto.RacingCarNamesRequest;
 import racingcar.dto.RacingCarStatusResponse;
 import racingcar.dto.RacingCarWinnerResponse;
@@ -20,7 +21,7 @@ public class RacingCarController {
 
     public void start() {
         createCar();
-        int tryCount = getTryCount();
+        TryCount tryCount = getTryCount();
         playGame(tryCount);
     }
 
@@ -38,9 +39,9 @@ public class RacingCarController {
         }
     }
 
-    private int getTryCount() {
+    private TryCount getTryCount() {
         TryCountRequest tryCountRequest = receiveTryCount();
-        return tryCountRequest.getTryCount();
+        return new TryCount(tryCountRequest.getTryCount());
     }
 
     private TryCountRequest receiveTryCount() {
@@ -52,10 +53,10 @@ public class RacingCarController {
         }
     }
 
-    private void playGame(int tryCount) {
+    private void playGame(TryCount tryCount) {
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         racingCarView.printStartMessage();
-        for (int i = 0; i < tryCount; i++) {
+        while (tryCount.countdown()) {
             racingCarService.moveCars(randomMoveStrategy);
             printCarStatuses();
         }
