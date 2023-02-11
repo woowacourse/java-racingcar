@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,6 +21,15 @@ import static racingcar.provider.TestProvider.createTestCars;
 import static racingcar.provider.TestProvider.createTestRace;
 
 public class RaceTest {
+
+    private Cars testCars;
+
+    @BeforeEach
+    void init() {
+        String carNames = "pobi,crong,honux";
+        MockNumberGenerator numberGenerator = TestProvider.createMockNumberGenerator(false);
+        testCars = createTestCars(carNames, numberGenerator);
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "10", "10000"})
@@ -51,10 +61,6 @@ public class RaceTest {
     @DisplayName("사용자가 입력한 시도 횟수만큼 결과를 생성한다.")
     void givenRaceCount_whenStart_thenReturnResultAboutRaceCount() {
         // given
-        String carNames = "pobi,crong,honux";
-        MockNumberGenerator numberGenerator = TestProvider.createMockNumberGenerator(false);
-        Cars testCars = createTestCars(carNames, numberGenerator);
-
         String raceCount = "3";
         Race testRace = createTestRace(raceCount);
 

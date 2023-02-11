@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
@@ -14,6 +15,13 @@ import static racingcar.enumType.ExceptionMessage.BLANK_MESSAGE;
 import static racingcar.enumType.ExceptionMessage.LENGTH_MESSAGE;
 
 public class CarTest {
+
+    private Car car;
+
+    @BeforeEach
+    void init() {
+        car = TestProvider.createTestCar("pobi");
+    }
 
     @ParameterizedTest
     @DisplayName("Car 객체 생성 시 validation 정상적으로 작동한다.")
@@ -46,7 +54,6 @@ public class CarTest {
     @DisplayName("랜덤값이 4 이상이면 자동차가 전진한다.")
     void givenFourMoreNumber_thenCarMove(int randomNumber) {
         // given
-        Car car = TestProvider.createTestCar("pobi");
         int initPosition = car.getPosition();
 
         // when
@@ -62,7 +69,6 @@ public class CarTest {
     @DisplayName("랜덤값이 3 이하면 자동차가 정지한다.")
     void givenThreeLessNumber_thenCarStop(int randomNumber) {
         // given
-        Car car = TestProvider.createTestCar("pobi");
         int initPosition = car.getPosition();
 
         // when
