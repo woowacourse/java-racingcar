@@ -35,3 +35,10 @@
     3. 현황을 출력하기(OutputView)
 5. 최종 우승자를 결정하기(Service)
 6. 최종 우승자를 출력하기(OutputView)
+
+# 리팩토링 시 해야될 일들
+- [ ] ExceptionHandlingTemplate의 repeat...메소드의 depth를 1로 줄이기
+- [ ] controller에서 tryTime을 기준으로 while을 돌리는데 이를 service레이어에서 실행하게 변경
+- [ ] List<Car>를 감싸는 일급컬렉션인 Cars를 구현하기
+- [x] RandomNumberPicker에서 Random을 필드변수로 두기.
+- [ ] Car class에서 this()를 사용하여 동일한 생성자 흐름을 리팩터링
