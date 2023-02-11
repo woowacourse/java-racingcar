@@ -1,6 +1,6 @@
 package controller;
 
-import domain.CarsInfo;
+import domain.Cars;
 import domain.MovementManager;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -17,26 +17,26 @@ public class RacingController {
     }
 
     public void run() {
-        CarsInfo carsInfo = setUpCarName();
+        Cars cars = setUpCarName();
         Integer tryCount = setUpTryCount();
-        progressRacingGame(tryCount, carsInfo, new RandomNumberGenerator());
+        progressRacingGame(tryCount, cars, new RandomNumberGenerator());
     }
 
-    private void progressRacingGame(Integer tryCount, CarsInfo carsInfo, RandomNumberGenerator randomNumberGenerator) {
+    private void progressRacingGame(Integer tryCount, Cars cars, RandomNumberGenerator randomNumberGenerator) {
         MovementManager movementManager = new MovementManager();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
-            carsInfo.progressRound(randomNumberGenerator, movementManager);
-            outputView.printCurrentResult(carsInfo);
+            cars.progressRound(randomNumberGenerator, movementManager);
+            outputView.printCurrentResult(cars);
         }
-        List<String> winners = carsInfo.findWinners();
-        outputView.printFinalResult(carsInfo, winners);
+        List<String> winners = cars.findWinners();
+        outputView.printFinalResult(cars, winners);
     }
 
-    private CarsInfo setUpCarName() {
+    private Cars setUpCarName() {
         try {
             outputView.printCarNameMessage();
-            return new CarsInfo(inputView.readCarNames());
+            return new Cars(inputView.readCarNames());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return setUpCarName();

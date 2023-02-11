@@ -7,12 +7,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarsInfo {
+public class Cars {
 
-    private final List<Car> carsInfo;
+    private final List<Car> cars;
 
-    public CarsInfo(List<String> carNames) {
-        carsInfo = new ArrayList<>();
+    public Cars(List<String> carNames) {
+        cars = new ArrayList<>();
         checkNameDuplication(carNames);
         addCar(carNames);
     }
@@ -28,34 +28,34 @@ public class CarsInfo {
 
     private void addCar(List<String> carNames) {
         for (String carName : carNames) {
-            carsInfo.add(new Car(carName));
+            cars.add(new Car(carName));
         }
     }
 
     public List<String> findWinners() {
         Integer maxDistance = findMaxDistance();
-        return carsInfo.stream()
+        return cars.stream()
                 .filter(car -> car.getDistance() == maxDistance)
                 .map(Car::getCarName)
                 .collect(Collectors.toList());
     }
 
     private Integer findMaxDistance() {
-        return carsInfo.stream()
+        return cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
                 .orElse(0);
     }
 
     public void progressRound(RandomNumberGenerator randomNumberGenerator, MovementManager movementManager) {
-        for (Car car : carsInfo) {
+        for (Car car : cars) {
             Integer randomNumber = randomNumberGenerator.generateRandomNumber();
             Boolean movingResult = movementManager.isGo(randomNumber);
             car.move(movingResult);
         }
     }
 
-    public List<Car> getCarsInfo() {
-        return Collections.unmodifiableList(carsInfo);
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
