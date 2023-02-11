@@ -3,6 +3,7 @@ package racingcar.view;
 import java.util.List;
 import racingcar.constants.InputConstant;
 import racingcar.constants.OutputConstant;
+import racingcar.domain.Car;
 
 public class OutputView {
     public static void printNameInput() {
@@ -17,7 +18,14 @@ public class OutputView {
         System.out.println(OutputConstant.RESULT_MESSAGE.getMessage());
     }
 
-    public static void printRoundResult(String carName, int distance) {
+    public static void printRoundResult(List<Car> carsStatus) {
+        for (Car car : carsStatus) {
+            printCarResult(car.getName(), car.getDistance());
+        }
+        System.out.println("");
+    }
+
+    private static void printCarResult(String carName, int distance) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(carName).append(OutputConstant.CAR_INFORMATION_DELIMITER.getMessage());
         for (int i = 0; i < distance; i++) {

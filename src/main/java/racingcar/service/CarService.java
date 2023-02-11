@@ -6,79 +6,32 @@ import java.util.Random;
 import racingcar.constants.CarConstant;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
 
 public class CarService {
-    private Cars cars = new Cars(new ArrayList<Car>());
-    private int tryCount;
+    private Cars cars;
     private final List<String> winner = new ArrayList<>();
 
-    public void initializeService() {
-        while (validateNameInput()) {
-            cars = new Cars(new ArrayList<Car>());
-        }
-        while (validateCountInput()) {
-        }
+    public void initializeCars() {
+        cars = new Cars(new ArrayList<Car>());
     }
 
-    private boolean validateNameInput() {
-        try {
-            OutputView.printNameInput();
-            List<String> carNames = splitCarNames(InputView.readCarNames());
-            makeCar(carNames);
-            return false;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        }
-    }
-
-    private void makeCar(List<String> carNames) {
+    public void makeCar(List<String> carNames) {
         for (String carName : carNames) {
             Car car = new Car(carName, 0);
             cars.addCarInformation(car);
         }
     }
 
-    private List<String> splitCarNames(String carNames) {
-        return List.of(carNames.split(","));
+    public List<Car> getCarsStatus() {
+        return cars.getCarInformation();
     }
 
-    private boolean validateCountInput() {
-        try {
-            OutputView.printCountInput();
-            tryCount = InputView.readTryCount();
-            validateNegativeCount(tryCount);
-            return false;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        }
-    }
-
-    private void validateNegativeCount(int tryCount) {
-        int minTryCount = CarConstant.MIN_TRY_COUNT.getNumber();
-        if (tryCount <= minTryCount) {
-            throw new IllegalArgumentException(String.format("[ERROR] 시도할 횟수는 %d보다 큰 숫자여야 합니다.", minTryCount));
-        }
-    }
-
-    public void runService() {
-        OutputView.printResultMessage();
-        for (int i = 1; i <= tryCount; i++) {
-            runRound(i);
-            System.out.println("");
-        }
-    }
-
-    private void runRound(int round) {
+    public void runRound(int round) {
         for (Car car : cars.getCarInformation()) {
             Random random = new Random();
             int randomNumber = random.nextInt(CarConstant.RANDOM_NUMBER_BOUNDARY.getNumber());
             runForward(car, randomNumber);
             car.validateCurrentDistance(round);
-            OutputView.printRoundResult(car.getName(), car.getDistance());
         }
     }
 
@@ -88,19 +41,12 @@ public class CarService {
         }
     }
 
-    public void finishService() {
-        for (Car car : cars.getCarInformation()) {
-            OutputView.printRoundResult(car.getName(), car.getDistance());
-        }
-        findWinner();
-        OutputView.printWinners(winner);
-    }
-
-    private void findWinner() {
+    public List<String> findWinner() {
         int maxDistance = findMaxDistance();
         for (Car car : cars.getCarInformation()) {
             compareDistance(car, maxDistance);
         }
+        return winner;
     }
 
     private int findMaxDistance() {
