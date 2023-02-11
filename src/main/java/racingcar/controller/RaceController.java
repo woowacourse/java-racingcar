@@ -26,10 +26,9 @@ public class RaceController implements Controller {
         String tryCount = inputUtil.getUserInput(inputUtil::getTryCount);
         Race race = Race.of(tryCount);
 
-        List<CarRaceDto> carRaceResult = cars.initStatus();
-        List<RaceResultDto> totalRaceResult = race.start(cars);
-
-        outputView.printRaceResult(carRaceResult, totalRaceResult);
+        List<CarRaceDto> initCarsStatus = cars.initStatus();
+        List<RaceResultDto> totalRaceResult = race.getRaceResult(cars);
+        outputView.printRaceResult(initCarsStatus, totalRaceResult);
 
         List<String> winners = cars.pickWinners();
         outputView.printWinnerResult(winners);
