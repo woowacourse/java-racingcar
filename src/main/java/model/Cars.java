@@ -10,7 +10,7 @@ public class Cars {
 
     public Cars(List<String> carsName) {
         for (String name : carsName) {
-            cars.add(new Car(name));
+            cars.add(new Car(new Name(name)));
         }
     }
 
@@ -27,6 +27,7 @@ public class Cars {
     public String getWinners() {
         return cars.stream().filter(car -> car.checkLocationEqual(getMaxLocation()))
                 .map(Car::getCarName)
+                .map(Name::getName)
                 .collect(Collectors.joining(", "));
     }
 
