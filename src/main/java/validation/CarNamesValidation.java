@@ -23,11 +23,11 @@ public class CarNamesValidation {
 
     private static void validateNameOfCar(final String input) {
         for (final String carName : splitCarNames(input)) {
-            checkLengthOfCarName(carName);
+            validateLengthOfCarName(carName);
         }
     }
 
-    private static void checkLengthOfCarName(String carName) {
+    private static void validateLengthOfCarName(String carName) {
         if (carName.length() > CAR_NAME_LENGTH_MAX) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하로 작성해주세요.");
         }
