@@ -4,6 +4,7 @@ import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 import racingcar.model.car.strategy.MovingStrategy;
 import racingcar.model.track.Track;
+import racingcar.model.trialtimes.TrialTimes;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.dto.CarNames;
@@ -25,10 +26,11 @@ public class RacingController {
         CarNames carNames = requestCarNames();
         Cars cars = setUpCars(carNames, movingStrategy);
 
-        int trialTime = requestTrialTimes();
+        int trialTimesCount = requestTrialTimes();
+        TrialTimes trialTimes = new TrialTimes(trialTimesCount);
         outputView.printCarsPosition(cars);
 
-        return new Track(cars, trialTime);
+        return new Track(cars, trialTimes);
     }
 
     private CarNames requestCarNames() {

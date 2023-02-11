@@ -6,12 +6,21 @@ public class TrialTimes {
     private static final int TRIAL_MAX_TIMES = 100;
     private static final int TRIAL_MIN_TIMES = 1;
 
-    private final int trialTimes;
+    private int trialTimes;
 
     public TrialTimes(int trialTimes) {
         validate(trialTimes);
         this.trialTimes = trialTimes;
     }
+
+    public void consume() {
+        trialTimes -= 1;
+    }
+
+    public boolean isGreaterThan(int number) {
+        return trialTimes > number;
+    }
+
 
     private void validate(int trialTimes) {
         validateRange(trialTimes);

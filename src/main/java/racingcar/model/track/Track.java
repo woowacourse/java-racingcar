@@ -3,14 +3,15 @@ package racingcar.model.track;
 import java.util.List;
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
+import racingcar.model.trialtimes.TrialTimes;
 
 public class Track {
     private final Cars cars;
-    private int trialTime;
+    private final TrialTimes trialTimes;
 
-    public Track(Cars cars, int trialTime) {
+    public Track(Cars cars, TrialTimes trialTimes) {
         this.cars = cars;
-        this.trialTime = trialTime;
+        this.trialTimes = trialTimes;
     }
 
     public Cars race() {
@@ -20,11 +21,11 @@ public class Track {
     }
 
     private void removeTrialTimes() {
-        trialTime -= 1;
+        trialTimes.consume();
     }
 
     public boolean runnable() {
-        return trialTime > 0;
+        return trialTimes.isGreaterThan(0);
     }
 
     public List<Car> findWinner() {
