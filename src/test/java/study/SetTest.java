@@ -1,9 +1,5 @@
 package study;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SetTest {
     private Set<Integer> numbers;
@@ -28,8 +26,8 @@ public class SetTest {
     @Test
     @DisplayName("set 사이즈 확인")
     void check_size() {
-        assertThat(numbers.size()).isEqualTo(3);
-        assertThat(numbers.size()).isNotEqualTo(0);
+        assertEquals(numbers.size(), 3);
+        assertNotEquals(numbers.size(), 8);
     }
 
     @ParameterizedTest
