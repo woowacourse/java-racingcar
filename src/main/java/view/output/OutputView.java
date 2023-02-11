@@ -16,7 +16,7 @@ public class OutputView {
     private static final String CAR_INFO_DELIMITER = " : ";
     private static final String RESULT_DELIMITER = ", ";
 
-    public void printRacingStatus(final List<Car> cars) {
+    public static void printRacingStatus(final List<Car> cars) {
         for (Car car : cars) {
             StringJoiner stringJoiner = new StringJoiner(CAR_INFO_DELIMITER);
             stringJoiner.add(makeCarNames(car));
@@ -27,26 +27,26 @@ public class OutputView {
         System.out.println();
     }
 
-    private String makeCarNames(final Car car) {
+    private static String makeCarNames(final Car car) {
         return car.getCarName();
     }
 
-    private String makeCarTrack(final Car car) {
+    private static String makeCarTrack(final Car car) {
         return DISTANCE_MARK.repeat(car.getPosition());
     }
 
-    public void printRacingWinners(final List<Car> cars) {
+    public static void printRacingWinners(final List<Car> cars) {
         StringJoiner stringJoiner = new StringJoiner(RESULT_DELIMITER);
         cars.forEach(car -> stringJoiner.add(car.getCarName()));
 
         System.out.printf(RACING_WINNER_MESSAGE, stringJoiner);
     }
 
-    public void printGameResultMessage() {
+    public static void printGameResultMessage() {
         System.out.println(RACING_RESULT_MESSAGE);
     }
 
-    public void printExceptionMessage(final String exceptionMessage) {
+    public static void printExceptionMessage(final String exceptionMessage) {
         System.out.println(exceptionMessage);
     }
 

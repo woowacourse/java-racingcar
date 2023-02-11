@@ -10,12 +10,10 @@ import java.util.List;
 public class RacingController {
 
     private final InputView inputView;
-    private final OutputView outputView;
     private RacingGame racingGame;
 
-    public RacingController(final InputView inputView, final OutputView outputView) {
+    public RacingController(final InputView inputView) {
         this.inputView = inputView;
-        this.outputView = outputView;
     }
 
     public void start() {
@@ -28,7 +26,7 @@ public class RacingController {
         try {
             this.racingGame = new RacingGame(carNames, new RandomNumberGenerator());
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             makeRacingGame(readCarNames());
         }
     }
@@ -37,16 +35,16 @@ public class RacingController {
         try {
             return inputView.readCarName();
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             return readCarNames();
         }
     }
 
     private void startRacingGame(final int gameTry) {
-        outputView.printGameResultMessage();
+        OutputView.printGameResultMessage();
         for (int i = 0; i < gameTry; i++) {
             racingGame.start();
-            outputView.printRacingStatus(racingGame.getCars());
+            OutputView.printRacingStatus(racingGame.getCars());
         }
     }
 
@@ -54,13 +52,13 @@ public class RacingController {
         try {
             return inputView.readGameTry();
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            OutputView.printExceptionMessage(e.getMessage());
             return readGameTry();
         }
     }
 
     private void makeRacingGameResult() {
-        outputView.printRacingStatus(racingGame.getCars());
-        outputView.printRacingWinners(racingGame.getWinners());
+        OutputView.printRacingStatus(racingGame.getCars());
+        OutputView.printRacingWinners(racingGame.getWinners());
     }
 }
