@@ -13,10 +13,7 @@ public class Car implements Comparable<Car> {
     }
 
     public boolean canMoving(int power) {
-        if (power >= MIN_MOVING_NUM) {
-            return true;
-        }
-        return false;
+        return power >= MIN_MOVING_NUM;
     }
 
     public void move(boolean isMoving) {
