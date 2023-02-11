@@ -6,8 +6,6 @@ import racingcar.dto.CarPositionDto;
 
 public class Cars {
 
-    public static final int MIN = 0;
-    private static final String NAME_DELIMITER = ",";
     private static final String NO_CAR_EXCEPTION = "차가 존재하지 않습니다";
 
     private final List<Car> cars;
