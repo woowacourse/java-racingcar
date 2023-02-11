@@ -2,42 +2,38 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
-import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RacingCarController {
-    private final RacingGame racingGame;
+    private final NumberGenerator numberGenerator;
 
     public RacingCarController() {
-        this.racingGame = initGame();
+        this.numberGenerator = new RandomNumberGenerator();
     }
 
     public void run() {
+        Cars cars = initCars();
+        int tries = initTries();
         OutputView.printResultMessage();
-        race();
-        showFinalResult();
+        List<CarStatus> result = race(cars, tries, numberGenerator);
+        showResult(result);
+        prizeWinner(cars);
     }
 
-    private RacingGame initGame() {
-        Cars cars = createCars();
-        int tries = getTries();
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        return new RacingGame(cars, tries, numberGenerator);
-    }
-
-    private Cars createCars() {
+    private Cars initCars() {
         try {
             String input = InputView.inputCarNames();
             List<String> carNames = splitCarNames(input);
             return new Cars(carNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return createCars();
+            return initCars();
         }
     }
 
@@ -45,30 +41,30 @@ public class RacingCarController {
         return List.of(input.split(","));
     }
 
-    private int getTries() {
+    private int initTries() {
         try {
             return InputView.inputTries();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getTries();
+            return initTries();
         }
     }
 
-    private void race() {
-        while (!racingGame.isFinish()) {
-            List<CarStatus> turnResult = racingGame.takeOneTurn();
-            OutputView.printCarStatus(turnResult);
+    private List<CarStatus> race(Cars cars, int tries, NumberGenerator numberGenerator) {
+        List<CarStatus> carStatuses = new ArrayList<>();
+        for (int i = 0; i < tries; i++) {
+            carStatuses = cars.moveCars(numberGenerator);
+            OutputView.printCarStatus(carStatuses);
         }
+        return carStatuses;
     }
 
-    private void showFinalResult() {
-        List<CarStatus> finalPosition = racingGame.getFinalPosition();
-        OutputView.printCarStatus(finalPosition);
-        prizeWinner();
+    private void showResult(List<CarStatus> result) {
+        OutputView.printCarStatus(result);
     }
 
-    private void prizeWinner() {
-        List<String> winnersName = racingGame.getWinnersName();
+    private void prizeWinner(Cars cars) {
+        List<String> winnersName = cars.getWinnerCarsName();
         OutputView.printFinalResult(winnersName);
     }
 }
