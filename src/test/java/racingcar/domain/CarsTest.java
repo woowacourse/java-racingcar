@@ -49,7 +49,7 @@ class CarsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi,pobi"})
+    @ValueSource(strings = {"pobi,pobi", "pobi, pobi"})
     @DisplayName("자동차 이름에 중복값이 들어오면 예외가 발생한다.")
     void givenDuplicateCarNames_thenFail(String carNames) {
         // given
