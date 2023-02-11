@@ -4,13 +4,11 @@ import util.RandomGenerator;
 
 public class RacingCar extends RandomGenerator {
 
-    private static final int moveThreshold = 4;
-
     private final Name name;
     private int position;
 
-    public RacingCar(final String name) {
-        this.name = new Name(name);
+    public RacingCar(final Name name) {
+        this.name = name;
         position = 0;
     }
 

@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Names;
 import domain.RacingCar;
 import domain.RacingCars;
 import domain.TryCount;
@@ -27,22 +28,23 @@ public class RacingGameController {
     }
 
     private RacingCars createRacingCar() {
-        List<String> names;
+        Names names;
         try {
             names = getNames();
             return new RacingCars(createRacingCar(names));
-        } catch (CommaNotFoundException | NameIsOutOfBoundException e) {
+        } catch (IllegalArgumentException | CommaNotFoundException | NameIsOutOfBoundException e) {
             System.out.println(e.getMessage());
             return createRacingCar();
         }
     }
 
-    private List<String> getNames() {
-        return InputView.requestCarName();
+    private Names getNames() {
+        return new Names(InputView.requestCarName());
     }
 
-    private List<RacingCar> createRacingCar(List<String> names) {
-        return names.stream()
+    private List<RacingCar> createRacingCar(Names names) {
+        return names.getNames()
+                .stream()
                 .map(RacingCar::new)
                 .collect(Collectors.toList());
     }

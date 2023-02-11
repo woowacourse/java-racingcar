@@ -6,7 +6,7 @@ public abstract class TestCarMaker {
     private static final int NOT_MOVE_HIGHER_LIMIT = 3;
 
     public RacingCar makeCarByValue(final String carName, final int value) {
-        return new RacingCar(carName) {
+        return new RacingCar(new Name(carName)) {
             @Override
             protected int getRandomInteger() {
                 return value;
