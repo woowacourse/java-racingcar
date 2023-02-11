@@ -15,9 +15,9 @@ public class Validator {
     private static final int CAR_NAME_INPUT_EMPTY = 0;
 
     private static final String NON_INTEGER_ERROR = "숫자만 입력 가능합니다.";
-    private static final String EXCEEDED_CAR_NAME_LENGTH_ERROR = "자동차명은 1 ~ 5 글자로 입력해야합니다.";
+    private static final String CAR_NAME_LENGTH_ERROR = "자동차명은 1 ~ 5 글자로 입력해야합니다.";
     private static final String NUMBER_OF_TIME_RANGE_ERROR = "1 ~ 100 사이의 숫자를 입력해주세요";
-    private static final String EXISTS_DUPLICATE_CAR_NAME_ERROR = "자동차명은 중복되어선 안됩니다.";
+    private static final String DUPLICATE_CAR_NAME_ERROR = "자동차명은 중복되어선 안됩니다.";
 
     public static void validateCarNames(String carNames) {
         validateCarNameInputEmpty(carNames);
@@ -49,7 +49,7 @@ public class Validator {
 
     private static void validateCarNameInputEmpty(String carNames) {
         if (carNames.length() == CAR_NAME_INPUT_EMPTY) {
-            throw new IllegalArgumentException(EXCEEDED_CAR_NAME_LENGTH_ERROR);
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR);
         }
     }
 
@@ -57,13 +57,13 @@ public class Validator {
         String lastCharacterOfCarNameInput = Character.toString(carNames.charAt(carNames.length() - 1));
 
         if (lastCharacterOfCarNameInput.equals(Constant.DELIMITER)) {
-            throw new IllegalArgumentException(EXCEEDED_CAR_NAME_LENGTH_ERROR);
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR);
         }
     }
 
     private static void validateCarNameOutOfLength(List<String> carNames) {
         if (isNotCorrectLength(carNames)) {
-            throw new IllegalArgumentException(EXCEEDED_CAR_NAME_LENGTH_ERROR);
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR);
         }
     }
 
@@ -78,7 +78,7 @@ public class Validator {
         Set<String> duplicateChecker = new HashSet<>(carName);
 
         if (duplicateChecker.size() != carName.size()) {
-            throw new IllegalArgumentException(EXISTS_DUPLICATE_CAR_NAME_ERROR);
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME_ERROR);
         }
     }
 
