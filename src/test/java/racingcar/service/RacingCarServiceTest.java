@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.dto.RacingCarNamesRequest;
 import racingcar.dto.RacingCarStatusResponse;
 import racingcar.dto.RacingCarWinnerResponse;
@@ -25,9 +26,9 @@ class RacingCarServiceTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:0", "1:0", "2:0", "3:0", "4:1", "5:1", "6:1", "7:1", "8:1", "9:1"}, delimiter = ':')
-    @DisplayName("입력 값이 4 이상이면 자동차가 움직이고, 4 미만이면 자동차가 움직이면 안된다.")
-    void moveCars_shouldMoveInputMoreThan4AndShouldNotMoveInputUnder4(int input, int expected) {
+    @ValueSource(ints = {4, 5, 6, Integer.MAX_VALUE})
+    @DisplayName("입력 값이 4 이상이면 자동차가 움직여야 한다.")
+    void moveCars_shouldMoveInputMoreThan4(int input) {
         // given
         CustomMoveStrategy moveStrategy = new CustomMoveStrategy(input);
         service.createCars(RacingCarNamesRequest.of("car1"));
@@ -38,7 +39,24 @@ class RacingCarServiceTest {
 
         // then
         assertThat(carStatuses.get(0).getPosition())
-                .isEqualTo(expected);
+                .isGreaterThan(0);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3, 2, 1, 0, -1, Integer.MIN_VALUE})
+    @DisplayName("입력 값이 4 미만이면 자동차가 움직이면 안된다.")
+    void moveCars_shouldNotMoveInputUnder4(int input) {
+        // given
+        CustomMoveStrategy moveStrategy = new CustomMoveStrategy(input);
+        service.createCars(RacingCarNamesRequest.of("car1"));
+        service.moveCars(moveStrategy);
+
+        // when
+        List<RacingCarStatusResponse> carStatuses = service.getCarStatuses();
+
+        // then
+        assertThat(carStatuses.get(0).getPosition())
+                .isEqualTo(0);
     }
 
     @ParameterizedTest
