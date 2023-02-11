@@ -29,7 +29,8 @@ public class CarController {
 
     private void race(RacingNumberGenerator generator, Round round) {
         outputView.printRoundStartMessage();
-        for (int count = 0; count < round.getRound(); count++) {
+
+        while (round.isRacing()) {
             carService.race(generator);
             outputView.printRound(carService.getCarsDto());
         }
