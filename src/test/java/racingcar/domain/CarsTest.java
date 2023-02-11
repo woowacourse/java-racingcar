@@ -1,14 +1,13 @@
 package racingcar.domain;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.SoftAssertions.*;
 
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.SoftAssertions.assertSoftly;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class CarsTest {
 
@@ -17,53 +16,49 @@ class CarsTest {
     @BeforeEach
     void setup() {
         cars = new Cars();
-        cars.add(new Car("test1"));
-        cars.add(new Car("test2"));
-        cars.add(new Car("test3"));
-    }
+        Car car1 = new Car("test1");
+        Car car2 = new Car("test2");
+        Car car3 = new Car("test3");
 
+        car1.move(4);
+        car2.move(7);
+        car3.move(1);
+
+        car1.move(9);
+        car2.move(8);
+        car3.move(2);
+
+        cars.add(car1);
+        cars.add(car2);
+        cars.add(car3);
+
+    }
 
     @Test
     @DisplayName("자동차들의 라운드 진행 테스트")
     void getTurnCountTest() {
-        cars.addNextCarValue(1);
-        cars.addNextCarValue(1);
-        cars.addNextCarValue(1);
-
         int firstTurnCount = cars.getTurnCount();
 
-        cars.addNextCarValue(5);
-        cars.addNextCarValue(5);
-        cars.addNextCarValue(5);
+        RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
+
+        cars.playRound(randomValueGenerator);
 
         int secondTurnCount = cars.getTurnCount();
 
-        assertSoftly(softly -> {
-            softly.assertThat(firstTurnCount).isEqualTo(1);
-            softly.assertThat(secondTurnCount).isEqualTo(2);
-        });
-    }
+        cars.playRound(randomValueGenerator);
 
-    @Test
-    @DisplayName("자동차들의 라운드 턴수가 다른 예외 상황 테스트")
-    void turnCountExceptionTest() {
-        for (int i = 0; i < 4; i++) {
-            cars.addNextCarValue(4);
-        }
-        assertThatThrownBy(() -> cars.getTurnCount()).isInstanceOf(IllegalStateException.class);
+        int thirdTurnCount = cars.getTurnCount();
+
+        assertSoftly(softly -> {
+            softly.assertThat(firstTurnCount).isEqualTo(2);
+            softly.assertThat(secondTurnCount).isEqualTo(3);
+            softly.assertThat(thirdTurnCount).isEqualTo(4);
+        });
     }
 
     @Test
     @DisplayName("라운드 결과 테스트")
     void getRoundResultTest() {
-        cars.addNextCarValue(4);
-        cars.addNextCarValue(7);
-        cars.addNextCarValue(1);
-
-        cars.addNextCarValue(9);
-        cars.addNextCarValue(8);
-        cars.addNextCarValue(2);
-
         Map<String, Integer> actualResult = cars.getRoundResult();
 
         assertSoftly(softly -> {
@@ -76,13 +71,6 @@ class CarsTest {
     @Test
     @DisplayName("우승자를 확인하는 기능 테스트")
     void getWinnersTest() {
-        cars.addNextCarValue(4);
-        cars.addNextCarValue(7);
-        cars.addNextCarValue(1);
-        cars.addNextCarValue(9);
-        cars.addNextCarValue(8);
-        cars.addNextCarValue(2);
-
         assertThat(cars.getWinners()).containsExactly("test1", "test2");
     }
 }
