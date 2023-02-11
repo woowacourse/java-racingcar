@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Input {
     private static final String DELIMITER = ",";
-    private static final Validate validate = new Validate();
+    private static final Validator validator = new Validator();
     private static final Scanner sc = new Scanner(System.in);
 
     public static String getInput() {
@@ -13,14 +13,14 @@ public class Input {
 
     public static String[] getCarNames(String input) {
         String[] carNames = input.split(DELIMITER);
-        validate.checkValidCarNames(carNames);
+        validator.checkValidCarNames(carNames);
         return carNames;
     }
 
     public static int getTryCount(String input) {
-        validate.checkDigits(input);
+        validator.checkDigits(input);
         int tryCount = Integer.parseInt(input);
-        validate.checkRange(tryCount);
+        validator.checkRange(tryCount);
         return tryCount;
     }
 }
