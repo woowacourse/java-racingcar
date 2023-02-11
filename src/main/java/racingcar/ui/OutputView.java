@@ -2,7 +2,7 @@ package racingcar.ui;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.util.InputSplit;
+import racingcar.util.TextSplit;
 
 public class OutputView {
 
@@ -27,7 +27,7 @@ public class OutputView {
 
     public static void result(List<String> carTexts) {
         for (String carText : carTexts) {
-            List<String> splitCarText = InputSplit.split(carText, CAR_TEXT_DELIMITER);
+            List<String> splitCarText = TextSplit.split(carText, CAR_TEXT_DELIMITER);
 
             String carName = splitCarText.get(0);
             int position = Integer.parseInt(splitCarText.get(1));
@@ -39,7 +39,7 @@ public class OutputView {
 
     public static void winner(List<String> winners) {
         String winnerNames = winners.stream()
-                .map(carText -> InputSplit.split(carText, CAR_TEXT_DELIMITER))
+                .map(carText -> TextSplit.split(carText, CAR_TEXT_DELIMITER))
                 .map(carText -> carText.get(0))
                 .collect(Collectors.joining(", "));
 

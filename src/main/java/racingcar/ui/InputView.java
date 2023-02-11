@@ -2,7 +2,7 @@ package racingcar.ui;
 
 import java.util.List;
 import java.util.Scanner;
-import racingcar.util.InputSplit;
+import racingcar.util.TextSplit;
 
 public class InputView {
 
@@ -19,7 +19,7 @@ public class InputView {
                 throw new IllegalArgumentException("[ERROR] 구분자(" + DELIMITER + ")가 필요해요.");
             }
 
-            return InputSplit.split(input, DELIMITER);
+            return TextSplit.split(input, DELIMITER);
         } catch (IllegalArgumentException e) {
             OutputView.error(e.getMessage());
 
