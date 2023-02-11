@@ -30,7 +30,7 @@ public class RacingCarController {
         }
     }
 
-    private static <T> T repeat(Supplier<T> reader) {
+    private <T> T repeat(Supplier<T> reader) {
         try {
             return reader.get();
         } catch (Exception e) {
