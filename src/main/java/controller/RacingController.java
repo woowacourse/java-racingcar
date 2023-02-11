@@ -1,13 +1,14 @@
 package controller;
 
-import model.Racing;
-import model.RandomNumberGenerator;
+import model.Car;
+import model.Cars;
+import model.PowerGenerator;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.*;
 
 public class RacingController {
 
@@ -19,25 +20,32 @@ public class RacingController {
         outputView = new OutputView();
     }
 
-    public void racingStart() {
-        List<String> carNames = inputView.carNames();
-        Racing racing = new Racing(carNames, new RandomNumberGenerator(new Random()));
-        int numberOfTimes = inputView.numberOfTimes();
-        process(racing, numberOfTimes);
-        end(racing);
+    public void start() {
+        Cars cars = new Cars(
+                inputView.requestCarNames()
+                .stream()
+                .map(Car::new)
+                .collect(toList())
+        );
+        int numberOfTimes = inputView.requestNumberOfTimes();
+        progress(cars, numberOfTimes);
+        end(cars);
     }
 
-    private void process(Racing racing, int numberOfTimes) {
-        outputView.resultHeader();
-        IntStream.range(0, numberOfTimes).forEach(i -> eachProcess(racing));
+    private void progress(Cars cars, int numberOfTimes) {
+        outputView.printResultHeader();
+        IntStream.range(0, numberOfTimes)
+                .forEach(i -> progressEach(cars));
     }
 
-    private void eachProcess(Racing racing) {
-        racing.moveAllCars();
-        outputView.result(racing);
+    private void progressEach(Cars cars) {
+        cars.moveAll(new PowerGenerator(new Random()));
+        outputView.printResult(cars);
     }
 
-    private void end(Racing racing) {
-        outputView.winner(racing.winner());
+    private void end(Cars cars) {
+        outputView.printWinners(
+                cars.getWinners()
+        );
     }
 }

@@ -1,14 +1,13 @@
 package model;
 
-import message.Constant;
-
-import java.util.HashSet;
 import java.util.List;
 import static java.util.stream.Collectors.*;
 
 public class Cars {
 
     private final int POWER_UPPER_BOUND_EXCLUSIVE = 10;
+    private final int CARS_EMPTY = 0;
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -42,7 +41,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
-                .orElse(Constant.START_POSITION);
+                .orElse(CARS_EMPTY);
     }
 
     @Override

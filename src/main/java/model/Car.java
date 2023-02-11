@@ -1,17 +1,17 @@
 package model;
 
-import message.Constant;
-
 public class Car {
 
     private static final int THROTTLE = 4;
+    private static final int DEFAULT_INITIAL_POSITION = 0;
+    private static final String STICK = "-";
+    private static final String CAR_RESULT_FORMAT = "%s : %s\n";
 
     private final String name;
-
     private int distance;
 
     public Car(String name) {
-        this(name, Constant.START_POSITION);
+        this(name, DEFAULT_INITIAL_POSITION);
     }
 
     public Car(String name, int distance) {
@@ -29,7 +29,7 @@ public class Car {
         return distance;
     }
 
-    private String getName() {
+    public String getName() {
         return this.name;
     }
 
@@ -40,11 +40,16 @@ public class Car {
     @Override
     public boolean equals(Object object) {
         return object instanceof Car
-                && ((Car) object).getName().equals(this.name);
+                && ((Car) object).getName()
+                .equals(this.name);
     }
 
     @Override
     public String toString() {
-        return String.format(Constant.CAR_RESULT_FORMAT, name, Constant.STICK.repeat(distance));
+        return String.format(
+                CAR_RESULT_FORMAT,
+                name,
+                STICK.repeat(distance)
+        );
     }
 }

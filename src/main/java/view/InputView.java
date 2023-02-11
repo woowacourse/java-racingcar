@@ -1,14 +1,17 @@
 package view;
 
-import message.Constant;
-import util.Validator;
-
+import util.Constant;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static util.Validator.*;
+
 public class InputView {
+
+    private static final String CAR_NAMES_INPUT_HEADER = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String NUMBER_OF_TIME_INPUT_HEADER = "시도할 횟수는 몇회인가요?";
 
     private final Scanner reader;
 
@@ -16,11 +19,15 @@ public class InputView {
         reader = new Scanner(readerConnector);
     }
 
-    public List<String> carNames() {
-        System.out.println(Constant.CAR_NAMES_HEADER);
+    public List<String> requestCarNames() {
+        System.out.println(CAR_NAMES_INPUT_HEADER);
         String carNames = reader.nextLine();
-        Validator.validateCarNames(carNames.trim());
-        List<String> carNamesBySplit = List.of(carNames.split(Constant.DELIMITER));
+        validateCarNames(carNames.trim());
+        List<String> carNamesBySplit = List.of(
+                carNames.split(
+                        Constant.DELIMITER
+                )
+        );
 
         return trimCarNames(carNamesBySplit);
     }
@@ -31,10 +38,10 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int numberOfTimes() {
-        System.out.println(Constant.NUMBER_OF_TIME_HEADER);
+    public int requestNumberOfTimes() {
+        System.out.println(NUMBER_OF_TIME_INPUT_HEADER);
         String number = reader.nextLine();
-        Validator.validateNumberOfTimes(number);
+        validateNumberOfTimes(number);
 
         return Integer.parseInt(number);
     }
