@@ -3,6 +3,7 @@ package racingcar.view;
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -12,26 +13,24 @@ public class OutputView {
     private static final String CAR_SEPARATOR = ", ";
     private static final String LINE_BREAK = "\n";
 
-    public void printWinnerCars1(String winnerCarsFormat) {
-        System.out.printf(WINNER_MESSAGE, winnerCarsFormat);
-    }
-
     public void printCurrentCarsPosition(Cars cars) {
-        StringBuilder stringBuilder = new StringBuilder(LINE_BREAK);
+        StringJoiner stringJoiner = new StringJoiner(LINE_BREAK);
 
         cars.getCarsCurrentInfo().forEach(car -> {
-            stringBuilder.append(String.format(POSITION_CAR_STATE_FORMAT,
+            stringJoiner.add(String.format(POSITION_CAR_STATE_FORMAT,
                     car.getCarName(),
                     POSITION_CAR_FORMAT_SYMBOL.repeat(car.getPosition())));
         });
 
-        System.out.println(stringBuilder + LINE_BREAK);
+        System.out.println(stringJoiner + LINE_BREAK);
     }
 
     public void printWinnerCars(Cars cars) {
-        System.out.println(cars.getWinnerCars().stream()
+        String winnerCarsFormat = cars.getWinnerCars().stream()
                 .map(Car::getCarName)
-                .collect(Collectors.joining(CAR_SEPARATOR)));
+                .collect(Collectors.joining(CAR_SEPARATOR));
+
+        System.out.println(String.format(WINNER_MESSAGE, winnerCarsFormat));
     }
 
     public void printErrorMessage(String errorMessage) {

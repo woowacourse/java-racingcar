@@ -7,9 +7,7 @@ import racingcar.exception.DuplicateCarNamesException;
 import racingcar.exception.NotExistCarsException;
 import racingcar.model.car.strategy.ForwardMovingStrategy;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
