@@ -11,14 +11,12 @@ import racingcar.service.CarFactory;
 
 class CarFactoryTest {
 
-    private CarFactory carFactory = new CarFactory();
-
     @Test
     @DisplayName("구분자가 없을 때 예외")
     void validSeparator() {
         String input = "우가.밀리";
 
-        assertThatThrownBy(() -> carFactory.makeCars(input))
+        assertThatThrownBy(() -> CarFactory.makeCars(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구분자(,)가 필요해요.");
     }
@@ -28,7 +26,7 @@ class CarFactoryTest {
     void validParticipants() {
         String input = "밀리,";
 
-        assertThatThrownBy(() -> carFactory.makeCars(input))
+        assertThatThrownBy(() -> CarFactory.makeCars(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 경주는 최소 2명이 필요해요.");
     }
@@ -38,7 +36,7 @@ class CarFactoryTest {
     void makeCars() {
         String input = "밀리,우가";
 
-        List<Car> cars = carFactory.makeCars(input);
+        List<Car> cars = CarFactory.makeCars(input);
 
         assertThat(cars.get(0).getName()).isEqualTo("밀리");
         assertThat(cars.get(1).getName()).isEqualTo("우가");

@@ -6,12 +6,6 @@ import racingcar.model.Car;
 
 public class RacingcarService {
 
-    private final CarFactory carFactory;
-
-    public RacingcarService() {
-        this.carFactory = new CarFactory();
-    }
-
     public void move(List<Car> cars) {
         for (Car car : cars) {
             car.move(RandomMaker.random());
@@ -35,6 +29,6 @@ public class RacingcarService {
     }
 
     public List<Car> getCar(String carNames) {
-        return carFactory.makeCars(carNames);
+        return CarFactory.makeCars(carNames);
     }
 }

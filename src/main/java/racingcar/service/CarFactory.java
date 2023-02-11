@@ -10,7 +10,7 @@ public class CarFactory {
     private static final String SEPARATOR = ",";
     private static final int MINIMUM_PARTICIPANT = 2;
 
-    public List<Car> makeCars(String inputNames) {
+    public static List<Car> makeCars(String inputNames) {
         String[] names = inputNames.split(SEPARATOR);
 
         if (!inputNames.contains(SEPARATOR)) {
