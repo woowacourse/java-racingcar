@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String CAR_ERROR = "[ERROR] 차량 리스트가 비었습니다";
 
     private final List<Car> cars;
 
@@ -26,7 +27,7 @@ public class Cars {
 
         Car carWithMaxPosition = cars.stream()
                 .max(comparatorByPosition)
-                .orElseThrow(NoSuchFieldError::new);
+                .orElseThrow(() -> new IllegalArgumentException(CAR_ERROR));
 
         return carWithMaxPosition.getPosition();
     }
