@@ -3,6 +3,7 @@ package validation;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import utils.SplitCarNames;
 
 public class CarNamesValidation {
 
@@ -42,6 +43,6 @@ public class CarNamesValidation {
     }
 
     private static String[] splitCarNames(String input) {
-        return input.split(SPLIT_DELIMITER);
+        return SplitCarNames.splitCarNames(input);
     }
 }
