@@ -28,15 +28,9 @@ public class RacingController {
         racingService.setNumberOfRounds(viewController.getNumberOfRounds());
     }
 
-    private void printWinners() {
-        viewController.printWinners(racingService.getWinners());
-
-    }
-
     private void play() {
         viewController.startResult();
-
-        while (!racingService.isEnd()) {
+        while (racingService.isOngoing()) {
             playEachRound();
         }
     }
@@ -44,5 +38,9 @@ public class RacingController {
     private void playEachRound() {
         racingService.playRound();
         viewController.printResult(racingService.getCurrentRoundResult());
+    }
+
+    private void printWinners() {
+        viewController.printWinners(racingService.getWinners());
     }
 }

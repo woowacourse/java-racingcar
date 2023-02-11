@@ -6,14 +6,14 @@ import java.util.Map;
 import racingcar.domain.Car;
 import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
-import racingcar.domain.FinalRoundChecker;
+import racingcar.domain.GameStatusChecker;
 import racingcar.domain.RandomValueGenerator;
 
 public class RacingService {
 
     private final Cars cars;
     private final RandomValueGenerator randomValueGenerator;
-    private FinalRoundChecker finalRoundChecker;
+    private GameStatusChecker gameStatusChecker;
 
     public RacingService() {
         this.cars = new Cars();
@@ -27,11 +27,11 @@ public class RacingService {
     }
 
     public void setNumberOfRounds(int numberOfRounds) {
-        finalRoundChecker = new FinalRoundChecker(numberOfRounds);
+        gameStatusChecker = new GameStatusChecker(numberOfRounds);
     }
 
-    public boolean isEnd() {
-        return finalRoundChecker.isFinal(cars.getTurnCount());
+    public boolean isOngoing() {
+        return gameStatusChecker.isOngoing(cars.getTurnCount());
     }
 
     public void playRound() {
