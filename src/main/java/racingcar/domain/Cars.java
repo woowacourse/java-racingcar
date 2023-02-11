@@ -25,20 +25,22 @@ public class Cars {
         List<String> winnerNames = new ArrayList<>();
         int maxPosition = 0;
         for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
-                winnerNames.add(car.getName());
-            }
-            if (car.getPosition() > maxPosition) {
-                maxPosition = car.getPosition();
-                winnerNames.clear();
-                winnerNames.add(car.getName());
-            }
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+        for (Car car : cars) {
+            addWinnerName(winnerNames, maxPosition, car);
         }
         return winnerNames;
     }
 
     public Set<Car> getCars() {
         return Collections.unmodifiableSet(cars);
+    }
+
+    private void addWinnerName(List<String> winnerNames, int maxPosition, Car car) {
+        if (car.getPosition() == maxPosition) {
+            winnerNames.add(car.getName());
+        }
     }
 
     private void generateCar(String name, CarMovement carMovement) {

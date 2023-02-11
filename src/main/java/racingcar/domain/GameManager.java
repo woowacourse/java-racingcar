@@ -49,6 +49,12 @@ public class GameManager {
         return roundResultCarStatus;
     }
 
+    /**
+     * 이 부분 인덴트가 2인 것을 줄이고 싶었으나,
+     * 현재 구조에서는 while 문을 없애고
+     * catch문에서 재귀호출을 하는 것 밖에는 방법이 떠오르지 않아
+     * 그대로 두었습니다.
+     */
     private void createCars() {
         while (true) {
             try {
