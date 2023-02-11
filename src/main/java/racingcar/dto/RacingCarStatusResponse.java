@@ -28,8 +28,7 @@ public class RacingCarStatusResponse {
      * 이름과 '-'를 postion의 수만큼 반환한다.
      * ex) Glen : -----, Bero : -
      */
-    @Override
-    public String toString() {
+    public String asString() {
         return String.format("%s : %s", name, "-".repeat(position));
     }
 }

@@ -10,11 +10,11 @@ public class OutputView {
     }
 
     public static void printWinners(RacingCarWinnerResponse response) {
-        System.out.println(response + "가 최종 우승했습니다.");
+        System.out.println(response.asString() + "가 최종 우승했습니다.");
     }
 
     public static void printRacingProgress(RacingCarStatusResponse response) {
-        System.out.println(response);
+        System.out.println(response.asString());
     }
 
     public static void printExceptionMessage(RuntimeException e) {
