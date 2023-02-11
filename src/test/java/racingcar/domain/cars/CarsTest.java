@@ -8,26 +8,29 @@ import racingcar.domain.car.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class CarsTest {
 
+    private static final int ENOUGH_POWER_TO_MOVE = 4;
+    private static final int INSUFFICIENT_POWER_TO_MOVE = 3;
+
     @ParameterizedTest
     @MethodSource("getCars")
-    @DisplayName("두 개 이상이고 중복이 없는 자동차 객체의 배열이 입력되었을 때, CarRepository 객체가 생성되는지 확인")
-    void validate_test(List<Car> cars) {
-        Cars carRepository = new Cars(cars);
-
-        assertThat(carRepository).isInstanceOf(Cars.class);
+    @DisplayName("생성자에 길이가 2 이상이고 중복이 없는 자동차 객체 List이 입력되었을 때, 오류가 발생하지 않는지 확인")
+    void create_test(List<Car> cars) {
+        assertDoesNotThrow(() -> new Cars(cars));
     }
 
     @ParameterizedTest
     @MethodSource("getWrongCars")
-    @DisplayName("이름이 중복되거나 하나의 자동차만 입력되었을 때, 오류를 발생시키는지 확인")
-    void validate_error_test(List<Car> cars) {
+    @DisplayName("생성자에 이름이 중복되거나 길이가 2 미만인 자동차 객체 List이 입력되었을 때, 오류를 발생시키는지 확인")
+    void create_error_test(List<Car> cars) {
         assertThatThrownBy(() -> new Cars(cars))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
@@ -35,14 +38,35 @@ class CarsTest {
 
     @ParameterizedTest
     @MethodSource("getCars")
-    void findWinner(List<Car> cars) {
-        Car movedCar = createMovedCar();
-        cars.add(movedCar);
-        Cars carRepository = new Cars(cars);
+    @DisplayName("moveBy 메소드에 자동차가 움직일만한 power가 입력되었을 때, 자동차들이 이동하는지 확인")
+    void moveBy_moving_test(List<Car> exampleCars) {
+        Cars cars = new Cars(exampleCars);
+        List<Integer> unmovedPositions = getPositionOfCars(cars);
 
-        List<String> winners = carRepository.findWinner();
+        cars.moveBy(() -> ENOUGH_POWER_TO_MOVE);
+        List<Integer> movedPositions = getPositionOfCars(cars);
 
-        assertThat(winners).containsAnyOf(movedCar.getName());
+        assertThat(movedPositions).isNotEqualTo(unmovedPositions);
+    }
+
+    @ParameterizedTest
+    @MethodSource("getCars")
+    @DisplayName("moveBy 메소드에 자동차가 움직이지 못할 power가 입력되었을 때, 자동차들이 멈춰있는지 확인")
+    void moveBy_stopping_test(List<Car> exampleCars) {
+        Cars cars = new Cars(exampleCars);
+        List<Integer> unmovedPositions = getPositionOfCars(cars);
+
+        cars.moveBy(() -> INSUFFICIENT_POWER_TO_MOVE);
+        List<Integer> movedPositions = getPositionOfCars(cars);
+
+        assertThat(movedPositions).isEqualTo(unmovedPositions);
+    }
+
+    private List<Integer> getPositionOfCars(Cars cars) {
+        return cars.getCars()
+                .stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     static Stream<Arguments> getCars() {
@@ -50,12 +74,6 @@ class CarsTest {
                 Arguments.arguments(new ArrayList<>(List.of(new Car("poy"), new Car("joy"), new Car("poby")))),
                 Arguments.arguments(new ArrayList<>(List.of(new Car("poy"), new Car("oioy"))))
         );
-    }
-
-    private Car createMovedCar() {
-        Car winner = new Car("win");
-        winner.updatePosition();
-        return winner;
     }
 
     static Stream<Arguments> getWrongCars() {
