@@ -30,14 +30,8 @@ class CarTest {
     @Test
     void moveWhenRandomNumberIsOverThree() {
         Car car = new Car("123");
-        RandomNumberGenerator numberGenerator = new RandomNumberGenerator() {
-            @Override
-            public int generate() {
-                return 4;
-            }
-        };
 
-        car.move(numberGenerator);
+        car.move(4);
 
         assertThat(car.getPosition()).isEqualTo(1);
     }
@@ -46,14 +40,8 @@ class CarTest {
     @Test
     void moveWhenRandomNumberIsUnderThree() {
         Car car = new Car("123");
-        RandomNumberGenerator numberGenerator = new RandomNumberGenerator() {
-            @Override
-            public int generate() {
-                return 3;
-            }
-        };
 
-        car.move(numberGenerator);
+        car.move(3);
 
         assertThat(car.getPosition()).isEqualTo(0);
     }
