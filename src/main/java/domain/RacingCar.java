@@ -1,30 +1,29 @@
 package domain;
 
-import util.RandomGenerator;
-
-public class RacingCar extends RandomGenerator {
-
+public class RacingCar{
+    private static final int MIN_THROTTLE_THRESHOLD = 4;
     private final Name name;
+    private final ThrottleGenerator throttleGenerator;
     private int position;
 
     public RacingCar(final Name name) {
         this.name = name;
-        position = 0;
+        this.throttleGenerator = new RandomThrottleGenerator();
+    }
+
+    public RacingCar(final Name name, final ThrottleGenerator throttleGenerator){
+        this.name = name;
+        this.throttleGenerator = throttleGenerator;
     }
 
     public void move() {
-        if (isMovable()) {
+        if (isMovable(throttleGenerator.generate())) {
             position++;
         }
     }
 
-    private boolean isMovable() {
-        return getRandomInteger() >= 4;
-    }
-
-    @Override
-    protected int getRandomInteger() {
-        return (int) (Math.random() * 10);
+    private boolean isMovable(final int throttle) {
+        return throttle >= MIN_THROTTLE_THRESHOLD;
     }
 
     public int getPosition() {
