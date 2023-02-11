@@ -15,20 +15,20 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(final List<String> carNames) {
-        validate(carNames);
-        this.cars = toCars(carNames);
+    public Cars(final List<String> names) {
+        validate(names);
+        this.cars = toCars(names);
     }
 
-    private void validate(final List<String> carNames) {
-        Set<String> nonDuplicateCarNames = new HashSet<>(carNames);
-        if (carNames.size() != nonDuplicateCarNames.size()) {
+    private void validate(final List<String> names) {
+        Set<String> nonDuplicateNames = new HashSet<>(names);
+        if (names.size() != nonDuplicateNames.size()) {
             throw new IllegalArgumentException(DUPLICATED_NAMES_MESSAGE);
         }
     }
 
-    private List<Car> toCars(final List<String> carNames) {
-        return carNames.stream()
+    private List<Car> toCars(final List<String> names) {
+        return names.stream()
                 .map(Car::new)
                 .collect(toList());
     }

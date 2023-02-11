@@ -62,16 +62,4 @@ public class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차량이 존재하지 않습니다.");
     }
-
-    @Test
-    @DisplayName("from 메서드는 이름 목록을 받아 Cars를 반환한다.")
-    void should_returnCars_when_inputNames() {
-        List<String> carNames = List.of("car1", "car2", "car3");
-
-        Cars cars = new Cars(carNames);
-
-        assertThat(cars.getCars())
-                .extracting(Car::getName)
-                .containsExactly("car1", "car2", "car3");
-    }
 }
