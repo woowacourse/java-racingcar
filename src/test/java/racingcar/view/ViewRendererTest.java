@@ -1,18 +1,17 @@
 package racingcar.view;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class ViewRendererTest {
 
-    private ViewRenderer renderer = new ViewRenderer();
+    private final ViewRenderer renderer = new ViewRenderer();
 
     @Test
     @DisplayName("라운드 결과 렌더링 테스트")
@@ -23,8 +22,8 @@ class ViewRendererTest {
         roundResults.put("test3", 5);
 
         String expectedOutput = "test1 : ---\n" +
-                "test2 : -\n" +
-                "test3 : -----\n";
+            "test2 : -\n" +
+            "test3 : -----\n";
 
         assertThat(renderer.renderRoundResult(roundResults)).isEqualTo(expectedOutput);
     }

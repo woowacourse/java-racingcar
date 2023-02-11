@@ -39,8 +39,11 @@ public class Cars {
 
     public List<String> getWinners() {
         Set<Integer> positions = new HashSet<>();
+
         cars.forEach(car -> positions.add(car.getPosition()));
+
         int maxPosition = Collections.max(positions);
+
         return cars.stream().filter(car -> car.getPosition() == maxPosition)
             .map(Car::getName)
             .collect(Collectors.toList());

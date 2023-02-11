@@ -12,10 +12,12 @@ import racingcar.domain.RandomValueGenerator;
 public class Service {
 
     private final Cars cars;
+    private final RandomValueGenerator randomValueGenerator;
     private FinalRoundChecker finalRoundChecker;
 
     public Service() {
         this.cars = new Cars();
+        this.randomValueGenerator = new RandomValueGenerator();
     }
 
     public void makeCars(String carNames) {
@@ -33,7 +35,6 @@ public class Service {
     }
 
     public void playRound() {
-        RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
         cars.playRound(randomValueGenerator);
     }
 

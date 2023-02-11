@@ -1,12 +1,12 @@
 package racingcar.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import racingcar.service.Service;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.ViewRenderer;
-
-import java.util.List;
-import java.util.Map;
 
 public class Controller {
 
@@ -58,5 +58,4 @@ public class Controller {
         Map<String, Integer> roundResult = service.getCurrentRoundResult();
         outputView.printResult(viewRenderer.renderRoundResult(roundResult));
     }
-
 }

@@ -23,6 +23,6 @@ public class OutputView {
     }
 
     public void printWinners(String renderedWinners) {
-        System.out.println(String.format(WINNER_INFO_MESSAGE_FORMAT, renderedWinners));
+        System.out.printf((WINNER_INFO_MESSAGE_FORMAT) + "%n", renderedWinners);
     }
 }

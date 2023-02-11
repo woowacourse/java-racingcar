@@ -27,7 +27,7 @@ public class StringTest {
     @Test
     @DisplayName("문자열 나누기 테스트")
     void splitContainsExactlyTest() {
-        assertThat("1,2".split(",")).containsExactly("1","2");
+        assertThat("1,2".split(",")).containsExactly("1", "2");
     }
 
     @Test
