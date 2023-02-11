@@ -2,11 +2,14 @@ package model;
 
 import util.NumberGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
     public Cars(List<String> carsName) {
         for (String name : carsName) {
@@ -26,14 +29,14 @@ public class Cars {
 
     public List<String> getWinners() {
         return cars.stream().filter(car -> car.checkLocationEqual(getMaxLocation()))
-                .map(Car::getCarName)
+                .map(Car::getName)
                 .map(Name::getName)
                 .collect(Collectors.toList());
     }
 
-    private int getMaxLocation(){
+    private int getMaxLocation() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getCarLocation))
-                .get().getCarLocation();
+                .max(Comparator.comparingInt(Car::getLocation))
+                .get().getLocation();
     }
 }

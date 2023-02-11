@@ -24,11 +24,11 @@ public class Car {
         }
     }
 
-    public Name getCarName() {
+    public Name getName() {
         return this.name;
     }
 
-    public int getCarLocation() {
+    public int getLocation() {
         return this.location;
     }
 

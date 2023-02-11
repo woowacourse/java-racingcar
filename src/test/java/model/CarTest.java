@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 class CarTest {
@@ -19,7 +19,7 @@ class CarTest {
     @ValueSource(strings = {"pobi", "crong", "honux", "hi hi", "jj503"})
     void createCarTest(String name) {
         Car car = new Car(new Name(name));
-        assertThat(car.getCarName().getName()).isEqualTo(name);
+        assertThat(car.getName().getName()).isEqualTo(name);
     }
 
     @ParameterizedTest(name = "Car 객체 생성 5자 초과 및 공백 예외 테스트 name = {0}")
@@ -42,7 +42,7 @@ class CarTest {
 
         car.moveByNumber(testNumberGenerator.generateNumber());
 
-        assertThat(car.getCarLocation()).isEqualTo(0);
+        assertThat(car.getLocation()).isEqualTo(0);
     }
 
     @Test
@@ -56,6 +56,6 @@ class CarTest {
 
         car.moveByNumber(testNumberGenerator.generateNumber());
 
-        assertThat(car.getCarLocation()).isEqualTo(1);
+        assertThat(car.getLocation()).isEqualTo(1);
     }
 }

@@ -13,7 +13,7 @@ public class Controller {
 
     public void run() {
         Cars cars = setCars();
-        repeatMoving(cars, setTryCount());
+        repeatMove(cars, setTryCount());
         outputView.printWinner(cars.getWinners());
     }
 
@@ -29,7 +29,7 @@ public class Controller {
         }
     }
 
-    private void repeatMoving(Cars cars, int tryCount) {
+    private void repeatMove(Cars cars, int tryCount) {
         outputView.printResult();
 
         for (int count = 0; count < tryCount; count++) {
