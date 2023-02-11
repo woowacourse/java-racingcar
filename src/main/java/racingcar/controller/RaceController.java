@@ -20,11 +20,8 @@ public class RaceController implements Controller {
 
     @Override
     public void process() {
-        String carNames = inputUtil.getUserInput(inputUtil::getCarNames);
-        Cars cars = Cars.of(carNames, numberGenerator);
-
-        String tryCount = inputUtil.getUserInput(inputUtil::getTryCount);
-        Race race = Race.of(tryCount);
+        Cars cars = createCars();
+        Race race = createRace();
 
         List<CarRaceDto> initCarsStatus = cars.initStatus();
         List<RaceResultDto> totalRaceResult = race.getRaceResult(cars);
@@ -32,5 +29,19 @@ public class RaceController implements Controller {
 
         List<String> winners = cars.pickWinners();
         outputView.printWinnerResult(winners);
+    }
+
+    private Cars createCars() {
+        return inputUtil.getUserInput(() -> {
+            String carNames = inputUtil.getCarNames();
+            return Cars.of(carNames, numberGenerator);
+        });
+    }
+
+    private Race createRace() {
+        return inputUtil.getUserInput(() -> {
+            String tryCount = inputUtil.getTryCount();
+            return Race.of(tryCount);
+        });
     }
 }
