@@ -14,10 +14,16 @@ public class Controller {
 	public void run() {
 		Cars cars = inputView.askCars();
 		Trial trial = inputView.askTrial();
-		for (int j = 0; j < trial.getTrial(); j++) {
-			cars.addDistance(RandomNumberMaker.makeNumber(cars.getCarsSize()));
-			outputView.printCarsDistance(cars);
+		for (int i = 0; i < trial.getTrial(); i++) {
+			printRound(cars);
 		}
 		outputView.printWinner(new Winner(cars));
+	}
+
+	private void printRound(Cars cars) {
+		for (int j = 0; j < cars.getCarsSize(); j++) {
+			cars.addDistance(RandomNumberMaker.makeNumber(), j);
+		}
+		outputView.printCarsDistance(cars);
 	}
 }

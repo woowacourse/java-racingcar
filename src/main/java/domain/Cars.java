@@ -14,10 +14,8 @@ public class Cars {
 		return cars.size();
 	}
 
-	public void addDistance(List<Integer> randomNumbers) {
-		for (int i = 0; i < cars.size(); i++) {
-			cars.get(i).addDistance(randomNumbers.get(i));
-		}
+	public void addDistance(int randomNumber, int index) {
+		getCar(index).addDistance(randomNumber);
 	}
 
 	public Car getCar(int index) {

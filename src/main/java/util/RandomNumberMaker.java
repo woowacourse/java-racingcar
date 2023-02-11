@@ -1,18 +1,12 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class RandomNumberMaker {
-    private static final int BOUND = 9;
+	private static final int BOUND = 10;
+	private static final Random random = new Random();
 
-    public List<Integer> makeNumber(int CarSize) {
-        List<Integer> randomNumbers = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < CarSize; i++) {
-            randomNumbers.add(random.nextInt(BOUND));
-        }
-        return randomNumbers;
-    }
+	public static int makeNumber() {
+		return random.nextInt(BOUND);
+	}
 }
