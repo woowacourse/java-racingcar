@@ -5,6 +5,8 @@ build/
 !**/src/main/**
 !**/src/test/**
 
+.gitkeep
+
 ### STS ###
 .apt_generated
 .classpath
