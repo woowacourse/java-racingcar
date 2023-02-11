@@ -1,9 +1,6 @@
 package racingcar.util;
 
-import racingcar.domain.Cars;
-import racingcar.domain.Race;
-import racingcar.exception.ConsoleException;
-import racingcar.exception.DuplicateException;
+import racingcar.exception.GlobalException;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -16,24 +13,24 @@ public class InputUtil {
 
     private final InputView inputView = new InputView();
 
+    private final OutputView outputView = new OutputView();
+
     public <T> T getUserInput(Supplier<T> inputReader) {
         try {
             return inputReader.get();
-        } catch (IllegalArgumentException | DuplicateException | ConsoleException e) {
-            OutputView.printMessage(e.getMessage());
+        } catch (GlobalException | IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
             return getUserInput(inputReader);
         }
     }
 
-    public Cars getCarNames() {
-        OutputView.printMessage(GET_CAR_NAMES_MESSAGE.getValue());
-        String carNames = inputView.getUserInput();
-        return Cars.of(carNames);
+    public String getCarNames() {
+        outputView.printMessage(GET_CAR_NAMES_MESSAGE.getValue());
+        return inputView.getUserInput();
     }
 
-    public Race getTryCount() {
-        OutputView.printMessage(GET_TRY_COUNT_MESSAGE.getValue());
-        String tryCount = inputView.getUserInput();
-        return Race.of(tryCount);
+    public String getTryCount() {
+        outputView.printMessage(GET_TRY_COUNT_MESSAGE.getValue());
+        return inputView.getUserInput();
     }
 }
