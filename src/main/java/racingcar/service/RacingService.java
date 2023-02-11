@@ -9,13 +9,13 @@ import racingcar.domain.Cars;
 import racingcar.domain.FinalRoundChecker;
 import racingcar.domain.RandomValueGenerator;
 
-public class Service {
+public class RacingService {
 
     private final Cars cars;
     private final RandomValueGenerator randomValueGenerator;
     private FinalRoundChecker finalRoundChecker;
 
-    public Service() {
+    public RacingService() {
         this.cars = new Cars();
         this.randomValueGenerator = new RandomValueGenerator();
     }
