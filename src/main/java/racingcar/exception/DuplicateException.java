@@ -2,7 +2,7 @@ package racingcar.exception;
 
 public class DuplicateException extends GlobalException {
 
-    public DuplicateException(String message) {
+    public DuplicateException(final String message) {
         super(message);
     }
 }

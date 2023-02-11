@@ -9,7 +9,7 @@ public enum InputMessage implements EnumUtil<String, String> {
 
     private final String message;
 
-    InputMessage(String message) {
+    InputMessage(final String message) {
         this.message = message;
     }
 

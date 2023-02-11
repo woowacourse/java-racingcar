@@ -9,7 +9,7 @@ public enum CarConstant implements EnumUtil<String, Integer> {
 
     private final int number;
 
-    CarConstant(int number) {
+    CarConstant(final int number) {
         this.number = number;
     }
 

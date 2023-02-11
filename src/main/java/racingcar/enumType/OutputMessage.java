@@ -3,6 +3,7 @@ package racingcar.enumType;
 import racingcar.util.EnumUtil;
 
 public enum OutputMessage implements EnumUtil<String, String> {
+
     NAME_POSITION_DELIMITER(" : ")
     , RACE_MARK("-")
     , WINNER_DELIMITER(", ")
@@ -11,7 +12,7 @@ public enum OutputMessage implements EnumUtil<String, String> {
 
     private final String message;
 
-    OutputMessage(String message) {
+    OutputMessage(final String message) {
         this.message = message;
     }
 

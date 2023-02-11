@@ -17,10 +17,6 @@ public class RaceCount {
         return new RaceCount(raceCount);
     }
 
-    public int getCount() {
-        return count;
-    }
-
     private int validateType(final String raceCount) {
         int count;
         try {
@@ -36,5 +32,9 @@ public class RaceCount {
             throw new IllegalArgumentException(String.format(RANGE_MESSAGE.getValue(), RACE_MIN_TRY_COUNT.getValue()));
         }
         return raceCount;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

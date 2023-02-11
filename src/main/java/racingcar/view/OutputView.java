@@ -14,29 +14,23 @@ public class OutputView {
     }
 
     public void printRaceResult(List<CarRaceDto> carRaceResult, List<RaceResultDto> totalRaceResult) {
-        printHeadResult(carRaceResult);
         StringBuilder result = new StringBuilder();
-        totalRaceResult.forEach(raceResultDto -> result.append(getRaceResult(raceResultDto)));
+        printHeadResult(carRaceResult, result);
+        totalRaceResult.forEach(raceResultDto -> getRaceResult(raceResultDto, result));
         System.out.println(result.toString().trim());
     }
 
-    public void printWinnerResult(List<String> winners) {
-        System.out.println("\n" + String.join(WINNER_DELIMITER.getValue(), winners) + WINNER_MESSAGE.getValue());
-    }
-
-    private void printHeadResult(List<CarRaceDto> carRaceResult) {
-        StringBuilder result = new StringBuilder();
+    private void printHeadResult(List<CarRaceDto> carRaceResult, StringBuilder result) {
         result.append(RESULT_MESSAGE.getValue());
         carRaceResult
                 .forEach(carRaceDto -> createRaceResult(carRaceDto, result));
         System.out.println(result);
     }
 
-    private StringBuilder getRaceResult(RaceResultDto raceResult) {
-        StringBuilder result = new StringBuilder();
+    private void getRaceResult(RaceResultDto raceResult, StringBuilder result) {
         raceResult.getCarRaceResult()
                 .forEach(carRaceDto -> createRaceResult(carRaceDto, result));
-        return result.append("\n");
+        result.append("\n");
     }
 
     private void createRaceResult(CarRaceDto carRaceDto, StringBuilder result) {
@@ -44,5 +38,9 @@ public class OutputView {
                 .append(NAME_POSITION_DELIMITER.getValue())
                 .append(RACE_MARK.getValue().repeat(carRaceDto.getCarPosition()))
                 .append("\n");
+    }
+
+    public void printWinnerResult(List<String> winners) {
+        System.out.println("\n" + String.join(WINNER_DELIMITER.getValue(), winners) + WINNER_MESSAGE.getValue());
     }
 }

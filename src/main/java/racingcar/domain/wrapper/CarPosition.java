@@ -14,11 +14,11 @@ public class CarPosition {
         return new CarPosition(INIT_POSITION.getValue());
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public void addPosition() {
         position++;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

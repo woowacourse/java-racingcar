@@ -23,26 +23,18 @@ public class Car {
         return new Car(name);
     }
 
-    public void move(int power) {
+    public CarRaceDto getCarRaceResult() {
+        return CarRaceDto.of(name.getName(), position.getPosition());
+    }
+
+    public void move(final int power) {
         if (power >= CAR_FORWARD_NUMBER.getValue()) {
             position.addPosition();
         }
     }
 
-    public CarRaceDto getCarRaceResult() {
-        return CarRaceDto.of(name.getName(), position.getPosition());
-    }
-
-    public boolean isSamePosition(int position) {
+    public boolean isSamePosition(final int position) {
         return this.position.getPosition() == position;
-    }
-
-    public int getPosition() {
-        return position.getPosition();
-    }
-
-    public String getName() {
-        return name.getName();
     }
 
     @Override
@@ -56,5 +48,13 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return position.getPosition();
     }
 }

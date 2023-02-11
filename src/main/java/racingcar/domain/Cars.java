@@ -20,13 +20,13 @@ public class Cars {
 
     private final NumberGenerator numberGenerator;
 
-    private Cars(final String carNames, NumberGenerator numberGenerator) {
+    private Cars(final String carNames, final NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
         this.cars = createCars(carNames);
         validateDuplicateCarName();
     }
 
-    public static Cars of(final String carNames, NumberGenerator numberGenerator) {
+    public static Cars of(final String carNames, final NumberGenerator numberGenerator) {
         return new Cars(carNames, numberGenerator);
     }
 
@@ -51,6 +51,12 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
+    private Integer getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max().orElse(INIT_POSITION.getValue());
+    }
+
     private List<Car> createCars(String carNames) {
         String[] names = splitCarNames(carNames);
         return Arrays.stream(names)
@@ -67,12 +73,6 @@ public class Cars {
         if (cars.size() != nonDuplicateCount) {
             throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
         }
-    }
-
-    private Integer getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max().orElse(INIT_POSITION.getValue());
     }
 
     @Override
