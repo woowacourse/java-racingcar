@@ -13,7 +13,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(final int value) {
-        if (value >= MOVE_LOWER_BOUND) {
+        if (MOVE_LOWER_BOUND <= value) {
             position.increase();
         }
     }
