@@ -10,7 +10,7 @@ public enum ExceptionMessage {
     private final String exceptionMessage;
 
     ExceptionMessage(String exceptionMessage) {
-        this.exceptionMessage = TAG + exceptionMessage;
+        this.exceptionMessage = TAG + exceptionMessage + System.lineSeparator();
     }
 
     public String getExceptionMessage() {
