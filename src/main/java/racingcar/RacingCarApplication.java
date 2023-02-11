@@ -27,7 +27,9 @@ public class RacingCarApplication {
     private List<Car> initializeCars() {
         String input = inputView.inputCarName();
         String[] split = input.split(DELIMITER);
-        return Arrays.stream(split).map(Car::new).collect(Collectors.toList());
+        return Arrays.stream(split)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public void startRacing() {
