@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class CarNameValidatorTest {
 
     @ParameterizedTest
-    @CsvSource({"''", "abcdef"})
+    @CsvSource(value = {"''", "abcdef", "null"}, nullValues = "null")
     void validateTest1(String input) {
         assertThatThrownBy(() -> CarNameValidator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
