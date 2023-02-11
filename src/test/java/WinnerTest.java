@@ -30,7 +30,7 @@ class WinnerTest {
         cars.add(car2);
         cars.add(car3);
 
-        winner.makeWinnerList(cars);
+        winner.makeWinnerNames(cars);
     }
 
     @Test
