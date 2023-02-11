@@ -6,13 +6,20 @@ public class Race {
 
     private final int TOTAL_COUNT;
     private int currentCount = 0;
+    private Participants participants;
 
-    public Race(final int totalCount) {
+    public Race(final int totalCount, final Participants participants) {
         COUNT_VALIDATOR.validate(totalCount);
         this.TOTAL_COUNT = totalCount;
+        this.participants = participants;
     }
 
-    public void addCount() {
+    public void playRound() {
+        participants.drive();
+        addCount();
+    }
+
+    private void addCount() {
         currentCount += 1;
     }
 

@@ -7,10 +7,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 class CarTest {
 
     private Car car;
+    private Judge judge;
 
     @BeforeEach
     void before() {
-        car = new Car("test");
+        judge = new Judge();
+        car = new Car("test", judge);
     }
 
     @ValueSource(ints = {1, 2, 3, 4, 5})
@@ -20,7 +22,7 @@ class CarTest {
         final int DRIVING_DISTANCE = 1;
         //when
         for (int count = 0; count < driveCount; count++) {
-            car.drive(DRIVING_DISTANCE);
+            car.drive();
         }
         //then
         int drivenDistance = car.getDrivenDistance();
