@@ -1,5 +1,6 @@
 package racingcar.util;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,7 @@ class ValidatorTest {
     @ValueSource(strings = {"gavi", "jude"})
     @DisplayName("차 이름 예외 통과 테스트")
     void carNameSuccessTest(String carName) {
-        Validator.validateCarName(carName);
+        assertThatCode(()-> Validator.validateCarName(carName)).doesNotThrowAnyException();
     }
 
     @ParameterizedTest
@@ -35,7 +36,7 @@ class ValidatorTest {
     @ValueSource(strings = {"2", "6", "8"})
     @DisplayName("시도 횟수 입력 성공 테스트")
     void trialSuccessTest(String trial) {
-        Validator.validateGameTime(trial);
+        assertThatCode(()-> Validator.validateGameTime(trial)).doesNotThrowAnyException();
     }
 
 }
