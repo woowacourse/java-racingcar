@@ -15,15 +15,13 @@ public class RacingCarController {
 
     private OutputView outputView = OutputView.getInstance();
     private InputView inputView = InputView.getInstance();
-    private RacingCars racingCars;
 
     public void run() {
         String[] carNames = readCarNamesStep();
-        injectRacingCarsStep(carNames);
-        int tryNum = getTryNum();
-
-        race(tryNum);
-        showWinners();
+        RacingCars racingCars = generateRacingCarsStep(carNames);
+        int tryNum = readTryNumStep();
+        race(tryNum, racingCars);
+        showWinners(racingCars);
     }
 
     private String[] readCarNamesStep() {
@@ -32,8 +30,9 @@ public class RacingCarController {
         return carNames;
     }
 
-    private void injectRacingCarsStep(String[] carNames) {
-        racingCars = new RacingCars(generateCars(carNames));
+    private RacingCars generateRacingCarsStep(String[] carNames) {
+        List<Car> cars = generateCars(carNames);
+        return new RacingCars(cars);
     }
 
     private List<Car> generateCars(String[] carNames) {
@@ -42,12 +41,12 @@ public class RacingCarController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void showWinners() {
+    private void showWinners(RacingCars racingCars) {
         List<String> winners = convertWinnersNameForPrint(racingCars.getWinners());
         outputView.printWinners(winners);
     }
 
-    private void race(int tryNum) {
+    private void race(int tryNum, RacingCars racingCars) {
         outputView.printRacingResultMessage();
         for (int repeatIndex = 0; repeatIndex < tryNum; repeatIndex++) {
             List<Car> currentCars = racingCars.getCars();
@@ -59,7 +58,7 @@ public class RacingCarController {
         }
     }
 
-    private int getTryNum() {
+    private int readTryNumStep() {
         outputView.printReadTryNumMessage();
         return inputView.readTryNum();
     }
