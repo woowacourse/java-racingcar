@@ -12,7 +12,7 @@ public enum GameRules {
     }
 
     public static void validateNameLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH.value) {
+        if (name.isBlank() || name.length() > MAX_NAME_LENGTH.value) {
             throw new IllegalArgumentException(ErrorMessages.NAME_LENGTH.getMessage());
         }
     }
