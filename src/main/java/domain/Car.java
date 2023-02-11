@@ -10,18 +10,18 @@ public class Car {
 	private final String carName;
 	private int distance = 0;
 
-	public Car(String inputCar) {
-		String trimInput = eliminateBlank(inputCar);
+	public Car(String input) {
+		String trimInput = trimAllBlank(input);
 		validateNameLength(trimInput);
 		this.carName = trimInput;
 	}
 
-	private String eliminateBlank(String inputCar) {
-		return inputCar.trim();
+	private String trimAllBlank(String input) {
+		return input.replaceAll(" ", "");
 	}
 
-	private void validateNameLength(String inputCar) {
-		if (inputCar.length() < MIN_BOUND || inputCar.length() > MAX_BOUND) {
+	private void validateNameLength(String input) {
+		if (input.length() < MIN_BOUND || input.length() > MAX_BOUND) {
 			throw new IllegalArgumentException(ONE_TO_FIVE);
 		}
 	}
