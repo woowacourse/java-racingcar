@@ -61,5 +61,4 @@ class TrackTest {
         // then
         assertThat(track.runnable()).isFalse();
     }
-
 }

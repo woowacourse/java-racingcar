@@ -2,10 +2,8 @@ package racingcar.model.track;
 
 import racingcar.exception.InvalidRangeTrialTimesException;
 import racingcar.exception.InvalidTrialTimesFormatException;
-import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class Track {

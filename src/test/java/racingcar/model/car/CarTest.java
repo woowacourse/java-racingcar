@@ -39,7 +39,7 @@ class CarTest {
 
     @DisplayName("자동차의 현재 위치 형식 테스트")
     @Test
-    void currentStateFormatTest(){
+    void currentStateFormatTest() {
         // given
         Car car = new Car("pobi", new ForwardMovingStrategy());
         String expected = "pobi : -";
@@ -51,6 +51,5 @@ class CarTest {
 
         // then
         assertThat(actual).isEqualTo(expected);
-    };
-
+    }
 }
