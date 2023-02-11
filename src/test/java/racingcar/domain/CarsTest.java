@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class CarsTest {
     private static final int MOVE = 10;
-    private static final int STOP = 0;
 
     Car car1 = new Car("gavi");
     Car car2 = new Car("jude");
