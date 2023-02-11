@@ -2,20 +2,30 @@ package racingcar.controller;
 
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
+import racingcar.domain.RaceNumberGenerator;
 import racingcar.util.InputUtil;
 import racingcar.view.OutputView;
+
+import java.util.List;
 
 public class RaceController implements Controller {
 
     private final InputUtil inputUtil = new InputUtil();
 
+    private final OutputView outputView = new OutputView();
+
+    private final RaceNumberGenerator numberGenerator = new RaceNumberGenerator();
+
     @Override
     public void process() {
-        Cars cars = inputUtil.getUserInput(inputUtil::getCarNames);
-        Race race = inputUtil.getUserInput(inputUtil::getTryCount);
-        OutputView.printHeadResult(cars);
-        OutputView.printMessage(race.start(cars).trim());
-        String winners = cars.pickWinners();
-        OutputView.printFinalResult(winners);
+        String carNames = inputUtil.getUserInput(inputUtil::getCarNames);
+        Cars cars = Cars.of(carNames, numberGenerator);
+        String tryCount = inputUtil.getUserInput(inputUtil::getTryCount);
+
+        Race race = Race.of(tryCount);
+        outputView.printRaceResult(cars, race);
+
+        List<String> winners = cars.pickWinners();
+        outputView.printWinnerResult(winners);
     }
 }
