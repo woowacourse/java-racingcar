@@ -6,6 +6,7 @@ public class Car implements Comparable<Car> {
 	private static final String ONE_TO_FIVE = "이름은 1이상 5이하입니다.";
 	public static final int MIN_BOUND = 1;
 	public static final int MAX_BOUND = 5;
+	public static final int THRESHOLD = 4;
 	private final String carName;
 	private int distance = 0;
 
@@ -26,7 +27,7 @@ public class Car implements Comparable<Car> {
 	}
 
 	public void addDistance(int makeNumber) {
-		if (makeNumber >= 4) {
+		if (makeNumber >= THRESHOLD) {
 			distance++;
 		}
 	}
