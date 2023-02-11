@@ -8,7 +8,7 @@ public class RacingGame {
     private static final int MOVABLE_CONDITION = 4;
 
     private final CarGroup carGroup;
-    private final NumberGenerator numberGenerator;
+    private final RandomNumberGenerator numberGenerator;
 
     public RacingGame(String[] names) {
         this.carGroup = new CarGroup(names);
