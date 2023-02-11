@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final String CAR_SEPARATOR = ", ";
 
     private final List<Car> cars;
 
@@ -18,8 +17,15 @@ public class Cars {
     }
 
     private void validate(List<Car> cars) {
+        validateDuplicateCarNames(cars);
+    }
+
+    private static void validateDuplicateCarNames(List<Car> cars) {
         int carNamesCount = cars.size();
-        int distinctCarNamesCount = cars.stream().map(Car::getCarName).collect(Collectors.toSet()).size();
+        int distinctCarNamesCount = cars.stream()
+                .map(Car::getCarName)
+                .collect(Collectors.toSet())
+                .size();
 
         if (carNamesCount != distinctCarNamesCount) {
             throw new DuplicateCarNamesException();
@@ -36,19 +42,13 @@ public class Cars {
         return cars.stream().collect(Collectors.toUnmodifiableList());
     }
 
-    public Cars getWinnerCars() {
+    public List<Car> getWinnerCars() {
         Integer maxPosition = Collections.max(cars.stream()
                 .map(Car::getPosition)
                 .collect(Collectors.toList()));
 
-        return new Cars(cars.stream()
-                .filter(car -> car.isWinner(maxPosition))
-                .collect(Collectors.toList()));
-    }
-
-    public String getCarsWinnerFormat() {
         return cars.stream()
-                .map(Car::getCarName)
-                .collect(Collectors.joining(CAR_SEPARATOR));
+                .filter(car -> car.isWinner(maxPosition))
+                .collect(Collectors.toUnmodifiableList());
     }
 }

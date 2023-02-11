@@ -25,8 +25,8 @@ public class Car {
     }
 
     private void validate(String carName) {
-        validateValue(carName);
         validateHasBlank(carName);
+        validateValue(carName);
         validateOverMaxNameLength(carName);
     }
 
