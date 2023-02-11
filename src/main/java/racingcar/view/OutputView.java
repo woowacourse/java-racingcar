@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printPosition(final List<Car> cars) {
+    public void printCurrentCarPositions(final List<Car> cars) {
         System.out.println(generatePositionMessages(cars) + POSITION_MESSAGE_DELIMITER);
     }
 

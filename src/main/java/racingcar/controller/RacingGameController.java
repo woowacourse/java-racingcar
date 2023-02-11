@@ -42,8 +42,9 @@ public class RacingGameController {
     private void play(final RacingGame racingGame) {
         outputView.printResultMessage();
         while (racingGame.isPlayable()) {
-            List<Car> cars = racingGame.play();
-            outputView.printPosition(cars);
+            racingGame.play();
+            List<Car> cars = racingGame.findCurrentCarPositions();
+            outputView.printCurrentCarPositions(cars);
         }
     }
 
