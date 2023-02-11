@@ -8,28 +8,30 @@ import java.util.List;
 
 public class InputViewForRetry {
 
-    private InputView inputView;
+    private final InputView inputView;
 
-    public List<CarNameDto> sendCarsName(InputView inputView) {
+    public InputViewForRetry(InputView inputView) {
         this.inputView = inputView;
+    }
+
+    public List<CarNameDto> sendCarsName() {
         try {
-            return this.inputView.sendCarsName();
+            return inputView.sendCarsName();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
-            return sendCarsName(inputView);
+            return sendCarsName();
         }
     }
 
-    public TryCount sendTryCount(InputView inputView) {
-        this.inputView = inputView;
+    public TryCount sendTryCount() {
         try {
-            return this.inputView.sendTryCount();
+            return inputView.sendTryCount();
         } catch (InputMismatchException exception) {
             printExceptionMessage("시도 횟수는 양의 정수여야 합니다.");
-            return sendTryCount(inputView);
+            return sendTryCount();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
-            return sendTryCount(inputView);
+            return sendTryCount();
         }
     }
 
