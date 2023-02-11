@@ -1,11 +1,8 @@
 package model.car;
 
 import java.util.Arrays;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.*;
 
 class CarRepositoryTest {
 
@@ -27,7 +24,7 @@ class CarRepositoryTest {
         Assertions.assertEquals(CarRepository.cars().size(), 2);
     }
 
-    @AfterAll
+    @AfterEach
     static void afterAll() {
         CarRepository.deleteAll();
     }
