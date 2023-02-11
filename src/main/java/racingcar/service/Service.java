@@ -34,11 +34,7 @@ public class Service {
 
     public void playRound() {
         RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
-
-        do {
-            int value = randomValueGenerator.generate();
-            cars.addNextCarValue(value);
-        } while (!cars.isRoundOver());
+        cars.playRound(randomValueGenerator);
     }
 
     public Map<String, Integer> getCurrentRoundResult() {

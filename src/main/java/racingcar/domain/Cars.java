@@ -22,26 +22,22 @@ public class Cars {
         cars.add(car);
     }
 
-    public void addNextCarValue(int value) {
-
-        if (isRoundOver()) {
-            cars.get(FIRST_INDEX).addValue(value);
-            return;
+    public void playRound(ValueGenerator valueGenerator) {
+        for (Car car : cars) {
+            car.addValue(valueGenerator.generate());
         }
-        getCurrentTurnCar().get().addValue(value);
     }
 
     public boolean isRoundOver() {
         return getCurrentTurnCar().isEmpty();
-
     }
 
     private Optional<Car> getCurrentTurnCar() {
         int size = cars.get(FIRST_INDEX).getLogSize();
-        Optional<Car> targetCar = cars.stream().filter(car -> car.getLogSize() < size)
-            .findFirst();
 
-        return targetCar;
+        return cars.stream()
+            .filter(car -> car.getLogSize() < size)
+            .findFirst();
     }
 
     public Map<String, Integer> getRoundResult() {
@@ -64,11 +60,12 @@ public class Cars {
         cars.forEach(car -> positions.add(getPosition(car)));
         int maxPosition = Collections.max(positions);
         return cars.stream().filter(car -> getPosition(car) == maxPosition)
-            .map(car -> car.getName())
+            .map(Car::getName)
             .collect(Collectors.toList());
     }
 
     private int getPosition(Car car) {
         return car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold());
     }
+
 }
