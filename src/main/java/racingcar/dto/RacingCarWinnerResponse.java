@@ -9,7 +9,7 @@ import racingcar.domain.Name;
 public class RacingCarWinnerResponse {
     private final List<String> winners;
 
-    public RacingCarWinnerResponse(List<String> winners) {
+    private RacingCarWinnerResponse(List<String> winners) {
         this.winners = winners;
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 public class RacingCarNamesRequest {
     private final List<String> names;
 
-    public RacingCarNamesRequest(List<String> names) {
+    private RacingCarNamesRequest(List<String> names) {
         this.names = names;
     }
 
