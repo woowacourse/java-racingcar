@@ -7,55 +7,54 @@ import view.InputView;
 import view.OutputView;
 
 public class RacingGameController {
-    private MoveCount count;
-    private Cars cars;
-    private final MovingPolicy movingPolicy;
-
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingGameController(MovingPolicy movingPolicy, InputView inputView, OutputView outputView) {
+    private final MovingPolicy movingPolicy;
+    private Cars cars;
+    private MoveCount moveCount;
+
+    public RacingGameController(InputView inputView, OutputView outputView, MovingPolicy movingPolicy) {
         this.movingPolicy = movingPolicy;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void init() {
-        while (!readCarNames()) ;
-        while (!readTryCount()) ;
+    public void run() {
+        init();
+        play();
     }
 
-    public void run() {
+    private void init() {
+        repeater(this::readCarNames);
+        repeater(this::readMoveCount);
         outputView.initResult();
+    }
 
-        while (!count.isOver()) {
+    private void readCarNames() {
+        cars = Cars.from(inputView.readCarName());
+    }
+
+    private void readMoveCount() {
+        moveCount = new MoveCount(inputView.readTryCount());
+    }
+
+    private void play() {
+        while (!moveCount.isOver()) {
             cars.move(movingPolicy);
-            count.decrease();
+            moveCount.decrease();
             outputView.printRaceResult(cars.getResult());
         }
 
         outputView.printWinners(cars.getWinners());
     }
 
-    private boolean readCarNames() {
+    private void repeater(Runnable runnable) {
         try {
-            this.cars = Cars.from(inputView.readCarName());
-            return true;
-        } catch (IllegalArgumentException e) {
+            runnable.run();
+        } catch (Exception e) {
             outputView.printError(e.getMessage());
+            repeater(runnable);
         }
-
-        return false;
-    }
-
-    private boolean readTryCount() {
-        try {
-            this.count = new MoveCount(inputView.readTryCount());
-            return true;
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-        }
-
-        return false;
     }
 }

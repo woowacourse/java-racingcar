@@ -5,9 +5,10 @@ import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        RacingGameController racingGameController = new RacingGameController(new RandomMovingPolicy(), new InputView(), new OutputView());
+        RacingGameController racingGameController = new RacingGameController(new InputView(),
+                                                                            new OutputView(),
+                                                                            new RandomMovingPolicy());
 
-        racingGameController.init();
         racingGameController.run();
     }
 }
