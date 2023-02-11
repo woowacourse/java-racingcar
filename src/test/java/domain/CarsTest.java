@@ -8,6 +8,7 @@ import utils.NumberGenerator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static domain.Car.DEFAULT_POSITION_VALUE;
 import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,7 +37,8 @@ class CarsTest {
                 .map(Car::getPosition)
                 .collect(Collectors.toList());
 
-        assertThat(positions).containsExactly(1, 0, 1);
+        assertThat(positions)
+                .containsExactly(DEFAULT_POSITION_VALUE + 1, DEFAULT_POSITION_VALUE, DEFAULT_POSITION_VALUE + 1);
     }
 
     @DisplayName("findWinners()를 통해 position이 가장 높은 Car들을 가져온다")
