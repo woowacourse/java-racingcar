@@ -16,6 +16,7 @@ graph TD
     RandomNumberGenerator -.-> NumberGenerator
     RacingCarController --> InputView
     InputView --> InputValidator
+    InputView --> InputParser
     RacingCarController --> OutputView
 ```
 
