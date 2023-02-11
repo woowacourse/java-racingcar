@@ -1,59 +1,29 @@
 package domain;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+@DisplayName("자동차들의")
 class CarsTest {
-    @Test
-    void checkSuccess() {
-        assertThatThrownBy(() ->
-                new Cars("aa,bb,cc")
-        ).isNotInstanceOf(IllegalArgumentException.class);
-    }
+	List<Car> cars;
 
-    @ParameterizedTest
-    @ValueSource(strings = {"", " "})
-    void checkBlank(String input) {
-        assertThatThrownBy(() ->
-                new Cars(input)
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
+	@BeforeEach
+	public void initialize() {
+		cars = new ArrayList<>(List.of(new Car("benz"), new Car("honda"), new Car("audi")));
+	}
 
-    @ParameterizedTest
-    @ValueSource(strings = {"aa,bb,ccdddd", "aa, ,bb", "aa,,bb"})
-    void carNameLength(String input) {
-        assertThatThrownBy(() ->
-                new Cars(input)
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
+	@DisplayName("총 개수 테스트")
+	@Test
+	void checkCarsSize() {
+		assertThat(cars.size()).isEqualTo(3);
 
-    @Test
-    void checkCommaExist() {
-        assertThatThrownBy(() ->
-                new Cars("aa")
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void checkDuplication() {
-        assertThatThrownBy(() ->
-                new Cars("aa,aa,ff")
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @ParameterizedTest
-    @CsvSource(value = {"0,0", "1,1", "2,2"})
-    void checkAddDistance(int i, int expected) {
-        Cars cars = new Cars("aa,bb,ff");
-        cars.addDistance(List.of(2, 5, 7));
-        cars.addDistance(List.of(1, 2, 7));
-        assertThat(cars.getCar(i).getDistance()).isEqualTo(expected);
-    }
+		cars.add(new Car("ford"));
+		assertThat(cars.size()).isEqualTo(4);
+	}
 }
