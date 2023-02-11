@@ -17,8 +17,7 @@ public class RacingCarController {
 
     public void run() throws IOException {
         Cars cars = getCars();
-        int attemptNumber = InputView.readAttemptNumber();
-        printRacingResult(attemptNumber, cars);
+        race(cars);
         printWinners(cars);
     }
 
@@ -32,7 +31,8 @@ public class RacingCarController {
         }
     }
 
-    private void printRacingResult(int attemptNumber, final Cars cars) {
+    private void race(final Cars cars) throws IOException {
+        int attemptNumber = InputView.readAttemptNumber();
         OutputView.printResult();
         while ((attemptNumber--) > 0) {
             cars.moveAll(numberGenerator);
