@@ -16,8 +16,6 @@ public class Car {
     }
 
     public Car(String name, CarMovement carMovement) {
-        CarValidator carValidator = new DefaultCarValidator();
-        carValidator.validateCarName(name);
         this.name = name;
         this.position = 0;
         this.carMovement = carMovement;
