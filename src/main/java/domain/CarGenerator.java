@@ -1,14 +1,13 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarGenerator {
     public List<Car> generateCars(String[] carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNames) {
-            cars.add(new Car(name));
-        }
-        return cars;
+       return Arrays.stream(carNames)
+               .map(Car::new)
+               .collect(Collectors.toList());
     }
 }
