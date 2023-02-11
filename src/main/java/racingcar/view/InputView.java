@@ -7,11 +7,9 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scan = new Scanner(System.in);
 
-    public String[] inputCarName() {
+    public String inputCarName() {
         System.out.println(OutputConstant.INPUT_CAR_NAME);
-        String input = scan.nextLine();
-        String[] carNames = Validator.validateCarNames(input);
-        return carNames;
+        return scan.nextLine();
     }
 
     public int inputGameTime() {

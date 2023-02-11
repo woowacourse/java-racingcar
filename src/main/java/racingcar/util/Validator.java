@@ -22,7 +22,10 @@ public class Validator {
 
     public static void validateCarName(String carName) {
         if (carName.length() > CAR_NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_LENGTH);
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.CAR_NAME_LENGTH);
+        }
+        if (carName.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NO_INPUT);
         }
     }
 

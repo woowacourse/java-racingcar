@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 public class Position {
+    private static final int FORWARD_ONE_BLOCK = 1;
+    
     private int position;
 
     public Position(int position) {
@@ -8,11 +10,10 @@ public class Position {
     }
 
     public void increase() {
-        position += 1;
+        position += FORWARD_ONE_BLOCK;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return this.position;
     }
-    
 }
