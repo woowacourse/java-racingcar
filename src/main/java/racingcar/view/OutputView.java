@@ -1,8 +1,8 @@
 package racingcar.view;
 
-import racingcar.dto.CarDTO;
-import racingcar.dto.GameResultResponse;
-import racingcar.dto.RoundResultResponse;
+import racingcar.datatransfer.CarDTO;
+import racingcar.datatransfer.GameResultResponse;
+import racingcar.datatransfer.RoundResultResponse;
 
 import java.util.List;
 

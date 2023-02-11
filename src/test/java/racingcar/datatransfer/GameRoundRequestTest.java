@@ -1,10 +1,7 @@
-package racingcar.dto;
+package racingcar.datatransfer;
 
 import org.assertj.core.api.Assertions;
-import org.assertj.core.api.ThrowableAssert;
-import org.assertj.core.internal.bytebuddy.pool.TypePool;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

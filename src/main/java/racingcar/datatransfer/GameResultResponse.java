@@ -1,4 +1,4 @@
-package racingcar.dto;
+package racingcar.datatransfer;
 
 import java.util.ArrayList;
 import java.util.List;

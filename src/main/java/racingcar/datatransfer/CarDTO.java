@@ -1,8 +1,4 @@
-package racingcar.dto;
-
-import racingcar.domain.Car;
-
-import java.util.Map;
+package racingcar.datatransfer;
 
 public class CarDTO {
     private final String carName;

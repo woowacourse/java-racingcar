@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.dto.CarNamesRequest;
-import racingcar.dto.GameRoundRequest;
+import racingcar.datatransfer.CarNamesRequest;
+import racingcar.datatransfer.GameRoundRequest;
 
 import java.io.BufferedReader;
 import java.io.IOException;

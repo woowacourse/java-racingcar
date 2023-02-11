@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import java.util.Random;
 
 import static racingcar.exception.ErrorMessages.CAR_NAME_BLANK_EXCEPTION;
 import static racingcar.exception.ErrorMessages.CAR_NAME_LENGTH_EXCEPTION;

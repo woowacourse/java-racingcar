@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import racingcar.dto.CarNamesRequest;
-import racingcar.dto.GameResultResponse;
-import racingcar.dto.RoundResultResponse;
+import racingcar.datatransfer.CarNamesRequest;
+import racingcar.datatransfer.GameResultResponse;
+import racingcar.datatransfer.RoundResultResponse;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
