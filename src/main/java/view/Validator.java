@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Validate {
+public class Validator {
     private static final String DIGIT = "\\d+";
 
     public void checkValidCarNames(String[] carNames) {
