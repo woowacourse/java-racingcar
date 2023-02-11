@@ -8,6 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.NumberGenerator.NumberGenerator;
+import racingcar.domain.NumberGenerator.TestNumberGenerator;
 
 class RoundManagerTest {
     @ParameterizedTest
@@ -15,7 +17,7 @@ class RoundManagerTest {
     @DisplayName("range범위에 따른 전진 결과 테스트")
     public void 전진_결과_테스트(int num, List<String> expected) {
         Range range = new Range(4, 9);
-        NumberGenerator numberGenerator = new DefaultNumberGenerator(num);
+        NumberGenerator numberGenerator = new TestNumberGenerator(num);
         AdvanceJudgement advanceJudgement = new AdvanceJudgement(range, numberGenerator);
         RoundManager roundManager = new RoundManager(advanceJudgement);
         roundManager.addRacingCar(new RacingCar("car"));

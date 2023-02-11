@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.*;
+import racingcar.domain.NumberGenerator.NumberGenerator;
 import racingcar.dto.RacingCarDto;
 import racingcar.utils.Parser;
 import racingcar.validator.CarNamesValidator;

@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.NumberGenerator.NumberGenerator;
+
 public class AdvanceJudgement {
     private final Range advanceNumberRange;
     private final NumberGenerator numberGenerator;

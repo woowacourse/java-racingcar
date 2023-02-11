@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.NumberGenerator;
 
 public class RandomNumberGenerator implements NumberGenerator {
     @Override
