@@ -45,7 +45,7 @@ public class RacingCarService {
     public List<RacingCarStatusResponse> getCarStatuses() {
         List<Car> cars = carRepository.findAll();
         return cars.stream()
-                .map(Car::getStatus)
+                .map(RacingCarStatusResponse::of)
                 .collect(toList());
     }
 
@@ -60,7 +60,7 @@ public class RacingCarService {
 
     private Position getMaxPosition(List<Car> cars) {
         return cars.stream()
-                .map(Car::getMovedLength)
+                .map(Car::getPosition)
                 .max(comparing(Position::getValue))
                 .orElseThrow(() -> new IllegalStateException(EMPTY_CARS.getMessage()));
     }

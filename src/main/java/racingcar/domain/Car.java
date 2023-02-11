@@ -5,17 +5,20 @@ import static racingcar.exception.ExceptionMessage.BLANK_CAR_NAME;
 import static racingcar.exception.ExceptionMessage.OUT_OF_CAR_NAME_LENGTH;
 
 import java.util.Objects;
-import racingcar.dto.RacingCarStatusResponse;
 
 public class Car {
-    private final String name;
+    private final Name name;
     private final Position position;
 
     public Car(String name) {
+        this(name, 0);
+    }
+
+    public Car(String name, int position) {
         validateBlankCarName(name);
         validateCarNameLength(name);
-        this.name = name;
-        this.position = new Position(0);
+        this.name = new Name(name);
+        this.position = new Position(position);
     }
 
     public static class Validator {
@@ -37,19 +40,19 @@ public class Car {
         }
     }
 
-    public RacingCarStatusResponse getStatus() {
-        return new RacingCarStatusResponse(name, position.getValue());
-    }
-
     public void move() {
         position.forward();
     }
 
-    public Position getMovedLength() {
-        return position;
-    }
-
     public boolean isSamePosition(Position position) {
         return Objects.equals(this.position, position);
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }

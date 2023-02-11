@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.dto.RacingCarStatusResponse;
 
 class CarTest {
     private Car car;
@@ -23,29 +22,22 @@ class CarTest {
     @DisplayName("차를 움직였을 때 위치가 변해야 한다.")
     void car_move() {
         // given
-        RacingCarStatusResponse status = car.getStatus();
         car.move();
-        RacingCarStatusResponse postStatus = car.getStatus();
+        Position position = car.getPosition();
 
         // expect
-        assertThat(postStatus.getPosition())
-                .isGreaterThan(status.getPosition());
+        assertThat(position.getValue())
+                .isGreaterThan(0);
     }
 
     @Test
     @DisplayName("차의 정보가 정확하게 반환되어야 한다.")
     void car_status() {
         // given
-        car.move();
-        car.move();
+        Name name = car.getName();
 
-        // when
-        RacingCarStatusResponse status = car.getStatus();
-
-        // then
-        assertThat(status.getPosition())
-                .isEqualTo(2);
-        assertThat(status.getName())
+        // expected
+        assertThat(name.getValue())
                 .isEqualTo("mycar");
     }
 

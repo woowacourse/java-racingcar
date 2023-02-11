@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.*;
 
 import java.util.List;
 import racingcar.domain.Car;
+import racingcar.domain.Name;
 
 public class RacingCarWinnerResponse {
     private final List<String> winners;
@@ -14,8 +15,8 @@ public class RacingCarWinnerResponse {
 
     public static RacingCarWinnerResponse of(List<Car> winners) {
         List<String> names = winners.stream()
-                .map(Car::getStatus)
-                .map(RacingCarStatusResponse::getName)
+                .map(Car::getName)
+                .map(Name::getValue)
                 .collect(toList());
         return new RacingCarWinnerResponse(names);
     }
