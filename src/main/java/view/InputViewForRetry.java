@@ -8,28 +8,28 @@ import java.util.List;
 
 public class InputViewForRetry {
 
-    private final InputView inputView = new InputView();
+    private InputView inputView;
 
-    public List<CarNameDto> sendCarsName() {
-        inputView.sendCarsName();
+    public List<CarNameDto> sendCarsName(InputView inputView) {
+        this.inputView = inputView;
         try {
-            return inputView.sendCarsName();
+            return this.inputView.sendCarsName();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
-            return sendCarsName();
+            return sendCarsName(inputView);
         }
     }
 
-    public TryCount sendTryCount() {
-        inputView.sendTryCount();
+    public TryCount sendTryCount(InputView inputView) {
+        this.inputView = inputView;
         try {
-            return inputView.sendTryCount();
+            return this.inputView.sendTryCount();
         } catch (InputMismatchException exception) {
             printExceptionMessage("시도 횟수는 양의 정수여야 합니다.");
-            return sendTryCount();
+            return sendTryCount(inputView);
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
-            return sendTryCount();
+            return sendTryCount(inputView);
         }
     }
 
@@ -37,6 +37,3 @@ public class InputViewForRetry {
         System.out.println("[ERROR] " +message);
     }
 }
-
-
-

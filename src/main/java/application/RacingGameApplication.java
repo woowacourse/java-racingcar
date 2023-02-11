@@ -7,6 +7,7 @@ import domain.TryCount;
 import dto.request.CarNameDto;
 import dto.response.CarStatusDto;
 import dto.response.WinnersNameDto;
+import view.InputView;
 import view.InputViewForRetry;
 import view.OutputView;
 
@@ -26,8 +27,8 @@ public class RacingGameApplication {
     }
 
     public void run() {
-        List<CarNameDto> carNameDtos = inputView.sendCarsName();
-        TryCount tryCount = inputView.sendTryCount();
+        List<CarNameDto> carNameDtos = inputView.sendCarsName(new InputView());
+        TryCount tryCount = inputView.sendTryCount(new InputView());
 
         Cars cars = getCars(carNameDtos);
 
