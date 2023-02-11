@@ -2,12 +2,12 @@ package racingcar.controller;
 
 import racingcar.domain.carfactory.CarFactory;
 import racingcar.domain.cars.Cars;
-import racingcar.domain.numbergenerator.NumberGenerator;
-import racingcar.domain.result.Result;
+import racingcar.domain.record.GameRecord;
 import racingcar.domain.system.GameSystem;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class GameController {
@@ -24,22 +24,18 @@ public class GameController {
         Cars cars = makeCars(inputView.readCarNames());
 
         GameSystem gameSystem = createGameSystem(inputView.readGameRound());
-        Result result = gameSystem.executeRace(cars);
+        gameSystem.executeRace(cars);
 
-        printResultAndWinner(result);
+        outputView.printResult(gameSystem.getGameResult());
+        outputView.printWinner(gameSystem.findWinners());
     }
 
     private Cars makeCars(List<String> carNames) {
         CarFactory carFactory = new CarFactory();
-        return carFactory.createCarRepository(carNames);
+        return carFactory.createCars(carNames);
     }
 
     private GameSystem createGameSystem(int gameRound) {
-        return new GameSystem(gameRound, new NumberGenerator());
-    }
-
-    private void printResultAndWinner(Result result) {
-        outputView.printResult(result);
-        outputView.printWinner(result);
+        return new GameSystem(gameRound, new GameRecord(new LinkedHashMap<>()));
     }
 }
