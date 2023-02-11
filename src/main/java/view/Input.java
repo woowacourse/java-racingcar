@@ -4,26 +4,20 @@ import java.util.Scanner;
 
 public class Input {
     private static final String DELIMITER = ",";
-    
-    private Validate validate;
-    private Scanner sc;
+    private static final Validate validate = new Validate();
+    private static final Scanner sc = new Scanner(System.in);
 
-    public Input() {
-        validate = new Validate();
-        sc = new Scanner(System.in);
-    }
-
-    public String getInput() {
+    public static String getInput() {
         return sc.nextLine();
     }
 
-    public String[] getCarNames(String input) {
+    public static String[] getCarNames(String input) {
         String[] carNames = input.split(DELIMITER);
         validate.checkValidCarNames(carNames);
         return carNames;
     }
 
-    public int getTryCount(String input) {
+    public static int getTryCount(String input) {
         validate.checkDigits(input);
         int tryCount = Integer.parseInt(input);
         validate.checkRange(tryCount);
