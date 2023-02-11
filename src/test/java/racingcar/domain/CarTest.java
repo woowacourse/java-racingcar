@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.constants.CarConstant;
 import racingcar.service.CarService;
 
 class CarTest {
@@ -78,13 +79,15 @@ class CarTest {
     @Nested
     @DisplayName("자동차 시작 위치 테스트")
     class TestStartDistance {
+        int startDistance = CarConstant.START_DISTANCE_VALUE.getNumber();
+
         @ParameterizedTest(name = "{index} ==> distance : ''{0}''")
         @ValueSource(ints = {1, -1, 100})
         @DisplayName("자동차 시작 위치가 0이 아닌 경우 예외 발생")
         void Should_ThrowException_시작_위치가_0이_아닌_경우(int distance) {
             assertThatThrownBy(() -> new Car("test", distance))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 자동차의 시작 위치는 0으로 설정되어야 합니다.");
+                    .hasMessageContaining(String.format("[ERROR] 자동차의 시작 위치는 %d으로 설정되어야 합니다.", startDistance));
         }
 
         @Test

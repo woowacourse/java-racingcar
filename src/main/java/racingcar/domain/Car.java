@@ -29,8 +29,9 @@ public class Car {
     }
 
     private void validateStartDistance(int distance) {
-        if (distance != 0) {
-            throw new IllegalArgumentException("[ERROR] 자동차의 시작 위치는 0으로 설정되어야 합니다.");
+        int startDistance = CarConstant.START_DISTANCE_VALUE.getNumber();
+        if (distance != startDistance) {
+            throw new IllegalArgumentException(String.format("[ERROR] 자동차의 시작 위치는 %d으로 설정되어야 합니다.", startDistance));
         }
     }
 
