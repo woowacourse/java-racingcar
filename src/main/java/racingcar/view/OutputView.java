@@ -15,12 +15,12 @@ public class OutputView {
 
     public void printRaceResult(List<CarRaceDto> carRaceResult, List<RaceResultDto> totalRaceResult) {
         StringBuilder result = new StringBuilder();
-        printHeadResult(carRaceResult, result);
+        getInitCarResult(carRaceResult, result);
         totalRaceResult.forEach(raceResultDto -> getRaceResult(raceResultDto, result));
         System.out.println("\n" + result.toString().trim());
     }
 
-    private void printHeadResult(List<CarRaceDto> carRaceResult, StringBuilder result) {
+    private void getInitCarResult(List<CarRaceDto> carRaceResult, StringBuilder result) {
         result.append(RESULT_MESSAGE.getValue());
         carRaceResult
                 .forEach(carRaceDto -> createRaceResult(carRaceDto, result));

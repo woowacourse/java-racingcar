@@ -21,13 +21,24 @@ public class Cars {
     private final NumberGenerator numberGenerator;
 
     private Cars(final String carNames, final NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
         this.cars = createCars(carNames);
+        this.numberGenerator = numberGenerator;
         validateDuplicateCarName();
     }
 
     public static Cars of(final String carNames, final NumberGenerator numberGenerator) {
         return new Cars(carNames, numberGenerator);
+    }
+
+    private List<Car> createCars(String carNames) {
+        String[] names = splitCarNames(carNames);
+        return Arrays.stream(names)
+                .map(Car::of)
+                .collect(Collectors.toList());
+    }
+
+    private String[] splitCarNames(String carNames) {
+        return carNames.split(SPLIT_DELIMITER.getValue());
     }
 
     private void validateDuplicateCarName() {
@@ -58,28 +69,17 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    private Integer getMaxPosition() {
+    private int getMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max().orElse(INIT_POSITION.getValue());
     }
 
-    private List<Car> createCars(String carNames) {
-        String[] names = splitCarNames(carNames);
-        return Arrays.stream(names)
-                .map(Car::of)
-                .collect(Collectors.toList());
-    }
-
-    private String[] splitCarNames(String carNames) {
-        return carNames.split(SPLIT_DELIMITER.getValue());
-    }
-
     @Override
-    public boolean equals(Object diffCar) {
-        if (this == diffCar) return true;
-        if (diffCar == null || getClass() != diffCar.getClass()) return false;
-        Cars cars = (Cars) diffCar;
+    public boolean equals(Object diffCars) {
+        if (this == diffCars) return true;
+        if (diffCars == null || getClass() != diffCars.getClass()) return false;
+        Cars cars = (Cars) diffCars;
         return Objects.equals(this.cars, cars.cars);
     }
 
