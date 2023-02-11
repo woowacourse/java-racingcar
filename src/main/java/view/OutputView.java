@@ -7,9 +7,10 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String RESULT_MESSAGE = "실행 결과";
-    private static final String PRINT_STATUS_FORMAT = "%s : %s\n";
-    private static final String PRINT_WINNER_FORMAT = "%s가 최종 우승했습니다.\n";
+    private static final String PRINT_STATUS_FORMAT = "%s : %s" + LINE_SEPARATOR;
+    private static final String PRINT_WINNER_FORMAT = "%s가 최종 우승했습니다." + LINE_SEPARATOR;
     private static final String DELIMITER = ", ";
     private static final String POSITION = "-";
 
