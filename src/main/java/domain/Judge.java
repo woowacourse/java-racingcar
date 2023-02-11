@@ -5,9 +5,8 @@ import java.util.List;
 
 public class Judge {
 
-    private final int MOVING_STANDARD = 4;
-
     public boolean judgeDriving(int number) {
+        final int MOVING_STANDARD = 4;
         return number >= MOVING_STANDARD;
     }
 

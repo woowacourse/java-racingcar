@@ -8,6 +8,7 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public int generateNumber() {
-        return random.nextInt(10);
+        final int RANDOM_NUMBER_RANGE = 10;
+        return random.nextInt(RANDOM_NUMBER_RANGE);
     }
 }
