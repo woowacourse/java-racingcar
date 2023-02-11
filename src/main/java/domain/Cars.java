@@ -10,11 +10,11 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         this.cars = Collections.unmodifiableList(cars);
     }
 
-    public void moveAll(NumberGenerator numberGenerator) {
+    public void moveAll(final NumberGenerator numberGenerator) {
         for (Car car : cars) {
             int number = numberGenerator.generate();
             car.move(number);

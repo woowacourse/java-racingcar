@@ -9,13 +9,13 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name) throws IllegalArgumentException {
+    public Car(final String name) throws IllegalArgumentException {
         validateName(name);
         this.name = name;
         this.position = 0;
     }
 
-    private void validateName(String name) {
+    private void validateName(final String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(NO_NAME_EXISTS_MESSAGE);
         }
@@ -24,7 +24,7 @@ public class Car {
         }
     }
 
-    public void move(int number) {
+    public void move(final int number) {
         if (number >= MOVED_LOWER_BOUND) {
             position++;
         }

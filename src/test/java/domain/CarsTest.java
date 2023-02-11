@@ -61,7 +61,7 @@ class CarsTest {
         private final List<Integer> testNumberList;
         private int index = 0;
 
-        public TestNumberGenerator(List<Integer> testNumberList) {
+        public TestNumberGenerator(final List<Integer> testNumberList) {
             this.testNumberList = testNumberList;
         }
 

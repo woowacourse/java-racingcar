@@ -34,13 +34,13 @@ public class RacingCarController {
         }
     }
 
-    private List<Car> getCarList(List<String> carNames) {
+    private List<Car> getCarList(final List<String> carNames) {
         return carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
 
-    private void printRacingResult(int attemptNumber, Cars cars) {
+    private void printRacingResult(int attemptNumber, final Cars cars) {
         OutputView.printResult();
         while ((attemptNumber--) > 0) {
             cars.moveAll(numberGenerator);
@@ -48,18 +48,18 @@ public class RacingCarController {
         }
     }
 
-    private void printStatus(Cars cars) {
+    private void printStatus(final Cars cars) {
         List<CarDto> carDtos = getCarDtos(cars);
         OutputView.printStatus(carDtos);
     }
 
-    private List<CarDto> getCarDtos(Cars cars) {
+    private List<CarDto> getCarDtos(final Cars cars) {
         return cars.getCars().stream()
                 .map(CarDto::from)
                 .collect(Collectors.toList());
     }
 
-    private void printWinners(Cars cars) {
+    private void printWinners(final Cars cars) {
         Cars winnerCars = cars.findWinners();
         List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
         OutputView.printWinners(winnerCarDtos);

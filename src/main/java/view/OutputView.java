@@ -11,12 +11,13 @@ public class OutputView {
     private static final String PRINT_STATUS_FORMAT = "%s : %s\n";
     private static final String PRINT_WINNER_FORMAT = "%s가 최종 우승했습니다.\n";
     private static final String DELIMITER = ", ";
+    private static final String POSITION = "-";
 
     public static void printResult() {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printStatus(List<CarDto> carDtos) {
+    public static void printStatus(final List<CarDto> carDtos) {
         for (CarDto carDto : carDtos) {
             String name = carDto.getName();
             int position = carDto.getPosition();
@@ -26,15 +27,15 @@ public class OutputView {
         System.out.println();
     }
 
-    private static String getPositionString(int position) {
+    private static String getPositionString(final int position) {
         StringBuilder positionString = new StringBuilder();
         for (int i = 0; i < position; i++) {
-            positionString.append("-");
+            positionString.append(POSITION);
         }
         return positionString.toString();
     }
 
-    public static void printWinners(List<CarDto> carDtos) {
+    public static void printWinners(final List<CarDto> carDtos) {
         List<String> carNames = carDtos.stream()
                 .map(CarDto::getName)
                 .collect(Collectors.toList());
