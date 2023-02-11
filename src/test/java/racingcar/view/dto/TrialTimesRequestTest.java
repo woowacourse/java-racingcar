@@ -18,9 +18,9 @@ class TrialTimesRequestTest {
                 .hasMessage(ErrorMessage.INVALID_TRIAL_NUMBER.message());
     }
 
-    @DisplayName("시도 횟수는 1 이상 100 이하여야 합니다.")
+    @DisplayName("시도 횟수에 빈 값이 입력될 수 없습니다")
     @ParameterizedTest
-    @ValueSource(strings = {"0", "101"})
+    @ValueSource(strings = {" ", ""})
     void validateRangeTest(String input) {
         assertThatThrownBy(() -> {
             new TrialTimesRequest(input);
