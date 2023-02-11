@@ -24,7 +24,7 @@ class TryCountTest {
     }
 
     @Test
-    @DisplayName("시도 횟구가 남으면 참이 반환되어야 한다.")
+    @DisplayName("시도 횟수가 남으면 참이 반환되어야 한다.")
     void tryCount_countdownNotCompleteReturnTrue() {
         // given
         TryCount tryCount = new TryCount(5);
