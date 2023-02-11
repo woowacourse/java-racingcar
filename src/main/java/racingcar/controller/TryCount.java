@@ -12,7 +12,6 @@ public class TryCount {
     }
 
     public static class Validator {
-
         private Validator() {
         }
 

@@ -4,7 +4,6 @@ import racingcar.dto.RacingCarStatusResponse;
 import racingcar.dto.RacingCarWinnerResponse;
 
 public class OutputView {
-
     public static void printStartMessage() {
         System.out.println("실행 결과");
     }
