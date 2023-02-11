@@ -33,7 +33,7 @@ public class Validate {
 
     private void checkLength(String[] carNames) {
         long invalidCount = Arrays.stream(carNames)
-                .filter(names -> names.isEmpty() || names.length() > 5)
+                .filter(name -> name.isEmpty() || name.length() > 5)
                 .count();
         if (invalidCount != 0) {
             throw new IllegalArgumentException("[ERROR] : 이름 길이는 1~5자 이하여야 합니다");
@@ -41,8 +41,8 @@ public class Validate {
     }
 
     private void checkDouble(String[] carNames) {
-        Set<String> set = new HashSet<>(Arrays.asList(carNames));
-        if (set.size() != carNames.length) {
+        Set<String> carNamesSet = new HashSet<>(Arrays.asList(carNames));
+        if (carNamesSet.size() != carNames.length) {
             throw new IllegalArgumentException("[ERROR] : 자동차 이름이 중복되었습니다");
         }
     }
