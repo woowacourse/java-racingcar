@@ -30,6 +30,14 @@ class CarTest {
                 .hasMessage(ErrorMessages.NAME_LENGTH.getMessage());
     }
 
+    @Test
+    @DisplayName("Car 이름이 빈문자열인 경우 예외발생")
+    void checkBlankFailTest() {
+        assertThatThrownBy(() -> new Car(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessages.NAME_LENGTH.getMessage());
+    }
+
     @ParameterizedTest(name = "move()의 인자로 3보다 큰 수가 들어오면 position이 증가한다. 입력값 = {0}")
     @CsvSource(value = {"4,1", "3,0"})
     void checkMoveTest(int randomNumber, int expected) {
