@@ -11,7 +11,7 @@ public class InputView {
     private static final String TRY_COUNT_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
     private final Scanner scanner;
     private final InputValidator inputValidator = new InputValidator();
-    
+
     public InputView(final Scanner scanner) {
         this.scanner = scanner;
     }
