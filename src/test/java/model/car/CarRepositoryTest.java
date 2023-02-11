@@ -18,14 +18,14 @@ class CarRepositoryTest {
     @Test
     @DisplayName("자동차가 정상적으로 추가되는지 확인한다.")
     void carAddTest() {
-        CarRepository.addCars(gitJjang);
-        CarRepository.addCars(irene);
+        CarRepository.addCar(gitJjang);
+        CarRepository.addCar(irene);
         Assertions.assertTrue(CarRepository.cars().containsAll(Arrays.asList(gitJjang, irene)));
         Assertions.assertEquals(CarRepository.cars().size(), 2);
     }
 
     @AfterEach
-    static void afterAll() {
+    void afterEach() {
         CarRepository.deleteAll();
     }
 }
