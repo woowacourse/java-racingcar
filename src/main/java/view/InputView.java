@@ -17,9 +17,13 @@ public class InputView {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 
         Scanner scanner = new Scanner(System.in);
+        String[] carsName = scanner.nextLine().split(",");
 
-        return Arrays.stream(scanner.nextLine().split(","))
-                .peek(this::validate)
+        for(String carName : carsName) {
+            validate(carName);
+        }
+
+        return Arrays.stream(carsName)
                 .map(CarNameDto::new)
                 .collect(Collectors.toList());
     }
