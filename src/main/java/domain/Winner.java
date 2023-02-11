@@ -9,18 +9,18 @@ public class Winner {
 
 	public Winner(Cars cars) {
 		List<Car> winners = new ArrayList<>(cars.getCars());
-		Car maxDistance = findMaxDistance(winners);
-		findWinner(winners, maxDistance.getDistance());
+		int maxDistance = findMaxDistance(winners);
+		findWinner(winners, maxDistance);
 	}
 
-	private Car findMaxDistance(List<Car> winners) {
+	private int findMaxDistance(List<Car> winners) {
 		int distance = 0;
 		for (Car car : winners) {
 			if (distance < car.getDistance()) {
 				distance = car.getDistance();
 			}
 		}
-		return winners.get(0);
+		return distance;
 	}
 
 	private void findWinner(List<Car> candidate, int maxDistance) {
