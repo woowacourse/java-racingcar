@@ -1,20 +1,44 @@
 package racingcar.model.track;
 
+import racingcar.exception.InvalidRangeTrialTimesException;
+import racingcar.exception.InvalidTrialTimesFormatException;
 import racingcar.model.car.Cars;
-import racingcar.validator.TrialTimesValidator;
+
+import java.util.regex.Pattern;
 
 public class Track {
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("(\\d)+");
+    private static final int TRIAL_MAX_TIMES = 100;
+    private static final int TRIAL_MIN_TIMES = 1;
     private static final int ONE_GAME = 1;
     private static final int CAN_GAME = 0;
-
     private final Cars cars;
-    private int trialTime;
+    private int trialTimes;
 
-    public Track(Cars cars, String trialTime) {
-        TrialTimesValidator.validate(trialTime);
+    public Track(Cars cars, String trialTimes) {
+        validate(trialTimes);
 
         this.cars = cars;
-        this.trialTime = Integer.parseInt(trialTime);
+        this.trialTimes = Integer.parseInt(trialTimes);
+    }
+
+    private void validate(String trialTimes) {
+        validateNumber(trialTimes);
+        validateRange(trialTimes);
+    }
+
+    private void validateNumber(String trialTimes) {
+        if (!NUMBER_PATTERN.matcher(trialTimes).matches()) {
+            throw new InvalidTrialTimesFormatException();
+        }
+    }
+
+    private void validateRange(String trialTimes) {
+        int trialTimesNumber = Integer.parseInt(trialTimes);
+
+        if (trialTimesNumber < TRIAL_MIN_TIMES || trialTimesNumber > TRIAL_MAX_TIMES) {
+            throw new InvalidRangeTrialTimesException();
+        }
     }
 
     public Cars race() {
@@ -24,11 +48,11 @@ public class Track {
     }
 
     private void removeTrialTimes() {
-        trialTime -= ONE_GAME;
+        trialTimes -= ONE_GAME;
     }
 
     public boolean runnable() {
-        return trialTime >= CAN_GAME;
+        return trialTimes >= CAN_GAME;
     }
 
     public Cars findWinner() {

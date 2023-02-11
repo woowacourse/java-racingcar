@@ -1,6 +1,6 @@
 package racingcar.model.car;
 
-import racingcar.validator.CarsValidator;
+import racingcar.exception.DuplicateCarNamesException;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,9 +13,18 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
-        CarsValidator.validate(cars);
+        validate(cars);
 
         this.cars = cars;
+    }
+
+    private void validate(List<Car> cars) {
+        int carNamesCount = cars.size();
+        int distinctCarNamesCount = cars.stream().map(Car::getCarName).collect(Collectors.toSet()).size();
+
+        if (carNamesCount != distinctCarNamesCount) {
+            throw new DuplicateCarNamesException();
+        }
     }
 
     public void moveCars() {
