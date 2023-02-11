@@ -13,6 +13,6 @@ class RandomMakerTest {
     void random() {
         int actual = RandomMaker.random();
 
-        assertThat(actual).isGreaterThan(-1).isLessThan(10);
+        assertThat(actual).isNotNegative().isLessThan(10);
     }
 }
