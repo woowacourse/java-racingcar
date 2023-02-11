@@ -27,15 +27,15 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    private List<Car> findSamePositionCars(Car maxPositionCar) {
-        return cars.stream()
-                .filter(car -> car.isSamePosition(maxPositionCar))
-                .collect(Collectors.toList());
-    }
-
     private Car findMaxPositionCar() {
         return cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException("Cars가 비어있습니다."));
+    }
+
+    private List<Car> findSamePositionCars(Car maxPositionCar) {
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPositionCar))
+                .collect(Collectors.toList());
     }
 }
