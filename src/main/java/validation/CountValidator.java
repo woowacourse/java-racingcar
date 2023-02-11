@@ -24,6 +24,9 @@ public class CountValidator {
     }
 
     private static boolean isNum(final String input) {
+        if (input == null || input.equals("")) {
+            return false;
+        }
         return input.chars().mapToObj(c -> (char) c).collect(Collectors.toList()).stream().allMatch(Character::isDigit);
     }
 }
