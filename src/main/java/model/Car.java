@@ -4,6 +4,7 @@ package model;
 public class Car {
     private static final int CAR_MOVE_LENGTH = 1;
     private static final int CAR_INITIAL_LENGTH = 0;
+    private static final int CAR_MOVE_STANDARD_LENGTH = 4;
 
     private Name name;
     private int location;
@@ -17,8 +18,8 @@ public class Car {
         this.location += CAR_MOVE_LENGTH;
     }
 
-    public void moveByRandom(boolean move) {
-        if (move) {
+    public void moveByNumber(int moveForNum) {
+        if (moveForNum>=CAR_MOVE_STANDARD_LENGTH) {
             this.moveCar();
         }
     }

@@ -20,7 +20,7 @@ public class Cars {
 
     public void moveResult(NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.moveByRandom(numberGenerator.generateNumber());
+            car.moveByNumber(numberGenerator.generateNumber());
         }
     }
 
