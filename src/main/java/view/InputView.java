@@ -25,7 +25,7 @@ public class InputView {
         try {
             System.out.println(READ_ATTEMPT_NUMBER_MESSAGE);
             String input = bufferedReader.readLine();
-            return NumberValidator.validate(input);
+            return NumberValidator.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readAttemptNumber();

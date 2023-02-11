@@ -5,7 +5,7 @@ public class NumberValidator {
     private static final String NOT_NUMBER_MESSAGE = "[ERROR] 반복횟수는 정수여야 합니다.";
     private static final String INVALID_NUMBER_MESSAGE = "[ERROR] 반복횟수는 0보다 커야 합니다.";
 
-    public static int validate(final String input) {
+    public static int parseInt(final String input) {
         try {
             int number = Integer.parseInt(input);
             validateRange(number);

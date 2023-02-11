@@ -13,7 +13,7 @@ class NumberValidatorTest {
     @ParameterizedTest
     @CsvSource({"''", "abc", "-1", "0", "3.3"})
     void should_ThrowIllegalArgumentException_When_InputIsNotPositiveInteger(String input) {
-        assertThatThrownBy(() -> NumberValidator.validate(input))
+        assertThatThrownBy(() -> NumberValidator.parseInt(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -22,7 +22,7 @@ class NumberValidatorTest {
     @ParameterizedTest
     @CsvSource({"1", "5", "1000"})
     void should_DoesNotThrowException_When_InputIsPositiveInteger(String input) {
-        assertThatCode(() -> NumberValidator.validate(input))
+        assertThatCode(() -> NumberValidator.parseInt(input))
                 .doesNotThrowAnyException();
     }
 }
