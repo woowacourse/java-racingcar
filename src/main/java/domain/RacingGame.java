@@ -30,7 +30,7 @@ public class RacingGame {
 
     public void start() {
         Output.printMessage("실행 결과");
-        while (isValidTry()) {
+        while (isGameContinue()) {
             cars.forEach(car -> car.move());
             Output.printEachCarDistance(cars);
         }
@@ -41,7 +41,7 @@ public class RacingGame {
         Output.printWinner(winner);
     }
 
-    private boolean isValidTry() {
+    private boolean isGameContinue() {
         return this.tryCount-- > 0;
     }
 }
