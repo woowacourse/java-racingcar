@@ -2,10 +2,10 @@ package racingcar.model;
 
 public class Car implements Comparable<Car> {
 
+    private static final int MIN_MOVING_NUM = 4;
+
     private String name;
     private int position;
-
-    private static final int MIN_MOVING_NUM = 4;
 
     public Car(String name, int startPosition) {
         this.name = name;
