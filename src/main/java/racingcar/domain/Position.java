@@ -13,10 +13,6 @@ public class Position {
         this.value = value;
     }
 
-    public void forward() {
-        value++;
-    }
-
     public static class Validator {
         private Validator() {
         }
@@ -26,6 +22,10 @@ public class Position {
                 throw new IllegalArgumentException(ILLEGAL_POSITION.getMessage());
             }
         }
+    }
+
+    public void forward() {
+        value++;
     }
 
     public int getValue() {
