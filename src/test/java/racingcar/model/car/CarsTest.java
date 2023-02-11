@@ -5,21 +5,36 @@ import org.junit.jupiter.api.Test;
 import racingcar.TestDataManager;
 import racingcar.exception.DuplicateCarNamesException;
 import racingcar.exception.InvalidCarNameFormatException;
+import racingcar.exception.NotExistCarsException;
 import racingcar.model.car.strategy.ForwardMovingStrategy;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
+
+    @DisplayName("참여하는 자동차가 없는 경우 예외 처리가 되는지 테스트")
+    @Test
+    void validateNotExistCarsTest() {
+        String carNames = ",,,";
+        List<Car> cars = Arrays.stream(carNames.split(","))
+                .map(carName -> new Car(carName, new ForwardMovingStrategy()))
+                .collect(Collectors.toList());
+
+        assertThatThrownBy(() -> {
+            new Cars(cars);
+        }).isInstanceOf(NotExistCarsException.class);
+    }
+
     @DisplayName("중복된 이름이 존재할 경우 예외 처리가 되는지 테스트")
     @Test
     void validateDuplicateCarsNameTest() {
-        Car pobi = new Car("pobi", new ForwardMovingStrategy());
-
         assertThatThrownBy(() -> {
-            new Cars(List.of(pobi, pobi));
+            new Cars("pobi,pobi", new ForwardMovingStrategy());
         }).isInstanceOf(DuplicateCarNamesException.class);
     }
 

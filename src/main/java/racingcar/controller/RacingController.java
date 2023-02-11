@@ -22,24 +22,11 @@ public class RacingController {
     }
 
     public Track init(MovingStrategy movingStrategy) {
-        Cars cars = requestCars(movingStrategy);
-        String trialTime = requestTrialTime();
+        Cars cars = new Cars(inputView.inputCarNames(), movingStrategy);
+        String trialTime = inputView.inputTrialTimes();
         outputView.printCurrentCarsPosition(cars);
 
         return new Track(cars, trialTime);
-    }
-
-    private Cars requestCars(MovingStrategy movingStrategy) {
-        String carNames = inputView.inputCarNames();
-        List<Car> cars = Arrays.stream(carNames.split(SEPARATOR))
-                .map(carName -> new Car(carName, movingStrategy))
-                .collect(Collectors.toList());
-
-        return new Cars(cars);
-    }
-
-    private String requestTrialTime() {
-        return inputView.inputTrialTimes();
     }
 
     public void startRace(Track track) {
