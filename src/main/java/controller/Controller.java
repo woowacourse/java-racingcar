@@ -29,6 +29,15 @@ public class Controller {
         }
     }
 
+    private void repeatMoving(Cars cars, int tryCount) {
+        outputView.printResult();
+
+        for (int count = 0; count < tryCount; count++) {
+            cars.moveResult(numberGenerator);
+            outputView.printResult(cars);
+        }
+    }
+
     private int setTryCount() {
         outputView.printRequestTryCount();
 
@@ -40,12 +49,4 @@ public class Controller {
         }
     }
 
-    private void repeatMoving(Cars cars, int tryCount) {
-        outputView.printResult();
-
-        for (int count = 0; count < tryCount; count++) {
-            cars.moveResult(numberGenerator);
-            outputView.printResult(cars);
-        }
-    }
 }
