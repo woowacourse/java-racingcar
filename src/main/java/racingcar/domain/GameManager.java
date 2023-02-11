@@ -1,12 +1,14 @@
 package racingcar.domain;
 
 import racingcar.dto.CarNamesRequest;
+import racingcar.dto.CarStatusResponse;
 import racingcar.dto.GameResultResponse;
-import racingcar.dto.RoundResultResponse;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class GameManager {
     private final InputView inputView;
@@ -33,9 +35,18 @@ public class GameManager {
         while (!gameRound.isEnd()) {
             cars.moveCars();
             gameRound.increaseRound();
-            RoundResultResponse carsRoundResult = new RoundResultResponse(cars.getCars());
-            outputView.printRoundResult(carsRoundResult);
+            Set<Car> currentCars = cars.getCars();
+            List<CarStatusResponse> roundResultCarStatus = convertCarToCarStatus(currentCars);
+            outputView.printRoundResult(roundResultCarStatus);
         }
+    }
+
+    private List<CarStatusResponse> convertCarToCarStatus(Set<Car> carsStatus) {
+        List<CarStatusResponse> roundResultCarStatus = new ArrayList<>();
+        for (Car car : carsStatus) {
+            roundResultCarStatus.add(new CarStatusResponse(car));
+        }
+        return roundResultCarStatus;
     }
 
     private void createCars() {
