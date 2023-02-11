@@ -24,8 +24,12 @@ public class Application {
 
             racingController.startRace(track);
             racingController.concludeWinner(track);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            racingController.terminatedByException(illegalArgumentException.getMessage());
+        } catch (NullPointerException nullPointerException) {
+            racingController.terminatedByException(nullPointerException.getMessage());
         } catch (Exception exception) {
-            racingController.terminated(exception.getMessage());
+            racingController.terminated();
         }
     }
 }

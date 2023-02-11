@@ -6,6 +6,7 @@ import racingcar.model.car.CarFactory;
 import racingcar.model.car.Cars;
 import racingcar.model.track.Track;
 import racingcar.model.trialtimes.TrialTimes;
+import racingcar.util.ErrorMessage;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.dto.CarNamesRequest;
@@ -59,7 +60,11 @@ public class RacingController {
         outputView.printWinnerCars(winnerCars);
     }
 
-    public void terminated(String errorMessage) {
+    public void terminatedByException(String errorMessage) {
         outputView.printErrorMessage(errorMessage);
+    }
+
+    public void terminated() {
+        outputView.printErrorMessage(ErrorMessage.UNEXPECTED_ERROR.message());
     }
 }

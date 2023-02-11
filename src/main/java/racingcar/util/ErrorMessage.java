@@ -10,6 +10,7 @@ public enum ErrorMessage {
     TRIAL_NUMBER_OVER_RANGE("[ERROR] 시도 횟수가 100 이하여야 합니다."),
     TRIAL_NUMBER_UNDER_RANGE("[ERROR] 시도 횟수가 1 이상이어야 합니다."),
     TRIAL_NUMBER_NULL("[ERROR] 빈 값은 입력 될 수 없습니다."),
+    UNEXPECTED_ERROR("[ERROR] 오류가 발생했습니다. 다시 시도 해주세요."),
     ;
 
     private final String message;
