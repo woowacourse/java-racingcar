@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
-    private static final String RESULT = "\n실행 결과";
+    private static final String RESULT = "실행 결과";
     private static final String WIN = "가 최종 우승했습니다.";
 
     static public void printResultMessage() {
