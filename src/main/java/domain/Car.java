@@ -1,6 +1,6 @@
 package domain;
 
-public class Car implements Comparable<Car> {
+public class Car {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MINIMUM_ADD_DISTANCE_POWER = 4;
@@ -37,11 +37,6 @@ public class Car implements Comparable<Car> {
 
     public int getDistance() {
         return distance;
-    }
-
-    @Override
-    public int compareTo(Car car) {
-        return (this.distance > car.distance) ? 1 : -1;
     }
 
     @Override

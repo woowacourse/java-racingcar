@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Winner {
@@ -10,8 +9,16 @@ public class Winner {
 
     public Winner(Cars cars) {
         this.winners = new ArrayList<>();
-        Car maxDistanceCar = Collections.max(cars.getCars());
-        findWinner(cars, maxDistanceCar.getDistance());
+        int maxDistance = findMaxDistanceCar(cars);
+        findWinner(cars, maxDistance);
+    }
+
+    private int findMaxDistanceCar(Cars cars) {
+        int maxDistance = 0;
+        for (int i = 0; i < cars.getCarsSize(); i++) {
+            maxDistance = Math.max(maxDistance, cars.getCar(i).getDistance());
+        }
+        return maxDistance;
     }
 
     private void findWinner(Cars cars, int maxDistance) {
