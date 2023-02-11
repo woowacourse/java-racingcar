@@ -21,8 +21,15 @@ public class RacingCarService {
     }
 
     public void moveCars(MoveStrategy moveStrategy) {
+        validateEmptyCars();
         for (Car car : cars.getCars()) {
             move(moveStrategy, car);
+        }
+    }
+
+    private void validateEmptyCars() {
+        if (cars == null) {
+            throw new IllegalStateException(EMPTY_CARS.getMessage());
         }
     }
 
@@ -33,6 +40,7 @@ public class RacingCarService {
     }
 
     public List<RacingCarStatusResponse> getCarStatuses() {
+        validateEmptyCars();
         return cars.getCars()
                 .stream()
                 .map(Car::getStatus)
@@ -49,6 +57,7 @@ public class RacingCarService {
     }
 
     private Position getMaxPosition() {
+        validateEmptyCars();
         return cars.getCars()
                 .stream()
                 .map(Car::getMovedLength)

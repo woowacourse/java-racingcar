@@ -61,8 +61,16 @@ public class RacingCarController {
             printCarStatuses();
         }
         printCarStatuses();
-        RacingCarWinnerResponse racingCarWinnerResponse = racingCarService.findWinners();
-        racingCarView.printWinners(racingCarWinnerResponse);
+        findWinners();
+    }
+
+    private void findWinners() {
+        try {
+            RacingCarWinnerResponse racingCarWinnerResponse = racingCarService.findWinners();
+            racingCarView.printWinners(racingCarWinnerResponse);
+        } catch (RuntimeException e) {
+            racingCarView.printExceptionMessage(e);
+        }
     }
 
     private void printCarStatuses() {

@@ -71,18 +71,17 @@ class RacingCarServiceTest {
     @DisplayName("우승자의 이름이 정상적으로 반환되어야 한다.")
     void findWinners() {
         // given
-        service.createCars(RacingCarNamesRequest.of("car1"));
+        service.createCars(RacingCarNamesRequest.of("car1,car2"));
         service.moveCars(MOVE_STRATEGY);
-
-        // when
-        service.createCars(RacingCarNamesRequest.of("car2"));
 
         // then
         RacingCarWinnerResponse winners = service.findWinners();
         assertThat(winners.getWinners().size())
-                .isEqualTo(1);
+                .isEqualTo(2);
         assertThat(winners.getWinners().get(0))
                 .isEqualTo("car1");
+        assertThat(winners.getWinners().get(1))
+                .isEqualTo("car2");
     }
 
     @Test
@@ -96,11 +95,10 @@ class RacingCarServiceTest {
     @Test
     @DisplayName("자동차를 생성하지 않고 자동차의 상태를 가져오면 비어있어야 한다.")
     void getCarStatuses_empty() {
-        // given
-        List<RacingCarStatusResponse> carStatuses = service.getCarStatuses();
-
-        // expected
-        assertThat(carStatuses).isEmpty();
+        // expect
+        assertThatThrownBy(() -> service.getCarStatuses())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage(EMPTY_CARS.getMessage());
     }
 
     @Test
