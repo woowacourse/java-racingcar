@@ -40,17 +40,17 @@ class InputValidatorTest {
                 .hasMessage("중복된 차 이름이 없어야 합니다.");
     }
 
-    @ParameterizedTest(name = "validateCount 메서드는 1보다 작은 정수[{0}]를 입력받는 경우 예외를 던진다.")
-    @ValueSource(strings = {"0", "-1"})
+    @ParameterizedTest(name = "validateCount 메서드는 1 ~ 100 사이의 정수가 아닌 값을 입력받는 경우 예외를 던진다. 입력값: {0}")
+    @ValueSource(ints = {0, -1, 101})
     void should_throwException_when_invalidCount(final int count) {
         assertThatThrownBy(() -> inputValidator.validateCount(count))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("시도할 횟수는 1이상의 정수여야 합니다.");
+                .hasMessage("시도할 횟수는 1이상, 100이하의 정수여야 합니다.");
     }
 
-    @Test
-    @DisplayName("validateCount 메서드는 1 이상의 정수를 입력받는 경우 예외를 던지지 않는다.")
-    void should_noException_when_validCount() {
-        assertThatNoException().isThrownBy(() -> inputValidator.validateCount(1));
+    @ParameterizedTest(name = "validateCount 메서드는 1 ~ 100 사이의 정수를 입력받는 경우 예외를 던지지 않는다. 입력값: {0}")
+    @ValueSource(ints = {1, 50, 100})
+    void should_noException_when_validCount(final int count) {
+        assertThatNoException().isThrownBy(() -> inputValidator.validateCount(count));
     }
 }
