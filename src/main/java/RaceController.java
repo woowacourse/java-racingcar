@@ -1,5 +1,3 @@
-import static domain.ExceptionHandlingTemplate.repeatUntilReadValidInput;
-
 import domain.Car;
 import dto.CarDto;
 import domain.Race;
@@ -14,39 +12,32 @@ public class RaceController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Race race = initCars();
-        int tryTime = repeatUntilReadValidInput(this::validateTryTime, inputView::readTryTime);
+        final Race race = initCars();
+        final int tryTime = inputView.readTryTime();
         race.initTryTime(tryTime);
         outputView.printResultTitle();
         startRace(race);
         outputView.printWinners(toCarDtos(race.getWinners()));
     }
 
-    private void startRace(Race race) {
+    private void startRace(final Race race) {
         while (race.canRace()) {
             race.tryMoveOneTime(new RandomNumberPicker());
-            List<CarDto> carDtos = toCarDtos(race.getStatuses());
+            final List<CarDto> carDtos = toCarDtos(race.getStatuses());
             outputView.printStatus(carDtos);
         }
     }
 
     private Race initCars() {
-        List<Car> cars = inputView.readCarNames().stream()
+        final List<Car> cars = inputView.readCarNames().stream()
                 .map(carDto -> new Car(carDto.getName()))
                 .collect(Collectors.toUnmodifiableList());
         return new Race(cars);
     }
 
-    private List<CarDto> toCarDtos(List<Car> cars) {
+    private List<CarDto> toCarDtos(final List<Car> cars) {
         return cars.stream()
                 .map(car -> new CarDto(car.getName(), car.getPosition()))
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    private int validateTryTime(int tryTime) {
-        if (tryTime < 0) {
-            throw new IllegalArgumentException("시도 횟수는 음수일 수 없습니다.");
-        }
-        return tryTime;
     }
 }

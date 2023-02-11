@@ -10,16 +10,23 @@ public class Race {
     private final List<Car> cars;
     private int tryTime;
 
-    public Race(List<Car> cars) {
+    public Race(final List<Car> cars) {
         checkCarsHasDuplicate(cars);
         this.cars = new ArrayList<>(cars);
     }
 
-    public void initTryTime(int tryTime) {
+    public void initTryTime(final int tryTime) {
+        validateTryTime(tryTime);
         this.tryTime = tryTime;
     }
+    
+    private void validateTryTime(final int tryTime) {
+        if (tryTime < 0) {
+            throw new IllegalArgumentException("시도 횟수는 음수일 수 없습니다.");
+        }
+    }
 
-    private void checkCarsHasDuplicate(List<Car> cars) {
+    private void checkCarsHasDuplicate(final List<Car> cars) {
         long nonDuplicateNameCountInCars = cars.stream()
                 .map(Car::getName)
                 .distinct().count();
@@ -32,7 +39,7 @@ public class Race {
         return tryTime > 0;
     }
 
-    public void tryMoveOneTime(NumberPicker numberPicker) {
+    public void tryMoveOneTime(final NumberPicker numberPicker) {
         for (Car car : cars) {
             car.moveDependingOn(numberPicker.pickNumber());
         }
@@ -40,7 +47,7 @@ public class Race {
     }
 
     public List<Car> getWinners() {
-        Car winner = Collections.max(cars, Comparator.comparingInt(Car::getPosition));
+        final Car winner = Collections.max(cars, Comparator.comparingInt(Car::getPosition));
         return cars.stream()
                 .filter(car -> Comparator.comparingInt(Car::getPosition).compare(car, winner) == 0)
                 .collect(Collectors.toUnmodifiableList());
@@ -49,4 +56,5 @@ public class Race {
     public List<Car> getStatuses() {
         return Collections.unmodifiableList(cars);
     }
+
 }

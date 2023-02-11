@@ -11,17 +11,17 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name) {
         this(name, START_POSITION);
     }
 
-    public Car(String name, int position) {
+    public Car(final String name, final int position) {
         validateName(name);
         this.name = name;
         this.position = position;
     }
 
-    private void validateName(String name) {
+    private void validateName(final String name) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
         }
@@ -30,7 +30,7 @@ public class Car {
         }
     }
 
-    public void moveDependingOn(int pickedNumber) {
+    public void moveDependingOn(final int pickedNumber) {
         if (pickedNumber >= LEAST_CONDITION) {
             position += ONE_STEP;
         }
@@ -45,7 +45,7 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
