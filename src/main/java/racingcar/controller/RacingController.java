@@ -28,7 +28,12 @@ public class RacingController {
 
         TrialTimes trialTimes = new TrialTimes(trialTimesCount);
         Cars cars = carFactory.generateCarsByCarNames(carNamesRequest);
+        printCarsInitPositions(cars);
         return new Track(cars, trialTimes);
+    }
+
+    private void printCarsInitPositions(Cars cars) {
+        outputView.printCarsPosition(cars);
     }
 
     private CarNamesRequest requestCarNames() {
@@ -47,6 +52,7 @@ public class RacingController {
             outputView.printCarsPosition(cars);
         }
     }
+
 
     public void concludeWinner(Track track) {
         List<Car> winnerCars = track.findWinner();
