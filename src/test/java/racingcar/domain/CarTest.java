@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
 import static racingcar.exception.ExceptionMessage.BLANK_CAR_NAME;
+import static racingcar.exception.ExceptionMessage.ILLEGAL_POSITION;
 import static racingcar.exception.ExceptionMessage.OUT_OF_CAR_NAME_LENGTH;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -92,5 +93,15 @@ class CarTest {
         // expect
         assertThat(car.getPosition())
                 .isEqualTo(position);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -2, Integer.MIN_VALUE})
+    @DisplayName("자동차를 생성할 때 위치 값이 음수이면 예외가 발생한다.")
+    void car_NegativePosition(int input) {
+        // expect
+        assertThatThrownBy(() -> new Car("Glen", input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ILLEGAL_POSITION.getMessage());
     }
 }
