@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class CarNames {
+public class CarNamesRequest {
     private static final String VALID_WORD_REGEX = "(\\w)+";
     private static final String SEPARATOR = ",";
     private static final int CAR_NAME_MAX_LENGTH = 5;
@@ -15,7 +15,7 @@ public class CarNames {
 
     private final String carNames;
 
-    public CarNames(String carNames) {
+    public CarNamesRequest(String carNames) {
         validate(carNames);
         this.carNames = carNames;
     }

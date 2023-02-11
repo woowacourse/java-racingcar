@@ -7,7 +7,7 @@ import racingcar.model.track.Track;
 import racingcar.model.trialtimes.TrialTimes;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.view.dto.CarNames;
+import racingcar.view.dto.CarNamesRequest;
 import racingcar.view.dto.TrialTimesRequest;
 
 import java.util.List;
@@ -23,8 +23,8 @@ public class RacingController {
     }
 
     public Track init(MovingStrategy movingStrategy) {
-        CarNames carNames = requestCarNames();
-        Cars cars = setUpCars(carNames, movingStrategy);
+        CarNamesRequest carNamesRequest = requestCarNames();
+        Cars cars = setUpCars(carNamesRequest, movingStrategy);
 
         int trialTimesCount = requestTrialTimes();
         TrialTimes trialTimes = new TrialTimes(trialTimesCount);
@@ -33,12 +33,12 @@ public class RacingController {
         return new Track(cars, trialTimes);
     }
 
-    private CarNames requestCarNames() {
+    private CarNamesRequest requestCarNames() {
         return inputView.getCarNames();
     }
 
-    private Cars setUpCars(CarNames carNames, MovingStrategy movingStrategy) {
-        List<Car> carsByNames = carNames.toSplitCarNames().stream()
+    private Cars setUpCars(CarNamesRequest carNamesRequest, MovingStrategy movingStrategy) {
+        List<Car> carsByNames = carNamesRequest.toSplitCarNames().stream()
                 .map(carName -> new Car(carName, movingStrategy))
                 .collect(Collectors.toList());
 

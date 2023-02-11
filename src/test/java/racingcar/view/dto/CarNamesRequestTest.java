@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class CarNamesTest {
+class CarNamesRequestTest {
 
     @DisplayName("구분자만 입력 할 수 없습니다.")
     @Test
@@ -52,13 +52,13 @@ class CarNamesTest {
     @ValueSource(strings = {"pobi,crong", "royce,logan", "abc"})
     void generateCarNamesTest(String input) {
         assertThatCode(() -> {
-            new CarNames(input);
+            new CarNamesRequest(input);
         }).doesNotThrowAnyException();
     }
 
     private void createFailureTest(String testSampleValue, String expectedErrorMessage) {
         assertThatCode(() -> {
-            new CarNames(testSampleValue);
+            new CarNamesRequest(testSampleValue);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedErrorMessage);
     }
@@ -70,8 +70,8 @@ class CarNamesTest {
         String testInputValue = "pobi,crong";
 
         // when
-        CarNames carNames = new CarNames(testInputValue);
-        List<String> carNameList = carNames.toSplitCarNames();
+        CarNamesRequest carNamesRequest = new CarNamesRequest(testInputValue);
+        List<String> carNameList = carNamesRequest.toSplitCarNames();
 
         // then
         assertThat(carNameList.get(0)).isEqualTo("pobi");
