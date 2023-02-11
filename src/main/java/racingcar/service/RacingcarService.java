@@ -1,6 +1,5 @@
 package racingcar.service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.Car;
@@ -9,22 +8,26 @@ public class RacingcarService {
 
     private final List<Car> cars;
 
-    public RacingcarService(String inputNames) {
-        this.cars = CarFactory.makeCars(inputNames);
+    public RacingcarService(List<String> carNames) {
+        this.cars = CarFactory.makeCars(carNames);
     }
 
-    public List<Car> move() {
+    public List<String> move() {
         for (Car car : cars) {
             car.move(RandomMaker.random());
         }
-        return Collections.unmodifiableList(cars);
+
+        return cars.stream()
+                .map(Car::printCar)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Car> findWinners() {
+    public List<String> findWinners() {
         int winnerPosition = findPosition();
 
         return cars.stream()
                 .filter(car -> car.isPosition(winnerPosition))
+                .map(Car::printCar)
                 .collect(Collectors.toUnmodifiableList());
     }
 

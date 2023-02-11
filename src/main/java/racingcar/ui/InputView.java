@@ -1,14 +1,30 @@
 package racingcar.ui;
 
+import java.util.List;
 import java.util.Scanner;
+import racingcar.util.InputSplit;
 
 public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
     private static final int MINIMUM_TRY_COUNT = 1;
+    private static final String DELIMITER = ",";
 
-    public static String carNames() {
-        return input();
+
+    public static List<String> carNames() {
+        try {
+            String input = input();
+
+            if (!input.contains(DELIMITER)) {
+                throw new IllegalArgumentException("[ERROR] 구분자(" + DELIMITER + ")가 필요해요.");
+            }
+
+            return InputSplit.split(input, DELIMITER);
+        } catch (IllegalArgumentException e) {
+            OutputView.error(e.getMessage());
+
+            return carNames();
+        }
     }
 
     public static int tryCount() {

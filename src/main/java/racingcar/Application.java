@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.List;
 import racingcar.controller.RacingcarController;
 import racingcar.service.RacingcarService;
 import racingcar.ui.InputView;
@@ -20,6 +21,7 @@ public class Application {
 
     private static int getTryCount() {
         OutputView.tryCount();
+
         return InputView.tryCount();
     }
 
@@ -29,10 +31,12 @@ public class Application {
 
     private static RacingcarService getService() {
         try {
-            String namesInput = InputView.carNames();
-            return new RacingcarService(namesInput);
+            List<String> carNames = InputView.carNames();
+
+            return new RacingcarService(carNames);
         } catch (IllegalArgumentException e) {
             OutputView.error(e.getMessage());
+
             return getService();
         }
     }

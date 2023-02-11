@@ -3,6 +3,7 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +11,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.model.Car;
 
 class CarTest {
+
+    private Car car;
+
+    @BeforeEach
+    void init() {
+        car = new Car("밀리");
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"", "wugawuga"})
@@ -23,8 +31,6 @@ class CarTest {
     @Test
     @DisplayName("자동차 한 칸 전진 확인")
     void moveCheck() {
-        Car car = new Car("밀리");
-
         car.move(4);
 
         assertThat(car.isPosition(1)).isTrue();
@@ -33,8 +39,6 @@ class CarTest {
     @Test
     @DisplayName("자동차 정지 확인")
     void stopCheck() {
-        Car car = new Car("밀리");
-
         car.move(3);
 
         assertThat(car.isPosition(0)).isTrue();
@@ -43,8 +47,6 @@ class CarTest {
     @Test
     @DisplayName("더 많이 이동한 자동차 위치 확인")
     void findGreaterPosition() {
-        Car car = new Car("밀리");
-
         car.move(5);
         car.move(5);
         car.move(5);
