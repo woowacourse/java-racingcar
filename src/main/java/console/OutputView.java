@@ -40,6 +40,6 @@ public class OutputView {
                     .append(NEW_LINE);
         }
 
-        System.out.println(currentRacingStatusMessage.toString());
+        System.out.println(currentRacingStatusMessage);
     }
 }
