@@ -8,7 +8,7 @@ public enum ExceptionMessage {
     EXCEPTION_TRY_COUNT_MESSAGE("시도 횟수는 1이상 입력하여야 합니다.");
 
     private final String TAG = "[ERROR] ";
-    private String exceptionMessage;
+    private final String exceptionMessage;
 
     ExceptionMessage(String exceptionMessage) {
         this.exceptionMessage = TAG + exceptionMessage;
