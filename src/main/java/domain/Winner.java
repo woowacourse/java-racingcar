@@ -17,7 +17,7 @@ public class Winner {
                 .max().orElse(0);
     }
 
-    public void findWinnerNames(List<Car> cars) {
+    public void setWinnerNames(List<Car> cars) {
         int maxDistance = findMaxDistance(cars);
         winnerNames = cars.stream()
                 .filter(car ->car.getDistance() == maxDistance)
