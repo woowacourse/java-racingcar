@@ -3,20 +3,18 @@ package racingcar.domain.cars;
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Cars {
 
-    private static final int MOVING_CONDITION = 4;
-    private final List<Car> repository;
+    private static final int MINIMUM_SIZE = 2;
+    private final List<Car> cars;
 
-    public Cars(List<Car> repository) {
-        validate(repository);
-        this.repository = repository;
+    public Cars(List<Car> cars) {
+        validate(cars);
+        this.cars = cars;
     }
 
     private void validate(List<Car> repository) {
@@ -29,7 +27,7 @@ public class Cars {
     }
 
     private boolean isOutOfSize(List<Car> repository) {
-        return repository.size() < 2;
+        return repository.size() < MINIMUM_SIZE;
     }
 
     private boolean hasDuplication(List<Car> repository) {
@@ -38,36 +36,12 @@ public class Cars {
                 .count() != repository.size();
     }
 
-    public Map<String, Integer> movePosition() {
-        NumberGenerator numberGenerator = new NumberGenerator();
-        return repository.stream()
-                .map(car -> moveByNumber(car, numberGenerator.generateRandomNumber()))
-                .collect(Collectors.toMap(Car::getName,
-                        Car::getPosition,
-                        (oldValue, newValue) -> oldValue,
-                        LinkedHashMap::new));
-    }
-
-    private Car moveByNumber(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
-            car.updatePosition();
+    public Map<String, Integer> moveBy(NumberGenerator numberGenerator) {
+        Map<String, Integer> positionsByCar = new LinkedHashMap<>();
+        for (Car car : cars) {
+            car.move(numberGenerator.generate());
+            positionsByCar.put(car.getName(), car.getPosition());
         }
-        return car;
-    }
-
-    public List<Car> getRepository() {
-        return repository;
-    }
-
-    public List<String> findWinner() {
-        int maxPosition = repository.stream()
-                .map(Car::getPosition)
-                .max(Comparator.comparing(x -> x))
-                .orElseThrow(NoClassDefFoundError::new);
-
-        return repository.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .map(Car::getName)
-                .collect(Collectors.toList());
+        return positionsByCar;
     }
 }
