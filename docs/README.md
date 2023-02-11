@@ -41,4 +41,4 @@
 - [ ] controller에서 tryTime을 기준으로 while을 돌리는데 이를 service레이어에서 실행하게 변경
 - [ ] List<Car>를 감싸는 일급컬렉션인 Cars를 구현하기
 - [x] RandomNumberPicker에서 Random을 필드변수로 두기.
-- [ ] Car class에서 this()를 사용하여 동일한 생성자 흐름을 리팩터링
+- [x] Car class에서 this()를 사용하여 코드의 반복을 제거

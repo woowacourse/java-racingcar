@@ -12,9 +12,7 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        validateName(name);
-        this.name = name;
-        this.position = START_POSITION;
+        this(name, START_POSITION);
     }
 
     public Car(String name, int position) {
