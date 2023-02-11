@@ -10,12 +10,14 @@ public class CarTest {
     @DisplayName("move() : 자동차의 이동 테스트")
     void test_move() {
         // given
-        Car car = new Car("pobi", 0);
+        int givenDistance = 10;
+        int expectedDistanceAfterMove = givenDistance + 1;
+        Car car = new Car("pobi", givenDistance);
 
         // when
         car.move();
 
         // then
-        assertThat(car.getDistance()).isEqualTo(1);
+        assertThat(car.getDistance()).isEqualTo(expectedDistanceAfterMove);
     }
 }
