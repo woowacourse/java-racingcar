@@ -22,7 +22,7 @@ public class RacingCarController {
         int tries = initTries();
         OutputView.printResultMessage();
         List<CarStatus> result = race(cars, tries, numberGenerator);
-        showResult(result);
+        showFinalStatus(result);
         prizeWinner(cars);
     }
 
@@ -59,7 +59,7 @@ public class RacingCarController {
         return carStatuses;
     }
 
-    private void showResult(List<CarStatus> result) {
+    private void showFinalStatus(List<CarStatus> result) {
         OutputView.printCarStatus(result);
     }
 
