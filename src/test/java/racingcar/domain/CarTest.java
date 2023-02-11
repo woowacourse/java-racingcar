@@ -45,7 +45,7 @@ class CarTest {
     @DisplayName("공백인 자동차 이름이 검증되어야 한다.")
     @ValueSource(strings = {" ", "", "\n", "    "})
     void validate_blankCarName(String input) {
-        // expected
+        // expect
         assertThatThrownBy(() -> new Car(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BLANK_CAR_NAME.getMessage());
@@ -55,7 +55,7 @@ class CarTest {
     @DisplayName("6글자 이상인 자동차 이름이 검증되어야 한다.")
     @ValueSource(strings = {"asgeiwsje", "fjeiwk", "djskfjq", "qqqqqqqqq"})
     void validate_outOfLengthCarName(String input) {
-        // expected
+        // expect
         assertThatThrownBy(() -> new Car(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(OUT_OF_CAR_NAME_LENGTH.getMessage());

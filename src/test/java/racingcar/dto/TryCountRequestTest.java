@@ -14,7 +14,7 @@ class TryCountRequestTest {
     @DisplayName("잘못된 시도 횟수가 검증되어야 한다.")
     @ValueSource(strings = {"-1", "-2", "-3"})
     void validate_illegalTryCount(String input) {
-        // expected
+        // expect
         assertThatThrownBy(() -> TryCountRequest.of(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ILLEGAL_TRY_COUNT.getMessage());
@@ -24,7 +24,7 @@ class TryCountRequestTest {
     @DisplayName("정상적인 시도 횟수가 검증되어야 한다.")
     @ValueSource(strings = {"0", "1", "2", "3"})
     void validate_tryCount(String input) {
-        // expected
+        // expect
         assertThatCode(() -> TryCountRequest.of(input))
                 .doesNotThrowAnyException();
     }
