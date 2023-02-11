@@ -25,11 +25,15 @@ public class Car {
         }
     }
 
-    public int getDistance() {
-        return distance;
+    public boolean isWinner(int distance){
+        return this.distance == distance;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 }
