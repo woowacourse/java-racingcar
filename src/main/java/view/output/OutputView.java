@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-
-    static private void print(PrintMessages message) {
-        System.out.println(message.getContent());
-    }
     
+    private final static String RESULT = "\n실행 결과";
+    private final static String WIN = "가 최종 우승했습니다.";
+
     static public void printResultMessage() {
-        print(PrintMessages.RESULT);
+        System.out.println(RESULT);
     }
 
     static public void printRoundResult(List<Car> cars) {
@@ -34,7 +33,7 @@ public class OutputView {
     static public void printWinners(List<Car> winners) {
         final String DELIMITER = ", ";
         String message =
-            winners.stream().map(Car::getName).collect(Collectors.joining(DELIMITER)) + PrintMessages.WIN.getContent();
+            winners.stream().map(Car::getName).collect(Collectors.joining(DELIMITER)) + WIN;
         System.out.println(message);
     }
 
