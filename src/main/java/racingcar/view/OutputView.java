@@ -14,33 +14,33 @@ public class OutputView {
     }
 
     public void printRaceResult(List<CarRaceDto> initCarResult, List<RaceResultDto> totalRaceResult) {
-        StringBuilder result = new StringBuilder();
-        getInitCarResult(initCarResult, result);
-        totalRaceResult.forEach(raceResultDto -> getRaceResult(raceResultDto, result));
-        System.out.println("\n" + result.toString().trim());
+        StringBuilder raceResult = new StringBuilder();
+        createInitCarResult(initCarResult, raceResult);
+        totalRaceResult.forEach(raceResultDto -> createTotalRaceResult(raceResultDto, raceResult));
+        System.out.println("\n" + raceResult.toString().trim());
     }
 
-    private void getInitCarResult(List<CarRaceDto> carRaceResult, StringBuilder result) {
-        result.append(RESULT_MESSAGE.getValue());
+    private void createInitCarResult(List<CarRaceDto> carRaceResult, StringBuilder raceResult) {
+        raceResult.append(RESULT_MESSAGE.getValue());
         carRaceResult
-                .forEach(carRaceDto -> createRaceResult(carRaceDto, result));
-        result.append("\n");
+                .forEach(carRaceDto -> createTotalRaceResult(carRaceDto, raceResult));
+        raceResult.append("\n");
     }
 
-    private void getRaceResult(RaceResultDto raceResult, StringBuilder result) {
-        raceResult.getCarRaceResult()
-                .forEach(carRaceDto -> createRaceResult(carRaceDto, result));
-        result.append("\n");
+    private void createTotalRaceResult(RaceResultDto raceResultDto, StringBuilder raceResult) {
+        raceResultDto.getCarRaceResult()
+                .forEach(carRaceDto -> createTotalRaceResult(carRaceDto, raceResult));
+        raceResult.append("\n");
     }
 
-    private void createRaceResult(CarRaceDto carRaceDto, StringBuilder result) {
-        result.append(carRaceDto.getCarName())
+    private void createTotalRaceResult(CarRaceDto carRaceDto, StringBuilder raceResult) {
+        raceResult.append(carRaceDto.getCarName())
                 .append(NAME_POSITION_DELIMITER.getValue())
                 .append(RACE_MARK.getValue().repeat(carRaceDto.getCarPosition()))
                 .append("\n");
     }
 
-    public void printWinnerResult(List<String> winners) {
+    public void printWinnersResult(List<String> winners) {
         System.out.println("\n" + String.join(WINNER_DELIMITER.getValue(), winners) + WINNER_MESSAGE.getValue());
     }
 }

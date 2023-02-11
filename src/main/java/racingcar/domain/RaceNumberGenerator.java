@@ -9,10 +9,12 @@ import static racingcar.domain.constant.RaceConstant.MIN_RACE_CONDITION;
 
 public class RaceNumberGenerator implements NumberGenerator {
 
+    private final int minNumber = MIN_RACE_CONDITION.getValue();
+
+    private final int maxNumber = MAX_RACE_CONDITION.getValue();
+
     @Override
     public int generate() {
-        Integer minNumber = MIN_RACE_CONDITION.getValue();
-        Integer maxNumber = MAX_RACE_CONDITION.getValue();
         return minNumber + ThreadLocalRandom.current().nextInt(maxNumber - minNumber + 1);
     }
 }

@@ -19,7 +19,7 @@ public class Race {
         return new Race(raceCount);
     }
 
-    public List<RaceResultDto> getRaceResult(final Cars cars) {
+    public List<RaceResultDto> getRaceResults(final Cars cars) {
         List<RaceResultDto> raceResults = new ArrayList<>();
         for (int i = 0; i < raceCount.getCount(); i++) {
             List<CarRaceDto> carRaceResult = cars.race();

@@ -65,7 +65,7 @@ public class RaceTest {
         Race testRace = createTestRace(raceCount);
 
         // when
-        List<RaceResultDto> raceResult = testRace.getRaceResult(testCars);
+        List<RaceResultDto> raceResult = testRace.getRaceResults(testCars);
 
         // then
         assertThat(raceResult.size())

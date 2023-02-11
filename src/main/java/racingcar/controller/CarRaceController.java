@@ -24,11 +24,11 @@ public class CarRaceController implements Controller {
         Race race = getUserInputAndCreateRace();
 
         List<CarRaceDto> initCarResult = cars.initStatus();
-        List<RaceResultDto> totalRaceResult = race.getRaceResult(cars);
+        List<RaceResultDto> totalRaceResult = race.getRaceResults(cars);
         outputView.printRaceResult(initCarResult, totalRaceResult);
 
         List<String> winners = cars.pickWinners();
-        outputView.printWinnerResult(winners);
+        outputView.printWinnersResult(winners);
     }
 
     private Cars getUserInputAndCreateCars() {
