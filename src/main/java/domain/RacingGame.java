@@ -36,7 +36,7 @@ public class RacingGame {
     }
 
     public void printResult() {
-        winner.setWinnerNames(cars);
+        winner.makeWinnerList(cars);
         Output.printWinner(winner);
     }
 }
