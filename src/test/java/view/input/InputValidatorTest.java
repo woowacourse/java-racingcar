@@ -28,7 +28,8 @@ class InputValidatorTest {
         return Stream.of(
                 Arguments.of(List.of("pobi", " ")),
                 Arguments.of(List.of("g", "\n")),
-                Arguments.of(List.of(" h", " h"))
+                Arguments.of(List.of(" h", " h")),
+                Arguments.of(List.of("haddddy", "haddddy"))
                 );
     }
 
