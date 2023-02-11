@@ -1,13 +1,13 @@
 package racingcar.view;
 
-import racingcar.util.Validator;
-
 import java.util.Scanner;
 
+import racingcar.util.Validator;
+
 public class InputView {
+    Scanner scanner = new Scanner(System.in);
 
     public String inputCarNames() {
-        Scanner scanner = new Scanner(System.in);
         String carNames = scanner.nextLine();
         Validator.validateNotEmptyInput(carNames);
 
@@ -15,7 +15,6 @@ public class InputView {
     }
 
     public int inputNumberOfRounds() {
-        Scanner scanner = new Scanner(System.in);
         String numberOfRounds = scanner.nextLine();
         Validator.validateNaturalNumber(numberOfRounds);
 
