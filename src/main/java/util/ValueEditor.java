@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 public class ValueEditor {
 
+    private ValueEditor() {
+    }
+
     public static String removeSpace(String input) {
         return input.replaceAll(Regex.SPACE.regex, Regex.NO_SPACE.regex);
     }
@@ -22,8 +25,5 @@ public class ValueEditor {
         Regex(String regex) {
             this.regex = regex;
         }
-    }
-
-    private ValueEditor() {
     }
 }
