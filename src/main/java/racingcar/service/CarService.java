@@ -1,5 +1,6 @@
 package racingcar.service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,8 +21,8 @@ public class CarService {
 
 	public List<String> getWinners() {
 		int maxPosition = cars.stream()
-			.mapToInt(Car::getPosition)
-			.max().orElse(0);
+			.max(Comparator.comparingInt(Car::getPosition)).get()
+			.getPosition();
 
 		return cars.stream()
 			.filter(car -> car.getPosition() == maxPosition)
