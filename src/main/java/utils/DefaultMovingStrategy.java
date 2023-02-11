@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Random;
 
-public class NormalRandomGenerator implements RandomGenerator {
+public class DefaultMovingStrategy implements MovingStrategy {
     private final static int RANDOM_RANGE = 10;
     private final static int MOVE_STANDARD = 4;
 

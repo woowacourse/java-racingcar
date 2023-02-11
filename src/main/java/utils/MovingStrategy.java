@@ -1,6 +1,6 @@
 package utils;
 
 @FunctionalInterface
-public interface RandomGenerator {
+public interface MovingStrategy {
     boolean movable();
 }

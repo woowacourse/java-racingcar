@@ -1,6 +1,6 @@
 package domain;
 
-import utils.RandomGenerator;
+import utils.MovingStrategy;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -14,7 +14,7 @@ public class Cars implements Iterable<Car> {
         this.cars = cars;
     }
 
-    public void moveCars(RandomGenerator generator) {
+    public void moveCars(MovingStrategy generator) {
         for (Car car : cars) {
             car.move(generator.movable());
         }
