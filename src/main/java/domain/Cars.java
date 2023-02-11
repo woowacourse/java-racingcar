@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MAX_INPUT_LENGTH = 10_000_000;
-    private static final int RANDOM_UPPER_BOUND = 10;
     private static final String INVALID_INPUT_LENGTH_MESSAGE = "입력값은 최대 1000만 글자여야 합니다";
     private static final String DUPLICATE_CAR_NAMES = "차 이름은 중복될 수 없습니다";
 
