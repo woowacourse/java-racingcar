@@ -14,6 +14,13 @@ public class Cars {
         this.cars = Collections.unmodifiableList(cars);
     }
 
+    public static Cars from(final List<String> carNames) {
+        List<Car> cars = carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+        return new Cars(cars);
+    }
+
     public void moveAll(final NumberGenerator numberGenerator) {
         for (Car car : cars) {
             int number = numberGenerator.generate();

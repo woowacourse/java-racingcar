@@ -1,6 +1,5 @@
 package controller;
 
-import domain.Car;
 import domain.Cars;
 import dto.CarDto;
 import utils.NumberGenerator;
@@ -26,18 +25,11 @@ public class RacingCarController {
     private Cars getCars() throws IOException {
         List<String> carNames = InputView.readCarNames();
         try {
-            List<Car> carList = getCarList(carNames);
-            return new Cars(carList);
+            return Cars.from(carNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getCars();
         }
-    }
-
-    private List<Car> getCarList(final List<String> carNames) {
-        return carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
     }
 
     private void printRacingResult(int attemptNumber, final Cars cars) {
