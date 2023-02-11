@@ -12,7 +12,6 @@ public class RacingGameEngine {
 
     private static final String SPLIT_DELIMITER = ",";
 
-
     public void gameStart() {
 
         final String carName = getCarName();
@@ -36,9 +35,12 @@ public class RacingGameEngine {
     }
 
     private Cars makeCars(String carName) {
-        return new Cars(Arrays.stream(carName.split(SPLIT_DELIMITER))
-                              .map(Car::new)
-                              .collect(Collectors.toList()));
+        String[] splitCarName = carName.split(SPLIT_DELIMITER);
+
+        Cars cars = new Cars(Arrays.stream(splitCarName)
+                                   .map(Car::new)
+                                   .collect(Collectors.toList()));
+        return cars;
     }
 
     private void startRace(Cars cars, int tryCount) {
