@@ -3,7 +3,7 @@ package racingcar.service;
 import java.util.Random;
 
 public class RandomMoveStrategy extends MoveStrategy {
-    public static final int MAX_RANDOM_VALUE = 10;
+    private static final int MAX_RANDOM_VALUE = 10;
 
     private final Random random;
 
