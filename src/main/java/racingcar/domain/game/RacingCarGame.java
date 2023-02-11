@@ -2,7 +2,6 @@ package racingcar.domain.game;
 
 import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.MovedResult;
 
 import java.util.List;
 
@@ -37,12 +36,12 @@ public class RacingCarGame {
      * Cars에서 반환하는 것이 더 좋겠다 판단하였어요!
      * 이에 대한 카일의 의견이 궁금해요!
      */
-    public MovedResult race() {
+    public void race() {
         if (!hasMoreLap()) {
             throw new IllegalStateException("이미 모든 바퀴를 진행했습니다.");
         }
         currentLap = currentLap.increase();
-        return cars.move(numberGenerator);
+        cars.move(numberGenerator);
     }
 
     public boolean hasMoreLap() {
@@ -55,5 +54,9 @@ public class RacingCarGame {
         }
         List<Car> winners = winnerJudge.judge(cars);
         return new GameResult(winners);
+    }
+
+    public Cars cars() {
+        return cars;
     }
 }

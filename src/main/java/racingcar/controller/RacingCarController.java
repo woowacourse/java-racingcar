@@ -1,8 +1,8 @@
 package racingcar.controller;
 
 import racingcar.common.log.Logger;
+import racingcar.controller.response.MovedResult;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.MovedResult;
 import racingcar.domain.game.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -44,8 +44,8 @@ public class RacingCarController {
 
     private void runRace(final RacingCarGame game) {
         while (game.hasMoreLap()) {
-            MovedResult movedResult = game.race();
-            OutputView.printState(movedResult);
+            game.race();
+            OutputView.printState(new MovedResult(game.cars()));
         }
         GameResult gameResult = game.gameResult();
         OutputView.printWinners(gameResult);

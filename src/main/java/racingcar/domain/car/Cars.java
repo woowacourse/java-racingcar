@@ -24,12 +24,11 @@ public class Cars {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public MovedResult move(final NumberGenerator generator) {
+    public void move(final NumberGenerator generator) {
         cars.forEach(car -> car.move(generator.generate(MIN_NUMBER, MAX_NUMBER)));
-        return new MovedResult(this);
     }
 
-    List<Car> getCars() {
+    public List<Car> getCars() {
         return this.cars;
     }
 
