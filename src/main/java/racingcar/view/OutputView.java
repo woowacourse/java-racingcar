@@ -12,6 +12,16 @@ public class OutputView {
     private static final String LINE_BREAK = "\n";
     private static final String CAR_SEPARATOR = ", ";
 
+    private static OutputView outputView;
+
+    private OutputView() {}
+
+    public static OutputView getInstance() {
+        if (outputView == null) {
+            outputView = new OutputView();
+        }
+        return outputView;
+    }
 
     public void printWinnerCars(List<Car> winnerCars) {
         String winnerCarsFormat = winnerCars.stream()
