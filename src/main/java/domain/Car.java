@@ -15,6 +15,12 @@ public class Car {
         this.position = 0;
     }
 
+    public Car(final String name, final int position) throws IllegalArgumentException {
+        validate(name);
+        this.name = name;
+        this.position = position;
+    }
+
     private void validate(final String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(NO_NAME_EXISTS_MESSAGE);
