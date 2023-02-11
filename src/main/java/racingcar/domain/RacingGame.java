@@ -7,19 +7,19 @@ import java.util.List;
 public class RacingGame {
     private static final int TRIES_FINISH_NUMBER = 0;
 
-    private final CarRepository carRepository;
+    private final Cars cars;
     private final NumberGenerator numberGenerator;
     private int tries;
 
-    public RacingGame(CarRepository carRepository, int tries, NumberGenerator numberGenerator) {
-        this.carRepository = carRepository;
+    public RacingGame(Cars cars, int tries, NumberGenerator numberGenerator) {
+        this.cars = cars;
         this.tries = tries;
         this.numberGenerator = numberGenerator;
     }
 
     public List<CarStatus> takeOneTurn() {
         tries--;
-        return carRepository.moveCars(numberGenerator);
+        return cars.moveCars(numberGenerator);
     }
 
     public boolean isFinish() {
@@ -27,10 +27,10 @@ public class RacingGame {
     }
 
     public List<CarStatus> getFinalPosition() {
-        return carRepository.getFinalPosition();
+        return cars.getFinalPosition();
     }
 
     public List<String> getWinnersName() {
-        return carRepository.getWinnerCarsName();
+        return cars.getWinnerCarsName();
     }
 }
