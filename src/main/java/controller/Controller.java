@@ -2,11 +2,13 @@ package controller;
 
 import model.Cars;
 import util.RandomNumberGenerator;
+import validation.Validation;
 import view.InputView;
 import view.MessageView;
 import view.OutputView;
 
 public class Controller {
+    private final Validation validation = new Validation();
     private final InputView inputView = new InputView();
     private final MessageView messageView = new MessageView();
     private final OutputView outputView = new OutputView();
@@ -23,8 +25,9 @@ public class Controller {
         messageView.printCarNameMessage();
 
         try {
-            Cars cars = new Cars(inputView.inputCarName());
-            return cars;
+            String carNames = inputView.inputCarNames();
+            validation.validateCarNames(carNames);
+            return new Cars(carNames);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return setCars();
@@ -42,8 +45,11 @@ public class Controller {
 
     private int setTryCount() {
         messageView.printTryCountMessage();
+
         try {
-            return inputView.inputTryCount();
+            int tryCount = inputView.inputTryCount();
+            validation.validateTryCount(tryCount);
+            return tryCount;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return setTryCount();
