@@ -1,7 +1,7 @@
 package racingcar.view;
 
 import racingcar.view.dto.CarNames;
-import racingcar.view.dto.TrialTimes;
+import racingcar.view.dto.TrialTimesRequest;
 
 import java.util.Scanner;
 
@@ -20,8 +20,8 @@ public class InputView {
         return new CarNames(scanner.nextLine());
     }
 
-    public TrialTimes getTrialTimes() {
+    public TrialTimesRequest getTrialTimes() {
         System.out.println(GET_TRY_TIMES_MESSAGE);
-        return new TrialTimes(scanner.nextLine());
+        return new TrialTimesRequest(scanner.nextLine());
     }
 }

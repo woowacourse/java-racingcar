@@ -7,7 +7,7 @@ import racingcar.model.track.Track;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.dto.CarNames;
-import racingcar.view.dto.TrialTimes;
+import racingcar.view.dto.TrialTimesRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,9 +44,9 @@ public class RacingController {
     }
 
     private int requestTrialTimes() {
-        TrialTimes trialTimes = inputView.getTrialTimes();
+        TrialTimesRequest trialTimesRequest = inputView.getTrialTimes();
 
-        return trialTimes.getTrialTimes();
+        return trialTimesRequest.getTrialTimes();
     }
 
     public void startRace(Track track) {

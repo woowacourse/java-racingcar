@@ -2,13 +2,13 @@ package racingcar.view.dto;
 
 import racingcar.util.ErrorMessage;
 
-public class TrialTimes {
+public class TrialTimesRequest {
     private static final int TRIAL_MAX_TIMES = 100;
     private static final int TRIAL_MIN_TIMES = 1;
 
     private final int trialTimes;
 
-    public TrialTimes(String trialTimes) {
+    public TrialTimesRequest(String trialTimes) {
         validate(trialTimes);
         this.trialTimes = Integer.parseInt(trialTimes);
     }
