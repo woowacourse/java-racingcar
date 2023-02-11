@@ -62,7 +62,7 @@ public class MainController {
         List<String> carNames = inputView.readCarNames();
         carNames.stream()
                 .map(Car::new)
-                .forEach(CarRepository::addCars);
+                .forEach(CarRepository::addCar);
         return GameStatus.MOVE_CARS;
     }
 

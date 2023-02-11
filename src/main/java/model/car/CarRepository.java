@@ -13,7 +13,7 @@ public class CarRepository {
         return Collections.unmodifiableList(cars);
     }
 
-    public static void addCars(Car car) {
+    public static void addCar(Car car) {
         cars.add(car);
     }
 
