@@ -32,5 +32,11 @@ public class OutputView {
     public void enterLine() {
         System.out.println();
     }
+=======
+public interface OutputView {
+
+    public static final String INPUT_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    public static final String INPUT_TRY_COUNT = "시도할 회수는 몇회인가요?";
+>>>>>>> c8f298f (feat: 출력 메시지 상수 추가)
 
 }
