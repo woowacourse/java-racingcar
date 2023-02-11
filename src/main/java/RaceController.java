@@ -19,13 +19,13 @@ public class RaceController {
         race.initTryTime(tryTime);
         outputView.printResultTitle();
         startRace(race);
-        outputView.printWinners(toListCarDto(race.getWinners()));
+        outputView.printWinners(toCarDtos(race.getWinners()));
     }
 
     private void startRace(Race race) {
         while (race.canRace()) {
             race.tryMoveOneTime(new RandomNumberPicker());
-            List<CarDto> carDtos = toListCarDto(race.getStatuses());
+            List<CarDto> carDtos = toCarDtos(race.getStatuses());
             outputView.printStatus(carDtos);
         }
     }
@@ -37,7 +37,7 @@ public class RaceController {
         return new Race(cars);
     }
 
-    private List<CarDto> toListCarDto(List<Car> cars) {
+    private List<CarDto> toCarDtos(List<Car> cars) {
         return cars.stream()
                 .map(car -> new CarDto(car.getName(), car.getPosition()))
                 .collect(Collectors.toUnmodifiableList());
