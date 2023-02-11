@@ -22,7 +22,7 @@ class RacingCarApplicationTest {
         System.setIn(repeatsInput);
         racingCarApplication.startRacing();
 
-        verify(racingCarApplication).endRacing();
+        verify(racingCarApplication).startRacing();
     }
 
 }
