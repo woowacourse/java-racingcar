@@ -28,7 +28,7 @@ public class Car {
         }
 
         public static void validateBlankCarName(String name) {
-            if (name.isBlank()) {
+            if (name == null || name.isBlank()) {
                 throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
             }
         }
