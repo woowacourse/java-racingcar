@@ -11,17 +11,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
 
-    private static final String CAR_A = "carA";
-    private static final String CAR_B = "carB";
-    private static final String CAR_C = "carC";
+    private static final String CAR_A_NAME = "carA";
+    private static final String CAR_B_NAME = "carB";
+    private static final String CAR_C_NAME = "carC";
 
     private Cars cars;
 
     @BeforeEach
     void init() {
-        Car carA = new Car(CAR_A);
-        Car carB = new Car(CAR_B);
-        Car carC = new Car(CAR_C);
+        Car carA = new Car(CAR_A_NAME);
+        Car carB = new Car(CAR_B_NAME);
+        Car carC = new Car(CAR_C_NAME);
         cars = new Cars(List.of(carA, carB, carC));
     }
 
@@ -53,7 +53,7 @@ class CarsTest {
         //then
         assertThat(winners.getCars())
                 .extracting("name")
-                .containsExactly(CAR_A, CAR_C);
+                .containsExactly(CAR_A_NAME, CAR_C_NAME);
     }
 
     static class TestNumberGenerator implements NumberGenerator {
