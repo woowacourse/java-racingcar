@@ -16,16 +16,18 @@ public class RaceController {
     public void run() {
         Race race = initCars();
         int tryTime = repeatUntilReadValidInput(this::validateTryTime, inputView::readTryTime);
-
+        race.initTryTime(tryTime);
         outputView.printResultTitle();
-        //TODO: 해당 내용 service로 옮기기
-        while (tryTime-- > 0) {
+        startRace(race);
+        outputView.printWinners(toListCarDto(race.getWinners()));
+    }
+
+    private void startRace(Race race) {
+        while (race.canRace()) {
             race.tryMoveOneTime(new RandomNumberPicker());
             List<CarDto> carDtos = toListCarDto(race.getStatuses());
             outputView.printStatus(carDtos);
         }
-
-        outputView.printWinners(toListCarDto(race.getWinners()));
     }
 
     private Race initCars() {

@@ -8,10 +8,15 @@ import java.util.stream.Collectors;
 
 public class Race {
     private final List<Car> cars;
+    private int tryTime;
 
     public Race(List<Car> cars) {
         checkCarsHasDuplicate(cars);
         this.cars = new ArrayList<>(cars);
+    }
+
+    public void initTryTime(int tryTime) {
+        this.tryTime = tryTime;
     }
 
     private void checkCarsHasDuplicate(List<Car> cars) {
@@ -23,10 +28,15 @@ public class Race {
         }
     }
 
+    public boolean canRace() {
+        return tryTime > 0;
+    }
+
     public void tryMoveOneTime(NumberPicker numberPicker) {
         for (Car car : cars) {
             car.moveDependingOn(numberPicker.pickNumber());
         }
+        tryTime--;
     }
 
     public List<Car> getWinners() {
