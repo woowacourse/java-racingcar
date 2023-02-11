@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 public class Winners {
 
+    private static final String DELIMITER = ", ";
+
     private final List<Winner> winners;
 
     public Winners(List<Winner> winners) {
@@ -19,6 +21,6 @@ public class Winners {
 
         return winners.stream()
                 .map(Winner::getName)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(DELIMITER));
     }
 }
