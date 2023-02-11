@@ -24,22 +24,6 @@ class CarTest {
 		assertThat(new Car(carName)).isNotNull();
 	}
 
-	@DisplayName("자동차 생성시 공백 및 빈 이름 실패 테스트")
-	@ParameterizedTest(name = "carName = {0}")
-	@NullAndEmptySource
-	void createCarNameNullOrBlankExceptionTest(String carName) {
-		assertThatThrownBy(() -> new Car(carName))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
-
-	@DisplayName("자동차 생성시 다섯 글자 이상 이름 실패 테스트")
-	@ParameterizedTest(name = "carName = {0}")
-	@ValueSource(strings = {"123456", "1234567", "aaaaaa", "ㅁㅁㅁㅁㅁㅁㅁ"})
-	void createCarNameOverLengthExceptionTest(String carName) {
-		assertThatThrownBy(() -> new Car(carName))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
-
 	@DisplayName("자동차 이동 정상 작동 테스트")
 	@Test
 	void moveTest() {

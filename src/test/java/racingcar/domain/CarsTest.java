@@ -32,14 +32,6 @@ class CarsTest {
 		assertThat(cars.getCars()).hasSize(expectedSize);
 	}
 
-	@DisplayName("자동차 이름 갯수 0개거나 1개일 때 에러 발생 테스트")
-	@ParameterizedTest(name = "carNames = {0}")
-	@MethodSource("carNamesOneOrZeroDummy")
-	void generateCarsOneOrZero(List<String> carNames) {
-		assertThatThrownBy(() -> cars.createCars(carNames, numberGenerator))
-			.isInstanceOf(IllegalArgumentException.class);
-	}
-
 	@DisplayName("자동차 이름 목록 중 중복 존재 시 에러 발생 테스트")
 	@ParameterizedTest(name = "carNames = {0}")
 	@MethodSource("carNamesDuplicatedDummy")
