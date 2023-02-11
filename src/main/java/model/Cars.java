@@ -8,16 +8,10 @@ import java.util.stream.Collectors;
 public class Cars {
     private List<Car> cars = new ArrayList<>();
 
-    public Cars(String carsName) {
-        List<String> carNames = splitCarName(carsName);
-
-        for (String name : carNames) {
+    public Cars(List<String> carsName) {
+        for (String name : carsName) {
             cars.add(new Car(name));
         }
-    }
-
-    private List<String> splitCarName(String carsName) {
-        return Arrays.asList(carsName.split(","));
     }
 
     public List<Car> getCars() {
