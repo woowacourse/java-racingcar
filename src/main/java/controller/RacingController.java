@@ -25,7 +25,12 @@ public class RacingController {
     }
 
     private void makeRacingGame(final List<String> carNames) {
-        this.racingGame = new RacingGame(carNames, new RandomNumberGenerator());
+        try {
+            this.racingGame = new RacingGame(carNames, new RandomNumberGenerator());
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            makeRacingGame(carNames);
+        }
     }
 
     private List<String> readCarNames() {
