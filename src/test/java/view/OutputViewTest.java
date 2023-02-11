@@ -1,6 +1,6 @@
 package view;
 
-import domain.CarDto;
+import dto.CarDto;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;

@@ -1,7 +1,7 @@
 import static domain.ExceptionHandlingTemplate.repeatUntilReadValidInput;
 
 import domain.Car;
-import domain.CarDto;
+import dto.CarDto;
 import domain.Race;
 import domain.RandomNumberPicker;
 import java.util.List;
@@ -14,10 +14,11 @@ public class RaceController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Race race = repeatUntilReadValidInput(Race::new, inputView::readCarNames);
+        Race race = initCars();
         int tryTime = repeatUntilReadValidInput(this::validateTryTime, inputView::readTryTime);
 
         outputView.printResultTitle();
+        //TODO: 해당 내용 service로 옮기기
         while (tryTime-- > 0) {
             race.tryMoveOneTime(new RandomNumberPicker());
             List<CarDto> carDtos = toListCarDto(race.getStatuses());
@@ -25,6 +26,13 @@ public class RaceController {
         }
 
         outputView.printWinners(toListCarDto(race.getWinners()));
+    }
+
+    private Race initCars() {
+        List<Car> cars = inputView.readCarNames().stream()
+                .map(carDto -> new Car(carDto.getName()))
+                .collect(Collectors.toUnmodifiableList());
+        return new Race(cars);
     }
 
     private List<CarDto> toListCarDto(List<Car> cars) {
