@@ -31,8 +31,8 @@ public class Cars {
         return RandomNumberGenerator.generateRandomNumber() >= 4;
     }
 
-    public List<String> getWinner() {
-        List<String> result = new ArrayList<>();
+    public List<Car> getWinner() {
+        List<Car> result = new ArrayList<>();
         int max = getMaxDistance();
 
         for (final Car car : cars) {
@@ -50,9 +50,9 @@ public class Cars {
         return max;
     }
 
-    private void addWinner(List<String> result, Car car, int max) {
+    private void addWinner(List<Car> result, Car car, int max) {
         if (car.getDistance() == max) {
-            result.add(car.getName());
+            result.add(car);
         }
     }
 

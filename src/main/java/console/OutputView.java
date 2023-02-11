@@ -1,8 +1,11 @@
 package console;
 
+import domain.Car;
 import domain.Cars;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -21,7 +24,13 @@ public class OutputView {
     }
 
     public static void printWinner(Cars cars) {
-        System.out.print(String.join(DELIMITER, cars.getWinner()));
+
+        List<String> winnerCarName = cars.getWinner()
+                                         .stream()
+                                         .map(Car::getName)
+                                         .collect(Collectors.toList());
+
+        System.out.print(String.join(DELIMITER, winnerCarName));
         System.out.println("가 최종 우승했습니다.");
     }
 

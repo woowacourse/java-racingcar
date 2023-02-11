@@ -25,10 +25,11 @@ class CarsTest {
         Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        List<String> result = cars.getWinner();
+        List<Car> result = cars.getWinner();
 
         // then
-        assertThat(result).contains(pobi.getName());
+        assertThat(result).extracting("name")
+                          .contains(pobi.getName());
     }
 
     private Car createCar(String name) {
