@@ -2,7 +2,6 @@ package validation;
 
 public enum ValidateResult {
     SUCCESS,
-    FAIL_NULL,
     FAIL_EMPTY,
     FAIL_INVALID_LENGTH,
     FAIL_CONTAIN_IDENTIFIER,
