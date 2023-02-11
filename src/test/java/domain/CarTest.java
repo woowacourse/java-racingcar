@@ -29,7 +29,7 @@ class CarTest {
     void Car생성_실패_이름에공백포함() {
         assertThatThrownBy(() -> new Car(" bad"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다. ");
+                .hasMessageContaining("이름에 공백을 포함할 수 없습니다.");
     }
 
     @DisplayName("move를 위한 최솟값을 만족시키면 position을 1 증가 시킨다.")
