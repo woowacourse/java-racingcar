@@ -15,10 +15,10 @@ public class Racing {
     private int winnerScore;
 
     public Racing(LinkedHashMap<MovableStrategy, Integer> scoreBoard) {
-        this.scoreBoard=scoreBoard;
+        this.scoreBoard = scoreBoard;
     }
 
-    public void moveAll(){
+    public void moveAll() {
         scoreBoard.keySet()
                 .stream()
                 .filter(MovableStrategy::isMove)
@@ -32,10 +32,10 @@ public class Racing {
                 .collect(Collectors.toList());
     }
 
-    private void updateScoreBoard(MovableStrategy key){
-        int score = scoreBoard.get(key)+CAR_MOVE_DISTANCE;
+    private void updateScoreBoard(MovableStrategy key) {
+        int score = scoreBoard.get(key) + CAR_MOVE_DISTANCE;
         winnerScore = Math.max(winnerScore, score);
-        scoreBoard.put(key,score);
+        scoreBoard.put(key, score);
     }
 
     @Override

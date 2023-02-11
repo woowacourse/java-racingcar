@@ -6,14 +6,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CarNameValidator implements Validator {
+
     private static final int LENGTH_LOWER_BOUND = 1;
     private static final int LENGTH_UPPER_BOUND = 5;
+
     private static final String EXCEEDED_CAR_NAME_LENGTH_ERROR = "자동차명은 1 ~ 5 글자로 입력해야합니다.";
     private static final String EXISTS_DUPLICATE_CAR_NAME_ERROR = "자동차명은 중복되어선 안됩니다.";
 
     @Override
     public void validate(Object target) {
-        List<String> trimCarNames = trimCarNames((List<String>)target);
+        List<String> trimCarNames = trimCarNames((List<String>) target);
         validateCarNamesIsEmpty(trimCarNames);
         validateDuplicateCarName(trimCarNames);
         validateCarNameLength(trimCarNames);
@@ -31,7 +33,7 @@ public class CarNameValidator implements Validator {
     }
 
     private void validateCarNamesIsEmpty(List<String> carNames) {
-        if (carNames.isEmpty()){
+        if (carNames.isEmpty()) {
             throw new IllegalArgumentException(EXCEEDED_CAR_NAME_LENGTH_ERROR);
         }
     }

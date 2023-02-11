@@ -23,7 +23,7 @@ class RepeatCountValidatorTest {
 
     @DisplayName("반복 횟수 입력 실패 숫자 이외의값")
     @ParameterizedTest
-    @ValueSource(strings = {"a", " ", "가", "@",""})
+    @ValueSource(strings = {"a", " ", "가", "@", ""})
     void validateNumber(String input) {
         repeatCountValidator = new RepeatCountValidator();
 

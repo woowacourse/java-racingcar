@@ -2,7 +2,8 @@ package model;
 
 import java.util.Random;
 
-public class Car implements MovableStrategy{
+public class Car implements MovableStrategy {
+
     public static final int RANDOM_MOVE_BOUNDARY = 4;
     public static final int RANDOM_NUMBER_GENERATE_UPPER_BOUND = 10;
 

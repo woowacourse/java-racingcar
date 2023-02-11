@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class RacingController {
+    
     public static final int START_POSITION = 0;
 
     private final InputView inputView;

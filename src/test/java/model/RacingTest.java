@@ -13,7 +13,6 @@ public class RacingTest {
     @Test
     @DisplayName("자동차 이동 결과 확인")
     void moveAll() {
-
         LinkedHashMap<MovableStrategy, Integer> scoreBoard = new LinkedHashMap<>();
         scoreBoard.put(new TestCarSuccess("TestTrue"), 0);
         scoreBoard.put(new TestCarFail("TestFail"), 0);
@@ -29,7 +28,6 @@ public class RacingTest {
     @Test
     @DisplayName("경주 우승자 확인")
     void winner() {
-
         LinkedHashMap<MovableStrategy, Integer> scoreBoard = new LinkedHashMap<>();
         scoreBoard.put(new TestCarSuccess("TestTrue"), 0);
         scoreBoard.put(new TestCarFail("TestFail"), 0);
@@ -42,12 +40,14 @@ public class RacingTest {
     }
 
 
-    public class TestCarSuccess implements MovableStrategy{
+    public class TestCarSuccess implements MovableStrategy {
+
         private final String name;
 
         public TestCarSuccess(String name) {
             this.name = name;
         }
+
         @Override
         public boolean isMove() {
             return true;
@@ -59,12 +59,14 @@ public class RacingTest {
         }
     }
 
-    public class TestCarFail implements MovableStrategy{
+    public class TestCarFail implements MovableStrategy {
+
         private final String name;
 
         public TestCarFail(String name) {
             this.name = name;
         }
+
         @Override
         public boolean isMove() {
             return false;
