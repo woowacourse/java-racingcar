@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+@DisplayName("Car 클래스")
 public class CarTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "move 메서드는 값을 입력받고 4이상인 경우 전진한다. 초기 위치: 0 입력값: {0} 동작 후 위치: {1}")
     @CsvSource(value = {"4,1", "3,0"})
-    @DisplayName("move 메서드는 값을 입력받고 4 이상인 경우 전진하고, 3 이하인 경우 멈춘다.")
     void should_move_when_valueIsMoreThanFour(final int value, final int position) {
         Car car = new Car("Herb");
 
