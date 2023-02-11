@@ -16,7 +16,7 @@ public class Validator {
         if (carName.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.CAR_NAME_LENGTH);
         }
-        if (carName.contains(NO_INPUT)) {
+        if (carName.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NO_INPUT);
         }
     }
