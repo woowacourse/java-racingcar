@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import util.NumberGenerator;
+import view.input.InputView;
 import view.output.OutputView;
 
 public class RaceController {
@@ -20,17 +21,44 @@ public class RaceController {
         participants = new Participants();
     }
 
-    public void playGame(String totalCount, NumberGenerator numberGenerator) {
-        race = new Race(totalCount);
-        while (!race.isFinished()) {
-            playRound(numberGenerator);
-        }
-        printRoundResult();
+    public void getParticipants(InputView inputView) {
+        inputView.showEnterCarNameMessage();
+        getCarNamesUntilValid(inputView);
     }
 
-    public void addAllParticipants(final String carNames) {
-        final String DELIMITER = ",";
-        splitWordsBy(carNames, DELIMITER).forEach(participants::join);
+
+    public void getCarNamesUntilValid(InputView inputView) {
+        try {
+            String input = inputView.getInputUntilExist();
+            joinAllParticipants(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getCarNamesUntilValid(inputView);
+        }
+    }
+
+    public void getCount(InputView inputView) {
+        inputView.showEnterCountMessage();
+        getCountUntilValid(inputView);
+    }
+
+
+    public void getCountUntilValid(InputView inputView) {
+        try {
+            race = new Race(inputView.getInputUntilExist());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getCountUntilValid(inputView);
+        }
+    }
+
+    public void joinAllParticipants(String carNames) {
+        try {
+            splitWordsBy(carNames, ",").forEach((carName) -> participants.join(carName.strip()));
+        } catch (IllegalArgumentException exception) {
+            participants.reset();
+            throw exception;
+        }
     }
 
     private List<String> splitWordsBy(String input, String delimiter) {
@@ -48,14 +76,7 @@ public class RaceController {
         return winners;
     }
 
-    private void playRound(NumberGenerator numberGenerator) {
-        List<Car> cars = participants.showAllParticipants();
-        cars.forEach((car) -> driveOrNot(car, numberGenerator));
-        race.addCount();
-        printRoundResult();
-    }
-
-    private void driveOrNot(Car car, NumberGenerator numberGenerator) {
+    public void driveOrNot(Car car, NumberGenerator numberGenerator) {
         int number = numberGenerator.generate();
         if (isEnoughToMove(number)) {
             car.drive(DRIVING_DISTANCE);
@@ -67,7 +88,19 @@ public class RaceController {
         return score >= MIN_SCORE;
     }
 
-    private void printRoundResult() {
+    public void printRoundResult() {
         OutputView.printRoundResult(participants.showAllParticipants());
+    }
+
+    public void roundFinished() {
+        race.addCount();
+    }
+
+    public List<Car> showStatus() {
+        return participants.showAllParticipants();
+    }
+
+    public boolean isFinished() {
+        return race.isFinished();
     }
 }

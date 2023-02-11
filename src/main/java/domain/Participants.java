@@ -34,4 +34,8 @@ public class Participants {
         Car participant = new Car(carName, identifier);
         cars.add(participant);
     }
+
+    public void reset() {
+        cars.clear();
+    }
 }

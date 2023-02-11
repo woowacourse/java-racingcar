@@ -1,56 +1,41 @@
 import controller.RaceController;
 import domain.Car;
 import java.util.List;
+import util.NumberGenerator;
 import view.input.InputView;
 import view.output.OutputView;
 
 public class Game {
 
-    private RaceController raceController = new RaceController();
-    private InputView inputView = new InputView();
+    private final RaceController raceController;
 
-    private List<String> enterCarNames() {
-        OutputView.printEnterCarNames();
-        return inputCarNames();
+    public Game(RaceController raceController) {
+        this.raceController = raceController;
     }
 
-    private List<String> inputCarNames() {
-        try {
-            return inputView.readCarNames();
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception);
-            return inputCarNames();
+    public void ready(InputView inputView) {
+        raceController.getParticipants(inputView);
+        raceController.getCount(inputView);
+    }
+
+    public void playGame(NumberGenerator numberGenerator) {
+        while (!raceController.isFinished()) {
+            raceOneRound(numberGenerator);
         }
+        raceController.printRoundResult();
     }
 
-    private int enterCount() {
-        OutputView.printEnterCount();
-        return inputCount();
-    }
-
-    private int inputCount() {
-        try {
-            return inputView.readCount();
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception);
-            return inputCount();
+    public void raceOneRound(NumberGenerator numberGenerator) {
+        List<Car> cars = raceController.showStatus();
+        if (!raceController.isFinished()) {
+            cars.forEach((car) -> raceController.driveOrNot(car, numberGenerator));
+            raceController.roundFinished();
         }
+        raceController.printRoundResult();
     }
 
-    private void printAllResult(int count) {
+    public void showResult() {
         OutputView.printResultMessage();
-        raceController.playGame(count);
-    }
-
-    private void printWinners(List<Car> winners) {
-        OutputView.printWinners(winners);
-    }
-
-    public void play() {
-        List<String> carNames = enterCarNames();
-        raceController.addAllParticipants(carNames);
-        int count = enterCount();
-        printAllResult(count);
-        printWinners(raceController.getWinners());
+        OutputView.printWinners(raceController.getWinners());
     }
 }
