@@ -1,6 +1,7 @@
 package controller;
 
 import model.Cars;
+import util.NumberGenerator;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -8,7 +9,7 @@ import view.OutputView;
 public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() {
         Cars cars = setCars();
@@ -30,6 +31,7 @@ public class Controller {
 
     private int setTryCount() {
         outputView.printRequestTryCount();
+
         try {
             return inputView.inputTryCount();
         } catch (Exception e) {
@@ -42,7 +44,7 @@ public class Controller {
         outputView.printResult();
 
         for (int count = 0; count < tryCount; count++) {
-            cars.moveResult(randomNumberGenerator);
+            cars.moveResult(numberGenerator);
             outputView.printResult(cars);
         }
     }
