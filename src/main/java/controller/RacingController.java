@@ -20,9 +20,9 @@ public class RacingController {
     }
 
     public void racingStart() {
-        List<String> carNames = inputView.carNames();
+        List<String> carNames = inputView.inputCarNames();
         Racing racing = new Racing(carNames, new RandomNumberGenerator(new Random()));
-        int numberOfTimes = inputView.numberOfTimes();
+        int numberOfTimes = inputView.inputRepeatCount();
         process(racing, numberOfTimes);
         end(racing);
     }

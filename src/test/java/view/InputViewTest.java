@@ -23,7 +23,7 @@ public class InputViewTest {
     @ValueSource(strings = {"pobi, crong, honux", " pobi,     crong,    honux "})
     void carNamesSuccess(String input) {
         inputView = new InputView(generateUserInput(input));
-        assertThat(inputView.carNames()).contains("pobi", "crong", "honux");
+        assertThat(inputView.inputCarNames()).contains("pobi", "crong", "honux");
     }
 
     @DisplayName("이름 입력 실패")
@@ -32,7 +32,7 @@ public class InputViewTest {
     void carNamesFail(String input) {
         inputView = new InputView(generateUserInput(input));
 
-        assertThatThrownBy(() -> inputView.carNames())
+        assertThatThrownBy(() -> inputView.inputCarNames())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차명은 1 ~ 5 글자로 입력해야합니다.");
     }
@@ -42,7 +42,7 @@ public class InputViewTest {
     @ValueSource(strings = {"5", "10"})
     void numberOfTimesSuccess(String input) {
         inputView = new InputView(generateUserInput(input));
-        assertThat(inputView.numberOfTimes()).isEqualTo(Integer.parseInt(input));
+        assertThat(inputView.inputRepeatCount()).isEqualTo(Integer.parseInt(input));
     }
 
     @DisplayName("시도 횟수 실패 (숫자가 아닌 것을 입력)")
@@ -51,7 +51,7 @@ public class InputViewTest {
     void numberOfTimesNonNumberFail(String input) {
         inputView = new InputView(generateUserInput(input));
 
-        assertThatThrownBy(() -> inputView.numberOfTimes())
+        assertThatThrownBy(() -> inputView.inputRepeatCount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자만 입력 가능합니다.");
     }
@@ -62,7 +62,7 @@ public class InputViewTest {
     void numberOfTimesNumberRangeFail(String input) {
         inputView = new InputView(generateUserInput(input));
 
-        assertThatThrownBy(() -> inputView.numberOfTimes())
+        assertThatThrownBy(() -> inputView.inputRepeatCount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1 이상만 가능합니다.");
     }
