@@ -1,11 +1,12 @@
 package racingcar.domain;
 
+import static racingcar.constant.GameConstant.MAXIMUM_POWER_OF_ENGINE;
+import static racingcar.constant.GameConstant.MINIMUM_POWER_OF_ENGINE;
+
 public class RandomNumberGenerator implements NumberGenerator {
-    private static final int MINIMUM_NUMBER = 0;
-    private static final int MAXIMUM_NUMBER = 9;
 
     @Override
     public int generate() {
-        return (int) (Math.random() * MAXIMUM_NUMBER - MINIMUM_NUMBER + 1) + MINIMUM_NUMBER;
+        return (int) (Math.random() * (MAXIMUM_POWER_OF_ENGINE - MINIMUM_POWER_OF_ENGINE+1)) + MINIMUM_POWER_OF_ENGINE;
     }
 }
