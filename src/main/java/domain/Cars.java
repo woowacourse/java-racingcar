@@ -14,7 +14,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveCars() {
+    public void moveAll() {
         for (final Car car : cars) {
             doRace(car);
         }
@@ -31,22 +31,22 @@ public class Cars {
     }
 
     public List<String> getWinnerNames() {
-        List<String> result = new ArrayList<>();
+        List<String> winnerNames = new ArrayList<>();
         int max = getMaxDistance();
 
         for (final Car car : cars) {
-            addWinnerName(result, car, max);
+            addWinnerName(winnerNames, car, max);
         }
 
-        return result;
+        return winnerNames;
     }
 
     private int getMaxDistance() {
-        int max = Integer.MIN_VALUE;
+        int maxDistance = Integer.MIN_VALUE;
         for (final Car car : cars) {
-            max = Math.max(car.getDistance(), max);
+            maxDistance = Math.max(car.getDistance(), maxDistance);
         }
-        return max;
+        return maxDistance;
     }
 
     private void addWinnerName(List<String> result, Car car, int max) {

@@ -32,7 +32,7 @@ public class RacingGameEngine {
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount; i++) {
-            cars.moveCars();
+            cars.moveAll();
             OutputView.printCurrentRacingStatus(cars);
         }
     }
