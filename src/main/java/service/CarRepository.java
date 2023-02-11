@@ -1,17 +1,20 @@
+package service;
+
+import domain.Car;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarRepository implements CarRepositoryInterface {
+public class CarRepository {
 
     private final List<Car> carInformation = new ArrayList<>();
 
-    @Override
     public void saveCar(Car car) {
         carInformation.add(car);
     }
 
-    @Override
     public int findPositionByName(String name) {
         return carInformation.stream()
                 .filter(car -> name.equals(car.getName()))
@@ -20,7 +23,6 @@ public class CarRepository implements CarRepositoryInterface {
                 .orElseThrow();
     }
 
-    @Override
     public List<String> findNameByPosition(int position) {
         return carInformation.stream()
                 .filter(car -> car.getPosition() == position)
@@ -28,12 +30,6 @@ public class CarRepository implements CarRepositoryInterface {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public int countOfCars() {
-        return carInformation.size();
-    }
-
-    @Override
     public List<Integer> positions() {
         List<Integer> positions = new ArrayList<>();
         for (Car car : carInformation) {
@@ -42,7 +38,6 @@ public class CarRepository implements CarRepositoryInterface {
         return positions;
     }
 
-    @Override
     public List<String> carNames() {
         List<String> carNames = new ArrayList<>();
         for (Car car : carInformation) {
@@ -51,13 +46,20 @@ public class CarRepository implements CarRepositoryInterface {
         return carNames;
     }
 
-    @Override
-    public void addPosition(String carName) {
+    public void poweInjectionByName(String carName, int power) {
         Car findedCar = carInformation.stream()
                 .filter(car -> carName.equals(car.getName()))
                 .findAny()
                 .orElseThrow();
 
-        findedCar.setPosition(findedCar.getPosition() + 1);
+        findedCar.move(power);
+    }
+
+    public List<String> selectWinners() {
+        return carInformation.stream()
+                .filter(car -> Collections.max(positions()) == car.getPosition())
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 }
+
