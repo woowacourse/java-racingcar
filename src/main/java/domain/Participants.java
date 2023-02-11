@@ -20,6 +20,12 @@ public class Participants {
         return Collections.unmodifiableList(cars);
     }
 
+    public void join(String carName) {
+        int identifier = findIdentifier(carName);
+        Car participant = new Car(carName, identifier);
+        cars.add(participant);
+    }
+
     private int findIdentifier(String name) {
         final int INIT_NUMBER = 0;
         if (!nameCount.containsKey(name)) {
@@ -27,12 +33,6 @@ public class Participants {
             return INIT_NUMBER;
         }
         return nameCount.merge(name, 1, Integer::sum);
-    }
-
-    public void join(String carName) {
-        int identifier = findIdentifier(carName);
-        Car participant = new Car(carName, identifier);
-        cars.add(participant);
     }
 
     public void reset() {
