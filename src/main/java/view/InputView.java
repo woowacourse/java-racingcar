@@ -8,10 +8,14 @@ import domain.Trial;
 public class InputView {
 	private static final Scanner scanner = new Scanner(System.in);
 
+	private static final InputValidation inputValidation = new InputValidation();
+
 	public Cars askCars() {
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 		try {
-			return new Cars(scanner.nextLine());
+			String input = scanner.nextLine();
+			return new Cars(inputValidation.returnList(input));
+			// return new Cars(scanner.nextLine());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			return askCars();
