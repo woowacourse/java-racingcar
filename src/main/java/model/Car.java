@@ -29,14 +29,14 @@ public class Car {
         }
     }
 
-    private void moveCar() {
-        this.location += CAR_MOVE_FORWARD;
-    }
-
     public void moveByRandom(int randNum) {
         if (randNum >= MIN_NUMBER_FOR_CAR_MOVE) {
             this.moveCar();
         }
+    }
+
+    private void moveCar() {
+        this.location += CAR_MOVE_FORWARD;
     }
 
     public String getCarName() {

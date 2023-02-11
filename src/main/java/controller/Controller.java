@@ -30,6 +30,15 @@ public class Controller {
         }
     }
 
+    private void repeatMoving(Cars cars, int tryCount) {
+        messageView.printResultMessage();
+
+        for (int count = 0; count < tryCount; count++) {
+            cars.moveResult(randomNumberGenerator);
+            outputView.printResult(cars);
+        }
+    }
+
     private int setTryCount() {
         messageView.printTryCountMessage();
         try {
@@ -37,15 +46,6 @@ public class Controller {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return setTryCount();
-        }
-    }
-
-    private void repeatMoving(Cars cars, int tryCount) {
-        messageView.printResultMessage();
-
-        for (int count = 0; count < tryCount; count++) {
-            cars.moveResult(randomNumberGenerator);
-            outputView.printResult(cars);
         }
     }
 }
