@@ -13,14 +13,14 @@ public class Car implements Comparable<Car> {
         position = new Position();
     }
 
-    public int getPosition() {
-        return position.getPosition();
-    }
-
     public void move(int pickedNumber) {
         if (pickedNumber >= MOVE_MIN_NUM) {
             position.increase();
         }
+    }
+
+    public int getPosition() {
+        return position.getPosition();
     }
 
     @Override
@@ -31,5 +31,4 @@ public class Car implements Comparable<Car> {
     public CarDto toCarDto() {
         return new CarDto(this.name.getCarName(), this.position.getPosition());
     }
-
 }
