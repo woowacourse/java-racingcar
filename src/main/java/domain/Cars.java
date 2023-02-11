@@ -1,5 +1,7 @@
 package domain;
 
+import utils.NumberGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +13,13 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         this.cars = Collections.unmodifiableList(cars);
+    }
+
+    public void moveAll(NumberGenerator numberGenerator) {
+        for (Car car : cars) {
+            int number = numberGenerator.generate();
+            car.move(number);
+        }
     }
 
     public Cars judgeWinners() {

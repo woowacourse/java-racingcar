@@ -8,11 +8,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class RacingCarController {
+
+    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() throws IOException {
         Cars cars = getCars();
@@ -41,16 +44,8 @@ public class RacingCarController {
     private void printRacingResult(int attemptNumber, Cars cars) {
         OutputView.printResult();
         while ((attemptNumber--) > 0) {
-            moveAll(cars);
+            cars.moveAll(numberGenerator);
             printStatus(cars);
-        }
-    }
-
-    private void moveAll(Cars cars) {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        for (Car car : cars.getCars()) {
-            int randomNumber = randomNumberGenerator.generate();
-            car.move(randomNumber);
         }
     }
 
@@ -59,15 +54,15 @@ public class RacingCarController {
         OutputView.printStatus(carDtos);
     }
 
-    private void printWinners(Cars cars) {
-        Cars winnerCars = cars.judgeWinners();
-        List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
-        OutputView.printWinner(winnerCarDtos);
-    }
-
     private List<CarDto> getCarDtos(Cars cars) {
         return cars.getCars().stream()
                 .map(CarDto::from)
                 .collect(Collectors.toList());
+    }
+
+    private void printWinners(Cars cars) {
+        Cars winnerCars = cars.judgeWinners();
+        List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
+        OutputView.printWinner(winnerCarDtos);
     }
 }
