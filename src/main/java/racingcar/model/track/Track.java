@@ -6,6 +6,8 @@ import racingcar.model.car.Cars;
 import racingcar.model.trialtimes.TrialTimes;
 
 public class Track {
+    private static final int END_CONDITION = 0;
+
     private final Cars cars;
     private final TrialTimes trialTimes;
 
@@ -21,7 +23,7 @@ public class Track {
     }
 
     public boolean runnable() {
-        return trialTimes.isGreaterThan(0);
+        return trialTimes.isGreaterThan(END_CONDITION);
     }
 
     public List<Car> findWinner() {
