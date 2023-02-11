@@ -20,8 +20,8 @@ class CarTest {
     @ParameterizedTest
     @CsvSource(value = {"1:false", "3:false", "6:true", "7:true"}, delimiter = ':')
     @DisplayName("자동차 전진 여부 결정 기능 테스트")
-    void carCanMovingTest(int randomValue, boolean expected) {
-        Assertions.assertThat(car.canMoving(randomValue)).isEqualTo(expected);
+    void carCanMovingTest(int power, boolean expected) {
+        Assertions.assertThat(car.canMoving(power)).isEqualTo(expected);
     }
 
     @Test

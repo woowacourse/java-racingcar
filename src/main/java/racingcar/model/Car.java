@@ -12,8 +12,8 @@ public class Car implements Comparable<Car> {
         this.position = startPosition;
     }
 
-    public boolean canMoving(int randomValue) {
-        if (randomValue >= MIN_MOVING_NUM) {
+    public boolean canMoving(int power) {
+        if (power >= MIN_MOVING_NUM) {
             return true;
         }
         return false;
