@@ -16,7 +16,7 @@ public class RacingGameService {
         this.cars = new Cars(numberGenerator);
     }
 
-    public void setCars(List<String> carNames) {
+    public void createCars(List<String> carNames) {
         validateDuplication(carNames);
         for (String carName : carNames) {
             cars.add(new Car(carName));

@@ -19,7 +19,7 @@ public class Controller {
     }
 
     public void run() {
-        setCars();
+        createCars();
         playGame();
         printFinalResult();
     }
@@ -42,13 +42,13 @@ public class Controller {
         }
     }
 
-    private void setCars() {
+    private void createCars() {
         try {
             List<String> carNames = inputView.getCarNames();
-            racingGameService.setCars(carNames);
+            racingGameService.createCars(carNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            setCars();
+            createCars();
         }
     }
 
