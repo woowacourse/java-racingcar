@@ -1,30 +1,42 @@
 package racingcar.domain;
 
+import racingcar.constant.ErrorLog;
 import racingcar.util.Validator;
 
 public class Car {
 
+    private static final int THRESHOLD = 4;
+    private static final int LEFT_BOUND = 0;
+    private static final int RIGHT_BOUND = 9;
     private final String name;
-    private ValueLog valuelog;
+    private int position;
+    private int turnCount;
 
     public Car(String name) {
         Validator.validateNameLength(name);
         Validator.validateNotEmptyInput(name);
 
         this.name = name;
-        this.valuelog = new ValueLog();
+        this.position = 0;
+        this.turnCount = 0;
     }
 
-    public void addValue(int value) {
-        valuelog.add(value);
+    public void move(int value) {
+        if (value < LEFT_BOUND || value > RIGHT_BOUND) {
+            throw new IllegalArgumentException(ErrorLog.INVALID_VALUE.getMessage());
+        }
+        if (value >= THRESHOLD) {
+            position++;
+        }
+        turnCount++;
     }
 
-    public int getLogSize() {
-        return valuelog.size();
+    public int getPosition() {
+        return position;
     }
 
-    public int getPosition(int step, int threshold) {
-        return step * valuelog.stepNumber(threshold);
+    public int getTurnCount() {
+        return turnCount;
     }
 
     public String getName() {
