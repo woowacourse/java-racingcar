@@ -19,15 +19,12 @@ public class CarService {
 	}
 
 	public List<String> getWinners() {
-		final int[] maxPos = {0};
-		cars.stream()
-			.forEach(car ->
-				maxPos[0] = car.getPosition() > maxPos[0]
-					? car.getPosition()
-					: maxPos[0]);
+		int maxPosition = cars.stream()
+			.mapToInt(Car::getPosition)
+			.max().orElse(0);
 
 		return cars.stream()
-			.filter(car -> car.getPosition() == maxPos[0])
+			.filter(car -> car.getPosition() == maxPosition)
 			.map(car -> car.getName())
 			.collect(Collectors.toList());
 	}
