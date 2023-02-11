@@ -16,7 +16,16 @@ public class TryCountRequest {
         return new TryCountRequest(tryCount);
     }
 
+    private static int stringToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
+        }
+    }
+
     public static class Validator {
+
         private Validator() {
         }
 
@@ -25,14 +34,7 @@ public class TryCountRequest {
                 throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
             }
         }
-    }
 
-    private static int stringToInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
-        }
     }
 
     public int getTryCount() {
