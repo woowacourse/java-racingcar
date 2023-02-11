@@ -20,15 +20,15 @@ class CarTest {
     @ParameterizedTest(name = "Car 객체 생성 테스트 name = {0}")
     @ValueSource(strings = {"pobi", "crong", "honux", "hi hi", "jj503"})
     void createCarTest(String name) {
-        Car car = new Car(name);
-        assertThat(car.getCarName()).isEqualTo(name);
+        Car car = new Car(new Name(name));
+        assertThat(car.getCarName().getName()).isEqualTo(name);
     }
 
     @ParameterizedTest(name = "Car 객체 생성 5자 초과 및 공백 예외 테스트 name = {0}")
     @ValueSource(strings = {"pobiiii","abcdef", "", "  "})
     void createExceptionCarTest(String name) {
         assertThatThrownBy(() -> {
-            new Car(name);
+            new Car(new Name(name));
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -36,7 +36,7 @@ class CarTest {
     @Test
     @DisplayName("랜덤 값이 4미만일 경우 실패 예외 테스트")
     void stopByRandom() {
-        Car car = new Car("test");
+        Car car = new Car(new Name("test"));
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(0,1,2,3));
 
         CarsTest.TestNumberGenerator testNumberGenerator =
@@ -50,7 +50,7 @@ class CarTest {
     @Test
     @DisplayName("랜덤 값이 4이상일 경우 성공 테스트")
     void moveByRandom() {
-        Car car = new Car("test");
+        Car car = new Car(new Name("test"));
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9,8,7,6));
 
         CarsTest.TestNumberGenerator testNumberGenerator =
