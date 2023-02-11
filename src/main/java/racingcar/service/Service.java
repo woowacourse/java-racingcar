@@ -1,19 +1,18 @@
 package racingcar.service;
 
+import java.util.List;
+import java.util.Map;
+
 import racingcar.domain.Car;
 import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.FinalRoundChecker;
 import racingcar.domain.RandomValueGenerator;
 
-import java.util.List;
-import java.util.Map;
-
 public class Service {
 
     private final Cars cars;
     private FinalRoundChecker finalRoundChecker;
-
 
     public Service() {
         this.cars = new Cars();

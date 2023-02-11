@@ -8,6 +8,6 @@ public class RandomValueGenerator implements ValueGenerator {
 
     public int generate() {
         Random random = new Random();
-        return random.nextInt(MAX_VALUE + 1);ㅐ
+        return random.nextInt(MAX_VALUE + 1);
     }
 }

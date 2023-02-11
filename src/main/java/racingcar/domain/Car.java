@@ -19,7 +19,6 @@ public class Car {
         valuelog.add(value);
     }
 
-
     public int getLogSize() {
         return valuelog.size();
     }

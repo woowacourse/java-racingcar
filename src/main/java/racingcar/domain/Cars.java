@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.constant.ErrorLog;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,6 +9,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import racingcar.constant.ErrorLog;
 
 public class Cars {
 
@@ -39,7 +39,7 @@ public class Cars {
     private Optional<Car> getCurrentTurnCar() {
         int size = cars.get(FIRST_INDEX).getLogSize();
         Optional<Car> targetCar = cars.stream().filter(car -> car.getLogSize() < size)
-                .findFirst();
+            .findFirst();
 
         return targetCar;
     }
@@ -64,8 +64,8 @@ public class Cars {
         cars.forEach(car -> positions.add(getPosition(car)));
         int maxPosition = Collections.max(positions);
         return cars.stream().filter(car -> getPosition(car) == maxPosition)
-                .map(car -> car.getName())
-                .collect(Collectors.toList());
+            .map(car -> car.getName())
+            .collect(Collectors.toList());
     }
 
     private int getPosition(Car car) {

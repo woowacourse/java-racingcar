@@ -15,6 +15,6 @@ public class ValueLog {
     }
 
     public int stepNumber(int threshold) {
-        return (int) log.stream().filter(value -> value >= threshold).count();
+        return (int)log.stream().filter(value -> value >= threshold).count();
     }
 }

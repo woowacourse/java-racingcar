@@ -7,7 +7,7 @@ public enum Rule {
     private final int threshold;
 
     Rule(int step, int threshold) {
-        this.step  = step;
+        this.step = step;
         this.threshold = threshold;
     }
 
