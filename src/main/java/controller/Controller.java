@@ -3,12 +3,10 @@ package controller;
 import model.Cars;
 import util.RandomNumberGenerator;
 import view.InputView;
-import view.MessageView;
 import view.OutputView;
 
 public class Controller {
     private final InputView inputView = new InputView();
-    private final MessageView messageView = new MessageView();
     private final OutputView outputView = new OutputView();
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
@@ -19,7 +17,7 @@ public class Controller {
     }
 
     private Cars setCars() {
-        messageView.printCarNameMessage();
+        outputView.printRequestCarName();
 
         try {
             Cars cars = new Cars(inputView.inputCarName());
@@ -31,7 +29,7 @@ public class Controller {
     }
 
     private int setTryCount() {
-        messageView.printTryCountMessage();
+        outputView.printRequestTryCount();
         try {
             return inputView.inputTryCount();
         } catch (Exception e) {
@@ -41,7 +39,7 @@ public class Controller {
     }
 
     private void repeatMoving(Cars cars, int tryCount) {
-        messageView.printResultMessage();
+        outputView.printResult();
 
         for (int count = 0; count < tryCount; count++) {
             cars.moveResult(randomNumberGenerator);
