@@ -34,7 +34,8 @@ class CarsTest {
         for (int i = 0; i < 2; i++)
             cars.moveResult(testNumberGenerator);
 
-        assertThat(cars.getWinners()).isEqualTo("ocean");
+        List<String> answer = new ArrayList<>(Arrays.asList("ocean"));
+        assertThat(cars.getWinners()).isEqualTo(answer);
     }
 
     @Test
@@ -50,7 +51,8 @@ class CarsTest {
         for (int i = 0; i < 2; i++)
             cars.moveResult(testNumberGenerator);
 
-        assertThat(cars.getWinners()).isEqualTo("ocean, jamie");
+        List<String> answer = new ArrayList<>(Arrays.asList("ocean","jamie"));
+        assertThat(cars.getWinners()).isEqualTo(answer);
     }
 
     static class TestNumberGenerator implements NumberGenerator {
