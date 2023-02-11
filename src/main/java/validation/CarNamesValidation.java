@@ -34,15 +34,14 @@ public class CarNamesValidation {
     }
 
     private static void validateDuplicatedCarName(final String input) {
-        Set<String> checkDuplicated = new HashSet<>(List.of(splitCarNames(input)));
+        Set<String> carNameWithoutDuplication = new HashSet<>(List.of(splitCarNames(input)));
 
-        if (checkDuplicated.size() != splitCarNames(input).length) {
+        if (carNameWithoutDuplication.size() != splitCarNames(input).length) {
             throw new IllegalArgumentException("자동차 이름은 중복되지 않아야합니다.");
         }
     }
 
     private static String[] splitCarNames(String input) {
-        final String[] carNames = input.split(SPLIT_DELIMITER);
-        return carNames;
+        return input.split(SPLIT_DELIMITER);
     }
 }
