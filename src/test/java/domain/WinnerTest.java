@@ -1,27 +1,49 @@
 package domain;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+@DisplayName("우승자")
 class WinnerTest {
-    @Test
-    void checkWinner() {
-        Cars cars = new Cars("aa,bb,ff");
-        cars.addDistance(List.of(2, 5, 7));
-        cars.addDistance(List.of(1, 2, 7));
-        Winner winner = new Winner(cars);
-        assertThat(String.join("", winner.getWinners())).isEqualTo("ff");
-    }
+	Cars cars = new Cars(new ArrayList<>(List.of(
+		new Car("benz"),
+		new Car("honda"),
+		new Car("audi")
+	)));
 
-    @Test
-    void checkTwoWinners() {
-        Cars cars = new Cars("aa,bb,ff");
-        cars.addDistance(List.of(2, 5, 7));
-        cars.addDistance(List.of(1, 8, 7));
-        Winner winner = new Winner(cars);
-        assertThat(String.join(",", winner.getWinners())).isEqualTo("bb,ff");
-    }
+	@DisplayName("를 확인합니다.")
+	@Test
+	void checkWinner() {
+
+		cars.addDistance(8, 0);
+		cars.addDistance(3, 1);
+		cars.addDistance(5, 2);
+
+		cars.addDistance(7, 0);
+		cars.addDistance(2, 1);
+		cars.addDistance(0, 2);
+
+		Winner winner = new Winner(cars);
+		assertThat(String.join("", winner.getWinners())).isEqualTo("benz");
+	}
+
+	@DisplayName("는 여러명일 수 있습니다.")
+	@Test
+	void checkManyWinners() {
+		cars.addDistance(8, 0);
+		cars.addDistance(3, 1);
+		cars.addDistance(5, 2);
+
+		cars.addDistance(7, 0);
+		cars.addDistance(2, 1);
+		cars.addDistance(9, 2);
+
+		Winner winner = new Winner(cars);
+		assertThat(String.join(",", winner.getWinners())).isEqualTo("benz,audi");
+	}
 }
