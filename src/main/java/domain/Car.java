@@ -19,7 +19,7 @@ public class Car {
     }
 
     public void move() {
-        int moveCount = RandomNumberGenerator.randomNumberGenerate();
+        int moveCount = RandomNumberGenerator.generateRandomNumber();
         if (moveCount >= MOVE_LOWER_BOUND) {
             this.distance++;
         }

@@ -3,7 +3,7 @@ package view;
 import java.util.Scanner;
 
 public class Input {
-    static final String DELIMITER = ",";
+    static final String DELIMETER = ",";
     
     Validate validate;
     Scanner sc;
@@ -18,7 +18,7 @@ public class Input {
     }
 
     public String[] getCarNames(String input) {
-        String[] carNames = input.split(DELIMITER);
+        String[] carNames = input.split(DELIMETER);
         validate.isValidCarNames(carNames);
         return carNames;
     }
