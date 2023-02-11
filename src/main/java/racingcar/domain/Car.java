@@ -4,7 +4,7 @@ import java.util.Map;
 import racingcar.constants.CarConstant;
 
 public class Car {
-    private String name;
+    private final String name;
     private int distance;
 
     public Car(String name, int distance) {

@@ -11,7 +11,7 @@ import racingcar.view.OutputView;
 public class CarService {
     private Cars cars = new Cars(new ArrayList<Car>());
     private int tryCount;
-    private List<String> winner = new ArrayList<>();
+    private final List<String> winner = new ArrayList<>();
 
     public void initializeService() {
         while (validateNameInput()) {
