@@ -3,6 +3,7 @@ package view;
 import exception.BlankInputException;
 import exception.BlankNameException;
 import exception.DuplicateCarNameException;
+import exception.WrongRoundException;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class InputView {
     private static final String NAME_SEPARATOR = ",";
     private static final int NAME_MIN_LENGTH = 1;
     private static final int NAME_MAX_LENGTH = 5;
+    private static final int ROUND_MIN_VALUE = 1;
     private static final String INPUT_CAR_NAMES_MESSAGE =
             "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String INPUT_ROUND_MESSAGE =
@@ -62,9 +64,29 @@ public class InputView {
         return length >= NAME_MIN_LENGTH && length <= NAME_MAX_LENGTH;
     }
 
-    public String inputRound() {
+    public int inputRound() {
         print(INPUT_ROUND_MESSAGE);
-        return input();
+
+        String input = input();
+        validateBlank(input);
+
+        int inputRound = mapToRoundNumber(input);
+        validateRoundRange(inputRound);
+        return inputRound;
+    }
+
+    private int mapToRoundNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new WrongRoundException();
+        }
+    }
+
+    private void validateRoundRange(int inputRound) {
+        if (inputRound < ROUND_MIN_VALUE) {
+            throw new WrongRoundException();
+        }
     }
 
     private void validateBlank(String input) {
