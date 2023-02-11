@@ -2,7 +2,6 @@ package model;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Racing {
@@ -10,60 +9,44 @@ public class Racing {
     private static final String STICK = "-";
     public static final String CAR_RESULT = "%s : %s\n";
 
-    public static final int RANDOM_NUMBER_GENERATE_UPPER_BOUND = 10;
-    public static final int START_POSITION = 0;
     public static final int CAR_MOVE_DISTANCE = 1;
 
-    private final RandomNumberGenerator randomNumberGenerator;
-    private final Map<Car, Integer> distanceByEachCar;
-    private int winnerDistance;
+    private LinkedHashMap<MovableStrategy, Integer> scoreBoard;
+    private int winnerScore;
 
-
-    public Racing(List<String> carNames, RandomNumberGenerator randomNumberGenerator) {
-        distanceByEachCar = new LinkedHashMap<>();
-        winnerDistance = START_POSITION;
-        this.randomNumberGenerator = randomNumberGenerator;
-        carsGenerate(carNames);
+    public Racing(LinkedHashMap<MovableStrategy, Integer> scoreBoard) {
+        this.scoreBoard=scoreBoard;
     }
 
-    private void carsGenerate(List<String> carNames) {
-        carNames.forEach(carName -> distanceByEachCar.put(new Car(carName), START_POSITION));
-    }
-
-    public void moveAllCars() {
-        distanceByEachCar.keySet().forEach(this::moveCar);
-    }
-
-    private void moveCar(Car car) {
-        boolean isPossibleToMove = car.move(randomNumberGenerator.generate(RANDOM_NUMBER_GENERATE_UPPER_BOUND));
-
-        if (isPossibleToMove) {
-            int distance = distanceByEachCar.get(car) + CAR_MOVE_DISTANCE;
-            updateWinnerDistance(distance);
-            distanceByEachCar.put(car, distance);
-        }
-    }
-
-    private void updateWinnerDistance(int distance) {
-        winnerDistance = Math.max(winnerDistance, distance);
-    }
-
-    private String carResultToString(Car car) {
-        return String.format(CAR_RESULT, car.toString(), STICK.repeat(distanceByEachCar.get(car)));
-    }
-
-    public List<Car> winner() {
-        return distanceByEachCar.keySet()
+    public void moveAll(){
+        scoreBoard.keySet()
                 .stream()
-                .filter(car -> distanceByEachCar.get(car) == winnerDistance)
+                .filter(MovableStrategy::isMove)
+                .forEach(this::updateScoreBoard);
+    }
+
+    public List<MovableStrategy> getWinner() {
+        return scoreBoard.keySet()
+                .stream()
+                .filter(car -> scoreBoard.get(car) == winnerScore)
                 .collect(Collectors.toList());
+    }
+
+    private void updateScoreBoard(MovableStrategy key){
+        int score = scoreBoard.get(key)+CAR_MOVE_DISTANCE;
+        winnerScore = Math.max(winnerScore, score);
+        scoreBoard.put(key,score);
     }
 
     @Override
     public String toString() {
-        return distanceByEachCar.keySet()
+        return scoreBoard.keySet()
                 .stream()
-                .map(this::carResultToString)
+                .map(this::convertResultToString)
                 .collect(Collectors.joining());
+    }
+
+    private String convertResultToString(MovableStrategy car) {
+        return String.format(CAR_RESULT, car.toString(), STICK.repeat(scoreBoard.get(car)));
     }
 }
