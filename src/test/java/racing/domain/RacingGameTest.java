@@ -4,14 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racing.NumberGenerator;
-import racing.dto.GameResultDto;
 
 class RacingGameTest {
     private final AlwaysMoveNumberGenerator alwaysMoveNumberGenerator = new AlwaysMoveNumberGenerator();
@@ -21,25 +19,21 @@ class RacingGameTest {
     private final Car sonata = new Car("소나타");
     private final Car benz = new Car("벤츠");
 
-    private final List<Car> dummy = List.of(
+    private final Cars dummy = new Cars(List.of(
             boxster,
             sonata,
             benz
-    );
+    ));
 
     @Test
     @DisplayName("레이싱 게임을 한 라운드 진행할 때 4이상의 숫자가 주어지면 우승자의 위치가 1이다.")
     void moveTest() {
         RacingGame game = new RacingGame(alwaysMoveNumberGenerator, 3, dummy);
-
         game.playOneRound();
-        GameResultDto result = game.getGameResult();
 
-        Set<String> names = result.getNames();
-
-        List<Integer> positions = names.stream()
-                .map(result::getPosition)
-                .collect(Collectors.toList());
+        List<Car> carList = dummy.getCars();
+        List<String> names = carsToNames(carList);
+        List<Integer> positions = carsToPositions(carList);
 
         assertAll(() -> {
             assertThat(names).contains("박스터", "소나타", "벤츠");
@@ -51,15 +45,11 @@ class RacingGameTest {
     @DisplayName("레이싱 게임을 한 라운드 진행할 때 3이하의 숫자가 주어지면 우승자의 위치가 0이다.")
     void notMoveTest() {
         RacingGame game = new RacingGame(neverMoveNumberGenerator, 3, dummy);
-
         game.playOneRound();
-        GameResultDto result = game.getGameResult();
 
-        Set<String> names = result.getNames();
-
-        List<Integer> positions = names.stream()
-                .map(result::getPosition)
-                .collect(Collectors.toList());
+        List<Car> carList = dummy.getCars();
+        List<String> names = carsToNames(carList);
+        List<Integer> positions = carsToPositions(carList);
 
         assertAll(() -> {
             assertThat(names).contains("박스터", "소나타", "벤츠");
@@ -81,20 +71,33 @@ class RacingGameTest {
     }
 
     static class AlwaysMoveNumberGenerator implements NumberGenerator {
-        public static final int MOVE_NUMBER = 4;
 
+        public static final int MOVE_NUMBER = 4;
         @Override
         public int generate() {
             return MOVE_NUMBER;
         }
+
     }
-
     static class NeverMoveNumberGenerator implements NumberGenerator {
-        public static final int NOT_MOVE_NUMBER = 3;
 
+        public static final int NOT_MOVE_NUMBER = 3;
         @Override
         public int generate() {
             return NOT_MOVE_NUMBER;
         }
+
+    }
+
+    private List<String> carsToNames(List<Car> carList) {
+        return carList.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private List<Integer> carsToPositions(List<Car> carList) {
+        return carList.stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
     }
 }
