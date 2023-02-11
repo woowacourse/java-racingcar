@@ -6,6 +6,7 @@ import static racingcar.exception.ExceptionMessage.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.Car;
 
 class RacingCarNamesRequestTest {
 
@@ -14,7 +15,7 @@ class RacingCarNamesRequestTest {
     @ValueSource(strings = {"carcar", "car,carcar", "car,car2,carcar"})
     void car_nameLengthOverThanSix(String input) {
         // expect
-        assertThatThrownBy(() -> RacingCarNamesRequest.of(input))
+        assertThatThrownBy(() -> new Car(input, 0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(OUT_OF_CAR_NAME_LENGTH.getMessage());
     }

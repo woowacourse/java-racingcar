@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static racingcar.exception.ExceptionMessage.DUPLICATE_CAR_NAME;
-import static racingcar.exception.ExceptionMessage.EMPTY_CARS;
 
 public class Cars {
     private final List<Car> cars;
@@ -13,15 +12,8 @@ public class Cars {
     public Cars(List<String> cars) {
         validateDuplicateCarNames(cars);
         this.cars = cars.stream()
-                .map(Car::new)
+                .map(s -> new Car(s, 0))
                 .collect(Collectors.toList());
-        validateEmptyCars(this.cars);
-    }
-
-    public static void validateEmptyCars(List<Car> cars) {
-        if (cars.isEmpty()) {
-            throw new IllegalStateException(EMPTY_CARS.getMessage());
-        }
     }
 
     private void validateDuplicateCarNames(final List<String> cars) {
