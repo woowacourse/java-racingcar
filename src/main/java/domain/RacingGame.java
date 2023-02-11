@@ -13,14 +13,11 @@ public class RacingGame {
         this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
-    //TODO: 테스트
     public void race() {
-        for (Car car : carGroup.getCars()) {
-            car.move(randomNumberGenerator);
-        }
+        carGroup.moveCars(randomNumberGenerator);
     }
 
-    public RacingResult getRacingResult(){
+    public RacingResult getRacingResult() {
         Map<String, Integer> history = new LinkedHashMap<>();
         for (Car car : carGroup.getCars()) {
             history.put(car.getName(), car.getPosition());

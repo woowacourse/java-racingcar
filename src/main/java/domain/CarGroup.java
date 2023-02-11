@@ -13,7 +13,7 @@ public class CarGroup {
 
     private final List<Car> cars;
 
-    public CarGroup(String[] names){
+    public CarGroup(String[] names) {
         this.cars = new ArrayList<>();
         validateDuplicatedName(names);
         validateNumberOfCars(names);
@@ -22,6 +22,12 @@ public class CarGroup {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    public void moveCars(RandomNumberGenerator randomNumberGenerator) {
+        for (Car car : cars) {
+            car.move(randomNumberGenerator.generate());
+        }
     }
 
     private void setUp(String[] names) {
@@ -38,7 +44,7 @@ public class CarGroup {
     }
 
     private void validateNumberOfCars(String[] names) {
-        if (names.length < MINIMUM_NUMBER_OF_CARS || names.length > MAXIMUM_NUMBER_OF_CARS){
+        if (names.length < MINIMUM_NUMBER_OF_CARS || names.length > MAXIMUM_NUMBER_OF_CARS) {
             throw new IllegalArgumentException(RANGE_OF_CAR_GROUP_ERROR);
         }
     }

@@ -25,8 +25,8 @@ public class Car {
         return position;
     }
 
-    public void move(RandomNumberGenerator randomNumberGenerator) {
-        if (randomNumberGenerator.generate() >= MOVING_CONDITION) {
+    public void move(int power) {
+        if (power >= MOVING_CONDITION) {
             this.position++;
         }
     }
