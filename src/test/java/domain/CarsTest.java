@@ -20,12 +20,12 @@ class CarsTest {
         Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        List<String> result = cars.getWinnerNames();
+        List<String> winnerNames = cars.getWinnerNames();
 
         // then
-        assertThat(result).containsOnly(pobi.getName());
-        assertThat(result.size()).isEqualTo(1);
-        assertThat(result).doesNotContain(crong.getName());
+        assertThat(winnerNames).containsOnly(pobi.getName());
+        assertThat(winnerNames.size()).isEqualTo(1);
+        assertThat(winnerNames).doesNotContain(crong.getName());
     }
 
     @Test
