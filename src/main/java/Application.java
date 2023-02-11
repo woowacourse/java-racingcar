@@ -1,4 +1,5 @@
 import controller.RacingGameController;
+import domain.RandomMovingPolicy;
 import view.InputView;
 import view.OutputView;
 

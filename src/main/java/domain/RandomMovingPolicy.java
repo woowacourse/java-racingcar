@@ -1,3 +1,5 @@
+package domain;
+
 import domain.MovingPolicy;
 
 import java.util.Random;
