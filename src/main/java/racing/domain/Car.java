@@ -10,8 +10,8 @@ public class Car {
     private int position = MIN_POSITION;
 
     public Car(String name) {
-        this.name = name;
         validateNameLength(name);
+        this.name = name;
     }
 
     private void validateNameLength(String name) {
