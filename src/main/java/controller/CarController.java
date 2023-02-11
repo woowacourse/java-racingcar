@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Set;
 import service.CarService;
 import service.wrapper.Round;
 import utils.RacingNumberGenerator;
@@ -36,8 +37,8 @@ public class CarController {
 
     private void generateCars() {
         try {
-            String carsName = inputView.inputCarsName();
-            carService.generateCars(carsName);
+            Set<String> carsName = inputView.inputCarsName();
+            carService.initCars(carsName);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
             generateCars();
