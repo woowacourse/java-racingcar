@@ -1,4 +1,4 @@
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import domain.Car;
 import org.junit.jupiter.api.Test;

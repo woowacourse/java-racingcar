@@ -1,8 +1,7 @@
-import domain.Car;
-import domain.Winner;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import domain.Car;
+import domain.Winner;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ class WinnerTest {
         cars.add(car2);
         cars.add(car3);
 
-        winner.findWinnerNames(cars);
+        winner.makeWinnerList(cars);
     }
 
     @Test
