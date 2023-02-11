@@ -4,7 +4,7 @@ import utils.RandomNumberGenerator;
 
 public class Car {
 
-    private static final int POWER_TO_GO = 4;
+    private static final int MIN_BOUNDARY_POWER = 4;
 
     private final String name;
     private int distance;
@@ -19,7 +19,11 @@ public class Car {
     }
 
     public boolean canMove() {
-        return RandomNumberGenerator.generateRandomNumber() >= POWER_TO_GO;
+        return generatorPower() >= MIN_BOUNDARY_POWER;
+    }
+
+    private int generatorPower() {
+        return RandomNumberGenerator.generateRandomPower();
     }
 
     public int getDistance() {
