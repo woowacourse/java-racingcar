@@ -1,6 +1,10 @@
 package domain;
 
+import utils.RandomNumberGenerator;
+
 public class Car {
+
+    private static final int POWER_TO_GO = 4;
 
     private final String name;
     private int distance;
@@ -12,6 +16,10 @@ public class Car {
 
     public void move() {
         this.distance++;
+    }
+
+    public boolean canMove() {
+        return RandomNumberGenerator.generateRandomNumber() >= POWER_TO_GO;
     }
 
     public int getDistance() {

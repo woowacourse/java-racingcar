@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import utils.RandomNumberGenerator;
 
 public class Cars {
 
@@ -21,13 +20,9 @@ public class Cars {
     }
 
     private void startMove(final Car car) {
-        if (canMove()) {
+        if (car.canMove()) {
             car.move();
         }
-    }
-
-    private boolean canMove() {
-        return RandomNumberGenerator.generateRandomNumber() >= 4;
     }
 
     public List<String> getWinnerNames() {
