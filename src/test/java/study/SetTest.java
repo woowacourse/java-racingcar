@@ -17,7 +17,7 @@ public class SetTest {
     private Set<Integer> numbers;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         numbers = new HashSet<>();
         numbers.add(1);
         numbers.add(1);
@@ -26,21 +26,22 @@ public class SetTest {
     }
 
     @Test
-    @DisplayName("Size Check")
-    void sizeTest() {
+    @DisplayName("set 사이즈 확인")
+    void check_size() {
         assertThat(numbers.size()).isEqualTo(3);
         assertThat(numbers.size()).isNotEqualTo(0);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    void isContained(int number) {
+    void contain_success(int number) {
         assertTrue(numbers.contains(number));
     }
 
     @ParameterizedTest
+    @DisplayName("set 에 포함되어 있는지, 안되어있는지 테스트")
     @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false"}, delimiter = ',')
-    void isContained2(int number, boolean expected) {
+    void contain(int number, boolean expected) {
         assertEquals(numbers.contains(number), expected);
     }
 }

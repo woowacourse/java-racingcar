@@ -8,18 +8,19 @@ import org.junit.jupiter.api.Test;
 
 public class StringTest {
     @Test
-    public void 요구사항1() {
-        String str1 = "1,2";
-        String str2 = "1";
+    @DisplayName("문자열 split 테스트(Delimiter : ,) ")
+    public void split_success() {
+        String strWithDelimiter = "1,2";
+        String strWithoutDelimiter = "1";
 
-        String[] result1 = str1.split(",");
+        String[] result1 = strWithDelimiter.split(",");
         assertThat(result1).contains("1", "2");
         assertThat(result1).containsExactly("1", "2");
         assertThatThrownBy((() -> {
             assertThat(result1).containsExactly("2", "1");
         })).isInstanceOf(AssertionError.class);
 
-        String[] result2 = str2.split(",");
+        String[] result2 = strWithoutDelimiter.split(",");
         assertThat(result2).contains("1");
         assertThat(result2).containsExactly("1");
         assertThatThrownBy((() -> {
@@ -28,7 +29,8 @@ public class StringTest {
     }
 
     @Test
-    public void 요구사항2() {
+    @DisplayName("문자열 괄호 제거 테스트")
+    public void remove_parenthesis_success() {
         String str = "(1,2)";
         str = str.replaceAll("\\(|\\)", "");
         assertThat(str).isEqualTo("1,2");
@@ -36,15 +38,14 @@ public class StringTest {
 
     @Test
     @DisplayName("특정 위치의 문자를 가져오는 것을 테스트")
-    public void 요구사항3() {
+    public void getchar_at_specific_index_fail() {
         String str = "abc";
-        int idx1 = 0, idx2 = 6;
-        assertThat(str.charAt(idx1)).isEqualTo('a');
+        int idx = 6;
         assertThatThrownBy(() -> {
             try {
-                assertThat(str.charAt(idx2)).isEqualTo('a');
+                assertThat(str.charAt(idx)).isEqualTo('a');
             } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-                throw new IndexOutOfBoundsException(String.format("Index : %d, Size : %d", idx2, str.length()));
+                throw new IndexOutOfBoundsException(String.format("Index : %d, Size : %d", idx, str.length()));
             }
         }).isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessageMatching("Index : \\d+, Size : \\d+");
