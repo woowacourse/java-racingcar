@@ -9,22 +9,22 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        validate();
+        validate(name);
         this.name = name;
     }
 
-    private void validate() {
-        validateCarNameLength();
-        validateBlankCarName();
+    private void validate(String name) {
+        validateCarNameLength(name);
+        validateBlankCarName(name);
     }
 
-    private void validateBlankCarName() {
+    private void validateBlankCarName(String name) {
         if(name.isBlank()) {
             throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
         }
     }
 
-    private void validateCarNameLength() {
+    private void validateCarNameLength(String name) {
         if(name.length() >= MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
         }
