@@ -9,6 +9,8 @@ public class Cars {
     private static final int ONLY_ONE_CAR = 1;
     private static final int BOUND = 10;
     private static final int DEFAULT_MAX = 0;
+
+    private static final Random random = new Random();
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -35,7 +37,6 @@ public class Cars {
     }
 
     public void moveCarsRandomly() {
-        Random random = new Random();
 
         cars.forEach(car -> car.move(random.nextInt(BOUND)));
     }
