@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import racingcar.domain.Car;
+import racingcar.domain.CarFactory;
 import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RacingGame;
@@ -33,8 +35,7 @@ public class RacingGameController {
     private Cars createCars() {
         try {
             String input = InputView.inputCarNames();
-            List<String> carNames = splitCarNames(input);
-            return new Cars(carNames);
+            return new Cars(CarFactory.generate(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createCars();

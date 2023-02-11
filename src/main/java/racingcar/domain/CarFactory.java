@@ -9,10 +9,12 @@ import java.util.stream.Collectors;
 
 public class CarFactory {
     private static final String CAR_NAME_DELIMITER = ",";
+    private static final int MINIMUM_CARS_COUNT = 2;
 
     public static List<Car> generate(String input) {
         List<String> carNames = List.of(input.split(CAR_NAME_DELIMITER));
         validateDuplicatedNames(carNames);
+        validateCarCount(carNames.size());
 
         return createCarsByNames(carNames);
     }
@@ -21,6 +23,12 @@ public class CarFactory {
         return carNames.stream()
                 .map(carName -> new Car(carName, GameConstant.START_POINT))
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static void validateCarCount(int size) {
+        if (size < MINIMUM_CARS_COUNT) {
+            throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "자동차 수는 2대 이상이어야 합니다.");
+        }
     }
 
     private static void validateDuplicatedNames(List<String> carNames) {
