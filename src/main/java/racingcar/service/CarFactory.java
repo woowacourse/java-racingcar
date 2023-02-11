@@ -21,7 +21,7 @@ public class CarFactory {
         }
 
         return Arrays.stream(names)
-                .map(name -> name.replaceAll(" ", ""))
+                .map(String::trim)
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
