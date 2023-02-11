@@ -34,6 +34,12 @@ public class Car {
         }
     }
 
+    public void validateCurrentDistance(int round) {
+        if (this.distance > round) {
+            throw new IllegalArgumentException("[ERROR] 자동차의 현재 위치는 해당 라운드보다 클 수 없습니다.");
+        }
+    }
+
     public void increaseDistance() {
         this.distance++;
     }

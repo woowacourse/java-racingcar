@@ -64,17 +64,18 @@ public class CarService {
 
     public void runService() {
         OutputView.printResultMessage();
-        for (int i = 0; i < tryCount; i++) {
-            runRound();
+        for (int i = 1; i <= tryCount; i++) {
+            runRound(i);
             System.out.println("");
         }
     }
 
-    private void runRound() {
+    private void runRound(int round) {
         for (Car car : cars.getCarInformation()) {
             Random random = new Random();
             int randomNumber = random.nextInt(10);
             runForward(car, randomNumber);
+            car.validateCurrentDistance(round);
             OutputView.printRoundResult(car.getName(), car.getDistance());
         }
     }
