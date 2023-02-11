@@ -2,6 +2,7 @@ package domain;
 
 import view.Input;
 import view.Output;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class RacingGame {
 
     public void start() {
         Output.printMessage("실행 결과");
-        while (this.tryCount-- > 0) {
+        while (isValidTry()) {
             cars.forEach(car -> car.move());
             Output.printEachCarDistance(cars);
         }
@@ -38,5 +39,9 @@ public class RacingGame {
     public void printResult() {
         winner.makeWinnerList(cars);
         Output.printWinner(winner);
+    }
+
+    private boolean isValidTry() {
+        return this.tryCount-- > 0;
     }
 }
