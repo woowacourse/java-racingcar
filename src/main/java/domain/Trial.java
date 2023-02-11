@@ -1,31 +1,21 @@
 package domain;
 
 public class Trial {
+	private static final String ERROR_TRIAL = "자연수로만 입력해주세요.";
+	private final int trial;
 
-    private final int trial;
-    private final static String PREFIX = "[0-9]";
-    private final String ERROR_TRIAL = "자연수로만 입력해주세요.";
+	public Trial(int input) {
+		validateNotZero(input);
+		this.trial = input;
+	}
 
-    public Trial(String input) {
-        validateNumber(input);
-        validateExtreme(input);
-        this.trial = Integer.parseInt(input);
-    }
+	private void validateNotZero(int input) {
+		if (input == 0) {
+			throw new IllegalArgumentException(ERROR_TRIAL);
+		}
+	}
 
-    private void validateNumber(String input) {
-
-        if (!input.matches(PREFIX)) {
-            throw new IllegalArgumentException(ERROR_TRIAL);
-        }
-    }
-
-    private void validateExtreme(String input) {
-        if (input.equals("0") || Long.parseLong(input) > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException(ERROR_TRIAL);
-        }
-    }
-
-    public int getTrial() {
-        return trial;
-    }
+	public int getTrial() {
+		return trial;
+	}
 }
