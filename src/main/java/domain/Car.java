@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car> {
+public class Car {
 	private static final String ONE_TO_FIVE = "이름은 1이상 5이하입니다.";
 	public static final int MIN_BOUND = 1;
 	public static final int MAX_BOUND = 5;
@@ -38,11 +38,6 @@ public class Car implements Comparable<Car> {
 
 	public int getDistance() {
 		return distance;
-	}
-
-	@Override
-	public int compareTo(Car car) {
-		return Integer.compare(this.distance, car.distance);
 	}
 
 	@Override

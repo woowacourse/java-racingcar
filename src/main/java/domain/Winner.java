@@ -1,32 +1,44 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Winner {
+	private final List<Car> winningCar = new ArrayList<>();
+	private final List<String> finalWinner = new ArrayList<>();
 
-    private final List<String> winners;
+	public Winner(Cars cars) {
+		List<Car> winners = new ArrayList<>(cars.getCars());
+		Car maxDistance = findMaxDistance(winners);
+		findWinner(winners, maxDistance.getDistance());
+	}
 
-    public Winner(Cars cars) {
-        this.winners = new ArrayList<>();
-        Car maxDistanceCar = Collections.max(cars.getCars());
-        findWinner(cars, maxDistanceCar.getDistance());
-    }
+	private Car findMaxDistance(List<Car> winners) {
+		int distance = 0;
+		for (Car car : winners) {
+			if (distance < car.getDistance()) {
+				distance = car.getDistance();
+			}
+		}
+		return winners.get(0);
+	}
 
-    private void findWinner(Cars cars, int maxDistance) {
-        for (int i = 0; i < cars.getCarsSize(); i++) {
-            addWinner(cars, maxDistance, i);
-        }
-    }
+	private void findWinner(List<Car> candidate, int maxDistance) {
+		for (int i = 0; i < candidate.size(); i++) {
+			addWinner(candidate, maxDistance, i);
+		}
+	}
 
-    private void addWinner(Cars cars, int maxDistance, int i) {
-        if (cars.getCar(i).getDistance() == maxDistance) {
-            winners.add(cars.getCar(i).getCarName());
-        }
-    }
+	private void addWinner(List<Car> candidate, int maxDistance, int index) {
+		if (candidate.get(index).getDistance() == maxDistance) {
+			winningCar.add(candidate.get(index));
+		}
+	}
 
-    public List<String> getWinners() {
-        return winners;
-    }
+	public List<String> getWinners() {
+		for (Car car : winningCar) {
+			finalWinner.add(car.getCarName());
+		}
+		return finalWinner;
+	}
 }
