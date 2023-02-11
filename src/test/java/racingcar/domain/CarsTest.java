@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.constant.CarConstant;
 import racingcar.domain.dto.CarRaceDto;
 import racingcar.exception.DuplicateException;
 import racingcar.exception.GlobalException;
@@ -17,6 +18,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static racingcar.domain.constant.CarConstant.*;
 import static racingcar.enumType.ExceptionMessage.DUPLICATE_MESSAGE;
 
 class CarsTest {
@@ -72,7 +74,7 @@ class CarsTest {
 
         // then
         int normalPositionCarCount = (int) initResult.stream()
-                .filter(carRaceDto -> carRaceDto.getCarPosition() == 1)
+                .filter(carRaceDto -> carRaceDto.getCarPosition() == INIT_POSITION.getValue())
                 .count();
 
         assertThat(normalPositionCarCount)
