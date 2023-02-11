@@ -26,7 +26,7 @@ class CarTest {
         assertDoesNotThrow(() -> new Car(input));
     }
 
-    @DisplayName("랜덤 값이 3보다 큰 경우 전진한다.")
+    @DisplayName("자동차의 move메소드는 true값을 인자로 받으면 전진한다.")
     @Test
     void moveWhenRandomNumberIsOverThree() {
         //given
@@ -38,7 +38,7 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
-    @DisplayName("랜덤 값이 3이하인 경우 전진하지 않는다.")
+    @DisplayName("자동차의 move메소드는 false값을 인자로 받는 경우 전진하지 않는다.")
     @Test
     void moveWhenRandomNumberIsUnderThree() {
         //given
