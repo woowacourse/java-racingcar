@@ -15,7 +15,7 @@ public class Controller {
         Cars cars = inputView.askCars();
         Trial trial = inputView.askTrial();
         for (int j = 0; j < trial.getTrial(); j++) {
-            cars.addDistance(new RandomNumberMaker().makeNumber(cars.getCarsSize()));
+            cars.addDistance(RandomNumberMaker.makeNumber(cars.getCarsSize()));
             outputView.printCarsDistance(cars);
         }
         outputView.printWinner(new Winner(cars));
