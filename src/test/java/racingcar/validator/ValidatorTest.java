@@ -1,16 +1,20 @@
 package racingcar.validator;
 
-import static org.assertj.core.api.Assertions.*;
-import static racingcar.exception.ExceptionMessage.*;
-import static racingcar.validator.Validator.*;
-
-import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.Cars;
 import racingcar.domain.Name;
+import racingcar.service.TryCount;
+
+import java.util.List;
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static racingcar.exception.ExceptionMessage.*;
 
 class ValidatorTest {
 
@@ -19,7 +23,7 @@ class ValidatorTest {
     @ValueSource(ints = {-1, -2, -3})
     void validate_illegalTryCount(int input) {
         // expected
-        assertThatThrownBy(() -> validateNegativeTryCount(input))
+        assertThatThrownBy(() -> new TryCount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ILLEGAL_TRY_COUNT.getMessage());
     }
@@ -29,7 +33,7 @@ class ValidatorTest {
     @ValueSource(ints = {0, 1, 2, 3, Integer.MAX_VALUE})
     void validate_tryCount(int input) {
         // expected
-        assertThatCode(() -> validateNegativeTryCount(input))
+        assertThatCode(() -> new TryCount(input))
                 .doesNotThrowAnyException();
     }
 
@@ -38,7 +42,7 @@ class ValidatorTest {
     @MethodSource("makeDuplicateNames")
     void validate_duplicateCarNames(String[] input) {
         // expected
-        assertThatThrownBy(() -> validateDuplicateCarNames(input))
+        assertThatThrownBy(() -> new Cars(List.of(input)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATE_CAR_NAME.getMessage());
     }
@@ -56,7 +60,7 @@ class ValidatorTest {
     @MethodSource("makeNoDuplicateNames")
     void validate_noDuplicateCarNames(String[] input) {
         // expected
-        assertThatCode(() -> validateDuplicateCarNames(input))
+        assertThatCode(() -> new Cars(List.of(input)))
                 .doesNotThrowAnyException();
     }
 
