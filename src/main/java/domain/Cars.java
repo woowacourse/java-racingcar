@@ -4,25 +4,23 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int MAX_INPUT_LENGTH = 10_000_000;
-    private static final int RANDOM_UPPER_BOUND = 10;
-    private static final String INVALID_INPUT_LENGTH_MESSAGE = "입력값은 최대 1000만 글자여야 합니다";
-    private static final String DUPLICATE_CAR_NAMES = "차 이름은 중복될 수 없습니다";
+    private static final int RANDOM_UPPER_BOUND_EXCLUSIVE = 10;
+    private static final String DUPLICATED_CAR_NAMES = "차 이름은 중복될 수 없습니다";
 
     private final List<Car> cars = new ArrayList<>();
 
-    private Cars(String names) {
+    private Cars(List<String> names) {
         validate(names);
         init(names);
     }
 
-    public static Cars from(String names) {
+    public static Cars from(List<String> names) {
         return new Cars(names);
     }
 
     public void move() {
         Random random = new Random();
-        cars.forEach(car -> car.move(random.nextInt(RANDOM_UPPER_BOUND)));
+        cars.forEach(car -> car.move(random.nextInt(RANDOM_UPPER_BOUND_EXCLUSIVE)));
     }
 
     public List<String> getWinners() {
@@ -41,23 +39,14 @@ public class Cars {
         return result;
     }
 
-    private void validate(String names) {
-        if (names.length() > MAX_INPUT_LENGTH)
-            throw new IllegalArgumentException(INVALID_INPUT_LENGTH_MESSAGE);
-
-        List<String> splitNames = parseInput(names);
-        if (new HashSet<>(splitNames).size() != splitNames.size())
-            throw new IllegalArgumentException(DUPLICATE_CAR_NAMES);
+    private void validate(List<String> names) {
+        if (new HashSet<>(names).size() != names.size())
+            throw new IllegalArgumentException(DUPLICATED_CAR_NAMES);
     }
 
-    private void init(String input) {
-        parseInput(input).stream()
+    private void init(List<String> names) {
+        names.stream()
                 .map(Car::new)
                 .forEach(cars::add);
-    }
-
-    private List<String> parseInput(String input) {
-        return Arrays.stream(input.split(","))
-                .collect(Collectors.toList());
     }
 }

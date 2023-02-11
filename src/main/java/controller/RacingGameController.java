@@ -54,7 +54,7 @@ public class RacingGameController {
 
     private Optional<Cars> makeCars() {
         try {
-            return Optional.of(Cars.from(inputView.readCarName()));
+            return Optional.of(Cars.from(inputView.readCarNames()));
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
 
