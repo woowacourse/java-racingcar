@@ -16,8 +16,8 @@ class CarTest {
     @Nested
     @DisplayName("자동차 이름 길이 테스트")
     class TestNameLength {
-        private int nameMinLength = CarConstant.NAME_MIN_LENGTH.getNumber();
-        private int nameMaxLength = CarConstant.NAME_MAX_LENGTH.getNumber();
+        private final int nameMinLength = CarConstant.NAME_MIN_LENGTH.getNumber();
+        private final int nameMaxLength = CarConstant.NAME_MAX_LENGTH.getNumber();
 
         @ParameterizedTest(name = "{index} ==> name : ''{0}''")
         @ValueSource(strings = {"", "abcdef", "pobiiiiii"})
@@ -82,7 +82,7 @@ class CarTest {
     @Nested
     @DisplayName("자동차 시작 위치 테스트")
     class TestStartDistance {
-        int startDistance = CarConstant.START_DISTANCE_VALUE.getNumber();
+        private final int startDistance = CarConstant.START_DISTANCE_VALUE.getNumber();
 
         @ParameterizedTest(name = "{index} ==> distance : ''{0}''")
         @ValueSource(ints = {1, -1, 100})
