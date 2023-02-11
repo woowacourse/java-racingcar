@@ -10,12 +10,12 @@ public class CarNameValidator {
     private static final String MAX_NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 자동차 이름은 다섯 글자 이하여야 합니다.";
 
     public static void validate(String carName) {
-        validateInvalidValue(carName);
+        validateValue(carName);
         validateHasBlank(carName);
         validateOverMaxNameLength(carName);
     }
 
-    private static void validateInvalidValue(String carName) {
+    private static void validateValue(String carName) {
         if (!STRING_PATTERN.matcher(carName).matches()) {
             throw new IllegalArgumentException(INVALID_FORMAT_ERROR_MESSAGE);
         }
