@@ -41,19 +41,13 @@ public class RacingCarController {
     }
 
     private void printStatus(final Cars cars) {
-        List<CarDto> carDtos = getCarDtos(cars);
+        List<CarDto> carDtos = CarDto.getCarDtos(cars);
         OutputView.printStatus(carDtos);
-    }
-
-    private List<CarDto> getCarDtos(final Cars cars) {
-        return cars.getCars().stream()
-                .map(CarDto::from)
-                .collect(Collectors.toList());
     }
 
     private void printWinners(final Cars cars) {
         Cars winnerCars = cars.findWinners();
-        List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
+        List<CarDto> winnerCarDtos = CarDto.getCarDtos(winnerCars);
         OutputView.printWinners(winnerCarDtos);
     }
 }
