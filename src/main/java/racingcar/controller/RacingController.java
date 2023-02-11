@@ -1,8 +1,9 @@
 package racingcar.controller;
 
+import java.util.List;
 import racingcar.model.car.Car;
+import racingcar.model.car.CarFactory;
 import racingcar.model.car.Cars;
-import racingcar.model.car.strategy.MovingStrategy;
 import racingcar.model.track.Track;
 import racingcar.model.trialtimes.TrialTimes;
 import racingcar.view.InputView;
@@ -10,39 +11,28 @@ import racingcar.view.OutputView;
 import racingcar.view.dto.CarNamesRequest;
 import racingcar.view.dto.TrialTimesRequest;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class RacingController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final CarFactory carFactory;
 
-    public RacingController(InputView inputView, OutputView outputView) {
+    public RacingController(InputView inputView, OutputView outputView, CarFactory carFactory) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.carFactory = carFactory;
     }
 
-    public Track init(MovingStrategy movingStrategy) {
+    public Track generateRacingTrack() {
         CarNamesRequest carNamesRequest = requestCarNames();
-        Cars cars = setUpCars(carNamesRequest, movingStrategy);
-
         int trialTimesCount = requestTrialTimes();
-        TrialTimes trialTimes = new TrialTimes(trialTimesCount);
-        outputView.printCarsPosition(cars);
 
+        TrialTimes trialTimes = new TrialTimes(trialTimesCount);
+        Cars cars = carFactory.generateCarsByCarNames(carNamesRequest);
         return new Track(cars, trialTimes);
     }
 
     private CarNamesRequest requestCarNames() {
         return inputView.getCarNames();
-    }
-
-    private Cars setUpCars(CarNamesRequest carNamesRequest, MovingStrategy movingStrategy) {
-        List<Car> carsByNames = carNamesRequest.toSplitCarNames().stream()
-                .map(carName -> new Car(carName, movingStrategy))
-                .collect(Collectors.toList());
-
-        return new Cars(carsByNames);
     }
 
     private int requestTrialTimes() {
