@@ -60,4 +60,28 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(OUT_OF_CAR_NAME_LENGTH.getMessage());
     }
+
+    @Test
+    @DisplayName("자동차가 위치가 다르면 거짓이 반환되어야 한다.")
+    void isSamePosition_false() {
+        // given
+        car.move();
+        Position position = new Position(0);
+
+        // expect
+        assertThat(car.getPosition())
+                .isNotEqualTo(position);
+    }
+
+    @Test
+    @DisplayName("자동차가 위치가 같으면 참이 반환되어야 한다.")
+    void isSamePosition_true() {
+        // given
+        car.move();
+        Position position = new Position(1);
+
+        // expect
+        assertThat(car.getPosition())
+                .isEqualTo(position);
+    }
 }
