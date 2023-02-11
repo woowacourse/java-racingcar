@@ -19,7 +19,7 @@ class CarsTest {
     @BeforeEach
     void setUp() {
         mockRandomPicker = new MockRandomPicker(List.of(4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3));
-        cars = new Cars(List.of("judy,nunu,pobi"));
+        cars = new Cars(List.of("judy", "nunu", "pobi"));
     }
 
     @Test
