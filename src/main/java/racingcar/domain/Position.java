@@ -2,11 +2,20 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+import static racingcar.exception.ExceptionMessage.ILLEGAL_POSITION;
+
 public class Position {
     private int value;
 
     public Position(int value) {
+        validate();
         this.value = value;
+    }
+
+    private void validate() {
+        if(value < 0) {
+            throw new IllegalStateException(ILLEGAL_POSITION.getMessage());
+        }
     }
 
     public void forward() {
