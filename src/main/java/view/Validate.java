@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Validate {
+    static final String DIGIT = "\\d+";
+
     public void isValidCarNames(String[] carNames) {
         checkBlank(carNames);
         checkLength(carNames);
@@ -12,8 +14,7 @@ public class Validate {
     }
 
     public void checkDigits(String input) {
-        boolean isMatch = input.matches("\\d+");
-        if (!isMatch) {
+        if (!input.matches(DIGIT)) {
             throw new IllegalArgumentException("[ERROR] : 숫자만 입력이 가능합니다.");
         }
     }
