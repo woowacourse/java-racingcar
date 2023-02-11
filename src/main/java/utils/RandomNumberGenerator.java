@@ -3,10 +3,10 @@ package utils;
 import java.util.Random;
 
 public class RandomNumberGenerator {
+    static final int UPPER_BOUND = 10;
     static Random rand = new Random();
-    static final int upperBound = 10;
 
     public static int randomNumberGenerate() {
-        return rand.nextInt(upperBound);
+        return rand.nextInt(UPPER_BOUND);
     }
 }

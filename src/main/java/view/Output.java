@@ -1,7 +1,6 @@
 package view;
 
 import domain.Car;
-
 import java.util.List;
 
 public class Output {
