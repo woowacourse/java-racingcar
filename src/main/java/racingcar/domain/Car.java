@@ -1,69 +1,50 @@
 package racingcar.domain;
 
-import racingcar.domain.dto.DrivingDistance;
+import racingcar.domain.vo.CarStatus;
 
-import java.util.Objects;
-
-import static racingcar.enumType.DomainConstant.CAR_NAME_MAX_LENGTH;
 import static racingcar.enumType.ExceptionMessage.BLANK_MESSAGE;
 import static racingcar.enumType.ExceptionMessage.LENGTH_MESSAGE;
 
 public class Car {
 
-    private final String name;
+    public static final int START_POSITION = 1;
+    private static final int CAR_MOVE_STANDARD = 4;
+    public static final int CAR_NAME_MAX_LENGTH = 5;
 
-    private final StringBuilder drivingMark;
+    private final String name;
+    private int position;
 
     private Car(final String name) {
         validateNameBlank(name);
         validateNameLength(name);
         this.name = name.trim();
-        this.drivingMark = new StringBuilder("-");
+        this.position = START_POSITION;
     }
 
     public static Car of(final String name) {
         return new Car(name);
     }
 
-    public void move() {
-        drivingMark.append("-");
+    public void move(final int moveConditionValue) {
+        if (moveConditionValue >= CAR_MOVE_STANDARD) {
+            position++;
+        }
     }
 
-    public DrivingDistance getDrivingDistance() {
-        return DrivingDistance.of(drivingMark.length());
+    public CarStatus getCarStatus() {
+        return CarStatus.of(name, position);
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    private void validateNameLength(String name) {
-        if (name.length() > CAR_NAME_MAX_LENGTH.getValue()) {
+    private void validateNameLength(final String name) {
+        if (name.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(LENGTH_MESSAGE.getValue());
         }
     }
 
-    private void validateNameBlank(String name) {
+    private void validateNameBlank(final String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException(BLANK_MESSAGE.getValue());
         }
     }
 
-    @Override
-    public String toString() {
-        return name + " : " + drivingMark;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(name, car.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 }

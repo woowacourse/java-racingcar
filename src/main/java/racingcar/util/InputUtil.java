@@ -9,10 +9,13 @@ import racingcar.view.OutputView;
 
 import java.util.function.Supplier;
 
-import static racingcar.enumType.InputMessage.GET_CAR_NAMES_MESSAGE;
-import static racingcar.enumType.InputMessage.GET_TRY_COUNT_MESSAGE;
+import java.util.List;
+
 
 public class InputUtil {
+
+    private static final String GET_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String GET_TRY_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
 
     private final InputView inputView = new InputView();
 
@@ -25,15 +28,13 @@ public class InputUtil {
         }
     }
 
-    public Cars getCarNames() {
-        OutputView.printMessage(GET_CAR_NAMES_MESSAGE.getValue());
-        String carNames = inputView.getUserInput();
-        return Cars.of(carNames);
+    public List<String> getCarNames() {
+        OutputView.printMessage(GET_CAR_NAMES_MESSAGE);
+        return inputView.readCarNames();
     }
 
-    public Race getTryCount() {
-        OutputView.printMessage(GET_TRY_COUNT_MESSAGE.getValue());
-        String tryCount = inputView.getUserInput();
-        return Race.of(tryCount);
+    public int getTryCount() {
+        OutputView.printMessage(GET_TRY_COUNT_MESSAGE);
+        return inputView.readTryCount();
     }
 }
