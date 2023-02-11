@@ -11,7 +11,6 @@ public class CarRepository {
         this.cars.addAll(cars);
     }
 
-    // List.copyOf와 Collections.unmodifiableList의 차이?
     public List<Car> findAll() {
         return List.copyOf(cars);
     }
