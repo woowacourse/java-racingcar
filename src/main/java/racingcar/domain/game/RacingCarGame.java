@@ -1,34 +1,27 @@
 package racingcar.domain.game;
 
-import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
-
-import java.util.List;
 
 public class RacingCarGame {
 
     private final NumberGenerator numberGenerator;
-    private final WinnerJudge winnerJudge;
     private final Cars cars;
     private final Lap totalLap;
     private Lap currentLap;
 
     private RacingCarGame(final NumberGenerator numberGenerator,
-                          final WinnerJudge winnerJudge,
                           final Cars cars,
                           final Lap totalLap) {
         this.numberGenerator = numberGenerator;
-        this.winnerJudge = winnerJudge;
         this.cars = cars;
         this.totalLap = totalLap;
         this.currentLap = Lap.init();
     }
 
     public static RacingCarGame init(final NumberGenerator numberGenerator,
-                                     final WinnerJudge winnerJudge,
                                      final Cars cars,
                                      final Lap lap) {
-        return new RacingCarGame(numberGenerator, winnerJudge, cars, lap);
+        return new RacingCarGame(numberGenerator, cars, lap);
     }
 
     /**
@@ -48,12 +41,11 @@ public class RacingCarGame {
         return !totalLap.equals(currentLap);
     }
 
-    public GameResult gameResult() {
+    public Winners winner() {
         if (hasMoreLap()) {
             throw new IllegalStateException("아직 게임이 종료되지 않았습니다.");
         }
-        List<Car> winners = winnerJudge.judge(cars);
-        return new GameResult(winners);
+        return new Winners(cars.getCars());
     }
 
     public Cars cars() {

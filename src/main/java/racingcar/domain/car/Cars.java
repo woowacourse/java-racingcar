@@ -2,9 +2,6 @@ package racingcar.domain.car;
 
 import racingcar.domain.game.NumberGenerator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,12 +27,5 @@ public class Cars {
 
     public List<Car> getCars() {
         return this.cars;
-    }
-
-    public List<Car> sortedCarsByPositionDesc() {
-        List<Car> cars = new ArrayList<>(this.cars);
-        cars.sort(Comparator.comparing(Car::getPosition));
-        Collections.reverse(cars);
-        return cars;
     }
 }

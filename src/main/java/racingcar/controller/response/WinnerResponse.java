@@ -1,19 +1,18 @@
-package racingcar.domain.game;
+package racingcar.controller.response;
 
 import racingcar.domain.car.Car;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-
-public class GameResult {
+public class WinnerResponse {
 
     private final List<String> winnerNames;
 
-    public GameResult(final List<Car> winners) {
+    public WinnerResponse(final List<Car> winners) {
         this.winnerNames = winners.stream()
                 .map(it -> it.getName().getValue())
-                .collect(toList());
+                .collect(Collectors.toList());
     }
 
     public List<String> winnerNames() {

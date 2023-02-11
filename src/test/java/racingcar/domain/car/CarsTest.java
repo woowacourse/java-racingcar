@@ -61,22 +61,6 @@ class CarsTest {
         }
     }
 
-    @DisplayName("sortedCarsByPositionDesc() 시 위치를 기준으로 내림차순으로 정렬된 자동차들을 반환한다.[{currentRepetition}]")
-    @Test
-    void test_4() {
-        // given
-        Cars cars = new Cars(List.of("말랑", "채채", "카일", "포비"));
-
-        // when
-        List<Car> sortedCars = cars.sortedCarsByPositionDesc();
-
-        // then
-        for (int i = sortedCars.size() - 1; i > 0; i--) {
-            assertThat(sortedCars.get(i).getPosition().getValue())
-                    .isLessThanOrEqualTo(sortedCars.get(i - 1).getPosition().getValue());
-        }
-    }
-
     static Stream<Arguments> carsAndWinnerCars() {
         Car winner1 = new Car("말랑");
         Car winner2 = new Car("채채");
