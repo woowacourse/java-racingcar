@@ -1,14 +1,14 @@
 package racing.handler;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import racing.view.InputView;
 
-//TODO: 예외 발생 시 재입력
 public class InputHandler {
 
     private static final String COMMA = ",";
-    private static final String REGEX = "^[0-9]+$";
+    private static final Pattern REGEX = Pattern.compile("^[0-9]+$");
     private static final int MINIMUM_LENGTH_OF_MOVING_TRIAL = 1;
     private static final int MAXIMUM_LENGTH_OF_MOVING_TRIAL = 100;
     private static final String MOVING_TRIAL_NOT_INTEGER_ERROR = "[ERROR] 시도할 횟수는 숫자만 가능합니다.";
@@ -53,7 +53,7 @@ public class InputHandler {
     }
 
     private void validateInteger(String movingTrial) {
-        if (!movingTrial.matches(REGEX)) {
+        if (!REGEX.matcher(movingTrial).matches()) {
             throw new IllegalArgumentException(MOVING_TRIAL_NOT_INTEGER_ERROR);
         }
     }
