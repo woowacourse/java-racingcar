@@ -13,11 +13,14 @@ import static domain.Car.MAX_NAME_LENGTH;
 
 public class InputView {
 
+    private final String delimiter = ",";
+    private final String delimiterInKorean = "쉼표";
+
     public List<CarNameDto> sendCarsName() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        System.out.printf("경주할 자동차 이름을 입력하세요(이름은 %s(%s)를 기준으로 구분).\n", delimiterInKorean, delimiter);
 
         Scanner scanner = new Scanner(System.in);
-        String[] carsName = scanner.nextLine().split(",");
+        String[] carsName = scanner.nextLine().split(delimiter);
 
         for(String carName : carsName) {
             validate(carName);
