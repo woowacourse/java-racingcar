@@ -19,7 +19,10 @@ public class Cars {
 
     public List<String> getWinnerNames() {
         int highestPosition = getHighestPosition();
-        return cars.stream().filter(car -> car.getPosition() == highestPosition).map(Car::getName).collect(Collectors.toList());
+        return cars.stream()
+                .filter(car -> car.getPosition() == highestPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     private int getHighestPosition() {
