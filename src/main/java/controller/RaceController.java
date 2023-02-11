@@ -87,8 +87,8 @@ public class RaceController {
         return score >= MIN_SCORE;
     }
 
-    public void printRoundResult() {
-        OutputView.printRoundResult(participants.showAllParticipants());
+    public void printRoundResult(OutputView outputView) {
+        outputView.printRoundResult(participants.showAllParticipants());
     }
 
     public void roundFinished() {

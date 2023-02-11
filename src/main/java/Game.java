@@ -18,24 +18,24 @@ public class Game {
         raceController.getCount(inputView);
     }
 
-    public void playGame(NumberGenerator numberGenerator) {
+    public void playGame(NumberGenerator numberGenerator, OutputView outputView) {
         while (!raceController.isFinished()) {
-            raceOneRound(numberGenerator);
+            raceOneRound(numberGenerator, outputView);
         }
-        raceController.printRoundResult();
+        raceController.printRoundResult(outputView);
     }
 
-    private void raceOneRound(NumberGenerator numberGenerator) {
+    private void raceOneRound(NumberGenerator numberGenerator, OutputView outputView) {
         List<Car> cars = raceController.showStatus();
         if (!raceController.isFinished()) {
             cars.forEach((car) -> raceController.driveOrNot(car, numberGenerator));
             raceController.roundFinished();
         }
-        raceController.printRoundResult();
+        raceController.printRoundResult(outputView);
     }
 
-    public void showResult() {
-        OutputView.printResultMessage();
-        OutputView.printWinners(raceController.getWinners());
+    public void showResult(OutputView outputView) {
+        outputView.printResultMessage();
+        outputView.printWinners(raceController.getWinners());
     }
 }

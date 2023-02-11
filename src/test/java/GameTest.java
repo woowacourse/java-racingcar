@@ -8,16 +8,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.NumberGenerator;
 import view.input.InputView;
+import view.output.OutputView;
 
 class GameTest {
 
     private Game game;
     private InputView inputView;
+    private OutputView outputView;
     private ByteArrayOutputStream outputMessage;
 
     @BeforeEach
     void before() {
         game = new Game(new RaceController());
+        outputView = new OutputView();
     }
 
     void setInputStream(String input) {
@@ -38,7 +41,7 @@ class GameTest {
         setOutput();
         game.ready(new InputView());
         NumberGenerator numberGenerator = () -> 3;
-        game.playGame(numberGenerator);
+        game.playGame(numberGenerator, outputView);
         //then
         Assertions.assertThat(outputMessage.toString()).contains("split : ");
     }
@@ -51,7 +54,7 @@ class GameTest {
         setOutput();
         game.ready(new InputView());
         NumberGenerator numberGenerator = () -> 4;
-        game.playGame(numberGenerator);
+        game.playGame(numberGenerator, outputView);
         //then
         Assertions.assertThat(outputMessage.toString()).contains("split : ---");
     }
@@ -65,8 +68,8 @@ class GameTest {
         setOutput();
         game.ready(new InputView());
         NumberGenerator numberGenerator = () -> 4;
-        game.playGame(numberGenerator);
-        game.showResult();
+        game.playGame(numberGenerator, outputView);
+        game.showResult(outputView);
         //then
         Assertions.assertThat(outputMessage.toString()).contains(
             "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).",
