@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-    private CarGenerator carGenerator;
-    private Winner winner;
+    private final CarGenerator carGenerator;
+    private final Winner winner;
     private List<Car> cars;
     private int tryCount;
 
