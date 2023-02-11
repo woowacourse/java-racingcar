@@ -22,7 +22,7 @@ class CarsTest {
 
         Cars cars = new Cars(List.of(carA, carB, carC));
 
-        cars.moveCars(mockNumberGenerator);
+        cars.move(mockNumberGenerator);
         List<Car> afterCarMoved = cars.getCars();
 
         List<Integer> expected = afterCarMoved.stream()
@@ -41,7 +41,7 @@ class CarsTest {
 
         Cars cars = new Cars(List.of(carA, carB, carC));
 
-        cars.moveCars(mockNumberGenerator);
+        cars.move(mockNumberGenerator);
         List<Car> winners = cars.findWinners();
 
         assertThat(winners).containsExactly(carA, carC);
