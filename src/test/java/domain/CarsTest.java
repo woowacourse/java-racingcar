@@ -10,7 +10,7 @@ class CarsTest {
 
     @DisplayName("judgeWinners 메서드는 우승한 자동차들을 반환한다.")
     @Test
-    void should_ReturnWinners_When_JudgeWinnersMethod() {
+    void should_ReturnWinners_When_UsingJudgeWinnersMethod() {
         //given
         Car notWinnerCarA = new Car("carA");
         Car winnerCarB = new Car("carB");
