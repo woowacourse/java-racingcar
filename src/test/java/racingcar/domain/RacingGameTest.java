@@ -6,7 +6,7 @@ import java.util.List;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.TestNumberGenerator;
+import racingcar.utils.TestNumberGenerator;
 
 @DisplayName("RacingGame 클래스")
 class RacingGameTest {

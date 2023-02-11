@@ -8,7 +8,7 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.TestNumberGenerator;
+import racingcar.utils.TestNumberGenerator;
 
 @DisplayName("Cars 클래스")
 public class CarsTest {
