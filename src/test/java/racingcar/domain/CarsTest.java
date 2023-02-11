@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -48,7 +49,10 @@ class CarsTest {
 	@DisplayName("Cars 자동차 이동 정상 작동 테스트")
 	@Test
 	void moveCarsTest() {
-		org.junit.jupiter.api.Assertions.assertDoesNotThrow(cars::moveCars);
+		cars.generateCars(List.of("pobi", "crong", "honux"));
+		cars.moveCars();
+		Map<String, Integer> carsState = cars.getCarsState();
+		assertThat(carsState.values()).containsOnly(0, 1);
 	}
 
 	@DisplayName("자동차 경기 우승자들 이름 조회 테스트")
