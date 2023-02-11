@@ -16,12 +16,8 @@ public class Track {
 
     public Cars race() {
         cars.moveCars();
-        removeTrialTimes();
-        return cars;
-    }
-
-    private void removeTrialTimes() {
         trialTimes.consume();
+        return cars;
     }
 
     public boolean runnable() {
