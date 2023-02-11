@@ -19,14 +19,14 @@ public class InputView {
             return checkPositiveNumber(tryCount);
         } catch (Exception e) {
             throw new IllegalArgumentException(
-                    ExceptionMessage.EXCEPTION_NOT_NUMBER_MESSAGE.getExceptionMessage());
+                    ExceptionMessage.TRY_COUNT_NOT_NUMBER_MESSAGE.getExceptionMessage());
         }
     }
 
     private int checkPositiveNumber(int number) {
         if (number < MIN_TRY_COUNT_INPUT) {
             throw new IllegalArgumentException(
-                    ExceptionMessage.EXCEPTION_TRY_COUNT_MESSAGE.getExceptionMessage());
+                    ExceptionMessage.TRY_COUNT_NOT_POSITIVE_MESSAGE.getExceptionMessage());
         }
         return number;
     }

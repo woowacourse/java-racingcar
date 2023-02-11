@@ -20,12 +20,12 @@ public class Car {
     private void validCarName(String name) {
         if (name.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(
-                    ExceptionMessage.EXCEPTION_MESSAGE.getExceptionMessage());
+                    ExceptionMessage.CAR_NAME_WRONG_LENGTH_MESSAGE.getExceptionMessage());
         }
 
         if (name.isBlank()) {
             throw new IllegalArgumentException(
-                    ExceptionMessage.EXCEPTION_SPACE_MESSAGE.getExceptionMessage());
+                    ExceptionMessage.CAR_NAME_BLANK_MESSAGE.getExceptionMessage());
         }
     }
 
