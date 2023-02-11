@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 
 public class StringTest {
-
     @Test
     public void 요구사항1() {
         String str1 = "1,2";

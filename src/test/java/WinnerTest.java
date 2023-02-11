@@ -1,12 +1,12 @@
 import domain.Car;
 import domain.Winner;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.List;
 
 class WinnerTest {
     static Car car1;

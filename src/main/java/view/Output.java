@@ -16,5 +16,4 @@ public class Output {
     public static <Winner> void printWinner(Winner winner) {
         System.out.println(winner.toString());
     }
-
 }
