@@ -9,6 +9,7 @@ public enum ErrorMessage {
     INVALID_TRIAL_NUMBER("[ERROR] 시도 횟수는 정수만 입력 가능합니다."),
     TRIAL_NUMBER_OVER_RANGE("[ERROR] 시도 횟수가 100 이하여야 합니다."),
     TRIAL_NUMBER_UNDER_RANGE("[ERROR] 시도 횟수가 1 이상이어야 합니다."),
+    TRIAL_NUMBER_NULL("[ERROR] 빈 값은 입력 될 수 없습니다."),
     ;
 
     private final String message;
