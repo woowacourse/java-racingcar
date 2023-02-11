@@ -8,11 +8,10 @@ public class Application {
     public static void main(String[] args) {
         try {
             RacingCarApplication racingCarApplication = new RacingCarApplication();
-            racingCarApplication.playingGame();
-            racingCarApplication.printFinalResult();
+            racingCarApplication.startRacing();
+            racingCarApplication.endRacing();
         } catch (Exception error) {
             outputView.printError(error);
         }
     }
-
 }

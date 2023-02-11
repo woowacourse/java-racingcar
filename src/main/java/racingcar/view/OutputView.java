@@ -13,8 +13,8 @@ public class OutputView {
         enterLine();
     }
 
-    public void printWinners(List<String> winners) {
-        String winnerString = stringifyWinners(winners);
+    public void printWinners(List<String> winnerNames) {
+        String winnerString = stringifyWinners(winnerNames);
         System.out.print(winnerString);
         System.out.println(RESULT_POSTFIX);
     }
