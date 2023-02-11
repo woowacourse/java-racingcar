@@ -2,9 +2,9 @@ package domain;
 
 public class Trial {
 
-    private final static String PREFIX = "[0-9]";
+    private final static String NUMBER_REGULAR_EXPRESSION = "[0-9]";
+    private final static String ERROR_MESSAGE_TRIAL_TYPE = "시도 횟수는 자연수로만 입력해주세요.";
     private final int trial;
-    private final String ERROR_TRIAL = "자연수로만 입력해주세요.";
 
     public Trial(String input) {
         validateNumber(input);
@@ -13,15 +13,14 @@ public class Trial {
     }
 
     private void validateNumber(String input) {
-
-        if (!input.matches(PREFIX)) {
-            throw new IllegalArgumentException(ERROR_TRIAL);
+        if (!input.matches(NUMBER_REGULAR_EXPRESSION)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_TRIAL_TYPE);
         }
     }
 
     private void validateExtreme(String input) {
         if (input.equals("0") || Long.parseLong(input) > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException(ERROR_TRIAL);
+            throw new IllegalArgumentException(ERROR_MESSAGE_TRIAL_TYPE);
         }
     }
 

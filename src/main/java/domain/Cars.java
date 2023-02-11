@@ -36,7 +36,7 @@ public class Cars {
     }
 
     private void validateDuplication(String inputSplit) {
-        if (cars.contains(inputSplit)) {
+        if (cars.contains(new Car(inputSplit))) {
             throw new IllegalArgumentException(ERROR_DUPLICATION);
         }
     }

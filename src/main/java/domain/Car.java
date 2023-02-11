@@ -46,8 +46,8 @@ public class Car implements Comparable<Car> {
 
     @Override
     public boolean equals(Object ob) {
-        String carName = (String) ob;
-        return this.name.equals(carName);
+        Car car = (Car)ob;
+        return this.name.equals(car.name);
     }
 
 }
