@@ -3,45 +3,46 @@ package racingcar.domain.cars;
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
-import java.util.LinkedHashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class Cars {
 
     private static final int MINIMUM_SIZE = 2;
-    private final List<Car> cars;
+    private final Set<Car> cars;
 
     public Cars(List<Car> cars) {
         validate(cars);
-        this.cars = cars;
+        this.cars = new HashSet<>(cars);
     }
 
-    private void validate(List<Car> repository) {
-        if (isOutOfSize(repository)) {
+    private void validate(List<Car> cars) {
+        if (isOutOfSize(cars)) {
             throw new IllegalArgumentException("[ERROR] 자동차는 2대 이상 입력되어야 합니다.");
         }
-        if (hasDuplication(repository)) {
+        if (hasDuplication(cars)) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복될 수 없습니다.");
         }
     }
 
-    private boolean isOutOfSize(List<Car> repository) {
-        return repository.size() < MINIMUM_SIZE;
+    private boolean isOutOfSize(List<Car> cars) {
+        return cars.size() < MINIMUM_SIZE;
     }
 
-    private boolean hasDuplication(List<Car> repository) {
-        return repository.stream()
+    private boolean hasDuplication(List<Car> cars) {
+        return cars.stream()
                 .distinct()
-                .count() != repository.size();
+                .count() != cars.size();
     }
 
-    public Map<String, Integer> moveBy(NumberGenerator numberGenerator) {
-        Map<String, Integer> positionsByCar = new LinkedHashMap<>();
+    public void moveBy(NumberGenerator numberGenerator) {
         for (Car car : cars) {
             car.move(numberGenerator.generate());
-            positionsByCar.put(car.getName(), car.getPosition());
         }
-        return positionsByCar;
+    }
+
+    public Set<Car> getCars() {
+        return cars;
     }
 }
