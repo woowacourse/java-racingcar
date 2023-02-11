@@ -20,9 +20,9 @@ class RacingCarApplicationTest {
         InputStream repeatsInput = new ByteArrayInputStream("5".getBytes());
         System.setIn(nameInput);
         System.setIn(repeatsInput);
-        racingCarApplication.playingGame();
+        racingCarApplication.startRacing();
 
-        verify(racingCarApplication).playingGame();
+        verify(racingCarApplication).endRacing();
     }
 
 }
