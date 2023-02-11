@@ -17,7 +17,7 @@ class CarTest {
     @DisplayName("Car 객체 생성 테스트")
     void createCarTest(String name) {
         Car car = new Car(name);
-        assertThat(car.getCarName()).isEqualTo(name);
+        assertThat(car.getName()).isEqualTo(name);
     }
 
     @ParameterizedTest
@@ -37,7 +37,7 @@ class CarTest {
         Car car = new Car("test");
         car.moveByNumber(randNum);
 
-        assertThat(car.getCarLocation()).isEqualTo(0);
+        assertThat(car.getLocation()).isEqualTo(0);
     }
 
     @ParameterizedTest
@@ -47,6 +47,6 @@ class CarTest {
         Car car = new Car("test");
         car.moveByNumber(randNum);
 
-        assertThat(car.getCarLocation()).isEqualTo(1);
+        assertThat(car.getLocation()).isEqualTo(1);
     }
 }

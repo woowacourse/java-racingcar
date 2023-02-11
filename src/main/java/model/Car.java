@@ -39,11 +39,11 @@ public class Car {
         this.location += CAR_MOVE_FORWARD;
     }
 
-    public String getCarName() {
+    public String getName() {
         return this.name;
     }
 
-    public int getCarLocation() {
+    public int getLocation() {
         return this.location;
     }
 

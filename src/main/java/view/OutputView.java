@@ -10,8 +10,8 @@ public class OutputView {
 
     public void printResult(Cars cars) {
         for (Car car : cars.getCars()) {
-            String location = CAR_LOCATION.repeat(car.getCarLocation());
-            System.out.printf(PRINT_CAR_LOCATION, car.getCarName(), location);
+            String location = CAR_LOCATION.repeat(car.getLocation());
+            System.out.printf(PRINT_CAR_LOCATION, car.getName(), location);
         }
         System.out.println();
     }
