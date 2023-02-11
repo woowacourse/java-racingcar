@@ -23,7 +23,7 @@ class CarFactoryTest {
     @ParameterizedTest
     @MethodSource("getCarNames")
     void createCarRepository(List<String> carNames) {
-        Cars cars = carFactory.createCarRepository(carNames);
+        Cars cars = carFactory.createCars(carNames);
 
         assertThat(cars).isInstanceOf(Cars.class);
     }
