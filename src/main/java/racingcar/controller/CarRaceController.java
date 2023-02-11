@@ -10,7 +10,7 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
-public class RaceController implements Controller {
+public class CarRaceController implements Controller {
 
     private final InputUtil inputUtil = new InputUtil();
 
@@ -20,25 +20,25 @@ public class RaceController implements Controller {
 
     @Override
     public void process() {
-        Cars cars = createCars();
-        Race race = createRace();
+        Cars cars = getUserInputAndCreateCars();
+        Race race = getUserInputAndCreateRace();
 
-        List<CarRaceDto> initCarsStatus = cars.initStatus();
+        List<CarRaceDto> initCarResult = cars.initStatus();
         List<RaceResultDto> totalRaceResult = race.getRaceResult(cars);
-        outputView.printRaceResult(initCarsStatus, totalRaceResult);
+        outputView.printRaceResult(initCarResult, totalRaceResult);
 
         List<String> winners = cars.pickWinners();
         outputView.printWinnerResult(winners);
     }
 
-    private Cars createCars() {
+    private Cars getUserInputAndCreateCars() {
         return inputUtil.getUserInput(() -> {
             String carNames = inputUtil.getCarNames();
             return Cars.of(carNames, numberGenerator);
         });
     }
 
-    private Race createRace() {
+    private Race getUserInputAndCreateRace() {
         return inputUtil.getUserInput(() -> {
             String tryCount = inputUtil.getTryCount();
             return Race.of(tryCount);

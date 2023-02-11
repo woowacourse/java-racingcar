@@ -13,9 +13,9 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printRaceResult(List<CarRaceDto> carRaceResult, List<RaceResultDto> totalRaceResult) {
+    public void printRaceResult(List<CarRaceDto> initCarResult, List<RaceResultDto> totalRaceResult) {
         StringBuilder result = new StringBuilder();
-        getInitCarResult(carRaceResult, result);
+        getInitCarResult(initCarResult, result);
         totalRaceResult.forEach(raceResultDto -> getRaceResult(raceResultDto, result));
         System.out.println("\n" + result.toString().trim());
     }
