@@ -15,16 +15,6 @@ public class Car {
     }
 
     @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        return object instanceof Car && this.hashCode() == object.hashCode();
-    }
-
-    @Override
     public String toString() {
         return name;
     }
