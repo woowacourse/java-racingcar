@@ -10,7 +10,8 @@ public class Controller {
     private final InputView inputView = new InputView();
     private final MessageView messageView = new MessageView();
     private final OutputView outputView = new OutputView();
-    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final RandomNumberGenerator randomNumberGenerator
+            = new RandomNumberGenerator();
 
     public void runGame() {
         Cars cars = setCars();
