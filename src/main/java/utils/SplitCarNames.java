@@ -1,7 +1,5 @@
 package utils;
 
-import java.util.Arrays;
-
 public class SplitCarNames {
 
     private static final String SPLIT_DELIMITER = ",";
