@@ -62,6 +62,15 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("자동차 이름에 null 값이 주어지면 예외가 발생해야 한다.")
+    void validate_null() {
+        // expected
+        assertThatThrownBy(() -> new Car(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BLANK_CAR_NAME.getMessage());
+    }
+
+    @Test
     @DisplayName("자동차가 위치가 다르면 거짓이 반환되어야 한다.")
     void isSamePosition_false() {
         // given
