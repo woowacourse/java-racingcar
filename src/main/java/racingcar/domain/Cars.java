@@ -2,12 +2,14 @@ package racingcar.domain;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Cars {
+
+    private static final String INVALID_WINNER_MESSAGE = "차량이 존재하지 않습니다.";
 
     private final List<Car> cars;
 
@@ -32,17 +34,17 @@ public class Cars {
         return findWinners(winner);
     }
 
+    private Car findWinner() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_WINNER_MESSAGE));
+    }
+
     private List<String> findWinners(final Car winner) {
         return cars.stream()
                 .filter(car -> car.isSamePosition(winner))
                 .map(Car::getName)
-                .collect(toList());
-    }
-
-    private Car findWinner() {
-        return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition))
-                .get();
+                .collect(toUnmodifiableList());
     }
 
     public List<Car> getCars() {

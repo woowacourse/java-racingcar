@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.assertj.core.util.Lists;
@@ -39,6 +40,16 @@ public class CarsTest {
         List<String> result = cars.findWinners();
 
         assertThat(result).containsExactly("car1", "car3");
+    }
+
+    @Test
+    @DisplayName("findWinners 메서드는 차량이 존재하지 않는 경우 예외를 던진다.")
+    void should_throwException_when_emptyCars() {
+        Cars emptyCars = new Cars(List.of());
+
+        assertThatThrownBy(emptyCars::findWinners)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("차량이 존재하지 않습니다.");
     }
 
     @Test
