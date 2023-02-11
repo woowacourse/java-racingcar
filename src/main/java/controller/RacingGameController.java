@@ -5,8 +5,10 @@ import domain.GameCount;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Optional;
+
 public class RacingGameController {
-    private GameCount count;
+    private GameCount gameCount;
     private Cars cars;
 
     private final InputView inputView;
@@ -18,41 +20,55 @@ public class RacingGameController {
     }
 
     public void init() {
-        while (!readCarNames()) ;
-        while (!readTryCount()) ;
+        initCars();
+        initGameCount();
     }
 
     public void run() {
         outputView.initResult();
 
-        while (!count.isOver()) {
+        while (!gameCount.isOver()) {
             cars.move();
-            count.play();
+            gameCount.play();
             outputView.printRaceResult(cars.getResult());
         }
 
         outputView.printWinners(cars.getWinners());
     }
 
-    private boolean readCarNames() {
-        try {
-            this.cars = Cars.from(inputView.readCarName());
-            return true;
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-        }
+    private void initCars() {
+        Optional<Cars> cars = makeCars();
+        while (cars.isEmpty())
+            cars = makeCars();
 
-        return false;
+        this.cars = cars.get();
     }
 
-    private boolean readTryCount() {
+    private void initGameCount() {
+        Optional<GameCount> gameCount = makeGameCount();
+        while (gameCount.isEmpty())
+            gameCount = makeGameCount();
+
+        this.gameCount = gameCount.get();
+    }
+
+    private Optional<Cars> makeCars() {
         try {
-            this.count = new GameCount(inputView.readTryCount());
-            return true;
+            return Optional.of(Cars.from(inputView.readCarName()));
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-        }
 
-        return false;
+            return Optional.empty();
+        }
+    }
+
+    private Optional<GameCount> makeGameCount() {
+        try {
+            return Optional.of(new GameCount(inputView.readTryCount()));
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+
+            return Optional.empty();
+        }
     }
 }
