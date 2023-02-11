@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 	private static final String CAR_NAME_REQUEST_MSG = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -25,11 +26,8 @@ public class OutputView {
 	}
 
 	public static void printRacingResult(List<String> result) {
-		StringBuilder sb = new StringBuilder();
-		for (String s : result) {
-			sb.append(s).append(", ");
-		}
-		sb.setLength(sb.length()-2);
-		System.out.println(sb.append(RESULT_SUFFIX));
+		String racingResult = result.stream()
+			.collect(Collectors.joining(", "));
+		System.out.println(racingResult + RESULT_SUFFIX);
 	}
 }

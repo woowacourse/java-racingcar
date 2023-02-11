@@ -31,10 +31,8 @@ public class CarService {
 	}
 
 	public String getPositionToString() {
-		StringBuilder sb = new StringBuilder();
-		cars.stream()
-			.forEach((car) -> sb.append(car.toString()).append("\n"));
-		sb.setLength(sb.length() - 1);
-		return sb.toString();
+		return cars.stream()
+			.map(car -> car.toString())
+			.collect(Collectors.joining("\n"));
 	}
 }
