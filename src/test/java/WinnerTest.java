@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 class WinnerTest {
-    static Car car1;
-    static Car car2;
-    static Car car3;
-    static Winner winner;
+    private static Car car1;
+    private static Car car2;
+    private static Car car3;
+    private static Winner winner;
 
     @BeforeAll
     static void setup() {

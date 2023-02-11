@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import view.Input;
 
 class InputTest {
-    static Input input;
+    private static Input input;
 
     @BeforeAll
     static void setup() {

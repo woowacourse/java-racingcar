@@ -3,10 +3,10 @@ package view;
 import java.util.Scanner;
 
 public class Input {
-    static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
     
-    Validate validate;
-    Scanner sc;
+    private Validate validate;
+    private Scanner sc;
 
     public Input() {
         validate = new Validate();

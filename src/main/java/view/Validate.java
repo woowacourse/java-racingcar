@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Validate {
-    static final String DIGIT = "\\d+";
+    private static final String DIGIT = "\\d+";
 
     public void checkValidCarNames(String[] carNames) {
         checkBlank(carNames);
