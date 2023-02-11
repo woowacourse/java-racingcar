@@ -14,9 +14,9 @@ public class Racing {
     public static final int START_POSITION = 0;
     public static final int CAR_MOVE_DISTANCE = 1;
 
-    private Map<Car, Integer> distanceByEachCar;
+    private final RandomNumberGenerator randomNumberGenerator;
+    private final Map<Car, Integer> distanceByEachCar;
     private int winnerDistance;
-    private RandomNumberGenerator randomNumberGenerator;
 
 
     public Racing(List<String> carNames, RandomNumberGenerator randomNumberGenerator) {
