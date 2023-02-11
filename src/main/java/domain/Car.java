@@ -10,12 +10,12 @@ public class Car {
     private int position;
 
     public Car(final String name) throws IllegalArgumentException {
-        validateName(name);
+        validate(name);
         this.name = name;
         this.position = 0;
     }
 
-    private void validateName(final String name) {
+    private void validate(final String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(NO_NAME_EXISTS_MESSAGE);
         }
