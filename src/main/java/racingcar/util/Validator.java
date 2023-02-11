@@ -66,10 +66,4 @@ public class Validator {
         }
     }
 
-    public static void validatePossibilePosition(int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException("");
-        }
-    }
-
 }
