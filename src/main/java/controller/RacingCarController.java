@@ -15,18 +15,27 @@ import view.OutputView;
 public class RacingCarController {
 
     public void run() throws IOException {
-        List<String> carNames = InputView.readCarNames();
+        Cars cars = getCars();
         int attemptNumber = InputView.readAttemptNumber();
-        Cars cars = getCars(carNames);
         printRacingResult(attemptNumber, cars);
         printWinners(cars);
     }
 
-    private Cars getCars(List<String> carNames) {
-        List<Car> carList = carNames.stream()
+    private Cars getCars() throws IOException {
+        List<String> carNames = InputView.readCarNames();
+        try {
+            List<Car> carList = getCarList(carNames);
+            return new Cars(carList);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getCars();
+        }
+    }
+
+    private List<Car> getCarList(List<String> carNames) {
+        return carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
-        return new Cars(carList);
     }
 
     private void printRacingResult(int attemptNumber, Cars cars) {

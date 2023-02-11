@@ -2,14 +2,26 @@ package domain;
 
 public class Car {
 
+    private static final String NO_NAME_EXISTS_MESSAGE = "[ERROR] 자동차의 이름은 반드시 있어야 합니다.";
+    private static final String INVALID_LENGTH_MESSAGE = "[ERROR] 자동차의 이름은 5글자까지 가능합니다.";
     private static final int MOVED_LOWER_BOUND = 4;
 
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(String name) throws IllegalArgumentException {
+        validateName(name);
         this.name = name;
         this.position = 0;
+    }
+
+    private void validateName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException(NO_NAME_EXISTS_MESSAGE);
+        }
+        if (name.length() > 5) {
+            throw new IllegalArgumentException(INVALID_LENGTH_MESSAGE);
+        }
     }
 
     public void move(int number) {

@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-import utils.CarNameValidator;
+
 import utils.NumberValidator;
 import utils.StringParser;
 
@@ -16,22 +16,9 @@ public class InputView {
     private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public static List<String> readCarNames() throws IOException {
-        try {
-            System.out.println(READ_CAR_NAME_MESSAGE);
-            String input = bufferedReader.readLine();
-            List<String> carNames = StringParser.splitByComma(input);
-            validate(carNames);
-            return carNames;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readCarNames();
-        }
-    }
-
-    private static void validate(List<String> carNames) {
-        for (String carName : carNames) {
-            CarNameValidator.validate(carName);
-        }
+        System.out.println(READ_CAR_NAME_MESSAGE);
+        String input = bufferedReader.readLine();
+        return StringParser.splitByComma(input);
     }
 
     public static int readAttemptNumber() throws IOException {
