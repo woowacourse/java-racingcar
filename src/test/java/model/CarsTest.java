@@ -16,7 +16,8 @@ class CarsTest {
     @Test
     @DisplayName("Cars 객체 생성 성공 테스트")
     void createCarsTest() {
-        Cars cars = new Cars("pobi,crong,honux");
+        List<String> carsName = new ArrayList<>(Arrays.asList("pobi","crong","honux"));
+        Cars cars = new Cars(carsName);
 
         assertThat(cars.getCars().size()).isEqualTo(3);
     }
@@ -24,9 +25,8 @@ class CarsTest {
     @Test
     @DisplayName("단일 우승자인 경우 결과 테스트")
     void getWinnerTest() {
-
-        String names = "ocean,jamie";
-        Cars cars = new Cars(names);
+        List<String> carsName = new ArrayList<>(Arrays.asList("ocean","jamie"));
+        Cars cars = new Cars(carsName);
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 0, 6, 7));
 
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
@@ -41,8 +41,8 @@ class CarsTest {
     @DisplayName("다중 우승자인 경우 결과 테스트")
     void getWinnersTest() {
 
-        String names = "ocean,jamie";
-        Cars cars = new Cars(names);
+        List<String> carsName = new ArrayList<>(Arrays.asList("ocean","jamie"));
+        Cars cars = new Cars(carsName);
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 9, 6, 6));
 
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
