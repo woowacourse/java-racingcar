@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class GameRoundTest {
-
 	@DisplayName("게임 라운드 생성 테스트")
 	@ParameterizedTest(name = "totalRound = {0}")
 	@ValueSource(ints = {1, 2, 3, 4, 5})
@@ -27,5 +26,4 @@ class GameRoundTest {
 		}
 		assertThat(gameRound.isEnd()).isEqualTo(expectedIsEnd);
 	}
-
 }
