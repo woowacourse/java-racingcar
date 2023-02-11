@@ -1,6 +1,6 @@
 package domain;
 
-import util.RandomNumberGenerator;
+import util.NumberGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +47,7 @@ public class Cars {
                 .orElse(0);
     }
 
-    public void progressRound(RandomNumberGenerator randomNumberGenerator, MovementManager movementManager) {
+    public void progressRound(NumberGenerator randomNumberGenerator, MovementManager movementManager) {
         for (Car car : cars) {
             Integer randomNumber = randomNumberGenerator.generateNumber();
             Boolean movingResult = movementManager.isGo(randomNumber);
