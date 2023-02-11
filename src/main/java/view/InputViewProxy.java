@@ -3,7 +3,6 @@ package view;
 import domain.TryCount;
 import dto.request.CarNameDto;
 
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class InputViewProxy extends InputView {
@@ -28,9 +27,6 @@ public class InputViewProxy extends InputView {
     public TryCount sendTryCount() {
         try {
             return inputView.sendTryCount();
-        } catch (InputMismatchException exception) {
-            printExceptionMessage("시도 횟수는 양의 정수여야 합니다.");
-            return sendTryCount();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
             return sendTryCount();
