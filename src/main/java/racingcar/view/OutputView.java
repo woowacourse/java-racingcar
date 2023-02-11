@@ -1,10 +1,12 @@
 package racingcar.view;
 
+import racingcar.domain.dto.CarDto;
 import racingcar.domain.result.Result;
 import racingcar.view.message.Message;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class OutputView {
 
@@ -22,40 +24,34 @@ public class OutputView {
 
     public void printResult(Result result) {
         printResultGuide();
-        List<Map<String, Integer>> results = result.getResults();
-        for (Map<String, Integer> roundResult : results) {
-            printEachResult(roundResult);
-            print(Message.EMPTY_MESSAGE.getMessage());
+        Map<Integer, Set<CarDto>> results = result.getResults();
+        for (Map.Entry<Integer, Set<CarDto>> carDtosByRound : results.entrySet()) {
+            Set<CarDto> carDtos = carDtosByRound.getValue();
+            carDtos.forEach(this::printEachResult);
         }
     }
 
-    private void printEachResult(Map<String, Integer> roundResult) {
+    private void printEachResult(CarDto carDto) {
         String positionMarker = Message.POSITION_MARKER.getMessage();
-        for (String carName : roundResult.keySet()) {
-            String position = makePosition(roundResult, positionMarker, carName);
-            print(makeResultMessage(carName, position));
-        }
+        String position = makePosition(carDto.getPosition(), positionMarker);
+        print(makeResultMessage(carDto.getCarName(), position));
     }
 
-    private String makePosition(Map<String, Integer> roundResult, String positionMarker, String key) {
-        return positionMarker.repeat(roundResult.get(key));
+    private String makePosition(int position, String positionMarker) {
+        return positionMarker.repeat(position);
     }
 
     private String makeResultMessage(String key, String position) {
         return String.format(Message.RESULT_DELIMITER.getMessage(), key, position);
     }
 
-    public void printWinner(Result results) {
+    public void printWinner(List<String> winners) {
         String delimiter = Message.WINNER_DELIMITER.getMessage();
-        print(makeWinnerMessage(results, delimiter));
+        print(makeWinnerMessage(winners, delimiter));
     }
 
-    private String makeWinnerMessage(Result results, String delimiter) {
-        return String.format(Message.WINNER_GUIDE.getMessage(), makeWinner(results, delimiter));
-    }
-
-    private String makeWinner(Result results, String delimiter) {
-        return String.join(delimiter, results.findWinners());
+    private String makeWinnerMessage(List<String> winners, String delimiter) {
+        return String.format(Message.WINNER_GUIDE.getMessage(), String.join(delimiter, winners));
     }
 
     private void print(String message) {
