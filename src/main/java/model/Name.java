@@ -3,7 +3,7 @@ package model;
 import constant.ExceptionMessage;
 
 public class Name {
-    private static final int CAR_NAME_LENGTH = 5;
+    private static final int CAR_MAX_NAME_LENGTH = 5;
 
     private final String name;
 
@@ -13,7 +13,7 @@ public class Name {
     }
 
     private void validCarName(String name) {
-        if (name.isEmpty() || name.length() > CAR_NAME_LENGTH) {
+        if (name.isEmpty() || name.length() > CAR_MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(
                     ExceptionMessage.EXCEPTION_MESSAGE.getExceptionMessage());
         }
@@ -22,6 +22,7 @@ public class Name {
                     ExceptionMessage.EXCEPTION_SPACE_MESSAGE.getExceptionMessage());
         }
     }
+
     private String isOnlySpace(String name) {
         return name.trim();
     }
