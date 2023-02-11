@@ -29,7 +29,7 @@ public class RacingController {
             this.racingGame = new RacingGame(carNames, new RandomNumberGenerator());
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            makeRacingGame(carNames);
+            makeRacingGame(readCarNames());
         }
     }
 
