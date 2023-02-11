@@ -1,24 +1,34 @@
 package racingcar.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.Car;
 
 public class RacingcarService {
 
-    public void move(List<Car> cars) {
+    private final List<Car> cars;
+
+    public RacingcarService(String inputNames) {
+        this.cars = CarFactory.makeCars(inputNames);
+    }
+
+    public List<Car> move() {
         for (Car car : cars) {
             car.move(RandomMaker.random());
         }
+        return Collections.unmodifiableList(cars);
     }
 
-    public List<Car> findWinner(List<Car> cars, int winnerPosition) {
+    public List<Car> findWinners() {
+        int winnerPosition = findPosition();
+
         return cars.stream()
                 .filter(car -> car.isPosition(winnerPosition))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public int findPosition(List<Car> cars) {
+    private int findPosition() {
         int maxPosition = 0;
 
         for (Car car : cars) {
@@ -26,9 +36,5 @@ public class RacingcarService {
         }
 
         return maxPosition;
-    }
-
-    public List<Car> getCar(String carNames) {
-        return CarFactory.makeCars(carNames);
     }
 }
