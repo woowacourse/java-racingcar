@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class InputValidator {
 
-    private static final String INVALID_NAME_MESSAGE = "차의 이름은 {0}자 이상 ~ {1}자 이하여야 합니다.";
+    private static final String INVALID_NAME_MESSAGE = "차의 이름은 {0}자 이상, {1}자 이하여야 합니다.";
     private static final int NAME_LENGTH_LOWER_BOUND = 1;
     private static final int NAME_LENGTH_UPPER_BOUND = 5;
     private static final String DUPLICATED_NAMES_MESSAGE = "중복된 차 이름이 없어야 합니다.";

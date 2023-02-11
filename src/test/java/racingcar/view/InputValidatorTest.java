@@ -19,7 +19,7 @@ class InputValidatorTest {
     void should_throwException_when_invalidNames(final String name) {
         assertThatThrownBy(() -> inputValidator.validateNames(List.of(name)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("차의 이름은 1자 이상 ~ 5자 이하여야 합니다.");
+                .hasMessage("차의 이름은 1자 이상, 5자 이하여야 합니다.");
     }
 
     @Test
