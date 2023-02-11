@@ -4,9 +4,10 @@ import java.util.Objects;
 
 public class Car {
 
-    public static final String ENGLISH_FORMAT = "[a-zA-Z]+";
-    public static final int MAXIMUM_ROUND = 5;
-    public static final int MINIMUM_ROUND = 1;
+    private static final String ENGLISH_FORMAT = "[a-zA-Z]+";
+    private static final int MAXIMUM_ROUND = 5;
+    private static final int MINIMUM_ROUND = 1;
+    private static final int MOVING_BOUND = 4;
     private final String name;
     private int position;
 
@@ -17,7 +18,7 @@ public class Car {
     }
 
     private void validate(String name) {
-        if (!isValidName(name)) {
+        if (!isValidFormat(name)) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 영어로만 구성되어야 합니다.");
         }
         if (isOutOfRange(name)) {
@@ -29,12 +30,18 @@ public class Car {
         return name.length() > MAXIMUM_ROUND || name.length() < MINIMUM_ROUND;
     }
 
-    private boolean isValidName(String name) {
+    private boolean isValidFormat(String name) {
         return name.matches(ENGLISH_FORMAT);
     }
 
-    public void updatePosition() {
-        this.position++;
+    public void move(int power) {
+        if (isMovable(power)) {
+            position++;
+        }
+    }
+
+    private boolean isMovable(int power) {
+        return power >= MOVING_BOUND;
     }
 
     public String getName() {
