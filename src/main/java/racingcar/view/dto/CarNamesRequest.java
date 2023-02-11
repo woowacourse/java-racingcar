@@ -16,17 +16,8 @@ public class CarNamesRequest {
     }
 
     private void validate(String userInput) {
-            validateBlank(userInput);
+        validateBlank(userInput);
     }
-
-//    private void validateDuplicateCarNames(String[] splitCarNames) {
-//        int carNamesCount = splitCarNames.length;
-//        long distinctCount = Arrays.stream(splitCarNames).distinct().count();
-//
-//        if (carNamesCount != distinctCount) {
-//            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_DUPLICATED.message());
-//        }
-//    }
 
     private void validateBlank(String splitCarName) {
         if (splitCarName.isBlank()) {
