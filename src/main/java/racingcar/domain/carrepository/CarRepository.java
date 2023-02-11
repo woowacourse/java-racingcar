@@ -3,7 +3,6 @@ package racingcar.domain.carrepository;
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,21 +53,5 @@ public class CarRepository {
             car.move();
         }
         return car;
-    }
-
-    public List<Car> getRacingCars() {
-        return racingCars;
-    }
-
-    public List<String> findWinner() {
-        int maxPosition = racingCars.stream()
-                .map(Car::getPosition)
-                .max(Comparator.comparing(x -> x))
-                .orElseThrow(NoClassDefFoundError::new);
-
-        return racingCars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .map(Car::getName)
-                .collect(Collectors.toList());
     }
 }
