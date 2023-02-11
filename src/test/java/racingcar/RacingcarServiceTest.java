@@ -4,11 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.service.RacingcarService;
-import racingcar.util.TextSplit;
 
 class RacingcarServiceTest {
 
@@ -19,10 +17,6 @@ class RacingcarServiceTest {
 
         List<String> winnersCarText = racingcarService.findWinners();
 
-        List<String> winners = winnersCarText.stream()
-                .map(text -> TextSplit.split(text, ",").get(0))
-                .collect(Collectors.toList());
-
-        assertThat(winners).containsExactly("car1", "car2", "car3");
+        assertThat(winnersCarText).containsExactly("car1,0", "car2,0", "car3,0");
     }
 }
