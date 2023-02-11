@@ -2,19 +2,19 @@ package console;
 
 import java.util.InputMismatchException;
 import utils.ScannerUtil;
-import validation.CarInfoValidation;
+import validation.CarNamesValidation;
 import validation.TryCountValidation;
 
 public class InputView {
 
-    public static String inputCarsName() {
+    public static String inputCarNames() {
         try {
-            final String carsName = ScannerUtil.readLine();
-            CarInfoValidation.validateCar(carsName);
-            return carsName;
+            final String carNames = ScannerUtil.readLine();
+            CarNamesValidation.validateInputCarNames(carNames);
+            return carNames;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            return inputCarsName();
+            return inputCarNames();
         }
     }
 

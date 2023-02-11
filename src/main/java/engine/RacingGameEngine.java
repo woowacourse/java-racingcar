@@ -8,19 +8,19 @@ import utils.CarsFactory;
 public class RacingGameEngine {
 
     public void startGame() {
-        final String carsName = getCarsName();
+        final String carNames = getCarNames();
         final int tryCount = getTryCount();
 
-        Cars cars = CarsFactory.createCars(carsName);
+        Cars cars = CarsFactory.createCars(carNames);
 
         startRace(cars, tryCount);
 
         OutputView.printWinners(cars);
     }
 
-    private String getCarsName() {
-        OutputView.requestOfCarsName();
-        return InputView.inputCarsName();
+    private String getCarNames() {
+        OutputView.requestOfCarNames();
+        return InputView.inputCarNames();
     }
 
     private int getTryCount() {

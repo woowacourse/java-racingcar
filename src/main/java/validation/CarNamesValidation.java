@@ -4,13 +4,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class CarInfoValidation {
+public class CarNamesValidation {
 
     private static final int CAR_NAME_LENGTH_MAX = 5;
     private static final int CAR_COUNT_MIN = 0;
     private static final String SPLIT_DELIMITER = ",";
 
-    public static void validateCar(String input) {
+    public static void validateInputCarNames(String input) {
         final String[] cars = input.split(SPLIT_DELIMITER);
         validateCountOfCars(cars);
         validateNameOfCar(cars);
