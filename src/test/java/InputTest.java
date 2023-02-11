@@ -1,16 +1,16 @@
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import view.Input;
 
 class InputTest {
-    Input input;
+    static Input input;
 
-    @BeforeEach
-    void setup() {
+    @BeforeAll
+    static void setup() {
         input = new Input();
     }
 
