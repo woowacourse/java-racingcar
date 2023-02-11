@@ -27,8 +27,8 @@ class InputValidatorTest {
     private Stream<Arguments> parameterProviderWhenFail() {
         return Stream.of(
                 Arguments.of(List.of("pobi", " ")),
-                Arguments.of(List.of(" ", "\n")),
-                Arguments.of(List.of("abcdef", "qwert"))
+                Arguments.of(List.of("g", "\n")),
+                Arguments.of(List.of(" h", " h"))
                 );
     }
 
