@@ -21,12 +21,14 @@ public class RacingController {
         this.outputView = outputView;
     }
 
-    public Track init(MovingStrategy movingStrategy) {
+    public void start(MovingStrategy movingStrategy) {
         Cars cars = new Cars(inputView.inputCarNames(), movingStrategy);
-        String trialTime = inputView.inputTrialTimes();
-        outputView.printCurrentCarsPosition(cars);
+        String trialTimes = inputView.inputTrialTimes();
+        Track track = new Track(cars, trialTimes);
 
-        return new Track(cars, trialTime);
+        outputView.printCurrentCarsPosition(cars);
+        startRace(track);
+        concludeWinner(track);
     }
 
     public void startRace(Track track) {
