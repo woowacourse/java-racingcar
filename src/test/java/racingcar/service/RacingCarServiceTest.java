@@ -122,7 +122,7 @@ class RacingCarServiceTest {
         // given
         List<RacingCarStatusResponse> carStatuses = service.getCarStatuses();
 
-        // expected
+        // expect
         assertThat(carStatuses)
                 .isEmpty();
     }

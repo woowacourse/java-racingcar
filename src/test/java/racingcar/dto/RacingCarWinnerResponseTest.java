@@ -16,7 +16,7 @@ class RacingCarWinnerResponseTest {
         List<Car> winners = List.of(new Car("Glen"), new Car("Bero"));
         RacingCarWinnerResponse response = RacingCarWinnerResponse.of(winners);
 
-        // expected
+        // expect
         assertThat(response.asString())
                 .isEqualTo("Glen, Bero");
     }
@@ -28,7 +28,7 @@ class RacingCarWinnerResponseTest {
         List<Car> winners = List.of(new Car("Glen"));
         RacingCarWinnerResponse response = RacingCarWinnerResponse.of(winners);
 
-        // expected
+        // expect
         assertThat(response.asString())
                 .isEqualTo("Glen");
     }

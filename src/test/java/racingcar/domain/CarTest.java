@@ -36,7 +36,7 @@ class CarTest {
         // given
         Name name = car.getName();
 
-        // expected
+        // expect
         assertThat(name.getValue())
                 .isEqualTo("mycar");
     }
@@ -64,7 +64,7 @@ class CarTest {
     @Test
     @DisplayName("자동차 이름에 null 값이 주어지면 예외가 발생해야 한다.")
     void validate_null() {
-        // expected
+        // expect
         assertThatThrownBy(() -> new Car(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BLANK_CAR_NAME.getMessage());

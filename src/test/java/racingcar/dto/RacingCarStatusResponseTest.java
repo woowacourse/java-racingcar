@@ -15,7 +15,7 @@ class RacingCarStatusResponseTest {
         Car car = new Car("Glen", 5);
         RacingCarStatusResponse response = RacingCarStatusResponse.of(car);
 
-        // expected
+        // expect
         assertThat(response.asString())
                 .isEqualTo("Glen : -----");
     }
