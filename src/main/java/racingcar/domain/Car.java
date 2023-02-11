@@ -5,6 +5,7 @@ import racingcar.dto.CarPositionDto;
 class Car {
 
     private static final int GO = 4;
+
     private final CarName carName;
     private Position position;
 

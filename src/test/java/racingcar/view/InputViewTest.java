@@ -38,7 +38,7 @@ class InputViewTest {
 
         assertThat(outputStream.toString()).contains("시도할 회수는 몇회인가요?");
     }
-    
+
     @Test
     void printInputCarNameGuide_메서드_테스트() {
         setMockInput("3,4,5");

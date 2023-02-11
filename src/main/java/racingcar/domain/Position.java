@@ -4,7 +4,7 @@ import java.util.Objects;
 
 final class Position {
 
-    public static final int NEXT_MOVE = 1;
+    private static final int NEXT_MOVE = 1;
     private static final int INIT_NUMBER = 0;
 
     private final int moveCount;
