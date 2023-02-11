@@ -64,10 +64,21 @@ class RacingGameTest {
     }
 
     @Test
-    void 반환된_자동차_객체를_변형해도_내부의_상태는_영향을_받지_않는다() {
+    void getCars를_통해_반환된_자동차_객체를_변형해도_내부의_상태는_영향을_받지_않는다() {
         Queue<Integer> nums = new LinkedList<>();
         RacingGame racingGame = new RacingGame(List.of("pobi", "crong"), nums::poll);
         racingGame.getCars().forEach(Car::move);
+
+        racingGame.getCars().forEach((car) -> {
+            assertThat(car.getPosition()).isEqualTo(0);
+        });
+    }
+
+    @Test
+    void getWinners를_통해_반환된_자동차_객체를_변형해도_내부의_상태는_영향을_받지_않는다() {
+        Queue<Integer> nums = new LinkedList<>();
+        RacingGame racingGame = new RacingGame(List.of("pobi", "crong"), nums::poll);
+        racingGame.getWinners().forEach((Car::move));
 
         racingGame.getCars().forEach((car) -> {
             assertThat(car.getPosition()).isEqualTo(0);

@@ -33,17 +33,21 @@ public class RacingGame {
 
     public List<Car> getCars() {
         List<Car> copiedCars = cars.stream()
-                .map((car -> new Car(car)))
+                .map(Car::new)
                 .collect(Collectors.toList());
         return List.copyOf(copiedCars);
     }
 
     public List<Car> getWinners() {
+        List<Car> copiedCars = cars.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+
         Car furthestCar = getFurthestCar();
 
-        return cars.stream()
+        return copiedCars.stream()
                 .filter(car -> car.getPosition() == furthestCar.getPosition())
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private Car getFurthestCar() {
