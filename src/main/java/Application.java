@@ -1,8 +1,10 @@
+import controller.RacingController;
+
 public class Application {
 
 
     public static void main(String[] args) {
-        Service service = new Service();
-        service.play();
+        RacingController racingController = new RacingController();
+        racingController.play();
     }
 }

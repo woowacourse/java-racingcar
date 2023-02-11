@@ -1,10 +1,16 @@
+package domain;
+
+import exception.CarNameLengthException;
+
 public class Car {
     private static final int INIT_POSITION = 0;
     private static final int MIN_MOVABLE_POWER = 4;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
     private final String name;
     private int position;
 
     public Car(String name) {
+        validateCarName(name);
         this.name = name;
         position = INIT_POSITION;
     }
@@ -19,15 +25,25 @@ public class Car {
         return power >= MIN_MOVABLE_POWER;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public String getName() {
+        return name;
     }
 
     public int getPosition() {
         return position;
     }
 
-    public String getName() {
-        return name;
+    public boolean equalsPosition(Car other) {
+        return this.position == other.position;
     }
+    public int compareTo(Car other) {
+        return this.position - other.position;
+    }
+
+    public void validateCarName(String name) {
+        if (name.length() > MAX_CAR_NAME_LENGTH) {
+            throw new CarNameLengthException();
+        }
+    }
+
 }
