@@ -24,11 +24,11 @@ public class Cars {
         }
     }
 
-    public String getWinners() {
+    public List<String> getWinners() {
         return cars.stream().filter(car -> car.checkLocationEqual(getMaxLocation()))
                 .map(Car::getCarName)
                 .map(Name::getName)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.toList());
     }
 
     private int getMaxLocation(){
