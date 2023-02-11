@@ -25,7 +25,7 @@ public class Game {
         raceController.printRoundResult();
     }
 
-    public void raceOneRound(NumberGenerator numberGenerator) {
+    private void raceOneRound(NumberGenerator numberGenerator) {
         List<Car> cars = raceController.showStatus();
         if (!raceController.isFinished()) {
             cars.forEach((car) -> raceController.driveOrNot(car, numberGenerator));

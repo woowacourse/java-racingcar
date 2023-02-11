@@ -26,8 +26,7 @@ public class RaceController {
         getCarNamesUntilValid(inputView);
     }
 
-
-    public void getCarNamesUntilValid(InputView inputView) {
+    private void getCarNamesUntilValid(InputView inputView) {
         try {
             String input = inputView.getInputUntilExist();
             joinAllParticipants(input);
@@ -43,7 +42,7 @@ public class RaceController {
     }
 
 
-    public void getCountUntilValid(InputView inputView) {
+    private void getCountUntilValid(InputView inputView) {
         try {
             race = new Race(inputView.getInputUntilExist());
         } catch (IllegalArgumentException e) {
