@@ -17,18 +17,15 @@ public class Car {
     }
 
     private void validCarName(String name) {
-        if (name.isEmpty() || name.length() > MAX_CAR_NAME_LENGTH) {
+        if (name.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(
                     ExceptionMessage.EXCEPTION_MESSAGE.getExceptionMessage());
         }
-        if (isOnlySpace(name)) {
+
+        if (name.isBlank()) {
             throw new IllegalArgumentException(
                     ExceptionMessage.EXCEPTION_SPACE_MESSAGE.getExceptionMessage());
         }
-    }
-
-    private boolean isOnlySpace(String name) {
-        return name.isBlank();
     }
 
     private void moveCar() {
