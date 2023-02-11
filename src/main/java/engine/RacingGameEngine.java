@@ -11,7 +11,7 @@ public class RacingGameEngine {
         final String carsName = getCarsName();
         final int tryCount = getTryCount();
 
-        Cars cars = new Cars(CarsFactory.createCars(carsName));
+        Cars cars = CarsFactory.createCars(carsName);
 
         startRace(cars, tryCount);
 
