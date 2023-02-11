@@ -1,26 +1,36 @@
 package racingcar.domain;
 
-import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Cars {
 
     private static final String INVALID_WINNER_MESSAGE = "차량이 존재하지 않습니다.";
+    private static final String DUPLICATED_NAMES_MESSAGE = "중복된 차 이름이 없어야 합니다.";
 
     private final List<Car> cars;
 
-    public Cars(final List<Car> cars) {
-        this.cars = cars;
+    public Cars(final List<String> carNames) {
+        validate(carNames);
+        this.cars = toCars(carNames);
     }
 
-    public static Cars from(final List<String> carNames) {
+    private void validate(final List<String> carNames) {
+        Set<String> nonDuplicateCarNames = new HashSet<>(carNames);
+        if (carNames.size() != nonDuplicateCarNames.size()) {
+            throw new IllegalArgumentException(DUPLICATED_NAMES_MESSAGE);
+        }
+    }
+
+    private List<Car> toCars(final List<String> carNames) {
         return carNames.stream()
                 .map(Car::new)
-                .collect(collectingAndThen(toList(), Cars::new));
+                .collect(toList());
     }
 
     public void move(final NumberGenerator strategy) {

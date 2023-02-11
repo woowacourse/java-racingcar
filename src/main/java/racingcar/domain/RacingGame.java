@@ -10,7 +10,7 @@ public class RacingGame {
 
     public RacingGame(final NumberGenerator numberGenerator, final List<String> names, final int count) {
         this.numberGenerator = numberGenerator;
-        this.cars = Cars.from(names);
+        this.cars = new Cars(names);
         this.count = new Count(count);
     }
 

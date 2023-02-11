@@ -17,7 +17,17 @@ public class CarsTest {
 
     @BeforeEach
     void setUp() {
-        cars = Cars.from(List.of("car1", "car2", "car3"));
+        cars = new Cars(List.of("car1", "car2", "car3"));
+    }
+
+    @Test
+    @DisplayName("생성자는 중복된 이름이 존재하는 목록을 입력받으면 예외를 던진다.")
+    void should_throwException_when_inputDuplicatedNames() {
+        List<String> duplicatedNames = List.of("car1", "car1");
+
+        assertThatThrownBy(() -> new Cars(duplicatedNames))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 차 이름이 없어야 합니다.");
     }
 
     @Test
@@ -58,7 +68,7 @@ public class CarsTest {
     void should_returnCars_when_inputNames() {
         List<String> carNames = List.of("car1", "car2", "car3");
 
-        Cars cars = Cars.from(carNames);
+        Cars cars = new Cars(carNames);
 
         assertThat(cars.getCars())
                 .extracting(Car::getName)
