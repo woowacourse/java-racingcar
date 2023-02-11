@@ -9,13 +9,14 @@ public class Car {
     private static final int POSITION_INIT = 1;
 
     private final String carName;
-    private int position = POSITION_INIT;
+    private int position;
     private final MovingStrategy movingStrategy;
 
     public Car(String carName, MovingStrategy movingStrategy) {
         CarNameValidator.validate(carName);
 
         this.carName = carName;
+        this.position = POSITION_INIT;
         this.movingStrategy = movingStrategy;
     }
 
