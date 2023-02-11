@@ -21,8 +21,7 @@ class RaceTest {
 
         @BeforeEach
         void setup() {
-            Car[] cars = {new Car("rosie", 2), new Car("hong", 1)};
-            Race race = new Race(cars);
+            Race race = new Race(List.of(new Car("rosie"), new Car("hong", 1)));
             winners = race.getWinners().stream().map(Car::getName).collect(Collectors.toList());
         }
 
@@ -47,7 +46,8 @@ class RaceTest {
         @DisplayName("moveOneTime")
         void moveSuccess() {
             //given
-            Race race = new Race(List.of("rosie", "hong"));
+            Race race = new Race(List.of(new Car("rosie")
+                    , new Car("hong")));
             //when
             race.tryMoveOneTime(new TestNumberPicker(4, 1));
             //then
@@ -61,7 +61,8 @@ class RaceTest {
         @Test
         @DisplayName("이름이 중복으로 입력되었을 때 예외 발생")
         void throwExceptionWhenDuplicateNameExists() {
-            Assertions.assertThatThrownBy(() -> new Race(List.of("rosie", "hong", "rosie")))
+            List<Car> cars = List.of(new Car("rosie"), new Car("hong"), new Car("rosie"));
+            Assertions.assertThatThrownBy(() -> new Race(cars))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

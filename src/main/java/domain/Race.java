@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -10,23 +9,18 @@ import java.util.stream.Collectors;
 public class Race {
     private final List<Car> cars;
 
-    public Race(List<String> carNames) {
-        cars = new ArrayList<>();
-        for (String carName : carNames) {
-            addNewCarWhenIsNotExists(carName, cars);
-        }
+    public Race(List<Car> cars) {
+        checkCarsHasDuplicate(cars);
+        this.cars = new ArrayList<>(cars);
     }
 
-    public Race(Car[] cars) {
-        this.cars = Arrays.asList(cars);
-    }
-
-    private void addNewCarWhenIsNotExists(String carName, List<Car> cars) {
-        Car car = new Car(carName);
-        if (cars.contains(car)) {
+    private void checkCarsHasDuplicate(List<Car> cars) {
+        long nonDuplicateNameCountInCars = cars.stream()
+                .map(Car::getName)
+                .distinct().count();
+        if (nonDuplicateNameCountInCars != cars.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
         }
-        cars.add(car);
     }
 
     public void tryMoveOneTime(NumberPicker numberPicker) {
