@@ -1,6 +1,6 @@
-package racingcar.domain;
+package racingcar.controller;
 
-import static racingcar.domain.TryCount.Validator.*;
+import static racingcar.controller.TryCount.Validator.*;
 import static racingcar.exception.ExceptionMessage.ILLEGAL_TRY_COUNT;
 
 public class TryCount {

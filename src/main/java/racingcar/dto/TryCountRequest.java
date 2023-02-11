@@ -1,6 +1,6 @@
 package racingcar.dto;
 
-import static racingcar.domain.TryCount.Validator.validateNegativeTryCount;
+import static racingcar.controller.TryCount.Validator.validateNegativeTryCount;
 import static racingcar.exception.ExceptionMessage.ILLEGAL_TRY_COUNT;
 
 public class TryCountRequest {
