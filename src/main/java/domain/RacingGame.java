@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
-    private final int MOVABLE_BOUND = 4;
+    private static final int MOVABLE_BOUND = 4;
+    private static final String NO_CARS_EXIST = "[ERROR] 자동차가 존재하지 않습니다.";
 
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
@@ -48,6 +49,6 @@ public class RacingGame {
     private Car getFurthestCar() {
         return cars.stream()
                 .max(Comparator.comparingInt(Car::getPosition))
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(() -> new IllegalArgumentException(NO_CARS_EXIST));
     }
 }
