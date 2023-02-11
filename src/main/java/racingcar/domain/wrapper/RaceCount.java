@@ -8,33 +8,33 @@ public class RaceCount {
 
     private final int count;
 
-    private RaceCount(final String tryCount) {
-        int count = validateType(tryCount);
+    private RaceCount(final String raceCount) {
+        int count = validateType(raceCount);
         this.count = validateRange(count);
     }
 
-    public static RaceCount of(final String tryCount) {
-        return new RaceCount(tryCount);
+    public static RaceCount of(final String raceCount) {
+        return new RaceCount(raceCount);
     }
 
     public int getCount() {
         return count;
     }
 
-    private int validateType(final String tryCount) {
+    private int validateType(final String raceCount) {
         int count;
         try {
-            count = Integer.parseInt(tryCount);
+            count = Integer.parseInt(raceCount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(String.format(TYPE_MESSAGE.getValue(), "시도 횟수"));
         }
         return count;
     }
 
-    private int validateRange(final int tryCount) {
-        if (tryCount <= RACE_MIN_TRY_COUNT.getValue()) {
+    private int validateRange(final int raceCount) {
+        if (raceCount <= RACE_MIN_TRY_COUNT.getValue()) {
             throw new IllegalArgumentException(String.format(RANGE_MESSAGE.getValue(), RACE_MIN_TRY_COUNT.getValue()));
         }
-        return tryCount;
+        return raceCount;
     }
 }

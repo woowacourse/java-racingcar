@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.domain.dto.CarRaceDto;
 import racingcar.domain.wrapper.CarName;
 import racingcar.domain.wrapper.CarPosition;
 
@@ -28,6 +29,14 @@ public class Car {
         }
     }
 
+    public CarRaceDto getCarRaceResult() {
+        return CarRaceDto.of(name.getName(), position.getPosition());
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position.getPosition() == position;
+    }
+
     public int getPosition() {
         return position.getPosition();
     }
@@ -37,10 +46,10 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
+    public boolean equals(Object diffCar) {
+        if (this == diffCar) return true;
+        if (diffCar == null || getClass() != diffCar.getClass()) return false;
+        Car car = (Car) diffCar;
         return Objects.equals(name, car.name);
     }
 

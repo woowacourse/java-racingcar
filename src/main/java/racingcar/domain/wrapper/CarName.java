@@ -36,10 +36,10 @@ public class CarName {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CarName carName = (CarName) o;
+    public boolean equals(Object diffCarName) {
+        if (this == diffCarName) return true;
+        if (diffCarName == null || getClass() != diffCarName.getClass()) return false;
+        CarName carName = (CarName) diffCarName;
         return Objects.equals(name, carName.name);
     }
 

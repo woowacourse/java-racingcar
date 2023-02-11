@@ -32,21 +32,21 @@ public class Cars {
 
     public List<CarRaceDto> initStatus() {
         return cars.stream()
-                .map(car -> CarRaceDto.of(car.getName(), car.getPosition()))
+                .map(Car::getCarRaceResult)
                 .collect(Collectors.toList());
     }
 
     public List<CarRaceDto> race() {
         return cars.stream().map(car -> {
-            int randomNumber = numberGenerator.generate();
-            car.move(randomNumber);
-            return CarRaceDto.of(car.getName(), car.getPosition());
+            int power = numberGenerator.generate();
+            car.move(power);
+            return car.getCarRaceResult();
         }).collect(Collectors.toList());
     }
 
     public List<String> pickWinners() {
         return cars.stream()
-                .filter(car -> Objects.equals(car.getPosition(), getMaxDistance()))
+                .filter(car -> car.isSamePosition(getMaxPosition()))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
@@ -69,18 +69,18 @@ public class Cars {
         }
     }
 
-    private Integer getMaxDistance() {
-        return this.cars.stream()
+    private Integer getMaxPosition() {
+        return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max().orElse(INIT_POSITION.getValue());
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cars cars1 = (Cars) o;
-        return Objects.equals(cars, cars1.cars);
+    public boolean equals(Object diffCar) {
+        if (this == diffCar) return true;
+        if (diffCar == null || getClass() != diffCar.getClass()) return false;
+        Cars cars = (Cars) diffCar;
+        return Objects.equals(this.cars, cars.cars);
     }
 
     @Override
