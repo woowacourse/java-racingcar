@@ -1,12 +1,15 @@
 package model;
 
 import dto.RacingCarStateDto;
+import dto.RacingRoundStateDto;
 import dto.WinnerCarDto;
 import exception.WrongRangeMovableNumberException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import service.wrapper.Round;
 import utils.RacingNumberGenerator;
 
 public class Cars {
@@ -20,8 +23,20 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void race(RacingNumberGenerator generator) {
-        cars.forEach(car -> car.race(generateValidMovableNumber(generator)));
+    public List<RacingRoundStateDto> race(RacingNumberGenerator generator, Round round) {
+        List<RacingRoundStateDto> racingResult = new ArrayList<>();
+
+        while (round.isRacing()) {
+            racingResult.add(race(generator));
+        }
+        return racingResult;
+    }
+
+    private RacingRoundStateDto race(RacingNumberGenerator generator) {
+        List<RacingCarStateDto> racingCarsStateDto = cars.stream()
+            .map(car -> car.race(generateValidMovableNumber(generator)))
+            .collect(Collectors.toUnmodifiableList());
+        return new RacingRoundStateDto(racingCarsStateDto);
     }
 
     private int generateValidMovableNumber(RacingNumberGenerator generator) {
@@ -35,12 +50,6 @@ public class Cars {
 
     private boolean isValidRangeMovableNumber(int movableValue) {
         return movableValue < MIN_INCLUSIVE_VALUE || movableValue > MAX_INCLUSIVE_VALUE;
-    }
-
-    public List<RacingCarStateDto> getRacingCarStateDto() {
-        return cars.stream()
-                .map(Car::mapToRacingCarStateDto)
-                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<WinnerCarDto> calculateWinners() {

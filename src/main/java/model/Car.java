@@ -15,15 +15,16 @@ public class Car implements Comparable<Car> {
         this.position = new Position();
     }
 
-    public void race(int movableNumber) {
+    public RacingCarStateDto race(int movableNumber) {
         position.move(movableNumber);
+        return mapToRacingCarStateDto();
     }
 
     public boolean isSamePosition(Car otherCar) {
         return this.position.isSamePosition(otherCar.position);
     }
 
-    public RacingCarStateDto mapToRacingCarStateDto() {
+    private RacingCarStateDto mapToRacingCarStateDto() {
         return new RacingCarStateDto(name.getName(), position.getPosition());
     }
 

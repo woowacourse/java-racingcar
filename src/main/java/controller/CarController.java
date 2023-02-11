@@ -1,8 +1,9 @@
 package controller;
 
+import dto.RacingRoundStateDto;
+import java.util.List;
 import java.util.Set;
 import service.CarService;
-import service.wrapper.Round;
 import utils.RacingNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -20,38 +21,36 @@ public class CarController {
     }
 
     public void run(RacingNumberGenerator generator) {
-        generateCars();
-        Round round = generateRound();
-
-        race(generator, round);
+        initCars();
+        initRacingRound();
+        race(generator);
         outputView.printWinner(carService.getWinner());
     }
 
-    private void race(RacingNumberGenerator generator, Round round) {
+    private void race(RacingNumberGenerator generator) {
         outputView.printRoundStartMessage();
 
-        while (round.isRacing()) {
-            carService.race(generator);
-            outputView.printRoundState(carService.getRacingCarStateDto());
-        }
+        List<RacingRoundStateDto> racingTotalState = carService.race(generator);
+        outputView.printRacingTotalState(racingTotalState);
     }
 
-    private void generateCars() {
+    private void initCars() {
         try {
             Set<String> carsName = inputView.inputCarsName();
             carService.initCars(carsName);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
-            generateCars();
+            initCars();
         }
     }
 
-    private Round generateRound() {
+    private void initRacingRound() {
         try {
-            return new Round(inputView.inputRound());
+            int round = inputView.inputRound();
+            carService.initRound(round);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
-            return generateRound();
+            initRacingRound();
         }
     }
 }
