@@ -18,10 +18,6 @@ public class RacingCarNamesRequest {
     }
 
     private static void validate(String[] names) {
-        for (String name : names) {
-            validateBlankCarName(name);
-            validateCarNameLength(name);
-        }
         validateDuplicateCarNames(names);
     }
 

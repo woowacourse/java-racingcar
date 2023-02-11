@@ -1,14 +1,13 @@
 package racingcar.validator;
 
-import static racingcar.exception.ExceptionMessage.*;
+import racingcar.domain.Car;
 
 import java.util.Arrays;
 import java.util.List;
-import racingcar.domain.Car;
+
+import static racingcar.exception.ExceptionMessage.*;
 
 public class Validator {
-    private static final int MAX_NAME_LENGTH = 6;
-
     private Validator() {}
 
     public static void validateNegativeTryCount(Integer tryCount) {
@@ -23,18 +22,6 @@ public class Validator {
                 .count();
         if (noDuplicateCount != names.length) {
             throw new IllegalArgumentException(DUPLICATE_CAR_NAME.getMessage());
-        }
-    }
-
-    public static void validateBlankCarName(String name) {
-        if(name.isBlank()) {
-            throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
-        }
-    }
-
-    public static void validateCarNameLength(String name) {
-        if(name.length() >= MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
         }
     }
 

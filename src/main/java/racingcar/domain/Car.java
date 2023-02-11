@@ -1,22 +1,18 @@
 package racingcar.domain;
 
-import static racingcar.validator.Validator.*;
-
 import racingcar.dto.RacingCarStatusResponse;
 
 public class Car {
-    private final String name;
+    private final Name name;
     private final Position position;
 
     public Car(String name) {
-        validateBlankCarName(name);
-        validateCarNameLength(name);
-        this.name = name;
+        this.name = new Name(name);
         this.position = new Position(0);
     }
 
     public RacingCarStatusResponse getStatus() {
-        return new RacingCarStatusResponse(name, position.getValue());
+        return new RacingCarStatusResponse(name.getName(), position.getValue());
     }
 
     public void move() {

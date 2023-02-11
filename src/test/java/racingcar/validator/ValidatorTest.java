@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.Name;
 
 class ValidatorTest {
 
@@ -72,7 +73,7 @@ class ValidatorTest {
     @ValueSource(strings = {" ", "", "\n", "    "})
     void validate_blankCarName(String input) {
         // expected
-        assertThatThrownBy(() -> validateBlankCarName(input))
+        assertThatThrownBy(() -> new Name(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BLANK_CAR_NAME.getMessage());
     }
@@ -82,7 +83,7 @@ class ValidatorTest {
     @ValueSource(strings = {"asgeiwsje", "fjeiwk", "djskfjq", "qqqqqqqqq"})
     void validate_outOfLengthCarName(String input) {
         // expected
-        assertThatThrownBy(() -> validateCarNameLength(input))
+        assertThatThrownBy(() -> new Name(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(OUT_OF_CAR_NAME_LENGTH.getMessage());
     }
