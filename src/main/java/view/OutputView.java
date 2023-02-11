@@ -1,3 +1,5 @@
+package view;
+
 import java.util.List;
 
 public class OutputView {
@@ -13,7 +15,7 @@ public class OutputView {
         for (int index = 0; index < position; index++) {
             System.out.print(MOVEMENT);
         }
-        System.out.println();
+        space();
     }
 
     public void resultMessage() {
@@ -27,5 +29,9 @@ public class OutputView {
 
     private String winnerFormat(List<String> winners) {
         return String.join(DIVISION_CHAR, winners);
+    }
+
+    public void space() {
+        System.out.println();
     }
 }
