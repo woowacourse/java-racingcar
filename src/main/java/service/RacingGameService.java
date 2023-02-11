@@ -29,12 +29,12 @@ public class RacingGameService {
         }
     }
 
-    public List<String> getMoveResult() {
-        return cars.getResult();
+    public List<String> retrieveMoveResults() {
+        return cars.retrieveMoveResults();
     }
 
-    public List<String> getWinners() {
-        return cars.getWinners();
+    public List<String> calculateWinners() {
+        return cars.calculateWinners();
     }
 
     private void validateDuplication(List<String> carNames) {

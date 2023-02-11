@@ -13,10 +13,6 @@ public class Car {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void move(int randomNumber) {
         if (randomNumber > GameRules.MOVE_NUMBER.getValue()) {
             position++;
@@ -29,16 +25,20 @@ public class Car {
         }
     }
 
-    public Long getPosition() {
-        return position;
-    }
-
-    public String getResult() {
+    public String retrieveMoveResults() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(PrintSigns.SEPARATOR.getSign());
         for (int i = 0; i < position; i++) {
             stringBuilder.append(PrintSigns.POSITION.getSign());
         }
         return name + stringBuilder;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getPosition() {
+        return position;
     }
 }

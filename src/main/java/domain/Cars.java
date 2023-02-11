@@ -24,23 +24,23 @@ public class Cars {
         cars.forEach((car) -> car.move(numberGenerator.generateNumber()));
     }
 
-    public List<String> getWinners() {
-        Long maxValue = getMaxValue();
+    public List<String> calculateWinners() {
+        Long maxValue = calculateMaxPosition();
         return cars.stream()
                 .filter((car) -> Objects.equals(car.getPosition(), maxValue))
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private Long getMaxValue() {
+    private Long calculateMaxPosition() {
         return Collections.max(cars.stream()
                 .map(Car::getPosition)
                 .collect(Collectors.toUnmodifiableList()));
     }
 
-    public List<String> getResult() {
+    public List<String> retrieveMoveResults() {
         return cars.stream()
-                .map(Car::getResult)
+                .map(Car::retrieveMoveResults)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

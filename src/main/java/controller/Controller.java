@@ -25,26 +25,26 @@ public class Controller {
     }
 
     private void playGame() {
-        Long trial = getTrial();
+        Long trial = receiveTrialInput();
         outputView.printResultMessage();
         racingGameService.move(trial);
-        List<String> moveResult = racingGameService.getMoveResult();
+        List<String> moveResult = racingGameService.retrieveMoveResults();
         outputView.printMoveResult(moveResult);
     }
 
-    private Long getTrial() {
-        String trialInput = inputView.getTrial();
+    private Long receiveTrialInput() {
+        String trialInput = inputView.receiveTrialInput();
         try {
             return Converter.convertStringToLong(trialInput);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return getTrial();
+            return receiveTrialInput();
         }
     }
 
     private void createCars() {
         try {
-            List<String> carNames = inputView.getCarNames();
+            List<String> carNames = inputView.receiveCarNamesInput();
             racingGameService.createCars(carNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
@@ -53,8 +53,8 @@ public class Controller {
     }
 
     private void printFinalResult() {
-        List<String> moveResult = racingGameService.getMoveResult();
+        List<String> moveResult = racingGameService.retrieveMoveResults();
         outputView.printMoveResult(moveResult);
-        outputView.printWinners(racingGameService.getWinners());
+        outputView.printWinners(racingGameService.calculateWinners());
     }
 }
