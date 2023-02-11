@@ -1,10 +1,7 @@
 package racingcar.dto;
 
-import static racingcar.domain.Car.Validator.*;
-import static racingcar.dto.RacingCarNamesRequest.Validator.validateDuplicateCarNames;
-import static racingcar.exception.ExceptionMessage.DUPLICATE_CAR_NAME;
+import static racingcar.domain.Name.Validator.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class RacingCarNamesRequest {
@@ -22,24 +19,10 @@ public class RacingCarNamesRequest {
 
     private static void validate(String[] names) {
         for (String name : names) {
-            validateBlankCarName(name);
-            validateCarNameLength(name);
+            validateBlankName(name);
+            validateNameLength(name);
         }
-        validateDuplicateCarNames(names);
-    }
-
-    public static class Validator {
-        private Validator() {
-        }
-
-        public static void validateDuplicateCarNames(String[] names) {
-            long noDuplicateCount = Arrays.stream(names)
-                    .distinct()
-                    .count();
-            if (noDuplicateCount != names.length) {
-                throw new IllegalArgumentException(DUPLICATE_CAR_NAME.getMessage());
-            }
-        }
+        validateDuplicateNames(names);
     }
 
     public List<String> getNames() {
