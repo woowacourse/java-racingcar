@@ -4,14 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -42,7 +40,7 @@ class CarTest {
         CarsTest.TestNumberGenerator testNumberGenerator =
                 new CarsTest.TestNumberGenerator(randomNumbers);
 
-        car.moveByRandom(testNumberGenerator.generateNumber());
+        car.moveByNumber(testNumberGenerator.generateNumber());
 
         assertThat(car.getCarLocation()).isEqualTo(0);
     }
@@ -56,7 +54,7 @@ class CarTest {
         CarsTest.TestNumberGenerator testNumberGenerator =
                 new CarsTest.TestNumberGenerator(randomNumbers);
 
-        car.moveByRandom(testNumberGenerator.generateNumber());
+        car.moveByNumber(testNumberGenerator.generateNumber());
 
         assertThat(car.getCarLocation()).isEqualTo(1);
     }
