@@ -93,4 +93,25 @@ class CarTest {
             assertDoesNotThrow(() -> new Car("test", 0));
         }
     }
+
+    @Nested
+    @DisplayName("자동차 현재 위치 테스트")
+    class TestCurrentDistance {
+        Car car = new Car("test", 0);
+        @ParameterizedTest(name = "{index} ==> round : ''{0}''")
+        @ValueSource(ints = {-1, -5})
+        @DisplayName("자동차 현재 위치가 라운드보다 큰 경우 예외 발생")
+        void Should_ThrowException_현재_위치가_라운드보다_큰_경우(int round) {
+            assertThatThrownBy(() -> car.validateCurrentDistance(round))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("[ERROR] 자동차의 현재 위치는 해당 라운드보다 클 수 없습니다.");
+        }
+
+        @ParameterizedTest(name = "{index} ==> round : ''{0}''")
+        @ValueSource(ints = {2, 4, 7})
+        @DisplayName("자동차 현재 위치가 라운드보다 작은 경우 성공")
+        void Should_Success_현재_위치가_라운드보다_작은_경우(int round) {
+            assertDoesNotThrow(() -> car.validateCurrentDistance(round));
+        }
+    }
 }
