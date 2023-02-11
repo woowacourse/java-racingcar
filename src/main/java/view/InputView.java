@@ -15,7 +15,7 @@ public class InputView {
 
     public int inputTryCount() {
         try {
-            int tryCount = Integer.parseInt(scanner.nextLine());
+            int tryCount = scanner.nextInt();
             return checkPositiveNumber(tryCount);
         } catch (Exception e) {
             throw new IllegalArgumentException(
