@@ -18,16 +18,16 @@ public class CarService {
     public void makeCar(List<String> carNames) {
         for (String carName : carNames) {
             Car car = new Car(carName, 0);
-            cars.addCarInformation(car);
+            cars.addCar(car);
         }
     }
 
     public List<Car> getCarsStatus() {
-        return cars.getCarInformation();
+        return cars.getCars();
     }
 
     public void runRound(int round) {
-        for (Car car : cars.getCarInformation()) {
+        for (Car car : cars.getCars()) {
             Random random = new Random();
             int randomNumber = random.nextInt(CarConstant.RANDOM_NUMBER_BOUNDARY.getNumber());
             runForward(car, randomNumber);
@@ -43,7 +43,7 @@ public class CarService {
 
     public List<String> findWinner() {
         int maxDistance = findMaxDistance();
-        for (Car car : cars.getCarInformation()) {
+        for (Car car : cars.getCars()) {
             compareDistance(car, maxDistance);
         }
         return winner;
@@ -51,7 +51,7 @@ public class CarService {
 
     private int findMaxDistance() {
         int maxDistance = -1;
-        for (Car car : cars.getCarInformation()) {
+        for (Car car : cars.getCars()) {
             maxDistance = Math.max(car.getDistance(), maxDistance);
         }
         return maxDistance;
