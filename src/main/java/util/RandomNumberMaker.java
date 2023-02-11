@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class RandomNumberMaker {
     private static final Random random = new Random();
-    private static final int BOUND = 9;
+    private static final int BOUND = 10;
 
     public static List<Integer> makeNumber(int CarSize) {
         List<Integer> randomNumbers = new ArrayList<>();
