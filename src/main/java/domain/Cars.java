@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    private static final int DEFAULT_POSITION = 0;
+
     private final List<Car> cars;
 
     public Cars(final List<Car> cars) {
@@ -40,7 +42,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0);
+                .orElse(DEFAULT_POSITION);
     }
 
     public List<Car> getCars() {
