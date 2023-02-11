@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 
 class CarsTest {
 
-    @DisplayName("judgeWinners 메서드는 우승한 자동차들을 반환한다.")
+    @DisplayName("findWinners 메서드는 우승한 자동차들을 반환한다.")
     @Test
-    void should_ReturnWinners_When_UsingJudgeWinnersMethod() {
+    void should_ReturnWinners_When_UsingFindWinnersMethod() {
         //given
         Car notWinnerCarA = new Car("carA");
         Car winnerCarB = new Car("carB");
@@ -26,7 +26,7 @@ class CarsTest {
         winnerCarC.move(9);
         winnerCarC.move(9);
 
-        Cars winners = cars.judgeWinners();
+        Cars winners = cars.findWinners();
 
         //then
         assertThat(winners.getCars()).containsExactly(winnerCarB, winnerCarC);

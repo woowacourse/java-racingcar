@@ -2,7 +2,6 @@ package domain;
 
 import utils.NumberGenerator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +21,7 @@ public class Cars {
         }
     }
 
-    public Cars judgeWinners() {
+    public Cars findWinners() {
         int maxPosition = getMaxPosition();
         List<Car> winningCars = cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)

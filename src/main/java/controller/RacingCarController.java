@@ -61,7 +61,7 @@ public class RacingCarController {
     }
 
     private void printWinners(Cars cars) {
-        Cars winnerCars = cars.judgeWinners();
+        Cars winnerCars = cars.findWinners();
         List<CarDto> winnerCarDtos = getCarDtos(winnerCars);
         OutputView.printWinners(winnerCarDtos);
     }
