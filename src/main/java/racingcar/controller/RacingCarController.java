@@ -7,6 +7,7 @@ import racingcar.dto.RacingCarWinnerResponse;
 import racingcar.dto.TryCountRequest;
 import racingcar.service.RacingCarService;
 import racingcar.service.RandomMoveStrategy;
+import racingcar.service.TryCount;
 import racingcar.view.RacingCarView;
 
 public class RacingCarController {
@@ -20,7 +21,7 @@ public class RacingCarController {
 
     public void start() {
         createCar();
-        int tryCount = getTryCount();
+        TryCount tryCount = new TryCount(getTryCount());
         playGame(tryCount);
     }
 
@@ -52,10 +53,10 @@ public class RacingCarController {
         }
     }
 
-    private void playGame(int tryCount) {
+    private void playGame(TryCount tryCount) {
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         racingCarView.printStartMessage();
-        for (int i = 0; i < tryCount; i++) {
+        for (int i = 0; i < tryCount.getCount(); i++) {
             racingCarService.moveCars(randomMoveStrategy);
             printCarStatuses();
         }
