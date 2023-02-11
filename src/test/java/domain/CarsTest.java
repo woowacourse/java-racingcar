@@ -24,7 +24,7 @@ class CarsTest {
         Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        List<String> result = cars.getWinner();
+        List<String> result = cars.getWinnerNames();
 
         // then
         assertThat(result).containsOnly(pobi.getName());
@@ -46,7 +46,7 @@ class CarsTest {
         final Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        final Map<String, Integer> carCurrentStatus = cars.getCurrentStatus();
+        final Map<String, Integer> carCurrentStatus = cars.getCurrentRacingStatus();
 
         // then
         assertThat(carCurrentStatus).hasSize(2)

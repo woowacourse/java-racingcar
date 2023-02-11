@@ -30,12 +30,12 @@ public class Cars {
         return RandomNumberGenerator.generateRandomNumber() >= 4;
     }
 
-    public List<String> getWinner() {
+    public List<String> getWinnerNames() {
         List<String> result = new ArrayList<>();
         int max = getMaxDistance();
 
         for (final Car car : cars) {
-            addWinner(result, car, max);
+            addWinnerName(result, car, max);
         }
 
         return result;
@@ -49,19 +49,19 @@ public class Cars {
         return max;
     }
 
-    private void addWinner(List<String> result, Car car, int max) {
+    private void addWinnerName(List<String> result, Car car, int max) {
         if (car.getDistance() == max) {
             result.add(car.getName());
         }
     }
 
-    public Map<String, Integer> getCurrentStatus() {
-        Map<String, Integer> carStatus = new HashMap<>();
+    public Map<String, Integer> getCurrentRacingStatus() {
+        Map<String, Integer> carAndDistanceStatus = new HashMap<>();
 
         for (final Car car : cars) {
-            carStatus.put(car.getName(), car.getDistance());
+            carAndDistanceStatus.put(car.getName(), car.getDistance());
         }
 
-        return carStatus;
+        return carAndDistanceStatus;
     }
 }
