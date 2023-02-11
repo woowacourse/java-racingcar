@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    List<Car> cars = new ArrayList<>();
     private final static String ERROR_NAME = "두 대 이상의 자동차 이름을 입력해주세요";
     private final static String ERROR_DUPLICATION = "중복되지 않은 자동차를 입력해주세요";
     private final static String COMMA = ",";
+    List<Car> cars = new ArrayList<>();
 
     public Cars(String userInput) {
         validateNotNull(userInput);

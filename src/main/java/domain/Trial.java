@@ -2,8 +2,8 @@ package domain;
 
 public class Trial {
 
-    private final int trial;
     private final static String PREFIX = "[0-9]";
+    private final int trial;
     private final String ERROR_TRIAL = "자연수로만 입력해주세요.";
 
     public Trial(String input) {

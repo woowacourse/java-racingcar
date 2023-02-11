@@ -3,6 +3,7 @@ package domain;
 public class Car implements Comparable<Car> {
     private final static String ONE_TO_FIVE = "이름은 1이상 5이하입니다.";
     private final String carName;
+    // TODO : 생성자에서 같이 초기화 하는거랑 무슨 차이인지 화긴
     private int distance = 0;
 
     public Car(String inputCar) {
@@ -39,7 +40,7 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public boolean equals(Object ob){
+    public boolean equals(Object ob) {
         String carName = (String) ob;
         return this.carName.equals(carName);
     }
