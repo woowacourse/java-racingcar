@@ -22,7 +22,7 @@ public class Winner {
 
     private void addWinner(Cars cars, int maxDistance, int i) {
         if (cars.getCar(i).getDistance() == maxDistance) {
-            winners.add(cars.getCar(i).getCarName());
+            winners.add(cars.getCar(i).getName());
         }
     }
 

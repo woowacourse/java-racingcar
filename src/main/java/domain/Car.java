@@ -1,33 +1,38 @@
 package domain;
 
 public class Car implements Comparable<Car> {
-    private final static String ONE_TO_FIVE = "이름은 1이상 5이하입니다.";
-    private final String carName;
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MINIMUM_ADD_DISTANCE_POWER = 4;
+    private static final String nameLengthErrorMessage = "이름은 1이상 5이하입니다.";
+    private final String name;
     // TODO : 생성자에서 같이 초기화 하는거랑 무슨 차이인지 화긴
     private int distance = 0;
 
-    public Car(String inputCar) {
-        String trimInput = eliminateBlank(inputCar);
-        validateNameLength(trimInput);
-        this.carName = trimInput;
+    public Car(String name) {
+        String removedBlankName = eliminateBeforeAndAfterBlank(name);
+        validateNameLength(removedBlankName);
+        this.name = removedBlankName;
     }
 
-    private String eliminateBlank(String inputCar) {
-        return inputCar.trim();
+    private String eliminateBeforeAndAfterBlank(String name) {
+        return name.trim();
     }
 
-    private void validateNameLength(String inputCar) {
-        if (inputCar.length() < 1 || inputCar.length() > 5) {
-            throw new IllegalArgumentException(ONE_TO_FIVE);
+    private void validateNameLength(String name) {
+        if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(nameLengthErrorMessage);
         }
     }
 
-    public void addDistance(int makeNumber) {
-        if (makeNumber >= 4) distance++;
+    public void addDistance(int power) {
+        if (power >= MINIMUM_ADD_DISTANCE_POWER) {
+            distance++;
+        }
     }
 
-    public String getCarName() {
-        return carName;
+    public String getName() {
+        return name;
     }
 
     public int getDistance() {
@@ -42,7 +47,7 @@ public class Car implements Comparable<Car> {
     @Override
     public boolean equals(Object ob) {
         String carName = (String) ob;
-        return this.carName.equals(carName);
+        return this.name.equals(carName);
     }
 
 }

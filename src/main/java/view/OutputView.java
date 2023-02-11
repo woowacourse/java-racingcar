@@ -16,7 +16,7 @@ public class OutputView {
 
     public void printCarsDistance(Cars cars) {
         for (int i = 0; i < cars.getCarsSize(); i++) {
-            String carName = cars.getCar(i).getCarName();
+            String carName = cars.getCar(i).getName();
             System.out.println(carName + DELIMITER + drawDistance(cars, i));
         }
         System.out.println();
