@@ -29,13 +29,13 @@ public class GameController {
         printResultAndWinner(result);
     }
 
-    private GameSystem createGameSystem(int gameRound) {
-        return new GameSystem(gameRound, new NumberGenerator());
-    }
-
     private Cars makeCars(List<String> carNames) {
         CarFactory carFactory = new CarFactory();
         return carFactory.createCarRepository(carNames);
+    }
+
+    private GameSystem createGameSystem(int gameRound) {
+        return new GameSystem(gameRound, new NumberGenerator());
     }
 
     private void printResultAndWinner(Result result) {
