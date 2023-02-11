@@ -24,14 +24,7 @@ public class RaceController {
         initCars();
         initRacingRound();
         race(generator);
-        outputView.printWinner(raceService.getWinner());
-    }
-
-    private void race(RacingNumberGenerator generator) {
-        outputView.printRoundStartMessage();
-
-        List<RacingRoundStateDto> racingTotalState = raceService.race(generator);
-        outputView.printRacingTotalState(racingTotalState);
+        outputView.printWinners(raceService.calculateWinners());
     }
 
     private void initCars() {
@@ -52,5 +45,12 @@ public class RaceController {
             outputView.printExceptionMessage(exception.getMessage());
             initRacingRound();
         }
+    }
+
+    private void race(RacingNumberGenerator generator) {
+        outputView.printRoundStartMessage();
+
+        List<RacingRoundStateDto> racingTotalState = raceService.race(generator);
+        outputView.printRacingTotalState(racingTotalState);
     }
 }

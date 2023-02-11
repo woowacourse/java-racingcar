@@ -42,7 +42,7 @@ public class OutputView {
         return POSITION_STATE.repeat(Math.max(0, position));
     }
 
-    public void printWinner(List<WinnerCarDto> winnersDto) {
+    public void printWinners(List<WinnerCarDto> winnersDto) {
         String winners = winnersDto.stream()
                 .map(WinnerCarDto::getName)
                 .collect(Collectors.joining(DELIMITER));
@@ -50,11 +50,11 @@ public class OutputView {
         print(String.format(WINNER_FORMAT, winners));
     }
 
-    private void print(String message) {
-        System.out.println(message);
-    }
-
     public void printExceptionMessage(String message) {
         print(String.format(ERROR_FORMAT, message));
+    }
+
+    private void print(String message) {
+        System.out.println(message);
     }
 }

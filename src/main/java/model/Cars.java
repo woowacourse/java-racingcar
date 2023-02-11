@@ -34,8 +34,8 @@ public class Cars {
 
     private RacingRoundStateDto race(RacingNumberGenerator generator) {
         List<RacingCarStateDto> racingCarsStateDto = cars.stream()
-            .map(car -> car.race(generateValidMovableNumber(generator)))
-            .collect(Collectors.toUnmodifiableList());
+                .map(car -> car.race(generateValidMovableNumber(generator)))
+                .collect(Collectors.toUnmodifiableList());
         return new RacingRoundStateDto(racingCarsStateDto);
     }
 

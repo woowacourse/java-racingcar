@@ -17,11 +17,7 @@ public class RaceService {
     private Round round;
 
     public void initCars(Set<String> inputCarsName) {
-        cars = new Cars(generateCars(inputCarsName));
-    }
-
-    public void initRound(int round) {
-        this.round = new Round(round);
+        this.cars = new Cars(generateCars(inputCarsName));
     }
 
     private Set<Car> generateCars(Set<String> carsName) {
@@ -30,11 +26,15 @@ public class RaceService {
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
+    public void initRound(int round) {
+        this.round = new Round(round);
+    }
+
     public List<RacingRoundStateDto> race(RacingNumberGenerator generator) {
         return cars.race(generator, round);
     }
 
-    public List<WinnerCarDto> getWinner() {
+    public List<WinnerCarDto> calculateWinners() {
         return cars.calculateWinners();
     }
 }
