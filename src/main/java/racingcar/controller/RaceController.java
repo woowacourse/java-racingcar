@@ -3,6 +3,8 @@ package racingcar.controller;
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
 import racingcar.domain.RaceNumberGenerator;
+import racingcar.domain.dto.CarRaceDto;
+import racingcar.domain.dto.RaceResultDto;
 import racingcar.util.InputUtil;
 import racingcar.view.OutputView;
 
@@ -20,10 +22,14 @@ public class RaceController implements Controller {
     public void process() {
         String carNames = inputUtil.getUserInput(inputUtil::getCarNames);
         Cars cars = Cars.of(carNames, numberGenerator);
-        String tryCount = inputUtil.getUserInput(inputUtil::getTryCount);
 
+        String tryCount = inputUtil.getUserInput(inputUtil::getTryCount);
         Race race = Race.of(tryCount);
-        outputView.printRaceResult(cars, race);
+
+        List<CarRaceDto> carRaceResult = cars.initStatus();
+        List<RaceResultDto> totalRaceResult = race.start(cars);
+
+        outputView.printRaceResult(carRaceResult, totalRaceResult);
 
         List<String> winners = cars.pickWinners();
         outputView.printWinnerResult(winners);
