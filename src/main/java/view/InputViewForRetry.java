@@ -6,7 +6,7 @@ import dto.request.CarNameDto;
 import java.util.InputMismatchException;
 import java.util.List;
 
-public class InputViewProxyForRetry {
+public class InputViewForRetry {
 
     private final InputView inputView = new InputView();
 

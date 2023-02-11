@@ -7,8 +7,7 @@ import domain.TryCount;
 import dto.request.CarNameDto;
 import dto.response.CarStatusDto;
 import dto.response.WinnersNameDto;
-import view.InputView;
-import view.InputViewProxyForRetry;
+import view.InputViewForRetry;
 import view.OutputView;
 
 import java.util.List;
@@ -16,11 +15,11 @@ import java.util.stream.Collectors;
 
 public class RacingGameApplication {
 
-    private final InputViewProxyForRetry inputView;
+    private final InputViewForRetry inputView;
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public RacingGameApplication(InputViewProxyForRetry inputView, OutputView outputView, NumberGenerator numberGenerator) {
+    public RacingGameApplication(InputViewForRetry inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;

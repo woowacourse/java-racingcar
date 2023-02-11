@@ -3,8 +3,7 @@ package config;
 import application.RacingGameApplication;
 import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
-import view.InputView;
-import view.InputViewProxyForRetry;
+import view.InputViewForRetry;
 import view.OutputView;
 
 public class RacingGameAppFactory {
@@ -13,8 +12,8 @@ public class RacingGameAppFactory {
         return new RacingGameApplication(initInputView(), initOutputView(), initNumberGenerator());
     }
 
-    private InputViewProxyForRetry initInputView() {
-        return new InputViewProxyForRetry();
+    private InputViewForRetry initInputView() {
+        return new InputViewForRetry();
     }
 
     private OutputView initOutputView() {
