@@ -12,7 +12,7 @@ public class CarFactory {
         this.movingStrategy = movingStrategy;
     }
 
-    public Cars generateCarsByCarNames(CarNamesRequest carNamesRequest) {
+    public Cars generateCarsFromCarNames(CarNamesRequest carNamesRequest) {
         List<Car> carsByNames = carNamesRequest.toSplitCarNames().stream()
                 .map(carName -> new Car(carName, movingStrategy))
                 .collect(Collectors.toList());

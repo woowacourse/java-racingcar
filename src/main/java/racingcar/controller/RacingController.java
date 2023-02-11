@@ -24,10 +24,10 @@ public class RacingController {
 
     public Track generateRacingTrack() {
         CarNamesRequest carNamesRequest = requestCarNames();
-        int trialTimesCount = requestTrialTimes();
+        Cars cars = carFactory.generateCarsFromCarNames(carNamesRequest);
 
+        int trialTimesCount = requestTrialTimes();
         TrialTimes trialTimes = new TrialTimes(trialTimesCount);
-        Cars cars = carFactory.generateCarsByCarNames(carNamesRequest);
         printCarsInitPositions(cars);
         return new Track(cars, trialTimes);
     }
