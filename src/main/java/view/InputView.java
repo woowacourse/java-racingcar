@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private final String NOT_A_NUMBER = "시도할 횟수는 숫자를 입력해야 합니다.";
+    private static final String NOT_A_NUMBER = "시도할 횟수는 숫자를 입력해야 합니다.";
 
     private final Scanner scanner = new Scanner(System.in);
 

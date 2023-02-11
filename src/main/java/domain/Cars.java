@@ -8,6 +8,7 @@ public class Cars {
     private static final String DUPLICATED_CAR_NAMES = "차 이름은 중복될 수 없습니다";
 
     private final List<Car> cars = new ArrayList<>();
+    private final Random random = new Random();
 
     private Cars(List<String> names) {
         validate(names);
@@ -19,7 +20,6 @@ public class Cars {
     }
 
     public void move() {
-        Random random = new Random();
         cars.forEach(car -> car.move(random.nextInt(RANDOM_UPPER_BOUND_EXCLUSIVE)));
     }
 

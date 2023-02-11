@@ -1,10 +1,10 @@
 package domain;
 
 public class GameCount {
-    private final String INVALID_COUNT = "시도할 횟수는 1 ~ 10억까지 입니다.";
+    private static final String INVALID_COUNT = "시도할 횟수는 1 ~ 10억까지 입니다.";
 
-    private final int MAX_COUNT = 1_000_000_000;
-    private final int MIN_COUNT = 1;
+    private static final int MAX_COUNT = 1_000_000_000;
+    private static final int MIN_COUNT = 1;
 
     private int count;
 
