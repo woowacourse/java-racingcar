@@ -17,8 +17,4 @@ public class Count {
     public boolean isPlayable() {
         return value >= PLAYABLE_LOWER_BOUND;
     }
-
-    public int getValue() {
-        return value;
-    }
 }
