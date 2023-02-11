@@ -3,6 +3,7 @@ package racingcar.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import racingcar.constants.CarConstant;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.InputView;
@@ -57,8 +58,9 @@ public class CarService {
     }
 
     private void validateNegativeCount(int tryCount) {
-        if (tryCount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 시도할 횟수는 0보다 큰 숫자여야 합니다.");
+        int minTryCount = CarConstant.MIN_TRY_COUNT.getNumber();
+        if (tryCount <= minTryCount) {
+            throw new IllegalArgumentException(String.format("[ERROR] 시도할 횟수는 %d보다 큰 숫자여야 합니다.", minTryCount));
         }
     }
 

@@ -16,13 +16,16 @@ class CarTest {
     @Nested
     @DisplayName("자동차 이름 길이 테스트")
     class TestNameLength {
+        private int nameMinLength = CarConstant.NAME_MIN_LENGTH.getNumber();
+        private int nameMaxLength = CarConstant.NAME_MAX_LENGTH.getNumber();
+
         @ParameterizedTest(name = "{index} ==> name : ''{0}''")
         @ValueSource(strings = {"", "abcdef", "pobiiiiii"})
         @DisplayName("자동차 이름의 길이가 0 이하거나 5보다 클 경우 예외 발생")
         void Should_ThrowException_길이가_0이하거나_5보다_큰_경우(String name) {
             assertThatThrownBy(() -> new Car(name, 0))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 자동차 이름의 길이는 1부터 5 사이여야 합니다.");
+                    .hasMessageContaining(String.format("[ERROR] 자동차 이름의 길이는 %d부터 %d 사이여야 합니다.", nameMinLength, nameMaxLength));
         }
 
         @ParameterizedTest(name = "{index} ==> name : ''{0}''")

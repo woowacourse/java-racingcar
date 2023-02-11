@@ -16,9 +16,11 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > CarConstant.NAME_MAX_LENGTH.getNumber()
-                || name.length() <= CarConstant.NAME_MIN_LENGTH.getNumber()) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름의 길이는 1부터 5 사이여야 합니다.");
+        int nameMinLength = CarConstant.NAME_MIN_LENGTH.getNumber();
+        int nameMaxLength = CarConstant.NAME_MAX_LENGTH.getNumber();
+
+        if (name.length() > nameMaxLength || name.length() <= nameMinLength) {
+            throw new IllegalArgumentException(String.format("[ERROR] 자동차 이름의 길이는 %d부터 %d 사이여야 합니다.", nameMinLength, nameMaxLength));
         }
     }
 
