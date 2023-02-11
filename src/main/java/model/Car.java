@@ -29,8 +29,8 @@ public class Car {
         }
     }
 
-    public void moveByRandom(int randNum) {
-        if (randNum >= MIN_NUMBER_FOR_CAR_MOVE) {
+    public void moveByNumber(int number) {
+        if (number >= MIN_NUMBER_FOR_CAR_MOVE) {
             this.moveCar();
         }
     }
@@ -47,7 +47,7 @@ public class Car {
         return this.location;
     }
 
-    public boolean checkLocationEqual(int maxLocation) {
+    public boolean isLocationEqual(int maxLocation) {
         return this.location == maxLocation;
     }
 }

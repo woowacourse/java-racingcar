@@ -35,7 +35,7 @@ class CarTest {
     @DisplayName("랜덤 값이 4미만일 경우 테스트")
     void stopByRandom(int randNum) {
         Car car = new Car("test");
-        car.moveByRandom(randNum);
+        car.moveByNumber(randNum);
 
         assertThat(car.getCarLocation()).isEqualTo(0);
     }
@@ -45,7 +45,7 @@ class CarTest {
     @DisplayName("랜덤 값이 4이상일 경우 테스트")
     void moveByRandom(int randNum) {
         Car car = new Car("test");
-        car.moveByRandom(randNum);
+        car.moveByNumber(randNum);
 
         assertThat(car.getCarLocation()).isEqualTo(1);
     }

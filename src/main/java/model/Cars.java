@@ -29,7 +29,7 @@ public class Cars {
 
     public void moveResult(NumberGenerator randomNumberGenerator) {
         for (Car car : cars) {
-            car.moveByRandom(randomNumberGenerator.generateNumber());
+            car.moveByNumber(randomNumberGenerator.generateNumber());
         }
     }
 
@@ -38,7 +38,7 @@ public class Cars {
                 .max(Comparator.comparingInt(Car::getCarLocation))
                 .get().getCarLocation();
 
-        return cars.stream().filter(car -> car.checkLocationEqual(maxLocation))
+        return cars.stream().filter(car -> car.isLocationEqual(maxLocation))
                 .map(Car::getCarName)
                 .collect(Collectors.joining(COMMA + BLANK));
     }

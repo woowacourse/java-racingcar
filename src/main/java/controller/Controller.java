@@ -12,7 +12,7 @@ public class Controller {
     private final OutputView outputView = new OutputView();
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-    public void run() {
+    public void runGame() {
         Cars cars = setCars();
         repeatMoving(cars, setTryCount());
         outputView.printWinner(cars.getWinners());
