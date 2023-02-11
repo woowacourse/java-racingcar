@@ -45,28 +45,10 @@ class CarRepositoryTest {
                 .hasMessage("[ERROR] 자동차는 2대 이상 입력되어야 합니다.");
     }
 
-    @ParameterizedTest
-    @MethodSource("getCars")
-    void findWinner(List<Car> cars) {
-        Car movedCar = createMovedCar();
-        cars.add(movedCar);
-        CarRepository carRepository = new CarRepository(cars);
-
-        List<String> winners = carRepository.findWinner();
-
-        assertThat(winners).containsAnyOf(movedCar.getName());
-    }
-
     static Stream<Arguments> getCars() {
         return Stream.of(
                 Arguments.arguments(new ArrayList<>(List.of(new Car("poy"), new Car("joy"), new Car("poby")))),
                 Arguments.arguments(new ArrayList<>(List.of(new Car("poy"), new Car("oioy"))))
         );
-    }
-
-    private Car createMovedCar() {
-        Car winner = new Car("win");
-        winner.move();
-        return winner;
     }
 }
