@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private static final int NEGATIVE_NUMBER_INDICATOR = 0;
     private static final String SPLIT_NAME_INDICATOR = ",";
+    private static final int NEGATIVE_NUMBER_INDICATOR = 0;
+
     private Scanner scanner = new Scanner(System.in);
 
     public List<String> inputCarName() {
@@ -22,13 +23,13 @@ public class InputView {
     public int inputTryCount() {
         try {
             int tryCount = Integer.parseInt(scanner.nextLine());
-            return checkPositiveNumber(tryCount);
+            return validPositiveNumber(tryCount);
         } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_NOT_NUMBER_MESSAGE.getExceptionMessage());
         }
     }
 
-    private int checkPositiveNumber(int number) {
+    private int validPositiveNumber(int number) {
         if (number <= NEGATIVE_NUMBER_INDICATOR) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_TRY_COUNT_MESSAGE.getExceptionMessage());
         }
