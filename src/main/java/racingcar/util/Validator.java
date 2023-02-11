@@ -19,7 +19,6 @@ public class Validator {
         if (carName.contains(NO_INPUT)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NO_INPUT);
         }
-
     }
 
     public static String[] validateCarNames(String carNamesString) {
@@ -34,12 +33,6 @@ public class Validator {
                 .count();
         if (count >= 1) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.CAR_NAME_LENGTH);
-        }
-    }
-
-    public static void validatePossibilePosition(int position) {
-        if (position < 0) {
-            throw new IllegalArgumentException("");
         }
     }
 
