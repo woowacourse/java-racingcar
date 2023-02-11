@@ -75,7 +75,7 @@ public class CarService {
     private void runRound(int round) {
         for (Car car : cars.getCarInformation()) {
             Random random = new Random();
-            int randomNumber = random.nextInt(10);
+            int randomNumber = random.nextInt(CarConstant.RANDOM_NUMBER_BOUNDARY.getNumber());
             runForward(car, randomNumber);
             car.validateCurrentDistance(round);
             OutputView.printRoundResult(car.getName(), car.getDistance());
@@ -83,7 +83,7 @@ public class CarService {
     }
 
     public void runForward(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= CarConstant.FORWARD_BOUNDARY.getNumber()) {
             car.increaseDistance();
         }
     }
