@@ -6,6 +6,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private final String COMMA = ",";
+    private final String BLANK = " ";
+
     private final List<Car> cars = new ArrayList<>();
 
     public Cars(String carsName) {
@@ -17,7 +20,7 @@ public class Cars {
     }
 
     private List<String> splitCarName(String carsName) {
-        return Arrays.asList(carsName.split(","));
+        return Arrays.asList(carsName.split(COMMA));
     }
 
     public List<Car> getCars() {
@@ -37,6 +40,6 @@ public class Cars {
 
         return cars.stream().filter(car -> car.checkLocationEqual(maxLocation))
                 .map(Car::getCarName)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(COMMA + BLANK));
     }
 }

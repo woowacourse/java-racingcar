@@ -5,6 +5,8 @@ import constant.ExceptionMessage;
 import java.util.Scanner;
 
 public class InputView {
+    private final int MIN_TRY_COUNT_INPUT = 1;
+
     private final Scanner scanner = new Scanner(System.in);
 
     public String inputCarName() {
@@ -21,7 +23,7 @@ public class InputView {
     }
 
     private int checkPositiveNumber(int number) {
-        if (number <= 0) {
+        if (number < MIN_TRY_COUNT_INPUT) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_TRY_COUNT_MESSAGE.getExceptionMessage());
         }
         return number;
