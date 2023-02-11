@@ -77,6 +77,4 @@ public class RacingCarController {
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
-
-
 }
