@@ -32,10 +32,10 @@ public class RacingGame {
             cars.forEach(car -> car.move());
             Output.printEachCarDistance(cars);
         }
+        winner.makeWinnerNames(cars);
     }
 
     public void printResult() {
-        winner.makeWinnerNames(cars);
         Output.printWinner(winner);
     }
 
