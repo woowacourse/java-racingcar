@@ -17,7 +17,7 @@ public class InputView {
         printMessage(CAR_NAME_INPUT_MESSAGE);
         String inputCars = scanner.nextLine();
         List<String> carNames = Parser.parse(inputCars, DELIMITER);
-        Validator.validateCarName(carNames);
+//        Validator.validateCarName(carNames);
         return carNames;
     }
 

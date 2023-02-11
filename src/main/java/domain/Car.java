@@ -6,6 +6,7 @@ public class Car {
     private int moveCount;
 
     public Car(String name) {
+        CarValidator.validateCarName(name);
         this.name = name;
         this.moveCount = 0;
     }
