@@ -2,14 +2,12 @@ package domain;
 
 public class Car {
 
-    private static final int DEFAULT_DISTANCE_VALUE = 0;
-
     private final String name;
     private int distance;
 
-    public Car(final String name) {
+    public Car(final String name, int distance) {
         this.name = name;
-        this.distance = DEFAULT_DISTANCE_VALUE;
+        this.distance = distance;
     }
 
     public void move() {

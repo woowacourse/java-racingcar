@@ -14,12 +14,8 @@ class CarsTest {
     @DisplayName("getWinner() : 가장 많이 움직인 자동차를 반환해준다.")
     void test_getWinner() {
         // given
-        final Car pobi = new Car("pobi");
-        pobi.move();
-        pobi.move();
-
-        final Car crong = new Car("crong");
-        crong.move();
+        final Car pobi = new Car("pobi", 2);
+        final Car crong = new Car("crong", 1);
 
         Cars cars = new Cars(List.of(pobi, crong));
 
@@ -36,13 +32,8 @@ class CarsTest {
     @DisplayName("getCurrentStatus() : 현재 움직인 거리를 보여준다.")
     void test_getCurrentStatus() {
         // given
-        final Car pobi = new Car("pobi");
-        pobi.move();
-        pobi.move();
-
-        final Car crong = new Car("crong");
-        crong.move();
-
+        final Car pobi = new Car("pobi", 2);
+        final Car crong = new Car("crong", 1);
         final Cars cars = new Cars(List.of(pobi, crong));
 
         // when
