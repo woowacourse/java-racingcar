@@ -8,7 +8,6 @@ import exception.NameIsOutOfBoundException;
 import exception.NotPositiveIntegerException;
 import java.util.List;
 import java.util.stream.Collectors;
-import util.CommaSeparator;
 import view.InputView;
 import view.OutputView;
 
@@ -30,7 +29,7 @@ public class RacingGameController {
     private RacingCars createRacingCar() {
         List<String> names;
         try {
-            names = CommaSeparator.sliceNameByComma(getNames());
+            names = getNames();
             return new RacingCars(createRacingCar(names));
         } catch (CommaNotFoundException | NameIsOutOfBoundException e) {
             System.out.println(e.getMessage());
@@ -38,7 +37,7 @@ public class RacingGameController {
         }
     }
 
-    private String getNames() {
+    private List<String> getNames() {
         return InputView.requestCarName();
     }
 
