@@ -9,7 +9,6 @@ public class RacingCars {
 
     private final Cars cars;
     private final Count count;
-    private final Logger logger = new Logger();
 
     public RacingCars(CreateRacingCarsDto dto) {
         cars = new Cars(dto.getCarNames());
@@ -22,10 +21,6 @@ public class RacingCars {
             resultHandler.accept(cars.toDto());
             count.next();
         }
-    }
-
-    public String getAllLogs() {
-        return logger.getLog();
     }
 
     public List<String> findWinner() {

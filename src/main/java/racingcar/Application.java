@@ -14,7 +14,7 @@ public class Application {
     public static void main(String[] args) {
         RacingCars racingCars = initializeRacingCars();
         race(racingCars);
-//        OutputView.printResult(racingCars.getAllLogs(), racingCars.result());
+        OutputView.printWinner(racingCars.findWinner());
     }
 
     private static RacingCars initializeRacingCars() {
