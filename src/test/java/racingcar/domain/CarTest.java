@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.service.CarService;
@@ -71,6 +72,25 @@ class CarTest {
         void Should_Success_랜덤값이_4이상인_경우(int number) {
             carService.runForward(car, number);
             assertThat(car.getDistance()).isEqualTo(1);
+        }
+    }
+
+    @Nested
+    @DisplayName("자동차 시작 위치 테스트")
+    class TestStartDistance {
+        @ParameterizedTest(name = "{index} ==> distance : ''{0}''")
+        @ValueSource(ints = {1, -1, 100})
+        @DisplayName("자동차 시작 위치가 0이 아닌 경우 예외 발생")
+        void Should_ThrowException_시작_위치가_0이_아닌_경우(int distance) {
+            assertThatThrownBy(() -> new Car("test", distance))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("[ERROR] 자동차의 시작 위치는 0으로 설정되어야 합니다.");
+        }
+
+        @Test
+        @DisplayName("자동차 시작 위치가 0인 경우 성공")
+        void Should_Success_시작_위치가_0인_경우() {
+            assertDoesNotThrow(() -> new Car("test", 0));
         }
     }
 }
