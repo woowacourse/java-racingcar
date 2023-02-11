@@ -3,6 +3,7 @@ package racingcar.model.car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.model.car.strategy.ForwardMovingStrategy;
+import racingcar.view.OutputView;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +16,9 @@ class CarTest {
         String expected = "pobi : -";
 
         // when
-        String actual = car.getCurrentStateFormat();
+        String actual = String.format(OutputView.POSITION_CAR_STATE_FORMAT,
+                car.getCarName(),
+                OutputView.POSITION_CAR_FORMAT_SYMBOL.repeat(car.getPosition()));
 
         // then
         assertThat(actual).isEqualTo(expected);

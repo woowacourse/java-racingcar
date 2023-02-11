@@ -24,7 +24,7 @@ public class RacingController {
     public Track init(MovingStrategy movingStrategy) {
         Cars cars = requestCars(movingStrategy);
         String trialTime = requestTrialTime();
-        outputView.printInitialCarPosition(cars.getCarsPositionFormat());
+        outputView.printCurrentCarsPosition(cars);
 
         return new Track(cars, trialTime);
     }
@@ -45,7 +45,7 @@ public class RacingController {
     public void startRace(Track track) {
         while (track.runnable()) {
             Cars cars = track.race();
-            outputView.printCarsResult(cars.getCarsPositionFormat());
+            outputView.printCurrentCarsPosition(cars);
         }
     }
 

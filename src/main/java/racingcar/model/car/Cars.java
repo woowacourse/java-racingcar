@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final String LINE_BREAK = "\n";
     private static final String CAR_SEPARATOR = ", ";
 
     private final List<Car> cars;
@@ -33,10 +32,8 @@ public class Cars {
                 .forEach(Car::moveForward);
     }
 
-    public String getCarsPositionFormat() {
-        return cars.stream()
-                .map(Car::getCurrentStateFormat)
-                .collect(Collectors.joining(LINE_BREAK));
+    public List<Car> getCarsCurrentInfo() {
+        return cars.stream().collect(Collectors.toUnmodifiableList());
     }
 
     public Cars getWinnerCars() {
@@ -51,7 +48,7 @@ public class Cars {
 
     public String getCarsWinnerFormat() {
         return cars.stream()
-                .map(Car::getWinnerCarNameFormat)
+                .map(Car::getCarName)
                 .collect(Collectors.joining(CAR_SEPARATOR));
     }
 }
