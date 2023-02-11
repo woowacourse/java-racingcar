@@ -15,23 +15,17 @@ class CarsTest {
     private static final String CAR_B_NAME = "carB";
     private static final String CAR_C_NAME = "carC";
 
-    private Cars cars;
-
-    @BeforeEach
-    void init() {
-        Car carA = new Car(CAR_A_NAME);
-        Car carB = new Car(CAR_B_NAME);
-        Car carC = new Car(CAR_C_NAME);
-        cars = new Cars(List.of(carA, carB, carC));
-    }
-
     @DisplayName("moveAll 메서드는 모든 자동차를 움직일 수 있다.")
     @Test
     void should_MoveAllCars_When_UsingMoveAllMethod() {
         //given
-        NumberGenerator numberGenerator = new TestNumberGenerator(List.of(0, 9, 9));
+        Car carA = new Car(CAR_A_NAME);
+        Car carB = new Car(CAR_B_NAME);
+        Car carC = new Car(CAR_C_NAME);
+        Cars cars = new Cars(List.of(carA, carB, carC));
 
         //when
+        NumberGenerator numberGenerator = new TestNumberGenerator(List.of(0, 9, 9));
         cars.moveAll(numberGenerator);
 
         //then
@@ -44,10 +38,12 @@ class CarsTest {
     @Test
     void should_ReturnWinners_When_UsingFindWinnersMethod() {
         //given
-        NumberGenerator numberGenerator = new TestNumberGenerator(List.of(9, 0, 9));
+        Car carA = new Car(CAR_A_NAME, 3);
+        Car carB = new Car(CAR_B_NAME, 0);
+        Car carC = new Car(CAR_C_NAME, 3);
+        Cars cars = new Cars(List.of(carA, carB, carC));
 
         //when
-        cars.moveAll(numberGenerator);
         Cars winners = cars.findWinners();
 
         //then
