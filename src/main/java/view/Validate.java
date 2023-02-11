@@ -7,7 +7,7 @@ import java.util.Set;
 public class Validate {
     static final String DIGIT = "\\d+";
 
-    public void isValidCarNames(String[] carNames) {
+    public void checkValidCarNames(String[] carNames) {
         checkBlank(carNames);
         checkLength(carNames);
         checkDouble(carNames);

@@ -19,7 +19,7 @@ public class Input {
 
     public String[] getCarNames(String input) {
         String[] carNames = input.split(DELIMITER);
-        validate.isValidCarNames(carNames);
+        validate.checkValidCarNames(carNames);
         return carNames;
     }
 
