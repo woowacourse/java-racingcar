@@ -20,9 +20,8 @@ public class Cars {
         return new Cars(names);
     }
 
-    public void move() {
-        Random random = new Random();
-        cars.forEach(car -> car.move(random.nextInt(RANDOM_UPPER_BOUND)));
+    public void move(MovingPolicy movingPolicy) {
+        cars.forEach(car -> car.move(movingPolicy.decide()));
     }
 
     public List<String> getWinners() {

@@ -2,17 +2,20 @@ package controller;
 
 import domain.Cars;
 import domain.MoveCount;
+import domain.MovingPolicy;
 import view.InputView;
 import view.OutputView;
 
 public class RacingGameController {
     private MoveCount count;
     private Cars cars;
+    private final MovingPolicy movingPolicy;
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingGameController(InputView inputView, OutputView outputView) {
+    public RacingGameController(MovingPolicy movingPolicy, InputView inputView, OutputView outputView) {
+        this.movingPolicy = movingPolicy;
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -26,7 +29,7 @@ public class RacingGameController {
         outputView.initResult();
 
         while (!count.isOver()) {
-            cars.move();
+            cars.move(movingPolicy);
             count.decrease();
             outputView.printRaceResult(cars.getResult());
         }
