@@ -18,7 +18,7 @@ public class Car {
     }
 
     private void validate(String name) {
-        if (!isValidFormat(name)) {
+        if (isInvalidFormat(name)) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 영어로만 구성되어야 합니다.");
         }
         if (isOutOfRange(name)) {
@@ -30,8 +30,8 @@ public class Car {
         return name.length() > MAXIMUM_ROUND || name.length() < MINIMUM_ROUND;
     }
 
-    private boolean isValidFormat(String name) {
-        return name.matches(ENGLISH_FORMAT);
+    private boolean isInvalidFormat(String name) {
+        return !name.matches(ENGLISH_FORMAT);
     }
 
     public void move(int power) {
