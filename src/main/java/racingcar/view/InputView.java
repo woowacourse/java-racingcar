@@ -1,9 +1,6 @@
 package racingcar.view;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -13,7 +10,8 @@ public class InputView {
 
     private InputViewValidator inputViewValidator = InputViewValidator.getInstance();
 
-    private InputView() {}
+    private InputView() {
+    }
 
     public static InputView getInstance() {
         return INSTANCE;

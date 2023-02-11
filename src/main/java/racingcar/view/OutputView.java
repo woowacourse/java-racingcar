@@ -12,7 +12,8 @@ public class OutputView {
     private static final String PRINT_RACING_RESULT_MESSAGE = "\n실행 결과";
     private static final String PRINT_WINNERS_MESSAGE = "가 최종 우승했습니다.";
 
-    private OutputView() {}
+    private OutputView() {
+    }
 
     public static OutputView getInstance() {
         return INSTANCE;
@@ -30,7 +31,7 @@ public class OutputView {
         printMessage(PRINT_READ_TRY_NUM_MESSAGE);
     }
 
-    public void printRacingResultMessage(){
+    public void printRacingResultMessage() {
         printMessage(PRINT_RACING_RESULT_MESSAGE);
     }
 

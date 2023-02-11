@@ -18,7 +18,8 @@ public class InputViewValidator {
     private static final String TRY_NUM_NOT_INTEGER_ERROR = ERROR_PREFIX + "시도할 횟수가 정수가 아닙니다.";
     private static final String TRY_NUM_NOT_POSITIVE_ERROR = ERROR_PREFIX + "시도할 횟수는 1 이상이어야 합니다.";
 
-    private InputViewValidator() {}
+    private InputViewValidator() {
+    }
 
     public static InputViewValidator getInstance() {
         return INSTANCE;
@@ -71,7 +72,7 @@ public class InputViewValidator {
         }
     }
 
-    private boolean isNotInteger(String tryNum){
+    private boolean isNotInteger(String tryNum) {
         try {
             Integer.parseInt(tryNum);
         } catch (NumberFormatException error) {
