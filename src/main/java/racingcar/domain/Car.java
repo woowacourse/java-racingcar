@@ -10,6 +10,7 @@ public class Car {
     public Car(String name, int distance) {
         validateNameLength(name);
         validateNameFormat(name);
+        validateStartDistance(distance);
         this.name = name;
         this.distance = distance;
     }
@@ -24,6 +25,12 @@ public class Car {
     private void validateNameFormat(String name) {
         if (!name.matches("^[a-zA-Z0-9]*$")) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 영숫자로 이루어져야 합니다.");
+        }
+    }
+
+    private void validateStartDistance(int distance) {
+        if (distance != 0) {
+            throw new IllegalArgumentException("[ERROR] 자동차의 시작 위치는 0으로 설정되어야 합니다.");
         }
     }
 
