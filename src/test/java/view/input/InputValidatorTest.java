@@ -15,12 +15,10 @@ import java.util.stream.Stream;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class InputValidatorTest {
 
-    private final InputValidator inputValidator = new InputValidator();
-
     @ParameterizedTest
     @MethodSource("parameterProviderWhenFail")
     void validateCarNameWithFailureCaseTest(List<String> splitCarName) {
-        assertThatThrownBy(() -> inputValidator.validateCarName(splitCarName))
+        assertThatThrownBy(() -> InputValidator.validateCarName(splitCarName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -36,7 +34,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @MethodSource("parameterProviderWhenSuccess")
     void validateCarNameWithSuccessCaseTest(List<String> splitCarName) {
-        assertThatCode(() -> inputValidator.validateCarName(splitCarName))
+        assertThatCode(() -> InputValidator.validateCarName(splitCarName))
                 .doesNotThrowAnyException();
     }
 
@@ -50,14 +48,14 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "abc", " ", "10001", "3.5"})
     void validateGameTryWithFailureCaseTest(String gameTry) {
-        assertThatThrownBy(() -> inputValidator.validateGameTry(gameTry))
+        assertThatThrownBy(() -> InputValidator.validateGameTry(gameTry))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "10000", "5000"})
     void validateGameTryWithSuccessCaseTest(String gameTry) {
-        assertThatCode(() -> inputValidator.validateGameTry(gameTry))
+        assertThatCode(() -> InputValidator.validateGameTry(gameTry))
                 .doesNotThrowAnyException();
     }
 }

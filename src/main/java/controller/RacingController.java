@@ -9,12 +9,7 @@ import java.util.List;
 
 public class RacingController {
 
-    private final InputView inputView;
     private RacingGame racingGame;
-
-    public RacingController(final InputView inputView) {
-        this.inputView = inputView;
-    }
 
     public void start() {
         makeRacingGame(readCarNames());
@@ -33,7 +28,7 @@ public class RacingController {
 
     private List<String> readCarNames() {
         try {
-            return inputView.readCarName();
+            return InputView.readCarName();
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return readCarNames();
@@ -50,7 +45,7 @@ public class RacingController {
 
     private int readGameTry() {
         try {
-            return inputView.readGameTry();
+            return InputView.readGameTry();
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return readGameTry();

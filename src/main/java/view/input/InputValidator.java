@@ -12,12 +12,12 @@ public class InputValidator {
     private static final String GAME_TRY_COUNT_OUT_OF_RANGE = "[ERROR] 시도 횟수가 1번 이상 10000번 이하여야 합니다.";
     private static final String IS_NOT_INTEGER = "[ERROR] 정수 이외의 다른 문자를 입력해서는 안됩니다.";
 
-    public void validateCarName(final List<String> splitCarNames) {
+    public static void validateCarName(final List<String> splitCarNames) {
         validateCarNameIsEmpty(splitCarNames);
         validateCarNameIsDuplicated(splitCarNames);
     }
 
-    private void validateCarNameIsEmpty(final List<String> splitCarNames) {
+    private static void validateCarNameIsEmpty(final List<String> splitCarNames) {
         boolean isBlankExist = splitCarNames.stream()
                 .anyMatch(String::isBlank);
 
@@ -26,7 +26,7 @@ public class InputValidator {
         }
     }
 
-    private void validateCarNameIsDuplicated(final List<String> splitCarNames) {
+    private static void validateCarNameIsDuplicated(final List<String> splitCarNames) {
         boolean isDuplicated = splitCarNames.stream()
                 .distinct()
                 .count() != splitCarNames.size();
@@ -36,12 +36,12 @@ public class InputValidator {
         }
     }
 
-    public void validateGameTry(final String gameTry) {
+    public static void validateGameTry(final String gameTry) {
         validateIsInteger(gameTry);
         validateGameTryCount(Integer.parseInt(gameTry));
     }
 
-    private void validateIsInteger(final String target) {
+    private static void validateIsInteger(final String target) {
         try {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {
@@ -49,7 +49,7 @@ public class InputValidator {
         }
     }
 
-    private void validateGameTryCount(final int gameTry) {
+    private static void validateGameTryCount(final int gameTry) {
         if (gameTry < MIN_GAME_TRY_COUNT || gameTry > MAX_GAME_TRY_COUNT) {
             throw new IllegalArgumentException(GAME_TRY_COUNT_OUT_OF_RANGE);
         }

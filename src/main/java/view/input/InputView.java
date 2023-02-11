@@ -7,30 +7,25 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private final Scanner scanner;
-    private final InputValidator inputValidator = new InputValidator();
+    private final static Scanner scanner = new Scanner(System.in);
 
-    public InputView(final Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    public List<String> readCarName() {
+    public static List<String> readCarName() {
         OutputView.printCarNamesInputMessage();
 
         final String delimiter = ",";
         String carNames = scanner.nextLine();
         List<String> splitCarNames = List.of(carNames.split(delimiter));
 
-        inputValidator.validateCarName(splitCarNames);
+        InputValidator.validateCarName(splitCarNames);
         return splitCarNames;
     }
 
-    public int readGameTry() {
+    public static int readGameTry() {
         OutputView.printTryCountInputMessage();
 
         String gameTry = scanner.nextLine();
 
-        inputValidator.validateGameTry(gameTry);
+        InputValidator.validateGameTry(gameTry);
         return Integer.parseInt(gameTry);
     }
 }
