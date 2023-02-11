@@ -25,6 +25,10 @@ final class Position {
         return moveCount;
     }
 
+    public boolean isMatchMoveCount(int moveCount) {
+        return this.moveCount == moveCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

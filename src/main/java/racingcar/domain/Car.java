@@ -4,6 +4,7 @@ import racingcar.dto.CarPositionDto;
 
 class Car {
 
+    private static final int GO = 4;
     private final CarName carName;
     private Position position;
 
@@ -12,8 +13,10 @@ class Car {
         position = Position.init();
     }
 
-    public void move() {
-        position = position.next();
+    public void move(int power) {
+        if (power >= GO) {
+            position = position.next();
+        }
     }
 
     public CarPositionDto toDto() {
@@ -25,7 +28,7 @@ class Car {
     }
 
     public boolean matchPosition(int position) {
-        return this.position.getMoveCount() == position;
+        return this.position.isMatchMoveCount(position);
     }
 
     public String getCarName() {

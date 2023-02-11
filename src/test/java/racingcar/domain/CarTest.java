@@ -25,7 +25,7 @@ class CarTest {
 
     @Test
     void status_증가_확인() {
-        car.move();
+        car.move(4);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
