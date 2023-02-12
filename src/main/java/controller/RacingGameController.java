@@ -2,7 +2,6 @@ package controller;
 
 import domain.Car;
 import domain.RacingGame;
-import domain.RandomNumberGenerator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,7 @@ public class RacingGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+    private final RacingGame racingGame = new RacingGame();
 
     public void run() {
         final List<String> carNames = inputView.askCarNames();

@@ -28,8 +28,8 @@ public class RacingCars {
         }
     }
 
-    public void process(final NumberGenerator numberGenerator) {
-        racingCars.forEach(car -> car.moveOrStayByPower(numberGenerator.generate()));
+    public void process(final NumberGenerator powerValueGenerator) {
+        racingCars.forEach(car -> car.moveOrStayByPower(powerValueGenerator.generate()));
     }
 
     public List<String> findHeadCarNames() {
