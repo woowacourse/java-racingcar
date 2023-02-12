@@ -30,6 +30,6 @@ class CarTest {
     void carConstructTest(final String carName) {
         assertThatThrownBy(() -> new Car(carName))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Car.getExceptionMessage());
+                .hasMessage("[ERROR] 자동차 이름의 길이가 5글자를 넘습니다.");
     }
 }

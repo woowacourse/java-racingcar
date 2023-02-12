@@ -36,8 +36,4 @@ public class Car {
             throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEED);
         }
     }
-
-    public static String getExceptionMessage() {
-        return CAR_NAME_LENGTH_EXCEED;
-    }
 }
