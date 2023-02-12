@@ -20,8 +20,7 @@ public class RacingGame {
 
     public void run() {
         while (isGameContinue()) {
-            int power = RandomNumberGenerator.generateRandomNumber();
-            cars.forEach(car -> car.move(power));
+            cars.forEach(car -> car.move(RandomNumberGenerator.generateRandomNumber()));
             Output.printEachCarDistance(cars);
         }
         winner.makeWinnerNames(cars);
