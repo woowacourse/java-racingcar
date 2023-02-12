@@ -22,10 +22,6 @@ public class Cars {
         cars.add(car);
     }
 
-    public Position getPosition(Car car) {
-        return car.getPosition();
-    }
-
     public void move() {
         cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
     }
