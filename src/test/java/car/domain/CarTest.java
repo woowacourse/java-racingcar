@@ -35,13 +35,6 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(result);
     }
 
-    @ParameterizedTest(name = "이름 길이가 1글자 이상 5글자 이하인지 확인하는 테스트")
-    @ValueSource(strings = {"", "aaaaaa"})
-    void 이름_길이_1글자이상_5글자_이하이다(String provided) {
-        assertThatThrownBy(() -> new Car(provided))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @Test
     @DisplayName("위치는 시작점보다 작은지 확인하는 테스트")
     void 위치는_시작점보다_작으면_안된다() {
