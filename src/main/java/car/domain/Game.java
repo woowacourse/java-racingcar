@@ -13,8 +13,10 @@ public class Game {
         this.cars = new ArrayList<>(cars);
         this.moveChance = moveChance;
     }
-
-    public List<Car> findWinners() {
+    public List<CarDto> getWinnersDto(){
+        return findWinners().stream().map(Car::getCarDto).collect(Collectors.toList());
+    }
+    private List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
                 .filter(car -> car.hasSamePositionWith(maxPosition))
@@ -37,5 +39,8 @@ public class Game {
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
+    }
+    public List<CarDto> getCarsDto(){
+        return cars.stream().map(Car::getCarDto).collect(Collectors.toList());
     }
 }

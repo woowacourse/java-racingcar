@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static car.option.Option.*;
-import static car.option.Option.INITIAL_POSITION;
 
 
 public class InputConsole implements Input {
