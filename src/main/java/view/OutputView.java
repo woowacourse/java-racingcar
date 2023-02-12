@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public static String POSITION_MARK = "-";
+    private static final String POSITION_MARK = "-";
 
     public void printGameResult(List<List<CarStatusDto>> result) {
         result.forEach(this::printEachRoundResult);
