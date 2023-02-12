@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import static java.text.MessageFormat.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -19,7 +20,7 @@ class InputValidatorTest {
     void should_throwException_when_invalidNames(final String input) {
         assertThatThrownBy(() -> inputValidator.validateNames(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("차의 이름은 1자 이상 ~ 5자 이하여야 합니다.");
+                .hasMessageContaining("차의 이름은 1자 이상 ~ 5자 이하여야 합니다.");
     }
 
     @Test
@@ -38,6 +39,6 @@ class InputValidatorTest {
     void should_throwException_when_invalidCount(final String input) {
         assertThatThrownBy(() -> inputValidator.validateCount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("횟수는 1이상의 정수만 가능합니다.");
+                .hasMessage(format("입력된 횟수[{0}]: 횟수는 1이상의 정수만 가능합니다.", input));
     }
 }

@@ -1,10 +1,13 @@
 package racingcar.domain;
 
+import static java.text.MessageFormat.format;
+
 public class Name {
 
     private static final int MINIMUM_NAME_LENGTH = 1;
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final String INVALID_NAME_LENGTH_MESSAGE = "차의 이름은 1자 이상 ~ 5자 이하여야 합니다.";
+    private static final String INVALID_NAME_LENGTH_MESSAGE =
+            "입력된 차 이름[{0}]: 차의 이름은 " + MINIMUM_NAME_LENGTH + "자 이상 ~ " + MAXIMUM_NAME_LENGTH + "자 이하여야 합니다.";
 
     private final String value;
 
@@ -14,11 +17,8 @@ public class Name {
     }
 
     private void validate(final String name) {
-        if (hasShortLength(name)) {
-            throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
-        }
-        if (hasLongLength(name)) {
-            throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
+        if (hasShortLength(name) || hasLongLength(name)) {
+            throw new IllegalArgumentException(format(INVALID_NAME_LENGTH_MESSAGE, name));
         }
     }
 
