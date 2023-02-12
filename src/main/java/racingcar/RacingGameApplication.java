@@ -9,13 +9,16 @@ import racingcar.view.OutputView;
 
 public class RacingGameApplication {
 
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         RacingGameController racingGameController = new RacingGameController(inputView(), outputView());
         racingGameController.run();
+        clean();
     }
 
     private static InputView inputView() {
-        return new InputView(inputValidator(), inputParser(), scanner());
+        return new InputView(inputValidator(), inputParser(), scanner);
     }
 
     private static InputValidator inputValidator() {
@@ -26,11 +29,11 @@ public class RacingGameApplication {
         return new InputParser();
     }
 
-    private static Scanner scanner() {
-        return new Scanner(System.in);
-    }
-
     private static OutputView outputView() {
         return new OutputView();
+    }
+
+    private static void clean() {
+        scanner.close();
     }
 }
