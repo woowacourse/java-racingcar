@@ -1,47 +1,34 @@
 package view;
 
-import static utils.Constant.POSITION_BAR;
-import static utils.Constant.WINNER_NAME_DELIMITER;
-import static utils.Notice.ENTER_CAR_NAME;
-import static utils.Notice.ENTER_TRY_TIMES;
-import static utils.Notice.FINAL_WINNER;
-import static utils.Notice.RESULT;
-
-import domain.Car;
-import domain.CarRepository;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public static void printInputCarNamesNotice() {
-        System.out.println(ENTER_CAR_NAME.of());
+    private final String ENTER_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private final String ENTER_TRY_TIMES = "시도할 회수는 몇회인가요?";
+    private final String RESULT = "실행 결과";
+    private final String FINAL_WINNER = "%s가 최종 우승했습니다.";
+
+    public void printInputCarNamesNotice() {
+        System.out.println(ENTER_CAR_NAME);
     }
 
-    public static void printInputTryTimesNotice() {
-        System.out.println(ENTER_TRY_TIMES.of());
+    public void printInputTryTimesNotice() {
+        System.out.println(ENTER_TRY_TIMES);
     }
 
-    public static void printCarNameAndPosition(CarRepository carRepository) {
-        Map<Car, Integer> cars = carRepository.getCarBoard();
-        for (Car car : cars.keySet()) {
-            String carName = car.getName();
-            Integer position = cars.get(car);
-            System.out.println(carName + " : " + POSITION_BAR.repeat(position));
+    public void printResultNotice() {
+        System.out.println(RESULT);
+    }
+
+    public void printSingleRoundResult(List<String> subResult) {
+        for (String carStatus : subResult) {
+            System.out.println(carStatus);
         }
         System.out.println();
     }
 
-    public static void printResultNotice() {
-        System.out.println(RESULT.of());
-    }
-
-    public static void printWinner(List<Car> winnerCars) {
-        List<String> winnerCarNames = winnerCars.stream()
-            .map(
-                Car::getName
-            ).collect(Collectors.toList());
-        System.out.println(String.join(WINNER_NAME_DELIMITER, winnerCarNames) + FINAL_WINNER.of());
+    public void printWinner(String winners) {
+        System.out.printf(FINAL_WINNER, winners);
     }
 }
