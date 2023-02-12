@@ -36,7 +36,7 @@ public class RacingCarGameController {
     }
 
     private RacingCars generateRacingCarsByNames(List<String> carNames) {
-        return RacingCars.of(carNames);
+        return RacingCars.generateByNames(carNames);
     }
 
     private List<String> getCarNames() {

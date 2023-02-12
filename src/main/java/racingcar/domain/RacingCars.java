@@ -11,7 +11,11 @@ public class RacingCars {
         this.racingCars = racingCars;
     }
 
-    public static RacingCars of(List<String> racingCarNames) {
+    public static RacingCars of(List<RacingCar> racingCars) {
+        return new RacingCars(racingCars);
+    }
+
+    public static RacingCars generateByNames(List<String> racingCarNames) {
         List<RacingCar> racingCars = new ArrayList<>();
         racingCarNames.forEach(racingCarName -> {
             racingCars.add(new RacingCar(racingCarName));

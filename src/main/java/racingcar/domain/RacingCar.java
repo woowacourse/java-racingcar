@@ -12,7 +12,7 @@ public class RacingCar implements Comparable<RacingCar> {
     }
 
     public RacingCar(String name, int position) {
-        this.name = null;
+        this.name = name;
         this.position = position;
     }
 
