@@ -15,7 +15,7 @@ public class InputView {
     }
 
     public List<String> readCarNames() {
-        outputView.printNames();
+        outputView.printCarNamesGuide();
 
         String line = scanner.nextLine();
         validateCarNames(line);

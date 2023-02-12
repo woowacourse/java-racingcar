@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class CarFactory {
 
-    public RacingCars createCarRepository(List<String> carNames){
+    public RacingCars setRacingCars(List<String> carNames){
         return new RacingCars(makeCars(carNames));
     }
 
