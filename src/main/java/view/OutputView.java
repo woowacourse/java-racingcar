@@ -1,6 +1,6 @@
 package view;
 
-import domain.Car;
+import dto.CarDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,18 +16,18 @@ public class OutputView {
         printMessage(INFO_SHOW_MESSAGE);
     }
 
-    public void showCars(List<Car> cars) {
+    public void showCars(List<CarDto> cars) {
         cars.forEach(System.out::println);
         printMessage(LINE_CHANGE_MESSAGE);
     }
 
-    public void showWinner(List<Car> cars) {
+    public void showWinner(List<CarDto> cars) {
         printMessage(getWinnerNames(cars) + WINNER_SHOW_POSTFIX_MESSAGE);
     }
 
-    private static String getWinnerNames(List<Car> cars) {
+    private static String getWinnerNames(List<CarDto> cars) {
         return cars.stream()
-                .map(Car::getName)
+                .map(CarDto::getName)
                 .collect(Collectors.joining(JOINING_DELIMITER));
     }
 
