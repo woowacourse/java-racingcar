@@ -1,17 +1,14 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Race {
-    private final List<Car> cars;
+    private final Cars cars;
     private int tryTime;
 
     public Race(final List<Car> cars) {
         checkCarsHasDuplicate(cars);
-        this.cars = new ArrayList<>(cars);
+        this.cars = new Cars(cars);
     }
 
     public void initTryTime(final int tryTime) {
@@ -42,21 +39,15 @@ public class Race {
     }
 
     public void tryMoveOneTime(final NumberPicker numberPicker) {
-        for (final Car car : cars) {
-            car.moveDependingOn(numberPicker.pickNumber());
-        }
+        cars.tryMoveOneTime(numberPicker);
         tryTime--;
     }
 
     public List<Car> getWinners() {
-        final Car winner = Collections.max(cars, Car::compareTo);
-        return cars.stream()
-                .filter(car -> car.samePosition(winner))
-                .collect(Collectors.toUnmodifiableList());
+        return cars.getWinners();
     }
 
     public List<Car> getStatuses() {
-        return Collections.unmodifiableList(cars);
+        return cars.getStatuses();
     }
-
 }

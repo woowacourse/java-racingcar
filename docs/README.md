@@ -39,6 +39,9 @@
 
 # 리팩토링 목록
 
+- [ ] 유효성 검증을 해야하는 값들을 일급컬렉션으로 분리
+    - [x] Race의 List<Car> cars
+    - [ ] Race의 int tryTiem
 - [x] ExceptionHandlingTemplate의 repeat...메소드의 depth를 1로 줄이기
 - [x] RandomNumberPicker에서 Random을 필드변수로 두기.
 - [x] Car class에서 this()를 사용하여 코드의 반복을 제거
