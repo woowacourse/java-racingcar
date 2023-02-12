@@ -4,9 +4,9 @@ public class GameTime {
 
     private static final int MAX_GAME_TIME = 500;
     private static final int RANGE_BOUNDARY = 0;
-    private static final int GAME_END = 0;
 
-    private int gameTime;
+    private final int gameTime;
+    private int timeSpent = 0;
 
     public GameTime(String gameTime) {
         int parsedGameTime = validateParsing(gameTime);
@@ -37,10 +37,10 @@ public class GameTime {
     }
 
     public boolean isInPlay() {
-        return gameTime != GAME_END;
+        return gameTime != timeSpent;
     }
 
     public void runOnce() {
-        gameTime--;
+        timeSpent++;
     }
 }
