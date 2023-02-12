@@ -3,12 +3,9 @@ package racingcar.domain.car;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.Arguments;
-import racingcar.util.WinnerCarsHelper;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -61,25 +58,5 @@ class CarsTest {
             assertThat(afterMoveCars.get(i).position().value())
                     .isEqualTo(beforeMoveCars.get(i).position().value() + 1);
         }
-    }
-
-    static Stream<Arguments> carsAndWinnerCars() {
-        Car winner1 = new Car("말랑");
-        Car winner2 = new Car("채채");
-        Car nonWinner1 = new Car("시카");
-        Car nonWinner2 = new Car("카일");
-        winner1.move(4);
-        winner1.move(4);
-
-        winner2.move(4);
-        winner2.move(4);
-        nonWinner1.move(4);
-
-        List<Car> movedCars = List.of(winner1, winner2, nonWinner1, nonWinner2);
-        Cars cars = WinnerCarsHelper.withWinnerCars(movedCars);
-
-        return Stream.of(
-                Arguments.of(cars, List.of(winner1, winner2))
-        );
     }
 }
