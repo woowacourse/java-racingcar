@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import validation.ErrorMessages;
+import validation.exception.InvalidCarNameException;
 
 class CarTest {
 
@@ -20,8 +21,8 @@ class CarTest {
         //when then
         assertThatThrownBy(() -> {
             Car car = new Car(null, 0);
-        }).isExactlyInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+        }).isExactlyInstanceOf(InvalidCarNameException.class)
+            .hasMessage(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
     }
 
     @DisplayName("자동차 이름이 빈문자열일 경우 오류를 던진다.")
@@ -31,8 +32,8 @@ class CarTest {
         //when then
         assertThatThrownBy(() -> {
             Car car = new Car("", 0);
-        }).isExactlyInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+        }).isExactlyInstanceOf(InvalidCarNameException.class)
+            .hasMessage(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
     }
 
     @DisplayName("자동차 이름이 5자 이상일 경우 오류를 던진다.")
@@ -42,8 +43,8 @@ class CarTest {
         //when then
         assertThatThrownBy(() -> {
             Car car = new Car("123456", 0);
-        }).isExactlyInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+        }).isExactlyInstanceOf(InvalidCarNameException.class)
+            .hasMessage(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
     }
 
     @DisplayName("자동차 이름이 적절한 경우")
@@ -61,10 +62,10 @@ class CarTest {
     @ParameterizedTest
     void 차량_전진_테스트(int driveCount) {
         //given
-        final int DRIVING_DISTANCE = 1;
+        final int drivingDistance = 1;
         Car car = new Car("valid", 0);
         //when
-        IntStream.range(0, driveCount).map(count -> DRIVING_DISTANCE).forEach(car::drive);
+        IntStream.range(0, driveCount).map(count -> drivingDistance).forEach(car::drive);
         //then
         int drivenDistance = car.getDrivenDistance();
         assertThat(drivenDistance).isEqualTo(driveCount);

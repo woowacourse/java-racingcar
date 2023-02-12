@@ -1,8 +1,9 @@
 package domain;
 
 import validation.CarValidator;
-import validation.ErrorMessages;
 import validation.ValidateResult;
+import validation.exception.ContainIdentifierException;
+import validation.exception.InvalidCarNameException;
 
 public class Car {
 
@@ -12,10 +13,10 @@ public class Car {
     public Car(String name, int order) {
         ValidateResult validateResult = CarValidator.validate(name);
         if (validateResult == ValidateResult.FAIL_INVALID_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+            throw new InvalidCarNameException();
         }
         if (validateResult == ValidateResult.FAIL_CONTAIN_IDENTIFIER) {
-            throw new IllegalArgumentException(ErrorMessages.CONTAINS_IDENTIFIER.getMessage());
+            throw new ContainIdentifierException();
         }
         this.name = new Name(name, order);
     }

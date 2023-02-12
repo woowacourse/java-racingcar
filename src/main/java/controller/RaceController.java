@@ -30,7 +30,7 @@ public class RaceController {
         try {
             String input = inputView.getInputUntilExist();
             joinAllParticipants(input);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             getCarNamesUntilValid(inputView);
         }
@@ -45,7 +45,7 @@ public class RaceController {
     private void getCountUntilValid(InputView inputView) {
         try {
             race = new Race(inputView.getInputUntilExist());
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             getCountUntilValid(inputView);
         }
@@ -54,7 +54,7 @@ public class RaceController {
     public void joinAllParticipants(String carNames) {
         try {
             splitWordsBy(carNames, ",").forEach((carName) -> participants.join(carName.strip()));
-        } catch (IllegalArgumentException exception) {
+        } catch (Exception exception) {
             participants.reset();
             throw exception;
         }

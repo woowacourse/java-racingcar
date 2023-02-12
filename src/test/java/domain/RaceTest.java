@@ -6,6 +6,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import validation.ErrorMessages;
+import validation.exception.InvalidCountException;
+import validation.exception.NotNumberException;
 
 class RaceTest {
 
@@ -14,7 +16,7 @@ class RaceTest {
     void create_fail_null() {
         Assertions.assertThatThrownBy(() -> {
                 Race a = new Race(null);
-            }).isExactlyInstanceOf(IllegalArgumentException.class)
+            }).isExactlyInstanceOf(NotNumberException.class)
             .hasMessage(ErrorMessages.NOT_A_NUMBER.getMessage());
     }
 
@@ -23,7 +25,7 @@ class RaceTest {
     void create_fail_empty() {
         Assertions.assertThatThrownBy(() -> {
                 Race a = new Race(null);
-            }).isExactlyInstanceOf(IllegalArgumentException.class)
+            }).isExactlyInstanceOf(NotNumberException.class)
             .hasMessage(ErrorMessages.NOT_A_NUMBER.getMessage());
     }
 
@@ -32,7 +34,7 @@ class RaceTest {
     void create_fail_not_a_number() {
         Assertions.assertThatThrownBy(() -> {
                 Race a = new Race("a");
-            }).isExactlyInstanceOf(IllegalArgumentException.class)
+            }).isExactlyInstanceOf(NotNumberException.class)
             .hasMessage(ErrorMessages.NOT_A_NUMBER.getMessage());
     }
 
@@ -41,7 +43,7 @@ class RaceTest {
     void create_fail_zero() {
         Assertions.assertThatThrownBy(() -> {
                 Race a = new Race("0");
-            }).isExactlyInstanceOf(IllegalArgumentException.class)
+            }).isExactlyInstanceOf(InvalidCountException.class)
             .hasMessage(ErrorMessages.INVALID_COUNT.getMessage());
     }
 
@@ -50,7 +52,7 @@ class RaceTest {
     void create_fail_too_big() {
         Assertions.assertThatThrownBy(() -> {
                 Race a = new Race("1000000000");
-            }).isExactlyInstanceOf(IllegalArgumentException.class)
+            }).isExactlyInstanceOf(InvalidCountException.class)
             .hasMessage(ErrorMessages.INVALID_COUNT.getMessage());
     }
 
