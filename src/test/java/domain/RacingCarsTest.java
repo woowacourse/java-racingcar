@@ -13,8 +13,8 @@ class RacingCarsTest {
 
     @Test
     void 경주참여_자동차들_생성() {
-        List<String> carNames = new ArrayList<>(List.of("자동차1", "자동차2"));
-        RacingCars racingCars = new RacingCars(carNames);
+        final List<String> carNames = new ArrayList<>(List.of("자동차1", "자동차2"));
+        final RacingCars racingCars = new RacingCars(carNames);
 
         assertThat(racingCars.racingCars()).hasSize(carNames.size());
     }
@@ -33,11 +33,11 @@ class RacingCarsTest {
 
     @Test
     void 값에_따른_1회_경주_테스트() {
-        RacingCars racingCars = new RacingCars(List.of("a", "b", "c"));
+        final RacingCars racingCars = new RacingCars(List.of("a", "b", "c"));
 
         racingCars.process(new TestNumberGenerator(new LinkedList<>(List.of(0, 3, 4))));
 
-        List<Car> racedCars = racingCars.racingCars();
+        final List<Car> racedCars = racingCars.racingCars();
         assertThat(racedCars.get(0).getPosition()).isEqualTo(0);
         assertThat(racedCars.get(1).getPosition()).isEqualTo(0);
         assertThat(racedCars.get(2).getPosition()).isEqualTo(1);
@@ -45,7 +45,7 @@ class RacingCarsTest {
 
     @Test
     void 우승자_이름_산출_테스트() {
-        RacingCars racingCars = new RacingCars(List.of("a", "b", "c"));
+        final RacingCars racingCars = new RacingCars(List.of("a", "b", "c"));
 
         racingCars.process(new TestNumberGenerator(new LinkedList<>(List.of(0, 4, 9))));
 
@@ -53,7 +53,8 @@ class RacingCarsTest {
     }
 
     private static class TestNumberGenerator implements NumberGenerator {
-        Queue<Integer> numbers;
+
+        private final Queue<Integer> numbers;
 
         public TestNumberGenerator(Queue<Integer> numbers) {
             this.numbers = numbers;
@@ -61,7 +62,7 @@ class RacingCarsTest {
 
         @Override
         public int generate() {
-            Integer number = numbers.poll();
+            final Integer number = numbers.poll();
             if (number == null) {
                 throw new IllegalStateException("생성 가능한 숫자가 더 이상 존재하지 않습니다.");
             }

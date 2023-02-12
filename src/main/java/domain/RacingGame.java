@@ -24,7 +24,7 @@ public class RacingGame {
         return Collections.unmodifiableList(racingCars.racingCars());
     }
 
-    public List<String> getWinners() {
+    public List<String> getWinnerNames() {
         return racingCars.findHeadCarNames();
     }
 }

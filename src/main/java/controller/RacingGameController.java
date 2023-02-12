@@ -16,11 +16,11 @@ public class RacingGameController {
     private final RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
 
     public void run() {
-        List<String> carNames = inputView.askCarNames();
+        final List<String> carNames = inputView.askCarNames();
         racingGame.enrollCars(carNames);
-        int trialCount = inputView.askTrialCount();
+        final int trialCount = inputView.askTrialCount();
         play(trialCount);
-        outputView.printWinners(racingGame.getWinners());
+        outputView.printWinners(racingGame.getWinnerNames());
     }
 
     private void play(int racingCount) {
@@ -33,12 +33,12 @@ public class RacingGameController {
     }
 
     private void showCarsStatus() {
-        List<Car> carsStatus = racingGame.getCars();
+        final List<Car> carsStatus = racingGame.getCars();
         outputView.printCarsStatus(convertCarsStatus(carsStatus));
     }
 
     private Map<String, Integer> convertCarsStatus(List<Car> carsStatus) {
-        Map<String, Integer> converted = new LinkedHashMap<>();
+        final Map<String, Integer> converted = new LinkedHashMap<>();
         carsStatus.forEach(car -> converted.put(car.getName(), car.getPosition()));
         return converted;
     }
