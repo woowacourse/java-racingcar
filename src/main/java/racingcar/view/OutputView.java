@@ -32,4 +32,8 @@ public class OutputView {
         stringBuilder.append(str).append(OutputConstant.WINNER_MESSAGE.getMessage());
         System.out.println(stringBuilder.toString());
     }
+
+    public static void printNewLine() {
+        System.out.println("");
+    }
 }

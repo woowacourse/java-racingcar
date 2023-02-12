@@ -42,7 +42,7 @@ public class CarService {
         OutputView.printResultMessage();
         for (int i = 0; i < tryCount; i++) {
             runRound();
-            System.out.println("");
+            OutputView.printNewLine();
         }
     }
 
