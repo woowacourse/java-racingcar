@@ -8,13 +8,9 @@ import view.InputView;
 import view.OutputView;
 
 public class Controller {
-    private final OutputView outputView;
-    private final InputView inputView;
     private final RacingGameService racingGameService;
 
-    public Controller(OutputView outputView, InputView inputView, RacingGameService racingGameService) {
-        this.outputView = outputView;
-        this.inputView = inputView;
+    public Controller(RacingGameService racingGameService) {
         this.racingGameService = racingGameService;
     }
 
@@ -26,35 +22,35 @@ public class Controller {
 
     private void playGame() {
         Long trial = receiveTrialInput();
-        outputView.printResultMessage();
+        OutputView.printResultMessage();
         racingGameService.move(trial);
         List<String> moveResult = racingGameService.retrieveMoveResults();
-        outputView.printMoveResult(moveResult);
+        OutputView.printMoveResult(moveResult);
     }
 
     private Long receiveTrialInput() {
-        String trialInput = inputView.receiveTrialInput();
+        String trialInput = InputView.receiveTrialInput();
         try {
             return Converter.convertStringToLong(trialInput);
         } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             return receiveTrialInput();
         }
     }
 
     private void createCars() {
         try {
-            List<String> carNames = inputView.receiveCarNamesInput();
+            List<String> carNames = InputView.receiveCarNamesInput();
             racingGameService.createCars(carNames);
         } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             createCars();
         }
     }
 
     private void printFinalResult() {
         List<String> moveResult = racingGameService.retrieveMoveResults();
-        outputView.printMoveResult(moveResult);
-        outputView.printWinners(racingGameService.calculateWinners());
+        OutputView.printMoveResult(moveResult);
+        OutputView.printWinners(racingGameService.calculateWinners());
     }
 }
