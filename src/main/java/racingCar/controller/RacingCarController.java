@@ -12,7 +12,7 @@ public class RacingCarController {
     public void run() {
         Cars cars = repeat(this::generateCars);
         Integer tryCount = repeat(InputView::readTryCount);
-        playRacing(new NumberPicker(), tryCount, cars);
+        playRacing(cars, tryCount);
         OutputView.printWinners(cars.findWinners());
     }
 
@@ -21,9 +21,9 @@ public class RacingCarController {
         return new Cars(carNames);
     }
 
-    private void playRacing(NumberPicker numberPicker, int tryCount, Cars cars) {
+    private void playRacing(Cars cars, int tryCount) {
         for (int i = 0; i < tryCount; i++) {
-            cars.moveCars(numberPicker);
+            cars.moveCars();
             OutputView.printCarPosition(cars.toDtos());
         }
     }

@@ -14,7 +14,7 @@ public class Cars {
     private static final int MIN_NUMBER_RANGE = 0;
     private static final int MAX_NUMBER_RANGE = 9;
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<String> names) {
         validateDuplicate(names);
@@ -38,7 +38,7 @@ public class Cars {
         }
     }
 
-    public void moveCars(NumberPicker numberPicker) {
+    public void moveCars() {
         for (Car car : cars) {
             car.move(NumberPicker.pickNumberInRange(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE));
         }
