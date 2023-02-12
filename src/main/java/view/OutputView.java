@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     public static void printOutputs(Outputs outputs) {
-        outputs.getStream()
+        outputs.getOutputs()
                 .forEach(OutputView::printOutput);
         System.out.println();
     }

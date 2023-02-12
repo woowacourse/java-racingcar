@@ -1,8 +1,8 @@
 package output;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import domain.Cars;
 
@@ -22,7 +22,7 @@ public class Outputs {
         return new Outputs(outputs);
     }
 
-    public Stream<Output> getStream() {
-        return outputs.stream();
+    public List<Output> getOutputs() {
+        return Collections.unmodifiableList(outputs);
     }
 }
