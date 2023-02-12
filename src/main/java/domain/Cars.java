@@ -1,5 +1,6 @@
 package domain;
 
+import constant.ExceptionMessage;
 import util.NumberGenerator;
 
 import java.util.*;
@@ -13,6 +14,7 @@ public class Cars {
 
     public Cars(String carsName) {
         List<String> carNames = splitCarName(carsName);
+        validDuplication(carNames);
 
         for (String name : carNames) {
             cars.add(new Car(name));
@@ -21,6 +23,15 @@ public class Cars {
 
     private List<String> splitCarName(String carsName) {
         return Arrays.asList(carsName.split(COMMA));
+    }
+
+    private void validDuplication(List<String> carNames) {
+        long duplicationSize = carNames.stream().distinct().count();
+
+        if (carNames.size() == duplicationSize) {
+            throw new IllegalArgumentException(
+                    ExceptionMessage.DUPLICATION_CAR_NAME_MESSAGE.getExceptionMessage());
+        }
     }
 
     public List<Car> getCars() {
