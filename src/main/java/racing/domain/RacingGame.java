@@ -12,6 +12,7 @@ public class RacingGame {
     private int tryCount;
 
     public RacingGame(NumberGenerator numberGenerator, int tryCount, Cars cars) {
+        validateTryCount(tryCount);
         this.numberGenerator = numberGenerator;
         this.cars = cars;
         this.tryCount = tryCount;
@@ -19,6 +20,12 @@ public class RacingGame {
 
     public RacingGame(int tryCount, Cars cars) {
         this(new RandomNumberGenerator(), tryCount, cars);
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (tryCount > 100) {
+            throw new IllegalArgumentException("시도 횟수는 100회 이하만 가능합니다 현재 : " + tryCount + "회");
+        }
     }
 
     public void playOneRound() {

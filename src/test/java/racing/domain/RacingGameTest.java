@@ -1,6 +1,7 @@
 package racing.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
@@ -68,6 +69,16 @@ class RacingGameTest {
         }
 
         assertThat(game.isEnd()).isEqualTo(result);
+    }
+
+    @DisplayName("시도 횟수가 100회 초과하면 예외가 발생한다")
+    @Test
+    void tryCountEx() {
+        int tryCount = 101;
+
+        assertThatThrownBy(() -> new RacingGame(tryCount, dummy))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("시도 횟수는 100회 이하만 가능합니다 현재 : " + tryCount + "회");
     }
 
     static class AlwaysMoveNumberGenerator implements NumberGenerator {
