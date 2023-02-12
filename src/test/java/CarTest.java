@@ -8,9 +8,9 @@ class CarTest {
     void testToString() {
         Car car = new Car("jena");
         for (int i = 0; i < 5; i++) {
-            car.move();
+            car.move(4);
         }
         assertThat(car.toString().split(": ")[1].length())
-                .isEqualTo(car.getDistance());
+                .isEqualTo(car.getPosition());
     }
 }

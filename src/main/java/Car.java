@@ -1,27 +1,26 @@
 public class Car {
-    private final int MOVE_LOWER_BOUND = 4;
+    private static final int MIN_MOVE_POWER = 4;
     private final String name;
-    private int distance;
+    private int position;
 
     public Car(String name) {
         this.name = name;
-        this.distance = 0;
+        this.position = 0;
     }
 
     @Override
     public String toString() {
-        return String.format("%s  : %s", name, "-".repeat(distance));
+        return String.format("%s  : %s", name, "-".repeat(position));
     }
 
-    public void move() {
-        int moveCount = RandomNumberGenerator.randomNumberGenerate();
-        if (moveCount >= MOVE_LOWER_BOUND) {
-            this.distance++;
+    public void move(int power) {
+        if (power >= MIN_MOVE_POWER) {
+            this.position++;
         }
     }
 
-    public int getDistance() {
-        return distance;
+    public int getPosition() {
+        return position;
     }
 
     public String getName() {

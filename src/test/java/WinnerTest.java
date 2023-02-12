@@ -19,15 +19,11 @@ class WinnerTest {
         List<Car> cars = new ArrayList<>();
 
         winner = new Winner();
-        while (car1.getDistance() != 5) {
-            car1.move();
+        for (int i=0; i<5; i++) {
+            car1.move(4);
+            car3.move(4);
         }
-        while (car2.getDistance() != 4) {
-            car2.move();
-        }
-        while (car3.getDistance() != 5) {
-            car3.move();
-        }
+        car2.move(4);
 
         cars.add(car1);
         cars.add(car2);

@@ -26,7 +26,8 @@ public class RacingGame {
     public void start() {
         Output.printMessage("실행 결과");
         while (this.tryCount-- > 0) {
-            cars.forEach(car -> car.move());
+            int power = RandomNumberGenerator.generateRandomPower();
+            cars.forEach(car -> car.move(power));
             Output.printEachCarDistance(cars);
         }
     }
