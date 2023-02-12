@@ -1,9 +1,6 @@
 package racingcar;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.Winner;
-import racingcar.domain.Winners;
+import racingcar.domain.*;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -40,7 +37,7 @@ public class GameController {
     }
 
     public void runGame() {
-        while (gameTime.isNotZero()) {
+        while (gameTime.isInPlay()) {
             runSingleRound();
             gameTime.runOnce();
         }

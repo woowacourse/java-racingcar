@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 public class GameTime {
 
@@ -35,7 +35,7 @@ public class GameTime {
         return Integer.parseInt(gameTime);
     }
 
-    public boolean isNotZero() {
+    public boolean isInPlay() {
         return gameTime != 0;
     }
 
