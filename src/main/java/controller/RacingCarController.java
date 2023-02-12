@@ -40,13 +40,13 @@ public class RacingCarController {
     }
 
     private void printStatus(final Cars cars) {
-        List<CarDto> carDtos = CarDto.getCarDtos(cars);
+        List<CarDto> carDtos = CarDto.getInstances(cars);
         OutputView.printStatus(carDtos);
     }
 
     private void printWinners(final Cars cars) {
         Cars winnerCars = cars.findWinners();
-        List<CarDto> winnerCarDtos = CarDto.getCarDtos(winnerCars);
+        List<CarDto> winnerCarDtos = CarDto.getInstances(winnerCars);
         OutputView.printWinners(winnerCarDtos);
     }
 }

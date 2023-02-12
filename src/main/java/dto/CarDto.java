@@ -16,13 +16,13 @@ public class CarDto {
         this.position = position;
     }
 
-    public static CarDto from(final Car car) {
+    public static CarDto getInstance(final Car car) {
         return new CarDto(car.getName(), car.getPosition());
     }
 
-    public static List<CarDto> getCarDtos(final Cars cars) {
+    public static List<CarDto> getInstances(final Cars cars) {
         return cars.getCars().stream()
-                .map(CarDto::from)
+                .map(CarDto::getInstance)
                 .collect(Collectors.toList());
     }
 
