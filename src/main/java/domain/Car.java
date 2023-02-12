@@ -2,29 +2,29 @@ package domain;
 
 public class Car implements Comparable<Car> {
 
-    public static final int DEFAULT_POSITION_VALUE = 0;
     public static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final Name name;
-    private int position = DEFAULT_POSITION_VALUE;
+    private final Position position;
 
     public Car(Name name) {
         this.name = name;
+        this.position = new Position();
     }
 
     public void move(int number) {
         if (number >= MINIMUM_NUMBER_TO_MOVE) {
-            position++;
+            position.increase();
         }
     }
 
     public boolean isSamePosition(Car other) {
-        return this.position == other.position;
+        return this.position.equals(other.position);
     }
 
     @Override
     public int compareTo(Car other) {
-        return this.position - other.position;
+        return position.compareTo(other.position);
     }
 
     public String getName() {
@@ -32,6 +32,6 @@ public class Car implements Comparable<Car> {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 }

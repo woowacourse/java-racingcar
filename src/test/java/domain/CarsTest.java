@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static domain.Car.DEFAULT_POSITION_VALUE;
 import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
+import static domain.Position.DEFAULT_POSITION_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
