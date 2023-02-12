@@ -5,21 +5,23 @@ import java.util.stream.Collectors;
 
 public class RacingcarService {
 
+    private final CarFactory carFactory;
+
+    public RacingcarService() {
+        this.carFactory = new CarFactory();
+    }
+
+    public List<Car> makeCars(String carNames) {
+        return carFactory.makeCars(carNames);
+    }
+
     public void move(List<Car> cars) {
         for (Car car : cars) {
             car.move(RandomMaker.random());
         }
     }
 
-    public List<Car> findWinner(List<Car> cars) {
-        int winnerPosition = findMaxPosition(cars);
-
-        return cars.stream()
-                .filter(car -> car.isSamePosition(winnerPosition))
-                .collect(Collectors.toList());
-    }
-
-    private int findMaxPosition(List<Car> cars) {
+    public int findMaxPosition(List<Car> cars) {
         int maxPosition = 0;
 
         for (Car car : cars) {
@@ -27,5 +29,11 @@ public class RacingcarService {
         }
 
         return maxPosition;
+    }
+
+    public List<Car> findWinner(List<Car> cars, int maxPosition) {
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .collect(Collectors.toList());
     }
 }
