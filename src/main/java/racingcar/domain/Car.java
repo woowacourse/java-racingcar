@@ -43,11 +43,10 @@ public class Car {
     }
 
     private void validateName(String name) {
-        name = name.trim();
-        if (MINIMUM_NAME_LENGTH <= name.length() && name.length() <= MAXIMUM_NAME_LENGTH) {
-            return;
+        String trimmedName = name.trim();
+        if (trimmedName.length() <= MINIMUM_NAME_LENGTH || MAXIMUM_NAME_LENGTH <= trimmedName.length()) {
+            throw new IllegalArgumentException(WRONG_LENGTH_OF_NAME_ANNOUNCEMENT);
         }
-        throw new IllegalArgumentException(WRONG_LENGTH_OF_NAME_ANNOUNCEMENT);
     }
 
 }
