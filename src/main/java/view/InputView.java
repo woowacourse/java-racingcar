@@ -11,12 +11,13 @@ public class InputView {
     private static final String CAR_NAME_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String GAME_TRIAL_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String DELIMITER = ",";
-    Scanner scanner = new Scanner(System.in);
 
-    public List<String> readCars() {
+    private final Scanner scanner = new Scanner(System.in);
+
+    public List<String> readCarNames() {
         printMessage(CAR_NAME_INPUT_MESSAGE);
-        String inputCars = scanner.nextLine();
-        List<String> carNames = Parser.parse(inputCars, DELIMITER);
+        String inputCarNames = scanner.nextLine();
+        List<String> carNames = Parser.parse(inputCarNames, DELIMITER);
         InputValidator.validateCarName(carNames);
         return carNames;
     }
