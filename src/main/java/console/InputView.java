@@ -8,10 +8,12 @@ import validation.TryCountValidation;
 
 public class InputView {
 
-    public static String[] inputCarNames() {
+    private final CarNamesValidation carNamesValidation = new CarNamesValidation();
+
+    public String[] inputCarNames() {
         try {
             final String carNames = ScannerUtil.readLine();
-            CarNamesValidation.validateInputCarNames(carNames);
+            carNamesValidation.validateInputCarNames(carNames);
             return SplitCarNames.splitCarNames(carNames);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -19,7 +21,7 @@ public class InputView {
         }
     }
 
-    public static int inputTryCount() {
+    public int inputTryCount() {
         try {
             final int tryCount = ScannerUtil.readNumber();
             TryCountValidation.validateTryCount(tryCount);
