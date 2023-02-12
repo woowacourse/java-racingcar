@@ -7,7 +7,7 @@ import racingcar.util.IntGenerator;
 
 public class Cars {
 
-    List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<String> carNames) {
         this.cars = new LinkedList<>();
