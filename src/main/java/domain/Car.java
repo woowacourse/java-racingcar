@@ -3,19 +3,19 @@ package domain;
 public class Car {
 
     private final CarName carName;
-    private int position;
+    private final Position position;
 
     public Car(String name) {
         this.carName = new CarName(name);
-        position = 0;
+        position = new Position(0);
     }
 
     public void move() {
-        position++;
+        position.moveForward();
     }
 
     public int comparePosition(Car otherCar) {
-        return this.position - otherCar.position;
+        return this.getPosition() - otherCar.getPosition();
     }
 
     public boolean hasSamePositionWith(Car otherCar) {
@@ -23,11 +23,11 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return position.get();
     }
 
     public String getCarName() {
-        return carName.getCarName();
+        return carName.get();
     }
 }
 
