@@ -1,16 +1,18 @@
 package racingcar.domain;
 
+import java.util.Random;
+
 public class RandomBasedMoveStrategy implements MoveStrategy {
 
     private static final int MINIMUM_MOVABLE_NUMBER = 4;
-    public static final int MAXIMUM_NUMBER_OF_RANGE = 9;
-
+    private static final int RANGE_OF_RANDOM_NUMBER = 10;
+    
     @Override
     public boolean isMovable() {
         return getRandom() >= MINIMUM_MOVABLE_NUMBER;
     }
 
     private static int getRandom() {
-        return (int) ((Math.random() * 10000) % MAXIMUM_NUMBER_OF_RANGE);
+        return new Random().nextInt(RANGE_OF_RANDOM_NUMBER);
     }
 }
