@@ -12,26 +12,26 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<String> cars) {
+    public Cars(final List<String> cars) {
         validateCars(cars);
         this.cars = cars.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
 
-    private void validateCars(List<String> cars) {
+    private void validateCars(final List<String> cars) {
 
         validateDuplicatedName(cars);
         validateEmpty(cars);
     }
 
-    private void validateEmpty(List<String> cars) {
+    private void validateEmpty(final List<String> cars) {
         if (cars.isEmpty()) {
             throw new IllegalArgumentException("최소 하나 이상의 Car 객체가 존재해야합니다.");
         }
     }
 
-    private void validateDuplicatedName(List<String> cars) {
+    private void validateDuplicatedName(final List<String> cars) {
         Set<String> refined = new HashSet<>(cars);
 
         if (refined.size() != cars.size()) {

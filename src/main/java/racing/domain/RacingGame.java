@@ -11,7 +11,7 @@ public class RacingGame {
     private final Cars cars;
     private int tryCount;
 
-    public RacingGame(RandomNumberGenerator numberGenerator, Cars cars, int tryCount) {
+    public RacingGame(final RandomNumberGenerator numberGenerator, final Cars cars, final int tryCount) {
         this.cars = cars;
         this.tryCount = tryCount;
         this.numberGenerator = numberGenerator;
@@ -23,7 +23,7 @@ public class RacingGame {
         tryCount--;
     }
 
-    private void validateTryCount(int tryCount) {
+    private void validateTryCount(final int tryCount) {
         if (tryCount <= 0) {
             throw new IllegalArgumentException("실행 횟수 보다 많이 실행할 수 없습니다.");
         }
