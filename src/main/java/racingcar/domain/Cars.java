@@ -40,7 +40,9 @@ public class Cars {
         Set<Integer> positions = new HashSet<>();
         cars.forEach(car -> positions.add(getPosition(car)));
         int maxPosition = Collections.max(positions);
-        return cars.stream().filter(car -> getPosition(car) == maxPosition)
+
+        return cars.stream()
+                .filter(car -> getPosition(car) == maxPosition)
                 .map(car -> car.getName())
                 .collect(Collectors.toList());
     }
