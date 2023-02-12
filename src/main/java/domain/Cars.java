@@ -1,0 +1,44 @@
+package domain;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+
+public class Cars {
+
+    private final List<Car> cars = new LinkedList<>();
+
+    public Cars(List<String> carNames) {
+        register(carNames);
+    }
+
+    private void register(List<String> carNames) {
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
+    }
+
+    public void move(int number) {
+        forEach(c -> c.move(number));
+    }
+
+    public void forEach(Consumer<Car> action) {
+        cars.forEach(action);
+    }
+
+    public List<String> getWinners() {
+        final int maxPosition = getMaxPosition();
+        return cars.stream()
+            .filter(c -> c.getPosition() == maxPosition)
+            .map(Car::getName)
+            .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+            .max(Car::compareTo)
+            .orElseThrow()
+            .getPosition();
+    }
+}

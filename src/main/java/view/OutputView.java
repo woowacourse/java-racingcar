@@ -1,6 +1,7 @@
 package view;
 
 import domain.Car;
+import domain.Cars;
 import java.util.List;
 
 public class OutputView {
@@ -12,7 +13,7 @@ public class OutputView {
     public static final String CAR_STATUS_FORMAT = "%s : %s\n";
     public static final String RESULT_WINNER_MESSAGE = "%s가 최종 우승했습니다.";
 
-    public void printStart(List<Car> cars) {
+    public void printStart(Cars cars) {
         printNewLine();
         System.out.println(START_MESSAGE);
         printCarsStatus(cars);
@@ -22,7 +23,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printCarsStatus(List<Car> cars) {
+    public void printCarsStatus(Cars cars) {
         cars.forEach(this::printCarStatus);
         printNewLine();
     }
