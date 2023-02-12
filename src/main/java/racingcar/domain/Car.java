@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private static final int MINIMUM_MOVE_POWER = 4;
 
@@ -34,6 +34,11 @@ public class Car {
 
     public int getPosition() {
         return position.getValue();
+    }
+
+    @Override
+    public int compareTo(final Car car) {
+        return position.getValue() - car.getPosition();
     }
 
     @Override

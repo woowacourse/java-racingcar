@@ -4,7 +4,6 @@ import static java.text.MessageFormat.format;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -74,7 +73,7 @@ public class Cars {
 
     private Car findWinner() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition))
+                .max(Car::compareTo)
                 .get();
     }
 
