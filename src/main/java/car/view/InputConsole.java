@@ -3,10 +3,12 @@ package car.view;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import static car.option.Option.*;
 
 
 public class InputConsole implements Input {
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_TRIAL_COUNT_LENGTH = 10;
     private static final Pattern NOT_INTEGER_PATTERN = Pattern.compile("\\D+");
     Scanner scanner = new Scanner(System.in);
     @Override

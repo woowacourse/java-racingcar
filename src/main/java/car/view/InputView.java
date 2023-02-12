@@ -1,7 +1,5 @@
 package car.view;
 
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class InputView {
     private final Input input;

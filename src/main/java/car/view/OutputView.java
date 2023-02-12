@@ -1,8 +1,5 @@
 package car.view;
 
-import static car.option.Option.CAR_INFIX;
-import static car.option.Option.POSITION_CHARACTER;
-import static car.option.Option.WINNER_DELIMITER;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +7,10 @@ import java.util.stream.Collectors;
 import car.domain.CarDto;
 
 public class OutputView {
+
+    private static final String CAR_INFIX = " : ";
+    private static final String POSITION_CHARACTER = "-";
+    private static final String WINNER_DELIMITER = ", ";
     public void noticeResult() {
         System.out.println("실행 결과");
     }

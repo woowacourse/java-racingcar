@@ -1,12 +1,8 @@
 package car.domain;
 
-import static car.option.Option.INITIAL_POSITION;
 
-public class
-
-
-Car {
-
+public class Car {
+    private final static int INITIAL_POSITION = 0;
     private final String name;
     private int position;
 
