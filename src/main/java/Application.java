@@ -9,7 +9,7 @@ public class Application {
         Output.printMessage("시도할 회수는 몇회인가요?");
         final int tryCount = Input.getTryCount(Input.getInput());
         final RacingGame racingGame = new RacingGame(carNames, tryCount);
-        racingGame.start();
+        racingGame.run();
         Output.printWinner(racingGame.getWinner());
     }
 }
