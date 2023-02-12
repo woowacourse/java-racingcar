@@ -2,7 +2,7 @@ package racingcar.model;
 
 public class CarMovement {
 
-    static private final String OUT_OF_MOVEMENT_RANGE_EXCEPTION = "범위 밖의 움직임 값입니다.";
+    private static final String OUT_OF_MOVEMENT_RANGE_EXCEPTION = "범위 밖의 움직임 값입니다.";
     private final Integer value;
 
     public CarMovement(Integer value){
