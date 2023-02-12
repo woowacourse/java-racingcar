@@ -9,8 +9,15 @@ public class Winners {
 
     private final List<Winner> winners;
 
-    public Winners(List<Winner> winners) {
-        this.winners = winners;
+    public Winners(Cars cars) {
+        int winnerPosition = cars.getCars().stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+        this.winners = cars.getCars().stream()
+                    .filter(car -> car.getPosition() == winnerPosition)
+                    .map(car -> new Winner(car.getName()))
+                    .collect(Collectors.toUnmodifiableList());
     }
 
     public List<Winner> getWinners() {
