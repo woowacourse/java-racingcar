@@ -28,7 +28,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public List<CarDTO> getCars() {
+    public List<CarDTO> getCarsDto() {
         List<CarDTO> carDTOs = new ArrayList<>();
         for (Car car : cars) {
             carDTOs.add(new CarDTO(car.getCarName(), car.getDistance()));

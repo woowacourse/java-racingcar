@@ -13,20 +13,20 @@ public class RacingController {
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public void run() {
-        Cars carsInfo = setUpCarName();
+        Cars cars = setUpCarName();
         int tryCount = setUpTryCount();
-        progressRacingGame(tryCount, carsInfo);
+        progressRacingGame(tryCount, cars);
     }
 
-    public void progressRacingGame(int tryCount, Cars carsInfo) {
+    public void progressRacingGame(int tryCount, Cars cars) {
         RoundResult roundResult = new RoundResult();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
-            progressRound(carsInfo, roundResult);
-            outputView.printCurrentResult(carsInfo.getCars());
+            progressRound(cars, roundResult);
+            outputView.printCurrentResult(cars.getCarsDto());
         }
-        List<String> winners = carsInfo.findWinners();
-        outputView.printFinalResult(carsInfo.getCars(), winners);
+        List<String> winners = cars.findWinners();
+        outputView.printFinalResult(cars.getCarsDto(), winners);
     }
 
     private Cars setUpCarName() {
@@ -51,9 +51,9 @@ public class RacingController {
         }
     }
 
-    private void progressRound(Cars carsInfo, RoundResult roundResult) {
-        carsInfo.progressRound(
-                randomNumberGenerator.generateBoundaryNumbers(carsInfo.getCount()),
+    private void progressRound(Cars cars, RoundResult roundResult) {
+        cars.progressRound(
+                randomNumberGenerator.generateBoundaryNumbers(cars.getCount()),
                 roundResult
         );
     }
