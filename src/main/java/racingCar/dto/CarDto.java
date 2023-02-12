@@ -5,6 +5,8 @@ import racingCar.domain.Position;
 
 public class CarDto {
 
+    private static final String POSITION_MARK = "-";
+
     private final CarName name;
     private final Position position;
 
@@ -16,10 +18,7 @@ public class CarDto {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(name + " : ");
-        for (int i = 0; i < position.getPosition(); i++) {
-            stringBuilder.append("-");
-        }
+        stringBuilder.append(name + " : " + POSITION_MARK.repeat(position.getPosition()));
         return stringBuilder.toString();
     }
 }
