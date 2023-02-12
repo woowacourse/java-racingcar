@@ -1,6 +1,7 @@
 package racingCar.controller;
 
 import racingCar.domain.Cars;
+import racingCar.domain.TryCount;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 import java.util.List;
@@ -10,7 +11,7 @@ public class RacingCarController {
 
     public void run() {
         Cars cars = repeat(this::generateCars);
-        int tryCount = repeat(InputView::readTryCount);
+        TryCount tryCount = repeat(this::readTryCount);
         playRacing(cars, tryCount);
         OutputView.printWinners(cars.findWinners());
     }
@@ -20,8 +21,13 @@ public class RacingCarController {
         return new Cars(carNames);
     }
 
-    private void playRacing(Cars cars, int tryCount) {
-        for (int i = 0; i < tryCount; i++) {
+    private TryCount readTryCount() {
+        int tryCount = repeat(InputView::readTryCount);
+        return new TryCount(tryCount);
+    }
+
+    private void playRacing(Cars cars, TryCount tryCount) {
+        for (int i = 0; i < tryCount.getTryCount(); i++) {
             cars.moveCars();
             OutputView.printCarPosition(cars.toDtos());
         }
