@@ -1,11 +1,17 @@
-import controller.InputController;
-import domain.CarRepositoryImpl;
-
+import controller.RacingGameController;
+import strategy.RandomMovingStrategy;
+import view.InputView;
+import view.OutputView;
 
 public class Main {
 
     public static void main(String[] args) {
-        InputController inputController = new InputController(new CarRepositoryImpl());
-        inputController.startProgram();
+        RacingGameController racingGameController = new RacingGameController(
+            new InputView(),
+            new OutputView(),
+            new RandomMovingStrategy()
+        );
+
+        racingGameController.execute();
     }
 }
