@@ -15,8 +15,8 @@ public class Car {
         this.position = new Position(INIT_POSITION);
     }
 
-    public void move(int moveNumber) {
-        if (moveNumber >= BOUNDARY) {
+    public void move(int power) {
+        if (power >= BOUNDARY) {
             position.increase();
         }
     }
