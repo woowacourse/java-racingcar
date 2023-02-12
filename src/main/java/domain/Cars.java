@@ -28,7 +28,7 @@ public class Cars {
     private void validDuplication(List<String> carNames) {
         long duplicationSize = carNames.stream().distinct().count();
 
-        if (carNames.size() == duplicationSize) {
+        if (carNames.size() != duplicationSize) {
             throw new IllegalArgumentException(
                     ExceptionMessage.DUPLICATION_CAR_NAME_MESSAGE.getExceptionMessage());
         }
