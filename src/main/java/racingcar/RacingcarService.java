@@ -3,6 +3,8 @@ package racingcar;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 public class RacingcarService {
 
