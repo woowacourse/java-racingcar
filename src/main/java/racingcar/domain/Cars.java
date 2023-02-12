@@ -24,7 +24,7 @@ public class Cars {
     }
 
     public void move(final NumberGenerator generator) {
-        cars.forEach(car -> car.move(generator.generate(MIN_NUMBER, MAX_NUMBER)));
+        cars.forEach(car -> car.tryMove(generator.generate(MIN_NUMBER, MAX_NUMBER)));
     }
 
     public List<Car> getCars() {

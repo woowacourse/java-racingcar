@@ -18,7 +18,7 @@ public class Car {
         return position;
     }
 
-    public void move(final int randomNumber) {
-        this.position = this.position.move(randomNumber);
+    public void tryMove(int number) {
+        position.moveOrStop(number);
     }
 }
