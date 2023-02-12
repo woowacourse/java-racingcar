@@ -17,7 +17,9 @@ public class RacingGameApplication {
     private final OutputView outputView;
     private final RacingGame racingGame;
 
-    public RacingGameApplication(InputView inputView, OutputView outputView, RacingGame racingGame) {
+    public RacingGameApplication(InputView inputView,
+                                 OutputView outputView,
+                                 RacingGame racingGame) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.racingGame = racingGame;
