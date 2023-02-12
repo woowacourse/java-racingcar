@@ -1,8 +1,8 @@
 import domain.Car;
+import domain.RacingGame;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import service.RacingGame;
 import service.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;

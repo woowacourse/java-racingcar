@@ -1,11 +1,11 @@
-package service;
+package domain;
 
-import domain.Car;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import service.NumberGenerator;
 
 public class RacingGame {
     private static final int RANDOM_START_INCLUSIVE = 0;
