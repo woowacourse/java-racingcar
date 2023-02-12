@@ -13,12 +13,16 @@ public class RacingGame {
     private final InputView input = new InputView();
     private final OutputView output = new OutputView();
 
+    private final CarManager carManager;
+
+    public RacingGame() {
+        carManager = new CarManager(getCarsFromInput());
+    }
+
     public void run() {
-        CarManager carManager = new CarManager(getCarsFromInput());
         TrialCount count = getTrialCountFromInput();
         output.printExecutionResultMessage();
-        executeCarMoveByCount(carManager,count);
-        output.printFinalResult(carManager.getWinners());
+        executeCarMoveByCount(count);
     }
 
     private List<Car> getCarsFromInput() {
@@ -42,14 +46,17 @@ public class RacingGame {
         }
     }
 
-    private void executeCarMoveByCount(CarManager manager, TrialCount count) {
+    private void executeCarMoveByCount(TrialCount count) {
         for (int i = 0; i < count.getValue(); i++) {
-            manager.moveCarsRandomly();
-            printExecutedResult(manager.getCars());
+            carManager.moveCarsRandomly();
+            displayExecutedResult();
         }
     }
 
-    private void printExecutedResult(List<Car> carData) {
-        output.printExecutionResult(carData);
+    private void displayExecutedResult() {
+        List<Car> cars = carManager.getCars();
+        cars.stream()
+                .forEach(car -> output.printExecutionResult(car.getName(), car.getPosition()));
+        System.out.println();
     }
 }
