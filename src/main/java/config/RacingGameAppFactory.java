@@ -9,19 +9,19 @@ import view.OutputView;
 
 public class RacingGameAppFactory {
 
-    public RacingGameApplication generateApp() {
+    public static RacingGameApplication generate() {
         return new RacingGameApplication(initInputView(), initOutputView(), initNumberGenerator());
     }
 
-    private InputView initInputView() {
+    private static InputView initInputView() {
         return new InputViewProxy(new InputView());
     }
 
-    private OutputView initOutputView() {
+    private static OutputView initOutputView() {
         return new OutputView();
     }
 
-    private NumberGenerator initNumberGenerator() {
+    private static NumberGenerator initNumberGenerator() {
         return new RandomNumberGenerator();
     }
 }
