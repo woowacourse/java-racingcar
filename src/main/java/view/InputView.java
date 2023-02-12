@@ -4,7 +4,6 @@ import util.CarNameValidator;
 import util.RepeatCountValidator;
 import util.Validator;
 
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -20,13 +19,13 @@ public class InputView {
     private final Validator carNameValidator;
     private final Validator repeatCountValidator;
 
-    public InputView(InputStream consoleConnector) {
-        console = new Scanner(consoleConnector);
+    public InputView() {
+        console = new Scanner(System.in);
         carNameValidator = new CarNameValidator();
         repeatCountValidator = new RepeatCountValidator();
     }
 
-    public List<String> inputCarNames() {
+    public List<String> getCarNames() {
         System.out.println(CAR_NAMES_HEADER);
         List<String> carNames = Arrays.asList(console.nextLine().split(DELIMITER,-1));
         List<String> trimCarNames = trimCarNames(carNames);
@@ -42,13 +41,12 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public int inputRepeatCount() {
+    public int getTryCount() {
         System.out.println(NUMBER_OF_TIME_HEADER);
         String number = console.nextLine();
+
         repeatCountValidator.validate(number);
 
         return Integer.parseInt(number);
     }
-
-
 }
