@@ -1,7 +1,7 @@
 package utils;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Names {
 
@@ -17,8 +17,8 @@ public class Names {
         this.names = names;
     }
 
-    public Stream<String> getStream() {
-        return names.stream();
+    public List<String> getNames() {
+        return Collections.unmodifiableList(names);
     }
 
     private void validate(List<String> names) {

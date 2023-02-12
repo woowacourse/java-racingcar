@@ -30,7 +30,8 @@ public class RacingCarController {
     }
 
     private Cars makeCarsFrom(Names names) {
-        List<Car> cars = names.getStream()
+        List<Car> cars = names.getNames()
+                .stream()
                 .map(Car::new)
                 .collect(Collectors.toList());
 
