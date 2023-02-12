@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
-import racingcar.mock.MockFixedNumberGenerator;
+import racingcar.domain.game.NumberGenerator;
 import racingcar.util.WinnerCarsHelper;
 
 import java.util.List;
@@ -50,7 +50,7 @@ class CarsTest {
                 .collect(Collectors.toList());
 
         // when
-        cars.move(new MockFixedNumberGenerator(4));
+        cars.move(new NumberGenerator(() -> 0.4));
 
         // then
         List<Car> afterMoveCars = cars.cars();
