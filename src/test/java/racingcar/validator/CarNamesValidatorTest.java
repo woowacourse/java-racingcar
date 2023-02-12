@@ -42,7 +42,7 @@ class CarNamesValidatorTest {
     public void 길이_예외_검사(List<String> names) {
         Assertions.assertThatThrownBy(() -> carNamesValidator.validateNames(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자동차 이름은 5자이하만 가능합니다.");
+                .hasMessageContaining("자동차 이름은 1자이상 5자이하만 가능합니다.");
     }
 
     static Stream<Arguments> 길이_예외_검사_데이터_생성() {

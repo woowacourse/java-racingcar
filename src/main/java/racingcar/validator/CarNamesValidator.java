@@ -24,7 +24,7 @@ public class CarNamesValidator {
         if (carNameRange.isInRange(name.length())) {
             return;
         }
-        throw new IllegalArgumentException("자동차 이름은 5자이하만 가능합니다.");
+        throw new IllegalArgumentException("자동차 이름은 1자이상 5자이하만 가능합니다.");
     }
 
     private void validateBlank(String name) {
