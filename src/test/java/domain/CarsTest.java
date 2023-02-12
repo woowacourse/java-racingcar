@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -26,5 +27,25 @@ class CarsTest {
 
         assertThatCode(() -> new Cars(nonDuplicateCarNames))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("제일 멀리 움직인 자동차가 우승자인지 확인한다.")
+    void findWinnersTest() {
+        Cars cars = new Cars(List.of("leo", "mint", "yh"));
+        cars.progressRound(List.of(1,5,3), new RoundResult());
+        List<String> winners = cars.findWinners();
+
+        assertThat(winners).contains("mint");
+    }
+
+    @Test
+    @DisplayName("제일 멀리 움직인 자동차가 여러 대면 공동 우승자인지 확인한다.")
+    void findMultipleWinnersTest() {
+        Cars cars = new Cars(List.of("leo", "mint", "yh"));
+        cars.progressRound(List.of(4,5,3), new RoundResult());
+        List<String> winners = cars.findWinners();
+
+        assertThat(winners).contains("mint","leo");
     }
 }
