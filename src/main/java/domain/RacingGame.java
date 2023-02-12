@@ -42,13 +42,13 @@ public class RacingGame {
         Car furthestCar = getFurthestCar();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == furthestCar.getPosition())
+                .filter(car -> car.hasSamePositionWith(furthestCar))
                 .collect(Collectors.toList());
     }
 
     private Car getFurthestCar() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition))
+                .max(Car::comparePosition)
                 .orElseThrow(() -> new IllegalArgumentException(NO_CARS_EXIST));
     }
 }

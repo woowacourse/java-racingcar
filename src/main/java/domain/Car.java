@@ -16,7 +16,7 @@ public class Car {
         position = 0;
     }
 
-    public void validateCarName(String carName) {
+    private void validateCarName(String carName) {
         validateCarNameIsNotEmpty(carName);
         validateCarNameLength(carName);
     }
@@ -35,6 +35,14 @@ public class Car {
 
     public void move() {
         position++;
+    }
+
+    public int comparePosition(Car otherCar) {
+        return this.position - otherCar.position;
+    }
+
+    public boolean hasSamePositionWith(Car otherCar) {
+        return comparePosition(otherCar) == 0;
     }
 
     public int getPosition() {
