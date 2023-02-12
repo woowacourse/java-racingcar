@@ -16,7 +16,7 @@ class CarTest {
                 .isThrownBy(() -> new Car("자동차"));
     }
 
-    @DisplayName("Car 객체 생성 시 이름이 5자 초과이면 예외를 발생시킨다.")
+    @DisplayName("Car 객체 생성 시 이름이 " + MAX_NAME_LENGTH + "자 초과이면 예외를 발생시킨다.")
     @Test
     void Car생성_실패_이름길이초과() {
         assertThatThrownBy(() -> new Car("잘못된자동차이름"))

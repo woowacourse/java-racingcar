@@ -21,7 +21,7 @@ class InputViewTest {
         assertThatNoException().isThrownBy(() -> new InputView().sendCarsName());
     }
 
-    @DisplayName("Car의 이름이 5자 초과이면 예외를 발생시킨다.")
+    @DisplayName("Car의 이름이 " + MAX_NAME_LENGTH + "자 초과이면 예외를 발생시킨다.")
     @Test
     void Car_이름_검증_실패_길이초과() {
         String input = "이름이긴자동차1,이름이긴자동차2,이름이긴자동차3";
@@ -62,7 +62,7 @@ class InputViewTest {
 
     }
 
-    @DisplayName("tryCount가 100보다 크면 예외를 발생시킨다.")
+    @DisplayName("tryCount가 " + TRY_COUNT_LIMIT + "보다 크면 예외를 발생시킨다.")
     @Test
     void tryCount_크기_검증_실패_너무큰수() {
         String input = "101";
