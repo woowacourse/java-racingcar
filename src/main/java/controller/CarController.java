@@ -1,12 +1,19 @@
 package controller;
 
+import exception.DuplicateCarNameException;
+import model.Car;
 import service.CarService;
 import service.wrapper.Round;
 import utils.RacingNumberGenerator;
 import view.InputView;
 import view.OutputView;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarController {
+
+    private static final String SEPARATOR = ",";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -19,7 +26,7 @@ public class CarController {
     }
 
     public void run(RacingNumberGenerator generator) {
-        generateCars();
+        carService.generateCars(generateCars());
         Round round = generateRound();
 
         race(generator, round);
@@ -34,14 +41,33 @@ public class CarController {
         }
     }
 
-    private void generateCars() {
+    private List<Car> generateCars() {
         try {
-            String carsName = inputView.inputCarsName();
-            carService.generateCars(carsName);
+            String[] carsName = inputView.inputCarsName().split(SEPARATOR);
+            checkDuplication(carsName);
+            return mapToCars(carsName);
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception.getMessage());
-            generateCars();
+            return generateCars();
         }
+    }
+
+    private static void checkDuplication(String[] carsName) {
+        if (getDistinctCarsCount(carsName) != carsName.length) {
+            throw new DuplicateCarNameException();
+        }
+    }
+
+    private static long getDistinctCarsCount(String[] carsName) {
+        return Arrays.stream(carsName)
+                .distinct()
+                .count();
+    }
+
+    private static List<Car> mapToCars(String[] carsName) {
+        return Arrays.stream(carsName)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     private Round generateRound() {

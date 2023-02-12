@@ -2,33 +2,16 @@ package model;
 
 import dto.CarDto;
 import dto.WinnerCarDto;
-import exception.DuplicateCarNameException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import utils.RacingNumberGenerator;
 
 public class Cars {
 
-    private static final String SEPARATOR = ",";
-
     private final List<Car> cars;
 
-    public Cars(String inputNames) {
-        String[] carsName = inputNames.split(SEPARATOR);
-        List<Car> inputCars = Arrays.stream(carsName)
-                .distinct()
-                .map(Car::new)
-                .collect(Collectors.toList());
-
-        validateNameDuplication(carsName.length, inputCars.size());
-        cars = inputCars;
-    }
-
-    private void validateNameDuplication(int nameSize, int carSize) {
-        if (nameSize != carSize) {
-            throw new DuplicateCarNameException();
-        }
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public void race(RacingNumberGenerator generator) {
