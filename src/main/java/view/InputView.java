@@ -67,7 +67,8 @@ public class InputView {
                     "입력값 : " + tryCount);
         }
         if (tryCount > TRY_COUNT_LIMIT) {
-            throw new IllegalArgumentException("시도할 회수는 " + TRY_COUNT_LIMIT +"회 이하여야 합니다.");
+            throw new IllegalArgumentException("시도할 회수는 " + TRY_COUNT_LIMIT +"회 이하여야 합니다." +
+                    "입력값 : " + tryCount);
         }
     }
 }
