@@ -4,9 +4,9 @@ import racingcar.controller.RacingController;
 import racingcar.model.car.CarFactory;
 import racingcar.model.car.formatter.CarPositionFormatter;
 import racingcar.model.car.formatter.CarsPositionFormatter;
-import racingcar.model.track.formatter.TrackStateFormatter;
 import racingcar.model.car.strategy.MovingStrategy;
 import racingcar.model.car.strategy.RandomMovingStrategy;
+import racingcar.model.track.formatter.TrackStateFormatter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

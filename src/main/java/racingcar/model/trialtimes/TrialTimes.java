@@ -21,7 +21,6 @@ public class TrialTimes {
         return trialTimes > number;
     }
 
-
     private void validate(int trialTimes) {
         validateRange(trialTimes);
     }

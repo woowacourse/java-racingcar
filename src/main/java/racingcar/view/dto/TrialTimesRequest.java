@@ -28,6 +28,7 @@ public class TrialTimesRequest {
             throw new IllegalArgumentException(ErrorMessage.INVALID_TRIAL_NUMBER.message());
         }
     }
+
     public int getTrialTimes() {
         return trialTimes;
     }
