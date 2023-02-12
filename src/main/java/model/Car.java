@@ -36,8 +36,4 @@ public class Car implements Comparable<Car> {
     public int compareTo(Car otherCar) {
         return this.position.compareTo(otherCar.position);
     }
-
-    public String getName() {
-        return name.getName();
-    }
 }
