@@ -3,8 +3,7 @@ package racingcar.controller;
 import racingcar.domain.*;
 import racingcar.dto.RacingCarDto;
 import racingcar.utils.Parser;
-import racingcar.validator.CarNamesValidator;
-import racingcar.validator.TryCountValidator;
+import racingcar.validator.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -16,15 +15,16 @@ public class RacingCarGameController {
     private static final int FIRST_CAR_INDEX = 0;
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
-
+    private final Validator validator = new Validator();
 
     public void run() {
-        List<String> validateCarNames = getValidateCarNames();
+        List<String> carNames = getValidCarNames();
         int tryCount = getValidTryCount();
-        RoundManager roundManager = initializeRoundManager(validateCarNames);
+
+        RoundManager roundManager = initializeRoundManager(carNames);
 
         outputView.printResultHeader();
-        outputView.printRoundResult(roundManager.getCurrentRound());
+        outputView.printRoundResult(roundManager.getStartStatus());
         for (int roundCount = 0; roundCount < tryCount; roundCount++) {
             outputView.printRoundResult(roundManager.runRound());
         }
@@ -33,48 +33,29 @@ public class RacingCarGameController {
         outputView.printWinners(winningCarsName);
     }
 
-    private List<String> getParsedCarNames() {
-        String carNames = inputView.readCarName();
-        return Parser.parsing(carNames, ",");
-    }
-
-    private List<String> getValidateCarNames() {
-        List<String> parsedCarNames = new ArrayList<>();
-        do {
-            parsedCarNames = getParsedCarNames();
-        } while (!isValidCarNames(parsedCarNames));
-        return parsedCarNames;
-    }
-
-    private boolean isValidCarNames(List<String> carNames) {
-        CarNamesValidator carNamesValidator = new CarNamesValidator();
+    private List<String> getValidCarNames() {
         try {
-            carNamesValidator.validateNames(carNames);
+            String carNames = inputView.readCarName();
+            List<String> parsedCarNames = Parser.parsing(carNames, ",");
+            validator.validateNames(parsedCarNames);
+            return parsedCarNames;
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return false;
+            return getValidCarNames();
         }
-        return true;
     }
 
     private int getValidTryCount() {
-        String tryCount;
-        do {
-            tryCount = inputView.readTryCount();
-        } while (!isValidTryCount(tryCount));
-        return Integer.parseInt(tryCount);
-    }
-
-    private boolean isValidTryCount(String tryCount) {
-        TryCountValidator tryCountValidator = new TryCountValidator();
         try {
-            tryCountValidator.validateTryCount(tryCount);
+            String tryCount = inputView.readTryCount();
+            validator.validateTryCount(tryCount);
+            return Integer.parseInt(tryCount);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
-            return false;
+            return getValidTryCount();
         }
-        return true;
     }
+
 
     private void setCars(List<String> carNames, RoundManager roundManager) {
         for (String carName : carNames) {
@@ -91,14 +72,14 @@ public class RacingCarGameController {
         return roundManager;
     }
 
-    private List<String> getWinningCarsName(List<RacingCarDto> sortedSortedRacingCars) {
+    private List<String> getWinningCarsName(List<RacingCarDto> sortedRacingCars) {
         List<String> winningCarsNames = new ArrayList<>();
-        for (int index = 0; index < sortedSortedRacingCars.size(); index++) {
-            RacingCarDto targetCar = sortedSortedRacingCars.get(index);
+        for (int index = 0; index < sortedRacingCars.size(); index++) {
+            RacingCarDto targetCar = sortedRacingCars.get(index);
             winningCarsNames.add(targetCar.getName());
         }
-        RacingCarDto firstCar = sortedSortedRacingCars.get(FIRST_CAR_INDEX);
-        return sortedSortedRacingCars.stream()
+        RacingCarDto firstCar = sortedRacingCars.get(FIRST_CAR_INDEX);
+        return sortedRacingCars.stream()
                 .filter(car -> car.getPoint().equals(firstCar.getPoint()))
                 .map(car -> car.getName())
                 .collect(Collectors.toList());
