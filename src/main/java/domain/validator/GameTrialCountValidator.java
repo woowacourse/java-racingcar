@@ -7,8 +7,7 @@ import java.util.regex.Pattern;
 public class GameTrialCountValidator {
 
     private static final int MIN_TRIAL_COUNT = 1;
-    private static final String DIGIT_REGEX = "^[0-9]+$";
-    private static final Pattern NUMBER = Pattern.compile(DIGIT_REGEX);
+    private static final Pattern NUMBER = Pattern.compile("^[0-9]+$");
 
     public static void validateTrialCount(String trialCount) {
         checkDigit(trialCount);
