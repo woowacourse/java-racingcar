@@ -1,12 +1,10 @@
 package racingcar;
 
 import racingcar.domain.*;
+import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.domain.numbergenerator.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class GameController {
 
@@ -14,6 +12,7 @@ public class GameController {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
+    private static final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     private final Cars cars;
     private final GameTime gameTime;
@@ -40,7 +39,7 @@ public class GameController {
     }
 
     private void runSingleRound() {
-        cars.moveCarsRandomly();
+        cars.moveCars(numberGenerator);
         cars.getCars().forEach(car -> outputView.printPosition(car.getName(), car.getPosition()));
         System.out.println();
     }

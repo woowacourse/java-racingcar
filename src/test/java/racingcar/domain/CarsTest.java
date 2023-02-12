@@ -1,10 +1,16 @@
 package racingcar.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.domain.numbergenerator.UserNumberGenerator;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -26,5 +32,20 @@ class CarsTest {
         assertThatThrownBy(() -> new Cars("aa"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("둘 이상");
+    }
+
+    @Test
+    @DisplayName("UserNumberGenerator를 이용하면 차 전체가 1 이동한다.")
+    void UserNumberGenerator_MoveCars_Test() {
+        NumberGenerator numberGenerator = new UserNumberGenerator();
+        Cars cars = new Cars("a, b, c, d");
+
+        cars.moveCars(numberGenerator);
+        List<Integer> result = cars.getCars().stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
+
+        assertThat(result).containsOnly(1);
+
     }
 }
