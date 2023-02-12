@@ -55,5 +55,4 @@ class RacingGameTest {
 
         assertThat(racingGame.canContinue()).isFalse();
     }
-
 }

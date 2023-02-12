@@ -18,5 +18,4 @@ class ParserTest {
 
         assertThat(Parser.parse(names, delimiter)).containsExactly(kong, gray, echo);
     }
-
 }
