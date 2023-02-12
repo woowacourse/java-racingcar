@@ -16,17 +16,13 @@ public class Application {
 
     private static Cars initializeCar() {
         String[] names = getNames();
-        return makeCars(names);
+        return racingGame.createCars(names);
     }
 
     private static String[] getNames() {
         String inputNames = InputView.inputCarName();
         InputVerifier.validateNameLength(inputNames);
         return Converter.splitInput(inputNames);
-    }
-
-    private static Cars makeCars(String[] names) {
-        return racingGame.createCars(names);
     }
 
     private static int getCount() {
