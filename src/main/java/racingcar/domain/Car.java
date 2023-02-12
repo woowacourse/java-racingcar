@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.dto.CarRaceDto;
 import racingcar.domain.wrapper.CarName;
 import racingcar.domain.wrapper.CarPosition;
 
@@ -21,10 +20,6 @@ public class Car {
 
     public static Car createCar(final String name) {
         return new Car(name);
-    }
-
-    public CarRaceDto getCarRaceResult() {
-        return CarRaceDto.createCarRaceDto(name.getName(), position.getPosition());
     }
 
     public void move(final int power) {
