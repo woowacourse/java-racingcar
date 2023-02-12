@@ -15,7 +15,13 @@ class TryCountTest {
 
     @DisplayName("0이하의 정수를 입력 시 예외를 반환한다.")
     @Test
-    void TryCount_실패() {
+    void TryCount_실패_너무작은수() {
         assertThatIllegalArgumentException().isThrownBy(() -> new TryCount(-1));
+    }
+
+    @DisplayName("100 보다 큰 정수를 입력 시 예외를 반환한다.")
+    @Test
+    void TryCount_실패_너무큰수() {
+        assertThatIllegalArgumentException().isThrownBy(() -> new TryCount(101));
     }
 }
