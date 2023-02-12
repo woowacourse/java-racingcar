@@ -9,7 +9,7 @@ public class RandomIntGenerator implements IntGenerator {
         this.random = new Random();
     }
 
-    public int getByRange(int min, int max) {
+    public int getOneNumber(int min, int max) {
         return random.ints(min, (max + 1))
                 .findFirst()
                 .getAsInt();

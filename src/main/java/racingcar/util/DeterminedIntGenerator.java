@@ -12,7 +12,7 @@ public class DeterminedIntGenerator implements IntGenerator {
         this.determinedNumber = determinedNumber;
     }
 
-    public int getByRange(int min, int max) {
+    public int getOneNumber(int min, int max) {
         return determinedNumber;
     }
 }

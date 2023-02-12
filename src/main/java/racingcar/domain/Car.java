@@ -37,7 +37,7 @@ public class Car {
     }
 
     private boolean canMove() {
-        return intGenerator.getByRange(MINIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE,
+        return intGenerator.getOneNumber(MINIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE,
                 MAXIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE) >= MINIMUM_NUMBER_TO_MOVE;
     }
 
