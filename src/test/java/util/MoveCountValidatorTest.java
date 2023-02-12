@@ -49,7 +49,6 @@ class MoveCountValidatorTest {
                     .isThrownBy(() -> moveCountValidator.validate("0"))
                     .withMessageStartingWith(Message.EXCEPTION_NUMBER_RANGE.getMessage());
         }
-
     }
 
     @Nested
@@ -60,7 +59,5 @@ class MoveCountValidatorTest {
             assertThatCode(() -> moveCountValidator.validate(input))
                     .doesNotThrowAnyException();
         }
-
     }
-
 }
