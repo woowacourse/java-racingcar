@@ -15,7 +15,7 @@ class RacingCarNamesRequestTest {
     @ValueSource(strings = {"carcar", "car,carcar", "car,car2,carcar"})
     void car_nameLengthOverThanSix(String input) {
         // expect
-        assertThatThrownBy(() -> new Car(input, 0))
+        assertThatThrownBy(() -> new Car(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(OUT_OF_CAR_NAME_LENGTH.getMessage());
     }
