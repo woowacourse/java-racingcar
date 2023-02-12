@@ -84,10 +84,10 @@ public class CarTest {
     @DisplayName("입력으로 들어온 위치와 현재 자동차의 위치가 일치하면 true를 리턴한다.")
     void givenSamePosition_thenReturnTrue() {
         // given
-        int maxPosition = 1;
+        Car diffCar = Car.createCar("test");
 
         // when
-        boolean isSamePosition = testCar.isSamePosition(maxPosition);
+        boolean isSamePosition = testCar.isSamePosition(diffCar);
 
         // then
         assertThat(isSamePosition)
@@ -98,10 +98,11 @@ public class CarTest {
     @DisplayName("입력으로 들어온 위치와 현재 자동차의 위치가 일치하지 않는다면 false를 리턴한다.")
     void givenSamePosition_thenReturnFalse() {
         // given
-        int maxPosition = 2;
+        Car diffCar = Car.createCar("test");
+        diffCar.move(9);
 
         // when
-        boolean isSamePosition = testCar.isSamePosition(maxPosition);
+        boolean isSamePosition = testCar.isSamePosition(diffCar);
 
         // then
         assertThat(isSamePosition)
