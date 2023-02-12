@@ -41,12 +41,9 @@ public class Controller {
     private Trial getTrial() {
         try {
             return inputView.getTrial();
-        } catch (Exception exception) {
-            if (exception.getClass() == IllegalArgumentException.class) {
-                outputView.printErrorMessage(exception.getMessage());
-                getTrial();
-            }
-            throw exception;
+        } catch (IllegalArgumentException exception) {
+            outputView.printErrorMessage(exception.getMessage());
+            return getTrial();
         }
     }
 
@@ -55,11 +52,8 @@ public class Controller {
             List<Name> carNames = inputView.getCarNames();
             service.initializeCars(carNames);
         } catch (IllegalArgumentException exception) {
-            if (exception.getClass() == IllegalArgumentException.class) {
-                outputView.printErrorMessage(exception.getMessage());
-                initializeCars();
-            }
-            throw exception;
+            outputView.printErrorMessage(exception.getMessage());
+            initializeCars();
         }
     }
 
