@@ -63,7 +63,7 @@ public class PositionTest {
         increasePositionValue(expected, maxValue);
 
         List poses = List.of(pos1, pos2);
-        assertThat(Collections.max(poses).equals(expected)).isTrue();
+        assertThat(Collections.max(poses)).isEqualTo(expected);
     }
 
     static Stream<Arguments> generateData() {

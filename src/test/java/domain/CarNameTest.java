@@ -1,12 +1,12 @@
 package domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.CarName;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CarNameTest {
 
@@ -14,7 +14,7 @@ public class CarNameTest {
     @DisplayName("정상 자동차 이름 테스트")
     @ValueSource(strings={"푸우","에코","그레이","콩하나","깃짱","이리내"})
     public void validCarNameTest(String carName){
-        Assertions.assertDoesNotThrow(()-> {
+        assertDoesNotThrow(()-> {
             new CarName(carName);
         });
     }
