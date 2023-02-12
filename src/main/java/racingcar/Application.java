@@ -1,4 +1,6 @@
-import controller.GameController;
+package racingcar;
+
+import racingcar.controller.GameController;
 
 public class Application {
     public static void main(String[] args) {

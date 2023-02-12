@@ -1,10 +1,10 @@
-package controller;
+package racingcar.controller;
 
-import racingcar.CarRepository;
-import racingcar.RacingCarGame;
-import validator.NumberOfTryValidator;
-import view.InputView;
-import view.OutputView;
+import racingcar.domain.CarRepository;
+import racingcar.domain.RacingCarGame;
+import racingcar.validator.NumberOfTryValidator;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class GameController {
 

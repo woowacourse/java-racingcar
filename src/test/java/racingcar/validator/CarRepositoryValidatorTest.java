@@ -1,9 +1,9 @@
-package validator;
+package racingcar.validator;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.Car;
+import racingcar.domain.Car;
 
 import java.util.List;
 

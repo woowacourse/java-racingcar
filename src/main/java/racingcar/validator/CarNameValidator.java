@@ -1,4 +1,4 @@
-package validator;
+package racingcar.validator;
 
 import java.util.Objects;
 

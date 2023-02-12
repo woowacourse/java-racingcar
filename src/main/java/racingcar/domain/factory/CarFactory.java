@@ -1,6 +1,6 @@
-package factory;
+package racingcar.domain.factory;
 
-import racingcar.Car;
+import racingcar.domain.Car;
 
 import java.util.Arrays;
 import java.util.List;

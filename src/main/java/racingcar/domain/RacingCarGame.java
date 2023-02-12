@@ -1,7 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
-import factory.CarFactory;
-import validator.NumberOfTryValidator;
+import racingcar.domain.factory.CarFactory;
 
 import java.util.List;
 
