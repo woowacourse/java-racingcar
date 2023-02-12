@@ -10,6 +10,6 @@ public class Application {
         final int tryCount = Input.getTryCount(Input.getInput());
         final RacingGame racingGame = new RacingGame(carNames, tryCount);
         racingGame.start();
-        racingGame.printResult();
+        Output.printWinner(racingGame.getWinner());
     }
 }

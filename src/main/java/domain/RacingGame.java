@@ -26,8 +26,8 @@ public class RacingGame {
         winner.makeWinnerNames(cars);
     }
 
-    public void printResult() {
-        Output.printWinner(winner);
+    public Winner getWinner() {
+        return winner;
     }
 
     private boolean isGameContinue() {
