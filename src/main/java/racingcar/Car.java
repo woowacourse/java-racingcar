@@ -39,13 +39,7 @@ public class Car {
         return name;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-
-        return name + " : " + sb;
+    public String getResult() {
+        return name + " : " + "-".repeat(Math.max(0, position));
     }
 }

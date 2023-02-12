@@ -22,7 +22,11 @@ public class OutputView {
     }
 
     public static void result(Cars cars) {
-        cars.printResult();
+        List<String> carsResult = cars.getResult();
+
+        for (String result : carsResult) {
+            System.out.println(result);
+        }
         System.out.println();
     }
 

@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,16 @@ public class Cars {
 
     public void move() {
         cars.forEach(car -> car.move(RandomMaker.random()));
+    }
+
+    public List<String> getResult() {
+        List<String> result = new ArrayList<>();
+
+        for (Car car : cars) {
+            result.add(car.getResult());
+        }
+
+        return result;
     }
 
     public int findMaxPosition() {
@@ -30,9 +41,5 @@ public class Cars {
                 .stream()
                 .filter(car -> car.isSamePosition(winnerPosition))
                 .collect(Collectors.toList());
-    }
-
-    public void printResult() {
-
     }
 }
