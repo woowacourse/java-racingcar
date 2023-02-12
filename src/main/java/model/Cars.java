@@ -11,7 +11,7 @@ public class Cars {
 
     public Cars(List<String> carsName) {
         for (String name : carsName) {
-            cars.add(new Car(new Name(name)));
+            cars.add(new Car(name));
         }
     }
 

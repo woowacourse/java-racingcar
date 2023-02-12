@@ -8,8 +8,8 @@ public class Car implements Comparable<Car> {
     private final Name name;
     private final Location location;
 
-    public Car(Name name) {
-        this.name = name;
+    public Car(String name) {
+        this.name = new Name(name);
         this.location = new Location(CAR_INITIAL_LENGTH);
     }
 
