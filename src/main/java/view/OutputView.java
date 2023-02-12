@@ -18,7 +18,7 @@ public class OutputView {
     public void printResult(Cars cars) {
         for (Car car : cars.getCars()) {
             String location = CAR_LOCATION_INDICATOR.repeat(car.getLocation());
-            System.out.printf(PRINT_CAR_LOCATION, car.getName().getName(), location);
+            System.out.printf(PRINT_CAR_LOCATION, car.getName(), location);
         }
         System.out.println();
     }

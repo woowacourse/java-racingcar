@@ -30,7 +30,6 @@ public class Cars {
     public List<String> getWinners() {
         return cars.stream().filter(car -> car.checkLocationEqual(getMaxLocation()))
                 .map(Car::getName)
-                .map(Name::getName)
                 .collect(Collectors.toList());
     }
 

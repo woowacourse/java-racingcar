@@ -19,13 +19,13 @@ public class Car {
     }
 
     public void moveByNumber(int moveForNum) {
-        if (moveForNum>=CAR_MOVE_STANDARD_LENGTH) {
+        if (moveForNum >= CAR_MOVE_STANDARD_LENGTH) {
             this.moveCar();
         }
     }
 
-    public Name getName() {
-        return this.name;
+    public String getName() {
+        return this.name.getName();
     }
 
     public int getLocation() {

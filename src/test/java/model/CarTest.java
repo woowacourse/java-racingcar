@@ -19,7 +19,7 @@ class CarTest {
     @ValueSource(strings = {"pobi", "crong", "honux", "hi hi", "jj503"})
     void createCarTest(String name) {
         Car car = new Car(new Name(name));
-        assertThat(car.getName().getName()).isEqualTo(name);
+        assertThat(car.getName()).isEqualTo(name);
     }
 
     @ParameterizedTest(name = "Car 객체 생성 5자 초과 및 공백 예외 테스트 name = {0}")
