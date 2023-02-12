@@ -15,34 +15,34 @@ class RacingResultTest {
     @Test
     void checkWinner() {
         //given
-        Map<String, Integer> history = new HashMap<>();
-        history.put("a",4);
-        history.put("b",2);
-        history.put("c",3);
-        history.put("d",4);
+        Map<Name, Integer> history = new HashMap<>();
+        history.put(new Name("a"), 4);
+        history.put(new Name("b"), 2);
+        history.put(new Name("c"), 3);
+        history.put(new Name("d"), 4);
         RacingResult racingResult = new RacingResult(history);
 
         //when
-        List<String> winners = racingResult.pickWinner();
+        List<Name> winners = racingResult.pickWinner();
 
         //then
-        assertThat(winners).isEqualTo(List.of("a","d"));
+        assertThat(winners).containsExactlyInAnyOrderElementsOf(List.of(new Name("a"), new Name("d")));
     }
 
     @DisplayName("최종 우승 자동차 대수가 1대인 경우를 확인한다.")
     @Test
     void checkWinnerWhenWinnerIsOnlyOne() {
         //given
-        Map<String, Integer> history = new HashMap<>();
-        history.put("a",4);
-        history.put("b",2);
-        history.put("c",3);
+        Map<Name, Integer> history = new HashMap<>();
+        history.put(new Name("a"), 4);
+        history.put(new Name("b"), 2);
+        history.put(new Name("c"), 3);
         RacingResult racingResult = new RacingResult(history);
 
         //when
-        List<String> winners = racingResult.pickWinner();
+        List<Name> winners = racingResult.pickWinner();
 
         //then
-        assertThat(winners).isEqualTo(List.of("a"));
+        assertThat(winners).containsExactly(new Name("a"));
     }
 }

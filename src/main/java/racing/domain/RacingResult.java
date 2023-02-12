@@ -7,17 +7,17 @@ import java.util.stream.Collectors;
 
 public class RacingResult {
 
-    private final Map<String, Integer> history;
+    private final Map<Name, Integer> history;
 
-    public RacingResult(Map<String, Integer> history) {
+    public RacingResult(Map<Name, Integer> history) {
         this.history = history;
     }
 
-    public Map<String, Integer> getHistory() {
+    public Map<Name, Integer> getHistory() {
         return history;
     }
 
-    public List<String> pickWinner() {
+    public List<Name> pickWinner() {
         Integer maxValue = Collections.max(history.values());
 
         return history.entrySet()
