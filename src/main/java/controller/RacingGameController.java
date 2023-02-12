@@ -4,9 +4,6 @@ import domain.Names;
 import domain.RacingCar;
 import domain.RacingCars;
 import domain.TryCount;
-import exception.CommaNotFoundException;
-import exception.NameIsOutOfBoundException;
-import exception.NotPositiveIntegerException;
 import java.util.List;
 import java.util.stream.Collectors;
 import view.InputView;
@@ -32,7 +29,7 @@ public class RacingGameController {
         try {
             names = getNames();
             return new RacingCars(createRacingCar(names));
-        } catch (IllegalArgumentException | CommaNotFoundException | NameIsOutOfBoundException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createRacingCar();
         }
@@ -52,7 +49,7 @@ public class RacingGameController {
     private TryCount getTryCount() {
         try {
             return new TryCount(InputView.requestTryCount());
-        } catch (NotPositiveIntegerException | NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getTryCount();
         }

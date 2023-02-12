@@ -2,7 +2,6 @@ package view;
 
 import static java.util.Collections.addAll;
 
-import exception.CommaNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -45,7 +44,7 @@ public class InputView {
 
     private static void validateComma(final String names) {
         if (!names.contains(COMMA)) {
-            throw new CommaNotFoundException(ENTER_NAME_WITH_COMMA);
+            throw new IllegalArgumentException(ENTER_NAME_WITH_COMMA);
         }
     }
 }

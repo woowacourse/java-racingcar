@@ -1,7 +1,5 @@
 package domain;
 
-import exception.NotPositiveIntegerException;
-
 public class TryCount {
 
     private static final int EXCEPTION_FLAG = 0;
@@ -22,7 +20,7 @@ public class TryCount {
         int tryCount = Integer.parseInt(inputCount);
 
         if(tryCount <= EXCEPTION_FLAG){
-            throw new NotPositiveIntegerException(ENTER_POSITIVE_INTEGER);
+            throw new IllegalArgumentException(ENTER_POSITIVE_INTEGER);
         }
 
         return tryCount;
