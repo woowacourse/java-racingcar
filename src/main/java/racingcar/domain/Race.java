@@ -1,11 +1,6 @@
 package racingcar.domain;
 
-import racingcar.domain.dto.CarRaceDto;
-import racingcar.domain.dto.RaceResultDto;
 import racingcar.domain.wrapper.RaceCount;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Race {
 
@@ -19,13 +14,7 @@ public class Race {
         return new Race(raceCount);
     }
 
-    public List<RaceResultDto> getRaceResults(final Cars cars) {
-        List<RaceResultDto> raceResults = new ArrayList<>();
-        for (int i = 0; i < raceCount.getCount(); i++) {
-            List<CarRaceDto> carRaceResult = cars.race();
-            RaceResultDto raceResult = RaceResultDto.createRaceResultDto(carRaceResult);
-            raceResults.add(raceResult);
-        }
-        return raceResults;
+    public boolean isRaceFinish(int raceCount) {
+        return raceCount == this.raceCount.getCount();
     }
 }
