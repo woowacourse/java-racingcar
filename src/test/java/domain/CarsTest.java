@@ -7,14 +7,12 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-class RefereeTest {
+class CarsTest {
 
     private static final int FORWARD = 4;
 
     @Test
     void judgeWinner() {
-        Referee referee = new Referee();
-
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         Car carC = new Car("carC");
@@ -23,7 +21,7 @@ class RefereeTest {
         carC.move(FORWARD);
 
         Cars cars = new Cars(List.of(carA, carB, carC));
-        Cars winner = referee.judgeWinner(cars);
+        Cars winner = cars.judgeWinners();
 
         assertThat(winner.getStream()
                 .collect(Collectors.toList()))

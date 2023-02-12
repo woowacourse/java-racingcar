@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import domain.Car;
 import domain.Cars;
-import domain.Referee;
 import output.Outputs;
 import utils.Names;
 import utils.RepeatCount;
@@ -26,9 +25,8 @@ public class RacingCarController {
             OutputView.printOutputs(outputs);
         }
 
-        Referee referee = new Referee();
-        Cars winner = referee.judgeWinner(cars);
-        OutputView.printWinner(winner);
+        Cars winners = cars.judgeWinners();
+        OutputView.printWinner(winners);
     }
 
     private Cars makeCarsFrom(Names names) {
