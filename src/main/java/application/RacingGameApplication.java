@@ -3,11 +3,10 @@ package application;
 import domain.Car;
 import domain.Cars;
 import domain.Name;
-import utils.NumberGenerator;
 import domain.TryCount;
-import dto.request.CarNameDto;
 import dto.response.CarStatusDto;
 import dto.response.WinnersNameDto;
+import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
