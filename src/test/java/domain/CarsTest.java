@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.RandomNumberGenerator;
 import vo.CarName;
-import vo.Position;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,8 +41,8 @@ class CarsTest {
 
         cars.move();
 
-        Position position = car.getPosition();
-        assertThat(position).isEqualTo(Position.of(1L));
+        Long position = car.getPosition();
+        assertThat(position).isEqualTo(1L);
     }
 
     @Test

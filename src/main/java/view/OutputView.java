@@ -1,7 +1,6 @@
 package view;
 
 import dto.Result;
-import vo.Position;
 
 import java.util.List;
 
@@ -29,9 +28,9 @@ public class OutputView {
         System.out.println();
     }
 
-    private static StringBuilder makePositionBar(Position position) {
+    private static StringBuilder makePositionBar(Long position) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int count = 0; count < position.getValue(); count++) {
+        for (int count = 0; count < position; count++) {
             stringBuilder.append(POSITION_BAR);
         }
         return stringBuilder;

@@ -22,8 +22,8 @@ public class Car {
         return carName.getValue();
     }
 
-    public Position getPosition() {
-        return position;
+    public Long getPosition() {
+        return position.getValue();
     }
 
     public void move(int power) {
@@ -32,8 +32,8 @@ public class Car {
         }
     }
 
-    public boolean hasPosition(Position position) {
-        return this.position.equals(position);
+    public boolean hasPosition(Long position) {
+        return this.position.isValueOf(position);
     }
 
     @Override

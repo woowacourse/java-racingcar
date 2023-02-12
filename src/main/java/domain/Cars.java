@@ -2,7 +2,6 @@ package domain;
 
 import dto.Result;
 import utils.RandomNumberGenerator;
-import vo.Position;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,18 +25,18 @@ public class Cars {
     }
 
     public List<String> getWinnerNames() {
-        Position highestPosition = calculateHighestPosition();
+        Long highestPosition = calculateHighestPosition();
         return cars.stream()
                 .filter(car -> hasHighestPosition(highestPosition, car))
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private static boolean hasHighestPosition(Position highestPosition, Car car) {
+    private static boolean hasHighestPosition(Long highestPosition, Car car) {
         return car.hasPosition(highestPosition);
     }
 
-    private Position calculateHighestPosition() {
+    private Long calculateHighestPosition() {
         return Collections.max(cars.stream()
                         .map((Car::getPosition))
                         .collect(Collectors.toUnmodifiableList()));
