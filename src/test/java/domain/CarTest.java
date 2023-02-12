@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -26,10 +25,11 @@ public class CarTest {
                     .hasMessage("자동차의 이름은 다섯 글자 이하여야합니다.");
         }
 
-        @Test
+        @ParameterizedTest
         @DisplayName("이름이 빈 문자열일 때 IllegalArgumentException 발생")
-        void throwExceptionWhenNameIsEmpty() {
-            assertThatThrownBy(() -> new Car(""))
+        @ValueSource(strings = {"", " ", "   ", "\n", "\t"})
+        void throwExceptionWhenNameIsEmpty(String name) {
+            assertThatThrownBy(() -> new Car(name))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("자동차 이름은 공백일 수 없습니다.");
         }
