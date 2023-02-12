@@ -1,7 +1,5 @@
 package racingCar.domain;
 
-import racingCar.dto.CarDto;
-
 public class Car {
 
     private static final int MIN_POWER = 4;
@@ -30,9 +28,5 @@ public class Car {
 
     public int getPosition() {
         return position.getPosition();
-    }
-
-    public CarDto toDto() {
-        return new CarDto(this.name, this.position);
     }
 }

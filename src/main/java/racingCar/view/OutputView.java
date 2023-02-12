@@ -1,18 +1,20 @@
 package racingCar.view;
 
-import racingCar.dto.CarDto;
+import racingCar.domain.Car;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String MARK_POSITION = "-";
+
     public static void printError(String errorMsg) {
         System.out.println(errorMsg);
     }
 
-    public static void printRacing(List<CarDto> carDtos) {
-        for (CarDto carDto : carDtos) {
-            System.out.println(carDto.toString());
+    public static void printRacing(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.println(car.getName() + " : " + MARK_POSITION.repeat(car.getPosition()));
         }
         System.out.print(System.lineSeparator());
     }

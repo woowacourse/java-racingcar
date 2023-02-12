@@ -1,7 +1,7 @@
 package racingCar.domain;
 
-import racingCar.dto.CarDto;
 import racingCar.util.NumberPicker;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -59,9 +59,7 @@ public class Cars {
                 .orElse(INIT_CAR_POSITION);
     }
 
-    public List<CarDto> toDtos() {
-        return cars.stream()
-                .map(Car::toDto)
-                .collect(Collectors.toList());
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
