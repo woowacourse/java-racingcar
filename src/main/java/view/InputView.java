@@ -9,27 +9,23 @@ public class InputView {
     private static final String INPUT_ROUND_MESSAGE =
             "시도할 회수는 몇회인가요?";
 
-    private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public InputView(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    public String inputCarsName() {
+    public static String inputCarsName() {
         print(INPUT_CAR_NAMES_MESSAGE);
         return input();
     }
 
-    public String inputRound() {
+    public static String inputRound() {
         print(INPUT_ROUND_MESSAGE);
         return input();
     }
 
-    private void print(String message) {
+    private static void print(String message) {
         System.out.println(message);
     }
 
-    private String input() {
+    private static String input() {
         return scanner.nextLine();
     }
 }
