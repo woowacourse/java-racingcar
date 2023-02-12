@@ -1,50 +1,51 @@
 package racingcar.controller;
 
-import racingcar.domain.*;
-import racingcar.domain.NumberGenerator.NumberGenerator;
-import racingcar.dto.RacingCarDto;
+import java.util.List;
+import racingcar.domain.AdvanceJudgement;
+import racingcar.domain.NumberGenerator.RandomNumberGenerator;
+import racingcar.domain.RacingCarGame;
+import racingcar.domain.RacingCars;
 import racingcar.utils.Parser;
 import racingcar.validator.CarNamesValidator;
 import racingcar.validator.TryCountValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class RacingCarGameController {
-    private static final int FIRST_CAR_INDEX = 0;
+    private static final String CAR_NAME_DELIMITER = ",";
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
-
     public void run() {
-        List<String> validateCarNames = getValidateCarNames();
-        int tryCount = getValidTryCount();
-        RoundManager roundManager = initializeRoundManager(validateCarNames);
-
+        RacingCarGame racingCarGame = generateRacingCarGame();
+        int tryCount = getTryCount(inputView.readTryCount());
         outputView.printResultHeader();
-        outputView.printRoundResult(roundManager.getCurrentRound());
+        outputView.printRoundResult(racingCarGame.getCurrentState());
         for (int roundCount = 0; roundCount < tryCount; roundCount++) {
-            outputView.printRoundResult(roundManager.runRound());
+            outputView.printRoundResult(racingCarGame.runRound());
         }
-
-        List<String> winningCarsName = getWinningCarsName(roundManager.getSortedRacingCars());
-        outputView.printWinners(winningCarsName);
+        outputView.printWinners(racingCarGame.getWinnerNames());
     }
 
-    private List<String> getParsedCarNames() {
+    private RacingCarGame generateRacingCarGame() {
+        return new RacingCarGame(generateAdvanceJudgement(), generateRacingCarsByNames(getCarNames()));
+    }
+
+    private AdvanceJudgement generateAdvanceJudgement() {
+        return new AdvanceJudgement(new RandomNumberGenerator());
+    }
+
+    private RacingCars generateRacingCarsByNames(List<String> carNames) {
+        return RacingCars.of(carNames);
+    }
+
+    private List<String> getCarNames() {
         String carNames = inputView.readCarName();
-        return Parser.parsing(carNames, ",");
-    }
-
-    private List<String> getValidateCarNames() {
-        List<String> parsedCarNames = new ArrayList<>();
-        do {
-            parsedCarNames = getParsedCarNames();
-        } while (!isValidCarNames(parsedCarNames));
-        return parsedCarNames;
+        List<String> parsedNames = Parser.parsing(carNames, CAR_NAME_DELIMITER);
+        if (isValidCarNames(parsedNames)) {
+            return parsedNames;
+        }
+        return getCarNames();
     }
 
     private boolean isValidCarNames(List<String> carNames) {
@@ -58,12 +59,12 @@ public class RacingCarGameController {
         return true;
     }
 
-    private int getValidTryCount() {
-        String tryCount;
-        do {
-            tryCount = inputView.readTryCount();
-        } while (!isValidTryCount(tryCount));
-        return Integer.parseInt(tryCount);
+    private int getTryCount(String tryCount) {
+        if (isValidTryCount(tryCount)) {
+            return Integer.parseInt(tryCount);
+        }
+        tryCount = inputView.readTryCount();
+        return getTryCount(tryCount);
     }
 
     private boolean isValidTryCount(String tryCount) {
@@ -75,33 +76,5 @@ public class RacingCarGameController {
             return false;
         }
         return true;
-    }
-
-    private void setCars(List<String> carNames, RoundManager roundManager) {
-        for (String carName : carNames) {
-            roundManager.addRacingCar(new RacingCar(carName));
-        }
-    }
-
-    private RoundManager initializeRoundManager(List<String> carNames) {
-        Range range = new Range(4, 9);
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        AdvanceJudgement advanceJudgement = new AdvanceJudgement(range, numberGenerator);
-        RoundManager roundManager = new RoundManager(advanceJudgement);
-        setCars(carNames, roundManager);
-        return roundManager;
-    }
-
-    private List<String> getWinningCarsName(List<RacingCarDto> sortedSortedRacingCars) {
-        List<String> winningCarsNames = new ArrayList<>();
-        for (int index = 0; index < sortedSortedRacingCars.size(); index++) {
-            RacingCarDto targetCar = sortedSortedRacingCars.get(index);
-            winningCarsNames.add(targetCar.getName());
-        }
-        RacingCarDto firstCar = sortedSortedRacingCars.get(FIRST_CAR_INDEX);
-        return sortedSortedRacingCars.stream()
-                .filter(car -> car.getPoint().equals(firstCar.getPoint()))
-                .map(car -> car.getName())
-                .collect(Collectors.toList());
     }
 }
