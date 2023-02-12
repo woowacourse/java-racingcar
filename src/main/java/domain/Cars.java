@@ -1,7 +1,6 @@
 package domain;
 
 import dto.CarDTO;
-import util.BoundaryNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +44,7 @@ public class Cars {
                 .orElse(0);
     }
 
-    public void progressRound(BoundaryNumberGenerator randomNumberGenerator, RoundResult roundResult) {
-        List<Integer> boundaryNumbers = randomNumberGenerator.generateBoundaryNumbers(cars.size());
+    public void progressRound(List<Integer> boundaryNumbers, RoundResult roundResult) {
         for (int index = 0; index < cars.size(); index++) {
             moveCar(roundResult, cars.get(index),boundaryNumbers.get(index));
         }
@@ -63,5 +61,9 @@ public class Cars {
             carDTOs.add(new CarDTO(car.getCarName(), car.getDistance()));
         }
         return carDTOs;
+    }
+
+    public int getCount() {
+        return cars.size();
     }
 }
