@@ -1,13 +1,10 @@
 package racingcar.domain;
 
-import racingcar.constant.ErrorMessage;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,27 +18,10 @@ public class Cars {
         this.cars = List.copyOf(cars);
     }
 
-    public void moveNextCarWith(int power, Rule rule) {
-        if (isRoundOver()) {
-            cars.get(FIRST_INDEX).moveWith(power, rule);
-            return;
+    public void moveCars(ValueGenerator valueGenerator, Rule rule) {
+        for (Car car : cars) {
+            car.moveWith(valueGenerator.generate(), rule);
         }
-        getCurrentTurnCar().get().moveWith(power, rule);
-    }
-
-    public boolean isRoundOver() {
-        return getCurrentTurnCar().isEmpty();
-
-    }
-
-    private Optional<Car> getCurrentTurnCar() {
-        int firstCarTurnCount = cars.get(FIRST_INDEX).getTurnCount();
-        Optional<Car> targetCar = cars
-                .stream()
-                .filter(car -> car.getTurnCount() < firstCarTurnCount)
-                .findFirst();
-
-        return targetCar;
     }
 
     public Map<String, Integer> getRoundResult() {
@@ -53,9 +33,6 @@ public class Cars {
     }
 
     public int getCurrentRound() {
-        if (!isRoundOver()) {
-            throw new IllegalStateException(ErrorMessage.ROUND_NOT_OVER.getMessage());
-        }
         return cars.get(FIRST_INDEX).getTurnCount();
     }
 
