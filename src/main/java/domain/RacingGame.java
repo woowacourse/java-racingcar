@@ -1,8 +1,5 @@
 package domain;
 
-import domain.Car;
-import domain.Cars;
-import domain.TryCount;
 import dto.response.CarStatusDto;
 import dto.response.WinnersNameDto;
 import utils.NumberGenerator;
@@ -32,7 +29,6 @@ public class RacingGame {
         return gameResult;
     }
 
-    //TODO: 질문하자 메소드 이름이 너무 똑같애
     public WinnersNameDto findWinners(Cars cars) {
         List<Car> winners = cars.findWinners();
         return WinnersNameDto.of(winners);

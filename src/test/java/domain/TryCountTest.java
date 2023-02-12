@@ -4,8 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class TryCountTest {
 
@@ -20,6 +20,7 @@ class TryCountTest {
     @ParameterizedTest
     @ValueSource(ints = {-100, -1, 0})
     void create_fail(int wrongInput) {
-        assertThatIllegalArgumentException().isThrownBy(() -> new TryCount(wrongInput));
+        assertThatThrownBy(() -> new TryCount(wrongInput))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
