@@ -14,7 +14,7 @@ public class OutputView {
         for (CarDto carDto : carDtos) {
             System.out.println(carDto.toString());
         }
-        System.out.println(System.lineSeparator());
+        System.out.print(System.lineSeparator());
     }
 
     public static void printWinners(List<String> winnerNames) {

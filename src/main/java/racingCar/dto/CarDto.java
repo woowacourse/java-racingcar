@@ -18,7 +18,7 @@ public class CarDto {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(name + " : " + POSITION_MARK.repeat(position.getPosition()));
+        stringBuilder.append(name.getName() + " : " + POSITION_MARK.repeat(position.getPosition()));
         return stringBuilder.toString();
     }
 }
