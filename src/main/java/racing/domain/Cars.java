@@ -1,5 +1,6 @@
 package racing.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -57,19 +58,21 @@ public class Cars {
         return maxStep;
     }
 
-    private static int compareStep(Car car, int maxStep){
+    private static int compareStep(Car car, int maxStep) {
         return Math.max(car.getStep(), maxStep);
     }
 
-    public void addWinner(int winnerStep, StringBuilder sb) {
+    public List<String> findWinner(int winnerStep) {
+        List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            addWinner(car, winnerStep, sb);
+            findWinner(winners, car, winnerStep);
         }
+        return winners;
     }
 
-    private static void addWinner(Car car, int winnerStep, StringBuilder sb) {
-        if(car.getStep() == winnerStep){
-            sb.append(car.getName()).append(COMMA);
+    private static void findWinner(List<String> winners, Car car, int winnerStep) {
+        if (car.getStep() == winnerStep) {
+            winners.add(car.getName());
         }
     }
 }

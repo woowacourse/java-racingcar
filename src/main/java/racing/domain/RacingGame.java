@@ -1,11 +1,10 @@
 package racing.domain;
 
-import racing.domain.Car;
-import racing.domain.Cars;
 import racing.util.Finder;
 import racing.view.output.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RacingGame {
@@ -31,22 +30,9 @@ public class RacingGame {
         cars.updateCarsState();
     }
 
-    public static void printResult(Cars cars) {
+    public String findWinners(){
         int winnerStep = Finder.findMaxStep(cars);
-        StringBuilder winnersWithComma = findWinners(cars, winnerStep);
-        OutputView.printFinalResult(commaRemover(winnersWithComma));
-    }
-
-    private static StringBuilder findWinners(Cars cars, int winnerStep) {
-        StringBuilder sb = new StringBuilder();
-        cars.addWinner(winnerStep, sb);
-        return sb;
-    }
-
-    private static StringBuilder commaRemover(StringBuilder sb) {
-        sb.deleteCharAt(sb.toString().length() - 1);
-        sb.deleteCharAt(sb.toString().length() - 1);
-        return sb;
+        return String.join(", ",cars.findWinner(winnerStep));
     }
 
     public Cars getCars() {

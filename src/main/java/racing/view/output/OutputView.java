@@ -34,7 +34,7 @@ public class OutputView {
         car.addHyphen();
     }
 
-    public static void printFinalResult(StringBuilder sb) {
-        System.out.println(sb.toString() + FINAL_WINNER);
+    public static void printFinalResult(String winnersWithComma) {
+        System.out.println(winnersWithComma + FINAL_WINNER);
     }
 }
