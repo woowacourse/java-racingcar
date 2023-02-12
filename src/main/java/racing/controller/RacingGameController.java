@@ -19,6 +19,7 @@ public class RacingGameController {
     }
 
     public void run() {
+        OutputView.printBeforeRacing();
         for (int i = 0; i < tryCount; i++) {
             racingGame.play();
             OutputView.printRacing(racingGame);

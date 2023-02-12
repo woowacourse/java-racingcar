@@ -5,6 +5,10 @@ import racing.domain.RacingGame;
 
 public class OutputView {
 
+    public static void printBeforeRacing() {
+        System.out.println("실행 결과");
+    }
+
     public static void printRacing(RacingGame racingGame) {
         for (Car car : racingGame.getResult()) {
             System.out.println(car);
