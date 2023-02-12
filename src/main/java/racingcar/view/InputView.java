@@ -14,6 +14,7 @@ public class InputView {
     private static final int MAXIMUM_TRY_COUNT = 9;
     public static final String DUPLICATE_NAME_ANNOUNCEMENT = "[ERROR] 이름은 중복될 수 없습니다. ";
     private static final String WRONG_TRY_COUNT_ANNOUNCEMENT = "[ERROR] 잘못된 시도 횟수입니다.";
+    public static final String NAME_SEPARATOR = ",";
 
     private Scanner scanner;
 
@@ -25,7 +26,7 @@ public class InputView {
         try {
             System.out.println(INPUT_CAR_NAMES_ANNOUNCEMENT);
             String rawCarNames = scanner.nextLine();
-            List<String> carNames = Arrays.stream(rawCarNames.split(","))
+            List<String> carNames = Arrays.stream(rawCarNames.split(NAME_SEPARATOR))
                     .collect(Collectors.toList());
             checkDuplication(rawCarNames, carNames);
             return carNames;
@@ -36,7 +37,7 @@ public class InputView {
     }
 
     private static void checkDuplication(String rawCarNames, List<String> carNames) {
-        Set<String> uniqueCarNames = Arrays.stream(rawCarNames.split(",")).map(String::trim)
+        Set<String> uniqueCarNames = Arrays.stream(rawCarNames.split(NAME_SEPARATOR)).map(String::trim)
                 .collect(Collectors.toSet());
         if (uniqueCarNames.size() != carNames.size()) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ANNOUNCEMENT);
