@@ -1,11 +1,11 @@
 package controller;
 
 import domain.Car;
+import domain.RacingGame;
+import domain.RandomNumberGenerator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import domain.RacingGame;
-import domain.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -17,17 +17,17 @@ public class RacingGameController {
 
     public void run() {
         List<String> carNames = inputView.askCarNames();
-        racingGame.generateCars(carNames);
+        racingGame.enrollCars(carNames);
         int trialCount = inputView.askTrialCount();
         race(trialCount);
-        outputView.printWinners(racingGame.decisionWinners());
+        outputView.printWinners(racingGame.getWinners());
     }
 
     private void race(int trialCount) {
         outputView.printResultMessage();
         showCarsStatus();
         for (int i = 0; i < trialCount; i++) {
-            racingGame.processAllCars();
+            racingGame.race();
             showCarsStatus();
         }
     }

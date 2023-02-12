@@ -1,8 +1,9 @@
 package domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
-    private static final int MAX_LENGTH = 5;
+    private static final int MOVABLE_POWER_MIN = 4;
+    private static final int NAME_LENGTH_MAX = 5;
 
     private final String name;
     private int position;
@@ -14,16 +15,25 @@ public class Car {
     }
 
     private void validateName(String name) {
+        // TODO 인자값이 null일 경우 검증할지 검토
         if (name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름은 빈 문자열일 수 없습니다.");
         }
-        if (name.length() > MAX_LENGTH) {
+        if (name.length() > NAME_LENGTH_MAX) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
         }
     }
 
-    public void move() {
-        ++this.position;
+    public boolean moveOrStayByPower(int power) {
+        if (isMovable(power)) {
+            ++this.position;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isMovable(int power) {
+        return power >= MOVABLE_POWER_MIN;
     }
 
     public String getName() {
@@ -32,5 +42,10 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return this.position - other.position;
     }
 }

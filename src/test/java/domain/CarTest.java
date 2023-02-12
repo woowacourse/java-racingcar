@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
@@ -34,14 +35,22 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 3, Integer.MAX_VALUE})
-    void 자동차_전진_테스트(int expected) {
+    @CsvSource(value = {"-1:false", "0:false", "3:false", "4:true", "5:true", "9:true"}, delimiter = ':')
+    void 자동차_전진_또는_유지_테스트(int power, boolean expected) {
         Car car = new Car("자동차");
 
-        for (int i = 0; i < expected; i++) {
-            car.move();
+        assertThat(car.moveOrStayByPower(power)).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, Integer.MAX_VALUE})
+    void 자동차_전진_후_위치증가_테스트(int count) {
+        Car car = new Car("자동차");
+
+        for (int i = 0; i < count; i++) {
+            car.moveOrStayByPower(4);
         }
 
-        assertThat(car.getPosition()).isEqualTo(expected);
+        assertThat(car.getPosition()).isEqualTo(count);
     }
 }
