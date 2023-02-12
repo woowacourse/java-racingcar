@@ -1,11 +1,16 @@
 package racingcar.domain;
 
 public class RandomNumberGenerator implements NumberGenerator {
-    private static final int MINIMUM_NUMBER = 0;
-    private static final int MAXIMUM_NUMBER = 9;
+    private final int minimumNumber;
+    private final int maximumNumber;
+
+    public RandomNumberGenerator(int minimumNumber, int maximumNumber) {
+        this.minimumNumber = minimumNumber;
+        this.maximumNumber = maximumNumber;
+    }
 
     @Override
     public int generate() {
-        return (int) (Math.random() * MAXIMUM_NUMBER - MINIMUM_NUMBER + 1) + MINIMUM_NUMBER;
+        return (int) (Math.random() * maximumNumber - minimumNumber + 1) + minimumNumber;
     }
 }

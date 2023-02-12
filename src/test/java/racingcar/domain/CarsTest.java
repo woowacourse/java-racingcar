@@ -42,7 +42,7 @@ class CarsTest {
         @DisplayName("움직이고 나면 위치가 변해야한다")
         void updateMovedCarSuccess() {
             cars = new Cars(carNames);
-            NumberGenerator numberGenerator = new RandomNumberGenerator();
+            NumberGenerator numberGenerator = new RandomNumberGenerator(0, 9);
             List<Car> movedResult = cars.moveCars(numberGenerator);
             assertThat(cars.getLatestResult())
                     .isEqualTo(movedResult);
