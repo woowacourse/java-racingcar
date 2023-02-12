@@ -3,6 +3,7 @@ package car;
 import car.controller.GameController;
 import car.view.OutputTestStream;
 import car.view.testInputConsole;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ApplicationTest extends OutputTestStream {
     @Test
+    @DisplayName("게임_실행_테스트")
     void 게임_실행_테스트(){
         GameController gameController = new GameController(new testInputConsole());
         gameController.startGame();
@@ -22,5 +24,4 @@ public class ApplicationTest extends OutputTestStream {
                         " :",
                         "가 최종 우승했습니다.");
     }
-
 }

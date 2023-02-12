@@ -13,7 +13,7 @@ public class OutputViewTest  extends OutputTestStream {
     private final OutputView outputView = new OutputView();
 
     @Test
-    @DisplayName("")
+    @DisplayName("자동차를 출력하는 테스트")
     void 자동차를_출력하는_테스트(){
         List<CarDto> cars= List.of(new CarDto(new Car("포비",5)));
         outputView.printCarsWith(cars);
