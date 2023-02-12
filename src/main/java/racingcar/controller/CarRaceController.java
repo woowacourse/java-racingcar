@@ -10,7 +10,7 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
-public class CarRaceController implements Controller {
+public class CarRaceController {
 
     private final InputUtil inputUtil = new InputUtil();
 
@@ -18,8 +18,7 @@ public class CarRaceController implements Controller {
 
     private final RaceNumberGenerator numberGenerator = new RaceNumberGenerator();
 
-    @Override
-    public void process() {
+    public void race() {
         Cars cars = getUserInputAndCreateCars();
         Race race = getUserInputAndCreateRace();
 
