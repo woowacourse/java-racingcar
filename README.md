@@ -40,7 +40,7 @@
 - [ ] toString의 역할에 대해 고민해보기
 - [x] move 메서드의 random 사용시 테스트에 대해 고민해보기
 - [x] 자바 컨벤션 지키기
-- [ ] Validation에 대해 고민해보기
+- [x] Validation에 대해 고민해보기
 - [ ] `@DisplayName`에 대해 고민해보기
 - [x] 테스트 깨짐 수정하기
 

@@ -1,11 +1,9 @@
 import java.util.Scanner;
 
 public class Input {
-    private Validate validate;
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public Input() {
-        validate = new Validate();
         scanner = new Scanner(System.in);
     }
 
@@ -15,14 +13,14 @@ public class Input {
 
     public String[] getCarNames(String input) {
         String[] carNames = input.split(",");
-        validate.isValidCarNames(carNames);
+        Validator.checkDuplication(carNames);
         return carNames;
     }
 
     public int getTryCount(String input) {
-        validate.checkDigits(input);
+        Validator.checkDigits(input);
         int tryCount = Integer.parseInt(input);
-        validate.checkRange(tryCount);
+        Validator.checkRange(tryCount);
         return tryCount;
     }
 }

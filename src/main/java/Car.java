@@ -4,6 +4,8 @@ public class Car {
     private int position;
 
     public Car(String name) {
+        Validator.checkBlank(name);
+        Validator.checkLength(name);
         this.name = name;
         this.position = 0;
     }
