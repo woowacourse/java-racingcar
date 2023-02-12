@@ -1,7 +1,5 @@
 package racingcar.domain.NumberGenerator;
 
-import racingcar.domain.NumberGenerator.NumberGenerator;
-
 public class TestNumberGenerator implements NumberGenerator {
     private final int num;
 

@@ -8,7 +8,7 @@ public class CarNamesValidator {
     private static final int NAME_MIN_LENGTH = 1;
     private static final int NAME_MAX_LENGTH = 5;
     private static final String BLANK = " ";
-    private Range carNameRange = new Range(NAME_MIN_LENGTH, NAME_MAX_LENGTH);
+    private final Range carNameRange = new Range(NAME_MIN_LENGTH, NAME_MAX_LENGTH);
 
     public void validateNames(List<String> names) {
         List<String> validNames = new ArrayList<>();
