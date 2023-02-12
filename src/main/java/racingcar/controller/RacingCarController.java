@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RandomNumberGenerator;
@@ -9,6 +10,7 @@ import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCarController {
     private final NumberGenerator numberGenerator;
@@ -21,8 +23,8 @@ public class RacingCarController {
         Cars cars = initCars();
         int tries = initTries();
         OutputView.printResultMessage();
-        List<CarStatus> result = race(cars, tries, numberGenerator);
-        showFinalStatus(result);
+        race(cars, tries, numberGenerator);
+        showFinalStatus(cars);
         prizeWinner(cars);
     }
 
@@ -50,17 +52,24 @@ public class RacingCarController {
         }
     }
 
-    private List<CarStatus> race(Cars cars, int tries, NumberGenerator numberGenerator) {
-        List<CarStatus> carStatuses = new ArrayList<>();
+    private void race(Cars cars, int tries, NumberGenerator numberGenerator) {
         for (int i = 0; i < tries; i++) {
-            carStatuses = cars.moveCars(numberGenerator);
+            List<Car> movedCars = cars.moveCars(numberGenerator);
+            List<CarStatus> carStatuses = mapCarsToCarStatuses(movedCars);
             OutputView.printCarStatus(carStatuses);
         }
-        return carStatuses;
     }
 
-    private void showFinalStatus(List<CarStatus> result) {
-        OutputView.printCarStatus(result);
+    private List<CarStatus> mapCarsToCarStatuses(List<Car> cars) {
+        return cars.stream()
+                .map(car -> new CarStatus(car.getName(), car.getCurrentPosition()))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void showFinalStatus(Cars cars) {
+        List<Car> latestResult = cars.getLatestResult();
+        List<CarStatus> carStatuses = mapCarsToCarStatuses(latestResult);
+        OutputView.printCarStatus(carStatuses);
     }
 
     private void prizeWinner(Cars cars) {

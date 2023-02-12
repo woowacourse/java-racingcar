@@ -21,16 +21,15 @@ public class Car {
         return name;
     }
 
-    public CarStatus move(NumberGenerator numberGenerator) {
+    public Position getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void move(NumberGenerator numberGenerator) {
         int randomNumber = numberGenerator.generate();
         if (isMovable(randomNumber)) {
             currentPosition.move();
         }
-        return new CarStatus(name, currentPosition);
-    }
-
-    public CarStatus getCarStatus() {
-        return new CarStatus(name, currentPosition);
     }
 
     public int compareTo(Car other) {
