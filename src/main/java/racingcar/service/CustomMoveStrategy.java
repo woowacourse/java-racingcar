@@ -1,6 +1,7 @@
 package racingcar.service;
 
 public class CustomMoveStrategy extends MoveStrategy {
+    public static final int STOP_BOUNDARY = 3;
     private final int number;
 
     public CustomMoveStrategy(int number) {
