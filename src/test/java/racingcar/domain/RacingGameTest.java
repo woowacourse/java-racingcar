@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.TestNumberGenerator;
 
-@DisplayName("RacingGame 클래스")
 class RacingGameTest {
 
     private RacingGame generateRacingGame(final int count) {

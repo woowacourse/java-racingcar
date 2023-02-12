@@ -2,11 +2,9 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("Name 클래스")
 public class NameTest {
 
     @ParameterizedTest(name = "생성자는 이름의 길이가 없거나 5보다 크다면 예외를 던진다. 입력값: {0}")
