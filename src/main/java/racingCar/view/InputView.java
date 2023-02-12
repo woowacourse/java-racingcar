@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> readCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = scanner.nextLine();
+        String input = scanner.reset().nextLine();
         String[] carNames = input.split(",");
         validateEmpty(carNames);
         return Arrays.stream(carNames)
@@ -20,7 +20,7 @@ public class InputView {
 
     public static int readTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        String input = scanner.nextLine();
+        String input = scanner.reset().nextLine();
         validateEmpty(input);
         return Integer.parseInt(input);
     }
@@ -40,5 +40,4 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 시도 횟수를 다시 입력해주세요.");
         }
     }
-
 }
