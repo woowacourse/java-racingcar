@@ -3,6 +3,7 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.constant.ErrorMessage;
 
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,9 @@ class CarsTest {
         for (int i = 0; i < 4; i++) {
             cars.addNextCarValue(4);
         }
-        assertThatThrownBy(() -> cars.getTurnCount()).isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(() -> cars.getTurnCount())
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(ErrorMessage.ROUND_NOT_OVER.getMessage());
     }
 
     @Test
