@@ -13,7 +13,7 @@ class CarTest {
     @CsvSource({"0, 0", "1, 0", "2, 0", "3, 0"})
     void should_Stay_When_NumberIsZeroToThree(int number, int position) {
         //given
-        Car car = new Car("test");
+        Car car = Car.from("test");
 
         //when
         car.move(number);
@@ -27,7 +27,7 @@ class CarTest {
     @CsvSource({"4, 1", "5, 1", "6, 1", "7, 1", "8, 1", "9, 1"})
     void should_Move_When_NumberIsFourToNine(int number, int position) {
         //given
-        Car car = new Car("test");
+        Car car = Car.from("test");
 
         //when
         car.move(number);

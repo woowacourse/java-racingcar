@@ -7,13 +7,17 @@ public class Car {
     private final Name name;
     private final Position position;
 
-    public Car(final String name, final int position) {
+    private Car(final String name, final int position) {
         this.name = new Name(name);
         this.position = new Position(position);
     }
 
-    public Car(final String name) {
-        this(name, 0);
+    public static Car from(final String name) {
+        return new Car(name, 0);
+    }
+
+    public static Car of(final String name, final int position) {
+        return new Car(name, position);
     }
 
     public void move(final int number) {
