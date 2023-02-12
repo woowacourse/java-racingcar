@@ -16,9 +16,7 @@ public class RacingCars {
 
     private void insertCars(List<String> carNames) {
         validateCarNames(carNames);
-        for (String carName : carNames) {
-            racingCars.add(new Car(carName));
-        }
+        carNames.forEach(name -> racingCars.add(new Car(name)));
     }
 
     private void validateCarNames(List<String> carNames) {
