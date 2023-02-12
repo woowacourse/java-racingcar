@@ -11,9 +11,13 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
+    private int turnCount;
 
-    private final int FIRST_INDEX = 0;
+    public Cars() {
+        cars = new ArrayList<>();
+        turnCount = 0;
+    }
 
     public void add(Car car) {
         cars.add(car);
@@ -21,8 +25,9 @@ public class Cars {
 
     public void playRound(ValueGenerator valueGenerator) {
         for (Car car : cars) {
-            car.move(valueGenerator.generate());
+            car.move(car.isMovable(valueGenerator.generate()));
         }
+        turnCount++;
     }
 
     public Map<String, Integer> getRoundResult() {
@@ -34,14 +39,12 @@ public class Cars {
     }
 
     public int getTurnCount() {
-        return cars.get(FIRST_INDEX).getTurnCount();
+        return turnCount;
     }
 
     public List<String> getWinners() {
         Set<Integer> positions = new HashSet<>();
-
         cars.forEach(car -> positions.add(car.getPosition()));
-
         int maxPosition = Collections.max(positions);
 
         return cars.stream().filter(car -> car.getPosition() == maxPosition)
