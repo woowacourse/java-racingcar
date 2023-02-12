@@ -59,4 +59,10 @@ public class RacingGame {
                 .forEach(car -> output.printExecutionResult(car.getName(), car.getPosition()));
         System.out.println();
     }
+
+    private void displayFinalResult() {
+        List<Car> winners = carManager.getWinners();
+        List<String> winnersNames = winners.stream().map(car -> car.getName()).collect(Collectors.toList());
+        output.printFinalResult(winnersNames);
+    }
 }
