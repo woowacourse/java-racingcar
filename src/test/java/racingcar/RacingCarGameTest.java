@@ -3,16 +3,12 @@ package racingcar;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.Cars;
 import racingcar.controller.RacingGameController;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.io.*;
-import java.util.stream.Stream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,11 +48,38 @@ class RacingCarGameTest {
         assertThat(out.toString()).contains("최종 우승했습니다.");
     }
 
-    @DisplayName("자동차 경주 통합 예외 처리 후 정상 작동 테스트")
-    @ParameterizedTest(name = "예외 = {1}")
-    @MethodSource("playGameExceptionDummy")
-    void playGameExceptionTest(String playGameExceptionInput, String kindOfException) {
-        inputStream = new ByteArrayInputStream(playGameExceptionInput.getBytes(UTF_8));
+    @DisplayName("중복된 자동차 이름이 입력되면 오류 메시지를 출력한다.")
+    @Test
+    void duplicateCarNames() {
+        shouldBeError("헤나, 썬샷, 헤나\n헤나, 썬샷\n5");
+    }
+
+    @DisplayName("다섯 글자를 초과하는 자동차 이름이 입력되면 오류 메시지를 출력한다.")
+    @Test
+    void overFiveLengthCarNames() {
+        shouldBeError("헤나, 썬샷, 우아한테크코스\n헤나, 썬샷\n5");
+    }
+
+    @DisplayName("한 개의 자동차 이름만 입력되면 오류 메시지를 출력한다.")
+    @Test
+    void onlyOneCarNames() {
+        shouldBeError("헤나\n헤나, 썬샷\n5");
+    }
+
+    @DisplayName("게임 라운드 입력이 0으로 시작하는 경우 오류 메시지를 출력한다.")
+    @Test
+    void startsWithZeroGameRound() {
+        shouldBeError("헤나, 썬샷, 루카\n0\n5");
+    }
+
+    @DisplayName("게임 라운드 입력이 정수가 아닌 경우 오류 메시지를 출력한다.")
+    @Test
+    void notIntegerGameRound() {
+        shouldBeError("헤나, 썬샷, 루카\na\n5");
+    }
+
+    private void shouldBeError(String input) {
+        inputStream = new ByteArrayInputStream(input.getBytes(UTF_8));
         OutputStream out = new ByteArrayOutputStream();
         outputStream = new PrintStream(out);
 
@@ -71,15 +94,5 @@ class RacingCarGameTest {
 
         String gameTotalMessage = out.toString();
         assertThat(gameTotalMessage).contains("[ERROR]", "최종 우승했습니다.");
-    }
-
-    static Stream<Arguments> playGameExceptionDummy() {
-        return Stream.of(
-                Arguments.arguments("헤나, 썬샷, 헤나\n헤나, 썬샷\n5", "중복된 자동차 이름"),
-                Arguments.arguments("헤나, 썬샷, 우아한테크코스\n헤나, 썬샷\n5", "5글자를 초과한 자동차 이름"),
-                Arguments.arguments("헤나\n헤나, 썬샷\n5", "자동차 이름이 1개"),
-                Arguments.arguments("헤나, 썬샷, 헤나\n헤나, 썬샷\n0\n5", "게임 라운드 입력이 0"),
-                Arguments.arguments("헤나, 썬샷, 헤나\n헤나, 썬샷\n다섯번\n5", "게임 라운드 입력이 정수가 아님")
-        );
     }
 }
