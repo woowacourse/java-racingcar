@@ -15,7 +15,9 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateName(String name) {
-        // TODO 인자값이 null일 경우 검증할지 검토
+        if (name == null) {
+            throw new IllegalArgumentException("자동차 이름이 null입니다.");
+        }
         if (name.isEmpty()) {
             throw new IllegalArgumentException("자동차 이름은 빈 문자열일 수 없습니다.");
         }

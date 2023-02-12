@@ -3,9 +3,9 @@ package domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
@@ -27,10 +27,11 @@ class CarTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 자동차_공백이름_예외_테스트() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 자동차_생성_이름_공백또는Null_예외_테스트(String name) {
         assertThatThrownBy(() -> {
-            new Car("");
+            new Car(name);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
