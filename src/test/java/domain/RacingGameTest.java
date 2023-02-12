@@ -3,10 +3,14 @@ package domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import validation.ErrorMessage;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RacingGameTest {
 
@@ -24,16 +28,14 @@ class RacingGameTest {
         racingGame = new RacingGame(List.of(car1, car2, car3), 3, new RandomNumberGenerator());
     }
 
-    @Test
-    @DisplayName("가장 선두에 있는 차가 우승자이다.")
-    public void findWinner() {
-        car3.move();
-        car3.move();
-        car3.move();
-
-        assertThat(racingGame.getWinners().contains(car1)).isFalse();
-        assertThat(racingGame.getWinners().contains(car2)).isFalse();
-        assertThat(racingGame.getWinners().contains(car3)).isTrue();
+    @ParameterizedTest
+    @ValueSource(ints = {-10, -1, 0})
+    @DisplayName("최소 게임 횟수보다 작은 횟수인 경우 예외가 발생한다")
+    public void createRacingGameFail(int gameTrialCount) {
+        assertThatThrownBy(() ->
+                new RacingGame(List.of(car1, car2, car3), gameTrialCount, new RandomNumberGenerator()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.WRONG_TRIAL_NUMBER.getMessage());
     }
 
     @Test
@@ -55,4 +57,15 @@ class RacingGameTest {
         assertThat(racingGame.canContinue()).isFalse();
     }
 
+    @Test
+    @DisplayName("가장 선두에 있는 차가 우승자이다.")
+    public void findWinner() {
+        car3.move();
+        car3.move();
+        car3.move();
+
+        assertThat(racingGame.getWinners().contains(car1)).isFalse();
+        assertThat(racingGame.getWinners().contains(car2)).isFalse();
+        assertThat(racingGame.getWinners().contains(car3)).isTrue();
+    }
 }
