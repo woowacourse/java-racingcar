@@ -28,12 +28,12 @@ public class RacingGameController {
     }
 
     public void run() {
-        final RacingGame racingGame = gameInitialize();
+        final RacingGame racingGame = generateGame();
         play(racingGame);
         findWinners(racingGame);
     }
 
-    private RacingGame gameInitialize() {
+    private RacingGame generateGame() {
         final List<String> carNames = retry(inputView::readCarNames);
         final int count = retry(inputView::readCount);
         return new RacingGame(new RandomNumberGenerator(), carNames, count);
