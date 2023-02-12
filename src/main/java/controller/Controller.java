@@ -3,7 +3,6 @@ package controller;
 import service.Service;
 import view.InputView;
 import view.OutputView;
-import vo.Name;
 import vo.Trial;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class Controller {
 
     private void initializeCars() {
         try {
-            List<Name> carNames = inputView.getCarNames();
+            List<String> carNames = inputView.getCarNames();
             service.initializeCars(carNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());

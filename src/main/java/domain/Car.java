@@ -16,13 +16,14 @@ public class Car {
         this.position = Position.of(0L);
     }
 
-    public static Car of(Name name) {
-        validateName(name);
-        return new Car(name);
+    public static Car of(String name) {
+        Name carName = Name.of(name);
+        validateName(carName);
+        return new Car(carName);
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getValue();
     }
 
     public Position getPosition() {

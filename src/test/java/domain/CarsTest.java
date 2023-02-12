@@ -1,6 +1,9 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import utils.RandomNumberGenerator;
+import vo.Position;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,17 +11,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import utils.RandomNumberGenerator;
-import vo.Name;
-import vo.Position;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
     Cars cars;
-    Car car = Car.of(Name.of("test"));
-    Car foxCar = Car.of(Name.of("fox"));
+    Car car = Car.of("test");
+    Car foxCar = Car.of("fox");
 
     @Test
     @DisplayName("차 추가 테스트")
@@ -55,9 +53,9 @@ class CarsTest {
         cars.saveCar(foxCar);
         cars.move();
 
-        List<Name> winners = cars.getWinnerNames();
+        List<String> winners = cars.getWinnerNames();
 
-        assertThat(winners).containsExactly(Name.of("fox"));
+        assertThat(winners).containsExactly("fox");
     }
 
     @Test
@@ -68,9 +66,9 @@ class CarsTest {
         cars.saveCar(foxCar);
         cars.move();
 
-        List<Name> winnerNames = cars.getWinnerNames();
+        List<String> winnerNames = cars.getWinnerNames();
 
-        assertThat(winnerNames).containsExactly(Name.of("test"), Name.of("fox"));
+        assertThat(winnerNames).containsExactly("test", "fox");
     }
 
     private static Cars makeCarsWithMockValues(Integer... testNumbers) {

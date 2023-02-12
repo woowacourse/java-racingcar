@@ -2,7 +2,6 @@ package service;
 
 import domain.Car;
 import domain.Cars;
-import vo.Name;
 import dto.Result;
 
 import java.util.HashSet;
@@ -17,9 +16,9 @@ public class Service {
         this.cars = cars;
     }
 
-    public void initializeCars(List<Name> names) {
+    public void initializeCars(List<String> names) {
         validateDuplication(names);
-        for (Name carName : names) {
+        for (String carName : names) {
             cars.saveCar(Car.of(carName));
         }
     }
@@ -32,12 +31,12 @@ public class Service {
         return cars.getResult();
     }
 
-    public List<Name> getWinners() {
+    public List<String> getWinners() {
         return cars.getWinnerNames();
     }
 
-    private void validateDuplication(List<Name> names) {
-        Set<Name> namesWithoutDuplication = new HashSet<>(names);
+    private void validateDuplication(List<String> names) {
+        Set<String> namesWithoutDuplication = new HashSet<>(names);
         if (names.size() != namesWithoutDuplication.size()) {
             throw new IllegalArgumentException(DUPLICATING_NAME_EXCEPTION_MESSAGE);
         }

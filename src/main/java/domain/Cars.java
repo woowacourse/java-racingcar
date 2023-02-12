@@ -1,9 +1,8 @@
 package domain;
 
-import utils.RandomNumberGenerator;
-import vo.Name;
-import vo.Position;
 import dto.Result;
+import utils.RandomNumberGenerator;
+import vo.Position;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +25,7 @@ public class Cars {
         cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
     }
 
-    public List<Name> getWinnerNames() {
+    public List<String> getWinnerNames() {
         Position highestPosition = calculateHighestPosition();
         return cars.stream()
                 .filter(car -> hasHighestPosition(highestPosition, car))

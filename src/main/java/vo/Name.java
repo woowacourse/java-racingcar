@@ -1,8 +1,6 @@
 package vo;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Name {
     private final String name;
@@ -13,12 +11,6 @@ public class Name {
 
     public static Name of(String name) {
         return new Name(name);
-    }
-
-    public static List<Name> of(List<String> names) {
-        return names.stream()
-                .map(Name::new)
-                .collect(Collectors.toUnmodifiableList());
     }
 
     public String getValue() {
