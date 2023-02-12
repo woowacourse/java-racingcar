@@ -4,7 +4,7 @@ public class Car {
 
     private static final int MIN_POWER = 4;
 
-    private CarName name;
+    private final CarName name;
     private Position position;
 
     public Car(String carName, int initPosition) {
