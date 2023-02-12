@@ -1,11 +1,11 @@
 package domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class TrialTest {
     @ParameterizedTest
@@ -29,7 +29,7 @@ class TrialTest {
     @DisplayName("입력값이 int 범위를 넘어가면 오류가 발생하는지 알아본다")
     void checkExtreme() {
         assertThatThrownBy(() ->
-                new Trial("356574687456352313457643244567")
+            new Trial("356574687456352313457643244567")
         ).isInstanceOf(IllegalArgumentException.class);
     }
 }

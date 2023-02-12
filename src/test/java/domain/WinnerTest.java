@@ -1,15 +1,16 @@
 package domain;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import org.junit.jupiter.api.Test;
 
 class WinnerTest {
     @Test
     void checkWinner() {
-        Cars cars = new Cars("aa,bb,ff");
+        List<String> names = List.of("aa", "bb", "cc");
+        Cars cars = new Cars(names);
         cars.addDistance(List.of(2, 5, 7));
         cars.addDistance(List.of(1, 2, 7));
         Winner winner = new Winner(cars);
@@ -18,7 +19,8 @@ class WinnerTest {
 
     @Test
     void checkTwoWinners() {
-        Cars cars = new Cars("aa,bb,ff");
+        List<String> names = List.of("aa", "bb", "cc");
+        Cars cars = new Cars(names);
         cars.addDistance(List.of(2, 5, 7));
         cars.addDistance(List.of(1, 8, 7));
         Winner winner = new Winner(cars);

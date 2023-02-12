@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import domain.Cars;
 import domain.Trial;
 
 public class InputView {
@@ -16,13 +15,20 @@ public class InputView {
     private static final String nameLengthErrorMessage = "이름은 1이상 5이하입니다.";
     private static final String DELIMITER = ",";
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
 
-    public Cars askCarNames() {
+    public InputView() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public InputView(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public List<String> askCarNames() {
         System.out.println(PRINT_ASK_CARS);
         try {
-            List<String> names = validateNames(scanner.nextLine());
-            return new Cars(names);
+            return validateNames(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askCarNames();
@@ -42,7 +48,7 @@ public class InputView {
         for (String inputSplit : userInputSplit) {
             validateDuplication(names, inputSplit);
             validateNameLength(inputSplit);
-            names.add(inputSplit);
+            names.add(inputSplit.trim());
         }
         return names;
     }
