@@ -3,7 +3,6 @@ package model;
 import util.NumberGenerator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,7 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return List.copyOf(cars);
     }
 
     public void moveResult(NumberGenerator numberGenerator) {
