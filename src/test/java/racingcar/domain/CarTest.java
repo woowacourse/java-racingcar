@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class CarTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "입력: {0} / 위치: {1}")
     @CsvSource(value = {"4,1", "3,0"})
     @DisplayName("move 메서드는 값을 입력받고 4 이상인 경우 전진하고, 3 이하인 경우 멈춘다.")
     void should_move_when_valueIsMoreThanFour(final int value, final int position) {

@@ -65,7 +65,7 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("move 메서드는 모든 자동차들을 이동시킨다.")
+    @DisplayName("move 메서드는 전진 가능한 자동차들을 이동시킨다.")
     void should_moveCars_when_move() {
         final Cars cars = new Cars(List.of("car1", "car2", "car3"));
         final NumberGenerator numberGenerator = new TestNumberGenerator(Lists.newArrayList(4, 3, 5));
