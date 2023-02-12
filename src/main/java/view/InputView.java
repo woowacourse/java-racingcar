@@ -1,15 +1,17 @@
 package view;
 
 import domain.Name;
+import domain.TryCount;
 import exception.CommaNotFoundException;
 import exception.NameIsOutOfBoundException;
+import exception.NotPositiveIntegerException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static java.util.Collections.addAll;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toList;
 
 public class InputView {
 
@@ -54,9 +56,15 @@ public class InputView {
         }
     }
 
-    public static String requestTryCount() {
+    public static TryCount requestTryCount() {
         System.out.println(requestTryCountMessage);
-        return input();
+
+        try {
+            return new TryCount(input());
+        } catch (NumberFormatException | NotPositiveIntegerException e) {
+            System.out.println(e.getMessage());
+            return requestTryCount();
+        }
     }
 
     private static String input() {
