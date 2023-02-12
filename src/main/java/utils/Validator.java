@@ -36,4 +36,10 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] : 자동차 이름이 중복되었습니다");
         }
     }
+
+    public static void checkEmpty(String[] carNameArr) {
+        if (carNameArr.length == 0) {
+            throw new IllegalArgumentException("[ERROR] 빈 이름들은 입력할 수 없습니다.");
+        }
+    }
 }

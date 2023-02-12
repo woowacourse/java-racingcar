@@ -4,23 +4,20 @@ import java.util.Scanner;
 import utils.Validator;
 
 public class InputView {
-    private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public InputView() {
-        scanner = new Scanner(System.in);
-    }
-
-    public String getInput() {
-        return scanner.nextLine();
-    }
-
-    public String[] getCarNames(String input) {
+    public static String[] getCarNames() {
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        String input = scanner.nextLine();
         String[] carNames = input.split(",");
         Validator.checkDuplication(carNames);
+        Validator.checkEmpty(carNames);
         return carNames;
     }
 
-    public int getTryCount(String input) {
+    public static int getTryCount() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        String input = scanner.nextLine();
         Validator.checkDigits(input);
         int tryCount = Integer.parseInt(input);
         Validator.checkRange(tryCount);
