@@ -43,5 +43,4 @@ public class RacingGame {
         sb.deleteCharAt(sb.toString().length() - 1);
         return sb;
     }
-
 }

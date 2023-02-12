@@ -6,5 +6,4 @@ public class Finder {
     public static int findMaxStep(Cars cars) {
         return cars.compareStep();
     }
-
 }
