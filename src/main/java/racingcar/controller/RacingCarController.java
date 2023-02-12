@@ -52,7 +52,7 @@ public class RacingCarController {
         }
     }
 
-    private static void tryOneTime(List<Car> currentCars) {
+    private void tryOneTime(List<Car> currentCars) {
         for (Car currentCar : currentCars) {
             int randomValue = RandomNumberGenerator.generate();
             currentCar.move(currentCar.canMoving(randomValue));
