@@ -29,7 +29,7 @@ public class GameTime {
 
     private static int validateParsing(String gameTime) {
         try {
-            int gameTimeParsed = Integer.parseInt(gameTime);
+            Integer.parseInt(gameTime);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }

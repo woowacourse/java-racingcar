@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class Winners {
 
     private static final String DELIMITER = ", ";
+    private static final int DEFAULT_MAX = 0;
 
     private final List<Winner> winners;
 
@@ -13,7 +14,7 @@ public class Winners {
         int winnerPosition = cars.getCars().stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0);
+                .orElse(DEFAULT_MAX);
         this.winners = cars.getCars().stream()
                     .filter(car -> car.getPosition() == winnerPosition)
                     .map(car -> new Winner(car.getName()))
