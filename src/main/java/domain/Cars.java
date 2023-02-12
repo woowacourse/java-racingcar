@@ -1,7 +1,7 @@
 package domain;
 
 import dto.CarDTO;
-import util.RandomNumberGenerator;
+import util.BoundaryNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +45,16 @@ public class Cars {
                 .orElse(0);
     }
 
-    public void progressRound(RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
-        for (Car car : cars) {
-            Integer randomNumber = randomNumberGenerator.generateRandomNumber();
-            boolean movingResult = roundResult.isGo(randomNumber);
-            car.move(movingResult);
+    public void progressRound(BoundaryNumberGenerator randomNumberGenerator, RoundResult roundResult) {
+        List<Integer> boundaryNumbers = randomNumberGenerator.generateBoundaryNumbers(cars.size());
+        for (int index = 0; index < cars.size(); index++) {
+            moveCar(roundResult, cars.get(index),boundaryNumbers.get(index));
         }
+    }
+
+    private void moveCar(RoundResult roundResult, Car car, Integer boundaryNumber) {
+        boolean movingResult = roundResult.isGo(boundaryNumber);
+        car.move(movingResult);
     }
 
     public List<CarDTO> getCars() {
