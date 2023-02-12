@@ -19,7 +19,7 @@ public class GameController {
     }
 
     public void run() {
-        addCars(readCarNames());
+        racingCarGame.addCars(readCarNames());
         runRacingGame(getNumberOfTry());
         outputView.printWinners(racingCarGame.getWinners());
     }
@@ -27,10 +27,6 @@ public class GameController {
     private String readCarNames() {
         outputView.readCarNames();
         return inputView.readCarNames();
-    }
-    
-    private void addCars(String carNames) {
-        racingCarGame.addCars(carNames);
     }
     
     private int getNumberOfTry() {
