@@ -71,8 +71,8 @@ class RacingGameTest {
         assertThat(game.isEnd()).isEqualTo(result);
     }
 
-    @DisplayName("시도 횟수가 100회 초과하면 예외가 발생한다")
     @Test
+    @DisplayName("시도 횟수가 100회 초과하면 예외가 발생한다")
     void tryCountEx() {
         int tryCount = 101;
 
