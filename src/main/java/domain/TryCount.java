@@ -2,11 +2,11 @@ package domain;
 
 import validation.TryCountValidation;
 
-public class Game {
+public class TryCount {
 
     private final int tryCount;
 
-    public Game(final int tryCount) {
+    public TryCount(final int tryCount) {
         validateTryCount(tryCount);
         this.tryCount = tryCount;
     }

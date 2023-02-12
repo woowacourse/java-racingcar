@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class GameValidationTest {
+class TryCountValidationTest {
 
     @Test
     @DisplayName("validateTryCount() : 이동 거리가 음수인 경우 IllegalArgumentException 발생")
