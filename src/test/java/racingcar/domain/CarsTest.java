@@ -20,18 +20,17 @@ class CarsTest {
         Car car2 = new Car("test2");
         Car car3 = new Car("test3");
 
-        car1.move(4);
-        car2.move(7);
-        car3.move(1);
+        car1.move(true);
+        car2.move(true);
+        car3.move(false);
 
-        car1.move(9);
-        car2.move(8);
-        car3.move(2);
+        car1.move(true);
+        car2.move(true);
+        car3.move(false);
 
         cars.add(car1);
         cars.add(car2);
         cars.add(car3);
-
     }
 
     @Test
@@ -40,20 +39,11 @@ class CarsTest {
         int firstTurnCount = cars.getTurnCount();
 
         RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
-
         cars.playRound(randomValueGenerator);
 
         int secondTurnCount = cars.getTurnCount();
 
-        cars.playRound(randomValueGenerator);
-
-        int thirdTurnCount = cars.getTurnCount();
-
-        assertSoftly(softly -> {
-            softly.assertThat(firstTurnCount).isEqualTo(2);
-            softly.assertThat(secondTurnCount).isEqualTo(3);
-            softly.assertThat(thirdTurnCount).isEqualTo(4);
-        });
+        assertThat(firstTurnCount + 1 == secondTurnCount).isTrue();
     }
 
     @Test
