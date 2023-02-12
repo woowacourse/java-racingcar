@@ -8,24 +8,20 @@ public class Car {
     private final String name;
     private final Position currentPosition;
 
-    public Car(String name) {
+    public Car(String name, int startPoint) {
         this.name = name;
-        this.currentPosition = new Position();
+        this.currentPosition = new Position(startPoint);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public CarStatus move(NumberGenerator numberGenerator) {
+    public void move(NumberGenerator numberGenerator) {
         int randomNumber = numberGenerator.generate();
+
         if (isMovable(randomNumber)) {
             currentPosition.move();
         }
-        return new CarStatus(name, currentPosition);
     }
 
-    public CarStatus getCarStatus() {
+    public CarStatus checkCurrentStatus() {
         return new CarStatus(name, currentPosition);
     }
 
@@ -39,5 +35,9 @@ public class Car {
 
     private boolean isMovable(int number) {
         return number >= MINIMUM_NUMBER_TO_MOVE;
+    }
+
+    public String getName() {
+        return name;
     }
 }
