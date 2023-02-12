@@ -14,16 +14,10 @@ public class Car {
         this.distance = distance;
     }
 
-    public void move() {
-        this.distance++;
-    }
-
-    public boolean canMove() {
-        return generatorPower() >= MIN_BOUNDARY_POWER;
-    }
-
-    private int generatorPower() {
-        return RandomNumberGenerator.generateRandomPower();
+    public void move(int power) {
+        if(power >= MIN_BOUNDARY_POWER) {
+            this.distance++;
+        }
     }
 
     public int getDistance() {
