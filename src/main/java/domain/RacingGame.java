@@ -40,14 +40,11 @@ public class RacingGame {
     }
 
     public List<Car> getWinners() {
-        List<Car> copiedCars = cars.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
-
         Car furthestCar = getFurthestCar();
-
-        return copiedCars.stream()
+        
+        return cars.stream()
                 .filter(car -> car.getPosition() == furthestCar.getPosition())
+                .map(Car::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 
