@@ -1,27 +1,20 @@
 package model;
 
-import java.util.Random;
-
-public class Car implements MovableStrategy {
+public class Car extends Vehicle {
 
     public static final int RANDOM_MOVE_BOUNDARY = 4;
-    public static final int RANDOM_NUMBER_GENERATE_UPPER_BOUND = 10;
+    public static final int RANDOM_NUMBER_GENERATE_RANGE = 10;
+    public static final int START_POSITION = 0;
 
-    private final String name;
-    private final Random random;
+    private final RandomGenerator randomGenerator;
 
-    public Car(String name) {
-        this.name = name;
-        this.random = new Random();
+    public Car(String name, RandomGenerator randomGenerator) {
+        super(name, START_POSITION);
+        this.randomGenerator = randomGenerator;
     }
 
     @Override
     public boolean isMove() {
-        return random.nextInt(RANDOM_NUMBER_GENERATE_UPPER_BOUND) >= RANDOM_MOVE_BOUNDARY;
-    }
-
-    @Override
-    public String toString() {
-        return name;
+        return randomGenerator.generate(RANDOM_NUMBER_GENERATE_RANGE) >= RANDOM_MOVE_BOUNDARY;
     }
 }
