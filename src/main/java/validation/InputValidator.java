@@ -3,7 +3,7 @@ package validation;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class Validator {
+public class InputValidator {
 
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;
@@ -27,7 +27,7 @@ public class Validator {
 
     private static boolean hasWrongName(List<String> carNames) {
         return carNames.stream()
-                .anyMatch(Validator::isWrongName);
+                .anyMatch(InputValidator::isWrongName);
     }
 
     private static boolean isWrongName(String carName) {

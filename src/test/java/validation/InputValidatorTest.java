@@ -7,13 +7,13 @@ import utils.Parser;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ValidatorTest {
+public class InputValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"123,,gray12", "echo1234"})
     @DisplayName("자동차 이름의 길이가 1~5이 아닌 경우 예외가 발생한다")
     public void validateCarNameFail(String carNames) {
-        assertThatThrownBy(() -> Validator.validateCarName(Parser.parse(carNames, ",")))
+        assertThatThrownBy(() -> InputValidator.validateCarName(Parser.parse(carNames, ",")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.WRONG_INPUT_NAME.getErrorMessage());
     }
@@ -22,7 +22,7 @@ public class ValidatorTest {
     @ValueSource(strings  = {"0", "-1", "-5"})
     @DisplayName("게임 시도 횟수가 1보다 작은 경우 예외가 발생한다")
     public void validateGameTrialCount(String trialCount) {
-        assertThatThrownBy(() -> Validator.validateTrialCount(trialCount))
+        assertThatThrownBy(() -> InputValidator.validateTrialCount(trialCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.WRONG_INPUT_NUMBER.getErrorMessage());
     }

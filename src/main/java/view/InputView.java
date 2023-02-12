@@ -1,7 +1,7 @@
 package view;
 
 import utils.Parser;
-import validation.Validator;
+import validation.InputValidator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -17,14 +17,14 @@ public class InputView {
         printMessage(CAR_NAME_INPUT_MESSAGE);
         String inputCars = scanner.nextLine();
         List<String> carNames = Parser.parse(inputCars, DELIMITER);
-        Validator.validateCarName(carNames);
+        InputValidator.validateCarName(carNames);
         return carNames;
     }
 
     public int readGameTrial() {
         printMessage(GAME_TRIAL_INPUT_MESSAGE);
         String inputGameTrial = scanner.nextLine();
-        Validator.validateTrialCount(inputGameTrial);
+        InputValidator.validateTrialCount(inputGameTrial);
         return Integer.parseInt(inputGameTrial);
     }
 
