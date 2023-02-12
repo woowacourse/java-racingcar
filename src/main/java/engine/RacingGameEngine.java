@@ -20,7 +20,7 @@ public class RacingGameEngine {
         OutputView.printWinners(cars);
     }
 
-    private String getCarNames() {
+    private String[] getCarNames() {
         OutputView.requestOfCarNames();
         return InputView.inputCarNames();
     }

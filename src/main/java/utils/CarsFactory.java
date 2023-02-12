@@ -10,22 +10,18 @@ public class CarsFactory {
 
     private static final int DEFAULT_DISTANCE_VALUE = 0;
 
-    public static Cars createCars(String carNames) {
+    public static Cars createCars(final String[] carNames) {
         List<Car> cars = makeCars(carNames);
         return new Cars(cars);
     }
 
-    private static List<Car> makeCars(String carNames) {
-        return Arrays.stream(splitCarNames(carNames))
+    private static List<Car> makeCars(final String[] carNames) {
+        return Arrays.stream(carNames)
                 .map(CarsFactory::makeCar)
                 .collect(Collectors.toList());
     }
 
-    private static String[] splitCarNames(String carNames) {
-        return SplitCarNames.splitCarNames(carNames);
-    }
-
-    private static Car makeCar(String carName) {
+    private static Car makeCar(final String carName) {
         return new Car(carName, DEFAULT_DISTANCE_VALUE);
     }
 }
