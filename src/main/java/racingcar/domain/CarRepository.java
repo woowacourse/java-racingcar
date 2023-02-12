@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 
 public class CarRepository {
     private static final List<Car> cars = new ArrayList<>();
+    
+    private CarRepository() {
+        throw new IllegalStateException("생성할 수 없는 유틸 클래스입니다.");
+    }
 
     public static void updateCars(List<Car> newCars) {
         CarRepositoryValidator.validate(newCars);

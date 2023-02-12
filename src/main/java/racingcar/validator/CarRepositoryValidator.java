@@ -7,6 +7,10 @@ import java.util.List;
 public class CarRepositoryValidator {
 
     private static final int MINIMUM_NUMBER_OF_CARS = 2;
+    
+    private CarRepositoryValidator() {
+        throw new IllegalStateException("생성할 수 없는 유틸 클래스입니다.");
+    }
 
     public static void validate(List<Car> newCars) {
         validateLessThanMinimumNumberOfCars(newCars);

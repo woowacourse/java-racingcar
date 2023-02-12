@@ -6,6 +6,10 @@ public class CarNameValidator {
 
     private static final int NAME_MAXIMUM_LENGTH = 5;
     private static final CharSequence BLANK = " ";
+    
+    private CarNameValidator() {
+        throw new IllegalStateException("생성할 수 없는 유틸 클래스입니다.");
+    }
 
     public static void validate(String name) {
         validateNullAndEmpty(name);
