@@ -5,18 +5,27 @@ import racingcar.domain.Race;
 import racingcar.domain.RaceNumberGenerator;
 import racingcar.domain.dto.CarRaceDto;
 import racingcar.domain.dto.RaceResultDto;
-import racingcar.util.InputUtil;
+import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
 
+import static racingcar.enumType.InputMessage.GET_CAR_NAMES_MESSAGE;
+import static racingcar.enumType.InputMessage.GET_TRY_COUNT_MESSAGE;
+
 public class CarRaceController {
 
-    private final InputUtil inputUtil = new InputUtil();
+    private final InputView inputView;
 
-    private final OutputView outputView = new OutputView();
+    private final OutputView outputView;
 
-    private final RaceNumberGenerator numberGenerator = new RaceNumberGenerator();
+    private final RaceNumberGenerator numberGenerator;
+
+    public CarRaceController() {
+        inputView = new InputView();
+        outputView = new OutputView();
+        numberGenerator = new RaceNumberGenerator();
+    }
 
     public void race() {
         Cars cars = getUserInputAndCreateCars();
@@ -31,15 +40,17 @@ public class CarRaceController {
     }
 
     private Cars getUserInputAndCreateCars() {
-        return inputUtil.getUserInput(() -> {
-            String carNames = inputUtil.getCarNames();
+        return inputView.getUserInput(() -> {
+            OutputView.printMessage(GET_CAR_NAMES_MESSAGE.getValue());
+            String carNames = inputView.readConsole();
             return Cars.of(carNames, numberGenerator);
         });
     }
 
     private Race getUserInputAndCreateRace() {
-        return inputUtil.getUserInput(() -> {
-            String tryCount = inputUtil.getTryCount();
+        return inputView.getUserInput(() -> {
+            OutputView.printMessage(GET_TRY_COUNT_MESSAGE.getValue());
+            String tryCount = inputView.readConsole();
             return Race.of(tryCount);
         });
     }

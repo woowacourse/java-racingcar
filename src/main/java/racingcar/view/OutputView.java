@@ -9,7 +9,7 @@ import static racingcar.enumType.OutputMessage.*;
 
 public class OutputView {
 
-    public void printMessage(String message) {
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 
