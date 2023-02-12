@@ -12,7 +12,7 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 class CarTest {
 
     @ParameterizedTest(name = "자동차 이름 검증 테스트 - 입력이름 : \"{0}\"")
-    @ValueSource(strings = {"abcdef", "", "   a   "})
+    @ValueSource(strings = {"abcdef", "", "  "})
     void carNameExceptionTest(String name) {
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class);
