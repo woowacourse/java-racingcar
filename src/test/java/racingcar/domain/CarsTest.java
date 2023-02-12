@@ -27,10 +27,13 @@ class CarsTest {
                 .collect(Collectors.toList());;
         // then
         for (int index = 0; index < carDtosAfterRequestMove.size(); index++) {
-            assertThat(carDtosAfterRequestMove.get(index).getName()).isEqualTo(
-                    carDtosBeforeRequestMove.get(index).getName());
-            assertThat(carDtosAfterRequestMove.get(index).getMovedCount()).isEqualTo(
-                    carDtosBeforeRequestMove.get(index).getMovedCount() + 1);
+            String afterName = carDtosAfterRequestMove.get(index).getName();
+            String beforeName = carDtosBeforeRequestMove.get(index).getName();
+            assertThat(afterName).isEqualTo(beforeName);
+
+            int afterMovedCount = carDtosAfterRequestMove.get(index).getMovedCount();
+            int beforeMovedCount = carDtosBeforeRequestMove.get(index).getMovedCount();
+            assertThat(afterMovedCount).isEqualTo(beforeMovedCount + 1);
         }
     }
 
