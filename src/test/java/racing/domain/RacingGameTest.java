@@ -15,7 +15,9 @@ class RacingGameTest {
     @Test
     @DisplayName("play 메소드를 호출하면 모든 자동차의 position이 1 증가한다.")
     void play_with_always_move() {
-        RacingGame game = new RacingGame(carNames, new AlwaysMoveGenerator());
+        int tryCount = 1;
+
+        RacingGame game = new RacingGame(new AlwaysMoveGenerator(), new Cars(carNames), tryCount);
         game.play();
 
         List<Car> result = game.getResult();
@@ -24,13 +26,15 @@ class RacingGameTest {
                 .map(Car::getPosition)
                 .collect(Collectors.toList());
 
-        Assertions.assertThat(positions).containsOnly(1);
+        Assertions.assertThat(positions).containsOnly(tryCount);
     }
 
     @Test
     @DisplayName("play 메소드를 호출하면 모든 자동차의 position이 1 증가하지 않는다.")
     void play_with_always_stop() {
-        RacingGame game = new RacingGame(carNames, new AlwaysStopGenerator());
+        int tryCount = 1;
+
+        RacingGame game = new RacingGame(new NeverMoveGenerator(), new Cars(carNames), tryCount);
         game.play();
 
         List<Car> result = game.getResult();
@@ -50,7 +54,7 @@ class RacingGameTest {
         }
     }
 
-    private static class AlwaysStopGenerator implements RandomNumberGenerator {
+    private static class NeverMoveGenerator implements RandomNumberGenerator {
 
         @Override
         public int generate() {

@@ -1,42 +1,72 @@
 package racing.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing.RandomNumberGenerator;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.stream.Collectors;
 
 class CarsTest {
 
-    private final Car boxster = new Car("박스터");
-    private final Car sonata = new Car("소나타");
-    private final Car benz = new Car("벤츠");
-
-    List<Car> dummy = List.of(
-            boxster,
-            sonata,
-            benz
-    );
+    private final List<String> dummy = List.of("포르쉐", "현대차", "기아");
 
     @Test
-    @DisplayName("Position이 가장 큰 Car List를 반환한다.")
-    void getFirstPositionTest() {
+    @DisplayName("moveAll 메소드를 호출하면 Car의 Position이 1 증가한다.")
+    void moveAllTest() {
         Cars cars = new Cars(dummy);
 
-        boxster.move(4);
-        sonata.move(4);
+        cars.moveAll(new AlwaysMoveGenerator());
 
-        List<Car> firstPosition = cars.decideWinners();
+        List<Integer> positions = cars.getUnmodifiableCars().stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
 
-        assertThat(firstPosition).containsOnly(boxster, sonata);
+        Assertions.assertThat(positions).containsOnly(1);
     }
 
     @Test
-    @DisplayName("Cars 리스트가 비어있다면 예외")
-    void constructorEx() {
-        assertThatThrownBy(() -> new Cars(List.of()))
-                .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("moveAll 메소드를 호출해도 Car의 Position이 증가하지 않는다.")
+    void notMoveAllTest() {
+        Cars cars = new Cars(dummy);
+
+        cars.moveAll(new NeverMoveGenerator());
+
+        List<Integer> positions = cars.getUnmodifiableCars().stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
+
+        Assertions.assertThat(positions).containsOnly(0);
+    }
+
+    @Test
+    @DisplayName("dicideWinners 메소드를 호출하면 우승자의 이름 목록을 반환한다.")
+    void decideWinners() {
+        Cars cars = new Cars(dummy);
+
+        cars.moveAll(new AlwaysMoveGenerator());
+
+        List<String> carNames = cars.getUnmodifiableCars().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+
+        Assertions.assertThat(carNames).containsAll(dummy);
+    }
+
+    private static class AlwaysMoveGenerator implements RandomNumberGenerator {
+
+        @Override
+        public int generate() {
+            return 4;
+        }
+    }
+
+    private static class NeverMoveGenerator implements RandomNumberGenerator {
+
+        @Override
+        public int generate() {
+            return 3;
+        }
     }
 }
