@@ -12,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RaceTest {
 
@@ -52,6 +54,17 @@ class RaceTest {
             race.tryMoveOneTime(new TestNumberPicker(4, 1));
             //then
             //Mock 라이브러리를 이용하여 검증
+        }
+
+        @ParameterizedTest
+        @DisplayName("tryMoveOneTime 메서드를 실행 후에, 시도횟수가 감소하였는지 테스트")
+        @ValueSource(ints = {1, 2, 3, 4, 5})
+        void tryCountDecreaseWhenExecuteTryMoveOneTime(int tryTime) {
+            Race race = new Race(List.of(new Car("rosie"), new Car("hong")));
+            race.initTryTime(tryTime);
+            race.tryMoveOneTime(new RandomNumberPicker());
+            assertThat(race).extracting("tryTime")
+                    .isEqualTo(tryTime - 1);
         }
     }
 
