@@ -18,12 +18,12 @@ public class InputVerifier {
     }
 
     private static void checkNameLength(String name) {
-        if (isValueLength(name)) {
+        if (isValidLength(name)) {
             throw new IllegalArgumentException(OutputView.UNSUITABLE_LENGTH);
         }
     }
 
-    private static boolean isValueLength(String name) {
+    private static boolean isValidLength(String name) {
         return name.length() < 1 || 5 < name.length();
     }
 
