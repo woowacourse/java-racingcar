@@ -20,6 +20,8 @@ class CarsPositionFormatterTest {
                 + "eddy : ---\n";
 
         //when
+        cars.moveCars();
+        cars.moveCars();
         String actual = carsPositionFormatter.format(cars);
 
         //then
