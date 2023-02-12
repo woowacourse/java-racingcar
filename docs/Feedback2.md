@@ -37,6 +37,8 @@ private List<Car> getCarsFromInput() {
     }
 ```
 
+## RacingGameManager 내의 메서드를 하나의 일만 하도록 변경
+
 ## 매직넘버 전체 제거
 
     -   매직넘버라 판된되는 모든 숫자들을 상수로 처리하였습니다.
