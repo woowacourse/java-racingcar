@@ -5,11 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class CarTest {
+
+    private Rule rule = Rule.MOVING_FORWARD_STANDARD;
 
     @ParameterizedTest(name = "자동차 이름 검증 테스트 - 입력이름 : \"{0}\"")
     @ValueSource(strings = {"abcdef", "", "  "})
@@ -19,28 +20,19 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("자동차의 이동 조건 value 기록 추가에 대한 테스트")
-    void addValueTest() {
-        Car car = new Car("test");
-        car.addValue(4);
-        int firstSize = car.getLogSize();
-        car.addValue(5);
-        int secondSize = car.getLogSize();
-        assertSoftly(softly -> {
-            softly.assertThat(firstSize).isEqualTo(1);
-            softly.assertThat(secondSize).isEqualTo(2);
-        });
-    }
-
-    @Test
     @DisplayName("자동차 위치 확인 테스성")
     void getPositionTest() {
         Car car = new Car("test");
-        car.addValue(0);
-        car.addValue(4);
-        car.addValue(9);
+        car.moveWith(0, rule);
+        car.moveWith(5, rule);
+        car.moveWith(6, rule);
 
-        assertThat(car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold())).isEqualTo(2);
+        int expectedPosition = 2;
+        int expectedTurnCount = 3;
 
+        assertSoftly(softly -> {
+            softly.assertThat(car.getPosition()).isEqualTo(expectedPosition);
+            softly.assertThat(car.getTurnCount()).isEqualTo(expectedTurnCount);
+        });
     }
 }

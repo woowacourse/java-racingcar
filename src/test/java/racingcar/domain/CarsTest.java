@@ -15,6 +15,7 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 class CarsTest {
 
     private Cars cars;
+    private Rule rule = Rule.MOVING_FORWARD_STANDARD;
 
     @BeforeEach
     void setup() {
@@ -29,17 +30,17 @@ class CarsTest {
     @Test
     @DisplayName("자동차들의 라운드 진행 테스트")
     void getTurnCountTest() {
-        cars.addNextCarValue(1);
-        cars.addNextCarValue(1);
-        cars.addNextCarValue(1);
+        cars.moveNextCarWith(1, rule);
+        cars.moveNextCarWith(1, rule);
+        cars.moveNextCarWith(1, rule);
 
-        int firstTurnCount = cars.getTurnCount();
+        int firstTurnCount = cars.getCurrentRound();
 
-        cars.addNextCarValue(5);
-        cars.addNextCarValue(5);
-        cars.addNextCarValue(5);
+        cars.moveNextCarWith(5, rule);
+        cars.moveNextCarWith(5, rule);
+        cars.moveNextCarWith(5, rule);
 
-        int secondTurnCount = cars.getTurnCount();
+        int secondTurnCount = cars.getCurrentRound();
 
         assertSoftly(softly -> {
             softly.assertThat(firstTurnCount).isEqualTo(1);
@@ -51,9 +52,9 @@ class CarsTest {
     @DisplayName("자동차들의 라운드 턴수가 다른 예외 상황 테스트")
     void turnCountExceptionTest() {
         for (int i = 0; i < 4; i++) {
-            cars.addNextCarValue(4);
+            cars.moveNextCarWith(4, rule);
         }
-        assertThatThrownBy(() -> cars.getTurnCount())
+        assertThatThrownBy(() -> cars.getCurrentRound())
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining(ErrorMessage.ROUND_NOT_OVER.getMessage());
     }
@@ -61,13 +62,13 @@ class CarsTest {
     @Test
     @DisplayName("라운드 결과 테스트")
     void getRoundResultTest() {
-        cars.addNextCarValue(4);
-        cars.addNextCarValue(7);
-        cars.addNextCarValue(1);
+        cars.moveNextCarWith(4, rule);
+        cars.moveNextCarWith(7, rule);
+        cars.moveNextCarWith(1, rule);
 
-        cars.addNextCarValue(9);
-        cars.addNextCarValue(8);
-        cars.addNextCarValue(2);
+        cars.moveNextCarWith(9, rule);
+        cars.moveNextCarWith(8, rule);
+        cars.moveNextCarWith(2, rule);
 
         Map<String, Integer> actualResult = cars.getRoundResult();
 
@@ -81,12 +82,12 @@ class CarsTest {
     @Test
     @DisplayName("우승자를 확인하는 기능 테스트")
     void getWinnersTest() {
-        cars.addNextCarValue(4);
-        cars.addNextCarValue(7);
-        cars.addNextCarValue(1);
-        cars.addNextCarValue(9);
-        cars.addNextCarValue(8);
-        cars.addNextCarValue(2);
+        cars.moveNextCarWith(4, rule);
+        cars.moveNextCarWith(7, rule);
+        cars.moveNextCarWith(1, rule);
+        cars.moveNextCarWith(9, rule);
+        cars.moveNextCarWith(8, rule);
+        cars.moveNextCarWith(2, rule);
 
         assertThat(cars.getWinners()).containsExactly("test1", "test2");
     }
