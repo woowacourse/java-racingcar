@@ -24,10 +24,8 @@ public class OutputView {
         }
     }
 
-    public void printFinalResult(Cars cars) {
-        List<String> winners = cars.getWinners().stream()
-            .map(car -> car.getName())
-            .collect(Collectors.toList());
+    public void printFinalResult(RacingGame racingGame) {
+        List<String> winners = racingGame.getWinners();
         String winningCarNames = String.join(NAME_DELIMITER, winners);
         System.out.print(winningCarNames + WINNER_MESSAGE_FORMAT);
     }
