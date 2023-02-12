@@ -14,7 +14,7 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveCars(NumberGenerator numberGenerator) {
+    public void move(NumberGenerator numberGenerator) {
         cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 

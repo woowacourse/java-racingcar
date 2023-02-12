@@ -43,7 +43,7 @@ public class RacingGameApplication {
 
     private void playGame(TryCount tryCount, Cars cars) {
         for (int i = 0; i < tryCount.getTryCount(); i++) {
-            cars.moveCars(numberGenerator);
+            cars.move(numberGenerator);
             List<CarStatusDto> carStatusDtos = cars.getCars()
                     .stream()
                     .map(CarStatusDto::of)

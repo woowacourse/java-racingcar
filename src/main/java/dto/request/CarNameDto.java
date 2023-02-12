@@ -1,7 +1,7 @@
 package dto.request;
 
-import static domain.Car.BLANK;
-import static domain.Car.MAX_NAME_LENGTH;
+import static domain.Name.MAX_NAME_LENGTH;
+import static domain.Name.BLANK;
 
 public class CarNameDto {
 

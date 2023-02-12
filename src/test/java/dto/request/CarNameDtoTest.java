@@ -3,8 +3,8 @@ package dto.request;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static domain.Car.BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE;
-import static domain.Car.NAME_LENGTH_EXCEPTION_MESSAGE;
+import static domain.Name.BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE;
+import static domain.Name.NAME_LENGTH_EXCEPTION_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 

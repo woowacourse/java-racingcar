@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static domain.Car.*;
+import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
+import static domain.Name.BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE;
+import static domain.Name.NAME_LENGTH_EXCEPTION_MESSAGE;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {

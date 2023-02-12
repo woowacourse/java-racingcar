@@ -21,7 +21,7 @@ class CarsTest {
         int[] moveOrder = {MINIMUM_NUMBER_TO_MOVE, MINIMUM_NUMBER_TO_MOVE - 1, MINIMUM_NUMBER_TO_MOVE};
         MockNumberGenerator mockNumberGenerator = new MockNumberGenerator(moveOrder);
 
-        cars.moveCars(mockNumberGenerator);
+        cars.move(mockNumberGenerator);
 
         List<Integer> positions = cars.getCars()
                 .stream()
@@ -39,7 +39,7 @@ class CarsTest {
         int[] moveOrder = {MINIMUM_NUMBER_TO_MOVE, MINIMUM_NUMBER_TO_MOVE - 1, MINIMUM_NUMBER_TO_MOVE};
         MockNumberGenerator mockNumberGenerator = new MockNumberGenerator(moveOrder);
 
-        cars.moveCars(mockNumberGenerator);
+        cars.move(mockNumberGenerator);
         List<Car> winners = cars.findWinners();
 
         assertThat(winners).containsExactly(cars.getCars().get(0), cars.getCars().get(2));
