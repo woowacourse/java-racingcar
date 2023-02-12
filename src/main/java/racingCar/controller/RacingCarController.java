@@ -11,7 +11,7 @@ public class RacingCarController {
 
     public void run() {
         Cars cars = repeat(this::generateCars);
-        Integer tryCount = repeat(InputView::readTryCount);
+        int tryCount = repeat(InputView::readTryCount);
         playRacing(cars, tryCount);
         OutputView.printWinners(cars.findWinners());
     }
