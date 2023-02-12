@@ -1,6 +1,7 @@
 package racingCar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,13 +31,23 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차들 이름이 아무것도 없으면 예외가 터진다")
+    @DisplayName("자동차들 이름이 아무것도 없으면 예외 발생")
     void carsTest_empty_fail() {
         List<String> carNames = new ArrayList<>();
 
-        Assertions.assertThatThrownBy(()->{
+        assertThatIllegalArgumentException().isThrownBy(() -> {
             new Cars(carNames);
-        }).isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 1개인 경우 예외 발생")
+    void carTest_onlyOne_fail() {
+        List<String> carNames = new ArrayList<>(List.of("도기"));
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Cars(carNames);
+        });
     }
 
     @Test
