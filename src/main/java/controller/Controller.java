@@ -12,7 +12,7 @@ public class Controller {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Cars cars = inputView.askCars();
+        Cars cars = inputView.askCarNames();
         Trial trial = inputView.askTrial();
         for (int j = 0; j < trial.getTrial(); j++) {
             cars.addDistance(RandomNumberMaker.makeNumber(cars.getCarsSize()));
