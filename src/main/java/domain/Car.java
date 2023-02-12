@@ -20,7 +20,7 @@ public class Car {
         }
     }
 
-    public boolean isWinner(int distance){
+    public boolean isWinner(int distance) {
         return this.distance == distance;
     }
 
