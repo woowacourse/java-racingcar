@@ -9,13 +9,12 @@ import org.junit.jupiter.api.Test;
 class CarsTest {
     TestNumberGenerator testNumberGenerator = new TestNumberGenerator();
 
-    Cars cars = new Cars("가비,주드");
+    Cars cars = new Cars("가비,주드,포비");
 
     @Test
     @DisplayName("우승자 확인 성공 테스트")
     void getWinnerSuccessTest() {
         cars.moveCars(testNumberGenerator);
-        cars.getCars().add(new Car("포비"));
         assertThat(cars.getWinnerNames()).containsExactly("가비", "주드").doesNotContain("포비");
     }
 
@@ -27,10 +26,11 @@ class CarsTest {
     }
 
     private class TestNumberGenerator implements NumberGenerator {
-        private static final int MOVE = 5;
+        private int MOVE = 6;
+
         @Override
         public int generate() {
-            return MOVE;
+            return MOVE -= 1;
         }
     }
 

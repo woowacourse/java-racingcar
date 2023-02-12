@@ -16,7 +16,7 @@ public class Cars {
         String[] split = carNames.split(CAR_NAMES_DELETMETER);
         this.cars = Arrays.stream(split)
                 .map(Car::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<String> getWinnerNames() {
