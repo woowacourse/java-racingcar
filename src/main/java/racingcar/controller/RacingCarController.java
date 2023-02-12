@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.CarNumberGenerator;
 import racingcar.CarRandomNumberGenerator;
 import racingcar.model.Car;
 import racingcar.model.RacingCars;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class RacingCarController {
 
     private static final int START_POSITION = 0;
+    private final CarNumberGenerator carNumberGenerator = new CarRandomNumberGenerator();
     private OutputView outputView = OutputView.getInstance();
     private InputView inputView = InputView.getInstance();
     private RacingCars racingCars;
@@ -54,7 +56,7 @@ public class RacingCarController {
 
     private void tryOneTime(List<Car> currentCars) {
         for (Car currentCar : currentCars) {
-            int randomValue = CarRandomNumberGenerator.generate();
+            int randomValue = carNumberGenerator.generate();
             currentCar.move(currentCar.canMoving(randomValue));
         }
     }
