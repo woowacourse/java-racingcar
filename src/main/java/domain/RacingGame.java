@@ -13,12 +13,13 @@ public class RacingGame {
 
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
+    private final Coin gameCoin;
 
-    public RacingGame(List<String> splitCarNames, NumberGenerator numberGenerator) {
+    public RacingGame(List<String> splitCarNames, int gameTry, NumberGenerator numberGenerator) {
         cars = splitCarNames.stream()
                 .map(carName -> new Car(carName, DEFAULT_START_LINE))
                 .collect(Collectors.toList());
-
+        gameCoin = new Coin(gameTry);
         this.numberGenerator = numberGenerator;
     }
 
@@ -26,6 +27,7 @@ public class RacingGame {
         for (Car car : cars) {
             moveCar(car);
         }
+        gameCoin.use();
     }
 
     private void moveCar(Car car) {
@@ -33,6 +35,10 @@ public class RacingGame {
         if (randomNumber >= MOVABLE_BOUND) {
             car.move();
         }
+    }
+
+    public boolean isGameOnGoing() {
+        return gameCoin.isLeft();
     }
 
     public List<Car> getCars() {
