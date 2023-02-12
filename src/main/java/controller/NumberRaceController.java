@@ -51,8 +51,6 @@ public class NumberRaceController implements RaceController {
     }
 
     private RaceState race() {
-        outputView.printRoundStartMessage();
-
         List<RacingRoundStateDto> racingTotalState = raceService.race();
 
         outputView.printRacingTotalState(racingTotalState);

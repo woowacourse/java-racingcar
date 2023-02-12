@@ -12,15 +12,13 @@ public class OutputView {
     private static final String ERROR_FORMAT = "[ERROR] %s";
     private static final String POSITION_STATE = "-";
     private static final String ROUND_FORMAT = "%s : %s";
-    private static final String WINNER_FORMAT = "%s가 최종 우승했습니다.";
+    private static final String WINNER_FORMAT = "\n%s가 최종 우승했습니다.";
     private static final String LINE_FEED = "\n";
     private static final String DELIMITER = ", ";
 
-    public void printRoundStartMessage() {
-        print(RACE_START_MESSAGE);
-    }
-
     public void printRacingTotalState(List<RacingRoundStateDto> racingTotalState) {
+        print(RACE_START_MESSAGE);
+
         String racingTotalStateLog = racingTotalState.stream()
                 .map(this::mapToRacingRoundStateLog)
                 .collect(Collectors.joining(LINE_FEED + LINE_FEED));
