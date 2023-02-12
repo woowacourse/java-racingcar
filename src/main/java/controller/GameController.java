@@ -7,6 +7,8 @@ import view.InputView;
 import view.OutputView;
 
 public class GameController {
+
+
     private final RacingCarGame racingCarGame;
 
     public GameController() {

@@ -17,7 +17,6 @@ public class InputView {
 
     public static String readNumberOfTry() {
         return readLine();
-
     }
 
     private static String readLine() {

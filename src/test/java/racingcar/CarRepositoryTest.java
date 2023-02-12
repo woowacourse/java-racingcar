@@ -1,5 +1,6 @@
 package racingcar;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,5 +57,10 @@ class CarRepositoryTest {
                 Arguments.of(Collections.emptyList()),
                 Arguments.of(List.of(new Car("pobi", 0)))
         );
+    }
+
+    @AfterEach
+    void clear() {
+        CarRepository.clear();
     }
 }
