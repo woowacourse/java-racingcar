@@ -11,7 +11,7 @@ public class Name {
         this.name = name;
     }
 
-    private void validateName(String carName) {
+    private void validateName(final String carName) {
         CarNamesValidation.validateCarName(carName);
     }
 
