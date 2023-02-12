@@ -1,51 +1,55 @@
 package controller;
 
 import model.Car;
-import model.MovableStrategy;
-import model.Racing;
+import model.Cars;
+import model.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RacingController {
-    
     public static final int START_POSITION = 0;
 
     private final InputView inputView;
     private final OutputView outputView;
+    private Cars cars;
 
     public RacingController() {
         inputView = new InputView(System.in);
         outputView = new OutputView();
     }
 
-    public void racingStart() {
-        List<String> carNames = inputView.inputCarNames();
-        LinkedHashMap<MovableStrategy, Integer> scoreBoard = new LinkedHashMap<>();
-        carNames.forEach(name -> scoreBoard.put(new Car(name), START_POSITION));
+    public void start() {
+        prepareRacing();
+        process();
+        end();
+    }
 
-        Racing racing = new Racing(scoreBoard);
+    private void prepareRacing() {
+        cars = new Cars(inputView.inputCarNames()
+                .stream()
+                .map(name -> new Car(name, new RandomGenerator(new Random())))
+                .collect(Collectors.toUnmodifiableList())
+        );
+    }
+
+    private void process() {
         int numberOfTimes = inputView.inputRepeatCount();
-        process(racing, numberOfTimes);
-        end(racing);
-    }
-
-    private void process(Racing racing, int numberOfTimes) {
         outputView.resultHeader();
-        IntStream.range(0, numberOfTimes).forEach(i -> eachProcess(racing));
+        IntStream.range(0, numberOfTimes)
+                .forEach(this::repeat);
     }
 
-    private void eachProcess(Racing racing) {
-        racing.moveAll();
-        outputView.result(racing);
+    private void repeat(int count) {
+        cars.moveAll();
+        outputView.result(cars);
     }
 
-    private void end(Racing racing) {
-        outputView.result(racing);
-        outputView.winner(racing.getWinner());
+    private void end() {
+        outputView.result(cars);
+        outputView.winner(cars.getWinner());
     }
 }
-
