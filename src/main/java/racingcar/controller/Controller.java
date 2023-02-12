@@ -7,6 +7,7 @@ import racingcar.domain.NumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -37,11 +38,12 @@ public class Controller {
     }
 
     private void playGame(Cars cars, int round) {
+        RacingGame racingGame = new RacingGame(cars, round);
         outputView.printResultMessage();
-        for (int i = 0; i < round; i++) {
-            outputView.printRoundResult(cars.moveEachCar());
+        while(racingGame.isGameEnded()){
+            racingGame.playOneRound();
         }
-        outputView.printFinalResult(cars.findAllWinner());
+        outputView.printFinalResult(racingGame.findWinnerCars());
     }
 
 }
