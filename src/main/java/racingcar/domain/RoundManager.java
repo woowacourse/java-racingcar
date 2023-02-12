@@ -1,11 +1,10 @@
 package racingcar.domain;
 
-import racingcar.dto.RacingCarDto;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.dto.RacingCarDto;
 
 public class RoundManager {
     private final List<RacingCar> racingCars = new ArrayList<>();
@@ -29,11 +28,17 @@ public class RoundManager {
 
     public List<String> runRound() {
         List<String> roundResult = new ArrayList<>();
-        racingCars.stream().forEach(racingCar -> {
-            racingCar.advance(advanceJudgement.isAdvancePossible());
+        racingCars.forEach(racingCar -> {
+            applyAdvanceJudgement(racingCar);
             roundResult.add(racingCar.getDesc());
         });
         return roundResult;
+    }
+
+    private void applyAdvanceJudgement(RacingCar racingCar){
+        if(advanceJudgement.isAdvancePossible()){
+            racingCar.advance();
+        }
     }
 
     public List<RacingCarDto> getSortedRacingCars() {
