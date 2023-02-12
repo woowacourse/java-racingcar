@@ -8,23 +8,28 @@ import racingcar.domain.Cars;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+import racingcar.vo.Trial;
 
 public class Controller {
     private static final String DELIMITER = ",";
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
     private final RandomNumberGenerator randomNumberGenerator;
 
     private final Cars cars;
-    private final int gameCount;
+    private final Trial trial;
 
     public Controller() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
         this.randomNumberGenerator = new RandomNumberGenerator();
         this.cars = new Cars(initializeCars());
-        this.gameCount = inputView.inputGameTime();
+        this.trial = initGameTime();
+    }
+
+    private Trial initGameTime() {
+        String trial = inputView.inputGameTime();
+        return new Trial(trial);
     }
 
     private List<Car> initializeCars() {
@@ -36,7 +41,7 @@ public class Controller {
     }
 
     public void startRacing() {
-        for (int i = 0; i < gameCount; i++) {
+        for (int i = 0; i < trial.getTrial(); i++) {
             applyRandomNumberToCarPosition();
             outputView.printPosition(cars.getCars());
         }
@@ -48,7 +53,7 @@ public class Controller {
         });
     }
 
-    public void endRacing(){
+    public void endRacing() {
         outputView.printWinners(cars.getWinnerNames());
     }
 

@@ -12,11 +12,9 @@ public class InputView {
         return scan.nextLine();
     }
 
-    public int inputGameTime() {
+    public String inputGameTime() {
         System.out.println(OutputConstant.INPUT_TRY_COUNT);
-        String input = scan.nextLine();
-        int inputNumber = Validator.validateGameTime(input);
-        return inputNumber;
+        return scan.nextLine();
     }
 
 }
