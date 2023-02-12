@@ -11,7 +11,7 @@ import racingcar.domain.Cars;
 
 public class CarService {
     private Cars cars = new Cars(new ArrayList<Car>());
-    private List<String> winner = new ArrayList<>();
+    public final int RANDOM_NUM_MAX_VALUE = 10;
 
     public void validateNameInput(String carNameInput) {
         cars = new Cars(new ArrayList<Car>());
@@ -40,7 +40,7 @@ public class CarService {
         LinkedHashMap<String, Integer> roundResult = new LinkedHashMap<String, Integer>();
         for (Car car : cars.getCarInformation()) {
             Random random = new Random();
-            int randomNumber = random.nextInt(10);
+            int randomNumber = random.nextInt(RANDOM_NUM_MAX_VALUE);
             runForward(car, randomNumber);
             roundResult.put(car.getName(), car.getDistance());
         }
