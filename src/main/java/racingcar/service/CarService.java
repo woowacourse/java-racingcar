@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import racingcar.constants.CarConstant;
+import racingcar.constants.InputConstant;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.OutputView;
@@ -34,7 +35,7 @@ public class CarService {
     }
 
     public List<String> splitCarNames(String carNames) {
-        return List.of(carNames.split(","));
+        return List.of(carNames.split(InputConstant.CAR_NAME_SPLIT_DELIMITER.getMessage()));
     }
 
     public void runService() {

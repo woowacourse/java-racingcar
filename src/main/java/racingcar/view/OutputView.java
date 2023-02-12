@@ -28,7 +28,7 @@ public class OutputView {
 
     public static void printWinners(List<String> winnerNames) {
         StringBuilder stringBuilder = new StringBuilder("\n");
-        String str = String.join(", ", winnerNames);
+        String str = String.join(OutputConstant.WINNER_NAME_DELIMITER.getMessage(), winnerNames);
         stringBuilder.append(str).append(OutputConstant.WINNER_MESSAGE.getMessage());
         System.out.println(stringBuilder.toString());
     }
