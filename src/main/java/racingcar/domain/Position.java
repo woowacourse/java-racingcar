@@ -8,11 +8,11 @@ public class Position {
     private int value;
 
     public Position(int value) {
-        validate();
+        validate(value);
         this.value = value;
     }
 
-    private void validate() {
+    private void validate(int value) {
         if(value < 0) {
             throw new IllegalStateException(ILLEGAL_POSITION.getMessage());
         }
