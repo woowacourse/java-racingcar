@@ -9,7 +9,7 @@
   - [x] 시도 횟수를 입력받는다. InputView#requestTryCount()
 - [x] 사용자 입력을 검증한다.
   - [x] 자동차 이름을 검증한다.
-    - 사용자는 1명 이상
+    - 사용자는 2명 이상
     - 쉼표 구분 InputView#sliceNameByComma()
     - 5글자 이하 Name#validateName()
   - [x] 시도 횟수 검증한다. TryCount
