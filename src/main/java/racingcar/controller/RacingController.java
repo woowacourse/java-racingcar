@@ -7,8 +7,6 @@ import racingcar.view.OutputView;
 
 public class RacingController {
 
-    private static final int WRONG_TRY_COUNT = 0;
-
     private final InputView inputView;
     private final OutputView outputView;
     private Cars cars;
@@ -35,10 +33,7 @@ public class RacingController {
     }
 
     private void repeatTryMovingByInputCount() {
-        int tryCount;
-        do {
-            tryCount = getTryCount();
-        } while (tryCount == WRONG_TRY_COUNT);
+        int tryCount = getTryCount();
         outputView.announceBeforePrintResult();
         for (int i = 0; i < tryCount; i++) {
             cars.requestMoveEachCar();
@@ -47,13 +42,11 @@ public class RacingController {
     }
 
     private int getTryCount() {
-        int tryCount;
         try {
-            tryCount = inputView.getTryCount();
-            return tryCount;
+            return inputView.getTryCount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return WRONG_TRY_COUNT;
+            return getTryCount();
         }
     }
 
