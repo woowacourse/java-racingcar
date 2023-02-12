@@ -38,7 +38,7 @@ class CarsTest {
         ));
 
         for (int i = 0; i < 5; i++) {
-            cars.moveCars(new TestValueGenerator(), rule);
+            cars.moveCars(new TestValueGenerator(), new StandardRacingRule());
         }
     }
 

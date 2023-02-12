@@ -10,7 +10,7 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class CarTest {
 
-    private Rule rule = Rule.MOVING_FORWARD_STANDARD;
+    private final RacingRule rule = new StandardRacingRule();
 
     @ParameterizedTest(name = "자동차 이름 검증 테스트 - 입력이름 : \"{0}\"")
     @ValueSource(strings = {"abcdef", "", "  "})
