@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.service.RacingCarService;
+import racingcar.util.RepeatValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.ViewRenderer;
@@ -30,15 +31,19 @@ public class RacingCarController {
     }
 
     private void setupCars() {
-        outputView.printAskingInputCarNames();
-        String carNames = inputView.inputCarNames();
-        racingCarService.makeCars(carNames);
+        RepeatValidator.runUntilValidate(() -> {
+            outputView.printAskingInputCarNames();
+            String carNames = inputView.inputCarNames();
+            racingCarService.makeCars(carNames);
+        });
     }
 
     private void setupNumberOfRounds() {
-        outputView.printAskingInputNumberOfRounds();
-        int numberOfRounds = inputView.inputNumberOfRounds();
-        racingCarService.setNumberOfRounds(numberOfRounds);
+        RepeatValidator.runUntilValidate(() -> {
+            outputView.printAskingInputNumberOfRounds();
+            int numberOfRounds = inputView.inputNumberOfRounds();
+            racingCarService.setNumberOfRounds(numberOfRounds);
+        });
     }
 
     private void printWinners() {
