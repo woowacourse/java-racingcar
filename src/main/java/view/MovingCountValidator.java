@@ -1,4 +1,4 @@
-package util;
+package view;
 
 public class MovingCountValidator {
     private static final String CHARACTER_REG = "^[a-zA-Z]*$";
