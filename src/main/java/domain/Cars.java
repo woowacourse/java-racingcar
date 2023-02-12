@@ -26,7 +26,7 @@ public class Cars {
 
     public List<String> getWinnerNames() {
         List<String> winnerNames = new ArrayList<>();
-        int maxCountOfDistance = getMaxDistance();
+        int maxCountOfDistance = findMaxCountOfDistance();
 
         for (final Car car : cars) {
             addWinnerName(winnerNames, car, maxCountOfDistance);
@@ -35,17 +35,17 @@ public class Cars {
         return winnerNames;
     }
 
-    private int getMaxDistance() {
-        int maxDistance = Integer.MIN_VALUE;
+    private int findMaxCountOfDistance() {
+        int maxCountOfDistance = Integer.MIN_VALUE;
         for (final Car car : cars) {
-            maxDistance = Math.max(car.getDistance(), maxDistance);
+            maxCountOfDistance = Math.max(car.getDistance(), maxCountOfDistance);
         }
-        return maxDistance;
+        return maxCountOfDistance;
     }
 
-    private void addWinnerName(List<String> result, Car car, int maxDistance) {
-        if (car.getDistance() == maxDistance) {
-            result.add(car.getName());
+    private void addWinnerName(List<String> winnerNames, Car car, int maxCountOfDistance) {
+        if (car.getDistance() == maxCountOfDistance) {
+            winnerNames.add(car.getName());
         }
     }
 
