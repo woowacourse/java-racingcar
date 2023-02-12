@@ -55,8 +55,8 @@ public class CarService {
         }
     }
 
-    public void runForward(Car car, int randomNumber) {
-        if (randomNumber >= CarConstant.MOVE_CRITERIA.getNumber()) {
+    public void runForward(Car car, int move) {
+        if (move >= CarConstant.MOVE_CRITERIA.getNumber()) {
             car.increaseDistance();
         }
     }
