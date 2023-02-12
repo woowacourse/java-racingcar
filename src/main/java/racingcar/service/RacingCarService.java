@@ -18,12 +18,11 @@ public class RacingCarService {
 
 
     public void makeCars(String carNames) {
-        cars = new Cars(List.copyOf(
-                new CarNames(carNames).getNames()
-                        .stream()
-                        .map(name -> new Car(name))
-                        .collect(Collectors.toUnmodifiableList())
-        ));
+        cars = new Cars(new CarNames(carNames).getNames()
+                .stream()
+                .map(name -> new Car(name))
+                .collect(Collectors.toUnmodifiableList())
+        );
 
     }
 
