@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class CarGroup {
 
     private static final int MIN_CAR_SIZE = 2;
-    private List<Car> carGroup;
+    private final List<Car> carGroup;
 
     public CarGroup(List<String> carNames) {
         validateDuplicate(carNames);
@@ -20,28 +20,11 @@ public class CarGroup {
                 .collect(Collectors.toList());
     }
 
-    private void validateDuplicate(List<String> carNames) {
-        Set<String> distinctNames = new HashSet<>(carNames);
-        if (carNames.size() != distinctNames.size()) {
-            throw new IllegalArgumentException("자동차 이름에 중복이 있을 수 없습니다.");
-        }
-    }
-
-    private void validateSize(List<String> carNames) {
-        if (carNames.size() < MIN_CAR_SIZE) {
-            throw new IllegalArgumentException("자동차의 개수는 2개 이상으로 입력해주세요.");
-        }
-    }
-
     public void moveCars(NumberGenerator numberGenerator) {
         for (Car car : carGroup) {
             int pickedNumber = numberGenerator.generateNumber();
             car.move(pickedNumber);
         }
-    }
-
-    public List<Car> getCarGroup() {
-        return Collections.unmodifiableList(this.carGroup);
     }
 
     public int getHighestPosition() {
@@ -57,6 +40,19 @@ public class CarGroup {
                 .filter(car -> car.getPosition() == highestPosition)
                 .map(Car::toCarDto)
                 .collect(Collectors.toList());
+    }
+
+    private void validateDuplicate(List<String> carNames) {
+        Set<String> distinctNames = new HashSet<>(carNames);
+        if (carNames.size() != distinctNames.size()) {
+            throw new IllegalArgumentException("자동차 이름에 중복이 있을 수 없습니다.");
+        }
+    }
+
+    private void validateSize(List<String> carNames) {
+        if (carNames.size() < MIN_CAR_SIZE) {
+            throw new IllegalArgumentException("자동차의 개수는 2개 이상으로 입력해주세요.");
+        }
     }
 
     public List<CarDto> toCarDtos() {
