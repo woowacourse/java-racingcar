@@ -15,4 +15,19 @@ class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차 이름은 중복될 수 없습니다");
     }
+
+    @DisplayName("우승자는 가장 멀리 간 차들이다")
+    @Test
+    void getWinnersTest() {
+        //given
+        Cars cars = Cars.from(List.of("a", "b", "c"));
+        List<Integer> powers=List.of(0, 9, 9);
+
+        //when
+        cars.move(powers);
+
+        //then
+        assertThat(cars.getWinners())
+                .containsExactly("b", "c");
+    }
 }
