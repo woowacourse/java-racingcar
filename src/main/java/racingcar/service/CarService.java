@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarService {
@@ -13,23 +12,16 @@ public class CarService {
     private int tryCount;
     private List<String> winner = new ArrayList<>();
 
-    public void initializeService() {
-        while (validateNameInput()) {
-            cars = new Cars(new ArrayList<Car>());
-        }
-        while (validateCountInput()) {
-        }
+    public void validateNameInput(String carNameInput) {
+        cars = new Cars(new ArrayList<Car>());
+        List<String> carNames = splitCarNames(carNameInput);
+        makeCar(carNames);
     }
 
-    private boolean validateNameInput() {
-        try {
-            OutputView.printNameInput();
-            List<String> carNames = splitCarNames(InputView.readCarNames());
-            makeCar(carNames);
-            return false;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
+    public void validateCountInput(int tryCountInput) {
+        tryCount = tryCountInput;
+        if (tryCount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 시도할 횟수는 0보다 큰 숫자여야 합니다.");
         }
     }
 
@@ -40,26 +32,8 @@ public class CarService {
         }
     }
 
-    private List<String> splitCarNames(String carNames) {
+    public List<String> splitCarNames(String carNames) {
         return List.of(carNames.split(","));
-    }
-
-    private boolean validateCountInput() {
-        try {
-            OutputView.printCountInput();
-            tryCount = InputView.readTryCount();
-            validateNegativeCount(tryCount);
-            return false;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        }
-    }
-
-    private void validateNegativeCount(int tryCount) {
-        if (tryCount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 시도할 횟수는 0보다 큰 숫자여야 합니다.");
-        }
     }
 
     public void runService() {
