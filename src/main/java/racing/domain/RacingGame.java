@@ -30,8 +30,8 @@ public class RacingGame {
         return tryCount == 0;
     }
 
-    public List<String> getWinners() {
-        return cars.findFirstCars().stream()
+    public List<String> getWinnerNames() {
+        return cars.findWinners().stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

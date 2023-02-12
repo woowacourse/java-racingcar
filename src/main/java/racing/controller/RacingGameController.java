@@ -24,7 +24,7 @@ public class RacingGameController {
             game.playOneRound();
             outputView.printRacing(cars);
         }
-        List<String> winnerNames = game.getWinners();
+        List<String> winnerNames = game.getWinnerNames();
         outputView.printWinners(winnerNames);
     }
 }

@@ -28,7 +28,7 @@ public class Car implements Comparable<Car> {
         position++;
     }
 
-    public boolean isSamePosition(Car other) {
+    public boolean isDraw(Car other) {
         return this.position == other.position;
     }
 
