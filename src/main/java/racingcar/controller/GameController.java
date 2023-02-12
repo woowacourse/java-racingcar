@@ -20,7 +20,7 @@ public class GameController {
 
     public void run() {
         RacingCars racingCars = setCars();
-        RacingGame racingGame = playRace(racingCars);
+        RacingGame racingGame = playRace();
         printResult(racingCars, racingGame);
     }
 
@@ -35,7 +35,7 @@ public class GameController {
         }
     }
 
-    private RacingGame playRace(RacingCars racingCars) {
+    private RacingGame playRace() {
         while (true) {
             try {
                 return new RacingGame(inputView.readGameRound(), new NumberGenerator());
