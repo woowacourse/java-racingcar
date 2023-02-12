@@ -38,7 +38,9 @@ public class Cars {
 
     private Optional<Car> getCurrentTurnCar() {
         int size = cars.get(FIRST_INDEX).getLogSize();
-        Optional<Car> targetCar = cars.stream().filter(car -> car.getLogSize() < size)
+        Optional<Car> targetCar = cars
+                .stream()
+                .filter(car -> car.getLogSize() < size)
                 .findFirst();
 
         return targetCar;
