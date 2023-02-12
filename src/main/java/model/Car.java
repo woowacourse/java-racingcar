@@ -5,6 +5,8 @@ public class Car extends Vehicle {
     public static final int RANDOM_MOVE_BOUNDARY = 4;
     public static final int RANDOM_NUMBER_GENERATE_RANGE = 10;
     public static final int START_POSITION = 0;
+    private static final int LENGTH_LOWER_BOUND = 1;
+    private static final int LENGTH_UPPER_BOUND = 5;
 
     private final RandomGenerator randomGenerator;
 
