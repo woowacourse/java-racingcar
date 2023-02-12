@@ -28,7 +28,7 @@ public class CarMovementTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:false", "3:false", "4:true"},delimiter = ':')
+    @CsvSource(value = {"0:false", "3:false", "4:true"}, delimiter = ':')
     @DisplayName("자동차 움직임 작동 테스트")
     public void isMoveTest(int value, boolean expected) {
         CarMovement carMovement = new CarMovement(value);

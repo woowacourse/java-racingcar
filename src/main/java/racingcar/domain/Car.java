@@ -1,8 +1,8 @@
 package racingcar.domain;
 
 public class Car implements Comparable<Car> {
-    private final CarName name;
     private final Position position;
+    private final CarName name;
 
     public Car(CarName carName) {
         this.name = carName;
@@ -10,7 +10,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(CarMovement movement) {
-        if(movement.isMove()){
+        if (movement.isMove()) {
             this.position
                     .increasePosition();
         }

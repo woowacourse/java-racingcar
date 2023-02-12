@@ -17,7 +17,7 @@ public class CarName {
     }
 
     private void validateNameSize(String input) {
-        if (input.length() > MAX_SIZE){
+        if (input.length() > MAX_SIZE) {
             throw new IllegalArgumentException(SIZE_EXCEPTION_MESSAGE);
         }
     }
