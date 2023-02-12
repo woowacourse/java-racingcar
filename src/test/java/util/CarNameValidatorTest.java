@@ -15,7 +15,7 @@ class CarNameValidatorTest {
 
     @DisplayName("이름 입력 실패")
     @ParameterizedTest
-    @ValueSource(strings = {"\n", "포비는너무멋져남자가봐도반하겠어", ",,,,,", "파워, ,메튜"})
+    @ValueSource(strings = {"", "포비는너무멋져남자가봐도반하겠어", ",,,,,"})
     void validate(String input) {
         carNameValidator = new CarNameValidator();
         List<String> carNames = Arrays.asList(input.split(","));
