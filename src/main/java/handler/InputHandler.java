@@ -20,15 +20,15 @@ public class InputHandler {
         this.inputView = new InputView();
     }
 
-    public RacingGame readCars() throws IOException {
+    public String[] readCarNames() throws IOException {
         try {
-            String inputName = inputView.readCarNames();
+            String inputName = inputView.readCarNamesInput();
             String[] names = inputName.split(COMMA);
 
-            return new RacingGame(names);
+            return names;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readCars();
+            return readCarNames();
         }
     }
 
