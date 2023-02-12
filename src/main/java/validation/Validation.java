@@ -7,12 +7,12 @@ public class Validation {
 
     public void validateCarNames(String carNames) throws IllegalAccessException {
         if (carNames.isEmpty()) {
-            throw new IllegalAccessException(
+            throw new IllegalArgumentException(
                     ExceptionMessage.CAR_NAME_NOT_INPUT_MESSAGE.getExceptionMessage());
         }
 
         if (carNames.isBlank()) {
-            throw new IllegalAccessException(
+            throw new IllegalArgumentException(
                     ExceptionMessage.CAR_NAME_BLANK_MESSAGE.getExceptionMessage());
         }
     }
