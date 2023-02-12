@@ -7,8 +7,7 @@ import view.InputView;
 import view.OutputView;
 
 public class GameController {
-
-
+    
     private final RacingCarGame racingCarGame;
 
     public GameController() {
@@ -37,14 +36,14 @@ public class GameController {
         return InputView.readNumberOfTry();
     }
 
-    private void startRacing(int numberOfTry) {
+    private void startRacing(final int numberOfTry) {
         for (int trial = 0; trial < numberOfTry; trial++) {
             racingCarGame.repeatRounds();
             OutputView.printCarsStatus(CarRepository.findAll());
         }
     }
 
-    private void addCorrectCars(String carNames) {
+    private void addCorrectCars(final String carNames) {
         try {
             racingCarGame.addCars(carNames);
         } catch (IllegalArgumentException illegalArgumentException) {
