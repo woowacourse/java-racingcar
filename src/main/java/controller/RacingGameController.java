@@ -19,14 +19,14 @@ public class RacingGameController {
         List<String> carNames = inputView.askCarNames();
         racingGame.enrollCars(carNames);
         int trialCount = inputView.askTrialCount();
-        race(trialCount);
+        play(trialCount);
         outputView.printWinners(racingGame.getWinners());
     }
 
-    private void race(int trialCount) {
+    private void play(int racingCount) {
         outputView.printResultMessage();
         showCarsStatus();
-        for (int i = 0; i < trialCount; i++) {
+        for (int i = 0; i < racingCount; i++) {
             racingGame.race();
             showCarsStatus();
         }
