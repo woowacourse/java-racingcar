@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.model;
 
 public class TrialCount {
     static private final String COUNT_EXCEPTION_MESSAGE = "시도 횟수는 0보다 커야 합니다.";

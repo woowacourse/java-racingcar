@@ -1,10 +1,10 @@
-package domain;
+package model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.CarManager;
-import racingcar.domain.Car;
-import racingcar.domain.CarMovement;
+import racingcar.model.CarManager;
+import racingcar.model.Car;
+import racingcar.model.CarMovement;
 
 import java.util.List;
 
