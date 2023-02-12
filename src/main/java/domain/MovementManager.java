@@ -6,4 +6,5 @@ public class MovementManager {
     public boolean isGo(Integer power) {
         return power >= MOVING_CONDITION;
     }
+
 }

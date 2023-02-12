@@ -7,4 +7,5 @@ public class Application {
         RacingController racingController = new RacingController(new OutputView(), new InputView());
         racingController.run();
     }
+
 }

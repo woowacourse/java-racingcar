@@ -7,4 +7,5 @@ public class RandomNumberGenerator implements NumberGenerator{
     public Integer generateNumber() {
         return (int) ((Math.random() * (MAX_NUMBER - MIN_NUMBER)) + MIN_NUMBER);
     }
+
 }

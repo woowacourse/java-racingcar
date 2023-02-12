@@ -28,4 +28,5 @@ class CarTest {
 
         Assertions.assertThat(car.getDistance()).isEqualTo(nowDistance);
     }
+
 }

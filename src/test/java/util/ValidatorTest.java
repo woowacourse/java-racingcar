@@ -22,4 +22,5 @@ class ValidatorTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> Validator.validateMovingCountInput(input));
     }
+
 }

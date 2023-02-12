@@ -21,4 +21,5 @@ public class Car {
     public Integer getDistance() {
         return distance;
     }
+
 }
