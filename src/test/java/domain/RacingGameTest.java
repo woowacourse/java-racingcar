@@ -78,4 +78,44 @@ class RacingGameTest {
 
         assertThat(racingGame.getWinners().size()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("난수가 4이상의 숫자인 경우 자동차는 전진한다")
+    public void racingGameCarsMoveSuccess() {
+        RacingGame moveRacingGame = new RacingGame(new Cars(List.of(car1, car2, car3)), 5, new MoveNumberGenerator());
+
+        Cars cars = moveRacingGame.run();
+        List<Car> moveCars = cars.getCars();
+
+        assertThat(moveCars).allSatisfy(moveCar -> {
+            assertThat(moveCar.getMoveCount()).isEqualTo(1);
+        });
+    }
+
+    @Test
+    @DisplayName("3이하의 숫자인 경우 자동차는 정지한다")
+    public void racingGameCarsMoveFail() {
+        RacingGame moveRacingGame = new RacingGame(new Cars(List.of(car1, car2, car3)), 5, new StopNumberGenerator());
+
+        Cars cars = moveRacingGame.run();
+        List<Car> moveCars = cars.getCars();
+
+        assertThat(moveCars).allSatisfy(moveCar -> {
+            assertThat(moveCar.getMoveCount()).isEqualTo(0);
+        });
+    }
+
+    static class MoveNumberGenerator implements NumberGenerator {
+        @Override
+        public int generate() {
+            return 4;
+        }
+    }
+
+    static class StopNumberGenerator implements NumberGenerator {
+        @Override
+        public int generate() {
+            return 3;
+        }
+    }
 }
