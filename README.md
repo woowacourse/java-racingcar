@@ -35,10 +35,10 @@
 - [x] 상수는 해당 역할(책임) 클래스에 위치하도록 한다.
 - [x] 역할에 맞는 네이밍을 고민하고, 코드가 보다 잘 읽힐 수 있도록 공백 추가를 고려한다.
 - [x] InputView, OutputView 의 호출을 한 곳에서 진행한다.
-- [ ] input Validation 추가
+- [x] input Validation 추가
 
 ## 테스트
-- [ ] Car Test 수정
-- [ ] Cars Test 작성
-- [ ] GamePlay Test 수정
-- [ ] CarFactory Test 수정
+- [x] Car Test 수정
+- [x] Cars Test 작성
+- [x] RacingGame Test 작성
+- [x] CarFactory Test 수정
