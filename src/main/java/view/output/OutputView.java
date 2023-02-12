@@ -7,11 +7,11 @@ import java.util.StringJoiner;
 
 public class OutputView {
 
-    private final String RACING_RESULT_MESSAGE = System.lineSeparator() + "실행 결과";
-    private final String RACING_WINNER_MESSAGE = "%s가 최종 우승했습니다." + System.lineSeparator();
-    private final String DISTANCE_MARK = "-";
-    private final String CAR_INFO_DELIMITER = " : ";
-    private final String RESULT_DELIMITER = ", ";
+    private static final String RACING_RESULT_MESSAGE = System.lineSeparator() + "실행 결과";
+    private static final String RACING_WINNER_MESSAGE = "%s가 최종 우승했습니다." + System.lineSeparator();
+    private static final String DISTANCE_MARK = "-";
+    private static final String CAR_INFO_DELIMITER = " : ";
+    private static final String RESULT_DELIMITER = ", ";
 
     public void printRacingStatus(List<Car> cars) {
         for (Car car : cars) {
