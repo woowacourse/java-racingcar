@@ -10,7 +10,7 @@
 - [x] 사용자 입력을 검증한다.
   - [x] 자동차 이름을 검증한다.
     - 쉼표 구분 CommaSeparator#sliceNameByComma()
-    - 5글자 이하 Name#validateName()
+    - 5글자 이하 Name#validateLength()
   - [x] 시도 횟수 검증한다. TryCount
     - 정수 입력
     - 0 제외
@@ -21,4 +21,3 @@
 - [x] 레이싱 게임을 주관한다. RacingCars#moveAll()
 - [x] 실행 결과 출력 OutputView#printScoreBoard()
 - [x] 최종 우승자 출력 OutputView#printWinner()
- 

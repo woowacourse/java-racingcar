@@ -12,21 +12,17 @@ public class Name {
     private final String name;
 
     public Name(final String name) {
-        validateName(name);
+        validateLength(name);
         this.name = name;
     }
 
-    private void validateName(final String name) {
-        validateLength(name);
-    }
-
     private void validateLength(final String name) {
-        if (validate(name)) {
+        if (isWrongLength(name)) {
             throw new NameIsOutOfBoundException();
         }
     }
 
-    private boolean validate(final String name) {
+    private boolean isWrongLength(final String name) {
         return name.length() < MIN_LENGTH || name.length() > MAX_LENGTH;
     }
 
