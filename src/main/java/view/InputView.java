@@ -9,12 +9,10 @@ import java.util.stream.Collectors;
 public class InputView {
 
   private static final int MAX_TRIAL_NUM = 2;
-
-  private final int MIN_CAR_NAME_LENGTH = 1;
-  private final int MAX_CAR_NAME_LENGTH = 5;
-  private final Scanner scanner = new Scanner(System.in);
-
-  private final Pattern NUMBER = Pattern.compile("[0-9]+");
+  private static final int MIN_CAR_NAME_LENGTH = 1;
+  private static final int MAX_CAR_NAME_LENGTH = 5;
+  private static final Scanner scanner = new Scanner(System.in);
+  private static final Pattern NUMBER = Pattern.compile("[0-9]+");
 
   public List<String> readCarNames() {
     System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");

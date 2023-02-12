@@ -5,8 +5,8 @@ import java.util.List;
 
 public class OutputView {
 
-  private final String DELIMITER = ", ";
-  private final String BAR = "-";
+  private static final String DELIMITER = ", ";
+  private static final String BAR = "-";
 
   public void printStart(List<Car> cars) {
     System.out.println();

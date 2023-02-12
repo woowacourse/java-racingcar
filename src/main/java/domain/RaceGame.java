@@ -8,8 +8,8 @@ import view.OutputView;
 
 public class RaceGame {
 
-  private final OutputView outputView = new OutputView();
-  private final PowerSupplier powerSupplier = new RandomPowerSupplier();
+  private static final OutputView outputView = new OutputView();
+  private static final PowerSupplier powerSupplier = new RandomPowerSupplier();
 
   private List<String> runnerNames;
   private int roundCount;
