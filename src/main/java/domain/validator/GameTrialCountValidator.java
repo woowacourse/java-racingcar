@@ -15,14 +15,14 @@ public class GameTrialCountValidator {
         checkTrialCount(trialCount);
     }
 
-    private static void checkDigit(String input) {
-        if (!NUMBER.matcher(input).matches()) {
+    private static void checkDigit(String trialCount) {
+        if (!NUMBER.matcher(trialCount).matches()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT_NUMBER.getErrorMessage());
         }
     }
 
-    private static void checkTrialCount(String trailCount) {
-        if (Integer.parseInt(trailCount) < MIN_TRIAL_COUNT) {
+    private static void checkTrialCount(String trialCount) {
+        if (Integer.parseInt(trialCount) < MIN_TRIAL_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT_NUMBER.getErrorMessage());
         }
     }
