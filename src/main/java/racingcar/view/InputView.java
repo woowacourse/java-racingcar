@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -11,6 +12,7 @@ public class InputView {
     private static final String INPUT_TRY_COUNT_ANNOUNCEMENT = "시도할 회수는 몇회인가요?";
     private static final int MINIMUM_TRY_COUNT = 1;
     private static final int MAXIMUM_TRY_COUNT = 9;
+    public static final String DUPLICATE_NAME_ANNOUNCEMENT = "[ERROR] 이름은 중복될 수 없습니다. ";
     private static final String WRONG_TRY_COUNT_ANNOUNCEMENT = "[ERROR] 잘못된 시도 횟수입니다.";
 
     private Scanner scanner;
@@ -20,10 +22,25 @@ public class InputView {
     }
 
     public List<String> inputCarNames() {
-        System.out.println(INPUT_CAR_NAMES_ANNOUNCEMENT);
-        String rawCarNames = scanner.nextLine();
-        return Arrays.stream(rawCarNames.split(","))
-                .collect(Collectors.toList());
+        try {
+            System.out.println(INPUT_CAR_NAMES_ANNOUNCEMENT);
+            String rawCarNames = scanner.nextLine();
+            List<String> carNames = Arrays.stream(rawCarNames.split(","))
+                    .collect(Collectors.toList());
+            checkDuplication(rawCarNames, carNames);
+            return carNames;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputCarNames();
+        }
+    }
+
+    private static void checkDuplication(String rawCarNames, List<String> carNames) {
+        Set<String> uniqueCarNames = Arrays.stream(rawCarNames.split(",")).map(String::trim)
+                .collect(Collectors.toSet());
+        if (uniqueCarNames.size() != carNames.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NAME_ANNOUNCEMENT);
+        }
     }
 
     public int getTryCount() {
@@ -34,7 +51,7 @@ public class InputView {
     }
 
     private int inputTryCount() {
-        try{
+        try {
             System.out.println(INPUT_TRY_COUNT_ANNOUNCEMENT);
             return scanner.nextInt();
         } catch (InputMismatchException e) {
