@@ -26,7 +26,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"hadddy", "edannnn", "abcdef"})
-    @DisplayName("자동차 이름은 5자가 넘으면 안된다.")
+    @DisplayName("자동차 이름은 5자가 넘으면 예외를 던진다.")
     void carConstructTest(final String carName) {
         assertThatThrownBy(() -> new Car(carName))
                 .isInstanceOf(IllegalArgumentException.class)
