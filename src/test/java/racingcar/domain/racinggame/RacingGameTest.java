@@ -6,9 +6,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.car.Car;
-import racingcar.domain.racingcars.RacingCars;
-import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.gameresult.GameResult;
+import racingcar.domain.racingcars.RacingCars;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -22,7 +21,7 @@ class RacingGameTest {
     @ValueSource(ints = {1, 5, 100})
     @DisplayName("자연수인 시도 횟수를 입력하였을 때, 객체가 생성되는지 확인")
     void validate_test(int gameRound) {
-        RacingGame racingGame = new RacingGame(gameRound, new NumberGenerator());
+        RacingGame racingGame = new RacingGame(gameRound);
 
         assertThat(racingGame).isInstanceOf(RacingGame.class);
     }
@@ -31,7 +30,7 @@ class RacingGameTest {
     @ValueSource(ints = {-2, -1, 0})
     @DisplayName("자연수가 아닌 시도 횟수를 입력하였을 때, 오류를 발생시키는지 확인")
     void validate_error_test(int gameRound) {
-        assertThatThrownBy(() -> new RacingGame(gameRound, new NumberGenerator()))
+        assertThatThrownBy(() -> new RacingGame(gameRound))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 시도 횟수는 0 이하 일 수 없습니다.");
     }
@@ -42,8 +41,8 @@ class RacingGameTest {
     @DisplayName("GameSystem이 서로 다른 시도 횟수를 가질 때, 자동차 경주의 결과의 개수가 서로 다른지 확인")
     void executeRace_test(List<Car> cars, int smallGameRound, int largeGameRound) {
         RacingCars racingCars = new RacingCars(cars);
-        RacingGame smallRacingGame = new RacingGame(smallGameRound, new NumberGenerator());
-        RacingGame largeRacingGame = new RacingGame(largeGameRound, new NumberGenerator());
+        RacingGame smallRacingGame = new RacingGame(smallGameRound);
+        RacingGame largeRacingGame = new RacingGame(largeGameRound);
 
         GameResult gameResult = smallRacingGame.startRace(racingCars);
         GameResult otherGameResult = largeRacingGame.startRace(racingCars);

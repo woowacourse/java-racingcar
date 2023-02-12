@@ -1,8 +1,7 @@
 package racingcar.domain.racinggame;
 
-import racingcar.domain.racingcars.RacingCars;
-import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.gameresult.GameResult;
+import racingcar.domain.racingcars.RacingCars;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +12,10 @@ public class RacingGame {
     private static final int MINIMUM_GAME_ROUND = 1;
 
     private final int gameRound;
-    private final NumberGenerator numberGenerator;
 
-    public RacingGame(int gameRound, NumberGenerator numberGenerator) {
+    public RacingGame(int gameRound) {
         validateGameRound(gameRound);
         this.gameRound = gameRound;
-        this.numberGenerator = numberGenerator;
     }
 
     private void validateGameRound(int gameRound) {
