@@ -8,8 +8,8 @@ import racingcar.vo.Trial;
 
 public class Controller {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private static final InputView inputView = new InputView();
+    private static final OutputView outputView = new OutputView();
 
     private final RandomNumberGenerator randomNumberGenerator;
 
