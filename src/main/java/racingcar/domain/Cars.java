@@ -8,17 +8,10 @@ import java.util.*;
 import static racingcar.exception.ErrorMessages.CAR_NAME_DUPLICATE_EXCEPTION;
 
 public class Cars {
-    private final Set<Car> cars = new LinkedHashSet<>();
+    private final List<Car> cars = new ArrayList<>();
 
-    public void createCars(List<String> carNames, NumberGenerator numberGenerator) {
-        CarMovement carMovement = new CarMovement(numberGenerator);
-        for (String carName : carNames) {
-            generateCar(carName, carMovement);
-        }
-    }
-
-    public void moveCars() {
-        cars.forEach(Car::move);
+    public void addCar(Car car) {
+        cars.add(car);
     }
 
     public List<String> findWinnerNames() {
@@ -33,25 +26,13 @@ public class Cars {
         return winnerNames;
     }
 
-    public Set<Car> getCars() {
-        return Collections.unmodifiableSet(cars);
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     private void addWinnerName(List<String> winnerNames, int maxPosition, Car car) {
         if (car.getPosition() == maxPosition) {
             winnerNames.add(car.getName());
-        }
-    }
-
-    private void generateCar(String name, CarMovement carMovement) {
-        Car newCar = new Car(name, carMovement);
-        validateDuplicatedCarName(newCar);
-        cars.add(newCar);
-    }
-
-    private void validateDuplicatedCarName(Car newCar) {
-        if (cars.contains(newCar)) {
-            throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 }

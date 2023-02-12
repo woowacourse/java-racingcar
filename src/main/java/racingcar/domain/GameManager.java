@@ -7,7 +7,6 @@ import racingcar.dto.GameRoundRequest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class GameManager {
     private final NumberGenerator numberGenerator;
@@ -21,7 +20,9 @@ public class GameManager {
     public void createCars(CarNamesRequest inputCarNames) {
         cars = new Cars();
         List<String> carNames = inputCarNames.getCarNames();
-        cars.createCars(carNames, numberGenerator);
+        for (String carName : carNames) {
+            cars.addCar(new Car(carName));
+        }
     }
 
     public void createGameRound(GameRoundRequest inputGameRound) {
@@ -30,9 +31,11 @@ public class GameManager {
     }
 
     public List<CarStatusResponse> playGameRound() {
-        cars.moveCars();
+        List<Car> currentCars = cars.getCars();
+        for (Car car : currentCars) {
+            car.move(numberGenerator.generateNumber());
+        }
         gameRound.increaseRound();
-        Set<Car> currentCars = cars.getCars();
         return convertCarToCarStatus(currentCars);
     }
 
@@ -44,7 +47,7 @@ public class GameManager {
         return new GameResultResponse(cars.findWinnerNames());
     }
 
-    private List<CarStatusResponse> convertCarToCarStatus(Set<Car> carsStatus) {
+    private List<CarStatusResponse> convertCarToCarStatus(List<Car> carsStatus) {
         List<CarStatusResponse> roundResultCarStatus = new ArrayList<>();
         for (Car car : carsStatus) {
             roundResultCarStatus.add(new CarStatusResponse(car));
