@@ -1,27 +1,22 @@
 package model;
 
 
-public class Car {
-    private static final int CAR_MOVE_LENGTH = 1;
+public class Car implements Comparable<Car> {
     private static final int CAR_INITIAL_LENGTH = 0;
     private static final int CAR_MOVE_STANDARD_LENGTH = 4;
 
     private final Name name;
-    private int location;
+    private final Location location;
 
     public Car(Name name) {
         this.name = name;
-        this.location = CAR_INITIAL_LENGTH;
+        this.location = new Location(CAR_INITIAL_LENGTH);
     }
 
     public void moveByNumber(int moveForNum) {
         if (moveForNum >= CAR_MOVE_STANDARD_LENGTH) {
-            this.moveCar();
+            location.moveCarLocation();
         }
-    }
-
-    private void moveCar() {
-        this.location += CAR_MOVE_LENGTH;
     }
 
     public String getName() {
@@ -29,14 +24,15 @@ public class Car {
     }
 
     public int getLocation() {
-        return this.location;
+        return location.getLocation();
     }
 
     public boolean checkLocationEqual(Car car) {
-        return this.location == car.location;
+        return location.checkEqual(car.location);
     }
 
+    @Override
     public int compareTo(Car car) {
-        return this.location - car.location;
+        return location.getLocation() - car.getLocation();
     }
 }
