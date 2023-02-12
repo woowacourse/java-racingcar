@@ -8,11 +8,11 @@ public class Cars {
     private static final int MIN_SIZE = 2;
     private final List<Car> cars;
 
-    public Cars(final List<String> cars) {
-        if (cars.size() < MIN_SIZE) {
+    public Cars(final List<String> carNames) {
+        if (carNames.size() < MIN_SIZE) {
             throw new IllegalArgumentException("자동차는 2대 이상 존재해야 합니다.");
         }
-        this.cars = cars.stream()
+        this.cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toUnmodifiableList());
     }
