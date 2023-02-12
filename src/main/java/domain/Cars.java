@@ -2,6 +2,7 @@ package domain;
 
 import utils.NumberGenerator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +12,7 @@ public class Cars {
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
     }
 
     public static Cars of(List<Name> names) {
