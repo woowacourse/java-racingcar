@@ -11,7 +11,7 @@ class TrialTest {
     @ParameterizedTest
     @ValueSource(strings = {"2", "8", "20"})
     @DisplayName("Trial 생성 성공 테스트")
-    void testSuccessrial(String carName) {
+    void testSuccessTrial(String carName) {
         new Trial(carName);
     }
 
