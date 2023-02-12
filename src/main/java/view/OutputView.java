@@ -8,9 +8,13 @@ public class OutputView {
     private static final String DELIMITER = ", ";
     private static final String BAR = "-";
 
+    public static final String START_MESSAGE = "실행 결과";
+    public static final String CAR_STATUS_FORMAT = "%s : %s\n";
+    public static final String RESULT_WINNER_MESSAGE = "%s가 최종 우승했습니다.";
+
     public void printStart(List<Car> cars) {
         printNewLine();
-        System.out.println(Messages.OUTPUT_START);
+        System.out.println(START_MESSAGE);
         printCarsStatus(cars);
     }
 
@@ -24,7 +28,7 @@ public class OutputView {
     }
 
     private void printCarStatus(Car car) {
-        System.out.printf(Messages.OUTPUT_CAR_STATUS, car.getName(), toBar(car.getPosition()));
+        System.out.printf(CAR_STATUS_FORMAT, car.getName(), toBar(car.getPosition()));
     }
 
     private String toBar(int count) {
@@ -37,7 +41,7 @@ public class OutputView {
         if (isCoWinner) {
             result = String.join(DELIMITER, carNames);
         }
-        System.out.printf(Messages.OUTPUT_WINNER, result);
+        System.out.printf(RESULT_WINNER_MESSAGE, result);
     }
 
     public void printErrorMessage(Exception exception) {
