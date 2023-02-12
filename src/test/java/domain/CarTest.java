@@ -13,16 +13,15 @@ public class CarTest {
     @DisplayName("move() : 자동차의 이동 성공 테스트")
     void test_move_success(int givenPower) {
         // given
-        int power = givenPower;
         int givenDistance = 0;
-        int expectedDistanceAfterMoveSuccess = givenDistance + 1;
+        int expectedDistance = givenDistance + 1;
         Car car = new Car("pobi", givenDistance);
 
         // when
-        car.move(power);
+        car.move(givenPower);
 
         // then
-        assertThat(car.getDistance()).isEqualTo(expectedDistanceAfterMoveSuccess);
+        assertThat(car.getDistance()).isEqualTo(expectedDistance);
     }
 
     @ParameterizedTest
@@ -30,13 +29,12 @@ public class CarTest {
     @DisplayName("move() : 자동차 이동 실패 테스트")
     void test_move_fail(int givenPower) {
         // given
-        int power = givenPower;
         int givenDistance = 0;
         int expectedDistanceAfterMoveSuccess = givenDistance + 1;
         Car car = new Car("pobi", givenDistance);
 
         // when
-        car.move(power);
+        car.move(givenPower);
 
         // then
         assertThat(car.getDistance()).isNotEqualTo(expectedDistanceAfterMoveSuccess);
