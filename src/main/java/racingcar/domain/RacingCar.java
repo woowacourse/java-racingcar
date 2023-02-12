@@ -13,9 +13,17 @@ public class RacingCar implements Comparable<RacingCar> {
         this.name = name;
     }
 
-    public RacingCar(String name, int position){
+    public RacingCar(String name, int position) {
         this.name = null;
         this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isSamePosition(RacingCar other) {
+        return this.position == other.position;
     }
 
     public void advance() {
@@ -28,7 +36,7 @@ public class RacingCar implements Comparable<RacingCar> {
 
     @Override
     public int compareTo(RacingCar o) {
-        return o.position - this.position;
+        return this.position - o.position;
     }
 
     public RacingCarDto toDto() {

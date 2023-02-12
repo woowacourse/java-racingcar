@@ -10,8 +10,8 @@ public class Range {
         this.max = max;
     }
 
-    private void validateRange(int min, int max){
-        if(min >= max){
+    private void validateRange(int min, int max) {
+        if (min >= max) {
             throw new IllegalArgumentException("Range의 max값은 min값보다 커야합니다.");
         }
     }
