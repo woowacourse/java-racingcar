@@ -20,7 +20,7 @@ class CarsTest {
     void test_moveAll_success() {
         // given
         int defaultDistance = 0;
-        int expectedDistanceAfterMoveSuccess = 1;
+        int expectedDistanceAfterMoveSuccess = defaultDistance + 1;
 
         Car pobi = new Car("pobi", defaultDistance);
         Car crong = new Car("crong", defaultDistance);
@@ -31,6 +31,7 @@ class CarsTest {
 
         // then
         assertThat(pobi.getDistance()).isEqualTo(expectedDistanceAfterMoveSuccess);
+        assertThat(crong.getDistance()).isEqualTo(expectedDistanceAfterMoveSuccess);
     }
 
     @Test
@@ -38,7 +39,7 @@ class CarsTest {
     void test_moveAll_fail() {
         // given
         int defaultDistance = 0;
-        int expectedDistanceAfterMoveSuccess = 1;
+        int expectedDistanceAfterMoveSuccess = defaultDistance + 1;
 
         Car pobi = new Car("pobi", defaultDistance);
         Car crong = new Car("crong", defaultDistance);
@@ -49,14 +50,15 @@ class CarsTest {
 
         // then
         assertThat(pobi.getDistance()).isNotEqualTo(expectedDistanceAfterMoveSuccess);
+        assertThat(crong.getDistance()).isNotEqualTo(expectedDistanceAfterMoveSuccess);
     }
 
     @Test
-    @DisplayName("getWinner() : 가장 많이 움직인 자동차를 반환해준다.")
-    void test_getWinner() {
+    @DisplayName("test_getWinnerNames() : 가장 많이 움직인 자동차를 반환해준다.")
+    void test_getWinnerNames() {
         // given
-        final Car pobi = new Car("pobi", 2);
-        final Car crong = new Car("crong", 1);
+        Car pobi = new Car("pobi", 2);
+        Car crong = new Car("crong", 1);
 
         Cars cars = new Cars(List.of(pobi, crong));
 
@@ -70,15 +72,15 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("getCurrentStatus() : 현재 움직인 거리를 보여준다.")
-    void test_getCurrentStatus() {
+    @DisplayName("getCurrentRacingStatus() : 현재 움직인 거리를 보여준다.")
+    void test_getCurrentRacingStatus() {
         // given
-        final Car pobi = new Car("pobi", 2);
-        final Car crong = new Car("crong", 1);
-        final Cars cars = new Cars(List.of(pobi, crong));
+        Car pobi = new Car("pobi", 2);
+        Car crong = new Car("crong", 1);
+        Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        final Map<String, Integer> carCurrentStatus = cars.getCurrentRacingStatus();
+        Map<String, Integer> carCurrentStatus = cars.getCurrentRacingStatus();
 
         // then
         assertThat(carCurrentStatus).hasSize(2)
