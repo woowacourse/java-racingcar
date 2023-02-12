@@ -1,9 +1,11 @@
 package model;
 
 import exception.ErrorCode;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import service.NumberGenerator;
 
@@ -27,6 +29,16 @@ public class RacingCars {
         Map<String, Integer> carResult = new HashMap<>();
         cars.forEach(car -> carResult.put(car.getName(), car.getCurrentPosition()));
         return carResult;
+    }
+
+    public List<String> findWinner() {
+        Map<String, Integer> positions = getCurrentPositions();
+        Integer bestScore = Collections.max(positions.values());
+        return positions.entrySet()
+            .stream()
+            .filter(status -> status.getValue().equals(bestScore))
+            .map(Entry::getKey)
+            .collect(Collectors.toList());
     }
 
     private void validate(final List<Car> cars) {
