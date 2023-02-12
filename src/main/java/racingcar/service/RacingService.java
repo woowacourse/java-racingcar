@@ -3,7 +3,6 @@ package racingcar.service;
 import java.util.List;
 import java.util.Map;
 
-import racingcar.domain.Car;
 import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.GameStatusChecker;
@@ -22,9 +21,7 @@ public class RacingService {
     }
 
     public void makeCars(String carNames) {
-        for (String name : new CarNames(carNames).getNames()) {
-            cars.add(new Car(name));
-        }
+        cars.setUpCars(new CarNames(carNames).getNames());
     }
 
     public void setNumberOfRounds(int numberOfRounds) {

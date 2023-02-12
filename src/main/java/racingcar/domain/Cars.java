@@ -19,6 +19,12 @@ public class Cars {
         turnCount = 0;
     }
 
+    public void setUpCars(List<String> carNames) {
+        for (String name : carNames) {
+            add(new Car(name));
+        }
+    }
+
     public void add(Car car) {
         cars.add(car);
     }
