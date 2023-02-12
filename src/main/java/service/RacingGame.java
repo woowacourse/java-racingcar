@@ -49,7 +49,7 @@ public class RacingGame {
 
     public void processAllCars() {
         for (Car car : cars) {
-            int random = numberGenerator.generate(0, 9);
+            int random = numberGenerator.generate(RANDOM_START_INCLUSIVE, RANDOM_END_INCLUSIVE);
             process(car, random);
         }
     }
