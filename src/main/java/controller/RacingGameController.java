@@ -18,7 +18,7 @@ public class RacingGameController {
     public void run() {
         final List<String> carNames = inputView.askCarNames();
         racingGame.enrollCars(carNames);
-        final int trialCount = inputView.askTrialCount();
+        final int trialCount = inputView.askRacingCount();
         play(trialCount);
         outputView.printWinners(racingGame.getWinnerNames());
     }
