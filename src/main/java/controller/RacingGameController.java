@@ -1,6 +1,8 @@
 package controller;
 
 import domain.*;
+import domain.numbergenerator.NumberGenerator;
+import domain.numbergenerator.RandomNumberGenerator;
 import dto.CarDto;
 import utils.Log;
 import view.InputView;

@@ -1,5 +1,7 @@
 package domain;
 
+import domain.numbergenerator.NumberGenerator;
+import domain.numbergenerator.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
