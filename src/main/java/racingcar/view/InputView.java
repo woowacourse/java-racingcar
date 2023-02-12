@@ -27,4 +27,8 @@ public class InputView {
         System.out.println(INPUT_CAR_NAME_MESSAGE);
         return List.of(scanner.nextLine().split(","));
     }
+
+    public static void close() {
+        scanner.close();
+    }
 }

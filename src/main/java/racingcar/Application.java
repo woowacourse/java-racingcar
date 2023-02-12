@@ -15,6 +15,7 @@ public class Application {
         Count count = Repeat.repeatIfError(() -> new Count(InputView.inputTryCount()), OutputView::printErrorMessage);
         race(cars, count);
         OutputView.printWinner(cars.findWinner());
+        cleanUp();
     }
 
 
@@ -31,4 +32,7 @@ public class Application {
         return new RandomNumberPicker();
     }
 
+    private static void cleanUp() {
+        InputView.close();
+    }
 }
