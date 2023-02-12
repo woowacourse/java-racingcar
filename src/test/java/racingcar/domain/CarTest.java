@@ -23,9 +23,8 @@ class CarTest {
         targetCar.tryMove();
         CarDto carDtoAfterMove = new CarDto(targetCar);
         // then
-        assertThat(carDtoAfterMove.getName()).isEqualTo(carDtoBeforeMove.getName()).as("이름이 같아야 한다.");
-        assertThat(carDtoAfterMove.getMovedCount()).isEqualTo(carDtoBeforeMove.getMovedCount() + addedMovedCount)
-                .as("이동 횟수는 1이 더해진다.");
+        assertThat(carDtoAfterMove.getName()).isEqualTo(carDtoBeforeMove.getName());
+        assertThat(carDtoAfterMove.getMovedCount()).isEqualTo(carDtoBeforeMove.getMovedCount() + addedMovedCount);
     }
 
     @Test

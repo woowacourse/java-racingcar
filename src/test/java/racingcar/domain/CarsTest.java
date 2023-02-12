@@ -28,9 +28,9 @@ class CarsTest {
         // then
         for (int index = 0; index < carDtosAfterRequestMove.size(); index++) {
             assertThat(carDtosAfterRequestMove.get(index).getName()).isEqualTo(
-                    carDtosBeforeRequestMove.get(index).getName()).as("이름은 같아야 한다.");
+                    carDtosBeforeRequestMove.get(index).getName());
             assertThat(carDtosAfterRequestMove.get(index).getMovedCount()).isEqualTo(
-                    carDtosBeforeRequestMove.get(index).getMovedCount() + 1).as("이동 횟수는 1이 더해진다.");
+                    carDtosBeforeRequestMove.get(index).getMovedCount() + 1);
         }
     }
 
