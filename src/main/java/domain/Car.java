@@ -1,9 +1,11 @@
 package domain;
 
+import java.util.Objects;
+
 import utils.constants.GameRules;
 import utils.constants.PrintSigns;
 
-public class Car {
+public class Car implements Comparable<Car>{
     private final String name;
     private Long position = 0L;
 
@@ -25,6 +27,15 @@ public class Car {
             stringBuilder.append(PrintSigns.POSITION.getSign());
         }
         return name + stringBuilder;
+    }
+
+    @Override
+    public int compareTo(Car compared) {
+        return (int)(this.position - compared.position);
+    }
+
+    public boolean isSamePosition(Car compared) {
+        return Objects.equals(this.position, compared.position);
     }
 
     public String getName() {
