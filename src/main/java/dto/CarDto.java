@@ -10,10 +10,6 @@ public class CarDto {
         this.moveCount = moveCount;
     }
 
-    public int getMoveCount() {
-        return moveCount;
-    }
-
     public String getName() {
         return name;
     }
