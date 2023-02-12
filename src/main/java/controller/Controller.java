@@ -12,13 +12,17 @@ public class Controller {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Cars cars = inputView.askCarNames();
+        Cars cars = new Cars(inputView.askCarNames());
         Trial trial = inputView.askTrial();
+        doRace(cars, trial);
+        outputView.printWinner(new Winner(cars));
+    }
+
+    private void doRace(Cars cars, Trial trial) {
         for (int j = 0; j < trial.getTrial(); j++) {
             cars.addDistance(RandomNumberMaker.makeNumber(cars.getCarsSize()));
             outputView.printCarsDistance(cars);
         }
-        outputView.printWinner(new Winner(cars));
     }
 
 }
