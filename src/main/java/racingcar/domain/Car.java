@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import racingcar.vo.Name;
+import racingcar.vo.Position;
+
 public class Car {
     private static final int INIT_POSITION = 0;
     private static final int BOUNDARY = 4;
