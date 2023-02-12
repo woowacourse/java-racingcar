@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import domain.RacingGame;
 import handler.InputHandler;
@@ -17,7 +18,7 @@ public class RacingGameController {
     }
 
     public void run() throws IOException {
-        String[] carNames = inputHandler.readCarNames();
+        List<String> carNames = inputHandler.readCarNames();
         RacingGame racingGame = new RacingGame(carNames);
         int movingTrial = inputHandler.readMovingTrial();
 
