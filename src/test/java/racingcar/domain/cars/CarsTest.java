@@ -23,14 +23,14 @@ class CarsTest {
 
     @ParameterizedTest
     @MethodSource("getCars")
-    @DisplayName("생성자에 길이가 2 이상이고 중복이 없는 자동차 객체 List이 입력되었을 때, 오류가 발생하지 않는지 확인")
+    @DisplayName("생성자에 길이가 2 이상이고 중복이 없는 자동차 객체 배열이 입력되었을 때, 오류가 발생하지 않는지 확인")
     void create_test(List<Car> cars) {
         assertDoesNotThrow(() -> new Cars(cars));
     }
 
     @ParameterizedTest
     @MethodSource("getWrongCars")
-    @DisplayName("생성자에 이름이 중복되거나 길이가 2 미만인 자동차 객체 List이 입력되었을 때, 오류를 발생시키는지 확인")
+    @DisplayName("생성자에 이름이 중복되거나 길이가 2 미만인 자동차 객체 배열이 입력되었을 때, 오류를 발생시키는지 확인")
     void create_error_test(List<Car> cars) {
         assertThatThrownBy(() -> new Cars(cars))
                 .isInstanceOf(IllegalArgumentException.class)
