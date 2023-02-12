@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static racingcar.config.CarMovementConfig.*;
 
 import java.util.stream.Stream;
 
@@ -12,20 +11,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.utils.CarMoveNumberGenerator;
+import racingcar.utils.CarStopNumberGenerator;
 
 class CarTest {
-    private class CarMoveNumberGenerator implements NumberGenerator {
-        public int generateNumber() {
-            return MOVE_FORWARD_MIN_NUMBER.getNumber();
-        }
-    }
-
-    private class CarStopNumberGenerator implements NumberGenerator {
-        public int generateNumber() {
-            return STOP_MAX_NUMBER.getNumber();
-        }
-    }
-
     @DisplayName("자동차 생성 성공 테스트")
     @ParameterizedTest(name = "carName = {0}")
     @MethodSource("carNameDummy")
