@@ -10,7 +10,6 @@ public class Car {
     private final int ADD_POINT = 1;
     private final String POSITION_BAR = "-";
 
-
     private final Name name;
     private int position;
 
