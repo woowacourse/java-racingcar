@@ -35,14 +35,14 @@ public class InputView {
         }
     }
 
-    private static List<String> validateNames(String userInput) {
+    private List<String> validateNames(String userInput) {
         if (userInput.isBlank() || !userInput.contains(DELIMITER)) {
             throw new IllegalArgumentException(ERROR_NAME);
         }
         return makeNames(userInput);
     }
 
-    private static List<String> makeNames(String userInput) {
+    private List<String> makeNames(String userInput) {
         List<String> names = new ArrayList<>();
         String[] userInputSplit = userInput.split(DELIMITER);
         for (String inputSplit : userInputSplit) {
@@ -53,13 +53,13 @@ public class InputView {
         return names;
     }
 
-    private static void validateDuplication(List<String> names, String inputSplit) {
+    private void validateDuplication(List<String> names, String inputSplit) {
         if (names.contains(inputSplit)) {
             throw new IllegalArgumentException(ERROR_DUPLICATION);
         }
     }
 
-    private static void validateNameLength(String inputSplit) {
+    private void validateNameLength(String inputSplit) {
         if (inputSplit.trim().length() < MIN_NAME_LENGTH || inputSplit.trim().length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(nameLengthErrorMessage);
         }
