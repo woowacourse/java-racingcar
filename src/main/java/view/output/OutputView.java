@@ -24,7 +24,6 @@ public class OutputView {
 
             System.out.println(stringJoiner);
         }
-        
         System.out.println();
     }
 
