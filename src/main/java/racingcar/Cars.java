@@ -12,6 +12,10 @@ public class Cars {
         this.cars = cars;
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public void move() {
         cars.forEach(car -> car.move(RandomMaker.random()));
     }
