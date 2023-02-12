@@ -4,15 +4,15 @@ public class Car implements Comparable<Car> {
 
     private static final int MIN_MOVING_NUM = 4;
 
-    private String name;
+    private final String name;
     private int position;
 
-    public Car(String name, int startPosition) {
+    public Car(final String name, int startPosition) {
         this.name = name;
         this.position = startPosition;
     }
 
-    public boolean canMoving(int power) {
+    public boolean canMoving(final int power) {
         return power >= MIN_MOVING_NUM;
     }
 

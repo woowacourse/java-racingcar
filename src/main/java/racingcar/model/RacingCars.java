@@ -8,7 +8,7 @@ public class RacingCars {
 
     private static final String EMPTY_CARS_ERROR_MESSAGE = "[ERROR] 경주할 자동차 리스트가 비었습니다.";
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public RacingCars(List<Car> cars) {
         this.cars = cars;
