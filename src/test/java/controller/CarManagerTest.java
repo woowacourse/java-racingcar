@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.CarManager;
 import racingcar.domain.CarMovement;
+import racingcar.domain.CarName;
 
 import java.util.List;
 
@@ -14,9 +15,9 @@ public class CarManagerTest {
     @Test
     @DisplayName("자동차들 승리자 구하기 테스트")
     public void getWinnersTest(){
-        Car car1 = new Car("푸우");
-        Car car2 = new Car("에코");
-        Car car3 = new Car("에푸");
+        Car car1 = new Car(new CarName("푸우"));
+        Car car2 = new Car(new CarName("에코"));
+        Car car3 = new Car(new CarName("에푸"));
 
         car1.move(new CarMovement(4));
         car2.move(new CarMovement(3));
