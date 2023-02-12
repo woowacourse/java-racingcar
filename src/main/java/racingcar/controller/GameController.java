@@ -1,10 +1,10 @@
 package racingcar.controller;
 
 import racingcar.domain.carfactory.CarFactory;
-import racingcar.domain.carrepository.CarRepository;
+import racingcar.domain.racingcars.RacingCars;
 import racingcar.domain.numbergenerator.NumberGenerator;
-import racingcar.domain.result.Result;
-import racingcar.domain.system.GameSystem;
+import racingcar.domain.gameresult.GameResult;
+import racingcar.domain.racinggame.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -19,38 +19,38 @@ public class GameController {
     }
 
     public void run() {
-        CarRepository carRepository = makeCars();
-        GameSystem gameSystem = moveCar(carRepository);
-        printResult(carRepository, gameSystem);
+        RacingCars racingCars = setCars();
+        RacingGame racingGame = playRace(racingCars);
+        printResult(racingCars, racingGame);
     }
 
-    private CarRepository makeCars() {
+    private RacingCars setCars() {
         CarFactory carFactory = new CarFactory();
         while (true) {
             try {
-                return carFactory.createCarRepository(inputView.readCarNames());
+                return carFactory.setRacingCars(inputView.readCarNames());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private GameSystem moveCar(CarRepository carRepository) {
+    private RacingGame playRace(RacingCars racingCars) {
         while (true) {
             try {
-                return new GameSystem(inputView.readGameRound(), new NumberGenerator());
+                return new RacingGame(inputView.readGameRound(), new NumberGenerator());
             } catch (IllegalArgumentException e2) {
                 System.out.println(e2.getMessage());
             }
         }
     }
 
-    private void printResult(CarRepository carRepository, GameSystem gameSystem) {
+    private void printResult(RacingCars racingCars, RacingGame racingGame) {
 
         outputView.printResultGuide();
 
-        Result result = gameSystem.startRace(carRepository);
-        outputView.printResult(result);
-        outputView.printWinners(result);
+        GameResult gameResult = racingGame.startRace(racingCars);
+        outputView.printResult(gameResult);
+        outputView.printWinners(gameResult);
     }
 }

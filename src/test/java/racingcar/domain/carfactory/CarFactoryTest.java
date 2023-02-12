@@ -25,7 +25,7 @@ class CarFactoryTest {
     @MethodSource("getCarNames")
     @DisplayName("자동차 이름들을 입력 받았을 때, 정상적으로 CarRepository 객체가 생성되는지 확인.")
     void createCarRepository(List<String> carNames) {
-        RacingCars racingCars = carFactory.createCarRepository(carNames);
+        RacingCars racingCars = carFactory.setRacingCars(carNames);
 
         assertThat(racingCars).isInstanceOf(RacingCars.class);
     }

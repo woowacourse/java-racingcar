@@ -30,7 +30,7 @@ public class RacingGame {
     public GameResult startRace(RacingCars racingCars) {
         List<Map<String, Integer>> results = new ArrayList<>();
         for (int i = 0; i < gameRound; i++) {
-            results.add(racingCars.moveCars());
+            results.add(racingCars.moveForwardOrStay());
         }
         return new GameResult(results);
     }
