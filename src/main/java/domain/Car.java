@@ -2,8 +2,6 @@ package domain;
 
 public class Car {
 
-    private static final int MOVED_LOWER_BOUND = 4;
-
     private final String name;
     private int position;
 
