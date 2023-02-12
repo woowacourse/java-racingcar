@@ -6,8 +6,6 @@ import racingcar.util.RandomIntGenerator;
 
 public class Car {
 
-    private static final int MINIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE = 0;
-    private static final int MAXIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE = 9;
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
     private static final int MINIMUM_NAME_LENGTH = 1;
     private static final int MAXIMUM_NAME_LENGTH = 5;
@@ -37,8 +35,7 @@ public class Car {
     }
 
     private boolean canMove() {
-        return intGenerator.getOneNumber(MINIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE,
-                MAXIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE) >= MINIMUM_NUMBER_TO_MOVE;
+        return intGenerator.getOneNumber() >= MINIMUM_NUMBER_TO_MOVE;
     }
 
     public CarDto getStatus() {
