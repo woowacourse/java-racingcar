@@ -11,11 +11,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CarTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"pobi", "crong", "honux", "hi hi", "jj503"})
+    @ValueSource(strings = {"pobi", "crong", "honux", " hi ", "  jj503   "})
     @DisplayName("Car 객체 생성 테스트")
     void createCarTest(String name) {
         Car car = new Car(name);
-        assertThat(car.getName()).isEqualTo(name);
+        assertThat(car.getName()).isEqualTo(name.trim());
     }
 
     @ParameterizedTest
