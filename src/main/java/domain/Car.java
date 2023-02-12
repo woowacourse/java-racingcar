@@ -17,6 +17,23 @@ public class Car implements Comparable<Car> {
         this.name = name;
     }
 
+    private void validate(String name) {
+        validateToContainBlank(name);
+        validateLength(name);
+    }
+
+    private void validateLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE + "입력값 : "  + name);
+        }
+    }
+
+    private void validateToContainBlank(String name) {
+        if (name.contains(BLANK)) {
+            throw new IllegalArgumentException(BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE + "입력값 : " + name);
+        }
+    }
+
     public void move(int number) {
         if (number >= MINIMUM_NUMBER_TO_MOVE) {
             position++;
@@ -38,22 +55,5 @@ public class Car implements Comparable<Car> {
 
     public int getPosition() {
         return position;
-    }
-
-    private void validate(String name) {
-        validateToContainBlank(name);
-        validateLength(name);
-    }
-
-    private void validateLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE + "입력값 : "  + name);
-        }
-    }
-
-    private void validateToContainBlank(String name) {
-        if (name.contains(BLANK)) {
-            throw new IllegalArgumentException(BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE + "입력값 : " + name);
-        }
     }
 }

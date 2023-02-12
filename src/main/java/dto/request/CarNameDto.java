@@ -12,10 +12,6 @@ public class CarNameDto {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void validate(String name) {
         validateToContainBlank(name);
         validateLength(name);
@@ -33,5 +29,9 @@ public class CarNameDto {
             throw new IllegalArgumentException("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다. " +
                     "입력값 : "  + name);
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
