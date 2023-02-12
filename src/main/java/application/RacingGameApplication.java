@@ -29,18 +29,12 @@ public class RacingGameApplication {
         List<Name> names = inputView.sendCarsName();
         TryCount tryCount = inputView.sendTryCount();
 
-        Cars cars = getCars(names);
+        Cars cars = Cars.of(names);
 
         playGame(tryCount, cars);
         printResult(cars);
     }
-
-    private Cars getCars(List<Name> names) {
-        return names.stream()
-                .map(Car::new)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Cars::new));
-    }
-
+    
     private void playGame(TryCount tryCount, Cars cars) {
         for (int i = 0; i < tryCount.getTryCount(); i++) {
             cars.move(numberGenerator);
