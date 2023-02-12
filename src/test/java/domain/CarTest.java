@@ -12,19 +12,17 @@ class CarTest {
     @ValueSource(ints = {4, 6, 8, 9})
     @DisplayName("최소 이동 가능 숫자 이상인 경우 전진한다.")
     public void carMoveSuccess(int number) {
-        int minMoveNumber = 4;
         Car car = new Car("kong");
 
-        assertThat(car.canMove(number, minMoveNumber)).isTrue();
+        assertThat(car.canMove(number)).isTrue();
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     @DisplayName("최소 이동 가능 숫자 이하인 경우 전진할 수 없다.")
     public void carMoveFail(int number) {
-        int minMoveNumber = 4;
         Car car = new Car("kong");
 
-        assertThat(car.canMove(number, minMoveNumber)).isFalse();
+        assertThat(car.canMove(number)).isFalse();
     }
 }

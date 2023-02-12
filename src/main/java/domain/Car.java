@@ -2,6 +2,8 @@ package domain;
 
 public class Car {
 
+    private final static int MIN_MOVE_NUMBER = 4;
+
     private final String name;
     private int moveCount;
 
@@ -18,8 +20,8 @@ public class Car {
         return moveCount;
     }
 
-    public boolean canMove(int generatedNumber, int minMoveNumber) {
-        return generatedNumber >= minMoveNumber;
+    public boolean canMove(int number) {
+        return number >= MIN_MOVE_NUMBER;
     }
 
     public boolean isWinner(int maxMoveCount) {
