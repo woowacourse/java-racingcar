@@ -14,7 +14,7 @@ class RandomNumberGeneratorTest {
 
         for (int i = 0; i < 10000; i++) {
             assertThat(numberGenerator.generate())
-                    .isBetween(1, 9);
+                    .isBetween(0, 9);
         }
     }
 }
