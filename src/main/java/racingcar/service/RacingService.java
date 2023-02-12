@@ -8,16 +8,17 @@ import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.GameStatusChecker;
 import racingcar.domain.RandomValueGenerator;
+import racingcar.domain.ValueGenerator;
 
 public class RacingService {
 
     private final Cars cars;
-    private final RandomValueGenerator randomValueGenerator;
+    private final ValueGenerator valueGenerator;
     private GameStatusChecker gameStatusChecker;
 
     public RacingService() {
         this.cars = new Cars();
-        this.randomValueGenerator = new RandomValueGenerator();
+        this.valueGenerator = new RandomValueGenerator();
     }
 
     public void makeCars(String carNames) {
@@ -35,7 +36,7 @@ public class RacingService {
     }
 
     public void playRound() {
-        cars.playRound(randomValueGenerator);
+        cars.playRound(valueGenerator);
     }
 
     public Map<String, Integer> getCurrentRoundResult() {
