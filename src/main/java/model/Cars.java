@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import service.wrapper.Round;
+import model.wrapper.Round;
 import utils.RacingNumberGenerator;
 
 public class Cars {

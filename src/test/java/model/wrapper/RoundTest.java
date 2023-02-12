@@ -1,4 +1,4 @@
-package service.wrapper;
+package model.wrapper;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

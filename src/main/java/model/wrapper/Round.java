@@ -1,4 +1,4 @@
-package service.wrapper;
+package model.wrapper;
 
 public class Round {
 

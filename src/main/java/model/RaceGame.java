@@ -1,4 +1,4 @@
-package service;
+package model;
 
 import dto.RacingRoundStateDto;
 import dto.WinnerCarDto;
@@ -6,18 +6,16 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import model.Car;
-import model.Cars;
-import service.wrapper.Round;
+import model.wrapper.Round;
 import utils.RacingNumberGenerator;
 
-public class RaceService {
+public class RaceGame {
 
     private final RacingNumberGenerator generator;
     private Cars cars;
     private Round round;
 
-    public RaceService(RacingNumberGenerator generator) {
+    public RaceGame(RacingNumberGenerator generator) {
         this.generator = generator;
     }
 

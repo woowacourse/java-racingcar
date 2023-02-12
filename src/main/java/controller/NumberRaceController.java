@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
-import service.RaceService;
+import model.RaceGame;
 import view.InputView;
 import view.OutputView;
 
@@ -14,13 +14,13 @@ public class NumberRaceController implements RaceController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final RaceService raceService;
+    private final RaceGame raceGame;
     private final Map<RaceState, Supplier<RaceState>> raceMappings = new EnumMap<>(RaceState.class);
 
-    public NumberRaceController(InputView inputView, OutputView outputView, RaceService raceService) {
+    public NumberRaceController(InputView inputView, OutputView outputView, RaceGame raceGame) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.raceService = raceService;
+        this.raceGame = raceGame;
         initMappings();
     }
 
@@ -39,26 +39,26 @@ public class NumberRaceController implements RaceController {
     private RaceState initCars() {
         Set<String> carsName = inputView.inputCarsName();
 
-        raceService.initCars(carsName);
+        raceGame.initCars(carsName);
         return RaceState.INPUT_RACE_ROUND;
     }
 
     private RaceState initRaceRound() {
         int round = inputView.inputRound();
 
-        raceService.initRound(round);
+        raceGame.initRound(round);
         return RaceState.RACE;
     }
 
     private RaceState race() {
-        List<RacingRoundStateDto> racingTotalState = raceService.race();
+        List<RacingRoundStateDto> racingTotalState = raceGame.race();
 
         outputView.printRacingTotalState(racingTotalState);
         return RaceState.CALCULATE_WINNERS;
     }
 
     private RaceState calculateWinners() {
-        outputView.printWinners(raceService.calculateWinners());
+        outputView.printWinners(raceGame.calculateWinners());
 
         return RaceState.APPLICATION_EXIT;
     }
