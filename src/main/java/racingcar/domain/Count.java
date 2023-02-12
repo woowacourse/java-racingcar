@@ -6,7 +6,7 @@ public class Count {
 
     private int value;
 
-    public Count(final int value) {
+    Count(final int value) {
         this.value = value;
     }
 

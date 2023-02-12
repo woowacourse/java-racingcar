@@ -6,7 +6,11 @@ public class Position implements Comparable<Position> {
 
     private static final int INITIAL_VALUE = 0;
 
-    private int value = INITIAL_VALUE;
+    private int value;
+
+    Position() {
+        this.value = INITIAL_VALUE;
+    }
 
     public void increase() {
         value++;
