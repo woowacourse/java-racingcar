@@ -4,18 +4,9 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final InputView INSTANCE = new InputView();
-
     private static final String CAR_NAMES_DELIMITER = ",";
 
-    private InputViewValidator inputViewValidator = InputViewValidator.getInstance();
-
-    private InputView() {
-    }
-
-    public static InputView getInstance() {
-        return INSTANCE;
-    }
+    private final InputViewValidator inputViewValidator = new InputViewValidator();
 
     public String[] readCarNames() {
         Scanner scanner = new Scanner(System.in);

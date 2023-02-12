@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewValidatorTest {
 
-    private InputViewValidator inputViewValidator = InputViewValidator.getInstance();
+    private final InputViewValidator inputViewValidator = new InputViewValidator();
 
     @Nested
     @DisplayName("전체 자동차 이름 검증 테스트")

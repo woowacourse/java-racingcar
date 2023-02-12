@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 public class InputViewValidator {
 
-    private static final InputViewValidator INSTANCE = new InputViewValidator();
-
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String CAR_NAMES_BLANK_ERROR = ERROR_PREFIX + "경주할 자동차 이름이 입력되지 않았습니다.";
     private static final String CAR_NAMES_DUPLICATE_ERROR = ERROR_PREFIX + "경주할 자동차 이름이 중복되었습니다.";
@@ -17,13 +15,6 @@ public class InputViewValidator {
     private static final String TRY_NUM_BLANK_ERROR = ERROR_PREFIX + "시도할 횟수가 입력되지 않았습니다.";
     private static final String TRY_NUM_NOT_INTEGER_ERROR = ERROR_PREFIX + "시도할 횟수가 정수가 아닙니다.";
     private static final String TRY_NUM_NOT_POSITIVE_ERROR = ERROR_PREFIX + "시도할 횟수는 1 이상이어야 합니다.";
-
-    private InputViewValidator() {
-    }
-
-    public static InputViewValidator getInstance() {
-        return INSTANCE;
-    }
 
     public void validateCarNames(String carNames) {
         if (isBlank(carNames)) {
