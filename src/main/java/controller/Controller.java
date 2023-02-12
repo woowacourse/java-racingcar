@@ -38,7 +38,7 @@ public class Controller {
         messageView.printResultMessage();
 
         for (int count = 0; count < tryCount; count++) {
-            cars.moveResult(randomNumberGenerator);
+            cars.moveForRound(randomNumberGenerator);
             outputView.printResult(cars);
         }
     }

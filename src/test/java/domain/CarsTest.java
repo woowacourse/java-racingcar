@@ -31,7 +31,7 @@ class CarsTest {
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
 
         for (int i = 0; i < 2; i++)
-            cars.moveResult(testNumberGenerator);
+            cars.moveForRound(testNumberGenerator);
 
         assertThat(cars.getWinners()).isEqualTo("ocean");
     }
@@ -47,7 +47,7 @@ class CarsTest {
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
 
         for (int i = 0; i < 2; i++)
-            cars.moveResult(testNumberGenerator);
+            cars.moveForRound(testNumberGenerator);
 
         assertThat(cars.getWinners()).isEqualTo("ocean, jamie");
     }
