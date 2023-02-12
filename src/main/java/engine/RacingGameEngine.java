@@ -3,7 +3,8 @@ package engine;
 import console.InputView;
 import console.OutputView;
 import domain.Cars;
-import domain.Game;
+import domain.Race;
+import domain.TryCount;
 import utils.CarsFactory;
 import utils.RandomPowerGenerator;
 import utils.RandomPowerMaker;
@@ -14,9 +15,10 @@ public class RacingGameEngine {
 
     public void startGame() {
         final Cars cars = CarsFactory.createCars(getCarNames());
-        final Game game = new Game(getTryCount());
+        final TryCount tryCount = new TryCount(getTryCount());
+        final Race race = new Race(cars, tryCount);
 
-        startRace(cars, game);
+        startRace(race);
 
         OutputView.printWinners(cars);
     }
@@ -31,12 +33,8 @@ public class RacingGameEngine {
         return InputView.inputTryCount();
     }
 
-    private void startRace(final Cars cars, final Game game) {
+    private void startRace(Race race) {
         OutputView.printResultMessage();
-
-        for (int i = 0; i < game.getTryCount(); i++) {
-            cars.moveAll(randomPowerGenerator);
-            OutputView.printCurrentRacingStatus(cars);
-        }
+        race.startRace(randomPowerGenerator);
     }
 }
