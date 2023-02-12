@@ -32,13 +32,13 @@ public class RacingGameController {
         outputView.showInfoMessage();
         while (racingGame.canContinue()) {
             List<Car> cars = racingGame.run();
-            outputView.showCars(trasferCarDtos(cars));
+            outputView.showCars(transferCarDtos(cars));
         }
         List<Car> winners = racingGame.getWinners();
-        outputView.showWinner(trasferCarDtos(winners));
+        outputView.showWinner(transferCarDtos(winners));
     }
 
-    private List<CarDto> trasferCarDtos(List<Car> cars) {
+    private List<CarDto> transferCarDtos(List<Car> cars) {
         return cars.stream()
                 .map(Car::toCarDto)
                 .collect(Collectors.toList());
