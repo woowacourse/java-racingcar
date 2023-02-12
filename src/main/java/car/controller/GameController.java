@@ -8,18 +8,21 @@ import java.util.stream.Collectors;
 import car.domain.Car;
 import car.domain.Game;
 import car.domain.RandomMoveChance;
+import car.view.Input;
 import car.view.InputConsole;
 import car.view.InputView;
 import car.view.OutputView;
 
 public class GameController {
 
-    private static final InputView inputView = new InputView(new InputConsole());
+    private final InputView inputView;
     private static final OutputView outputView = new OutputView();
 
     private Game game;
     private int trialCount;
-
+    public GameController(Input input){
+        this.inputView = new InputView(input);
+    }
     public void startGame() {
         makeGame();
         makeTrialCount();
