@@ -3,6 +3,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -47,22 +48,21 @@ class CarTest {
     @Nested
     class MoveTest {
 
-        @ParameterizedTest
-        @ValueSource(ints = {4, 9})
-        @DisplayName("랜덤값이 4 이상이면 자동차가 전진한다.")
-        void givenFourMoreNumber_thenCarMove(int randomNumber) {
+        @Test
+        @DisplayName("이동 조건이 True인 경우, 자동차가 전진한다")
+        void givenTrue_thenCarMove(int randomNumber) {
             Car car = Car.of("BMW");
-            car.move(randomNumber);
-            assertThat(car.getCarStatus().getPosition()).isEqualTo(2);
+            car.move(true);
+            assertThat(car.getPosition()).isEqualTo(2);
         }
 
-        @ParameterizedTest
-        @ValueSource(ints = {0, 3})
-        @DisplayName("랜덤값이 4 이하면 자동차가 이동하지 않는다.")
-        void givenThreeLessNumber_thenCarMove(int randomNumber) {
+
+        @Test
+        @DisplayName("이동조건이 False인 경우, 자동차가 이동하지 않는다.")
+        void givenFalse_thenCarMove() {
             Car car = Car.of("BMW");
-            car.move(randomNumber);
-            assertThat(car.getCarStatus().getPosition()).isEqualTo(1);
+            car.move(false);
+            assertThat(car.getPosition()).isEqualTo(1);
         }
 
     }

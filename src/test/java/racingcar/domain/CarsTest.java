@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import racingcar.domain.vo.CarStatus;
+import racingcar.util.NumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,17 +17,16 @@ class CarsTest {
 
     private Cars cars;
     private List<String> carNames;
-    private List<Integer> moveConditionValues;
+    private NumberGenerator numberGenerator;
 
     @BeforeEach
     void beforeEach() {
         //given
-        carNames = List.of("준팍", "져니", "소니");
-        cars = Cars.of(carNames);
-        moveConditionValues = List.of(0, 4, 9);
+        cars = Cars.of(List.of(Car.of("준팍"), Car.of("져니"), Car.of("소니")));
+        numberGenerator = new TestNumberGenerator(List.of(0, 4, 9));
 
         //when
-        cars.move(moveConditionValues);
+        cars.move(numberGenerator);
     }
 
     @DisplayName("getRoundResult 메서드 사용시")
@@ -49,7 +49,7 @@ class CarsTest {
             assertThat(cars.getRoundResults().stream()
                     .map(CarStatus::getName)
                     .collect(Collectors.toList()))
-                    .isEqualTo(carNames);
+                    .isEqualTo(List.of("준팍", "져니", "소니"));
         }
     }
 
