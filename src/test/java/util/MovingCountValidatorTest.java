@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import view.MovingCountValidator;
 
 @DisplayName("시도횟수")
 class MovingCountValidatorTest {
@@ -13,7 +14,7 @@ class MovingCountValidatorTest {
     @ValueSource(strings = {"0","101"})
     void validateMovingCountRangeTest(String input) {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> MovingCountValidator.validateMovingCountInput(input));
+                () -> MovingCountValidator.validateTryCountInput(input));
     }
 
     @DisplayName("숫자가 아니라면 예외가 발생한다.")
@@ -21,6 +22,6 @@ class MovingCountValidatorTest {
     @ValueSource(strings = {"a",""})
     void validateMovingCountIsDigitTest(String input) {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> MovingCountValidator.validateMovingCountInput(input));
+                () -> MovingCountValidator.validateTryCountInput(input));
     }
 }

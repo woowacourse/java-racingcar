@@ -13,11 +13,11 @@ public class RacingController {
 
     public void run() {
         Cars carsInfo = setUpCarName();
-        Integer tryCount = setUpTryCount();
+        int tryCount = setUpTryCount();
         progressRacingGame(tryCount, carsInfo, new RandomNumberGenerator());
     }
 
-    public void progressRacingGame(Integer tryCount, Cars carsInfo, RandomNumberGenerator randomNumberGenerator) {
+    public void progressRacingGame(int tryCount, Cars carsInfo, RandomNumberGenerator randomNumberGenerator) {
         RoundResult roundResult = new RoundResult();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
@@ -38,10 +38,10 @@ public class RacingController {
         }
     }
 
-    private Integer setUpTryCount() {
+    private int setUpTryCount() {
         try {
             outputView.printTryCountMessage();
-            Integer tryCount = inputView.readMovingCount();
+            int tryCount = inputView.readTryCount();
             System.out.println();
             return tryCount;
         } catch (IllegalArgumentException e) {
