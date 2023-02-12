@@ -28,12 +28,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private static StringBuilder createResultDisplay(Car car) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < car.getPosition(); i++) {
-            result.append("-");
-        }
-        return result;
+    private static String createResultDisplay(Car car) {
+        return Message.OUTPUT_LINES.message.repeat(car.getPosition());
     }
 
     public void printWinners(List<String> winners) {
@@ -43,6 +39,7 @@ public class OutputView {
     private enum Message {
         OUTPUT_RESULT_MESSAGE("실행 결과"),
         OUTPUT_RESULT_FORMAT("%s : %s%n"),
+        OUTPUT_LINES("-"),
         OUTPUT_WINNER("%s가 최종 우승했습니다.");
 
         private final String message;
