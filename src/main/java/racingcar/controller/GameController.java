@@ -19,8 +19,8 @@ public class GameController {
     }
 
     public void run() {
-        addCorrectCars(readCarNames());
-        runRacingGame(getCorrectNumberOfTry());
+        addCars(readCarNames());
+        runRacingGame(getNumberOfTry());
         outputView.printWinners(racingCarGame.getWinners());
     }
     
@@ -29,24 +29,14 @@ public class GameController {
         return inputView.readCarNames();
     }
     
-    private void addCorrectCars(String carNames) {
-        try {
-            racingCarGame.addCars(carNames);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printException(illegalArgumentException.getMessage());
-            addCorrectCars(readCarNames());
-        }
+    private void addCars(String carNames) {
+        racingCarGame.addCars(carNames);
     }
     
-    private int getCorrectNumberOfTry() {
-        try {
-            String numberOfTry = readNumberOfTry();
-            NumberOfTryValidator.validate(numberOfTry);
-            return Integer.parseInt(numberOfTry);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            outputView.printException(illegalArgumentException.getMessage());
-            return getCorrectNumberOfTry();
-        }
+    private int getNumberOfTry() {
+        String numberOfTry = readNumberOfTry();
+        NumberOfTryValidator.validate(numberOfTry);
+        return Integer.parseInt(numberOfTry);
     }
     
     private String readNumberOfTry() {
