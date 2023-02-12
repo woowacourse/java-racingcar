@@ -1,8 +1,11 @@
 package model;
 
 import exception.ErrorCode;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import service.NumberGenerator;
 
 public class RacingCars {
 
@@ -12,6 +15,18 @@ public class RacingCars {
     public RacingCars(final List<Car> cars) {
         validate(cars);
         this.cars = cars;
+    }
+
+    public void move(final NumberGenerator generator, final int limit) {
+        for (Car car : cars) {
+            car.move(generator.generateNumber(limit));
+        }
+    }
+
+    public Map<String, Integer> getCurrentPositions() {
+        Map<String, Integer> carResult = new HashMap<>();
+        cars.forEach(car -> carResult.put(car.getName(), car.getCurrentPosition()));
+        return carResult;
     }
 
     private void validate(final List<Car> cars) {
