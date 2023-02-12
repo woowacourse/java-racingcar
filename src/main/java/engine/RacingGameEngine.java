@@ -4,14 +4,16 @@ import console.InputView;
 import console.OutputView;
 import domain.Cars;
 import utils.CarsFactory;
+import utils.RandomPowerGenerator;
+import utils.RandomPowerMaker;
 
 public class RacingGameEngine {
 
-    public void startGame() {
-        final String carNames = getCarNames();
-        final int tryCount = getTryCount();
+    private final RandomPowerGenerator randomPowerGenerator = new RandomPowerMaker();
 
-        Cars cars = CarsFactory.createCars(carNames);
+    public void startGame() {
+        final Cars cars = CarsFactory.createCars(getCarNames());
+        final int tryCount = getTryCount();
 
         startRace(cars, tryCount);
 
@@ -32,7 +34,7 @@ public class RacingGameEngine {
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount; i++) {
-            cars.tryMoveAll();
+            cars.moveAll(randomPowerGenerator);
             OutputView.printCurrentRacingStatus(cars);
         }
     }
