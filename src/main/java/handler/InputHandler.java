@@ -1,6 +1,8 @@
 package handler;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import domain.RacingGame;
 import view.InputView;
@@ -20,11 +22,11 @@ public class InputHandler {
         this.inputView = new InputView();
     }
 
-    public String[] readCarNames() throws IOException {
+    public List<String> readCarNames() throws IOException {
         try {
             String inputName = inputView.readCarNamesInput();
             String[] names = inputName.split(COMMA);
-            return names;
+            return Arrays.asList(names);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readCarNames();
@@ -56,4 +58,5 @@ public class InputHandler {
             throw new IllegalArgumentException(MOVING_TRIAL_NOT_INTEGER_ERROR);
         }
     }
+    
 }
