@@ -33,9 +33,9 @@ class StringTest {
     @DisplayName("특정 위치의 문자를 가져오고, 위치 값을 벗어나면 예외 처리한다.")
     void stringIndexTest() {
         String input = "abc";
-        try{
+        try {
             System.out.println(input.charAt(5));
-        }catch(StringIndexOutOfBoundsException exception){
+        } catch (StringIndexOutOfBoundsException exception) {
             assertThatExceptionOfType(StringIndexOutOfBoundsException.class).equals(exception);
         }
     }
