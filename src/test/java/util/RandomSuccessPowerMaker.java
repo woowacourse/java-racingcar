@@ -2,7 +2,7 @@ package util;
 
 import utils.RandomPowerGenerator;
 
-public class RandomPowerMakerForSuccess implements RandomPowerGenerator {
+public class RandomSuccessPowerMaker implements RandomPowerGenerator {
 
     @Override
     public int generateRandomPower() {

@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import util.RandomPowerMakerForFail;
-import util.RandomPowerMakerForSuccess;
+import util.RandomFailPowerMaker;
+import util.RandomSuccessPowerMaker;
 
 class CarsTest {
 
-    private final RandomPowerMakerForSuccess randomPowerMakerForSuccess = new RandomPowerMakerForSuccess();
-    private final RandomPowerMakerForFail randomPowerMakerForFail = new RandomPowerMakerForFail();
+    private final RandomSuccessPowerMaker randomSuccessPowerMaker = new RandomSuccessPowerMaker();
+    private final RandomFailPowerMaker randomFailPowerMaker = new RandomFailPowerMaker();
 
     @Test
     @DisplayName("moveAll() : 자동차가 모두 움직인다.")
@@ -27,7 +27,7 @@ class CarsTest {
         Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        cars.moveAll(randomPowerMakerForSuccess);
+        cars.moveAll(randomSuccessPowerMaker);
 
         // then
         assertThat(pobi.getDistance()).isEqualTo(expectedDistanceAfterMoveSuccess);
@@ -46,7 +46,7 @@ class CarsTest {
         Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        cars.moveAll(randomPowerMakerForFail);
+        cars.moveAll(randomFailPowerMaker);
 
         // then
         assertThat(pobi.getDistance()).isNotEqualTo(expectedDistanceAfterMoveSuccess);
