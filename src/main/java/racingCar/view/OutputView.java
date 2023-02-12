@@ -22,6 +22,6 @@ public class OutputView {
     public static void printWinners(List<String> winnerNames) {
         String winners = winnerNames.stream()
                 .collect(Collectors.joining(", "));
-        System.out.println(winners + "가 최종 우승했습니다.");
+        System.out.println(winners + "(이)가 최종 우승했습니다.");
     }
 }
