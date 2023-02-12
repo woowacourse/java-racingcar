@@ -19,7 +19,7 @@ public class Cars {
         carNames.forEach(carName -> cars.add(new Car(carName, intGenerator)));
     }
 
-    public Cars(List<Car> cars, boolean isTest) { // TODO : 인자 없애는 법 고민
+    public Cars(List<Car> cars, boolean isTest) {
         this.cars = cars;
     }
 

@@ -29,7 +29,7 @@ public class InputView {
     public int getTryCount() {
         int tryCount = inputTryCount();
         validateTryCount(tryCount);
-        scanner.nextLine(); //TODO : 직관적인 버퍼비우기 해결방법 찾아보기
+        scanner.nextLine();
         return tryCount;
     }
 
