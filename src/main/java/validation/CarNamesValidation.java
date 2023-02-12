@@ -8,7 +8,6 @@ import utils.SplitCarNames;
 public class CarNamesValidation {
 
     private static final int CAR_NAME_LENGTH_MAX = 5;
-    private static final String SPLIT_DELIMITER = ",";
 
     public static void validateInputCarNames(String input) {
         validateCountOfCars(input);
