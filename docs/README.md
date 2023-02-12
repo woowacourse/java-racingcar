@@ -1,4 +1,4 @@
-# 자동차 경주 미션 구현 설계
+# 자동차 경주 미션 구현 설계(1단계)
 
 ## 추가 요구사항
 
@@ -26,3 +26,31 @@
 - 최종 우승자를 출력한다.
     - 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
 - 에러 메세지 출력
+
+# 자동차 경주 미션 구현 설계(2단계 리팩토링)
+
+MVC 패턴 기반
+
+### controller 패키지
+
+- [ ] RaceController
+    - [ ] 도메인의 RacingGame을 호출하는 형태로 리팩토링
+
+### domain 패키지
+
+- [ ] RacingGame
+    - [ ] 자동차 이름들과 반복 횟수를 입력으로 받도록 리팩토링
+- [ ] Car
+
+### View 패키지
+
+- [ ] inputView
+    - [ ] Message 텍스트 지우고 직접 넣어주기
+- [ ] outputView
+    - [ ] Message 텍스트 지우고 직접 넣어주기
+
+### 기타 개선 사항
+
+- [ ] Message 지우기(직접 넣어주기!)
+- [ ] RandomUtil을 지우고 Strategy 패턴을 사용하기
+    - [ ] NumberMaker 인터페이스 =>RandomNumberMaker 구현체
