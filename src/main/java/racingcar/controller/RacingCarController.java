@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import java.util.List;
 import racingcar.dto.RacingCarNamesRequest;
 import racingcar.dto.RacingCarStatusResponse;
 import racingcar.dto.RacingCarWinnerResponse;
@@ -9,6 +8,8 @@ import racingcar.service.RacingCarService;
 import racingcar.service.RandomMoveStrategy;
 import racingcar.service.TryCount;
 import racingcar.view.RacingCarView;
+
+import java.util.List;
 
 public class RacingCarController {
     private final RacingCarService racingCarService;
@@ -56,9 +57,10 @@ public class RacingCarController {
     private void playGame(TryCount tryCount) {
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         racingCarView.printStartMessage();
-        for (int i = 0; i < tryCount.getCount(); i++) {
+        while (tryCount.isAvailable()) {
             racingCarService.moveCars(randomMoveStrategy);
             printCarStatuses();
+            tryCount.tryMove();
         }
         printCarStatuses();
         findWinners();
