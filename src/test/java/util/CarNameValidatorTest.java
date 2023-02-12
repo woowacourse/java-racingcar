@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import util.CarNameValidator.Message;
 
 class CarNameValidatorTest {
@@ -32,6 +34,15 @@ class CarNameValidatorTest {
                     .isThrownBy(() -> carNameValidator.validate(names))
                     .withMessage(Message.EXCEPTION_CAR_NUMBER.getMessage());
         }
+
+/*        @ParameterizedTest
+        @NullAndEmptySource
+        void blankNameTest(String input) {
+            List<String> names = new ArrayList<>(List.of(input, "깃짱"));
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> carNameValidator.validate(names))
+                    .withMessage(Message.EXCEPTION_CAR_NAME_BLANK.getMessage());
+        }*/
 
         @Test
         @DisplayName("6글자 이상의 이름은 예외 처리한다.")

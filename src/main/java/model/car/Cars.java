@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CarRepository {
+public class Cars {
     private final List<Car> cars = new ArrayList<>();
-
-    public CarRepository() {
-    }
 
     public List<Car> cars() {
         return Collections.unmodifiableList(cars);
     }
 
-    public void addCars(Car car) {
+    public void addCar(Car car) {
         cars.add(car);
     }
 }
