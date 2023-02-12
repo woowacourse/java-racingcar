@@ -5,7 +5,7 @@ import domain.Car;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class OutputView {
+public class ConsoleView {
 
     private static final String RACING_RESULT_MESSAGE = System.lineSeparator() + "실행 결과";
     private static final String RACING_WINNER_MESSAGE = "%s가 최종 우승했습니다." + System.lineSeparator();

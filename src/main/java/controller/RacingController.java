@@ -3,19 +3,19 @@ package controller;
 import domain.RacingGame;
 import domain.RandomNumberGenerator;
 import view.input.InputView;
-import view.output.OutputView;
+import view.output.ConsoleView;
 
 import java.util.List;
 
 public class RacingController {
 
     private final InputView inputView;
-    private final OutputView outputView;
+    private final ConsoleView consoleView;
     private RacingGame racingGame;
 
-    public RacingController(InputView inputView, OutputView outputView) {
+    public RacingController(InputView inputView, ConsoleView consoleView) {
         this.inputView = inputView;
-        this.outputView = outputView;
+        this.consoleView = consoleView;
     }
 
     public void start() {
@@ -24,7 +24,7 @@ public class RacingController {
             startRacingGame(readGameTry());
             makeRacingGameResult();
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            consoleView.printExceptionMessage(e.getMessage());
             start();
         }
     }
@@ -37,16 +37,16 @@ public class RacingController {
         try {
             return inputView.readCarName();
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            consoleView.printExceptionMessage(e.getMessage());
             return readCarNames();
         }
     }
 
     private void startRacingGame(int gameTry) {
-        outputView.printGameResultMessage();
+        consoleView.printGameResultMessage();
         for (int i = 0; i < gameTry; i++) {
             racingGame.start();
-            outputView.printRacingStatus(racingGame.getCars());
+            consoleView.printRacingStatus(racingGame.getCars());
         }
     }
 
@@ -54,13 +54,13 @@ public class RacingController {
         try {
             return inputView.readGameTry();
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            consoleView.printExceptionMessage(e.getMessage());
             return readGameTry();
         }
     }
 
     private void makeRacingGameResult() {
-        outputView.printRacingStatus(racingGame.getCars());
-        outputView.printRacingWinners(racingGame.getWinners());
+        consoleView.printRacingStatus(racingGame.getCars());
+        consoleView.printRacingWinners(racingGame.getWinners());
     }
 }
