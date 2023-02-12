@@ -30,8 +30,8 @@ public class Controller {
     public void startRacing() {
         while (trial.ieLeft()) {
             cars.moveCars(randomNumberGenerator);
-            trial.useOneTime();
             outputView.printPosition(cars.getCars());
+            trial.useOneTime();
         }
     }
 
