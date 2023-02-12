@@ -1,25 +1,27 @@
 package racingcar.domain.system;
 
 import racingcar.domain.cars.Cars;
-import racingcar.domain.dto.CarDto;
 import racingcar.domain.numbergenerator.RandomSingleDigitGenerator;
-import racingcar.domain.record.GameRecord;
-import racingcar.domain.result.Result;
+import racingcar.domain.record.GameRecorder;
+import racingcar.domain.record.GameResultOfCar;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GameSystem {
 
     private static final int DEFAULT_POSITION = 0;
     private static final int MINIMUM_GAME_ROUND = 0;
+    private static final int START_ROUND = 1;
     private final int finalRound;
-    private final GameRecord gameRecord;
+    private final GameRecorder gameRecorder;
 
-    public GameSystem(int finalRound, GameRecord gameRecord) {
+    public GameSystem(int finalRound, GameRecorder gameRecorder) {
         validate(finalRound);
         this.finalRound = finalRound;
-        this.gameRecord = gameRecord;
+        this.gameRecorder = gameRecorder;
     }
 
     private void validate(int gameRound) {
@@ -29,40 +31,45 @@ public class GameSystem {
     }
 
     public void executeRace(Cars cars) {
-        for (int gameRound = 0; gameRound < finalRound; gameRound++) {
+        for (int gameRound = START_ROUND; gameRound <= finalRound; gameRound++) {
             cars.moveBy(new RandomSingleDigitGenerator());
             recordGameResult(gameRound, cars);
         }
     }
 
     private void recordGameResult(int gameRound, Cars cars) {
-        gameRecord.record(gameRound, cars);
+        gameRecorder.record(gameRound, cars);
     }
 
-    public Result getGameResult() {
-        return new Result(gameRecord.getRecords());
+    public Set<GameResultOfCar> getAllGameResult() {
+        return gameRecorder.getRecords();
     }
 
-    public List<String> findWinners() {
-        Set<CarDto> carDtos = getFinalRoundCarDtos();
+    public Set<GameResultOfCar> getWinnersGameResult() {
+        Set<GameResultOfCar> gameResultOfFinalRound = getGameResultsOfFinalRound();
 
-        Integer position = findTopPosition(carDtos);
+        int position = findTopPosition(gameResultOfFinalRound);
 
-        return carDtos.stream()
-                .filter(carDto -> carDto.getPosition() == position)
-                .map(CarDto::getCarName)
-                .collect(Collectors.toUnmodifiableList());
+        return findGameResultOfTopPositionedCars(gameResultOfFinalRound, position);
     }
 
-    private Integer findTopPosition(Set<CarDto> carDtos) {
-        return carDtos.stream()
-                .max(Comparator.comparing(CarDto::getPosition))
-                .map(CarDto::getPosition)
+    private Set<GameResultOfCar> getGameResultsOfFinalRound() {
+        return gameRecorder.getRecords()
+                .stream()
+                .filter(gameResultOfCar -> gameResultOfCar.getGameRound() == finalRound)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+    }
+
+    private int findTopPosition(Set<GameResultOfCar> gameResultOfCars) {
+        return gameResultOfCars.stream()
+                .max(Comparator.comparing(GameResultOfCar::getPosition))
+                .map(GameResultOfCar::getPosition)
                 .orElse(DEFAULT_POSITION);
     }
 
-    private Set<CarDto> getFinalRoundCarDtos() {
-        Map<Integer, Set<CarDto>> records = gameRecord.getRecords();
-        return records.get(finalRound);
+    private Set<GameResultOfCar> findGameResultOfTopPositionedCars(Set<GameResultOfCar> gameResultOfFinalRoundCars, int position) {
+        return gameResultOfFinalRoundCars.stream()
+                .filter(gameResultOfCar -> gameResultOfCar.getPosition() == position)
+                .collect(Collectors.toUnmodifiableSet());
     }
 }
