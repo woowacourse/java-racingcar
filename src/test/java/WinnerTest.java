@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -17,33 +17,17 @@ class WinnerTest {
 
     @BeforeAll
     static void setup() {
-        car1 = new Car("jerry");
-        car2 = new Car("jena");
-        car3 = new Car("poby");
-        List<Car> cars = new ArrayList<>();
-
+        car1 = new Car("jerry", 4);
+        car2 = new Car("jena",3);
+        car3 = new Car("poby",4);
+        List<Car> cars = Arrays.asList(car1, car2, car3);
         winner = new Winner();
-        while (car1.getDistance() != 5) car1.move();
-        while (car2.getDistance() != 4) car2.move();
-        while (car3.getDistance() != 5) car3.move();
-
-        cars.add(car1);
-        cars.add(car2);
-        cars.add(car3);
-
         winner.makeWinnerNames(cars);
     }
 
     @Test
     @DisplayName("winner 목록이 옳게 생성되었는지 확인하는 테스트")
     void winnerlist() {
-        assertThat(winner.getWinnerNames().toArray())
-                .containsExactly(car1.getName(), car3.getName());
-    }
-
-    @Test
-    @DisplayName("winner 목록 출력이 제대로 되는지 확인하는 테스트")
-    void toString_test() {
-        assertThat(winner.toString()).contains(car3.getName());
+        assertThat(winner.getWinnerNames()).isEqualTo(Arrays.asList(car1.getName(), car3.getName()));
     }
 }
