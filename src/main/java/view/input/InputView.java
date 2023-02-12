@@ -1,9 +1,6 @@
 package view.input;
 
 import java.util.Scanner;
-import validation.ErrorMessages;
-import validation.InputValidator;
-import validation.ValidateResult;
 
 public class InputView {
 
@@ -22,23 +19,14 @@ public class InputView {
     public String getInputUntilExist() {
         try {
             return getInput();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return getInputUntilExist();
         }
     }
 
     private String getInput() throws IllegalArgumentException {
-        String input = readLine();
-        validateEmpty(input);
-        return input;
-    }
-
-    private void validateEmpty(String input) {
-        ValidateResult validateResult = InputValidator.validate(input);
-        if (validateResult == ValidateResult.FAIL_EMPTY) {
-            throw new IllegalArgumentException(ErrorMessages.EMPTY_INPUT.getMessage());
-        }
+        return readLine();
     }
 
     private String readLine() {
