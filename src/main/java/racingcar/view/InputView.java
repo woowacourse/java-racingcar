@@ -2,22 +2,24 @@ package racingcar.view;
 
 import java.util.Scanner;
 
+import racingcar.dto.CarNamesRequestDTO;
+import racingcar.dto.NumberOfRoundsRequestDTO;
 import racingcar.util.Validator;
 
 public class InputView {
     Scanner scanner = new Scanner(System.in);
 
-    public String inputCarNames() {
+    public CarNamesRequestDTO inputCarNames() {
         String carNames = scanner.nextLine();
         Validator.validateNotEmptyInput(carNames);
 
-        return carNames;
+        return new CarNamesRequestDTO(carNames);
     }
 
-    public int inputNumberOfRounds() {
+    public NumberOfRoundsRequestDTO inputNumberOfRounds() {
         String numberOfRounds = scanner.nextLine();
         Validator.validateNaturalNumber(numberOfRounds);
 
-        return Integer.parseInt(numberOfRounds);
+        return new NumberOfRoundsRequestDTO(Integer.parseInt(numberOfRounds));
     }
 }

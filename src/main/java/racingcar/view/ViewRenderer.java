@@ -1,7 +1,9 @@
 package racingcar.view;
 
-import java.util.List;
 import java.util.Map;
+
+import racingcar.dto.RoundResultResponseDTO;
+import racingcar.dto.WinnersResponseDTO;
 
 public class ViewRenderer {
     private static final String COLON = ":";
@@ -9,9 +11,9 @@ public class ViewRenderer {
     private static final String SPACE = " ";
     private static final String NEW_LINE = "\n";
 
-    public String renderRoundResult(Map<String, Integer> roundResults) {
+    public String renderRoundResult(RoundResultResponseDTO roundResults) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Map.Entry<String, Integer> result : roundResults.entrySet()) {
+        for (Map.Entry<String, Integer> result : roundResults.getRoundResult().entrySet()) {
             stringBuilder.append(result.getKey());
             stringBuilder.append(SPACE + COLON + SPACE);
             stringBuilder.append(DASH.repeat(result.getValue()));
@@ -20,8 +22,8 @@ public class ViewRenderer {
         return stringBuilder.toString();
     }
 
-    public String renderWinners(List<String> winners) {
-        String renderedWinners = winners.toString();
+    public String renderWinners(WinnersResponseDTO winners) {
+        String renderedWinners = winners.getWinners().toString();
         return renderedWinners.substring(1, renderedWinners.length() - 1);
     }
 }

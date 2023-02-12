@@ -49,7 +49,7 @@ class CarsTest {
     @Test
     @DisplayName("라운드 결과 테스트")
     void getRoundResultTest() {
-        Map<String, Integer> actualResult = cars.getRoundResult();
+        Map<String, Integer> actualResult = cars.getRoundResult().getRoundResult();
 
         assertSoftly(softly -> {
             softly.assertThat(actualResult.get("test1")).isEqualTo(2);
@@ -61,6 +61,6 @@ class CarsTest {
     @Test
     @DisplayName("우승자를 확인하는 기능 테스트")
     void getWinnersTest() {
-        assertThat(cars.getWinners()).containsExactly("test1", "test2");
+        assertThat(cars.getWinners().getWinners()).containsExactly("test1", "test2");
     }
 }

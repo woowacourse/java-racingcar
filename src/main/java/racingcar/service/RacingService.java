@@ -1,13 +1,14 @@
 package racingcar.service;
 
-import java.util.List;
-import java.util.Map;
-
 import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.GameStatusChecker;
 import racingcar.domain.RandomValueGenerator;
 import racingcar.domain.ValueGenerator;
+import racingcar.dto.CarNamesRequestDTO;
+import racingcar.dto.NumberOfRoundsRequestDTO;
+import racingcar.dto.RoundResultResponseDTO;
+import racingcar.dto.WinnersResponseDTO;
 
 public class RacingService {
 
@@ -20,12 +21,12 @@ public class RacingService {
         this.valueGenerator = new RandomValueGenerator();
     }
 
-    public void makeCars(String carNames) {
-        cars.setUpCars(new CarNames(carNames).getNames());
+    public void makeCars(CarNamesRequestDTO carNamesRequestDTO) {
+        cars.setUpCars(new CarNames(carNamesRequestDTO).getNames());
     }
 
-    public void setNumberOfRounds(int numberOfRounds) {
-        gameStatusChecker = new GameStatusChecker(numberOfRounds);
+    public void setNumberOfRounds(NumberOfRoundsRequestDTO numberOfRoundsRequestDTO) {
+        gameStatusChecker = new GameStatusChecker(numberOfRoundsRequestDTO);
     }
 
     public boolean isOngoing() {
@@ -36,11 +37,11 @@ public class RacingService {
         cars.playRound(valueGenerator);
     }
 
-    public Map<String, Integer> getCurrentRoundResult() {
+    public RoundResultResponseDTO getCurrentRoundResult() {
         return cars.getRoundResult();
     }
 
-    public List<String> getWinners() {
+    public WinnersResponseDTO getWinners() {
         return cars.getWinners();
     }
 }

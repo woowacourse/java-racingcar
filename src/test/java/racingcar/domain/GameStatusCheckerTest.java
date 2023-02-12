@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import racingcar.dto.NumberOfRoundsRequestDTO;
+
 class GameStatusCheckerTest {
-    GameStatusChecker gameStatusChecker = new GameStatusChecker(5);
+    GameStatusChecker gameStatusChecker = new GameStatusChecker(new NumberOfRoundsRequestDTO(5));
 
     @ParameterizedTest(name = "게임이 진행중인지 확인하는 테스트")
     @CsvSource(value = {"3,true", "5,false"})

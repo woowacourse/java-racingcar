@@ -9,6 +9,9 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import racingcar.dto.RoundResultResponseDTO;
+import racingcar.dto.WinnersResponseDTO;
+
 class ViewRendererTest {
 
     private final ViewRenderer renderer = new ViewRenderer();
@@ -25,7 +28,7 @@ class ViewRendererTest {
             "test2 : -\n" +
             "test3 : -----\n";
 
-        assertThat(renderer.renderRoundResult(roundResults)).isEqualTo(expectedOutput);
+        assertThat(renderer.renderRoundResult(new RoundResultResponseDTO(roundResults))).isEqualTo(expectedOutput);
     }
 
     @Test
@@ -35,6 +38,6 @@ class ViewRendererTest {
 
         String expectedOutput = "test1, test2";
 
-        assertThat(renderer.renderWinners(winners)).isEqualTo(expectedOutput);
+        assertThat(renderer.renderWinners(new WinnersResponseDTO(winners))).isEqualTo(expectedOutput);
     }
 }

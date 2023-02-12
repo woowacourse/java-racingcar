@@ -1,7 +1,9 @@
 package racingcar.view;
 
-import java.util.List;
-import java.util.Map;
+import racingcar.dto.CarNamesRequestDTO;
+import racingcar.dto.NumberOfRoundsRequestDTO;
+import racingcar.dto.RoundResultResponseDTO;
+import racingcar.dto.WinnersResponseDTO;
 
 public class ViewController {
     private final InputView inputView;
@@ -14,25 +16,26 @@ public class ViewController {
         this.viewRenderer = new ViewRenderer();
     }
 
-    public String getCarNames() {
+    public CarNamesRequestDTO getCarNames() {
         outputView.printAskingInputCarNames();
         return inputView.inputCarNames();
     }
 
-    public int getNumberOfRounds() {
+    public NumberOfRoundsRequestDTO getNumberOfRounds() {
         outputView.printAskingInputNumberOfRounds();
         return inputView.inputNumberOfRounds();
-    }
-
-    public void printWinners(List<String> winners) {
-        outputView.printWinners(viewRenderer.renderWinners(winners));
     }
 
     public void startResult() {
         outputView.printResultStartingMessage();
     }
 
-    public void printResult(Map<String, Integer> currentRoundResult) {
+    public void printResult(RoundResultResponseDTO currentRoundResult) {
         outputView.printResult(viewRenderer.renderRoundResult(currentRoundResult));
     }
+
+    public void printWinners(WinnersResponseDTO winners) {
+        outputView.printWinners(viewRenderer.renderWinners(winners));
+    }
+
 }

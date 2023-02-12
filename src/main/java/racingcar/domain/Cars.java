@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import racingcar.dto.RoundResultResponseDTO;
+import racingcar.dto.WinnersResponseDTO;
+
 public class Cars {
 
     private final List<Car> cars;
@@ -36,26 +39,28 @@ public class Cars {
         turnCount++;
     }
 
-    public Map<String, Integer> getRoundResult() {
+    public RoundResultResponseDTO getRoundResult() {
         Map<String, Integer> currentRoundResult = new LinkedHashMap<>();
         for (Car car : cars) {
             currentRoundResult.put(car.getName(), car.getPosition());
         }
-        return currentRoundResult;
+        return new RoundResultResponseDTO(currentRoundResult);
     }
 
     public int getTurnCount() {
         return turnCount;
     }
 
-    public List<String> getWinners() {
+    public WinnersResponseDTO getWinners() {
         Set<Integer> positions = new HashSet<>();
         cars.forEach(car -> positions.add(car.getPosition()));
         int maxPosition = Collections.max(positions);
 
-        return cars.stream().filter(car -> car.getPosition() == maxPosition)
-            .map(Car::getName)
-            .collect(Collectors.toList());
+        return new WinnersResponseDTO(
+            cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList()));
     }
 
 }
