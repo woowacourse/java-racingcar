@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.assertj.core.util.Lists;
@@ -60,5 +61,19 @@ public class CarsTest {
         assertThatThrownBy(emptyCars::findWinners)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("우승자가 존재하지 않습니다.");
+    }
+
+    @Test
+    @DisplayName("getCars 메서드는 경주에 참가한 모든 차의 이름과 현재 위치를 반환한다.")
+    void should_returnCurrentCarNameAndPositions_when_getCars() {
+        NumberGenerator numberGenerator = new TestNumberGenerator(Lists.newArrayList(4, 3, 5));
+        cars.race(numberGenerator);
+
+        List<Car> result = cars.getCars();
+
+        assertAll(
+                () -> assertThat(result).extracting(Car::getName).containsExactly("car1", "car2", "car3"),
+                () -> assertThat(result).extracting(Car::getPosition).containsExactly(1, 0, 1)
+        );
     }
 }
