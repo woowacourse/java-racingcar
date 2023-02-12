@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.dto.CarDto;
 import racingcar.util.IntGenerator;
 
@@ -27,21 +28,21 @@ public class Cars {
         cars.forEach(Car::tryMove);
     }
 
-    public List<CarDto> getStatuses() {
-        List<CarDto> carDtos = new LinkedList<>();
-        cars.forEach(car -> carDtos.add(car.getStatus()));
-        return carDtos;
+    public List<Car> getCars() {
+        return cars;
     }
-    
+
     public List<CarDto> getWinner() {
-        List<CarDto> carStatuses = this.getStatuses();
+        List<CarDto> carDtos = cars.stream()
+                .map(CarDto::new)
+                .collect(Collectors.toList());
         int winnerCount = 0;
         List<CarDto> winnerStatuses = new LinkedList<>();
-        for (CarDto carStatus : carStatuses) {
-            winnerCount = getMaxMovedCount(winnerCount, carStatus.getMovedCount());
+        for (CarDto carDto : carDtos) {
+            winnerCount = getMaxMovedCount(winnerCount, carDto.getMovedCount());
         }
-        for (CarDto carStatus : carStatuses) {
-            appendIfHaveSameMovedCount(winnerStatuses, carStatus, winnerCount);
+        for (CarDto carDto : carDtos) {
+            appendIfHaveSameMovedCount(winnerStatuses, carDto, winnerCount);
         }
         return winnerStatuses;
     }

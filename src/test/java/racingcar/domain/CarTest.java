@@ -18,10 +18,10 @@ class CarTest {
     void shouldPlusOneAtMovedCountWhenMove(int number, int addedMovedCount) {
         // given
         Car targetCar = new Car("test", new DeterminedIntGenerator(number));
-        CarDto carDtoBeforeMove = targetCar.getStatus();
+        CarDto carDtoBeforeMove = new CarDto(targetCar);
         // when
         targetCar.tryMove();
-        CarDto carDtoAfterMove = targetCar.getStatus();
+        CarDto carDtoAfterMove = new CarDto(targetCar);
         // then
         assertThat(carDtoAfterMove.getName()).isEqualTo(carDtoBeforeMove.getName()).as("이름이 같아야 한다.");
         assertThat(carDtoAfterMove.getMovedCount()).isEqualTo(carDtoBeforeMove.getMovedCount() + addedMovedCount)
@@ -36,7 +36,7 @@ class CarTest {
         // when
         Car car = new Car(appropriateName);
         // then
-        assertThat(car.getStatus().getName()).isEqualTo(appropriateName);
+        assertThat(car.getName()).isEqualTo(appropriateName);
     }
 
     @ParameterizedTest

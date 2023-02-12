@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.CarDto;
@@ -16,10 +17,14 @@ class CarsTest {
         // given
         List<String> names = List.of("phobi", "tele", "chan");
         Cars cars = new Cars(names, new DeterminedIntGenerator(4));
-        List<CarDto> carDtosBeforeRequestMove = cars.getStatuses();
+        List<CarDto> carDtosBeforeRequestMove = cars.getCars().stream().
+                map(CarDto::new)
+                .collect(Collectors.toList());
         // when
         cars.requestMoveEachCar();
-        List<CarDto> carDtosAfterRequestMove = cars.getStatuses();
+        List<CarDto> carDtosAfterRequestMove = cars.getCars().stream().
+                map(CarDto::new)
+                .collect(Collectors.toList());;
         // then
         for (int index = 0; index < carDtosAfterRequestMove.size(); index++) {
             assertThat(carDtosAfterRequestMove.get(index).getName()).isEqualTo(

@@ -1,7 +1,10 @@
 package racingcar.controller;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.domain.Cars;
+import racingcar.dto.CarDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,7 +24,10 @@ public class RacingController {
     public void doRacing() {
         createCars();
         repeatTryMovingByInputCount();
-        outputView.printResult(cars.getStatuses());
+        List<CarDto> carDtos = cars.getCars().stream()
+                .map(CarDto::new)
+                .collect(Collectors.toList());
+        outputView.printResult(carDtos);
         outputView.printWinner(cars.getWinner());
     }
 
@@ -49,7 +55,10 @@ public class RacingController {
         outputView.announceBeforePrintResult();
         for (int i = 0; i < tryCount; i++) {
             cars.requestMoveEachCar();
-            outputView.printResult(cars.getStatuses());
+            List<CarDto> carDtos = cars.getCars().stream()
+                    .map(CarDto::new)
+                    .collect(Collectors.toList());
+            outputView.printResult(carDtos);
         }
     }
 
