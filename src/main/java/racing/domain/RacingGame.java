@@ -29,11 +29,11 @@ public class RacingGame {
         }
     }
 
-    public List<Car> getResult() {
+    public List<Car> decideResult() {
         return cars.getUnmodifiableCars();
     }
 
-    public List<String> getWinners() {
+    public List<String> decideWinners() {
         return cars.decideWinners().stream()
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());

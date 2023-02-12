@@ -20,7 +20,7 @@ class RacingGameTest {
         RacingGame game = new RacingGame(new AlwaysMoveGenerator(), new Cars(carNames), tryCount);
         game.play();
 
-        List<Car> result = game.getResult();
+        List<Car> result = game.decideResult();
 
         List<Integer> positions = result.stream()
                 .map(Car::getPosition)
@@ -37,7 +37,7 @@ class RacingGameTest {
         RacingGame game = new RacingGame(new NeverMoveGenerator(), new Cars(carNames), tryCount);
         game.play();
 
-        List<Car> result = game.getResult();
+        List<Car> result = game.decideResult();
 
         List<Integer> positions = result.stream()
                 .map(Car::getPosition)
