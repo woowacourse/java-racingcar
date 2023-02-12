@@ -15,7 +15,8 @@ public class Outputs {
     }
 
     public static Outputs from(Cars cars) {
-        List<Output> outputs = cars.getStream()
+        List<Output> outputs = cars.getCars()
+                .stream()
                 .map(Output::from)
                 .collect(Collectors.toList());
 

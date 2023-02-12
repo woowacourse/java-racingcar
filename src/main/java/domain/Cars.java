@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,6 +36,10 @@ public class Cars {
                 .map(Car::getPosition)
                 .max(Integer::compare)
                 .orElse(CAN_NOT_FIND_MAX);
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     public Stream<Car> getStream() {

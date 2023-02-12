@@ -3,7 +3,6 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +22,7 @@ class CarsTest {
         Cars cars = new Cars(List.of(carA, carB, carC));
         Cars winner = cars.judgeWinners();
 
-        assertThat(winner.getStream()
-                .collect(Collectors.toList()))
+        assertThat(winner.getCars())
                 .containsExactly(carB, carC);
     }
 }
