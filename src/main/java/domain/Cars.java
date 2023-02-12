@@ -10,7 +10,7 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
@@ -40,7 +40,7 @@ public class Cars {
         return maxCountOfDistance;
     }
 
-    private void addWinnerName(List<String> winnerNames, final Car car, int maxCountOfDistance) {
+    private void addWinnerName(List<String> winnerNames, final Car car, final int maxCountOfDistance) {
         if (car.getDistance() == maxCountOfDistance) {
             winnerNames.add(car.getName());
         }
