@@ -7,17 +7,18 @@ import org.junit.jupiter.api.Test;
 import racingcar.model.car.strategy.ForwardMovingStrategy;
 
 class CarTest {
-    @DisplayName("자동차의 현재 위치 형식 테스트")
+    @DisplayName("자동차 위치 비교 테스트")
     @Test
-    void currentStateFormatTest() {
+    void matchCarPositionTest() {
         // given
         Car car = new Car("pobi", new ForwardMovingStrategy());
-        int expected = 1;
+        int expectedPosition = 2;
 
         // when
-        int actual = car.getPosition();
+        car.moveForward();
+        boolean actual = car.matchPosition(expectedPosition);
 
         // then
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isTrue();
     }
 }
