@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import racingcar.dto.CarNamesRequest;
-import racingcar.dto.GameRoundRequest;
+import racingcar.dto.GameTotalRoundRequest;
 
 public class InputView {
 	private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-	public CarNamesRequest inputCarNames() {
-		print(CAR_NAMES_INPUT_MESSAGE.getMessage());
+	public CarNamesRequest getCarNames() {
+		System.out.println(CAR_NAMES_INPUT_MESSAGE.getMessage());
 		final List<String> carNames;
 		try {
 			final String inputCarNames = bufferedReader.readLine();
@@ -28,8 +28,8 @@ public class InputView {
 		return CarNamesRequest.from(carNames);
 	}
 
-	public GameRoundRequest inputGameRound() {
-		print(GAME_ROUND_INPUT_MESSAGE.getMessage());
+	public GameTotalRoundRequest getTotalGameRound() {
+		System.out.println(GAME_ROUND_INPUT_MESSAGE.getMessage());
 		int totalGameRound;
 		try {
 			final String inputGameRound = bufferedReader.readLine();
@@ -40,16 +40,12 @@ public class InputView {
 		} catch (IOException e) {
 			throw new RuntimeException(GAME_ROUND_INPUT_EXCEPTION.getMessage());
 		}
-		return GameRoundRequest.from(totalGameRound);
+		return GameTotalRoundRequest.from(totalGameRound);
 	}
 
 	private List<String> splitByComma(final String carNames) {
 		final String[] splitCarNames = carNames.split("\\s*,\\s*");
 		return Arrays.stream(splitCarNames).collect(Collectors.toList());
-	}
-
-	private void print(final String message) {
-		System.out.print(message);
 	}
 
 	private void validateBlank(final String gameRound) {
