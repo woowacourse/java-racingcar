@@ -1,4 +1,4 @@
-package utils;
+package domain;
 
 import java.util.Collections;
 import java.util.List;

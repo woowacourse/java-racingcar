@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import output.Outputs;
-import utils.Names;
-import utils.RepeatCount;
 
 public class RacingGame {
 

@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import utils.RandomNumberGenerator;
-
 public class Cars {
 
     private static final int CAN_NOT_FIND_MAX = -1;

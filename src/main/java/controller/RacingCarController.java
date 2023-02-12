@@ -1,10 +1,10 @@
 package controller;
 
 import domain.Cars;
+import domain.Names;
 import domain.RacingGame;
+import domain.RepeatCount;
 import output.Outputs;
-import utils.Names;
-import utils.RepeatCount;
 import view.InputView;
 import view.OutputView;
 

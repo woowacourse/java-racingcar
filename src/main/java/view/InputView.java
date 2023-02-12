@@ -2,8 +2,8 @@ package view;
 
 import java.util.Scanner;
 
-import utils.Names;
-import utils.RepeatCount;
+import domain.Names;
+import domain.RepeatCount;
 
 public class InputView {
 
