@@ -12,18 +12,7 @@ public class InputView {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = scanner.nextLine();
         String[] names = input.split(",");
-        validateNames(names);
         return Arrays.asList(names);
-    }
-
-    private static void validateNames(String[] input) {
-        if (isBlank(input)) {
-            throw new IllegalArgumentException("자동차는 1개 이상 입력해주세요.");
-        }
-    }
-
-    private static boolean isBlank(String[] carNames) {
-        return carNames.length == 0;
     }
 
     public static int readTryCount() {
