@@ -1,10 +1,7 @@
 package controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import domain.Car;
 import domain.Cars;
+import domain.RacingGame;
 import output.Outputs;
 import utils.Names;
 import utils.RepeatCount;
@@ -18,23 +15,13 @@ public class RacingCarController {
         RepeatCount repeatCount = InputView.readRepeatCount();
         OutputView.printTitle();
 
-        Cars cars = makeCarsFrom(names);
-        while (repeatCount.hasNext()) {
-            cars.move();
-            Outputs outputs = Outputs.from(cars);
+        RacingGame racingGame = new RacingGame(names, repeatCount);
+        while (racingGame.canRace()) {
+            Outputs outputs = racingGame.race();
             OutputView.printOutputs(outputs);
         }
 
-        Cars winners = cars.judgeWinners();
+        Cars winners = racingGame.getWinner();
         OutputView.printWinners(winners);
-    }
-
-    private Cars makeCarsFrom(Names names) {
-        List<Car> cars = names.getNames()
-                .stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
-
-        return new Cars(cars);
     }
 }
