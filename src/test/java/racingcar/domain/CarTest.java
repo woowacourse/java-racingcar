@@ -29,7 +29,7 @@ class CarTest {
     @DisplayName("차가 정지했을 때 position에 변화가 없는지 확인한다.")
     void moveFail() {
         car.move(() -> false);
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPosition()).isZero();
     }
 
     @ParameterizedTest(name = "name : {0}")
