@@ -1,6 +1,6 @@
 package controller;
 
-import model.Cars;
+import domain.Cars;
 import util.RandomNumberGenerator;
 import validation.Validation;
 import view.InputView;

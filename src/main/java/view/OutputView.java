@@ -1,7 +1,7 @@
 package view;
 
-import model.Car;
-import model.Cars;
+import domain.Car;
+import domain.Cars;
 
 public class OutputView {
     private final String CAR_LOCATION = "-";
