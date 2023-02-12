@@ -1,5 +1,7 @@
 package racing.domain;
 
+import racing.RandomNumberGenerator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +21,14 @@ public class Cars {
         }
     }
 
-    public List<Car> decideMaxPosition() {
+    public void moveAll(final RandomNumberGenerator generator) {
+        for (Car car : cars) {
+            int power = generator.generate();
+            car.move(power);
+        }
+    }
+
+    public List<Car> decideWinners() {
         int maxPosition = this.calculateMaxPosition();
 
         return cars.stream()
@@ -34,7 +43,7 @@ public class Cars {
                 .orElse(Car.MIN_POSITION);
     }
 
-    public List<Car> getCars() {
+    public List<Car> getUnmodifiableCars() {
         return Collections.unmodifiableList(cars);
     }
 }
