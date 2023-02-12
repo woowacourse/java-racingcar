@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import domain.Car;
 import domain.Cars;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,18 +31,14 @@ class RacingGameTest {
     @Test
     void playSingleRoundTest() {
         assertEquals(racingGame.playSingleRound(),
-            List.of(
-                "joy : -",
-                "pobi : -"
-            )
-        );
+            Map.of("joy", 1, "pobi", 1));
     }
 
     @DisplayName("차들의 위치 값을 비교해 최종 우승자들을 구한다.")
     @Test
     void getWinnersTest() {
         assertEquals(racingGame.getWinners(),
-            "joy, pobi"
+            List.of("joy", "pobi")
         );
     }
 }
