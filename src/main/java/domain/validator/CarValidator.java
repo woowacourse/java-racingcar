@@ -1,7 +1,5 @@
 package domain.validator;
 
-import validation.ErrorMessage;
-
 public class CarValidator {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_NAME_LENGTH = 1;

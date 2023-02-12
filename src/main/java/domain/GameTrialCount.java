@@ -8,7 +8,7 @@ public class GameTrialCount {
 
     public GameTrialCount(String gameTrial) {
         validate(gameTrial);
-        this.gameTrial = Integer.parseInt(gameTrial);;
+        this.gameTrial = Integer.parseInt(gameTrial);
     }
 
     public boolean isGreaterThan(int otherCount) {

@@ -1,7 +1,5 @@
 package domain.validator;
 
-import validation.ErrorMessage;
-
 import java.util.regex.Pattern;
 
 public class GameTrialCountValidator {

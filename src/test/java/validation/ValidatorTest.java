@@ -1,6 +1,7 @@
 package validation;
 
 import domain.validator.CarValidator;
+import domain.validator.ErrorMessage;
 import domain.validator.GameTrialCountValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
