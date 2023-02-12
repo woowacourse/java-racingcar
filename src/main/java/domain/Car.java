@@ -14,8 +14,8 @@ public class Car implements Comparable<Car> {
         this.name = input;
     }
 
-    public void move(int number) {
-        if (number >= MOVE_LOWER_BOUND_INCLUSIVE)
+    public void move(int power) {
+        if (power >= MOVE_LOWER_BOUND_INCLUSIVE)
             position++;
     }
 
