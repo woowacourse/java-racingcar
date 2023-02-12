@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.RandomPowerGenerator;
 
 public class Cars {
 
@@ -13,9 +14,10 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void tryMoveAll() {
+    public void moveAll(final RandomPowerGenerator randomPowerGenerator) {
         for (final Car car : cars) {
-            car.tryMove();
+            int power = randomPowerGenerator.generateRandomPower();
+            car.move(power);
         }
     }
 
