@@ -11,11 +11,15 @@ public class Winners {
     private final List<Winner> winners;
 
     public Winners(Cars cars) {
+        this.winners = calculateWinners(cars);
+    }
+
+    private List<Winner> calculateWinners(Cars cars) {
         int winnerPosition = cars.getCars().stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(DEFAULT_MAX);
-        this.winners = cars.getCars().stream()
+        return cars.getCars().stream()
                     .filter(car -> car.getPosition() == winnerPosition)
                     .map(car -> new Winner(car.getName()))
                     .collect(Collectors.toUnmodifiableList());
