@@ -1,11 +1,13 @@
+package controller;
+
 import domain.Car;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import service.RacingGame;
-import service.RandomNumberGenerator;
-import ui.InputView;
-import ui.OutputView;
+import domain.RacingGame;
+import domain.RandomNumberGenerator;
+import view.InputView;
+import view.OutputView;
 
 public class RacingGameController {
 

@@ -1,6 +1,5 @@
-package service;
+package domain;
 
-import domain.Car;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package service;
+package domain;
 
 public interface NumberGenerator {
 
