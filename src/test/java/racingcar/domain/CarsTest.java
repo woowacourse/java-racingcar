@@ -3,40 +3,35 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
-    private static final int MOVE = 10;
+    TestNumberGenerator testNumberGenerator = new TestNumberGenerator();
 
-    Car car1 = new Car("gavi");
-    Car car2 = new Car("jude");
-    Car car3 = new Car("pobi");
-
-    Cars cars = new Cars(List.of(car1, car2, car3));
-
-    @BeforeEach
-    void setUp(){
-        car1.move(MOVE);
-        car1.move(MOVE);
-        car1.move(MOVE);
-
-        car2.move(MOVE);
-        car2.move(MOVE);
-        car2.move(MOVE);
-    }
+    Cars cars = new Cars("가비,주드");
 
     @Test
     @DisplayName("우승자 확인 성공 테스트")
     void getWinnerSuccessTest() {
-        assertThat(cars.getWinnerNames()).isEqualTo(List.of("gavi", "jude"));
+        cars.moveCars(testNumberGenerator);
+        cars.getCars().add(new Car("포비"));
+        assertThat(cars.getWinnerNames()).containsExactly("가비", "주드").doesNotContain("포비");
     }
 
     @Test
     @DisplayName("우승자 확인 실패 테스트")
     void getWinnerFailTest() {
-        assertThat(cars.getWinnerNames()).isNotEqualTo(List.of("gavi"));
+        cars.moveCars(testNumberGenerator);
+        assertThat(cars.getWinnerNames()).isNotEqualTo(List.of());
+    }
+
+    private class TestNumberGenerator implements NumberGenerator {
+        private static final int MOVE = 5;
+        @Override
+        public int generate() {
+            return MOVE;
+        }
     }
 
 }
