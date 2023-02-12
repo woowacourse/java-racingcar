@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import model.car.Car;
-import model.car.CarRepository;
+import model.car.Cars;
 import model.manager.CarMoveManager;
 import util.number.RandomNumberGenerator;
 import view.InputView;
@@ -19,7 +19,7 @@ public class MainController {
     private final OutputView outputView;
     private final Map<GameStatus, Supplier<GameStatus>> gameGuide;
     private final CarMoveManager carMoveManager;
-    private final CarRepository carRepository = new CarRepository();
+    private final Cars cars = new Cars();
 
     public MainController(InputView inputView, OutputView outputView, CarMoveManager carMoveManager) {
         this.inputView = inputView;
@@ -55,20 +55,20 @@ public class MainController {
 
     private GameStatus setCars() {
         List<String> carNames = inputView.readCarNames();
-        carNames.stream().map(Car::new).forEach(carRepository::addCars);
+        carNames.stream().map(Car::new).forEach(cars::addCar);
         return GameStatus.PLAY_GAME;
     }
 
     public List<String> getWinners() {
         int maxPosition = getMaxPosition();
-        return carRepository.cars().stream()
+        return cars.cars().stream()
                 .filter(car -> car.isWinner(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
     private int getMaxPosition() {
-        List<Integer> positions = carRepository.cars().stream()
+        List<Integer> positions = cars.cars().stream()
                 .map(Car::getPosition)
                 .collect(Collectors.toList());
         return Collections.max(positions);
@@ -84,9 +84,9 @@ public class MainController {
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            carRepository.cars()
+            cars.cars()
                     .forEach(car -> car.move(isMove()));
-            outputView.printResult(carRepository.cars());
+            outputView.printResult(cars.cars());
         }
     }
 
