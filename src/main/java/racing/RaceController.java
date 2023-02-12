@@ -1,10 +1,10 @@
 package racing;
 
-import static racing.ExceptionHandlingTemplate.repeatUntilReadValidInput;
+import static racing.ExceptionHandlingTemplate.repeatUntilSucceed;
 
-import racing.domain.car.CarDto;
-import racing.domain.race.Race;
 import java.util.List;
+import racing.domain.car.Car;
+import racing.domain.race.Race;
 import racing.view.InputView;
 import racing.view.OutputView;
 
@@ -13,13 +13,14 @@ public class RaceController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Race race = repeatUntilReadValidInput(Race::new, inputView::readCarNames);
-        int tryTime = repeatUntilReadValidInput(this::validateTryTime, inputView::readTryTime);
+        Race race = repeatUntilSucceed(Race::new, inputView::readCarNames);
+        int tryTime = repeatUntilSucceed(this::validateTryTime, inputView::readTryTime);
 
         outputView.printResultTitle();
+
         while (tryTime-- > 0) {
             race.tryMoveOneTime();
-            List<CarDto> cars = race.getCarDTOs();
+            List<Car> cars = race.getParticipatingCars();
             outputView.printStatus(cars);
         }
 

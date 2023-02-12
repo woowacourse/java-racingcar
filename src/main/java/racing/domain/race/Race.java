@@ -1,12 +1,11 @@
 package racing.domain.race;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import racing.domain.RandomNumberPicker;
 import racing.domain.WinnerJudgeImpl;
 import racing.domain.car.Car;
-import racing.domain.car.CarDto;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Race {
     private final List<Car> cars = new ArrayList<>();
@@ -48,12 +47,11 @@ public class Race {
         }
     }
 
-    public List<CarDto> getWinners() {
-        return winnerJudge.getWinner(cars).stream()
-                .map(CarDto::of).collect(Collectors.toList());
+    public List<Car> getWinners() {
+        return winnerJudge.getWinner(cars);
     }
 
-    public List<CarDto> getCarDTOs() {
-        return cars.stream().map(CarDto::of).collect(Collectors.toList());
+    public List<Car> getParticipatingCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

@@ -2,16 +2,15 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import racing.domain.car.Car;
-import racing.domain.car.CarDto;
-import racing.domain.race.Race;
-import racing.domain.race.WinnerJudge;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import racing.domain.car.Car;
+import racing.domain.race.Race;
+import racing.domain.race.WinnerJudge;
 
 class RaceTest {
     @Nested
@@ -40,10 +39,10 @@ class RaceTest {
             race = new Race(List.of("rosie", "hong"), mockWinnerJudge);
 
             // when
-            List<CarDto> winners = race.getWinners();
+            List<Car> winners = race.getWinners();
 
             //then
-            assertThat(winners.stream().map(CarDto::getName).collect(Collectors.toList())).contains("rosie");
+            assertThat(winners.stream().map(Car::getName).collect(Collectors.toList())).contains("rosie");
         }
 
         @Test
@@ -54,10 +53,10 @@ class RaceTest {
             race = new Race(List.of("rosie", "hong"), mockWinnerJudge);
 
             // when
-            List<CarDto> winners = race.getWinners();
+            List<Car> winners = race.getWinners();
 
             //then
-            assertThat(winners.stream().map(CarDto::getName).collect(Collectors.toList())).doesNotContain("hong");
+            assertThat(winners.stream().map(Car::getName).collect(Collectors.toList())).doesNotContain("hong");
         }
     }
 }
