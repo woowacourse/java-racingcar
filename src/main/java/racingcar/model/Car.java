@@ -2,16 +2,16 @@ package racingcar.model;
 
 public class Car implements Comparable<Car> {
     private final CarName name;
-    private final Position pos;
+    private final Position position;
 
     public Car(String carName) {
         this.name = new CarName(carName);
-        this.pos = new Position();
+        this.position = new Position();
     }
 
     public void move(CarMovement movement) {
         if(movement.isMove()){
-            this.pos.increasePosition();
+            this.position.increasePosition();
         }
     }
 
@@ -19,13 +19,13 @@ public class Car implements Comparable<Car> {
         return name.getName();
     }
 
-    public Integer getPos() {
-        return pos.getValue();
+    public Integer getPosition() {
+        return position.getValue();
     }
 
     @Override
     public int compareTo(Car o) {
-        return this.pos.compareTo(o.pos);
+        return this.position.compareTo(o.position);
     }
 
 }
