@@ -17,7 +17,7 @@ public class InputView {
   private final Pattern NUMBER = Pattern.compile("[0-9]+");
 
   public List<String> readCarNames() {
-    System.out.println(Messages.INPUT_CAR_NAMES);
+    System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     String[] split = scanner.nextLine().split(",");
 
     return Arrays.stream(split)
@@ -33,7 +33,7 @@ public class InputView {
   }
 
   public int readTrialNum() {
-    System.out.println(Messages.INPUT_TRIAL_NUM);
+    System.out.println("시도할 횟수는 몇회인가요?(단, 100회 미만이어야 합니다)");
     String input = scanner.nextLine();
     validateTrialNum(input);
     return Integer.parseInt(input);

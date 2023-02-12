@@ -45,12 +45,12 @@ MVC 패턴 기반
 ### View 패키지
 
 - [ ] inputView
-    - [ ] Message 텍스트 지우고 직접 넣어주기
+    - [x] Message 텍스트 지우고 직접 넣어주기
 - [ ] outputView
-    - [ ] Message 텍스트 지우고 직접 넣어주기
+    - [x] Message 텍스트 지우고 직접 넣어주기
 
 ### 기타 개선 사항
 
-- [ ] Message 지우기(직접 넣어주기!)
+- [x] Message 지우기(직접 넣어주기!)
 - [ ] RandomUtil을 지우고 Strategy 패턴을 사용하기
     - [ ] NumberMaker 인터페이스 =>RandomNumberMaker 구현체

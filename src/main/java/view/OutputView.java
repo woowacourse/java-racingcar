@@ -10,7 +10,7 @@ public class OutputView {
 
   public void printStart(List<Car> cars) {
     System.out.println();
-    System.out.println(Messages.OUTPUT_START);
+    System.out.println("실행 결과");
     printCarsStatus(cars);
   }
 
@@ -20,7 +20,7 @@ public class OutputView {
   }
 
   private void printCarStatus(Car car) {
-    System.out.printf(Messages.OUTPUT_CAR_STATUS, car.getName(), toBar(car.getPosition()));
+    System.out.printf("%s : %s\n", car.getName(), toBar(car.getPosition()));
   }
 
   private String toBar(int count) {
@@ -33,7 +33,7 @@ public class OutputView {
     if (isCoWinner) {
       result = String.join(DELIMITER, carNames);
     }
-    System.out.printf(Messages.OUTPUT_WINNER, result);
+    System.out.printf("%s가 최종 우승했습니다.", result);
   }
 
   public void printErrorMessage(Exception exception) {
