@@ -1,4 +1,4 @@
-package domain;
+package racinggame.domain;
 
 import java.util.Arrays;
 import java.util.List;

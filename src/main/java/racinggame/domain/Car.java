@@ -1,4 +1,4 @@
-package domain;
+package racinggame.domain;
 
 public class Car {
     private static final int MOVE_LOWER_BOUND = 4;
@@ -11,7 +11,7 @@ public class Car {
         this.distance = 0;
     }
 
-    public Car(String name, int distance){
+    public Car(String name, int distance) {
         this.name = name;
         this.distance = distance;
     }

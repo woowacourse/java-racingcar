@@ -1,8 +1,8 @@
-package Controller;
+package racinggame.controller;
 
-import domain.RacingGame;
-import view.Input;
-import view.Output;
+import racinggame.domain.RacingGame;
+import racinggame.view.Input;
+import racinggame.view.Output;
 
 public class Application {
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
-package domain;
+package racinggame.domain;
 
-import utils.RandomNumberGenerator;
-import view.Output;
+import racinggame.utils.RandomNumberGenerator;
+import racinggame.view.Output;
 
 import java.util.List;
 
