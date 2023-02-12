@@ -1,11 +1,9 @@
 package controller;
 
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import model.car.Car;
 import model.car.Cars;
 import model.manager.CarMoveManager;
@@ -49,6 +47,7 @@ public class MainController {
             outputView.printExceptionMessage(exception);
             return GameStatus.APPLICATION_EXIT;
         } catch (Exception exception) {
+            // 에러로 인해 프로그램이 중단되지는 않지만, 예상치 못한 에러를 발견하기 어려운 문제...?
             return GameStatus.APPLICATION_EXIT;
         }
     }
@@ -59,43 +58,24 @@ public class MainController {
         return GameStatus.PLAY_GAME;
     }
 
-    public List<String> getWinners() {
-        int maxPosition = getMaxPosition();
-        return cars.cars().stream()
-                .filter(car -> car.isWinner(maxPosition))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    private int getMaxPosition() {
-        List<Integer> positions = cars.cars().stream()
-                .map(Car::getPosition)
-                .collect(Collectors.toList());
-        return Collections.max(positions);
-    }
 
     private GameStatus moveCars() {
         int moveCount = inputView.readMoveCount();
         outputView.printResultMessage();
         moveAllCars(moveCount);
-        outputView.printWinners(getWinners());
+        outputView.printWinners(cars.getWinners());
         return GameStatus.APPLICATION_EXIT;
     }
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            cars.cars()
-                    .forEach(car -> car.move(isMove()));
+            cars.cars().forEach(car -> car.move(isMove()));
             outputView.printResult(cars.cars());
         }
     }
 
     private boolean isMove() {
-        return carMoveManager.isMove(getRandomNumber());
-    }
-
-    private int getRandomNumber() {
-        return RandomNumberGenerator.getRandomNumber();
+        return carMoveManager.isMove(RandomNumberGenerator.getRandomNumber());
     }
 
     private enum GameStatus {
