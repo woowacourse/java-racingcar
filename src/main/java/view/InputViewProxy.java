@@ -1,7 +1,7 @@
 package view;
 
+import domain.Name;
 import domain.TryCount;
-import dto.request.CarNameDto;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class InputViewProxy extends InputView {
     }
 
     @Override
-    public List<CarNameDto> sendCarsName() {
+    public List<Name> sendCarsName() {
         try {
             return inputView.sendCarsName();
         } catch (IllegalArgumentException exception) {

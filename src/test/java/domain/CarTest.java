@@ -16,7 +16,7 @@ class CarTest {
         @DisplayName("최솟값을 만족시키면 position을 1 증가 시킨다.")
         @Test
         void success() {
-            Car car = new Car("any");
+            Car car = new Car(new Name("any"));
 
             int beforePosition = car.getPosition();
             car.move(MINIMUM_NUMBER_TO_MOVE);
@@ -28,7 +28,7 @@ class CarTest {
         @DisplayName("최솟값을 만족시키지 못하면 position은 변화하지 않는다.")
         @Test
         void fail() {
-            Car car = new Car("any");
+            Car car = new Car(new Name("any"));
 
             int beforePosition = car.getPosition();
             car.move(MINIMUM_NUMBER_TO_MOVE - 1);
@@ -45,8 +45,9 @@ class CarTest {
         @DisplayName("position이 같다면 true를 반환한다.")
         @Test
         void return_true() {
-            Car carA = new Car("carA");
-            Car carB = new Car("carB");
+            Car carA = new Car(new Name("carA"));
+            Car carB = new Car(new Name("carB"));
+
 
             assertThat(carA.isSamePosition(carB)).isTrue();
         }
@@ -54,8 +55,8 @@ class CarTest {
         @DisplayName("position이 다르면 false를 반환한다.")
         @Test
         void return_false() {
-            Car carA = new Car("carA");
-            Car carB = new Car("carB");
+            Car carA = new Car(new Name("carA"));
+            Car carB = new Car(new Name("carB"));
 
             carA.move(MINIMUM_NUMBER_TO_MOVE);
 

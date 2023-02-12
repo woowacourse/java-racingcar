@@ -2,6 +2,7 @@ package application;
 
 import domain.Car;
 import domain.Cars;
+import domain.Name;
 import utils.NumberGenerator;
 import domain.TryCount;
 import dto.request.CarNameDto;
@@ -26,18 +27,18 @@ public class RacingGameApplication {
     }
 
     public void run() {
-        List<CarNameDto> carNameDtos = inputView.sendCarsName();
+        List<Name> names = inputView.sendCarsName();
         TryCount tryCount = inputView.sendTryCount();
 
-        Cars cars = getCars(carNameDtos);
+        Cars cars = getCars(names);
 
         playGame(tryCount, cars);
         printResult(cars);
     }
 
-    private Cars getCars(List<CarNameDto> carNameDtos) {
-        return carNameDtos.stream()
-                .map(carNameDto -> new Car(carNameDto.getName()))
+    private Cars getCars(List<Name> names) {
+        return names.stream()
+                .map(Car::new)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Cars::new));
     }
 

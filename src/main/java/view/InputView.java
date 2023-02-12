@@ -1,5 +1,6 @@
 package view;
 
+import domain.Name;
 import domain.TryCount;
 import dto.request.CarNameDto;
 
@@ -11,12 +12,12 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    public List<CarNameDto> sendCarsName() {
+    public List<Name> sendCarsName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 
         Scanner scanner = new Scanner(System.in);
         return Arrays.stream(scanner.nextLine().split(","))
-                .map(CarNameDto::new)
+                .map(Name::new)
                 .collect(Collectors.toList());
     }
 
