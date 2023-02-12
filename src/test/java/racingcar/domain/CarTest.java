@@ -50,8 +50,9 @@ class CarTest {
         @DisplayName("랜덤 숫자가 4이상이면 이동한다")
         void move(int number) {
             numberGenerator = new TestNumberGenerator(number);
+            car.move(numberGenerator);
 
-            assertThat(car.move(numberGenerator).getCurrentPosition())
+            assertThat(car.getCurrentPosition().getPosition())
                     .isEqualTo(1);
         }
 
@@ -60,8 +61,9 @@ class CarTest {
         @ValueSource(ints = {1,3})
         void notMove(int number) {
             numberGenerator = new TestNumberGenerator(number);
+            car.move(numberGenerator);
 
-            assertThat(car.move(numberGenerator).getCurrentPosition())
+            assertThat(car.getCurrentPosition().getPosition())
                     .isEqualTo(0);
         }
     }
