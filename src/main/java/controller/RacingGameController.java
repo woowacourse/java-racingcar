@@ -3,6 +3,7 @@ package controller;
 import domain.Car;
 import domain.NumberGenerator;
 import domain.RacingGame;
+import domain.RandomNumberGenerator;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
@@ -16,10 +17,10 @@ public class RacingGameController {
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public RacingGameController(NumberGenerator numberGenerator) {
+    public RacingGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.numberGenerator = numberGenerator;
+        this.numberGenerator = new RandomNumberGenerator();
     }
 
     public void run() {
@@ -44,7 +45,7 @@ public class RacingGameController {
 
     private List<Car> generateCars() {
         try {
-            return inputView.readCars()
+            return inputView.readCarNames()
                     .stream()
                     .map(Car::new)
                     .collect(Collectors.toList());
