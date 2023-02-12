@@ -6,7 +6,7 @@ import racingcar.util.TextSplit;
 
 public class OutputView {
 
-    private final static String CAR_BASE_STATUS = "-";
+    private static final String CAR_BASE_STATUS = "-";
     private static final String CAR_TEXT_DELIMITER = ",";
 
     public static void startRacing() {

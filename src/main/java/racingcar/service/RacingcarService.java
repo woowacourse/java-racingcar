@@ -6,9 +6,13 @@ import racingcar.model.Car;
 
 public class RacingcarService {
 
+    private static final int MINIMUM_PARTICIPANT = 2;
     private final List<Car> cars;
 
     public RacingcarService(List<String> carNames) {
+        if (carNames.size() < MINIMUM_PARTICIPANT) {
+            throw new IllegalArgumentException("[ERROR] 경주는 최소 " + MINIMUM_PARTICIPANT + "명이 필요해요.");
+        }
         this.cars = CarFactory.makeCars(carNames);
     }
 

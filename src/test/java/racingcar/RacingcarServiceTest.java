@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,5 +19,13 @@ class RacingcarServiceTest {
         List<String> winnersCarText = racingcarService.findWinners();
 
         assertThat(winnersCarText).containsExactly("car1,0", "car2,0", "car3,0");
+    }
+
+    @Test
+    @DisplayName("경주 참여 인원 두명 미만인 경우 예외")
+    void validateParticipants() {
+        assertThatThrownBy(() -> new RacingcarService(Arrays.asList("car1")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 경주는 최소 2명이 필요해요.");
     }
 }
