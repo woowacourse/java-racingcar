@@ -1,7 +1,6 @@
 package racingCar.controller;
 
 import racingCar.domain.Cars;
-import racingCar.util.NumberPicker;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 import java.util.List;
@@ -28,7 +27,7 @@ public class RacingCarController {
         }
     }
 
-    private static <T> T repeat(Supplier<T> reader) {
+    private <T> T repeat(Supplier<T> reader) {
         try {
             return reader.get();
         } catch (Exception e) {
