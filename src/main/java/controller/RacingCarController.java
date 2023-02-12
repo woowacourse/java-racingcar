@@ -8,7 +8,6 @@ import domain.Cars;
 import domain.Referee;
 import output.Outputs;
 import utils.Names;
-import utils.RandomNumberGenerator;
 import utils.RepeatCount;
 import view.InputView;
 import view.OutputView;
@@ -22,7 +21,7 @@ public class RacingCarController {
 
         Cars cars = makeCarsFrom(names);
         while (repeatCount.hasNext()) {
-            moveAll(cars);
+            cars.move();
             Outputs outputs = Outputs.from(cars);
             OutputView.printOutputs(outputs);
         }
@@ -30,11 +29,6 @@ public class RacingCarController {
         Referee referee = new Referee();
         Cars winner = referee.judgeWinner(cars);
         OutputView.printWinner(winner);
-    }
-
-    private void moveAll(Cars cars) {
-        cars.getStream()
-                .forEach((car) -> car.move(RandomNumberGenerator.generate()));
     }
 
     private Cars makeCarsFrom(Names names) {
