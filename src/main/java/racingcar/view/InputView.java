@@ -18,8 +18,13 @@ public class InputView {
 
     public NumberOfRoundsRequestDTO inputNumberOfRounds() {
         String numberOfRounds = scanner.nextLine();
-        Validator.validateNaturalNumber(numberOfRounds);
+        validateNumberOfRoundsInput(numberOfRounds);
 
         return new NumberOfRoundsRequestDTO(Integer.parseInt(numberOfRounds));
+    }
+
+    private void validateNumberOfRoundsInput(String numberOfRounds) {
+        Validator.validateNotEmptyInput(numberOfRounds);
+        Validator.validateNaturalNumber(numberOfRounds);
     }
 }
