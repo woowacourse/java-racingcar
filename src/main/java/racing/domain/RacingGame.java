@@ -1,4 +1,4 @@
-package racing;
+package racing.domain;
 
 import racing.domain.Car;
 import racing.domain.Cars;
@@ -10,19 +10,24 @@ import java.util.List;
 
 public class RacingGame {
 
-    public Cars createCars(String[] names) {
-        return new Cars(getCars(names));
+    private final Cars cars;
+    private final int tryCount;
+
+
+    public RacingGame(String[] names, int tryCount) {
+        this.cars = createCars(names);
+        this.tryCount = tryCount;
     }
 
-    private List<Car> getCars(String[] names) {
+    private Cars createCars(String[] names) {
         final List<Car> cars = new ArrayList<>();
         for (String carName : names) {
             cars.add(new Car(carName));
         }
-        return cars;
+        return new Cars(cars);
     }
 
-    public void move(Cars cars) {
+    public void move() {
         cars.updateCarsState();
     }
 
@@ -42,5 +47,12 @@ public class RacingGame {
         sb.deleteCharAt(sb.toString().length() - 1);
         sb.deleteCharAt(sb.toString().length() - 1);
         return sb;
+    }
+
+    public Cars getCars() {
+        return cars;
+    }
+    public int getTryCount() {
+        return tryCount;
     }
 }
