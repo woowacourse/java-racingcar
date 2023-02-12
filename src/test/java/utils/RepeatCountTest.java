@@ -28,7 +28,7 @@ class RepeatCountTest {
 
     @ParameterizedTest
     @CsvSource({"1", "5"})
-    void validateTest2(String line) {
+    void validateValidCountTest(String line) {
         assertThatCode(() -> new RepeatCount(line))
                 .doesNotThrowAnyException();
     }
