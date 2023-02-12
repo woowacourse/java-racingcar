@@ -31,6 +31,14 @@ public class Car {
         this.intGenerator = intGenerator;
     }
 
+    private void validateName(String name) {
+        name = name.trim();
+        if (MINIMUM_NAME_LENGTH <= name.length() && name.length() <= MAXIMUM_NAME_LENGTH) {
+            return;
+        }
+        throw new IllegalArgumentException(WRONG_LENGTH_OF_NAME_ANNOUNCEMENT);
+    }
+
     public void tryMove() {
         if (canMove()) {
             this.movedCount++;
@@ -46,12 +54,5 @@ public class Car {
         return new CarDto(this.name, this.movedCount);
     }
 
-    private void validateName(String name) {
-        name = name.trim();
-        if (MINIMUM_NAME_LENGTH <= name.length() && name.length() <= MAXIMUM_NAME_LENGTH) {
-            return;
-        }
-        throw new IllegalArgumentException(WRONG_LENGTH_OF_NAME_ANNOUNCEMENT);
-    }
 
 }

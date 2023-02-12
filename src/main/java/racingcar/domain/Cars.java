@@ -34,7 +34,7 @@ public class Cars {
         cars.forEach(car -> carDtos.add(car.getStatus()));
         return carDtos;
     }
-    
+
     public List<CarDto> getWinner() {
         List<CarDto> carStatuses = this.getStatuses();
         int winnerCount = INITIAL_WINNER_COUNT;
@@ -47,11 +47,11 @@ public class Cars {
         }
         return winnerStatuses;
     }
-    
+
     private int getMaxMovedCount(int winnerCount, int movedCount) {
         return Math.max(winnerCount, movedCount);
     }
-    
+
     private void appendIfHaveSameMovedCount(List<CarDto> winners, CarDto carDto, int winnerCount) {
         if (carDto.getMovedCount() == winnerCount) {
             winners.add(carDto);
