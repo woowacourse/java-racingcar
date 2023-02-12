@@ -41,7 +41,7 @@ class CarTest {
 
     @ParameterizedTest
     @DisplayName("예외 발생 - 잘못된 이름 길이")
-    @ValueSource(strings = {"아주 긴 이름입니다", " "})
+    @ValueSource(strings = {"가나다라마바", " "})
     void shouldThrowIllegalArgumentExceptionWhenUseLongName(String inputName) {
         // given
         String wrongName = inputName;
