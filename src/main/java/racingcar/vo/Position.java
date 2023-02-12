@@ -16,4 +16,5 @@ public class Position {
     public int getPosition() {
         return this.position;
     }
+
 }
