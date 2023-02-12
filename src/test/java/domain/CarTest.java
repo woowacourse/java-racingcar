@@ -6,6 +6,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -42,7 +43,7 @@ class CarTest {
     }
 
     @Nested
-    @DisplayName("자동차 전진 또는 유지 기능 테스트")
+    @DisplayName("자동차 생성 외 기능 테스트")
     class moveOrStayByPowerTest {
 
         private Car car;
@@ -66,6 +67,13 @@ class CarTest {
             }
 
             assertThat(car.getPosition()).isEqualTo(count);
+        }
+
+        @Test
+        void 자동차_위치_비교_테스트() {
+            Car other = new Car("자동차2", Integer.MAX_VALUE);
+
+            assertThat(car.compareTo(other)).isLessThan(0);
         }
     }
 }

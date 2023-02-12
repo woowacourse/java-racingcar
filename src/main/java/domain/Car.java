@@ -14,6 +14,13 @@ public class Car implements Comparable<Car> {
         this.position = 0;
     }
 
+    // TODO 테스트를 위한 생성자 추가 괜찮을지 검토
+    public Car(String name, int position) {
+        validateName(name);
+        this.name = name;
+        this.position = position;
+    }
+
     private void validateName(String name) {
         if (name == null) {
             throw new IllegalArgumentException("자동차 이름이 null입니다.");
@@ -38,16 +45,16 @@ public class Car implements Comparable<Car> {
         return power >= MOVABLE_POWER_MIN;
     }
 
+    @Override
+    public int compareTo(Car other) {
+        return this.position - other.position;
+    }
+
     public String getName() {
         return name;
     }
 
     public int getPosition() {
         return position;
-    }
-
-    @Override
-    public int compareTo(Car other) {
-        return this.position - other.position;
     }
 }
