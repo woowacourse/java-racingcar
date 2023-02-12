@@ -28,7 +28,6 @@ public class RacingGameController {
     }
 
     private void raceWithHistory(int movingTrial, RacingGame racingGame) {
-        //TODO: 인덱스를 쓰지 않는데 개선할 방법
         for (int i = 0; i < movingTrial; i++) {
             racingGame.race();
 
