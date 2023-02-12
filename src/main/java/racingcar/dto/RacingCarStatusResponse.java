@@ -1,12 +1,15 @@
 package racingcar.dto;
 
+import racingcar.domain.Name;
+import racingcar.domain.Position;
+
 public class RacingCarStatusResponse {
     private final String name;
     private final int position;
 
-    public RacingCarStatusResponse(String name, int position) {
-        this.name = name;
-        this.position = position;
+    public RacingCarStatusResponse(Name name, Position position) {
+        this.name = name.getName();
+        this.position = position.getValue();
     }
 
     public String getName() {

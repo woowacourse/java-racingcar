@@ -43,7 +43,7 @@ public class RacingCarService {
         validateEmptyCars();
         return cars.getCars()
                 .stream()
-                .map(Car::getStatus)
+                .map(car -> new RacingCarStatusResponse(car.getName(), car.getMovedLength()))
                 .collect(toList());
     }
 

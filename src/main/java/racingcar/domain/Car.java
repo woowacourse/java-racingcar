@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.dto.RacingCarStatusResponse;
-
 public class Car {
     private static final int START_POSITION = 0;
     private final Name name;
@@ -16,10 +14,6 @@ public class Car {
         this.position = new Position(position);
     }
 
-    public RacingCarStatusResponse getStatus() {
-        return new RacingCarStatusResponse(name.getName(), position.getValue());
-    }
-
     public void move() {
         position.forward();
     }
@@ -30,5 +24,9 @@ public class Car {
 
     public boolean isSamePosition(Position position) {
         return this.position.equals(position);
+    }
+
+    public Name getName() {
+        return name;
     }
 }

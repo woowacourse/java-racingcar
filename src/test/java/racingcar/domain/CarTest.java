@@ -1,11 +1,10 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.dto.RacingCarStatusResponse;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
     private Car car;
@@ -19,12 +18,12 @@ class CarTest {
     @DisplayName("차를 움직였을 때 위치가 변해야 한다.")
     void car_move() {
         // given
-        RacingCarStatusResponse status = car.getStatus();
+        Position prevPosition = car.getMovedLength();
         car.move();
-        RacingCarStatusResponse postStatus = car.getStatus();
+        Position postPosition = car.getMovedLength();
 
         // expect
-        assertThat(postStatus.getPosition()).isGreaterThan(status.getPosition());
+        assertThat(postPosition.getValue()).isGreaterThan(prevPosition.getValue());
     }
 
     @Test
@@ -34,11 +33,8 @@ class CarTest {
         car.move();
         car.move();
 
-        // when
-        RacingCarStatusResponse status = car.getStatus();
-
-        // then
-        assertThat(status.getPosition()).isEqualTo(2);
-        assertThat(status.getName()).isEqualTo("mycar");
+        // expect
+        assertThat(car.getMovedLength().getValue()).isEqualTo(2);
+        assertThat(car.getName().getName()).isEqualTo("mycar");
     }
 }
