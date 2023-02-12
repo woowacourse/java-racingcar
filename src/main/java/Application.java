@@ -1,10 +1,12 @@
-import service.GameManager;
+import controller.Controller;
+import view.InputView;
+import view.OutputView;
 
 public class Application {
 
 
     public static void main(String[] args) {
-        GameManager gameManager = new GameManager();
-        gameManager.play();
+        Controller controller = new Controller(new InputView(),new OutputView());
+        controller.race();
     }
 }
