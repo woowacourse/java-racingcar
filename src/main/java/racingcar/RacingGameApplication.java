@@ -9,7 +9,7 @@ import racingcar.view.Parser;
 public class RacingGameApplication {
 
     public static void main(String[] args) {
-        RacingGameController racingGameController = new RacingGameController(inputView(), outputView());
+        final RacingGameController racingGameController = new RacingGameController(inputView(), outputView());
         racingGameController.run();
     }
 

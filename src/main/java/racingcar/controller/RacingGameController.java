@@ -17,15 +17,6 @@ public class RacingGameController {
         this.outputView = outputView;
     }
 
-    public <T> T retry(final Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return retry(supplier);
-        }
-    }
-
     public void run() {
         final RacingGame racingGame = generateGame();
         play(racingGame);
@@ -36,6 +27,15 @@ public class RacingGameController {
         final List<String> carNames = retry(inputView::readCarNames);
         final int count = retry(inputView::readCount);
         return new RacingGame(new RandomNumberGenerator(), carNames, count);
+    }
+
+    public <T> T retry(final Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return retry(supplier);
+        }
     }
 
     private void play(final RacingGame racingGame) {

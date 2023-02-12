@@ -64,17 +64,17 @@ public class Cars {
         return findWinners(winner);
     }
 
+    private Car findWinner() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .get();
+    }
+
     private List<String> findWinners(final Car winner) {
         return cars.stream()
                 .filter(car -> car.isSamePosition(winner))
                 .map(Car::getName)
                 .collect(toList());
-    }
-
-    private Car findWinner() {
-        return cars.stream()
-                .max(Car::compareTo)
-                .get();
     }
 
     public List<Car> getCars() {

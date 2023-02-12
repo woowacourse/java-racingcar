@@ -25,7 +25,7 @@ public class Car implements Comparable<Car> {
     }
 
     public boolean isSamePosition(final Car car) {
-        return this.position.equals(car.position);
+        return position.equals(car.position);
     }
 
     public String getName() {
