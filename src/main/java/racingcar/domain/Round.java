@@ -7,6 +7,7 @@ public class Round {
 
     private static final Pattern pattern = Pattern.compile("^[0-9]*$");
     private static final int TRIAL_COUNT_MIN_NUMBER = 1;
+    private static final int FINISH = 0;
     private static final String TRIAL_COUNT_INPUT_ERROR = "[ERROR] 시도 횟수는 숫자이어야 합니다.";
     private static final String TRIAL_COUNT_NUMBER_ERROR = "[ERROR] 시도 횟수는 1이상이어야 합니다.";
 
@@ -17,8 +18,8 @@ public class Round {
         this.trialCount = Integer.parseInt(trialCount);
     }
 
-    public boolean isRacing() {
-        //TODO : 게임시도가 가능한지 체크한다.
+    public boolean isPossibleToRacing() {
+        return this.trialCount != FINISH;
     }
 
     public void minusTrialCount() {
