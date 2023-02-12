@@ -39,7 +39,7 @@ public class Car {
         return name;
     }
 
-    public String printCar() {
-        return name + "," + position;
+    public int getPosition() {
+        return position;
     }
 }

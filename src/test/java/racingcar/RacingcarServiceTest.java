@@ -2,23 +2,32 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.model.Car;
 import racingcar.service.RacingcarService;
 
 class RacingcarServiceTest {
 
-    @Test
+    @ParameterizedTest
     @DisplayName("우승자 확인하기")
-    void findWinner() {
-        RacingcarService racingcarService = new RacingcarService(Arrays.asList("car1", "car2", "car3"));
+    @CsvSource("car1,car2,car3")
+    void findWinner(String car1, String car2, String car3) {
+        RacingcarService racingcarService = new RacingcarService(Arrays.asList(car1, car2, car3));
 
-        List<String> winnersCarText = racingcarService.findWinners();
+        List<Car> winnersCars = racingcarService.findWinners();
 
-        assertThat(winnersCarText).containsExactly("car1,0", "car2,0", "car3,0");
+        assertAll(
+                () -> assertThat(winnersCars.get(0).getName()).isEqualTo(car1),
+                () -> assertThat(winnersCars.get(1).getName()).isEqualTo(car2),
+                () -> assertThat(winnersCars.get(2).getName()).isEqualTo(car3)
+        );
     }
 
     @Test
