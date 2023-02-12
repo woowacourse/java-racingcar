@@ -9,16 +9,14 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(final String name) throws IllegalArgumentException {
-        validate(name);
-        this.name = name;
-        this.position = 0;
-    }
-
     public Car(final String name, final int position) throws IllegalArgumentException {
         validate(name);
         this.name = name;
         this.position = position;
+    }
+
+    public Car(final String name) throws IllegalArgumentException {
+        this(name, 0);
     }
 
     private void validate(final String name) {
