@@ -5,6 +5,7 @@ import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.FinalRoundChecker;
 import racingcar.domain.RandomValueGenerator;
+import racingcar.domain.ValueGenerator;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class RacingCarService {
     }
 
     public void playRound() {
-        RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
+        ValueGenerator randomValueGenerator = new RandomValueGenerator();
 
         do {
             int value = randomValueGenerator.generate();
