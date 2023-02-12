@@ -19,7 +19,7 @@ class CarTest {
     @DisplayName("0 ~ 3의 값일때는 움직이지 않는다.")
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3"})
-    void moveTest1(int number) {
+    void moveFailTest(int number) {
         //given
 
         //when
@@ -32,7 +32,7 @@ class CarTest {
     @DisplayName("4 ~ 9의 값일때는 움직인다.")
     @ParameterizedTest
     @CsvSource({"4", "5", "6", "7", "8", "9"})
-    void moveTest2(int number) {
+    void moveSuccessTest(int number) {
         //given
 
         //when
