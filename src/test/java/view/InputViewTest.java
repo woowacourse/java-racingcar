@@ -20,12 +20,10 @@ class InputViewTest {
     @DisplayName("시도 횟수 입력 테스트")
     void inputTryTest(String input, int result) {
         String inputs = input + "\n";
-
         InputStream is = new ByteArrayInputStream(inputs.getBytes());
         System.setIn(is);
 
         inputView = new InputView();
-
         int tryCount = inputView.inputTryCount();
 
         assertThat(tryCount).isEqualTo(result);
@@ -33,10 +31,9 @@ class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", "", " "})
-    @DisplayName("시도 횟수 입력 테스트")
+    @DisplayName("시도 횟수 입력 예외 발생 테스트")
     void inputExceptionTryTest(String input) {
         String inputs = input + "\n";
-
         InputStream is = new ByteArrayInputStream(inputs.getBytes());
         System.setIn(is);
 

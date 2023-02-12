@@ -33,11 +33,10 @@ class CarsTest {
     @Test
     @DisplayName("단일 우승자인 경우 결과 테스트")
     void getWinnerTest() {
-
         String names = "ocean,jamie";
         Cars cars = new Cars(names);
-        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 0, 6, 7));
 
+        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 0, 6, 7));
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
 
         for (int i = 0; i < 2; i++)
@@ -49,11 +48,10 @@ class CarsTest {
     @Test
     @DisplayName("다중 우승자인 경우 결과 테스트")
     void getWinnersTest() {
-
         String names = "ocean,jamie";
         Cars cars = new Cars(names);
-        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 9, 6, 6));
 
+        List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 9, 6, 6));
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
 
         for (int i = 0; i < 2; i++)

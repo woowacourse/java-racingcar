@@ -7,9 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 class CarTest {
-
     @ParameterizedTest
     @ValueSource(strings = {"pobi", "crong", "honux", " hi ", "  jj503   "})
     @DisplayName("Car 객체 생성 테스트")
