@@ -1,7 +1,5 @@
 package domain;
 
-import utils.RandomPowerGenerator;
-
 public class Car {
 
     private static final int MIN_BOUNDARY_POWER = 4;
@@ -14,9 +12,9 @@ public class Car {
         this.distance = distance;
     }
 
-    public void move(int power) {
-        if(power >= MIN_BOUNDARY_POWER) {
-            this.distance ++;
+    public void move(final int power) {
+        if (power >= MIN_BOUNDARY_POWER) {
+            this.distance++;
         }
     }
 
