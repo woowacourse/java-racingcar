@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RacingController {
-    public static final int START_POSITION = 0;
-
     private final InputView inputView;
     private final OutputView outputView;
     private Cars cars;
