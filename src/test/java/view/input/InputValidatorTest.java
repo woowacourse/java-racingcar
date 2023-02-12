@@ -15,14 +15,14 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "abc", " ", "10001", "3.5"})
     void validateGameTryWithFailureCaseTest(String gameTry) {
-        assertThatThrownBy(() -> inputValidator.validateGameTry(gameTry))
+        assertThatThrownBy(() -> inputValidator.validateGameTryRange(gameTry))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "10000", "5000"})
     void validateGameTryWithSuccessCaseTest(String gameTry) {
-        assertThatCode(() -> inputValidator.validateGameTry(gameTry))
+        assertThatCode(() -> inputValidator.validateGameTryRange(gameTry))
                 .doesNotThrowAnyException();
     }
 }

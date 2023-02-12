@@ -29,7 +29,7 @@ public class InputView {
 
         String gameTry = scanner.nextLine();
 
-        inputValidator.validateGameTry(gameTry);
+        inputValidator.validateGameTryRange(gameTry);
         return Integer.parseInt(gameTry);
     }
 }
