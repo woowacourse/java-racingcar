@@ -52,18 +52,4 @@ class RacingGameTest {
         assertThat(isGameEnded).isEqualTo(result);
     }
 
-//    //todo: TestNumberGenerator 클래스를 따로 분리해서 사용하기
-//    static class TestNumberGenerator implements NumberGenerator {
-//
-//        private final List<Integer> numbers;
-//
-//        public TestNumberGenerator(List<Integer> numbers) {
-//            this.numbers = numbers;
-//        }
-//
-//        @Override
-//        public int generate() {
-//            return numbers.remove(0);
-//        }
-//    }
 }

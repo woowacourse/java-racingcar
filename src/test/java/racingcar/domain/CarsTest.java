@@ -46,7 +46,6 @@ class CarsTest {
     @Test
     @DisplayName("우승한 자동차를 제공한다.")
     void decideWinnerTest() {
-        //todo : cars 객체를 생성하는 코드를 beforeEach로 분리하기 (공통된 car 객체 삽입 부분)
 
         //Given
         for (int i = 0; i < TEST_GAME_ROUND; i++) {

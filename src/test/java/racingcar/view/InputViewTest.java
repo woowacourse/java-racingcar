@@ -28,4 +28,5 @@ class InputViewTest {
         //Then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);
     }
+    
 }
