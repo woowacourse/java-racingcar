@@ -1,14 +1,14 @@
 package racingcar.view;
 
-import racingcar.domain.dto.CarDto;
-import racingcar.domain.result.Result;
+import racingcar.domain.record.GameResultOfCar;
 import racingcar.view.message.Message;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class OutputView {
+
+    private static final int DEFAULT_ROUND = 0;
 
     public void printCarNameInputGuide() {
         print(Message.CAR_NAME_INPUT_GUIDE.getMessage());
@@ -22,36 +22,52 @@ public class OutputView {
         print(Message.GAME_RESULT_GUIDE.getMessage());
     }
 
-    public void printResult(Result result) {
+    public void printAllGameResults(Set<GameResultOfCar> gameResultOfAllCars) {
         printResultGuide();
-        Map<Integer, Set<CarDto>> results = result.getResults();
-        for (Map.Entry<Integer, Set<CarDto>> carDtosByRound : results.entrySet()) {
-            Set<CarDto> carDtos = carDtosByRound.getValue();
-            carDtos.forEach(this::printEachResult);
+        int gameRound = getFirstGameRound(gameResultOfAllCars);
+        for (GameResultOfCar gameResultOfCar : gameResultOfAllCars) {
+            printBlankLineBy(gameRound, gameResultOfCar);
+
+            print(makeResultMessage(gameResultOfCar.getCarName(), gameResultOfCar.getPosition()));
+
+            gameRound = gameResultOfCar.getGameRound();
         }
     }
 
-    private void printEachResult(CarDto carDto) {
-        String positionMarker = Message.POSITION_MARKER.getMessage();
-        String position = makePosition(carDto.getPosition(), positionMarker);
-        print(makeResultMessage(carDto.getCarName(), position));
+    private int getFirstGameRound(Set<GameResultOfCar> gameResultOfAllCars) {
+        return gameResultOfAllCars.stream()
+                .map(GameResultOfCar::getGameRound)
+                .min(Integer::compareTo)
+                .orElse(DEFAULT_ROUND);
     }
 
-    private String makePosition(int position, String positionMarker) {
+    private void printBlankLineBy(int gameRound, GameResultOfCar gameResultOfCar) {
+        if (gameRound != gameResultOfCar.getGameRound()) {
+            print(Message.EMPTY_MESSAGE.getMessage());
+        }
+    }
+
+    private String makeResultMessage(String carName, int position) {
+        return String.format(Message.RESULT_DELIMITER.getMessage(), carName, makePositionMessage(position));
+    }
+
+    private String makePositionMessage(int position) {
+        String positionMarker = Message.POSITION_MARKER.getMessage();
         return positionMarker.repeat(position);
     }
 
-    private String makeResultMessage(String key, String position) {
-        return String.format(Message.RESULT_DELIMITER.getMessage(), key, position);
+    public void printWinners(Set<GameResultOfCar> gameResultOfWinners) {
+        print(makeWinnersMessage(gameResultOfWinners, Message.WINNER_DELIMITER.getMessage()));
     }
 
-    public void printWinner(List<String> winners) {
-        String delimiter = Message.WINNER_DELIMITER.getMessage();
-        print(makeWinnerMessage(winners, delimiter));
+    private String makeWinnersMessage(Set<GameResultOfCar> gameResultOfWinners, String delimiter) {
+        return String.format(Message.WINNER_GUIDE.getMessage(), makeWinnerNames(gameResultOfWinners, delimiter));
     }
 
-    private String makeWinnerMessage(List<String> winners, String delimiter) {
-        return String.format(Message.WINNER_GUIDE.getMessage(), String.join(delimiter, winners));
+    private String makeWinnerNames(Set<GameResultOfCar> gameResultOfWinners, String delimiter) {
+        return gameResultOfWinners.stream()
+                .map(GameResultOfCar::getCarName)
+                .collect(Collectors.joining(delimiter));
     }
 
     private void print(String message) {
