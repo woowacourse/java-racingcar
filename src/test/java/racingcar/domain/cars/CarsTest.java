@@ -19,6 +19,7 @@ class CarsTest {
 
     private static final int ENOUGH_POWER_TO_MOVE = 4;
     private static final int INSUFFICIENT_POWER_TO_MOVE = 3;
+    private static final int DEFAULT_POSITION = 0;
 
     @ParameterizedTest
     @MethodSource("getCars")
@@ -71,15 +72,15 @@ class CarsTest {
 
     static Stream<Arguments> getCars() {
         return Stream.of(
-                Arguments.arguments(new ArrayList<>(List.of(new Car("poy"), new Car("joy"), new Car("poby")))),
-                Arguments.arguments(new ArrayList<>(List.of(new Car("poy"), new Car("oioy"))))
+                Arguments.arguments(new ArrayList<>(List.of(new Car("poy", DEFAULT_POSITION), new Car("joy", DEFAULT_POSITION), new Car("poby", DEFAULT_POSITION)))),
+                Arguments.arguments(new ArrayList<>(List.of(new Car("poy", DEFAULT_POSITION), new Car("oioy", DEFAULT_POSITION))))
         );
     }
 
     static Stream<Arguments> getWrongCars() {
         return Stream.of(
-                Arguments.arguments(List.of(new Car("poy"))),
-                Arguments.arguments(List.of(new Car("poy"), new Car("poy")))
+                Arguments.arguments(List.of(new Car("poy", DEFAULT_POSITION))),
+                Arguments.arguments(List.of(new Car("poy", DEFAULT_POSITION), new Car("poy", DEFAULT_POSITION)))
         );
     }
 }
