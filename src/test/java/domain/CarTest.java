@@ -15,7 +15,7 @@ class CarTest {
     @ParameterizedTest
     @CsvSource(value = {"3,3", "0,0", "213,213"}, delimiter = ',')
     void carMoveTest(int moveCount, int expectedPosition) {
-        Car car = new Car("dummy");
+        Car car = new Car("dummy", 0);
 
         for (int i = 0; i < moveCount; i++) {
             car.move();
@@ -27,7 +27,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {" ", "", "\n", "abcdef"})
     void validateCarNameWithFailureCaseTest(String carName) {
-        assertThatThrownBy(() -> new Car(carName))
+        assertThatThrownBy(() -> new Car(carName, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +35,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "a", "abc", "abcde"})
     void validateCarNameWithSuccessCaseTest(String carName) {
-        assertThatCode(() -> new Car(carName))
+        assertThatCode(() -> new Car(carName, 0))
                 .doesNotThrowAnyException();
     }
 }

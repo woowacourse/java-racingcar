@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
+    private static final int DEFAULT_START_LINE = 0;
     private static final int MOVABLE_BOUND = 4;
     private static final String NO_CARS_EXIST = "[ERROR] 자동차가 존재하지 않습니다.";
 
@@ -15,7 +16,7 @@ public class RacingGame {
 
     public RacingGame(List<String> splitCarNames, NumberGenerator numberGenerator) {
         cars = splitCarNames.stream()
-                .map(Car::new)
+                .map(carName -> new Car(carName, DEFAULT_START_LINE))
                 .collect(Collectors.toList());
 
         this.numberGenerator = numberGenerator;

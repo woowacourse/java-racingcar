@@ -5,9 +5,9 @@ public class Car {
     private final CarName carName;
     private final Position position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         this.carName = new CarName(name);
-        position = new Position(0);
+        this.position = new Position(position);
     }
 
     public void move() {
