@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.constant.ErrorLog;
+import racingcar.constant.ErrorMessage;
 import racingcar.util.Validator;
 
 public class Car {
@@ -26,7 +26,7 @@ public class Car {
 
     private static void validateNameLength(String str) {
         if (str.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(ErrorLog.INVALID_NAME_LENGTH.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH.getMessage());
         }
     }
 
@@ -38,7 +38,7 @@ public class Car {
 
     public boolean isMovable(int value) {
         if (value < LEFT_BOUND_INCLUSIVE || value > RIGHT_BOUND_INCLUSIVE) {
-            throw new IllegalArgumentException(ErrorLog.INVALID_VALUE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
         }
         return value >= THRESHOLD;
     }
