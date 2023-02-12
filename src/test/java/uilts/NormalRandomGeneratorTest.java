@@ -10,7 +10,7 @@ class NormalRandomGeneratorTest {
 
     @DisplayName("난수의 범위는 0 이상 9 이하이다.")
     @Test
-    public void test1() {
+    public void randomNumberRangeTest() {
         int randomNumber = NormalRandomGenerator.createRandomNumber();
 
         assertThat(randomNumber).isLessThanOrEqualTo(9)

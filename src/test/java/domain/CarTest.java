@@ -16,7 +16,7 @@ class CarTest {
 
     @DisplayName("4 이상일 경우 전진한다.")
     @Test
-    public void test1() {
+    public void moveForwardTest() {
         car.tryMove(4);
 
         Position position = new Position();
@@ -28,7 +28,7 @@ class CarTest {
 
     @DisplayName("3 이하일 경우 전진하지 않는다.")
     @Test
-    public void test2() {
+    public void notMoveForwardTest() {
         car.tryMove(3);
 
         Position position = new Position();

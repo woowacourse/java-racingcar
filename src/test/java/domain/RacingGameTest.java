@@ -13,7 +13,7 @@ class RacingGameTest {
 
     @DisplayName("더 많이 움직인 자동차가 우승자가 된다.")
     @Test
-    public void test1() {
+    public void getWinnersTest() {
         Car car1 = new Car(new Name("k7"));
         Car car2 = new Car(new Name("audi"));
 
@@ -28,7 +28,7 @@ class RacingGameTest {
 
     @DisplayName("많이 움직인 자동차가 2개 이상인 경우 공동 우승자가 된다.")
     @Test
-    public void test2() {
+    public void getJointWinnersTest() {
         Car car1 = new Car(new Name("k7"));
         Car car2 = new Car(new Name("audi"));
         Car car3 = new Car(new Name("bmw"));
