@@ -50,6 +50,7 @@ class RaceTest {
             //given
             Race race = new Race(List.of(new Car("rosie")
                     , new Car("hong")));
+            race.initTryTime(4);
             //when
             race.tryMoveOneTime(new TestNumberPicker(4, 1));
             //then
@@ -64,6 +65,7 @@ class RaceTest {
             race.initTryTime(tryTime);
             race.tryMoveOneTime(new RandomNumberPicker());
             assertThat(race).extracting("tryTime")
+                    .extracting("tryTime")
                     .isEqualTo(tryTime - 1);
         }
     }

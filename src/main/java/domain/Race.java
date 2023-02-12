@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Race {
     private final Cars cars;
-    private int tryTime;
+    private TryTime tryTime;
 
     public Race(final List<Car> cars) {
         checkCarsHasDuplicate(cars);
@@ -12,35 +12,28 @@ public class Race {
     }
 
     public void initTryTime(final int tryTime) {
-        validateTryTime(tryTime);
-        this.tryTime = tryTime;
-    }
-
-    private void validateTryTime(final int tryTime) {
-        if (isNegative(tryTime)) {
-            throw new IllegalArgumentException("시도 횟수는 음수일 수 없습니다.");
+        if (this.tryTime != null) {
+            throw new IllegalArgumentException("시도횟수는 이미 초기화되어 있습니다.");
         }
-    }
-
-    private static boolean isNegative(final int tryTime) {
-        return tryTime < 0;
+        this.tryTime = new TryTime(tryTime);
     }
 
     private void checkCarsHasDuplicate(final List<Car> cars) {
         final long nonDuplicateNameCountInCars = cars.stream()
-                .distinct().count();
+                .distinct()
+                .count();
         if (nonDuplicateNameCountInCars != cars.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
         }
     }
 
     public boolean canRace() {
-        return tryTime > 0;
+        return tryTime.isRemain();
     }
 
     public void tryMoveOneTime(final NumberPicker numberPicker) {
         cars.tryMoveOneTime(numberPicker);
-        tryTime--;
+        tryTime.decrease();
     }
 
     public List<Car> getWinners() {
