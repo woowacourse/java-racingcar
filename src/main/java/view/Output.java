@@ -8,13 +8,14 @@ import java.util.stream.Collectors;
 
 public class Output {
     private static final String SEPERATOR = ", ";
+    private static final String MOVE_INDICATOR = "-";
 
     public static void printMessage(String message) {
         System.out.println(message);
     }
 
     public static void printEachCarDistance(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car.toString()));
+        cars.forEach(car -> System.out.println(car.getName() + " : " + MOVE_INDICATOR.repeat(car.getDistance()));
         System.out.println();
     }
 
