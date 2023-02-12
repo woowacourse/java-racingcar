@@ -1,11 +1,14 @@
 package model.car;
 
+import util.validator.CarNameValidator;
+
 public class Car {
 
     private final String name;
     private int position;
 
     public Car(String name) {
+        new CarNameValidator().validate(name);
         this.name = name;
     }
 
