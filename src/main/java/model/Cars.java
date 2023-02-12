@@ -3,9 +3,9 @@ package model;
 import dto.RacingCarStateDto;
 import dto.RacingRoundStateDto;
 import dto.WinnerCarDto;
+import exception.EmptyCarsException;
 import exception.WrongRangeMovableNumberException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -53,7 +53,9 @@ public class Cars {
     }
 
     public List<WinnerCarDto> calculateWinners() {
-        Car winner = Collections.max(cars, Car::compareTo);
+        Car winner = cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(EmptyCarsException::new);
 
         return sortWinner(winner);
     }
