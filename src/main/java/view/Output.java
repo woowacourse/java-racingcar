@@ -1,3 +1,7 @@
+package view;
+
+import domain.Car;
+import domain.Winner;
 import java.util.List;
 
 public class Output {

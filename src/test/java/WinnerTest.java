@@ -1,5 +1,7 @@
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import domain.Car;
+import domain.Winner;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,7 +21,7 @@ class WinnerTest {
         List<Car> cars = new ArrayList<>();
 
         winner = new Winner();
-        for (int i=0; i<5; i++) {
+        for (int i = 0; i < 5; i++) {
             car1.move(4);
             car3.move(4);
         }

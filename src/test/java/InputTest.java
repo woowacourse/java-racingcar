@@ -1,8 +1,10 @@
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import domain.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import view.Input;
 
 class InputTest {
     Input input;
@@ -20,18 +22,18 @@ class InputTest {
 
     @Test
     void getCarNamesBlankTest() {
-        String names = ",";
-        assertThatThrownBy(() -> input.getCarNames(names))
+        String name = " ";
+        assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] : 빈 ");
     }
 
     @Test
     void getCarNamesLengthTest() {
-        String names = "";
-        assertThatThrownBy(() -> input.getCarNames(names))
+        String name = "";
+        assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] : 이름 길이");
+                .hasMessageContaining("[ERROR] : 빈 이름은 들어올 수 없습니다");
     }
 
     @Test
@@ -45,8 +47,8 @@ class InputTest {
 
     @Test
     void getTryCountTest() {
-        String n = "123";
-        assertThat(input.getTryCount(n)).isEqualTo(123);
+        String n = "10";
+        assertThat(input.getTryCount(n)).isEqualTo(10);
     }
 
     @Test

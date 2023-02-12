@@ -1,3 +1,7 @@
+package domain;
+
+import utils.Validator;
+
 public class Car {
     private static final int MIN_MOVE_POWER = 4;
     private final String name;

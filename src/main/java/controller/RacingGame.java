@@ -1,10 +1,18 @@
+package controller;
+
+import domain.Car;
+import domain.Winner;
 import java.util.ArrayList;
 import java.util.List;
+import utils.CarGenerator;
+import utils.RandomNumberGenerator;
+import view.Input;
+import view.Output;
 
 public class RacingGame {
-    private CarGenerator carGenerator;
-    private Input input;
-    private Winner winner;
+    private final CarGenerator carGenerator;
+    private final Input input;
+    private final Winner winner;
     private List<Car> cars;
     private int tryCount;
 

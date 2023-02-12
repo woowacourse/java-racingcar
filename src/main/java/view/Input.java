@@ -1,4 +1,7 @@
+package view;
+
 import java.util.Scanner;
+import utils.Validator;
 
 public class Input {
     private final Scanner scanner;
