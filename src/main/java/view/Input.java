@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class Input {
     private static final String DELIMITER = ",";
     private static final Validator validator = new Validator();
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static String getInput() {
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 
     public static String[] getCarNames(String input) {

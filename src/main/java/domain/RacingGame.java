@@ -18,7 +18,6 @@ public class RacingGame {
     }
 
     public void run() {
-        Output.printMessage("실행 결과");
         while (isGameContinue()) {
             cars.forEach(car -> car.move());
             Output.printEachCarDistance(cars);
