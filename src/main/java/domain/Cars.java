@@ -1,7 +1,5 @@
 package domain;
 
-import utils.RandomNumberGenerator;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,22 +11,6 @@ public class Cars {
 
     public Cars(final List<Car> cars) {
         this.cars = cars;
-    }
-
-    public void moveCar() {
-        for (final Car car : cars) {
-            doRace(car);
-        }
-    }
-
-    private void doRace(final Car car) {
-        if (canMove()) {
-            car.move();
-        }
-    }
-
-    private boolean canMove() {
-        return RandomNumberGenerator.generateRandomNumber() >= 4;
     }
 
     public List<Car> getWinner() {
@@ -65,5 +47,9 @@ public class Cars {
         }
 
         return carStatus;
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

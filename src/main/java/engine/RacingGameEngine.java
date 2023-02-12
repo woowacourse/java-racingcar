@@ -48,7 +48,7 @@ public class RacingGameEngine {
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount; i++) {
-            cars.moveCar();
+            CarEngine.moveCar(cars);
             OutputView.printCurrentStatus(cars);
         }
     }
