@@ -30,7 +30,7 @@ public class RacingGame {
     }
 
     public List<Cars> getResult() {
-        //TODO 결과를 반환한다.
+        return result;
     }
 
     private void playOneRound() {
