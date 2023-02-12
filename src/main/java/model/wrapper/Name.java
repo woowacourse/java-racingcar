@@ -31,9 +31,7 @@ public class Name {
     }
 
     private boolean validateBlank(String name) {
-        int length = name.trim().length();
-
-        return length != 0;
+        return !name.isBlank();
     }
 
     public String getName() {
