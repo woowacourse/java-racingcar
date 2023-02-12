@@ -1,8 +1,8 @@
 package view;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Validator {
     private static final String DIGIT = "\\d+";
@@ -46,9 +46,10 @@ public class Validator {
     }
 
     private void checkDouble(String[] carNames) {
-        Set<String> carNamesSet = new HashSet<>(Arrays.asList(carNames));
-        if (carNamesSet.size() != carNames.length) {
+        List<String> nonDuplicatedCarNames = Arrays.stream(carNames).distinct().collect(Collectors.toList());
+        if (nonDuplicatedCarNames.size() != carNames.length) {
             throw new IllegalArgumentException(CARNAMES_DUPLICATE_ERROR_MESSAGE);
         }
+
     }
 }
