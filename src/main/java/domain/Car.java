@@ -1,7 +1,5 @@
 package domain;
 
-import utils.RandomNumberGenerator;
-
 public class Car {
     private static final int MOVE_LOWER_BOUND = 4;
 
@@ -13,9 +11,8 @@ public class Car {
         this.distance = 0;
     }
 
-    public void move() {
-        int moveCount = RandomNumberGenerator.generateRandomNumber();
-        if (moveCount >= MOVE_LOWER_BOUND) {
+    public void move(int power) {
+        if (power >= MOVE_LOWER_BOUND) {
             this.distance++;
         }
     }

@@ -1,5 +1,6 @@
 package domain;
 
+import utils.RandomNumberGenerator;
 import view.Output;
 
 import java.util.List;
@@ -19,7 +20,8 @@ public class RacingGame {
 
     public void run() {
         while (isGameContinue()) {
-            cars.forEach(car -> car.move());
+            int power = RandomNumberGenerator.generateRandomNumber();
+            cars.forEach(car -> car.move(power));
             Output.printEachCarDistance(cars);
         }
         winner.makeWinnerNames(cars);
