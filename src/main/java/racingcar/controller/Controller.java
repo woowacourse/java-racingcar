@@ -9,7 +9,7 @@ import racingcar.view.OutputView;
 import java.util.function.Supplier;
 
 public class Controller {
-    public static final String GAME_COUNT_ERROR_MESSAGE = "올바른 회수를 입력해주세요";
+    public static final String GAME_COUNT_ERROR_MESSAGE = "[ERROR] 정수값을 입력해주세요";
     private final NumberPicker numberPicker;
     private final Input input;
     private final OutputView outputView;
@@ -23,19 +23,25 @@ public class Controller {
         this.inputView = inputView;
     }
 
-    public void raceTracks() {
-        handleError(this::carNameInput);
+    public void game() {
+        getCarName(this::carNameInput);
+        
+        int gameCount = getGameCount(input::gameCountInput);
+        raceTracks(gameCount);
+        outputView.printWinner(racingStatus.findWinner());
+    }
 
-        inputView.printInputTryCountGuide();
-        int gameCount = handleError(input::gameCountInput);
-
+    private void raceTracks(int gameCount) {
         outputView.printStatusGuide();
+
+        raceTrack(gameCount);
+    }
+
+    private void raceTrack(int gameCount) {
         for (int i = 0; i < gameCount; i++) {
             racingStatus.moveCars();
             outputView.printStatus(racingStatus.toDto());
         }
-
-        outputView.printWinner(racingStatus.findWinner());
     }
 
     private void carNameInput() {
@@ -48,21 +54,23 @@ public class Controller {
         return input.carNameInput();
     }
 
-    private <T> T handleError(Supplier<T> supplier) {
+    private <T> T getGameCount(Supplier<T> supplier) {
+        inputView.printInputTryCountGuide();
+        
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(GAME_COUNT_ERROR_MESSAGE);
-            return handleError(supplier);
+            return getGameCount(supplier);
         }
     }
 
-    private void handleError(Runnable runnable) {
+    private void getCarName(Runnable runnable) {
         try {
             runnable.run();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            handleError(runnable);
+            getGameCount(runnable);
         }
     }
 }
