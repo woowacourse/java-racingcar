@@ -3,11 +3,11 @@ package dto;
 public class CarDto {
 
     private final String name;
-    private int moveCount;
+    private final int moveCount;
 
-    public CarDto(String name) {
+    public CarDto(String name, int moveCount) {
         this.name = name;
-        this.moveCount = 0;
+        this.moveCount = moveCount;
     }
 
     public int getMoveCount() {
