@@ -1,5 +1,7 @@
 package view;
 
+import domain.Car;
+
 import java.util.List;
 
 public class OutputView {
@@ -10,16 +12,20 @@ public class OutputView {
     private static final String END_MESSAGE = "가 최종 우승했습니다.";
     private static final String DIVISION_CHAR = ",";
 
-    public void printStatus(String carName, int position) {
-        System.out.print(carName + CAR_NAME_FORMAT);
-        for (int index = 0; index < position; index++) {
-            System.out.print(MOVEMENT);
+    public void printAllStatus(List<Car> carInformation) {
+        System.out.println(RESULT_MESSAGE);
+        for (Car car : carInformation) {
+            System.out.print(car.getName()+CAR_NAME_FORMAT);
+            printPositionByName(car.getPosition());
+            System.out.println();
         }
-        space();
+        System.out.println();
     }
 
-    public void resultMessage() {
-        System.out.println(RESULT_MESSAGE);
+    public void printPositionByName(int position) {
+        for (int count = 0; count < position; count++) {
+            System.out.print(MOVEMENT);
+        }
     }
 
 
@@ -30,8 +36,5 @@ public class OutputView {
     private String winnerFormat(List<String> winners) {
         return String.join(DIVISION_CHAR, winners);
     }
-
-    public void space() {
-        System.out.println();
-    }
 }
+
