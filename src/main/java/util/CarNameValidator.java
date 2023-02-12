@@ -3,7 +3,6 @@ package util;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class CarNameValidator implements Validator {
 
@@ -15,10 +14,9 @@ public class CarNameValidator implements Validator {
 
     @Override
     public void validate(Object target) {
-        List<String> trimCarNames = trimCarNames((List<String>) target);
-        validateCarNamesIsEmpty(trimCarNames);
-        validateDuplicateCarName(trimCarNames);
-        validateCarNameLength(trimCarNames);
+        validateCarNamesIsEmpty((List<String>) target);
+        validateDuplicateCarName((List<String>) target);
+        validateCarNameLength((List<String>) target);
     }
 
     private boolean isCorrectLength(List<String> carNames) {
@@ -26,11 +24,6 @@ public class CarNameValidator implements Validator {
                 .allMatch(carName -> LENGTH_LOWER_BOUND <= carName.length() && carName.length() <= LENGTH_UPPER_BOUND);
     }
 
-    private List<String> trimCarNames(List<String> carNames) {
-        return carNames.stream()
-                .map(String::trim)
-                .collect(Collectors.toList());
-    }
 
     private void validateCarNamesIsEmpty(List<String> carNames) {
         if (carNames.isEmpty()) {

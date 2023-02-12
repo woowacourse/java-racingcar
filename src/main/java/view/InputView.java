@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -27,10 +28,18 @@ public class InputView {
 
     public List<String> inputCarNames() {
         System.out.println(CAR_NAMES_HEADER);
-        List<String> carNames = Arrays.asList(console.nextLine().split(DELIMITER));
-        carNameValidator.validate(carNames);
+        List<String> carNames = Arrays.asList(console.nextLine().split(DELIMITER,-1));
+        List<String> trimCarNames = trimCarNames(carNames);
 
-        return carNames;
+        carNameValidator.validate(trimCarNames);
+
+        return trimCarNames;
+    }
+
+    private List<String> trimCarNames(List<String> carNames) {
+        return carNames.stream()
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public int inputRepeatCount() {
