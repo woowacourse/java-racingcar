@@ -11,6 +11,14 @@ public class RacingGame {
     private final List<Car> cars;
     private int tryCount;
 
+    @Override
+    public String toString() {
+        return "RacingGame{" +
+                "cars=" + cars +
+                ", tryCount=" + tryCount +
+                '}';
+    }
+
     public RacingGame(String[] carNames, int tryCount) {
         this.cars = generateCars(carNames);
         this.tryCount = tryCount;

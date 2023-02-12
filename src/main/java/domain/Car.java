@@ -7,6 +7,14 @@ public class Car {
     private final String name;
     private int position;
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
+    }
+
     public Car(String name) {
         Validator.checkBlank(name);
         Validator.checkLength(name);
