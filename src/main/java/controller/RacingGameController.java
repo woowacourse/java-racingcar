@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Car;
-import domain.NumberGenerator;
-import domain.RacingGame;
-import domain.RandomNumberGenerator;
+import domain.*;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
@@ -29,7 +26,7 @@ public class RacingGameController {
     }
 
     private RacingGame init() {
-        List<Car> cars = generateCars();
+        Cars cars = new Cars(generateCars());
         int gameTrial = generateGameTrial();
         return new RacingGame(cars, gameTrial, numberGenerator);
     }
@@ -37,8 +34,8 @@ public class RacingGameController {
     private void play(RacingGame racingGame) {
         outputView.showInfoMessage();
         while (racingGame.canContinue()) {
-            List<Car> cars = racingGame.run();
-            outputView.showCars(cars);
+            Cars cars = racingGame.run();
+            outputView.showCars(cars.getCars());
         }
         outputView.showWinner(racingGame.getWinners());
     }

@@ -25,7 +25,7 @@ class RacingGameTest {
         car1 = new Car("kong");
         car2 = new Car("gray");
         car3 = new Car("echo");
-        racingGame = new RacingGame(List.of(car1, car2, car3), 3, new RandomNumberGenerator());
+        racingGame = new RacingGame(new Cars(List.of(car1, car2, car3)), 3, new RandomNumberGenerator());
     }
 
     @ParameterizedTest
@@ -33,7 +33,7 @@ class RacingGameTest {
     @DisplayName("최소 게임 횟수보다 작은 횟수인 경우 예외가 발생한다")
     public void createRacingGameFail(int gameTrialCount) {
         assertThatThrownBy(() ->
-                new RacingGame(List.of(car1, car2, car3), gameTrialCount, new RandomNumberGenerator()))
+                new RacingGame(new Cars(List.of(car1, car2, car3)), gameTrialCount, new RandomNumberGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.WRONG_TRIAL_NUMBER.getMessage());
     }
