@@ -3,7 +3,6 @@ package view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class InputView {
 
@@ -14,8 +13,7 @@ public class InputView {
     public List<String> askCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNamesLine = scanner.nextLine();
-        return Arrays.stream(carNamesLine.split(requestDelimiter))
-                .collect(Collectors.toList());
+        return Arrays.asList(carNamesLine.split(requestDelimiter));
     }
 
     public int askTrialCount() {
