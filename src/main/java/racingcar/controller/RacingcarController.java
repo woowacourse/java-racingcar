@@ -44,6 +44,7 @@ public class RacingcarController {
         for (int i = 0; i < tryCount; i++) {
             LinkedHashMap<String, Integer> roundResult = carService.runRound();
             OutputView.printRoundResult(roundResult);
+            OutputView.printNewLine();
         }
     }
 

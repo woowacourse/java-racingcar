@@ -23,7 +23,6 @@ public class OutputView {
             Integer value = roundResult.get(key);
             printCarResult(key, value);
         }
-        System.out.println("");
     }
 
     public static void printCarResult(String carName, int distance) {
@@ -40,5 +39,9 @@ public class OutputView {
         String str = String.join(OutputConstant.WINNER_NAME_DELIMITER.getMessage(), winnerNames);
         stringBuilder.append(str).append(OutputConstant.WINNER_MESSAGE.getMessage());
         System.out.println(stringBuilder.toString());
+    }
+
+    public static void printNewLine() {
+        System.out.println("");
     }
 }
