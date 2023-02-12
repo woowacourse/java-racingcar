@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 import service.RaceService;
-import utils.RacingNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -16,15 +15,12 @@ public class NumberRaceController implements RaceController {
     private final InputView inputView;
     private final OutputView outputView;
     private final RaceService raceService;
-    private final RacingNumberGenerator generator;
     private final Map<RaceState, Supplier<RaceState>> raceMappings = new EnumMap<>(RaceState.class);
 
-    public NumberRaceController(InputView inputView, OutputView outputView,
-            RaceService raceService, RacingNumberGenerator generator) {
+    public NumberRaceController(InputView inputView, OutputView outputView, RaceService raceService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.raceService = raceService;
-        this.generator = generator;
         initMappings();
     }
 
@@ -57,7 +53,7 @@ public class NumberRaceController implements RaceController {
     private RaceState race() {
         outputView.printRoundStartMessage();
 
-        List<RacingRoundStateDto> racingTotalState = raceService.race(generator);
+        List<RacingRoundStateDto> racingTotalState = raceService.race();
 
         outputView.printRacingTotalState(racingTotalState);
         return RaceState.CALCULATE_WINNERS;

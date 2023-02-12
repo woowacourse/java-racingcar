@@ -13,8 +13,13 @@ import utils.RacingNumberGenerator;
 
 public class RaceService {
 
+    private final RacingNumberGenerator generator;
     private Cars cars;
     private Round round;
+
+    public RaceService(RacingNumberGenerator generator) {
+        this.generator = generator;
+    }
 
     public void initCars(Set<String> inputCarsName) {
         this.cars = new Cars(generateCars(inputCarsName));
@@ -30,7 +35,7 @@ public class RaceService {
         this.round = new Round(round);
     }
 
-    public List<RacingRoundStateDto> race(RacingNumberGenerator generator) {
+    public List<RacingRoundStateDto> race() {
         return cars.race(generator, round);
     }
 
