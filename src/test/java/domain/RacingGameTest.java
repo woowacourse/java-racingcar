@@ -16,15 +16,12 @@ class RacingGameTest {
 
     @ParameterizedTest
     @MethodSource("parameterProvider")
-    void getWinnersTest(List<String> carNames, List<Integer> intendedNumbers, List<String> expectedWinners) {
+    void getWinnersTest(List<String> carNames, List<Integer> intendedNumbers, int gameTry, List<String> expectedWinners) {
         IntendedNumberGenerator intendedNumberGenerator = new IntendedNumberGenerator();
-        RacingGame racingGame = new RacingGame(
-                carNames,
-                intendedNumberGenerator
-        );
+        RacingGame racingGame = new RacingGame(carNames, gameTry, intendedNumberGenerator);
         intendedNumberGenerator.readRepository(intendedNumbers);
 
-        for (int i = 0; i < intendedNumbers.size() / carNames.size(); i++) {
+        while (racingGame.isGameOnGoing()) {
             racingGame.start();
         }
 
@@ -35,12 +32,12 @@ class RacingGameTest {
 
     private Stream<Arguments> parameterProvider() {
         return Stream.of(
-                Arguments.of(List.of("pobi", "crong"), List.of(5, 3, 9, 0, 0, 9), List.of("pobi")),
-                Arguments.of(List.of("pobi", "crong"), List.of(3, 5, 9, 0, 0, 9), List.of("crong")),
-                Arguments.of(List.of("pobi", "crong"), List.of(4, 4, 4, 4, 4, 4), List.of("pobi", "crong")),
-                Arguments.of(List.of("pobi", "crong"), List.of(0, 0, 0, 0, 0, 0), List.of("pobi", "crong")),
-                Arguments.of(List.of("pobi", "crong", "hadi"), List.of(3, 4, 9, 6, 7, 6, 0, 1, 2), List.of("crong", "hadi")),
-                Arguments.of(List.of("pobi", "crong", "hadi"), List.of(7, 4, 9, 6, 7, 6, 0, 1, 2), List.of("pobi", "crong", "hadi"))
+                Arguments.of(List.of("pobi", "crong"), List.of(5, 3, 9, 0, 0, 9), 3, List.of("pobi")),
+                Arguments.of(List.of("pobi", "crong"), List.of(3, 5, 9, 0, 0, 9), 3, List.of("crong")),
+                Arguments.of(List.of("pobi", "crong"), List.of(4, 4, 4, 4, 4, 4), 3, List.of("pobi", "crong")),
+                Arguments.of(List.of("pobi", "crong"), List.of(0, 0, 0, 0, 0, 0), 3, List.of("pobi", "crong")),
+                Arguments.of(List.of("pobi", "crong", "hadi"), List.of(3, 4, 9, 6, 7, 6, 0, 1, 2), 3, List.of("crong", "hadi")),
+                Arguments.of(List.of("pobi", "crong", "hadi"), List.of(7, 4, 9, 6, 7, 6, 0, 1, 2), 3, List.of("pobi", "crong", "hadi"))
         );
     }
 
