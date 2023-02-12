@@ -6,6 +6,7 @@ import racing.NumberGenerator;
 import racing.RandomNumberGenerator;
 
 public class RacingGame {
+    public static final int MAX_TRY_COUNT_BOUND = 100;
 
     private final NumberGenerator numberGenerator;
     private final Cars cars;
@@ -23,7 +24,7 @@ public class RacingGame {
     }
 
     private void validateTryCount(int tryCount) {
-        if (tryCount > 100) {
+        if (tryCount > MAX_TRY_COUNT_BOUND) {
             throw new IllegalArgumentException("시도 횟수는 100회 이하만 가능합니다 현재 : " + tryCount + "회");
         }
     }

@@ -3,6 +3,7 @@ package racing.domain;
 public class Car implements Comparable<Car> {
 
     private static final int MOVE_CONDITION = 4;
+    public static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
     private int position = 0;
@@ -13,8 +14,8 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("이름이 "+ name.length()+"자 입니다. "+"이름은 5자 이하로 가능합니다.");
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름이 " + name.length() + "자 입니다. " + "이름은 5자 이하로 가능합니다.");
         }
     }
 
