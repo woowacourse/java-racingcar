@@ -12,8 +12,9 @@ public class Car {
     private int location;
 
     public Car(String name) {
+        name = name.trim();
         validCarName(name);
-        this.name = name.trim();
+        this.name = name;
         this.location = CAR_LOCATION_INITIALIZATION;
     }
 
