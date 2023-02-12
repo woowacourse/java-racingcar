@@ -19,7 +19,7 @@ public class GameTest {
         Car car3 = new Car("루쿠", 1);
         Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
 
-        assertThat(game.findWinners()).containsOnly(car2);
+        assertThat(game.getWinnersDto()).containsOnly(car2.getCarDto());
     }
 
     @Test
@@ -30,7 +30,8 @@ public class GameTest {
         Car car3 = new Car("루쿠", 1);
         Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
 
-        assertThat(game.findWinners()).containsOnly(car1, car2);
+        assertThat(game.getWinnersDto()).containsOnly(car1.getCarDto(), car2.getCarDto());
+
     }
 
     @Test

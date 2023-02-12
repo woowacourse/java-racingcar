@@ -48,5 +48,5 @@ Car {
     public int getPosition() {
         return position;
     }
-
+    public CarDto getCarDto(){return new CarDto(this);}
 }

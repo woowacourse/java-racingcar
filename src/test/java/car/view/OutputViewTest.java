@@ -1,6 +1,7 @@
 package car.view;
 
 import car.domain.Car;
+import car.domain.CarDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +15,16 @@ public class OutputViewTest  extends OutputTestStream {
     @Test
     @DisplayName("")
     void 자동차를_출력하는_테스트(){
-        outputView.printCars(List.of(new Car("포비", 5)));
+        List<CarDto> cars= List.of(new CarDto(new Car("포비",5)));
+        outputView.printCarsWith(cars);
         assertThat(output()).contains("포비 : -----");
     }
 
     @Test
     @DisplayName("우승자를 출력하는 테스트")
     void 우승자를_출력하는_테스트(){
-        List<Car> winners = List.of(new Car("포비"), new Car("네오"));
-        outputView.printWinners(winners);
+        List<CarDto> winners = List.of(new CarDto(new Car("포비")), new CarDto(new Car("네오")));
+        outputView.printWinnersWith(winners);
         assertThat(output()).contains(String.format("포비, 네오가 최종 우승했습니다."));
     }
 }

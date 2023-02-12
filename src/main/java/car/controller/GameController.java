@@ -43,8 +43,8 @@ public class GameController {
     }
 
     public void showResult() {
-        outputView.printCars(game.getCars());
-        outputView.printWinners(game.findWinners());
+        outputView.printCarsWith(game.getCarsDto());
+        outputView.printWinnersWith(game.getWinnersDto());
     }
 
     private List<Car> makeCarsWith(List<String> carNames) {
@@ -62,7 +62,7 @@ public class GameController {
     private void playMultipleTimes() {
         for (int i = 0; i < trialCount; i++) {
             game.playOnce();
-            outputView.printCars(game.getCars());
+            outputView.printCarsWith(game.getCarsDto());
         }
     }
 }
