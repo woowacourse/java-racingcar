@@ -3,25 +3,37 @@ package study;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class StringTest {
 
     @ParameterizedTest(name = "\"1,2\"를 ',' 문자로 문자열 나누기 테스트(contains) - 기대값 : {0}")
-    @ValueSource(strings = {"1", "2", "3"})
+    @ValueSource(strings = {"1", "2"})
     void splitContainsTest(String expectedValue) {
         String str = "1,2";
         assertThat(str.split(",")).contains(expectedValue);
     }
 
     @ParameterizedTest(name = "',' 문자로 문자열 나누기 테스트(containsExactly) - 입력값 : {0}")
-    @ValueSource(strings = {"1,2", "1"})
-    void splitContainsExactlyTest(String str) {
-        assertThat(str.split(",")).containsExactly("1");
+    @MethodSource("strSplitByComma")
+    void splitContainsExactlyTest(String input, String[]  expectedOutputs) {
+        assertThat(input.split(",")).containsExactly(expectedOutputs);
+    }
+
+    private static Stream<Arguments> strSplitByComma() {
+        return Stream.of(
+                arguments("1,2", new String[]{"1", "2"}),
+                arguments("1", new String[]{"1"})
+        );
     }
 
     @Test
