@@ -20,7 +20,7 @@ public class GameController {
 
     public void run() {
         racingCarGame.addCars(readCarNames());
-        runRacingGame(getNumberOfTry());
+        runRacingGame(getParsedNumberOfTry());
         outputView.printWinners(racingCarGame.getWinners());
     }
     
@@ -29,7 +29,7 @@ public class GameController {
         return inputView.readCarNames();
     }
     
-    private int getNumberOfTry() {
+    private int getParsedNumberOfTry() {
         String numberOfTry = readNumberOfTry();
         NumberOfTryValidator.validate(numberOfTry);
         return Integer.parseInt(numberOfTry);
