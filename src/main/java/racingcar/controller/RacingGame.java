@@ -36,7 +36,7 @@ public class RacingGame {
 
     private TrialCount getTrialCountFromInput() {
         try {
-            return input.getTrialCount();
+            return new TrialCount(input.getTrialCount());
         } catch (IllegalArgumentException e) {
             output.printError(e.getMessage());
             return getTrialCountFromInput();

@@ -1,7 +1,5 @@
 package racingcar.view;
 
-import racingcar.domain.TrialCount;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -22,9 +20,8 @@ public class InputView {
         return Arrays.asList(words);
     }
 
-    public TrialCount getTrialCount() {
+    public int getTrialCount() {
         String inputCount = readLineWithMessage(TRIAL_COUNT_PROMPT);
-        int number = Integer.parseInt(inputCount);
-        return new TrialCount(number);
+        return Integer.parseInt(inputCount);
     }
 }
