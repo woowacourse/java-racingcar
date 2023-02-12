@@ -1,14 +1,17 @@
 package racingcar.domain;
 
-import racingcar.constant.GameConstant;
-
 import java.util.Objects;
 
 public class Position {
-    private int position = GameConstant.RACE_START_POINT;
+    private static final int DISTANCE_TO_MOVE = 1;
+    private int position;
+
+    public Position(int startPoint) {
+        this.position = startPoint;
+    }
 
     public void move() {
-        position++;
+        position += DISTANCE_TO_MOVE;
     }
 
     public int getPosition() {
