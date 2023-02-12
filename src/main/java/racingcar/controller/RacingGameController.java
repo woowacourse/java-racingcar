@@ -43,8 +43,7 @@ public class RacingGameController {
     private void createCars() {
         while (true) {
             try {
-                CarNamesRequest carNamesRequest = inputView.inputCarName();
-                List<String> carNames = carNamesRequest.getCarNames();
+                List<String> carNames = inputView.inputCarNames();;
                 cars.generateCars(carNames);
                 return;
             } catch (Exception e) {
@@ -57,7 +56,7 @@ public class RacingGameController {
     private void createGameRound() {
         while (true) {
             try {
-                int totalRound = inputView.inputGameRound().getRound();
+                int totalRound = inputView.inputGameRound();
                 gameRound = new GameRound(totalRound);
                 return;
             } catch (Exception e) {

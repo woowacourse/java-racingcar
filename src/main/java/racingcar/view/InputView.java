@@ -1,14 +1,12 @@
 package racingcar.view;
 
-import racingcar.datatransfer.CarNamesRequest;
-import racingcar.datatransfer.GameRoundRequest;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 
-import static racingcar.exception.ErrorMessages.CAR_NAME_INPUT_EXCEPTION;
-import static racingcar.exception.ErrorMessages.GAME_ROUND_INPUT_EXCEPTION;
+import static racingcar.exception.ErrorMessages.*;
 
 public class InputView {
     private static final String CAR_NAMES_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -16,29 +14,62 @@ public class InputView {
 
     private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-    public CarNamesRequest inputCarName() {
+    public List<String> inputCarNames() {
         System.out.println(CAR_NAMES_INPUT_MESSAGE);
-        String carNames = null;
+        String carNamesInput = null;
 
         try {
-            carNames = bufferedReader.readLine();
+            carNamesInput = bufferedReader.readLine();
         } catch (IOException e) {
             throw new RuntimeException(CAR_NAME_INPUT_EXCEPTION.getMessage());
         }
 
-        return new CarNamesRequest(carNames);
+        List<String> carNames = splitByComma(carNamesInput);
+        return carNames;
     }
 
-    public GameRoundRequest inputGameRound() {
+    public int inputGameRound() {
         System.out.println(GAME_ROUND_INPUT_MESSAGE);
-        String gameRound = null;
+        String totalRoundInput = null;
 
         try {
-            gameRound = bufferedReader.readLine();
+            totalRoundInput = bufferedReader.readLine();
         } catch (IOException e) {
             throw new RuntimeException(GAME_ROUND_INPUT_EXCEPTION.getMessage());
         }
 
-        return new GameRoundRequest(gameRound);
+        validateGameRound(totalRoundInput);
+        int totalRound = Integer.parseInt(totalRoundInput);
+        return totalRound;
+    }
+
+    private static List<String> splitByComma(String carNames) {
+        String[] splitCarNames = carNames.split("\\s*,\\s*");
+        return Arrays.asList(splitCarNames);
+    }
+
+    private void validateGameRound(String gameRound) {
+        validateBlank(gameRound);
+        validateInteger(gameRound);
+        validateNotStartZero(gameRound);
+    }
+
+    private void validateBlank(String gameRound) {
+        if (gameRound.isBlank()) {
+            throw new IllegalArgumentException(GAME_ROUND_INPUT_BLANK_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validateInteger(String gameRound) {
+        boolean isDigit = gameRound.chars().allMatch(Character::isDigit);
+        if (!isDigit) {
+            throw new IllegalArgumentException(GAME_ROUND_INPUT_FORMAT_DIGIT_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validateNotStartZero(String gameRound) {
+        if (gameRound.charAt(0) == '0') {
+            throw new IllegalArgumentException(GAME_ROUND_INPUT_FORMAT_ZERO_EXCEPTION.getMessage());
+        }
     }
 }
