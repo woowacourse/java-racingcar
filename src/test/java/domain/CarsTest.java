@@ -46,11 +46,11 @@ class CarsTest {
     }
 
     private Cars createCars(int size) {
-        List<Car> carsInput = new ArrayList<>();
+        List<Name> names = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            carsInput.add(new Car(new Name("car" + i)));
+            names.add(new Name("car" + i));
         }
-        return new Cars(carsInput);
+        return Cars.of(names);
     }
 
     /**
