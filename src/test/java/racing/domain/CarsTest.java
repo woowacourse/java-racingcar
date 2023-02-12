@@ -1,6 +1,7 @@
 package racing.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -44,4 +45,16 @@ class CarsTest {
 
         assertThat(firstCars).containsOnly(boxster);
     }
+
+    @Test
+    @DisplayName("중복된 이름이면 예외가 발생한다")
+    void duplicateNameEx() {
+        List<Car> duplicateNameCars = List.of(new Car("박스터"), new Car("박스터"));
+
+        assertThatThrownBy(()-> new Cars(duplicateNameCars))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름은 사용할 수 없습니다");
+
+    }
+
 }
