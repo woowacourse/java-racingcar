@@ -20,12 +20,7 @@ class CarTest {
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3"})
     void moveFailTest(int number) {
-        //given
-
-        //when
         car.move(number);
-
-        //then
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
@@ -33,12 +28,7 @@ class CarTest {
     @ParameterizedTest
     @CsvSource({"4", "5", "6", "7", "8", "9"})
     void moveSuccessTest(int number) {
-        //given
-
-        //when
         car.move(number);
-
-        //then
         assertThat(car.getPosition()).isEqualTo(1);
     }
 }

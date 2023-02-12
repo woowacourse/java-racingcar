@@ -25,33 +25,18 @@ public class SetTest {
 
     @Test
     void sizeTest() {
-        //given
-
-        //when
-
-        //then
         assertThat(numbers.size()).isEqualTo(3);
     }
 
     @ParameterizedTest
     @CsvSource({"1", "2", "3"})
     void containsTest1(int element) {
-        //given
-
-        //when
-
-        //then
         assertThat(numbers).contains(element);
     }
 
     @ParameterizedTest
     @CsvSource({"1,true", "2,true", "3,true", "4,false", "5,false"})
     void containsTest2(int element, boolean expected) {
-        //given
-
-        //when
-
-        //then
         assertThat(numbers.contains(element)).isEqualTo(expected);
     }
 }

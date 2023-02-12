@@ -9,25 +9,15 @@ import org.junit.jupiter.api.Test;
 class StringParserTest {
     @Test
     void parseTest() {
-        //given
         String input = "pobi,crong,honux";
-
-        //when
         List<String> parse = StringParser.splitByComma(input);
-
-        //then
         assertThat(parse).containsExactly("pobi", "crong", "honux");
     }
 
     @Test
     void parseBlankTest() {
-        //given
         String input = "a,,,";
-
-        //when
         List<String> parse = StringParser.splitByComma(input);
-
-        //then
         assertThat(parse).containsExactly("a", "", "", "");
     }
 }
