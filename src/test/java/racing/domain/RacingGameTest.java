@@ -59,7 +59,7 @@ class RacingGameTest {
 
     @DisplayName("isEnd 메소드는 게임 종료 여부를 반환한다")
     @ParameterizedTest(name = "시도 횟수가 {0}일 때 {1}번 시도하면 {2}")
-    @CsvSource(value = {"3:1:false", "3:3:true"}, delimiter = ':')
+    @CsvSource(value = {"3:1:false", "3:2:false", "3:3:true"}, delimiter = ':')
     void isEndTest(int count, int tryCount, boolean result) {
         RacingGame game = new RacingGame(alwaysMoveNumberGenerator, count, dummy);
 
@@ -73,15 +73,18 @@ class RacingGameTest {
     static class AlwaysMoveNumberGenerator implements NumberGenerator {
 
         public static final int MOVE_NUMBER = 4;
+
         @Override
         public int generate() {
             return MOVE_NUMBER;
         }
 
     }
+
     static class NeverMoveNumberGenerator implements NumberGenerator {
 
         public static final int NOT_MOVE_NUMBER = 3;
+
         @Override
         public int generate() {
             return NOT_MOVE_NUMBER;
