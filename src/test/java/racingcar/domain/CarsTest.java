@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 class CarsTest {
 
     @Test
-    @DisplayName("전체 자동차 이동 요청")
+    @DisplayName("전체 자동차를 이동 요청하면 각각의 자동차가 이동한다.")
     void shouldTryMoveEachCarWhenRequest() {
         // given
         List<String> names = List.of("phobi", "tele", "chan");
@@ -38,7 +38,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("우승자 정보 반환 - 1명의 우승자")
+    @DisplayName("2대의 자동차 중 1대의 자동차만 움직이면 해당 자동차 1대만 우승자가 된다.")
     void shouldReturnWinnerDataWhenRequest() {
         // given
         Car winnerCar = new Car("1th", new DeterminedIntGenerator(5));
@@ -54,7 +54,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("우승자 정보 반환 - 2명의 우승자")
+    @DisplayName("3대의 자동차 중 2대의 자동차만 움직이면 해당 자동차 2대가 우승자가 된다.")
     void shouldReturnTwoWinnerDataWhenRequest() {
         // given
         Car winnerCar1 = new Car("1th-1", new DeterminedIntGenerator(5));

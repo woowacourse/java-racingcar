@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 class CarTest {
 
     @ParameterizedTest
-    @DisplayName("1회 이동 시도")
+    @DisplayName("이동 시도 시, 정수 값에 따라 이동 횟수가 달라진다.")
     @CsvSource(value = {"1:0", "3:0", "4:1", "9:1"}, delimiter = ':')
     void shouldPlusOneAtMovedCountWhenMove(int number, int addedMovedCount) {
         // given
@@ -28,7 +28,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("올바른 이름으로 생성")
+    @DisplayName("적절한 길이의 이름으로 Car를 생성한다.")
     void shouldCreateCarCorrectlyWhenUseAppropriateName() {
         // given
         String appropriateName = "테스트이름";
@@ -39,7 +39,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @DisplayName("예외 발생 - 잘못된 이름 길이")
+    @DisplayName("잘못된 길이의 이름으로 Car를 생성하면 예외가 발생한다.")
     @ValueSource(strings = {"가나다라마바", " "})
     void shouldThrowIllegalArgumentExceptionWhenUseLongName(String inputName) {
         // given
