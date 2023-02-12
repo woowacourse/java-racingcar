@@ -78,8 +78,21 @@ class RaceTest {
         void throwExceptionWhenDuplicateNameExists() {
             List<Car> cars = List.of(new Car("rosie"), new Car("hong"), new Car("rosie"));
             Assertions.assertThatThrownBy(() -> new Race(cars))
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("자동차 이름은 중복일 수 없습니다.");
         }
+    }
+
+    @Test
+    @DisplayName("Race에서 초기화된 tryCount를 다시 초기화하려고 하면 Exception 발생")
+    void throwExceptionWhenReInitTryCount() {
+        int tryTime = 3;
+        Race race = new Race(List.of(new Car("rosie"), new Car("hong")));
+        race.initTryTime(tryTime);
+
+        Assertions.assertThatThrownBy(() -> race.initTryTime(tryTime))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("시도횟수는 이미 초기화되어 있습니다.");
     }
 
     static class TestNumberPicker implements NumberPicker {

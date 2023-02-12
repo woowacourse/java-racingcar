@@ -13,7 +13,7 @@ public class Race {
 
     public void initTryTime(final int tryTime) {
         if (this.tryTime != null) {
-            throw new IllegalArgumentException("시도횟수는 이미 초기화되어 있습니다.");
+            throw new IllegalStateException("시도횟수는 이미 초기화되어 있습니다.");
         }
         this.tryTime = new TryTime(tryTime);
     }
