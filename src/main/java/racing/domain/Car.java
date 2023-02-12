@@ -1,6 +1,10 @@
 package racing.domain;
 
-import static racing.view.output.OutputView.HYPHEN;
+import racing.ui.output.OutputView;
+
+import java.util.List;
+
+import static racing.ui.output.OutputView.HYPHEN;
 
 public class Car {
 
@@ -12,19 +16,23 @@ public class Car {
         this.step = 0;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getStep() {
-        return step;
-    }
-
-    public void increaseStep() {
+    public void move() {
         this.step++;
     }
 
-    public void addHyphen() {
-        System.out.print(HYPHEN.repeat(step));
+    public String getCarStepForm() {
+        return name + OutputView.COLON + HYPHEN.repeat(step);
+    }
+
+    public int getCarStep(int winnerStep) {
+        return Math.max(winnerStep, step);
+    }
+
+    public List<String> ifMeetAddWinners(List<String> winners, int winnerStep) {
+        if (step == winnerStep) {
+            winners.add(name);
+            return winners;
+        }
+        return winners;
     }
 }

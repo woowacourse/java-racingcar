@@ -1,9 +1,9 @@
 package racing.domain;
 
-import java.util.List;
-import java.util.Random;
+import racing.util.RandomUtil;
 
-import static racing.view.output.OutputView.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cars {
 
@@ -18,58 +18,38 @@ public class Cars {
         return cars.get(n);
     }
 
-    public void updateCarsState() {
+    public void calculator() {
+        cars.stream()
+                .filter(car -> 4 <= RandomUtil.getRandomNumber())
+                .forEach(Car::move);
+    }
+
+    public List<String> getPrintForm() {
+        List<String> forms = new ArrayList<>();
         for (Car car : cars) {
-            execute(car);
+            forms.add(car.getCarStepForm());
         }
+        return forms;
     }
 
-    private void execute(Car car) {
-        if (decideMove(getRandomNumber())) {
-            moving(car);
-        }
+    public List<String> getWinners() {
+        int winnerStep = getWinnerStep();
+        return findWinners(winnerStep);
     }
 
-    private int getRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(10);
-    }
-
-    private boolean decideMove(int randomNumber) {
-        return 4 <= randomNumber;
-    }
-
-    private void moving(Car car) {
-        car.increaseStep();
-    }
-
-    public void printCarsState() {
+    private int getWinnerStep() {
+        int winnerStep = 0;
         for (Car car : cars) {
-            printCarState(car);
+            winnerStep = car.getCarStep(winnerStep);
         }
+        return winnerStep;
     }
 
-    public int compareStep() {
-        int maxStep = Integer.MIN_VALUE;
+    private List<String> findWinners(int winnerStep) {
+        List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            maxStep = compareStep(car, maxStep);
+            winners = car.ifMeetAddWinners(winners, winnerStep);
         }
-        return maxStep;
-    }
-
-    private static int compareStep(Car car, int maxStep){
-        return Math.max(car.getStep(), maxStep);
-    }
-
-    public void addWinner(int winnerStep, StringBuilder sb) {
-        for (Car car : cars) {
-            addWinner(car, winnerStep, sb);
-        }
-    }
-
-    private static void addWinner(Car car, int winnerStep, StringBuilder sb) {
-        if(car.getStep() == winnerStep){
-            sb.append(car.getName()).append(COMMA);
-        }
+        return winners;
     }
 }

@@ -1,6 +1,6 @@
 package racing.validate;
 
-import racing.view.output.OutputView;
+import racing.ui.output.OutputView;
 
 public class InputVerifier {
 

@@ -1,7 +1,8 @@
-package racing.view.output;
+package racing.ui.output;
 
-import racing.domain.Car;
 import racing.domain.Cars;
+
+import java.util.List;
 
 public class OutputView {
 
@@ -12,29 +13,30 @@ public class OutputView {
     private static final String EXECUTE_RESULT = "실행 결과";
     public static final String COLON = " : ";
     public static final String HYPHEN = "-";
-    public static final String COMMA = ", ";
+    public static final String COMMA = ",";
+    private static final String SPACE = " ";
 
     public static void printPhrase() {
         System.out.println();
         System.out.println(EXECUTE_RESULT);
     }
 
-    public static void printStep(Cars cars) {
-        cars.printCarsState();
+    public static void printProcessing(Cars cars) {
+        cars.getPrintForm()
+                .forEach(System.out::println);
         System.out.println();
     }
 
-    public static void printCarState(Car car) {
-        System.out.print(car.getName() + COLON);
-        printHyphen(car);
-        System.out.println();
+    public static void printResult(Cars cars) {
+        List<String> winners = cars.getWinners();
+        System.out.println(makeWinnersPrintForm(winners));
     }
 
-    private static void printHyphen(Car car) {
-        car.addHyphen();
-    }
-
-    public static void printFinalResult(StringBuilder sb) {
-        System.out.println(sb.toString() + FINAL_WINNER);
+    private static String makeWinnersPrintForm(List<String> winners) {
+        StringBuilder sb = new StringBuilder();
+        for (String winnerName : winners) {
+            sb.append(winnerName).append(COMMA + SPACE);
+        }
+        return sb.substring(0, sb.toString().length() - 2) + FINAL_WINNER;
     }
 }

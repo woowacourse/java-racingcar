@@ -1,11 +1,10 @@
 package racing.util;
 
-public class Converter {
-    public static String[] splitInput(String input) {
-        return input.split(",");
-    }
+import java.util.Arrays;
+import java.util.List;
 
-    public static int convertType(String input) {
-        return Integer.parseInt(input);
+public class Converter {
+    public static List<String> splitInput(String input, String delimiter) {
+        return Arrays.asList(input.split(delimiter));
     }
 }
