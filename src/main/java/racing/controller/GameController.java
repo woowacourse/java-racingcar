@@ -6,6 +6,8 @@ import racing.validate.InputVerifier;
 import racing.view.input.InputView;
 import racing.view.output.OutputView;
 
+import java.util.List;
+
 public class GameController {
     private final RacingGame racingGame;
 
@@ -14,7 +16,7 @@ public class GameController {
         this.racingGame = new RacingGame(initializeCarNames(), initializeTryCount());
     }
 
-    private String[] initializeCarNames() {
+    private List<String> initializeCarNames() {
         String inputCarName = InputView.inputCarName();
         InputVerifier.validateNameLength(inputCarName);
         return Converter.splitInput(inputCarName);

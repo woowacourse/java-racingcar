@@ -1,10 +1,7 @@
 package racing.domain;
 
 import racing.util.Finder;
-import racing.view.output.OutputView;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RacingGame {
@@ -13,12 +10,12 @@ public class RacingGame {
     private final int tryCount;
 
 
-    public RacingGame(String[] names, int tryCount) {
+    public RacingGame(List<String> names, int tryCount) {
         this.cars = createCars(names);
         this.tryCount = tryCount;
     }
 
-    private Cars createCars(String[] names) {
+    private Cars createCars(List<String> names) {
         final List<Car> cars = new ArrayList<>();
         for (String carName : names) {
             cars.add(new Car(carName));
