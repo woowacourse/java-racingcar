@@ -4,7 +4,7 @@ import validation.ErrorMessage;
 
 import java.util.regex.Pattern;
 
-public class GameTrialValidator {
+public class GameTrialCountValidator {
 
     private static final int MIN_TRIAL_COUNT = 1;
     private static final String DIGIT_REGEX = "^[0-9]+$";
