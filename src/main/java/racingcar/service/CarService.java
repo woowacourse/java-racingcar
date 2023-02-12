@@ -3,6 +3,7 @@ package racingcar.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import racingcar.constants.CarConstant;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.OutputView;
@@ -20,14 +21,14 @@ public class CarService {
 
     public void validateCountInput(int tryCountInput) {
         tryCount = tryCountInput;
-        if (tryCount <= 0) {
+        if (tryCount <= CarConstant.TRY_COUNT_MIN.getNumber()) {
             throw new IllegalArgumentException("[ERROR] 시도할 횟수는 0보다 큰 숫자여야 합니다.");
         }
     }
 
     private void makeCar(List<String> carNames) {
         for (String carName : carNames) {
-            Car car = new Car(carName, 0);
+            Car car = new Car(carName, CarConstant.DISTANCE_DEFAULT.getNumber());
             cars.addCarInformation(car);
         }
     }
@@ -54,7 +55,7 @@ public class CarService {
     }
 
     public void runForward(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= CarConstant.MOVE_CRITERIA.getNumber()) {
             car.increaseDistance();
         }
     }
