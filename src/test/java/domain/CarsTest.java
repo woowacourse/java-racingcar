@@ -14,6 +14,21 @@ class CarsTest {
     private static final String CAR_B_NAME = "carB";
     private static final String CAR_C_NAME = "carC";
 
+    @DisplayName("from 정적 팩터리 메서드를 통해 올바른 Cars 를 반환받을 수 있다.")
+    @Test
+    void should_ReturnCars_When_UsingFromMethod() {
+        //given
+        List<String> carNames = List.of(CAR_A_NAME, CAR_B_NAME, CAR_C_NAME);
+
+        //when
+        Cars cars = Cars.from(carNames);
+
+        //then
+        assertThat(cars.getCars())
+                .extracting("name")
+                .containsExactly(CAR_A_NAME, CAR_B_NAME, CAR_C_NAME);
+    }
+
     @DisplayName("moveAll 메서드는 모든 자동차를 움직일 수 있다.")
     @Test
     void should_MoveAllCars_When_UsingMoveAllMethod() {
