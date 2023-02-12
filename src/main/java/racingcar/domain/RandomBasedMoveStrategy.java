@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class RandomBasedStrategy implements MoveStrategy {
+public class RandomBasedMoveStrategy implements MoveStrategy {
 
     private static final int MINIMUM_MOVABLE_NUMBER = 4;
     public static final int MAXIMUM_NUMBER_OF_RANGE = 9;

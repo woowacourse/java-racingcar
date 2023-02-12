@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.CarRepository;
 import racingcar.domain.RacingCarGame;
-import racingcar.domain.RandomBasedStrategy;
+import racingcar.domain.RandomBasedMoveStrategy;
 import racingcar.validator.NumberOfTryValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -56,7 +56,7 @@ public class GameController {
 
     private void runRacingGame(int numberOfTry) {
         while (numberOfTry-- > 0) {
-            racingCarGame.race(new RandomBasedStrategy());
+            racingCarGame.race(new RandomBasedMoveStrategy());
             outputView.printCarsStatus(CarRepository.findAll());
         }
     }
