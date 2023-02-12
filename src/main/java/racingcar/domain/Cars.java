@@ -1,17 +1,15 @@
 package racingcar.domain;
 
-import racingcar.domain.constant.CarConstant;
 import racingcar.exception.DuplicateException;
+import racingcar.exception.NoResourceException;
 import racingcar.util.NumberGenerator;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static racingcar.domain.constant.CarsConstant.SPLIT_DELIMITER;
 import static racingcar.enumType.ExceptionMessage.DUPLICATE_MESSAGE;
+import static racingcar.enumType.ExceptionMessage.NO_RESOURCE_MESSAGE;
 
 public class Cars {
 
@@ -37,10 +35,10 @@ public class Cars {
     }
 
     public List<String> pickWinners() {
-        int maxPosition = getMaxPosition();
+        Car maxPositionCar = getMaxPositionCar();
 
         return cars.stream()
-                .filter(car -> car.isSamePosition(maxPosition))
+                .filter(maxPositionCar::isSamePosition)
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
@@ -63,11 +61,10 @@ public class Cars {
         }
     }
 
-    private int getMaxPosition() {
+    private Car getMaxPositionCar() {
         return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(CarConstant.INIT_POSITION.getValue());
+                .max(Car::compareTo)
+                .orElseThrow(() -> new NoResourceException(String.format(NO_RESOURCE_MESSAGE.getValue(), "차량 리스트")));
     }
 
     @Override
@@ -84,6 +81,6 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 }
