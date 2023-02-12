@@ -8,7 +8,7 @@ public class Application {
         final String[] carNames = Input.getCarNames(Input.getInput());
         Output.printMessage("시도할 회수는 몇회인가요?");
         final int tryCount = Input.getTryCount(Input.getInput());
-        RacingGame racingGame = new RacingGame(carNames, tryCount);
+        final RacingGame racingGame = new RacingGame(carNames, tryCount);
         racingGame.start();
         racingGame.printResult();
     }

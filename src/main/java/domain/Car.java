@@ -13,11 +13,6 @@ public class Car {
         this.distance = 0;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s  : %s", name, "-".repeat(distance));
-    }
-
     public void move() {
         int moveCount = RandomNumberGenerator.generateRandomNumber();
         if (moveCount >= MOVE_LOWER_BOUND) {
