@@ -3,7 +3,7 @@ package racingcar.domain.cars;
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +14,7 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         validate(cars);
-        this.cars = new HashSet<>(cars);
+        this.cars = new LinkedHashSet<>(cars);
     }
 
     private void validate(List<Car> cars) {
