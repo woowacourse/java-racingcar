@@ -25,6 +25,7 @@ public class InputView {
 
     public static RepeatCount readRepeatCount() {
         String line = readLine(READ_ATTEMPT_NUMBER_MESSAGE);
+
         try {
             return new RepeatCount(line);
         } catch (IllegalArgumentException e) {
