@@ -58,7 +58,7 @@ class CarTest {
         Car car = new Car("test", 0);
 
         @ParameterizedTest(name = "{displayName} {index} ==> randomNumber : ''{0}''")
-        @ValueSource(ints = {0, 2})
+        @ValueSource(ints = {0, 2, 3})
         @DisplayName("랜덤 값이 4보다 작은 경우 멈춤")
         void Should_Success_랜덤값이_4보다_작은_경우(int number) {
             carService.runForward(car, number);
