@@ -12,10 +12,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(int number) {
-        if (number >= MOVED_LOWER_BOUND) {
-            position++;
-        }
+    public void move() {
+        position++;
     }
 
     public boolean hasSamePosition(int position) {

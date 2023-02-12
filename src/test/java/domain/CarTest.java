@@ -3,9 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.api.Test;
 
 class CarTest {
 
@@ -16,19 +14,14 @@ class CarTest {
         car = new Car("test");
     }
 
-    @DisplayName("0 ~ 3의 값일때는 움직이지 않는다.")
-    @ParameterizedTest
-    @CsvSource({"0", "1", "2", "3"})
-    void moveFailTest(int number) {
-        car.move(number);
-        assertThat(car.getPosition()).isEqualTo(0);
+    @Test
+    void moveTest() {
+        car.move();
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
-    @DisplayName("4 ~ 9의 값일때는 움직인다.")
-    @ParameterizedTest
-    @CsvSource({"4", "5", "6", "7", "8", "9"})
-    void moveSuccessTest(int number) {
-        car.move(number);
-        assertThat(car.getPosition()).isEqualTo(1);
+    @Test
+    void nameTest() {
+        assertThat(car.getName()).isEqualTo("test");
     }
 }

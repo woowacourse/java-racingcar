@@ -14,10 +14,6 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void move() {
-        cars.forEach(car -> car.move(RandomNumberGenerator.generate()));
-    }
-
     public Winners judgeWinners() {
         int maxPosition = findMaxPosition();
 

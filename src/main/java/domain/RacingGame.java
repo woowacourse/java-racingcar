@@ -7,6 +7,8 @@ import output.Outputs;
 
 public class RacingGame {
 
+    private static final int MOVED_LOWER_BOUND = 4;
+
     private final Cars cars;
     private final RepeatCount repeatCount;
 
@@ -25,8 +27,16 @@ public class RacingGame {
     }
 
     public Outputs race() {
-        cars.move();
-        return Outputs.from(cars);
+        List<Car> cars = this.cars.getCars();
+        cars.forEach(this::move);
+
+        return Outputs.from(this.cars);
+    }
+
+    private void move(Car car) {
+        if (RandomNumberGenerator.generate() >= MOVED_LOWER_BOUND) {
+            car.move();
+        }
     }
 
     public Winners getWinner() {
