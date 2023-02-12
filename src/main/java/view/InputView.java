@@ -3,10 +3,10 @@ package view;
 import java.util.Scanner;
 import utils.Validator;
 
-public class Input {
+public class InputView {
     private final Scanner scanner;
 
-    public Input() {
+    public InputView() {
         scanner = new Scanner(System.in);
     }
 

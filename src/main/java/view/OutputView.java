@@ -4,7 +4,7 @@ import domain.Car;
 import domain.Winner;
 import java.util.List;
 
-public class Output {
+public class OutputView {
     public static void printMessage(String message) {
         System.out.println(message);
     }

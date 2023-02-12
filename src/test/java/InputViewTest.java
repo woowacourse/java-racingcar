@@ -4,20 +4,20 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import domain.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import view.Input;
+import view.InputView;
 
-class InputTest {
-    Input input;
+class InputViewTest {
+    InputView inputView;
 
     @BeforeEach
     void setup() {
-        input = new Input();
+        inputView = new InputView();
     }
 
     @Test
     void getCarNamesTest() {
         String names = "포비,제나,제리";
-        assertThat(input.getCarNames(names)).containsExactly("포비", "제나", "제리");
+        assertThat(inputView.getCarNames(names)).containsExactly("포비", "제나", "제리");
     }
 
     @Test
@@ -39,7 +39,7 @@ class InputTest {
     @Test
     void getCarNamesDuplicateTest() {
         String names = "포비,제리,제리";
-        assertThatThrownBy(() -> input.getCarNames(names))
+        assertThatThrownBy(() -> inputView.getCarNames(names))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] : ", "중복");
 
@@ -48,13 +48,13 @@ class InputTest {
     @Test
     void getTryCountTest() {
         String n = "10";
-        assertThat(input.getTryCount(n)).isEqualTo(10);
+        assertThat(inputView.getTryCount(n)).isEqualTo(10);
     }
 
     @Test
     void getTryCountNegativeTest() {
         String n = "-123";
-        assertThatThrownBy(() -> input.getTryCount(n))
+        assertThatThrownBy(() -> inputView.getTryCount(n))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]", "숫자");
     }
@@ -62,7 +62,7 @@ class InputTest {
     @Test
     void getTryCountZeroTest() {
         String n = "0";
-        assertThatThrownBy(() -> input.getTryCount(n))
+        assertThatThrownBy(() -> inputView.getTryCount(n))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]", "1이상");
     }
@@ -70,7 +70,7 @@ class InputTest {
     @Test
     void getTryCountNonDigitTest() {
         String n = "abc";
-        assertThatThrownBy(() -> input.getTryCount(n))
+        assertThatThrownBy(() -> inputView.getTryCount(n))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]", "숫자");
     }
