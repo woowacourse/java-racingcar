@@ -17,6 +17,11 @@ public class Name {
         validateCarNameLength(name);
         validateBlankCarName(name);
     }
+    private void validateCarNameLength(String name) {
+        if(name.length() >= MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
+        }
+    }
 
     private void validateBlankCarName(String name) {
         if(name.isBlank()) {
@@ -24,11 +29,6 @@ public class Name {
         }
     }
 
-    private void validateCarNameLength(String name) {
-        if(name.length() >= MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
-        }
-    }
 
     public String getName() {
         return name;
