@@ -8,10 +8,10 @@ public class RacingGame {
     private final Cars cars;
     private final Count count;
 
-    public RacingGame(final NumberGenerator numberGenerator, final List<String> names, final int count) {
+    public RacingGame(final NumberGenerator numberGenerator, final Cars cars, final Count count) {
         this.numberGenerator = numberGenerator;
-        this.cars = new Cars(names);
-        this.count = new Count(count);
+        this.cars = cars;
+        this.count = count;
     }
 
     public void play() {

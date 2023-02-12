@@ -1,7 +1,10 @@
 package racingcar.controller;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import racingcar.domain.Cars;
+import racingcar.domain.Count;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
@@ -24,17 +27,17 @@ public class RacingGameController {
     }
 
     private RacingGame generateGame() {
-        final List<String> carNames = retry(inputView::readCarNames);
-        final int count = retry(inputView::readCount);
-        return new RacingGame(new RandomNumberGenerator(), carNames, count);
+        final Cars cars = retry(Cars::new, inputView::readCarNames);
+        final Count count = retry(Count::new, inputView::readCount);
+        return new RacingGame(new RandomNumberGenerator(), cars, count);
     }
 
-    public <T> T retry(final Supplier<T> supplier) {
+    public <T, R> R retry(final Function<T, R> function, final Supplier<T> supplier) {
         try {
-            return supplier.get();
+            return function.apply(supplier.get());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return retry(supplier);
+            return retry(function, supplier);
         }
     }
 
