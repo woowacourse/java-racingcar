@@ -6,7 +6,7 @@ import static racingcar.exception.ErrorMessages.CARS_SIZE_EXCEPTION;
 import static racingcar.exception.ErrorMessages.CAR_NAME_DUPLICATE_EXCEPTION;
 
 public class Cars {
-    private final Set<Car> cars = new LinkedHashSet<>();
+    final Set<Car> cars = new LinkedHashSet<>();
 
     public void generateCars(List<String> carNames) {
         validateCarsSizeOneOrZero(carNames);
@@ -41,7 +41,7 @@ public class Cars {
         cars.clear();
     }
 
-    private void generateCar(String name) {
+    void generateCar(String name) {
         Car newCar = new Car(name);
         validateDuplicatedCarName(newCar);
         cars.add(newCar);
@@ -54,7 +54,7 @@ public class Cars {
         }
     }
 
-    private void validateDuplicatedCarName(Car newCar) {
+    void validateDuplicatedCarName(Car newCar) {
         if (cars.contains(newCar)) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
         }
