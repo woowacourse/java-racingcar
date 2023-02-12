@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
 
@@ -30,5 +31,12 @@ class CarsTest {
         List<Car> firstPosition = cars.decideWinners();
 
         assertThat(firstPosition).containsOnly(boxster, sonata);
+    }
+
+    @Test
+    @DisplayName("Cars 리스트가 비어있다면 예외")
+    void constructorEx() {
+        assertThatThrownBy(() -> new Cars(List.of()))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
