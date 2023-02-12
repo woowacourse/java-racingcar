@@ -17,7 +17,7 @@ public class CarsFactory {
 
     private static List<Car> makeCars(String carNames) {
         return Arrays.stream(splitCarNames(carNames))
-                .map(carName -> makeCar(carName))
+                .map(CarsFactory::makeCar)
                 .collect(Collectors.toList());
     }
 
