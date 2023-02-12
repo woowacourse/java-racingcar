@@ -10,7 +10,6 @@ import static racingcar.exception.ExceptionMessage.BLANK_CAR_NAME;
 import static racingcar.exception.ExceptionMessage.OUT_OF_CAR_NAME_LENGTH;
 
 class NameTest {
-
     @ParameterizedTest
     @ValueSource(strings = {"carca24r", "dfjaksl", "dkfsiqrfjkvsj", "125231242"})
     @DisplayName("이름 길이가 6보다 커서는 안 된다.")
