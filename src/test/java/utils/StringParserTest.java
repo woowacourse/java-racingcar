@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class StringParserTest {
     @Test
-    void parseTest1() {
+    void parseTest() {
         //given
         String input = "pobi,crong,honux";
 
@@ -20,7 +20,7 @@ class StringParserTest {
     }
 
     @Test
-    void parseTest2() {
+    void parseBlankTest() {
         //given
         String input = "a,,,";
 
