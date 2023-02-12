@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingCar.FixedNumberGenerator;
 import racingCar.dto.CarDto;
-import racingCar.util.NumberGenerator;
 import racingCar.util.RandomNumberGenerator;
 
 import java.util.*;
@@ -91,20 +91,5 @@ class CarGroupTest {
         List<String > winnerNames = carGroup.findWinners().stream().map(CarDto::getName).collect(Collectors.toList());
 
         Assertions.assertThat(winnerNames).containsAll(List.of("a", "b", "c"));
-    }
-
-}
-
-class FixedNumberGenerator implements NumberGenerator {
-
-    private final int fixedNumber;
-
-    public FixedNumberGenerator(int fixedNumber) {
-        this.fixedNumber = fixedNumber;
-    }
-
-    @Override
-    public int generateNumber() {
-        return fixedNumber;
     }
 }
