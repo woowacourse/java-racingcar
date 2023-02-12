@@ -19,7 +19,7 @@ public class TryCount {
     private int validateTryCount(final String inputCount) {
         int tryCount = Integer.parseInt(inputCount);
 
-        if(tryCount <= EXCEPTION_FLAG){
+        if (tryCount <= EXCEPTION_FLAG) {
             throw new IllegalArgumentException(ENTER_POSITIVE_INTEGER);
         }
 

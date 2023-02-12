@@ -1,6 +1,6 @@
 package domain;
 
-public class RacingCar{
+public class RacingCar {
     private static final int MIN_THROTTLE_THRESHOLD = 4;
     private final Name name;
     private final ThrottleGenerator throttleGenerator;
@@ -11,7 +11,7 @@ public class RacingCar{
         this.throttleGenerator = new RandomThrottleGenerator();
     }
 
-    public RacingCar(final Name name, final ThrottleGenerator throttleGenerator){
+    public RacingCar(final Name name, final ThrottleGenerator throttleGenerator) {
         this.name = name;
         this.throttleGenerator = throttleGenerator;
     }
