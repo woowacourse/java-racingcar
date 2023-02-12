@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 import static domain.Car.BLANK;
 import static domain.Car.MAX_NAME_LENGTH;
+import static domain.TryCount.MIN_TRY_COUNT;
+import static domain.TryCount.TRY_COUNT_LIMIT;
 
 public class InputView {
 
@@ -35,7 +37,9 @@ public class InputView {
         System.out.println("시도할 회수는 몇회인가요?");
 
         Scanner scanner = new Scanner(System.in);
-        return new TryCount(scanner.nextInt());
+        int tryCount = scanner.nextInt();
+        validateTryCount(tryCount);
+        return new TryCount(tryCount);
     }
 
     private void validate(String name) {
@@ -54,6 +58,16 @@ public class InputView {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException("이름에 공백을 포함할 수 없습니다." +
                     "입력값 : " + name);
+        }
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (tryCount < MIN_TRY_COUNT) {
+            throw new IllegalArgumentException("시도 횟수는 양의 정수여야 합니다." +
+                    "입력값 : " + tryCount);
+        }
+        if (tryCount > TRY_COUNT_LIMIT) {
+            throw new IllegalArgumentException("시도할 회수는 " + TRY_COUNT_LIMIT +"회 이하여야 합니다.");
         }
     }
 }
