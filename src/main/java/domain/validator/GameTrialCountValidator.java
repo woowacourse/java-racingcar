@@ -8,6 +8,7 @@ public class GameTrialCountValidator {
 
     private static final int MIN_TRIAL_COUNT = 1;
     private static final String DIGIT_REGEX = "^[0-9]+$";
+    private static final Pattern NUMBER = Pattern.compile(DIGIT_REGEX);
 
     public static void validateTrialCount(String trialCount) {
         checkDigit(trialCount);
@@ -15,7 +16,7 @@ public class GameTrialCountValidator {
     }
 
     private static void checkDigit(String input) {
-        if (!Pattern.matches(DIGIT_REGEX, input)) {
+        if (!NUMBER.matcher(input).matches()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT_NUMBER.getErrorMessage());
         }
     }
