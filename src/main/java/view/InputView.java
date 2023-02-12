@@ -3,6 +3,7 @@ package view;
 import exception.BlankInputException;
 import exception.BlankNameException;
 import exception.DuplicateCarNameException;
+import exception.WrongNameLengthException;
 import exception.WrongRoundException;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -53,8 +54,11 @@ public class InputView {
     }
 
     private void validateCarName(String carName) {
-        if (carName.isBlank() || !validateNameLength(carName)) {
+        if (carName.isBlank()) {
             throw new BlankNameException();
+        }
+        if (!validateNameLength(carName)) {
+            throw new WrongNameLengthException();
         }
     }
 
