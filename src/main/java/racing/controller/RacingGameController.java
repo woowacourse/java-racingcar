@@ -9,22 +9,20 @@ import racing.view.InputView;
 import racing.view.OutputView;
 
 public class RacingGameController {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
 
     public void run() {
-        List<String> names = inputView.inputNames();
+        List<String> names = InputView.inputNames();
         Cars cars = new Cars(names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList()));
-        int tryCount = inputView.inputTryCount();
+        int tryCount = InputView.inputTryCount();
 
         RacingGame game = new RacingGame(tryCount, cars);
         while (!game.isEnd()) {
             game.playOneRound();
-            outputView.printRacing(cars);
+            OutputView.printRacing(cars);
         }
         List<String> winnerNames = game.getWinnerNames();
-        outputView.printWinners(winnerNames);
+        OutputView.printWinners(winnerNames);
     }
 }

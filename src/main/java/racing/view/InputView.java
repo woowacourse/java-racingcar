@@ -11,14 +11,14 @@ public class InputView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public List<String> inputNames() {
+    public static List<String> inputNames() {
         System.out.println(INPUT_NAMES);
         String input = SCANNER.next();
         return Arrays.stream(input.split(","))
                 .collect(Collectors.toList());
     }
 
-    public int inputTryCount() {
+    public static int inputTryCount() {
         System.out.println(INPUT_TRY_COUNT);
         return SCANNER.nextInt();
     }
