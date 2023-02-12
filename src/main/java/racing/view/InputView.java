@@ -20,6 +20,15 @@ public class InputView {
 
     public static int inputTryCount() {
         System.out.println(INPUT_TRY_COUNT);
-        return SCANNER.nextInt();
+        return inputNumber();
+    }
+
+    private static int inputNumber() {
+        try {
+            String input = SCANNER.next();
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        }
     }
 }
