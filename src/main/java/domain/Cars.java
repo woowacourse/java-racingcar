@@ -34,9 +34,11 @@ public class Cars {
 
     private int findMaxCountOfDistance() {
         int maxCountOfDistance = Integer.MIN_VALUE;
+
         for (final Car car : cars) {
             maxCountOfDistance = Math.max(car.getDistance(), maxCountOfDistance);
         }
+
         return maxCountOfDistance;
     }
 
