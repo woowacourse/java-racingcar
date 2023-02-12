@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
-import racingcar.domain.game.NumberGenerator;
 import racingcar.util.WinnerCarsHelper;
 
 import java.util.List;
@@ -15,6 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Cars 는 ")
 class CarsTest {
+
+    private static final int ONGOING_NUMBER = 4;
 
     @Test
     @DisplayName("String List를 받아 해당 이름을 가진 Car를 생성한다.")
@@ -50,7 +51,7 @@ class CarsTest {
                 .collect(Collectors.toList());
 
         // when
-        cars.move(new NumberGenerator(() -> 0.4));
+        cars.move(ONGOING_NUMBER, ONGOING_NUMBER);
 
         // then
         List<Car> afterMoveCars = cars.cars();
