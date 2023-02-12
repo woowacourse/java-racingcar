@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import model.car.Car;
-import model.car.CarRepository;
-import model.manager.CarMoveManager;
-import util.RandomNumberGenerator;
+import model.car.Stadium;
+import model.manager.ThresholdCarMoveManager;
 import view.InputView;
 import view.OutputView;
 
@@ -17,15 +15,13 @@ public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
     private final Map<GameStatus, Supplier<GameStatus>> gameGuide;
-    private final CarMoveManager carMoveManager;
-    private final CarRepository carRepository;
 
-    public MainController(InputView inputView, OutputView outputView, CarMoveManager carMoveManager) {
+    private Stadium stadium;
+
+    public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.carMoveManager = carMoveManager;
         this.gameGuide = initializeGameGuide();
-        this.carRepository = new CarRepository();
     }
 
     private Map<GameStatus, Supplier<GameStatus>> initializeGameGuide() {
@@ -50,6 +46,8 @@ public class MainController {
             return gameStatus;
         } catch (NullPointerException exception) {
             return GameStatus.APPLICATION_EXIT;
+        } catch (Exception exception){
+            return GameStatus.APPLICATION_EXIT;
         }
     }
 
@@ -57,23 +55,20 @@ public class MainController {
         int moveCount = inputView.readMoveCount();
         outputView.printResultMessage();
         moveAllCars(moveCount);
-        outputView.printWinners(carRepository.getWinners());
+        outputView.printWinners(stadium.getWinners());
         return GameStatus.APPLICATION_EXIT;
     }
 
     private GameStatus setCars() {
         List<String> carNames = inputView.readCarNames();
-        carNames.stream()
-                .map(Car::new)
-                .forEach(carRepository::addCar);
+        stadium = new Stadium(carNames, new ThresholdCarMoveManager());
         return GameStatus.MOVE_CARS;
     }
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            carRepository.cars()
-                    .forEach(car -> car.move(carMoveManager.isMove(RandomNumberGenerator.getRandomNumber())));
-            outputView.printResult(carRepository.cars());
+            stadium.moveAllCarsOnce();
+            outputView.printResult(stadium.getCurrentResult());
         }
     }
 

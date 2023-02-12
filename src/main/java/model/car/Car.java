@@ -10,8 +10,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(boolean isMove) {
-        if (isMove) {
+    public void move(boolean isMoveForward) {
+        if (isMoveForward) {
             position++;
         }
     }
