@@ -25,6 +25,12 @@ public class InputViewTest extends OutputTestStream {
     }
 
     @Test
+    void 공백있는_차이름_입력시_공백_제거하는_테스트(){
+        testInputConsole.setCarNames("땡칠 ,호이 ,달리 ,루쿠  ,저문 , 아마란스");
+        assertThat(inputView.inputCarNames()).contains("땡칠", "호이", "달리", "루쿠", "저문", "아마란스");
+    }
+
+    @Test
     @DisplayName("시도 회수 입력 테스트")
     void 시도_횟수_입력_테스트() {
         testInputConsole.setTestTrialCount("10");
