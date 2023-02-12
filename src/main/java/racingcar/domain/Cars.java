@@ -7,7 +7,7 @@ import racingcar.dto.CarPositionDto;
 
 public class Cars {
 
-    public static final String DUPLICATE_NAME_EXCEPTION = "중복된 이름이 존재합니다.";
+    private static final String DUPLICATE_NAME_EXCEPTION = "중복된 이름이 존재합니다.";
     private static final String NO_CAR_EXCEPTION = "차가 존재하지 않습니다";
     private static final String NO_MAX_VALUE_EXCEPTION = "최대값이 존재하지 않습니다";
 

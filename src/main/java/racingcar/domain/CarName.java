@@ -2,7 +2,7 @@ package racingcar.domain;
 
 final class CarName {
 
-    public static final int MAX_LENGTH = 5;
+    private static final int MAX_LENGTH = 5;
     private static final String NAME_ERROR_MESSAGE = "이름의 길이가 초과되었습니다";
     private static final String NAME_NULL_MESSAGE = "이름이 null입니다.";
 

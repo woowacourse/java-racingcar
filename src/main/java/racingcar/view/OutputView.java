@@ -5,8 +5,8 @@ import racingcar.dto.CarPositionDto;
 
 public class OutputView {
 
-    public static final String WINNER_GUIDE_MESSAGE = "가 최종 우승했습니다.";
-    public static final String WINNER_DELIMITER = ", ";
+    private static final String WINNER_GUIDE_MESSAGE = "가 최종 우승했습니다.";
+    private static final String WINNER_DELIMITER = ", ";
     private static final String STATUS_GUIDE_MESSAGE = "실행 결과";
     private static final String COLON = " : ";
     private static final String CAR_POSITION = "-";
