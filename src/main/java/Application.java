@@ -1,5 +1,6 @@
 import controller.RacingGame;
 import view.InputView;
+import view.ResultView;
 
 public class Application {
     public static void main(String[] args) {
@@ -8,6 +9,6 @@ public class Application {
 
         RacingGame racingGame = new RacingGame(carNames, tryCount);
         racingGame.start();
-        // TODO: 레이싱 결과 출력
+        ResultView.printWinners(racingGame.getWinners());
     }
 }
