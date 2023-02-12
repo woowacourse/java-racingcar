@@ -23,10 +23,8 @@ public class RacingGameService {
         }
     }
 
-    public void move(Long trial) {
-        for (int i = 0; i < trial; i++) {
+    public void move() {
             cars.move();
-        }
     }
 
     public List<String> retrieveMoveResults() {

@@ -23,9 +23,11 @@ public class Controller {
     private void playGame() {
         Long trial = receiveTrialInput();
         OutputView.printResultMessage();
-        racingGameService.move(trial);
-        List<String> moveResult = racingGameService.retrieveMoveResults();
-        OutputView.printMoveResult(moveResult);
+        for (int i = 0; i < trial; i++) {
+            racingGameService.move();
+            List<String> moveResult = racingGameService.retrieveMoveResults();
+            OutputView.printMoveResult(moveResult);
+        }
     }
 
     private Long receiveTrialInput() {
