@@ -2,15 +2,15 @@ import java.util.Scanner;
 
 public class Input {
     Validate validate;
-    Scanner sc;
+    Scanner scanner;
 
     public Input() {
         validate = new Validate();
-        sc = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     public String getInput() {
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 
     public String[] getCarNames(String input) {

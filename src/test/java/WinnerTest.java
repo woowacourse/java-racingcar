@@ -1,10 +1,9 @@
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 class WinnerTest {
     static Car car1;
@@ -20,9 +19,15 @@ class WinnerTest {
         List<Car> cars = new ArrayList<>();
 
         winner = new Winner();
-        while (car1.getDistance() != 5) car1.move();
-        while (car2.getDistance() != 4) car2.move();
-        while (car3.getDistance() != 5) car3.move();
+        while (car1.getDistance() != 5) {
+            car1.move();
+        }
+        while (car2.getDistance() != 4) {
+            car2.move();
+        }
+        while (car3.getDistance() != 5) {
+            car3.move();
+        }
 
         cars.add(car1);
         cars.add(car2);
@@ -34,7 +39,7 @@ class WinnerTest {
     @Test
     void findWinnerNamesTest() {
         assertThat(winner.getWinnerNames().toArray())
-                .containsExactly(car1.getName(),car3.getName());
+                .containsExactly(car1.getName(), car3.getName());
     }
 
     @Test

@@ -11,7 +11,7 @@ public class Winner {
 
     private int findMaxDistance(List<Car> cars) {
         int maxDistance = cars.stream()
-                .mapToInt(car-> car.getDistance())
+                .mapToInt(car -> car.getDistance())
                 .max().orElse(0);
         return maxDistance;
     }
@@ -19,8 +19,8 @@ public class Winner {
     public void findWinnerNames(List<Car> cars) {
         int maxDistance = findMaxDistance(cars);
         winnerNames = cars.stream()
-                .filter(car ->car.getDistance() == maxDistance)
-                .map(car->car.getName()).collect(Collectors.toList());
+                .filter(car -> car.getDistance() == maxDistance)
+                .map(car -> car.getName()).collect(Collectors.toList());
     }
 
     @Override
