@@ -11,15 +11,9 @@ public class Stadium {
     private final Cars cars;
     private final CarMoveManager carMoveManager;
 
-    public Stadium(List<String> carNames, CarMoveManager carMoveManager) {
-        this.cars = new Cars(createCars(carNames));
+    public Stadium(Cars cars, CarMoveManager carMoveManager) {
+        this.cars = cars;
         this.carMoveManager = carMoveManager;
-    }
-
-    public List<Car> createCars(List<String> carNames) {
-        return carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
     }
 
     public List<Car> getCurrentResult() {
@@ -43,7 +37,7 @@ public class Stadium {
     private int getMaxPosition() {
         return cars.getCars()
                 .stream()
-                .mapToInt(car -> car.getPosition())
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
     }

@@ -4,7 +4,10 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
+import model.car.Car;
+import model.car.Cars;
 import model.car.Stadium;
 import model.manager.ThresholdCarMoveManager;
 import view.InputView;
@@ -15,13 +18,13 @@ public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
     private final Map<GameStatus, Supplier<GameStatus>> gameGuide;
-
     private Stadium stadium;
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.gameGuide = initializeGameGuide();
+        //this.stadium = new Stadium(new ThresholdCarMoveManager());
     }
 
     private Map<GameStatus, Supplier<GameStatus>> initializeGameGuide() {
@@ -46,9 +49,18 @@ public class MainController {
             return gameStatus;
         } catch (NullPointerException exception) {
             return GameStatus.APPLICATION_EXIT;
-        } catch (Exception exception){
+        } catch (Exception exception) {
             return GameStatus.APPLICATION_EXIT;
         }
+    }
+
+    private GameStatus setCars() {
+        List<String> carNames = inputView.readCarNames();
+        Cars cars = new Cars(carNames.stream()
+                .map(carName -> new Car(carName))
+                .collect(Collectors.toList()));
+        this.stadium = new Stadium(cars, new ThresholdCarMoveManager());
+        return GameStatus.MOVE_CARS;
     }
 
     private GameStatus moveCars() {
@@ -57,12 +69,6 @@ public class MainController {
         moveAllCars(moveCount);
         outputView.printWinners(stadium.getWinners());
         return GameStatus.APPLICATION_EXIT;
-    }
-
-    private GameStatus setCars() {
-        List<String> carNames = inputView.readCarNames();
-        stadium = new Stadium(carNames, new ThresholdCarMoveManager());
-        return GameStatus.MOVE_CARS;
     }
 
     private void moveAllCars(int moveCount) {
