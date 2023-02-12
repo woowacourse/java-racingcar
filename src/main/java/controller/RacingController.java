@@ -10,18 +10,19 @@ import java.util.List;
 public class RacingController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
+    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public void run() {
         Cars carsInfo = setUpCarName();
         int tryCount = setUpTryCount();
-        progressRacingGame(tryCount, carsInfo, new RandomNumberGenerator());
+        progressRacingGame(tryCount, carsInfo);
     }
 
-    public void progressRacingGame(int tryCount, Cars carsInfo, RandomNumberGenerator randomNumberGenerator) {
+    public void progressRacingGame(int tryCount, Cars carsInfo) {
         RoundResult roundResult = new RoundResult();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
-            progressRound(carsInfo, randomNumberGenerator, roundResult);
+            progressRound(carsInfo, roundResult);
             outputView.printCurrentResult(carsInfo.getCars());
         }
         List<String> winners = carsInfo.findWinners();
@@ -50,7 +51,10 @@ public class RacingController {
         }
     }
 
-    private void progressRound(Cars carsInfo, RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
-        carsInfo.progressRound(randomNumberGenerator, roundResult);
+    private void progressRound(Cars carsInfo, RoundResult roundResult) {
+        carsInfo.progressRound(
+                randomNumberGenerator.generateBoundaryNumbers(carsInfo.getCount()),
+                roundResult
+        );
     }
 }
