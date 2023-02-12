@@ -20,7 +20,7 @@ public class Cars {
     }
 
     public Map<String, Integer> getCarsState() {
-        Map<String, Integer> carsState = new HashMap<>();
+        Map<String, Integer> carsState = new LinkedHashMap<>();
         for (Car car : cars) {
             carsState.put(car.getName(), car.getPosition());
         }
