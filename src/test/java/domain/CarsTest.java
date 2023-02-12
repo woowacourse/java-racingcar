@@ -1,76 +1,89 @@
 package domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("자동차들이 ")
 class CarsTest {
+    private Cars defaultCars;
 
-    @DisplayName("이름 길이가 1000만자 이상이면 예외 발생")
-    @Test
-    void lengthTest() {
-        assertThatThrownBy(() -> Cars.from("a".repeat(10000001)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력값은 최대 1000만 글자여야 합니다");
+    @BeforeEach
+    void beforeEach() {
+        defaultCars  = Cars.from(List.of(
+                "abc",
+                "def",
+                "ghi"
+        ));
     }
 
-    @DisplayName("이름에 중복이 있으면 예외 발생")
+    @DisplayName("이름에 중복이 있으면 예외 발생 O")
     @Test
     void duplicateTest() {
-        assertThatThrownBy(() -> Cars.from("hihi,hihi"))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> Cars.from(List.of(
+                "hi",
+                "hi"
+        ))).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("차 이름은 중복될 수 없습니다");
     }
 
-    @ParameterizedTest(name = "총 길이가 1000만자 이하면 예외 발생 안함")
-    @ValueSource(strings = {"abc,bd", "차이름,%!"})
-    void lengthTest2(String input) {
-        assertThatNoException().isThrownBy(()->Cars.from(input));
-    }
 
-    @DisplayName("현재의 위치를 반환한다.")
+    @DisplayName("처음 초기화하면 현재의 위치(0)를 반환한다")
     @Test
-    void getResultTest() {
-        Cars cars = Cars.from("abc,def,ghi");
+    void getCarsPosition_자동차_이름_위치를_LinkedHashMap으로_반환한다2() {
         Map<String, Integer> expected = new LinkedHashMap<>();
         expected.put("abc", 0);
         expected.put("def", 0);
         expected.put("ghi", 0);
-        assertThat(cars.getResult()).isEqualTo(expected);
+
+        assertThat(defaultCars.getCarsPosition()).isEqualTo(expected);
     }
 
-    @DisplayName("4 ~ 9 사이의 값을 입력받으면 전진한다")
+    @DisplayName("move는_각_자동차의_move메서드를_호출한다")
     @Test
-    void moveTest() {
-        Cars cars = Cars.from("abc,def,ghi");
-        cars.move(new TestMovingPolicy());
+    void move_각_자동차의_move메서드를_호출한다() {
+        defaultCars.move(new TestNumberGenerator(4, 9, 3));
+
         Map<String, Integer> expected = new LinkedHashMap<>();
         expected.put("abc", 1);
         expected.put("def", 1);
         expected.put("ghi", 0);
-        assertThat(cars.getResult()).isEqualTo(expected);
+
+        assertThat(defaultCars.getCarsPosition()).isEqualTo(expected);
     }
 
-    @DisplayName("가장 많이 전진하면 승자가 된다.")
+    @DisplayName("가장 많이 전진(모든 차가 위치가 0인 경우)하면 승자가 된다.")
     @Test
-    void getWinnersTest() {
-        Cars cars = Cars.from("abc,def,ghi");
-        cars.move(new TestMovingPolicy());
-        assertThat(cars.getWinners()).containsExactly("abc", "def");
+    void identifyWinners_위치가_가장_큰_자동차들_이름_반환1() {
+        assertThat(defaultCars.identifyWinners()).containsExactly("abc", "def", "ghi");
     }
 
-    private class TestMovingPolicy implements MovingPolicy {
-        private int num = 5;
+    @DisplayName("가장 많이 전진(모든 차가 위치가 0이 아닌 경우)하면 승자가 된다.")
+    @Test
+    void identifyWinners_위치가_가장_큰_자동차들_이름_반환2() {
+        defaultCars.move(new TestNumberGenerator(3, 5, 9));
+        assertThat(defaultCars.identifyWinners()).containsExactly("def", "ghi");
+    }
+
+    private class TestNumberGenerator implements NumberGenerator {
+        private Iterator<Integer> iterator;
+
+        public TestNumberGenerator(int... sequence) {
+            iterator = Arrays.stream(sequence).iterator();
+        }
+
         @Override
-        public int decide() {
-            return num--;
+        public int generate() {
+            if (!iterator.hasNext()) {
+                throw new IllegalArgumentException();
+            }
+            return iterator.next();
         }
     }
 }

@@ -3,59 +3,63 @@ package domain;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toUnmodifiableList;
+
 public class Cars {
-    private static final int MAX_INPUT_LENGTH = 10_000_000;
-    private static final String INVALID_INPUT_LENGTH_MESSAGE = "입력값은 최대 1000만 글자여야 합니다";
-    private static final String DUPLICATE_CAR_NAMES = "차 이름은 중복될 수 없습니다";
+    private static final String DUPLICATE_CAR_NAMES_ERROR_MESSAGE = "차 이름은 중복될 수 없습니다";
+    private static final String EMPTY_CARS_ERROR_MESSAGE = "자동차가 존재하지 않습니다.";
 
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    private Cars(String names) {
-        validate(names);
-        init(names);
+    private Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public static Cars from(String names) {
-        return new Cars(names);
+    public static Cars from(List<String> names) {
+        validateDuplicate(names);
+        return names.stream()
+                .map(Car::new)
+                .collect(collectingAndThen(toUnmodifiableList(), Cars::new));
     }
 
-    public void move(MovingPolicy movingPolicy) {
-        cars.forEach(car -> car.move(movingPolicy.decide()));
+    private static void validateDuplicate(List<String> names) {
+        if (new HashSet<>(names).size() != names.size()) {
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAMES_ERROR_MESSAGE);
+        }
     }
 
-    public List<String> getWinners() {
-        Car winner = cars.stream().max(Car::compareTo).get();
+    private static int generateNumber(NumberGenerator numberGenerator) {
+        return numberGenerator.generate();
+    }
+
+    public void move(NumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(generateNumber(numberGenerator)));
+    }
+
+    public List<String> identifyWinners() {
+        Car winner = identifyWinner();
 
         return cars.stream()
-                .filter(car -> car.compareTo(winner) == 0)
+                .filter(car -> isWinner(car, winner))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    public Map<String, Integer> getResult() {
-        LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
+    private Car identifyWinner() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalStateException(EMPTY_CARS_ERROR_MESSAGE));
+    }
+
+    private boolean isWinner(Car car, Car winner) {
+        return car.compareTo(winner) == 0;
+    }
+
+    public Map<String, Integer> getCarsPosition() {
+        Map<String, Integer> result = new LinkedHashMap<>();
         cars.forEach(car -> result.put(car.getName(), car.getPosition()));
 
         return result;
-    }
-
-    private void validate(String names) {
-        if (names.length() > MAX_INPUT_LENGTH)
-            throw new IllegalArgumentException(INVALID_INPUT_LENGTH_MESSAGE);
-
-        List<String> splitNames = parseInput(names);
-        if (new HashSet<>(splitNames).size() != splitNames.size())
-            throw new IllegalArgumentException(DUPLICATE_CAR_NAMES);
-    }
-
-    private void init(String input) {
-        parseInput(input).stream()
-                .map(Car::new)
-                .forEach(cars::add);
-    }
-
-    private List<String> parseInput(String input) {
-        return Arrays.stream(input.split(","))
-                .collect(Collectors.toList());
     }
 }
