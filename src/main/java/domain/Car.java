@@ -1,5 +1,7 @@
 package domain;
 
+import dto.CarDto;
+
 public class Car {
 
     private final String name;
@@ -15,10 +17,6 @@ public class Car {
         moveCount++;
     }
 
-    public int getMoveCount() {
-        return moveCount;
-    }
-
     public boolean canMove(int generatedNumber, int minMoveNumber) {
         return generatedNumber >= minMoveNumber;
     }
@@ -27,13 +25,12 @@ public class Car {
         return moveCount == maxMoveCount;
     }
 
-    public String getName() {
-        return name;
+    public int getMoveCount() {
+        return moveCount;
     }
 
-    @Override
-    public String toString() {
-        return name + " : " + "-".repeat(moveCount);
+    public CarDto toCarDto() {
+        return new CarDto(name, moveCount);
     }
 
     private static void validate(String name) {
