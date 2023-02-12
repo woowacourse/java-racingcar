@@ -9,10 +9,12 @@ public class RacingGame {
 
     private final CarGroup carGroup;
     private final RandomNumberGenerator numberGenerator;
+    private final int movingTrial;
 
-    public RacingGame(String[] names) {
-        this.carGroup = new CarGroup(names);
+    public RacingGame(CarGroup group, int movingTrial) {
         this.numberGenerator = new RandomNumberGenerator();
+        this.carGroup = group;
+        this.movingTrial = movingTrial;
     }
 
     //TODO: 테스트

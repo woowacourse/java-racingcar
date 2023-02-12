@@ -2,31 +2,52 @@ package racing.controller;
 
 import java.io.IOException;
 
+import racing.domain.CarGroup;
 import racing.domain.RacingGame;
-import racing.handler.InputHandler;
+import racing.view.InputView;
 import racing.view.OutputView;
 
 public class RacingGameController {
 
-    private final InputHandler inputHandler;
+    private final InputView inputView;
     private final OutputView outputView;
 
     public RacingGameController() {
-        this.inputHandler = new InputHandler();
+        this.inputView = new InputView();
         this.outputView = new OutputView();
     }
 
     public void run() throws IOException {
-        String[] carNames = inputHandler.readCars();
-        int movingTrial = inputHandler.readMovingTrial();
+        CarGroup carGroup = createCarGroup();
+        int movingTrial = createMovingTrial();
 
-        RacingGame racingGame = new RacingGame(carNames);
+        RacingGame racingGame = new RacingGame(carGroup, movingTrial);
 
         outputView.printNotice();
         raceWithHistory(movingTrial, racingGame);
         outputView.printWinner(racingGame.produceRacingResult().pickWinner());
     }
 
+    private CarGroup createCarGroup() throws IOException {
+        try {
+            String[] carNames = inputView.readCarNames();
+            return new CarGroup(carNames);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createCarGroup();
+        }
+    }
+
+    private int createMovingTrial() {
+        try {
+            return inputView.readMovingTrial();
+        } catch (IllegalArgumentException | IOException e) {
+            System.out.println(e.getMessage());
+            return createMovingTrial();
+        }
+    }
+
+    //TODO: movingTrial을 RacingGame으로 이동
     private void raceWithHistory(int movingTrial, RacingGame racingGame) {
         for (int i = 0; i < movingTrial; i++) {
             racingGame.race();
