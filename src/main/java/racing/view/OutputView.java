@@ -1,22 +1,19 @@
 package racing.view;
 
-import racing.dto.GameResultDto;
-
-import java.util.List;
+import racing.domain.Car;
+import racing.domain.RacingGame;
 
 public class OutputView {
 
-    public static void printRacing(GameResultDto resultDto) {
-        for (String name : resultDto.getNames()) {
-            int position = resultDto.getPosition(name);
-            String positionView = "-".repeat(position);
-            System.out.printf("%s : %s\n", name, positionView);
+    public static void printRacing(RacingGame racingGame) {
+        for (Car car : racingGame.getResult()) {
+            System.out.println(car);
         }
         System.out.println();
     }
 
-    public static void printWinners(List<String> names) {
-        String winners = String.join(", ", names);
+    public static void printWinners(RacingGame racingGame) {
+        String winners = String.join(", ", racingGame.getWinners());
         System.out.printf("%s가 최종 우승했습니다.\n", winners);
     }
 }
