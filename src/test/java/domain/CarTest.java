@@ -3,6 +3,7 @@ package domain;
 import exception.CarNameLengthException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -15,13 +16,26 @@ class CarTest {
         car1 = new Car("car1");
     }
 
-    @Test
-    @DisplayName("이동을 1번 했을 때 position은 1")
-    void move() {
-        car1.move(4);
+    @Nested
+    @DisplayName("전진과 멈춤에 대한 테스트")
+    class Move {
+        @Test
+        @DisplayName("move의 입력값이 4로 전진한 경우")
+        void case1() {
+            car1.move(4);
 
-        assertThat(car1.getPosition()).isEqualTo(1);
+            assertThat(car1.getPosition()).isEqualTo(1);
+        }
+
+        @Test
+        @DisplayName("move의 입력값이 3으로 전진하지 않은 경우")
+        void case2() {
+            car1.move(3);
+
+            assertThat(car1.getPosition()).isEqualTo(0);
+        }
     }
+
 
     @Test
     @DisplayName("자동차의 이름이 길면 예외를 던짐")
