@@ -45,5 +45,4 @@ class CarsTest {
         assertThat(winners.size()).isEqualTo(1).as("우승자는 1명이어야 한다.");
     }
 
-
 }

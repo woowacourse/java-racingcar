@@ -40,5 +40,4 @@ public class OutputView {
         System.out.println(WINNER_ANNOUNCEMENT);
     }
 
-
 }

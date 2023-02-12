@@ -54,5 +54,4 @@ public class Car {
         return new CarDto(this.name, this.movedCount);
     }
 
-
 }

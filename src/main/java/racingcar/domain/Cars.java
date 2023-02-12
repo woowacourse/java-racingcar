@@ -34,7 +34,7 @@ public class Cars {
         cars.forEach(car -> carDtos.add(car.getStatus()));
         return carDtos;
     }
-
+    
     public List<CarDto> getWinner() {
         List<CarDto> carStatuses = this.getStatuses();
         int winnerCount = INITIAL_WINNER_COUNT;
