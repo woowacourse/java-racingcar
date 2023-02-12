@@ -28,7 +28,7 @@ public class RacingCarController {
 
     private void playRacing(Cars cars, TryCount tryCount) {
         for (int count = 1; count <= tryCount.getTryCount(); count++) {
-            cars.moveCars();
+            cars.move();
             OutputView.printCarPosition(cars.toDtos());
         }
     }

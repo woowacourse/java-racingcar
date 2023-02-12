@@ -38,7 +38,7 @@ public class Cars {
         }
     }
 
-    public void moveCars() {
+    public void move() {
         for (Car car : cars) {
             car.move(NumberPicker.pickNumberInRange(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE));
         }
