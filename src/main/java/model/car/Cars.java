@@ -15,7 +15,10 @@ public class Cars {
     }
 
     private void validate(List<Car> cars){
-
+        List<String> carNames = cars.stream()
+                .map(car -> car.getName())
+                .collect(Collectors.toList());
+        CarNameValidator.validate(carNames);
     }
 
     public List<Car> getCars() {
