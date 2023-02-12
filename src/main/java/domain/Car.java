@@ -14,7 +14,7 @@ public class Car {
 
     public void move(final int power) {
         if (power >= MIN_BOUNDARY_POWER) {
-            this.distance.addDistance();
+            this.distance.increaseDistance();
         }
     }
 

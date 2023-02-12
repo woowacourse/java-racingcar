@@ -8,7 +8,7 @@ public class Distance {
         this.distance = distance;
     }
 
-    public void addDistance() {
+    public void increaseDistance() {
         this.distance++;
     }
 
