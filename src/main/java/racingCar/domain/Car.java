@@ -4,7 +4,7 @@ import racingCar.dto.CarDto;
 
 public class Car {
 
-    private static final int MOVE_MIN_NUM = 4;
+    private static final int MIN_POWER = 4;
 
     private CarName name;
     private Position position;
@@ -14,14 +14,14 @@ public class Car {
         position = new Position(initPosition);
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= MOVE_MIN_NUM) {
+    public void move(int power) {
+        if (power >= MIN_POWER) {
             position.increase();
         }
     }
 
-    public boolean isSamePosition(int other) {
-        return position.getPosition() == other;
+    public boolean isSamePosition(int otherPosition) {
+        return position.getPosition() == otherPosition;
     }
 
     public String getName() {
