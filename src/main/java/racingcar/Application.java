@@ -1,10 +1,9 @@
 package racingcar;
 
-import java.util.List;
+import racingcar.domain.Cars;
+import racingcar.domain.Count;
 import racingcar.domain.NumberPicker;
-import racingcar.domain.RacingCars;
 import racingcar.domain.RandomNumberPicker;
-import racingcar.dto.CreateRacingCarsDto;
 import racingcar.util.Repeat;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -12,24 +11,19 @@ import racingcar.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        RacingCars racingCars = initializeRacingCars();
-        race(racingCars);
-        OutputView.printWinner(racingCars.findWinner());
+        Cars cars = Repeat.repeatIfError(() -> new Cars(InputView.inputCarName()), OutputView::printErrorMessage);
+        Count count = Repeat.repeatIfError(() -> new Count(InputView.inputTryCount()), OutputView::printErrorMessage);
+        race(cars, count);
+        OutputView.printWinner(cars.findWinner());
     }
 
-    private static RacingCars initializeRacingCars() {
-        return Repeat.repeatIfError(Application::createRacingCars, OutputView::printErrorMessage);
-    }
 
-    private static RacingCars createRacingCars() {
-        List<String> carNames = InputView.inputCarName();
-        int tryCount = InputView.inputTryCount();
-        return new RacingCars(new CreateRacingCarsDto(tryCount, carNames));
-    }
-
-    private static void race(RacingCars racingCars) {
-        OutputView.printStatusGuide();
-        racingCars.race(numberPicker(), OutputView::printStatus);
+    private static void race(Cars cars, Count tryCount) {
+        while (!tryCount.isFinished()) {
+            cars.moveCars(numberPicker());
+            OutputView.printStatus(cars.toDto());
+            tryCount.next();
+        }
     }
 
 
