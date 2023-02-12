@@ -18,14 +18,15 @@ public class Cars {
         cars.forEach(car -> car.move(RandomNumberGenerator.generate()));
     }
 
-    public Cars judgeWinners() {
+    public Winners judgeWinners() {
         int maxPosition = findMaxPosition();
 
-        List<Car> winner = cars.stream()
+        List<String> winners = cars.stream()
                 .filter(car -> car.hasSamePosition(maxPosition))
+                .map(Car::getName)
                 .collect(Collectors.toList());
 
-        return new Cars(winner);
+        return new Winners(winners);
     }
 
     private int findMaxPosition() {

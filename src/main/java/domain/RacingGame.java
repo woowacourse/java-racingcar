@@ -29,7 +29,7 @@ public class RacingGame {
         return Outputs.from(cars);
     }
 
-    public Cars getWinner() {
+    public Winners getWinner() {
         return cars.judgeWinners();
     }
 }

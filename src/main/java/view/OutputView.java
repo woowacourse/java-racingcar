@@ -1,10 +1,8 @@
 package view;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import domain.Car;
-import domain.Cars;
+import domain.Winners;
 import output.Output;
 import output.Outputs;
 
@@ -38,11 +36,8 @@ public class OutputView {
         return DASH.repeat(position);
     }
 
-    public static void printWinners(Cars winners) {
-        List<String> carNames = winners.getCars()
-                .stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
+    public static void printWinners(Winners winners) {
+        List<String> carNames = winners.getWinners();
 
         String winner = String.join(DELIMITER, carNames);
         System.out.printf(PRINT_WINNER_FORMAT, winner);

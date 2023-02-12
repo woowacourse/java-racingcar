@@ -1,9 +1,9 @@
 package controller;
 
-import domain.Cars;
 import domain.Names;
 import domain.RacingGame;
 import domain.RepeatCount;
+import domain.Winners;
 import output.Outputs;
 import view.InputView;
 import view.OutputView;
@@ -21,7 +21,7 @@ public class RacingCarController {
             OutputView.printOutputs(outputs);
         }
 
-        Cars winners = racingGame.getWinner();
+        Winners winners = racingGame.getWinner();
         OutputView.printWinners(winners);
     }
 }

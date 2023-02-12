@@ -11,7 +11,7 @@ class CarsTest {
     private static final int FORWARD = 4;
 
     @Test
-    void judgeWinner() {
+    void judgeWinnersTest() {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         Car carC = new Car("carC");
@@ -20,9 +20,9 @@ class CarsTest {
         carC.move(FORWARD);
 
         Cars cars = new Cars(List.of(carA, carB, carC));
-        Cars winner = cars.judgeWinners();
+        Winners winners = cars.judgeWinners();
 
-        assertThat(winner.getCars())
-                .containsExactly(carB, carC);
+        assertThat(winners.getWinners())
+                .containsExactly("carB", "carC");
     }
 }
