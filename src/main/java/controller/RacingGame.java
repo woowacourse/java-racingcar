@@ -8,11 +8,11 @@ import utils.RandomNumberGenerator;
 import view.ResultView;
 
 public class RacingGame {
-    private List<Car> cars;
+    private final List<Car> cars;
     private int tryCount;
 
     public RacingGame(String[] carNames, int tryCount) {
-        initCars(carNames);
+        this.cars = generateCars(carNames);
         this.tryCount = tryCount;
     }
 
@@ -32,11 +32,12 @@ public class RacingGame {
                 .collect(Collectors.toList());
     }
 
-    private void initCars(String[] carNames) {
-        cars = new ArrayList<>();
+    private List<Car> generateCars(String[] carNames) {
+        final List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
+        return cars;
     }
 
     private boolean isEnd() {
