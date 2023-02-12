@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import racingcar.dto.CarDto;
 import racingcar.util.IntGenerator;
-import racingcar.util.RandomIntGenerator;
+import racingcar.util.RacingCarIntGenerator;
 
 public class Car {
 
@@ -18,7 +18,7 @@ public class Car {
     public Car(String name) {
         validateName(name);
         this.name = name;
-        this.intGenerator = new RandomIntGenerator();
+        this.intGenerator = new RacingCarIntGenerator();
     }
 
     public Car(String name, IntGenerator intGenerator) {
