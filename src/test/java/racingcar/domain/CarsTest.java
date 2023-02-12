@@ -73,18 +73,4 @@ class CarsTest {
         assertThat(result.get(2).getPosition()).isEqualTo(0);
     }
 
-
-    static class TestNumberGenerator implements NumberGenerator {
-
-        private final List<Integer> numbers;
-
-        public TestNumberGenerator(List<Integer> numbers) {
-            this.numbers = numbers;
-        }
-
-        @Override
-        public int generate() {
-            return numbers.remove(0);
-        }
-    }
 }

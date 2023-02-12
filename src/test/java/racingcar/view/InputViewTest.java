@@ -13,8 +13,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewTest {
 
-
-
     @ParameterizedTest
     @ValueSource(strings = {"r", "ㄱ", ",", "0", "\n"})
     @DisplayName("시도 횟수 사용자 입력 값이 올바른 지 검증하는 테스트")
