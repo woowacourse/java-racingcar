@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -13,15 +14,8 @@ import util.CarNameValidator.Message;
 
 class CarNameValidatorTest {
 
-    private CarNameValidator carNameValidator;
-
-    @BeforeEach
-    void setUp() {
-        carNameValidator = new CarNameValidator();
-    }
-
-
     @Nested
+    @DisplayName("비정상 입력값이 들어온 케이스")
     class invalidInputTest {
 
         @Test
@@ -29,7 +23,7 @@ class CarNameValidatorTest {
         void carNumberTest() {
             List<String> names = new ArrayList<>(List.of("깃짱"));
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> carNameValidator.validate(names))
+                    .isThrownBy(() -> CarNameValidator.validate(names))
                     .withMessage(Message.EXCEPTION_CAR_NUMBER.getMessage());
         }
 
@@ -38,19 +32,20 @@ class CarNameValidatorTest {
         void carNameLengthTest() {
             List<String> names = new ArrayList<>(List.of("깃짱", "이리내이리내"));
             assertThatIllegalArgumentException()
-                    .isThrownBy(() -> carNameValidator.validate(names))
+                    .isThrownBy(() -> CarNameValidator.validate(names))
                     .withMessage(Message.EXCEPTION_CAR_NAME_LENGTH.getMessage());
         }
 
     }
 
     @Nested
+    @DisplayName("정상 입력값이 들어온 케이스")
     class validInputTest {
         @Test
         @DisplayName("올바른 입력값이 들어왔을 때 잘 작동하는지 검사한다.")
         void 정상_입력() {
             List<String> names = new ArrayList<>(List.of("깃짱", "이리내"));
-            assertThatCode(() -> carNameValidator.validate(names))
+            assertThatCode(() -> CarNameValidator.validate(names))
                     .doesNotThrowAnyException();
         }
 

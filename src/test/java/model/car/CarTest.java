@@ -17,6 +17,7 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("자동차가 처음에 위치가 0으로 올바르게 초기화 되는지 검사한다.")
     void initialPositionTest() {
         Assertions.assertEquals(gitJjang.getPosition(), 0);
         Assertions.assertEquals(irene.getPosition(), 0);
