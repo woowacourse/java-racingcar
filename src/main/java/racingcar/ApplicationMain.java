@@ -1,6 +1,8 @@
 package racingcar;
 
-public class ApplicationController {
+import racingcar.controller.GameController;
+
+public class ApplicationMain {
 
     public static void main(String[] args) {
         try {
