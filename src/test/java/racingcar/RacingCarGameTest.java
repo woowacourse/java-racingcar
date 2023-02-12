@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.controller.RacingCarController;
 import racingcar.domain.GameManager;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RandomNumberGenerator;
@@ -22,7 +23,7 @@ class RacingCarGameTest {
 	NumberGenerator numberGenerator;
 	OutputView outputView;
 	InputView inputView;
-	GameManager gameManager;
+	RacingCarController racingCarController;
 
 	InputStream inputStream;
 	PrintStream outputStream;
@@ -48,9 +49,11 @@ class RacingCarGameTest {
 		numberGenerator = new RandomNumberGenerator();
 		outputView = new OutputView();
 		inputView = new InputView();
-		gameManager = new GameManager(inputView, outputView, numberGenerator);
+		racingCarController = new RacingCarController(inputView, outputView, numberGenerator);
 
-		gameManager.playGame();
+		racingCarController.newCarNames();
+		racingCarController.newGameRound();
+		racingCarController.play();
 
 		assertThat(out.toString()).contains("최종 우승했습니다.");
 	}
@@ -69,12 +72,13 @@ class RacingCarGameTest {
 		numberGenerator = new RandomNumberGenerator();
 		outputView = new OutputView();
 		inputView = new InputView();
-		gameManager = new GameManager(inputView, outputView, numberGenerator);
+		racingCarController = new RacingCarController(inputView, outputView, numberGenerator);
 
-		gameManager.playGame();
-		String gameTotalMessage = out.toString();
+		racingCarController.newCarNames();
+		racingCarController.newGameRound();
+		racingCarController.play();
 
-		assertThat(gameTotalMessage).contains("[ERROR]",  "최종 우승했습니다.");
+		assertThat(out.toString()).contains("[ERROR]",  "최종 우승했습니다.");
 	}
 
 	static Stream<Arguments> playGameExceptionDummy() {
