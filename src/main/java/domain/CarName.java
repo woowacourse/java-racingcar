@@ -31,7 +31,7 @@ public class CarName {
         }
     }
 
-    public String getCarName() {
+    public String get() {
         return carName;
     }
 }
