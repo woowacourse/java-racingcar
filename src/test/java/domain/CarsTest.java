@@ -66,9 +66,9 @@ class CarsTest {
         List<String> winnerNames = cars.getWinnerNames();
 
         // then
-        assertThat(winnerNames).containsOnly(pobi.getName());
+        assertThat(winnerNames).containsOnly(pobi.getCarName());
         assertThat(winnerNames.size()).isEqualTo(1);
-        assertThat(winnerNames).doesNotContain(crong.getName());
+        assertThat(winnerNames).doesNotContain(crong.getCarName());
     }
 
     @Test

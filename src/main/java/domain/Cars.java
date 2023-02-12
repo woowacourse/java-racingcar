@@ -44,7 +44,7 @@ public class Cars {
 
     private void addWinnerName(List<String> winnerNames, final Car car, final int maxCountOfDistance) {
         if (car.getDistance() == maxCountOfDistance) {
-            winnerNames.add(car.getName());
+            winnerNames.add(car.getCarName());
         }
     }
 
@@ -52,7 +52,7 @@ public class Cars {
         Map<String, Integer> carAndDistanceStatus = new HashMap<>();
 
         for (final Car car : cars) {
-            carAndDistanceStatus.put(car.getName(), car.getDistance());
+            carAndDistanceStatus.put(car.getCarName(), car.getDistance());
         }
 
         return carAndDistanceStatus;

@@ -15,6 +15,11 @@ public class CarNamesValidation {
         validateDuplicatedCarName(input);
     }
 
+    public static void validateCarName(String carName) {
+        validateCountOfCars(carName);
+        validateLengthOfCarName(carName);
+    }
+
     private static void validateCountOfCars(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("자동차를 한 대 이상 작성해주세요.");
