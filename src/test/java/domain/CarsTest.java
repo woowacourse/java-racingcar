@@ -39,8 +39,9 @@ class CarsTest {
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 0, 6, 7));
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++) {
             cars.moveForRound(testNumberGenerator);
+        }
 
         assertThat(cars.getWinners()).isEqualTo("ocean");
     }
@@ -54,8 +55,9 @@ class CarsTest {
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 9, 6, 6));
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++) {
             cars.moveForRound(testNumberGenerator);
+        }
 
         assertThat(cars.getWinners()).isEqualTo("ocean, jamie");
     }
