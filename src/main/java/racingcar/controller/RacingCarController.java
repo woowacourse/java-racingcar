@@ -1,14 +1,10 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.Cars;
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumberGenerator;
+import racingcar.domain.*;
 import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,7 +69,7 @@ public class RacingCarController {
     }
 
     private void prizeWinner(Cars cars) {
-        List<String> winnersName = cars.getWinnerCarsName();
+        List<String> winnersName = WinnerMaker.getWinnerCarsName(cars.getLatestResult());
         OutputView.printFinalResult(winnersName);
     }
 }

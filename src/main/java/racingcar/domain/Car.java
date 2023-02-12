@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.constant.ErrorConstant;
-import racingcar.dto.CarStatus;
 
 public class Car {
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;

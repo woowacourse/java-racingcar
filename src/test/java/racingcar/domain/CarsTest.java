@@ -37,7 +37,7 @@ class CarsTest {
 
     @Nested
     @DisplayName("우승자들의 이름을 제대로 추출하는지 검증한다")
-    class GetWinnersTest {
+    class GetWinnerMakerTest {
         @Test
         @DisplayName("모두의 위치가 같은 경우 모두가 우승자가 된다")
         void allCarsAreWinner() {

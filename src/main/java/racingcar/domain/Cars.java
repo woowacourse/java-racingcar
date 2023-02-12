@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.constant.ErrorConstant;
-import racingcar.dto.CarStatus;
 
 import java.util.Collections;
 import java.util.List;
