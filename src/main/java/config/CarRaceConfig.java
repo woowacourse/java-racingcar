@@ -12,8 +12,7 @@ import view.OutputView;
 public class CarRaceConfig {
 
     public static CarRaceController config() {
-        return new CarRaceController(new InputView(), new OutputView(),
-            makeValidator());
+        return new CarRaceController(new InputView(), new OutputView(), makeValidator());
     }
 
     private static InputValidationChain makeValidator() {
