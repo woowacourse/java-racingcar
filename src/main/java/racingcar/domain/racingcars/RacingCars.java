@@ -1,4 +1,4 @@
-package racingcar.domain.carrepository;
+package racingcar.domain.racingcars;
 
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CarRepository {
+public class RacingCars {
     private static final int MIN_NUMBER_OF_CARS = 2;
     private static final int MOVING_CONDITION = 4;
 
     private final List<Car> racingCars;
 
-    public CarRepository(List<Car> racingCars) {
+    public RacingCars(List<Car> racingCars) {
         validate(racingCars);
         this.racingCars = racingCars;
     }

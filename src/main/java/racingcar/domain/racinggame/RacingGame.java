@@ -1,21 +1,21 @@
-package racingcar.domain.system;
+package racingcar.domain.racinggame;
 
-import racingcar.domain.carrepository.CarRepository;
+import racingcar.domain.racingcars.RacingCars;
 import racingcar.domain.numbergenerator.NumberGenerator;
-import racingcar.domain.result.Result;
+import racingcar.domain.gameresult.GameResult;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GameSystem {
+public class RacingGame {
 
     private static final int MINIMUM_GAME_ROUND = 1;
 
     private final int gameRound;
     private final NumberGenerator numberGenerator;
 
-    public GameSystem(int gameRound, NumberGenerator numberGenerator) {
+    public RacingGame(int gameRound, NumberGenerator numberGenerator) {
         validateGameRound(gameRound);
         this.gameRound = gameRound;
         this.numberGenerator = numberGenerator;
@@ -27,11 +27,11 @@ public class GameSystem {
         }
     }
 
-    public Result startRace(CarRepository carRepository) {
+    public GameResult startRace(RacingCars racingCars) {
         List<Map<String, Integer>> results = new ArrayList<>();
         for (int i = 0; i < gameRound; i++) {
-            results.add(carRepository.moveCars());
+            results.add(racingCars.moveCars());
         }
-        return new Result(results);
+        return new GameResult(results);
     }
 }
