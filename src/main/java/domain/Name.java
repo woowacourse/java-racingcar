@@ -3,7 +3,7 @@ package domain;
 import error.ErrorMessage;
 
 public class Name {
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
@@ -14,7 +14,9 @@ public class Name {
 
     private void validate(String name) {
         if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH.getValue());
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.INVALID_NAME_LENGTH.getValue(), MAX_NAME_LENGTH)
+            );
         }
     }
 
