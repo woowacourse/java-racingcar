@@ -1,7 +1,7 @@
 import controller.RaceController;
 import controller.RaceState;
 
-public class RacingRunner {
+public class RaceApplication {
 
     public static void main(String[] args) {
         RaceApplicationConfig config = new RaceApplicationConfig();
