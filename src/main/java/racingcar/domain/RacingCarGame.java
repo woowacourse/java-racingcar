@@ -12,9 +12,9 @@ public class RacingCarGame {
         CarRepository.updateCars(CarFactory.from(carNames));
     }
 
-    public void race(MoveStrategy moveStrategy) {
+    public void race(Movement movement) {
         for (Car car : CarRepository.findAll()) {
-            car.move(moveStrategy);
+            car.move(movement);
         }
     }
 

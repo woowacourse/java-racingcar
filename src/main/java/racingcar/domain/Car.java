@@ -19,8 +19,8 @@ public class Car {
         this.position = position;
     }
 
-    public void move(MoveStrategy moveStrategy) {
-        if (moveStrategy.isMovable()) {
+    public void move(Movement movement) {
+        if (movement.isMovable()) {
             position += MOVING_DISTANCE;
         }
     }
