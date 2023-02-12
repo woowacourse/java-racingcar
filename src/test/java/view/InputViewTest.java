@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static domain.Car.MAX_NAME_LENGTH;
-import static domain.TryCount.TRY_COUNT_LIMIT;
+import static model.domain.Car.MAX_NAME_LENGTH;
+import static model.domain.TryCount.TRY_COUNT_LIMIT;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 

@@ -1,6 +1,6 @@
-package dto.response;
+package model.dto.response;
 
-import domain.Car;
+import model.domain.Car;
 
 import java.util.Collections;
 import java.util.List;

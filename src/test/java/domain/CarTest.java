@@ -1,10 +1,11 @@
 package domain;
 
+import model.domain.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static domain.Car.MAX_NAME_LENGTH;
-import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
+import static model.domain.Car.MAX_NAME_LENGTH;
+import static model.domain.Car.MINIMUM_NUMBER_TO_MOVE;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {

@@ -1,6 +1,6 @@
-package domain;
+package model.domain;
 
-import utils.NumberGenerator;
+import controller.utils.NumberGenerator;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,8 +1,8 @@
-package config;
+package controller.config;
 
-import application.RacingGameApplication;
-import utils.NumberGenerator;
-import utils.RandomNumberGenerator;
+import controller.application.RacingGameApplication;
+import controller.utils.NumberGenerator;
+import controller.utils.RandomNumberGenerator;
 import view.InputView;
 import view.InputViewForRetry;
 import view.OutputView;

@@ -1,4 +1,4 @@
-package domain;
+package model.domain;
 
 public class TryCount {
 

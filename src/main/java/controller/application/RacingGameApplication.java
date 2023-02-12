@@ -1,12 +1,12 @@
-package application;
+package controller.application;
 
-import domain.Car;
-import domain.Cars;
-import utils.NumberGenerator;
-import domain.TryCount;
-import dto.request.CarNameDto;
-import dto.response.CarStatusDto;
-import dto.response.WinnersNameDto;
+import model.domain.Car;
+import model.domain.Cars;
+import controller.utils.NumberGenerator;
+import model.domain.TryCount;
+import model.dto.request.CarNameDto;
+import model.dto.response.CarStatusDto;
+import model.dto.response.WinnersNameDto;
 import view.InputViewForRetry;
 import view.OutputView;
 

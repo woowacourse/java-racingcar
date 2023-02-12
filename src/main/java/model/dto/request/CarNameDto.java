@@ -1,4 +1,4 @@
-package dto.request;
+package model.dto.request;
 
 public class CarNameDto {
 

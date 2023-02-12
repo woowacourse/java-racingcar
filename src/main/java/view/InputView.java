@@ -1,17 +1,17 @@
 package view;
 
-import domain.TryCount;
-import dto.request.CarNameDto;
+import model.domain.TryCount;
+import model.dto.request.CarNameDto;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import static domain.Car.BLANK;
-import static domain.Car.MAX_NAME_LENGTH;
-import static domain.TryCount.MIN_TRY_COUNT;
-import static domain.TryCount.TRY_COUNT_LIMIT;
+import static model.domain.Car.BLANK;
+import static model.domain.Car.MAX_NAME_LENGTH;
+import static model.domain.TryCount.MIN_TRY_COUNT;
+import static model.domain.TryCount.TRY_COUNT_LIMIT;
 
 public class InputView {
 

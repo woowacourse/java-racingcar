@@ -1,7 +1,7 @@
 package view;
 
-import domain.TryCount;
-import dto.request.CarNameDto;
+import model.domain.TryCount;
+import model.dto.request.CarNameDto;
 
 import java.util.InputMismatchException;
 import java.util.List;
