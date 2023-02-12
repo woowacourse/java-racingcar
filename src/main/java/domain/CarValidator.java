@@ -1,10 +1,6 @@
 package domain;
 
 import validation.ErrorMessage;
-import validation.Validator;
-
-import java.util.List;
-import java.util.regex.Pattern;
 
 public class CarValidator {
     private static final int MAX_NAME_LENGTH = 5;

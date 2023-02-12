@@ -1,7 +1,6 @@
 package view;
 
 import utils.Parser;
-import validation.Validator;
 
 import java.util.List;
 import java.util.Scanner;
