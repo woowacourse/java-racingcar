@@ -48,6 +48,7 @@ public class RacingcarController {
     }
 
     public void finish() {
-        carService.finishService();
+        OutputView.printRoundResult(carService.finishRound());
+        OutputView.printWinners(carService.finishGame());
     }
 }

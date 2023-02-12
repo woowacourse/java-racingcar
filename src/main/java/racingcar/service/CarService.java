@@ -8,7 +8,6 @@ import racingcar.constants.CarConstant;
 import racingcar.constants.InputConstant;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.view.OutputView;
 
 public class CarService {
     private Cars cars = new Cars(new ArrayList<Car>());
@@ -54,32 +53,17 @@ public class CarService {
         }
     }
 
-    public void finishService() {
+    public LinkedHashMap<String, Integer> finishRound() {
+        LinkedHashMap<String, Integer> roundResult = new LinkedHashMap<>();
         for (Car car : cars.getCarInformation()) {
-            OutputView.printCarResult(car.getName(), car.getDistance());
+            roundResult.put(car.getName(), car.getDistance());
         }
-        findWinner();
-        OutputView.printWinners(winner);
+        return roundResult;
+
     }
 
-    private void findWinner() {
-        int maxDistance = findMaxDistance();
-        for (Car car : cars.getCarInformation()) {
-            compareDistance(car, maxDistance);
-        }
-    }
-
-    private int findMaxDistance() {
-        int maxDistance = -1;
-        for (Car car : cars.getCarInformation()) {
-            maxDistance = Math.max(car.getDistance(), maxDistance);
-        }
-        return maxDistance;
-    }
-
-    private void compareDistance(Car car, int maxDistance) {
-        if (maxDistance == car.getDistance()) {
-            winner.add(car.getName());
-        }
+    public List<String> finishGame() {
+        List<String> winner = cars.findWinner(cars.findMaxDistance());
+        return winner;
     }
 }
