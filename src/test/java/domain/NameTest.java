@@ -7,8 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static domain.Name.BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE;
 import static domain.Name.NAME_LENGTH_EXCEPTION_MESSAGE;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.*;
 
 class NameTest {
 
@@ -27,17 +26,18 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {"lenSix", "reallyLongName"})
         void fail_by_name_length_exception(String wrongLengthName) {
-            assertThatIllegalArgumentException().isThrownBy(() -> new Name(wrongLengthName))
-                    .withMessageContaining(NAME_LENGTH_EXCEPTION_MESSAGE);
+            assertThatThrownBy(() -> new Name(wrongLengthName))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(NAME_LENGTH_EXCEPTION_MESSAGE);
         }
 
         @DisplayName("이름에 공백이 포함되면 예외를 발생시킨다.")
         @ParameterizedTest
         @ValueSource(strings = {" ", " car", "car "})
         void fail_by_contain_blank(String nameContainingBlank) {
-            assertThatIllegalArgumentException().isThrownBy(() -> new Name(nameContainingBlank))
-                    .withMessageContaining(BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE);
+            assertThatThrownBy(() -> new Name(nameContainingBlank))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(BLANK_CONTAIN_NAME_EXCEPTION_MESSAGE);
         }
     }
-
 }
