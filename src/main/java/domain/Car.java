@@ -14,9 +14,8 @@ public class Car {
         this.position = Position.of(0L);
     }
 
-    public static Car of(String name) {
-        CarName carName = CarName.of(name);
-        return new Car(carName);
+    public static Car of(CarName name) {
+        return new Car(name);
     }
 
     public String getName() {

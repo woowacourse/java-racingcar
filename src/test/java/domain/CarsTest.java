@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.RandomNumberGenerator;
+import vo.CarName;
 import vo.Position;
 
 import java.util.ArrayList;
@@ -15,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
     Cars cars;
-    Car car = Car.of("test");
-    Car foxCar = Car.of("fox");
+    Car car = Car.of(CarName.of("test"));
+    Car foxCar = Car.of(CarName.of("fox"));
 
     @Test
     @DisplayName("차 추가 테스트")

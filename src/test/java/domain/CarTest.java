@@ -17,7 +17,7 @@ class CarTest {
     void givenName_whenMakingCar_thenReturnsCar() {
         String expected = "test";
 
-        Car car = Car.of(expected);
+        Car car = Car.of(CarName.of(expected));
 
         String result = car.getName();
         assertThat(result).isEqualTo(expected);
@@ -26,7 +26,7 @@ class CarTest {
     @Test
     @DisplayName("Car 이름이 5글자 넘으면 예외발생")
     void givenNameHavingInvalidLength_whenMakingCar_thenThrowsException() {
-        assertThatThrownBy(() -> Car.of("testTest"))
+        assertThatThrownBy(() -> Car.of(CarName.of("testTest")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(CarName.INVALID_NAME_LENGTH_EXCEPTION_MESSAGE);
     }
@@ -34,7 +34,7 @@ class CarTest {
     @ParameterizedTest(name = "move() 메소드를 호출하여, 주어진 power 값({0})에 따라 position의 전진 여부 테스트")
     @CsvSource(value = {"4,1", "3,0"})
     void givenCar_whenMovingCar_thenAddsPosition(int power, long expected) {
-        Car car = Car.of("test");
+        Car car = Car.of(CarName.of("test"));
 
         car.move(power);
 

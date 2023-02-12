@@ -1,5 +1,7 @@
 package vo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class CarName {
@@ -15,6 +17,12 @@ public class CarName {
     public static CarName of(String name) {
         validateName(name);
         return new CarName(name);
+    }
+
+    public static List<CarName> of(List<String> names) {
+        ArrayList<CarName> carNames = new ArrayList<>();
+        names.forEach(name -> carNames.add(CarName.of(name)));
+        return carNames;
     }
 
     public String getValue() {
