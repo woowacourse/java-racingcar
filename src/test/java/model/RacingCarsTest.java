@@ -8,25 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import service.NumberGenerator;
+import service.TestMoveNumberGenerator;
+import service.TestNotMoveNumberGenerator;
 
 class RacingCarsTest {
-
-    static class TestMoveNumberGenerator implements NumberGenerator {
-
-        @Override
-        public int generateNumber(int maxNumber) {
-            return 4;
-        }
-    }
-
-    static class TestNotMoveNumberGenerator implements NumberGenerator {
-
-        @Override
-        public int generateNumber(int maxNumber) {
-            return 3;
-        }
-    }
 
     @Test
     @DisplayName("차 이름이 중복되면 예외가 발생한다")
