@@ -14,9 +14,12 @@ public class RacingGame {
         this.count = new Count(count);
     }
 
-    public List<Car> play() {
+    public void play() {
         cars.move(numberGenerator);
         count.decrease();
+    }
+
+    public List<Car> getCurrentResult() {
         return cars.getCars();
     }
 

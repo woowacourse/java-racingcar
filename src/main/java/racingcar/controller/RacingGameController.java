@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
@@ -42,8 +41,8 @@ public class RacingGameController {
     private void play(final RacingGame racingGame) {
         outputView.printResultMessage();
         while (racingGame.isPlayable()) {
-            final List<Car> cars = racingGame.play();
-            outputView.printPosition(cars);
+            racingGame.play();
+            outputView.printPosition(racingGame.getCurrentResult());
         }
     }
 
