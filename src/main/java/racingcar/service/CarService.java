@@ -47,8 +47,8 @@ public class CarService {
         return roundResult;
     }
 
-    public void runForward(Car car, int move) {
-        if (move >= CarConstant.MOVE_CRITERIA.getNumber()) {
+    public void runForward(Car car, int engine) {
+        if (engine >= CarConstant.MOVE_CRITERIA.getNumber()) {
             car.increaseDistance();
         }
     }
