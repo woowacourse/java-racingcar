@@ -5,6 +5,7 @@ import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.FinalRoundChecker;
 import racingcar.domain.RandomValueGenerator;
+import racingcar.domain.Rule;
 import racingcar.domain.ValueGenerator;
 
 import java.util.List;
@@ -32,15 +33,15 @@ public class RacingCarService {
     }
 
     public boolean isEnd() {
-        return finalRoundChecker.isFinal(cars.getTurnCount());
+        return finalRoundChecker.isFinal(cars.getCurrentRound());
     }
 
     public void playRound() {
         ValueGenerator randomValueGenerator = new RandomValueGenerator();
 
         do {
-            int value = randomValueGenerator.generate();
-            cars.addNextCarValue(value);
+            int power = randomValueGenerator.generate();
+            cars.moveNextCarWith(power, Rule.MOVING_FORWARD_STANDARD);
         } while (!cars.isRoundOver());
     }
 

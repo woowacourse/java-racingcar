@@ -21,12 +21,12 @@ public class Cars {
         this.cars = List.copyOf(cars);
     }
 
-    public void addNextCarValue(int value) {
+    public void moveNextCarWith(int power, Rule rule) {
         if (isRoundOver()) {
-            cars.get(FIRST_INDEX).addValue(value);
+            cars.get(FIRST_INDEX).moveWith(power, rule);
             return;
         }
-        getCurrentTurnCar().get().addValue(value);
+        getCurrentTurnCar().get().moveWith(power, rule);
     }
 
     public boolean isRoundOver() {
@@ -35,10 +35,10 @@ public class Cars {
     }
 
     private Optional<Car> getCurrentTurnCar() {
-        int size = cars.get(FIRST_INDEX).getLogSize();
+        int firstCarTurnCount = cars.get(FIRST_INDEX).getTurnCount();
         Optional<Car> targetCar = cars
                 .stream()
-                .filter(car -> car.getLogSize() < size)
+                .filter(car -> car.getTurnCount() < firstCarTurnCount)
                 .findFirst();
 
         return targetCar;
@@ -52,11 +52,11 @@ public class Cars {
         return currentRoundResult;
     }
 
-    public int getTurnCount() {
+    public int getCurrentRound() {
         if (!isRoundOver()) {
             throw new IllegalStateException(ErrorMessage.ROUND_NOT_OVER.getMessage());
         }
-        return cars.get(FIRST_INDEX).getLogSize();
+        return cars.get(FIRST_INDEX).getTurnCount();
     }
 
     public List<String> getWinners() {
@@ -69,6 +69,6 @@ public class Cars {
     }
 
     private int getPosition(Car car) {
-        return car.getPosition(Rule.MOVING_FORWARD_STANDARD.getStep(), Rule.MOVING_FORWARD_STANDARD.getThreshold());
+        return car.getPosition();
     }
 }
