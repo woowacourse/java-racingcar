@@ -4,7 +4,9 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.TestDataManager;
+import racingcar.model.car.strategy.ForwardMovingStrategy;
 import racingcar.model.car.strategy.MovingStrategy;
+import racingcar.model.car.strategy.NotMovingStrategy;
 import racingcar.model.car.strategy.RandomMovingStrategy;
 import racingcar.util.ErrorMessage;
 
@@ -31,19 +33,17 @@ class CarsTest {
     @Test
     void movingCarsTest() {
         // given
-        Cars cars = TestDataManager.getCarsTestData();
-        List<Integer> expectedPosition = List.of(3, 1, 3);
+        Car crong = new Car("crong", new NotMovingStrategy());
+        Car pobi = new Car("pobi", new ForwardMovingStrategy());
+        Cars cars = new Cars(List.of(pobi, crong));
 
         // when
-        for (int i = 0; i < 2; i++) {
-            cars.moveCars();
-        }
-        List<Car> movedCars = cars.getCars();
+        cars.moveCars();
+        cars.moveCars();
 
         // then
-        assertThat(movedCars)
-                .extracting("position")
-                .isEqualTo(expectedPosition);
+        assertThat(pobi.matchPosition(3)).isTrue();
+        assertThat(crong.matchPosition(1)).isTrue();
     }
 
     @DisplayName("우승한 자동차 선별 테스트")
