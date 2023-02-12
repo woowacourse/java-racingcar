@@ -73,7 +73,7 @@ public class CarsTest {
         cars.move(numberGenerator);
 
         assertThat(cars.getCars())
-                .extracting("position")
+                .extracting(Car::getPosition)
                 .containsExactly(1, 0, 1);
     }
 
