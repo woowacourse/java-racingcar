@@ -27,15 +27,6 @@ public class RacingGameController {
         endGame();
     }
 
-    private void startEachGameRound() {
-        outputView.printResultMessage();
-        while (!gameRound.isEnd()) {
-            cars.moveCars();
-            gameRound.increaseRound();
-            outputView.printRoundResult(cars.getCarsState());
-        }
-    }
-
     private void createCars() {
         while (true) {
             try {
@@ -58,6 +49,15 @@ public class RacingGameController {
             } catch (Exception e) {
                 outputView.printErrorMessage(e.getMessage());
             }
+        }
+    }
+
+    private void startEachGameRound() {
+        outputView.printResultMessage();
+        while (!gameRound.isEnd()) {
+            cars.moveCars();
+            gameRound.increaseRound();
+            outputView.printRoundResult(cars.getCarsState());
         }
     }
 
