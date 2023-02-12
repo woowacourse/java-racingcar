@@ -8,6 +8,6 @@ public class NumberGenerator {
 
     public int generateRandomNumber() {
         Random random = new Random();
-        return random.nextInt(MAX_VALUE_OF_RANDOM_RANGE);
+        return random.nextInt(MAX_VALUE_OF_RANDOM_RANGE + 1);
     }
 }
