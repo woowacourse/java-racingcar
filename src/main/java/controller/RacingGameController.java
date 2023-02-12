@@ -37,7 +37,7 @@ public class RacingGameController {
 
     private List<RacingCar> createRacingCar(final List<Name> names) {
         return names.stream()
-                .map(RacingCar::new)
+                .map(RacingCar::createRandomMoveRacingCar)
                 .collect(toList());
     }
 

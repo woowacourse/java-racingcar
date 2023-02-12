@@ -14,8 +14,12 @@ public class RacingCar {
         this.picker = picker;
     }
 
-    public RacingCar(final Name name) {
+    private RacingCar(final Name name) {
         this(name.getName(), new RandomPicker());
+    }
+
+    public static RacingCar createRandomMoveRacingCar(final Name name) {
+        return new RacingCar(name);
     }
 
     public void move() {
