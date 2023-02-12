@@ -7,6 +7,8 @@ import racingcar.util.IntGenerator;
 
 public class Cars {
 
+    private static final int INITIAL_WINNER_COUNT = 0;
+
     List<Car> cars;
 
     public Cars(List<String> carNames) {
@@ -35,7 +37,7 @@ public class Cars {
     
     public List<CarDto> getWinner() {
         List<CarDto> carStatuses = this.getStatuses();
-        int winnerCount = 0;
+        int winnerCount = INITIAL_WINNER_COUNT;
         List<CarDto> winnerStatuses = new LinkedList<>();
         for (CarDto carStatus : carStatuses) {
             winnerCount = getMaxMovedCount(winnerCount, carStatus.getMovedCount());
@@ -54,10 +56,6 @@ public class Cars {
         if (carDto.getMovedCount() == winnerCount) {
             winners.add(carDto);
         }
-    }
-
-    public boolean isEmpty() {
-        return this.cars.isEmpty();
     }
 
 }

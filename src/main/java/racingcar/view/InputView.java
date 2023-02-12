@@ -14,7 +14,7 @@ public class InputView {
     private static final int MAXIMUM_TRY_COUNT = 9;
     public static final String DUPLICATE_NAME_ANNOUNCEMENT = "[ERROR] 이름은 중복될 수 없습니다. ";
     private static final String WRONG_TRY_COUNT_ANNOUNCEMENT = "[ERROR] 잘못된 시도 횟수입니다.";
-    public static final String NAME_SEPARATOR = ",";
+    private static final String NAME_SEPARATOR = ",";
 
     private Scanner scanner;
 
@@ -47,7 +47,7 @@ public class InputView {
     public int getTryCount() {
         int tryCount = inputTryCount();
         validateTryCount(tryCount);
-        scanner.nextLine(); //TODO : 직관적인 버퍼비우기 해결방법 찾아보기
+        scanner.nextLine();
         return tryCount;
     }
 
