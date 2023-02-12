@@ -48,7 +48,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("남은 게임 횟수가 1보다 큰 경우 게임을 지속한다.")
+    @DisplayName("남은 게임 횟수가 1보다 작은 경우 게임을 종료한다.")
     public void checkGameFinishCondition() {
         racingGame.run();
         racingGame.run();
@@ -67,5 +67,15 @@ class RacingGameTest {
         assertThat(racingGame.getWinners().contains(car1)).isFalse();
         assertThat(racingGame.getWinners().contains(car2)).isFalse();
         assertThat(racingGame.getWinners().contains(car3)).isTrue();
+    }
+
+    @Test
+    @DisplayName("가장 선두에 여러명인 경우, 공동 우승자가 발생한다.")
+    public void findAllWinners() {
+        car1.move();
+        car2.move();
+        car3.move();
+
+        assertThat(racingGame.getWinners().size()).isEqualTo(3);
     }
 }
