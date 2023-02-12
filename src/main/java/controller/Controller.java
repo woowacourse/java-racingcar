@@ -13,13 +13,14 @@ public class Controller {
 
     public void run() {
         Cars cars = new Cars(inputView.askCarNames());
-        Trial trial = inputView.askTrial();
+        Trial trial = new Trial(inputView.askTrial());
         doRace(cars, trial);
         outputView.printWinner(new Winner(cars));
     }
 
     private void doRace(Cars cars, Trial trial) {
-        for (int j = 0; j < trial.getTrial(); j++) {
+        while (trial.isRemainTrial()) {
+            trial.doTryOne();
             cars.addDistance(RandomNumberMaker.makeNumber(cars.getCarsSize()));
             outputView.printCarsDistance(cars);
         }
