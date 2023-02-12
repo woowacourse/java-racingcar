@@ -7,8 +7,49 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.RandomPowerMakerForFail;
+import util.RandomPowerMakerForSuccess;
 
 class CarsTest {
+
+    private final RandomPowerMakerForSuccess randomPowerMakerForSuccess = new RandomPowerMakerForSuccess();
+    private final RandomPowerMakerForFail randomPowerMakerForFail = new RandomPowerMakerForFail();
+
+    @Test
+    @DisplayName("moveAll() : 자동차가 모두 움직인다.")
+    void test_moveAll_success() {
+        // given
+        int defaultDistance = 0;
+        int expectedDistanceAfterMoveSuccess = 1;
+
+        Car pobi = new Car("pobi", defaultDistance);
+        Car crong = new Car("crong", defaultDistance);
+        Cars cars = new Cars(List.of(pobi, crong));
+
+        // when
+        cars.moveAll(randomPowerMakerForSuccess);
+
+        // then
+        assertThat(pobi.getDistance()).isEqualTo(expectedDistanceAfterMoveSuccess);
+    }
+
+    @Test
+    @DisplayName("moveAll() : 자동차가 모두 움직이지 않는다.")
+    void test_moveAll_fail() {
+        // given
+        int defaultDistance = 0;
+        int expectedDistanceAfterMoveSuccess = 1;
+
+        Car pobi = new Car("pobi", defaultDistance);
+        Car crong = new Car("crong", defaultDistance);
+        Cars cars = new Cars(List.of(pobi, crong));
+
+        // when
+        cars.moveAll(randomPowerMakerForFail);
+
+        // then
+        assertThat(pobi.getDistance()).isNotEqualTo(expectedDistanceAfterMoveSuccess);
+    }
 
     @Test
     @DisplayName("getWinner() : 가장 많이 움직인 자동차를 반환해준다.")

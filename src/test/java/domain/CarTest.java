@@ -19,7 +19,7 @@ public class CarTest {
         Car car = new Car("pobi", givenDistance);
 
         // when
-        car.tryMove(power);
+        car.move(power);
 
         // then
         assertThat(car.getDistance()).isEqualTo(expectedDistanceAfterMoveSuccess);
@@ -36,7 +36,7 @@ public class CarTest {
         Car car = new Car("pobi", givenDistance);
 
         // when
-        car.tryMove(power);
+        car.move(power);
 
         // then
         assertThat(car.getDistance()).isNotEqualTo(expectedDistanceAfterMoveSuccess);
