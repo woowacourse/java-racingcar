@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.carfactory.CarFactory;
 import racingcar.domain.cars.Cars;
+import racingcar.domain.numbergenerator.RandomSingleDigitGenerator;
 import racingcar.domain.record.GameRecordManager;
 import racingcar.domain.record.GameRecorder;
 import racingcar.domain.system.GameSystem;
@@ -25,7 +26,7 @@ public class GameController {
         Cars cars = makeCars(inputView.readCarNames());
 
         GameSystem gameSystem = createGameSystem(inputView.readGameRound());
-        gameSystem.executeRace(cars);
+        gameSystem.executeRace(cars, new RandomSingleDigitGenerator());
 
         outputView.printAllGameResults(gameSystem.getAllGameResult());
         outputView.printWinners(gameSystem.getWinnersGameResult());

@@ -1,7 +1,7 @@
 package racingcar.domain.system;
 
 import racingcar.domain.cars.Cars;
-import racingcar.domain.numbergenerator.RandomSingleDigitGenerator;
+import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.record.GameRecorder;
 import racingcar.domain.record.GameResultOfCar;
 
@@ -30,9 +30,9 @@ public class GameSystem {
         }
     }
 
-    public void executeRace(Cars cars) {
+    public void executeRace(Cars cars, NumberGenerator numberGenerator) {
         for (int gameRound = START_ROUND; gameRound <= finalRound; gameRound++) {
-            cars.moveBy(new RandomSingleDigitGenerator());
+            cars.moveBy(numberGenerator);
             recordGameResult(gameRound, cars);
         }
     }
