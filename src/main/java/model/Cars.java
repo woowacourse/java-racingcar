@@ -4,7 +4,6 @@ import util.NumberGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,9 +32,9 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    private int getMaxLocation() {
+    private Car getMaxLocation() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getLocation))
-                .get().getLocation();
+                .max(Car::compareTo)
+                .get();
     }
 }

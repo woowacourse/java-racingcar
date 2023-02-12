@@ -32,7 +32,11 @@ public class Car {
         return this.location;
     }
 
-    public boolean checkLocationEqual(int maxLocation) {
-        return this.location == maxLocation;
+    public boolean checkLocationEqual(Car car) {
+        return this.location == car.location;
+    }
+
+    public int compareTo(Car car) {
+        return this.location - car.location;
     }
 }
