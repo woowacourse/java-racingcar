@@ -8,7 +8,7 @@ import racingcar.model.car.strategy.NotMovingStrategy;
 import java.util.List;
 
 public class TestDataManager {
-    /*
+    /**
         position = 3 인 pobi, eddy
         position = 1 인 crong, 을 포함한 Cars를 반환
      */
@@ -20,10 +20,9 @@ public class TestDataManager {
         Car crong = new Car("crong", notMovingStrategy);
         Car eddy = new Car("eddy", movingStrategy);
 
-        return new Cars(List.of(
-                pobi,
-                crong,
-                eddy
-        ));
+        Cars cars = new Cars(List.of(pobi, crong, eddy));
+        cars.moveCars();
+        cars.moveCars();
+        return cars;
     }
 }
