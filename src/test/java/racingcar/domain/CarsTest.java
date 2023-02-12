@@ -30,11 +30,11 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("move 메서드는 자동차 경주를 1회 진행한다.")
-    void should_playRacingGame_when_move() {
+    @DisplayName("race 메서드는 자동차 경주를 1회 진행한다.")
+    void should_raceOneTime_when_race() {
         NumberGenerator numberGenerator = new TestNumberGenerator(Lists.newArrayList(4, 3, 5));
 
-        cars.move(numberGenerator);
+        cars.race(numberGenerator);
 
         assertThat(cars.getCars())
                 .extracting(Car::getPosition)
@@ -45,7 +45,7 @@ public class CarsTest {
     @DisplayName("findWinners 메서드는 우승자 이름 목록을 반환한다.")
     void should_returnWinnersName_when_findWinners() {
         NumberGenerator numberGenerator = new TestNumberGenerator(Lists.newArrayList(4, 3, 5));
-        cars.move(numberGenerator);
+        cars.race(numberGenerator);
 
         List<String> result = cars.findWinners();
 

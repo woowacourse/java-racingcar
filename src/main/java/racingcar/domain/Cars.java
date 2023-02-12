@@ -33,7 +33,7 @@ public class Cars {
                 .collect(toList());
     }
 
-    public void move(final NumberGenerator strategy) {
+    public void race(final NumberGenerator strategy) {
         for (Car car : cars) {
             car.move(strategy.generate());
         }

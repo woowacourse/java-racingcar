@@ -19,7 +19,7 @@ public class RacingGame {
     }
 
     public void play() {
-        cars.move(numberGenerator);
+        cars.race(numberGenerator);
         count.decrease();
     }
 
