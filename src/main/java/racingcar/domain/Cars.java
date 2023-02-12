@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.domain.dto.CarRaceDto;
+import racingcar.domain.constant.CarConstant;
 import racingcar.exception.DuplicateException;
 import racingcar.util.NumberGenerator;
 
@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static racingcar.domain.constant.CarConstant.INIT_POSITION;
 import static racingcar.domain.constant.CarsConstant.SPLIT_DELIMITER;
 import static racingcar.enumType.ExceptionMessage.DUPLICATE_MESSAGE;
 
@@ -30,14 +29,30 @@ public class Cars {
         return new Cars(carNames, numberGenerator);
     }
 
-    private List<Car> createCars(String carNames) {
+    public void race() {
+        cars.forEach(car -> {
+            int power = numberGenerator.generate();
+            car.move(power);
+        });
+    }
+
+    public List<String> pickWinners() {
+        int maxPosition = getMaxPosition();
+
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private List<Car> createCars(final String carNames) {
         String[] names = splitCarNames(carNames);
         return Arrays.stream(names)
                 .map(Car::createCar)
                 .collect(Collectors.toList());
     }
 
-    private String[] splitCarNames(String carNames) {
+    private String[] splitCarNames(final String carNames) {
         return carNames.split(SPLIT_DELIMITER.getValue());
     }
 
@@ -48,31 +63,11 @@ public class Cars {
         }
     }
 
-    public List<CarRaceDto> initStatus() {
-        return cars.stream()
-                .map(Car::getCarRaceResult)
-                .collect(Collectors.toList());
-    }
-
-    public List<CarRaceDto> race() {
-        return cars.stream().map(car -> {
-            int power = numberGenerator.generate();
-            car.move(power);
-            return car.getCarRaceResult();
-        }).collect(Collectors.toList());
-    }
-
-    public List<String> pickWinners() {
-        return cars.stream()
-                .filter(car -> car.isSamePosition(getMaxPosition()))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
     private int getMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
-                .max().orElse(INIT_POSITION.getValue());
+                .max()
+                .orElse(CarConstant.INIT_POSITION.getValue());
     }
 
     @Override
@@ -86,5 +81,9 @@ public class Cars {
     @Override
     public int hashCode() {
         return Objects.hash(cars);
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
