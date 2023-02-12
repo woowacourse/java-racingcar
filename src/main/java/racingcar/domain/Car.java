@@ -2,7 +2,7 @@ package racingcar.domain;
 
 public class Car {
 
-    private static final int MOVE_LOWER_BOUND = 4;
+    private static final int MINIMUM_MOVE_POWER = 4;
 
     private final Name name;
     private final Position position;
@@ -12,10 +12,14 @@ public class Car {
         this.position = new Position();
     }
 
-    public void move(final int value) {
-        if (value >= MOVE_LOWER_BOUND) {
+    public void move(final int power) {
+        if (isEnough(power)) {
             position.increase();
         }
+    }
+
+    private boolean isEnough(final int power) {
+        return power >= MINIMUM_MOVE_POWER;
     }
 
     public boolean isSamePosition(final Car car) {

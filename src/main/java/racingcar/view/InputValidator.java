@@ -9,12 +9,12 @@ import java.util.stream.Collectors;
 public class InputValidator {
 
     private static final String INVALID_NAME_MESSAGE = "차의 이름은 {0}자 이상 ~ {1}자 이하여야 합니다.";
-    private static final int NAME_LENGTH_LOWER_BOUND = 1;
-    private static final int NAME_LENGTH_UPPER_BOUND = 5;
+    private static final int MINIMUM_NAME_LENGTH = 1;
+    private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String DELIMITER = ",";
     private static final int SPLIT_LIMIT = -1;
     private static final String INVALID_COUNT_MESSAGE = "횟수는 {0}이상의 정수만 가능합니다.";
-    private static final int COUNT_LOWER_BOUND = 1;
+    private static final int MINIMUM_COUNT = 1;
 
     public List<String> validateNames(final String input) {
         final List<String> names = generateNames(input);
@@ -31,18 +31,25 @@ public class InputValidator {
     }
 
     private void validateName(final String name) {
-        if (name.length() < NAME_LENGTH_LOWER_BOUND || name.length() > NAME_LENGTH_UPPER_BOUND) {
-            throw new IllegalArgumentException(format(
-                    INVALID_NAME_MESSAGE,
-                    NAME_LENGTH_LOWER_BOUND,
-                    NAME_LENGTH_UPPER_BOUND
-            ));
+        if (hasShortLength(name)) {
+            throw new IllegalArgumentException(format(INVALID_NAME_MESSAGE, MINIMUM_NAME_LENGTH, MAXIMUM_NAME_LENGTH));
         }
+        if (hasLongLength(name)) {
+            throw new IllegalArgumentException(format(INVALID_NAME_MESSAGE, MINIMUM_NAME_LENGTH, MAXIMUM_NAME_LENGTH));
+        }
+    }
+
+    private boolean hasShortLength(final String name) {
+        return name.length() < MINIMUM_NAME_LENGTH;
+    }
+
+    private boolean hasLongLength(final String name) {
+        return MAXIMUM_NAME_LENGTH < name.length();
     }
 
     public int validateCount(final String input) {
         final int number = parseNumber(input);
-        validatePositiveNumber(number);
+        validateNumber(number);
         return number;
     }
 
@@ -50,13 +57,17 @@ public class InputValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(format(INVALID_COUNT_MESSAGE, COUNT_LOWER_BOUND));
+            throw new IllegalArgumentException(format(INVALID_COUNT_MESSAGE, MINIMUM_COUNT));
         }
     }
 
-    private void validatePositiveNumber(final int number) {
-        if (number < COUNT_LOWER_BOUND) {
-            throw new IllegalArgumentException(format(INVALID_COUNT_MESSAGE, COUNT_LOWER_BOUND));
+    private void validateNumber(final int number) {
+        if (isZeroOrNegative(number)) {
+            throw new IllegalArgumentException(format(INVALID_COUNT_MESSAGE, MINIMUM_COUNT));
         }
+    }
+
+    private boolean isZeroOrNegative(final int number) {
+        return number < MINIMUM_COUNT;
     }
 }

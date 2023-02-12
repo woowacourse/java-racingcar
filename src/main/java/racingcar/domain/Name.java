@@ -2,8 +2,8 @@ package racingcar.domain;
 
 public class Name {
 
-    private static final int NAME_LOWER_BOUND = 1;
-    private static final int NAME_UPPER_BOUND = 5;
+    private static final int MINIMUM_NAME_LENGTH = 1;
+    private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String INVALID_NAME_LENGTH_MESSAGE = "차의 이름은 1자 이상 ~ 5자 이하여야 합니다.";
 
     private final String value;
@@ -14,9 +14,20 @@ public class Name {
     }
 
     private void validate(final String name) {
-        if (name.length() < NAME_LOWER_BOUND || NAME_UPPER_BOUND < name.length()) {
+        if (hasShortLength(name)) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
         }
+        if (hasLongLength(name)) {
+            throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
+        }
+    }
+
+    private boolean hasShortLength(final String name) {
+        return name.length() < MINIMUM_NAME_LENGTH;
+    }
+
+    private boolean hasLongLength(final String name) {
+        return MAXIMUM_NAME_LENGTH < name.length();
     }
 
     public String getValue() {
