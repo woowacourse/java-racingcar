@@ -43,5 +43,4 @@ public class RacingGameApplication {
         WinnersNameDto winners = racingGame.findWinners(cars);
         outputView.printWinners(winners);
     }
-
 }
