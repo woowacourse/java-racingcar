@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
-
     @Test
     @DisplayName("Cars 객체 생성 테스트")
     void createCarsTest() {

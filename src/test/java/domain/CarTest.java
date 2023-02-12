@@ -1,6 +1,5 @@
 package domain;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -8,17 +7,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
-    @ParameterizedTest
+    @ParameterizedTest(name = "Car 객체 생성 테스트 name = {0}")
     @ValueSource(strings = {"pobi", "crong", "honux", " hi ", "  jj503   "})
-    @DisplayName("Car 객체 생성 테스트")
     void createCarTest(String name) {
         Car car = new Car(name);
         assertThat(car.getName()).isEqualTo(name.trim());
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Car 객체 생성 예외 테스트 name = {0}")
     @ValueSource(strings = {"pobiiii", "", "  "})
-    @DisplayName("Car 객체 생성 예외 테스트")
     void createExceptionCarTest(String name) {
         assertThatThrownBy(() -> {
             new Car(name);
@@ -26,9 +23,8 @@ class CarTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "랜덤 값이 4미만일 경우 테스트 - 멈춤, randNum = {0}")
     @ValueSource(ints = {0, 1, 2, 3})
-    @DisplayName("랜덤 값이 4미만일 경우 테스트")
     void stopByRandom(int randNum) {
         Car car = new Car("test");
         car.moveByNumber(randNum);
@@ -36,9 +32,8 @@ class CarTest {
         assertThat(car.getLocation()).isEqualTo(0);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "랜덤 값이 4미만일 경우 테스트 - 전진, randNum = {0}")
     @ValueSource(ints = {4, 5, 6, 7})
-    @DisplayName("랜덤 값이 4이상일 경우 테스트")
     void moveByRandom(int randNum) {
         Car car = new Car("test");
         car.moveByNumber(randNum);
