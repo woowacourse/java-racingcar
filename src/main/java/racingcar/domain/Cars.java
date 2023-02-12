@@ -31,8 +31,9 @@ public class Cars {
         int carsSize = carNames.size();
         int duplicateRemovedCount =
                 (int) carNames.stream()
-                .distinct()
-                .count();
+                        .map(String::trim)
+                        .distinct()
+                        .count();
         if (carsSize != duplicateRemovedCount) {
             throw new IllegalArgumentException("[ERROR] 중복된 이름을 사용할 수 없습니다.");
         }
