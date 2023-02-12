@@ -1,11 +1,13 @@
 package racingcar.controller;
 
+import java.util.LinkedHashMap;
 import racingcar.service.CarService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingcarController {
     private final CarService carService;
+    private int tryCount;
 
     public RacingcarController(CarService carService) {
         this.carService = carService;
@@ -29,7 +31,8 @@ public class RacingcarController {
     public void initializeTryCount() {
         try {
             OutputView.printCountInput();
-            carService.validateCountInput(InputView.readTryCount());
+            tryCount = InputView.readTryCount();
+            carService.validateCountInput(tryCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             initializeTryCount();
@@ -37,7 +40,11 @@ public class RacingcarController {
     }
 
     public void run() {
-        carService.runService();
+        OutputView.printResultMessage();
+        for (int i = 0; i < tryCount; i++) {
+            LinkedHashMap<String, Integer> roundResult = carService.runRound();
+            OutputView.printRoundResult(roundResult);
+        }
     }
 
     public void finish() {
