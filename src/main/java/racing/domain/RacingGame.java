@@ -9,21 +9,24 @@ public class RacingGame {
 
     private final RandomNumberGenerator numberGenerator;
     private final Cars cars;
+    private int tryCount;
 
-    public RacingGame(List<String> carNames, RandomNumberGenerator numberGenerator) {
-        List<Car> cars = parseToCars(carNames);
-        this.cars = new Cars(cars);
+    public RacingGame(RandomNumberGenerator numberGenerator, Cars cars, int tryCount) {
+        this.cars = cars;
+        this.tryCount = tryCount;
         this.numberGenerator = numberGenerator;
-    }
-
-    private List<Car> parseToCars(List<String> carNames) {
-        return carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
     }
 
     public void play() {
         cars.moveAll(numberGenerator);
+        validateTryCount(tryCount);
+        tryCount--;
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (tryCount <= 0) {
+            throw new IllegalArgumentException("실행 횟수 보다 많이 실행할 수 없습니다.");
+        }
     }
 
     public List<Car> getResult() {
@@ -34,5 +37,9 @@ public class RacingGame {
         return cars.decideWinners().stream()
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public boolean isEnd() {
+        return tryCount <= 0;
     }
 }
