@@ -1,3 +1,5 @@
+package Controller;
+
 import domain.RacingGame;
 import view.Input;
 import view.Output;

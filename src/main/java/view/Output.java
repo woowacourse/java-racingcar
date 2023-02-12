@@ -16,7 +16,7 @@ public class Output {
     }
 
     public static void printEachCarDistance(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car.getName() + " : " + MOVE_INDICATOR.repeat(car.getDistance()));
+        cars.forEach(car -> System.out.println(car.getName() + " : " + MOVE_INDICATOR.repeat(car.getDistance())));
         System.out.println();
     }
 
