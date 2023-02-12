@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.utils.TestNumberGenerator;
 
-@DisplayName("Cars 클래스")
 public class CarsTest {
 
     private Cars cars;
@@ -31,8 +30,8 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("move 메서드는 모든 자동차들을 이동시킨다.")
-    void should_moveCars_when_move() {
+    @DisplayName("move 메서드는 자동차 경주를 1회 진행한다.")
+    void should_playRacingGame_when_move() {
         NumberGenerator numberGenerator = new TestNumberGenerator(Lists.newArrayList(4, 3, 5));
 
         cars.move(numberGenerator);
@@ -54,12 +53,12 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("findWinners 메서드는 차량이 존재하지 않는 경우 예외를 던진다.")
+    @DisplayName("findWinners 메서드는 우승자가 존재하지 않는 경우 예외를 던진다.")
     void should_throwException_when_emptyCars() {
         Cars emptyCars = new Cars(List.of());
 
         assertThatThrownBy(emptyCars::findWinners)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("차량이 존재하지 않습니다.");
+                .hasMessage("우승자가 존재하지 않습니다.");
     }
 }

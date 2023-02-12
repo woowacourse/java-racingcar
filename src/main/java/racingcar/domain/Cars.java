@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Cars {
 
-    private static final String INVALID_WINNER_MESSAGE = "차량이 존재하지 않습니다.";
+    private static final String INVALID_WINNER_MESSAGE = "우승자가 존재하지 않습니다.";
     private static final String DUPLICATED_NAMES_MESSAGE = "중복된 차 이름이 없어야 합니다.";
 
     private final List<Car> cars;
