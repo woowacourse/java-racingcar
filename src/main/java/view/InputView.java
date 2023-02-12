@@ -56,4 +56,5 @@ public class InputView {
       throw new IllegalArgumentException("이동 횟수는 숫자여야 합니다.");
     }
   }
+
 }

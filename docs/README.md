@@ -34,12 +34,12 @@ MVC 패턴 기반
 ### controller 패키지
 
 - [ ] RaceController
-    - [ ] 도메인의 RacingGame을 호출하는 형태로 리팩토링
+    - [x] 도메인의 RacingGame을 호출하는 형태로 리팩토링
 
 ### domain 패키지
 
 - [ ] RacingGame
-    - [ ] 자동차 이름들과 반복 횟수를 입력으로 받도록 리팩토링
+    - [x] 자동차 이름들과 반복 횟수를 입력으로 받도록 리팩토링
 - [ ] Car
 
 ### View 패키지
