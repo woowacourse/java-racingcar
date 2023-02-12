@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.dto.RacingCarDto;
-
 public class RacingCar implements Comparable<RacingCar> {
     private static final int DEFAULT_POINT = 1;
     private static final String DESCRIPTION_DELIMITER = " : ";
@@ -37,9 +35,5 @@ public class RacingCar implements Comparable<RacingCar> {
     @Override
     public int compareTo(RacingCar o) {
         return this.position - o.position;
-    }
-
-    public RacingCarDto toDto() {
-        return new RacingCarDto(name, position);
     }
 }
