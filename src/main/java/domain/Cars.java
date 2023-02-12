@@ -14,6 +14,32 @@ public class Cars {
         addCar(carNames);
     }
 
+    public void progressRound(List<Integer> boundaryNumbers, RoundResult roundResult) {
+        for (int index = 0; index < cars.size(); index++) {
+            moveCar(roundResult, cars.get(index),boundaryNumbers.get(index));
+        }
+    }
+
+    public List<String> findWinners() {
+        Integer maxDistance = findMaxDistance();
+        return cars.stream()
+                .filter(car -> car.getDistance() == maxDistance)
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarDTO> getCars() {
+        List<CarDTO> carDTOs = new ArrayList<>();
+        for (Car car : cars) {
+            carDTOs.add(new CarDTO(car.getCarName(), car.getDistance()));
+        }
+        return carDTOs;
+    }
+
+    public int getCount() {
+        return cars.size();
+    }
+
     private void checkNameDuplication(List<String> carNames) {
         long uniqueNameCount = carNames.stream()
                 .distinct()
@@ -29,14 +55,6 @@ public class Cars {
         }
     }
 
-    public List<String> findWinners() {
-        Integer maxDistance = findMaxDistance();
-        return cars.stream()
-                .filter(car -> car.getDistance() == maxDistance)
-                .map(Car::getCarName)
-                .collect(Collectors.toList());
-    }
-
     private Integer findMaxDistance() {
         return cars.stream()
                 .mapToInt(Car::getDistance)
@@ -44,26 +62,8 @@ public class Cars {
                 .orElse(0);
     }
 
-    public void progressRound(List<Integer> boundaryNumbers, RoundResult roundResult) {
-        for (int index = 0; index < cars.size(); index++) {
-            moveCar(roundResult, cars.get(index),boundaryNumbers.get(index));
-        }
-    }
-
     private void moveCar(RoundResult roundResult, Car car, Integer boundaryNumber) {
         boolean movingResult = roundResult.isGo(boundaryNumber);
         car.move(movingResult);
-    }
-
-    public List<CarDTO> getCars() {
-        List<CarDTO> carDTOs = new ArrayList<>();
-        for (Car car : cars) {
-            carDTOs.add(new CarDTO(car.getCarName(), car.getDistance()));
-        }
-        return carDTOs;
-    }
-
-    public int getCount() {
-        return cars.size();
     }
 }
