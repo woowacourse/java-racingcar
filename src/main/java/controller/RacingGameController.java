@@ -1,6 +1,7 @@
 package controller;
 
 import domain.*;
+import dto.CarDto;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
@@ -29,9 +30,16 @@ public class RacingGameController {
         outputView.showInfoMessage();
         while (racingGame.canContinue()) {
             List<Car> cars = racingGame.run();
-            outputView.showCars(cars);
+            outputView.showCars(trasferCarDtos(cars));
         }
-        outputView.showWinner(racingGame.getWinners());
+        List<Car> winners = racingGame.getWinners();
+        outputView.showWinner(trasferCarDtos(winners));
+    }
+
+    private List<CarDto> trasferCarDtos(List<Car> cars) {
+        return cars.stream()
+                .map(Car::toCarDto)
+                .collect(Collectors.toList());
     }
 
     private List<Car> generateCars() {
