@@ -24,6 +24,6 @@ public class CarService {
     }
 
     public List<WinnerCarDto> getWinner() {
-        return cars.processWinner();
+        return cars.getWinner();
     }
 }
