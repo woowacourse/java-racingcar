@@ -40,10 +40,9 @@
 # 리팩토링 목록
 
 - [x] ExceptionHandlingTemplate의 repeat...메소드의 depth를 1로 줄이기
-- [ ] List<Car>를 감싸는 일급컬렉션인 Cars를 구현하기
 - [x] RandomNumberPicker에서 Random을 필드변수로 두기.
 - [x] Car class에서 this()를 사용하여 코드의 반복을 제거
-- [ ] 추후 get메소드로 해결하는 로직들을 get말고 객체에 메세지를 보내는 방식으로 처리할 수 없을지 고민
+- [x] 우승자를 결정하는 로직에서 get말고 객체에 메세지를 보내는 방식으로 구현하기
 - [x] 가능한 final 키워드를 모든 변수에 사용하기.
 - [x] ExceptionHandlingTemplate을 지우고, repeatUntilInitialValid 메서드를 controller에서 정의
     1. ExceptionHandlingTemplate안에 outputView 객체를 생성하는 행위가 불필요하다 생각.

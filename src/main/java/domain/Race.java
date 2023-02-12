@@ -2,7 +2,6 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,16 +18,19 @@ public class Race {
         validateTryTime(tryTime);
         this.tryTime = tryTime;
     }
-    
+
     private void validateTryTime(final int tryTime) {
-        if (tryTime < 0) {
+        if (isNegative(tryTime)) {
             throw new IllegalArgumentException("시도 횟수는 음수일 수 없습니다.");
         }
     }
 
+    private static boolean isNegative(final int tryTime) {
+        return tryTime < 0;
+    }
+
     private void checkCarsHasDuplicate(final List<Car> cars) {
-        long nonDuplicateNameCountInCars = cars.stream()
-                .map(Car::getName)
+        final long nonDuplicateNameCountInCars = cars.stream()
                 .distinct().count();
         if (nonDuplicateNameCountInCars != cars.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
@@ -40,16 +42,16 @@ public class Race {
     }
 
     public void tryMoveOneTime(final NumberPicker numberPicker) {
-        for (Car car : cars) {
+        for (final Car car : cars) {
             car.moveDependingOn(numberPicker.pickNumber());
         }
         tryTime--;
     }
 
     public List<Car> getWinners() {
-        final Car winner = Collections.max(cars, Comparator.comparingInt(Car::getPosition));
+        final Car winner = Collections.max(cars, Car::compareTo);
         return cars.stream()
-                .filter(car -> Comparator.comparingInt(Car::getPosition).compare(car, winner) == 0)
+                .filter(car -> car.samePosition(winner))
                 .collect(Collectors.toUnmodifiableList());
     }
 

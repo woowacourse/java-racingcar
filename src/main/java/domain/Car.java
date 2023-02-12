@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int LEAST_CONDITION = 4;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int START_POSITION = 0;
@@ -64,5 +64,14 @@ public class Car {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int compareTo(final Car otherCar) {
+        return this.position - otherCar.position;
+    }
+
+    public boolean samePosition(final Car otherCar) {
+        return this.position == otherCar.position;
     }
 }
