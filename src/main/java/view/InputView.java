@@ -35,7 +35,6 @@ public class InputView {
         }
     }
 
-
     private void validateTryTimesType(String tryTimes) {
         for (char element : tryTimes.toCharArray()) {
             checkDigit(element);

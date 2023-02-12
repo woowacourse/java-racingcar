@@ -2,11 +2,11 @@ package service;
 
 import domain.Cars;
 import java.util.List;
+import java.util.Map;
 import strategy.MovingStrategy;
 
 public class RacingGame {
 
-    private final String WINNER_NAME_DELIMITER = ", ";
     private final Cars cars;
     private final MovingStrategy movingStrategy;
 
@@ -15,13 +15,12 @@ public class RacingGame {
         this.movingStrategy = movingStrategy;
     }
 
-    public List<String> playSingleRound() {
+    public Map<String, Integer> playSingleRound() {
         cars.moveCars(movingStrategy);
         return cars.getTotalStatus();
     }
 
-    public String getWinners() {
-        List<String> winners = cars.findWinners();
-        return String.join(WINNER_NAME_DELIMITER, winners);
+    public List<String> getWinners() {
+        return cars.findWinners();
     }
 }

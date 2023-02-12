@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import strategy.MovingStrategy;
 
@@ -18,10 +20,12 @@ public class Cars {
         }
     }
 
-    public List<String> getTotalStatus() {
-        return cars.stream()
-            .map(Car::getCarStatus)
-            .collect(Collectors.toList());
+    public Map<String, Integer> getTotalStatus() {
+        Map<String, Integer> totalStatus = new HashMap<>();
+        for (Car car : cars) {
+            totalStatus.put(car.getName(), car.getPosition());
+        }
+        return totalStatus;
     }
 
     public List<String> findWinners() {

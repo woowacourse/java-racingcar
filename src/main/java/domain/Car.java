@@ -8,7 +8,6 @@ public class Car {
 
     private final int MOVING_STANDARD_NUM = 4;
     private final int ADD_POINT = 1;
-    private final String POSITION_BAR = "-";
 
     private final Name name;
     private int position;
@@ -26,10 +25,6 @@ public class Car {
 
     private boolean isAllowedToMove(final int number) {
         return number >= MOVING_STANDARD_NUM;
-    }
-
-    public String getCarStatus() {
-        return name.getName() + " : " + POSITION_BAR.repeat(position);
     }
 
     public int getPosition() {

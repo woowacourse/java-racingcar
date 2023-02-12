@@ -49,7 +49,6 @@ public class RacingGameController {
     }
 
     private void getWinners(RacingGame racingGame) {
-        String winners = racingGame.getWinners();
-        outputView.printWinner(winners);
+        outputView.printWinner(racingGame.getWinners());
     }
 }
