@@ -11,7 +11,7 @@ public class WinnerResponse {
 
     public WinnerResponse(final List<Car> winners) {
         this.winnerNames = winners.stream()
-                .map(it -> it.getName().getValue())
+                .map(it -> it.name().value())
                 .collect(Collectors.toList());
     }
 

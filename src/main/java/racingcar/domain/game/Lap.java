@@ -13,6 +13,10 @@ public class Lap {
         this.value = value;
     }
 
+    public int value() {
+        return value;
+    }
+
     public static Lap totalLap(final int value) {
         if (LEAST_TOTAL_LAP_COUNT > value) {
             throw new IllegalArgumentException(String.format("최소 바퀴 수는 %d 이상이어야 합니다.", LEAST_TOTAL_LAP_COUNT));
@@ -39,9 +43,5 @@ public class Lap {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public int value() {
-        return value;
     }
 }

@@ -73,7 +73,7 @@ class RacingCarGameTest {
             Winners winners = tenLapGame.winner();
 
             // then
-            assertThat(winners.winners().stream().map(it -> it.getName().getValue()).collect(Collectors.toList()))
+            assertThat(winners.winners().stream().map(it -> it.name().value()).collect(Collectors.toList()))
                     .containsExactlyInAnyOrderElementsOf(List.of(carName1, carName2));
         }
     }

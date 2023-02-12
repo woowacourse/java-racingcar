@@ -18,23 +18,23 @@ public class Winners {
         this.winners = judgeWinners(cars);
     }
 
+    public List<Car> winners() {
+        return winners;
+    }
+
     private List<Car> judgeWinners(final List<Car> cars) {
         List<Car> sortedCarsByPositionDesc = sortedCarsByPositionDesc(cars);
         Car winner = sortedCarsByPositionDesc.get(WINNER_INDEX);
 
         return sortedCarsByPositionDesc.stream()
-                .filter(it -> it.getPosition().equals(winner.getPosition()))
+                .filter(it -> it.position().equals(winner.position()))
                 .collect(Collectors.toList());
     }
 
     private List<Car> sortedCarsByPositionDesc(final List<Car> cars) {
         List<Car> sortedCars = new ArrayList<>(cars);
-        sortedCars.sort(Comparator.comparing(Car::getPosition));
+        sortedCars.sort(Comparator.comparing(Car::position));
         Collections.reverse(sortedCars);
         return sortedCars;
-    }
-
-    public List<Car> winners() {
-        return winners;
     }
 }

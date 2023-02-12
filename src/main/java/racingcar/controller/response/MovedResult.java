@@ -10,11 +10,11 @@ public class MovedResult {
     private final Map<String, Integer> positionByName;
 
     public MovedResult(final Cars cars) {
-        positionByName = cars.getCars()
+        positionByName = cars.cars()
                 .stream()
                 .collect(Collectors.toMap(
-                        car -> car.getName().getValue(),
-                        car -> car.getPosition().getValue())
+                        car -> car.name().value(),
+                        car -> car.position().value())
                 );
     }
 

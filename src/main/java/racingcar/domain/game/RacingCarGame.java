@@ -24,6 +24,10 @@ public class RacingCarGame {
         return new RacingCarGame(numberGenerator, cars, lap);
     }
 
+    public Cars cars() {
+        return cars;
+    }
+
     /**
      * 조금 더 고민해 본 결과,Cars의 내부 상태를 숨기기 위해(getter 를 public 으로 공개하지 않도록)
      * Cars에서 반환하는 것이 더 좋겠다 판단하였어요!
@@ -45,10 +49,6 @@ public class RacingCarGame {
         if (hasMoreLap()) {
             throw new IllegalStateException("아직 게임이 종료되지 않았습니다.");
         }
-        return new Winners(cars.getCars());
-    }
-
-    public Cars cars() {
-        return cars;
+        return new Winners(cars.cars());
     }
 }

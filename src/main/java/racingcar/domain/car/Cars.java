@@ -21,11 +21,11 @@ public class Cars {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public void move(final NumberGenerator generator) {
-        cars.forEach(car -> car.move(generator.generate(MIN_NUMBER, MAX_NUMBER)));
+    public List<Car> cars() {
+        return this.cars;
     }
 
-    public List<Car> getCars() {
-        return this.cars;
+    public void move(final NumberGenerator generator) {
+        cars.forEach(car -> car.move(generator.generate(MIN_NUMBER, MAX_NUMBER)));
     }
 }

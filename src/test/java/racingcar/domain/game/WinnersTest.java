@@ -26,7 +26,7 @@ class WinnersTest {
         @MethodSource("racingcar.domain.car.CarsTest#carsAndWinnerCars")
         void 생성_시_자동차들_중_가장_멀리_간_자동차를_우승자로_가진다(final Cars cars, final List<Car> actualWinnerCars) {
             // when
-            Winners winners = new Winners(cars.getCars());
+            Winners winners = new Winners(cars.cars());
 
             // then
             assertThat(winners.winners())

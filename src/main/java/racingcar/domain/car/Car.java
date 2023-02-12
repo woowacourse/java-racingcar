@@ -14,11 +14,11 @@ public class Car {
         this.position = Position.init();
     }
 
-    public Name getName() {
+    public Name name() {
         return name;
     }
 
-    public Position getPosition() {
+    public Position position() {
         return position;
     }
 

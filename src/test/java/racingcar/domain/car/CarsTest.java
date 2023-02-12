@@ -26,7 +26,7 @@ class CarsTest {
         Cars cars = new Cars(names);
 
         // then
-        assertThat(cars.getCars().size()).isEqualTo(names.size());
+        assertThat(cars.cars().size()).isEqualTo(names.size());
     }
 
     @Test
@@ -45,18 +45,18 @@ class CarsTest {
     void test_3() {
         // given
         Cars cars = new Cars(List.of("체체", "말랑"));
-        List<Car> beforeMoveCars = cars.getCars().stream()
-                .map(it -> new Car(it.getName().getValue()))
+        List<Car> beforeMoveCars = cars.cars().stream()
+                .map(it -> new Car(it.name().value()))
                 .collect(Collectors.toList());
 
         // when
         cars.move(new MockFixedNumberGenerator(4));
 
         // then
-        List<Car> afterMoveCars = cars.getCars();
+        List<Car> afterMoveCars = cars.cars();
         for (int i = 0; i < beforeMoveCars.size(); i++) {
-            assertThat(afterMoveCars.get(i).getPosition().getValue())
-                    .isEqualTo(beforeMoveCars.get(i).getPosition().getValue() + 1);
+            assertThat(afterMoveCars.get(i).position().value())
+                    .isEqualTo(beforeMoveCars.get(i).position().value() + 1);
         }
     }
 
