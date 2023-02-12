@@ -47,7 +47,7 @@ public class MainController {
             return gameGuide.get(gameStatus).get();
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
-            return GameStatus.APPLICATION_EXIT;
+            return gameStatus;
         } catch (NullPointerException exception) {
             return GameStatus.APPLICATION_EXIT;
         }
