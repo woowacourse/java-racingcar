@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.util.Validator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +17,8 @@ public class CarNames {
         names = splitNames.stream()
                 .map(String::trim)
                 .collect(Collectors.toUnmodifiableList());
+
+        Validator.validateDuplication(names);
     }
 
     public List<String> getNames() {

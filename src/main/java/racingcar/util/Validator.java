@@ -2,6 +2,11 @@ package racingcar.util;
 
 import racingcar.constant.ErrorMessage;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Validator {
 
     public static final String NATURAL_NUMBER_REGEX = "^[1-9]+[0-9]*$";
@@ -27,6 +32,13 @@ public class Validator {
     public static void validateNaturalNumber(String str) {
         if (!str.matches(NATURAL_NUMBER_REGEX)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
+        }
+    }
+
+    public static void validateDuplication(List<String> inputs) {
+        Set<String> inputSet = new HashSet<>(inputs);
+        if (inputs.size() != inputSet.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_INPUT.getMessage());
         }
     }
 
