@@ -22,12 +22,12 @@ public class OutputView {
         System.out.println(NEW_LINE + "실행 결과");
     }
 
-    public static void printWinners(Cars cars) {
+    public static void printWinners(final Cars cars) {
         System.out.print(String.join(DELIMITER, cars.getWinnerNames()));
         System.out.println("가 최종 우승했습니다.");
     }
 
-    public static void printCurrentRacingStatus(Cars cars) {
+    public static void printCurrentRacingStatus(final Cars cars) {
         final Map<String, Integer> currentRacingStatus = cars.getCurrentRacingStatus();
         StringBuilder currentRacingStatusMessage = new StringBuilder();
 

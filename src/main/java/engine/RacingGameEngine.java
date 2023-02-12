@@ -30,7 +30,7 @@ public class RacingGameEngine {
         return InputView.inputTryCount();
     }
 
-    private void startRace(Cars cars, int tryCount) {
+    private void startRace(final Cars cars, final int tryCount) {
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount; i++) {

@@ -16,14 +16,14 @@ public class Cars {
 
     public void moveAll(final RandomPowerGenerator randomPowerGenerator) {
         for (final Car car : cars) {
-            int power = randomPowerGenerator.generateRandomPower();
+            final int power = randomPowerGenerator.generateRandomPower();
             car.move(power);
         }
     }
 
     public List<String> getWinnerNames() {
         List<String> winnerNames = new ArrayList<>();
-        int maxCountOfDistance = findMaxCountOfDistance();
+        final int maxCountOfDistance = findMaxCountOfDistance();
 
         for (final Car car : cars) {
             addWinnerName(winnerNames, car, maxCountOfDistance);
@@ -40,7 +40,7 @@ public class Cars {
         return maxCountOfDistance;
     }
 
-    private void addWinnerName(List<String> winnerNames, Car car, int maxCountOfDistance) {
+    private void addWinnerName(List<String> winnerNames, final Car car, int maxCountOfDistance) {
         if (car.getDistance() == maxCountOfDistance) {
             winnerNames.add(car.getName());
         }
