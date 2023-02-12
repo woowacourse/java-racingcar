@@ -8,6 +8,7 @@ import domain.Position;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class OutputView {
     private static final String DELIMITER = "-";
@@ -31,14 +32,9 @@ public class OutputView {
     }
 
     public static void printWinners(Cars cars) {
-        List<Name> carNames = new ArrayList<>();
-
-        for (Car car : cars) {
-            carNames.add(car.getName());
-        }
-
-        String winners = carNames.stream()
-                .map(m -> m.toString())
+        String winners = StreamSupport.stream(cars.spliterator(), false)
+                .map(Car::getName)
+                .map(Name::toString)
                 .collect(Collectors.joining(SEPARATOR));
 
         System.out.println(String.format(WINNER_MSG, winners));
