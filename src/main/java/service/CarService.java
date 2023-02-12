@@ -9,15 +9,14 @@ import exception.DuplicateCarNameException;
 import model.Car;
 import model.Cars;
 import utils.RacingNumberGenerator;
+import utils.StringUtils;
 
 public class CarService {
-
-    private static final String SEPARATOR = ",";
 
     private Cars cars;
 
     public void initCars(String inputCarsName) {
-        String[] carsName = inputCarsName.split(SEPARATOR);
+        String[] carsName = StringUtils.splitBySeparator(inputCarsName);
         checkDuplication(carsName);
         this.cars = new Cars(mapToCars(carsName));
     }
