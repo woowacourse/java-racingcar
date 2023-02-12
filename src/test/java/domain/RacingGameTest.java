@@ -21,7 +21,7 @@ class RacingGameTest {
         car1 = new Car("kong");
         car2 = new Car("gray");
         car3 = new Car("echo");
-        racingGame = new RacingGame(List.of(car1, car2, car3), 3, new RandomNumberGenerator());
+        racingGame = new RacingGame(List.of(car1, car2, car3), new GameTrialCount("3"), new RandomNumberGenerator());
     }
 
     @Test

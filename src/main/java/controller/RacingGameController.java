@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Car;
-import domain.NumberGenerator;
-import domain.RacingGame;
-import domain.RandomNumberGenerator;
+import domain.*;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
@@ -24,8 +21,8 @@ public class RacingGameController {
 
     private RacingGame init() {
         List<Car> cars = generateCars();
-        int gameTrial = generateGameTrial();
-        return new RacingGame(cars, gameTrial, numberGenerator);
+        GameTrialCount gameTrialCount = generateGameTrial();
+        return new RacingGame(cars, gameTrialCount, numberGenerator);
     }
 
     private void play(RacingGame racingGame) {
@@ -49,9 +46,9 @@ public class RacingGameController {
         }
     }
 
-    private int generateGameTrial() {
+    private GameTrialCount generateGameTrial() {
         try {
-            return inputView.readGameTrial();
+            return new GameTrialCount(inputView.readGameTrial());
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
             return generateGameTrial();
