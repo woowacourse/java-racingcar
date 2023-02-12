@@ -4,9 +4,9 @@ import domain.Car;
 import domain.Cars;
 
 public class OutputView {
-    private final String CAR_LOCATION = "-";
-    private final String PRINT_CAR_LOCATION = "%s : %s\n";
-    private final String PRINT_WINNER = "%s가 최종 우승했습니다.\n";
+    private static final String CAR_LOCATION = "-";
+    private static final String PRINT_CAR_LOCATION = "%s : %s\n";
+    private static final String PRINT_WINNER = "%s가 최종 우승했습니다.\n";
 
     public void printResult(Cars cars) {
         for (Car car : cars.getCars()) {

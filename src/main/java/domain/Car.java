@@ -3,10 +3,10 @@ package domain;
 import constant.ExceptionMessage;
 
 public class Car {
-    private final int CAR_LOCATION_INITIALIZATION = 0;
-    private final int MAX_CAR_NAME_LENGTH = 5;
-    private final int CAR_MOVE_FORWARD = 1;
-    private final int MIN_NUMBER_FOR_CAR_MOVE = 4;
+    private static final int CAR_LOCATION_INITIALIZATION = 0;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int CAR_MOVE_FORWARD = 1;
+    private static final int MIN_NUMBER_FOR_CAR_MOVE = 4;
 
     private final String name;
     private int location;

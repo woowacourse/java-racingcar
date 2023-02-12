@@ -7,7 +7,7 @@ public enum ExceptionMessage {
     TRY_COUNT_NOT_NUMBER_MESSAGE("시도 횟수는 숫자로만 입력하여야 합니다."),
     TRY_COUNT_NOT_POSITIVE_MESSAGE("시도 횟수는 1이상 입력하여야 합니다.");
 
-    private final String TAG = "[ERROR] ";
+    private static final String TAG = "[ERROR] ";
     private final String exceptionMessage;
 
     ExceptionMessage(String exceptionMessage) {

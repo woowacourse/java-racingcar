@@ -6,8 +6,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private final String COMMA = ",";
-    private final String BLANK = " ";
+    private static final String COMMA = ",";
+    private static final String BLANK = " ";
 
     private final List<Car> cars = new ArrayList<>();
 
