@@ -6,7 +6,7 @@ public class CarStatus {
     private final String name;
     private final int currentPosition;
 
-    public CarStatus(String name, Position currentPosition) {
+    public CarStatus(final String name, final Position currentPosition) {
         this.name = name;
         this.currentPosition = currentPosition.getPosition();
     }
