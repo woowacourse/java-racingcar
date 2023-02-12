@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.Cars;
-import racingcar.domain.GameManager;
+import racingcar.controller.RacingGameController;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,7 +21,7 @@ class RacingCarGameTest {
     Cars cars;
     OutputView outputView;
     InputView inputView;
-    GameManager gameManager = new GameManager(inputView, outputView, cars);
+    RacingGameController racingGameController = new RacingGameController(inputView, outputView, cars);
 
     InputStream inputStream;
     PrintStream outputStream;
@@ -46,8 +46,8 @@ class RacingCarGameTest {
         cars = new Cars();
         outputView = new OutputView();
         inputView = new InputView();
-        gameManager = new GameManager(inputView, outputView, cars);
-        gameManager.playGame();
+        racingGameController = new RacingGameController(inputView, outputView, cars);
+        racingGameController.playGame();
 
         assertThat(out.toString()).contains("최종 우승했습니다.");
     }
@@ -66,8 +66,8 @@ class RacingCarGameTest {
         cars = new Cars();
         outputView = new OutputView();
         inputView = new InputView();
-        gameManager = new GameManager(inputView, outputView, cars);
-        gameManager.playGame();
+        racingGameController = new RacingGameController(inputView, outputView, cars);
+        racingGameController.playGame();
 
         String gameTotalMessage = out.toString();
         assertThat(gameTotalMessage).contains("[ERROR]", "최종 우승했습니다.");

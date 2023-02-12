@@ -1,21 +1,23 @@
-package racingcar.domain;
+package racingcar.controller;
 
 import racingcar.datatransfer.CarNamesRequest;
 import racingcar.datatransfer.GameResultResponse;
 import racingcar.datatransfer.RoundResultResponse;
+import racingcar.domain.Cars;
+import racingcar.domain.GameRound;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
 
-public class GameManager {
+public class RacingGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final Cars cars;
     private GameRound gameRound;
 
-    public GameManager(InputView inputView, OutputView outputView, Cars cars) {
+    public RacingGameController(InputView inputView, OutputView outputView, Cars cars) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.cars = cars;
