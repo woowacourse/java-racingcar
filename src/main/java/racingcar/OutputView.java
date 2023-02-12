@@ -21,10 +21,8 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void result(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(car);
-        }
+    public static void result(Cars cars) {
+        cars.printResult();
         System.out.println();
     }
 

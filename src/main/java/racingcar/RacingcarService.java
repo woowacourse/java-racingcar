@@ -1,39 +1,36 @@
 package racingcar;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingcarService {
 
-    private final CarFactory carFactory;
+    private static final String SEPARATOR = ",";
+    private static final int MINIMUM_PARTICIPANT = 2;
 
-    public RacingcarService() {
-        this.carFactory = new CarFactory();
-    }
+    public Cars makeCars(String inputNames) {
+        String[] names = inputNames.split(SEPARATOR);
 
-    public List<Car> makeCars(String carNames) {
-        return carFactory.makeCars(carNames);
-    }
-
-    public void move(List<Car> cars) {
-        for (Car car : cars) {
-            car.move(RandomMaker.random());
+        if (!inputNames.contains(SEPARATOR)) {
+            throw new IllegalArgumentException("[ERROR] 구분자(" + SEPARATOR + ")가 필요해요.");
         }
-    }
-
-    public int findMaxPosition(List<Car> cars) {
-        int maxPosition = 0;
-
-        for (Car car : cars) {
-            maxPosition = car.findGreaterPosition(maxPosition);
+        if (names.length < MINIMUM_PARTICIPANT) {
+            throw new IllegalArgumentException("[ERROR] 경주는 최소 " + MINIMUM_PARTICIPANT + "명이 필요해요.");
         }
 
-        return maxPosition;
+        return new Cars(Arrays.stream(names)
+                .map(Car::new)
+                .collect(Collectors.toList()));
     }
 
-    public List<Car> findWinner(List<Car> cars, int maxPosition) {
-        return cars.stream()
-                .filter(car -> car.isSamePosition(maxPosition))
-                .collect(Collectors.toList());
+    public void move(Cars cars) {
+        cars.move();
+    }
+
+    public List<Car> findWinner(Cars cars) {
+        int winnerPosition = cars.findMaxPosition();
+
+        return cars.findWinners(winnerPosition);
     }
 }
