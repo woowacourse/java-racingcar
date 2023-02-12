@@ -18,12 +18,11 @@ class CarTest {
     @DisplayName("차를 움직였을 때 위치가 변해야 한다.")
     void car_move() {
         // given
-        Position prevPosition = car.getMovedLength();
+        int prevValue = car.getMovedLength().getValue();
         car.move();
-        Position postPosition = car.getMovedLength();
 
         // expect
-        assertThat(postPosition.getValue()).isGreaterThan(prevPosition.getValue());
+        assertThat(car.getMovedLength().getValue()).isGreaterThan(prevValue);
     }
 
     @Test
