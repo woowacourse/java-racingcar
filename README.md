@@ -37,6 +37,19 @@
   - [✅] 자바 코드 컨벤션
   - [🤷‍️] 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현
 
+## 피드백 요구사항
+
+- [ ] 예외사항 구체화하기
+- [ ] 객체 관리 제거하기
+  - 객체는 변경될 가능성이 높기 때문
+- [ ] 접근 제어자 사용하기
+- [ ] toString의 역할에 대해 고민해보기
+- [ ] move 메서드의 random 사용시 테스트에 대해 고민해보기
+- [ ] 자바 컨벤션 지키기
+- [ ] Validation에 대해 고민해보기
+- [ ] `@DisplayName`에 대해 고민해보기
+- [ ] 테스트 깨짐 수정하기
+
 ## 우아한테크코스 코드리뷰
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
