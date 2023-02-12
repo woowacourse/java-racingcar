@@ -10,6 +10,10 @@ import view.OutputView;
 
 public class RacingGameAppFactory {
 
+    private RacingGameAppFactory() {
+        throw new IllegalStateException("인스턴스화 할 수 없는 클래스입니다.");
+    }
+
     public static RacingGameApplication generate() {
         return new RacingGameApplication(initInputView(), initOutputView(), initRacingGame());
     }
