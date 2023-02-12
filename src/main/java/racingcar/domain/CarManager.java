@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class CarManager {
@@ -14,6 +16,10 @@ public class CarManager {
         this.cars = cars;
     }
 
+    private Predicate<Car> isWinnerPosition(final Car maxCar) {
+        return car -> car.compareTo(maxCar) == SAME_CAR_COMPARE_VALUE;
+    }
+
     public void moveCarsRandomly() {
         this.cars.forEach(car -> car.move(makeRandomCarMove()));
     }
@@ -23,15 +29,21 @@ public class CarManager {
     }
 
     public List<Car> getWinners() {
-        final Car maxCar = Collections.max(cars);
         return cars.stream()
-                .filter(car -> car.compareTo(maxCar) == SAME_CAR_COMPARE_VALUE)
+                .filter(isWinnerPosition(getWinnerCar()))
                 .collect(Collectors.toList());
     }
 
+    private Car getWinnerCar() {
+        return Collections.max(cars);
+    }
+
     private CarMovement makeRandomCarMove() {
-        final int randomCorrectionValue = 1;
-        final int moveCount = (int) (Math.random() * MAX_MOVEMENT_VALUE + randomCorrectionValue);
-        return new CarMovement(moveCount);
+        return new CarMovement(getRandomMovementValue());
+    }
+
+    private int getRandomMovementValue() {
+        final Random random = new Random();
+        return random.nextInt(MAX_MOVEMENT_VALUE);
     }
 }
