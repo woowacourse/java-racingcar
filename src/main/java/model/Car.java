@@ -14,18 +14,18 @@ public class Car {
         this.location = CAR_INITIAL_LENGTH;
     }
 
-    private void moveCar() {
-        this.location += CAR_MOVE_LENGTH;
-    }
-
     public void moveByNumber(int moveForNum) {
         if (moveForNum >= CAR_MOVE_STANDARD_LENGTH) {
             this.moveCar();
         }
     }
 
+    private void moveCar() {
+        this.location += CAR_MOVE_LENGTH;
+    }
+
     public String getName() {
-        return this.name.getName();
+        return name.getName();
     }
 
     public int getLocation() {
