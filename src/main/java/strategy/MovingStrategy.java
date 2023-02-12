@@ -2,5 +2,5 @@ package strategy;
 
 public interface MovingStrategy {
 
-    int getNum();
+    int getRandomNumber();
 }

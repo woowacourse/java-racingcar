@@ -1,15 +1,15 @@
 package strategy;
 
-import static utils.Constant.MAX_MOVING_NUM;
 
 import java.util.Random;
 
 public class RandomMovingStrategy implements MovingStrategy {
 
+    private final int MAX_MOVING_NUM = 9;
+
     @Override
-    public int getNum() {
+    public int getRandomNumber() {
         Random random = new Random();
-        int randomNum = random.nextInt(MAX_MOVING_NUM);
-        return randomNum;
+        return random.nextInt(MAX_MOVING_NUM);
     }
 }
