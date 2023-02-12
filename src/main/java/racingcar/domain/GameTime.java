@@ -4,6 +4,7 @@ public class GameTime {
 
     private static final int MAX_GAME_TIME = 500;
     private static final int RANGE_BOUNDARY = 0;
+    private static final int GAME_END = 0;
 
     private int gameTime;
 
@@ -36,7 +37,7 @@ public class GameTime {
     }
 
     public boolean isInPlay() {
-        return gameTime != 0;
+        return gameTime != GAME_END;
     }
 
     public void runOnce() {
