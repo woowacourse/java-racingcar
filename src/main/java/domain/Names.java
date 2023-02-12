@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Names {
 
-    private static final int MIN_PARTICIPANT = 1;
+    private static final int MIN_PARTICIPANT = 2;
     private final List<Name> names = new ArrayList<>();
 
     public Names(final List<String> input){
@@ -18,7 +18,7 @@ public class Names {
 
     private void validateMinParticipantNumber(final List<String> names) {
         if(names.size() < MIN_PARTICIPANT){
-            throw new IllegalArgumentException("[ERROR] 최소 한명 이상의 참여자가 필요합니다.");
+            throw new IllegalArgumentException("[ERROR] 최소"+MIN_PARTICIPANT+ "이상의 참여자가 필요합니다.");
         }
     }
 
