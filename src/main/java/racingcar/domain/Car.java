@@ -2,13 +2,14 @@ package racingcar.domain;
 
 import racingcar.domain.vo.CarStatus;
 
+import java.util.Objects;
+
 import static racingcar.enumType.ExceptionMessage.BLANK_MESSAGE;
 import static racingcar.enumType.ExceptionMessage.LENGTH_MESSAGE;
 
 public class Car {
 
     public static final int START_POSITION = 1;
-    private static final int CAR_MOVE_STANDARD = 4;
     public static final int CAR_NAME_MAX_LENGTH = 5;
 
     private final String name;
@@ -25,14 +26,22 @@ public class Car {
         return new Car(name);
     }
 
-    public void move(final int moveConditionValue) {
-        if (moveConditionValue >= CAR_MOVE_STANDARD) {
+    public void move(final boolean isMove) {
+        if (isMove) {
             position++;
         }
     }
 
     public CarStatus getCarStatus() {
         return CarStatus.of(name, position);
+    }
+
+    public String getName() {
+        return getCarStatus().getName();
+    }
+
+    public int getPosition() {
+        return getCarStatus().getPosition();
     }
 
     private void validateNameLength(final String name) {
@@ -47,4 +56,16 @@ public class Car {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position && Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
 }
