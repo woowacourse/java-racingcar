@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
     private Cars cars;
-    private List<String> carNames = List.of("pobi", "crong", "honux");
+    private final List<String> carNames = List.of("pobi", "crong", "honux");
 
     @Nested
     @DisplayName("CarRepository 생성에 대한 테스트")
@@ -36,14 +36,16 @@ class CarsTest {
     }
 
     @Nested
-    @DisplayName("우승자들의 이름을 제대로 추출하는지 검증한다")
+    @DisplayName("현재 자동차들의 상태를 올바르게 기록하는지 확인하는 테스트")
     class GetWinnerMakerTest {
         @Test
-        @DisplayName("모두의 위치가 같은 경우 모두가 우승자가 된다")
-        void allCarsAreWinner() {
+        @DisplayName("움직이고 나면 위치가 변해야한다")
+        void updateMovedCarSuccess() {
             cars = new Cars(carNames);
-            assertThat(cars.getWinnerCarsName())
-                    .isEqualTo(carNames);
+            NumberGenerator numberGenerator = new RandomNumberGenerator();
+            List<Car> movedResult = cars.moveCars(numberGenerator);
+            assertThat(cars.getLatestResult())
+                    .isEqualTo(movedResult);
         }
     }
 }
