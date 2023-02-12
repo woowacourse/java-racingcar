@@ -1,10 +1,15 @@
 package view;
 
-import domain.Names;
+import domain.Name;
 import exception.CommaNotFoundException;
 import exception.NameIsOutOfBoundException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import static java.util.Collections.addAll;
+import static java.util.stream.Collectors.*;
 
 public class InputView {
 
@@ -14,14 +19,38 @@ public class InputView {
 
     private static Scanner scanner;
 
-    public static Names requestCarName() {
+    public static List<Name> requestCarName() {
         System.out.println(requestCarNameMessage);
 
         try {
-            return new Names(input());
+            return sliceNames();
         } catch (CommaNotFoundException | NameIsOutOfBoundException e) {
             System.out.println(e.getMessage());
             return requestCarName();
+        }
+    }
+
+    private static List<Name> sliceNames() {
+        return sliceNameByComma(input()).stream().map(Name::new)
+                .collect(toList());
+    }
+
+    private static List<String> sliceNameByComma(final String names) {
+        validateComma(names);
+
+        return getSplitName(names);
+    }
+
+    private static List<String> getSplitName(final String names) {
+        List<String> splitNames = new ArrayList<>();
+        addAll(splitNames, names.split(COMMA));
+
+        return splitNames;
+    }
+
+    private static void validateComma(final String names) {
+        if (!names.contains(COMMA)) {
+            throw new CommaNotFoundException();
         }
     }
 

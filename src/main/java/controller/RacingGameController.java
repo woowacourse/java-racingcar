@@ -1,6 +1,6 @@
 package controller;
 
-import domain.Names;
+import domain.Name;
 import domain.RacingCar;
 import domain.RacingCars;
 import domain.TryCount;
@@ -28,16 +28,16 @@ public class RacingGameController {
     }
 
     private RacingCars createRacingCar() {
-        final Names names = inputCarNames();
+        final List<Name> names = inputCarNames();
         return new RacingCars(createRacingCar(names));
     }
 
-    private Names inputCarNames() {
+    private List<Name> inputCarNames() {
         return InputView.requestCarName();
     }
 
-    private List<RacingCar> createRacingCar(final Names names) {
-        return names.getNames().stream()
+    private List<RacingCar> createRacingCar(final List<Name> names) {
+        return names.stream()
                 .map(RacingCar::new)
                 .collect(toList());
     }
