@@ -28,12 +28,8 @@ public class GameController {
         return new GameTime(gameTime);
     }
 
-    private List<Car> initCars() {
-        String input = inputView.inputCarName();
-        String[] split = input.split(DELIMITER);
-        return Arrays.stream(split)
-                .map(Car::new)
-                .collect(Collectors.toList());
+    private String initCars() {
+        return inputView.inputCarName();
     }
 
     public void runGame() {

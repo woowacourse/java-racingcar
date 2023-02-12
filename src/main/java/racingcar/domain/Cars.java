@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -11,24 +12,27 @@ public class Cars {
     private static final int DEFAULT_MAX = 0;
 
     private static final Random random = new Random();
-    private List<Car> cars;
+    private static final String CAR_NAMES_DELIMITER = ",";
 
-    public Cars(List<Car> cars) {
-        validateDuplicatedName(cars);
-        validateSoloPlay(cars);
-        this.cars = cars;
+    private final List<Car> cars;
+
+    public Cars(String names) {
+        List<String> carNames = Arrays.asList(names.split(CAR_NAMES_DELIMITER));
+        validateDuplicatedName(carNames);
+        validateSoloPlay(carNames);
+        this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
-    private static void validateSoloPlay(List<Car> cars) {
-        if (cars.size() == ONLY_ONE_CAR) {
+    private static void validateSoloPlay(List<String> carNames) {
+        if (carNames.size() == ONLY_ONE_CAR) {
             throw new IllegalArgumentException("[ERROR] 차를 둘 이상 입력하세요.");
         }
     }
 
-    private static void validateDuplicatedName(List<Car> cars) {
-        int carsSize = cars.size();
-        int duplicateRemovedCount = (int) cars.stream()
-                .map(Car::getName)
+    private static void validateDuplicatedName(List<String> carNames) {
+        int carsSize = carNames.size();
+        int duplicateRemovedCount =
+                (int) carNames.stream()
                 .distinct()
                 .count();
         if (carsSize != duplicateRemovedCount) {
