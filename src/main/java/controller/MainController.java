@@ -24,7 +24,6 @@ public class MainController {
         this.inputView = inputView;
         this.outputView = outputView;
         this.gameGuide = initializeGameGuide();
-        //this.stadium = new Stadium(new ThresholdCarMoveManager());
     }
 
     private Map<GameStatus, Supplier<GameStatus>> initializeGameGuide() {
