@@ -36,6 +36,6 @@ public class InputViewForRetry {
     }
 
     private void printExceptionMessage(String message) {
-        System.out.println("[ERROR] " +message);
+        System.out.println("[ERROR] " + message);
     }
 }

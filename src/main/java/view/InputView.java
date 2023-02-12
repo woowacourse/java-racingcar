@@ -22,7 +22,7 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         String[] carsName = scanner.nextLine().split(delimiter);
 
-        for(String carName : carsName) {
+        for (String carName : carsName) {
             validate(carName);
         }
 
@@ -46,7 +46,7 @@ public class InputView {
     private void validateLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다. " +
-                    "입력값 : "  + name);
+                    "입력값 : " + name);
         }
     }
 

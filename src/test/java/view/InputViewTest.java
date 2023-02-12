@@ -37,6 +37,6 @@ class InputViewTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assertThatIllegalArgumentException().isThrownBy(() -> new InputView().sendCarsName())
-                .withMessageContaining("이름에 공백을 포함할 수 없습니다." );
+                .withMessageContaining("이름에 공백을 포함할 수 없습니다.");
     }
 }

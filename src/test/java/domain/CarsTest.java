@@ -51,7 +51,7 @@ class CarsTest {
         private final List<Integer> values;
         private int index = 0;
 
-        public MockNumberGenerator(List<Integer> values){
+        public MockNumberGenerator(List<Integer> values) {
             this.values = values;
         }
 
