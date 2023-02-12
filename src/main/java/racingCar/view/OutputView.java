@@ -10,7 +10,7 @@ public class OutputView {
         System.out.println(errorMsg);
     }
 
-    public static void printCarPosition(List<CarDto> carDtos) {
+    public static void printRacing(List<CarDto> carDtos) {
         for (CarDto carDto : carDtos) {
             System.out.println(carDto.toString());
         }
