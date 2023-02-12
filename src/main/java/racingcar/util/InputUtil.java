@@ -22,7 +22,7 @@ public class InputUtil {
     public <T> T getUserInput(Supplier<T> inputReader) {
         try {
             return inputReader.get();
-        } catch (IllegalArgumentException | DuplicateException | ConsoleException e) {
+        } catch (ConsoleException e) {
             OutputView.printMessage(e.getMessage());
             return getUserInput(inputReader);
         }

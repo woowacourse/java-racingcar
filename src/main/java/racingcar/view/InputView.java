@@ -27,6 +27,8 @@ public class InputView {
     public int readTryCount() {
         try {
             return Integer.parseInt(bufferedReader.readLine());
+        } catch (NumberFormatException e) {
+            throw new ConsoleException(String.format(ExceptionMessage.TYPE_MESSAGE.getValue(), e.getMessage()));
         } catch (IOException e) {
             throw new ConsoleException(String.format(ExceptionMessage.INPUT_MESSAGE.getValue(), e.getMessage()));
         }
