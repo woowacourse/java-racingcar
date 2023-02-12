@@ -12,8 +12,8 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
-        cars = new ArrayList<>();
         checkNameDuplication(carNames);
+        cars = new ArrayList<>();
         addCar(carNames);
     }
 
