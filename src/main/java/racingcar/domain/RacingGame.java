@@ -24,7 +24,9 @@ public class RacingGame {
     }
 
     public List<String> getWinners() {
-        //TODO 우승한 자동차들을 반환한다.
+        return cars.getWinners().stream()
+            .map(Car::getName)
+            .collect(Collectors.toList());
     }
 
     public List<Cars> getResult() {
