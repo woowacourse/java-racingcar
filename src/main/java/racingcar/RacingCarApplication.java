@@ -1,18 +1,18 @@
 package racingcar;
 
 import racingcar.domain.Cars;
-import racingcar.domain.GameManager;
+import racingcar.controller.RacingGameController;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarApplication {
 
     public static void main(String[] args) {
-        GameManager gameManager = new GameManager(
+        RacingGameController racingGameController = new RacingGameController(
                 new InputView(),
                 new OutputView(),
                 new Cars());
 
-        gameManager.playGame();
+        racingGameController.playGame();
     }
 }
