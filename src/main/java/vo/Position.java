@@ -12,6 +12,7 @@ public class Position implements Comparable<Position> {
     public static Position of(Long position) {
         return new Position(position);
     }
+
     public Position plus() {
         return Position.of(position + 1);
     }

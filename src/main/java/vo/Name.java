@@ -16,7 +16,9 @@ public class Name {
     }
 
     public static List<Name> of(List<String> names) {
-        return names.stream().map(Name::new).collect(Collectors.toUnmodifiableList());
+        return names.stream()
+                .map(Name::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public String getValue() {
