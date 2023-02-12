@@ -1,7 +1,5 @@
 package racingcar.controller;
 
-import racingcar.datatransfer.GameResultResponse;
-import racingcar.datatransfer.RoundResultResponse;
 import racingcar.domain.Cars;
 import racingcar.domain.GameRound;
 import racingcar.view.InputView;
@@ -34,8 +32,7 @@ public class RacingGameController {
         while (!gameRound.isEnd()) {
             cars.moveCars();
             gameRound.increaseRound();
-            RoundResultResponse roundResultResponse = new RoundResultResponse(cars.getCarsState());
-            outputView.printRoundResult(roundResultResponse);
+            outputView.printRoundResult(cars.getCarsState());
         }
     }
 
@@ -65,7 +62,6 @@ public class RacingGameController {
     }
 
     private void endGame() {
-        GameResultResponse gameResultResponse = new GameResultResponse(cars.findWinnerNames());
-        outputView.printEndGameResult(gameResultResponse);
+        outputView.printEndGameResult(cars.findWinnerNames());
     }
 }
