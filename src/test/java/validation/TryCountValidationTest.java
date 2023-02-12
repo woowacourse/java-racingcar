@@ -27,5 +27,4 @@ class TryCountValidationTest {
         // when, then
         TryCountValidation.validateTryCount(input);
     }
-
 }
