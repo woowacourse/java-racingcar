@@ -8,8 +8,8 @@ public class Car implements Comparable<Car> {
     private final Name name;
     private int position = DEFAULT_POSITION_VALUE;
 
-    public Car(String name) {
-        this.name = new Name(name);
+    public Car(Name name) {
+        this.name = name;
     }
 
     public void move(int number) {
