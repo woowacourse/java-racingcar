@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import racing.domain.CarGroup;
 import racing.domain.RacingGame;
+import racing.domain.RacingResult;
 import racing.domain.RandomNumberGenerator;
 import racing.view.InputView;
 import racing.view.OutputView;
@@ -22,7 +23,7 @@ public class RacingGameController {
         CarGroup carGroup = createCarGroup();
         int movingTrial = createMovingTrial();
 
-        RacingGame racingGame = new RacingGame(carGroup, movingTrial, new RandomNumberGenerator());
+        RacingGame racingGame = new RacingGame(carGroup, new RandomNumberGenerator());
 
         outputView.printNotice();
         raceWithHistory(movingTrial, racingGame);
@@ -53,7 +54,8 @@ public class RacingGameController {
         for (int i = 0; i < movingTrial; i++) {
             racingGame.race();
 
-            outputView.printRacingResult(racingGame.produceRacingResult().getHistory());
+            RacingResult racingResult = racingGame.produceRacingResult();
+            outputView.printRacingResult(racingResult.getHistory());
         }
     }
 }

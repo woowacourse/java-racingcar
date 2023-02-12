@@ -8,12 +8,10 @@ public class RacingGame {
     private static final int MOVABLE_CONDITION = 4;
 
     private final CarGroup carGroup;
-    private final int movingTrial;
     private final RandomNumberGenerator numberGenerator;
 
-    public RacingGame(CarGroup group, int movingTrial, RandomNumberGenerator randomNumberGenerator) {
+    public RacingGame(CarGroup group, RandomNumberGenerator randomNumberGenerator) {
         this.carGroup = group;
-        this.movingTrial = movingTrial;
         this.numberGenerator = randomNumberGenerator;
     }
 
