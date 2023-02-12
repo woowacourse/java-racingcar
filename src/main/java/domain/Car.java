@@ -6,7 +6,7 @@ public class Car {
     private int moveCount;
 
     public Car(String name) {
-        CarValidator.validateCarName(name);
+        validate(name);
         this.name = name;
         this.moveCount = 0;
     }
@@ -34,5 +34,9 @@ public class Car {
     @Override
     public String toString() {
         return name + " : " + "-".repeat(moveCount);
+    }
+
+    private static void validate(String name) {
+        CarValidator.validateCarName(name);
     }
 }
