@@ -40,8 +40,8 @@ public class Controller {
     private void playGame(Cars cars, int round) {
         RacingGame racingGame = new RacingGame(cars, round);
         outputView.printResultMessage();
-        while(racingGame.isGameEnded()){
-            racingGame.playOneRound();
+        while(!racingGame.isGameEnded()){
+            outputView.printRoundResult(racingGame.playOneRound());
         }
         outputView.printFinalResult(racingGame.findWinnerCars());
     }
