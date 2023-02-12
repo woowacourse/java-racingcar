@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCarController {
-    private static final int MINIMUM_NUMBER = 0;
-    private static final int MAXIMUM_NUMBER = 0;
+    private static final int MINIMUM_RANDOM_NUMBER = 0;
+    private static final int MAXIMUM_RANDOM_NUMBER = 9;
 
     private final NumberGenerator numberGenerator;
 
     public RacingCarController() {
-        this.numberGenerator = new RandomNumberGenerator(MINIMUM_NUMBER, MAXIMUM_NUMBER);
+        this.numberGenerator = new RandomNumberGenerator(MINIMUM_RANDOM_NUMBER, MAXIMUM_RANDOM_NUMBER);
     }
 
     public void run() {
