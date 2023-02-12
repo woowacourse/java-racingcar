@@ -26,8 +26,7 @@ public class SetCollectionTest {
     @Test
     @DisplayName("size를 사용해 Set의 크기를 확인한다.")
     public void sizeTest() {
-        Integer size = numbers.size();
-        assertThat(size).isEqualTo(3);
+        assertThat(numbers).hasSize(3);
     }
 
     @ParameterizedTest
