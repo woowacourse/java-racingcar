@@ -2,11 +2,13 @@ package config;
 
 import domain.RacingGame;
 import application.RacingGameApplication;
+import utils.ExceptionHandler;
 import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
 import view.InputView;
-import view.InputViewProxy;
+import view.InputViewImpl;
 import view.OutputView;
+import java.lang.reflect.Proxy;
 
 public class RacingGameAppFactory {
 
@@ -19,7 +21,11 @@ public class RacingGameAppFactory {
     }
 
     private static InputView initInputView() {
-        return new InputViewProxy(new InputView());
+        InputView inputView = new InputViewImpl();
+        InputView inputViewRetry = (InputView) Proxy.newProxyInstance(InputView.class.getClassLoader(),
+                new Class[]{InputView.class},
+                new ExceptionHandler(inputView));
+        return inputViewRetry;
     }
 
     private static OutputView initOutputView() {
