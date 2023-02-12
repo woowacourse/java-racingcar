@@ -18,9 +18,17 @@ public class CarInfoValidation {
     }
 
     private static void validateLength(final String[] cars) {
-        if (cars.length == CAR_COUNT_MIN) {
+        if (cars.length - 1 == CAR_COUNT_MIN && isEmpty(cars[0])) {
             throw new IllegalArgumentException("자동차를 한 대 이상 작성해주세요.");
         }
+    }
+
+    private static boolean isEmpty(final String car) {
+        if (car.equals("") || car.equals(" ")) {
+            return true;
+        }
+
+        return false;
     }
 
     private static void validateName(final String[] cars) {

@@ -2,8 +2,10 @@ package validation;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("CarInfoValidation Unit Test")
 class CarInfoValidationTest {
@@ -16,30 +18,24 @@ class CarInfoValidationTest {
         String expectedMessage = "자동차 이름은 5자 이하로 작성해주세요.";
 
         //when & then
-        try {
+        assertThatThrownBy(() -> {
             CarInfoValidation.validateCar(input);
-        } catch (IllegalArgumentException exception) {
-            final String errorMessage = exception.getMessage();
-
-            assertEquals(expectedMessage, errorMessage);
-        }
+        }).isInstanceOf(IllegalArgumentException.class)
+          .hasMessage(expectedMessage);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
     @DisplayName("validationCar() : 자동차가 한 대 미만일 경우에 IllegalArgumentException 발생")
-    void test_ValidateLength_IllegalArgumentException() {
+    void test_ValidateLength_IllegalArgumentException(String input) {
         //given
-        String input = "";
         String expectedMessage = "자동차를 한 대 이상 작성해주세요.";
 
         //when & then
-        try {
+        assertThatThrownBy(() -> {
             CarInfoValidation.validateCar(input);
-        } catch (IllegalArgumentException exception) {
-            final String errorMessage = exception.getMessage();
-
-            assertEquals(expectedMessage, errorMessage);
-        }
+        }).isInstanceOf(IllegalArgumentException.class)
+          .hasMessage(expectedMessage);
     }
 
     @Test
@@ -48,7 +44,7 @@ class CarInfoValidationTest {
         // given
         final String input = "pobi,crong,tobi";
 
-        // when, then
+        // when & then
         CarInfoValidation.validateCar(input);
     }
 
@@ -60,12 +56,9 @@ class CarInfoValidationTest {
         String expectedMessage = "자동차 이름은 중복되지 않아야합니다.";
 
         //when & then
-        try {
+        assertThatThrownBy(() -> {
             CarInfoValidation.validateCar(input);
-        } catch (IllegalArgumentException exception) {
-            final String errorMessage = exception.getMessage();
-
-            assertEquals(expectedMessage, errorMessage);
-        }
+        }).isInstanceOf(IllegalArgumentException.class)
+          .hasMessage(expectedMessage);
     }
 }
