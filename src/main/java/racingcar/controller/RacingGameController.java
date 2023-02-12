@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import racingcar.datatransfer.CarNamesRequest;
 import racingcar.datatransfer.GameResultResponse;
 import racingcar.datatransfer.RoundResultResponse;
 import racingcar.domain.Cars;
