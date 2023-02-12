@@ -18,14 +18,14 @@ class RacingCarGameTest {
 
     private static final double ON_GORING_NUMBER = 0.5;
     private static final double STOP_NUMBER = 0.1;
+    private static final String FIRST_CAR_NAME = "말랑";
+    private static final String SECOND_CAR_NAME = "헤나";
+    private static final String THIRD_CAR_NAME = "카일";
     private final NumberGenerator numberGenerator = new NumberGenerator(() -> ON_GORING_NUMBER);
-    final String carName1 = "말랑";
-    final String carName2 = "헤나";
-    final String carName3 = "카일";
-    final List<String> carNames = List.of(carName1, carName2, carName3);
-    final Cars cars = new Cars(carNames);
-    final Lap tenLap = Lap.totalLap(10);
-    final Lap oneLap = Lap.totalLap(1);
+    private final List<String> carNames = List.of(FIRST_CAR_NAME, SECOND_CAR_NAME, THIRD_CAR_NAME);
+    private final Cars cars = new Cars(carNames);
+    private final Lap tenLap = Lap.totalLap(10);
+    private final Lap oneLap = Lap.totalLap(1);
 
     @Nested
     @DisplayName("성공 테스트")
@@ -73,7 +73,7 @@ class RacingCarGameTest {
 
             // then
             assertThat(winners.winners().stream().map(it -> it.name().value()).collect(Collectors.toList()))
-                    .containsExactlyInAnyOrderElementsOf(List.of(carName1, carName2));
+                    .containsExactlyInAnyOrderElementsOf(List.of(FIRST_CAR_NAME, SECOND_CAR_NAME));
         }
     }
 

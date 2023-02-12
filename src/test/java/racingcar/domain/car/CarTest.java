@@ -11,17 +11,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("Car 는 ")
 class CarTest {
 
+    private static final String MALLANG_NAME = "말랑";
+    private final Car car = new Car(MALLANG_NAME);
+
     @Test
     @DisplayName("Name을 받아 생성되고 position은 0으로 초기화 된다.")
     void test_1() {
-        // given
-        Name name = new Name("말랑");
-
         // when
-        Car car = new Car(name.value());
+        Car car = new Car(MALLANG_NAME);
 
         // then
-        assertThat(car.name()).isEqualTo(name);
+        assertThat(car.name().value()).isEqualTo(MALLANG_NAME);
         assertThat(car.position()).isEqualTo(Position.init());
     }
 
@@ -29,7 +29,6 @@ class CarTest {
     @ValueSource(ints = {0, 1, 2, 3})
     void test_2(final int randomNumber) {
         // given
-        Car car = new Car("채채");
         Position beforeMovePosition = car.position();
 
         // when
@@ -43,7 +42,6 @@ class CarTest {
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void test_3(final int randomNumber) {
         // given
-        Car car = new Car("채채");
         Position beforeMovePosition = car.position();
 
         // when
@@ -56,9 +54,6 @@ class CarTest {
     @ParameterizedTest(name = "move() 시 들어오는 값이 0 ~ 9 사이가 아니라면(ex: {arguments}) 오류가 발생한다.")
     @ValueSource(ints = {-1, 10})
     void test_4(final int randomNumber) {
-        // given
-        Car car = new Car("채채");
-
         // when & then
         assertThatThrownBy(() -> car.move(randomNumber))
                 .isInstanceOf(IllegalArgumentException.class);

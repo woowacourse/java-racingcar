@@ -11,24 +11,19 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @DisplayName("Lap 은 ")
 class LapTest {
 
+    private static final int LAP_VALUE = 10;
+    private final Lap lap = Lap.totalLap(LAP_VALUE);
+
     @Test
     @DisplayName("바퀴 수를 받아 생성된다.")
     void test_1() {
-        // given
-        int lapValue = 10;
-        Lap lap = Lap.totalLap(lapValue);
-
         // when & then
-        assertThat(lap.value()).isEqualTo(lap.value());
+        assertThat(lap.value()).isEqualTo(LAP_VALUE);
     }
 
     @Test
     @DisplayName("increase() 실행 시 1 증가된 lap 값을 반환한다.")
     void test_2() {
-        // given
-        int lapValue = 10;
-        Lap lap = Lap.totalLap(lapValue);
-
         // when
         Lap increaseLap = lap.increase();
 
@@ -49,8 +44,8 @@ class LapTest {
     @DisplayName("equals 시 lap의 값이 같다면 true를 반환한다.")
     void test_4() {
         // given
-        Lap lap1 = Lap.totalLap(10);
-        Lap lap2 = Lap.totalLap(10);
+        Lap lap1 = Lap.totalLap(LAP_VALUE);
+        Lap lap2 = Lap.totalLap(LAP_VALUE);
 
         // when & then
         assertThat(lap1.equals(lap2)).isTrue();
