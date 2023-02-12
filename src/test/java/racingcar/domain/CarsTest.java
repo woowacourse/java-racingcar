@@ -3,6 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.SoftAssertions.*;
 
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -49,12 +50,12 @@ class CarsTest {
     @Test
     @DisplayName("라운드 결과 테스트")
     void getRoundResultTest() {
-        Map<String, Integer> actualResult = cars.getRoundResult().getRoundResult();
+        List<Map.Entry<String, Integer>> actualResult = cars.getRoundResult().getRoundResult();
 
         assertSoftly(softly -> {
-            softly.assertThat(actualResult.get("test1")).isEqualTo(2);
-            softly.assertThat(actualResult.get("test2")).isEqualTo(2);
-            softly.assertThat(actualResult.get("test3")).isEqualTo(0);
+            softly.assertThat(actualResult.get(0).getValue()).isEqualTo(2);
+            softly.assertThat(actualResult.get(1).getValue()).isEqualTo(2);
+            softly.assertThat(actualResult.get(2).getValue()).isEqualTo(0);
         });
     }
 

@@ -13,7 +13,7 @@ public class ViewRenderer {
 
     public String renderRoundResult(RoundResultResponseDTO roundResults) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Map.Entry<String, Integer> result : roundResults.getRoundResult().entrySet()) {
+        for (Map.Entry<String, Integer> result : roundResults.getRoundResult()) {
             stringBuilder.append(result.getKey());
             stringBuilder.append(SPACE + COLON + SPACE);
             stringBuilder.append(DASH.repeat(result.getValue()));

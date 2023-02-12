@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,9 +38,9 @@ public class Cars {
     }
 
     public RoundResultResponseDTO getRoundResult() {
-        Map<String, Integer> currentRoundResult = new LinkedHashMap<>();
+        List<Map.Entry<String, Integer>> currentRoundResult = new ArrayList<>();
         for (Car car : cars) {
-            currentRoundResult.put(car.getName(), car.getPosition());
+            currentRoundResult.add(new RoundResult(car.getName(), car.getPosition()));
         }
         return new RoundResultResponseDTO(currentRoundResult);
     }

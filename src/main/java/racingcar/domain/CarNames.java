@@ -1,20 +1,19 @@
 package racingcar.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import racingcar.dto.CarNamesRequestDTO;
+import racingcar.util.Validator;
 
 public class CarNames {
 
+    private static final String CAR_NAME_DELIMITER = ",";
     private final List<String> names;
 
-    private final String CAR_NAME_DELIMITER = ",";
-
     public CarNames(CarNamesRequestDTO carNamesRequestDTO) {
-        names = List.copyOf(Collections.unmodifiableCollection(
-            Arrays.asList(carNamesRequestDTO.getCarNames().split(CAR_NAME_DELIMITER))));
+        names = List.copyOf(Arrays.asList(carNamesRequestDTO.getCarNames().split(CAR_NAME_DELIMITER)));
+        names.forEach(Validator::validateNotEmptyInput);
     }
 
     public List<String> getNames() {
