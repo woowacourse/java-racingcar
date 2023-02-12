@@ -18,7 +18,7 @@ public class Cars {
         this.cars = List.copyOf(cars);
     }
 
-    public void moveCars(ValueGenerator valueGenerator, Rule rule) {
+    public void moveCars(ValueGenerator valueGenerator, RacingRule rule) {
         for (Car car : cars) {
             car.moveWith(valueGenerator.generate(), rule);
         }

@@ -5,7 +5,7 @@ import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.FinalRoundChecker;
 import racingcar.domain.RandomValueGenerator;
-import racingcar.domain.Rule;
+import racingcar.domain.StandardRacingRule;
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class RacingCarService {
     }
 
     public void playRound() {
-        cars.moveCars(new RandomValueGenerator(), Rule.MOVING_FORWARD_STANDARD);
+        cars.moveCars(new RandomValueGenerator(), new StandardRacingRule());
     }
 
     public Map<String, Integer> getCurrentRoundResult() {

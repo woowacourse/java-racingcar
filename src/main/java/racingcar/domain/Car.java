@@ -15,9 +15,11 @@ public class Car {
         this.turnCount = 0;
     }
 
-    public void moveWith(int power, Rule rule) {
+    public void moveWith(int power, RacingRule rule) {
         turnCount++;
-        position += rule.movingStep(power);
+        if (rule.isMovable(power)) {
+            position++;
+        }
     }
 
     public int getPosition() {
