@@ -40,9 +40,12 @@ class CarsTest {
     }
 
     @Test
-    void findWinner_함수로_우승자들이_반환됨() {
-        //아무것도 하지 않은 경우 모두가 우승자로 선정됨
+    void findWinner_함수는_아무것도_하지_않는다면_모두가_우승자가_됨() {
         assertThat(cars.findWinner()).containsExactly("judy", "nunu", "pobi");
+    }
+
+    @Test
+    void findWinner_함수로_우승자들이_반환됨() {
 
         cars.moveCars(mockRandomPicker);
         assertThat(cars.findWinner()).containsExactly("judy", "pobi");
