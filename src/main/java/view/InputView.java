@@ -22,14 +22,14 @@ public class InputView {
         System.out.println(Message.INPUT_CARS.message);
         String input = ValueEditor.removeSpace(scanner.nextLine());
         List<String> names = ValueEditor.splitByComma(input);
-        new CarNameValidator().validate(names);
+        CarNameValidator.validate(names);
         return names;
     }
 
     public int readMoveCount() {
         System.out.println(Message.INPUT_MOVE_COUNT.message);
         String input = ValueEditor.removeSpace(scanner.nextLine());
-        new MoveCountValidator().validate(input);
+        MoveCountValidator.validate(input);
         return Integer.parseInt(input);
     }
 
