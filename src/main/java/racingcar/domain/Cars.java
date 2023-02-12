@@ -19,6 +19,14 @@ public class Cars {
         cars.forEach(Car::move);
     }
 
+    public Map<String, Integer> getCarsState() {
+        Map<String, Integer> carsState = new HashMap<>();
+        for (Car car : cars) {
+            carsState.put(car.getName(), car.getPosition());
+        }
+        return Collections.unmodifiableMap(carsState);
+    }
+
     public List<String> findWinnerNames() {
         List<String> winnerNames = new ArrayList<>();
         int maxPosition = 0;
@@ -31,14 +39,6 @@ public class Cars {
 
     public void reset() {
         cars.clear();
-    }
-
-    public Map<String, Integer> getCarsState() {
-        Map<String, Integer> carsState = new HashMap<>();
-        for (Car car : cars) {
-            carsState.put(car.getName(), car.getPosition());
-        }
-        return Collections.unmodifiableMap(carsState);
     }
 
     private void generateCar(String name) {
