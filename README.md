@@ -17,7 +17,7 @@
 
 - 자동차는 이름을 가진다.
     - [x] 이름은 1자 이상, 5자 이하여야 한다.
-    - [ ] 이름은 중복되지 않는다.
+    - [x] 이름은 중복되지 않는다.
 - 자동차는 위치를 가진다.
     - [x] 같은 위치에서 출발한다.
     - [x] 0 이상의 위치를 가진다.
@@ -40,9 +40,9 @@
 
 - 경주할 자동차 이름을 입력한다.
     - [x] 쉼표(,)로 구분된 이름을 입력하는지 검증한다.
-    - [] 1대 이상, 100대 이하의 자동차를 입력하는지 검증한다.
+    - [x] 1대 이상, 100대 이하의 자동차를 입력하는지 검증한다.
 - 시도할 횟수를 입력한다.
-    - [ ] 1회 이상 100회 이하의 횟수만 시도할 수 있다.
+    - [x] 1회 이상 100회 이하의 횟수만 시도할 수 있다.
 
 ### 출력
 
@@ -62,6 +62,6 @@ graph TD
     RacingCarController --> RacingGame
     RandomNumberGenerator -.-> NumberGenerator
     RacingCarController --> InputView
-    InputView --> InputValidator
+    InputView --> Parser
     RacingCarController --> OutputView
 ```

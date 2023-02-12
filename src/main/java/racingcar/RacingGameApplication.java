@@ -2,9 +2,9 @@ package racingcar;
 
 import java.util.Scanner;
 import racingcar.controller.RacingGameController;
-import racingcar.view.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+import racingcar.view.Parser;
 
 public class RacingGameApplication {
 
@@ -14,11 +14,11 @@ public class RacingGameApplication {
     }
 
     private static InputView inputView() {
-        return new InputView(inputValidator(), scanner());
+        return new InputView(parser(), scanner());
     }
 
-    private static InputValidator inputValidator() {
-        return new InputValidator();
+    private static Parser parser() {
+        return new Parser();
     }
 
     private static Scanner scanner() {
