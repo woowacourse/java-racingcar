@@ -1,9 +1,5 @@
 package racingcar.view;
 
-import racingcar.constant.ErrorConstant;
-
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -18,11 +14,7 @@ public class InputView {
     }
 
     public static int inputTries() {
-        try {
-            System.out.println(TRIES_INPUT_MESSAGE);
-            return sc.nextInt();
-        } catch(InputMismatchException e) {
-            throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "숫자를 입력해주세요.");
-        }
+        System.out.println(TRIES_INPUT_MESSAGE);
+        return sc.nextInt();
     }
 }
