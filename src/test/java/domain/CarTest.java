@@ -24,4 +24,9 @@ class CarTest {
     void nameTest() {
         assertThat(car.getName()).isEqualTo("test");
     }
+
+    @Test
+    void positionTest() {
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
 }
