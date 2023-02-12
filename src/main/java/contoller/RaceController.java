@@ -4,14 +4,16 @@ import domain.Car;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import util.RandomUtil;
+import strategy.PowerSupplier;
+import strategy.RandomPowerSupplier;
 import view.InputView;
 import view.OutputView;
 
 public class RaceController {
 
-  private InputView inputView = new InputView();
-  private OutputView outputView = new OutputView();
+  private final InputView inputView = new InputView();
+  private final OutputView outputView = new OutputView();
+  private final PowerSupplier powerSupplier = new RandomPowerSupplier();
 
   public void run() {
     List<Car> cars = makeCars();
@@ -46,7 +48,7 @@ public class RaceController {
 
   private void runRound(List<Car> cars) {
     for (Car car : cars) {
-      car.move(RandomUtil.getDigit());
+      car.move(powerSupplier.supply());
     }
     outputView.printCarsStatus(cars);
   }

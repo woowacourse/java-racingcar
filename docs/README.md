@@ -52,5 +52,5 @@ MVC 패턴 기반
 ### 기타 개선 사항
 
 - [x] Message 지우기(직접 넣어주기!)
-- [ ] RandomUtil을 지우고 Strategy 패턴을 사용하기
-    - [ ] NumberMaker 인터페이스 =>RandomNumberMaker 구현체
+- [x] RandomUtil을 지우고 Strategy 패턴을 사용하기
+    - [x] NumberMaker 인터페이스 =>RandomNumberMaker 구현체
