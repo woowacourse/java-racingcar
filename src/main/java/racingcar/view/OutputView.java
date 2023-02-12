@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import java.util.List;
+import racingcar.domain.RacingGame;
 
 public class OutputView {
 
@@ -17,12 +18,10 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printRoundResult(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(
-                String.format(CAR_RESULT_FORMAT, car.getName(), getCurrentCarPosition(car)));
+    public void printResult(List<Cars> cars) {
+        for (Cars roundTotalCarResult : cars) {
+            printRoundResult(roundTotalCarResult);
         }
-        System.out.println();
     }
 
     public void printFinalResult(Cars cars) {
@@ -31,6 +30,13 @@ public class OutputView {
             .collect(Collectors.toList());
         String winningCarNames = String.join(NAME_DELIMITER, winners);
         System.out.print(winningCarNames + WINNER_MESSAGE_FORMAT);
+    }
+
+    private void printRoundResult(Cars cars) {
+        for (Car car : cars.getCars()) {
+            System.out.println(String.format(CAR_RESULT_FORMAT, car.getName(), getCurrentCarPosition(car)));
+        }
+        System.out.println();
     }
 
     private String getCurrentCarPosition(Car car) {

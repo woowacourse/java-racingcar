@@ -31,6 +31,10 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     private Car getWinnerCar() {
         cars.sort(Car::compareTo);
         return cars.get(0);
