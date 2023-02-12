@@ -13,7 +13,7 @@ public class Car {
 
     public Car(String name) {
         validCarName(name);
-        this.name = name;
+        this.name = name.trim();
         this.location = CAR_LOCATION_INITIALIZATION;
     }
 
