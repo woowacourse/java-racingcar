@@ -23,7 +23,7 @@ public class Round {
     }
 
     public void minusTrialCount() {
-        //TODO : 시도횟수를 하나씩 감소시킨다.
+        trialCount--;
     }
 
     private void validateTrialCount(String trialCount) {
