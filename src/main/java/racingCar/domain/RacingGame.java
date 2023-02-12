@@ -17,6 +17,7 @@ public class RacingGame {
 
     public List<CarDto> play(NumberGenerator numberGenerator) {
         cars.moveCars(numberGenerator);
+        tryCount.decrease();
         return cars.toCarDtos();
     }
 
