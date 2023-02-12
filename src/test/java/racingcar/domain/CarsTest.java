@@ -35,7 +35,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("우승자 정보 반환")
+    @DisplayName("우승자 정보 반환 - 1명의 우승자")
     void shouldReturnWinnerDataWhenRequest() {
         // given
         Car winnerCar = new Car("1th", new DeterminedIntGenerator(5));
@@ -48,6 +48,22 @@ class CarsTest {
         // then
         assertThat(winners.get(0).getName()).isEqualTo("1th").as("우승자 이름과 같아야 한다.");
         assertThat(winners.size()).isEqualTo(1).as("우승자는 1명이어야 한다.");
+    }
+
+    @Test
+    @DisplayName("우승자 정보 반환 - 2명의 우승자")
+    void shouldReturnTwoWinnerDataWhenRequest() {
+        // given
+        Car winnerCar1 = new Car("1th-1", new DeterminedIntGenerator(5));
+        Car winnerCar2 = new Car("1th-2", new DeterminedIntGenerator(6));
+        Car loserCar = new Car("2nd", new DeterminedIntGenerator(3));
+        List<Car> carsInput = List.of(winnerCar1, winnerCar2, loserCar);
+        Cars cars = new Cars(carsInput, true);
+        // when
+        cars.requestMoveEachCar();
+        List<CarDto> winners = cars.getWinner();
+        // then
+        assertThat(winners.size()).isEqualTo(2);
     }
 
 }
