@@ -1,13 +1,14 @@
 package model;
 
 import exception.ErrorCode;
-import type.CarInformation;
 
 public class Car {
 
     private static final int MOVE_POWER_LIMIT = 4;
     private static final int DEFAULT_POSITION = 1;
     private static final int MOVE_UNIT = 1;
+    private static final int MIN_CAR_NAME = 1;
+    private static final int MAX_CAR_NAME = 5;
     private final String name;
     private int position;
 
@@ -27,12 +28,13 @@ public class Car {
         if (isCarNameLengthInRange(name.length())) {
             return;
         }
-        throw new IllegalArgumentException(ErrorCode.CAR_NAME_OUT_OF_RANGE.getMessage());
+        throw new IllegalArgumentException(
+            String.format(ErrorCode.CAR_NAME_OUT_OF_RANGE.getMessage(), MIN_CAR_NAME,
+                MAX_CAR_NAME));
     }
 
     private boolean isCarNameLengthInRange(final int nameLength) {
-        return nameLength >= CarInformation.NAME_MIN.getValue()
-            && nameLength <= CarInformation.NAME_MAX.getValue();
+        return nameLength >= MIN_CAR_NAME && nameLength <= MAX_CAR_NAME;
     }
 
     public int getCurrentPosition() {
