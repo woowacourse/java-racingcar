@@ -8,8 +8,8 @@ public class Car {
         this.carName = new CarName(name);
     }
 
-    public void move(boolean isMovable) {
-        if (isMovable) {
+    public void move(MovementManager movementManager, Integer power) {
+        if (movementManager.isGo(power)) {
             distance++;
         }
     }

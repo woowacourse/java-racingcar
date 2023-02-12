@@ -50,8 +50,7 @@ public class Cars {
     public void progressRound(NumberGenerator randomNumberGenerator, MovementManager movementManager) {
         for (Car car : cars) {
             Integer randomNumber = randomNumberGenerator.generateNumber();
-            Boolean movingResult = movementManager.isGo(randomNumber);
-            car.move(movingResult);
+            car.move(movementManager, randomNumber);
         }
     }
 
