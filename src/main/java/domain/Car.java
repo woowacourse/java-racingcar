@@ -1,9 +1,10 @@
 package domain;
 
+import exception.InputCarNameRangeException;
+
 public class Car {
     private final String name;
     private int position;
-    private static final String CAR_NAME_EXCEPTION_MESSAGE = "[ERROR] 자동차 이름의 길이가 1이상 4자 이하여야 합니다.";
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final int MIN_CAR_NAME_LENGTH = 1;
     private static final int MOVE_FORWERD_NUMBER = 4;
@@ -31,7 +32,8 @@ public class Car {
 
     public void validationCarNameLength(String carName) throws IllegalArgumentException {
         if (carName.length() > MAX_CAR_NAME_LENGTH || carName.length() < MIN_CAR_NAME_LENGTH) {
-            throw new IllegalArgumentException(CAR_NAME_EXCEPTION_MESSAGE);
+            throw new InputCarNameRangeException();
         }
     }
+
 }
