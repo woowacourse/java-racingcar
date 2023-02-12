@@ -26,7 +26,7 @@ public class RacingCarController {
         }
 
         Cars winners = cars.judgeWinners();
-        OutputView.printWinner(winners);
+        OutputView.printWinners(winners);
     }
 
     private Cars makeCarsFrom(Names names) {

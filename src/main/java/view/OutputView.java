@@ -38,8 +38,8 @@ public class OutputView {
         return DASH.repeat(position);
     }
 
-    public static void printWinner(Cars winnerCars) {
-        List<String> carNames = winnerCars.getCars()
+    public static void printWinners(Cars winners) {
+        List<String> carNames = winners.getCars()
                 .stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
