@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import utils.RandomNumberGenerator;
+import view.ResultView;
 
 public class RacingGame {
     private List<Car> cars;
@@ -19,7 +20,8 @@ public class RacingGame {
         System.out.println("실행 결과");
         while (!isEnd()) {
             moveCars();
-            printPositionOfCars();
+            ResultView.printPositionOfCars(cars);
+            System.out.println();
         }
     }
 
@@ -31,15 +33,15 @@ public class RacingGame {
     }
 
     private void initCars(String[] carNames) {
-        this.cars = new ArrayList<>();
+        cars = new ArrayList<>();
         for (String carName : carNames) {
-            this.cars.add(new Car(carName));
+            cars.add(new Car(carName));
         }
     }
 
     private boolean isEnd() {
-        if (this.tryCount > 0) {
-            this.tryCount--;
+        if (tryCount > 0) {
+            tryCount--;
             return false;
         }
         return true;
@@ -52,14 +54,8 @@ public class RacingGame {
         }
     }
 
-    private void printPositionOfCars() {
-        for (Car car : cars) {
-            System.out.printf("%s : %s%n", car.getName(), "-".repeat(car.getPosition()));
-        }
-    }
-
     private int getMaxPosition() {
-        return this.cars.stream()
+        return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max().orElse(0);
     }
