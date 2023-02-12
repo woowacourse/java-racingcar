@@ -18,13 +18,13 @@ public class InputView {
 
     public List<String> readCarNames() {
         System.out.println(READ_NAMES_MESSAGE);
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
         return inputValidator.validateNames(input);
     }
 
     public int readCount() {
         System.out.println(READ_COUNT_MESSAGE);
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
         return inputValidator.validateCount(input);
     }
 }

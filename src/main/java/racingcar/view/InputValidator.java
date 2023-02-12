@@ -17,8 +17,8 @@ public class InputValidator {
     private static final int COUNT_LOWER_BOUND = 1;
 
     public List<String> validateNames(final String input) {
-        List<String> names = generateNames(input);
-        for (String name : names) {
+        final List<String> names = generateNames(input);
+        for (final String name : names) {
             validateName(name);
         }
         return names;
@@ -41,7 +41,7 @@ public class InputValidator {
     }
 
     public int validateCount(final String input) {
-        int number = parseNumber(input);
+        final int number = parseNumber(input);
         validatePositiveNumber(number);
         return number;
     }

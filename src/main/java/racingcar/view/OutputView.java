@@ -39,7 +39,7 @@ public class OutputView {
     }
 
     public void printWinnersMessage(final List<String> winners) {
-        String winnersMessage = String.join(WINNERS_MESSAGE_DELIMITER, winners);
+        final String winnersMessage = String.join(WINNERS_MESSAGE_DELIMITER, winners);
         System.out.println(format(WINNERS_MESSAGE_FORMAT, winnersMessage));
     }
 
