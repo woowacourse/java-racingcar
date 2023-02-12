@@ -28,9 +28,19 @@ public class RacingCarController {
         showWinners();
     }
 
-    private void showWinners() {
-        List<String> winners = convertWinnersNameForPrint(racingCars.getWinners());
-        outputView.printWinners(winners);
+    private List<Car> generateCars() {
+        outputView.printReadCarNamesMessage();
+        String[] carNames = inputView.readCarNames();
+        List<Car> cars = new ArrayList<>();
+        for (String carName : carNames) {
+            cars.add(new Car(carName, START_POSITION));
+        }
+        return cars;
+    }
+
+    private int getTryNum() {
+        outputView.printReadTryNumMessage();
+        return inputView.readTryNum();
     }
 
     private void race(int tryNum) {
@@ -49,21 +59,6 @@ public class RacingCarController {
         }
     }
 
-    private int getTryNum() {
-        outputView.printReadTryNumMessage();
-        return inputView.readTryNum();
-    }
-
-    private List<Car> generateCars() {
-        outputView.printReadCarNamesMessage();
-        String[] carNames = inputView.readCarNames();
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName, START_POSITION));
-        }
-        return cars;
-    }
-
     private Map<String, Integer> convertRacingCarsResultForPrint(List<Car> currentCars) {
         Map<String, Integer> racingCarsResult = new HashMap<>();
         for (Car currentCar : currentCars) {
@@ -72,11 +67,15 @@ public class RacingCarController {
         return racingCarsResult;
     }
 
+    private void showWinners() {
+        List<String> winners = convertWinnersNameForPrint(racingCars.getWinners());
+        outputView.printWinners(winners);
+    }
+
     private List<String> convertWinnersNameForPrint(List<Car> winners) {
         return winners.stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
-
 
 }
