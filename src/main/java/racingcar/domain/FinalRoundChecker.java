@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.constant.ErrorLog;
+import racingcar.constant.ErrorMessage;
 
 public class FinalRoundChecker {
 
@@ -12,7 +12,7 @@ public class FinalRoundChecker {
 
     public boolean isFinal(int roundNumber) {
         if (roundNumber > finalRoundNumber) {
-            throw new IllegalArgumentException(ErrorLog.OVER_FINAL_ROUND_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.OVER_FINAL_ROUND_NUMBER.getMessage());
         }
         return finalRoundNumber == roundNumber;
     }

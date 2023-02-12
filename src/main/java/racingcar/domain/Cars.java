@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import racingcar.constant.ErrorLog;
+import racingcar.constant.ErrorMessage;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,7 +22,6 @@ public class Cars {
     }
 
     public void addNextCarValue(int value) {
-
         if (isRoundOver()) {
             cars.get(FIRST_INDEX).addValue(value);
             return;
@@ -55,7 +54,7 @@ public class Cars {
 
     public int getTurnCount() {
         if (!isRoundOver()) {
-            throw new IllegalStateException(ErrorLog.ROUND_NOT_OVER.getMessage());
+            throw new IllegalStateException(ErrorMessage.ROUND_NOT_OVER.getMessage());
         }
         return cars.get(FIRST_INDEX).getLogSize();
     }
