@@ -44,6 +44,14 @@
 - [ ] `@DisplayName`에 대해 고민해보기
 - [x] 테스트 깨짐 수정하기
 
+## 2단계 요구사항
+
+- [ ] MVC 패턴 기반 리팩터링
+    - domain: 핵심 비즈니스 로직 객체
+    - view: UI 관련 객체
+    - view 패키지의 객체가 domain 패키지 객체에 의존할 수 있지만,
+      domain 패키지의 객체는 view 패키지 객체에 의존하지 안도록 구현
+
 ## 우아한테크코스 코드리뷰
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
