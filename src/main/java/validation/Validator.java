@@ -20,18 +20,18 @@ public class Validator {
     }
 
     private static void checkCarName(List<String> carNames) {
-        if (hasWrongSizeName(carNames)) {
+        if (hasWrongName(carNames)) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_INPUT_NAME.getErrorMessage());
         }
     }
 
-    private static boolean hasWrongSizeName(List<String> carNames) {
+    private static boolean hasWrongName(List<String> carNames) {
         return carNames.stream()
-                .anyMatch(Validator::isWrongSize);
+                .anyMatch(Validator::isWrongName);
     }
 
-    private static boolean isWrongSize(String carName) {
-        return carName.length() > MAX_NAME_LENGTH || carName.length() < MIN_NAME_LENGTH;
+    private static boolean isWrongName(String carName) {
+        return carName.isBlank() || carName.length() > MAX_NAME_LENGTH || carName.length() < MIN_NAME_LENGTH;
     }
 
     private static void checkDigit(String input) {
