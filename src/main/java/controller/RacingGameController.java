@@ -5,7 +5,6 @@ import utils.Log;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGameController {
@@ -26,7 +25,7 @@ public class RacingGameController {
     }
 
     private RacingGame init() {
-        Cars cars = new Cars(generateCars());
+        Cars cars = generateCars();
         int gameTrial = generateGameTrial();
         return new RacingGame(cars, gameTrial, numberGenerator);
     }
@@ -40,12 +39,12 @@ public class RacingGameController {
         outputView.showWinner(racingGame.getWinners());
     }
 
-    private List<Car> generateCars() {
+    private Cars generateCars() {
         try {
-            return inputView.readCarNames()
+            return new Cars(inputView.readCarNames()
                     .stream()
                     .map(Car::new)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
             return generateCars();
