@@ -5,26 +5,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InputView {
-    private static final BufferedReader BUFFERED_READER = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-    private InputView() {
-        throw new IllegalStateException("생성할 수 없는 유틸 클래스입니다.");
-    }
-
-    public static String readCarNames() {
+    public String readCarNames() {
         return readLine();
     }
 
-    public static String readNumberOfTry() {
-//        outputView.printException("숫자만 입력할 수 있습니다.");
+    public String readNumberOfTry() {
         return readLine();
     }
 
-    private static String readLine() {
+    private String readLine() {
         try {
-            return BUFFERED_READER.readLine();
+            return bufferedReader.readLine();
         } catch (IOException ioException) {
-//            outputView.printException(ioException.getMessage());
             return readLine();
         }
     }

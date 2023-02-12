@@ -7,18 +7,20 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-
-
     private final RacingCarGame racingCarGame;
-
-    public GameController() {
-        this.racingCarGame = new RacingCarGame();
+    private final InputView inputView;
+    private final OutputView outputView;
+    
+    public GameController(InputView inputView, OutputView outputView, RacingCarGame racingCarGame) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.racingCarGame = racingCarGame;
     }
 
     public void run() {
         addCorrectCars(readCarNames());
         startRacing(getCorrectNumberOfTry());
-        OutputView.printWinners(racingCarGame.getWinners());
+        outputView.printWinners(racingCarGame.getWinners());
     }
 
     private int getCorrectNumberOfTry() {
@@ -27,20 +29,20 @@ public class GameController {
             NumberOfTryValidator.validate(numberOfTry);
             return Integer.parseInt(numberOfTry);
         } catch (IllegalArgumentException illegalArgumentException) {
-            OutputView.printException(illegalArgumentException.getMessage());
+            outputView.printException(illegalArgumentException.getMessage());
             return getCorrectNumberOfTry();
         }
     }
 
-    private static String readNumberOfTry() {
-        OutputView.readNumberOfTry();
-        return InputView.readNumberOfTry();
+    private String readNumberOfTry() {
+        outputView.readNumberOfTry();
+        return inputView.readNumberOfTry();
     }
 
     private void startRacing(int numberOfTry) {
         while (numberOfTry-- > 0) {
             racingCarGame.repeatRounds();
-            OutputView.printCarsStatus(CarRepository.findAll());
+            outputView.printCarsStatus(CarRepository.findAll());
         }
     }
 
@@ -48,13 +50,13 @@ public class GameController {
         try {
             racingCarGame.addCars(carNames);
         } catch (IllegalArgumentException illegalArgumentException) {
-            OutputView.printException(illegalArgumentException.getMessage());
+            outputView.printException(illegalArgumentException.getMessage());
             addCorrectCars(readCarNames());
         }
     }
 
-    private static String readCarNames() {
-        OutputView.readCarNames();
-        return InputView.readCarNames();
+    private String readCarNames() {
+        outputView.readCarNames();
+        return inputView.readCarNames();
     }
 }
