@@ -1,29 +1,26 @@
 package domain;
 
-import vo.Name;
+import vo.CarName;
 import vo.Position;
 
 public class Car {
     public static final int MIN_REQUIRED_POWER = 3;
-    public static final int MAX_NAME_LENGTH = 5;
-    public static final String INVALID_NAME_LENGTH_EXCEPTION_MESSAGE = "5글자 까지만 가능합니다.";
 
-    private final Name name;
+    private final CarName carName;
     private Position position;
 
-    private Car(Name name) {
-        this.name = name;
+    private Car(CarName carName) {
+        this.carName = carName;
         this.position = Position.of(0L);
     }
 
     public static Car of(String name) {
-        Name carName = Name.of(name);
-        validateName(carName);
+        CarName carName = CarName.of(name);
         return new Car(carName);
     }
 
     public String getName() {
-        return name.getValue();
+        return carName.getValue();
     }
 
     public Position getPosition() {
@@ -36,12 +33,6 @@ public class Car {
         }
     }
 
-    private static void validateName(Name name) {
-        if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(INVALID_NAME_LENGTH_EXCEPTION_MESSAGE);
-        }
-    }
-
     public boolean hasPosition(Position position) {
         return this.position.equals(position);
     }
@@ -49,7 +40,7 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
-                "name=" + name +
+                "name=" + carName +
                 ", position=" + position +
                 '}';
     }

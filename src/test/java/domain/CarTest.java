@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import vo.CarName;
 import vo.Position;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,7 +28,7 @@ class CarTest {
     void givenNameHavingInvalidLength_whenMakingCar_thenThrowsException() {
         assertThatThrownBy(() -> Car.of("testTest"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Car.INVALID_NAME_LENGTH_EXCEPTION_MESSAGE);
+                .hasMessage(CarName.INVALID_NAME_LENGTH_EXCEPTION_MESSAGE);
     }
 
     @ParameterizedTest(name = "move() 메소드를 호출하여, 주어진 power 값({0})에 따라 position의 전진 여부 테스트")
