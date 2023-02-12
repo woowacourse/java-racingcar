@@ -8,6 +8,7 @@ public class Car {
     private static final int THRESHOLD = 4;
     private static final int LEFT_BOUND_INCLUSIVE = 0;
     private static final int RIGHT_BOUND_INCLUSIVE = 9;
+    private static final int EACH_STEP = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int position;
@@ -19,20 +20,20 @@ public class Car {
         this.position = 0;
     }
 
-    private void validateName(String name) {
-        Validator.validateNotEmptyInput(name);
-        validateNameLength(name);
-    }
-
     private static void validateNameLength(String str) {
         if (str.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NAME_LENGTH.getMessage());
         }
     }
 
+    private void validateName(String name) {
+        Validator.validateNotEmptyInput(name);
+        validateNameLength(name);
+    }
+
     public void move(boolean isMovable) {
         if (isMovable) {
-            position++;
+            position += EACH_STEP;
         }
     }
 
