@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-    CarGenerator carGenerator;
-    Input input;
-    Winner winner;
-    List<Car> cars;
-    int tryCount;
+    private CarGenerator carGenerator;
+    private Input input;
+    private Winner winner;
+    private List<Car> cars;
+    private int tryCount;
 
     public RacingGame() {
         carGenerator = new CarGenerator();

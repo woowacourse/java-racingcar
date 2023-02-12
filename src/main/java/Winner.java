@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winner {
-    List<String> winnerNames;
+    private List<String> winnerNames;
 
     public Winner() {
         this.winnerNames = new ArrayList<>();

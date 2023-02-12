@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Input {
-    Validate validate;
-    Scanner scanner;
+    private Validate validate;
+    private Scanner scanner;
 
     public Input() {
         validate = new Validate();
