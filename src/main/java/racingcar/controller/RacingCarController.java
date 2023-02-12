@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.RandomNumberGenerator;
+import racingcar.CarRandomNumberGenerator;
 import racingcar.model.Car;
 import racingcar.model.RacingCars;
 import racingcar.view.InputView;
@@ -54,7 +54,7 @@ public class RacingCarController {
 
     private void tryOneTime(List<Car> currentCars) {
         for (Car currentCar : currentCars) {
-            int randomValue = RandomNumberGenerator.generate();
+            int randomValue = CarRandomNumberGenerator.generate();
             currentCar.move(currentCar.canMoving(randomValue));
         }
     }
