@@ -42,8 +42,8 @@ public class Cars {
     }
 
     private void validateDuplicateCarName() {
-        int nonDuplicateCount = new HashSet<>(cars).size();
-        if (cars.size() != nonDuplicateCount) {
+        int uniqueCarCount = new HashSet<>(cars).size();
+        if (cars.size() != uniqueCarCount) {
             throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
         }
     }
