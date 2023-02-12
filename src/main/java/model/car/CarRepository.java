@@ -7,33 +7,28 @@ import java.util.stream.Collectors;
 
 public class CarRepository {
 
-    private static final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
-    public static List<Car> cars() {
+    public List<Car> cars() {
         return Collections.unmodifiableList(cars);
     }
 
-    public static void addCar(Car car) {
+    public void addCar(Car car) {
         cars.add(car);
     }
 
-    public static List<String> getWinners() {
+    public List<String> getWinners() {
         int maxPosition = getMaxPosition();
         return cars.stream()
                 .filter(car -> car.isWinner(maxPosition))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    private static int getMaxPosition() {
+    private int getMaxPosition() {
         List<Integer> positions = cars.stream()
                 .map(Car::getPosition)
                 .collect(Collectors.toList());
         return Collections.max(positions);
     }
-
-    public static void deleteAll() {
-        cars.clear();
-    }
-
 }

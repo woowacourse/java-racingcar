@@ -4,9 +4,10 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+
 import model.car.Car;
-import model.manager.CarMoveManager;
 import model.car.CarRepository;
+import model.manager.CarMoveManager;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -17,12 +18,14 @@ public class MainController {
     private final OutputView outputView;
     private final Map<GameStatus, Supplier<GameStatus>> gameGuide;
     private final CarMoveManager carMoveManager;
+    private final CarRepository carRepository;
 
     public MainController(InputView inputView, OutputView outputView, CarMoveManager carMoveManager) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.carMoveManager = carMoveManager;
         this.gameGuide = initializeGameGuide();
+        this.carRepository = new CarRepository();
     }
 
     private Map<GameStatus, Supplier<GameStatus>> initializeGameGuide() {
@@ -54,7 +57,7 @@ public class MainController {
         int moveCount = inputView.readMoveCount();
         outputView.printResultMessage();
         moveAllCars(moveCount);
-        outputView.printWinners(CarRepository.getWinners());
+        outputView.printWinners(carRepository.getWinners());
         return GameStatus.APPLICATION_EXIT;
     }
 
@@ -62,15 +65,15 @@ public class MainController {
         List<String> carNames = inputView.readCarNames();
         carNames.stream()
                 .map(Car::new)
-                .forEach(CarRepository::addCar);
+                .forEach(carRepository::addCar);
         return GameStatus.MOVE_CARS;
     }
 
     private void moveAllCars(int moveCount) {
         for (int i = 0; i < moveCount; i++) {
-            CarRepository.cars()
+            carRepository.cars()
                     .forEach(car -> car.move(carMoveManager.isMove(RandomNumberGenerator.getRandomNumber())));
-            outputView.printResult(CarRepository.cars());
+            outputView.printResult(carRepository.cars());
         }
     }
 
