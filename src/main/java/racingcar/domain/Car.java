@@ -13,9 +13,9 @@ public class Car {
     private static final int MAXIMUM_NAME_LENGTH = 5;
     private static final String WRONG_LENGTH_OF_NAME_ANNOUNCEMENT = "[ERROR] 잘못된 이름 길이입니다.";
 
-    private String name;
+    private final String name;
     private int movedCount;
-    private IntGenerator intGenerator;
+    private final IntGenerator intGenerator;
 
     public Car(String name) {
         validateName(name);
