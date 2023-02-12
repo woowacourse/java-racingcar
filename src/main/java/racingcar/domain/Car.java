@@ -8,8 +8,7 @@ public class Car {
     private ValueLog valuelog;
 
     public Car(String name) {
-        Validator.validateNameLength(name);
-        Validator.validateNotEmptyInput(name);
+        Validator.validateCarName(name);
 
         this.name = name;
         this.valuelog = new ValueLog();
