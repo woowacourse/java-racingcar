@@ -52,4 +52,8 @@ class RacingGameTest {
         assertThat(isGameEnded).isEqualTo(result);
     }
 
+    @Test
+    @Disabled("Cars의 findAllWinner 기능만을 수행하므로 테스트 하지 않습니다.")
+    void findWinnerCars(){}
+
 }
