@@ -11,8 +11,9 @@ public class RacingGame {
 
     private final Cars cars;
     private final RepeatCount repeatCount;
+    private final RandomGenerator randomGenerator;
 
-    public RacingGame(Names names, RepeatCount repeatCount) {
+    public RacingGame(Names names, RepeatCount repeatCount, RandomGenerator randomGenerator) {
         List<Car> cars = names.getNames()
                 .stream()
                 .map(Car::new)
@@ -20,6 +21,7 @@ public class RacingGame {
 
         this.cars = new Cars(cars);
         this.repeatCount = repeatCount;
+        this.randomGenerator = randomGenerator;
     }
 
     public boolean canRace() {
@@ -34,7 +36,7 @@ public class RacingGame {
     }
 
     private void move(Car car) {
-        if (RandomNumberGenerator.generate() >= MOVED_LOWER_BOUND) {
+        if (randomGenerator.generate() >= MOVED_LOWER_BOUND) {
             car.move();
         }
     }

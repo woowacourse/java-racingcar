@@ -2,6 +2,7 @@ package controller;
 
 import domain.Names;
 import domain.RacingGame;
+import domain.RandomNumberGenerator;
 import domain.RepeatCount;
 import domain.Winners;
 import output.Outputs;
@@ -15,7 +16,8 @@ public class RacingCarController {
         RepeatCount repeatCount = InputView.readRepeatCount();
         OutputView.printTitle();
 
-        RacingGame racingGame = new RacingGame(names, repeatCount);
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        RacingGame racingGame = new RacingGame(names, repeatCount, randomNumberGenerator);
         while (racingGame.canRace()) {
             Outputs outputs = racingGame.race();
             OutputView.printOutputs(outputs);
