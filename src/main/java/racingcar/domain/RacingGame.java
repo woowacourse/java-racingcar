@@ -27,7 +27,6 @@ public class RacingGame {
         return totalRound <= currentRound;
     }
 
-    // 메서드 네이밍 다시 고려해보기
     public List<Car> findWinnerCars(){
         return cars.findAllWinner();
     }
