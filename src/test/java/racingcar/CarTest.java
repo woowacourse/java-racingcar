@@ -50,4 +50,14 @@ class CarTest {
 
         assertThat(car.findGreaterPosition(2)).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("자동차 이름과 위치 반환 확인")
+    void getResult() {
+        Car car = new Car("밀리");
+
+        car.move(5);
+
+        assertThat(car.getResult()).isEqualTo("밀리 : -");
+    }
 }
