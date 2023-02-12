@@ -26,18 +26,11 @@ public class RacingController {
     }
 
     private void createCars() {
-        do {
-            this.cars = getCars();
-        } while (this.cars.isEmpty());
-    }
-
-    private Cars getCars() {
         try {
-            Cars cars = new Cars(inputView.inputCarNames());
-            return cars;
+            this.cars = new Cars(inputView.inputCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return new Cars(Collections.emptyList());
+            createCars();
         }
     }
 
