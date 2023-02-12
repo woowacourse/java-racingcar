@@ -1,53 +1,45 @@
 package application;
 
-import domain.Car;
 import domain.Cars;
 import domain.Name;
+import domain.RacingGame;
 import domain.TryCount;
 import dto.response.CarStatusDto;
 import dto.response.WinnersNameDto;
-import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGameApplication {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final NumberGenerator numberGenerator;
+    private final RacingGame racingGame;
 
-    public RacingGameApplication(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
+    public RacingGameApplication(InputView inputView, OutputView outputView, RacingGame racingGame) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.numberGenerator = numberGenerator;
+        this.racingGame = racingGame;
     }
 
     public void run() {
         List<Name> names = inputView.sendCarsName();
         TryCount tryCount = inputView.sendTryCount();
-
         Cars cars = Cars.of(names);
 
-        playGame(tryCount, cars);
-        printResult(cars);
-    }
-    
-    private void playGame(TryCount tryCount, Cars cars) {
-        for (int i = 0; i < tryCount.getTryCount(); i++) {
-            cars.move(numberGenerator);
-            List<CarStatusDto> carStatusDtos = cars.getCars()
-                    .stream()
-                    .map(CarStatusDto::of)
-                    .collect(Collectors.toList());
-            outputView.printEachRound(carStatusDtos);
-        }
+        play(tryCount, cars);
+        printWinners(cars);
     }
 
-    private void printResult(Cars cars) {
-        List<Car> winners = cars.findWinners();
-        outputView.printWinners(WinnersNameDto.of(winners));
+    private void play(TryCount tryCount, Cars cars) {
+        List<List<CarStatusDto>> result = racingGame.play(cars, tryCount);
+        outputView.printGameResult(result);
     }
+
+    private void printWinners(Cars cars) {
+        WinnersNameDto winners = racingGame.findWinners(cars);
+        outputView.printWinners(winners);
+    }
+
 }

@@ -2,7 +2,6 @@ package view;
 
 import domain.Name;
 import domain.TryCount;
-import dto.request.CarNameDto;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;

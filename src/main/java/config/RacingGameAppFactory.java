@@ -1,5 +1,6 @@
 package config;
 
+import domain.RacingGame;
 import application.RacingGameApplication;
 import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
@@ -10,7 +11,7 @@ import view.OutputView;
 public class RacingGameAppFactory {
 
     public static RacingGameApplication generate() {
-        return new RacingGameApplication(initInputView(), initOutputView(), initNumberGenerator());
+        return new RacingGameApplication(initInputView(), initOutputView(), initRacingGame());
     }
 
     private static InputView initInputView() {
@@ -19,6 +20,10 @@ public class RacingGameAppFactory {
 
     private static OutputView initOutputView() {
         return new OutputView();
+    }
+
+    private static RacingGame initRacingGame() {
+        return new RacingGame(initNumberGenerator());
     }
 
     private static NumberGenerator initNumberGenerator() {
