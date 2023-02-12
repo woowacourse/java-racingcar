@@ -1,5 +1,6 @@
 package domain;
 
+import domain.validator.CarValidator;
 import dto.CarDto;
 
 public class Car {

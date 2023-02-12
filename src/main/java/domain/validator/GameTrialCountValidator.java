@@ -1,4 +1,4 @@
-package domain;
+package domain.validator;
 
 import validation.ErrorMessage;
 

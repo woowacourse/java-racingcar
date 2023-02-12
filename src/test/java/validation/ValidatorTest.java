@@ -1,11 +1,10 @@
 package validation;
 
-import domain.CarValidator;
-import domain.GameTrialCountValidator;
+import domain.validator.CarValidator;
+import domain.validator.GameTrialCountValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import utils.Parser;
 
 import static org.assertj.core.api.Assertions.*;
 

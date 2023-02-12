@@ -1,5 +1,7 @@
 package domain;
 
+import domain.validator.GameTrialCountValidator;
+
 public class GameTrialCount {
 
     int gameTrial;
