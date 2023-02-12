@@ -23,8 +23,10 @@ public class Cars {
         return findSamePositionCars(maxPositionCar);
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+    private Car findMaxPositionCar() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("Cars가 비어있습니다."));
     }
 
     private List<Car> findSamePositionCars(Car maxPositionCar) {
@@ -33,9 +35,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    private Car findMaxPositionCar() {
-        return cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException("Cars가 비어있습니다."));
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

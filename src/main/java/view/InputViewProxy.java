@@ -24,6 +24,10 @@ public class InputViewProxy extends InputView {
         }
     }
 
+    private void printExceptionMessage(String message) {
+        System.out.println("[ERROR] " +message);
+    }
+
     @Override
     public TryCount sendTryCount() {
         try {
@@ -32,10 +36,6 @@ public class InputViewProxy extends InputView {
             printExceptionMessage(exception.getMessage());
             return sendTryCount();
         }
-    }
-
-    private void printExceptionMessage(String message) {
-        System.out.println("[ERROR] " +message);
     }
 }
 
