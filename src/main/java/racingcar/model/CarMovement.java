@@ -17,9 +17,6 @@ public class CarMovement {
     }
 
     public boolean isMove(){
-        if(this.value >= 4){
-            return true;
-        }
-        return false;
+        return value >= 4;
     }
 }
