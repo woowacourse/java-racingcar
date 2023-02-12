@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RaceTest {
@@ -93,6 +95,31 @@ class RaceTest {
         Assertions.assertThatThrownBy(() -> race.initTryTime(tryTime))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("시도횟수는 이미 초기화되어 있습니다.");
+    }
+
+    @Test
+    @DisplayName("getStatueses 메서드는 Cars의 상태를 반환한다.")
+    void getStatusesTest() {
+        final Car hong = new Car("hong", 1);
+        final Car rosie = new Car("rosie", 4);
+        final Race race = new Race(List.of(hong, rosie));
+
+        final List<Car> statuses = race.getStatuses();
+
+        Assertions.assertThat(statuses)
+                .extracting("name", "position")
+                .containsExactly(tuple("hong", 1), tuple("rosie", 4));
+    }
+
+    @ParameterizedTest
+    @DisplayName("tryTime이 0 이하면 false를 1이상이면 true를 반환한다.")
+    @CsvSource(value = {"0:false", "1:true", "2:true"}, delimiter = ':')
+    void canRaceTest(int time, boolean expected) {
+        final Race race = new Race(List.of(new Car("hong")));
+        race.initTryTime(time);
+
+        Assertions.assertThat(race.canRace())
+                .isEqualTo(expected);
     }
 
     static class TestNumberPicker implements NumberPicker {
