@@ -12,9 +12,7 @@ public class RacingCarGame {
         CarRepository.updateCars(CarFactory.from(carNames));
     }
 
-    public void repeatRounds() {
-        MoveStrategy moveStrategy = new RandomBasedStrategy();
-
+    public void race(MoveStrategy moveStrategy) {
         for (Car car : CarRepository.findAll()) {
             car.move(moveStrategy);
         }
