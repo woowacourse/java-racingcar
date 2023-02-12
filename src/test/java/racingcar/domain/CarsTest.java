@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,10 +17,11 @@ class CarsTest {
 
     @BeforeEach
     void setup() {
-        cars = new Cars();
-        cars.add(new Car("test1"));
-        cars.add(new Car("test2"));
-        cars.add(new Car("test3"));
+        cars = new Cars(List.of(
+                new Car("test1"),
+                new Car("test2"),
+                new Car("test3")
+        ));
     }
 
 

@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import racingcar.constant.ErrorLog;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -16,10 +15,10 @@ public class Cars {
 
     private final int FIRST_INDEX = 0;
 
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public void add(Car car) {
-        cars.add(car);
+    public Cars(List<Car> cars) {
+        this.cars = List.copyOf(cars);
     }
 
     public void addNextCarValue(int value) {

@@ -9,21 +9,22 @@ import racingcar.domain.ValueGenerator;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RacingCarService {
 
-    private final Cars cars;
+    private Cars cars;
     private FinalRoundChecker finalRoundChecker;
 
 
-    public RacingCarService() {
-        this.cars = new Cars();
-    }
-
     public void makeCars(String carNames) {
-        for (String name : new CarNames(carNames).getNames()) {
-            cars.add(new Car(name));
-        }
+        cars = new Cars(List.copyOf(
+                new CarNames(carNames).getNames()
+                        .stream()
+                        .map(name -> new Car(name))
+                        .collect(Collectors.toUnmodifiableList())
+        ));
+
     }
 
     public void setNumberOfRounds(int numberOfRounds) {
