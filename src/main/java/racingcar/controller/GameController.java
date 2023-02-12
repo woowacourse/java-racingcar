@@ -1,9 +1,8 @@
 package racingcar.controller;
 
 import racingcar.domain.carfactory.CarFactory;
-import racingcar.domain.racingcars.RacingCars;
-import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.gameresult.GameResult;
+import racingcar.domain.racingcars.RacingCars;
 import racingcar.domain.racinggame.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -20,8 +19,8 @@ public class GameController {
 
     public void run() {
         RacingCars racingCars = setCars();
-        RacingGame racingGame = playRace();
-        printResult(racingCars, racingGame);
+        GameResult gameResult = playRace(racingCars);
+        printResult(gameResult);
     }
 
     private RacingCars setCars() {
@@ -35,21 +34,19 @@ public class GameController {
         }
     }
 
-    private RacingGame playRace() {
+    private GameResult playRace(RacingCars racingCars) {
         while (true) {
             try {
-                return new RacingGame(inputView.readGameRound(), new NumberGenerator());
+                RacingGame racingGame = new RacingGame(inputView.readGameRound());
+                return racingGame.startRace(racingCars);
             } catch (IllegalArgumentException e2) {
                 System.out.println(e2.getMessage());
             }
         }
     }
 
-    private void printResult(RacingCars racingCars, RacingGame racingGame) {
-
+    private void printResult(GameResult gameResult) {
         outputView.printResultGuide();
-
-        GameResult gameResult = racingGame.startRace(racingCars);
         outputView.printResult(gameResult);
         outputView.printWinners(gameResult);
     }
