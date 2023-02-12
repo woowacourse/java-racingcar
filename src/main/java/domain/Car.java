@@ -14,10 +14,18 @@ public class Car {
         this.distance = distance;
     }
 
+    public void tryMove() {
+        move(generatePower());
+    }
+
     public void move(int power) {
         if(power >= MIN_BOUNDARY_POWER) {
-            this.distance++;
+            this.distance ++;
         }
+    }
+
+    private int generatePower() {
+        return RandomNumberGenerator.generateRandomPower();
     }
 
     public int getDistance() {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import utils.RandomNumberGenerator;
 
 public class Cars {
 
@@ -14,14 +13,10 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveAll() {
+    public void tryMoveAll() {
         for (final Car car : cars) {
-            car.move(generatePower());
+            car.tryMove();
         }
-    }
-
-    private int generatePower() {
-        return RandomNumberGenerator.generateRandomPower();
     }
 
     public List<String> getWinnerNames() {
