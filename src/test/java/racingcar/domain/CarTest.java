@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@DisplayName("Car 도메인에 대한 테스트")
 class CarTest {
     private Car car;
     TestNumberGenerator numberGenerator;
@@ -69,7 +68,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("현재 상태와 일치하는 DTO를 생성하는지 확인한다")
+    @DisplayName("현재 상태와 일치하는 위치와 이름을 반환하는지 확인한다")
     void getCarStatusCompletely() {
         int numberCanMove = 9;
         int moveCount = 5;
@@ -78,9 +77,9 @@ class CarTest {
             car.move(numberGenerator);
         }
 
-        assertThat(car.getCarStatus().getName())
+        assertThat(car.getName())
                 .isEqualTo(car.getName());
-        assertThat(car.getCarStatus().getCurrentPosition())
+        assertThat(car.getCurrentPosition().getPosition())
                 .isEqualTo(moveCount);
     }
 
