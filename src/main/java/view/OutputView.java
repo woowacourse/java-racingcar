@@ -11,8 +11,8 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String PRINT_STATUS_FORMAT = "%s : %s" + LINE_SEPARATOR;
     private static final String PRINT_WINNER_FORMAT = "%s가 최종 우승했습니다." + LINE_SEPARATOR;
-    private static final String DELIMITER = ", ";
-    private static final String POSITION = "-";
+    private static final String COMMA_DELIMITER = ", ";
+    private static final String POSITION_DELIMITER = "-";
 
     public static void printResult() {
         System.out.println(RESULT_MESSAGE);
@@ -20,27 +20,25 @@ public class OutputView {
 
     public static void printStatus(final List<CarDto> carDtos) {
         for (CarDto carDto : carDtos) {
-            String name = carDto.getName();
-            int position = carDto.getPosition();
-            String positionString = getPositionString(position);
-            System.out.printf(PRINT_STATUS_FORMAT, name, positionString);
+            String finalPositionDelimiter = getFinalPositionDelimiter(carDto.getPosition());
+            System.out.printf(PRINT_STATUS_FORMAT, carDto.getName(), finalPositionDelimiter);
         }
         System.out.println();
     }
 
-    private static String getPositionString(final int position) {
-        StringBuilder positionString = new StringBuilder();
+    private static String getFinalPositionDelimiter(final int position) {
+        StringBuilder finalPositionDelimiter = new StringBuilder();
         for (int i = 0; i < position; i++) {
-            positionString.append(POSITION);
+            finalPositionDelimiter.append(POSITION_DELIMITER);
         }
-        return positionString.toString();
+        return finalPositionDelimiter.toString();
     }
 
     public static void printWinners(final List<CarDto> carDtos) {
         List<String> carNames = carDtos.stream()
                 .map(CarDto::getName)
                 .collect(Collectors.toList());
-        String winnerString = String.join(DELIMITER, carNames);
+        String winnerString = String.join(COMMA_DELIMITER, carNames);
         System.out.printf(PRINT_WINNER_FORMAT, winnerString);
     }
 }
