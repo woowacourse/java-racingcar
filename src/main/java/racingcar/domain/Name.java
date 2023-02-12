@@ -13,7 +13,7 @@ public class Name {
         this.value = name;
     }
 
-    private void validate(String name) {
+    private void validate(final String name) {
         if (name.length() < NAME_LOWER_BOUND || NAME_UPPER_BOUND < name.length()) {
             throw new IllegalArgumentException(INVALID_NAME_LENGTH_MESSAGE);
         }

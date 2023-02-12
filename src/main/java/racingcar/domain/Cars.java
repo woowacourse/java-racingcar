@@ -22,13 +22,13 @@ public class Cars {
     }
 
     public void move(final NumberGenerator strategy) {
-        for (Car car : cars) {
+        for (final Car car : cars) {
             car.move(strategy.generate());
         }
     }
 
     public List<String> findWinners() {
-        Car winner = findWinner();
+        final Car winner = findWinner();
         return findWinners(winner);
     }
 

@@ -28,27 +28,27 @@ public class RacingGameController {
     }
 
     public void run() {
-        RacingGame racingGame = gameInitialize();
+        final RacingGame racingGame = gameInitialize();
         play(racingGame);
         findWinners(racingGame);
     }
 
     private RacingGame gameInitialize() {
-        List<String> carNames = retry(inputView::readCarNames);
-        int count = retry(inputView::readCount);
+        final List<String> carNames = retry(inputView::readCarNames);
+        final int count = retry(inputView::readCount);
         return new RacingGame(new RandomNumberGenerator(), carNames, count);
     }
 
     private void play(final RacingGame racingGame) {
         outputView.printResultMessage();
         while (racingGame.isPlayable()) {
-            List<Car> cars = racingGame.play();
+            final List<Car> cars = racingGame.play();
             outputView.printPosition(cars);
         }
     }
 
     private void findWinners(final RacingGame racingGame) {
-        List<String> winners = racingGame.findWinners();
+        final List<String> winners = racingGame.findWinners();
         outputView.printWinnersMessage(winners);
     }
 }

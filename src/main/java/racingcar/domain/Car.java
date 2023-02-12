@@ -4,8 +4,8 @@ public class Car {
 
     private static final int MOVE_LOWER_BOUND = 4;
 
-    private Name name;
-    private Position position;
+    private final Name name;
+    private final Position position;
 
     public Car(final String name) {
         this.name = new Name(name);
