@@ -1,6 +1,5 @@
 package view;
 
-import static utils.ErrorMessage.WRONG_NAME_CONTAINS_BLANK;
 import static utils.ErrorMessage.WRONG_TRY_TIMES_RANGE;
 import static utils.ErrorMessage.WRONG_TRY_TIMES_TYPE;
 
@@ -16,15 +15,18 @@ public class InputView {
 
     public List<String> inputCarNames() {
         String carNames = scanner.nextLine();
-        validateContainsBlank(carNames);
         return List.of(carNames.split(CAR_NAME_DELIMITER));
     }
 
     public int inputTryTimes() {
         String tryTimes = scanner.nextLine();
+        validateTryTimes(tryTimes);
+        return Integer.parseInt(tryTimes);
+    }
+
+    protected void validateTryTimes(String tryTimes) {
         validateTryTimesType(tryTimes);
         validateTryTimesRange(Integer.parseInt(tryTimes));
-        return Integer.parseInt(tryTimes);
     }
 
     private void validateTryTimesRange(int tryTimes) {
@@ -33,11 +35,6 @@ public class InputView {
         }
     }
 
-    private void validateContainsBlank(String carNames) {
-        if (carNames.contains(" ")) {
-            throw new IllegalArgumentException(WRONG_NAME_CONTAINS_BLANK.of());
-        }
-    }
 
     private void validateTryTimesType(String tryTimes) {
         for (char element : tryTimes.toCharArray()) {

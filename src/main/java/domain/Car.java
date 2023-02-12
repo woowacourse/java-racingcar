@@ -1,6 +1,7 @@
 package domain;
 
 
+import static utils.ErrorMessage.WRONG_NAME_CONTAINS_BLANK;
 import static utils.ErrorMessage.WRONG_NAME_LENGTH;
 
 public class Car {
@@ -25,10 +26,7 @@ public class Car {
     }
 
     private boolean isAllowedToMove(final int number) {
-        if (number >= MOVING_STANDARD_NUM) {
-            return true;
-        }
-        return false;
+        return number >= MOVING_STANDARD_NUM;
     }
 
     public String getCarStatus() {
@@ -43,7 +41,7 @@ public class Car {
         return name.getName();
     }
 
-    private class Name {
+    private static class Name {
 
         private final int MIN_NAME_SIZE = 0;
         private final int MAX_NAME_SIZE = 5;
@@ -51,6 +49,7 @@ public class Car {
         private final String name;
 
         private Name(String name) {
+            validateContainsBlank(name);
             validateCarNameLength(name.length());
             this.name = name;
         }
@@ -58,6 +57,12 @@ public class Car {
         private void validateCarNameLength(int length) {
             if (length <= MIN_NAME_SIZE || length > MAX_NAME_SIZE) {
                 throw new IllegalArgumentException(WRONG_NAME_LENGTH.of());
+            }
+        }
+
+        private void validateContainsBlank(String carNames) {
+            if (carNames.contains(" ")) {
+                throw new IllegalArgumentException(WRONG_NAME_CONTAINS_BLANK.of());
             }
         }
 
