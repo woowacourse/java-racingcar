@@ -13,7 +13,6 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 class CarsTest {
 
     private Cars cars;
-    private Rule rule = Rule.MOVING_FORWARD_STANDARD;
 
     class TestValueGenerator implements ValueGenerator {
 
