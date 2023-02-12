@@ -15,14 +15,14 @@ import static domain.TryCount.TRY_COUNT_LIMIT;
 
 public class InputView {
 
-    private final String delimiter = ",";
-    private final String delimiterInKorean = "쉼표";
+    private final String DELIMITER = ",";
+    private final String DELIMITER_IN_KOREAN = "쉼표";
 
     public List<CarNameDto> sendCarsName() {
-        System.out.printf("경주할 자동차 이름을 입력하세요(이름은 %s(%s)를 기준으로 구분).\n", delimiterInKorean, delimiter);
+        System.out.printf("경주할 자동차 이름을 입력하세요(이름은 %s(%s)를 기준으로 구분).\n", DELIMITER_IN_KOREAN, DELIMITER);
 
         Scanner scanner = new Scanner(System.in);
-        String[] carsName = scanner.nextLine().split(delimiter);
+        String[] carsName = scanner.nextLine().split(DELIMITER);
 
         for (String carName : carsName) {
             validate(carName);
