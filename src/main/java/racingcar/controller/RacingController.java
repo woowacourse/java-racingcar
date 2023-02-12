@@ -1,7 +1,5 @@
 package racingcar.controller;
 
-import java.util.List;
-import racingcar.model.car.Car;
 import racingcar.model.car.CarFactory;
 import racingcar.model.car.Cars;
 import racingcar.model.track.Track;
@@ -29,12 +27,7 @@ public class RacingController {
 
         int trialTimesCount = requestTrialTimes();
         TrialTimes trialTimes = new TrialTimes(trialTimesCount);
-        printCarsInitPositions(cars);
         return new Track(cars, trialTimes);
-    }
-
-    private void printCarsInitPositions(Cars cars) {
-        outputView.printCarsPosition(cars);
     }
 
     private CarNamesRequest requestCarNames() {
@@ -48,23 +41,22 @@ public class RacingController {
     }
 
     public void startRace(Track track) {
+        outputView.printOutputFormat(track.carsPositionFormat());
         while (track.runnable()) {
-            Cars cars = track.race();
-            outputView.printCarsPosition(cars);
+            track.race();
+            outputView.printOutputFormat(track.carsPositionFormat());
         }
     }
 
-
     public void concludeWinner(Track track) {
-        List<Car> winnerCars = track.findWinner();
-        outputView.printWinnerCars(winnerCars);
+        outputView.printOutputFormat(track.winingCarsFormat());
     }
 
     public void terminatedByException(String errorMessage) {
-        outputView.printErrorMessage(errorMessage);
+        outputView.printOutputFormat(errorMessage);
     }
 
     public void terminated() {
-        outputView.printErrorMessage(ErrorMessage.UNEXPECTED_ERROR.message());
+        outputView.printOutputFormat(ErrorMessage.UNEXPECTED_ERROR.message());
     }
 }

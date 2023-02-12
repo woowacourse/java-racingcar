@@ -5,7 +5,7 @@ import racingcar.model.track.Track;
 
 public class Application {
     public static void main(String[] args) {
-        RacingController racingController = RacingCarContext.racingController();
+        RacingController racingController = RacingCarContext.randomRacingController();
         try {
             Track track = racingController.generateRacingTrack();
 
