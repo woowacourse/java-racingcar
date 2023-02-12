@@ -33,9 +33,10 @@ class CarTest {
         Car car = new Car("123");
         //when
         car.move(true);
+        System.out.println(car.getPosition().getPosition());
 
         //then
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(new Position(1));
     }
 
     @DisplayName("자동차의 move메소드는 false값을 인자로 받는 경우 전진하지 않는다.")
@@ -48,6 +49,6 @@ class CarTest {
         car.move(false);
 
         //then
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(new Position(0));
     }
 }

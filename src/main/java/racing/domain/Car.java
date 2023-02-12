@@ -8,17 +8,17 @@ public class Car {
     private static final String LENGTH_OF_CAR_NAME_ERROR = "[ERROR] 자동차이름의 길이는 1-5자까지 가능합니다.";
 
     private final Name name;
-    private int position;
+    private Position position;
 
     public Car(String name) {
         validateLengthOfName(name);
         this.name = new Name(name);
-        this.position = INITIAL_VALUE;
+        this.position = new Position(INITIAL_VALUE);
     }
 
     public void move(boolean isMovable) {
         if (isMovable) {
-            this.position++;
+            this.position = position.increase();
         }
     }
 
@@ -26,7 +26,7 @@ public class Car {
         return name;
     }
 
-    public int getPosition() {
+    public Position getPosition() {
         return position;
     }
 

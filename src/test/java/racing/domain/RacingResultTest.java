@@ -15,11 +15,11 @@ class RacingResultTest {
     @Test
     void checkWinner() {
         //given
-        Map<Name, Integer> history = new HashMap<>();
-        history.put(new Name("a"), 4);
-        history.put(new Name("b"), 2);
-        history.put(new Name("c"), 3);
-        history.put(new Name("d"), 4);
+        Map<Name, Position> history = new HashMap<>();
+        history.put(new Name("a"), new Position(4));
+        history.put(new Name("b"), new Position(2));
+        history.put(new Name("c"), new Position(3));
+        history.put(new Name("d"), new Position(4));
         RacingResult racingResult = new RacingResult(history);
 
         //when
@@ -33,10 +33,10 @@ class RacingResultTest {
     @Test
     void checkWinnerWhenWinnerIsOnlyOne() {
         //given
-        Map<Name, Integer> history = new HashMap<>();
-        history.put(new Name("a"), 4);
-        history.put(new Name("b"), 2);
-        history.put(new Name("c"), 3);
+        Map<Name, Position> history = new HashMap<>();
+        history.put(new Name("a"), new Position(4));
+        history.put(new Name("b"), new Position(2));
+        history.put(new Name("c"), new Position(3));
         RacingResult racingResult = new RacingResult(history);
 
         //when

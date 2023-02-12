@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import racing.domain.Name;
+import racing.domain.Position;
 
 public class OutputView {
     private static final String RESULT_MESSAGE = "\n실행 결과";
@@ -13,10 +14,10 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printRacingResult(Map<Name, Integer> history) {
+    public void printRacingResult(Map<Name, Position> history) {
         for (Name name : history.keySet()) {
-            Integer positionValue = history.get(name);
-            System.out.println(name + " : " + "-".repeat(positionValue));
+            Position position = history.get(name);
+            System.out.println(name + " : " + "-".repeat(position.getPosition()));
         }
         System.out.println();
     }

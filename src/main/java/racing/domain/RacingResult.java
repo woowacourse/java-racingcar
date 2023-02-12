@@ -1,29 +1,35 @@
 package racing.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RacingResult {
 
-    private final Map<Name, Integer> history;
+    private final Map<Name, Position> history;
 
-    public RacingResult(Map<Name, Integer> history) {
+    public RacingResult(Map<Name, Position> history) {
         this.history = history;
     }
 
-    public Map<Name, Integer> getHistory() {
+    public Map<Name, Position> getHistory() {
         return history;
     }
 
     public List<Name> pickWinner() {
-        Integer maxValue = Collections.max(history.values());
+        Integer maxValue = findMaxPosition();
 
         return history.entrySet()
                 .stream()
-                .filter(entry -> entry.getValue().equals(maxValue))
+                .filter(entry -> entry.getValue().getPosition() == maxValue)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
+    }
+
+    private Integer findMaxPosition() {
+        return history.values()
+                .stream()
+                .map(Position::getPosition)
+                .max(Comparator.naturalOrder())
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
