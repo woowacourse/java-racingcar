@@ -1,5 +1,6 @@
 package domain;
 
+import dto.CarDTO;
 import util.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -52,7 +53,11 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return new ArrayList<>(cars);
+    public List<CarDTO> getCars() {
+        List<CarDTO> carDTOs = new ArrayList<>();
+        for (Car car : cars) {
+            carDTOs.add(new CarDTO(car.getCarName(), car.getDistance()));
+        }
+        return carDTOs;
     }
 }

@@ -22,10 +22,10 @@ public class RacingController {
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
             progressRound(carsInfo, randomNumberGenerator, roundResult);
-            outputView.printCurrentResult(carsInfo);
+            outputView.printCurrentResult(carsInfo.getCars());
         }
         List<String> winners = carsInfo.findWinners();
-        outputView.printFinalResult(carsInfo, winners);
+        outputView.printFinalResult(carsInfo.getCars(), winners);
     }
 
     private Cars setUpCarName() {

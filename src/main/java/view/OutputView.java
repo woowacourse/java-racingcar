@@ -1,7 +1,6 @@
 package view;
 
-import domain.Car;
-import domain.Cars;
+import dto.CarDTO;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -26,8 +25,8 @@ public class OutputView {
         System.out.println(INPUT_TRY_COUNT_GUIDE_MESSAGE);
     }
 
-    public void printCurrentResult(Cars carsInfo) {
-        for (Car car : carsInfo.getCars()) {
+    public void printCurrentResult(List<CarDTO> cars) {
+        for (CarDTO car: cars) {
             printCarInfo(car);
         }
         System.out.print(newLine);
@@ -38,8 +37,8 @@ public class OutputView {
 
     }
 
-    private void printCarInfo(Car car) {
-        System.out.print(car.getCarName() + CAR_INFO_FORMAT_DELIMITER);
+    private void printCarInfo(CarDTO car) {
+        System.out.print(car.getName() + CAR_INFO_FORMAT_DELIMITER);
         for (int start = 0; start < car.getDistance(); start++) {
             System.out.print(CAR_POSITION_MESSAGE);
         }
@@ -54,8 +53,8 @@ public class OutputView {
         System.out.print(winnerPrintFormat + RESULT_WINNER_GUIDE_MESSAGE);
     }
 
-    public void printFinalResult(Cars carsInfo, List<String> winners) {
-        printCurrentResult(carsInfo);
+    public void printFinalResult(List<CarDTO> cars, List<String> winners) {
+        printCurrentResult(cars);
         printWinners(winners);
     }
 
