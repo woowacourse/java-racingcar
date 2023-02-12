@@ -22,6 +22,7 @@ class AdvanceJudgementTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 10, -1})
+    @DisplayName("range범위가 아닌 수를 넣었을 때 전진하지 않는지 테스트")
     public void 전진_불가능_경우_테스트(int num) {
         Range range = new Range(4, 9);
         NumberGenerator numberGenerator = new DefaultNumberGenerator(num);
