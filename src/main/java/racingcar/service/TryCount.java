@@ -21,6 +21,8 @@ public class TryCount {
     }
 
     public void tryMove() {
-        count--;
+        if(count > 0) {
+            count--;
+        }
     }
 }
