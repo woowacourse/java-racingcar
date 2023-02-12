@@ -2,11 +2,10 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import racingcar.dto.RoundResultResponseDTO;
@@ -52,15 +51,12 @@ public class Cars {
     }
 
     public WinnersResponseDTO getWinners() {
-        Set<Integer> positions = new HashSet<>();
-        cars.forEach(car -> positions.add(car.getPosition()));
-        int maxPosition = Collections.max(positions);
+        Car winner = Collections.max(cars, Comparator.comparingInt(Car::getPosition));
 
-        return new WinnersResponseDTO(
-            cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .map(Car::getName)
-                .collect(Collectors.toList()));
+        return new WinnersResponseDTO(cars.stream()
+            .filter(car -> car.getPosition() == winner.getPosition())
+            .map(Car::getName)
+            .collect(Collectors.toList()));
     }
 
 }
