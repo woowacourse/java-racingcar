@@ -1,6 +1,5 @@
 package view;
 
-import static exception.ErrorMessage.ENTER_NAME_WITH_COMMA;
 import static java.util.Collections.addAll;
 
 import exception.CommaNotFoundException;
@@ -12,9 +11,8 @@ public class InputView {
 
     private static final String REQUEST_CAR_NAME_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String REQUEST_TRY_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
-
+    private static final String ENTER_NAME_WITH_COMMA = "쉼표로 이름을 구분해주세요.";
     private static final String COMMA = ",";
-
     private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> requestCarName() {
@@ -47,7 +45,7 @@ public class InputView {
 
     private static void validateComma(final String names) {
         if (!names.contains(COMMA)) {
-            throw new CommaNotFoundException(ENTER_NAME_WITH_COMMA.toString());
+            throw new CommaNotFoundException(ENTER_NAME_WITH_COMMA);
         }
     }
 }

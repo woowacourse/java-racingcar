@@ -1,12 +1,12 @@
 package domain;
 
-import static exception.ErrorMessage.ENTER_POSITIVE_INTEGER;
-
 import exception.NotPositiveIntegerException;
 
 public class TryCount {
 
     private static final int EXCEPTION_FLAG = 0;
+
+    private static final String ENTER_POSITIVE_INTEGER = "[ERROR] 양의 정수를 입력해주세요.";
 
     private final int tryCount;
 
@@ -22,7 +22,7 @@ public class TryCount {
         int tryCount = Integer.parseInt(inputCount);
 
         if(tryCount <= EXCEPTION_FLAG){
-            throw new NotPositiveIntegerException(ENTER_POSITIVE_INTEGER.toString());
+            throw new NotPositiveIntegerException(ENTER_POSITIVE_INTEGER);
         }
 
         return tryCount;
