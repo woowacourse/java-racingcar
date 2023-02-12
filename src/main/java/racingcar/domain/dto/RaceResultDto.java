@@ -10,7 +10,7 @@ public class RaceResultDto {
         this.carRaceResult = carRaceResult;
     }
 
-    public static RaceResultDto of(final List<CarRaceDto> carRaceDtos) {
+    public static RaceResultDto createRaceResultDto(final List<CarRaceDto> carRaceDtos) {
         return new RaceResultDto(carRaceDtos);
     }
 

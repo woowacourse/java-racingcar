@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.constant.CarConstant;
 import racingcar.domain.dto.CarRaceDto;
 import racingcar.exception.DuplicateException;
 import racingcar.exception.GlobalException;
@@ -41,10 +40,10 @@ class CarsTest {
     @DisplayName("정상적인 자동차 이름이 들어오면 예외가 발생하지 않는다.")
     void givenNormalCarNames_thenSuccess(String carNames) {
         // when & then
-        assertThatCode(() -> Cars.of(carNames, numberGenerator))
+        assertThatCode(() -> Cars.createCars(carNames, numberGenerator))
                 .doesNotThrowAnyException();
 
-        assertThat(Cars.of(carNames, numberGenerator))
+        assertThat(Cars.createCars(carNames, numberGenerator))
                 .isEqualTo(testCars);
     }
 
@@ -52,7 +51,7 @@ class CarsTest {
     @NullSource
     @DisplayName("자동차 이름에 null 값이 들어오면 split 시 에외가 발생한다.")
     void givenNullCarNames_thenFail(String carNames) {
-        assertThatThrownBy(() -> Cars.of(carNames, numberGenerator))
+        assertThatThrownBy(() -> Cars.createCars(carNames, numberGenerator))
                 .isInstanceOf(NullPointerException.class);
     }
 
@@ -60,7 +59,7 @@ class CarsTest {
     @ValueSource(strings = {"pobi,pobi", "pobi, pobi"})
     @DisplayName("자동차 이름에 중복값이 들어오면 예외가 발생한다.")
     void givenDuplicateCarNames_thenFail(String carNames) {
-        assertThatThrownBy(() -> Cars.of(carNames, numberGenerator))
+        assertThatThrownBy(() -> Cars.createCars(carNames, numberGenerator))
                 .isInstanceOf(GlobalException.class)
                 .isExactlyInstanceOf(DuplicateException.class)
                 .hasMessageContaining(DUPLICATE_MESSAGE.getValue());

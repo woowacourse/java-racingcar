@@ -12,10 +12,10 @@ public class Race {
     private final RaceCount raceCount;
 
     private Race(final String raceCount) {
-        this.raceCount = RaceCount.of(raceCount);
+        this.raceCount = RaceCount.createRaceCount(raceCount);
     }
 
-    public static Race of(final String raceCount) {
+    public static Race createRace(final String raceCount) {
         return new Race(raceCount);
     }
 
@@ -23,7 +23,7 @@ public class Race {
         List<RaceResultDto> raceResults = new ArrayList<>();
         for (int i = 0; i < raceCount.getCount(); i++) {
             List<CarRaceDto> carRaceResult = cars.race();
-            RaceResultDto raceResult = RaceResultDto.of(carRaceResult);
+            RaceResultDto raceResult = RaceResultDto.createRaceResultDto(carRaceResult);
             raceResults.add(raceResult);
         }
         return raceResults;

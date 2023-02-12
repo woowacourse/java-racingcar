@@ -26,14 +26,14 @@ public class Cars {
         validateDuplicateCarName();
     }
 
-    public static Cars of(final String carNames, final NumberGenerator numberGenerator) {
+    public static Cars createCars(final String carNames, final NumberGenerator numberGenerator) {
         return new Cars(carNames, numberGenerator);
     }
 
     private List<Car> createCars(String carNames) {
         String[] names = splitCarNames(carNames);
         return Arrays.stream(names)
-                .map(Car::of)
+                .map(Car::createCar)
                 .collect(Collectors.toList());
     }
 

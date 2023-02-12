@@ -43,7 +43,7 @@ public class CarRaceController {
         return inputView.getUserInput(() -> {
             OutputView.printMessage(GET_CAR_NAMES_MESSAGE.getValue());
             String carNames = inputView.readConsole();
-            return Cars.of(carNames, numberGenerator);
+            return Cars.createCars(carNames, numberGenerator);
         });
     }
 
@@ -51,7 +51,7 @@ public class CarRaceController {
         return inputView.getUserInput(() -> {
             OutputView.printMessage(GET_TRY_COUNT_MESSAGE.getValue());
             String tryCount = inputView.readConsole();
-            return Race.of(tryCount);
+            return Race.createRace(tryCount);
         });
     }
 }

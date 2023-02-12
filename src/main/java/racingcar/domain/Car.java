@@ -15,16 +15,16 @@ public class Car {
     private final CarPosition position;
 
     private Car(final String name) {
-        this.name = CarName.of(name);
-        this.position = CarPosition.of();
+        this.name = CarName.createCarName(name);
+        this.position = CarPosition.createCarPosition();
     }
 
-    public static Car of(final String name) {
+    public static Car createCar(final String name) {
         return new Car(name);
     }
 
     public CarRaceDto getCarRaceResult() {
-        return CarRaceDto.of(name.getName(), position.getPosition());
+        return CarRaceDto.createCarRaceDto(name.getName(), position.getPosition());
     }
 
     public void move(final int power) {

@@ -16,7 +16,7 @@ public class CarName {
         this.name = name.trim();
     }
 
-    public static CarName of(final String carName) {
+    public static CarName createCarName(final String carName) {
         return new CarName(carName);
     }
 

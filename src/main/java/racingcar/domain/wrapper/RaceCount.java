@@ -13,7 +13,7 @@ public class RaceCount {
         this.count = validateRange(count);
     }
 
-    public static RaceCount of(final String raceCount) {
+    public static RaceCount createRaceCount(final String raceCount) {
         return new RaceCount(raceCount);
     }
 

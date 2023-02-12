@@ -27,7 +27,7 @@ public class CarTest {
     @DisplayName("Car 객체 생성 시 validation 정상적으로 작동한다.")
     @ValueSource(strings = {"junpk", "jney", "pobi", "neo"})
     void givenNormalCarName_thenSuccess(String carName) {
-        assertThatCode(() -> Car.of(carName))
+        assertThatCode(() -> Car.createCar(carName))
                 .doesNotThrowAnyException();
     }
 
@@ -35,7 +35,7 @@ public class CarTest {
     @DisplayName("5글자 초과의 이름이 들어왔을 경우 예외가 발생한다.")
     @ValueSource(strings = {"junpak", "journey", "pobiconan", "neocat"})
     void givenFiveOverLength_thenFail(String carName) {
-        assertThatThrownBy(() -> Car.of(carName))
+        assertThatThrownBy(() -> Car.createCar(carName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(String.format(LENGTH_MESSAGE.getValue(), CAR_NAME_MAX_LENGTH.getValue()));
     }
@@ -44,7 +44,7 @@ public class CarTest {
     @DisplayName("이름이 공백일 경우 예외가 발생한다.")
     @EmptySource
     void givenBlankName_thenFail(String carName) {
-        assertThatThrownBy(() -> Car.of(carName))
+        assertThatThrownBy(() -> Car.createCar(carName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(String.format(BLANK_MESSAGE.getValue(), "이름"));
     }
