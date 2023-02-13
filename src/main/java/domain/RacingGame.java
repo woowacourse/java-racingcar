@@ -67,7 +67,7 @@ public class RacingGame {
 
     public List<String> decisionWinners() {
         List<String> winners = new ArrayList<>();
-        int topPoint = cars.stream().mapToInt(c -> c.getPosition()).max()
+        int topPoint = cars.stream().mapToInt(Car::getPosition).max()
                 .orElseThrow(() -> new IllegalArgumentException("최고 점수가 null입니다."));
         for (Car car : cars) {
             addWinners(winners, topPoint, car);

@@ -33,7 +33,7 @@ class RacingGameTest {
     @Test
     void 자동차_개수_1개_일_때_예외_테스트() {
         RacingGame racingGame = new RacingGame();
-        assertThatThrownBy(() -> racingGame.generateCars(Arrays.asList("bb")))
+        assertThatThrownBy(() -> racingGame.generateCars(List.of("bb")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -72,7 +72,7 @@ class RacingGameTest {
 
         @Override
         public int generate(int startInclusive, int endInclusive) {
-            return numbers.poll();
+            return numbers.remove();
         }
     }
 }
