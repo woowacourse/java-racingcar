@@ -1,13 +1,10 @@
 package racing.domain.race;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import racing.domain.WinnerJudgeImpl;
 import racing.domain.car.Car;
 
 public class Race {
-    private final List<Car> cars = new ArrayList<>();
     private final RacingCars racingCars = new RacingCars();
     private WinnerJudge winnerJudge;
 
@@ -33,10 +30,10 @@ public class Race {
     }
 
     public List<Car> getWinners() {
-        return winnerJudge.getWinner(cars);
+        return winnerJudge.getWinner(racingCars.getCars());
     }
 
-    public List<Car> getParticipatingCars() {
-        return Collections.unmodifiableList(cars);
+    public List<Car> getRacingCars() {
+        return racingCars.getCars();
     }
 }
