@@ -8,8 +8,8 @@ import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
 
 public class CarService {
-	private NumberGenerator numberGenerator;
 	private final List<Car> cars = CarRepository.getCars();
+	private final NumberGenerator numberGenerator;
 
 	public CarService(final NumberGenerator numberGenerator) {
 		this.numberGenerator = numberGenerator;

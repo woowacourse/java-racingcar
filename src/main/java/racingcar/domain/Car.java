@@ -20,7 +20,7 @@ public class Car {
 
 	public void move(int power) {
 		if (isMovable(power)) {
-			position ++;
+			position++;
 		}
 	}
 

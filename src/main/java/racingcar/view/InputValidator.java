@@ -27,9 +27,6 @@ public class InputValidator {
 	}
 
 	private static boolean isNumberInGivenRange(final int num, final int minInclusive, final int maxInclusive) {
-		if (num >= minInclusive && num <= maxInclusive) {
-			return true;
-		}
-		return false;
+		return num >= minInclusive && num <= maxInclusive;
 	}
 }

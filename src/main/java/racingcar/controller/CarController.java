@@ -14,8 +14,10 @@ public class CarController {
 	private int roundCount;
 
 	public void playGame() {
-		while (!getCarNames()) ;
-		while (!getRoundCount()) ;
+		while (!getCarNames())
+			;
+		while (!getRoundCount())
+			;
 		move();
 	}
 
@@ -24,10 +26,10 @@ public class CarController {
 			OutputView.printCarNameRequestMsg();
 			final List<String> carNames = InputView.readCarNames();
 			carNames.stream()
-				.forEach(carName -> carRepository.add(new Car(carName)));
+				.forEach(carName -> CarRepository.add(new Car(carName)));
 			return true;
 		} catch (Exception e) {
-			carRepository.clear();
+			CarRepository.clear();
 			System.out.println(e.getMessage());
 			return false;
 		}
