@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class CarManager {
-    private static final int SAME_CAR_COMPARE_VALUE = 0;
     private static final int MAX_MOVEMENT_VALUE = 9;
 
     private final List<Car> cars;
