@@ -9,20 +9,18 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class ParserTest {
-    public static final String DELIMITER = ",";
-
+class CarNameParserTest {
     @ParameterizedTest
     @MethodSource("파싱_테스트_데이터_생성")
     @DisplayName("Parser를 사용한 문자열 파싱 테스트")
-    public void 파싱_테스트(String text, String delimiter, List<String> expected) {
-        Assertions.assertThat(Parser.parsing(text, delimiter)).isEqualTo(expected);
+    public void 파싱_테스트(String text, List<String> expected) {
+        Assertions.assertThat(CarNameParser.parsing(text)).isEqualTo(expected);
     }
 
     static Stream<Arguments> 파싱_테스트_데이터_생성() {
         return Stream.of(
-                Arguments.of("a,b,c", DELIMITER, Arrays.asList("a", "b", "c")),
-                Arguments.of("a", DELIMITER, List.of("a"))
+                Arguments.of("a,b,c", List.of("a", "b", "c")),
+                Arguments.of("a", List.of("a"))
         );
     }
 }
