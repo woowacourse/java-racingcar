@@ -42,10 +42,6 @@ public class Car {
         return Math.max(position, otherPosition);
     }
 
-    public boolean hasSamePositionWith(int otherPosition) {
-        return position == otherPosition;
-    }
-
     public void move(MoveChance moveChance) {
         if (moveChance.isMovable()) {
             position++;
