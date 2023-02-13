@@ -14,7 +14,11 @@ public class Game {
         this.moveChance = moveChance;
     }
     public List<CarDto> getWinnersDto(){
-        return findWinners().stream().map(Car::getCarDto).collect(Collectors.toList());
+        List<CarDto> WinnersDtoList = new ArrayList<>();
+        for(Car car: findWinners()){
+            WinnersDtoList.add(new CarDto(car));
+        }
+        return WinnersDtoList;
     }
     private List<Car> findWinners() {
         int maxPosition = findMaxPosition();
@@ -37,6 +41,10 @@ public class Game {
         }
     }
     public List<CarDto> getCarsDto(){
-        return cars.stream().map(Car::getCarDto).collect(Collectors.toList());
+        List<CarDto> carDtoList = new ArrayList<>();
+        for(Car car: cars){
+            carDtoList.add(new CarDto(car));
+        }
+        return carDtoList;
     }
 }
