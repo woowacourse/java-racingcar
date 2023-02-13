@@ -7,6 +7,7 @@ import domain.Participants;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import utils.RandomNumberGenerator;
 
 class ParticipantsTest {
 
@@ -17,7 +18,7 @@ class ParticipantsTest {
         final String name2 = "asdf";
         //when
         //then
-        Participants participants = new Participants(List.of(name1, name2));
+        Participants participants = new Participants(List.of(name1, name2), new RandomNumberGenerator());
         List<Car> cars = participants.getCars();
 
         Assertions.assertThat(cars.size()).isEqualTo(2);
@@ -33,7 +34,7 @@ class ParticipantsTest {
 
         //when then
         assertThatThrownBy(() -> {
-            new Participants(List.of(name1, name1, name2));
+            new Participants(List.of(name1, name1, name2), new RandomNumberGenerator());
         }).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] ")
             .hasMessageContaining("자동차 이름은 중복될 수 없습니다.");

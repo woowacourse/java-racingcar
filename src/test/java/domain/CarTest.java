@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import utils.RandomNumberGenerator;
 
 class CarTest {
 
@@ -10,7 +11,7 @@ class CarTest {
 
     @BeforeEach
     void before() {
-        car = new Car("test");
+        car = new Car("test", new RandomNumberGenerator());
     }
 
     @ValueSource(ints = {1, 2, 3, 4, 5})

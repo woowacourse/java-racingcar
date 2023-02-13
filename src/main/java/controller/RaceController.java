@@ -4,6 +4,7 @@ import domain.Car;
 import domain.Race;
 import java.util.List;
 import java.util.function.Supplier;
+import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -11,11 +12,13 @@ public class RaceController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final NumberGenerator numberGenerator;
     private Race race;
 
-    public RaceController(InputView inputView, OutputView outputView) {
+    public RaceController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.numberGenerator = numberGenerator;
     }
 
     public void play() {
@@ -27,7 +30,7 @@ public class RaceController {
     private void readyForGame() {
         List<String> carNames = repeat(inputView::readCarNames);
         int count = repeat(inputView::readCount);
-        race = new Race(count, carNames);
+        race = new Race(count, carNames, numberGenerator);
     }
 
     private void playGame() {

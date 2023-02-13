@@ -6,14 +6,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import utils.NumberGenerator;
 
 public class Participants {
 
     private final List<Car> cars;
 
-    public Participants(List<String> carNames) {
+    public Participants(List<String> carNames, NumberGenerator numberGenerator) {
         cars = carNames.stream()
-            .map(Car::new)
+            .map(carName -> new Car(carName, numberGenerator))
             .collect(Collectors.toList());
         PARTICIPANTS_VALIDATOR.validate(carNames);
     }

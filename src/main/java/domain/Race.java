@@ -3,6 +3,7 @@ package domain;
 import static validation.CountValidator.COUNT_VALIDATOR;
 
 import java.util.List;
+import utils.NumberGenerator;
 
 public class Race {
 
@@ -10,10 +11,10 @@ public class Race {
     private int currentCount = 0;
     private final Participants participants;
 
-    public Race(final int totalCount, final List<String> carNames) {
+    public Race(final int totalCount, final List<String> carNames, NumberGenerator numberGenerator) {
         COUNT_VALIDATOR.validate(totalCount);
         this.TOTAL_COUNT = totalCount;
-        this.participants = new Participants(carNames);
+        this.participants = new Participants(carNames, numberGenerator);
     }
 
     public void playRound() {

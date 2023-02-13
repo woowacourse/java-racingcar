@@ -3,7 +3,6 @@ package domain;
 import static validation.CarNameValidator.CAR_NAME_VALIDATOR;
 
 import utils.NumberGenerator;
-import utils.RandomNumberGenerator;
 
 public class Car {
 
@@ -11,10 +10,10 @@ public class Car {
     private int drivenDistance = 0;
     private final NumberGenerator numberGenerator;
 
-    public Car(final String name) {
+    public Car(final String name, NumberGenerator numberGenerator) {
         CAR_NAME_VALIDATOR.validate(name);
         this.name = name;
-        numberGenerator = new RandomNumberGenerator();
+        this.numberGenerator = numberGenerator;
     }
 
     public void drive() {
