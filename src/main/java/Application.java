@@ -11,7 +11,7 @@ public class Application {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
 
-        Cars cars = new Cars(new ArrayList<>(), new RandomNumberGenerator());
+        Cars cars = new Cars(new ArrayList<>(), RandomNumberGenerator.makeInstance());
 
         Controller controller = new Controller(outputView, inputView, cars);
         controller.run();
