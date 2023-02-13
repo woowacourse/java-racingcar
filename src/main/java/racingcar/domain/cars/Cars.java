@@ -3,18 +3,17 @@ package racingcar.domain.cars;
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
-import java.util.LinkedHashSet;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class Cars {
 
     private static final int MINIMUM_SIZE = 2;
-    private final Set<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         validate(cars);
-        this.cars = new LinkedHashSet<>(cars);
+        this.cars = Collections.unmodifiableList(cars);
     }
 
     private void validate(List<Car> cars) {
@@ -42,7 +41,7 @@ public class Cars {
         }
     }
 
-    public Set<Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 }
