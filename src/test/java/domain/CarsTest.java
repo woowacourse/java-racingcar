@@ -48,4 +48,11 @@ class CarsTest {
 
         assertThat(winners).contains("mint","leo");
     }
+
+    @Test
+    @DisplayName("생성된 자동차들의 개수가 정확하게 반환되는지 확인한다.")
+    void getCarsCountTest() {
+        Cars cars = new Cars(List.of("leo", "mint", "yh"));
+        assertThat(cars.getCount()).isEqualTo(3);
+    }
 }
