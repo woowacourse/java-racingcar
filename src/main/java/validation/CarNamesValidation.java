@@ -15,10 +15,6 @@ public class CarNamesValidation {
         validateDuplicatedCarName(input);
     }
 
-    public static void validateCarName(String carName) {
-        validateCountOfCars(carName);
-        validateLengthOfCarName(carName);
-    }
 
     private static void validateCountOfCars(String input) {
         if (input.isEmpty()) {

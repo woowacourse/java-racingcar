@@ -4,11 +4,11 @@ public class Car {
 
     private static final int MIN_BOUNDARY_POWER = 4;
 
-    private final Name name;
+    private final CarName carName;
     private Distance distance;
 
     public Car(final String name, final int distance) {
-        this.name = new Name(name);
+        this.carName = new CarName(name);
         this.distance = new Distance(distance);
     }
 
@@ -23,6 +23,6 @@ public class Car {
     }
 
     public String getCarName() {
-        return this.name.getName();
+        return this.carName.getName();
     }
 }

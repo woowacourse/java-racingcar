@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.SplitCarNames;
 
-public class SplitCarNamesTest {
+public class SplitNamesTest {
 
     @Test
     @DisplayName("splitCarNames() : 매개변수로 주어진 carNames를 배열로 분리하는 기능")
