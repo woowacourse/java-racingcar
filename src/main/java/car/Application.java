@@ -9,6 +9,7 @@ public class Application{
         GameController gameController = new GameController(new InputConsole());
         gameController.startGame();
         gameController.play();
+        gameController.evaluateResult();
         gameController.showResult();
     }
 }
