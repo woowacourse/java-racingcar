@@ -9,7 +9,7 @@ import racingcar.domain.system.GameSystem;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
@@ -38,6 +38,6 @@ public class GameController {
     }
 
     private GameSystem createGameSystem(int gameRound) {
-        return new GameSystem(gameRound, new GameRecorder(new LinkedHashSet<>(), new GameRecordManager()));
+        return new GameSystem(gameRound, new GameRecorder(new ArrayList<>(), new GameRecordManager()));
     }
 }

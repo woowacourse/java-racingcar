@@ -6,8 +6,7 @@ import racingcar.domain.record.GameRecorder;
 import racingcar.domain.record.GameResultOfCar;
 
 import java.util.Comparator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameSystem {
@@ -41,35 +40,35 @@ public class GameSystem {
         gameRecorder.record(gameRound, cars);
     }
 
-    public Set<GameResultOfCar> getAllGameResult() {
+    public List<GameResultOfCar> getAllGameResult() {
         return gameRecorder.getRecords();
     }
 
-    public Set<GameResultOfCar> getWinnersGameResult() {
-        Set<GameResultOfCar> gameResultOfFinalRound = getGameResultsOfFinalRound();
+    public List<GameResultOfCar> getWinnersGameResult() {
+        List<GameResultOfCar> gameResultOfFinalRound = getGameResultsOfFinalRound();
 
         int position = findTopPosition(gameResultOfFinalRound);
 
         return findGameResultOfTopPositionedCars(gameResultOfFinalRound, position);
     }
 
-    private Set<GameResultOfCar> getGameResultsOfFinalRound() {
+    private List<GameResultOfCar> getGameResultsOfFinalRound() {
         return gameRecorder.getRecords()
                 .stream()
                 .filter(gameResultOfCar -> gameResultOfCar.getGameRound() == finalRound)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    private int findTopPosition(Set<GameResultOfCar> gameResultOfCars) {
+    private int findTopPosition(List<GameResultOfCar> gameResultOfCars) {
         return gameResultOfCars.stream()
                 .max(Comparator.comparing(GameResultOfCar::getPosition))
                 .map(GameResultOfCar::getPosition)
                 .orElse(DEFAULT_POSITION);
     }
 
-    private Set<GameResultOfCar> findGameResultOfTopPositionedCars(Set<GameResultOfCar> gameResultOfFinalRoundCars, int position) {
+    private List<GameResultOfCar> findGameResultOfTopPositionedCars(List<GameResultOfCar> gameResultOfFinalRoundCars, int position) {
         return gameResultOfFinalRoundCars.stream()
                 .filter(gameResultOfCar -> gameResultOfCar.getPosition() == position)
-                .collect(Collectors.toUnmodifiableSet());
+                .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -2,14 +2,14 @@ package racingcar.domain.record;
 
 import racingcar.domain.cars.Cars;
 
-import java.util.Set;
+import java.util.List;
 
 public class GameRecorder {
 
-    private final Set<GameResultOfCar> records;
+    private final List<GameResultOfCar> records;
     private final GameRecordManager gameRecordManager;
 
-    public GameRecorder(Set<GameResultOfCar> records, GameRecordManager gameRecordManager) {
+    public GameRecorder(List<GameResultOfCar> records, GameRecordManager gameRecordManager) {
         this.records = records;
         this.gameRecordManager = gameRecordManager;
     }
@@ -18,7 +18,7 @@ public class GameRecorder {
         records.addAll(gameRecordManager.makeGameResultsOfCars(gameRound, cars));
     }
 
-    public Set<GameResultOfCar> getRecords() {
+    public List<GameResultOfCar> getRecords() {
         return records;
     }
 }

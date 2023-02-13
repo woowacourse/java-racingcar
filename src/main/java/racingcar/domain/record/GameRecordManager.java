@@ -3,17 +3,16 @@ package racingcar.domain.record;
 import racingcar.domain.car.Car;
 import racingcar.domain.cars.Cars;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameRecordManager {
 
-    public Set<GameResultOfCar> makeGameResultsOfCars(int gameRound, Cars cars) {
+    public List<GameResultOfCar> makeGameResultsOfCars(int gameRound, Cars cars) {
         return cars.getCars()
                 .stream()
                 .map(car -> createGameResultOfCar(gameRound, car))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private GameResultOfCar createGameResultOfCar(int gameRound, Car car) {
