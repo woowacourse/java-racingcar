@@ -3,8 +3,8 @@ package racingcar.controller;
 import racingcar.domain.carfactory.CarFactory;
 import racingcar.domain.cars.Cars;
 import racingcar.domain.numbergenerator.RandomSingleDigitGenerator;
-import racingcar.domain.record.GameRecordManager;
 import racingcar.domain.record.GameRecorder;
+import racingcar.domain.record.RecordManagerOfGameResultOfCar;
 import racingcar.domain.system.GameSystem;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -38,6 +38,6 @@ public class GameController {
     }
 
     private GameSystem createGameSystem(int gameRound) {
-        return new GameSystem(gameRound, new GameRecorder(new ArrayList<>(), new GameRecordManager()));
+        return new GameSystem(gameRound, new GameRecorder(new ArrayList<>(), new RecordManagerOfGameResultOfCar()));
     }
 }

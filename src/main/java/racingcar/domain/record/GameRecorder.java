@@ -7,15 +7,15 @@ import java.util.List;
 public class GameRecorder {
 
     private final List<GameResultOfCar> records;
-    private final GameRecordManager gameRecordManager;
+    private final RecordManager<GameResultOfCar> recordManager;
 
-    public GameRecorder(List<GameResultOfCar> records, GameRecordManager gameRecordManager) {
+    public GameRecorder(List<GameResultOfCar> records, RecordManager<GameResultOfCar> recordManager) {
         this.records = records;
-        this.gameRecordManager = gameRecordManager;
+        this.recordManager = recordManager;
     }
 
     public void record(int gameRound, Cars cars) {
-        records.addAll(gameRecordManager.makeGameResultsOfCars(gameRound, cars));
+        records.addAll(recordManager.makeResults(gameRound, cars));
     }
 
     public List<GameResultOfCar> getRecords() {

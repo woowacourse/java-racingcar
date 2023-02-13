@@ -6,9 +6,10 @@ import racingcar.domain.cars.Cars;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GameRecordManager {
+public class RecordManagerOfGameResultOfCar implements RecordManager<GameResultOfCar> {
 
-    public List<GameResultOfCar> makeGameResultsOfCars(int gameRound, Cars cars) {
+    @Override
+    public List<GameResultOfCar> makeResults(int gameRound, Cars cars) {
         return cars.getCars()
                 .stream()
                 .map(car -> createGameResultOfCar(gameRound, car))
