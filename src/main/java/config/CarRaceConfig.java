@@ -1,10 +1,6 @@
 package config;
 
 import controller.CarRaceController;
-import repository.CarRepositoryImpl;
-import service.CarRaceService;
-import service.CarRaceServiceImpl;
-import service.RandomNumberGenerator;
 import validation.InputValidationChain;
 import validation.impl.EmptyValueValidationChain;
 import validation.impl.InputValidateSuccessChain;
@@ -16,13 +12,7 @@ import view.OutputView;
 public class CarRaceConfig {
 
     public static CarRaceController config() {
-        return new CarRaceController(new InputView(), new OutputView(),
-            makeValidator(), makeService());
-    }
-
-    private static CarRaceService makeService() {
-        return new CarRaceServiceImpl(new CarRepositoryImpl(),
-            new RandomNumberGenerator());
+        return new CarRaceController(new InputView(), new OutputView(), makeValidator());
     }
 
     private static InputValidationChain makeValidator() {
