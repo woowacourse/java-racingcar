@@ -19,7 +19,7 @@ public class Application {
         try {
             racingController.start(randomMovingStrategy);
         } catch (Exception e) {
-            racingController.terminated(e.getMessage());
+            racingController.terminated(e);
         }
     }
 }
