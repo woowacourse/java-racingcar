@@ -3,8 +3,6 @@ package domain;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Random;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,15 +27,11 @@ class CarTest {
 		assertEquals(expected, actualValue);
 	}
 
-	@DisplayName("거리 추가 테스트")
+	@DisplayName("이동 테스트")
 	@Test
-	void addDistance() {
-		Car car = new Car("kiara");
+	void move() {
+		Car car = new Car("kiara", 3);
 
-		Random random = new Random();
-		int input = random.nextInt(10);
-
-		car.addDistance(input);
 		int expected = car.getDistance();
 
 		if (expected >= 4) {
@@ -49,17 +43,13 @@ class CarTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"", "    "})
 	void checkNull(String input) {
-		assertThatThrownBy(() ->
-			new Car(input)
-		).isInstanceOf(IllegalArgumentException.class);
+		assertThatThrownBy(() -> new Car(input)).isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@DisplayName("너무 긴 이름 테스트")
 	@ParameterizedTest
 	@ValueSource(strings = {"ferari", "mercedes"})
 	void checkTooLong(String input) {
-		assertThatThrownBy(() ->
-			new Car(input)
-		).isInstanceOf(IllegalArgumentException.class);
+		assertThatThrownBy(() -> new Car(input)).isInstanceOf(IllegalArgumentException.class);
 	}
 }
