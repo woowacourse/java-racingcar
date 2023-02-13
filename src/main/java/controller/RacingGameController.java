@@ -78,6 +78,7 @@ public class RacingGameController {
     }
 
     private GameProcess printWinners() {
+
         ioViewResolver.outputViewResolve(new PrintWinnersDto(racingGame.decideWinners()));
 
         return GameProcess.EXIT;

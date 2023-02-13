@@ -29,15 +29,16 @@ public class OutputView {
         for (Cars movingStatus : totalMovingStatus) {
             printMovingStatus(movingStatus);
         }
+
+        printMovingStatus(totalMovingStatus.get(totalMovingStatus.size() - 1));
     }
 
     private void printMovingStatus(Cars cars) {
         for (Car car : cars) {
-            print(
-                String.format(
-                        Const.PRINT_STATUS_FORMAT,
-                        car.getName(),
-                        drawMovingLength(car.getPosition()))
+            print(String.format(
+                    Const.PRINT_STATUS_FORMAT,
+                    car.getName(),
+                    drawMovingLength(car.getPosition()))
             );
         }
         System.out.println();

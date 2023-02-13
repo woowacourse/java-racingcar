@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-@DisplayName("시도 횟수는")
+@DisplayName("시도 횟수는 ")
 class TryCountTest {
 
     @DisplayName("0회 이하이면 에러가 발생한다.")
