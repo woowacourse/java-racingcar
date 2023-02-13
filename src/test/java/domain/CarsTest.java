@@ -42,7 +42,7 @@ class CarsTest {
             cars.moveForRound(testNumberGenerator);
         }
 
-        assertThat(cars.getWinners()).isEqualTo("ocean");
+        assertThat(cars.getWinners()).containsExactly("ocean");
     }
 
     @Test
@@ -58,7 +58,7 @@ class CarsTest {
             cars.moveForRound(testNumberGenerator);
         }
 
-        assertThat(cars.getWinners()).isEqualTo("ocean, jamie");
+        assertThat(cars.getWinners()).containsExactly("ocean", "jamie");
     }
 
     static class TestNumberGenerator implements NumberGenerator {
