@@ -1,11 +1,10 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    List<RacingCar> racingCars;
+    private final List<RacingCar> racingCars;
 
     private RacingCars(List<RacingCar> racingCars) {
         this.racingCars = racingCars;
@@ -16,11 +15,9 @@ public class RacingCars {
     }
 
     public static RacingCars generateByNames(List<String> racingCarNames) {
-        List<RacingCar> racingCars = new ArrayList<>();
-        racingCarNames.forEach(racingCarName -> {
-            racingCars.add(new RacingCar(racingCarName));
-        });
-        return new RacingCars(racingCars);
+        return new RacingCars(racingCarNames.stream().map(racingCarName -> {
+            return new RacingCar(racingCarName);
+        }).collect(Collectors.toList()));
     }
 
     public void advanceCars(AdvanceJudgement advanceJudgement) {
