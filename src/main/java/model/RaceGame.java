@@ -24,7 +24,7 @@ public class RaceGame {
 
     private List<Car> generateCars(Set<String> carsName) {
         return carsName.stream()
-                .map(Car::new)
+                .map(carName -> new Car(carName, generator))
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -33,7 +33,7 @@ public class RaceGame {
     }
 
     public List<RacingRoundStateDto> race() {
-        return cars.race(generator, round);
+        return cars.race(round);
     }
 
     public List<WinnerCarDto> calculateWinners() {

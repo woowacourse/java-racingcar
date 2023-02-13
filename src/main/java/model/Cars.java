@@ -20,18 +20,18 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<RacingRoundStateDto> race(RacingNumberGenerator generator, Round round) {
+    public List<RacingRoundStateDto> race(Round round) {
         List<RacingRoundStateDto> racingResult = new ArrayList<>();
 
         while (round.isRacing()) {
-            racingResult.add(race(generator));
+            racingResult.add(race());
         }
         return racingResult;
     }
 
-    private RacingRoundStateDto race(RacingNumberGenerator generator) {
+    private RacingRoundStateDto race() {
         List<RacingCarStateDto> racingCarsStateDto = cars.stream()
-                .map(car -> car.race(generator.generate()))
+                .map(Car::race)
                 .collect(Collectors.toUnmodifiableList());
         return new RacingRoundStateDto(racingCarsStateDto);
     }
