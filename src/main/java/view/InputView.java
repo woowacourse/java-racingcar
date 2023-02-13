@@ -8,17 +8,17 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+    private static final String INPUT_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String INPUT_TRIAL_NUM = "시도할 횟수는 몇회인가요?(단, 100회 미만이어야 합니다)";
+
+    private static final String ERROR_CAR_NAME_LENGTH = "자동차의 이름의 길이는 1 이상 5 이하여아 한다";
+    private static final String ERROR_MAX_TRIAL_NUM = "이동 횟수는 100회 미만이어야 합니다.";
+    private static final String ERROR_TRIAL_NOT_NUMBER = "이동 횟수는 숫자여야 합니다.";
+
     private static final int MAX_TRIAL_NUM = 2;
     private static final int MIN_CAR_NAME_LENGTH = 1;
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final Pattern NUMBER = Pattern.compile("[0-9]+");
-
-    public static final String INPUT_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
-    public static final String INPUT_TRIAL_NUM = "시도할 횟수는 몇회인가요?(단, 100회 미만이어야 합니다)";
-
-    public static final String ERROR_CAR_NAME_LENGTH = "자동차의 이름의 길이는 1 이상 5 이하여아 한다";
-    public static final String ERROR_MAX_TRIAL_NUM = "이동 횟수는 100회 미만이어야 합니다.";
-    public static final String ERROR_TRIAL_NOT_NUMBER = "이동 횟수는 숫자여야 합니다.";
 
     private Scanner scanner;
 

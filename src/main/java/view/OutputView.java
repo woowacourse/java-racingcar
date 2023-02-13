@@ -6,12 +6,11 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String START_MESSAGE = "실행 결과";
+    private static final String CAR_STATUS_FORMAT = "%s : %s\n";
+    private static final String RESULT_WINNER_MESSAGE = "%s가 최종 우승했습니다.";
     private static final String DELIMITER = ", ";
     private static final String BAR = "-";
-
-    public static final String START_MESSAGE = "실행 결과";
-    public static final String CAR_STATUS_FORMAT = "%s : %s\n";
-    public static final String RESULT_WINNER_MESSAGE = "%s가 최종 우승했습니다.";
 
     public void printStart(Cars cars) {
         printNewLine();
