@@ -22,6 +22,11 @@ public class Controller {
         this.trial = initGameTime();
     }
 
+    public void run() {
+        startRacing();
+        endRacing();
+    }
+
     private Trial initGameTime() {
         String trial = inputView.inputGameTime();
         return new Trial(trial);
