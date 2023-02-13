@@ -18,13 +18,21 @@ public class RacingGameController {
     }
 
     public void run() throws IOException {
-        List<String> carNames = inputView.readCarNames();
-        RacingGame racingGame = new RacingGame(carNames);
+        RacingGame racingGame = setRacingGame();
         int movingTrial = inputView.readMovingTrial();
-
         outputView.printNotice();
         raceWithHistory(movingTrial, racingGame);
         outputView.printWinner(racingGame.getRacingResult().getWinner());
+    }
+
+    private RacingGame setRacingGame() throws IOException {
+        try {
+            List<String> carNames = inputView.readCarNames();
+            return new RacingGame(carNames);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setRacingGame();
+        }
     }
 
     private void raceWithHistory(int movingTrial, RacingGame racingGame) {
