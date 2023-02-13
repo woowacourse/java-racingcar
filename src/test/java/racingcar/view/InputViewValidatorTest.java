@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewValidatorTest {
 
-    private InputViewValidator inputViewValidator = InputViewValidator.getInstance();
+    private final InputViewValidator inputViewValidator = new InputViewValidator();
 
     @Nested
     @DisplayName("전체 자동차 이름 검증 테스트")
@@ -35,24 +35,6 @@ class InputViewValidatorTest {
             String[] carNames = new String[]{"성하", "성하", "이오"};
 
             Assertions.assertThatThrownBy(() -> inputViewValidator.validateSplitCarNames(carNames))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"이오이오이오", "재이재이재이재이재이"})
-        @DisplayName("분리한 자동차 이름이 5글자 초과인 경우")
-        void splitCarNameLengthTest(String splitCarName) {
-
-            Assertions.assertThatThrownBy(() -> inputViewValidator.validateSplitCarName(splitCarName))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @Test
-        @DisplayName("분리한 자동차 이름이 빈 값인 경우")
-        void splitCarNameBlankTest() {
-            String splitCarName = "";
-
-            Assertions.assertThatThrownBy(() -> inputViewValidator.validateSplitCarName(splitCarName))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

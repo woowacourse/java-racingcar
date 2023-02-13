@@ -18,8 +18,8 @@ public class RacingCarController {
     private final NumberGenerator numberGenerator;
 
     public RacingCarController(final NumberGenerator numberGenerator) {
-        this.outputView = OutputView.getInstance();
-        this.inputView = InputView.getInstance();
+        this.outputView = new OutputView();
+        this.inputView = new InputView();
         this.numberGenerator = numberGenerator;
     }
 
