@@ -23,8 +23,8 @@ public class RacingGame {
     }
 
 
-    public List<Car> decideResult() {
-        return cars.getUnmodifiableCars();
+    public Cars getCars() {
+        return this.cars;
     }
 
     public List<String> decideWinners() {
