@@ -11,7 +11,7 @@ class CarTest {
     @DisplayName("4 이상의 숫자가 나오면 전진한다.")
     void moveSuccessTest() {
         Car car = new Car("name");
-        Integer nowDistance = car.getDistance();
+        int nowDistance = car.getDistance();
 
         car.move(new MovementManager(), 4);
 

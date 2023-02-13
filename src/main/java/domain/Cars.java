@@ -1,7 +1,6 @@
 package domain;
 
 import util.NumberGenerator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,7 +38,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Integer findMaxDistance() {
+    public int findMaxDistance() {
         return cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
@@ -48,7 +47,7 @@ public class Cars {
 
     public void progressRound(NumberGenerator randomNumberGenerator, MovementManager movementManager) {
         for (Car car : cars) {
-            Integer randomNumber = randomNumberGenerator.generateNumber();
+            int randomNumber = randomNumberGenerator.generateNumber();
             car.move(movementManager, randomNumber);
         }
     }

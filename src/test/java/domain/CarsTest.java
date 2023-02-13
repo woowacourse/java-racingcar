@@ -113,7 +113,7 @@ class CarsTest {
         }
 
         @Override
-        public Integer generateNumber() {
+        public int generateNumber() {
             return testNumber++;
         }
     }
