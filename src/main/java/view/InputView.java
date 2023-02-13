@@ -33,11 +33,8 @@ public class InputView {
 			Trial trial = new Trial(Integer.parseInt(scanner.nextLine()));
 			scanner.close();
 			return trial;
-		} catch (NumberFormatException e) {
-			System.out.println("입력값은 숫자만 가능합니다.");
-			return askTrial();
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			System.out.println("입력값은 숫자만 가능합니다.");
 			return askTrial();
 		}
 	}
