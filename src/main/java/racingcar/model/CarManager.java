@@ -1,7 +1,4 @@
-package racingcar.domain;
-
-import racingcar.domain.Car;
-import racingcar.domain.CarMovement;
+package racingcar.model;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,8 +12,9 @@ public class CarManager {
     }
 
     public void moveCarsRandomly() {
-        this.cars.stream()
-                .forEach(car -> car.move(makeRandomCarMove()));
+        for(Car car: cars){
+            car.move(makeRandomCarMove());
+        }
     }
 
     public List<Car> getCars() {
