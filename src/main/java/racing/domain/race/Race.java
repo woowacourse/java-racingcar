@@ -9,18 +9,18 @@ import racing.domain.car.Car;
 
 public class Race {
     private final List<Car> cars = new ArrayList<>();
-    private final NumberPicker numberPicker;
+    private final RacingCars racingCars = new RacingCars();
     private WinnerJudge winnerJudge;
 
     public Race() {
-        numberPicker = new RandomNumberPicker();
         winnerJudge = new WinnerJudgeImpl();
     }
 
     public Race(List<String> carNames) {
         this();
         for (String carName : carNames) {
-            addNewCarBy(carName);
+            Car newCar = new Car(carName);
+            racingCars.add(newCar);
         }
     }
 
@@ -29,22 +29,8 @@ public class Race {
         this.winnerJudge = winnerJudge;
     }
 
-    private void addNewCarBy(String carName) {
-        Car car = new Car(carName);
-        if (carWithSameNameAlreadyExists(car)) {
-            throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
-        }
-        cars.add(car);
-    }
-
-    private boolean carWithSameNameAlreadyExists(Car car) {
-        return cars.contains(car);
-    }
-
     public void tryMoveOneTime() {
-        for (Car car : cars) {
-            car.moveDependingOn(numberPicker.pickNumber());
-        }
+        racingCars.moveCars();
     }
 
     public List<Car> getWinners() {

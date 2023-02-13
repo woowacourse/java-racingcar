@@ -1,6 +1,8 @@
 package racing.domain.car;
 
 import java.util.Objects;
+import racing.domain.RandomNumberPicker;
+import racing.domain.race.NumberPicker;
 
 public class Car {
     private static final int LEAST_CONDITION = 4;
@@ -8,17 +10,24 @@ public class Car {
     private static final int DEFAULT_START_POSITION = 0;
     private static final int ONE_STEP = 1;
     private final String name;
-    private int position;
+    private int position = DEFAULT_START_POSITION;
+
+    private final NumberPicker numberPicker;
 
     public Car(String name) {
+        numberPicker = new RandomNumberPicker();
         validate(name);
         this.name = name;
-        this.position = DEFAULT_START_POSITION;
     }
 
     public Car(String name, int position) {
         this(name);
         this.position = position;
+    }
+
+    public Car(String name, NumberPicker numberPicker) {
+        this.name = name;
+        this.numberPicker = numberPicker;
     }
 
     public String getName() {
@@ -38,7 +47,8 @@ public class Car {
         }
     }
 
-    public void moveDependingOn(int pickedNumber) {
+    public void moveDependingOn() {
+        int pickedNumber = numberPicker.pickNumber();
         if (pickedNumber >= LEAST_CONDITION) {
             position += ONE_STEP;
         }

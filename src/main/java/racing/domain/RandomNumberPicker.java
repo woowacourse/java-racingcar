@@ -1,7 +1,7 @@
 package racing.domain;
 
-import racing.domain.race.NumberPicker;
 import java.util.Random;
+import racing.domain.race.NumberPicker;
 
 public class RandomNumberPicker implements NumberPicker {
     public static final int BOUND = 10;
