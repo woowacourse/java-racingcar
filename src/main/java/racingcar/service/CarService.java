@@ -13,7 +13,7 @@ public class CarService {
     private Cars cars = new Cars(new ArrayList<Car>());
     public final int RANDOM_NUM_MAX_VALUE = 10;
 
-    public void validateNameInput(String carNameInput) {
+    public void makeCars(String carNameInput) {
         cars = new Cars(new ArrayList<Car>());
         List<String> carNames = splitCarNames(carNameInput);
         makeCar(carNames);

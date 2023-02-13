@@ -27,7 +27,7 @@ public class RacingcarController {
     private void initializeCarNames() {
         try {
             OutputView.printNameInput();
-            carService.validateNameInput(InputView.readCarNames());
+            carService.makeCars(InputView.readCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             initializeCarNames();
