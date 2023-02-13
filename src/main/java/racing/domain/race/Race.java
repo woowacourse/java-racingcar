@@ -11,7 +11,7 @@ public class Race {
     private final RacingCars racingCars = new RacingCars();
     private WinnerJudge winnerJudge;
 
-    public Race() {
+    private Race() {
         winnerJudge = new WinnerJudgeImpl();
     }
 
