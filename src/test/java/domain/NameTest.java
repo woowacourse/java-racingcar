@@ -1,6 +1,5 @@
 package domain;
 
-import error.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -23,6 +22,6 @@ class NameTest {
     void test2(String value) {
         assertThatThrownBy(() -> Name.of(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_NAME_LENGTH.getValue());
+                .hasMessage("이름은 5글자 이하여야 합니다.");
     }
 }

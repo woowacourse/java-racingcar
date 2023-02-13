@@ -42,11 +42,7 @@ public class Cars implements Iterable<Car> {
         return cars.stream()
                 .map(Car::getPosition)
                 .max(Comparator.comparingInt(Position::getPosition))
-                .get();
-    }
-
-    private List<Car> getCars() {
-        return cars;
+                .orElseGet(Position::create);
     }
 
     @Override

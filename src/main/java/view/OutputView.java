@@ -24,6 +24,7 @@ public class OutputView {
     }
 
     public void printTotalMovingStatus(PrintMovingStatusDto dto) {
+        print(Const.PRINT_RESULT_MESSAGE);
         List<Cars> totalMovingStatus = dto.getMovingStatus();
         for (Cars movingStatus : totalMovingStatus) {
             printMovingStatus(movingStatus);
@@ -32,8 +33,11 @@ public class OutputView {
 
     private void printMovingStatus(Cars cars) {
         for (Car car : cars) {
-            System.out.println(
-                    String.format(Const.PRINT_STATUS_FORMAT, car.getName(), drawMovingLength(car.getPosition()))
+            print(
+                String.format(
+                        Const.PRINT_STATUS_FORMAT,
+                        car.getName(),
+                        drawMovingLength(car.getPosition()))
             );
         }
         System.out.println();
@@ -54,8 +58,7 @@ public class OutputView {
         for (Car car : cars) {
             stringJoiner.add(car.getName().toString());
         }
-
-        System.out.println(String.format(Const.WINNER_MESSAGE, stringJoiner));
+        print(String.format(Const.WINNER_MESSAGE, stringJoiner));
     }
 
     public void printException(PrintExceptionDto dto) {
@@ -66,7 +69,6 @@ public class OutputView {
         print(ErrorMessage.UNEXPECTED_ERROR,
                 ErrorMessage.ERROR_HEAD + dto.getException().getMessage());
     }
-
 
     private void print(String message) {
         System.out.println(message);
@@ -79,6 +81,7 @@ public class OutputView {
     }
 
     private static final class Const {
+        private static final String PRINT_RESULT_MESSAGE = "\n실행 결과";
         private static final String DELIMITER = "-";
         private static final String SEPARATOR = ", ";
         private static final String PREFIX = "";
