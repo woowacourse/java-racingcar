@@ -1,13 +1,13 @@
 package view;
 
-import dto.response.CarStatusDto;
-import dto.response.WinnersNameDto;
+import model.dto.response.CarStatusDto;
+import model.dto.response.WinnersNameDto;
 
 import java.util.List;
 
 public class OutputView {
 
-    public static String POSITION_MARK = "-";
+    public static final String POSITION_MARK = "-";
 
     public void printEachRound(List<CarStatusDto> carStatusDtos) {
         carStatusDtos.forEach(carStatusDto -> printEachCarStatus(carStatusDto));

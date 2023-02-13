@@ -1,8 +1,10 @@
 package domain;
 
+import model.domain.Car;
+import model.domain.Cars;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.NumberGenerator;
+import controller.utils.NumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,7 +53,7 @@ class CarsTest {
         private final List<Integer> values;
         private int index = 0;
 
-        public MockNumberGenerator(List<Integer> values){
+        public MockNumberGenerator(List<Integer> values) {
             this.values = values;
         }
 

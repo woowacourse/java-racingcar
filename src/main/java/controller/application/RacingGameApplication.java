@@ -1,12 +1,12 @@
-package application;
+package controller.application;
 
-import domain.Car;
-import domain.Cars;
-import utils.NumberGenerator;
-import domain.TryCount;
-import dto.request.CarNameDto;
-import dto.response.CarStatusDto;
-import dto.response.WinnersNameDto;
+import model.domain.Car;
+import model.domain.Cars;
+import controller.utils.NumberGenerator;
+import model.domain.TryCount;
+import model.dto.request.CarNameDto;
+import model.dto.response.CarStatusDto;
+import model.dto.response.WinnersNameDto;
 import view.InputViewForRetry;
 import view.OutputView;
 
@@ -26,8 +26,8 @@ public class RacingGameApplication {
     }
 
     public void run() {
-        List<CarNameDto> carNameDtos = inputView.sendCarsName();
-        TryCount tryCount = inputView.sendTryCount();
+        List<CarNameDto> carNameDtos = inputView.inputCarsName();
+        TryCount tryCount = inputView.inputTryCount();
 
         Cars cars = getCars(carNameDtos);
 

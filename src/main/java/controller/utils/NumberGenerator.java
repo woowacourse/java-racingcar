@@ -1,4 +1,4 @@
-package utils;
+package controller.utils;
 
 public interface NumberGenerator {
 

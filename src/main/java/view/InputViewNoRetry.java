@@ -6,11 +6,11 @@ import model.dto.request.CarNameDto;
 import java.util.InputMismatchException;
 import java.util.List;
 
-public class InputViewForRetry {
+public class InputViewNoRetry {
 
     private final InputView inputView;
 
-    public InputViewForRetry(InputView inputView) {
+    public InputViewNoRetry(InputView inputView) {
         this.inputView = inputView;
     }
 
@@ -19,8 +19,9 @@ public class InputViewForRetry {
             return inputView.inputCarsName();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
-            return inputCarsName();
         }
+        System.exit(0);
+        return null;
     }
 
     public TryCount inputTryCount() {
@@ -28,11 +29,11 @@ public class InputViewForRetry {
             return inputView.inputTryCount();
         } catch (InputMismatchException exception) {
             printExceptionMessage("시도 횟수는 양의 정수여야 합니다.");
-            return inputTryCount();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
-            return inputTryCount();
         }
+        System.exit(0);
+        return null;
     }
 
     private void printExceptionMessage(String message) {
