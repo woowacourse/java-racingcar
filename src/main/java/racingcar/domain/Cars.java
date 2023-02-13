@@ -49,12 +49,6 @@ public class Cars {
     private int getMaxMovedCount(int winnerCount, int movedCount) {
         return Math.max(winnerCount, movedCount);
     }
-    
-    private void appendIfHaveSameMovedCount(List<CarDto> winners, CarDto carDto, int winnerCount) {
-        if (carDto.getMovedCount() == winnerCount) {
-            winners.add(carDto);
-        }
-    }
 
     public boolean isEmpty() {
         return this.cars.isEmpty();
