@@ -19,9 +19,10 @@ public class OutputView {
     }
 
     public static void printRoundResult(Map<String, Integer> roundResult) {
-        for (String key : roundResult.keySet()) {
-            Integer value = roundResult.get(key);
-            printCarResult(key, value);
+        for (Map.Entry<String, Integer> result : roundResult.entrySet()) {
+            String carName = result.getKey();
+            int distance = result.getValue();
+            printCarResult(carName, distance);
         }
     }
 
