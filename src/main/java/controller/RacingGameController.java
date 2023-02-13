@@ -26,16 +26,16 @@ public class RacingGameController {
     private RacingGame racingGame;
     private List<Name> carNames;
 
-    public RacingGameController(IOViewResolver ioViewResolver, MovingStrategy movingStrategy) {
+    public RacingGameController(IOViewResolver ioViewResolver, MovingStrategy strategy) {
         this.ioViewResolver = ioViewResolver;
         this.processMap = new EnumMap<>(GameProcess.class);
-        initProcessMap(movingStrategy);
+        initProcessMap(strategy);
     }
 
-    private void initProcessMap(MovingStrategy movingStrategy) {
+    private void initProcessMap(MovingStrategy strategy) {
         processMap.put(GameProcess.READ_CAR_NAMES, this::readCarNames);
         processMap.put(GameProcess.READ_TRY_COUNT, this::readTryCount);
-        processMap.put(GameProcess.START_RACE, () -> this.startRace(movingStrategy));
+        processMap.put(GameProcess.START_RACE, () -> this.startRace(strategy));
         processMap.put(GameProcess.PRINT_WINNERS, this::printWinners);
     }
 
@@ -70,8 +70,8 @@ public class RacingGameController {
         return GameProcess.START_RACE;
     }
 
-    private GameProcess startRace(MovingStrategy movingStrategy) {
-        List<Cars> movingStatus = racingGame.start(movingStrategy);
+    private GameProcess startRace(MovingStrategy strategy) {
+        List<Cars> movingStatus = racingGame.start(strategy);
         ioViewResolver.outputViewResolve(new PrintMovingStatusDto(movingStatus));
 
         return GameProcess.PRINT_WINNERS;

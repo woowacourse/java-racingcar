@@ -23,9 +23,9 @@ public class Cars implements Iterable<Car> {
         this.cars = result;
     }
 
-    public void moveCars(MovingStrategy generator) {
+    public void moveCars(MovingStrategy strategy) {
         for (Car car : cars) {
-            car.move(generator.movable());
+            car.move(strategy.movable());
         }
     }
 

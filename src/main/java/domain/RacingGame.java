@@ -19,11 +19,11 @@ public class RacingGame {
         this.tryCount = tryCount;
     }
 
-    public List<Cars> start(MovingStrategy movingStrategy) {
+    public List<Cars> start(MovingStrategy strategy) {
         List<Cars> movingStatus = new ArrayList<>();
 
         while (tryCount.canTry()) {
-            cars.moveCars(movingStrategy);
+            cars.moveCars(strategy);
             movingStatus.add(new Cars(cars));
             tryCount.decreaseCount();
         }
