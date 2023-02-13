@@ -60,8 +60,8 @@
 - [X] Cars가 문자열을 받아 생성될 수 있게 수정
 
 ## 변경 사항
-- [ ] 도메인의 뷰에 대한 의존 해결
+- [X] 도메인의 뷰에 대한 의존 해결
   - [X] cars 객체 생성시
-  - [ ] Winners 출력시
+  - [X] Winners 출력시
 - [ ] Main과 Controller 통합
 - [X] CarName, Position 객체로 포장
