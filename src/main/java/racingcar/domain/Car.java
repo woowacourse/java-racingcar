@@ -3,7 +3,7 @@ package racingcar.domain;
 import racingcar.vo.Name;
 import racingcar.vo.Position;
 
-public class Car {
+public class Car implements Comparable<Car>{
     private static final int INIT_POSITION = 0;
     private static final int BOUNDARY = 4;
 
@@ -21,13 +21,21 @@ public class Car {
         }
     }
 
-    public int getPosition() {
-        return position.getPosition();
+    public boolean isSamePosition(Car other) {
+        return other.position == this.position;
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return this.position.getPosition() - other.position.getPosition();
     }
 
     public String getName() {
         return name.getName();
     }
 
+    public int getPosition() {
+        return position.getPosition();
+    }
 
 }

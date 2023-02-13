@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,19 +19,12 @@ public class Cars {
     }
 
     public List<String> getWinnerNames() {
-        int highestPosition = getHighestPosition();
-        return cars.stream()
-                .filter(car -> car.getPosition() == highestPosition)
-                .map(Car::getName)
-                .collect(Collectors.toUnmodifiableList());
-    }
+        Car winner = cars.stream().max(Car::compareTo).get();
 
-    private int getHighestPosition() {
-        Comparator<Car> comparatorByPosition = Comparator.comparingInt(Car::getPosition);
-        Car carWithMaxPosition = cars.stream()
-                .max(comparatorByPosition)
-                .orElseThrow(() -> new IllegalArgumentException(CAR_ERROR));
-        return carWithMaxPosition.getPosition();
+        return cars.stream()
+                .filter(car -> car.compareTo(winner) == 0)
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     public void moveCars(NumberGenerator numberGenerator) {
