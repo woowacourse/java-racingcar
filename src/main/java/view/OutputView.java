@@ -26,10 +26,7 @@ public class OutputView {
         String carName = car.getName();
         int position = car.getPosition();
         System.out.print(carName + CAR_NAME_FORMAT);
-        for (int index = 0; index < position; index++) {
-            System.out.print(MOVEMENT);
-        }
-        System.out.println();
+        System.out.println(MOVEMENT.repeat(position));
     }
 
     public void resultMessage() {
