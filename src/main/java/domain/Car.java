@@ -23,11 +23,11 @@ public class Car {
     }
 
     public int getPosition() {
-        return position.get();
+        return position.getPosition();
     }
 
     public String getCarName() {
-        return carName.get();
+        return carName.getCarName();
     }
 }
 

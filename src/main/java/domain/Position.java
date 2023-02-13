@@ -25,7 +25,7 @@ public class Position {
         position++;
     }
 
-    public int get() {
+    public int getPosition() {
         return position;
     }
 }
