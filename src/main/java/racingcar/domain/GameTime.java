@@ -36,7 +36,7 @@ public class GameTime {
         return Integer.parseInt(gameTime);
     }
 
-    public boolean isInPlay() {
+    public boolean isPlayable() {
         return gameTime != timeSpent;
     }
 

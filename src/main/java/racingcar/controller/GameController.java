@@ -32,7 +32,7 @@ public class GameController {
     }
 
     public void runGame() {
-        while (gameTime.isInPlay()) {
+        while (gameTime.isPlayable()) {
             runSingleRound();
             gameTime.runOnce();
         }
