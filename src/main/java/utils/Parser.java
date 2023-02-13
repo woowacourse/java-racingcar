@@ -8,6 +8,7 @@ public class Parser {
 
     public static List<String> parse(String input, String delimiter) {
         return Arrays.stream(input.split(delimiter))
+                .map(string -> string.replaceAll(" ", ""))
                 .collect(Collectors.toList());
     }
 }
