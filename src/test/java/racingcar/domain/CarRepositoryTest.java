@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -68,6 +69,22 @@ class CarRepositoryTest {
                 Arguments.of(Collections.emptyList()),
                 Arguments.of(List.of(new Car("pobi")))
         );
+    }
+    
+    @Test
+    @DisplayName("중복되는 차 이름이 있을 때 예외를 발생시킨다.")
+    void validateDuplicatedCarNames() {
+        List<Car> cars = List.of(new Car("aa"), new Car("aa"));
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(() -> CarRepository.updateCars(cars));
+    }
+    
+    @Test
+    @DisplayName("입력한 차가 한 대인 경우 예외를 발생시킨다.")
+    void validateLessThanMinimumNumberOfCars() {
+        List<Car> cars = List.of(new Car("aa"));
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(() -> CarRepository.updateCars(cars));
     }
 
     @AfterEach
