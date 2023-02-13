@@ -15,7 +15,9 @@ public class RacingGameEngine {
     private final RandomPowerGenerator randomPowerGenerator = new RandomPowerMaker();
 
     public void startGame() {
-        final Cars cars = CarsFactory.createCars(getCarNames());
+        final String[] carNames = getCarNames();
+
+        final Cars cars = CarsFactory.createCars(carNames);
         final TryCount tryCount = new TryCount(getTryCount());
 
         startRace(cars, tryCount);
