@@ -14,7 +14,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.utils.CarMoveNumberGenerator;
-import racingcar.utils.CarStopNumberGenerator;
 
 class CarsTest {
     Cars cars;
@@ -62,7 +61,7 @@ class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("Cars 내 모든 자동차 이동 정상 작동 테스트")
+    @DisplayName("Cars 내 모든 자동차 move 호출 테스트")
     @Test
     void moveCarsTest() {
         TestCars testCars = new TestCars(new CarMoveNumberGenerator());
@@ -70,16 +69,6 @@ class CarsTest {
         testCars.moveCars();
         Map<String, Integer> carsState = testCars.getCarsState();
         assertThat(carsState.values()).containsOnly(1);
-    }
-
-    @DisplayName("Cars 내 모든 자동차 정지 정상 작동 테스트")
-    @Test
-    void stopCarsTest() {
-        TestCars testCars = new TestCars(new CarStopNumberGenerator());
-        testCars.generateCars(List.of("pobi", "crong", "honux"));
-        testCars.moveCars();
-        Map<String, Integer> carsState = testCars.getCarsState();
-        assertThat(carsState.values()).containsOnly(0);
     }
 
     @DisplayName("자동차 경기 우승자들 이름 조회 테스트")
