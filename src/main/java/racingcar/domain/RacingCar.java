@@ -3,22 +3,19 @@ package racingcar.domain;
 import racingcar.dto.RacingCarDto;
 
 public class RacingCar implements Comparable<RacingCar> {
-    private static final Integer DEFAULT_POINT = 0;
+    private static final Integer DEFAULT_POSITION = 0;
+    private static final Integer DEFAULT_MOVING_AMOUNT = 1;
     private final String name;
     private Integer position;
 
     public RacingCar(String name) {
         this.name = name;
-        this.position = DEFAULT_POINT;
-    }
-
-    private void plusPoint() {
-        position++;
+        this.position = DEFAULT_POSITION;
     }
 
     public void advance(Boolean judgementResult) {
         if (judgementResult) {
-            plusPoint();
+            position += DEFAULT_MOVING_AMOUNT;
         }
     }
 
