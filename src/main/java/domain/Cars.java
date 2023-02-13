@@ -1,7 +1,10 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import utils.RandomPowerGenerator;
 
 public class Cars {
@@ -9,7 +12,20 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(final List<Car> cars) {
+        validate(cars);
         this.cars = cars;
+    }
+
+    private void validate(List<Car> cars) {
+        List<String> carNames = cars.stream()
+                .map(i -> i.getCarName())
+                .collect(Collectors.toList());
+
+        Set<String> carNameWithoutDuplication = new HashSet<>(carNames);
+
+        if (carNameWithoutDuplication.size() != carNames.size()) {
+            throw new IllegalArgumentException("자동차 이름은 중복되지 않아야합니다.");
+        }
     }
 
     public void moveAll(final RandomPowerGenerator randomPowerGenerator) {

@@ -1,10 +1,9 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.entry;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.RandomFailPowerMaker;
@@ -14,6 +13,18 @@ class CarsTest {
 
     private final RandomSuccessPowerMaker randomSuccessPowerMaker = new RandomSuccessPowerMaker();
     private final RandomFailPowerMaker randomFailPowerMaker = new RandomFailPowerMaker();
+
+    @Test
+    @DisplayName("validate() : 자동차 명이 중복이면 에러가 터진다.")
+    void test_validate() {
+        // given
+        List<Car> cars = List.of(new Car("jay", 0), new Car("jay", 0));
+
+        // when & then
+        assertThatThrownBy(() -> new Cars(cars))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("자동차 이름은 중복되지 않아야합니다.");
+    }
 
     @Test
     @DisplayName("moveAll() : 자동차가 모두 움직인다.")
