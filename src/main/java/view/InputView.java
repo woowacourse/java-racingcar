@@ -1,12 +1,11 @@
 package view;
 
-import static utils.Constant.CAR_NAME_DELIMITER;
-
 import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
 
+    private static final String CAR_NAME_DELIMITER = ",";
     static Scanner scanner = new Scanner(System.in);
 
     public static List<String> inputCarNames() {
