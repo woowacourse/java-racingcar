@@ -1,8 +1,8 @@
 package output;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import domain.Cars;
 
@@ -15,14 +15,15 @@ public class Outputs {
     }
 
     public static Outputs from(Cars cars) {
-        List<Output> outputs = cars.getStream()
+        List<Output> outputs = cars.getCars()
+                .stream()
                 .map(Output::from)
                 .collect(Collectors.toList());
 
         return new Outputs(outputs);
     }
 
-    public Stream<Output> getStream() {
-        return outputs.stream();
+    public List<Output> getOutputs() {
+        return Collections.unmodifiableList(outputs);
     }
 }

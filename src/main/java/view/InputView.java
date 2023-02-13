@@ -2,8 +2,8 @@ package view;
 
 import java.util.Scanner;
 
-import utils.Names;
-import utils.RepeatCount;
+import domain.Names;
+import domain.RepeatCount;
 
 public class InputView {
 
@@ -25,6 +25,7 @@ public class InputView {
 
     public static RepeatCount readRepeatCount() {
         String line = readLine(READ_ATTEMPT_NUMBER_MESSAGE);
+
         try {
             return new RepeatCount(line);
         } catch (IllegalArgumentException e) {

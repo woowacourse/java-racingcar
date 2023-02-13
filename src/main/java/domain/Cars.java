@@ -1,9 +1,12 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class Cars {
+
+    private static final int CAN_NOT_FIND_MAX = -1;
 
     private final List<Car> cars;
 
@@ -11,7 +14,25 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Stream<Car> getStream() {
-        return cars.stream();
+    public Winners judgeWinners() {
+        int maxPosition = findMaxPosition();
+
+        List<String> winners = cars.stream()
+                .filter(car -> car.hasSamePosition(maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+
+        return new Winners(winners);
+    }
+
+    private int findMaxPosition() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .max(Integer::compare)
+                .orElse(CAN_NOT_FIND_MAX);
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
