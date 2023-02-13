@@ -1,42 +1,43 @@
+package controller;
+
 import domain.Car;
+import domain.RacingGame;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import service.RacingGame;
-import service.RandomNumberGenerator;
-import ui.InputView;
-import ui.OutputView;
+import view.InputView;
+import view.OutputView;
 
 public class RacingGameController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+    private final RacingGame racingGame = new RacingGame();
 
     public void run() {
-        List<String> carNames = inputView.askCarNames();
-        racingGame.generateCars(carNames);
-        int trialCount = inputView.askTrialCount();
-        race(trialCount);
-        outputView.printWinners(racingGame.decisionWinners());
+        final List<String> carNames = inputView.askCarNames();
+        racingGame.enrollCars(carNames);
+        final int trialCount = inputView.askRacingCount();
+        play(trialCount);
+        outputView.printWinners(racingGame.getWinnerNames());
     }
 
-    private void race(int trialCount) {
+    private void play(int racingCount) {
         outputView.printResultMessage();
         showCarsStatus();
-        for (int i = 0; i < trialCount; i++) {
-            racingGame.processAllCars();
+        for (int i = 0; i < racingCount; i++) {
+            racingGame.race();
             showCarsStatus();
         }
     }
 
     private void showCarsStatus() {
-        List<Car> carsStatus = racingGame.getCars();
+        final List<Car> carsStatus = racingGame.getCars();
         outputView.printCarsStatus(convertCarsStatus(carsStatus));
     }
 
     private Map<String, Integer> convertCarsStatus(List<Car> carsStatus) {
-        Map<String, Integer> converted = new LinkedHashMap<>();
+        final Map<String, Integer> converted = new LinkedHashMap<>();
         carsStatus.forEach(car -> converted.put(car.getName(), car.getPosition()));
         return converted;
     }
