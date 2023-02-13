@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import service.NumberGenerator;
+import util.RandomNumberGenerator;
 
 public class RacingGame {
     private static final int RANDOM_START_INCLUSIVE = 0;
@@ -13,11 +13,9 @@ public class RacingGame {
     private static final int PROCESS_MOVING_MIN_NUMBER = 4;
 
     private List<Car> cars;
-    private NumberGenerator numberGenerator;
 
-    public RacingGame(NumberGenerator numberGenerator) {
+    public RacingGame() {
         this.cars = new ArrayList<>();
-        this.numberGenerator = numberGenerator;
     }
 
     public void generateCars(List<String> carNames) {
@@ -49,7 +47,7 @@ public class RacingGame {
 
     public void processAllCars() {
         for (Car car : cars) {
-            int random = numberGenerator.generate(RANDOM_START_INCLUSIVE, RANDOM_END_INCLUSIVE);
+            int random = RandomNumberGenerator.getRandomNumber(RANDOM_START_INCLUSIVE, RANDOM_END_INCLUSIVE);
             process(car, random);
         }
     }
