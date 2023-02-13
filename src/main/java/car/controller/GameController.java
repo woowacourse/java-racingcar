@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import car.domain.Car;
 import car.domain.Game;
 import car.domain.RandomMoveChance;
+import car.domain.Winners;
 import car.view.Input;
 import car.view.InputView;
 import car.view.OutputView;
@@ -19,6 +20,7 @@ public class GameController {
     private static final OutputView outputView = new OutputView();
     private Game game;
     private int trialCount;
+    private Winners winners;
 
     public GameController(Input input) {
         this.input = input;
@@ -48,10 +50,13 @@ public class GameController {
         outputView.noticeResult();
         playMultipleTimes();
     }
-
+    public void evaluateResult(){
+        winners = new Winners(this.game);
+        winners.findWinners();
+    }
     public void showResult() {
         outputView.printCarsWith(game.getCarsDto());
-        outputView.printWinnersWith(game.getWinnersDto());
+        outputView.printWinnersWith(winners.getWinners());
     }
 
     private List<Car> makeCarsWith(List<String> carNames) {

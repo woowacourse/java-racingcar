@@ -13,28 +13,13 @@ public class Game {
         this.cars = new ArrayList<>(cars);
         this.moveChance = moveChance;
     }
-    public List<CarDto> getWinnersDto(){
-        List<CarDto> WinnersDtoList = new ArrayList<>();
-        for(Car car: findWinners()){
-            WinnersDtoList.add(new CarDto(car));
-        }
-        return WinnersDtoList;
-    }
-    public List<Car> findWinners() {
-        int maxPosition = findMaxPosition();
-        return cars.stream()
-                .filter(car -> car.hasSamePositionWith(maxPosition))
-                .collect(Collectors.toList());
-    }
-
-    private int findMaxPosition() {
+    public int findMaxPosition() {
         int maxPosition = INITIAL_MAX_POSITION;
         for (Car car : cars) {
             maxPosition = car.selectMaxPosition(maxPosition);
         }
         return maxPosition;
     }
-
     public void playOnce() {
         for (Car car : cars) {
             car.move(moveChance);
