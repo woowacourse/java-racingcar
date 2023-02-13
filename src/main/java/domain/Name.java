@@ -47,4 +47,8 @@ public class Name {
 
         return name == null;
     }
+
+    public String getName() {
+        return name;
+    }
 }
