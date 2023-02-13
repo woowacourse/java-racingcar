@@ -8,6 +8,8 @@ public class OutputView {
 
     private static final String MARK_POSITION = "-";
 
+    private OutputView() {}
+
     public static void printError(String errorMsg) {
         System.out.println(errorMsg);
     }
