@@ -1,22 +1,27 @@
 package controller;
 
-import service.Service;
+import domain.Car;
+import domain.Cars;
 import view.InputView;
 import view.OutputView;
 import vo.CarName;
 import vo.Trial;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Controller {
+    public static final String DUPLICATING_NAME_EXCEPTION_MESSAGE = "중복된 이름은 사용할 수 없습니다.";
+
     private final OutputView outputView;
     private final InputView inputView;
-    private final Service service;
+    private final Cars cars;
 
-    public Controller(OutputView outputView, InputView inputView, Service service) {
+    public Controller(OutputView outputView, InputView inputView, Cars cars) {
         this.outputView = outputView;
         this.inputView = inputView;
-        this.service = service;
+        this.cars = cars;
     }
 
     public void run() {
@@ -33,7 +38,7 @@ public class Controller {
         Trial trial = getTrial();
         outputView.printResultMessage();
         for (int count = 0; count < trial.getValue(); count++) {
-            service.move();
+            cars.move();
             printResult();
         }
     }
@@ -50,19 +55,29 @@ public class Controller {
     private void initializeCars() {
         try {
             List<CarName> carNames = inputView.getCarNames();
-            service.initializeCars(carNames);
+            validateDuplication(carNames);
+            for (CarName carName : carNames) {
+                cars.saveCar(Car.of(carName));
+            }
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             initializeCars();
         }
     }
 
+    private void validateDuplication(List<CarName> names) {
+        Set<CarName> namesWithoutDuplication = new HashSet<>(names);
+        if (names.size() != namesWithoutDuplication.size()) {
+            throw new IllegalArgumentException(DUPLICATING_NAME_EXCEPTION_MESSAGE);
+        }
+    }
+
     private void printFinalResult() {
         printResult();
-        outputView.printWinners(service.getWinners());
+        outputView.printWinners(cars.getWinnerNames());
     }
 
     private void printResult() {
-        outputView.printResult(service.getResult());
+        outputView.printResult(cars.getResult());
     }
 }

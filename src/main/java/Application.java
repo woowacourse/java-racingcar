@@ -1,6 +1,5 @@
 import controller.Controller;
 import domain.Cars;
-import service.Service;
 import utils.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -13,9 +12,8 @@ public class Application {
         InputView inputView = new InputView();
 
         Cars cars = new Cars(new ArrayList<>(), new RandomNumberGenerator());
-        Service service = new Service(cars);
 
-        Controller controller = new Controller(outputView, inputView, service);
+        Controller controller = new Controller(outputView, inputView, cars);
         controller.run();
     }
 }
