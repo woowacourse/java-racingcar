@@ -1,11 +1,9 @@
-import controller.InputController;
-import domain.CarRepositoryImpl;
-
+import controller.GamePlay;
 
 public class Main {
 
     public static void main(String[] args) {
-        InputController inputController = new InputController(new CarRepositoryImpl());
-        inputController.startProgram();
+        GamePlay gamePlay = new GamePlay();
+        gamePlay.gameStart();
     }
 }
