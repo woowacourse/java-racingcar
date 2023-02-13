@@ -4,7 +4,6 @@ import java.util.Scanner;
 import racingcar.controller.RacingGameController;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.view.Parser;
 
 public class RacingGameApplication {
 
@@ -14,11 +13,7 @@ public class RacingGameApplication {
     }
 
     private static InputView inputView() {
-        return new InputView(parser(), scanner());
-    }
-
-    private static Parser parser() {
-        return new Parser();
+        return new InputView(scanner());
     }
 
     private static Scanner scanner() {

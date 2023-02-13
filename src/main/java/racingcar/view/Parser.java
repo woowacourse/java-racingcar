@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Parser {
+class Parser {
 
     private static final String DELIMITER = ",";
     private static final int SPLIT_LIMIT = -1;
