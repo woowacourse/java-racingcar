@@ -25,8 +25,8 @@ public class Car {
     }
 
     public void move(final NumberGenerator numberGenerator) {
-        int randomNumber = numberGenerator.generate();
-        if (isMovable(randomNumber)) {
+        int number = numberGenerator.generate();
+        if (isMovable(number)) {
             currentPosition.move();
         }
     }
