@@ -1,15 +1,12 @@
 package racingcar.view;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import racingcar.Validation;
 
 public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static final String SEPARATOR = ",";
 
-    public static String[] carNames() {
+    public static String carNames() {
         try {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
             return inputCarNames();
@@ -19,14 +16,13 @@ public class InputView {
         }
     }
 
-    private static String[] inputCarNames() {
+    private static String inputCarNames() {
         String carNames = input();
-        Validation.validateSeparator(carNames);
-        String[] cars = carNames.split(SEPARATOR);
-        Validation.validateCarCount(cars);
-        Arrays.stream(cars).forEach(Validation::validateNameLength);
+        if (carNames.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 자동차 이름을 한 글자 이상 입력해주세요.");
+        }
 
-        return cars;
+        return carNames;
     }
 
     public static int tryCount() {
@@ -42,14 +38,13 @@ public class InputView {
 
     private static int inputTryCount() throws IllegalArgumentException {
         String inputTryCount = input();
+        int tryCount;
 
         try {
-            Validation.validateParseInt(inputTryCount);
+            tryCount = Integer.parseInt(inputTryCount);
         } catch (NumberFormatException e) {
-            OutputView.error(e.getMessage());
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력가능해요.");
         }
-        int tryCount = Integer.parseInt(inputTryCount);
-        Validation.validateTryCount(tryCount);
 
         return tryCount;
     }

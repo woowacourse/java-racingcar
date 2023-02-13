@@ -7,6 +7,8 @@ import racingcar.domain.Cars;
 
 public class OutputView {
 
+    private static final String POSITION_SIGN = "-";
+
     public static void startRacing() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
@@ -24,7 +26,7 @@ public class OutputView {
     }
 
     public static void result(Cars cars) {
-        List<String> carsResult = cars.getResult();
+        List<String> carsResult = cars.getResult(POSITION_SIGN);
 
         for (String result : carsResult) {
             System.out.println(result);
