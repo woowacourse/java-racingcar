@@ -25,7 +25,7 @@ public class GameController {
     }
     
     private String readCarNames() {
-        return inputView.readCarNames();
+        return inputView.readCarNames(outputView);
     }
     
     private int getParsedNumberOfTry() {
@@ -35,7 +35,7 @@ public class GameController {
     }
     
     private String readNumberOfTry() {
-        return inputView.readNumberOfTry();
+        return inputView.readNumberOfTry(outputView);
     }
 
     private void runRacingGame(int numberOfTry) {
