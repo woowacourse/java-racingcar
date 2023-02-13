@@ -2,7 +2,7 @@ package racingCar.domain;
 
 public class Car {
 
-    private static final int MIN_POWER = 4;
+    private static final int MIN_FUEL = 4;
 
     private final CarName name;
     private int position;
@@ -12,8 +12,8 @@ public class Car {
         position = initPosition;
     }
 
-    public void move(int power) {
-        if (power >= MIN_POWER) {
+    public void move(int fuel) {
+        if (fuel >= MIN_FUEL) {
             position++;
         }
     }
