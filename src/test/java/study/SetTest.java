@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SetTest {
+
     private Set<Integer> numbers;
 
     @BeforeEach

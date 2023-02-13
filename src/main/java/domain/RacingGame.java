@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,9 +7,9 @@ import java.util.stream.Collectors;
 public class RacingGame {
 
     private static final int MOVABLE_BOUND = 4;
+
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
-
 
     public RacingGame(final List<String> splitCarNames, final NumberGenerator numberGenerator) {
         cars = splitCarNames.stream()
@@ -35,15 +33,19 @@ public class RacingGame {
     }
 
     public List<Car> getCars() {
-        return List.copyOf(cars);
+        List<Car> copiedCars = cars.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+        return List.copyOf(copiedCars);
     }
 
     public List<Car> getWinners() {
         Car furthestCar = getFurthestCar();
-
+        
         return cars.stream()
                 .filter(car -> car.getPosition() == furthestCar.getPosition())
-                .collect(Collectors.toList());
+                .map(Car::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private Car getFurthestCar() {
