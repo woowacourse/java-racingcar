@@ -21,4 +21,20 @@ class CarTest {
         // then
         assertThat(actual).isTrue();
     }
+
+    @DisplayName("자동차 전진 테스트")
+    @Test
+    void moveForwardTest() {
+        // given
+        Car car = new Car("pobi", new ForwardMovingStrategy());
+        int expectedPosition = 3;
+
+        // when
+        car.moveForward();
+        car.moveForward();
+        boolean actual = car.matchPosition(expectedPosition);
+
+        // then
+        assertThat(actual).isTrue();
+    }
 }
