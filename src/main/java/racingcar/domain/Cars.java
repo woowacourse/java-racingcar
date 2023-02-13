@@ -33,18 +33,17 @@ public class Cars {
     }
 
     public List<CarDto> getWinner() {
+        int winnerCount = 0;
         List<CarDto> carDtos = cars.stream()
                 .map(CarDto::new)
                 .collect(Collectors.toList());
-        int winnerCount = 0;
-        List<CarDto> winnerStatuses = new LinkedList<>();
         for (CarDto carDto : carDtos) {
             winnerCount = getMaxMovedCount(winnerCount, carDto.getMovedCount());
         }
-        for (CarDto carDto : carDtos) {
-            appendIfHaveSameMovedCount(winnerStatuses, carDto, winnerCount);
-        }
-        return winnerStatuses;
+        final int finalWinnerCount = winnerCount;
+        return carDtos.stream()
+                .filter(carDto -> carDto.getMovedCount() == finalWinnerCount)
+                .collect(Collectors.toList());
     }
     
     private int getMaxMovedCount(int winnerCount, int movedCount) {
