@@ -1,5 +1,4 @@
 import controller.RacingGameController;
-import domain.RandomNumberGenerator;
 
 public class Application {
 

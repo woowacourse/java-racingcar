@@ -1,4 +1,4 @@
-package validation;
+package domain.validator;
 
 public enum ErrorMessage {
 

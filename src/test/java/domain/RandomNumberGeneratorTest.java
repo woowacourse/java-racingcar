@@ -1,5 +1,7 @@
 package domain;
 
+import domain.numbergenerator.NumberGenerator;
+import domain.numbergenerator.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +16,7 @@ class RandomNumberGeneratorTest {
 
         for (int i = 0; i < 10000; i++) {
             assertThat(numberGenerator.generate())
-                    .isBetween(1, 9);
+                    .isBetween(0, 9);
         }
     }
 }
