@@ -1,6 +1,7 @@
 package view;
 
 import utils.Converter;
+import vo.CarName;
 import vo.Trial;
 
 import java.util.Arrays;
@@ -14,10 +15,12 @@ public class InputView {
     public static final String ASKING_TRIAL_MESSAGE = "시도할 횟수는 몇회인가요?";
     Scanner scanner = new Scanner(System.in);
 
-    public List<String> getCarNames() {
+    public List<CarName> getCarNames() {
         System.out.println(ASKING_CAR_NAMES_MESSAGE);
         String input = scanner.nextLine();
-        return Arrays.asList(input.split(SEPARATOR));
+        return CarName.of(
+                Arrays.asList(input.split(SEPARATOR))
+        );
     }
 
     public Trial getTrial() {

@@ -49,8 +49,8 @@ public class Controller {
 
     private void initializeCars() {
         try {
-            List<String> carNames = inputView.getCarNames();
-            service.initializeCars(CarName.of(carNames));
+            List<CarName> carNames = inputView.getCarNames();
+            service.initializeCars(carNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             initializeCars();
