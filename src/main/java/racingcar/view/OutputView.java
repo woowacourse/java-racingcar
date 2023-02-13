@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.record.GameResultOfCar;
+import racingcar.domain.result.GameResultOfCar;
 import racingcar.view.message.Message;
 
 import java.util.List;

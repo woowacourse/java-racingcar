@@ -3,7 +3,7 @@ package racingcar.domain.system;
 import racingcar.domain.cars.Cars;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.record.GameRecorder;
-import racingcar.domain.record.GameResultOfCar;
+import racingcar.domain.result.GameResultOfCar;
 
 import java.util.Comparator;
 import java.util.List;

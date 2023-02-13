@@ -2,6 +2,7 @@ package racingcar.domain.record;
 
 import racingcar.domain.car.Car;
 import racingcar.domain.cars.Cars;
+import racingcar.domain.result.GameResultOfCar;
 
 import java.util.List;
 import java.util.stream.Collectors;

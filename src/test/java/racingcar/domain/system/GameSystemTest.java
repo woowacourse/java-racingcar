@@ -8,8 +8,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.car.Car;
 import racingcar.domain.cars.Cars;
 import racingcar.domain.record.GameRecorder;
-import racingcar.domain.record.GameResultOfCar;
 import racingcar.domain.record.RecordManagerOfGameResultOfCar;
+import racingcar.domain.result.GameResultOfCar;
 
 import java.util.ArrayList;
 import java.util.List;
