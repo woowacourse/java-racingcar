@@ -37,23 +37,23 @@ public class InputView {
 	}
 
 	private static void validateRoundCount(String input) {
-		if (!isStringInteger(input) || !isStringIntInGivenRange(input, ROUND_MIN, ROUND_MAX)) {
+		if (!isStringIntInGivenRange(input, ROUND_MIN, ROUND_MAX)) {
 			throw new IllegalArgumentException("[ERROR]: 1 이상 10 이하의 자연수가 입력되어야 합니다.");
 		}
 	}
 
-	private static boolean isStringInteger(String string) {
+	private static boolean isStringIntInGivenRange(String string, int minInclusive, int maxInclusive) {
+		int stringInt;
 		try {
-			Integer.parseInt(string);
-		} catch (NumberFormatException e) {
-			return false;
+			stringInt = Integer.parseInt(string);
+			return isNumberInGivenRange(stringInt, minInclusive, maxInclusive);
+		} catch (IllegalArgumentException e) {
 		}
-		return true;
+		return false;
 	}
 
-	private static boolean isStringIntInGivenRange(String string, int minInclusive, int maxInclusive) {
-		int stringInt = Integer.parseInt(string);
-		if (stringInt >= minInclusive && stringInt <= maxInclusive) {
+	private static boolean isNumberInGivenRange(int num, int minInclusive, int maxInclusive) {
+		if (num >= minInclusive && num <= maxInclusive) {
 			return true;
 		}
 		return false;
