@@ -52,7 +52,6 @@ class RacingGameTest {
         assertThat(winners).contains("ako");
     }
 
-
     static class TestNumberGenerator implements NumberGenerator {
 
         private final List<Integer> numbers;
