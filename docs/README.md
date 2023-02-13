@@ -5,7 +5,7 @@
 - [x] 자동차 이름을 입력 받은 뒤 시도할 횟수를 입력 받는다.
 
 ### 입력 Exception 구현 사항
-- [x] 자동차 이름이 공백이거나 6글자를 초과하면 `IllegalArgumentException`을 던진다.
+- [x] 자동차 이름이 공백이거나 6글자 이상이면 `IllegalArgumentException`을 던진다.
 - [x] 자동차 이름이 중복되는 경우 `IllegalArgumentException`을 던진다.
 - [x] 자동차 이름에 null 값이 주어지면 `IllegalArgumentException`을 던진다.
 - [x] 시도할 횟수가 정수가 아니면 `IllegalArgumentException`을 던진다.
