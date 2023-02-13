@@ -43,7 +43,6 @@ public class RacingController {
         try {
             outputView.printTryCountMessage();
             int tryCount = inputView.readTryCount();
-            System.out.println();
             return tryCount;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
