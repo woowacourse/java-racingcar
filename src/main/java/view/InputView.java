@@ -44,4 +44,5 @@ public class InputView {
             throw new IllegalArgumentException(CAR_NAME_EXCEPTION_MESSAGE);
         }
     }
+
 }
