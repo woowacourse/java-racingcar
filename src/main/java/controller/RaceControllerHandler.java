@@ -1,5 +1,6 @@
 package controller;
 
+import exception.ApplicationRuntimeException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,9 +20,11 @@ public class RaceControllerHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         try {
             return method.invoke(raceController, args);
-        } catch (InvocationTargetException e) {
-            outputView.printExceptionMessage(e.getCause().getMessage());
+        } catch (InvocationTargetException exception) {
+            outputView.printExceptionMessage(exception.getCause().getMessage());
             return this.invoke(proxy, method, args);
+        } catch (RuntimeException e) {
+            throw new ApplicationRuntimeException();
         }
     }
 }
