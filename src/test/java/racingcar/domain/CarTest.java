@@ -20,6 +20,28 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("차의 위치 값을 지정해주지 않으면 위치값이 0이어야 한다.")
+    void create_withoutPosition() {
+        // given
+        Car car = new Car("car");
+
+        // expect
+        assertThat(car.getPosition())
+                .isEqualTo(new Position(0));
+    }
+
+    @Test
+    @DisplayName("차의 위치 값을 정해주면 해당 위치가 같아야 한다.")
+    void create_withPosition() {
+        // given
+        Car car = new Car("car", 10);
+
+        // expect
+        assertThat(car.getPosition())
+                .isEqualTo(new Position(10));
+    }
+
+    @Test
     @DisplayName("차를 움직였을 때 위치가 변해야 한다.")
     void car_move() {
         // given
