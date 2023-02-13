@@ -13,7 +13,7 @@ public class PositionTest {
     void test1() {
         Position position = Position.init();
 
-        assertThat(position.getValue()).isEqualTo(0);
+        assertThat(position.value()).isEqualTo(0);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class PositionTest {
         Position increasePosition = beforePosition.increase();
 
         // then
-        assertThat(increasePosition.getValue())
-                .isEqualTo(beforePosition.getValue() + 1);
+        assertThat(increasePosition.value())
+                .isEqualTo(beforePosition.value() + 1);
     }
 }

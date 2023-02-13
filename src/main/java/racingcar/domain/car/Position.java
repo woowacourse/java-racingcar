@@ -16,7 +16,7 @@ public class Position implements Comparable<Position> {
         return new Position(INIT_VALUE);
     }
 
-    public int getValue() {
+    public int value() {
         return this.value;
     }
 

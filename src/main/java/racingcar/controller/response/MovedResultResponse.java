@@ -1,18 +1,20 @@
-package racingcar.domain.car;
+package racingcar.controller.response;
+
+import racingcar.domain.car.Cars;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class MovedResult {
+public class MovedResultResponse {
 
     private final Map<String, Integer> positionByName;
 
-    public MovedResult(final Cars cars) {
-        positionByName = cars.getCars()
+    public MovedResultResponse(final Cars cars) {
+        positionByName = cars.cars()
                 .stream()
                 .collect(Collectors.toMap(
-                        car -> car.getName().getValue(),
-                        car -> car.getPosition().getValue())
+                        car -> car.name().value(),
+                        car -> car.position().value())
                 );
     }
 

@@ -1,9 +1,13 @@
 package racingcar.controller;
 
 import racingcar.common.log.Logger;
+import racingcar.controller.response.MovedResultResponse;
+import racingcar.controller.response.WinnerResponse;
 import racingcar.domain.car.Cars;
-import racingcar.domain.car.MovedResult;
-import racingcar.domain.game.*;
+import racingcar.domain.game.Lap;
+import racingcar.domain.game.NumberGenerator;
+import racingcar.domain.game.RacingCarGame;
+import racingcar.domain.game.Winners;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,17 +21,15 @@ public class RacingCarController {
     private static final String DELIMITER = ",";
 
     private final NumberGenerator generator;
-    private final WinnerJudge winnerJudge;
 
-    public RacingCarController(final NumberGenerator generator, final WinnerJudge winnerJudge) {
+    public RacingCarController(final NumberGenerator generator) {
         this.generator = generator;
-        this.winnerJudge = winnerJudge;
     }
 
     public void gameStart() {
         Cars cars = inputWithExceptionHandle(this::createCars);
         Lap lap = inputWithExceptionHandle(this::confirmTotalLap);
-        RacingCarGame game = RacingCarGame.init(generator, winnerJudge, cars, lap);
+        RacingCarGame game = RacingCarGame.init(generator, cars, lap);
         OutputView.printResultMessage();
         runRace(game);
     }
@@ -44,11 +46,11 @@ public class RacingCarController {
 
     private void runRace(final RacingCarGame game) {
         while (game.hasMoreLap()) {
-            MovedResult movedResult = game.race();
-            OutputView.printState(movedResult);
+            game.race();
+            OutputView.printState(new MovedResultResponse(game.cars()));
         }
-        GameResult gameResult = game.gameResult();
-        OutputView.printWinners(gameResult);
+        Winners winners = game.winner();
+        OutputView.printWinners(new WinnerResponse(winners.winners()));
     }
 
     private static <T> T inputWithExceptionHandle(final Supplier<T> supplier) {

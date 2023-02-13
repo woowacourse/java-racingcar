@@ -2,16 +2,16 @@ package racingcar.mock;
 
 import racingcar.domain.game.NumberGenerator;
 
-public class MockFixedNumberGenerator extends NumberGenerator {
+public class MockFixedNumberGenerator implements NumberGenerator {
 
-    private int returnNumber;
+    private final int returnNumber;
 
-    public MockFixedNumberGenerator(int returnNumber) {
+    public MockFixedNumberGenerator(final int returnNumber) {
         this.returnNumber = returnNumber;
     }
 
     @Override
-    public int generate(int minNumber, int maxNumber) {
+    public int generate(final int minNumber, final int maxNumber) {
         return returnNumber;
     }
 }

@@ -1,5 +1,7 @@
 package racingcar.domain.car;
 
+import racingcar.domain.game.NumberGenerator;
+
 public class Car {
 
     private static final int BOUNDARY_NUMBER = 4;
@@ -14,17 +16,24 @@ public class Car {
         this.position = Position.init();
     }
 
-    public Name getName() {
+    public Name name() {
         return name;
     }
 
-    public Position getPosition() {
+    public Position position() {
         return position;
     }
 
-    public void move(final int number) {
+    public void move(final NumberGenerator numberGenerator) {
+        int number = numberGenerator.generate(MIN_RANGE, MAX_RANGE);
         validateRange(number);
         position = nextPosition(number);
+    }
+
+    private void validateRange(final int number) {
+        if (number < MIN_RANGE || number > MAX_RANGE) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private Position nextPosition(final int number) {
@@ -34,9 +43,7 @@ public class Car {
         return position;
     }
 
-    private void validateRange(final int number) {
-        if (number < MIN_RANGE || number > MAX_RANGE) {
-            throw new IllegalArgumentException();
-        }
+    public boolean isSamePosition(final Car car) {
+        return this.position.equals(car.position);
     }
 }

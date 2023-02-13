@@ -3,10 +3,8 @@ package racingcar.domain.game;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.car.Car;
 import racingcar.domain.car.Cars;
 import racingcar.mock.MockFixedNumberGenerator;
-import racingcar.mock.MockFixedWinnerJudge;
 import racingcar.mock.MoveMethodCalledCountStoreCars;
 import racingcar.util.ReflectionTestUtils;
 
@@ -20,15 +18,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class RacingCarGameTest {
 
     private static final int ON_GORING_NUMBER = 5;
+    private static final int STOP_NUMBER = 1;
+    private static final String FIRST_CAR_NAME = "말랑";
+    private static final String SECOND_CAR_NAME = "헤나";
+    private static final String THIRD_CAR_NAME = "카일";
     private final NumberGenerator numberGenerator = new MockFixedNumberGenerator(ON_GORING_NUMBER);
-    private final WinnerJudge winnerJudge = new WinnerJudge();
-    final String carName1 = "말랑";
-    final String carName2 = "헤나";
-    final String carName3 = "카일";
-    final List<String> carNames = List.of(carName1, carName2, carName3);
-    final Cars cars = new Cars(carNames);
-    final Lap tenLap = Lap.totalLap(10);
-    final Lap oneLap = Lap.totalLap(1);
+    private final List<String> carNames = List.of(FIRST_CAR_NAME, SECOND_CAR_NAME, THIRD_CAR_NAME);
+    private final Cars cars = new Cars(carNames);
+    private final Lap tenLap = Lap.totalLap(10);
+    private final Lap oneLap = Lap.totalLap(1);
 
     @Nested
     @DisplayName("성공 테스트")
@@ -39,7 +37,7 @@ class RacingCarGameTest {
         void race_success_1() throws NoSuchFieldException, IllegalAccessException {
             // given
             MoveMethodCalledCountStoreCars moveMethodCalledCountStoreCars = new MoveMethodCalledCountStoreCars(carNames);
-            RacingCarGame game = RacingCarGame.init(numberGenerator, winnerJudge, moveMethodCalledCountStoreCars, tenLap);
+            RacingCarGame game = RacingCarGame.init(numberGenerator, moveMethodCalledCountStoreCars, tenLap);
 
             // when
             game.race();
@@ -54,21 +52,40 @@ class RacingCarGameTest {
         @Test
         void gameResult_success_1() {
             // given
-            List<Car> winners = List.of(new Car(carName1), new Car(carName2));
-            List<String> winnerNames = winners.stream()
-                    .map(it -> it.getName().getValue())
-                    .collect(Collectors.toList());
-            RacingCarGame tenLapGame = RacingCarGame.init(numberGenerator, MockFixedWinnerJudge.withWinners(winners), cars, tenLap);
+            RacingCarGame tenLapGame = RacingCarGame.init(new NumberGenerator() {
+                private int count = 0;
+
+                @Override
+                public int generate(final int minNumber, final int maxNumber) {
+                    count++;
+                    if (count % 3 == 0) {
+                        return STOP_NUMBER;
+                    }
+                    return ON_GORING_NUMBER;
+
+                }
+            }, cars, tenLap);
+
             while (tenLapGame.hasMoreLap()) {
                 tenLapGame.race();
             }
 
             // when
-            GameResult gameResult = tenLapGame.gameResult();
+            Winners winners = tenLapGame.winner();
 
             // then
-            assertThat(gameResult.winnerNames())
-                    .containsExactlyInAnyOrderElementsOf(winnerNames);
+            assertThat(winners.winners().
+
+                    stream().
+
+                    map(it -> it.name().
+
+                            value()).
+
+                    collect(Collectors.toList()))
+                    .
+
+                    containsExactlyInAnyOrderElementsOf(List.of(FIRST_CAR_NAME, SECOND_CAR_NAME));
         }
     }
 
@@ -80,7 +97,7 @@ class RacingCarGameTest {
         @DisplayName("race() 시 남은 바퀴수가 없는 경우 예외가 발생한다.")
         void race_fail_1() {
             // given
-            RacingCarGame oneLapGame = RacingCarGame.init(numberGenerator, winnerJudge, cars, oneLap);
+            RacingCarGame oneLapGame = RacingCarGame.init(numberGenerator, cars, oneLap);
             oneLapGame.race();
 
             // when & then
@@ -91,10 +108,10 @@ class RacingCarGameTest {
         @Test
         void gameResult_fail_1() {
             // given
-            RacingCarGame tenLapGame = RacingCarGame.init(numberGenerator, winnerJudge, cars, tenLap);
+            RacingCarGame tenLapGame = RacingCarGame.init(numberGenerator, cars, tenLap);
 
             // when & then
-            assertThrows(IllegalStateException.class, tenLapGame::gameResult);
+            assertThrows(IllegalStateException.class, tenLapGame::winner);
         }
     }
 }

@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import racingcar.domain.car.MovedResult;
-import racingcar.domain.game.GameResult;
+import racingcar.controller.response.MovedResultResponse;
+import racingcar.controller.response.WinnerResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ public class OutputView {
     private static final String BAR = "-";
     private static final int ZERO = 0;
 
-    public static void printWinners(final GameResult result) {
+    public static void printWinners(final WinnerResponse result) {
         List<String> winners = result.winnerNames();
         winners.sort(String::compareTo);
         String winnerNames = String.join(DELIMITER, winners);
@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printState(final MovedResult result) {
+    public static void printState(final MovedResultResponse result) {
         Map<String, Integer> positionByNameMap = result.positionByNameMap();
 
         String results = positionByNameMap.keySet().stream()
