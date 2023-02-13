@@ -13,7 +13,7 @@ public class OutputView {
     private static final String CAR_SEPARATOR = ", ";
     private static final String LINE_BREAK = "\n";
 
-    public void printCurrentCarsPosition(Cars cars) {
+    public void printCurrentCarsPosition(final Cars cars) {
         StringJoiner stringJoiner = new StringJoiner(LINE_BREAK);
 
         cars.getCarsCurrentInfo().forEach(car -> {
@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(stringJoiner + LINE_BREAK);
     }
 
-    public void printWinnerCars(Cars cars) {
+    public void printWinnerCars(final Cars cars) {
         String winnerCarsFormat = cars.getWinnerCars().stream()
                 .map(Car::getCarName)
                 .collect(Collectors.joining(CAR_SEPARATOR));
@@ -33,7 +33,7 @@ public class OutputView {
         System.out.println(String.format(WINNER_MESSAGE, winnerCarsFormat));
     }
 
-    public void printErrorMessage(String errorMessage) {
+    public void printErrorMessage(final String errorMessage) {
         System.out.println(errorMessage);
     }
 }

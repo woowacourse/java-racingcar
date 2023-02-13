@@ -16,7 +16,7 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(String carNames, MovingStrategy movingStrategy) {
+    public Cars(final String carNames, final MovingStrategy movingStrategy) {
         validate(carNames);
 
         this.cars = Arrays.stream(carNames.split(SEPARATOR))
@@ -24,24 +24,24 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
-    private void validate(String carNames) {
+    private void validate(final String carNames) {
         String[] splitCarNames = carNames.split(SEPARATOR);
 
         validateNotExistCar(splitCarNames);
         validateDuplicateCarNames(splitCarNames);
     }
 
-    private void validateNotExistCar(String[] splitCarNames) {
+    private void validateNotExistCar(final String[] splitCarNames) {
         if (splitCarNames.length == NOT_EXIST_CARS) {
             throw new NotExistCarsException();
         }
     }
 
-    private void validateDuplicateCarNames(String[] splitCarNames) {
+    private void validateDuplicateCarNames(final String[] splitCarNames) {
         int carNamesCount = splitCarNames.length;
         int distinctCarNamesCount = new HashSet<>(Arrays.asList(splitCarNames)).size();
 
