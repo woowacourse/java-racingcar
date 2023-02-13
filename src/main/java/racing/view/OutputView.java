@@ -2,6 +2,7 @@ package racing.view;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import racing.domain.Name;
 import racing.domain.Position;
@@ -17,13 +18,20 @@ public class OutputView {
     public void printRacingResult(Map<Name, Position> history) {
         for (Name name : history.keySet()) {
             Position position = history.get(name);
-            System.out.println(name + " : " + "-".repeat(position.getPosition()));
+            System.out.println(name.getName() + " : " + "-".repeat(position.getPosition()));
         }
         System.out.println();
     }
 
     public void printWinner(List<Name> winners) {
-        String winnerNames = winners.toString();
+        String winnerNames = findWinnerName(winners);
         System.out.printf(WINNER_MESSAGE, winnerNames.substring(1, winnerNames.length()-1));
+    }
+
+    private static String findWinnerName(List<Name> winners) {
+        return winners.stream()
+                .map(Name::getName)
+                .collect(Collectors.toList())
+                .toString();
     }
 }
