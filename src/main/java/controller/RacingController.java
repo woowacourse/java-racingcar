@@ -17,7 +17,7 @@ public class RacingController {
 
     public void play() {
         inputCars();
-        moveNTimes(inputTryCount());
+        moveByTryCount(inputTryCount());
         winners();
     }
 
@@ -28,7 +28,7 @@ public class RacingController {
         }
     }
 
-    private void moveNTimes(int tryCount) {
+    private void moveByTryCount(int tryCount) {
         outputView.newLine();
         outputView.resultMessage();
         for (int index = START_INDEX; index < tryCount; index++) {
