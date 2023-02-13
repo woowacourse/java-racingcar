@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.service.RandomMaker;
 
 class RandomMakerTest {
 
@@ -12,6 +13,6 @@ class RandomMakerTest {
     void random() {
         int actual = RandomMaker.random();
 
-        assertThat(actual).isGreaterThan(-1).isLessThan(10);
+        assertThat(actual).isNotNegative().isLessThan(10);
     }
 }

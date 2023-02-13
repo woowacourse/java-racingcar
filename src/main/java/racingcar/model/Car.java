@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.model;
 
 public class Car {
 
@@ -39,13 +39,7 @@ public class Car {
         return name;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-
-        return name + " : " + sb;
+    public int getPosition() {
+        return position;
     }
 }
