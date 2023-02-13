@@ -6,6 +6,8 @@ import racingcar.domain.Winners;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static racingcar.message.NotificationMessage.RESULT_MASSAGE;
+
 public class OutputView {
 
     private static final String CARS_STATE_FORMAT = "%s : %s"; // ex) name : ---
@@ -15,6 +17,10 @@ public class OutputView {
 
     public static void printWinners(Winners winners) {
         System.out.println(String.join(DELIMITER, getCarNames(winners.getWinners())) + WINNER_SENTENCE);
+    }
+
+    public static void printResultMessage() {
+        System.out.println(RESULT_MASSAGE);
     }
 
     public static void printCarsStatus(List<Car> cars) {

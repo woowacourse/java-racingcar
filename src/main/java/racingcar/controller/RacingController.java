@@ -4,6 +4,7 @@ import racingcar.domain.Cars;
 import racingcar.domain.Lap;
 
 import static racingcar.view.OutputView.printCarsStatus;
+import static racingcar.view.OutputView.printResultMessage;
 
 public class RacingController {
     public void start(Cars cars, Lap lap) {
@@ -11,6 +12,7 @@ public class RacingController {
     }
 
     private void run(Cars cars, Lap lap) {
+        printResultMessage();
         do {
             cars.moveCars();
             lap.run();

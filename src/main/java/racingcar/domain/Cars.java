@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static racingcar.domain.RandomNumberGenerator.generateNumber;
+import static racingcar.message.ErrorMessage.CAR_DUPLICATION_ERROR_MESSAGE;
+import static racingcar.message.ErrorMessage.CAR_RANGE_ERROR_MESSAGE;
 
 public class Cars {
     private List<Car> cars = new ArrayList<>();
@@ -34,10 +36,10 @@ public class Cars {
 
     private void validation(String[] names) {
         if (isDuplication(names)) {
-            throw new IllegalArgumentException("자동차 이름은 중복이 불가능 합니다.");
+            throw new IllegalArgumentException(CAR_DUPLICATION_ERROR_MESSAGE);
         }
         if (isNotInRange(names)) {
-            throw new IllegalArgumentException("자동차는 두개 이상 입력해야 합니다.");
+            throw new IllegalArgumentException(CAR_RANGE_ERROR_MESSAGE);
         }
     }
 

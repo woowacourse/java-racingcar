@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.message.ErrorMessage.LAP_RANGE_ERROR_MESSAGE;
+
 public class Lap {
     private final int totalLap;
     private int countTryLap;
@@ -24,7 +26,7 @@ public class Lap {
 
     private void validateRange(int totalLap) {
         if (totalLap < 0) {
-            throw new IllegalArgumentException("0이상의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(LAP_RANGE_ERROR_MESSAGE);
         }
     }
 }

@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.message.ErrorMessage.NAME_RANGE_ERROR_MESSAGE;
+
 public class Name {
 
     private static final int MAX_LENGTH = 5;
@@ -16,7 +18,7 @@ public class Name {
 
     private void validateLength(String name) {
         if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("각 이름은 5글자 이하여야 합니다.");
+            throw new IllegalArgumentException(NAME_RANGE_ERROR_MESSAGE);
         }
     }
 }
