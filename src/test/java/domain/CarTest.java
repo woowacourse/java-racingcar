@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
@@ -41,8 +42,8 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 3, Integer.MAX_VALUE})
-    void 자동차_전진_테스트(int expected) {
+    @CsvSource({"-0,0", "0,0", "1,1", "2147483647,2147483647"})
+    void 자동차_전진_테스트(int number, int expected) {
         Car car = new Car("자동차");
 
         for (int i = 0; i < expected; i++) {
