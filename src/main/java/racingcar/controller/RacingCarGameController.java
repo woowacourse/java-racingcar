@@ -5,14 +5,13 @@ import racingcar.domain.AdvanceJudgement;
 import racingcar.domain.NumberGenerator.RandomNumberGenerator;
 import racingcar.domain.RacingCarGame;
 import racingcar.domain.RacingCars;
-import racingcar.utils.Parser;
+import racingcar.utils.CarNameParser;
 import racingcar.validator.CarNamesValidator;
 import racingcar.validator.TryCountValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarGameController {
-    private static final String CAR_NAME_DELIMITER = ",";
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
 
@@ -41,7 +40,7 @@ public class RacingCarGameController {
 
     private List<String> getCarNames() {
         String carNames = inputView.readCarName();
-        List<String> parsedNames = Parser.parsing(carNames, CAR_NAME_DELIMITER);
+        List<String> parsedNames = CarNameParser.parsing(carNames);
         if (isValidCarNames(parsedNames)) {
             return parsedNames;
         }
