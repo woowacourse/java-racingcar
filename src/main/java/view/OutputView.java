@@ -11,7 +11,7 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String PRINT_STATUS_FORMAT = "%s : %s" + LINE_SEPARATOR;
     private static final String PRINT_WINNER_FORMAT = "%s가 최종 우승했습니다." + LINE_SEPARATOR;
-    private static final String COMMA_DELIMITER = ", ";
+    private static final String WORD_DELIMITER = ", ";
     private static final String POSITION_DELIMITER = "-";
 
     public static void printResult() {
@@ -27,18 +27,14 @@ public class OutputView {
     }
 
     private static String getFinalPositionDelimiter(final int position) {
-        StringBuilder finalPositionDelimiter = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            finalPositionDelimiter.append(POSITION_DELIMITER);
-        }
-        return finalPositionDelimiter.toString();
+        return POSITION_DELIMITER.repeat(Math.max(0, position));
     }
 
     public static void printWinners(final List<CarDto> carDtos) {
         List<String> carNames = carDtos.stream()
                 .map(CarDto::getName)
                 .collect(Collectors.toList());
-        String winnerString = String.join(COMMA_DELIMITER, carNames);
-        System.out.printf(PRINT_WINNER_FORMAT, winnerString);
+        String winners = String.join(WORD_DELIMITER, carNames);
+        System.out.printf(PRINT_WINNER_FORMAT, winners);
     }
 }
