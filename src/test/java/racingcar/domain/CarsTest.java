@@ -20,7 +20,7 @@ class CarsTest {
     @DisplayName("중복 이름이 있을 때 예외가 발생한다")
     void duplicateTest() {
 
-        assertThatThrownBy(() -> new Cars("aa, aa"))
+        assertThatThrownBy(() -> new Cars(new String[]{"aa", "aa"}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("중복");
     }
@@ -29,7 +29,7 @@ class CarsTest {
     @DisplayName("경기에 참여하는 차가 한대일때 예외가 발생한다")
     void oneCarTest() {
 
-        assertThatThrownBy(() -> new Cars("aa"))
+        assertThatThrownBy(() -> new Cars(new String[]{"aa"}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("둘 이상");
     }
@@ -38,7 +38,7 @@ class CarsTest {
     @DisplayName("UserNumberGenerator를 이용하면 차 전체가 1 이동한다.")
     void UserNumberGenerator_MoveCars_Test() {
         NumberGenerator numberGenerator = new UserNumberGenerator();
-        Cars cars = new Cars("a, b, c, d");
+        Cars cars = new Cars(new String[]{"a", "b", "c", "d"});
 
         cars.moveCars(numberGenerator);
         List<Integer> result = cars.getCars().stream()

@@ -14,7 +14,7 @@ class WinnersTest {
     void calculateWinnersTest() {
         NumberGenerator numberGenerator = new UserNumberGenerator();
 
-        Cars cars = new Cars("aa, bb");
+        Cars cars = new Cars(new String[]{"aa", "bb"});
         cars.moveCars(numberGenerator);
         cars.getCars().add(new Car("cc"));
 

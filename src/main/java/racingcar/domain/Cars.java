@@ -10,12 +10,11 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final int ONLY_ONE_CAR = 1;
-    private static final String CAR_NAMES_DELIMITER = ",";
 
     private final List<Car> cars;
 
-    public Cars(String names) {
-        List<String> carNames = Arrays.asList(names.split(CAR_NAMES_DELIMITER));
+    public Cars(String[] names) {
+        List<String> carNames = Arrays.asList(names);
         validateDuplicatedName(carNames);
         validateSoloPlay(carNames);
         this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());

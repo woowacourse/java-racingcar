@@ -27,7 +27,7 @@ public class GameController {
         return new GameTime(gameTime);
     }
 
-    private String initCars() {
+    private String[] initCars() {
         return inputView.inputCarName();
     }
 
