@@ -1,7 +1,6 @@
 package domain;
 
 import utils.MovingStrategy;
-import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,7 @@ public class RacingGame {
 
         while (tryCount.canTry()) {
             cars.moveCars(movingStrategy);
-            movingStatus.add(cars);
+            movingStatus.add(new Cars(cars));
             tryCount.decreaseCount();
         }
 

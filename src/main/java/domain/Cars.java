@@ -2,6 +2,7 @@ package domain;
 
 import utils.MovingStrategy;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +13,14 @@ public class Cars implements Iterable<Car> {
 
     public Cars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    public Cars(Cars cars) {
+        List<Car> result = new ArrayList<>();
+        for (Car car : cars) {
+            result.add(new Car(car));
+        }
+        this.cars = result;
     }
 
     public void moveCars(MovingStrategy generator) {
@@ -34,6 +43,10 @@ public class Cars implements Iterable<Car> {
                 .map(Car::getPosition)
                 .max(Comparator.comparingInt(Position::getPosition))
                 .get();
+    }
+
+    private List<Car> getCars() {
+        return cars;
     }
 
     @Override
