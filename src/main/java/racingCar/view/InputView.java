@@ -18,17 +18,6 @@ public class InputView {
     public static int readTryCount() {
         System.out.println("시도할 회수는 몇 회인가요?");
         String input = scanner.nextLine();
-        validateTryCount(input);
         return Integer.parseInt(input);
-    }
-
-    private static void validateTryCount(String tryCount) {
-        if (isBlank(tryCount)) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수를 다시 입력해주세요.");
-        }
-    }
-
-    private static boolean isBlank(String tryCount) {
-        return tryCount.length() == 0;
     }
 }
