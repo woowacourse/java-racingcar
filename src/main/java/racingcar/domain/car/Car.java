@@ -4,9 +4,13 @@ public class Car {
 	private final CarName name;
 	private Position position;
 
-	public Car(final CarName name, final Position position) {
+	private Car(final CarName name, final Position position) {
 		this.name = name;
 		this.position = new Position(position.getValue());
+	}
+
+	public static Car from(final String name) {
+		return new Car(new CarName(name), Position.INIT);
 	}
 
 	public void move(final Movement movement) {
