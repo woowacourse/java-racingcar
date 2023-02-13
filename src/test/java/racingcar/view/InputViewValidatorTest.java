@@ -37,24 +37,6 @@ class InputViewValidatorTest {
             Assertions.assertThatThrownBy(() -> inputViewValidator.validateSplitCarNames(carNames))
                     .isInstanceOf(IllegalArgumentException.class);
         }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"이오이오이오", "재이재이재이재이재이"})
-        @DisplayName("분리한 자동차 이름이 5글자 초과인 경우")
-        void splitCarNameLengthTest(String splitCarName) {
-
-            Assertions.assertThatThrownBy(() -> inputViewValidator.validateSplitCarName(splitCarName))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @Test
-        @DisplayName("분리한 자동차 이름이 빈 값인 경우")
-        void splitCarNameBlankTest() {
-            String splitCarName = "";
-
-            Assertions.assertThatThrownBy(() -> inputViewValidator.validateSplitCarName(splitCarName))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
     }
 
     @Nested

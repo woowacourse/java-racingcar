@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
@@ -16,6 +17,25 @@ class CarTest {
     void generateCar() {
         car = new Car("test", 0);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"이오이오이오", "재이재이재이재이재이"})
+    @DisplayName("자동차 이름이 5글자 초과인 경우")
+    void wrongCarNameLengthTest(String carName) {
+
+        Assertions.assertThatThrownBy(() -> new Car(carName, 0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 빈 값인 경우")
+    void carNameBlankTest() {
+        String carName = "";
+
+        Assertions.assertThatThrownBy(() -> new Car(carName, 0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
     @ParameterizedTest
     @CsvSource(value = {"1:false", "3:false", "6:true", "7:true"}, delimiter = ':')

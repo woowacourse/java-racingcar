@@ -13,9 +13,6 @@ public class InputView {
         String carNames = scanner.nextLine();
         inputViewValidator.validateCarNames(carNames);
         String[] splitCarNames = getSplitCarNames(carNames);
-        for (String splitCarName : splitCarNames) {
-            inputViewValidator.validateSplitCarName(splitCarName);
-        }
         inputViewValidator.validateSplitCarNames(splitCarNames);
 
         return splitCarNames;
