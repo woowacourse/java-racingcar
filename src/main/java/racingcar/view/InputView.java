@@ -6,18 +6,20 @@ public class InputView {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String carNames() {
+    public static String inputCarNames() {
         try {
             System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-            return inputCarNames();
+
+            return inputCarNamesScanner();
         } catch (IllegalArgumentException e) {
             OutputView.error(e.getMessage());
-            return carNames();
+            return inputCarNames();
         }
     }
 
-    private static String inputCarNames() {
+    private static String inputCarNamesScanner() {
         String carNames = input();
+
         if (carNames.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름을 한 글자 이상 입력해주세요.");
         }
@@ -25,18 +27,19 @@ public class InputView {
         return carNames;
     }
 
-    public static int tryCount() {
+    public static int inputTryCount() {
         try {
             System.out.println("시도할 횟수는 몇회인가요?");
-            return inputTryCount();
+
+            return inputTryCountScanner();
         } catch (IllegalArgumentException e) {
             OutputView.error(e.getMessage());
 
-            return tryCount();
+            return inputTryCount();
         }
     }
 
-    private static int inputTryCount() throws IllegalArgumentException {
+    private static int inputTryCountScanner() throws IllegalArgumentException {
         String inputTryCount = input();
         int tryCount;
 

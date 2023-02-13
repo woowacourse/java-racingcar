@@ -27,11 +27,11 @@ public class RacingcarGame {
         OutputView.playRound();
         for (int i = 0; i < tryCount; i++) {
             cars.move();
-            OutputView.result(cars);
+            OutputView.printResult(cars);
         }
 
         List<Car> winners = findWinner(cars);
-        OutputView.winner(winners);
+        OutputView.printWinner(winners);
     }
 
     private Cars makeCars(String carNames) {
