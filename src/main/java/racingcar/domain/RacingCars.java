@@ -1,12 +1,10 @@
-package racingcar.repository;
+package racingcar.domain;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import racingcar.domain.Car;
-
-public class CarRepository {
+public class RacingCars {
 	private static final Map<String, Car> cars = new HashMap<>();
 
 	public static void add(Car car) {

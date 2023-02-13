@@ -3,36 +3,36 @@ package racingcar.controller;
 import java.util.List;
 
 import racingcar.domain.Car;
-import racingcar.repository.CarRepository;
-import racingcar.service.CarService;
-import racingcar.service.RandomNumberGenerator;
+import racingcar.domain.RacingGame;
+import racingcar.domain.RacingCars;
+import racingcar.utils.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-	private CarRepository carRepository = new CarRepository();
+	private RacingCars racingCars = new RacingCars();
 	int roundCount;
 
 	public void run() {
-		while (!getCarNames()) ;
-		while (!getRoundCount()) ;
-		move(roundCount);
+		while (!inputCarNames()) ;
+		while (!inputRoundCount()) ;
+		startRound(roundCount);
 	}
 
-	private boolean getCarNames() {
+	private boolean inputCarNames() {
 		try {
 			OutputView.printCarNameRequestMsg();
 			List<String> carNames = InputView.readCarNames();
-			carNames.stream().forEach(carName -> carRepository.add(new Car(carName)));
+			carNames.stream().forEach(carName -> racingCars.add(new Car(carName)));
 			return true;
 		} catch (Exception e) {
-			carRepository.clear();
+			racingCars.clear();
 			System.out.println(e.getMessage());
 			return false;
 		}
 	}
 
-	private boolean getRoundCount() {
+	private boolean inputRoundCount() {
 		try {
 			OutputView.printRoundCountRequestMsg();
 			roundCount = InputView.readRoundCount();
@@ -43,14 +43,14 @@ public class CarController {
 		return false;
 	}
 
-	private void move(int roundCount) {
-		CarService carService = new CarService(new RandomNumberGenerator());
-		OutputView.printOutputMsg();
-		OutputView.printRacingState(carService.getPositionToString());
+	private void startRound(int roundCount) {
+		RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+		OutputView.printRoundResultMsg();
+		OutputView.printRoundState(racingCars.getCars());
 		for (int i = 0; i < roundCount; i++) {
-			carService.moveCars();
-			OutputView.printRacingState(carService.getPositionToString());
+			racingGame.moveCars();
+			OutputView.printRoundState(racingCars.getCars());
 		}
-		OutputView.printRacingResult(carService.getWinners());
+		OutputView.printRacingResult(racingGame.getWinners());
 	}
 }
