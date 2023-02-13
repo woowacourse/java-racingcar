@@ -17,14 +17,15 @@ public class Name {
         validateCarNameLength(name);
         validateBlankCarName(name);
     }
+
     private void validateCarNameLength(String name) {
-        if(name.length() >= MAX_NAME_LENGTH) {
+        if (name.length() >= MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
         }
     }
 
     private void validateBlankCarName(String name) {
-        if(name.isBlank()) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException(BLANK_CAR_NAME.getMessage());
         }
     }

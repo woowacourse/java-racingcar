@@ -13,7 +13,7 @@ public class Position {
     }
 
     private void validate(int value) {
-        if(value < 0) {
+        if (value < 0) {
             throw new IllegalStateException(ILLEGAL_POSITION.getMessage());
         }
     }

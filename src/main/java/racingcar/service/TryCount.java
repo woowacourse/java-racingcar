@@ -10,7 +10,7 @@ public class TryCount {
         this.count = count;
     }
 
-    private void validate(int count){
+    private void validate(int count) {
         if (count < 0) {
             throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
         }
@@ -21,7 +21,7 @@ public class TryCount {
     }
 
     public void tryMove() {
-        if(count > 0) {
+        if (count > 0) {
             count--;
         }
     }

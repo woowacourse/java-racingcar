@@ -3,6 +3,7 @@ package racingcar.dto;
 import static java.util.stream.Collectors.*;
 
 import java.util.List;
+
 import racingcar.domain.Car;
 import racingcar.domain.Name;
 
