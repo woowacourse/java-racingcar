@@ -47,9 +47,10 @@ public class RacingCars {
     }
 
     private void validateCarDuplicate(final List<Car> cars) {
-        if (isCarDuplicate(cars.stream()
+        List<String> carNames = cars.stream()
             .map(Car::getName)
-            .collect(Collectors.toList()))) {
+            .collect(Collectors.toList());
+        if (isCarDuplicate(carNames)) {
             throw new IllegalArgumentException(ErrorCode.CAR_NAME_DUPLICATE.getMessage());
         }
     }

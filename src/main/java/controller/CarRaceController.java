@@ -54,9 +54,8 @@ public class CarRaceController {
     }
 
     private RacingGame createNewGame(final String cars) {
-        return new RacingGame(
-            Arrays.stream(cars.split(CAR_NAME_DELIMITER)).collect(Collectors.toList()),
-            new RandomNumberGenerator());
+        return new RacingGame(Arrays.stream(cars.split(CAR_NAME_DELIMITER))
+            .collect(Collectors.toList()), new RandomNumberGenerator());
     }
 
 }
