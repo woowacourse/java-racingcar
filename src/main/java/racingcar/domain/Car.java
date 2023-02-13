@@ -3,20 +3,20 @@ package racingcar.domain;
 public class Car {
     public static final int NAME_MAX_LENGTH = 5;
     public static final int NAME_MIN_LENGTH = 0;
-    public static final int START_DISTANCE_VALUE = 0;
+    public static final int START_POSITION_VALUE = 0;
     public static final int MIN_TRY_COUNT = 0;
     public static final int RANDOM_NUMBER_BOUNDARY = 10;
     public static final int FORWARD_BOUNDARY = 4;
 
     private final String name;
-    private int distance;
+    private int position;
 
-    public Car(String name, int distance) {
+    public Car(String name, int position) {
         validateNameLength(name);
         validateNameFormat(name);
-        validateStartDistance(distance);
+        validateStartPosition(position);
         this.name = name;
-        this.distance = distance;
+        this.position = position;
     }
 
     private void validateNameLength(String name) {
@@ -34,28 +34,28 @@ public class Car {
         }
     }
 
-    private void validateStartDistance(int distance) {
-        int startDistance = START_DISTANCE_VALUE;
-        if (distance != startDistance) {
-            throw new IllegalArgumentException(String.format("[ERROR] 자동차의 시작 위치는 %d으로 설정되어야 합니다.", startDistance));
+    private void validateStartPosition(int position) {
+        int startPosition = START_POSITION_VALUE;
+        if (position != startPosition) {
+            throw new IllegalArgumentException(String.format("[ERROR] 자동차의 시작 위치는 %d으로 설정되어야 합니다.", startPosition));
         }
     }
 
-    public void validateCurrentDistance(int round) {
-        if (this.distance > round) {
+    public void validateCurrentPosition(int round) {
+        if (this.position > round) {
             throw new IllegalArgumentException("[ERROR] 자동차의 현재 위치는 해당 라운드보다 클 수 없습니다.");
         }
     }
 
-    public void increaseDistance() {
-        this.distance++;
+    public void increasePosition() {
+        this.position++;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getDistance() {
-        return distance;
+    public int getPosition() {
+        return position;
     }
 }

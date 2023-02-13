@@ -37,34 +37,34 @@ public class CarService {
             Random random = new Random();
             int randomNumber = random.nextInt(Car.RANDOM_NUMBER_BOUNDARY);
             runForward(car, randomNumber);
-            car.validateCurrentDistance(round);
+            car.validateCurrentPosition(round);
         }
     }
 
     public void runForward(Car car, int randomNumber) {
         if (randomNumber >= Car.FORWARD_BOUNDARY) {
-            car.increaseDistance();
+            car.increasePosition();
         }
     }
 
     public List<String> findWinner() {
-        int maxDistance = findMaxDistance();
+        int maxPosition = findMaxPosition();
         for (Car car : cars.getCars()) {
-            compareDistance(car, maxDistance);
+            comparePosition(car, maxPosition);
         }
         return winner;
     }
 
-    private int findMaxDistance() {
-        int maxDistance = -1;
+    private int findMaxPosition() {
+        int maxPosition = -1;
         for (Car car : cars.getCars()) {
-            maxDistance = Math.max(car.getDistance(), maxDistance);
+            maxPosition = Math.max(car.getPosition(), maxPosition);
         }
-        return maxDistance;
+        return maxPosition;
     }
 
-    private void compareDistance(Car car, int maxDistance) {
-        if (maxDistance == car.getDistance()) {
+    private void comparePosition(Car car, int maxPosition) {
+        if (maxPosition == car.getPosition()) {
             winner.add(car.getName());
         }
     }

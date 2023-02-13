@@ -20,16 +20,16 @@ public class OutputView {
 
     public static void printRoundResult(List<Car> carsStatus) {
         for (Car car : carsStatus) {
-            printCarResult(car.getName(), car.getDistance());
+            printCarResult(car.getName(), car.getPosition());
         }
         System.out.println("");
     }
 
-    private static void printCarResult(String carName, int distance) {
+    private static void printCarResult(String carName, int position) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(carName).append(OutputConstant.CAR_INFORMATION_DELIMITER.getMessage());
-        for (int i = 0; i < distance; i++) {
-            stringBuilder.append(OutputConstant.DISTANCE_COMMAND.getMessage());
+        for (int i = 0; i < position; i++) {
+            stringBuilder.append(OutputConstant.POSITION_COMMAND.getMessage());
         }
         System.out.println(stringBuilder.toString());
     }
