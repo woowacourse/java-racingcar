@@ -22,7 +22,7 @@ public class CarRepositoryValidator {
     }
 
     private static void validateMoreThanMaximumNumberOfCars(List<Car> newCars) {
-        if (newCars.size() < MAXIMUM_NUMBER_OF_CARS) {
+        if (newCars.size() > MAXIMUM_NUMBER_OF_CARS) {
             throw new IllegalArgumentException("게임 가능한 차는 열 대 이하여야 합니다.");
         }
     }
