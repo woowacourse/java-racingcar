@@ -19,7 +19,7 @@ public class Round {
     }
 
     public boolean isPossibleToRacing() {
-        return this.trialCount != FINISH;
+        return this.trialCount > FINISH;
     }
 
     public void minusTrialCount() {
