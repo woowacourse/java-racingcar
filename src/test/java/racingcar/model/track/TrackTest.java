@@ -7,7 +7,7 @@ import racingcar.exception.InvalidRangeTrialTimesException;
 import racingcar.exception.InvalidTrialTimesFormatException;
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
-import racingcar.model.car.strategy.ForwardMovingStrategy;
+import racingcar.model.car.strategy.TestMovingStrategy;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ class TrackTest {
     @DisplayName("시도 횟수가 숫자가 아닐 경우 예외 처리가 되는지 테스트")
     @Test
     void validateTrialTimesFormatTest() {
-        Car pobi = new Car("pobi", new ForwardMovingStrategy());
+        Car pobi = new Car("pobi", new TestMovingStrategy(new int[]{1}));
 
         assertThatThrownBy(() -> {
             new Track(new Cars(List.of(pobi)), "a");
@@ -28,7 +28,7 @@ class TrackTest {
     @DisplayName("시도 횟수가 범위보다 작을 경우 예외 처리가 되는지 테스트")
     @Test
     void validateUnderMinRangeTrialTimesTest() {
-        Car pobi = new Car("pobi", new ForwardMovingStrategy());
+        Car pobi = new Car("pobi", new TestMovingStrategy(new int[]{1}));
 
         assertThatThrownBy(() -> {
             new Track(new Cars(List.of(pobi)), "0");
@@ -38,7 +38,7 @@ class TrackTest {
     @DisplayName("시도 횟수가 범위보다 클 경우 예외 처리가 되는지 테스트")
     @Test
     void validateExceedMaxRangeTrialTimesTest() {
-        Car pobi = new Car("pobi", new ForwardMovingStrategy());
+        Car pobi = new Car("pobi", new TestMovingStrategy(new int[]{1}));
 
         assertThatThrownBy(() -> {
             new Track(new Cars(List.of(pobi)), "101");

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.exception.ExceedCarNameLengthException;
 import racingcar.exception.HasBlankCarNameException;
 import racingcar.exception.InvalidCarNameFormatException;
-import racingcar.model.car.strategy.ForwardMovingStrategy;
+import racingcar.model.car.strategy.TestMovingStrategy;
 import racingcar.view.OutputView;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +17,7 @@ class CarTest {
     @Test
     void validateHasBlankCarNameTest() {
         assertThatThrownBy(() -> {
-            new Car("", new ForwardMovingStrategy());
+            new Car("", new TestMovingStrategy(new int[]{1}));
         }).isInstanceOf(HasBlankCarNameException.class);
     }
 
@@ -25,7 +25,7 @@ class CarTest {
     @Test
     void validateCarNameFormatTest() {
         assertThatThrownBy(() -> {
-            new Car("a.b asdf", new ForwardMovingStrategy());
+            new Car("a.b asdf", new TestMovingStrategy(new int[]{1}));
         }).isInstanceOf(InvalidCarNameFormatException.class);
     }
 
@@ -33,7 +33,7 @@ class CarTest {
     @Test
     void validateCarNameLengthTest() {
         assertThatThrownBy(() -> {
-            new Car("woowacourse", new ForwardMovingStrategy());
+            new Car("woowacourse", new TestMovingStrategy(new int[]{2}));
         }).isInstanceOf(ExceedCarNameLengthException.class);
     }
 
@@ -41,13 +41,13 @@ class CarTest {
     @Test
     void currentStateFormatTest() {
         // given
-        Car car = new Car("pobi", new ForwardMovingStrategy());
+        Car pobi = new Car("pobi", new TestMovingStrategy(new int[]{6}));
         String expected = "pobi : -";
 
         // when
         String actual = String.format(OutputView.POSITION_CAR_STATE_FORMAT,
-                car.getCarName(),
-                OutputView.POSITION_CAR_FORMAT_SYMBOL.repeat(car.getPosition()));
+                pobi.getCarName(),
+                OutputView.POSITION_CAR_FORMAT_SYMBOL.repeat(pobi.getPosition()));
 
         // then
         assertThat(actual).isEqualTo(expected);
