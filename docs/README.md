@@ -10,6 +10,7 @@
 - [x] 자동차 이름에 null 값이 주어지면 `IllegalArgumentException`을 던진다.
 - [x] 시도할 횟수가 정수가 아니면 `IllegalArgumentException`을 던진다.
 - [x] 시도할 횟수가 음수이면 `IllegalArgumentException`을 던진다.
+- [x] 시도할 횟수가 100 이상이면 `IllegalArgumentException`을 던진다. 
 - [x] 예외가 발생한다면 이전에 입력했던 부분부터 다시 입력을 받는다.
 
 ### 출력 구현 사항
