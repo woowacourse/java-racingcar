@@ -4,7 +4,7 @@ import static java.text.MessageFormat.format;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.domain.Car;
+import racingcar.dto.PositionOfCar;
 
 public class OutputView {
 
@@ -20,26 +20,26 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printPosition(final List<Car> cars) {
-        System.out.println(generatePositionMessages(cars) + POSITION_MESSAGE_DELIMITER);
+    public void printPosition(final List<PositionOfCar> positionOfCars) {
+        System.out.println(generatePositionMessages(positionOfCars) + POSITION_MESSAGE_DELIMITER);
     }
 
-    private String generatePositionMessages(final List<Car> cars) {
-        return cars.stream()
+    private String generatePositionMessages(final List<PositionOfCar> positionOfCars) {
+        return positionOfCars.stream()
                 .map(this::generatePositionMessage)
                 .collect(Collectors.joining(POSITION_MESSAGE_DELIMITER));
     }
 
-    private String generatePositionMessage(final Car car) {
+    private String generatePositionMessage(final PositionOfCar positionOfCar) {
         return format(
                 POSITION_MESSAGE_FORMAT,
-                car.getName(),
-                POSITION_SYMBOL.repeat(car.getPosition())
+                positionOfCar.getCarName(),
+                POSITION_SYMBOL.repeat(positionOfCar.getPosition())
         );
     }
 
     public void printWinnersMessage(final List<String> winners) {
-        String winnersMessage = String.join(WINNERS_MESSAGE_DELIMITER, winners);
+        final String winnersMessage = String.join(WINNERS_MESSAGE_DELIMITER, winners);
         System.out.println(format(WINNERS_MESSAGE_FORMAT, winnersMessage));
     }
 

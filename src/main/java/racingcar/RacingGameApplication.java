@@ -2,23 +2,18 @@ package racingcar;
 
 import java.util.Scanner;
 import racingcar.controller.RacingGameController;
-import racingcar.view.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingGameApplication {
 
     public static void main(String[] args) {
-        RacingGameController racingGameController = new RacingGameController(inputView(), outputView());
+        final RacingGameController racingGameController = new RacingGameController(inputView(), outputView());
         racingGameController.run();
     }
 
     private static InputView inputView() {
-        return new InputView(inputValidator(), scanner());
-    }
-
-    private static InputValidator inputValidator() {
-        return new InputValidator();
+        return new InputView(scanner());
     }
 
     private static Scanner scanner() {

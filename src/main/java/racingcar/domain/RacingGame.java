@@ -8,15 +8,18 @@ public class RacingGame {
     private final Cars cars;
     private final Count count;
 
-    public RacingGame(final NumberGenerator numberGenerator, final List<String> names, final int count) {
+    public RacingGame(final NumberGenerator numberGenerator, final Cars cars, final Count count) {
         this.numberGenerator = numberGenerator;
-        this.cars = Cars.from(names);
-        this.count = new Count(count);
+        this.cars = cars;
+        this.count = count;
     }
 
-    public List<Car> play() {
+    public void play() {
         cars.move(numberGenerator);
         count.decrease();
+    }
+
+    public List<Car> getCurrentResult() {
         return cars.getCars();
     }
 
