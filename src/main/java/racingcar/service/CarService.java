@@ -38,8 +38,8 @@ public class CarService {
 
     public LinkedHashMap<String, Integer> runRound() {
         LinkedHashMap<String, Integer> roundResult = new LinkedHashMap<String, Integer>();
+        Random random = new Random();
         for (Car car : cars.getCarInformation()) {
-            Random random = new Random();
             int randomNumber = random.nextInt(RANDOM_NUM_MAX_VALUE);
             runForward(car, randomNumber);
             roundResult.put(car.getName(), car.getDistance());
