@@ -32,18 +32,18 @@ public class Cars {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public Result getResult() {
+        return Result.of(cars);
+    }
+
     private static boolean hasHighestPosition(Long highestPosition, Car car) {
         return car.hasPosition(highestPosition);
     }
 
     private Long calculateHighestPosition() {
         return Collections.max(cars.stream()
-                        .map((Car::getPosition))
-                        .collect(Collectors.toUnmodifiableList()));
-    }
-
-    public Result getResult() {
-        return Result.of(cars);
+                .map((Car::getPosition))
+                .collect(Collectors.toUnmodifiableList()));
     }
 
     @Override
