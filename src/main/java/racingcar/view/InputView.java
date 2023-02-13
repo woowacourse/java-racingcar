@@ -3,7 +3,6 @@ package racingcar.view;
 import racingcar.constant.ErrorConstant;
 
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
