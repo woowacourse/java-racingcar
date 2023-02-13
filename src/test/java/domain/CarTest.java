@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import validation.ErrorMessages;
+import validation.exception.ContainsInvalidWordException;
 import validation.exception.InvalidCarNameException;
 
 class CarTest {
@@ -45,6 +46,17 @@ class CarTest {
             Car car = new Car("123456", 0);
         }).isExactlyInstanceOf(InvalidCarNameException.class)
             .hasMessage(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+    }
+
+    @DisplayName("자동차 이름에 중복 구분자가 들어갈 경우 오류를 던진다.")
+    @Test
+    void create_fail_contains_invalid_word() {
+        //given
+        //when then
+        assertThatThrownBy(() -> {
+            Car car = new Car("spli-", 0);
+        }).isExactlyInstanceOf(ContainsInvalidWordException.class)
+            .hasMessage(ErrorMessages.CONTAINS_INVALID_WORD.getMessage());
     }
 
     @DisplayName("자동차 이름이 적절한 경우")

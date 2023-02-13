@@ -2,7 +2,7 @@ package domain;
 
 import validation.CarValidator;
 import validation.ValidateResult;
-import validation.exception.ContainIdentifierException;
+import validation.exception.ContainsInvalidWordException;
 import validation.exception.InvalidCarNameException;
 
 public class Car {
@@ -16,7 +16,7 @@ public class Car {
             throw new InvalidCarNameException();
         }
         if (validateResult == ValidateResult.FAIL_CONTAIN_IDENTIFIER) {
-            throw new ContainIdentifierException();
+            throw new ContainsInvalidWordException();
         }
         this.name = new Name(name, order);
     }
