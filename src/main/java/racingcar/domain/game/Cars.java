@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import racingcar.domain.car.Car;
 import racingcar.domain.car.CarMovement;
-import racingcar.domain.car.Position;
 
 public class Cars {
 	private static final int CARS_MIN_SIZE = 2;
@@ -22,19 +21,6 @@ public class Cars {
 		validateDuplicatedCarName(cars);
 		this.cars.clear();
 		this.cars.addAll(cars);
-	}
-
-	public List<String> findWinnerNames() {
-		final int findMaxPosition = cars.stream()
-			.mapToInt(Car::getPositionValue)
-			.max()
-			.orElseThrow(() -> new IllegalStateException(CARS_EMPTY_EXCEPTION.getMessage()));
-		final Position maxPosition = new Position(findMaxPosition);
-
-		return cars.stream()
-			.filter(car -> car.isSamePosition(maxPosition))
-			.map(Car::getNameValue)
-			.collect(Collectors.toUnmodifiableList());
 	}
 
 	public void moveCars(final CarMovement carMovement) {

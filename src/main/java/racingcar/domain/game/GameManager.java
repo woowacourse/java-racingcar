@@ -25,12 +25,13 @@ public class GameManager {
 	}
 
 	public GameWinnersResponse getGameResult() {
-		return GameWinnersResponse.from(cars.findWinnerNames());
+		final Winners winners = new Winners(cars.getCars());
+		return GameWinnersResponse.from(winners.getWinnerNames());
 	}
 
 	public void setUpCars(final List<String> carNames) {
 		final List<Car> createdCars = carNames.stream()
-			.map(CarGenerator::from)
+			.map(Car::from)
 			.collect(Collectors.toList());
 		cars.addCars(createdCars);
 	}
