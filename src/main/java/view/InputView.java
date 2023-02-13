@@ -15,8 +15,8 @@ import static model.domain.TryCount.TRY_COUNT_LIMIT;
 
 public class InputView {
 
-    private final String DELIMITER = ",";
-    private final String DELIMITER_IN_KOREAN = "쉼표";
+    private final static String DELIMITER = ",";
+    private final static String DELIMITER_IN_KOREAN = "쉼표";
 
     public List<CarNameDto> sendCarsName() {
         System.out.printf("경주할 자동차 이름을 입력하세요(이름은 %s(%s)를 기준으로 구분).\n", DELIMITER_IN_KOREAN, DELIMITER);
