@@ -1,6 +1,6 @@
 package domain;
 
-import util.RandomNumberGenerator;
+import dto.CarDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,32 @@ public class Cars {
     public Cars(List<String> carNames) {
         checkNameDuplication(carNames);
         addCar(carNames);
+    }
+
+    public void progressRound(List<Integer> boundaryNumbers, RoundResult roundResult) {
+        for (int index = 0; index < cars.size(); index++) {
+            moveCar(roundResult, cars.get(index),boundaryNumbers.get(index));
+        }
+    }
+
+    public List<String> findWinners() {
+        Integer maxDistance = findMaxDistance();
+        return cars.stream()
+                .filter(car -> car.getDistance() == maxDistance)
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarDTO> getCarsDTO() {
+        List<CarDTO> carDTOs = new ArrayList<>();
+        for (Car car : cars) {
+            carDTOs.add(new CarDTO(car.getCarName(), car.getDistance()));
+        }
+        return carDTOs;
+    }
+
+    public int getCount() {
+        return cars.size();
     }
 
     private void checkNameDuplication(List<String> carNames) {
@@ -29,14 +55,6 @@ public class Cars {
         }
     }
 
-    public List<String> findWinners() {
-        Integer maxDistance = findMaxDistance();
-        return cars.stream()
-                .filter(car -> car.getDistance() == maxDistance)
-                .map(Car::getCarName)
-                .collect(Collectors.toList());
-    }
-
     private Integer findMaxDistance() {
         return cars.stream()
                 .mapToInt(Car::getDistance)
@@ -44,15 +62,8 @@ public class Cars {
                 .orElse(0);
     }
 
-    public void progressRound(RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
-        for (Car car : cars) {
-            Integer randomNumber = randomNumberGenerator.generateRandomNumber();
-            boolean movingResult = roundResult.isGo(randomNumber);
-            car.move(movingResult);
-        }
-    }
-
-    public List<Car> getCars() {
-        return new ArrayList<>(cars);
+    private void moveCar(RoundResult roundResult, Car car, Integer boundaryNumber) {
+        boolean movingResult = roundResult.isGo(boundaryNumber);
+        car.move(movingResult);
     }
 }

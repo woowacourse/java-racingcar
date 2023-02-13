@@ -1,6 +1,5 @@
 package view;
 
-import util.MovingCountValidator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -16,11 +15,10 @@ public class InputView {
         return Arrays.asList(carNames);
     }
 
-    public Integer readMovingCount() {
-        String input = sc.nextLine();
+    public int readTryCount() {
+        String tryCountInput = sc.nextLine();
+        MovingCountValidator.validateTryCountInput(tryCountInput);
 
-        MovingCountValidator.validateMovingCountInput(input);
-
-        return Integer.parseInt(input);
+        return Integer.parseInt(tryCountInput);
     }
 }

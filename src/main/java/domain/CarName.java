@@ -1,13 +1,17 @@
 package domain;
 
 public class CarName {
-    private String name;
+    private final String name;
     private final Integer CAR_NAME_MAX_LENGTH = 5;
     private final Integer CAR_NAME_MIN_LENGTH = 1;
 
     public CarName(String name) {
         validateNameLength(name);
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     private void validateNameLength(String name) {
@@ -17,10 +21,6 @@ public class CarName {
         if (isShorterThanMinLength(name)) {
             throw new IllegalArgumentException("자동차 이름은 한 글자 이상입니다.");
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
     private boolean isLongerThanMaxLength(String name) {

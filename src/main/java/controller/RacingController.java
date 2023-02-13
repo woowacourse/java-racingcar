@@ -10,22 +10,23 @@ import java.util.List;
 public class RacingController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
+    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public void run() {
-        Cars carsInfo = setUpCarName();
-        Integer tryCount = setUpTryCount();
-        progressRacingGame(tryCount, carsInfo, new RandomNumberGenerator());
+        Cars cars = setUpCarName();
+        int tryCount = setUpTryCount();
+        progressRacingGame(tryCount, cars);
     }
 
-    public void progressRacingGame(Integer tryCount, Cars carsInfo, RandomNumberGenerator randomNumberGenerator) {
+    public void progressRacingGame(int tryCount, Cars cars) {
         RoundResult roundResult = new RoundResult();
         outputView.printResultGuideMessage();
         for (int round = 0; round < tryCount; round++) {
-            progressRound(carsInfo, randomNumberGenerator, roundResult);
-            outputView.printCurrentResult(carsInfo);
+            progressRound(cars, roundResult);
+            outputView.printCurrentResult(cars.getCarsDTO());
         }
-        List<String> winners = carsInfo.findWinners();
-        outputView.printFinalResult(carsInfo, winners);
+        List<String> winners = cars.findWinners();
+        outputView.printFinalResult(cars.getCarsDTO(), winners);
     }
 
     private Cars setUpCarName() {
@@ -38,11 +39,10 @@ public class RacingController {
         }
     }
 
-    private Integer setUpTryCount() {
+    private int setUpTryCount() {
         try {
             outputView.printTryCountMessage();
-            Integer tryCount = inputView.readMovingCount();
-            System.out.println();
+            int tryCount = inputView.readTryCount();
             return tryCount;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -50,7 +50,10 @@ public class RacingController {
         }
     }
 
-    private void progressRound(Cars carsInfo, RandomNumberGenerator randomNumberGenerator, RoundResult roundResult) {
-        carsInfo.progressRound(randomNumberGenerator, roundResult);
+    private void progressRound(Cars cars, RoundResult roundResult) {
+        cars.progressRound(
+                randomNumberGenerator.generateBoundaryNumbers(cars.getCount()),
+                roundResult
+        );
     }
 }
