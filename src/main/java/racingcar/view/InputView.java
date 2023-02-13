@@ -10,22 +10,13 @@ public class InputView {
     public InputView() {
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
-    
-    public String readCarNames(OutputView outputView) {
-        outputView.printInputCarNamesGuide();
-        return readLine();
-    }
 
-    public String readTryNumber(OutputView outputView) {
-        outputView.readNumberOfTry();
-        return readLine();
-    }
-
-    private String readLine() {
+    public String readLine(Runnable runnable) {
         try {
+            runnable.run();
             return bufferedReader.readLine();
         } catch (IOException ioException) {
-            return readLine();
+            return readLine(runnable);
         }
     }
 }
