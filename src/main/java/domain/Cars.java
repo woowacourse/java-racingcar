@@ -2,9 +2,9 @@ package domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Cars {
+    private static final int RANDOM_UPPER_BOUND_EXCLUSIVE = 10;
     private static final String DUPLICATED_CAR_NAMES = "차 이름은 중복될 수 없습니다";
 
     private final List<Car> cars = new ArrayList<>();
@@ -18,13 +18,8 @@ public class Cars {
         return new Cars(names);
     }
 
-    public void move(List<Integer> powers) {
-        IntStream.range(0, cars.size())
-                        .forEach(i->cars.get(i).move(powers.get(i)));
-    }
-
-    public int size() {
-        return cars.size();
+    public void move(Random powerGenerator) {
+        cars.forEach(car -> car.move(powerGenerator.nextInt(RANDOM_UPPER_BOUND_EXCLUSIVE)));
     }
 
     public List<String> getWinners() {

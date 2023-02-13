@@ -2,8 +2,11 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -17,17 +20,26 @@ class CarsTest {
     }
 
     @DisplayName("우승자는 가장 멀리 간 차들이다")
-    @Test
-    void getWinnersTest() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 3, 5, 9})
+    void getWinnersTest(int next) {
         //given
         Cars cars = Cars.from(List.of("a", "b", "c"));
-        List<Integer> powers=List.of(0, 9, 9);
 
         //when
-        cars.move(powers);
+        cars.move(generator(next));
 
         //then
         assertThat(cars.getWinners())
-                .containsExactly("b", "c");
+                .containsExactly("a", "b", "c");
+    }
+
+    private Random generator(int next){
+        return new Random(){
+            @Override
+            public int nextInt(int bound){
+                return next;
+            }
+        };
     }
 }
