@@ -19,8 +19,7 @@ public class Name {
             return;
         }
         throw new IllegalArgumentException(
-            String.format(ErrorCode.CAR_NAME_OUT_OF_RANGE.getMessage(), MIN_NAME,
-                MAX_NAME));
+            String.format(ErrorCode.CAR_NAME_OUT_OF_RANGE.getMessage(), MIN_NAME, MAX_NAME));
     }
 
     private boolean isNameLengthInRange(final int nameLength) {
