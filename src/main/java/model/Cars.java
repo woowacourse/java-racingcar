@@ -14,9 +14,6 @@ import utils.RacingNumberGenerator;
 
 public class Cars {
 
-    private static final int MIN_INCLUSIVE_VALUE = 0;
-    private static final int MAX_INCLUSIVE_VALUE = 9;
-
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -34,22 +31,9 @@ public class Cars {
 
     private RacingRoundStateDto race(RacingNumberGenerator generator) {
         List<RacingCarStateDto> racingCarsStateDto = cars.stream()
-                .map(car -> car.race(generateValidMovableNumber(generator)))
+                .map(car -> car.race(generator.generate()))
                 .collect(Collectors.toUnmodifiableList());
         return new RacingRoundStateDto(racingCarsStateDto);
-    }
-
-    private int generateValidMovableNumber(RacingNumberGenerator generator) {
-        int movableNumber = generator.generate();
-
-        if (isValidRangeMovableNumber(movableNumber)) {
-            throw new WrongRangeMovableNumberException();
-        }
-        return movableNumber;
-    }
-
-    private boolean isValidRangeMovableNumber(int movableValue) {
-        return movableValue < MIN_INCLUSIVE_VALUE || movableValue > MAX_INCLUSIVE_VALUE;
     }
 
     public List<WinnerCarDto> calculateWinners() {
