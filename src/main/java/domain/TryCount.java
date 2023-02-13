@@ -7,11 +7,11 @@ public class TryCount {
     private final int tryCount;
 
     public TryCount(final int tryCount) {
-        validateTryCount(tryCount);
+        validate(tryCount);
         this.tryCount = tryCount;
     }
 
-    private void validateTryCount(final int tryCount) {
+    private void validate(final int tryCount) {
         TryCountValidation.validateTryCount(tryCount);
     }
 
