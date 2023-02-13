@@ -24,11 +24,6 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    private Car findMaxPositionCar() {
-        cars.sort(Car::compareTo);
-        return cars.get(0);
-    }
-
     public List<Car> moveEachCar() {
         for (Car car : cars) {
             car.goForward();
@@ -40,5 +35,10 @@ public class Cars {
         if (cars.size() < CARS_MIN_SIZE) {
             throw new IllegalArgumentException(CARS_SIZE_ERROR);
         }
+    }
+
+    private Car findMaxPositionCar() {
+        cars.sort(Car::compareTo);
+        return cars.get(0);
     }
 }

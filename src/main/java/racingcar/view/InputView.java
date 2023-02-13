@@ -13,17 +13,22 @@ public class InputView {
     private static final String READ_RACING_ROUND_MESSAGE = "시도할 회수는 몇회인가요?";
     private static final String ROUND_INPUT_ERROR = "[ERROR] 라운드는 숫자여야 합니다.";
     private static final String ROUND_NUMBER_ERROR = "[ERROR] 시도 횟수는 1이상이어야 합니다.";
-    private static final Pattern pattern = Pattern.compile("^[0-9]*$");
+    private static final Pattern pattern = Pattern.compile("^[0-9]+$");
+
+    private final Scanner scanner;
+
+    public InputView(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     public List<String> readCarNames() {
         System.out.println(READ_CARS_NAME_MESSAGE);
-        Scanner scanner = new Scanner(System.in);
+
         return Arrays.asList(scanner.nextLine().trim().split(","));
     }
 
     public int readRacingRound() {
         System.out.println(READ_RACING_ROUND_MESSAGE);
-        Scanner scanner = new Scanner(System.in);
         String round = scanner.nextLine().trim();
         validateRoundInput(round);
         return Integer.parseInt(round);
