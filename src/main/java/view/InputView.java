@@ -18,10 +18,15 @@ public class InputView {
     private final static String DELIMITER = ",";
     private final static String DELIMITER_IN_KOREAN = "쉼표";
 
+    private Scanner scanner;
+
+    public InputView() {
+        this.scanner = new Scanner(System.in);
+    }
+
     public List<CarNameDto> sendCarsName() {
         System.out.printf("경주할 자동차 이름을 입력하세요(이름은 %s(%s)를 기준으로 구분).\n", DELIMITER_IN_KOREAN, DELIMITER);
 
-        Scanner scanner = new Scanner(System.in);
         String[] carsName = scanner.nextLine().split(DELIMITER);
 
         for (String carName : carsName) {
@@ -36,7 +41,6 @@ public class InputView {
     public TryCount sendTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
 
-        Scanner scanner = new Scanner(System.in);
         int tryCount = scanner.nextInt();
         validateTryCount(tryCount);
         return new TryCount(tryCount);
