@@ -24,8 +24,8 @@ public class Car {
         return position;
     }
 
-    public boolean isWinner(int maxPosition) {
-        return position == maxPosition;
+    public boolean isSame(int position) {
+        return this.position == position;
     }
 
 }

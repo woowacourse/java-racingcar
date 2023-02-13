@@ -1,17 +1,17 @@
 package controller;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
 import model.car.Car;
 import model.car.Cars;
 import model.car.Stadium;
 import model.manager.ThresholdCarMoveManager;
 import view.InputView;
 import view.OutputView;
+
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class MainController {
 

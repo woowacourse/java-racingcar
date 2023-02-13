@@ -29,7 +29,7 @@ public class Stadium {
         int maxPosition = getMaxPosition();
         return cars.getCars()
                 .stream()
-                .filter(car -> car.isWinner(maxPosition))
+                .filter(car -> car.isSame(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());
     }

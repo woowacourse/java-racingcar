@@ -1,5 +1,4 @@
 import controller.MainController;
-import model.manager.ThresholdCarMoveManager;
 import view.InputView;
 import view.OutputView;
 
