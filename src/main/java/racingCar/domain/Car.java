@@ -5,21 +5,21 @@ public class Car {
     private static final int MIN_POWER = 4;
 
     private final CarName name;
-    private Position position;
+    private int position;
 
     public Car(String carName, int initPosition) {
         name = new CarName(carName);
-        position = new Position(initPosition);
+        position = initPosition;
     }
 
     public void move(int power) {
         if (power >= MIN_POWER) {
-            position.increase();
+            position++;
         }
     }
 
     public boolean isSamePosition(int otherPosition) {
-        return position.getPosition() == otherPosition;
+        return this.position == otherPosition;
     }
 
     public String getName() {
@@ -27,6 +27,6 @@ public class Car {
     }
 
     public int getPosition() {
-        return position.getPosition();
+        return position;
     }
 }
