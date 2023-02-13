@@ -8,13 +8,17 @@ public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int DEFAULT_START_POSITION = 0;
     private static final int ONE_STEP = 1;
-    private final String name;
+    private String name;
     private int position = DEFAULT_START_POSITION;
 
     private final NumberPicker numberPicker;
 
-    public Car(String name) {
+    private Car() {
         numberPicker = new RandomNumberPicker();
+    }
+
+    public Car(String name) {
+        this();
         validate(name);
         this.name = name;
     }
