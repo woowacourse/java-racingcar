@@ -17,7 +17,7 @@ public class TrialTimesRequest {
 
     private void validateBlank(String userInput) {
         if (userInput.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.TRIAL_NUMBER_NULL.message());
+            throw new IllegalArgumentException(ErrorMessage.TRIAL_NUMBER_BLANK.message());
         }
     }
 

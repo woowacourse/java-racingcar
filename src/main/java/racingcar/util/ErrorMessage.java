@@ -2,15 +2,16 @@ package racingcar.util;
 
 public enum ErrorMessage {
     CAR_NAME_DUPLICATED("[ERROR] 중복된 차 이름이 존재합니다."),
-    CAR_NAME_NULL("[ERROR] 비어있는 자동차 이름이 들어있습니다."),
+    CAR_NAME_BLANK("[ERROR] 비어있는 자동차 이름이 들어있습니다."),
     INVALID_CAR_NAME_FORMAT("[ERROR] 문자와 숫자가 아닌 자동차 이름이 들어있습니다."),
     CAR_NAME_OVER_RANGE("[ERROR] 다섯 글자가 넘는 자동차 이름이 들어있습니다."),
 
     INVALID_TRIAL_NUMBER("[ERROR] 시도 횟수는 정수만 입력 가능합니다."),
     TRIAL_NUMBER_OVER_RANGE("[ERROR] 시도 횟수가 100 이하여야 합니다."),
     TRIAL_NUMBER_UNDER_RANGE("[ERROR] 시도 횟수가 1 이상이어야 합니다."),
-    TRIAL_NUMBER_NULL("[ERROR] 빈 값은 입력 될 수 없습니다."),
+    TRIAL_NUMBER_BLANK("[ERROR] 빈 값은 입력 될 수 없습니다."),
     UNEXPECTED_ERROR("[ERROR] 오류가 발생했습니다. 다시 시도 해주세요."),
+    INPUT_NULL("[ERROR] Null 값이 존재합니다."),
     ;
 
     private final String message;

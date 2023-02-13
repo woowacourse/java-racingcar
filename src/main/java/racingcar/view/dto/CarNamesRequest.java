@@ -16,12 +16,20 @@ public class CarNamesRequest {
     }
 
     private void validate(String userInput) {
+        validateNull(userInput);
         validateBlank(userInput);
     }
 
+    private void validateNull(String userInput) {
+        if (userInput == null) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.message());
+        }
+    }
+
+
     private void validateBlank(String splitCarName) {
         if (splitCarName.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_NULL.message());
+            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_BLANK.message());
         }
     }
 
