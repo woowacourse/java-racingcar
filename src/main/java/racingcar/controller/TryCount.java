@@ -8,15 +8,24 @@ public class TryCount {
 
     public TryCount(int tryCount) {
         validateNegativeTryCount(tryCount);
+        validateOverMaxTryCount(tryCount);
         this.tryCount = tryCount;
     }
 
     public static class Validator {
+        private static final int MAX_TRY_COUNT = 100;
+
         private Validator() {
         }
 
-        public static void validateNegativeTryCount(Integer tryCount) {
+        public static void validateNegativeTryCount(int tryCount) {
             if (tryCount < 0) {
+                throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
+            }
+        }
+
+        public static void validateOverMaxTryCount(int tryCount) {
+            if (tryCount >= MAX_TRY_COUNT) {
                 throw new IllegalArgumentException(ILLEGAL_TRY_COUNT.getMessage());
             }
         }
