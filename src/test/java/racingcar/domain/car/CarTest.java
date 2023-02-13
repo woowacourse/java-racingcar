@@ -2,7 +2,7 @@ package racingcar.domain.car;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static racingcar.domain.car.Movement.*;
+import static racingcar.domain.movement.v1.Movement.*;
 import static racingcar.dummy.TestDataDummy.*;
 
 import java.util.stream.Stream;
@@ -13,6 +13,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import racingcar.domain.movement.v1.Movement;
 
 @DisplayName("자동차")
 class CarTest {
@@ -39,22 +41,41 @@ class CarTest {
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("이동 확인 테스트")
+	@DisplayName("이동 확인 버전 V1 테스트")
 	@ParameterizedTest(name = "movement = {0}")
-	@MethodSource("carMovementDummy")
-	void moveSuccessTest(Movement movement, Position expectedPosition) {
+	@MethodSource("carMovementV1Dummy")
+	void moveSuccessV1Test(Movement movement, Position expectedPosition) {
 		final Car car = Car.from("헤나");
 
-		car.move(movement);
+		car.moveV1(movement);
 		boolean isSamePosition = car.isSamePosition(expectedPosition);
 
 		assertThat(isSamePosition).isTrue();
 	}
 
-	static Stream<Arguments> carMovementDummy() {
+	@DisplayName("이동 확인 버전 V2 테스트")
+	@ParameterizedTest(name = "movement = {0}")
+	@MethodSource("carMovementV2Dummy")
+	void moveSuccessV2Test(int moveDistance, Position expectedPosition) {
+		final Car car = Car.from("헤나");
+
+		car.moveV2(moveDistance);
+		boolean isSamePosition = car.isSamePosition(expectedPosition);
+
+		assertThat(isSamePosition).isTrue();
+	}
+
+	static Stream<Arguments> carMovementV1Dummy() {
 		return Stream.of(
 			Arguments.arguments(MOVE_STOP, MOVE_ZERO_POSITION),
 			Arguments.arguments(MOVE_FORWARD, MOVE_FORWARD_ONCE_POSITION)
+		);
+	}
+
+	static Stream<Arguments> carMovementV2Dummy() {
+		return Stream.of(
+			Arguments.arguments(0, MOVE_ZERO_POSITION),
+			Arguments.arguments(1, MOVE_FORWARD_ONCE_POSITION)
 		);
 	}
 }

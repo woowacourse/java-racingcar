@@ -1,15 +1,13 @@
 package racingcar.domain.game;
 
 import static org.assertj.core.api.Assertions.*;
-import static racingcar.domain.car.Movement.*;
+import static racingcar.domain.movement.v1.Movement.*;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -56,14 +54,14 @@ class CarsTest {
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("전진 성공 테스트")
+	@DisplayName("전진 성공 버전 V1 테스트")
 	@ParameterizedTest
 	@MethodSource("moveCarsSuccessDummy")
-	void moveCarsSuccessTest(List<Car> carDummy, int moveForwardNumber) {
+	void moveCarsSuccessV1Test(List<Car> carDummy, int moveForwardNumber) {
 		cars.addCars(carDummy);
 		carMovement = new CarMovement(() -> moveForwardNumber);
 
-		cars.moveCars(carMovement);
+		cars.moveCarsV1(carMovement);
 		boolean isCarsMovedForward = cars.getCars()
 			.stream()
 			.allMatch(car -> car.isSamePosition(new Position(MOVE_FORWARD.getDistance())));
@@ -71,14 +69,44 @@ class CarsTest {
 		assertThat(isCarsMovedForward).isTrue();
 	}
 
-	@DisplayName("전진 실패 테스트")
+	@DisplayName("전진 성공 버전 V2 테스트")
+	@ParameterizedTest
+	@MethodSource("moveCarsSuccessDummy")
+	void moveCarsSuccessV2Test(List<Car> carDummy, int moveForwardNumber) {
+		cars.addCars(carDummy);
+		carMovement = new CarMovement(() -> moveForwardNumber);
+
+		cars.moveCarsV2(carMovement);
+		boolean isCarsMovedForward = cars.getCars()
+			.stream()
+			.allMatch(car -> car.isSamePosition(new Position(MOVE_FORWARD.getDistance())));
+
+		assertThat(isCarsMovedForward).isTrue();
+	}
+
+	@DisplayName("전진 실패 버전 V1 테스트")
 	@ParameterizedTest
 	@MethodSource("carsDummy")
-	void moveCarsFailTest(List<Car> carDummy, int moveStopNumber) {
+	void moveCarsFailV1Test(List<Car> carDummy, int moveStopNumber) {
 		cars.addCars(carDummy);
 		carMovement = new CarMovement(() -> moveStopNumber);
 
-		cars.moveCars(carMovement);
+		cars.moveCarsV1(carMovement);
+		boolean isCarsMovedForward = cars.getCars()
+			.stream()
+			.allMatch(car -> car.isSamePosition(new Position(MOVE_STOP.getDistance())));
+
+		assertThat(isCarsMovedForward).isTrue();
+	}
+
+	@DisplayName("전진 실패 버전 V2 테스트")
+	@ParameterizedTest
+	@MethodSource("carsDummy")
+	void moveCarsFailV2Test(List<Car> carDummy, int moveStopNumber) {
+		cars.addCars(carDummy);
+		carMovement = new CarMovement(() -> moveStopNumber);
+
+		cars.moveCarsV2(carMovement);
 		boolean isCarsMovedForward = cars.getCars()
 			.stream()
 			.allMatch(car -> car.isSamePosition(new Position(MOVE_STOP.getDistance())));

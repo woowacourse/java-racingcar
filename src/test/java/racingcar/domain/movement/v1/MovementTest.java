@@ -1,8 +1,8 @@
-package racingcar.domain.car;
+package racingcar.domain.movement.v1;
 
 import static org.assertj.core.api.Assertions.*;
-import static racingcar.domain.car.Movement.from;
-import static racingcar.domain.car.Movement.*;
+import static racingcar.domain.movement.v1.Movement.from;
+import static racingcar.domain.movement.v1.Movement.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

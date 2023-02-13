@@ -29,16 +29,33 @@ class GameManagerTest {
 		});
 	}
 
-	@DisplayName("자동차 전체 움직임 성공 테스트")
+	@DisplayName("자동차 전체 움직임 버전 V1 성공 테스트")
 	@ParameterizedTest
 	@MethodSource("moveCarsSuccessDummy")
-	void moveCarsSuccessTest(CarMovement carMovement, Position movedPosition) {
+	void moveCarsSuccessV1Test(CarMovement carMovement, Position movedPosition) {
 		Cars cars = new Cars();
 		gameManager = new GameManager(carMovement, cars);
 		gameManager.setUpCars(CAR_NAMES);
 		gameManager.setUpGameRound(TOTAL_ROUND);
 
-		boolean isCarMovedCorrectly = gameManager.moveCars()
+		boolean isCarMovedCorrectly = gameManager.moveCarsV1()
+			.getCars()
+			.stream()
+			.allMatch(position -> position.isSamePosition(movedPosition));
+
+		assertThat(isCarMovedCorrectly).isTrue();
+	}
+
+	@DisplayName("자동차 전체 움직임 버전 V2 성공 테스트")
+	@ParameterizedTest
+	@MethodSource("moveCarsSuccessDummy")
+	void moveCarsSuccessV2Test(CarMovement carMovement, Position movedPosition) {
+		Cars cars = new Cars();
+		gameManager = new GameManager(carMovement, cars);
+		gameManager.setUpCars(CAR_NAMES);
+		gameManager.setUpGameRound(TOTAL_ROUND);
+
+		boolean isCarMovedCorrectly = gameManager.moveCarsV2()
 			.getCars()
 			.stream()
 			.allMatch(position -> position.isSamePosition(movedPosition));
