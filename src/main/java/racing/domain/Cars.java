@@ -1,55 +1,45 @@
 package racing.domain;
 
-import java.util.ArrayList;
+import racing.ui.output.OutputView;
+
 import java.util.List;
-import java.util.Random;
 
-public class Cars {
+import static racing.ui.output.OutputView.HYPHEN;
 
-    private final List<Car> cars;
+public class Car {
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
+    private final String name;
+    private int step;
+
+    public Car(String name) {
+        this.name = name;
+        this.step = 0;
     }
 
-    // 테스트를 위한 메서드
-    public Car getCar(int n) {
-        return cars.get(n);
+    public String getName() {
+        return name;
     }
 
-    public void calculator(Random random) {
-        cars.stream()
-                .filter(car -> 4 <= random.nextInt(10))
-                .forEach(Car::move);
+    public int getStep() {
+        return step;
     }
 
-    public List<String> getPrintForm() {
-        List<String> forms = new ArrayList<>();
-        for (Car car : cars) {
-            forms.add(car.getCarStepForm());
-        }
-        return forms;
+    public void move() {
+        this.step++;
     }
 
-    public List<String> getWinners() {
-        int winnerStep = getWinnerStep();
-        return findWinners(winnerStep);
+    public String getCarStepForm() {
+        return name + OutputView.COLON + HYPHEN.repeat(step);
     }
 
-    private int getWinnerStep() {
-        int winnerStep = 0;
-        for (Car car : cars) {
-            winnerStep = car.getCarStep(winnerStep);
-        }
-        return winnerStep;
+    public int getCarStep(int winnerStep) {
+        return Math.max(winnerStep, step);
     }
 
-    private List<String> findWinners(int winnerStep) {
-        List<String> winners = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.getStep() == winnerStep) {
-                winners.add(car.getName());
-            }
+    public List<String> ifMeetAddWinners(List<String> winners, int winnerStep) {
+        if (step == winnerStep) {
+            winners.add(name);
+            return winners;
         }
         return winners;
     }
