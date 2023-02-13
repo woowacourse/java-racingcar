@@ -10,7 +10,7 @@ public class Car {
     private final String name;
     private final Position currentPosition;
 
-    public Car(String name, int startPoint) {
+    public Car(final String name, final int startPoint) {
         validateName(name);
         this.name = name;
         this.currentPosition = new Position(startPoint);
@@ -24,26 +24,26 @@ public class Car {
         return currentPosition;
     }
 
-    public void move(NumberGenerator numberGenerator) {
+    public void move(final NumberGenerator numberGenerator) {
         int randomNumber = numberGenerator.generate();
         if (isMovable(randomNumber)) {
             currentPosition.move();
         }
     }
 
-    public int compareTo(Car other) {
+    public int compareTo(final Car other) {
         return this.currentPosition.getPosition() - other.currentPosition.getPosition();
     }
 
-    public boolean isSamePosition(Car target) {
+    public boolean isSamePosition(final Car target) {
         return currentPosition.equals(target.currentPosition);
     }
 
-    private boolean isMovable(int number) {
+    private boolean isMovable(final int number) {
         return number >= MINIMUM_NUMBER_TO_MOVE;
     }
 
-    private void validateName(String input) {
+    private void validateName(final String input) {
         String name = removeBlank(input);
         if (name.length() > MAXIMUM_NAME_LENGTH || name.length() < MINIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "이름의 길이는 1이상 5이하여야 합니다.");

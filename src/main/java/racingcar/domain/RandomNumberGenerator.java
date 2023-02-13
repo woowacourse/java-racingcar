@@ -4,7 +4,7 @@ public class RandomNumberGenerator implements NumberGenerator {
     private final int minimumNumber;
     private final int maximumNumber;
 
-    public RandomNumberGenerator(int minimumNumber, int maximumNumber) {
+    public RandomNumberGenerator(final int minimumNumber, final int maximumNumber) {
         this.minimumNumber = minimumNumber;
         this.maximumNumber = maximumNumber;
     }

@@ -12,13 +12,13 @@ public class Cars {
     private static final int MINIMUM_CAR_COUNT = 2;
     private final List<Car> cars;
 
-    public Cars(List<String> carNames) {
+    public Cars(final List<String> carNames) {
         validateDuplicatedNames(carNames);
         validateCarCount(carNames.size());
         this.cars = createCarsByNames(carNames);
     }
 
-    public List<Car> moveCars(NumberGenerator numberGenerator) {
+    public List<Car> moveCars(final NumberGenerator numberGenerator) {
         cars.forEach(car -> car.move(numberGenerator));
         return Collections.unmodifiableList(cars);
     }
@@ -27,7 +27,7 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    private void validateDuplicatedNames(List<String> carNames) {
+    private void validateDuplicatedNames(final List<String> carNames) {
         List<String> distinctCarNames = carNames.stream()
                 .distinct()
                 .collect(Collectors.toUnmodifiableList());
@@ -36,13 +36,13 @@ public class Cars {
         }
     }
 
-    private void validateCarCount(int size) {
+    private void validateCarCount(final int size) {
         if (size < MINIMUM_CAR_COUNT) {
             throw new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "자동차 수는 2대 이상이어야 합니다.");
         }
     }
 
-    private List<Car> createCarsByNames(List<String> carNames) {
+    private List<Car> createCarsByNames(final List<String> carNames) {
         return carNames.stream()
                 .map(carName -> new Car(carName, START_POINT))
                 .collect(Collectors.toUnmodifiableList());
