@@ -41,7 +41,7 @@ public class Cars {
                 .orElseThrow();
     }
 
-    public Cars judgment() {
+    public Cars pickWinners() {
         Cars winners = new Cars();
         winners.addAll(findSamePositionCar(findMaxPositionCar()));
 

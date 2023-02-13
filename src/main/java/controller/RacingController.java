@@ -42,7 +42,7 @@ public class RacingController {
     }
 
     private void winners() {
-        outputView.printWinners(cars.judgment());
+        outputView.printWinners(cars.pickWinners());
     }
 
     private void printStatus() {
