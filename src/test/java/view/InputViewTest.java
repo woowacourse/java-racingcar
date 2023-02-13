@@ -25,7 +25,7 @@ class InputViewTest {
     }
 
     @ParameterizedTest(name = "시도 횟수 입력 예외 발생 테스트, input = {0}")
-    @ValueSource(strings = {"a", "", " "})
+    @ValueSource(strings = {"a", "", " ", "2147483648", "-2147483649"})
     void inputExceptionTryTest(String input) {
         String inputs = input + "\n";
         InputStream is = new ByteArrayInputStream(inputs.getBytes());
@@ -37,5 +37,4 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
-
 }
