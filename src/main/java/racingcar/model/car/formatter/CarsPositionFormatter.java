@@ -12,9 +12,9 @@ public class CarsPositionFormatter {
         this.carFormatter = carFormatter;
     }
 
-    public String format(Cars cars) {
+    public String formatCarsPosition(Cars cars) {
         return cars.getCars().stream()
-                .map(carFormatter::format)
+                .map(carFormatter::formatCarPosition)
                 .collect(Collectors.joining(LINE_BREAK)) + LINE_BREAK;
     }
 }

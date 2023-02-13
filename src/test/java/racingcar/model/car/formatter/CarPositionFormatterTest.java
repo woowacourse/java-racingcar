@@ -20,7 +20,7 @@ class CarPositionFormatterTest {
         //when
         pobi.moveForward();
         pobi.moveForward();
-        String actual = carPositionFormatter.format(pobi);
+        String actual = carPositionFormatter.formatCarPosition(pobi);
 
         //then
         assertThat(actual).isEqualTo(expectedFormat);

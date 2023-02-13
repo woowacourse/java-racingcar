@@ -36,13 +36,13 @@ public class Cars {
     }
 
     public void validateCarNameDuplication(List<Car> cars) {
-        int afterDistinctSize = getAfterDistinctSize(cars);
-        if (cars.size() != afterDistinctSize) {
+        int distinctSize = getDistinctSize(cars);
+        if (cars.size() != distinctSize) {
             throw new IllegalArgumentException(ErrorMessage.CAR_NAME_DUPLICATED.message());
         }
     }
 
-    private int getAfterDistinctSize(List<Car> cars) {
+    private int getDistinctSize(List<Car> cars) {
         return cars.stream()
                 .map(Car::getCarName)
                 .collect(Collectors.toSet())

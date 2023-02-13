@@ -49,7 +49,7 @@ public class RacingController {
     }
 
     public void concludeWinner(Track track) {
-        outputView.printOutputFormat(track.winingCarsFormat());
+        outputView.printOutputFormat(track.formatWinningCars());
     }
 
     public void terminatedByException(String errorMessage) {

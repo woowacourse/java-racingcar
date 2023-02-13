@@ -30,7 +30,7 @@ class TrackStateFormatterTest {
 
         //when
         cars.moveCars();
-        String actual = trackStateFormatter.winnerCarsFormat(cars.getWinnerCars());
+        String actual = trackStateFormatter.formatWinnerCars(cars.getWinnerCars());
 
         //then
         assertThat(actual).isEqualTo(expectedFormat);

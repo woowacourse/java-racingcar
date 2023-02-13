@@ -16,11 +16,11 @@ public class TrackStateFormatter {
         this.carsPositionFormatter = carsPositionFormatter;
     }
 
-    public String carsPositionFormat(Cars cars) {
-        return carsPositionFormatter.format(cars);
+    public String formatCarsPosition(Cars cars) {
+        return carsPositionFormatter.formatCarsPosition(cars);
     }
 
-    public String winnerCarsFormat(List<Car> winningCars) {
+    public String formatWinnerCars(List<Car> winningCars) {
         String winnerCarsFormat = winningCars.stream()
                 .map(Car::getCarName)
                 .collect(Collectors.joining(CAR_SEPARATOR));

@@ -22,7 +22,7 @@ class CarsPositionFormatterTest {
         //when
         cars.moveCars();
         cars.moveCars();
-        String actual = carsPositionFormatter.format(cars);
+        String actual = carsPositionFormatter.formatCarsPosition(cars);
 
         //then
         assertThat(actual).isEqualTo(expectedFormat);

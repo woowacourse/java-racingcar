@@ -7,7 +7,7 @@ import racingcar.model.trialtimes.TrialTimes;
 
 public class Track {
     private static final int END_CONDITION = 0;
-    private static final TrackStateFormatter FORMATTER = RacingCarContext.trackStateFormatter();
+    private static final TrackStateFormatter FORMATTER = RacingCarContext.getTrackStateFormatter();
 
     private final Cars cars;
     private final TrialTimes trialTimes;
@@ -27,10 +27,10 @@ public class Track {
     }
 
     public String carsPositionFormat() {
-        return FORMATTER.carsPositionFormat(cars);
+        return FORMATTER.formatCarsPosition(cars);
     }
 
-    public String winingCarsFormat() {
-        return FORMATTER.winnerCarsFormat(cars.getWinnerCars());
+    public String formatWinningCars() {
+        return FORMATTER.formatWinnerCars(cars.getWinnerCars());
     }
 }
