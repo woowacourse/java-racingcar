@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.controller.response.MovedResult;
+import racingcar.controller.response.MovedResultResponse;
 import racingcar.controller.response.WinnerResponse;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printState(final MovedResult result) {
+    public static void printState(final MovedResultResponse result) {
         Map<String, Integer> positionByNameMap = result.positionByNameMap();
 
         String results = positionByNameMap.keySet().stream()

@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import racingcar.common.log.Logger;
-import racingcar.controller.response.MovedResult;
+import racingcar.controller.response.MovedResultResponse;
 import racingcar.controller.response.WinnerResponse;
 import racingcar.domain.car.Cars;
 import racingcar.domain.game.Lap;
@@ -47,7 +47,7 @@ public class RacingCarController {
     private void runRace(final RacingCarGame game) {
         while (game.hasMoreLap()) {
             game.race();
-            OutputView.printState(new MovedResult(game.cars()));
+            OutputView.printState(new MovedResultResponse(game.cars()));
         }
         Winners winners = game.winner();
         OutputView.printWinners(new WinnerResponse(winners.winners()));
