@@ -12,7 +12,7 @@ public class InputView {
         return readLine();
     }
 
-    public String readNumberOfTry(OutputView outputView) {
+    public String readTryNumber(OutputView outputView) {
         outputView.readNumberOfTry();
         return readLine();
     }
