@@ -36,9 +36,7 @@ public class CarService {
     public void runRound(int round) {
         for (Car car : cars.getCars()) {
             Position position = car.getPosition();
-            Random random = new Random();
-            int randomNumber = random.nextInt(Car.RANDOM_NUMBER_BOUNDARY);
-            runForward(car, randomNumber);
+            runForward(car, makeRandomNumber());
             position.validateCurrentPosition(position.getPosition(), round);
         }
     }
@@ -47,6 +45,11 @@ public class CarService {
         if (randomNumber >= Car.FORWARD_BOUNDARY) {
             car.movePosition();
         }
+    }
+
+    private int makeRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(Car.RANDOM_NUMBER_BOUNDARY);
     }
 
     public List<String> findWinner() {
