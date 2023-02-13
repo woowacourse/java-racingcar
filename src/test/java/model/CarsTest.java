@@ -16,7 +16,8 @@ class CarsTest {
     @Test
     @DisplayName("Cars 객체 생성 성공 테스트")
     void createCarsTest() {
-        Cars cars = new Cars("pobi,crong,honux");
+        List<String> carsName = new ArrayList<>(Arrays.asList("pobi","crong","honux"));
+        Cars cars = new Cars(carsName);
 
         assertThat(cars.getCars().size()).isEqualTo(3);
     }
@@ -24,9 +25,8 @@ class CarsTest {
     @Test
     @DisplayName("단일 우승자인 경우 결과 테스트")
     void getWinnerTest() {
-
-        String names = "ocean,jamie";
-        Cars cars = new Cars(names);
+        List<String> carsName = new ArrayList<>(Arrays.asList("ocean","jamie"));
+        Cars cars = new Cars(carsName);
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 0, 6, 7));
 
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
@@ -34,15 +34,16 @@ class CarsTest {
         for (int i = 0; i < 2; i++)
             cars.moveResult(testNumberGenerator);
 
-        assertThat(cars.getWinners()).isEqualTo("ocean");
+        List<String> answer = new ArrayList<>(Arrays.asList("ocean"));
+        assertThat(cars.getWinners()).isEqualTo(answer);
     }
 
     @Test
     @DisplayName("다중 우승자인 경우 결과 테스트")
     void getWinnersTest() {
 
-        String names = "ocean,jamie";
-        Cars cars = new Cars(names);
+        List<String> carsName = new ArrayList<>(Arrays.asList("ocean","jamie"));
+        Cars cars = new Cars(carsName);
         List<Integer> randomNumbers = new ArrayList<>(Arrays.asList(9, 9, 6, 6));
 
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(randomNumbers);
@@ -50,11 +51,11 @@ class CarsTest {
         for (int i = 0; i < 2; i++)
             cars.moveResult(testNumberGenerator);
 
-        assertThat(cars.getWinners()).isEqualTo("ocean, jamie");
+        List<String> answer = new ArrayList<>(Arrays.asList("ocean","jamie"));
+        assertThat(cars.getWinners()).isEqualTo(answer);
     }
 
     static class TestNumberGenerator implements NumberGenerator {
-        private static final int CAR_MOVE_STANDARD_LENGTH = 4;
         private final List<Integer> numbers;
 
         public TestNumberGenerator(List<Integer> numbers) {
@@ -62,11 +63,8 @@ class CarsTest {
         }
 
         @Override
-        public boolean generateNumber() {
-            if(numbers.remove(0)>=CAR_MOVE_STANDARD_LENGTH) {
-                return true;
-            }
-            return false;
+        public int generateNumber() {
+            return numbers.remove(0);
         }
     }
 }

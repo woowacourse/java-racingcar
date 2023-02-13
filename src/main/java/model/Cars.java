@@ -2,43 +2,38 @@ package model;
 
 import util.NumberGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
-    public Cars(String carsName) {
-        List<String> carNames = splitCarName(carsName);
-
-        for (String name : carNames) {
+    public Cars(List<String> carsName) {
+        for (String name : carsName) {
             cars.add(new Car(name));
         }
     }
 
-    private List<String> splitCarName(String carsName) {
-        return Arrays.asList(carsName.split(","));
-    }
-
     public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return List.copyOf(cars);
     }
 
     public void moveResult(NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.moveByRandom(numberGenerator.generateNumber());
+            car.moveByNumber(numberGenerator.generateNumber());
         }
     }
 
-    public String getWinners() {
+    public List<String> getWinners() {
         return cars.stream().filter(car -> car.checkLocationEqual(getMaxLocation()))
-                .map(Car::getCarName)
-                .collect(Collectors.joining(", "));
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
-    private int getMaxLocation(){
+    private Car getMaxLocation() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getCarLocation))
-                .get().getCarLocation();
+                .max(Car::compareTo)
+                .get();
     }
 }

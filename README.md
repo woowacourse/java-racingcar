@@ -5,7 +5,7 @@
 ## 우아한테크코스 코드리뷰
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
-
+## step 1 기능 명세서
 ## 기능 흐름 이해
 1. 경주 자동차 이름 입력
     - 이름은 ,로 구분
@@ -25,7 +25,6 @@
     3. 우승자 이름 출력
 
 ## 기능 명세서
-
 ### controller
 #### Controller
 - [x] 자동차 이름 입력 view 호출
@@ -64,3 +63,7 @@
 #### OutputView
 - [x] 실행 결과 출력
 - [x] 우승한 자동차 이름 출력
+
+
+## step 2 기능명세서
+- MVC 패턴 기반으로 리팩터링

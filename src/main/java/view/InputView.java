@@ -2,26 +2,35 @@ package view;
 
 import constant.ExceptionMessage;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private static final int CHECK_NEGATIVE_NUMBER = 0;
+    private static final String SPLIT_NAME_INDICATOR = ",";
+    private static final int NEGATIVE_NUMBER_INDICATOR = 0;
+
     private Scanner scanner = new Scanner(System.in);
-    public String inputCarName() {
-        return scanner.nextLine();
+
+    public List<String> inputCarName() {
+        return splitCarName(scanner.nextLine());
+    }
+
+    private List<String> splitCarName(String carsName) {
+        return Arrays.asList(carsName.split(SPLIT_NAME_INDICATOR));
     }
 
     public int inputTryCount() {
         try {
             int tryCount = Integer.parseInt(scanner.nextLine());
-            return checkPositiveNumber(tryCount);
+            return validPositiveNumber(tryCount);
         } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_NOT_NUMBER_MESSAGE.getExceptionMessage());
         }
     }
 
-    private int checkPositiveNumber(int number) {
-        if (number <= CHECK_NEGATIVE_NUMBER) {
+    private int validPositiveNumber(int number) {
+        if (number <= NEGATIVE_NUMBER_INDICATOR) {
             throw new IllegalArgumentException(ExceptionMessage.EXCEPTION_TRY_COUNT_MESSAGE.getExceptionMessage());
         }
         return number;
