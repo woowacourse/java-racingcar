@@ -39,9 +39,17 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("게임의 우승자는 이름으로 전달 된다.")
+    @DisplayName("게임의 우승자들은 이름 리스트로 전달 된다.")
     void getWinnersTest() {
-        //TODO : 게임의 우승자를 반환하는 기능 테스트하기
+        //Given
+        RacingGame racingGame = new RacingGame(cars, round);
+
+        //When
+        racingGame.playGame();
+        List<String> winners = racingGame.getWinners();
+
+        //Then
+        assertThat(winners).contains("ako");
     }
 
 
