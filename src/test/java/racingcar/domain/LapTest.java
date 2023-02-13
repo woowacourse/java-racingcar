@@ -4,58 +4,41 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+
 @DisplayName("Lap 은 ")
 class LapTest {
 
     @Test
-    @DisplayName("전체 바퀴 수를 받아 생성된다.")
+    @DisplayName("run()시 countTryLap을 하나씩 증가시킨다.")
     void test_1() {
         // given
-        int totalLap = 10;
-        Lap lap = new Lap(totalLap);
-
-        // when & then
-        Assertions.assertThat(lap.getTotalLap()).isEqualTo(totalLap);
-    }
-
-    @Test
-    @DisplayName("next() 실행 시 currentLap을 1 만큼 증가시킨다.")
-    void test_2() {
-        // given
-        int totalLap = 10;
-        Lap lap = new Lap(totalLap);
+        Lap lap = new Lap(5);
+        int beforeRun = lap.getCountTryLap();
 
         // when
-        lap.next();
+        lap.run();
 
         // then
-        Assertions.assertThat(lap.getCurrentLap()).isEqualTo(1);
+        Assertions.assertThat(lap.getCountTryLap()).isEqualTo(beforeRun + 1);
     }
 
     @Test
-    @DisplayName("next() 실행 시 모든 바퀴를 다 돌았다면 예외를 발생시킨다.")
+    @DisplayName("isNotSame()시 countTryLap과 totalLap이 같은지 다른지 판별한다.")
+    void test_2() {
+        // given
+        Lap lap = new Lap(1);
+
+        // when
+        lap.run();
+
+        // then
+        Assertions.assertThat(lap.isNotSame()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("시도 회수를 0보다 작은 숫자를 입력했을때 예외를 발생시킨다.")
     void test_3() {
-        // given
-        int totalLap = 1;
-        Lap lap = new Lap(totalLap);
-        lap.next();
-
-        // when & then
-        Assertions.assertThatThrownBy(lap::next)
-                .isInstanceOf(IllegalStateException.class);
-    }
-
-    @Test
-    @DisplayName("hasNext() 는 전체 바퀴 수 만큼 진행되지 않은 경우 true를 반환한다.")
-    void test_4() {
-        // given
-        int totalLap = 10;
-        Lap lap = new Lap(totalLap);
-
-        // when & then
-        for (int i = 0; i < totalLap - 1; i++) {
-            Assertions.assertThat(lap.hasNext()).isTrue();
-            lap.next();
-        }
-    }
-}
+        assertThatThrownBy(()->new Lap(-1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }}
