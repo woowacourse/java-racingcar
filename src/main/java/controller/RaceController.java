@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Car;
-import domain.Judge;
 import domain.Participants;
 import domain.Race;
 import java.util.List;
@@ -14,7 +13,6 @@ public class RaceController {
     private InputView inputView = new InputView();
     private Participants participants;
     private Race race;
-    private final Judge judge = new Judge();
 
     public void play() {
         readyForGame();
@@ -29,7 +27,7 @@ public class RaceController {
 
     private void initParticipants() {
         List<String> carNames = repeat(inputView::readCarNames);
-        participants = new Participants(carNames, judge);
+        participants = new Participants(carNames);
     }
 
     private void initRace() {
@@ -54,7 +52,7 @@ public class RaceController {
     }
 
     private void printWinners() {
-        List<Car> winners = participants.getWinners();
+        List<Car> winners = participants.findWinners();
         OutputView.printWinners(winners);
     }
 

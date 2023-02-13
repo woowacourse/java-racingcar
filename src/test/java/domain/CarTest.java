@@ -7,12 +7,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 class CarTest {
 
     private Car car;
-    private Judge judge;
 
     @BeforeEach
     void before() {
-        judge = new Judge();
-        car = new Car("test", judge);
+        car = new Car("test");
     }
 
     @ValueSource(ints = {1, 2, 3, 4, 5})

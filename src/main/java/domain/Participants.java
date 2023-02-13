@@ -9,16 +9,15 @@ import java.util.stream.Collectors;
 
 public class Participants {
 
-    public static final Comparator<Integer> MAX = Integer::max;
     private final List<Car> cars;
 
-    public Participants(List<String> carNames, Judge judge) {
+    public Participants(List<String> carNames) {
         cars = carNames.stream()
-            .map(carName -> new Car(carName, judge))
+            .map(carName -> new Car(carName))
             .collect(Collectors.toList());
         PARTICIPANTS_VALIDATOR.validate(carNames);
     }
-    
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
@@ -27,10 +26,10 @@ public class Participants {
         cars.forEach(Car::drive);
     }
 
-    public List<Car> getWinners() {
+    public List<Car> findWinners() {
         int maxDistance = cars.stream()
             .map(Car::getDrivenDistance)
-            .max(MAX)
+            .max(Comparator.naturalOrder())
             .orElse(0);
         return cars.stream()
             .filter(car -> car.getDrivenDistance() == maxDistance)

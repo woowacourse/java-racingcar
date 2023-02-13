@@ -10,20 +10,19 @@ public class Car {
     private final String name;
     private int drivenDistance = 0;
     private final NumberGenerator numberGenerator;
-    private final Judge judge;
 
-    public Car(final String name, Judge judge) {
+    public Car(final String name) {
         CAR_NAME_VALIDATOR.validate(name);
         this.name = name;
         numberGenerator = new RandomNumberGenerator();
-        this.judge = judge;
     }
 
     public void drive() {
         final int DRIVING_DISTANCE = 1;
+        final int MOVING_STANDARD = 4;
 
         int number = chooseNumber();
-        if (judge.judgeDriving(number)) {
+        if (number >= MOVING_STANDARD) {
             drivenDistance += DRIVING_DISTANCE;
         }
     }
