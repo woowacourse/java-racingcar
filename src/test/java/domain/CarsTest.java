@@ -4,10 +4,20 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import util.NumberGenerator;
-
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class CarsTest {
+
+    @Test
+    @DisplayName("중복된 자동차 이름이 존재하면 예외가 발생한다.")
+    void checkNameDuplication() {
+        List<String> carNames = List.of("pobi", "pobi", "crong");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> new Cars(carNames));
+    }
 
     @Test
     @DisplayName("라운드를 진행하지 않았을 때의 최대 이동 거리는 0이다.")
