@@ -2,33 +2,35 @@ package controller;
 
 import model.Car;
 import model.Cars;
-import model.RandomGenerator;
+import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RacingController {
 
+    private final InputView inputView;
     private final OutputView outputView;
-    private final Cars cars;
-    private final int tryCount;
+    private Cars cars;
 
-    public RacingController(List<String> carNames, int tryCount) {
-        this.cars = new Cars(carNames
+    public RacingController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        initializeCars();
+    }
+
+    private void initializeCars(){
+        this.cars = new Cars(inputView.getCarNames()
                 .stream()
-                .map(name -> new Car(name, new RandomGenerator(new Random())))
+                .map(name -> new Car(name))
                 .collect(Collectors.toUnmodifiableList())
         );
-        this.tryCount = tryCount;
-        this.outputView = new OutputView();
     }
 
     public void race() {
         outputView.resultHeader();
-        IntStream.range(0, tryCount)
+        IntStream.range(0, inputView.getTryCount())
                 .forEach(this::repeat);
         outputView.result(cars);
         outputView.winner(cars.getWinner());
