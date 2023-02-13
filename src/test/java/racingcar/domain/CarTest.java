@@ -48,7 +48,7 @@ class CarTest {
         // when TODO: then 분리
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
-                    new Car(wrongName);
-                });
+                    new Car(wrongName, new RandomIntGenerator());
+                }).withMessage(WRONG_LENGTH_OF_NAME_ANNOUNCEMENT);
     }
 }
