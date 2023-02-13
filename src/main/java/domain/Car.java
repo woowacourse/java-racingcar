@@ -27,7 +27,7 @@ public class Car {
     }
 
     private int chooseNumber() {
-        return numberGenerator.generateNumber();
+        return numberGenerator.generate();
     }
 
     public int getDrivenDistance() {
