@@ -3,6 +3,7 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.SoftAssertions.*;
 
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,18 +21,17 @@ class CarsTest {
         Car car2 = new Car("test2");
         Car car3 = new Car("test3");
 
-        car1.move(4);
-        car2.move(7);
-        car3.move(1);
+        car1.move(true);
+        car2.move(true);
+        car3.move(false);
 
-        car1.move(9);
-        car2.move(8);
-        car3.move(2);
+        car1.move(true);
+        car2.move(true);
+        car3.move(false);
 
         cars.add(car1);
         cars.add(car2);
         cars.add(car3);
-
     }
 
     @Test
@@ -40,37 +40,28 @@ class CarsTest {
         int firstTurnCount = cars.getTurnCount();
 
         RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
-
         cars.playRound(randomValueGenerator);
 
         int secondTurnCount = cars.getTurnCount();
 
-        cars.playRound(randomValueGenerator);
-
-        int thirdTurnCount = cars.getTurnCount();
-
-        assertSoftly(softly -> {
-            softly.assertThat(firstTurnCount).isEqualTo(2);
-            softly.assertThat(secondTurnCount).isEqualTo(3);
-            softly.assertThat(thirdTurnCount).isEqualTo(4);
-        });
+        assertThat(firstTurnCount + 1 == secondTurnCount).isTrue();
     }
 
     @Test
     @DisplayName("라운드 결과 테스트")
     void getRoundResultTest() {
-        Map<String, Integer> actualResult = cars.getRoundResult();
+        List<Map.Entry<String, Integer>> actualResult = cars.getRoundResult().getRoundResult();
 
         assertSoftly(softly -> {
-            softly.assertThat(actualResult.get("test1")).isEqualTo(2);
-            softly.assertThat(actualResult.get("test2")).isEqualTo(2);
-            softly.assertThat(actualResult.get("test3")).isEqualTo(0);
+            softly.assertThat(actualResult.get(0).getValue()).isEqualTo(2);
+            softly.assertThat(actualResult.get(1).getValue()).isEqualTo(2);
+            softly.assertThat(actualResult.get(2).getValue()).isEqualTo(0);
         });
     }
 
     @Test
     @DisplayName("우승자를 확인하는 기능 테스트")
     void getWinnersTest() {
-        assertThat(cars.getWinners()).containsExactly("test1", "test2");
+        assertThat(cars.getWinners().getWinners()).containsExactly("test1", "test2");
     }
 }

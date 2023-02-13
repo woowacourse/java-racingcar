@@ -4,10 +4,11 @@ import java.util.Random;
 
 public class RandomValueGenerator implements ValueGenerator {
 
-    private final int MAX_VALUE = 9;
+    private static final int RIGHT_BOUND_EXCLUSIVE = 10;
+
+    Random random = new Random();
 
     public int generate() {
-        Random random = new Random();
-        return random.nextInt(MAX_VALUE + 1);
+        return random.nextInt(RIGHT_BOUND_EXCLUSIVE);
     }
 }

@@ -21,11 +21,11 @@ class CarTest {
     @DisplayName("자동차의 이동에 대한 테스트")
     void moveTest() {
         Car car = new Car("test");
-        car.move(4);
+        car.move(true);
         int firstPosition = car.getPosition();
-        car.move(5);
+        car.move(true);
         int secondPosition = car.getPosition();
-        car.move(3);
+        car.move(false);
         assertSoftly(softly -> {
             softly.assertThat(firstPosition).isEqualTo(1);
             softly.assertThat(secondPosition).isEqualTo(2);
@@ -35,6 +35,6 @@ class CarTest {
     @ParameterizedTest(name = "자동차 이동의 예외에 대한 테스트")
     @ValueSource(ints = {-1, 10})
     void moveExceptionTest(int value) {
-        assertThatThrownBy(() -> new Car("test").move(value)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car("test").isMovable(value)).isInstanceOf(IllegalArgumentException.class);
     }
 }
