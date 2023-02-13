@@ -6,9 +6,7 @@ public class Range {
 
     public Range(int min, int max) {
         if (max < min) {
-            int temp = min;
-            min = max;
-            max = temp;
+            throw new IllegalArgumentException("Range 객체의 생성자에 잘못된 인자가 전달되었습니다.");
         }
         this.min = min;
         this.max = max;
