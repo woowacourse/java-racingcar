@@ -1,36 +1,17 @@
 package domain;
 
-import validation.ErrorMessage;
-
 import java.util.Objects;
 
 public class Car {
 
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
     private final static int MIN_MOVE_NUMBER = 4;
 
-    private final String name;
+    private final CarName carName;
     private int moveCount;
 
     public Car(String name) {
-        validate(name);
-        this.name = name;
+        this.carName = new CarName(name);
         this.moveCount = 0;
-    }
-
-    private void validate(String name) {
-        if (isEmptyOrBlank(name) || isWrongSizeName(name)) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_CAR_NAME.getMessage());
-        }
-    }
-
-    private boolean isEmptyOrBlank(String name) {
-        return name.isEmpty() || name.isBlank();
-    }
-
-    private boolean isWrongSizeName(String name) {
-        return name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH;
     }
 
     public void move() {
@@ -49,13 +30,8 @@ public class Car {
         return moveCount == maxMoveCount;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String toString() {
-        return name + " : " + "-".repeat(moveCount);
+    public String getCarName() {
+        return carName.getName();
     }
 
     @Override
@@ -67,11 +43,11 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return Objects.equals(getName(), car.getName());
+        return Objects.equals(getCarName(), car.getCarName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName());
+        return Objects.hash(getCarName());
     }
 }
