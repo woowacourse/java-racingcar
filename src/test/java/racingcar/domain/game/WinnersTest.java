@@ -16,18 +16,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Winners 는")
 class WinnersTest {
 
+    private static final int ON_GOING_NUMBER = 5;
+    private static final int STOP_NUMBER = 1;
+
     @Test
     void 생성_시_자동차들_중_가장_멀리_간_자동차를_우승자로_가진다() {
         // given
-        Cars cars = new Cars(List.of("말랑", "채채", "시카", "카일"));
-        cars.move(4, 4, 4, 0);
-        cars.move(4, 4, 0, 0);
+        Cars cars = new Cars(List.of("말랑", "채채", "카일", "시카"));
+        cars.move(new NumberGenerator() {
+            private final List<Integer> numbers = List.of(ON_GOING_NUMBER, ON_GOING_NUMBER, ON_GOING_NUMBER, STOP_NUMBER);
+            private int index = 0;
+
+            @Override
+            public int generate(final int minNumber, final int maxNumber) {
+                return numbers.get(index++);
+            }
+        });
 
         // when
         Winners winners = new Winners(cars.cars());
 
         // then
         assertThat(winners.winners().stream().map(it -> it.name().value()).collect(Collectors.toList()))
-                .containsExactlyInAnyOrderElementsOf(List.of("말랑", "채채"));
+                .containsExactlyInAnyOrderElementsOf(List.of("말랑", "채채", "카일"));
     }
 }

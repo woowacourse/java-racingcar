@@ -3,6 +3,8 @@ package racingcar.domain.car;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.game.NumberGenerator;
+import racingcar.mock.MockFixedNumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Cars 는 ")
 class CarsTest {
 
-    private static final int ONGOING_NUMBER = 4;
     private static final String MALLANG_NAME = "말랑";
     private static final String KYLE_NAME = "카일";
+    private static final int ONGOING_NUMBER = 5;
+    private final NumberGenerator numberGenerator = new MockFixedNumberGenerator(ONGOING_NUMBER);
 
     @Test
     @DisplayName("String List를 받아 해당 이름을 가진 Car를 생성한다.")
@@ -50,7 +53,7 @@ class CarsTest {
                 .collect(Collectors.toList());
 
         // when
-        cars.move(ONGOING_NUMBER, ONGOING_NUMBER);
+        cars.move(numberGenerator);
 
         // then
         List<Car> afterMoveCars = cars.cars();

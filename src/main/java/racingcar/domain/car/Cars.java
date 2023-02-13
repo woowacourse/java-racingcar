@@ -1,5 +1,7 @@
 package racingcar.domain.car;
 
+import racingcar.domain.game.NumberGenerator;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,16 +24,7 @@ public class Cars {
         return this.cars;
     }
 
-    public void move(int... numbers) {
-        validateCount(numbers);
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).move(numbers[i]);
-        }
-    }
-
-    private void validateCount(final int[] numbers) {
-        if (numbers.length != cars.size()) {
-            throw new IllegalArgumentException();
-        }
+    public void move(final NumberGenerator numberGenerator) {
+        cars.forEach(it -> it.move(numberGenerator));
     }
 }

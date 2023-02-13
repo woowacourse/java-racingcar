@@ -2,12 +2,7 @@ package racingcar.domain.game;
 
 import racingcar.domain.car.Cars;
 
-import java.util.stream.IntStream;
-
 public class RacingCarGame {
-
-    private static final int MIN_NUMBER = 0;
-    private static final int MAX_NUMBER = 9;
 
     private final NumberGenerator numberGenerator;
     private final Cars cars;
@@ -38,13 +33,7 @@ public class RacingCarGame {
             throw new IllegalStateException("이미 모든 바퀴를 진행했습니다.");
         }
         currentLap = currentLap.increase();
-        cars.move(generateNumbers());
-    }
-
-    private int[] generateNumbers() {
-        return IntStream.range(0, cars.cars().size())
-                .map(it -> numberGenerator.generate(MIN_NUMBER, MAX_NUMBER))
-                .toArray();
+        cars.move(numberGenerator);
     }
 
     public boolean hasMoreLap() {

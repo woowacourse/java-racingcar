@@ -1,5 +1,7 @@
 package racingcar.domain.car;
 
+import racingcar.domain.game.NumberGenerator;
+
 public class Car {
 
     private static final int BOUNDARY_NUMBER = 4;
@@ -22,7 +24,8 @@ public class Car {
         return position;
     }
 
-    public void move(final int number) {
+    public void move(final NumberGenerator numberGenerator) {
+        int number = numberGenerator.generate(MIN_RANGE, MAX_RANGE);
         validateRange(number);
         position = nextPosition(number);
     }
