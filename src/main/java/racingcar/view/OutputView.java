@@ -10,9 +10,11 @@ public class OutputView {
 
     private static final String CARS_STATE_FORMAT = "%s : %s"; // ex) name : ---
     private static final String BAR = "-";
+    private static final String DELIMITER = ", ";
+    private static final String WINNER_SENTENCE = "가 최종 우승했습니다.";
 
     public static void printWinners(Winners winners) {
-        System.out.println(String.join(", ", getCarNames(winners.getWinners())) + "가 최종 우승했습니다.");
+        System.out.println(String.join(DELIMITER, getCarNames(winners.getWinners())) + WINNER_SENTENCE);
     }
 
     public static void printCarsStatus(List<Car> cars) {
@@ -30,10 +32,10 @@ public class OutputView {
     }
 
     private static String getCarStatus(Car car) {
-        return String.format(CARS_STATE_FORMAT,car.getName(),getBars(car.getPosition()));
+        return String.format(CARS_STATE_FORMAT, car.getName(), getBars(car.getPosition()));
     }
 
     private static String getBars(int count) {
-        return BAR .repeat(Math.max(0, count));
+        return BAR.repeat(Math.max(0, count));
     }
 }
