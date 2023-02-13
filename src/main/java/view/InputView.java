@@ -32,7 +32,7 @@ public class InputView {
     }
 
     private void validateInputCarName(String carName) {
-        if (carName.length() > MAX_CAR_NAME_LENGTH || carName.length() < MIN_CAR_NAME_LENGTH) {
+        if (carName.trim().length() > MAX_CAR_NAME_LENGTH || carName.trim().length() < MIN_CAR_NAME_LENGTH) {
             throw new CarNameLengthException();
         }
     }

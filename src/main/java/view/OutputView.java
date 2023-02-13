@@ -1,7 +1,7 @@
 package view;
 
 import domain.Car;
-import domain.CarRepository;
+import domain.Cars;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,8 +16,8 @@ public class OutputView {
     private static final String END_MESSAGE = "가 최종 우승했습니다.";
     private static final String DIVISION_CHAR = ",";
 
-    public void printStatus(CarRepository carRepository) {
-        for (Car car : carRepository.getAll()) {
+    public void printStatus(Cars cars) {
+        for (Car car : cars.getAll()) {
             printStatus(car);
         }
     }
@@ -26,10 +26,7 @@ public class OutputView {
         String carName = car.getName();
         int position = car.getPosition();
         System.out.print(carName + CAR_NAME_FORMAT);
-        for (int index = 0; index < position; index++) {
-            System.out.print(MOVEMENT);
-        }
-        System.out.println();
+        System.out.println(MOVEMENT.repeat(position));
     }
 
     public void resultMessage() {
@@ -48,7 +45,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinners(CarRepository winners) {
+    public void printWinners(Cars winners) {
         System.out.println(winnerFormat(winners.getAll()) + END_MESSAGE);
 
     }

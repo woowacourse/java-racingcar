@@ -1,8 +1,7 @@
 package controller;
 
 import domain.Car;
-import domain.CarRepository;
-import domain.Referee;
+import domain.Cars;
 import util.NumberGenerator;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -11,26 +10,25 @@ import view.OutputView;
 public class RacingController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final CarRepository carRepository = new CarRepository();
+    private final Cars cars = new Cars();
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
-    private final Referee referee = new Referee();
 
     private static final int START_INDEX = 0;
 
     public void play() {
         inputCars();
-        MoveNTimes(inputTryCount());
+        moveByTryCount(inputTryCount());
         winners();
     }
 
     public void inputCars() {
         String[] carNames = inputCarNames();
         for (String carName : carNames) {
-            carRepository.addCar(new Car(carName));
+            cars.addCar(new Car(carName));
         }
     }
 
-    private void MoveNTimes(int tryCount) {
+    private void moveByTryCount(int tryCount) {
         outputView.newLine();
         outputView.resultMessage();
         for (int index = START_INDEX; index < tryCount; index++) {
@@ -40,16 +38,15 @@ public class RacingController {
     }
 
     private void move() {
-        carRepository.moveAll(numberGenerator);
+        cars.moveAll(numberGenerator);
     }
 
     private void winners() {
-        CarRepository winnerCarRepository = referee.judgment(carRepository);
-        outputView.printWinners(winnerCarRepository);
+        outputView.printWinners(cars.pickWinners());
     }
 
     private void printStatus() {
-        outputView.printStatus(carRepository);
+        outputView.printStatus(cars);
         outputView.newLine();
     }
 
