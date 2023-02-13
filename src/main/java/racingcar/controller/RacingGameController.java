@@ -32,7 +32,7 @@ public class RacingGameController {
         return new RacingGame(new RandomNumberGenerator(), cars, count);
     }
 
-    public <T, R> R retry(final Function<T, R> function, final Supplier<T> supplier) {
+    private <T, R> R retry(final Function<T, R> function, final Supplier<T> supplier) {
         try {
             return function.apply(supplier.get());
         } catch (IllegalArgumentException e) {
