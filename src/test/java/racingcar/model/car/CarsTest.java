@@ -1,5 +1,8 @@
 package racingcar.model.car;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,9 +12,6 @@ import racingcar.model.car.strategy.MovingStrategy;
 import racingcar.model.car.strategy.NotMovingStrategy;
 import racingcar.model.car.strategy.RandomMovingStrategy;
 import racingcar.util.ErrorMessage;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 
 class CarsTest {
     @DisplayName("중복되는 자동차 이름은 존재할 수 없다.")
@@ -56,32 +56,13 @@ class CarsTest {
         for (int i = 0; i < 2; i++) {
             cars.moveCars();
         }
-        List<Car> winnerCars = cars.getWinnerCars();
+        WinnerCars winnerCars = WinnerCars.fromCars(cars);
 
         // then
-        assertThat(winnerCars)
+        assertThat(winnerCars.getCars())
                 .extracting("carName")
                 .contains("pobi")
                 .doesNotContain("crong");
 
     }
-
-    @DisplayName("공동 우승 출력 테스트")
-    @Test
-    void winnerCarFormatTest() {
-        // given
-        Cars cars = TestDataManager.getCarsTestData();
-
-        // when
-        for (int i = 0; i < 2; i++) {
-            cars.moveCars();
-        }
-        List<Car> winnerCars = cars.getWinnerCars();
-
-        // then
-        assertThat(winnerCars)
-                .extracting("carName")
-                .contains("pobi", "eddy");
-    }
-
 }

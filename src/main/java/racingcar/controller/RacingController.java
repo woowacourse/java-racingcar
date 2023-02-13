@@ -1,10 +1,9 @@
 package racingcar.controller;
 
-import java.util.List;
 import racingcar.RacingCarContext;
-import racingcar.model.car.Car;
 import racingcar.model.car.CarFactory;
 import racingcar.model.car.Cars;
+import racingcar.model.car.WinnerCars;
 import racingcar.model.track.Track;
 import racingcar.model.trialtimes.TrialTimes;
 import racingcar.util.ErrorMessage;
@@ -61,8 +60,9 @@ public class RacingController {
     }
 
     public void concludeWinner(Track track) {
-        List<Car> winningCars = track.getCars().getCars();
-        outputView.printOutputFormat(TRACK_FORMATTER.formatWinnerCars(winningCars));
+        WinnerCars winnerCars = WinnerCars.fromCars(track.getCars());
+        String winnerCarsFormat = TRACK_FORMATTER.formatWinnerCars(winnerCars);
+        outputView.printOutputFormat(winnerCarsFormat);
     }
 
     public void terminatedByException(String errorMessage) {

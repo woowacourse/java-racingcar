@@ -1,9 +1,9 @@
 package racingcar.view.formatter.track;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
+import racingcar.model.car.WinnerCars;
 import racingcar.view.formatter.car.CarsPositionFormatter;
 
 public class TrackStateFormatter {
@@ -20,8 +20,8 @@ public class TrackStateFormatter {
         return carsPositionFormatter.formatCarsPosition(cars);
     }
 
-    public String formatWinnerCars(List<Car> winningCars) {
-        String winnerCarsFormat = winningCars.stream()
+    public String formatWinnerCars(WinnerCars winningCars) {
+        String winnerCarsFormat = winningCars.getCars().stream()
                 .map(Car::getCarName)
                 .collect(Collectors.joining(CAR_SEPARATOR));
 

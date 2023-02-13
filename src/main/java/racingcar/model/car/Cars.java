@@ -1,6 +1,5 @@
 package racingcar.model.car;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.util.AssertUtils;
@@ -18,16 +17,6 @@ public class Cars {
         cars.stream()
                 .filter(Car::movable)
                 .forEach(Car::moveForward);
-    }
-
-    public List<Car> getWinnerCars() {
-        int maxPosition = Collections.max(cars.stream()
-                .map(Car::getPosition)
-                .collect(Collectors.toList()));
-
-        return cars.stream()
-                .filter(car -> car.matchPosition(maxPosition))
-                .collect(Collectors.toList());
     }
 
     private void validate(List<Car> cars) {

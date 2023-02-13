@@ -9,9 +9,9 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import racingcar.TestDataManager;
 import racingcar.model.car.Cars;
+import racingcar.model.car.WinnerCars;
 import racingcar.view.formatter.car.CarPositionFormatter;
 import racingcar.view.formatter.car.CarsPositionFormatter;
-import racingcar.view.formatter.track.TrackStateFormatter;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class TrackStateFormatterTest {
@@ -31,7 +31,8 @@ class TrackStateFormatterTest {
 
         //when
         cars.moveCars();
-        String actual = trackStateFormatter.formatWinnerCars(cars.getWinnerCars());
+        WinnerCars winnerCars = WinnerCars.fromCars(cars);
+        String actual = trackStateFormatter.formatWinnerCars(winnerCars);
 
         //then
         assertThat(actual).isEqualTo(expectedFormat);
