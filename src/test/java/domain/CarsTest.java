@@ -1,6 +1,10 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import utils.NumberGenerator;
+import utils.RandomNumberGenerator;
+import vo.CarName;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,23 +12,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import utils.RandomNumberGenerator;
-import vo.Name;
-import vo.Position;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
     Cars cars;
-    Car car = Car.of(Name.of("test"));
-    Car foxCar = Car.of(Name.of("fox"));
+    Car car = Car.of(CarName.of("test"));
+    Car foxCar = Car.of(CarName.of("fox"));
 
     @Test
     @DisplayName("차 추가 테스트")
     void givenCar_whenSavingCar_thenSavesCar() {
         ArrayList<Car> carHolder = new ArrayList<>();
-        cars = new Cars(carHolder, new RandomNumberGenerator());
+        cars = new Cars(carHolder, RandomNumberGenerator.makeInstance());
 
         cars.saveCar(car);
 
@@ -43,8 +42,8 @@ class CarsTest {
 
         cars.move();
 
-        Position position = car.getPosition();
-        assertThat(position).isEqualTo(Position.of(1L));
+        Long position = car.getPosition();
+        assertThat(position).isEqualTo(1L);
     }
 
     @Test
@@ -55,9 +54,9 @@ class CarsTest {
         cars.saveCar(foxCar);
         cars.move();
 
-        List<Name> winners = cars.getWinnerNames();
+        List<String> winners = cars.getWinnerNames();
 
-        assertThat(winners).containsExactly(Name.of("fox"));
+        assertThat(winners).containsExactly("fox");
     }
 
     @Test
@@ -68,9 +67,9 @@ class CarsTest {
         cars.saveCar(foxCar);
         cars.move();
 
-        List<Name> winnerNames = cars.getWinnerNames();
+        List<String> winnerNames = cars.getWinnerNames();
 
-        assertThat(winnerNames).containsExactly(Name.of("test"), Name.of("fox"));
+        assertThat(winnerNames).containsExactly("test", "fox");
     }
 
     private static Cars makeCarsWithMockValues(Integer... testNumbers) {
@@ -80,7 +79,7 @@ class CarsTest {
                 ));
     }
 
-    static class TestRandomNumberGenerator extends RandomNumberGenerator {
+    static class TestRandomNumberGenerator implements NumberGenerator {
         private final Iterator<Integer> testNumber;
 
         public TestRandomNumberGenerator(List<Integer> testNumber) {
@@ -88,7 +87,7 @@ class CarsTest {
         }
 
         @Override
-        public int generateRandomNumber() {
+        public int generateNumber() {
             while (testNumber.hasNext()) {
                 return testNumber.next();
             }

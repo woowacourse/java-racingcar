@@ -2,11 +2,18 @@ package utils;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
 
     public static final int RANDOM_NUMBER_BOUND = 10;
 
-    public int generateRandomNumber() {
+    private RandomNumberGenerator() {}
+
+    public static RandomNumberGenerator makeInstance() {
+        return new RandomNumberGenerator();
+    }
+
+    @Override
+    public int generateNumber() {
         return new Random().nextInt(RANDOM_NUMBER_BOUND);
     }
 }

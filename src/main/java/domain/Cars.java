@@ -1,9 +1,7 @@
 package domain;
 
-import utils.RandomNumberGenerator;
-import vo.Name;
-import vo.Position;
 import dto.Result;
+import utils.NumberGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,51 +9,48 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final NumberGenerator numberGenerator;
 
-    public Cars(List<Car> cars, RandomNumberGenerator randomNumberGenerator) {
+    public Cars(List<Car> cars, NumberGenerator numberGenerator) {
         this.cars = cars;
-        this.randomNumberGenerator = randomNumberGenerator;
+        this.numberGenerator = numberGenerator;
     }
 
     public void saveCar(Car car) {
         cars.add(car);
     }
 
-    public Position getPosition(Car car) {
-        return car.getPosition();
-    }
-
     public void move() {
-        cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
+        cars.forEach((car) -> car.move(numberGenerator.generateNumber()));
     }
 
-    public List<Name> getWinnerNames() {
-        Position highestPosition = calculateHighestPosition();
+    public List<String> getWinnerNames() {
+        Long highestPosition = calculateHighestPosition();
         return cars.stream()
                 .filter(car -> hasHighestPosition(highestPosition, car))
-                .map(Car::getName).collect(Collectors.toUnmodifiableList());
-    }
-
-    private static boolean hasHighestPosition(Position highestPosition, Car car) {
-        return car.hasPosition(highestPosition);
-    }
-
-    private Position calculateHighestPosition() {
-        return Collections.max(cars.stream()
-                        .map((Car::getPosition))
-                        .collect(Collectors.toUnmodifiableList()));
+                .map(Car::getName)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public Result getResult() {
         return Result.of(cars);
     }
 
+    private static boolean hasHighestPosition(Long highestPosition, Car car) {
+        return car.hasPosition(highestPosition);
+    }
+
+    private Long calculateHighestPosition() {
+        return Collections.max(cars.stream()
+                .map((Car::getPosition))
+                .collect(Collectors.toUnmodifiableList()));
+    }
+
     @Override
     public String toString() {
         return "Cars{" +
                 "cars=" + cars +
-                ", randomNumberGenerator=" + randomNumberGenerator +
+                ", randomNumberGenerator=" + numberGenerator +
                 '}';
     }
 }

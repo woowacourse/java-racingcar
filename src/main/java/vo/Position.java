@@ -2,7 +2,7 @@ package vo;
 
 import java.util.Objects;
 
-public class Position implements Comparable<Position> {
+public class Position {
     private final Long position;
 
     private Position(Long position) {
@@ -12,6 +12,7 @@ public class Position implements Comparable<Position> {
     public static Position of(Long position) {
         return new Position(position);
     }
+
     public Position plus() {
         return Position.of(position + 1);
     }
@@ -20,9 +21,8 @@ public class Position implements Comparable<Position> {
         return position;
     }
 
-    @Override
-    public int compareTo(Position o) {
-        return position.compareTo(o.position);
+    public boolean isValueOf(Long position) {
+        return Objects.equals(this.position, position);
     }
 
     @Override

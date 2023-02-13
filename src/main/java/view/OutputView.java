@@ -1,11 +1,8 @@
 package view;
 
-import vo.Name;
 import dto.Result;
-import vo.Position;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -26,30 +23,24 @@ public class OutputView {
 
     public void printResult(Result result) {
         result.forEach((name, position)
-                -> System.out.printf(RESULT_MESSAGE_FORMAT, makePositionBar(position), name.getValue())
+                -> System.out.printf(RESULT_MESSAGE_FORMAT, name, makePositionBar(position))
         );
         System.out.println();
     }
 
-    private static StringBuilder makePositionBar(Position position) {
+    private static StringBuilder makePositionBar(Long position) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int count = 0; count < position.getValue(); count++) {
+        for (int count = 0; count < position; count++) {
             stringBuilder.append(POSITION_BAR);
         }
         return stringBuilder;
     }
 
-    public void printWinners(List<Name> winners) {
-        System.out.printf(WINNER_MESSAGE_FORMAT, combineNamesWithDelimiter(winners));
+    public void printWinners(List<String> winnerNames) {
+        System.out.printf(WINNER_MESSAGE_FORMAT, combineNamesWithDelimiter(winnerNames));
     }
 
-    private static String combineNamesWithDelimiter(List<Name> names) {
-        return String.join(DELIMITER, getWinnerNameValues(names));
-    }
-
-    private static List<String> getWinnerNameValues(List<Name> names) {
-        return names.stream()
-                .map(Name::getValue)
-                .collect(Collectors.toList());
+    private static String combineNamesWithDelimiter(List<String> names) {
+        return String.join(DELIMITER, names);
     }
 }
