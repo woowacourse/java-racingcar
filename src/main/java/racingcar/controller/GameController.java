@@ -38,8 +38,8 @@ public class GameController {
         return inputView.readTryNumber(outputView);
     }
 
-    private void runRacingGame(int numberOfTry) {
-        while (numberOfTry-- > 0) {
+    private void runRacingGame(int tryNumber) {
+        while (tryNumber-- > 0) {
             racingCarGame.race(new RandomBasedMovement());
             outputView.printCarsStatus(CarRepository.findAll());
         }
