@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.dto.CarDto;
-import racingcar.util.DeterminedIntGenerator;
+import util.DeterminedIntGenerator;
 
 import static org.assertj.core.api.Assertions.*;
 

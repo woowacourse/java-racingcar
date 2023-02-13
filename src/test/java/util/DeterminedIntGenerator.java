@@ -1,6 +1,7 @@
-package racingcar.util;
+package util;
 
 import java.util.Random;
+import racingcar.util.IntGenerator;
 
 public class DeterminedIntGenerator implements IntGenerator {
 

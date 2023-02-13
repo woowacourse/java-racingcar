@@ -1,21 +1,31 @@
 package racingcar.domain;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.dto.CarDto;
-import racingcar.util.DeterminedIntGenerator;
+import util.DeterminedIntGenerator;
+import racingcar.util.IntGenerator;
 
 import static org.assertj.core.api.Assertions.*;
 
 class CarsTest {
 
+    List<String> names;
+
+    @BeforeEach
+    void setUp() {
+        names = List.of("phobi", "tele", "chan");
+    }
+
     @Test
     @DisplayName("전체 자동차 이동 요청")
     void shouldTryMoveEachCarWhenRequest() {
         // given
-        List<String> names = List.of("phobi", "tele", "chan");
-        Cars cars = new Cars(names, new DeterminedIntGenerator(4));
+        List<IntGenerator> intGenerators = List.of(new DeterminedIntGenerator(4), new DeterminedIntGenerator(4),
+                new DeterminedIntGenerator(4));
+        Cars cars = new Cars(names, intGenerators);
         List<CarDto> carDtosBeforeRequestMove = cars.getStatuses();
         // when
         cars.requestMoveEachCar();
@@ -33,10 +43,10 @@ class CarsTest {
     @DisplayName("우승자 정보 반환")
     void shouldReturnWinnerDataWhenRequest() {
         // given
-        Car winnerCar = new Car("1th", new DeterminedIntGenerator(5));
-        Car loserCar = new Car("2nd", new DeterminedIntGenerator(3));
-        List<Car> carsInput = List.of(winnerCar, loserCar);
-        Cars cars = new Cars(carsInput, true);
+        List<String> names = List.of("1th", "tele", "chan");
+        List<IntGenerator> intGenerators = List.of(new DeterminedIntGenerator(4), new DeterminedIntGenerator(3),
+                new DeterminedIntGenerator(3));
+        Cars cars = new Cars(names, intGenerators);
         // when
         cars.requestMoveEachCar();
         List<CarDto> winners = cars.getWinner();
