@@ -19,13 +19,11 @@ class RacingGameTest {
     private Car car3;
     private RacingGame racingGame;
 
-
     @BeforeEach
     public void init() {
         car1 = new Car("kong");
         car2 = new Car("gray");
         car3 = new Car("echo");
-        racingGame = new RacingGame(new Cars(List.of(car1, car2, car3)), 3, new RandomNumberGenerator());
     }
 
     @ParameterizedTest
@@ -33,26 +31,34 @@ class RacingGameTest {
     @DisplayName("최소 게임 횟수보다 작은 횟수인 경우 예외가 발생한다")
     public void createRacingGameFail(int gameTrialCount) {
         assertThatThrownBy(() ->
-                new RacingGame(new Cars(List.of(car1, car2, car3)), gameTrialCount, new RandomNumberGenerator()))
+                createRacingGame(gameTrialCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.WRONG_TRIAL_NUMBER.getMessage());
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {5, 10, 15})
     @DisplayName("남은 게임 횟수가 1보다 큰 경우 게임을 지속한다.")
-    public void checkGameContinueCondition() {
-        racingGame.run();
-        racingGame.run();
+    public void checkGameContinueCondition(int gameTrialCount) {
+        racingGame = createRacingGame(gameTrialCount);
+        int runningCount = gameTrialCount - 1;
+
+        for (int i = 0; i < runningCount; i++) {
+            racingGame.run();
+        }
 
         assertThat(racingGame.canContinue()).isTrue();
     }
 
-    @Test
-    @DisplayName("남은 게임 횟수가 1보다 작은 경우 게임을 종료한다.")
-    public void checkGameFinishCondition() {
-        racingGame.run();
-        racingGame.run();
-        racingGame.run();
+    @ParameterizedTest
+    @ValueSource(ints = {5, 10, 15})
+    @DisplayName("남은 게임 횟수가 0인 경우 게임을 종료한다.")
+    public void checkGameFinishCondition(int gameTrialCount) {
+        racingGame = createRacingGame(gameTrialCount);
+
+        for (int i = 0; i < gameTrialCount; i++) {
+            racingGame.run();
+        }
 
         assertThat(racingGame.canContinue()).isFalse();
     }
@@ -60,6 +66,8 @@ class RacingGameTest {
     @Test
     @DisplayName("가장 선두에 있는 차가 우승자이다.")
     public void findWinner() {
+        racingGame = createRacingGame(3);
+
         car3.move();
         car3.move();
         car3.move();
@@ -72,11 +80,17 @@ class RacingGameTest {
     @Test
     @DisplayName("가장 선두에 여러명인 경우, 공동 우승자가 발생한다.")
     public void findAllWinners() {
+        racingGame = createRacingGame(3);
+
         car1.move();
         car2.move();
         car3.move();
 
         assertThat(racingGame.getWinners().size()).isEqualTo(3);
+    }
+
+    private RacingGame createRacingGame(int gameTrialCount) {
+        return new RacingGame(new Cars(List.of(car1, car2, car3)), gameTrialCount, new RandomNumberGenerator());
     }
 
     @Test
