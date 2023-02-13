@@ -28,12 +28,12 @@ public class RacingGameController {
     }
 
     public void run() {
-        RacingGame racingGame = gameInitialize();
+        RacingGame racingGame = initialize();
         play(racingGame);
         findWinners(racingGame);
     }
 
-    private RacingGame gameInitialize() {
+    private RacingGame initialize() {
         List<String> carNames = retry(inputView::readCarNames);
         int count = retry(inputView::readCount);
         return new RacingGame(new RandomNumberGenerator(), carNames, count);
@@ -42,8 +42,9 @@ public class RacingGameController {
     private void play(final RacingGame racingGame) {
         outputView.printResultMessage();
         while (racingGame.isPlayable()) {
-            List<Car> cars = racingGame.play();
-            outputView.printPosition(cars);
+            racingGame.play();
+            List<Car> cars = racingGame.findCurrentCarPositions();
+            outputView.printCurrentCarPositions(cars);
         }
     }
 

@@ -6,7 +6,7 @@ public class Count {
 
     private int value;
 
-    public Count(final int value) {
+    Count(final int value) {
         this.value = value;
     }
 
@@ -15,10 +15,6 @@ public class Count {
     }
 
     public boolean isPlayable() {
-        return value >= PLAYABLE_LOWER_BOUND;
-    }
-
-    public int getValue() {
-        return value;
+        return PLAYABLE_LOWER_BOUND <= value;
     }
 }

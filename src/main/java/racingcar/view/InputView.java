@@ -9,22 +9,30 @@ public class InputView {
     private static final String READ_COUNT_MESSAGE = "시도할 회수는 몇회인가요?";
 
     private final InputValidator inputValidator;
+    private final InputParser inputParser;
     private final Scanner scanner;
 
-    public InputView(final InputValidator inputValidator, final Scanner scanner) {
+    public InputView(final InputValidator inputValidator, final InputParser inputParser, final Scanner scanner) {
         this.inputValidator = inputValidator;
+        this.inputParser = inputParser;
         this.scanner = scanner;
     }
 
     public List<String> readCarNames() {
         System.out.println(READ_NAMES_MESSAGE);
-        String input = scanner.nextLine();
-        return inputValidator.validateNames(input);
+        List<String> names = inputParser.splitAndParseNames(scanner.nextLine());
+
+        inputValidator.validateNames(names);
+
+        return names;
     }
 
     public int readCount() {
         System.out.println(READ_COUNT_MESSAGE);
-        String input = scanner.nextLine();
-        return inputValidator.validateCount(input);
+        int count = inputParser.parseInt(scanner.nextLine());
+
+        inputValidator.validateCount(count);
+
+        return count;
     }
 }

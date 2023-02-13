@@ -6,7 +6,7 @@ import java.util.List;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.TestNumberGenerator;
+import racingcar.utils.TestNumberGenerator;
 
 class RacingGameTest {
 
@@ -17,15 +17,13 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("play 메서드는 자동차 경주 게임을 진행 후 결과를 반환한다.")
-    void should_returnCarList_when_play() {
+    @DisplayName("play 메서드는 자동차 경주 게임을 진행한다.")
+    void should_playGame_when_play() {
         RacingGame racingGame = generateRacingGame(1);
 
-        List<Car> result = racingGame.play();
+        racingGame.play();
 
-        assertThat(result)
-                .extracting("position")
-                .containsExactly(1, 0);
+        assertThat(racingGame.findWinners()).containsExactly("car1");
     }
 
     @Test
@@ -36,6 +34,19 @@ class RacingGameTest {
         racingGame.play();
 
         assertThat(racingGame.isPlayable()).isFalse();
+    }
+
+    @Test
+    @DisplayName("findCurrentCarPositions 메서드는 현재 경주에 참가하는 자동차들의 이름과 위치를 반환한다.")
+    void should_returnCarList_when_findCurrentCarPositions() {
+        RacingGame racingGame = generateRacingGame(1);
+        racingGame.play();
+
+        List<Car> result = racingGame.findCurrentCarPositions();
+
+        assertThat(result)
+                .extracting(Car::getPosition)
+                .containsExactly(1, 0);
     }
 
     @Test

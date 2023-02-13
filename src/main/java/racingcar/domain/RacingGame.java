@@ -10,21 +10,24 @@ public class RacingGame {
 
     public RacingGame(final NumberGenerator numberGenerator, final List<String> names, final int count) {
         this.numberGenerator = numberGenerator;
-        this.cars = Cars.from(names);
+        this.cars = new Cars(names);
         this.count = new Count(count);
     }
 
-    public List<Car> play() {
-        cars.move(numberGenerator);
+    public boolean isPlayable() {
+        return count.isPlayable();
+    }
+
+    public void play() {
+        cars.race(numberGenerator);
         count.decrease();
+    }
+
+    public List<Car> findCurrentCarPositions() {
         return cars.getCars();
     }
 
     public List<String> findWinners() {
         return cars.findWinners();
-    }
-
-    public boolean isPlayable() {
-        return count.isPlayable();
     }
 }
