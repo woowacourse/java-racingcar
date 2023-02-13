@@ -7,11 +7,11 @@ public class CarName {
     private final String name;
 
     public CarName(final String name) {
-        validateName(name);
+        validate(name);
         this.name = name;
     }
 
-    private void validateName(final String carName) {
+    private void validate(final String carName) {
         if (carName == null) {
             throw new IllegalArgumentException("자동차를 한 대 이상 작성해주세요.");
         }
