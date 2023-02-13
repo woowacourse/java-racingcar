@@ -6,30 +6,26 @@ import racing.domain.race.NumberPicker;
 public class Car {
     private static final int LEAST_CONDITION = 4;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int DEFAULT_START_POSITION = 0;
     private static final int ONE_STEP = 1;
-    private String name;
-    private int position = DEFAULT_START_POSITION;
+    private final String name;
+    private final Position position;
+    private NumberPicker numberPicker = new RandomNumberPicker();
 
-    private final NumberPicker numberPicker;
-
-    private Car() {
-        numberPicker = new RandomNumberPicker();
-    }
 
     public Car(String name) {
-        this();
         validate(name);
         this.name = name;
+        this.position = new Position();
     }
 
     public Car(String name, int position) {
-        this(name);
-        this.position = position;
+        this.name = name;
+        this.position = new Position(position);
     }
 
     public Car(String name, NumberPicker numberPicker) {
         this.name = name;
+        this.position = new Position();
         this.numberPicker = numberPicker;
     }
 
@@ -38,7 +34,7 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return position.getValue();
     }
 
     private void validate(String name) {
@@ -53,7 +49,7 @@ public class Car {
     public void moveDependingOn() {
         int pickedNumber = numberPicker.pickNumber();
         if (pickedNumber >= LEAST_CONDITION) {
-            position += ONE_STEP;
+            position.add(ONE_STEP);
         }
     }
 }
