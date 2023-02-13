@@ -51,6 +51,6 @@ public class GameController {
         cars.getCars()
                 .forEach(car -> outputView.printPosition(
                         car.getCarName().getCarName(), car.getPosition().getPosition()));
-        outputView.printWinners(winners.toString());
+        outputView.printWinners(winners);
     }
 }

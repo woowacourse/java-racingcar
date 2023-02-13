@@ -18,6 +18,7 @@ public class Winners {
                 .mapToInt(car -> car.getPosition().getPosition())
                 .max()
                 .orElse(DEFAULT_MAX);
+
         return cars.getCars().stream()
                     .filter(car -> car.getPosition().getPosition() == winnerPosition)
                     .map(car -> new Winner(car.getCarName()))
