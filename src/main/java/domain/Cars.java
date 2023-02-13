@@ -1,9 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import utils.RandomPowerGenerator;
 
 public class Cars {
@@ -42,19 +40,13 @@ public class Cars {
         return maxCountOfDistance;
     }
 
-    private void addWinnerName(List<String> winnerNames, final Car car, final int maxCountOfDistance) {
+    private void addWinnerName(final List<String> winnerNames, final Car car, final int maxCountOfDistance) {
         if (car.getDistance() == maxCountOfDistance) {
             winnerNames.add(car.getCarName());
         }
     }
 
-    public Map<String, Integer> getCurrentRacingStatus() {
-        Map<String, Integer> carAndDistanceStatus = new HashMap<>();
-
-        for (final Car car : cars) {
-            carAndDistanceStatus.put(car.getCarName(), car.getDistance());
-        }
-
-        return carAndDistanceStatus;
+    public List<Car> getCars() {
+        return cars;
     }
 }

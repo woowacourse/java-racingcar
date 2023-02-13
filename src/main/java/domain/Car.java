@@ -7,7 +7,7 @@ public class Car {
     private final Name name;
     private Distance distance;
 
-    public Car(final String name, int distance) {
+    public Car(final String name, final int distance) {
         this.name = new Name(name);
         this.distance = new Distance(distance);
     }

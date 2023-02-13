@@ -1,6 +1,8 @@
 package console;
 
+import domain.Car;
 import domain.Cars;
+import java.util.HashMap;
 import java.util.Map;
 
 public class OutputView {
@@ -28,7 +30,7 @@ public class OutputView {
     }
 
     public void printCurrentRacingStatus(final Cars cars) {
-        final Map<String, Integer> currentRacingStatus = cars.getCurrentRacingStatus();
+        final Map<String, Integer> currentRacingStatus = getCurrentRacingStatus(cars);
         StringBuilder currentRacingStatusMessage = new StringBuilder();
 
         for (final String carName : currentRacingStatus.keySet()) {
@@ -41,5 +43,15 @@ public class OutputView {
         }
 
         System.out.println(currentRacingStatusMessage);
+    }
+
+    private Map<String, Integer> getCurrentRacingStatus(Cars cars) {
+        Map<String, Integer> carAndDistanceStatus = new HashMap<>();
+
+        for (final Car car : cars.getCars()) {
+            carAndDistanceStatus.put(car.getCarName(), car.getDistance());
+        }
+
+        return carAndDistanceStatus;
     }
 }

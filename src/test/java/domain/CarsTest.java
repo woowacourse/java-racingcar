@@ -70,20 +70,4 @@ class CarsTest {
         assertThat(winnerNames.size()).isEqualTo(1);
         assertThat(winnerNames).doesNotContain(crong.getCarName());
     }
-
-    @Test
-    @DisplayName("getCurrentRacingStatus() : 현재 움직인 거리를 보여준다.")
-    void test_getCurrentRacingStatus() {
-        // given
-        Car pobi = new Car("pobi", 2);
-        Car crong = new Car("crong", 1);
-        Cars cars = new Cars(List.of(pobi, crong));
-
-        // when
-        Map<String, Integer> carCurrentStatus = cars.getCurrentRacingStatus();
-
-        // then
-        assertThat(carCurrentStatus).hasSize(2)
-                .contains(entry("pobi", 2), entry("crong", 1));
-    }
 }
