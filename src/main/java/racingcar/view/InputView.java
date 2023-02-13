@@ -21,12 +21,12 @@ public class InputView {
         return Arrays.asList(scanner.nextLine().trim().split(","));
     }
 
-    public int readRacingRound() {
+    public String readRacingRound() {
         System.out.println(READ_RACING_ROUND_MESSAGE);
         Scanner scanner = new Scanner(System.in);
         String round = scanner.nextLine().trim();
         validateRoundInput(round);
-        return Integer.parseInt(round);
+        return round;
     }
 
     private void validateRoundInput(String round) {

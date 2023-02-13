@@ -5,6 +5,8 @@ import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.domain.RacingGame;
+import racingcar.domain.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -23,8 +25,14 @@ public class Controller {
     public void run() {
         List<String> carNames = inputView.readCarNames();
         Cars cars = generateCars(carNames);
-        int round = inputView.readRacingRound();
-        showGameResult(cars, round);
+
+        String trialCount = inputView.readRacingRound();
+        Round round = new Round(trialCount);
+
+        RacingGame racingGame = new RacingGame(cars, round);
+        racingGame.playGame();
+
+        showGameResult(racingGame);
     }
 
     private Cars generateCars(List<String> carNames) {
@@ -35,12 +43,10 @@ public class Controller {
         return new Cars(racingCars);
     }
 
-    private void showGameResult(Cars cars, int round) {
+    private void showGameResult(RacingGame racingGame) {
         outputView.printResultMessage();
-        for (int i = 0; i < round; i++) {
-            outputView.printRoundResult(cars.moveEachCar());
-        }
-        outputView.printFinalResult(cars);
+        outputView.printResult(racingGame.getResult());
+        outputView.printFinalResult(racingGame);
     }
 
 }
