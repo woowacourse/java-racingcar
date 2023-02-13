@@ -14,6 +14,9 @@ public class InputView {
   private static final Scanner scanner = new Scanner(System.in);
   private static final Pattern NUMBER = Pattern.compile("[0-9]+");
 
+  private InputView() {
+  }
+
   public static List<String> readCarNames() {
     System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     String[] split = scanner.nextLine().split(",");

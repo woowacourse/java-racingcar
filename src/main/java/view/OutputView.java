@@ -8,6 +8,9 @@ public class OutputView {
   private static final String DELIMITER = ", ";
   private static final String BAR = "-";
 
+  private OutputView() {
+  }
+
   public static void printStart(List<Car> cars) {
     System.out.println();
     System.out.println("실행 결과");
