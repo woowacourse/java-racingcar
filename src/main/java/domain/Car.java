@@ -29,6 +29,10 @@ public class Car {
         return drivenDistance;
     }
 
+    public boolean isWinner(int maxDistance) {
+        return drivenDistance == maxDistance;
+    }
+
     public String getName() {
         return name.getName();
     }

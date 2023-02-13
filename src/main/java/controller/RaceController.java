@@ -52,8 +52,9 @@ public class RaceController {
     }
 
     public void joinAllParticipants(String carNames) {
+        final String delimiter = ",";
         try {
-            splitWordsBy(carNames, ",").forEach((carName) -> participants.join(carName.strip()));
+            splitWordsBy(carNames, delimiter).forEach((carName) -> participants.join(carName.strip()));
         } catch (Exception exception) {
             participants.reset();
             throw exception;
@@ -76,7 +77,7 @@ public class RaceController {
             .max(Comparator.naturalOrder())
             .orElse(0);
         return candidates.stream()
-            .filter(car -> car.getDrivenDistance() == maxDistance)
+            .filter(car -> car.isWinner(maxDistance))
             .collect(Collectors.toList());
     }
 
