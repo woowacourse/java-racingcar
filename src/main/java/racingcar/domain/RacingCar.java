@@ -3,39 +3,28 @@ package racingcar.domain;
 import racingcar.dto.RacingCarDto;
 
 public class RacingCar implements Comparable<RacingCar> {
-    private static final Integer DEFAULT_POINT = 1;
+    private static final Integer DEFAULT_POSITION = 0;
+    private static final Integer DEFAULT_MOVING_AMOUNT = 1;
     private final String name;
-    private Integer point;
+    private Integer position;
 
     public RacingCar(String name) {
         this.name = name;
-        this.point = DEFAULT_POINT;
-    }
-
-    private void plusPoint() {
-        point++;
+        this.position = DEFAULT_POSITION;
     }
 
     public void advance(Boolean judgementResult) {
         if (judgementResult) {
-            plusPoint();
+            position += DEFAULT_MOVING_AMOUNT;
         }
-    }
-
-    public String getDesc() {
-        String delimiter = " : ";
-        String description = name +
-                delimiter +
-                "-".repeat(point);
-        return description;
     }
 
     @Override
     public int compareTo(RacingCar o) {
-        return o.point - this.point;
+        return o.position - this.position;
     }
 
     public RacingCarDto toDto() {
-        return new RacingCarDto(name, point);
+        return new RacingCarDto(name, position);
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RoundManager {
+    private static final Boolean ALL_CARS_ADVANCE = true;
     private final List<RacingCar> racingCars = new ArrayList<>();
     private final AdvanceJudgement advanceJudgement;
 
@@ -19,19 +20,20 @@ public class RoundManager {
         racingCars.add(racingCar);
     }
 
-    public List<String> getCurrentRound() {
-        List<String> roundResult = new ArrayList<>();
+    public List<RacingCarDto> getStartStatus() {
+        List<RacingCarDto> roundResult = new ArrayList<>();
         racingCars.stream().forEach(racingCar -> {
-            roundResult.add(racingCar.getDesc());
+            racingCar.advance(ALL_CARS_ADVANCE);
+            roundResult.add(racingCar.toDto());
         });
         return roundResult;
     }
 
-    public List<String> runRound() {
-        List<String> roundResult = new ArrayList<>();
+    public List<RacingCarDto> runRound() {
+        List<RacingCarDto> roundResult = new ArrayList<>();
         racingCars.stream().forEach(racingCar -> {
             racingCar.advance(advanceJudgement.isAdvancePossible());
-            roundResult.add(racingCar.getDesc());
+            roundResult.add(racingCar.toDto());
         });
         return roundResult;
     }
