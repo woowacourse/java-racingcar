@@ -3,13 +3,13 @@ package contoller;
 import domain.Car;
 import java.util.List;
 import java.util.stream.Collectors;
-import strategy.PowerSupplier;
-import strategy.RandomPowerSupplier;
+import strategy.NumberGenerator;
+import strategy.RandomNumberGenerator;
 import view.OutputView;
 
 public class RaceGame {
 
-  private static final PowerSupplier powerSupplier = new RandomPowerSupplier();
+  private static final NumberGenerator powerSupplier = new RandomNumberGenerator();
   private int roundCount;
   private List<Car> cars;
 
@@ -33,7 +33,7 @@ public class RaceGame {
 
   private void runRound(List<Car> cars) {
     for (Car car : cars) {
-      car.move(powerSupplier.supply());
+      car.move(powerSupplier.generate());
     }
     OutputView.printCarsStatus(cars);
   }
