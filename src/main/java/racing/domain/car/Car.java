@@ -5,16 +5,20 @@ import java.util.Objects;
 public class Car {
     private static final int LEAST_CONDITION = 4;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int START_POSITION = 0;
+    private static final int DEFAULT_START_POSITION = 0;
     private static final int ONE_STEP = 1;
-
     private final String name;
     private int position;
 
     public Car(String name) {
         validate(name);
         this.name = name;
-        this.position = START_POSITION;
+        this.position = DEFAULT_START_POSITION;
+    }
+
+    public Car(String name, int position) {
+        this(name);
+        this.position = position;
     }
 
     public String getName() {

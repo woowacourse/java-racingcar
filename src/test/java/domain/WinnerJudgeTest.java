@@ -1,12 +1,12 @@
 package domain;
 
-import racing.domain.WinnerJudgeImpl;
-import racing.domain.car.Car;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing.domain.WinnerJudgeImpl;
+import racing.domain.car.Car;
 
 class WinnerJudgeTest {
     WinnerJudgeImpl winnerJudge = new WinnerJudgeImpl();
@@ -15,12 +15,9 @@ class WinnerJudgeTest {
 
     @BeforeEach
     void setup() {
-        Car winner = new Car("dani");
-        // TODO: 사용하는 입장에서 앞으로 움직이는 조건을 확인하기 어려움. Car 개선하기
-        winner.moveDependingOn(9);
+        Car winner = new Car("dani", 1);
 
-        Car notWinner = new Car("hihi");
-        notWinner.moveDependingOn(0);
+        Car notWinner = new Car("hihi", 0);
 
         cars = List.of(winner, notWinner);
     }

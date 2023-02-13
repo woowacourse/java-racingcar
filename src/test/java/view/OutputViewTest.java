@@ -27,7 +27,8 @@ class OutputViewTest {
     @DisplayName("현황을 형식에 맞게 출력하는지 테스트")
     void printStatus() {
         // given
-        setWinner();
+        winner = new Car("rosie", 2);
+        nonWinner = new Car("hong", 1);
         List<Car> statuses = List.of(winner, nonWinner);
 
         // when
@@ -38,19 +39,12 @@ class OutputViewTest {
                 .isEqualTo("rosie : --\nhong : -\n\n");
     }
 
-    private void setWinner() {
-        winner = new Car("rosie");
-        winner.moveDependingOn(9);
-        winner.moveDependingOn(9);
-        nonWinner = new Car("hong");
-        nonWinner.moveDependingOn(9);
-    }
-
     @Test
     @DisplayName("우승자들을 형식에 맞게 출력하는지 테스트")
     void printWinners() {
         // given
-        setWinner();
+        winner = new Car("rosie", 2);
+        nonWinner = new Car("hong", 1);
         List<Car> winners = List.of(winner, nonWinner);
 
         // when

@@ -14,7 +14,7 @@ public class CarTest {
     class InitializeTest {
         @ParameterizedTest(name = "{0} 일 때 IllegalArgumentException 발생")
         @DisplayName("유효하지 않은 길이의 이름")
-        @ValueSource(strings = {"abcdef4", "adffdsd", "dadfewe"})
+        @ValueSource(strings = {"abcdef4", "adffdsd", "dadfewe", "", " "})
         void throwExceptionWhenInvalidNameLength(String name) {
             Assertions.assertThatThrownBy(() -> new Car(name))
                     .isInstanceOf(IllegalArgumentException.class);
