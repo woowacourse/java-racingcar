@@ -16,8 +16,8 @@ public class CarManager {
         this.cars = cars;
     }
 
-    private Predicate<Car> isWinnerPosition(final Car maxCar) {
-        return car -> car.compareTo(maxCar) == SAME_CAR_COMPARE_VALUE;
+    private Predicate<Car> isWinCar(final Car winnerCar) {
+        return car -> car.isSamePosition(winnerCar);
     }
 
     public void moveCarsRandomly() {
@@ -30,7 +30,7 @@ public class CarManager {
 
     public List<Car> getWinners() {
         return cars.stream()
-                .filter(isWinnerPosition(getWinnerCar()))
+                .filter(isWinCar(getWinnerCar()))
                 .collect(Collectors.toList());
     }
 

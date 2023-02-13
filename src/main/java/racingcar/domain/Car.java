@@ -4,12 +4,12 @@ public class Car implements Comparable<Car> {
     private final Position position;
     private final CarName name;
 
-    public Car(CarName carName) {
+    public Car(final CarName carName) {
         this.name = carName;
         this.position = new Position();
     }
 
-    public void move(CarMovement movement) {
+    public void move(final CarMovement movement) {
         if (movement.isMove()) {
             this.position
                     .increasePosition();
@@ -26,9 +26,13 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public int compareTo(Car o) {
+    public int compareTo(final Car o) {
         return this.position
                 .compareTo(o.position
                 );
+    }
+
+    public boolean isSamePosition(final Car car) {
+        return car.position.equals(this.position);
     }
 }
