@@ -2,23 +2,42 @@ package contoller;
 
 import domain.Car;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import strategy.NumberGenerator;
 import strategy.RandomNumberGenerator;
+import view.InputView;
 import view.OutputView;
 
-public class RaceGame {
+public class RaceController {
 
   private static final NumberGenerator powerSupplier = new RandomNumberGenerator();
   private int roundCount;
   private List<Car> cars;
 
-  public RaceGame(List<String> runnerNames, int roundCount) {
-    this.roundCount = roundCount;
-    this.cars = makeCars(runnerNames);
+  public void run() {
+    this.cars = makeCars(repeat(InputView::readCarNames));
+    this.roundCount = repeat(InputView::readTrialNum);
+    race();
+    OutputView.printWinners(pickWinner());
   }
 
-  public void race() {
+  private List<Car> makeCars(List<String> carNames) {
+    return carNames.stream()
+        .map(Car::new)
+        .collect(Collectors.toList());
+  }
+
+  private <T> T repeat(Supplier<T> inputReader) {
+    try {
+      return inputReader.get();
+    } catch (Exception e) {
+      OutputView.printErrorMessage(e);
+      return repeat(inputReader);
+    }
+  }
+
+  private void race() {
     OutputView.printStart();
     printCarsStatus();
     for (int i = 0; i < roundCount; i++) {
@@ -32,11 +51,6 @@ public class RaceGame {
     System.out.println();
   }
 
-  private List<Car> makeCars(List<String> carNames) {
-    return carNames.stream()
-        .map(Car::new)
-        .collect(Collectors.toList());
-  }
 
   private void runRound(List<Car> cars) {
     for (Car car : cars) {
