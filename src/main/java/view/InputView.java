@@ -67,12 +67,19 @@ public class InputView {
     public int askTrial() {
         System.out.println("시도할 횟수는 몇회인가요?");
         try {
-            int trial = Integer.parseInt(scanner.nextLine());
-            scanner.close();
-            return trial;
-        } catch (NumberFormatException e) {
+            return validateTrial();
+        } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE_TRIAL_TYPE);
             return askTrial();
         }
+    }
+
+    private int validateTrial() {
+        int trial = Integer.parseInt(scanner.nextLine());
+        if (trial <= 0) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_TRIAL_TYPE);
+        }
+        scanner.close();
+        return trial;
     }
 }
