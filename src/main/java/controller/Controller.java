@@ -8,53 +8,51 @@ import view.InputView;
 import view.OutputView;
 
 public class Controller {
-    private final OutputView outputView;
-    private final InputView inputView;
     private final RacingGameService racingGameService;
 
-    public Controller(OutputView outputView, InputView inputView, RacingGameService racingGameService) {
-        this.outputView = outputView;
-        this.inputView = inputView;
+    public Controller(RacingGameService racingGameService) {
         this.racingGameService = racingGameService;
     }
 
     public void run() {
-        setCars();
+        createCars();
         playGame();
         printFinalResult();
     }
 
     private void playGame() {
-        Long trial = getTrial();
-        outputView.printResultMessage();
-        racingGameService.move(trial);
-        List<String> moveResult = racingGameService.getMoveResult();
-        outputView.printMoveResult(moveResult);
-    }
-
-    private Long getTrial() {
-        String trialInput = inputView.getTrial();
-        try {
-            return Converter.convertStringToLong(trialInput);
-        } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            return getTrial();
+        Long trial = receiveTrialInput();
+        OutputView.printResultMessage();
+        for (int i = 0; i < trial; i++) {
+            racingGameService.move();
+            List<String> moveResult = racingGameService.retrieveMoveResults();
+            OutputView.printMoveResult(moveResult);
         }
     }
 
-    private void setCars() {
+    private Long receiveTrialInput() {
+        String trialInput = InputView.receiveTrialInput();
         try {
-            List<String> carNames = inputView.getCarNames();
-            racingGameService.setCars(carNames);
+            return Converter.convertStringToLong(trialInput);
         } catch (IllegalArgumentException exception) {
-            outputView.printErrorMessage(exception.getMessage());
-            setCars();
+            OutputView.printErrorMessage(exception.getMessage());
+            return receiveTrialInput();
+        }
+    }
+
+    private void createCars() {
+        try {
+            List<String> carNames = InputView.receiveCarNamesInput();
+            racingGameService.createCars(carNames);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            createCars();
         }
     }
 
     private void printFinalResult() {
-        List<String> moveResult = racingGameService.getMoveResult();
-        outputView.printMoveResult(moveResult);
-        outputView.printWinners(racingGameService.getWinners());
+        List<String> moveResult = racingGameService.retrieveMoveResults();
+        OutputView.printMoveResult(moveResult);
+        OutputView.printWinners(racingGameService.calculateWinners());
     }
 }

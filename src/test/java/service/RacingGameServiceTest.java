@@ -24,7 +24,7 @@ class RacingGameServiceTest {
     @Test
     @DisplayName("중복된 이름이 입력되면 예외발생")
     void setCarsFailTest() {
-        assertThatThrownBy(() -> racingGameService.setCars(List.of("fox", "fox")))
+        assertThatThrownBy(() -> racingGameService.createCars(List.of("fox", "fox")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.DUPLICATED_NAME.getMessage());
     }

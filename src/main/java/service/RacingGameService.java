@@ -16,25 +16,23 @@ public class RacingGameService {
         this.cars = new Cars(numberGenerator);
     }
 
-    public void setCars(List<String> carNames) {
+    public void createCars(List<String> carNames) {
         validateDuplication(carNames);
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
     }
 
-    public void move(Long trial) {
-        for (int i = 0; i < trial; i++) {
+    public void move() {
             cars.move();
-        }
     }
 
-    public List<String> getMoveResult() {
-        return cars.getResult();
+    public List<String> retrieveMoveResults() {
+        return cars.retrieveMoveResults();
     }
 
-    public List<String> getWinners() {
-        return cars.getWinners();
+    public List<String> calculateWinners() {
+        return cars.calculateWinners();
     }
 
     private void validateDuplication(List<String> carNames) {

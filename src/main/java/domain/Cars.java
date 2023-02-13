@@ -1,11 +1,10 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
+import utils.constants.ErrorMessages;
 import utils.numberGenerator.NumberGenerator;
 
 public class Cars {
@@ -24,23 +23,23 @@ public class Cars {
         cars.forEach((car) -> car.move(numberGenerator.generateNumber()));
     }
 
-    public List<String> getWinners() {
-        Long maxValue = getMaxValue();
+    public List<String> calculateWinners() {
+        Car maxValueCar = calculateMaxPosition();
         return cars.stream()
-                .filter((car) -> Objects.equals(car.getPosition(), maxValue))
+                .filter(car -> car.isSamePosition(maxValueCar))
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private Long getMaxValue() {
-        return Collections.max(cars.stream()
-                .map(Car::getPosition)
-                .collect(Collectors.toUnmodifiableList()));
+    private Car calculateMaxPosition() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.NO_EXISTED_MAX_VALUE_CAR.getMessage()));
     }
 
-    public List<String> getResult() {
+    public List<String> retrieveMoveResults() {
         return cars.stream()
-                .map(Car::getResult)
+                .map(Car::retrieveMoveResults)
                 .collect(Collectors.toUnmodifiableList());
     }
 }
