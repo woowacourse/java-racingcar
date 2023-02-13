@@ -3,6 +3,7 @@ package domain;
 import static validation.CountValidator.COUNT_VALIDATOR;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import utils.NumberGenerator;
 
 public class Race {
@@ -14,7 +15,14 @@ public class Race {
     public Race(final int totalCount, final List<String> carNames, NumberGenerator numberGenerator) {
         COUNT_VALIDATOR.validate(totalCount);
         this.TOTAL_COUNT = totalCount;
-        this.participants = new Participants(carNames, numberGenerator);
+        List<Car> cars = carNames.stream()
+            .map(carName -> generateCar(carName, numberGenerator))
+            .collect(Collectors.toList());
+        this.participants = new Participants(cars, numberGenerator);
+    }
+
+    private Car generateCar(String carName, NumberGenerator numberGenerator) {
+        return new Car(carName, numberGenerator);
     }
 
     public void playRound() {

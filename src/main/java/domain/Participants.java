@@ -12,11 +12,10 @@ public class Participants {
 
     private final List<Car> cars;
 
-    public Participants(List<String> carNames, NumberGenerator numberGenerator) {
-        cars = carNames.stream()
-            .map(carName -> new Car(carName, numberGenerator))
-            .collect(Collectors.toList());
+    public Participants(List<Car> cars, NumberGenerator numberGenerator) {
+        List<String> carNames = cars.stream().map(Car::getName).collect(Collectors.toList());
         PARTICIPANTS_VALIDATOR.validate(carNames);
+        this.cars = cars;
     }
 
     public List<Car> getCars() {
