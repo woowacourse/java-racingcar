@@ -18,7 +18,7 @@ class InputViewTest {
         String input = "Car1,Car2,Car3";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThatNoException().isThrownBy(() -> new InputView().sendCarsName());
+        assertThatNoException().isThrownBy(() -> new InputView().inputCarsName());
     }
 
     @DisplayName("Car의 이름이 " + MAX_NAME_LENGTH + "자 초과이면 예외를 발생시킨다.")
@@ -27,7 +27,7 @@ class InputViewTest {
         String input = "이름이긴자동차1,이름이긴자동차2,이름이긴자동차3";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThatIllegalArgumentException().isThrownBy(() -> new InputView().sendCarsName())
+        assertThatIllegalArgumentException().isThrownBy(() -> new InputView().inputCarsName())
                 .withMessageContaining("이름은 " + MAX_NAME_LENGTH + "자 이하여야 합니다. ");
     }
 
@@ -37,7 +37,7 @@ class InputViewTest {
         String input = "공백 1,공백 2, 공백3";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThatIllegalArgumentException().isThrownBy(() -> new InputView().sendCarsName())
+        assertThatIllegalArgumentException().isThrownBy(() -> new InputView().inputCarsName())
                 .withMessageContaining("이름에 공백을 포함할 수 없습니다.");
     }
 
@@ -47,7 +47,7 @@ class InputViewTest {
         String input = "10";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThatNoException().isThrownBy(() -> new InputView().sendTryCount());
+        assertThatNoException().isThrownBy(() -> new InputView().inputTryCount());
 
     }
 
@@ -57,7 +57,7 @@ class InputViewTest {
         String input = "0";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThatIllegalArgumentException().isThrownBy(() -> new InputView().sendTryCount())
+        assertThatIllegalArgumentException().isThrownBy(() -> new InputView().inputTryCount())
                 .withMessageContaining("시도 횟수는 양의 정수여야 합니다.");
 
     }
@@ -68,7 +68,7 @@ class InputViewTest {
         String input = "101";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertThatIllegalArgumentException().isThrownBy(() -> new InputView().sendTryCount())
+        assertThatIllegalArgumentException().isThrownBy(() -> new InputView().inputTryCount())
                 .withMessageContaining("시도할 회수는 " + TRY_COUNT_LIMIT +"회 이하여야 합니다.");
     }
 }

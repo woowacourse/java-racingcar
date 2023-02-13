@@ -24,7 +24,7 @@ public class InputView {
         this.scanner = new Scanner(System.in);
     }
 
-    public List<CarNameDto> sendCarsName() {
+    public List<CarNameDto> inputCarsName() {
         System.out.printf("경주할 자동차 이름을 입력하세요(이름은 %s(%s)를 기준으로 구분).\n", DELIMITER_IN_KOREAN, DELIMITER);
 
         String[] carsName = scanner.nextLine().split(DELIMITER);
@@ -38,7 +38,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public TryCount sendTryCount() {
+    public TryCount inputTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
 
         int tryCount = scanner.nextInt();

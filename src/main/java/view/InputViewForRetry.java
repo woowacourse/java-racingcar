@@ -16,7 +16,7 @@ public class InputViewForRetry {
 
     public List<CarNameDto> inputCarsName() {
         try {
-            return inputView.sendCarsName();
+            return inputView.inputCarsName();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
             return inputCarsName();
@@ -25,7 +25,7 @@ public class InputViewForRetry {
 
     public TryCount inputTryCount() {
         try {
-            return inputView.sendTryCount();
+            return inputView.inputTryCount();
         } catch (InputMismatchException exception) {
             printExceptionMessage("시도 횟수는 양의 정수여야 합니다.");
             return inputTryCount();
