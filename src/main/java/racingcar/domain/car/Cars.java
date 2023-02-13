@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final int MIN_SIZE = 2;
+
     private final List<Car> cars;
 
     public Cars(final List<String> carNames) {
