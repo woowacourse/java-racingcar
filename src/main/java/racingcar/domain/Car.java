@@ -7,8 +7,8 @@ public class Car {
     private final CarName carName;
     private final Position position;
 
-    public Car(CarName carName) {
-        this.carName = new CarName(carName.getCarName());
+    public Car(String name) {
+        this.carName = new CarName(name);
         this.position = new Position();
     }
 
