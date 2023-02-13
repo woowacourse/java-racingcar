@@ -1,6 +1,5 @@
 package study;
 
-import org.assertj.core.internal.Numbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,7 +10,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SetTest {
     private Set<Integer> numbers;
@@ -25,7 +23,6 @@ public class SetTest {
         numbers.add(3);
     }
 
-    // Test Case 구현
     @Test
     void getSize() {
         assertThat(numbers.size()).isEqualTo(3);

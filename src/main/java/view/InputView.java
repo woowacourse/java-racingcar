@@ -16,7 +16,6 @@ public class InputView {
     }
 
     public static String readNumberOfTry() {
-//        outputView.printException("숫자만 입력할 수 있습니다.");
         return readLine();
     }
 
@@ -24,7 +23,6 @@ public class InputView {
         try {
             return BUFFERED_READER.readLine();
         } catch (IOException ioException) {
-//            outputView.printException(ioException.getMessage());
             return readLine();
         }
     }

@@ -9,17 +9,17 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name) {
         this(name, START_POSITION);
     }
 
-    public Car(String name, int position) {
+    public Car(final String name, final int position) {
         CarNameValidator.validate(name);
         this.name = name;
         this.position = position;
     }
 
-    public void move(MoveStrategy moveStrategy) {
+    public void move(final MoveStrategy moveStrategy) {
         if (moveStrategy.isMovable()) {
             position += MOVING_DISTANCE;
         }

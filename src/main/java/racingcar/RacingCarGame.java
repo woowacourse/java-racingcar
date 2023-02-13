@@ -1,7 +1,6 @@
 package racingcar;
 
 import factory.CarFactory;
-import validator.NumberOfTryValidator;
 
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class RacingCarGame {
 
     private static final int START_POSITION = 0;
 
-    public void addCars(String carNames) {
+    public void addCars(final String carNames) {
         CarRepository.updateCars(CarFactory.from(carNames));
     }
 
