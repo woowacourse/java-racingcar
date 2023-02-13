@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Cars;
 import domain.GameProcess;
 import domain.Name;
 import domain.RacingGame;
@@ -7,10 +8,10 @@ import dto.input.ReadCarNamesDto;
 import dto.input.ReadTryCountDto;
 import dto.output.PrintCriticalExceptionDto;
 import dto.output.PrintExceptionDto;
+import dto.output.PrintMovingStatusDto;
 import dto.output.PrintWinnersDto;
 import utils.MovingStrategy;
 import view.IOViewResolver;
-import view.OutputView;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -70,9 +71,8 @@ public class RacingGameController {
     }
 
     private GameProcess startRace(MovingStrategy movingStrategy) {
-        OutputView.printResultMessage();
-
-        racingGame.start(movingStrategy);
+        List<Cars> movingStatus = racingGame.start(movingStrategy);
+        ioViewResolver.outputViewResolve(new PrintMovingStatusDto(movingStatus));
 
         return GameProcess.PRINT_WINNERS;
     }

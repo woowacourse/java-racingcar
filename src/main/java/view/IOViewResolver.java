@@ -4,6 +4,7 @@ import dto.input.ReadCarNamesDto;
 import dto.input.ReadTryCountDto;
 import dto.output.PrintCriticalExceptionDto;
 import dto.output.PrintExceptionDto;
+import dto.output.PrintMovingStatusDto;
 import dto.output.PrintWinnersDto;
 import view.exception.NotFoundViewException;
 
@@ -31,6 +32,7 @@ public class IOViewResolver {
 
     private void initOutputViewMappings(OutputView outputView) {
         outputViewMap.put(PrintWinnersDto.class, dto -> outputView.printWinners((PrintWinnersDto) dto));
+        outputViewMap.put(PrintMovingStatusDto.class, dto -> outputView.printMovingStatus((PrintMovingStatusDto) dto));
         outputViewMap.put(PrintExceptionDto.class, dto -> outputView.printException((PrintExceptionDto) dto));
         outputViewMap.put(PrintCriticalExceptionDto.class, dto -> outputView.printCriticalException((PrintCriticalExceptionDto) dto));
     }

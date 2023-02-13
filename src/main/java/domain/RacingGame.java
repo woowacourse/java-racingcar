@@ -3,6 +3,7 @@ package domain;
 import utils.MovingStrategy;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,12 +20,16 @@ public class RacingGame {
         this.tryCount = tryCount;
     }
 
-    public void start(MovingStrategy movingStrategy) {
+    public List<Cars> start(MovingStrategy movingStrategy) {
+        List<Cars> movingStatus = new ArrayList<>();
+
         while (tryCount.canTry()) {
             cars.moveCars(movingStrategy);
-            OutputView.printAllCars(cars);
+            movingStatus.add(cars);
             tryCount.decreaseCount();
         }
+
+        return movingStatus;
     }
 
     public Cars decideWinners() {

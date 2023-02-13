@@ -5,8 +5,10 @@ import domain.Cars;
 import domain.Position;
 import dto.output.PrintCriticalExceptionDto;
 import dto.output.PrintExceptionDto;
+import dto.output.PrintMovingStatusDto;
 import dto.output.PrintWinnersDto;
 
+import java.util.List;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -28,20 +30,6 @@ public class OutputView {
         return OutputViewSingletonHelper.OUTPUT_VIEW;
     }
 
-    public static void printResultMessage() {
-        System.out.println("실행 결과");
-    }
-
-    public static void printAllCars(Cars cars) {
-        for (Car car : cars) {
-            printCurrentState(car);
-        }
-        System.out.println();
-    }
-
-    public static void printCurrentState(Car car) {
-        System.out.println(String.format(FORMAT, car.getName(), drawResult(car.getPosition())));
-    }
 
     public static void printWinners(PrintWinnersDto dto) {
         Cars cars = dto.getCars();
@@ -62,13 +50,19 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    private void print(String message) {
-        System.out.println(message);
+    public void printMovingStatus(PrintMovingStatusDto dto) {
+        List<Cars> totalMovingStatus = dto.getMovingStatus();
+        for (Cars movingStatus : totalMovingStatus) {
+            printMovingStatus(movingStatus);
+            System.out.println();
+        }
     }
 
-    private void print(String... messages) {
-        for (String message : messages) {
-            print(message);
+    private void printMovingStatus(Cars cars) {
+        for (Car car : cars) {
+            System.out.println(
+                    String.format(FORMAT, car.getName(), drawResult(car.getPosition()))
+            );
         }
     }
 
@@ -80,6 +74,18 @@ public class OutputView {
         print(ErrorMessage.UNEXPECTED_ERROR,
                 ErrorMessage.ERROR_HEAD + dto.getException().getMessage());
     }
+
+
+    private void print(String message) {
+        System.out.println(message);
+    }
+
+    private void print(String... messages) {
+        for (String message : messages) {
+            print(message);
+        }
+    }
+
 
     private static final class ErrorMessage {
         private static final String ERROR_HEAD = "[ERROR] ";
