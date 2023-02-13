@@ -105,6 +105,6 @@ class InputViewTest {
         //when then
         assertThatThrownBy(inputView::readCount).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] ")
-            .hasMessageContaining("올바르지 않은 시도횟수입니다.(1 ~ 999,999,999)");
+            .hasMessageContaining("시도횟수는 양의 정수여야합니다.");
     }
 }
