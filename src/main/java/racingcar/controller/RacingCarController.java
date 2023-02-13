@@ -49,7 +49,7 @@ public class RacingCarController {
 
     private TryCount initTryCount() {
         try {
-            int tries =  InputView.inputTries();
+            int tries = InputView.inputTries();
             return new TryCount(tries);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

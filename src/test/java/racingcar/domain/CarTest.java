@@ -45,7 +45,7 @@ class CarTest {
     @DisplayName("이동할 때")
     class WhenMove {
         @ParameterizedTest
-        @ValueSource(ints = {4,5})
+        @ValueSource(ints = {4, 5})
         @DisplayName("랜덤 숫자가 4이상이면 이동한다")
         void move(int number) {
             numberGenerator = new TestNumberGenerator(number);
@@ -57,7 +57,7 @@ class CarTest {
 
         @ParameterizedTest
         @DisplayName("랜덤 숫자가 4미만이면 이동하지 않는다")
-        @ValueSource(ints = {1,3})
+        @ValueSource(ints = {1, 3})
         void notMove(int number) {
             numberGenerator = new TestNumberGenerator(number);
             car.move(numberGenerator);
@@ -73,7 +73,7 @@ class CarTest {
         int numberCanMove = 9;
         int moveCount = 5;
         numberGenerator = new TestNumberGenerator(numberCanMove);
-        for(int i = 0; i < moveCount; i++) {
+        for (int i = 0; i < moveCount; i++) {
             car.move(numberGenerator);
         }
 
