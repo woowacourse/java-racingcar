@@ -3,10 +3,13 @@ package racingcar.controller;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Count;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomNumberGenerator;
+import racingcar.dto.PositionOfCar;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -45,9 +48,17 @@ public class RacingGameController {
         outputView.printResultMessage();
         while (racingGame.isPlayable()) {
             racingGame.play();
-            outputView.printPosition(racingGame.getCurrentResult());
+            final List<Car> cars = racingGame.getCurrentResult();
+            outputView.printPosition(conversionPositionOfCars(cars));
         }
     }
+
+    private List<PositionOfCar> conversionPositionOfCars(final List<Car> cars) {
+        return cars.stream()
+                .map(PositionOfCar::from)
+                .collect(Collectors.toList());
+    }
+
 
     private void findWinners(final RacingGame racingGame) {
         final List<String> winners = racingGame.findWinners();
