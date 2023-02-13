@@ -17,17 +17,17 @@ public class Name {
             throw new IllegalArgumentException(
                     ExceptionMessage.EXCEPTION_MESSAGE.getExceptionMessage());
         }
-        if (isOnlySpace(name).isBlank()) {
+        if (isOnlySpace(name)) {
             throw new IllegalArgumentException(
                     ExceptionMessage.EXCEPTION_SPACE_MESSAGE.getExceptionMessage());
         }
     }
 
-    private String isOnlySpace(String name) {
-        return name.trim();
+    private boolean isOnlySpace(String name) {
+        return name.isBlank();
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 }
