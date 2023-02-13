@@ -1,16 +1,24 @@
 package domain;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Cars {
 
-    private final List<Car> cars = new LinkedList<>();
+    private List<Car> cars;
 
-    public Cars(List<String> carNames) {
-        addCars(carNames);
+    private Cars() {
+    }
+
+    public Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public static Cars from(List<String> carNames) {
+        Cars result = new Cars();
+        result.addCars(carNames);
+        return result;
     }
 
     private void addCars(List<String> carNames) {

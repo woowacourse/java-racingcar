@@ -13,7 +13,7 @@ public class RacingGame {
 
     public RacingGame(MovableStrategy movableStrategy, List<String> carNames, int roundNum) {
         this.movableStrategy = movableStrategy;
-        this.cars = new Cars(carNames);
+        this.cars = Cars.from(carNames);
         this.roundNum = roundNum;
     }
 
