@@ -6,8 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.TestDataManager;
 import racingcar.model.car.Cars;
-import racingcar.view.formatter.car.CarPositionFormatter;
-import racingcar.view.formatter.car.CarsPositionFormatter;
 
 class CarsPositionFormatterTest {
     @DisplayName("여러대의 자동차 위치 출력 형식 테스트")

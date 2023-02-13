@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 
 class RandomNumberGeneratorTest {
-
     @DisplayName("지정한 범위 내의 숫자만 생성되는지 테스트")
     @RepeatedTest(100)
     void pickNumberInRangeTest() {
