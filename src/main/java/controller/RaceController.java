@@ -10,9 +10,15 @@ import view.OutputView;
 
 public class RaceController {
 
-    private InputView inputView = new InputView();
+    private final InputView inputView;
+    private final OutputView outputView;
     private Participants participants;
     private Race race;
+
+    public RaceController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void play() {
         readyForGame();
@@ -36,6 +42,7 @@ public class RaceController {
     }
 
     private void playGame() {
+        outputView.printResultMessage();
         while (!race.isFinished()) {
             playRound();
         }
@@ -48,19 +55,19 @@ public class RaceController {
     }
 
     private void printRoundResult() {
-        OutputView.printRoundResult(participants.getCars());
+        outputView.printRoundResult(participants.getCars());
     }
 
     private void printWinners() {
         List<Car> winners = participants.findWinners();
-        OutputView.printWinners(winners);
+        outputView.printWinners(winners);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception);
+            outputView.printErrorMessage(exception);
             return repeat(inputReader);
         }
     }

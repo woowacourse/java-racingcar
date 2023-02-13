@@ -13,7 +13,7 @@ public class Participants {
 
     public Participants(List<String> carNames) {
         cars = carNames.stream()
-            .map(carName -> new Car(carName))
+            .map(Car::new)
             .collect(Collectors.toList());
         PARTICIPANTS_VALIDATOR.validate(carNames);
     }
