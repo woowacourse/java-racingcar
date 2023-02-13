@@ -3,7 +3,6 @@ package racingcar.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import racingcar.constants.CarConstant;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
@@ -29,14 +28,14 @@ public class CarService {
     public void runRound(int round) {
         for (Car car : cars.getCars()) {
             Random random = new Random();
-            int randomNumber = random.nextInt(CarConstant.RANDOM_NUMBER_BOUNDARY.getNumber());
+            int randomNumber = random.nextInt(Car.RANDOM_NUMBER_BOUNDARY);
             runForward(car, randomNumber);
             car.validateCurrentDistance(round);
         }
     }
 
     public void runForward(Car car, int randomNumber) {
-        if (randomNumber >= CarConstant.FORWARD_BOUNDARY.getNumber()) {
+        if (randomNumber >= Car.FORWARD_BOUNDARY) {
             car.increaseDistance();
         }
     }

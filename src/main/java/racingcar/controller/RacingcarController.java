@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.constants.CarConstant;
+import racingcar.domain.Car;
 import racingcar.service.CarService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -52,7 +52,7 @@ public class RacingcarController {
     }
 
     private void validateNegativeCount(int tryCount) {
-        int minTryCount = CarConstant.MIN_TRY_COUNT.getNumber();
+        int minTryCount = Car.MIN_TRY_COUNT;
         if (tryCount <= minTryCount) {
             throw new IllegalArgumentException(String.format("[ERROR] 시도할 횟수는 %d보다 큰 숫자여야 합니다.", minTryCount));
         }

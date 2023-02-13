@@ -9,19 +9,18 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.constants.CarConstant;
 import racingcar.service.CarService;
 
 class CarTest {
     @Nested
     @DisplayName("자동차 이름 길이 테스트")
     class TestNameLength {
-        private final int nameMinLength = CarConstant.NAME_MIN_LENGTH.getNumber();
-        private final int nameMaxLength = CarConstant.NAME_MAX_LENGTH.getNumber();
+        private final int nameMinLength = Car.NAME_MIN_LENGTH;
+        private final int nameMaxLength = Car.NAME_MAX_LENGTH;
 
         @ParameterizedTest(name = "{index} ==> name : ''{0}''")
         @ValueSource(strings = {"", "abcdef", "pobiiiiii"})
-        @DisplayName("자동차 이름의 길이가 0 이하거나 5보다 클 경우 예외 발생")
+        @DisplayName("자동차 이름의 길이가 " + nameMinLength + " 이하거나 " + nameMaxLength + "보다 클 경우 예외 발생")
         void Should_ThrowException_길이가_0이하거나_5보다_큰_경우(String name) {
             assertThatThrownBy(() -> new Car(name, 0))
                     .isInstanceOf(IllegalArgumentException.class)
@@ -82,11 +81,11 @@ class CarTest {
     @Nested
     @DisplayName("자동차 시작 위치 테스트")
     class TestStartDistance {
-        private final int startDistance = CarConstant.START_DISTANCE_VALUE.getNumber();
+        private final int startDistance = Car.START_DISTANCE_VALUE;
 
         @ParameterizedTest(name = "{index} ==> distance : ''{0}''")
         @ValueSource(ints = {1, -1, 100})
-        @DisplayName("자동차 시작 위치가 0이 아닌 경우 예외 발생")
+        @DisplayName("자동차 시작 위치가 " + startDistance + "이 아닌 경우 예외 발생")
         void Should_ThrowException_시작_위치가_0이_아닌_경우(int distance) {
             assertThatThrownBy(() -> new Car("test", distance))
                     .isInstanceOf(IllegalArgumentException.class)

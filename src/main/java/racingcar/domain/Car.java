@@ -1,9 +1,13 @@
 package racingcar.domain;
 
-import java.util.Map;
-import racingcar.constants.CarConstant;
-
 public class Car {
+    public static final int NAME_MAX_LENGTH = 5;
+    public static final int NAME_MIN_LENGTH = 0;
+    public static final int START_DISTANCE_VALUE = 0;
+    public static final int MIN_TRY_COUNT = 0;
+    public static final int RANDOM_NUMBER_BOUNDARY = 10;
+    public static final int FORWARD_BOUNDARY = 4;
+
     private final String name;
     private int distance;
 
@@ -16,8 +20,8 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        int nameMinLength = CarConstant.NAME_MIN_LENGTH.getNumber();
-        int nameMaxLength = CarConstant.NAME_MAX_LENGTH.getNumber();
+        int nameMinLength = NAME_MIN_LENGTH;
+        int nameMaxLength = NAME_MAX_LENGTH;
 
         if (name.length() > nameMaxLength || name.length() <= nameMinLength) {
             throw new IllegalArgumentException(String.format("[ERROR] 자동차 이름의 길이는 %d부터 %d 사이여야 합니다.", nameMinLength, nameMaxLength));
@@ -31,7 +35,7 @@ public class Car {
     }
 
     private void validateStartDistance(int distance) {
-        int startDistance = CarConstant.START_DISTANCE_VALUE.getNumber();
+        int startDistance = START_DISTANCE_VALUE;
         if (distance != startDistance) {
             throw new IllegalArgumentException(String.format("[ERROR] 자동차의 시작 위치는 %d으로 설정되어야 합니다.", startDistance));
         }
