@@ -25,7 +25,6 @@ public class GameController {
     }
     
     private String readCarNames() {
-        outputView.readCarNames();
         return inputView.readCarNames();
     }
     
@@ -36,7 +35,6 @@ public class GameController {
     }
     
     private String readNumberOfTry() {
-        outputView.readNumberOfTry();
         return inputView.readNumberOfTry();
     }
 
