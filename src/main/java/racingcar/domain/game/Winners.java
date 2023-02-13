@@ -22,7 +22,7 @@ public class Winners {
         Car winner = findWinner(cars);
 
         return cars.stream()
-                .filter(it -> it.position().equals(winner.position()))
+                .filter(it -> it.isSamePosition(winner))
                 .collect(Collectors.toList());
     }
 

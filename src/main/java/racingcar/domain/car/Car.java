@@ -30,6 +30,12 @@ public class Car {
         position = nextPosition(number);
     }
 
+    private void validateRange(final int number) {
+        if (number < MIN_RANGE || number > MAX_RANGE) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private Position nextPosition(final int number) {
         if (number >= BOUNDARY_NUMBER) {
             return position.increase();
@@ -37,9 +43,7 @@ public class Car {
         return position;
     }
 
-    private void validateRange(final int number) {
-        if (number < MIN_RANGE || number > MAX_RANGE) {
-            throw new IllegalArgumentException();
-        }
+    public boolean isSamePosition(final Car car) {
+        return this.position.equals(car.position);
     }
 }
