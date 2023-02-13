@@ -28,4 +28,8 @@ public class AttemptNumber {
     public boolean isRemain() {
         return attemptNumber != 0;
     }
+
+    public int getAttemptNumber() {
+        return attemptNumber;
+    }
 }
