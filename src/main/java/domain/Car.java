@@ -36,4 +36,3 @@ public class Car implements Comparable<Car> {
         return position - o.position;
     }
 }
-
