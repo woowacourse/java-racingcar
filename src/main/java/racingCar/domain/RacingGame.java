@@ -26,6 +26,10 @@ public class RacingGame {
 
     private void readTryCount() {
         this.tryCount = RepeaterUtil.repeat(InputView::readTryCount);
+        validateTryCount(tryCount);
+    }
+
+    void validateTryCount(int tryCount) {
         if (tryCount < MIN_TRY_COUNT) {
             throw new IllegalArgumentException("시도 횟수는 1회 이상이어야 합니다");
         }
