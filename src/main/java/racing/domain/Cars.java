@@ -1,9 +1,8 @@
 package racing.domain;
 
-import racing.util.RandomUtil;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Cars {
 
@@ -18,9 +17,9 @@ public class Cars {
         return cars.get(n);
     }
 
-    public void calculator() {
+    public void calculator(Random random) {
         cars.stream()
-                .filter(car -> 4 <= RandomUtil.getRandomNumber())
+                .filter(car -> 4 <= random.nextInt(10))
                 .forEach(Car::move);
     }
 
@@ -48,7 +47,9 @@ public class Cars {
     private List<String> findWinners(int winnerStep) {
         List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            winners = car.ifMeetAddWinners(winners, winnerStep);
+            if (car.getStep() == winnerStep) {
+                winners.add(car.getName());
+            }
         }
         return winners;
     }

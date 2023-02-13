@@ -16,6 +16,14 @@ public class Car {
         this.step = 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getStep() {
+        return step;
+    }
+
     public void move() {
         this.step++;
     }

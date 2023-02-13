@@ -3,6 +3,8 @@ package racing.controller;
 import racing.domain.Cars;
 import racing.ui.output.OutputView;
 
+import java.util.Random;
+
 public class RacingController {
 
     private final Cars cars;
@@ -19,7 +21,7 @@ public class RacingController {
 
     private void move(int count) {
         while(count-- > 0) {
-            cars.calculator();
+            cars.calculator(new Random());
             OutputView.printProcessing(cars);
         }
     }
