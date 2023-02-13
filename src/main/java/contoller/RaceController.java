@@ -1,24 +1,28 @@
 package contoller;
 
-import domain.Car;
+import domain.RandomMovableStrategy;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import util.RandomGenerator;
+import service.RacingGame;
 import view.InputView;
 import view.OutputView;
 
 public class RaceController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final RacingGame racingGame;
 
-    public void run() {
-        final List<Car> cars = makeCars();
+    public RaceController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.racingGame = initRacingGame();
+    }
+
+    private RacingGame initRacingGame() {
+        final List<String> carNames = repeat(inputView::readCarNames);
         final int roundNum = repeat(inputView::readTrialNum);
-
-        startRace(cars, roundNum);
-        pickWinner(cars);
+        return new RacingGame(new RandomMovableStrategy(), carNames, roundNum);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
@@ -30,41 +34,12 @@ public class RaceController {
         }
     }
 
-    private List<Car> makeCars() {
-        final List<String> carNames = repeat(inputView::readCarNames);
-        return carNames.stream()
-            .map(Car::new)
-            .collect(Collectors.toList());
-    }
-
-    private void startRace(List<Car> cars, int roundNum) {
-        outputView.printStart(cars);
-        for (int i = 0; i < roundNum; i++) {
-            runRound(cars);
+    public void run() {
+        outputView.printStart(racingGame.getCars());
+        while (racingGame.isContinue()) {
+            racingGame.race();
+            outputView.printCarsStatus(racingGame.getCars());
         }
-    }
-
-    private void runRound(List<Car> cars) {
-        for (Car car : cars) {
-            car.move(RandomGenerator.getDigit());
-        }
-        outputView.printCarsStatus(cars);
-    }
-
-    private void pickWinner(List<Car> cars) {
-        final int maxPosition = getMaxPosition(cars);
-
-        List<String> winnerNames = cars.stream().sorted()
-            .filter(c -> c.getPosition() == maxPosition)
-            .map(Car::getName)
-            .collect(Collectors.toList());
-        outputView.printWinners(winnerNames);
-    }
-
-    private int getMaxPosition(List<Car> cars) {
-        return cars.stream()
-            .max(Car::compareTo)
-            .orElseThrow()
-            .getPosition();
+        outputView.printWinners(racingGame.getWinners());
     }
 }

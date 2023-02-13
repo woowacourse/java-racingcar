@@ -2,8 +2,7 @@ package domain;
 
 public class Car implements Comparable<Car> {
 
-    protected static final int INIT_POSITION = 1;
-    private static final int MIN_MOVE_NUM = 4;
+    private static final int INIT_POSITION = 1;
 
     private final String name;
     private int position;
@@ -13,8 +12,13 @@ public class Car implements Comparable<Car> {
         position = INIT_POSITION;
     }
 
-    public void move(int num) {
-        if (num >= MIN_MOVE_NUM) {
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
+    public void move(boolean doMove) {
+        if (doMove) {
             position++;
         }
     }
@@ -32,4 +36,3 @@ public class Car implements Comparable<Car> {
         return position - o.position;
     }
 }
-
