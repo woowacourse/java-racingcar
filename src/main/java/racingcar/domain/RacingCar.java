@@ -19,14 +19,6 @@ public class RacingCar implements Comparable<RacingCar> {
         }
     }
 
-    public String getDesc() {
-        String delimiter = " : ";
-        String description = name +
-                delimiter +
-                "-".repeat(position);
-        return description;
-    }
-
     @Override
     public int compareTo(RacingCar o) {
         return o.position - this.position;

@@ -80,7 +80,7 @@ public class RacingCarGameController {
         }
         RacingCarDto firstCar = sortedRacingCars.get(FIRST_CAR_INDEX);
         return sortedRacingCars.stream()
-                .filter(car -> car.getPoint().equals(firstCar.getPoint()))
+                .filter(car -> car.getPosition().equals(firstCar.getPosition()))
                 .map(car -> car.getName())
                 .collect(Collectors.toList());
     }

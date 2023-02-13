@@ -2,18 +2,18 @@ package racingcar.dto;
 
 public class RacingCarDto {
     private final String name;
-    private final Integer point;
+    private final Integer position;
 
-    public RacingCarDto(String name, Integer point) {
+    public RacingCarDto(String name, Integer position) {
         this.name = name;
-        this.point = point;
+        this.position = position;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public Integer getPoint() {
-        return point;
+    public Integer getPosition() {
+        return position;
     }
 }

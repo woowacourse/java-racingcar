@@ -20,20 +20,20 @@ public class RoundManager {
         racingCars.add(racingCar);
     }
 
-    public List<String> getStartStatus() {
-        List<String> roundResult = new ArrayList<>();
+    public List<RacingCarDto> getStartStatus() {
+        List<RacingCarDto> roundResult = new ArrayList<>();
         racingCars.stream().forEach(racingCar -> {
             racingCar.advance(ALL_CARS_ADVANCE);
-            roundResult.add(racingCar.getDesc());
+            roundResult.add(racingCar.toDto());
         });
         return roundResult;
     }
 
-    public List<String> runRound() {
-        List<String> roundResult = new ArrayList<>();
+    public List<RacingCarDto> runRound() {
+        List<RacingCarDto> roundResult = new ArrayList<>();
         racingCars.stream().forEach(racingCar -> {
             racingCar.advance(advanceJudgement.isAdvancePossible());
-            roundResult.add(racingCar.getDesc());
+            roundResult.add(racingCar.toDto());
         });
         return roundResult;
     }
