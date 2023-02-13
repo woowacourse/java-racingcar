@@ -10,13 +10,10 @@ import view.OutputView;
 public class RaceGame {
 
   private static final PowerSupplier powerSupplier = new RandomPowerSupplier();
-
-  private List<String> runnerNames;
   private int roundCount;
   private List<Car> cars;
 
   public RaceGame(List<String> runnerNames, int roundCount) {
-    this.runnerNames = runnerNames;
     this.roundCount = roundCount;
     this.cars = makeCars(runnerNames);
   }
