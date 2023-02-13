@@ -22,8 +22,8 @@ public class RacingGameController {
         OutputView.printBeforeRacing();
         while (!racingGame.isEnd()) {
             racingGame.play();
-            OutputView.printRacing(racingGame);
+            OutputView.printRacing(racingGame.decideResult());
         }
-        OutputView.printWinners(racingGame);
+        OutputView.printWinners(racingGame.decideWinners());
     }
 }
