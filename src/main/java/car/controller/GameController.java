@@ -15,13 +15,15 @@ public class GameController {
     private static final int MIN_TRIAL_COUNT = 0;
     private static final String NEGATIVE_INTEGER_INPUT_EXCEPTION_MASSAGE = "[ERROR] 시도횟수는 음수이면 안됩니다.";
     private final InputView inputView;
+    private Input input;
     private static final OutputView outputView = new OutputView();
 
     private Game game;
     private int trialCount;
 
     public GameController(Input input) {
-        this.inputView = new InputView(input);
+        this.input = input;
+        this.inputView = new InputView(this.input);
     }
 
     public void startGame() {
