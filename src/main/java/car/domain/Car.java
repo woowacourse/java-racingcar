@@ -1,7 +1,6 @@
 package car.domain;
 
 
-import java.util.regex.Pattern;
 
 public class Car {
     private final static int INITIAL_POSITION = 0;
