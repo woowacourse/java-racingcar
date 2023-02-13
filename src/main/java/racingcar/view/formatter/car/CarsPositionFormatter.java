@@ -1,4 +1,4 @@
-package racingcar.model.car.formatter;
+package racingcar.view.formatter.car;
 
 import java.util.stream.Collectors;
 import racingcar.model.car.Cars;

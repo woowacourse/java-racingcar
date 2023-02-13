@@ -1,10 +1,10 @@
-package racingcar.model.track.formatter;
+package racingcar.view.formatter.track;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
-import racingcar.model.car.formatter.CarsPositionFormatter;
+import racingcar.view.formatter.car.CarsPositionFormatter;
 
 public class TrackStateFormatter {
     private static final String WINNER_MESSAGE = "%s가 최종 우승했습니다.";

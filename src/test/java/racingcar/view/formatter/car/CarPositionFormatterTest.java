@@ -1,4 +1,4 @@
-package racingcar.model.car.formatter;
+package racingcar.view.formatter.car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.model.car.Car;
 import racingcar.model.car.strategy.ForwardMovingStrategy;
+import racingcar.view.formatter.car.CarPositionFormatter;
 
 class CarPositionFormatterTest {
 

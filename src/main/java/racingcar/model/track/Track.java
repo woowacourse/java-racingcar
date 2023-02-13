@@ -2,7 +2,7 @@ package racingcar.model.track;
 
 import racingcar.RacingCarContext;
 import racingcar.model.car.Cars;
-import racingcar.model.track.formatter.TrackStateFormatter;
+import racingcar.view.formatter.track.TrackStateFormatter;
 import racingcar.model.trialtimes.TrialTimes;
 
 public class Track {

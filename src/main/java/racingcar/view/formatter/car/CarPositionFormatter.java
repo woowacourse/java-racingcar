@@ -1,4 +1,4 @@
-package racingcar.model.car.formatter;
+package racingcar.view.formatter.car;
 
 import racingcar.model.car.Car;
 

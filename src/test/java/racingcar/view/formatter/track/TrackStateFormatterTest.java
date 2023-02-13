@@ -1,4 +1,4 @@
-package racingcar.model.track.formatter;
+package racingcar.view.formatter.track;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,8 +9,9 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import racingcar.TestDataManager;
 import racingcar.model.car.Cars;
-import racingcar.model.car.formatter.CarPositionFormatter;
-import racingcar.model.car.formatter.CarsPositionFormatter;
+import racingcar.view.formatter.car.CarPositionFormatter;
+import racingcar.view.formatter.car.CarsPositionFormatter;
+import racingcar.view.formatter.track.TrackStateFormatter;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class TrackStateFormatterTest {
