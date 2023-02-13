@@ -6,7 +6,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -27,8 +26,8 @@ public class RacingGameController {
     }
 
     public void init() {
-        initCars();
-        initGameCount();
+        this.cars=makeCars();
+        this.gameCount=makeGameCount();
     }
 
     public void run() {
@@ -52,39 +51,23 @@ public class RacingGameController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private void initCars() {
-        Optional<Cars> cars = makeCars();
-        while (cars.isEmpty())
-            cars = makeCars();
-
-        this.cars = cars.get();
-    }
-
-    private void initGameCount() {
-        Optional<GameCount> gameCount = makeGameCount();
-        while (gameCount.isEmpty())
-            gameCount = makeGameCount();
-
-        this.gameCount = gameCount.get();
-    }
-
-    private Optional<Cars> makeCars() {
+    private Cars makeCars() {
         try {
-            return Optional.of(Cars.from(inputView.readCarNames()));
+            return Cars.from(inputView.readCarNames());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
 
-            return Optional.empty();
+            return makeCars();
         }
     }
 
-    private Optional<GameCount> makeGameCount() {
+    private GameCount makeGameCount() {
         try {
-            return Optional.of(new GameCount(inputView.readTryCount()));
+            return new GameCount(inputView.readTryCount());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
 
-            return Optional.empty();
+            return makeGameCount();
         }
     }
 }
