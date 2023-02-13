@@ -26,8 +26,8 @@ public class RacingGameApplication {
     }
 
     public void run() {
-        List<CarNameDto> carNameDtos = inputView.sendCarsName();
-        TryCount tryCount = inputView.sendTryCount();
+        List<CarNameDto> carNameDtos = inputView.inputCarsName();
+        TryCount tryCount = inputView.inputTryCount();
 
         Cars cars = getCars(carNameDtos);
 

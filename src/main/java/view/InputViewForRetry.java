@@ -14,24 +14,24 @@ public class InputViewForRetry {
         this.inputView = inputView;
     }
 
-    public List<CarNameDto> sendCarsName() {
+    public List<CarNameDto> inputCarsName() {
         try {
             return inputView.sendCarsName();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
-            return sendCarsName();
+            return inputCarsName();
         }
     }
 
-    public TryCount sendTryCount() {
+    public TryCount inputTryCount() {
         try {
             return inputView.sendTryCount();
         } catch (InputMismatchException exception) {
             printExceptionMessage("시도 횟수는 양의 정수여야 합니다.");
-            return sendTryCount();
+            return inputTryCount();
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception.getMessage());
-            return sendTryCount();
+            return inputTryCount();
         }
     }
 
