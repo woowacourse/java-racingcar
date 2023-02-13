@@ -27,7 +27,7 @@ public class Cars {
     }
 
     public void move(NumberGenerator numberGenerator) {
-        cars.forEach(car -> car.move(isMove(numberGenerator.generate())));
+        cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
     public List<Car> getRoundResults() {
@@ -35,9 +35,7 @@ public class Cars {
     }
 
     public List<Car> pickWinners() {
-        return this.cars.stream()
-                .filter(car -> Objects.equals(car.getPosition(), getMaxPosition()))
-                .collect(Collectors.toList());
+        return this.cars.stream().filter(car -> Objects.equals(car.getPosition(), getMaxPosition())).collect(Collectors.toList());
     }
 
     public int getNumberOfCars() {
@@ -48,9 +46,6 @@ public class Cars {
         return carNames.stream().map(Car::of).collect(Collectors.toList());
     }
 
-    private boolean isMove(int moveConditionValue) {
-        return moveConditionValue >= CAR_MOVE_STANDARD;
-    }
 
     private void validateDuplicateCarName(List<Car> cars) {
         int nonDuplicateCount = new HashSet<>(cars).size();
@@ -60,9 +55,7 @@ public class Cars {
     }
 
     private int getMaxPosition() {
-        return this.cars.stream()
-                .mapToInt(car -> car.getPosition())
-                .max().orElse(START_POSITION);
+        return this.cars.stream().mapToInt(car -> car.getPosition()).max().orElse(START_POSITION);
     }
 
 }

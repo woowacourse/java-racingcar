@@ -1,5 +1,9 @@
 package racingcar.domain;
 
+import racingcar.util.GoForward;
+import racingcar.util.MoveStrategy;
+import racingcar.util.Stop;
+
 import java.util.Objects;
 
 import static racingcar.enumType.ExceptionMessage.BLANK_MESSAGE;
@@ -24,12 +28,11 @@ public class Car {
         return new Car(name);
     }
 
-    public void move(final boolean isMove) {
-        if (isMove) {
-            position++;
-        }
-    }
 
+    public void move(int speed) {
+        MoveStrategy moveStrategy = chooseStrategy(speed);
+        position += moveStrategy.move();
+    }
 
     public String getName() {
         return this.name;
@@ -51,7 +54,15 @@ public class Car {
         }
     }
 
+    private MoveStrategy chooseStrategy(int speed) {
+        if (speed >= 4) {
+            return new GoForward();
+        }
+        return new Stop();
+    }
+
     @Override
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

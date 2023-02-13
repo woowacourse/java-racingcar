@@ -48,20 +48,27 @@ class CarTest {
     @Nested
     class MoveTest {
 
-        @Test
-        @DisplayName("이동 조건이 True인 경우, 자동차가 전진한다")
-        void givenTrue_thenCarMove() {
+        @ParameterizedTest
+        @ValueSource(ints = {4, 9})
+        @DisplayName("랜덤값이 4 이상이면 자동차가 전진한다.")
+        void givenFourMoreNumber_thenCarMove(int randomNumber) {
+            // given
             Car car = Car.of("BMW");
-            car.move(true);
+
+            // when
+            car.move(randomNumber);
+
+            //then
             assertThat(car.getPosition()).isEqualTo(2);
         }
 
 
-        @Test
-        @DisplayName("이동조건이 False인 경우, 자동차가 이동하지 않는다.")
-        void givenFalse_thenCarMove() {
+        @ParameterizedTest
+        @ValueSource(ints = {0, 3})
+        @DisplayName("랜덤값이 3 이하면 자동차가 정지한다.")
+        void givenThreeLessNumber_thenCarStop(int randomNumber) {
             Car car = Car.of("BMW");
-            car.move(false);
+            car.move(randomNumber);
             assertThat(car.getPosition()).isEqualTo(1);
         }
 
