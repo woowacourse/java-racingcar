@@ -4,17 +4,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.Car;
+import domain.RacingGame;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import org.junit.jupiter.api.Test;
+import util.NumberGenerator;
 
 class RacingGameTest {
     @Test
     void 이름들로_자동차들_생성_테스트() {
-        RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+        RacingGame racingGame = new RacingGame();
         List<String> carNames = Arrays.asList("aaa", "bbb", "ccc");
         racingGame.generateCars(carNames);
 
@@ -23,21 +25,21 @@ class RacingGameTest {
 
     @Test
     void 자동차_이름_중복_예외_테스트() {
-        RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+        RacingGame racingGame = new RacingGame();
         assertThatThrownBy(() -> racingGame.generateCars(Arrays.asList("bb", "bb", "cc")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 자동차_개수_1개_일_때_예외_테스트() {
-        RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
-        assertThatThrownBy(() -> racingGame.generateCars(Arrays.asList("bb")))
+        RacingGame racingGame = new RacingGame();
+        assertThatThrownBy(() -> racingGame.generateCars(List.of("bb")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 값에_따른_자동차_진행_테스트() {
-        RacingGame racingGame = new RacingGame(new TestNumberGenerator());
+        RacingGame racingGame = new RacingGame();
         List<String> carNames = new ArrayList<>(List.of("aaa", "bbb", "ccc"));
         racingGame.generateCars(carNames);
 
@@ -51,7 +53,7 @@ class RacingGameTest {
 
     @Test
     void 게임_승자_테스트() {
-        RacingGame racingGame = new RacingGame(new TestNumberGenerator());
+        RacingGame racingGame = new RacingGame();
         List<String> carNames = new ArrayList<>(List.of("aaa", "bbb", "ccc"));
         racingGame.generateCars(carNames);
 
@@ -70,7 +72,7 @@ class RacingGameTest {
 
         @Override
         public int generate(int startInclusive, int endInclusive) {
-            return numbers.poll();
+            return numbers.remove();
         }
     }
 }

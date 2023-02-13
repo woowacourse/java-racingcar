@@ -1,11 +1,11 @@
-package service;
+package domain;
 
-import domain.Car;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import util.RandomNumberGenerator;
 
 public class RacingGame {
     private static final int RANDOM_START_INCLUSIVE = 0;
@@ -13,11 +13,9 @@ public class RacingGame {
     private static final int PROCESS_MOVING_MIN_NUMBER = 4;
 
     private List<Car> cars;
-    private NumberGenerator numberGenerator;
 
-    public RacingGame(NumberGenerator numberGenerator) {
+    public RacingGame() {
         this.cars = new ArrayList<>();
-        this.numberGenerator = numberGenerator;
     }
 
     public void generateCars(List<String> carNames) {
@@ -49,7 +47,7 @@ public class RacingGame {
 
     public void processAllCars() {
         for (Car car : cars) {
-            int random = numberGenerator.generate(0, 9);
+            int random = RandomNumberGenerator.getRandomNumber(RANDOM_START_INCLUSIVE, RANDOM_END_INCLUSIVE);
             process(car, random);
         }
     }
@@ -69,7 +67,7 @@ public class RacingGame {
 
     public List<String> decisionWinners() {
         List<String> winners = new ArrayList<>();
-        int topPoint = cars.stream().mapToInt(c -> c.getPosition()).max()
+        int topPoint = cars.stream().mapToInt(Car::getPosition).max()
                 .orElseThrow(() -> new IllegalArgumentException("최고 점수가 null입니다."));
         for (Car car : cars) {
             addWinners(winners, topPoint, car);

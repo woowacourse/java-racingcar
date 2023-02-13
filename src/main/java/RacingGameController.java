@@ -1,11 +1,10 @@
 import domain.Car;
+import domain.RacingGame;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import service.RacingGame;
-import service.RandomNumberGenerator;
-import ui.InputView;
-import ui.OutputView;
+import view.InputView;
+import view.OutputView;
 
 public class RacingGameController {
 
@@ -16,7 +15,7 @@ public class RacingGameController {
     public RacingGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.racingGame = new RacingGame(new RandomNumberGenerator());
+        this.racingGame = new RacingGame();
     }
 
     public void run() {

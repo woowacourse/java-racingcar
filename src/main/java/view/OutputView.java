@@ -1,4 +1,4 @@
-package ui;
+package view;
 
 import java.util.List;
 import java.util.Map;
@@ -12,8 +12,7 @@ public class OutputView {
     }
 
     private String convertPosition(int position) {
-        String result = POSITION_MARK;
-        return result.repeat(position + 1);
+        return POSITION_MARK.repeat(position + 1);
     }
 
     public void printWinners(List<String> winnerNames) {

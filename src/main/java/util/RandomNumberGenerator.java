@@ -1,6 +1,17 @@
-package service;
+package util;
+
+import java.util.Objects;
 
 public class RandomNumberGenerator implements NumberGenerator {
+
+    private static RandomNumberGenerator randomNumberGenerator;
+
+    public static int getRandomNumber(int startInclusive, int endInclusive) {
+        if (Objects.isNull(randomNumberGenerator)) {
+            randomNumberGenerator = new RandomNumberGenerator();
+        }
+        return randomNumberGenerator.generate(startInclusive, endInclusive);
+    }
 
     @Override
     public int generate(int startInclusive, int endInclusive) {

@@ -1,4 +1,4 @@
-package ui;
+package view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class InputView {
     }
 
     private void validateCarNamesString(String carNameLine) {
-        carNameLine.strip();
+        carNameLine = carNameLine.strip();
         if (Objects.isNull(carNameLine) || carNameLine.equals("")) {
             throw new IllegalArgumentException("입력된 차량 이름이 없습니다.");
         }
