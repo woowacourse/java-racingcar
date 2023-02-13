@@ -3,19 +3,23 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.strategy.RandomNumberStrategy;
+
 public class Cars {
-	List<Car> cars;
+	private static final RandomNumberStrategy randomNumberStrategy = new RandomNumberStrategy();
+
+	private final List<Car> cars;
 
 	public Cars(List<Car> input) {
-		cars = new ArrayList<>(input);
+		this.cars = new ArrayList<>(input);
 	}
 
 	public int getCarsSize() {
-		return cars.size();
+		return this.cars.size();
 	}
 
-	public void addDistance(int randomNumber, int index) {
-		getCar(index).addDistance(randomNumber);
+	public void move() {
+		cars.forEach(car -> car.move(randomNumberStrategy.movable()));
 	}
 
 	public Car getCar(int index) {
@@ -23,6 +27,6 @@ public class Cars {
 	}
 
 	public List<Car> getCars() {
-		return cars;
+		return this.cars;
 	}
 }
