@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RacingGame {
@@ -8,7 +9,7 @@ public class RacingGame {
     private final CarGroup carGroup;
     private final RandomNumberGenerator randomNumberGenerator;
 
-    public RacingGame(String[] names) {
+    public RacingGame(List<String> names) {
         this.carGroup = new CarGroup(names);
         this.randomNumberGenerator = new RandomNumberGenerator();
     }

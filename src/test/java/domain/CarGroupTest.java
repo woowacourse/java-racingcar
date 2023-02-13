@@ -1,22 +1,22 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class CarGroupTest {
 
     @DisplayName("자동차 대수가 1대인 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenNumberOfCarsIsOne() {
-        String[] names = {"1"};
+        List<String> names = List.of("1");
 
-        assertThatThrownBy(()-> new CarGroup(names))
+        assertThatThrownBy(() -> new CarGroup(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -26,28 +26,26 @@ class CarGroupTest {
         List<String> names = new ArrayList<>();
 
         for (int i = 0; i < 51; i++) {
-            names.add(i+"");
+            names.add(i + "");
         }
-        String[] fiftyNames = names.toArray(new String[51]);
 
-        assertThatThrownBy(()-> new CarGroup(fiftyNames))
+        assertThatThrownBy(() -> new CarGroup(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("중복된 자동차 이름이 존재하는 경우 예외가 발생한다.")
     @Test
     void throwExceptionWhenNameOfCarsIsDuplicate() {
-        String[] duplicateNames = {"1","1","3"};
+        List<String> names = List.of("1", "1", "3");
 
-        assertThatThrownBy(()-> new CarGroup(duplicateNames))
+        assertThatThrownBy(() -> new CarGroup(names))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차 이름이 정상적으로 입력된 경우는 예외가 발생하지 않는다.")
     @Test
     void createCarGroup() {
-        String[] names = {"1","2","3"};
-
+        List<String> names = List.of("1", "2", "3");
         assertDoesNotThrow(() -> new CarGroup(names));
     }
 }
