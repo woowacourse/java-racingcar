@@ -1,10 +1,9 @@
 package controller;
 
-import domain.Names;
+import domain.Name;
 import domain.RacingCar;
 import domain.RacingCars;
 import domain.TryCount;
-import exception.NotPositiveIntegerException;
 import view.InputView;
 import view.OutputView;
 
@@ -24,31 +23,26 @@ public class RacingGameController {
 
     private void setUpGame() {
         racingCars = createRacingCar();
-        tryCount = getTryCount();
+        tryCount = requestTryCount();
     }
 
     private RacingCars createRacingCar() {
-        final Names names = inputCarNames();
+        final List<Name> names = inputCarNames();
         return new RacingCars(createRacingCar(names));
     }
 
-    private Names inputCarNames() {
+    private List<Name> inputCarNames() {
         return InputView.requestCarName();
     }
 
-    private List<RacingCar> createRacingCar(final Names names) {
-        return names.getNames().stream()
-                .map(RacingCar::new)
+    private List<RacingCar> createRacingCar(final List<Name> names) {
+        return names.stream()
+                .map(RacingCar::createRandomMoveRacingCar)
                 .collect(toList());
     }
 
-    private TryCount getTryCount() {
-        try {
-            return new TryCount(InputView.requestTryCount());
-        } catch (NumberFormatException | NotPositiveIntegerException e) {
-            System.out.println(e.getMessage());
-            return getTryCount();
-        }
+    private TryCount requestTryCount() {
+        return InputView.requestTryCount();
     }
 
     private void playGame() {
