@@ -17,7 +17,7 @@ public class DistanceTest {
         Distance distance = new Distance(defaultDistance);
 
         // when
-        distance.increaseDistance();
+        distance.increase();
 
         // then
         assertThat(distance.getDistance()).isEqualTo(expectedDistance);

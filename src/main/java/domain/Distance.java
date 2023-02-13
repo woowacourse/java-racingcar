@@ -4,11 +4,11 @@ public class Distance {
 
     private int distance;
 
-    public Distance(int distance) {
+    public Distance(final int distance) {
         this.distance = distance;
     }
 
-    public void increaseDistance() {
+    public void increase() {
         this.distance++;
     }
 
