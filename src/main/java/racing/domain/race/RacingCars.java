@@ -8,10 +8,6 @@ import racing.domain.car.Car;
 public class RacingCars {
     private final List<Car> cars = new ArrayList<>();
 
-    public int getSize() {
-        return cars.size();
-    }
-
     public void add(Car car) {
         List<String> carNames = cars.stream().map(Car::getName).collect(Collectors.toList());
         if (carNames.contains(car.getName())) {
