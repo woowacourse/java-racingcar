@@ -38,14 +38,4 @@ class CarTest {
         assertThat(currentPosition).isEqualTo(0);
     }
 
-    private class TestNumberGenerator implements NumberGenerator {
-        private int num = 2;
-
-        @Override
-        public int generate() {
-            return num;
-        }
-
-    }
-
 }
