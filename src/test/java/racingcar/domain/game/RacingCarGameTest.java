@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.Cars;
+import racingcar.mock.MockFixedNumberGenerator;
 import racingcar.mock.MoveMethodCalledCountStoreCars;
 import racingcar.util.ReflectionTestUtils;
 
@@ -16,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DisplayName("RacingCarGame 는 ")
 class RacingCarGameTest {
 
-    private static final double ON_GORING_NUMBER = 0.5;
-    private static final double STOP_NUMBER = 0.1;
+    private static final int ON_GORING_NUMBER = 5;
+    private static final int STOP_NUMBER = 1;
     private static final String FIRST_CAR_NAME = "말랑";
     private static final String SECOND_CAR_NAME = "헤나";
     private static final String THIRD_CAR_NAME = "카일";
-    private final NumberGenerator numberGenerator = new NumberGenerator(() -> ON_GORING_NUMBER);
+    private final NumberGenerator numberGenerator = new MockFixedNumberGenerator(ON_GORING_NUMBER);
     private final List<String> carNames = List.of(FIRST_CAR_NAME, SECOND_CAR_NAME, THIRD_CAR_NAME);
     private final Cars cars = new Cars(carNames);
     private final Lap tenLap = Lap.totalLap(10);
@@ -51,18 +52,19 @@ class RacingCarGameTest {
         @Test
         void gameResult_success_1() {
             // given
-            RacingCarGame tenLapGame = RacingCarGame.init(new NumberGenerator(new Random() {
-                int count = 0;
+            RacingCarGame tenLapGame = RacingCarGame.init(new NumberGenerator() {
+                private int count = 0;
 
                 @Override
-                public double greaterOrEqualZeroAndLessThenOne() {
+                public int generate(final int minNumber, final int maxNumber) {
                     count++;
                     if (count % 3 == 0) {
                         return STOP_NUMBER;
                     }
                     return ON_GORING_NUMBER;
+
                 }
-            }), cars, tenLap);
+            }, cars, tenLap);
 
             while (tenLapGame.hasMoreLap()) {
                 tenLapGame.race();
@@ -72,8 +74,18 @@ class RacingCarGameTest {
             Winners winners = tenLapGame.winner();
 
             // then
-            assertThat(winners.winners().stream().map(it -> it.name().value()).collect(Collectors.toList()))
-                    .containsExactlyInAnyOrderElementsOf(List.of(FIRST_CAR_NAME, SECOND_CAR_NAME));
+            assertThat(winners.winners().
+
+                    stream().
+
+                    map(it -> it.name().
+
+                            value()).
+
+                    collect(Collectors.toList()))
+                    .
+
+                    containsExactlyInAnyOrderElementsOf(List.of(FIRST_CAR_NAME, SECOND_CAR_NAME));
         }
     }
 
