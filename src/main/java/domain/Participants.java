@@ -1,7 +1,5 @@
 package domain;
 
-import static validation.ParticipantsValidator.PARTICIPANTS_VALIDATOR;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -13,7 +11,7 @@ public class Participants {
     private final List<Car> cars;
 
     public Participants(List<Car> cars, NumberGenerator numberGenerator) {
-        PARTICIPANTS_VALIDATOR.validate(cars);
+        validateDuplication(cars);
         this.cars = cars;
     }
 
@@ -33,5 +31,16 @@ public class Participants {
         return cars.stream()
             .filter(car -> car.getDrivenDistance() == maxDistance)
             .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void validateDuplication(final List<Car> cars) {
+        final String DUPLICATE_CAR_NAME = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
+
+        List<String> carNames = cars.stream()
+            .map(Car::getName)
+            .collect(Collectors.toList());
+        if (carNames.stream().distinct().count() != carNames.size()) {
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME);
+        }
     }
 }

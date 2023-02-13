@@ -1,7 +1,5 @@
 package domain;
 
-import static validation.CountValidator.COUNT_VALIDATOR;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import utils.NumberGenerator;
@@ -13,7 +11,7 @@ public class Race {
     private final Participants participants;
 
     public Race(final int totalCount, final List<String> carNames, NumberGenerator numberGenerator) {
-        COUNT_VALIDATOR.validate(totalCount);
+        validateRange(totalCount);
         this.TOTAL_COUNT = totalCount;
         List<Car> cars = carNames.stream()
             .map(carName -> generateCar(carName, numberGenerator))
@@ -44,5 +42,15 @@ public class Race {
 
     public boolean isFinished() {
         return TOTAL_COUNT == currentCount;
+    }
+
+    private void validateRange(final int count) {
+        final String NOT_PROPER_COUNT = "[ERROR] 올바르지 않은 시도횟수입니다.(1 ~ 999,999,999)";
+        final int MIN_COUNT = 1;
+        final int MAX_COUNT = 999_999_999;
+
+        if (count < MIN_COUNT || count > MAX_COUNT) {
+            throw new IllegalArgumentException(NOT_PROPER_COUNT);
+        }
     }
 }

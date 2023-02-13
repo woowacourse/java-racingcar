@@ -1,7 +1,5 @@
 package domain;
 
-import static validation.CarNameValidator.CAR_NAME_VALIDATOR;
-
 import utils.NumberGenerator;
 
 public class Car {
@@ -11,7 +9,7 @@ public class Car {
     private final NumberGenerator numberGenerator;
 
     public Car(final String name, NumberGenerator numberGenerator) {
-        CAR_NAME_VALIDATOR.validate(name);
+        validateLength(name);
         this.name = name;
         this.numberGenerator = numberGenerator;
     }
@@ -36,5 +34,16 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    private void validateLength(final String carName) {
+        final String NOT_PROPER_CAR_NAME_LENGTH = "[ERROR] 자동차 이름 길이는 %d자 이상, %d자 이하여야합니다.";
+        final int MIN_CAR_NAME_LENGTH = 1;
+        final int MAX_CAR_NAME_LENGTH = 5;
+
+        if (carName.length() < MIN_CAR_NAME_LENGTH || carName.length() > MAX_CAR_NAME_LENGTH) {
+            throw new IllegalArgumentException(
+                String.format(NOT_PROPER_CAR_NAME_LENGTH, MIN_CAR_NAME_LENGTH, MAX_CAR_NAME_LENGTH));
+        }
     }
 }
