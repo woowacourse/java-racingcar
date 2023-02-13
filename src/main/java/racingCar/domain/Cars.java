@@ -11,8 +11,8 @@ public class Cars {
 
     private static final int MIN_CAR_SIZE = 2;
     private static final int INIT_CAR_POSITION = 0;
-    private static final int MIN_NUMBER_RANGE = 0;
-    private static final int MAX_NUMBER_RANGE = 9;
+    private static final int MIN_NUMBER = 0;
+    private static final int MAX_NUMBER = 9;
 
     private final List<Car> cars;
 
@@ -40,7 +40,7 @@ public class Cars {
 
     public void move() {
         for (Car car : cars) {
-            car.move(NumberPickerUtil.pickNumberInRange(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE));
+            car.move(NumberPickerUtil.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
         }
     }
 
