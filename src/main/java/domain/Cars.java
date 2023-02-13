@@ -18,7 +18,7 @@ public class Cars {
 
     public void addDistance(List<Integer> randomNumbers) {
         for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).addDistance(randomNumbers.get(i));
+            cars.get(i).move(randomNumbers.get(i));
         }
     }
 

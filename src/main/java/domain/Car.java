@@ -10,7 +10,7 @@ public class Car {
         this.name = name;
     }
 
-    public void addDistance(int power) {
+    public void move(int power) {
         if (power >= MINIMUM_ADD_DISTANCE_POWER) {
             distance++;
         }
