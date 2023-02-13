@@ -10,26 +10,16 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarContext {
-    private static RacingController racingController;
-    private static TrackStateFormatter trackStateFormatter;
-
     public static RacingController getRacingControllerInstance(MovingStrategy movingStrategy) {
-        if (racingController == null) {
-            CarFactory carFactory = new CarFactory(movingStrategy);
+        CarFactory carFactory = new CarFactory(movingStrategy);
 
-            racingController = new RacingController(InputView.getInstance(), OutputView.getInstance(), carFactory);
-        }
-
-        return racingController;
+        return new RacingController(InputView.getInstance(), OutputView.getInstance(), carFactory);
     }
 
     public static TrackStateFormatter getTrackStateFormatter() {
-        if (trackStateFormatter == null) {
-            CarPositionFormatter carFormatter = new CarPositionFormatter();
-            CarsPositionFormatter carsPositionFormatter = new CarsPositionFormatter(carFormatter);
-            trackStateFormatter = new TrackStateFormatter(carsPositionFormatter);
-        }
+        CarPositionFormatter carFormatter = new CarPositionFormatter();
+        CarsPositionFormatter carsPositionFormatter = new CarsPositionFormatter(carFormatter);
 
-        return trackStateFormatter;
+        return new TrackStateFormatter(carsPositionFormatter);
     }
 }
