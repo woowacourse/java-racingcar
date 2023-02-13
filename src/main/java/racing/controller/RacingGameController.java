@@ -1,33 +1,30 @@
 package racing.controller;
 
-import racing.domain.RandomNumberGenerator;
-import racing.domain.Car;
-import racing.dto.GameResultDto;
-import racing.service.RacingGameService;
+import racing.domain.CarRandomNumberGenerator;
+import racing.domain.Cars;
+import racing.domain.RacingGame;
 import racing.view.InputView;
 import racing.view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGameController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final RacingGame racingGame;
+
+    public RacingGameController() {
+        List<String> carNames = InputView.inputCarNames();
+        int tryCount = InputView.inputTryCount();
+        racingGame = new RacingGame(new CarRandomNumberGenerator(), new Cars(carNames), tryCount);
+    }
 
     public void run() {
-        List<String> names = inputView.inputNames();
-        List<Car> cars = names.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
-        int tryCount = inputView.inputTryCount();
-
-        RacingGameService gameService = new RacingGameService(new RandomNumberGenerator(), tryCount, cars);
-        while (!gameService.isEnd()) {
-            GameResultDto resultDto = gameService.play();
-            outputView.printRacing(resultDto);
+        OutputView.printBeforeRacing();
+        while (!racingGame.isEnd()) {
+            racingGame.play();
+            Cars cars = racingGame.getCars();
+            OutputView.printRacing(cars.getUnmodifiableCars());
         }
-        List<String> winnerNames = gameService.getWinners();
-        outputView.printWinners(winnerNames);
+        OutputView.printWinners(racingGame.decideWinners());
     }
 }

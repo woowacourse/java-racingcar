@@ -1,6 +1,8 @@
 package racing.domain;
 
-public class RandomNumberGenerator implements NumberGenerator {
+import racing.RandomNumberGenerator;
+
+public class CarRandomNumberGenerator implements RandomNumberGenerator {
 
     private static final int BOUND = 10;
 
