@@ -3,7 +3,6 @@ package racing.domain.race;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import racing.domain.RandomNumberPicker;
 import racing.domain.WinnerJudgeImpl;
 import racing.domain.car.Car;
 

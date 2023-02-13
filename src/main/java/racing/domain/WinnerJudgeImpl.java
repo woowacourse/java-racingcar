@@ -1,9 +1,9 @@
 package racing.domain;
 
-import racing.domain.car.Car;
-import racing.domain.race.WinnerJudge;
 import java.util.List;
 import java.util.stream.Collectors;
+import racing.domain.car.Car;
+import racing.domain.race.WinnerJudge;
 
 public class WinnerJudgeImpl implements WinnerJudge {
     @Override

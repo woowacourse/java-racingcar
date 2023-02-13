@@ -17,7 +17,7 @@ public class RacingCars {
     }
 
     public void moveCars() {
-        for(Car car: cars) {
+        for (Car car : cars) {
             car.moveDependingOn();
         }
     }
