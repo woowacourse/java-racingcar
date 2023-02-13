@@ -13,7 +13,7 @@ public class RacingcarController {
         this.racingcarService = new RacingcarService();
     }
 
-    public void run(String carNames, int tryCount) {
+    public void run(String[] carNames, int tryCount) {
         Cars cars = racingcarService.makeCars(carNames);
 
         OutputView.playRound();
