@@ -2,13 +2,13 @@ package racingcar.domain;
 
 public class Winner {
 
-    private final String name;
+    private final CarName carName;
 
-    public Winner(String name) {
-        this.name = name;
+    public Winner(CarName carName) {
+        this.carName = carName;
     }
 
-    public String getName() {
-        return name;
+    public CarName getName() {
+        return carName;
     }
 }

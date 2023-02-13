@@ -64,5 +64,4 @@
   - [ ] cars 객체 생성시
   - [ ] Winners 출력시
 - [ ] Main과 Controller 통합
-- [ ] CarName, Position 객체로 포장
-- 
+- [X] CarName, Position 객체로 포장
