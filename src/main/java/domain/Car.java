@@ -22,7 +22,7 @@ public class Car {
         return generatedNumber >= minMoveNumber;
     }
 
-    public boolean isWinner(int maxMoveCount) {
+    public boolean isSameMoveCount(int maxMoveCount) {
         return moveCount == maxMoveCount;
     }
 

@@ -31,7 +31,7 @@ public class RacingGame {
     public List<Car> getWinners() {
         int maxMoveCount = getMaxMoveCount();
         return cars.stream()
-                .filter(car -> car.isWinner(maxMoveCount))
+                .filter(car -> car.isSameMoveCount(maxMoveCount))
                 .collect(Collectors.toList());
     }
 
