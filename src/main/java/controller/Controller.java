@@ -56,12 +56,16 @@ public class Controller {
         try {
             List<CarName> carNames = inputView.getCarNames();
             validateDuplication(carNames);
-            for (CarName carName : carNames) {
-                cars.saveCar(Car.of(carName));
-            }
+            saveCars(carNames);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             initializeCars();
+        }
+    }
+
+    private void saveCars(List<CarName> carNames) {
+        for (CarName carName : carNames) {
+            cars.saveCar(Car.of(carName));
         }
     }
 
