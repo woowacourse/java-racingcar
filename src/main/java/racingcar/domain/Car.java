@@ -36,8 +36,7 @@ public class Car {
 		return name;
 	}
 
-	@Override
-	public String toString() {
+	public String printCarNameWithPosition() {
 		StringBuilder sb = new StringBuilder(this.name + " : -");
 		for (int i = 0; i < position; i++) {
 			sb.append("-");

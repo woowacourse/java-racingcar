@@ -32,7 +32,7 @@ public class CarService {
 
 	public String getPositionToString() {
 		return cars.stream()
-			.map(car -> car.toString())
+			.map(car -> car.printCarNameWithPosition())
 			.collect(Collectors.joining("\n"));
 	}
 }

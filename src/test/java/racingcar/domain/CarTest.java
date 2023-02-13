@@ -61,6 +61,6 @@ class CarTest {
 		car.move(CAR_MOVE_MIN);
 		car.move(CAR_MOVE_MIN);
 
-		assertThat(car.toString()).isEqualTo("woowa : ---");
+		assertThat(car.printCarNameWithPosition()).isEqualTo("woowa : ---");
 	}
 }
