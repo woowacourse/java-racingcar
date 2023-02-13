@@ -41,4 +41,10 @@ public class CarRepository {
                 .orElseThrow();
     }
 
+    public CarRepository judgment() {
+        CarRepository winners = new CarRepository();
+        winners.addAll(findSamePositionCar(findMaxPositionCar()));
+
+        return winners;
+    }
 }

@@ -2,7 +2,6 @@ package controller;
 
 import domain.Car;
 import domain.CarRepository;
-import domain.Referee;
 import util.NumberGenerator;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -13,7 +12,6 @@ public class RacingController {
     private final OutputView outputView = new OutputView();
     private final CarRepository carRepository = new CarRepository();
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
-    private final Referee referee = new Referee();
 
     private static final int START_INDEX = 0;
 
@@ -44,8 +42,7 @@ public class RacingController {
     }
 
     private void winners() {
-        CarRepository winnerCarRepository = referee.judgment(carRepository);
-        outputView.printWinners(winnerCarRepository);
+        outputView.printWinners(carRepository.judgment());
     }
 
     private void printStatus() {
