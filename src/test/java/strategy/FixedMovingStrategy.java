@@ -2,8 +2,9 @@ package strategy;
 
 public class FixedMovingStrategy implements MovingStrategy {
 
+
     @Override
-    public int getNum() {
+    public int getRandomNumber() {
         return 9;
     }
 }
