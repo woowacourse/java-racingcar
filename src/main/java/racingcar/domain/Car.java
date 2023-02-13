@@ -10,13 +10,9 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        this(name, START_POSITION);
-    }
-
-    public Car(String name, int position) {
         CarNameValidator.validate(name);
         this.name = name;
-        this.position = position;
+        this.position = START_POSITION;
     }
 
     public void move(Movement movement) {
@@ -31,5 +27,13 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+    
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                '}';
     }
 }

@@ -10,7 +10,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
-
+    public static final Car ABEL = new Car("abel");
+    public static final Car MERY = new Car("mery");
+    public static final Car POBI = new Car("pobi");
+    
     Car car;
 
     @BeforeEach
