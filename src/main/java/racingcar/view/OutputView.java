@@ -21,6 +21,7 @@ public class OutputView {
     public void printExecutionResult(List<Car> cars) {
         cars.stream()
                 .forEach(car -> printCar(car));
+        printBlankLine();
     }
 
     public void printBlankLine() {
@@ -37,7 +38,7 @@ public class OutputView {
 
     public void printFinalResult(List<Car> winners) {
         String winnerNames = String.join(", ", getWinnersNames(winners));
-        System.out.println(String.format(FINAL_RESULT_MESSAGE,winnerNames));
+        System.out.println(String.format(FINAL_RESULT_MESSAGE, winnerNames));
     }
 
     private List<String> getWinnersNames(List<Car> winners) {

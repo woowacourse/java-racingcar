@@ -1,6 +1,8 @@
 package racingcar.controller;
 
 import racingcar.domain.Car;
+import racingcar.domain.CarManager;
+import racingcar.domain.CarName;
 import racingcar.domain.TrialCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -13,40 +15,62 @@ public class RacingGame {
     private final OutputView output = new OutputView();
 
     public void run() {
-        Car.CarManager carManager = new Car.CarManager(getCarsFromInput());
-        output.printBlankLine();
-        TrialCount count = getTrialCountFromInput();
-        output.printBlankLine();
-        output.printExecutionResultMessage();
-        executeCarMoveByCount(carManager,count);
+        CarManager carManager = new CarManager(getCarsFromUI());
+        playNTrialGame(carManager, getTrialCountFromInput());
+        printResultCar(carManager);
+    }
+
+    private void printResultCar(CarManager carManager) {
         output.printFinalResult(carManager.getWinners());
     }
 
-    private List<Car> getCarsFromInput() {
+    private void playNTrialGame(CarManager carManager, TrialCount trial) {
+        output.printExecutionResultMessage();
+        executeCarMoveByTrial(carManager, trial);
+    }
+
+    private List<Car> getCarsFromUI() {
         try {
-            return input.getCarNames().stream()
-                    .map(Car::new)
-                    .collect(Collectors.toList());
+            return makeCarsByName(getCarsNameFromConsole());
         } catch (IllegalArgumentException e) {
-            output.printError(e.getMessage());
-            return getCarsFromInput();
+            printErrorMessage(e.getMessage());
+            return getCarsFromUI();
         }
+    }
+
+    private List<Car> makeCarsByName(List<CarName> carsName) {
+        return carsName.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+    }
+
+    private List<CarName> getCarsNameFromConsole() {
+        return convertStringToCarName(input.getCarNames());
+    }
+
+    private List<CarName> convertStringToCarName(List<String> carNames) {
+        return carNames.stream()
+                .map(CarName::new)
+                .collect(Collectors.toList());
+    }
+
+    private void printErrorMessage(String message) {
+        output.printError(message);
     }
 
     private TrialCount getTrialCountFromInput() {
         try {
-            return input.getTrialCount();
+            return new TrialCount(input.getTrialCount());
         } catch (IllegalArgumentException e) {
             output.printError(e.getMessage());
             return getTrialCountFromInput();
         }
     }
 
-    private void executeCarMoveByCount(Car.CarManager manager, TrialCount count) {
+    private void executeCarMoveByTrial(CarManager manager, TrialCount count) {
         for (int i = 0; i < count.getValue(); i++) {
             manager.moveCarsRandomly();
             printExecutedResult(manager.getCars());
-            output.printBlankLine();
         }
     }
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.domain.Car;
 import racingcar.domain.CarMovement;
+import racingcar.domain.CarName;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class CarTest {
     @DisplayName("자동차 이동 테스트")
     public void carMoveTest(int moveValue, int position) {
         CarMovement carMovement = new CarMovement(moveValue);
-        Car car = new Car("푸우");
+        Car car = new Car(new CarName("푸우"));
         car.move(carMovement);
         assertThat(car).extracting("pos").extracting("value").isEqualTo(position);
     }
@@ -26,8 +27,8 @@ public class CarTest {
     @Test
     @DisplayName("자동차 비교 테스트")
     void carCompareTest() {
-        Car 에코 = new Car("에코");
-        Car 푸우 = new Car("푸우");
+        Car 에코 = new Car(new CarName("에코"));
+        Car 푸우 = new Car(new CarName("푸우"));
 
         List<Car> cars = List.of(에코, 푸우);
         에코.move(new CarMovement(4));
