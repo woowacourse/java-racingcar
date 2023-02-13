@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.Position;
 
 public class CarService {
     private Cars cars;
@@ -34,16 +35,17 @@ public class CarService {
 
     public void runRound(int round) {
         for (Car car : cars.getCars()) {
+            Position position = car.getPosition();
             Random random = new Random();
             int randomNumber = random.nextInt(Car.RANDOM_NUMBER_BOUNDARY);
             runForward(car, randomNumber);
-            car.validateCurrentPosition(round);
+            position.validateCurrentPosition(position.getPosition(), round);
         }
     }
 
     public void runForward(Car car, int randomNumber) {
         if (randomNumber >= Car.FORWARD_BOUNDARY) {
-            car.increasePosition();
+            car.movePosition();
         }
     }
 
@@ -58,13 +60,15 @@ public class CarService {
     private int findMaxPosition() {
         int maxPosition = -1;
         for (Car car : cars.getCars()) {
-            maxPosition = Math.max(car.getPosition(), maxPosition);
+            Position position = car.getPosition();
+            maxPosition = Math.max(position.getPosition(), maxPosition);
         }
         return maxPosition;
     }
 
     private void comparePosition(Car car, int maxPosition) {
-        if (maxPosition == car.getPosition()) {
+        Position position = car.getPosition();
+        if (maxPosition == position.getPosition()) {
             winner.add(car.getName());
         }
     }

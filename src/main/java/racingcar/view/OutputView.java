@@ -4,6 +4,7 @@ import java.util.List;
 import racingcar.constants.InputConstant;
 import racingcar.constants.OutputConstant;
 import racingcar.domain.Car;
+import racingcar.domain.Position;
 
 public class OutputView {
     public static void printNameInput() {
@@ -20,7 +21,8 @@ public class OutputView {
 
     public static void printRoundResult(List<Car> carsStatus) {
         for (Car car : carsStatus) {
-            printCarResult(car.getName(), car.getPosition());
+            Position position = car.getPosition();
+            printCarResult(car.getName(), position.getPosition());
         }
         System.out.println("");
     }
