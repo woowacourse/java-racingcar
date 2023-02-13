@@ -13,9 +13,9 @@ import view.output.OutputView;
 
 public class RaceController {
 
-    private final Participants participants;
     private Race race;
-    private final int DRIVING_DISTANCE = 1;
+    private final Participants participants;
+    private static final int DRIVING_DISTANCE = 1;
 
     public RaceController() {
         participants = new Participants();
@@ -65,14 +65,19 @@ public class RaceController {
             .collect(Collectors.toList());
     }
 
+    //TODO : 우승자 판단을 위해 getter 사용이 필요한가?
+    //TODO : 우승자 판단을 하는 방식을 컨트롤러에서 알아야 하나?
+    //TODO : 우승자 판단을 하는 기준이 변경 될 경우 어디서 코드를 변경할 것인가?
+
     public List<Car> getWinners() {
         List<Car> candidates = participants.showAllParticipants();
-        int maxDistance = candidates.stream().max(Comparator.comparing(Car::getDrivenDistance))
-            .get().getDrivenDistance();
-        List<Car> winners = candidates.stream()
+        int maxDistance = candidates.stream()
+            .map(Car::getDrivenDistance)
+            .max(Comparator.naturalOrder())
+            .orElse(0);
+        return candidates.stream()
             .filter(car -> car.getDrivenDistance() == maxDistance)
             .collect(Collectors.toList());
-        return winners;
     }
 
     public void driveOrNot(Car car, NumberGenerator numberGenerator) {
@@ -83,8 +88,8 @@ public class RaceController {
     }
 
     private boolean isEnoughToMove(final int score) {
-        final int MIN_SCORE = 4;
-        return score >= MIN_SCORE;
+        final int minScore = 4;
+        return score >= minScore;
     }
 
     public void printRoundResult(OutputView outputView) {
