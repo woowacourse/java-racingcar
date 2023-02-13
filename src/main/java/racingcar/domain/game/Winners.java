@@ -2,15 +2,11 @@ package racingcar.domain.game;
 
 import racingcar.domain.car.Car;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Winners {
-
-    private static final int WINNER_INDEX = 0;
 
     private final List<Car> winners;
 
@@ -23,18 +19,16 @@ public class Winners {
     }
 
     private List<Car> judgeWinners(final List<Car> cars) {
-        List<Car> sortedCarsByPositionDesc = sortedCarsByPositionDesc(cars);
-        Car winner = sortedCarsByPositionDesc.get(WINNER_INDEX);
+        Car winner = findWinner(cars);
 
-        return sortedCarsByPositionDesc.stream()
+        return cars.stream()
                 .filter(it -> it.position().equals(winner.position()))
                 .collect(Collectors.toList());
     }
 
-    private List<Car> sortedCarsByPositionDesc(final List<Car> cars) {
-        List<Car> sortedCars = new ArrayList<>(cars);
-        sortedCars.sort(Comparator.comparing(Car::position));
-        Collections.reverse(sortedCars);
-        return sortedCars;
+    private Car findWinner(final List<Car> cars) {
+        return cars.stream()
+                .max(Comparator.comparing(Car::position))
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
