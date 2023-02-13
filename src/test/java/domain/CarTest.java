@@ -29,16 +29,18 @@ class CarTest {
 
   @Test
   void 자동차_이동() {
-    car1.move(highPowerSupplier.supply());
+    int highPower = highPowerSupplier.supply();
+    car1.move(highPower);
     int currentPosition = car1.getPosition();
-    assertThat(currentPosition).isEqualTo(1);
+    assertThat(currentPosition).isEqualTo(2);
   }
 
   @Test
   void 자동차_멈춤() {
-    car1.move(lowPowerSupplier.supply());
+    int lowPower = lowPowerSupplier.supply();
+    car1.move(lowPower);
     int currentPosition = car1.getPosition();
-    assertThat(currentPosition).isEqualTo(0);
+    assertThat(currentPosition).isEqualTo(1);
   }
 
   @Test
