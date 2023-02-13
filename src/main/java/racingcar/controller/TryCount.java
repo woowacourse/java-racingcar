@@ -22,11 +22,11 @@ public class TryCount {
         }
     }
 
-    public boolean countdown() {
-        if (tryCount <= 0) {
-            return false;
-        }
+    public void countdown() {
         tryCount--;
-        return true;
+    }
+
+    public boolean isRemaining() {
+        return tryCount > 0;
     }
 }

@@ -55,7 +55,8 @@ public class RacingCarController {
     private void playGame(TryCount tryCount) {
         RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         racingCarView.printStartMessage();
-        while (tryCount.countdown()) {
+        while (tryCount.isRemaining()) {
+            tryCount.countdown();
             racingCarService.moveCars(randomMoveStrategy);
             printCarStatuses();
         }
