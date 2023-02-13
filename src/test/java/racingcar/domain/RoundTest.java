@@ -10,7 +10,7 @@ class RoundTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"ㄱ", "a", "0", "!"})
-    @DisplayName("round 인스턴스를 생성할 때 시도 횟수를 검증하는 테스트")
+    @DisplayName("Round가 생성될 때 시도 횟수가 숫자가 아니고 1보다 작은 값이 입력되면 에러를 발생시킨다.")
     void roundGenerateTest(String input) {
         //When + Then
         assertThatThrownBy(() -> new Round(input))
