@@ -1,8 +1,10 @@
 package validation;
 
+import domain.Car;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ParticipantsValidator extends Validator<List<String>> {
+public class ParticipantsValidator extends Validator<List<Car>> {
 
     public static final ParticipantsValidator PARTICIPANTS_VALIDATOR = new ParticipantsValidator();
 
@@ -12,7 +14,10 @@ public class ParticipantsValidator extends Validator<List<String>> {
     }
 
     @Override
-    public void validate(List<String> carNames) {
+    public void validate(List<Car> cars) {
+        List<String> carNames = cars.stream()
+            .map(Car::getName)
+            .collect(Collectors.toList());
         validateDuplication(carNames);
     }
 

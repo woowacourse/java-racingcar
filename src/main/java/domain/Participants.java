@@ -13,8 +13,7 @@ public class Participants {
     private final List<Car> cars;
 
     public Participants(List<Car> cars, NumberGenerator numberGenerator) {
-        List<String> carNames = cars.stream().map(Car::getName).collect(Collectors.toList());
-        PARTICIPANTS_VALIDATOR.validate(carNames);
+        PARTICIPANTS_VALIDATOR.validate(cars);
         this.cars = cars;
     }
 
