@@ -15,7 +15,7 @@ public class Name {
     }
 
     public static class Validator {
-        private static final int MAX_NAME_LENGTH = 6;
+        private static final int MAX_NAME_LENGTH = 5;
 
         private Validator() {
         }
@@ -27,7 +27,7 @@ public class Name {
         }
 
         public static void validateNameLength(String name) {
-            if (name.length() >= MAX_NAME_LENGTH) {
+            if (name.length() > MAX_NAME_LENGTH) {
                 throw new IllegalArgumentException(OUT_OF_CAR_NAME_LENGTH.getMessage());
             }
         }
