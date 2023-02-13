@@ -4,23 +4,23 @@ import java.io.IOException;
 import java.util.List;
 
 import domain.RacingGame;
-import handler.InputHandler;
+import view.InputView;
 import view.OutputView;
 
 public class RacingGameController {
 
-    private final InputHandler inputHandler;
+    private final InputView inputView;
     private final OutputView outputView;
 
     public RacingGameController() {
-        this.inputHandler = new InputHandler();
+        this.inputView = new InputView();
         this.outputView = new OutputView();
     }
 
     public void run() throws IOException {
-        List<String> carNames = inputHandler.readCarNames();
+        List<String> carNames = inputView.readCarNames();
         RacingGame racingGame = new RacingGame(carNames);
-        int movingTrial = inputHandler.readMovingTrial();
+        int movingTrial = inputView.readMovingTrial();
 
         outputView.printNotice();
         raceWithHistory(movingTrial, racingGame);
