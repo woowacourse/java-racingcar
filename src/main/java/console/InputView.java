@@ -8,12 +8,10 @@ import validation.TryCountValidation;
 
 public class InputView {
 
-    private final CarNamesValidation carNamesValidation = new CarNamesValidation();
-
     public String[] inputCarNames() {
         try {
             final String carNames = ScannerUtil.readLine();
-            carNamesValidation.validateInputCarNames(carNames);
+            CarNamesValidation.validateInputCarNames(carNames);
             return SplitCarNames.splitCarNames(carNames);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
