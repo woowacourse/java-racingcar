@@ -10,6 +10,33 @@ import java.util.List;
 class CarsTest {
 
     @Test
+    @DisplayName("라운드를 진행하지 않았을 때의 최대 이동 거리는 0이다.")
+    void findInitialMaxDistance() {
+        Cars cars = new Cars(List.of("pobi", "crong", "hunox"));
+
+        Assertions.assertThat(cars.findMaxDistance()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("최장거리를 이동한 자동차의 위치를 찾는다.")
+    void findMaxDistanceTest() {
+        Cars cars = new Cars(List.of("pobi", "crong", "hunox"));
+        Car pobi = cars.getCars().stream()
+                .filter(car -> car.getCarName().equals("pobi"))
+                .findFirst()
+                .orElse(null);
+        assert pobi != null;
+        MovementManager movementManager = new MovementManager();
+
+        int movingCount = 5;
+        for (int count = 0; count < movingCount; count++) {
+            pobi.move(movementManager, 4);
+        }
+
+        Assertions.assertThat(cars.findMaxDistance()).isEqualTo(movingCount);
+    }
+
+    @Test
     @DisplayName("3 이하의 숫자가 나온 자동차들은 전진하지 않는다.")
     void progressRound_all_stop() {
         Cars cars = new Cars(List.of("pobi", "crong", "hunox"));
