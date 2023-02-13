@@ -2,6 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
 import vo.CarName;
 
@@ -22,7 +23,7 @@ class CarsTest {
     @DisplayName("차 추가 테스트")
     void givenCar_whenSavingCar_thenSavesCar() {
         ArrayList<Car> carHolder = new ArrayList<>();
-        cars = new Cars(carHolder, new RandomNumberGenerator());
+        cars = new Cars(carHolder, RandomNumberGenerator.makeInstance());
 
         cars.saveCar(car);
 
@@ -78,7 +79,7 @@ class CarsTest {
                 ));
     }
 
-    static class TestRandomNumberGenerator extends RandomNumberGenerator {
+    static class TestRandomNumberGenerator implements NumberGenerator {
         private final Iterator<Integer> testNumber;
 
         public TestRandomNumberGenerator(List<Integer> testNumber) {
@@ -86,7 +87,7 @@ class CarsTest {
         }
 
         @Override
-        public int generateRandomNumber() {
+        public int generateNumber() {
             while (testNumber.hasNext()) {
                 return testNumber.next();
             }

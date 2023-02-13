@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
 
     public static final int RANDOM_NUMBER_BOUND = 10;
 
@@ -12,7 +12,8 @@ public class RandomNumberGenerator {
         return new RandomNumberGenerator();
     }
 
-    public int generateRandomNumber() {
+    @Override
+    public int generateNumber() {
         return new Random().nextInt(RANDOM_NUMBER_BOUND);
     }
 }

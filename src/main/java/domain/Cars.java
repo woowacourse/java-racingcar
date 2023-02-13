@@ -1,7 +1,7 @@
 package domain;
 
 import dto.Result;
-import utils.RandomNumberGenerator;
+import utils.NumberGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final NumberGenerator numberGenerator;
 
-    public Cars(List<Car> cars, RandomNumberGenerator randomNumberGenerator) {
+    public Cars(List<Car> cars, NumberGenerator numberGenerator) {
         this.cars = cars;
-        this.randomNumberGenerator = randomNumberGenerator;
+        this.numberGenerator = numberGenerator;
     }
 
     public void saveCar(Car car) {
@@ -21,7 +21,7 @@ public class Cars {
     }
 
     public void move() {
-        cars.forEach((car) -> car.move(randomNumberGenerator.generateRandomNumber()));
+        cars.forEach((car) -> car.move(numberGenerator.generateNumber()));
     }
 
     public List<String> getWinnerNames() {
@@ -50,7 +50,7 @@ public class Cars {
     public String toString() {
         return "Cars{" +
                 "cars=" + cars +
-                ", randomNumberGenerator=" + randomNumberGenerator +
+                ", randomNumberGenerator=" + numberGenerator +
                 '}';
     }
 }

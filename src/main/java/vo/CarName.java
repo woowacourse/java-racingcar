@@ -54,4 +54,8 @@ public class CarName {
                 "name='" + name + '\'' +
                 '}';
     }
+
+    public boolean isBlank() {
+        return this.name.equals("");
+    }
 }
