@@ -15,7 +15,7 @@ public class InputConsole implements Input {
     private static final String NON_INTEGER_TRIAL_NUMBER_EXCEPTION_MASSAGE = "[ERROR] 시도 횟수는 정수여야 합니다";
     private static final int MAX_TRIAL_NUMBER = 999999999;
     private static final String OVER_MAX_TRIAL_NUMBER_EXCEPTION_MASSAGE = String.format("[ERROR] 시도 횟수는 %d 이하여야 합니다.",MAX_TRIAL_NUMBER);
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     @Override
     public String inputCarNames() {
         String input = scanner.nextLine();
