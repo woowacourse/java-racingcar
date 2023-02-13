@@ -1,4 +1,4 @@
-package racingcar.domain.carrepository;
+package racingcar.domain.racingcars;
 
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
@@ -8,19 +8,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CarRepository {
+public class RacingCars {
     private static final int MIN_NUMBER_OF_CARS = 2;
-    private static final int MOVING_CONDITION = 4;
+    private static final int MOVEMENT_CONDITION = 4;
 
     private final List<Car> racingCars;
 
-    public CarRepository(List<Car> racingCars) {
+    public RacingCars(List<Car> racingCars) {
         validate(racingCars);
         this.racingCars = racingCars;
     }
 
     private void validate(List<Car> repository) {
-        if (isOutOfCarNumber(repository)) {
+        if (isOutOfNumberLimit(repository)) {
             throw new IllegalArgumentException("[ERROR] 자동차는 2대 이상 입력되어야 합니다.");
         }
         if (hasDuplication(repository)) {
@@ -28,7 +28,7 @@ public class CarRepository {
         }
     }
 
-    private boolean isOutOfCarNumber(List<Car> repository) {
+    private boolean isOutOfNumberLimit(List<Car> repository) {
         return repository.size() < MIN_NUMBER_OF_CARS;
     }
 
@@ -38,18 +38,18 @@ public class CarRepository {
                 .count() != repository.size();
     }
 
-    public Map<String, Integer> moveCars() {
+    public Map<String, Integer> moveForwardOrStay() {
         NumberGenerator numberGenerator = new NumberGenerator();
         return racingCars.stream()
-                .map(car -> decideMoveOrStay(car, numberGenerator.generateRandomNumber()))
+                .map(car -> checkMovementCondition(car, numberGenerator.generateRandomNumber()))
                 .collect(Collectors.toMap(Car::getName,
                         Car::getPosition,
                         (oldValue, newValue) -> oldValue,
                         LinkedHashMap::new));
     }
 
-    private Car decideMoveOrStay(Car car, int randomNumber) {
-        if (randomNumber >= MOVING_CONDITION) {
+    private Car checkMovementCondition(Car car, int randomNumber) {
+        if (randomNumber >= MOVEMENT_CONDITION) {
             car.move();
         }
         return car;

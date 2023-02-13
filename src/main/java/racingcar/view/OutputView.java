@@ -1,13 +1,13 @@
 package racingcar.view;
 
-import racingcar.domain.result.Result;
+import racingcar.domain.gameresult.GameResult;
 
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
 
-    public void printNames() {
+    public void printCarNamesGuide() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
 
@@ -19,8 +19,8 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printResult(Result result) {
-        List<Map<String, Integer>> results = result.getResults();
+    public void printResult(GameResult gameResult) {
+        List<Map<String, Integer>> results = gameResult.getResults();
         for (Map<String, Integer> roundResult : results) {
             printEachResult(roundResult);
             System.out.println();
@@ -34,7 +34,7 @@ public class OutputView {
         }
     }
 
-    public void printWinners(Result results) {
+    public void printWinners(GameResult results) {
         String winner = String.join(", ", results.findWinners());
         System.out.printf("%s가 최종 우승했습니다.%n", winner);
     }

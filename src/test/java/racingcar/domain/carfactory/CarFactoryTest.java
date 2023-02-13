@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.domain.carrepository.CarRepository;
+import racingcar.domain.racingcars.RacingCars;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -25,9 +25,9 @@ class CarFactoryTest {
     @MethodSource("getCarNames")
     @DisplayName("자동차 이름들을 입력 받았을 때, 정상적으로 CarRepository 객체가 생성되는지 확인.")
     void createCarRepository(List<String> carNames) {
-        CarRepository carRepository = carFactory.createCarRepository(carNames);
+        RacingCars racingCars = carFactory.setRacingCars(carNames);
 
-        assertThat(carRepository).isInstanceOf(CarRepository.class);
+        assertThat(racingCars).isInstanceOf(RacingCars.class);
     }
 
     static Stream<Arguments> getCarNames() {

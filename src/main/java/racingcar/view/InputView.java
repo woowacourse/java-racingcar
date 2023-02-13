@@ -15,7 +15,7 @@ public class InputView {
     }
 
     public List<String> readCarNames() {
-        outputView.printNames();
+        outputView.printCarNamesGuide();
 
         String line = scanner.nextLine();
         validateCarNames(line);
@@ -28,12 +28,26 @@ public class InputView {
 
         String line = scanner.nextLine();
 
+        validateGameRound(line);
+
         return Integer.parseInt(line);
     }
 
     private void validateCarNames(String line) {
         if (line.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
+        }
+    }
+
+    private void validateGameRound(String input) {
+        for (int i = 0; i < input.length(); i++) {
+            isDigit(input.charAt(i));
+        }
+    }
+
+    private void isDigit(char input) {
+        if (!Character.isDigit(input)) {
+            throw new IllegalArgumentException("[ERROR] 정수만 입력할 수 있습니다.");
         }
     }
 }

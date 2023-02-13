@@ -1,4 +1,4 @@
-package racingcar.domain.carrepository;
+package racingcar.domain.racingcars;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,15 +14,15 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class CarRepositoryTest {
+class RacingCarsTest {
 
     @ParameterizedTest
     @MethodSource("getCars")
     @DisplayName("두 개 이상이고 중복이 없는 자동차 객체의 배열이 입력되었을 때, CarRepository 객체가 생성되는지 확인")
     void validate_test(List<Car> cars) {
-        CarRepository carRepository = new CarRepository(cars);
+        RacingCars racingCars = new RacingCars(cars);
 
-        assertThat(carRepository).isInstanceOf(CarRepository.class);
+        assertThat(racingCars).isInstanceOf(RacingCars.class);
     }
 
     @Test
@@ -30,7 +30,7 @@ class CarRepositoryTest {
     void validate_error_test_about_name_duplication() {
         List<Car> wrongCars = List.of(new Car("poy"), new Car("poy"));
 
-        assertThatThrownBy(() -> new CarRepository(wrongCars))
+        assertThatThrownBy(() -> new RacingCars(wrongCars))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 자동차 이름은 중복될 수 없습니다.");
     }
@@ -40,7 +40,7 @@ class CarRepositoryTest {
     void validate_error_test_about_number_of_cars_limit() {
         List<Car> wrongCar = List.of(new Car("poy"));
 
-        assertThatThrownBy(() -> new CarRepository(wrongCar))
+        assertThatThrownBy(() -> new RacingCars(wrongCar))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 자동차는 2대 이상 입력되어야 합니다.");
     }

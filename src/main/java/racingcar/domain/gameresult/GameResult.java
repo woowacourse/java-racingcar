@@ -1,4 +1,4 @@
-package racingcar.domain.result;
+package racingcar.domain.gameresult;
 
 import java.util.Comparator;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Result {
+public class GameResult {
 
     private final List<Map<String, Integer>> results;
 
-    public Result(List<Map<String, Integer>> results) {
+    public GameResult(List<Map<String, Integer>> results) {
         this.results = results;
     }
 

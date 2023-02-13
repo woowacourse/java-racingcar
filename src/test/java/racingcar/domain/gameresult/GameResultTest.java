@@ -1,4 +1,4 @@
-package racingcar.domain.result;
+package racingcar.domain.gameresult;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,15 +12,15 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ResultTest {
+class GameResultTest {
 
     @ParameterizedTest
     @MethodSource("getResult")
     @DisplayName("임의로 레이싱 결과를 설정했을 때, 정상적으로 최종 우승자의 이름이 선별되는지 확인")
     void findWinners(List<Map<String, Integer>> sampleResult, Set<String> expectedWinners) {
-        Result result = new Result(sampleResult);
+        GameResult gameResult = new GameResult(sampleResult);
 
-        Set<String> actualWinners = result.findWinners();
+        Set<String> actualWinners = gameResult.findWinners();
 
         assertThat(actualWinners).isEqualTo(expectedWinners);
     }
