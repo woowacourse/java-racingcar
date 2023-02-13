@@ -18,8 +18,7 @@ public class Cars {
     }
 
     private void validateDuplicateCars(List<Car> cars) {
-        Set<Car> carSet = new HashSet<>();
-        cars.forEach(carSet::add);
+        Set<Car> carSet = new HashSet<>(cars);
 
         if (cars.size() != carSet.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_CAR_NAME.getMessage());
