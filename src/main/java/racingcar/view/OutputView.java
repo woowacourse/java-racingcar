@@ -28,9 +28,7 @@ public class OutputView {
     public static void printCarResult(String carName, int distance) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(carName).append(OutputConstant.CAR_INFORMATION_DELIMITER.getMessage());
-        for (int i = 0; i < distance; i++) {
-            stringBuilder.append(OutputConstant.DISTANCE_COMMAND.getMessage());
-        }
+        stringBuilder.append(OutputConstant.DISTANCE_COMMAND.getMessage().repeat(distance));
         System.out.println(stringBuilder.toString());
     }
 
