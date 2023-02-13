@@ -9,9 +9,7 @@ public class CarRepository {
     private static final int MINIMUM_NUMBER_OF_CARS = 2;
     private static final List<Car> cars = new ArrayList<>();
     
-    private CarRepository() {
-        throw new IllegalStateException("생성할 수 없는 유틸 클래스입니다.");
-    }
+    private CarRepository() { }
 
     public static void updateCars(List<Car> newCars) {
         validate(newCars);
