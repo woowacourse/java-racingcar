@@ -18,6 +18,7 @@
 4. 가장 많이 이동한 자동차가 우승자가 되며, 최종 우승자가 출력됩니다.
 
 ## 실행 결과
-![](../Downloads/ezgif.com-video-to-gif.gif)
+
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/81925468/218371843-cc6570e6-9cf0-4adc-9a9c-d1e27aa9d5b9.gif)
 
 ![img.png](img.png)
