@@ -4,19 +4,18 @@ import model.manager.CarMoveManager;
 import util.CarNameValidator;
 import util.RandomNumberGenerator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars){
+    public Cars(List<Car> cars) {
         validate(cars);
         this.cars = cars;
     }
 
-    private void validate(List<Car> cars){
+    private void validate(List<Car> cars) {
         List<String> carNames = cars.stream()
                 .map(car -> car.getName())
                 .collect(Collectors.toList());
