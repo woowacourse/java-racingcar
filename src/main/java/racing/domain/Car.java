@@ -24,7 +24,4 @@ public class Car {
         this.step++;
     }
 
-    public void addHyphen() {
-        System.out.print(HYPHEN.repeat(step));
-    }
 }

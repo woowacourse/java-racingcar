@@ -31,7 +31,11 @@ public class OutputView {
     }
 
     private static void printHyphen(Car car) {
-        car.addHyphen();
+        addHyphen(car);
+    }
+
+    private static void addHyphen(Car car) {
+        System.out.print(HYPHEN.repeat(car.getStep()));
     }
 
     public static void printFinalResult(String winnersWithComma) {
