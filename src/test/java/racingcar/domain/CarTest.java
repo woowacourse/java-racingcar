@@ -14,9 +14,8 @@ class CarTest {
     @DisplayName("자동차의 초기 포지션이 0인지 검증한다")
     void carInitPositionTest() {
         Car car = new Car("aa");
-        Position position = car.getPosition();
+        int position = car.getPosition();
         assertThat(position)
-                .extracting("position")
                 .isEqualTo(0);
     }
 
@@ -26,9 +25,8 @@ class CarTest {
     void carMoveTest(int number, int position) {
         Car car = new Car("aa");
         car.move(number);
-        Position carPosition = car.getPosition();
+        int carPosition = car.getPosition();
         assertThat(carPosition)
-                .extracting("position")
                 .isEqualTo(position);
     }
 }

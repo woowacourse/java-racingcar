@@ -16,7 +16,7 @@ public class Winners {
 
     private List<Winner> calculateWinners(Cars cars) {
         int winnerPosition = cars.getCars().stream()
-                .mapToInt(car -> car.getPosition().getPosition())
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElse(DEFAULT_MAX);
 
@@ -27,7 +27,7 @@ public class Winners {
     }
 
     private Predicate<Car> isSamePosition(int winnerPosition) {
-        return car -> car.getPosition().getPosition() == winnerPosition;
+        return car -> car.getPosition() == winnerPosition;
     }
 
     public List<Winner> getWinners() {

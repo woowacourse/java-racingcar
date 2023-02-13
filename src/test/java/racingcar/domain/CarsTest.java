@@ -42,7 +42,7 @@ class CarsTest {
 
         cars.moveCars(numberGenerator);
         List<Integer> result = cars.getCars().stream()
-                .map(car -> car.getPosition().getPosition())
+                .map(Car::getPosition)
                 .collect(Collectors.toList());
 
         assertThat(result).containsOnly(1);

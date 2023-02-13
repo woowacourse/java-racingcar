@@ -42,7 +42,7 @@ public class GameController {
         cars.moveCars(numberGenerator);
         cars.getCars()
                 .forEach(car -> outputView.printPosition(
-                        car.getCarName().getCarName(), car.getPosition().getPosition()));
+                        car.getCarName(), car.getPosition()));
         System.out.println();
     }
 
@@ -50,7 +50,7 @@ public class GameController {
         Winners winners = new Winners(cars);
         cars.getCars()
                 .forEach(car -> outputView.printPosition(
-                        car.getCarName().getCarName(), car.getPosition().getPosition()));
+                        car.getCarName(), car.getPosition()));
         outputView.printWinners(winners);
     }
 }

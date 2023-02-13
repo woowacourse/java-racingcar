@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import racingcar.domain.Winner;
 import racingcar.domain.Winners;
 
 import static java.util.stream.Collectors.joining;
@@ -22,7 +23,7 @@ public class OutputView {
 
     public String winnersToString(Winners winners) {
         return winners.getWinners().stream()
-                .map(winner -> winner.getName().getCarName())
+                .map(Winner::getName)
                 .collect(joining(DELIMITER));
     }
 }
