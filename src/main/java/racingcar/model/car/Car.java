@@ -5,12 +5,12 @@ import racingcar.model.car.strategy.MovingStrategy;
 public class Car {
     private static final int DEFAULT_POSITION = 1;
 
-    private final String carName;
+    private final CarName carName;
     private int position = DEFAULT_POSITION;
     private final MovingStrategy movingStrategy;
 
     public Car(String carName, MovingStrategy movingStrategy) {
-        this.carName = carName;
+        this.carName = new CarName(carName);
         this.movingStrategy = movingStrategy;
     }
 
@@ -27,7 +27,7 @@ public class Car {
     }
 
     public String getCarName() {
-        return carName;
+        return carName.getCarName();
     }
 
     public int getPosition() {

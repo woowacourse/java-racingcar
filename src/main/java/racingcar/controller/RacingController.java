@@ -1,67 +1,75 @@
 package racingcar.controller;
 
-import racingcar.model.car.Car;
+import racingcar.RacingCarContext;
+import racingcar.model.car.CarFactory;
 import racingcar.model.car.Cars;
-import racingcar.model.car.strategy.MovingStrategy;
+import racingcar.model.car.WinnerCars;
 import racingcar.model.track.Track;
+import racingcar.model.trialtimes.TrialTimes;
+import racingcar.util.ErrorMessage;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.view.dto.CarNames;
-import racingcar.view.dto.TrialTimes;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import racingcar.view.dto.CarNamesRequest;
+import racingcar.view.dto.TrialTimesRequest;
+import racingcar.view.formatter.track.TrackStateFormatter;
 
 public class RacingController {
+    private static final TrackStateFormatter TRACK_FORMATTER = RacingCarContext.getTrackStateFormatter();
+
     private final InputView inputView;
     private final OutputView outputView;
+    private final CarFactory carFactory;
 
-    public RacingController(InputView inputView, OutputView outputView) {
+    public RacingController(InputView inputView, OutputView outputView, CarFactory carFactory) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.carFactory = carFactory;
     }
 
-    public Track init(MovingStrategy movingStrategy) {
-        CarNames carNames = requestCarNames();
-        Cars cars = setUpCars(carNames, movingStrategy);
+    public Track generateRacingTrack() {
+        CarNamesRequest carNamesRequest = requestCarNames();
+        Cars cars = carFactory.generateCarsFromCarNames(carNamesRequest);
 
-        int trialTime = requestTrialTimes();
-        outputView.printCarsPosition(cars);
-
-        return new Track(cars, trialTime);
+        int trialTimesCount = requestTrialTimes();
+        TrialTimes trialTimes = new TrialTimes(trialTimesCount);
+        return new Track(cars, trialTimes);
     }
 
-    private CarNames requestCarNames() {
+    private CarNamesRequest requestCarNames() {
         return inputView.getCarNames();
     }
 
-    private Cars setUpCars(CarNames carNames, MovingStrategy movingStrategy) {
-        List<Car> carsByNames = carNames.toSplitCarNames().stream()
-                .map(carName -> new Car(carName, movingStrategy))
-                .collect(Collectors.toList());
-
-        return new Cars(carsByNames);
-    }
-
     private int requestTrialTimes() {
-        TrialTimes trialTimes = inputView.getTrialTimes();
+        TrialTimesRequest trialTimesRequest = inputView.getTrialTimes();
 
-        return trialTimes.getTrialTimes();
+        return trialTimesRequest.getTrialTimes();
     }
 
     public void startRace(Track track) {
+        Cars carsOnTrack = track.getCars();
+        printInitialCarsPositions(carsOnTrack);
         while (track.runnable()) {
-            Cars cars = track.race();
-            outputView.printCarsPosition(cars);
+            track.race();
+            String carsPositionFormat = TRACK_FORMATTER.formatCarsPosition(carsOnTrack);
+            outputView.printOutputFormat(carsPositionFormat);
         }
     }
 
-    public void concludeWinner(Track track) {
-        List<Car> winnerCars = track.findWinner();
-        outputView.printWinnerCars(winnerCars);
+    private void printInitialCarsPositions(Cars cars) {
+        outputView.printOutputFormat(TRACK_FORMATTER.formatCarsPosition(cars));
     }
 
-    public void terminated(String errorMessage) {
-        outputView.printErrorMessage(errorMessage);
+    public void concludeWinner(Track track) {
+        WinnerCars winnerCars = WinnerCars.fromCars(track.getCars());
+        String winnerCarsFormat = TRACK_FORMATTER.formatWinnerCars(winnerCars);
+        outputView.printOutputFormat(winnerCarsFormat);
+    }
+
+    public void terminatedByException(String errorMessage) {
+        outputView.printOutputFormat(errorMessage);
+    }
+
+    public void terminated() {
+        outputView.printOutputFormat(ErrorMessage.UNEXPECTED_ERROR.message());
     }
 }

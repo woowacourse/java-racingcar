@@ -1,27 +1,33 @@
 package racingcar.view;
 
-import racingcar.view.dto.CarNames;
-import racingcar.view.dto.TrialTimes;
-
 import java.util.Scanner;
+import racingcar.view.dto.CarNamesRequest;
+import racingcar.view.dto.TrialTimesRequest;
 
 public class InputView {
     private static final String GET_CAR_NAME_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String GET_TRY_TIMES_MESSAGE = "시도할 횟수는 몇회인가요?";
+    private static final Scanner scanner = new Scanner(System.in);
 
-    private final Scanner scanner;
+    private static InputView inputView;
 
-    public InputView(Scanner scanner) {
-        this.scanner = scanner;
+    private InputView() {
     }
 
-    public CarNames getCarNames() {
+    public static InputView getInstance() {
+        if (inputView == null) {
+            inputView = new InputView();
+        }
+        return inputView;
+    }
+
+    public CarNamesRequest getCarNames() {
         System.out.println(GET_CAR_NAME_MESSAGE);
-        return new CarNames(scanner.nextLine());
+        return new CarNamesRequest(scanner.nextLine());
     }
 
-    public TrialTimes getTrialTimes() {
+    public TrialTimesRequest getTrialTimes() {
         System.out.println(GET_TRY_TIMES_MESSAGE);
-        return new TrialTimes(scanner.nextLine());
+        return new TrialTimesRequest(scanner.nextLine());
     }
 }

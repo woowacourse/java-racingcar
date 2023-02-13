@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.TestDataManager;
 import racingcar.model.car.Cars;
+import racingcar.model.trialtimes.TrialTimes;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,11 +14,12 @@ class TrackTest {
     void raceCarTest() {
         // given
         Cars cars = TestDataManager.getCarsTestData();
-        int trialTime = 3;
-        Track track = new Track(cars, trialTime);
+        int trialTimesCount = 3;
+        TrialTimes trialTimes = new TrialTimes(trialTimesCount);
+        Track track = new Track(cars, trialTimes);
 
         // when
-        for (int i = 0; i <= trialTime; i++) {
+        for (int i = 0; i <= trialTimesCount; i++) {
             track.race();
         }
 

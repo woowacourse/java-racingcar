@@ -1,33 +1,29 @@
 package racingcar.model.track;
 
-import java.util.List;
-import racingcar.model.car.Car;
 import racingcar.model.car.Cars;
+import racingcar.model.trialtimes.TrialTimes;
 
 public class Track {
+    private static final int END_CONDITION = 0;
+
     private final Cars cars;
-    private int trialTime;
+    private final TrialTimes trialTimes;
 
-    public Track(Cars cars, int trialTime) {
+    public Track(Cars cars, TrialTimes trialTimes) {
         this.cars = cars;
-        this.trialTime = trialTime;
+        this.trialTimes = trialTimes;
     }
 
-    public Cars race() {
+    public void race() {
         cars.moveCars();
-        removeTrialTimes();
-        return cars;
-    }
-
-    private void removeTrialTimes() {
-        trialTime -= 1;
+        trialTimes.consume();
     }
 
     public boolean runnable() {
-        return trialTime > 0;
+        return trialTimes.isGreaterThan(END_CONDITION);
     }
 
-    public List<Car> findWinner() {
-        return cars.getWinnerCars();
+    public Cars getCars() {
+        return cars;
     }
 }
