@@ -40,6 +40,7 @@ public class ApplicationTest extends OutputTestStream {
         GameController gameController = new GameController(testInputConsole);
         gameController.startGame();
         gameController.play();
+        gameController.evaluateResult();
         gameController.showResult();
     }
 }
