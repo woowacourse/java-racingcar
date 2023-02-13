@@ -2,8 +2,8 @@ package validation;
 
 public class CarValidator {
 
-    static final int MIN_CAR_NAME_LENGTH = 1;
-    static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int MIN_CAR_NAME_LENGTH = 1;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
 
     public static ValidateResult validate(final String carName) {
         if (!isProperLength(carName)) {

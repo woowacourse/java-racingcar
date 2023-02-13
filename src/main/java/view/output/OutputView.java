@@ -19,11 +19,12 @@ public class OutputView {
         System.out.println(content);
     }
 
+    //TODO : 메서드 이름 고민
     private void addCarResult(StringBuilder roundResult, Car car) {
-        final String DELIMITER = " : ";
-        final String CAR_RESULT =
-            addDuplicateIdentifier(car) + DELIMITER + convertDistance(car.getDrivenDistance()) + '\n';
-        roundResult.append(CAR_RESULT);
+        final String delimiter = " : ";
+        final String carResult =
+            addDuplicateIdentifier(car) + delimiter + convertDistance(car.getDrivenDistance()) + '\n';
+        roundResult.append(carResult);
     }
 
     private String addDuplicateIdentifier(Car car) {
