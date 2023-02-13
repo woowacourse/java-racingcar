@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.RandomMaker;
-import racingcar.domain.Car;
 
 public class Cars {
 

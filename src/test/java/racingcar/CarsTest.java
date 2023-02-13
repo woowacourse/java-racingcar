@@ -55,5 +55,4 @@ class CarsTest {
 
         Assertions.assertThat(winners).containsExactly(car1);
     }
-
 }
