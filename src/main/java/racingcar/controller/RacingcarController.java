@@ -13,12 +13,18 @@ public class RacingcarController {
         this.carService = carService;
     }
 
-    public void start() {
+    public void run() {
+        start();
+        play();
+        finish();
+    }
+
+    private void start() {
         initializeCarNames();
         initializeTryCount();
     }
 
-    public void initializeCarNames() {
+    private void initializeCarNames() {
         try {
             OutputView.printNameInput();
             carService.validateNameInput(InputView.readCarNames());
@@ -28,7 +34,7 @@ public class RacingcarController {
         }
     }
 
-    public void initializeTryCount() {
+    private void initializeTryCount() {
         try {
             OutputView.printCountInput();
             tryCount = InputView.readTryCount();
@@ -39,7 +45,7 @@ public class RacingcarController {
         }
     }
 
-    public void run() {
+    private void play() {
         OutputView.printResultMessage();
         for (int i = 0; i < tryCount; i++) {
             LinkedHashMap<String, Integer> roundResult = carService.runRound();
@@ -48,7 +54,7 @@ public class RacingcarController {
         }
     }
 
-    public void finish() {
+    private void finish() {
         OutputView.printRoundResult(carService.finishRound());
         OutputView.printWinners(carService.finishGame());
     }
