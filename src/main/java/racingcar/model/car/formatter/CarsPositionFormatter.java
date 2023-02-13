@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 import racingcar.model.car.Cars;
 
 public class CarsPositionFormatter {
-    private static final String LINE_BREAK = "\n";
+    private static final String LINE_BREAK = System.lineSeparator();
 
     private final CarPositionFormatter carFormatter;
 
