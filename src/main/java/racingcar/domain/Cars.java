@@ -22,7 +22,8 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars of(List<Car> cars) {
+    public static Cars of(List<String> carNames) {
+        List<Car> cars = makeCars(carNames);
         return new Cars(cars);
     }
 
@@ -43,6 +44,10 @@ public class Cars {
 
     public int getNumberOfCars() {
         return cars.size();
+    }
+
+    private static List<Car> makeCars(List<String> carNames) {
+        return carNames.stream().map(Car::of).collect(Collectors.toList());
     }
 
     private boolean isMove(int moveConditionValue) {

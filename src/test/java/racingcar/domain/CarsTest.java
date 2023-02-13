@@ -22,7 +22,7 @@ class CarsTest {
     @BeforeEach
     void beforeEach() {
         //given
-        cars = Cars.of(List.of(Car.of("준팍"), Car.of("져니"), Car.of("소니")));
+        cars = Cars.of(List.of("준팍" , "져니", "소니"));
         numberGenerator = new TestNumberGenerator(List.of(0, 4, 9));
 
         //when

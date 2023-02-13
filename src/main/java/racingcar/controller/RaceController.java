@@ -28,7 +28,7 @@ public class RaceController implements Controller {
         try {
             List<String> carNames = inputUtil.getUserInput(inputUtil::getCarNames);
             int tryCount = inputUtil.getUserInput(inputUtil::getTryCount);
-            Cars cars = Cars.of(makeCars(carNames));
+            Cars cars = Cars.of(carNames);
             return Race.of(cars, tryCount);
         } catch (IllegalArgumentException | DuplicateException e) {
             OutputView.printMessage(e.getMessage());
@@ -36,9 +36,6 @@ public class RaceController implements Controller {
         }
     }
 
-    private List<Car> makeCars(List<String> carNames) {
-        return carNames.stream().map(Car::of).collect(Collectors.toList());
-    }
 
     private void playGame(Race race) {
         OutputView.printHeadResult(race.getRoundResults());
