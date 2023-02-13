@@ -1,12 +1,10 @@
-package contoller;
-
-import domain.RaceGame;
+import contoller.RaceGame;
 import java.util.List;
 import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
-public class RaceController {
+public class Application {
 
   private static InputView inputView = new InputView();
   private static OutputView outputView = new OutputView();

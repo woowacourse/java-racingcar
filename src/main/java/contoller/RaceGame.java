@@ -1,5 +1,6 @@
-package domain;
+package contoller;
 
+import domain.Car;
 import java.util.List;
 import java.util.stream.Collectors;
 import strategy.PowerSupplier;
