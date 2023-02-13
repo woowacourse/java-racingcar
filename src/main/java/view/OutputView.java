@@ -26,6 +26,7 @@ public class OutputView {
         for (Car car : cars.getCars()) {
             String carName = car.getName();
             int position = car.getPosition();
+
             System.out.println(carName + " : " + POSITION_BAR.repeat(position));
         }
         System.out.println();

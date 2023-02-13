@@ -24,7 +24,6 @@ class GamePlayTest {
     @BeforeEach
     void setUp() {
         cars = new Cars(List.of(car));
-
     }
 
     @DisplayName("지정한 시도 회수만큼 게임이 진행되었는지 확인")
