@@ -25,9 +25,8 @@ public class RacingGameController {
     }
 
     private RacingCars createRacingCar() {
-        Names names;
         try {
-            names = getNames();
+            Names names = getNames();
             return new RacingCars(createRacingCar(names));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
