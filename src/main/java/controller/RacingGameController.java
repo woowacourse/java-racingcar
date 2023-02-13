@@ -25,17 +25,12 @@ public class RacingGameController {
     }
 
     private RacingCars createRacingCar() {
-        try {
-            Names names = getNames();
-            return new RacingCars(createRacingCar(names));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return createRacingCar();
-        }
+        Names names = getNames();
+        return new RacingCars(createRacingCar(names));
     }
 
     private Names getNames() {
-        return new Names(InputView.requestCarName());
+        return InputView.requestCarName();
     }
 
     private List<RacingCar> createRacingCar(Names names) {
@@ -46,12 +41,7 @@ public class RacingGameController {
     }
 
     private TryCount getTryCount() {
-        try {
-            return new TryCount(InputView.requestTryCount());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getTryCount();
-        }
+        return InputView.requestTryCount();
     }
 
     private void playGame() {
