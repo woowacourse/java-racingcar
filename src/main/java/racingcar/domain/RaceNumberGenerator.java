@@ -1,4 +1,6 @@
-package racingcar.util;
+package racingcar.domain;
+
+import racingcar.util.NumberGenerator;
 
 import java.util.concurrent.ThreadLocalRandom;
 

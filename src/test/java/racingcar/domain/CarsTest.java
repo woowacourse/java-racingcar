@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import racingcar.domain.vo.CarStatus;
+import racingcar.util.NumberGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,17 +16,16 @@ class CarsTest {
 
     private Cars cars;
     private List<String> carNames;
-    private List<Integer> moveConditionValues;
+    private NumberGenerator numberGenerator;
 
     @BeforeEach
     void beforeEach() {
         //given
-        carNames = List.of("준팍", "져니", "소니");
-        cars = Cars.of(carNames);
-        moveConditionValues = List.of(0, 4, 9);
+        cars = Cars.of(List.of("준팍" , "져니", "소니"));
+        numberGenerator = new TestNumberGenerator(List.of(0, 4, 9));
 
         //when
-        cars.move(moveConditionValues);
+        cars.move(numberGenerator);
     }
 
     @DisplayName("getRoundResult 메서드 사용시")
@@ -37,7 +36,7 @@ class CarsTest {
         void getNameTest() {
             //then
             assertThat(cars.getRoundResults().stream()
-                    .map(CarStatus::getPosition)
+                    .map(Car::getPosition)
                     .collect(Collectors.toList()))
                     .isEqualTo(List.of(1, 2, 2));
         }
@@ -47,9 +46,9 @@ class CarsTest {
         void getPositionTest() {
             //then
             assertThat(cars.getRoundResults().stream()
-                    .map(CarStatus::getName)
+                    .map(Car::getName)
                     .collect(Collectors.toList()))
-                    .isEqualTo(carNames);
+                    .isEqualTo(List.of("준팍", "져니", "소니"));
         }
     }
 
@@ -59,8 +58,7 @@ class CarsTest {
     void pickWinnerTest() {
         //then
         assertThat(cars.pickWinners().stream()
-                .map(Car::getCarStatus)
-                .map(CarStatus::getName)
+                .map(Car::getName)
                 .collect(Collectors.toList()))
                 .isEqualTo(List.of("져니", "소니"));
     }

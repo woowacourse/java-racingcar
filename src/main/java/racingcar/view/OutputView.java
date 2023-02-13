@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.vo.CarStatus;
+import racingcar.domain.Car;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printHeadResult(List<CarStatus> roundResult) {
+    public static void printHeadResult(List<Car> roundResult) {
         System.out.println(RESULT_MESSAGE);
         printRoundResult(roundResult);
     }
 
-    public static void printRoundResult(List<CarStatus> roundResult) {
+    public static void printRoundResult(List<Car> roundResult) {
         roundResult.forEach(OutputView::printResult);
         System.out.println();
     }
@@ -29,8 +29,12 @@ public class OutputView {
         System.out.println(String.join(",", winnerNames) + WINNER_MESSAGE);
     }
 
-    private static void printResult(CarStatus carStatus) {
-        System.out.println(carStatus.getName() + " : " + drawDrivingDistance(carStatus.getPosition()));
+//    private static void printResult(CarStatus carStatus) {
+//        System.out.println(carStatus.getName() + " : " + drawDrivingDistance(carStatus.getPosition()));
+//    }
+
+    private static void printResult(Car car) {
+        System.out.println(car.getName() + " : " + drawDrivingDistance(car.getPosition()));
     }
 
     private static String drawDrivingDistance(int position) {

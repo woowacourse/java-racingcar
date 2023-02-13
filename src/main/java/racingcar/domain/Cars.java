@@ -1,7 +1,7 @@
 package racingcar.domain;
 
-import racingcar.domain.vo.CarStatus;
 import racingcar.exception.DuplicateException;
+import racingcar.util.NumberGenerator;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,44 +12,42 @@ import static racingcar.enumType.ExceptionMessage.DUPLICATE_MESSAGE;
 
 public class Cars {
 
+    private static final int CAR_MOVE_STANDARD = 4;
+
     private final List<Car> cars;
 
-    private Cars(List<String> carNames) {
-        this.cars = makeCars(carNames);
-        validateDuplicateCarName();
+    private Cars(List<Car> cars) {
+        validateDuplicateCarName(cars);
+        this.cars = cars;
     }
 
     public static Cars of(List<String> carNames) {
-        return new Cars(carNames);
+        List<Car> cars = makeCars(carNames);
+        return new Cars(cars);
     }
 
-    public void move(List<Integer> moveConditionValues) {
-        for (int i = 0; i < getNumberOfCars(); i++) {
-            cars.get(i).move(moveConditionValues.get(i));
-        }
+    public void move(NumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
-    public List<CarStatus> getRoundResults() {
-        return cars.stream().map(Car::getCarStatus)
-                .collect(Collectors.toList());
+    public List<Car> getRoundResults() {
+        return Collections.unmodifiableList(cars);
     }
 
     public List<Car> pickWinners() {
-        return this.cars.stream()
-                .filter(car -> Objects.equals(car.getCarStatus().getPosition(), getMaxPosition()))
-                .collect(Collectors.toList());
+        return this.cars.stream().filter(car -> Objects.equals(car.getPosition(), getMaxPosition())).collect(Collectors.toList());
     }
 
     public int getNumberOfCars() {
         return cars.size();
     }
 
-
-    private List<Car> makeCars(List<String> carNames) {
+    private static List<Car> makeCars(List<String> carNames) {
         return carNames.stream().map(Car::of).collect(Collectors.toList());
     }
 
-    private void validateDuplicateCarName() {
+
+    private void validateDuplicateCarName(List<Car> cars) {
         int nonDuplicateCount = new HashSet<>(cars).size();
         if (cars.size() != nonDuplicateCount) {
             throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
@@ -57,9 +55,7 @@ public class Cars {
     }
 
     private int getMaxPosition() {
-        return this.cars.stream()
-                .mapToInt(car -> car.getCarStatus().getPosition())
-                .max().orElse(START_POSITION);
+        return this.cars.stream().mapToInt(car -> car.getPosition()).max().orElse(START_POSITION);
     }
 
 }
