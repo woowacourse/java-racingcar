@@ -4,8 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.controller.RacingCarController;
-import racingcar.view.InputView;
-import racingcar.view.OutputView;
 
 import java.io.*;
 import java.util.List;
@@ -14,9 +12,7 @@ import static org.assertj.core.util.Lists.newArrayList;
 
 public class ApplicationTest {
 
-    private static ByteArrayOutputStream outputStream;
-    private InputView inputView = InputView.getInstance();
-    private OutputView outputView = OutputView.getInstance();
+    private static ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     private static InputStream generateUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
@@ -25,12 +21,11 @@ public class ApplicationTest {
     @Test
     @DisplayName("전체 테스트")
     void applicationTest() {
-        outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
         String carNames = "제이,이오,성하\n";
         String tryNum = "3\n";
+
         System.setIn(new SequenceInputStream(generateUserInput(carNames), generateUserInput(tryNum)));
+        System.setOut(new PrintStream(outputStream));
 
         TestNumberGenerator testNumberGenerator = new TestNumberGenerator(newArrayList(0, 1, 2, 3, 4, 5, 6, 7, 8));
         RacingCarController racingCarController = new RacingCarController(testNumberGenerator);
