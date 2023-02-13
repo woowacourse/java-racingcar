@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.vo.CarStatus;
 import racingcar.util.NumberGenerator;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class Race {
         return new Race(cars, tryCount);
     }
 
-    public List<CarStatus> playRound(NumberGenerator numberGenerator) {
+    public List<Car> playRound(NumberGenerator numberGenerator) {
         cars.move(numberGenerator);
         return cars.getRoundResults();
     }
@@ -38,7 +37,7 @@ public class Race {
                 .collect(Collectors.toList());
     }
 
-    public List<CarStatus> getRoundResults() {
+    public List<Car> getRoundResults() {
         return cars.getRoundResults();
     }
 

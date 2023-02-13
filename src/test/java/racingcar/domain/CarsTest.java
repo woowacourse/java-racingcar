@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import racingcar.domain.vo.CarStatus;
 import racingcar.util.NumberGenerator;
 
 import java.util.List;
@@ -37,7 +36,7 @@ class CarsTest {
         void getNameTest() {
             //then
             assertThat(cars.getRoundResults().stream()
-                    .map(CarStatus::getPosition)
+                    .map(Car::getPosition)
                     .collect(Collectors.toList()))
                     .isEqualTo(List.of(1, 2, 2));
         }
@@ -47,7 +46,7 @@ class CarsTest {
         void getPositionTest() {
             //then
             assertThat(cars.getRoundResults().stream()
-                    .map(CarStatus::getName)
+                    .map(Car::getName)
                     .collect(Collectors.toList()))
                     .isEqualTo(List.of("준팍", "져니", "소니"));
         }
@@ -59,8 +58,7 @@ class CarsTest {
     void pickWinnerTest() {
         //then
         assertThat(cars.pickWinners().stream()
-                .map(Car::getCarStatus)
-                .map(CarStatus::getName)
+                .map(Car::getName)
                 .collect(Collectors.toList()))
                 .isEqualTo(List.of("져니", "소니"));
     }

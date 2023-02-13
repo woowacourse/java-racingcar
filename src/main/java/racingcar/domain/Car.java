@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.vo.CarStatus;
-
 import java.util.Objects;
 
 import static racingcar.enumType.ExceptionMessage.BLANK_MESSAGE;
@@ -32,16 +30,13 @@ public class Car {
         }
     }
 
-    public CarStatus getCarStatus() {
-        return CarStatus.of(name, position);
-    }
 
     public String getName() {
-        return getCarStatus().getName();
+        return this.name;
     }
 
     public int getPosition() {
-        return getCarStatus().getPosition();
+        return this.position;
     }
 
     private void validateNameLength(final String name) {

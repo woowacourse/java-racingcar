@@ -50,7 +50,7 @@ class CarTest {
 
         @Test
         @DisplayName("이동 조건이 True인 경우, 자동차가 전진한다")
-        void givenTrue_thenCarMove(int randomNumber) {
+        void givenTrue_thenCarMove() {
             Car car = Car.of("BMW");
             car.move(true);
             assertThat(car.getPosition()).isEqualTo(2);

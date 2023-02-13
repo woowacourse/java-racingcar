@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.vo.CarStatus;
 import racingcar.exception.DuplicateException;
 import racingcar.util.NumberGenerator;
 
@@ -31,9 +30,8 @@ public class Cars {
         cars.forEach(car -> car.move(isMove(numberGenerator.generate())));
     }
 
-    public List<CarStatus> getRoundResults() {
-        return cars.stream().map(Car::getCarStatus)
-                .collect(Collectors.toList());
+    public List<Car> getRoundResults() {
+        return Collections.unmodifiableList(cars);
     }
 
     public List<Car> pickWinners() {
@@ -63,7 +61,7 @@ public class Cars {
 
     private int getMaxPosition() {
         return this.cars.stream()
-                .mapToInt(car -> car.getCarStatus().getPosition())
+                .mapToInt(car -> car.getPosition())
                 .max().orElse(START_POSITION);
     }
 
