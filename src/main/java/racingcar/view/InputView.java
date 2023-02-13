@@ -10,13 +10,17 @@ public class InputView {
     public InputView() {
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
-
-    public String readLine(Runnable runnable) {
+    
+    public String readCorrectLine(Runnable runnable) {
         try {
-            runnable.run();
-            return bufferedReader.readLine();
-        } catch (IOException ioException) {
             return readLine(runnable);
+        } catch (IOException e) {
+            return readCorrectLine(runnable);
         }
+    }
+
+    private String readLine(Runnable printGuide) throws IOException {
+        printGuide.run();
+        return bufferedReader.readLine();
     }
 }
