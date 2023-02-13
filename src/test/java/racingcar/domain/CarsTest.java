@@ -25,9 +25,9 @@ class CarsTest {
             this.numberGenerator = numberGenerator;
         }
 
-        void generateCar(String name) {
+        @Override
+        protected void generateCar(String name) {
             Car newCar = new Car(name, numberGenerator);
-            validateDuplicatedCarName(newCar);
             this.cars.add(newCar);
         }
     }

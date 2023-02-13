@@ -41,7 +41,7 @@ public class Cars {
         cars.clear();
     }
 
-    void generateCar(String name) {
+    protected void generateCar(String name) {
         Car newCar = new Car(name);
         validateDuplicatedCarName(newCar);
         cars.add(newCar);
@@ -54,7 +54,7 @@ public class Cars {
         }
     }
 
-    void validateDuplicatedCarName(Car newCar) {
+    private void validateDuplicatedCarName(Car newCar) {
         if (cars.contains(newCar)) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
         }
