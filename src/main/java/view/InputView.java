@@ -32,6 +32,7 @@ public class InputView {
     public int readCount() throws IllegalArgumentException {
         printInputMessage(ENTER_COUNT);
         String input = readLine();
+        INPUT_VALIDATOR.validate(input);
         COUNT_VALIDATOR.validate(input);
         return Integer.parseInt(input);
     }

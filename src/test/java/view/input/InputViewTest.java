@@ -85,4 +85,26 @@ class InputViewTest {
             Arguments.of(List.of("가나다라마", "마라다나가", "기니디리미"))
         );
     }
+
+    @Test
+    void 시도횟수_입력값이_빈문자일_경우_오류를던진다() {
+        //given
+        final String input = "\n";
+        before(input);
+        //when then
+        assertThatThrownBy(inputView::readCount).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] ")
+            .hasMessageContaining("입력값이 없습니다.");
+    }
+
+    @ValueSource(strings = {"1.5", "abc", "1.0", "1L"})
+    @ParameterizedTest
+    void 시도횟수_입력값이_정수가_아닐경우_오류를던진다(String input) {
+        //given
+        before(input);
+        //when then
+        assertThatThrownBy(inputView::readCount).isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] ")
+            .hasMessageContaining("올바르지 않은 시도횟수입니다.(1 ~ 999,999,999)");
+    }
 }
