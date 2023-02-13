@@ -55,6 +55,7 @@
 ## 2단계 미션 - 리팩토링 요구사항
 
 - [x] enum으로 선언한 CarConstant를 Car 클래스 내부로 이동
+- [x] enum으로 선언한 InputConstant, OutputConstant를 OutputView 클래스 내부로 이동
 - [x] 시도 횟수 검증에 대한 메서드를 Controller에서 Service로 이동
 - [x] distance에서 position으로 네이밍 변경
 - Car 클래스의 책임 분리
