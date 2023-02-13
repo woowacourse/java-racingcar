@@ -3,6 +3,7 @@ package racingcar.service;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import racingcar.constants.CarConstant;
 import racingcar.constants.InputConstant;
@@ -36,8 +37,8 @@ public class CarService {
         return List.of(carNames.split(InputConstant.CAR_NAME_SPLIT_DELIMITER.getMessage()));
     }
 
-    public LinkedHashMap<String, Integer> runRound() {
-        LinkedHashMap<String, Integer> roundResult = new LinkedHashMap<String, Integer>();
+    public Map<String, Integer> runRound() {
+        Map<String, Integer> roundResult = new LinkedHashMap<>();
         Random random = new Random();
         for (Car car : cars.getCarInformation()) {
             int randomNumber = random.nextInt(RANDOM_NUM_MAX_VALUE);
@@ -53,13 +54,12 @@ public class CarService {
         }
     }
 
-    public LinkedHashMap<String, Integer> finishRound() {
-        LinkedHashMap<String, Integer> roundResult = new LinkedHashMap<>();
+    public Map<String, Integer> finishRound() {
+        Map<String, Integer> roundResult = new LinkedHashMap<>();
         for (Car car : cars.getCarInformation()) {
             roundResult.put(car.getName(), car.getDistance());
         }
         return roundResult;
-
     }
 
     public List<String> finishGame() {

@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import java.util.LinkedHashMap;
+import java.util.Map;
 import racingcar.service.CarService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -48,7 +48,7 @@ public class RacingcarController {
     private void play() {
         OutputView.printResultMessage();
         for (int i = 0; i < tryCount; i++) {
-            LinkedHashMap<String, Integer> roundResult = carService.runRound();
+            Map<String, Integer> roundResult = carService.runRound();
             OutputView.printRoundResult(roundResult);
             OutputView.printNewLine();
         }

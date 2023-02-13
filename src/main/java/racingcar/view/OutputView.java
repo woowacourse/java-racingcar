@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import racingcar.constants.InputConstant;
 import racingcar.constants.OutputConstant;
 
@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println(OutputConstant.RESULT_MESSAGE.getMessage());
     }
 
-    public static void printRoundResult(LinkedHashMap<String, Integer> roundResult) {
+    public static void printRoundResult(Map<String, Integer> roundResult) {
         for (String key : roundResult.keySet()) {
             Integer value = roundResult.get(key);
             printCarResult(key, value);
