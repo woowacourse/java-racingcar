@@ -9,10 +9,10 @@ public class RandomBasedMovement implements Movement {
     
     @Override
     public boolean isMovable() {
-        return getRandom() >= MINIMUM_MOVABLE_NUMBER;
+        return getRandomNumber() >= MINIMUM_MOVABLE_NUMBER;
     }
 
-    private static int getRandom() {
+    private static int getRandomNumber() {
         return new Random().nextInt(RANGE_OF_RANDOM_NUMBER);
     }
 }
