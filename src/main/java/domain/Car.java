@@ -36,6 +36,7 @@ public class Car {
     public boolean equalsPosition(Car other) {
         return this.position == other.position;
     }
+
     public int compareTo(Car other) {
         return this.position - other.position;
     }

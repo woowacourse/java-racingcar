@@ -10,6 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 class CarTest {
     Car car1;
+
     @BeforeEach
     void setUp() {
         car1 = new Car("car1");

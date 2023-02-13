@@ -2,7 +2,8 @@ package exception;
 
 public class CarNameLengthException extends RuntimeException {
     private static final String CAR_NAME_LENGTH_EXCEPTION_MESSAGE = "[ERROR] 자동차 이름의 길이가 1이상 5자 이하여야 합니다.";
-    public CarNameLengthException () {
+
+    public CarNameLengthException() {
         super(CAR_NAME_LENGTH_EXCEPTION_MESSAGE);
     }
 }

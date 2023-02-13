@@ -14,7 +14,7 @@ public class Cars {
     }
 
     public void moveAll(NumberGenerator numberGenerator) {
-        for (Car car: cars) {
+        for (Car car : cars) {
             car.move(numberGenerator.generate());
         }
     }
