@@ -11,19 +11,13 @@ public class OutputView {
   private OutputView() {
   }
 
-  public static void printStart(List<Car> cars) {
+  public static void printStart() {
     System.out.println();
     System.out.println("실행 결과");
-    printCarsStatus(cars);
   }
 
-  public static void printCarsStatus(List<Car> cars) {
-    cars.forEach(OutputView::printCarStatus);
-    System.out.println();
-  }
-
-  private static void printCarStatus(Car car) {
-    System.out.printf("%s : %s\n", car.getName(), toBar(car.getPosition()));
+  public static void printCarStatus(String name, int position) {
+    System.out.printf("%s : %s\n", name, toBar(position));
   }
 
   private static String toBar(int count) {

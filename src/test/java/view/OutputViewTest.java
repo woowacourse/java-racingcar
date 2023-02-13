@@ -40,7 +40,8 @@ class OutputViewTest {
             + "car2 : -\n"
             + "car3 : -\n"
             + "\r\n";
-    OutputView.printCarsStatus(cars);
+    cars.forEach(car -> OutputView.printCarStatus(car.getName(), car.getPosition()));
+    System.out.println();
 
     Assertions.assertThat(out.toString()).isEqualTo(result);
   }
@@ -56,8 +57,8 @@ class OutputViewTest {
     int go = 4;
     cars.get(0).move(go);
     cars.get(2).move(go);
-
-    OutputView.printCarsStatus(cars);
+    cars.forEach(car -> OutputView.printCarStatus(car.getName(), car.getPosition()));
+    System.out.println();
     Assertions.assertThat(out.toString()).isEqualTo(result);
   }
 

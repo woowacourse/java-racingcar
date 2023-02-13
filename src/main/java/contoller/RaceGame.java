@@ -19,10 +19,17 @@ public class RaceGame {
   }
 
   public void race() {
-    OutputView.printStart(cars);
+    OutputView.printStart();
+    printCarsStatus();
     for (int i = 0; i < roundCount; i++) {
       runRound(cars);
+      printCarsStatus();
     }
+  }
+
+  private void printCarsStatus() {
+    cars.forEach(car -> OutputView.printCarStatus(car.getName(), car.getPosition()));
+    System.out.println();
   }
 
   private List<Car> makeCars(List<String> carNames) {
@@ -35,7 +42,6 @@ public class RaceGame {
     for (Car car : cars) {
       car.move(powerSupplier.generate());
     }
-    OutputView.printCarsStatus(cars);
   }
 
   public List<String> pickWinner() {
