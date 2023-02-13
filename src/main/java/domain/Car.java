@@ -7,19 +7,19 @@ public class Car {
     private final String name;
     private int position;
 
+    public Car(String name) {
+        Validator.checkBlank(name);
+        Validator.checkLength(name);
+        this.name = name;
+        this.position = 0;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
                 "name='" + name + '\'' +
                 ", position=" + position +
                 '}';
-    }
-
-    public Car(String name) {
-        Validator.checkBlank(name);
-        Validator.checkLength(name);
-        this.name = name;
-        this.position = 0;
     }
 
     public void move(int power) {
