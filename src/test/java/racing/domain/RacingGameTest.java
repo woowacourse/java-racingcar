@@ -61,5 +61,4 @@ class RacingGameTest {
             return 3;
         }
     }
-
 }
