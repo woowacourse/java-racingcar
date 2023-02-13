@@ -3,27 +3,29 @@ package domain;
 public class TryCount {
 
     private static final int EXCEPTION_FLAG = 0;
-
     private static final String ENTER_POSITIVE_INTEGER = "[ERROR] 양의 정수를 입력해주세요.";
-
     private final int tryCount;
 
-    public TryCount(final String inputCount) {
-        this.tryCount = validateTryCount(inputCount);
+    public TryCount(final String input) {
+        this.tryCount = convertAndValidate(input);
     }
 
     private TryCount(final int tryCount) {
         this.tryCount = tryCount;
     }
 
-    private int validateTryCount(final String inputCount) {
-        int tryCount = Integer.parseInt(inputCount);
+    private int convertAndValidate(String input) {
+        int tryCount = Integer.parseInt(input);
 
-        if (tryCount <= EXCEPTION_FLAG) {
-            throw new IllegalArgumentException(ENTER_POSITIVE_INTEGER);
-        }
+        validateInputRange(tryCount);
 
         return tryCount;
+    }
+
+    private void validateInputRange(final int inputCount) {
+        if (inputCount <= EXCEPTION_FLAG) {
+            throw new IllegalArgumentException(ENTER_POSITIVE_INTEGER);
+        }
     }
 
     public TryCount deduct() {
