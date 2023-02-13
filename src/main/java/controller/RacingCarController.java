@@ -1,5 +1,6 @@
 package controller;
 
+import domain.AttemptNumber;
 import domain.Cars;
 import dto.CarDto;
 import utils.NumberGenerator;
@@ -12,7 +13,11 @@ import java.util.List;
 
 public class RacingCarController {
 
-    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
+    private final NumberGenerator numberGenerator;
+
+    public RacingCarController() {
+        this.numberGenerator = new RandomNumberGenerator();
+    }
 
     public void run() throws IOException {
         Cars cars = getCars();
@@ -31,9 +36,10 @@ public class RacingCarController {
     }
 
     private void race(final Cars cars) throws IOException {
-        int attemptNumber = InputView.readAttemptNumber();
+        AttemptNumber attemptNumber = new AttemptNumber(InputView.readAttemptNumber());
         OutputView.printResult();
-        while ((attemptNumber--) > 0) {
+        while (attemptNumber.isRemain()) {
+            attemptNumber.decrease();
             cars.moveAll(numberGenerator);
             printStatus(cars);
         }
