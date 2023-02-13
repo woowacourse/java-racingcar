@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final String COMMA = ",";
-    private static final String BLANK = " ";
 
     private final List<Car> cars = new ArrayList<>();
 
@@ -44,11 +43,11 @@ public class Cars {
         }
     }
 
-    public String getWinners() {
+    public List<String> getWinners() {
         return cars.stream()
                    .filter(car -> car.isLocationEqual(getMaxLocation()))
                    .map(Car::getName)
-                   .collect(Collectors.joining(COMMA + BLANK));
+                   .collect(Collectors.toList());
     }
 
     public int getMaxLocation() {

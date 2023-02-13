@@ -3,9 +3,12 @@ package view;
 import domain.Car;
 import domain.Cars;
 
+import java.util.List;
+
 public class OutputView {
     private static final String CAR_LOCATION = "-";
     private static final String PRINT_CAR_LOCATION = "%s : %s\n";
+    private static final String WINNER_DELIMITER = ", ";
     private static final String PRINT_WINNER = "%s가 최종 우승했습니다.\n";
 
     public void printResult(Cars cars) {
@@ -16,7 +19,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinner(String winner) {
-        System.out.printf(PRINT_WINNER, winner);
+    public void printWinner(List<String> winner) {
+        System.out.printf(PRINT_WINNER, String.join(WINNER_DELIMITER, winner));
     }
 }
