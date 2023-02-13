@@ -32,7 +32,7 @@ public class RacingGame {
 
     private RacingCars initRacingCars(final List<String> names) {
         return new RacingCars(names.stream()
-            .map(Car::new)
+            .map(name -> new Car(new Name(name)))
             .collect(Collectors.toList()));
     }
 

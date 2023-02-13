@@ -17,8 +17,8 @@ class RacingCarsTest {
     @DisplayName("차 이름이 중복되면 예외가 발생한다")
     void createDuplicateCars() {
         //given
-        Car car1 = new Car("car");
-        Car car2 = new Car("car");
+        Car car1 = new Car(new Name("car"));
+        Car car2 = new Car(new Name("car"));
 
         //when
         //then
@@ -31,8 +31,8 @@ class RacingCarsTest {
     @DisplayName("차 이름이 중복되지 않는 경우")
     void createNonDuplicateCars() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
+        Car car1 = new Car(new Name("car1"));
+        Car car2 = new Car(new Name("car2"));
 
         //when
         new RacingCars(List.of(car1, car2));
@@ -47,7 +47,7 @@ class RacingCarsTest {
         List<Car> cars = new ArrayList<>();
 
         for (int i = 0; i <= carLimit; i++) {
-            cars.add(new Car(String.valueOf(i)));
+            cars.add(new Car(new Name(String.valueOf(i))));
         }
 
         //when
@@ -61,8 +61,8 @@ class RacingCarsTest {
     @DisplayName("모든 차를 이동시킨다")
     void moveCars() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
+        Car car1 = new Car(new Name("car1"));
+        Car car2 = new Car(new Name("car2"));
         RacingCars racingCars = new RacingCars(List.of(car1, car2));
 
         //when
@@ -78,8 +78,8 @@ class RacingCarsTest {
     @DisplayName("모든 차를 이동시키지 않는다.")
     void notMoveCars() {
         //given
-        Car car1 = new Car("car1");
-        Car car2 = new Car("car2");
+        Car car1 = new Car(new Name("car1"));
+        Car car2 = new Car(new Name("car2"));
         RacingCars racingCars = new RacingCars(List.of(car1, car2));
 
         //when
