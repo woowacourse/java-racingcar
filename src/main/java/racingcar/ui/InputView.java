@@ -1,17 +1,23 @@
 package racingcar.ui;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import racingcar.util.TextSplit;
 
-public class InputView {
+public class InputView implements TextSplit {
 
-    private static final Scanner scanner = new Scanner(System.in);
     private static final int MINIMUM_TRY_COUNT = 1;
     private static final String DELIMITER = ",";
 
+    private final Scanner scanner;
 
-    public static List<String> carNames() {
+    public InputView(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public List<String> carNames() {
         try {
             String input = input();
 
@@ -19,7 +25,7 @@ public class InputView {
                 throw new IllegalArgumentException("[ERROR] 구분자(" + DELIMITER + ")가 필요해요.");
             }
 
-            return TextSplit.split(input, DELIMITER);
+            return split(input, DELIMITER);
         } catch (IllegalArgumentException e) {
             OutputView.error(e.getMessage());
 
@@ -27,7 +33,7 @@ public class InputView {
         }
     }
 
-    public static int tryCount() {
+    public int tryCount() {
         try {
             return inputTryCount();
         } catch (IllegalArgumentException e) {
@@ -37,7 +43,7 @@ public class InputView {
         }
     }
 
-    private static int inputTryCount() throws IllegalArgumentException {
+    private int inputTryCount() throws IllegalArgumentException {
         int tryCount;
 
         try {
@@ -52,7 +58,12 @@ public class InputView {
         return tryCount;
     }
 
-    private static String input() {
+    private String input() {
         return scanner.nextLine();
+    }
+
+    @Override
+    public List<String> split(String text, String delimiter) {
+        return Arrays.stream(text.split(delimiter)).collect(Collectors.toList());
     }
 }

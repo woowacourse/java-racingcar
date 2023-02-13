@@ -8,9 +8,11 @@ import racingcar.ui.OutputView;
 public class RacingcarController {
 
     private final RacingcarService racingcarService;
+    private final OutputView outputView;
 
-    public RacingcarController(RacingcarService racingcarService) {
+    public RacingcarController(OutputView outputView, RacingcarService racingcarService) {
         this.racingcarService = racingcarService;
+        this.outputView = outputView;
     }
 
     public void run(int tryCount) {
@@ -19,15 +21,15 @@ public class RacingcarController {
     }
 
     private void playGame(int tryCount) {
-        OutputView.playRound();
+        outputView.playRound();
         for (int i = 0; i < tryCount; i++) {
             List<Car> movedCars = racingcarService.move();
-            OutputView.result(movedCars);
+            outputView.result(movedCars);
         }
     }
 
     private void findWinners() {
         List<Car> winners = racingcarService.findWinners();
-        OutputView.winner(winners);
+        outputView.winner(winners);
     }
 }
