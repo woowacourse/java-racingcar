@@ -6,23 +6,20 @@ import view.OutputView;
 
 public class Application {
 
-  private static InputView inputView = new InputView();
-  private static OutputView outputView = new OutputView();
-
   public static void main(String[] args) {
-    final List<String> carNames = repeat(inputView::readCarNames);
-    final int roundCount = repeat(inputView::readTrialNum);
+    final List<String> carNames = repeat(InputView::readCarNames);
+    final int roundCount = repeat(InputView::readTrialNum);
 
     final RaceGame raceGame = new RaceGame(carNames, roundCount);
     raceGame.race();
-    outputView.printWinners(raceGame.pickWinner());
+    OutputView.printWinners(raceGame.pickWinner());
   }
 
   private static <T> T repeat(Supplier<T> inputReader) {
     try {
       return inputReader.get();
     } catch (Exception e) {
-      outputView.printErrorMessage(e);
+      OutputView.printErrorMessage(e);
       return repeat(inputReader);
     }
   }

@@ -9,7 +9,6 @@ import view.OutputView;
 
 public class RaceGame {
 
-  private static final OutputView outputView = new OutputView();
   private static final PowerSupplier powerSupplier = new RandomPowerSupplier();
 
   private List<String> runnerNames;
@@ -23,7 +22,7 @@ public class RaceGame {
   }
 
   public void race() {
-    outputView.printStart(cars);
+    OutputView.printStart(cars);
     for (int i = 0; i < roundCount; i++) {
       runRound(cars);
     }
@@ -39,7 +38,7 @@ public class RaceGame {
     for (Car car : cars) {
       car.move(powerSupplier.supply());
     }
-    outputView.printCarsStatus(cars);
+    OutputView.printCarsStatus(cars);
   }
 
   public List<String> pickWinner() {
