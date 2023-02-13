@@ -16,10 +16,14 @@ import java.util.stream.Collectors;
 public class RacingCarController {
 
     private static final int START_POSITION = 0;
-    private final CarNumberGenerator carNumberGenerator = new CarRandomNumberGenerator();
+    private final CarNumberGenerator carNumberGenerator;
     private OutputView outputView = OutputView.getInstance();
     private InputView inputView = InputView.getInstance();
     private RacingCars racingCars;
+
+    public RacingCarController(CarNumberGenerator carNumberGenerator) {
+     this.carNumberGenerator = carNumberGenerator;
+    }
 
     public void run() {
         List<Car> cars = generateCars();
