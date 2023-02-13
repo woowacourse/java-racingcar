@@ -22,7 +22,7 @@ public class CarController {
 	private boolean getCarNames() {
 		try {
 			OutputView.printCarNameRequestMsg();
-			List<String> carNames = InputView.readCarNames();
+			final List<String> carNames = InputView.readCarNames();
 			carNames.stream()
 				.forEach(carName -> carRepository.add(new Car(carName)));
 			return true;

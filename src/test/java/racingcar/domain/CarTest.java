@@ -39,7 +39,7 @@ class CarTest {
 	@ParameterizedTest
 	@DisplayName("4 이상의 값이 입력되면 차의 위치가 1 증가해야 하고, 4 미만의 값이 입력되면 차의 위치가 유지되어야 한다.")
 	@MethodSource("carMoveTestSource")
-	void carMoveTest(int number, int expected) {
+	void carMoveTest(final int number, final int expected) {
 		Car car = new Car("woowa");
 		car.move(number);
 
