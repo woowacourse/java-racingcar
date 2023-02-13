@@ -1,9 +1,10 @@
 package domain;
 
 public class MovementManager {
-    private final Integer MOVING_CONDITION = 4;
+    private static final int MOVING_CONDITION = 4;
 
-    public boolean isGo(Integer power) {
+    public boolean isGo(int power) {
         return power >= MOVING_CONDITION;
     }
+
 }

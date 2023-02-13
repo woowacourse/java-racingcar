@@ -10,6 +10,6 @@ class CarNameTest {
     void validateCarNameTest(String input) {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new CarName(input));
-
     }
+
 }

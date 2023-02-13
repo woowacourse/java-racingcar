@@ -62,4 +62,5 @@ public class OutputView {
         System.out.println(errorMessage);
         System.out.print(newLine);
     }
+
 }

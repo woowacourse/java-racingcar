@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private final String CAR_NAME_DELIMITER = ",";
+    private static final String CAR_NAME_DELIMITER = ",";
 
     private final Scanner sc = new Scanner(System.in);
 
@@ -23,4 +23,5 @@ public class InputView {
 
         return Integer.parseInt(input);
     }
+
 }

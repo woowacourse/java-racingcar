@@ -29,7 +29,8 @@ public class RacingController {
             cars.progressRound(randomNumberGenerator, movementManager);
             outputView.printCurrentResult(cars);
         }
-        List<String> winners = cars.findWinners();
+        Integer maxDistance = cars.findMaxDistance();
+        List<String> winners = cars.findWinners(maxDistance);
         outputView.printFinalResult(cars, winners);
     }
 
@@ -54,4 +55,5 @@ public class RacingController {
             return setUpTryCount();
         }
     }
+
 }

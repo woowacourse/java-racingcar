@@ -2,14 +2,14 @@ package domain;
 
 public class Car {
     private final CarName carName;
-    private Integer distance = 0;
+    private int distance = 0;
 
     public Car(String name) {
         this.carName = new CarName(name);
     }
 
-    public void move(boolean isMovable) {
-        if (isMovable) {
+    public void move(MovementManager movementManager, Integer power) {
+        if (movementManager.isGo(power)) {
             distance++;
         }
     }
@@ -18,7 +18,8 @@ public class Car {
         return carName.getName();
     }
 
-    public Integer getDistance() {
+    public int getDistance() {
         return distance;
     }
+
 }

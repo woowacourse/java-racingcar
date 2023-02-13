@@ -22,4 +22,5 @@ class MovementManagerTest {
 
         Assertions.assertThat(movementManager.isGo(power)).isEqualTo(true);
     }
+
 }

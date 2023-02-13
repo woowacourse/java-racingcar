@@ -1,7 +1,6 @@
 package domain;
 
 import util.NumberGenerator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,8 +11,8 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
-        cars = new ArrayList<>();
         checkNameDuplication(carNames);
+        cars = new ArrayList<>();
         addCar(carNames);
     }
 
@@ -32,15 +31,14 @@ public class Cars {
         }
     }
 
-    public List<String> findWinners() {
-        Integer maxDistance = findMaxDistance();
+    public List<String> findWinners(Integer maxDistance) {
         return cars.stream()
                 .filter(car -> car.getDistance() == maxDistance)
                 .map(Car::getCarName)
                 .collect(Collectors.toList());
     }
 
-    private Integer findMaxDistance() {
+    public int findMaxDistance() {
         return cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
@@ -49,13 +47,13 @@ public class Cars {
 
     public void progressRound(NumberGenerator randomNumberGenerator, MovementManager movementManager) {
         for (Car car : cars) {
-            Integer randomNumber = randomNumberGenerator.generateNumber();
-            Boolean movingResult = movementManager.isGo(randomNumber);
-            car.move(movingResult);
+            int randomNumber = randomNumberGenerator.generateNumber();
+            car.move(movementManager, randomNumber);
         }
     }
 
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
+
 }

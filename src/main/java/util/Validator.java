@@ -21,4 +21,5 @@ public class Validator {
             throw new IllegalArgumentException("이동 횟수는 1이상의 숫자만 가능합니다.");
         }
     }
+
 }
