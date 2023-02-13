@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 class RacingGameTest {
 	class ZeroGenerator implements NumberGenerator {
 		@Override
-		public int getNumber() {
+		public int generateNumber() {
 			return 0;
 		}
 	}
 
 	class NineGenerator implements NumberGenerator {
 		@Override
-		public int getNumber() {
+		public int generateNumber() {
 			return 9;
 		}
 	}

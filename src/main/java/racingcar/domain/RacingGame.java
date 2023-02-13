@@ -15,14 +15,14 @@ public class RacingGame {
 	}
 
 	public void moveCars() {
-		cars.forEach(car -> car.move(numberGenerator.getNumber()));
+		cars.forEach(car -> car.move(numberGenerator.generateNumber()));
 	}
 
 	public List<String> getWinners() {
 		return cars.stream()
-			.filter(car -> car.getPosition() == findMaxPosition())
-			.map(Car::getName)
-			.collect(Collectors.toList());
+				.filter(car -> car.getPosition() == findMaxPosition())
+				.map(Car::getName)
+				.collect(Collectors.toList());
 	}
 
 	private int findMaxPosition() {
