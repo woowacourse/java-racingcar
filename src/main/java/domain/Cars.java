@@ -10,17 +10,13 @@ public class Cars {
     private final List<Car> cars = new LinkedList<>();
 
     public Cars(List<String> carNames) {
-        register(carNames);
+        addCars(carNames);
     }
 
-    private void register(List<String> carNames) {
+    private void addCars(List<String> carNames) {
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-    }
-
-    public void move(int number) {
-        forEach(c -> c.move(number));
     }
 
     public void forEach(Consumer<Car> action) {

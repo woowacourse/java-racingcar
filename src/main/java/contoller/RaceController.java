@@ -1,23 +1,28 @@
 package contoller;
 
-import domain.Cars;
+import domain.RandomMovableStrategy;
 import java.util.List;
 import java.util.function.Supplier;
-import util.RandomGenerator;
+import service.RacingGame;
 import view.InputView;
 import view.OutputView;
 
 public class RaceController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final RacingGame racingGame;
 
-    public void run() {
-        final Cars cars = makeCars();
+    public RaceController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.racingGame = initRacingGame();
+    }
+
+    private RacingGame initRacingGame() {
+        final List<String> carNames = repeat(inputView::readCarNames);
         final int roundNum = repeat(inputView::readTrialNum);
-
-        startRace(cars, roundNum);
-        outputView.printWinners(cars.getWinners());
+        return new RacingGame(new RandomMovableStrategy(), carNames, roundNum);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
@@ -29,16 +34,12 @@ public class RaceController {
         }
     }
 
-    private Cars makeCars() {
-        final List<String> carNames = repeat(inputView::readCarNames);
-        return new Cars(carNames);
-    }
-
-    private void startRace(Cars cars, int roundNum) {
-        outputView.printStart(cars);
-        for (int i = 0; i < roundNum; i++) {
-            cars.move(RandomGenerator.getDigit());
-            outputView.printCarsStatus(cars);
+    public void run() {
+        outputView.printStart(racingGame.getCars());
+        while (racingGame.isContinue()) {
+            racingGame.race();
+            outputView.printCarsStatus(racingGame.getCars());
         }
+        outputView.printWinners(racingGame.getWinners());
     }
 }
