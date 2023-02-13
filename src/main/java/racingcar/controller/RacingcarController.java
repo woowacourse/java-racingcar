@@ -15,22 +15,19 @@ public class RacingcarController {
 
     public void start() {
         carService.initializeCars();
-        while (readNameInput()) {
-            carService.initializeCars();
-        }
-        while (readCountInput()) {
-        }
+        readNameInput();
+        readCountInput();
     }
 
-    private boolean readNameInput() {
+    private void readNameInput() {
         try {
             OutputView.printNameInput();
             List<String> carNames = splitCarNames(InputView.readCarNames());
             carService.makeCar(carNames);
-            return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return true;
+            carService.initializeCars();
+            readNameInput();
         }
     }
 
@@ -38,15 +35,14 @@ public class RacingcarController {
         return List.of(carNames.split(","));
     }
 
-    private boolean readCountInput() {
+    private void readCountInput() {
         try {
             OutputView.printCountInput();
             tryCount = InputView.readTryCount();
             carService.validateNegativeCount(tryCount);
-            return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return true;
+            readCountInput();
         }
     }
 
