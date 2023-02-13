@@ -3,6 +3,7 @@ package racingcar.model.car;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.util.AssertUtils;
 import racingcar.util.ErrorMessage;
 
 public class Cars {
@@ -30,6 +31,7 @@ public class Cars {
     }
 
     private void validate(List<Car> cars) {
+        AssertUtils.assertNull(cars);
         validateCarNameDuplication(cars);
     }
 

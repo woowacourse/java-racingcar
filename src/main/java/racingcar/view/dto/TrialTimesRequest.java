@@ -1,5 +1,6 @@
 package racingcar.view.dto;
 
+import racingcar.util.AssertUtils;
 import racingcar.util.ErrorMessage;
 
 public class TrialTimesRequest {
@@ -11,6 +12,7 @@ public class TrialTimesRequest {
     }
 
     private void validate(String userInput) {
+        AssertUtils.assertNull(userInput);
         validateBlank(userInput);
         validateInteger(userInput);
     }

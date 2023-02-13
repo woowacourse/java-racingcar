@@ -3,6 +3,7 @@ package racingcar.view.dto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.util.AssertUtils;
 import racingcar.util.ErrorMessage;
 
 public class CarNamesRequest {
@@ -16,16 +17,9 @@ public class CarNamesRequest {
     }
 
     private void validate(String userInput) {
-        validateNull(userInput);
+        AssertUtils.assertNull(userInput);
         validateBlank(userInput);
     }
-
-    private void validateNull(String userInput) {
-        if (userInput == null) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NULL.message());
-        }
-    }
-
 
     private void validateBlank(String splitCarName) {
         if (splitCarName.isBlank()) {

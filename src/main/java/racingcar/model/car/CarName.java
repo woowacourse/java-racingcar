@@ -1,6 +1,7 @@
 package racingcar.model.car;
 
 import java.util.regex.Pattern;
+import racingcar.util.AssertUtils;
 import racingcar.util.ErrorMessage;
 
 public class CarName {
@@ -16,6 +17,7 @@ public class CarName {
     }
 
     private void validate(String carName) {
+        AssertUtils.assertNull(carName);
         validateValidWord(carName);
         validateOverMaxLength(carName);
     }

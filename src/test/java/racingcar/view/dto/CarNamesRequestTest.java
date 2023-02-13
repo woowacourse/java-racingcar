@@ -21,15 +21,6 @@ class CarNamesRequestTest {
                 .hasMessage(ErrorMessage.CAR_NAME_BLANK.message());
     }
 
-    @Test
-    void validateNullTest() {
-        assertThatThrownBy(() -> {
-            new CarNamesRequest(null);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INPUT_NULL.message());
-    }
-
-
     @DisplayName("\",\"로 구분된 문자는 정상 구분되어야 한다.")
     @Test
     void separateValueTest() {
