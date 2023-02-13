@@ -8,6 +8,7 @@ public class AttemptNumber {
     private int attemptNumber;
 
     public AttemptNumber(final int attemptNumber) {
+        validate(attemptNumber);
         this.attemptNumber = attemptNumber;
     }
 
