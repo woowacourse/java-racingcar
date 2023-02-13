@@ -1,4 +1,4 @@
-package racingcar.vo;
+package racingcar.domain;
 
 import racingcar.util.Validator;
 

@@ -4,7 +4,7 @@ import racingcar.domain.Cars;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.vo.Trial;
+import racingcar.domain.Trial;
 
 public class Controller {
 
