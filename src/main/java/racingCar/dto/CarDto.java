@@ -13,6 +13,10 @@ public class CarDto {
         return name;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

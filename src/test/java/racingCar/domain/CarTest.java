@@ -10,12 +10,22 @@ class CarTest {
 
     @Test
     @DisplayName("자동차 이름이 5자 초과인 경우 예외 발생")
-    void carTest_fail1() {
+    void carTest_fail_if_exceed5() {
         String carName = "aaaaaa";
 
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Car(carName);
-        });
+        }).withMessage("자동차 이름은 1자 이상 5자 이하만 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 0자일 경우 예외 발생")
+    void carTest_fail_if_blank() {
+        String carName = "";
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Car(carName);
+        }).withMessage("자동차 이름은 1자 이상 5자 이하만 가능합니다.");
     }
 
     @Test

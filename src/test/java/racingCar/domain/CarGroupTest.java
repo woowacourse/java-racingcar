@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingCar.FixedNumberGenerator;
 import racingCar.dto.CarDto;
-import racingCar.util.NumberGenerator;
 import racingCar.util.RandomNumberGenerator;
 
 import java.util.*;
@@ -43,27 +43,26 @@ class CarGroupTest {
     @DisplayName("자동차들이 0-3의 숫자를 받으면 이동하지 않음 ")
     void carGroupMoveTest_notMove() {
         carGroup.moveCars(new FixedNumberGenerator(3));
-        List<Car> afterCarGroup = carGroup.getCarGroup();
+        List<CarDto> afterCarGroup = carGroup.toCarDtos();
 
-        long count = afterCarGroup.stream()
-                .map(Car::getPosition)
-                .filter(position -> position > 0)
-                .count();
+        List<Integer> positions = afterCarGroup.stream()
+                .map(CarDto::getPosition)
+                .collect(Collectors.toList());
 
-        Assertions.assertThat(count).isEqualTo(0);
+        Assertions.assertThat(positions).containsOnly(0);
     }
 
     @Test
     @DisplayName("자동차들이 4-9의 숫자를 받으면 이동")
     void carGroupMoveTest_Move() {
         carGroup.moveCars(new FixedNumberGenerator(4));
-        List<Car> afterCarGroup = carGroup.getCarGroup();
+        List<CarDto> afterCarGroup = carGroup.toCarDtos();
 
-        long count = afterCarGroup.stream()
-                .map(Car::getPosition)
-                .filter(position -> position == 0)
-                .count();
-        Assertions.assertThat(count).isEqualTo(0);
+        List<Integer> positions = afterCarGroup.stream()
+                .map(CarDto::getPosition)
+                .collect(Collectors.toList());
+
+        Assertions.assertThat(positions).containsOnly(1);
     }
 
     @Test
@@ -73,9 +72,9 @@ class CarGroupTest {
             carGroup.moveCars(new RandomNumberGenerator());
         }
 
-        List<Car> cars = carGroup.getCarGroup();
+        List<CarDto> cars = carGroup.toCarDtos();
         int firstPosition = cars.stream()
-                .map(Car::getPosition)
+                .map(CarDto::getPosition)
                 .sorted(Comparator.reverseOrder())
                 .findFirst()
                 .get();
@@ -91,20 +90,5 @@ class CarGroupTest {
         List<String > winnerNames = carGroup.findWinners().stream().map(CarDto::getName).collect(Collectors.toList());
 
         Assertions.assertThat(winnerNames).containsAll(List.of("a", "b", "c"));
-    }
-
-}
-
-class FixedNumberGenerator implements NumberGenerator {
-
-    private final int fixedNumber;
-
-    public FixedNumberGenerator(int fixedNumber) {
-        this.fixedNumber = fixedNumber;
-    }
-
-    @Override
-    public int generateNumber() {
-        return fixedNumber;
     }
 }
