@@ -47,7 +47,8 @@ class RaceTest {
     @Nested
     class tryMoveOneTimeTest {
         @Test
-        @DisplayName("moveOneTime")
+        @DisplayName("move메서드를 실행 시 4이상이 나온 자동차는 position이 1 증가하고, "
+                + "3이하가 나온 자동차는 position이 증가하지 않는다.")
         void moveSuccess() {
             //given
             Race race = new Race(List.of(new Car("rosie")
@@ -56,7 +57,9 @@ class RaceTest {
             //when
             race.tryMoveOneTime(new TestNumberPicker(4, 1));
             //then
-            //Mock 라이브러리를 이용하여 검증
+            Assertions.assertThat(race.getStatuses())
+                    .extracting("name", "position")
+                    .containsOnly(tuple("rosie", 1), tuple("hong", 0));
         }
 
         @ParameterizedTest

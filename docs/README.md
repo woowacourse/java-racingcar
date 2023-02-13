@@ -50,3 +50,4 @@
 - [x] ExceptionHandlingTemplate을 지우고, repeatUntilInitialValid 메서드를 controller에서 정의
     1. ExceptionHandlingTemplate안에 outputView 객체를 생성하는 행위가 불필요하다 생각.
     2. 현 프로젝트에선 controller가 하나밖에 없으므로, 굳이 따로 Template Interface를 정의해서 얻을 이득이 없음.
+- [x] Race의 moveOneTime 메서드 테스트 코드 작성하기
