@@ -1,6 +1,6 @@
 package racingCar.domain;
 
-import racingCar.util.NumberPicker;
+import racingCar.util.NumberPickerUtil;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -40,7 +40,7 @@ public class Cars {
 
     public void move() {
         for (Car car : cars) {
-            car.move(NumberPicker.pickNumberInRange(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE));
+            car.move(NumberPickerUtil.pickNumberInRange(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE));
         }
     }
 
