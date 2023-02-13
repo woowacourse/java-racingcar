@@ -1,37 +1,18 @@
 package racingcar.domain;
 
 public class Car {
-    public static final int NAME_MAX_LENGTH = 5;
-    public static final int NAME_MIN_LENGTH = 0;
     public static final int START_POSITION_VALUE = 0;
     public static final int MIN_TRY_COUNT = 0;
     public static final int RANDOM_NUMBER_BOUNDARY = 10;
     public static final int FORWARD_BOUNDARY = 4;
 
-    private final String name;
+    private final Name name;
     private int position;
 
     public Car(String name, int position) {
-        validateNameLength(name);
-        validateNameFormat(name);
         validateStartPosition(position);
-        this.name = name;
+        this.name = new Name(name);
         this.position = position;
-    }
-
-    private void validateNameLength(String name) {
-        int nameMinLength = NAME_MIN_LENGTH;
-        int nameMaxLength = NAME_MAX_LENGTH;
-
-        if (name.length() > nameMaxLength || name.length() <= nameMinLength) {
-            throw new IllegalArgumentException(String.format("[ERROR] 자동차 이름의 길이는 %d부터 %d 사이여야 합니다.", nameMinLength, nameMaxLength));
-        }
-    }
-
-    private void validateNameFormat(String name) {
-        if (!name.matches("^[a-zA-Z0-9]*$")) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 영숫자로 이루어져야 합니다.");
-        }
     }
 
     private void validateStartPosition(int position) {
@@ -52,7 +33,7 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getPosition() {

@@ -57,6 +57,8 @@
 - [x] enum으로 선언한 CarConstant를 Car 클래스 내부로 이동
 - [x] 시도 횟수 검증에 대한 메서드를 Controller에서 Service로 이동
 - [x] distance에서 position으로 네이밍 변경
-- [ ] Car 클래스의 책임 분리
+- Car 클래스의 책임 분리
+  - [x] Name 클래스 분리
+  - [ ] Position 클래스 분리
 - [ ] while문 대신 try-catch문 안에서 반복할 수 있도록 변경
 - [ ] 랜덤 값에 대한 테스트 추가
