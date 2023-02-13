@@ -4,31 +4,26 @@ package service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import controller.GamePlay;
 import domain.Car;
-import domain.CarRepository;
-import domain.CarRepositoryImpl;
-import domain.Name;
-import java.util.HashMap;
-import java.util.Map;
+import domain.Cars;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import strategy.FixedMovingStrategy;
+import genertor.FixedNumberGenerator;
 
 class GamePlayTest {
 
-    CarRepository carRepository;
-    Map<Car, Integer> carBoard = new HashMap<>();
-    Car car = new Car(new Name("kim"));
+    Cars cars;
+    Car car = new Car("kim");
     GamePlay gamePlay = new GamePlay();
 
     @BeforeEach
     void setUp() {
-        carBoard.put(car, 0);
-        carRepository = new CarRepositoryImpl();
-        carRepository.insertCarBoard(carBoard);
+        cars = new Cars(List.of(car));
 
     }
 
@@ -36,8 +31,8 @@ class GamePlayTest {
     @ParameterizedTest
     @CsvSource(value = {"1:1", "4:4", "9:9"}, delimiter = ':')
     void testPlay(int tryTimes, int expected) {
-        gamePlay.play(carRepository, tryTimes, new FixedMovingStrategy());
-        assertThat(carRepository.getCarBoard().get(car)).isEqualTo(expected);
+        gamePlay.play(cars, tryTimes, new FixedNumberGenerator());
+        assertThat(cars.getCars().get(0).getPosition()).isEqualTo(expected);
     }
 
     @DisplayName("시도회수가 1이상이 아니라면 에러 발생")
@@ -45,7 +40,7 @@ class GamePlayTest {
     void testTryTimesValidation() {
         assertThatThrownBy(
             () -> {
-                gamePlay.play(carRepository, 0, new FixedMovingStrategy());
+                gamePlay.play(cars, 0, new FixedNumberGenerator());
             }
         ).isInstanceOf(IllegalArgumentException.class);
     }
