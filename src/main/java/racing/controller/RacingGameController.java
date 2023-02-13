@@ -2,37 +2,60 @@ package racing.controller;
 
 import java.io.IOException;
 
+import racing.domain.CarGroup;
 import racing.domain.RacingGame;
-import racing.handler.InputHandler;
+import racing.domain.RacingResult;
+import racing.domain.RandomNumberGenerator;
+import racing.view.InputView;
 import racing.view.OutputView;
 
 public class RacingGameController {
 
-    private final InputHandler inputHandler;
+    private final InputView inputView;
     private final OutputView outputView;
 
     public RacingGameController() {
-        this.inputHandler = new InputHandler();
+        this.inputView = new InputView();
         this.outputView = new OutputView();
     }
 
     public void run() throws IOException {
-        String[] carNames = inputHandler.readCars();
-        int movingTrial = inputHandler.readMovingTrial();
+        CarGroup carGroup = createCarGroup();
+        int movingTrial = createMovingTrial();
 
-        RacingGame racingGame = new RacingGame(carNames);
+        RacingGame racingGame = new RacingGame(carGroup, new RandomNumberGenerator());
 
         outputView.printNotice();
         raceWithHistory(movingTrial, racingGame);
         outputView.printWinner(racingGame.produceRacingResult().pickWinner());
     }
 
+    private CarGroup createCarGroup() throws IOException {
+        try {
+            String[] carNames = inputView.readCarNames();
+            return new CarGroup(carNames);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createCarGroup();
+        }
+    }
+
+    private int createMovingTrial() {
+        try {
+            return inputView.readMovingTrial();
+        } catch (IllegalArgumentException | IOException e) {
+            System.out.println(e.getMessage());
+            return createMovingTrial();
+        }
+    }
+
+    //TODO: movingTrial을 RacingGame으로 이동
     private void raceWithHistory(int movingTrial, RacingGame racingGame) {
-        //TODO: 인덱스를 쓰지 않는데 개선할 방법
         for (int i = 0; i < movingTrial; i++) {
             racingGame.race();
 
-            outputView.printRacingResult(racingGame.produceRacingResult().getHistory());
+            RacingResult racingResult = racingGame.produceRacingResult();
+            outputView.printRacingResult(racingResult.getHistory());
         }
     }
 }

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//TODO: ERROR 패키지 분리
 public class CarGroup {
 
     private static final String DUPLICATED_CAR_NAME_ERROR = "[ERROR] 자동차 이름에는 중복이 허용되지 않습니다.";
@@ -20,9 +19,9 @@ public class CarGroup {
         this.cars = setUp(names);
     }
 
-    public void race(boolean isMovable) {
+    public void race(NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.move(isMovable);
+            car.move(numberGenerator);
         }
     }
 

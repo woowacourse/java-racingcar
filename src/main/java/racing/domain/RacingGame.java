@@ -10,26 +10,22 @@ public class RacingGame {
     private final CarGroup carGroup;
     private final RandomNumberGenerator numberGenerator;
 
-    public RacingGame(String[] names) {
-        this.carGroup = new CarGroup(names);
-        this.numberGenerator = new RandomNumberGenerator();
+    public RacingGame(CarGroup group, RandomNumberGenerator randomNumberGenerator) {
+        this.carGroup = group;
+        this.numberGenerator = randomNumberGenerator;
     }
 
     //TODO: 테스트
     public void race() {
-        carGroup.race(isMovable());
+        carGroup.race(numberGenerator);
     }
 
     public RacingResult produceRacingResult() {
-        Map<String, Integer> history = new LinkedHashMap<>();
+        Map<Name, Position> history = new LinkedHashMap<>();
         for (Car car : carGroup.getCars()) {
             history.put(car.getName(), car.getPosition());
         }
 
         return new RacingResult(history);
-    }
-
-    private boolean isMovable() {
-        return (numberGenerator.generate() >= MOVABLE_CONDITION);
     }
 }
