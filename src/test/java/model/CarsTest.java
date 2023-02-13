@@ -14,7 +14,7 @@ class CarsTest {
     void getWinner() {
         Vehicle success = new TestCarSuccess("Success");
         Vehicle fail = new TestCarFail("Fail");
-        Cars cars = new Cars(Arrays.asList(success,fail));
+        Cars cars = new Cars(Arrays.asList(success, fail));
         cars.moveAll();
         assertThat(cars.getWinner()).isEqualTo(Arrays.asList(success));
     }
@@ -24,15 +24,15 @@ class CarsTest {
     void getWinners() {
         Vehicle success1 = new TestCarSuccess("Success1");
         Vehicle success2 = new TestCarSuccess("Success2");
-        Cars cars = new Cars(Arrays.asList(success1,success2));
+        Cars cars = new Cars(Arrays.asList(success1, success2));
         cars.moveAll();
-        assertThat(cars.getWinner()).isEqualTo(Arrays.asList(success1,success2));
+        assertThat(cars.getWinner()).isEqualTo(Arrays.asList(success1, success2));
     }
 
     public class TestCarSuccess extends Vehicle {
 
         public TestCarSuccess(String name) {
-            super(name,0);
+            super(name, 0);
         }
 
         @Override
@@ -44,7 +44,7 @@ class CarsTest {
     public class TestCarFail extends Vehicle {
 
         public TestCarFail(String name) {
-            super(name,0);
+            super(name, 0);
         }
     }
 }

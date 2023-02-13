@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 class CarTest {
 
     @DisplayName("자동차 이동 테스트 실패")
@@ -25,7 +26,7 @@ class CarTest {
     public class TestCarSuccess extends Vehicle {
 
         public TestCarSuccess(String name) {
-            super(name,0);
+            super(name, 0);
         }
 
         @Override
@@ -37,7 +38,7 @@ class CarTest {
     public class TestCarFail extends Vehicle {
 
         public TestCarFail(String name) {
-            super(name,0);
+            super(name, 0);
         }
     }
 }

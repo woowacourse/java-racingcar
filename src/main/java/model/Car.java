@@ -10,7 +10,7 @@ public class Car extends Vehicle {
 
 
     public Car(String name) {
-        super(name,START_POSITION);
+        super(name, START_POSITION);
     }
 
     @Override

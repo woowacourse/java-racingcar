@@ -20,7 +20,7 @@ public class RacingController {
         initializeCars();
     }
 
-    private void initializeCars(){
+    private void initializeCars() {
         this.cars = new Cars(inputView.getCarNames()
                 .stream()
                 .map(name -> new Car(name))

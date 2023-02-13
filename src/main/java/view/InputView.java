@@ -27,7 +27,7 @@ public class InputView {
 
     public List<String> getCarNames() {
         System.out.println(CAR_NAMES_HEADER);
-        List<String> carNames = Arrays.asList(console.nextLine().split(DELIMITER,-1));
+        List<String> carNames = Arrays.asList(console.nextLine().split(DELIMITER, -1));
         List<String> trimCarNames = trimCarNames(carNames);
 
         carNameValidator.validate(trimCarNames);
