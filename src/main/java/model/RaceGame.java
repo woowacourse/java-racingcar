@@ -2,7 +2,6 @@ package model;
 
 import dto.RacingRoundStateDto;
 import dto.WinnerCarDto;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,10 +22,10 @@ public class RaceGame {
         this.cars = new Cars(generateCars(inputCarsName));
     }
 
-    private Set<Car> generateCars(Set<String> carsName) {
+    private List<Car> generateCars(Set<String> carsName) {
         return carsName.stream()
                 .map(Car::new)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public void initRound(int round) {

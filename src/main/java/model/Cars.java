@@ -17,9 +17,9 @@ public class Cars {
     private static final int MIN_INCLUSIVE_VALUE = 0;
     private static final int MAX_INCLUSIVE_VALUE = 9;
 
-    private final Set<Car> cars;
+    private final List<Car> cars;
 
-    public Cars(Set<Car> cars) {
+    public Cars(List<Car> cars) {
         this.cars = cars;
     }
 
