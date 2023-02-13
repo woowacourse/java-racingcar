@@ -53,6 +53,7 @@ public class RacingGameEngine {
 
     private void startRace(Cars cars, TryCount tryCount) {
         outputView.printResultMessage();
+
         for (int i = 0; i < tryCount.getTryCount(); i++) {
             cars.moveAll(randomPowerGenerator);
             outputView.printCurrentRacingStatus(cars);
