@@ -57,7 +57,7 @@ class CarTest {
         CarService carService = new CarService();
         Car car = new Car("test", 0);
 
-        @ParameterizedTest(name = "{displayName} {index} ==> randomNumber : ''{0}''")
+        @ParameterizedTest(name = "{displayName} {index} ==> engine : ''{0}''")
         @ValueSource(ints = {0, 2, 3})
         @DisplayName("랜덤 값이 4보다 작은 경우 멈춤")
         void Should_Success_랜덤값이_4보다_작은_경우(int number) {
@@ -65,7 +65,7 @@ class CarTest {
             assertThat(car.getDistance()).isEqualTo(0);
         }
 
-        @ParameterizedTest(name = "{displayName} {index} ==> randomNumber : ''{0}''")
+        @ParameterizedTest(name = "{displayName} {index} ==> engine : ''{0}''")
         @ValueSource(ints = {4, 7})
         @DisplayName("랜덤 값이 4 이상인 경우 전진")
         void Should_Success_랜덤값이_4이상인_경우(int number) {
