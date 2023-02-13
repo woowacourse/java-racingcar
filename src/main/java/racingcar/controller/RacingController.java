@@ -16,6 +16,7 @@ import racingcar.view.formatter.track.TrackStateFormatter;
 
 public class RacingController {
     private static final TrackStateFormatter TRACK_FORMATTER = RacingCarContext.getTrackStateFormatter();
+
     private final InputView inputView;
     private final OutputView outputView;
     private final CarFactory carFactory;
