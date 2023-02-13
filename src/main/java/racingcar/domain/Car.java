@@ -1,16 +1,14 @@
 package racingcar.domain;
 
-import racingcar.Validation;
-
 public class Car {
 
     private static final int MOVING_CONDITION = 4;
 
-    private final String name;
+    private Name name;
     private int position = 0;
 
     public Car(String name) {
-        this.name = name;
+        this.name = new Name(name);
     }
 
     public void move(int movingCondition) {
@@ -28,10 +26,10 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
-    public String getResult() {
-        return name + " : " + "-".repeat(Math.max(0, position));
+    public String getResult(String positionSign) {
+        return name.getName() + " : " + positionSign.repeat(Math.max(0, position));
     }
 }
