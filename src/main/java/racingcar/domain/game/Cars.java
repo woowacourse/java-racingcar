@@ -23,8 +23,14 @@ public class Cars {
 		this.cars.addAll(cars);
 	}
 
-	public void moveCars(final CarMovement carMovement) {
-		cars.forEach(car -> car.move(carMovement.move()));
+	// enum 활용
+	public void moveCarsV1(final CarMovement carMovement) {
+		cars.forEach(car -> car.moveV1(carMovement.moveV1()));
+	}
+
+	// 전략 패턴
+	public void moveCarsV2(final CarMovement carMovement) {
+		cars.forEach(car -> car.moveV2(carMovement.moveV2()));
 	}
 
 	public List<Car> getCars() {

@@ -1,4 +1,4 @@
-package racingcar.domain.car;
+package racingcar.domain.movement.v1;
 
 import static racingcar.messsages.ExceptionMessage.*;
 

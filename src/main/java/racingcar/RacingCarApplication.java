@@ -20,6 +20,10 @@ public class RacingCarApplication {
 		final GameManager gameManager = new GameManager(carMovement, cars);
 		final GameController gameController = new GameController(inputView, outputView, gameManager);
 
-		gameController.playGame();
+		// enum을 활용한 차량 이동 버전(V1)
+		// gameController.playGameV1();
+
+		// 전략 패턴을 활용한 차량 이동 버전(V2)
+		gameController.playGameV2();
 	}
 }

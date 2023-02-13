@@ -19,10 +19,17 @@ public class GameController {
 		this.gameManager = gameManager;
 	}
 
-	public void playGame() {
+	public void playGameV1() {
 		createCars();
 		createGameRound();
-		startRace();
+		startRaceV1();
+		endRace();
+	}
+
+	public void playGameV2() {
+		createCars();
+		createGameRound();
+		startRaceV2();
 		endRace();
 	}
 
@@ -52,10 +59,20 @@ public class GameController {
 		}
 	}
 
-	private void startRace() {
+	// enum 활용
+	private void startRaceV1() {
 		outputView.printResultMessage();
 		while (gameManager.isGameContinue()) {
-			RoundResultResponse response = gameManager.moveCars();
+			RoundResultResponse response = gameManager.moveCarsV1();
+			outputView.printRoundResult(response);
+		}
+	}
+
+	// 전략 패턴
+	private void startRaceV2() {
+		outputView.printResultMessage();
+		while (gameManager.isGameContinue()) {
+			RoundResultResponse response = gameManager.moveCarsV2();
 			outputView.printRoundResult(response);
 		}
 	}

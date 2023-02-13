@@ -18,8 +18,16 @@ public class GameManager {
 		this.cars = cars;
 	}
 
-	public RoundResultResponse moveCars() {
-		cars.moveCars(carMovement);
+	// Enum 활용
+	public RoundResultResponse moveCarsV1() {
+		cars.moveCarsV1(carMovement);
+		gameRound.nextRound();
+		return RoundResultResponse.from(cars.getCars());
+	}
+
+	// 전략 패턴
+	public RoundResultResponse moveCarsV2() {
+		cars.moveCarsV2(carMovement);
 		gameRound.nextRound();
 		return RoundResultResponse.from(cars.getCars());
 	}
