@@ -33,4 +33,18 @@ class PositionTest {
         assertThat(position1)
                 .isNotEqualTo(position2);
     }
+
+    @Test
+    @DisplayName("foward 호출 시 위치가 증가되어야 한다.")
+    void forward_shouldBeIncrease() {
+        // given
+        Position position = new Position(0);
+
+        // when
+        position.forward();
+
+        // then
+        assertThat(position.getValue())
+                .isGreaterThan(0);
+    }
 }
