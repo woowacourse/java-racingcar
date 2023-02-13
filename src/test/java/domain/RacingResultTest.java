@@ -50,4 +50,5 @@ class RacingResultTest {
         assertThatThrownBy(() -> racingResult.getWinner())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    
 }
