@@ -3,16 +3,16 @@ package racingcar.domain;
 public class Car {
 	private static final int NAME_MAX_LENGTH = 5;
 	private static final int MOVE_MIN_POWER = 4;
-	private String name;
+	private final String name;
 	private int position;
 
-	public Car(String name) {
+	public Car(final String name) {
 		validateNameLength(name);
 		this.name = name;
 		this.position = 0;
 	}
 
-	private void validateNameLength(String name) {
+	private void validateNameLength(final String name) {
 		if (name.length() > NAME_MAX_LENGTH) {
 			throw new IllegalArgumentException("[ERROR]: 자동차 이름은 5자 이하여야 합니다.");
 		}

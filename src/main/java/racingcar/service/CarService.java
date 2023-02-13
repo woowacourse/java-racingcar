@@ -9,9 +9,9 @@ import racingcar.repository.CarRepository;
 
 public class CarService {
 	private NumberGenerator numberGenerator;
-	List<Car> cars = CarRepository.getCars();
+	private final List<Car> cars = CarRepository.getCars();
 
-	public CarService(NumberGenerator numberGenerator) {
+	public CarService(final NumberGenerator numberGenerator) {
 		this.numberGenerator = numberGenerator;
 	}
 
@@ -20,7 +20,7 @@ public class CarService {
 	}
 
 	public List<String> getWinners() {
-		int maxPosition = cars.stream()
+		final int maxPosition = cars.stream()
 			.max(Comparator.comparingInt(Car::getPosition)).get()
 			.getPosition();
 

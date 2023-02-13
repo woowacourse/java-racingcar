@@ -10,14 +10,13 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-	private CarRepository carRepository = new CarRepository();
-	int roundCount;
+	private final CarRepository carRepository = new CarRepository();
+	private int roundCount;
 
 	public void playGame() {
-		// TODO: while의 조건문에 사용되는 메서드는 오류 발생 여부 판별 & view 작업 처리 두 가지를 동시에 하고 있음.
 		while (!getCarNames()) ;
 		while (!getRoundCount()) ;
-		move(roundCount);
+		move();
 	}
 
 	private boolean getCarNames() {
@@ -45,7 +44,7 @@ public class CarController {
 		return false;
 	}
 
-	private void move(int roundCount) {
+	private void move() {
 		CarService carService = new CarService(new RandomNumberGenerator());
 		OutputView.printOutputMsg();
 		OutputView.printRacingState(carService.getPositionToString());
