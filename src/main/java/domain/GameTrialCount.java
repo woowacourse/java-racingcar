@@ -4,19 +4,19 @@ import domain.validator.GameTrialCountValidator;
 
 public class GameTrialCount {
 
-    int gameTrial;
+    private int gameTrialCount;
 
     public GameTrialCount(String gameTrial) {
         validate(gameTrial);
-        this.gameTrial = Integer.parseInt(gameTrial);
+        this.gameTrialCount = Integer.parseInt(gameTrial);
     }
 
     public boolean isGreaterThan(int otherCount) {
-        return gameTrial > otherCount;
+        return gameTrialCount > otherCount;
     }
 
     public void reduce() {
-        gameTrial--;
+        gameTrialCount--;
     }
 
     private static void validate(String gameTrial) {
