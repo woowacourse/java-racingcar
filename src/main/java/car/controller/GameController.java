@@ -17,7 +17,6 @@ public class GameController {
     private final InputView inputView;
     private Input input;
     private static final OutputView outputView = new OutputView();
-
     private Game game;
     private int trialCount;
 
