@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Car {
 
+    private static final int DEFAULT_POSITION = 0;
     private static final String ENGLISH_FORMAT = "[a-zA-Z]+";
     private static final int MAXIMUM_ROUND = 5;
     private static final int MINIMUM_ROUND = 1;
@@ -15,6 +16,11 @@ public class Car {
         validate(name);
         this.name = name;
         this.position = position;
+    }
+
+    public Car(String name) {
+        this.name = name;
+        this.position = DEFAULT_POSITION;
     }
 
     private void validate(String name) {
