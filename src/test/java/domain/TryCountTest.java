@@ -12,14 +12,14 @@ class TryCountTest {
 
     @DisplayName("1회 이상인 경우 정상 동작한다.")
     @ParameterizedTest
-    @ValueSource(ints = {1,10,100})
+    @ValueSource(ints = {1, 10, 100})
     public void validTryCountTest(int count) {
         assertDoesNotThrow(() -> new TryCount(count));
     }
 
     @DisplayName("1회 미만인 경우 오류가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {-100,-30,0})
+    @ValueSource(ints = {-100, -30, 0})
     public void invalidTryCountTest(int count) {
         Assertions.assertThatThrownBy(() -> new TryCount(count))
                 .isInstanceOf(IllegalArgumentException.class);
