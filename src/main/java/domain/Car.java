@@ -3,7 +3,6 @@ package domain;
 public class Car implements Comparable<Car> {
 
     private static final int INIT_POSITION = 1;
-    private static final int MIN_MOVE_NUM = 4;
 
     private final String name;
     private int position;
@@ -13,8 +12,8 @@ public class Car implements Comparable<Car> {
         position = INIT_POSITION;
     }
 
-    public void move(int num) {
-        if (num >= MIN_MOVE_NUM) {
+    public void move(boolean doMove) {
+        if (doMove) {
             position++;
         }
     }
