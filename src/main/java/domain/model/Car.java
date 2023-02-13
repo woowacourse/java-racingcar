@@ -1,6 +1,6 @@
-package model;
+package domain.model;
 
-import exception.ErrorCode;
+import domain.exception.ErrorCode;
 import java.util.Objects;
 
 public class Car {

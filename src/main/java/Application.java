@@ -1,13 +1,13 @@
-import controller.CarRaceController;
-import repository.CarRaceResultRepositoryImpl;
-import service.CarRaceService;
-import service.CarRaceServiceImpl;
-import service.RandomNumberGenerator;
-import validation.InputValidationChain;
-import validation.impl.EmptyValueValidationChain;
-import validation.impl.InputValidateSuccessChain;
-import validation.impl.NumberRangeValidationChain;
-import validation.impl.PositiveNumberValidationChain;
+import domain.controller.CarRaceController;
+import domain.repository.CarRaceResultRepositoryImpl;
+import domain.service.CarRaceService;
+import domain.service.CarRaceServiceImpl;
+import domain.service.RandomNumberGenerator;
+import domain.validation.InputValidationChain;
+import domain.validation.impl.EmptyValueValidationChain;
+import domain.validation.impl.InputValidateSuccessChain;
+import domain.validation.impl.NumberRangeValidationChain;
+import domain.validation.impl.PositiveNumberValidationChain;
 import view.InputView;
 import view.OutputView;
 

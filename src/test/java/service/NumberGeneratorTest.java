@@ -1,5 +1,7 @@
 package service;
 
+import domain.service.NumberGenerator;
+import domain.service.RandomNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

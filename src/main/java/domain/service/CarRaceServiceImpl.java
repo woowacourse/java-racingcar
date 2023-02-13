@@ -1,13 +1,13 @@
-package service;
+package domain.service;
 
-import exception.ErrorCode;
+import domain.exception.ErrorCode;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-import model.Car;
-import repository.CarRaceResultRepository;
+import domain.model.Car;
+import domain.repository.CarRaceResultRepository;
 
 public class CarRaceServiceImpl implements CarRaceService {
 

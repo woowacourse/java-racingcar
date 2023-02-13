@@ -3,8 +3,10 @@ package repository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.repository.CarRaceResultRepository;
+import domain.repository.CarRaceResultRepositoryImpl;
 import java.util.List;
-import model.Car;
+import domain.model.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

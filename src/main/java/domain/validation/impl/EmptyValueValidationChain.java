@@ -1,9 +1,9 @@
-package validation.impl;
+package domain.validation.impl;
 
-import dto.InputValidationRequest;
-import exception.ErrorCode;
-import type.ValidationType;
-import validation.InputValidationChain;
+import domain.dto.InputValidationRequest;
+import domain.exception.ErrorCode;
+import domain.type.ValidationType;
+import domain.validation.InputValidationChain;
 
 public class EmptyValueValidationChain implements InputValidationChain {
 

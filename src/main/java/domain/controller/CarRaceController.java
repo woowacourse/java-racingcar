@@ -1,13 +1,13 @@
-package controller;
+package domain.controller;
 
-import dto.InputValidationRequest;
+import domain.dto.InputValidationRequest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import service.CarRaceService;
-import type.ValidationType;
-import validation.InputValidationChain;
+import domain.service.CarRaceService;
+import domain.type.ValidationType;
+import domain.validation.InputValidationChain;
 import view.InputView;
 import view.OutputView;
 

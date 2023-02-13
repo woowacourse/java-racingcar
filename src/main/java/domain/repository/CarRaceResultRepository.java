@@ -1,8 +1,8 @@
-package repository;
+package domain.repository;
 
 import java.util.List;
 import java.util.Map;
-import model.Car;
+import domain.model.Car;
 
 public interface CarRaceResultRepository {
 

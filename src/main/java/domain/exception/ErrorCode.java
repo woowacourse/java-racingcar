@@ -1,4 +1,4 @@
-package exception;
+package domain.exception;
 
 public enum ErrorCode {
     CAR_NAME_OUT_OF_RANGE("차 이름 길이는 %d 글자 ~ %d 글자 사이여야 합니다."),

@@ -3,12 +3,16 @@ package service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.service.CarRaceService;
+import domain.service.CarRaceServiceImpl;
+import domain.service.NumberGenerator;
+import domain.service.RandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import repository.CarRaceResultRepositoryImpl;
+import domain.repository.CarRaceResultRepositoryImpl;
 
 class CarRaceServiceImplTest {
 
