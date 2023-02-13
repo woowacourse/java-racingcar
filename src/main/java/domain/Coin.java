@@ -9,7 +9,9 @@ public class Coin {
     }
 
     public void use() {
-        remaining--;
+        if (isLeft()) {
+            remaining--;
+        }
     }
 
     public boolean isLeft() {
