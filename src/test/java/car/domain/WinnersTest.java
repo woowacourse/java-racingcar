@@ -16,9 +16,8 @@ public class WinnersTest {
         Car car2 = new Car("물떡", 2);
         Car car3 = new Car("루쿠", 1);
         Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
-        Winners winners = new Winners(game);
-        winners.findWinners();
-        assertThat(winners.getWinners().get(0).getName()).isEqualTo(car2.getName());
+        Winners winners = new Winners();
+        assertThat(winners.findWinners(new GameDto(game)).get(0).getName()).isEqualTo(car2.getName());
     }
 
     @Test
@@ -28,9 +27,8 @@ public class WinnersTest {
         Car car2 = new Car("물떡", 2);
         Car car3 = new Car("루쿠", 1);
         Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
-        Winners winners = new Winners(game);
-        winners.findWinners();
-        assertThat(winners.getWinners().get(0).getName()).isEqualTo(car1.getName());
-        assertThat(winners.getWinners().get(1).getName()).isEqualTo(car2.getName());
+        Winners winners = new Winners();
+        assertThat(winners.findWinners(new GameDto(game)).get(0).getName()).isEqualTo(car1.getName());
+        assertThat(winners.findWinners(new GameDto(game)).get(1).getName()).isEqualTo(car2.getName());
     }
 }

@@ -2,7 +2,6 @@ package car.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Game {
     private static final int INITIAL_MAX_POSITION = 0;

@@ -4,10 +4,7 @@ package car.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import car.domain.Car;
-import car.domain.Game;
-import car.domain.RandomMoveChance;
-import car.domain.Winners;
+import car.domain.*;
 import car.view.Input;
 import car.view.InputView;
 import car.view.OutputView;
@@ -51,12 +48,11 @@ public class GameController {
         playMultipleTimes();
     }
     public void evaluateResult(){
-        winners = new Winners(this.game);
-        winners.findWinners();
+        winners = new Winners();
     }
     public void showResult() {
         outputView.printCarsWith(game.getCarsDto());
-        outputView.printWinnersWith(winners.getWinners());
+        outputView.printWinnersWith(winners.findWinners(new GameDto(game)));
     }
 
     private List<Car> makeCarsWith(List<String> carNames) {
