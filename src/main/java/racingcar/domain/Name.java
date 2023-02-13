@@ -33,10 +33,10 @@ public class Name {
         }
 
         public static void validateDuplicateNames(String[] names) {
-            long noDuplicateCount = Arrays.stream(names)
+            long uniqueNamesLength = Arrays.stream(names)
                     .distinct()
                     .count();
-            if (noDuplicateCount != names.length) {
+            if (uniqueNamesLength != names.length) {
                 throw new IllegalArgumentException(DUPLICATE_CAR_NAME.getMessage());
             }
         }
