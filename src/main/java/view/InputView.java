@@ -30,7 +30,7 @@ public class InputView {
         String[] carsName = scanner.nextLine().split(DELIMITER);
 
         for (String carName : carsName) {
-            validate(carName);
+            validateName(carName);
         }
 
         return Arrays.stream(carsName)
@@ -46,7 +46,7 @@ public class InputView {
         return new TryCount(tryCount);
     }
 
-    private void validate(String name) {
+    private void validateName(String name) {
         validateLength(name);
         validateToContainBlank(name);
     }
