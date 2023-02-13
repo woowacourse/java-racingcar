@@ -5,14 +5,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import racingcar.constants.CarConstant;
 import racingcar.constants.InputConstant;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
 public class CarService {
     private Cars cars = new Cars(new ArrayList<Car>());
-    public final int RANDOM_NUM_MAX_VALUE = 10;
+    private static final int RANDOM_NUM_MAX_VALUE = 10;
+    private static final int MOVE_CRITERIA = 4;
+    private static final int DISTANCE_DEFAULT = 0;
+    private static final int TRY_COUNT_MIN = 0;
 
     public void makeCars(String carNameInput) {
         cars = new Cars(new ArrayList<Car>());
@@ -21,14 +23,14 @@ public class CarService {
     }
 
     public void validateCountInput(int tryCount) {
-        if (tryCount <= CarConstant.TRY_COUNT_MIN.getNumber()) {
+        if (tryCount <= TRY_COUNT_MIN) {
             throw new IllegalArgumentException("[ERROR] 시도할 횟수는 0보다 큰 숫자여야 합니다.");
         }
     }
 
     private void makeCar(List<String> carNames) {
         for (String carName : carNames) {
-            Car car = new Car(carName, CarConstant.DISTANCE_DEFAULT.getNumber());
+            Car car = new Car(carName, DISTANCE_DEFAULT);
             cars.addCarInformation(car);
         }
     }
@@ -49,7 +51,7 @@ public class CarService {
     }
 
     public void runForward(Car car, int engine) {
-        if (engine >= CarConstant.MOVE_CRITERIA.getNumber()) {
+        if (engine >= MOVE_CRITERIA) {
             car.increaseDistance();
         }
     }

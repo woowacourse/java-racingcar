@@ -1,11 +1,10 @@
 package racingcar.domain;
 
-import java.util.Map;
-import racingcar.constants.CarConstant;
-
 public class Car {
     private String name;
     private int distance;
+    private static final int NAME_MAX_LENGTH = 5;
+    private static final int NAME_MIN_LENGTH = 0;
 
     public Car(String name, int distance) {
         validateNameLength(name);
@@ -15,8 +14,8 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > CarConstant.NAME_MAX_LENGTH.getNumber()
-                || name.length() <= CarConstant.NAME_MIN_LENGTH.getNumber()) {
+        if (name.length() > NAME_MAX_LENGTH
+                || name.length() <= NAME_MIN_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름의 길이는 1부터 5 사이여야 합니다.");
         }
     }
