@@ -18,10 +18,6 @@ public class OutputView {
         print(Message.GAME_ROUND_INPUT_GUIDE.getMessage());
     }
 
-    public void printResultGuide() {
-        print(Message.GAME_RESULT_GUIDE.getMessage());
-    }
-
     public void printAllGameResults(Set<GameResultOfCar> gameResultOfAllCars) {
         printResultGuide();
         int gameRound = getFirstGameRound(gameResultOfAllCars);
@@ -32,6 +28,10 @@ public class OutputView {
 
             gameRound = gameResultOfCar.getGameRound();
         }
+    }
+
+    private void printResultGuide() {
+        print(Message.GAME_RESULT_GUIDE.getMessage());
     }
 
     private int getFirstGameRound(Set<GameResultOfCar> gameResultOfAllCars) {
