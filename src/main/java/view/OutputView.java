@@ -30,8 +30,32 @@ public class OutputView {
         return OutputViewSingletonHelper.OUTPUT_VIEW;
     }
 
+    public void printTotalMovingStatus(PrintMovingStatusDto dto) {
+        List<Cars> totalMovingStatus = dto.getMovingStatus();
+        for (Cars movingStatus : totalMovingStatus) {
+            printMovingStatus(movingStatus);
+        }
+    }
 
-    public static void printWinners(PrintWinnersDto dto) {
+    private void printMovingStatus(Cars cars) {
+        for (Car car : cars) {
+            System.out.println(
+                    String.format(FORMAT, car.getName(), drawMovingLength(car.getPosition()))
+            );
+        }
+        System.out.println();
+    }
+
+    private String drawMovingLength(Position position) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < position.getPosition(); i++) {
+            stringBuilder.append(DELIMITER);
+        }
+        return stringBuilder.toString();
+    }
+
+
+    public void printWinners(PrintWinnersDto dto) {
         Cars cars = dto.getCars();
 
         StringJoiner stringJoiner = new StringJoiner(SEPARATOR, PREFIX, SUFFIX);
@@ -40,30 +64,6 @@ public class OutputView {
         }
 
         System.out.println(String.format(WINNER_MSG, stringJoiner));
-    }
-
-    public static String drawResult(Position position) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < position.getPosition(); i++) {
-            stringBuilder.append(DELIMITER);
-        }
-        return stringBuilder.toString();
-    }
-
-    public void printMovingStatus(PrintMovingStatusDto dto) {
-        List<Cars> totalMovingStatus = dto.getMovingStatus();
-        for (Cars movingStatus : totalMovingStatus) {
-            printMovingStatus(movingStatus);
-            System.out.println();
-        }
-    }
-
-    private void printMovingStatus(Cars cars) {
-        for (Car car : cars) {
-            System.out.println(
-                    String.format(FORMAT, car.getName(), drawResult(car.getPosition()))
-            );
-        }
     }
 
     public void printException(PrintExceptionDto dto) {

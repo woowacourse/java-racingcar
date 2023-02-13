@@ -3,7 +3,6 @@ package view;
 import domain.TryCount;
 import dto.input.ReadCarNamesDto;
 import dto.input.ReadTryCountDto;
-import error.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,15 +43,15 @@ public class InputView {
 
     private static void validateDuplicatedCarNames(List<String> input) {
         if (input.size() != input.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NAMES.getValue());
+            throw new IllegalArgumentException("중복된 이름이 존재합니다.");
         }
     }
 
     private static int validateCount(String input) {
         try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해야 합니다.", e);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("숫자를 입력해야 합니다.", exception);
         }
     }
 

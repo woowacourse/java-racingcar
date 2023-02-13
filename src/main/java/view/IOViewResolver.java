@@ -31,8 +31,8 @@ public class IOViewResolver {
     }
 
     private void initOutputViewMappings(OutputView outputView) {
+        outputViewMap.put(PrintMovingStatusDto.class, dto -> outputView.printTotalMovingStatus((PrintMovingStatusDto) dto));
         outputViewMap.put(PrintWinnersDto.class, dto -> outputView.printWinners((PrintWinnersDto) dto));
-        outputViewMap.put(PrintMovingStatusDto.class, dto -> outputView.printMovingStatus((PrintMovingStatusDto) dto));
         outputViewMap.put(PrintExceptionDto.class, dto -> outputView.printException((PrintExceptionDto) dto));
         outputViewMap.put(PrintCriticalExceptionDto.class, dto -> outputView.printCriticalException((PrintCriticalExceptionDto) dto));
     }
