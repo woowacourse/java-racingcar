@@ -16,7 +16,7 @@ class PositionTest {
 	@DisplayName("기본 생성 성공 테스트")
 	@Test
 	void createDefaultSuccessTest() {
-		assertDoesNotThrow(() -> new Position());
+		assertDoesNotThrow(() -> new Position(10));
 	}
 
 	@DisplayName("생성 성공 테스트")
@@ -37,7 +37,7 @@ class PositionTest {
 
 	static Stream<Arguments> moveSuccessDummy() {
 		return Stream.of(
-			Arguments.arguments(new Position(), new Position(10), new Position(10)),
+			Arguments.arguments(new Position(0), new Position(10), new Position(10)),
 			Arguments.arguments(new Position(1), new Position(11), new Position(12)),
 			Arguments.arguments(new Position(32), new Position(5), new Position(37))
 		);

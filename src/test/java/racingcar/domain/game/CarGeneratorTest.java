@@ -7,20 +7,22 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import racingcar.domain.car.Car;
+
 @DisplayName("자동차 생성기")
 class CarGeneratorTest {
 	@DisplayName("생성 성공 테스트")
 	@ParameterizedTest(name = "name = {0}")
 	@ValueSource(strings = {"헤나", "소니"})
 	void generateCarSuccessTest(String name) {
-		assertDoesNotThrow(() -> CarGenerator.from(name));
+		assertDoesNotThrow(() -> Car.from(name));
 	}
 
 	@DisplayName("생성 실패 테스트")
 	@ParameterizedTest(name = "wrongName = {0}")
 	@ValueSource(strings = {"헤나소니헤나소니", "헤나소니헤나소니헤나소니헤나소니", "", " "})
 	void generateCarExceptionTest(String name) {
-		assertThatThrownBy(() -> CarGenerator.from(name))
+		assertThatThrownBy(() -> Car.from(name))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 }

@@ -20,14 +20,14 @@ class CarTest {
 	@ParameterizedTest(name = "carName = {0}")
 	@ValueSource(strings = {"가", "가나", "가나다", "가나다라", "가나다라마"})
 	void createCarSuccessTest(String carName) {
-		assertDoesNotThrow(() -> new Car(new CarName(carName), MOVE_ZERO_POSITION));
+		assertDoesNotThrow(() -> Car.from(carName));
 	}
 
 	@DisplayName("이름 공백일 경우 생성 예외 발생 테스트")
 	@ParameterizedTest(name = "carName = {0}")
 	@NullAndEmptySource
 	void createCarNameNullOrBlankExceptionTest(String carName) {
-		assertThatThrownBy(() -> new Car(new CarName(carName), MOVE_ZERO_POSITION))
+		assertThatThrownBy(() -> Car.from(carName))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -35,7 +35,7 @@ class CarTest {
 	@ParameterizedTest(name = "carName = {0}")
 	@ValueSource(strings = {"123456", "1234567", "aaaaaa", "ㅁㅁㅁㅁㅁㅁㅁ"})
 	void createCarNameOverLengthExceptionTest(String carName) {
-		assertThatThrownBy(() -> new Car(new CarName(carName), MOVE_ZERO_POSITION))
+		assertThatThrownBy(() -> Car.from(carName))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -43,7 +43,7 @@ class CarTest {
 	@ParameterizedTest(name = "movement = {0}")
 	@MethodSource("carMovementDummy")
 	void moveSuccessTest(Movement movement, Position expectedPosition) {
-		final Car car = new Car(CAR_NAME, MOVE_ZERO_POSITION);
+		final Car car = Car.from("헤나");
 
 		car.move(movement);
 		boolean isSamePosition = car.isSamePosition(expectedPosition);

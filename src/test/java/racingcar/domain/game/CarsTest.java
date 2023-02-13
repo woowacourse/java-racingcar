@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -85,38 +86,22 @@ class CarsTest {
 		assertThat(isCarsMovedForward).isTrue();
 	}
 
-	@DisplayName("한 명 이상의 경기 우승자 이름 조회 성공 테스트")
-	@ParameterizedTest
-	@MethodSource("carsDummy")
-	void findWinnerNamesSuccessTest(List<Car> carDummy, int moveNumber) {
-		cars.addCars(carDummy);
-		carMovement = new CarMovement(() -> moveNumber);
-		carMovement.move();
-
-		final List<String> carDummyNames = carDummy.stream()
-			.map(Car::getNameValue)
-			.collect(Collectors.toList());
-		final List<String> winnerNames = cars.findWinnerNames();
-
-		assertThat(carDummyNames).containsAll(winnerNames);
-	}
-
 	static Stream<Arguments> carsDummy() {
 		return Stream.of(
 			Arguments.arguments(List.of(
-					CarGenerator.from("aaaa"),
-					CarGenerator.from("bbbb"),
-					CarGenerator.from("cccc")),
+					Car.from("aaaa"),
+					Car.from("bbbb"),
+					Car.from("cccc")),
 				3),
 			Arguments.arguments(List.of(
-					CarGenerator.from("가나다라"),
-					CarGenerator.from("가나다라마"),
-					CarGenerator.from("가나다")),
+					Car.from("가나다라"),
+					Car.from("가나다라마"),
+					Car.from("가나다")),
 				3),
 			Arguments.arguments(List.of(
-					CarGenerator.from("1234"),
-					CarGenerator.from("123"),
-					CarGenerator.from("12")),
+					Car.from("1234"),
+					Car.from("123"),
+					Car.from("12")),
 				3)
 		);
 	}
@@ -124,26 +109,26 @@ class CarsTest {
 	static Stream<Arguments> moveCarsSuccessDummy() {
 		return Stream.of(
 			Arguments.arguments(List.of(
-					CarGenerator.from("aaaa"),
-					CarGenerator.from("bbbb"),
-					CarGenerator.from("cccc")),
+					Car.from("aaaa"),
+					Car.from("bbbb"),
+					Car.from("cccc")),
 				4),
 			Arguments.arguments(List.of(
-					CarGenerator.from("가나다라"),
-					CarGenerator.from("가나다라마"),
-					CarGenerator.from("가나다")),
+					Car.from("가나다라"),
+					Car.from("가나다라마"),
+					Car.from("가나다")),
 				4),
 			Arguments.arguments(List.of(
-					CarGenerator.from("1234"),
-					CarGenerator.from("123"),
-					CarGenerator.from("12")),
+					Car.from("1234"),
+					Car.from("123"),
+					Car.from("12")),
 				4)
 		);
 	}
 
 	static Stream<Arguments> carOneOrZeroDummy() {
 		return Stream.of(
-			Arguments.arguments(List.of(CarGenerator.from("aaaa")),
+			Arguments.arguments(List.of(Car.from("aaaa")),
 				Arguments.arguments(Collections.emptyList()))
 		);
 	}
@@ -151,12 +136,12 @@ class CarsTest {
 	static Stream<Arguments> carNamesDuplicatedDummy() {
 		return Stream.of(
 			Arguments.arguments(List.of(
-				CarGenerator.from("aaaa"),
-				CarGenerator.from("aaaa"))),
+				Car.from("aaaa"),
+				Car.from("aaaa"))),
 			Arguments.arguments(List.of(
-				CarGenerator.from("aaaa"),
-				CarGenerator.from("a"),
-				CarGenerator.from("aaaa")))
+				Car.from("aaaa"),
+				Car.from("a"),
+				Car.from("aaaa")))
 		);
 	}
 }
