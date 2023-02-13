@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Car;
-import domain.CarRepository;
+import domain.Cars;
 import util.NumberGenerator;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -10,7 +10,7 @@ import view.OutputView;
 public class RacingController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final CarRepository carRepository = new CarRepository();
+    private final Cars cars = new Cars();
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     private static final int START_INDEX = 0;
@@ -24,7 +24,7 @@ public class RacingController {
     public void inputCars() {
         String[] carNames = inputCarNames();
         for (String carName : carNames) {
-            carRepository.addCar(new Car(carName));
+            cars.addCar(new Car(carName));
         }
     }
 
@@ -38,15 +38,15 @@ public class RacingController {
     }
 
     private void move() {
-        carRepository.moveAll(numberGenerator);
+        cars.moveAll(numberGenerator);
     }
 
     private void winners() {
-        outputView.printWinners(carRepository.judgment());
+        outputView.printWinners(cars.judgment());
     }
 
     private void printStatus() {
-        outputView.printStatus(carRepository);
+        outputView.printStatus(cars);
         outputView.newLine();
     }
 

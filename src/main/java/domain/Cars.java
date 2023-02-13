@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarRepository {
+public class Cars {
     private final List<Car> cars = new ArrayList<>();
 
     public void addCar(Car car) {
@@ -41,8 +41,8 @@ public class CarRepository {
                 .orElseThrow();
     }
 
-    public CarRepository judgment() {
-        CarRepository winners = new CarRepository();
+    public Cars judgment() {
+        Cars winners = new Cars();
         winners.addAll(findSamePositionCar(findMaxPositionCar()));
 
         return winners;

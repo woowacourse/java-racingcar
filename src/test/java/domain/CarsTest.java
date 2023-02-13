@@ -8,8 +8,8 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class CarRepositoryTest {
-    CarRepository carRepository;
+class CarsTest {
+    Cars cars;
     Car car1;
     Car car2;
     Car car3;
@@ -25,23 +25,23 @@ class CarRepositoryTest {
         car2.move(4);
         car3.move(4);
 
-        carRepository = new CarRepository();
+        cars = new Cars();
 
-        carRepository.addCar(car1);
-        carRepository.addCar(car2);
-        carRepository.addCar(car3);
+        cars.addCar(car1);
+        cars.addCar(car2);
+        cars.addCar(car3);
     }
 
 
     @Test
     @DisplayName("car1과 같은 위치에 있는 자동차는 car1과 car3")
     void findSamePositionCar() {
-        assertThat(carRepository.findSamePositionCar(car1)).isEqualTo(List.of(car1, car3));
+        assertThat(cars.findSamePositionCar(car1)).isEqualTo(List.of(car1, car3));
     }
 
     @Test
     @DisplayName("가장 위치가 높은 자동차는 car2")
     void findMaxPositionCar() {
-        assertThat(carRepository.findMaxPositionCar()).isEqualTo(car2);
+        assertThat(cars.findMaxPositionCar()).isEqualTo(car2);
     }
 }
