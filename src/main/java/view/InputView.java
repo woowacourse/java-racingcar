@@ -16,7 +16,7 @@ public class InputView {
     private static final int MAXIMUM_LENGTH_OF_MOVING_TRIAL = 100;
     private static final String NOT_INTEGER_ERROR = "[ERROR] 숫자만 가능합니다.";
     private static final String MOVING_TRIAL_RANGE_ERROR = "[ERROR] 시도할 횟수의 범위는 1이상 100이하만 가능합니다.";
-
+    private static final String EMPTY_STRING_ERROR = "[ERROR] 빈 문자열입니다.";
 
     public String readInput() throws IOException {
         return readLine();
@@ -26,6 +26,7 @@ public class InputView {
         System.out.println(CAR_NAME_INPUT_MESSAGE);
         try {
             String inputName = readInput();
+            validateBlank(inputName);
             String[] names = inputName.split(COMMA);
             return Arrays.asList(names);
         } catch (IllegalArgumentException e) {
@@ -48,6 +49,12 @@ public class InputView {
         }
     }
 
+    public String readLine() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        return bufferedReader.readLine();
+    }
+
     private void validateTrialRange(int movingTrial) {
         if (movingTrial < MINIMUM_LENGTH_OF_MOVING_TRIAL || movingTrial > MAXIMUM_LENGTH_OF_MOVING_TRIAL) {
             throw new IllegalArgumentException(MOVING_TRIAL_RANGE_ERROR);
@@ -60,9 +67,10 @@ public class InputView {
         }
     }
 
-    public String readLine() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-
-        return bufferedReader.readLine();
+    private void validateBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(EMPTY_STRING_ERROR);
+        }
     }
+
 }
