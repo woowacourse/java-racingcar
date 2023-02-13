@@ -2,21 +2,31 @@ package domain;
 
 import static validation.CountValidator.COUNT_VALIDATOR;
 
+import java.util.List;
+
 public class Race {
 
     private final int TOTAL_COUNT;
     private int currentCount = 0;
-    private Participants participants;
+    private final Participants participants;
 
-    public Race(final int totalCount, final Participants participants) {
+    public Race(final int totalCount, final List<String> carNames) {
         COUNT_VALIDATOR.validate(totalCount);
         this.TOTAL_COUNT = totalCount;
-        this.participants = participants;
+        this.participants = new Participants(carNames);
     }
 
     public void playRound() {
         participants.drive();
         addCount();
+    }
+
+    public List<Car> getParticipants() {
+        return participants.getCars();
+    }
+
+    public List<Car> findWinners() {
+        return participants.findWinners();
     }
 
     private void addCount() {
