@@ -20,7 +20,7 @@ public class Game {
         }
         return WinnersDtoList;
     }
-    private List<Car> findWinners() {
+    public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
                 .filter(car -> car.hasSamePositionWith(maxPosition))

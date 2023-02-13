@@ -18,7 +18,7 @@ public class GameTest {
         Car car2 = new Car("물떡", 2);
         Car car3 = new Car("루쿠", 1);
         Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
-        game.getWinnersDto().forEach(carDto -> assertThat(carDto.getName()).isEqualTo(car2.getName()));
+        assertThat(game.findWinners()).containsOnly(car2);
     }
 
     @Test
@@ -28,9 +28,7 @@ public class GameTest {
         Car car2 = new Car("물떡", 2);
         Car car3 = new Car("루쿠", 1);
         Game game = new Game(List.of(car1, car2, car3), MOVABLE_CHANCE);
-        game.getWinnersDto().get(0);
-        assertThat(game.getWinnersDto().get(0).getName()).isEqualTo(car1.getName());
-        assertThat(game.getWinnersDto().get(1).getName()).isEqualTo(car2.getName());
+        assertThat(game.findWinners()).containsOnly(car1,car2);
     }
 
     @Test
