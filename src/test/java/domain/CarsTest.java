@@ -37,6 +37,36 @@ class CarsTest {
     }
 
     @Test
+    @DisplayName("최장거리를 이동한 우승자를 찾아 List로 반환한다.")
+    void findWinners_success() {
+        Cars cars = new Cars(List.of("pobi", "crong", "hunox"));
+
+        Car pobi = cars.getCars().stream()
+                .filter(car -> car.getCarName().equals("pobi"))
+                .findFirst()
+                .orElse(null);
+        assert pobi != null;
+        pobi.move(new MovementManager(), 4);
+
+        Assertions.assertThat(cars.findWinners(1)).containsOnly(pobi.getCarName());
+    }
+
+    @Test
+    @DisplayName("최장거리를 이동하지 않은 자동차는 우승자 명단에 포함되지 않는다.")
+    void findWinners_fail() {
+        Cars cars = new Cars(List.of("pobi", "crong", "hunox"));
+
+        Car pobi = cars.getCars().stream()
+                .filter(car -> car.getCarName().equals("pobi"))
+                .findFirst()
+                .orElse(null);
+        assert pobi != null;
+        pobi.move(new MovementManager(), 4);
+
+        Assertions.assertThat("crong").isNotIn(cars.findWinners(1));
+    }
+
+    @Test
     @DisplayName("3 이하의 숫자가 나온 자동차들은 전진하지 않는다.")
     void progressRound_all_stop() {
         Cars cars = new Cars(List.of("pobi", "crong", "hunox"));
