@@ -9,7 +9,7 @@ public class Cars {
 
     private static final int INITIAL_WINNER_COUNT = 0;
 
-    List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<String> carNames) {
         this.cars = new LinkedList<>();
