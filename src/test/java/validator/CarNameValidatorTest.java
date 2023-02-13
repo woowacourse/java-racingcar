@@ -1,6 +1,5 @@
 package validator;
 
-import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,4 +39,5 @@ class CarNameValidatorTest {
         Assertions.assertThatIllegalArgumentException()
                 .isThrownBy(() -> CarNameValidator.validate(carName));
     }
+
 }
