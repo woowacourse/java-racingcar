@@ -26,27 +26,30 @@ class CarTest {
         assertDoesNotThrow(() -> new Car(input));
     }
 
-    @DisplayName("자동차의 move메소드는 true값을 인자로 받으면 전진한다.")
+    @DisplayName("자동차의 move메소드는 전진하는 경우 위치가 1만큼 증가한다.")
     @Test
     void moveWhenRandomNumberIsOverThree() {
         //given
         Car car = new Car("123");
+        NumberGenerator numberGenerator = new MovableNumberGenerator();
+
         //when
-        car.move(true);
+        car.move(numberGenerator);
         System.out.println(car.getPosition().getPosition());
 
         //then
         assertThat(car.getPosition()).isEqualTo(new Position(1));
     }
 
-    @DisplayName("자동차의 move메소드는 false값을 인자로 받는 경우 전진하지 않는다.")
+    @DisplayName("자동차의 move메소드는 전전하지 않는 경우 위치가 유지된다.")
     @Test
     void moveWhenRandomNumberIsUnderThree() {
         //given
         Car car = new Car("123");
+        NumberGenerator numberGenerator = new NonMovableNumberGenerator();
 
         //when
-        car.move(false);
+        car.move(numberGenerator);
 
         //then
         assertThat(car.getPosition()).isEqualTo(new Position(0));

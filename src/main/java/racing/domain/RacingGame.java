@@ -17,7 +17,7 @@ public class RacingGame {
 
     //TODO: 테스트
     public void race() {
-        carGroup.race(isMovable());
+        carGroup.race(numberGenerator);
     }
 
     public RacingResult produceRacingResult() {
@@ -27,9 +27,5 @@ public class RacingGame {
         }
 
         return new RacingResult(history);
-    }
-
-    private boolean isMovable() {
-        return (numberGenerator.generate() >= MOVABLE_CONDITION);
     }
 }

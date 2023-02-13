@@ -3,6 +3,7 @@ package racing.domain;
 public class Car {
 
     private static final int INITIAL_VALUE = 0;
+    private static final int MOVABLE_VALUE = 4;
 
     private final Name name;
     private Position position;
@@ -12,8 +13,8 @@ public class Car {
         this.position = new Position(INITIAL_VALUE);
     }
 
-    public void move(boolean isMovable) {
-        if (isMovable) {
+    public void move(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MOVABLE_VALUE) {
             this.position = position.increase();
         }
     }

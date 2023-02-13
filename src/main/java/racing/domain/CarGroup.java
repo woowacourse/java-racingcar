@@ -19,9 +19,9 @@ public class CarGroup {
         this.cars = setUp(names);
     }
 
-    public void race(boolean isMovable) {
+    public void race(NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.move(isMovable);
+            car.move(numberGenerator);
         }
     }
 
