@@ -5,38 +5,35 @@ import java.util.List;
 
 public class OutputView {
 
-  private final String DELIMITER = ", ";
-  private final String BAR = "-";
+  private static final String DELIMITER = ", ";
+  private static final String BAR = "-";
 
-  public void printStart(List<Car> cars) {
+  private OutputView() {
+  }
+
+  public static void printStart() {
     System.out.println();
-    System.out.println(Messages.OUTPUT_START);
-    printCarsStatus(cars);
+    System.out.println("실행 결과");
   }
 
-  public void printCarsStatus(List<Car> cars) {
-    cars.forEach(this::printCarStatus);
-    System.out.println();
+  public static void printCarStatus(String name, int position) {
+    System.out.printf("%s : %s\n", name, toBar(position));
   }
 
-  private void printCarStatus(Car car) {
-    System.out.printf(Messages.OUTPUT_CAR_STATUS, car.getName(), toBar(car.getPosition()));
-  }
-
-  private String toBar(int count) {
+  private static String toBar(int count) {
     return BAR.repeat(count);
   }
 
-  public void printWinners(List<String> carNames) {
+  public static void printWinners(List<String> carNames) {
     String result = carNames.get(0);
     boolean isCoWinner = carNames.size() > 1;
     if (isCoWinner) {
       result = String.join(DELIMITER, carNames);
     }
-    System.out.printf(Messages.OUTPUT_WINNER, result);
+    System.out.printf("%s가 최종 우승했습니다.", result);
   }
 
-  public void printErrorMessage(Exception exception) {
+  public static void printErrorMessage(Exception exception) {
     System.out.println(exception.getMessage());
   }
 }

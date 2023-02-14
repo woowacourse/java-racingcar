@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 class OutputViewTest {
 
   private List<Car> cars;
-  private OutputView outputView;
   private OutputStream out;
 
   @BeforeEach
@@ -22,7 +21,6 @@ class OutputViewTest {
     Car car2 = new Car("car2");
     Car car3 = new Car("car3");
     cars = Arrays.asList(car1, car2, car3);
-    outputView = new OutputView();
     out = new ByteArrayOutputStream();
     System.setOut(new PrintStream(out));
   }
@@ -30,7 +28,7 @@ class OutputViewTest {
   @Test
   void 에러_메세지_출력() {
     String errMsg = "에러메세지입니다.";
-    outputView.printErrorMessage(new Exception(errMsg));
+    OutputView.printErrorMessage(new Exception(errMsg));
 
     Assertions.assertThat(out.toString()).isEqualTo(errMsg + "\r\n");
   }
@@ -42,7 +40,8 @@ class OutputViewTest {
             + "car2 : -\n"
             + "car3 : -\n"
             + "\r\n";
-    outputView.printCarsStatus(cars);
+    cars.forEach(car -> OutputView.printCarStatus(car.getName(), car.getPosition()));
+    System.out.println();
 
     Assertions.assertThat(out.toString()).isEqualTo(result);
   }
@@ -58,22 +57,22 @@ class OutputViewTest {
     int go = 4;
     cars.get(0).move(go);
     cars.get(2).move(go);
-
-    outputView.printCarsStatus(cars);
+    cars.forEach(car -> OutputView.printCarStatus(car.getName(), car.getPosition()));
+    System.out.println();
     Assertions.assertThat(out.toString()).isEqualTo(result);
   }
 
   @Test
   void 우승자_출력() {
     String result = "호이가 최종 우승했습니다.";
-    outputView.printWinners(List.of("호이"));
+    OutputView.printWinners(List.of("호이"));
     Assertions.assertThat(out.toString()).isEqualTo(result);
   }
 
   @Test
   void 우승자들_출력() {
     String result = "호이, 호호이, 호호호이가 최종 우승했습니다.";
-    outputView.printWinners(List.of("호이", "호호이", "호호호이"));
+    OutputView.printWinners(List.of("호이", "호호이", "호호호이"));
     Assertions.assertThat(out.toString()).isEqualTo(result);
   }
 }
