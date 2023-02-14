@@ -4,13 +4,10 @@ import dto.RacingCarStateDto;
 import dto.RacingRoundStateDto;
 import dto.WinnerCarDto;
 import exception.EmptyCarsException;
-import exception.WrongRangeMovableNumberException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import model.wrapper.Round;
-import utils.RacingNumberGenerator;
 
 public class Cars {
 
