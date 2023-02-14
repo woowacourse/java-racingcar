@@ -53,26 +53,6 @@ public class CarService {
     }
 
     public List<String> findWinner() {
-        int maxPosition = findMaxPosition();
-        for (Car car : cars.getCars()) {
-            comparePosition(car, maxPosition);
-        }
-        return winner;
-    }
-
-    private int findMaxPosition() {
-        int maxPosition = -1;
-        for (Car car : cars.getCars()) {
-            Position position = car.getPosition();
-            maxPosition = Math.max(position.getPosition(), maxPosition);
-        }
-        return maxPosition;
-    }
-
-    private void comparePosition(Car car, int maxPosition) {
-        Position position = car.getPosition();
-        if (maxPosition == position.getPosition()) {
-            winner.add(car.getName());
-        }
+        return cars.getWinner();
     }
 }

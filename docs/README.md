@@ -62,3 +62,4 @@
   - [x] Name 클래스 분리
   - [x] Position 클래스 분리
 - [x] while문 대신 try-catch문 안에서 반복할 수 있도록 변경
+- [x] findWinner 메서드에 대한 책임 이동
