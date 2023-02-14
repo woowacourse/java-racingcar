@@ -1,12 +1,7 @@
 package view;
 
-import util.Constant;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-
-import static util.Validator.*;
 
 public class InputView {
 
@@ -19,30 +14,14 @@ public class InputView {
         reader = new Scanner(readerConnector);
     }
 
-    public List<String> requestCarNames() {
+    public String requestCarNames() {
         System.out.println(CAR_NAMES_INPUT_HEADER);
-        String carNames = reader.nextLine();
-        validateCarNames(carNames.trim());
-        List<String> carNamesBySplit = List.of(
-                carNames.split(
-                        Constant.DELIMITER
-                )
-        );
-
-        return trimCarNames(carNamesBySplit);
+        return reader.nextLine();
     }
 
-    private List<String> trimCarNames(List<String> carNames) {
-        return carNames.stream()
-                .map(String::trim)
-                .collect(Collectors.toList());
-    }
-
-    public int requestNumberOfTimes() {
+    public String requestNumberOfTimes() {
         System.out.println(NUMBER_OF_TIME_INPUT_HEADER);
-        String number = reader.nextLine();
-        validateNumberOfTimes(number);
-
-        return Integer.parseInt(number);
+        return reader.nextLine();
     }
+
 }

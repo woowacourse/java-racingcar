@@ -1,12 +1,15 @@
 package controller;
 
-import model.Car;
-import model.Cars;
-import model.PowerGenerator;
+import domain.Car;
+import domain.Cars;
+import domain.GameCount;
+import domain.PowerGenerator;
+import util.CarNamesDivider;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
 
@@ -14,38 +17,41 @@ public class RacingController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final CarNamesDivider carNamesDivider;
 
     public RacingController() {
         inputView = new InputView(System.in);
         outputView = new OutputView();
+        carNamesDivider = new CarNamesDivider();
     }
 
-    public void start() {
-        Cars cars = new Cars(
-                inputView.requestCarNames()
-                .stream()
+    public void run() {
+        String carNames = inputView.requestCarNames();
+        List<String> carNamesByDivider = carNamesDivider.divideCarNames(carNames);
+        List<Car> inputCars = carNamesByDivider.stream()
                 .map(Car::new)
-                .collect(toList())
-        );
-        int numberOfTimes = inputView.requestNumberOfTimes();
-        progress(cars, numberOfTimes);
-        end(cars);
+                .collect(toList());
+        Cars cars = new Cars(inputCars);
+        GameCount gameCount = new GameCount(inputView.requestNumberOfTimes());
+        progress(cars, gameCount);
+        finish(cars);
     }
 
-    private void progress(Cars cars, int numberOfTimes) {
+    private void progress(Cars cars, GameCount gameCount) {
         outputView.printResultHeader();
-        IntStream.range(0, numberOfTimes)
-                .forEach(i -> progressEach(cars));
+        while (gameCount.isGameProgress()) {
+            gameCount.proceedOnce();
+            moveAllCar(cars);
+        }
     }
 
-    private void progressEach(Cars cars) {
+    private void moveAllCar(Cars cars) {
         cars.moveAll(new PowerGenerator(new Random()));
-        outputView.printResult(cars);
+        outputView.printResult(cars.getCars());
     }
 
-    private void end(Cars cars) {
-        outputView.printWinners(
-                cars.getWinners()
-        );
+    private void finish(Cars cars) {
+        outputView.printWinners(cars.getWinners());
     }
+
 }

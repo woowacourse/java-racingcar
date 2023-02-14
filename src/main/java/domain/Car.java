@@ -1,13 +1,11 @@
-package model;
+package domain;
 
 public class Car {
 
-    private static final int THROTTLE = 4;
+    private static final int THRESHOLD = 4;
     private static final int DEFAULT_INITIAL_POSITION = 0;
-    private static final String STICK = "-";
-    private static final String CAR_RESULT_FORMAT = "%s : %s\n";
 
-    private final String name;
+    private final CarName name;
     private int distance;
 
     public Car(String name) {
@@ -15,22 +13,22 @@ public class Car {
     }
 
     public Car(String name, int distance) {
-        this.name = name;
+        this.name = new CarName(name);
         this.distance = distance;
     }
 
     public void move(int power) {
-        if (power >= THROTTLE) {
-            distance++;
+        if (power >= THRESHOLD) {
+            this.distance++;
         }
     }
 
     public int getDistance() {
-        return distance;
+        return this.distance;
     }
 
     public String getName() {
-        return this.name;
+        return this.name.getName();
     }
 
     public boolean isSameDistance(int distance) {
@@ -41,15 +39,13 @@ public class Car {
     public boolean equals(Object object) {
         return object instanceof Car
                 && ((Car) object).getName()
-                .equals(this.name);
+                .equals(this.name.getName());
     }
 
     @Override
-    public String toString() {
-        return String.format(
-                CAR_RESULT_FORMAT,
-                name,
-                STICK.repeat(distance)
-        );
+    public int hashCode() {
+        return this.name.getName()
+                .hashCode();
     }
+
 }

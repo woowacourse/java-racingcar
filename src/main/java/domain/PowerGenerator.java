@@ -1,4 +1,4 @@
-package model;
+package domain;
 
 import java.util.Random;
 
@@ -13,4 +13,5 @@ public class PowerGenerator {
     public int generate(int upperBound) {
         return powerGenerator.nextInt(upperBound);
     }
+
 }
