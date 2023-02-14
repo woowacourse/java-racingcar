@@ -42,7 +42,11 @@ class RaceTest {
             List<Car> winners = race.getWinners();
 
             //then
-            assertThat(winners.stream().map(Car::getName).collect(Collectors.toList())).contains("rosie");
+            assertThat(getNamesOf(winners)).contains("rosie");
+        }
+
+        private List<String> getNamesOf(List<Car> winners) {
+            return winners.stream().map(Car::getName).collect(Collectors.toList());
         }
 
         @Test
@@ -56,7 +60,7 @@ class RaceTest {
             List<Car> winners = race.getWinners();
 
             //then
-            assertThat(winners.stream().map(Car::getName).collect(Collectors.toList())).doesNotContain("hong");
+            assertThat(getNamesOf(winners)).doesNotContain("hong");
         }
     }
 }
