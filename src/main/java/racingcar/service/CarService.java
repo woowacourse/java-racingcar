@@ -9,7 +9,6 @@ import racingcar.domain.Position;
 
 public class CarService {
     private Cars cars;
-    private final List<String> winner = new ArrayList<>();
 
     public void initializeCars() {
         cars = new Cars(new ArrayList<Car>());
