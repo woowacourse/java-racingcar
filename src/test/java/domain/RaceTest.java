@@ -8,6 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import racing.domain.WinnerJudgeImpl;
 import racing.domain.car.Car;
 import racing.domain.race.Race;
 import racing.domain.race.WinnerJudge;
@@ -19,7 +20,7 @@ class RaceTest {
         @Test
         @DisplayName("이름이 중복으로 입력되었을 때 예외 발생")
         void throwExceptionWhenDuplicateNameExists() {
-            Assertions.assertThatThrownBy(() -> new Race(List.of("rosie", "hong", "rosie")))
+            Assertions.assertThatThrownBy(() -> new Race(List.of("rosie", "hong", "rosie"), new WinnerJudgeImpl()))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

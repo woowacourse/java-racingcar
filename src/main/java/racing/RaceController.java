@@ -2,6 +2,8 @@ package racing;
 
 import static racing.ExceptionHandlingTemplate.repeatUntilSucceed;
 
+import racing.domain.WinnerJudgeImpl;
+import racing.domain.car.Car;
 import racing.domain.race.Race;
 import racing.view.InputView;
 import racing.view.OutputView;
@@ -11,7 +13,7 @@ public class RaceController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Race race = repeatUntilSucceed(Race::new, inputView::readCarNames);
+        Race race = repeatUntilSucceed(Race::new, inputView::readCarNames, WinnerJudgeImpl::new);
         int tryTime = repeatUntilSucceed(this::validateTryTime, inputView::readTryTime);
 
         outputView.printResultTitle();
