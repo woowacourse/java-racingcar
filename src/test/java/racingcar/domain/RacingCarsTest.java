@@ -7,11 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.dto.CarStatus;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -84,32 +82,16 @@ class RacingCarsTest {
 
         @BeforeEach
         void setup() {
-            cars.moveCars(new TestNumberGenerator(5));
+            cars.moveCars(new MockNumberGenerator(5));
         }
 
         @DisplayName("모든 자동차가 이동하는지 확인한다.")
         @Test
         void moveCars() {
             for (Car car : createdCars) {
-                assertThat(car.checkCurrentStatus().getCurrentPosition())
+                assertThat(car.getCurrentPosition())
                         .isEqualTo(1);
             }
-        }
-
-        @DisplayName("Cars 이동 결과에 대한 테스트")
-        @Test
-        void showRaceResult() {
-            List<String> carNames = List.of("pobi", "crong", "honux");
-            List<CarStatus> raceResult = cars.showRaceResult();
-
-            assertThat(raceResult.stream()
-                    .map(CarStatus::getName)
-                    .collect(Collectors.toUnmodifiableList())).isEqualTo(carNames);
-
-            assertThat(raceResult.stream()
-                    .allMatch(carStatus -> carStatus.getCurrentPosition() == 1))
-                    .isTrue();
-
         }
 
     }
@@ -124,7 +106,7 @@ class RacingCarsTest {
         void allCarsAreWinners(List<Car> allSamePositionedCars, List<String> winners) {
             RacingCars cars = new RacingCars(allSamePositionedCars);
 
-            assertThat(cars.pickWinnerCarsName())
+            assertThat(cars.pickWinnerCarNames())
                     .isEqualTo(winners);
         }
 
@@ -134,7 +116,7 @@ class RacingCarsTest {
         void aFewCarsAreWinners(List<Car> fewMaxPositionedCars, List<String> winners) {
             RacingCars cars = new RacingCars(fewMaxPositionedCars);
 
-            assertThat(cars.pickWinnerCarsName().equals(winners))
+            assertThat(cars.pickWinnerCarNames().equals(winners))
                     .isTrue();
         }
 
@@ -144,7 +126,7 @@ class RacingCarsTest {
         void oneCarIsWinner(List<Car> oneMaxPositionedCars, List<String> winners) {
             RacingCars cars = new RacingCars(oneMaxPositionedCars);
 
-            assertThat(cars.pickWinnerCarsName().equals(winners))
+            assertThat(cars.pickWinnerCarNames().equals(winners))
                     .isTrue();
         }
     }
