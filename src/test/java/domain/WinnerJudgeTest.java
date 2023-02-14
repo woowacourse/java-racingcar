@@ -10,9 +10,9 @@ import racing.domain.WinnerJudgeImpl;
 import racing.domain.car.Car;
 
 class WinnerJudgeTest {
-    WinnerJudgeImpl winnerJudge = new WinnerJudgeImpl();
-    List<Car> cars;
-    List<Car> winners;
+    private WinnerJudgeImpl winnerJudge = new WinnerJudgeImpl();
+    private List<Car> cars;
+    private List<Car> winners;
 
     @BeforeEach
     void setup() {

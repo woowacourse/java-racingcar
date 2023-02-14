@@ -13,8 +13,8 @@ import racing.view.OutputView;
 class OutputViewTest {
     private OutputView outputView;
     private ByteArrayOutputStream outputStream;
-    Car winner;
-    Car nonWinner;
+    private Car winner;
+    private Car nonWinner;
 
     @BeforeEach
     void setUp() {
