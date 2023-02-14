@@ -28,11 +28,21 @@ class GameCountTest {
                 .hasMessageContaining("1 ~ 100 사이의 숫자를 입력해주세요");
     }
 
+    @DisplayName("정수가 아닌 값이 들어왔을 때")
+    @ParameterizedTest
+    @ValueSource(strings = {"2.8", "sldlfks"})
+    void validateNumberOfTimesIsNotInteger(String input) {
+        assertThatThrownBy(() -> new GameCount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자만 입력 가능합니다.");
+    }
+
     @Test
     @DisplayName("0 이 아닐 때 게임이 진행중임을 확인")
     void isGameOverFalse() {
         GameCount gameCount = new GameCount("1");
-        assertThat(gameCount.isGameProgress()).isTrue();
+        assertThat(gameCount.isGameProgress())
+                .isTrue();
     }
 
     @Test
@@ -40,7 +50,8 @@ class GameCountTest {
     void isGameOverTrue() {
         GameCount gameCount = new GameCount("1");
         gameCount.proceedOnce();
-        assertThat(gameCount.isGameProgress()).isFalse();
+        assertThat(gameCount.isGameProgress())
+                .isFalse();
     }
 
     @Test
@@ -48,7 +59,8 @@ class GameCountTest {
     void proceedOnce() {
         GameCount gameCount = new GameCount("1");
         gameCount.proceedOnce();
-        assertThat(gameCount.isGameProgress()).isFalse();
+        assertThat(gameCount.isGameProgress())
+                .isFalse();
     }
 
     @Test
