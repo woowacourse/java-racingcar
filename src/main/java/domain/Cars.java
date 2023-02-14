@@ -1,13 +1,13 @@
-package model;
+package domain;
 
+import constant.ExceptionMessage;
 import util.NumberGenerator;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private final String COMMA = ",";
-    private final String BLANK = " ";
+    private static final String COMMA = ",";
 
     private final List<Car> cars = new ArrayList<>();
 
@@ -15,7 +15,9 @@ public class Cars {
         List<String> carNames = splitCarName(carsName);
 
         for (String name : carNames) {
-            cars.add(new Car(name));
+            Name newName = new Name(name);
+            validDuplication(newName);
+            cars.add(new Car(newName));
         }
     }
 
@@ -23,27 +25,38 @@ public class Cars {
         return Arrays.asList(carsName.split(COMMA));
     }
 
+    private void validDuplication(Name newName) {
+        boolean isDuplication = cars.stream()
+                                    .anyMatch(car -> car.isDuplicate(newName));
+
+        if (isDuplication) {
+            throw new IllegalArgumentException(
+                    ExceptionMessage.DUPLICATION_CAR_NAME_MESSAGE.getExceptionMessage());
+        }
+    }
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 
-    public void moveResult(NumberGenerator randomNumberGenerator) {
+    public void moveForRound(NumberGenerator randomNumberGenerator) {
         for (Car car : cars) {
             car.moveByNumber(randomNumberGenerator.generateNumber());
         }
     }
 
-    public String getWinners() {
+    public List<String> getWinners() {
         return cars.stream()
                    .filter(car -> car.isLocationEqual(getMaxLocation()))
                    .map(Car::getName)
-                   .collect(Collectors.joining(COMMA + BLANK));
+                   .collect(Collectors.toList());
     }
 
     public int getMaxLocation() {
         return cars.stream()
                    .max(Comparator.comparingInt(Car::getLocation))
-                   .get()
+                   .orElseThrow(() ->
+                           new IllegalArgumentException(ExceptionMessage.GET_MAX_LOCATION_MESSAGE.getExceptionMessage()))
                    .getLocation();
     }
 }

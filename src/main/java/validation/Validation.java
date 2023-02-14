@@ -3,16 +3,16 @@ package validation;
 import constant.ExceptionMessage;
 
 public class Validation {
-    private final int MIN_TRY_COUNT_INPUT = 1;
+    private static final int MIN_TRY_COUNT_INPUT = 1;
 
-    public void validateCarNames(String carNames) throws IllegalAccessException {
+    public void validateCarNames(String carNames) {
         if (carNames.isEmpty()) {
-            throw new IllegalAccessException(
+            throw new IllegalArgumentException(
                     ExceptionMessage.CAR_NAME_NOT_INPUT_MESSAGE.getExceptionMessage());
         }
 
         if (carNames.isBlank()) {
-            throw new IllegalAccessException(
+            throw new IllegalArgumentException(
                     ExceptionMessage.CAR_NAME_BLANK_MESSAGE.getExceptionMessage());
         }
     }

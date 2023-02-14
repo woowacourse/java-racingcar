@@ -3,7 +3,7 @@ package util;
 import java.util.Random;
 
 public class RandomNumberGenerator implements NumberGenerator {
-    private final int MAX_RANDOM_NUMBER = 10;
+    private static final int MAX_RANDOM_NUMBER = 10;
 
     private final Random random = new Random();
 
