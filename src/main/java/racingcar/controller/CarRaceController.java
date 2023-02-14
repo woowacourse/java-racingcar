@@ -38,8 +38,9 @@ public class CarRaceController {
     public void race() {
         Cars cars = getUserInputAndCreateCars();
         Race race = getUserInputAndCreateRace();
-        getRaceResult(cars, race);
-        getWinnerResult(cars);
+        printInitCarStatus(cars);
+        printRaceResult(cars, race);
+        printWinnerResult(cars);
     }
 
     private Cars getUserInputAndCreateCars() {
@@ -58,13 +59,17 @@ public class CarRaceController {
         });
     }
 
-    private void getRaceResult(final Cars cars, final Race race) {
+    private void printInitCarStatus(Cars cars) {
         List<CarStatusDto> initCarStatus = carsService.getCarStatus(cars);
-        List<RaceResultDto> totalRaceResult = raceService.getRaceResults(cars, race);
-        outputView.printRaceResult(initCarStatus, totalRaceResult);
+        outputView.printInitCarStatus(initCarStatus);
     }
 
-    private void getWinnerResult(final Cars cars) {
+    private void printRaceResult(final Cars cars, final Race race) {
+        List<RaceResultDto> totalRaceResult = raceService.getRaceResults(cars, race);
+        outputView.printRaceResult(totalRaceResult);
+    }
+
+    private void printWinnerResult(final Cars cars) {
         List<String> winners = carsService.pickWinners(cars);
         outputView.printWinnersResult(winners);
     }
