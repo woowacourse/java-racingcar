@@ -14,10 +14,9 @@ public class Converter {
 
     public static List<Car> stringToCars(String carNames) {
         String[] split = carNames.split(CAR_NAMES_DELIMITER);
-        List<Car> cars = Arrays.stream(split)
+        return Arrays.stream(split)
                 .map(Car::new)
                 .collect(Collectors.toList());
-        return cars;
     }
 
 }
