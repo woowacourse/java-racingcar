@@ -1,10 +1,11 @@
-import static domain.ExceptionHandlingTemplate.repeatUntilReadValidInput;
-
 import domain.Car;
 import dto.CarDto;
 import domain.Race;
 import domain.RandomNumberPicker;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import view.InputView;
 import view.OutputView;
@@ -14,37 +15,56 @@ public class RaceController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Race race = initCars();
-        int tryTime = repeatUntilReadValidInput(this::validateTryTime, inputView::readTryTime);
-
+        final Race race = initRace();
         outputView.printResultTitle();
-        //TODO: 해당 내용 service로 옮기기
-        while (tryTime-- > 0) {
+        startRace(race);
+        outputView.printWinners(toCarDtos(race.getWinners()));
+    }
+
+    private Race initRace() {
+        Race race = repeatUntilInitialValid(Race::new, this::toCars, inputView::readCarNames);
+        repeatUntilInitialValid(race::initTryTime, inputView::readTryTime);
+        return race;
+    }
+
+    private void startRace(final Race race) {
+        while (race.canRace()) {
             race.tryMoveOneTime(new RandomNumberPicker());
-            List<CarDto> carDtos = toListCarDto(race.getStatuses());
+            final List<CarDto> carDtos = toCarDtos(race.getStatuses());
             outputView.printStatus(carDtos);
         }
-
-        outputView.printWinners(toListCarDto(race.getWinners()));
     }
 
-    private Race initCars() {
-        List<Car> cars = inputView.readCarNames().stream()
-                .map(carDto -> new Car(carDto.getName()))
-                .collect(Collectors.toUnmodifiableList());
-        return new Race(cars);
-    }
-
-    private List<CarDto> toListCarDto(List<Car> cars) {
+    private List<CarDto> toCarDtos(final List<Car> cars) {
         return cars.stream()
                 .map(car -> new CarDto(car.getName(), car.getPosition()))
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private int validateTryTime(int tryTime) {
-        if (tryTime < 0) {
-            throw new IllegalArgumentException("시도 횟수는 음수일 수 없습니다.");
+    private List<Car> toCars(final List<CarDto> carDtos) {
+        return carDtos.stream()
+                .map(car -> new Car(car.getName(), car.getPosition()))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private <T, U, R> R repeatUntilInitialValid(final Function<U, R> object, final Function<T, U> mapper
+            , final Supplier<T> reader) {
+        try {
+            T input = reader.get();
+            U mapped = mapper.apply(input);
+            return object.apply(mapped);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return repeatUntilInitialValid(object, mapper, reader);
         }
-        return tryTime;
+    }
+
+    private <T> void repeatUntilInitialValid(final Consumer<T> object, final Supplier<T> reader) {
+        try {
+            object.accept(reader.get());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            repeatUntilInitialValid(object, reader);
+        }
     }
 }

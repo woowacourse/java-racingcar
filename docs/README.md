@@ -20,6 +20,7 @@
 - [x] 예외가 발생하였을 때, 해당 부분부터 다시 입력을 받을 수 있다.
 
 # 예외 사항
+
 - [x] 자동차 이름이 5자 초과일 경우 예외처리
 - [x] 자동차의 이름이 동일한 경우 예외처리
 - [x] 입력된 시도횟수가 유효하지 않는 값일 경우 예외처리
@@ -35,3 +36,18 @@
     3. 현황을 출력하기(OutputView)
 5. 최종 우승자를 결정하기(Service)
 6. 최종 우승자를 출력하기(OutputView)
+
+# 리팩토링 목록
+
+- [x] 유효성 검증을 해야하는 값들을 일급컬렉션으로 분리
+    - [x] Race의 List<Car> cars
+    - [x] Race의 int tryTime
+- [x] ExceptionHandlingTemplate의 repeat...메소드의 depth를 1로 줄이기
+- [x] RandomNumberPicker에서 Random을 필드변수로 두기.
+- [x] Car class에서 this()를 사용하여 코드의 반복을 제거
+- [x] 우승자를 결정하는 로직에서 get말고 객체에 메세지를 보내는 방식으로 구현하기
+- [x] 가능한 final 키워드를 모든 변수에 사용하기.
+- [x] ExceptionHandlingTemplate을 지우고, repeatUntilInitialValid 메서드를 controller에서 정의
+    1. ExceptionHandlingTemplate안에 outputView 객체를 생성하는 행위가 불필요하다 생각.
+    2. 현 프로젝트에선 controller가 하나밖에 없으므로, 굳이 따로 Template Interface를 정의해서 얻을 이득이 없다고 생각.
+- [x] Race의 moveOneTime 메서드 테스트 코드 작성하기

@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class RaceTest {
 
@@ -21,8 +24,8 @@ class RaceTest {
 
         @BeforeEach
         void setup() {
-            Race race = new Race(List.of(new Car("rosie"), new Car("hong", 1)));
-            winners = race.getWinners().stream().map(Car::getName).collect(Collectors.toList());
+            Race race = new Race(List.of(new Car("rosie", 2), new Car("hong", 1)));
+            winners = race.getWinners().stream().map(Car::getName).collect(Collectors.toUnmodifiableList());
         }
 
         @Test
@@ -43,15 +46,31 @@ class RaceTest {
     @Nested
     class tryMoveOneTimeTest {
         @Test
-        @DisplayName("moveOneTime")
+        @DisplayName("move메서드를 실행 시 4이상이 나온 자동차는 position이 1 증가하고, "
+                + "3이하가 나온 자동차는 position이 증가하지 않는다.")
         void moveSuccess() {
             //given
             Race race = new Race(List.of(new Car("rosie")
                     , new Car("hong")));
+            race.initTryTime(4);
             //when
             race.tryMoveOneTime(new TestNumberPicker(4, 1));
             //then
-            //Mock 라이브러리를 이용하여 검증
+            Assertions.assertThat(race.getStatuses())
+                    .extracting("name", "position")
+                    .containsOnly(tuple("rosie", 1), tuple("hong", 0));
+        }
+
+        @Test
+        @DisplayName("tryMoveOneTime 메서드를 실행 후에, 시도횟수가 1 감소하였는지 테스트")
+        void tryCountDecreaseWhenExecuteTryMoveOneTime() {
+            int tryTime = 1;
+            Race race = new Race(List.of(new Car("rosie"), new Car("hong")));
+            race.initTryTime(tryTime);
+            race.tryMoveOneTime(new RandomNumberPicker());
+            assertThat(race).extracting("tryTime")
+                    .extracting("tryTime")
+                    .isEqualTo(tryTime - 1);
         }
     }
 
@@ -63,8 +82,46 @@ class RaceTest {
         void throwExceptionWhenDuplicateNameExists() {
             List<Car> cars = List.of(new Car("rosie"), new Car("hong"), new Car("rosie"));
             Assertions.assertThatThrownBy(() -> new Race(cars))
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("자동차 이름은 중복일 수 없습니다.");
         }
+    }
+
+    @Test
+    @DisplayName("Race에서 초기화된 tryCount를 다시 초기화하려고 하면 Exception 발생")
+    void throwExceptionWhenReInitTryCount() {
+        int tryTime = 3;
+        Race race = new Race(List.of(new Car("rosie"), new Car("hong")));
+        race.initTryTime(tryTime);
+
+        Assertions.assertThatThrownBy(() -> race.initTryTime(tryTime))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("시도횟수는 이미 초기화되어 있습니다.");
+    }
+
+    @Test
+    @DisplayName("getStatueses 메서드는 Cars의 상태를 반환한다.")
+    void getStatusesTest() {
+        final Car hong = new Car("hong", 1);
+        final Car rosie = new Car("rosie", 4);
+        final Race race = new Race(List.of(hong, rosie));
+
+        final List<Car> statuses = race.getStatuses();
+
+        Assertions.assertThat(statuses)
+                .extracting("name", "position")
+                .containsExactly(tuple("hong", 1), tuple("rosie", 4));
+    }
+
+    @ParameterizedTest
+    @DisplayName("tryTime이 0 이하면 false를 1이상이면 true를 반환한다.")
+    @CsvSource(value = {"0:false", "1:true", "2:true"}, delimiter = ':')
+    void canRaceTest(int time, boolean expected) {
+        final Race race = new Race(List.of(new Car("hong")));
+        race.initTryTime(time);
+
+        Assertions.assertThat(race.canRace())
+                .isEqualTo(expected);
     }
 
     static class TestNumberPicker implements NumberPicker {

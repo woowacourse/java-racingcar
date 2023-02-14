@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int LEAST_CONDITION = 4;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int START_POSITION = 0;
@@ -11,20 +11,18 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car(String name) {
-        validateName(name);
-        this.name = name;
-        this.position = START_POSITION;
+    public Car(final String name) {
+        this(name, START_POSITION);
     }
 
-    public Car(String name, int position) {
+    public Car(final String name, final int position) {
         validateName(name);
         this.name = name;
         this.position = position;
     }
 
-    private void validateName(String name) {
-        if (name.isEmpty()) {
+    private void validateName(final String name) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException("자동차 이름은 공백일 수 없습니다.");
         }
         if (name.length() > MAX_NAME_LENGTH) {
@@ -32,7 +30,7 @@ public class Car {
         }
     }
 
-    public void moveDependingOn(int pickedNumber) {
+    public void moveDependingOn(final int pickedNumber) {
         if (pickedNumber >= LEAST_CONDITION) {
             position += ONE_STEP;
         }
@@ -47,7 +45,7 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -64,7 +62,11 @@ public class Car {
     }
 
     @Override
-    public String toString() {
-        return name;
+    public int compareTo(final Car otherCar) {
+        return this.position - otherCar.position;
+    }
+
+    public boolean isSamePosition(final Car otherCar) {
+        return this.position == otherCar.position;
     }
 }
