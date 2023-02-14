@@ -15,7 +15,7 @@ public class Cars {
         this.cars = new ArrayList<>(cars);
     }
 
-    public static Cars of(List<Name> names) {
+    public static Cars  of(List<Name> names) {
         List<Car> cars = names.stream()
                 .map(Car::new)
                 .collect(Collectors.toList());

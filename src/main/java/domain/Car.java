@@ -2,7 +2,7 @@ package domain;
 
 public class Car implements Comparable<Car> {
 
-    public static final int MINIMUM_NUMBER_TO_MOVE = 4;
+    private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final Name name;
     private final Position position;

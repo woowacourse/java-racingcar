@@ -4,9 +4,7 @@ import java.util.Objects;
 
 public class Position {
 
-    public static final int DEFAULT_POSITION_VALUE = 0;
-
-    private int position = DEFAULT_POSITION_VALUE;
+    private int position = 0;
 
     public void increase() {
         position++;

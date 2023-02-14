@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
-import static domain.Position.DEFAULT_POSITION_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
+
+    private static final int MINIMUM_NUMBER_TO_MOVE = 4;
+    private static final int DEFAULT_POSITION_VALUE = 0;
 
     @DisplayName("moveCars를 통해 조건을 충족시킨 Car를 move 시킨다.")
     @Test

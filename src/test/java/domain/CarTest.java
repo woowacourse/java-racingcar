@@ -4,10 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
+
+    private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     @DisplayName("move 메소드는 ")
     @Nested
@@ -47,7 +48,6 @@ class CarTest {
         void return_true() {
             Car carA = new Car(new Name("carA"));
             Car carB = new Car(new Name("carB"));
-
 
             assertThat(carA.isSamePosition(carB)).isTrue();
         }
