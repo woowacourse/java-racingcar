@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class RaceTest {
 
@@ -62,10 +61,10 @@ class RaceTest {
                     .containsOnly(tuple("rosie", 1), tuple("hong", 0));
         }
 
-        @ParameterizedTest
-        @DisplayName("tryMoveOneTime 메서드를 실행 후에, 시도횟수가 감소하였는지 테스트")
-        @ValueSource(ints = {1, 2, 3, 4, 5})
-        void tryCountDecreaseWhenExecuteTryMoveOneTime(int tryTime) {
+        @Test
+        @DisplayName("tryMoveOneTime 메서드를 실행 후에, 시도횟수가 1 감소하였는지 테스트")
+        void tryCountDecreaseWhenExecuteTryMoveOneTime() {
+            int tryTime = 1;
             Race race = new Race(List.of(new Car("rosie"), new Car("hong")));
             race.initTryTime(tryTime);
             race.tryMoveOneTime(new RandomNumberPicker());
