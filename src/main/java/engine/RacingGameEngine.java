@@ -3,37 +3,60 @@ package engine;
 import console.InputView;
 import console.OutputView;
 import domain.Cars;
+import domain.TryCount;
+import java.util.InputMismatchException;
 import utils.CarsFactory;
+import utils.RandomPowerGenerator;
+import utils.RandomPowerMaker;
 
 public class RacingGameEngine {
 
-    public void startGame() {
-        final String carNames = getCarNames();
-        final int tryCount = getTryCount();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final RandomPowerGenerator randomPowerGenerator = new RandomPowerMaker();
 
-        Cars cars = CarsFactory.createCars(carNames);
+    public void startGame() {
+
+        final Cars cars = getCars();
+        final TryCount tryCount = getTryCount();
 
         startRace(cars, tryCount);
 
-        OutputView.printWinners(cars);
+        outputView.printWinners(cars);
     }
 
-    private String getCarNames() {
-        OutputView.requestOfCarNames();
-        return InputView.inputCarNames();
+    private Cars getCars() {
+        outputView.requestOfCarNames();
+
+        try {
+            final String[] carNames = inputView.inputCarNames();
+            Cars cars = CarsFactory.createCars(carNames);
+            return cars;
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return getCars();
+        }
     }
 
-    private int getTryCount() {
-        OutputView.requestOfTryCount();
-        return InputView.inputTryCount();
+    private TryCount getTryCount() {
+        outputView.requestOfTryCount();
+
+        try {
+            int input = inputView.inputTryCount();
+            TryCount tryCount = new TryCount(input);
+            return tryCount;
+        } catch (IllegalArgumentException | InputMismatchException exception) {
+            System.out.println(exception.getMessage());
+            return getTryCount();
+        }
     }
 
-    private void startRace(Cars cars, int tryCount) {
-        OutputView.printResultMessage();
+    private void startRace(Cars cars, TryCount tryCount) {
+        outputView.printResultMessage();
 
-        for (int i = 0; i < tryCount; i++) {
-            cars.moveAll();
-            OutputView.printCurrentRacingStatus(cars);
+        for (int i = 0; i < tryCount.getTryCount(); i++) {
+            cars.moveAll(randomPowerGenerator);
+            outputView.printCurrentRacingStatus(cars);
         }
     }
 }

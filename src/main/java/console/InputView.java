@@ -1,31 +1,16 @@
 package console;
 
-import java.util.InputMismatchException;
 import utils.ScannerUtil;
-import validation.CarNamesValidation;
-import validation.TryCountValidation;
+import utils.SplitCarNames;
 
 public class InputView {
 
-    public static String inputCarNames() {
-        try {
-            final String carNames = ScannerUtil.readLine();
-            CarNamesValidation.validateInputCarNames(carNames);
-            return carNames;
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return inputCarNames();
-        }
+    public String[] inputCarNames() {
+        final String carNames = ScannerUtil.readLine();
+        return SplitCarNames.splitCarNames(carNames);
     }
 
-    public static int inputTryCount() {
-        try {
-            final int tryCount = ScannerUtil.readNumber();
-            TryCountValidation.validateTryCount(tryCount);
-            return tryCount;
-        } catch (IllegalArgumentException | InputMismatchException exception) {
-            System.out.println(exception.getMessage());
-            return inputTryCount();
-        }
+    public int inputTryCount() {
+        return ScannerUtil.readNumber();
     }
 }

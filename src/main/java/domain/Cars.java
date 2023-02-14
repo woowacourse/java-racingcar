@@ -1,33 +1,43 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import utils.RandomPowerGenerator;
 
 public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
+        validate(cars);
         this.cars = cars;
     }
 
-    public void moveAll() {
-        for (final Car car : cars) {
-            startMove(car);
+    private void validate(List<Car> cars) {
+        List<String> carNames = cars.stream()
+                .map(i -> i.getCarName())
+                .collect(Collectors.toList());
+
+        Set<String> carNameWithoutDuplication = new HashSet<>(carNames);
+
+        if (carNameWithoutDuplication.size() != carNames.size()) {
+            throw new IllegalArgumentException("자동차 이름은 중복되지 않아야합니다.");
         }
     }
 
-    private void startMove(final Car car) {
-        if (car.canMove()) {
-            car.move();
+    public void moveAll(final RandomPowerGenerator randomPowerGenerator) {
+        for (final Car car : cars) {
+            final int power = randomPowerGenerator.generateRandomPower();
+            car.move(power);
         }
     }
 
     public List<String> getWinnerNames() {
         List<String> winnerNames = new ArrayList<>();
-        int maxCountOfDistance = getMaxDistance();
+        final int maxCountOfDistance = findMaxCountOfDistance();
 
         for (final Car car : cars) {
             addWinnerName(winnerNames, car, maxCountOfDistance);
@@ -36,27 +46,23 @@ public class Cars {
         return winnerNames;
     }
 
-    private int getMaxDistance() {
-        int maxDistance = Integer.MIN_VALUE;
-        for (final Car car : cars) {
-            maxDistance = Math.max(car.getDistance(), maxDistance);
-        }
-        return maxDistance;
-    }
-
-    private void addWinnerName(List<String> result, Car car, int maxDistance) {
-        if (car.getDistance() == maxDistance) {
-            result.add(car.getName());
-        }
-    }
-
-    public Map<String, Integer> getCurrentRacingStatus() {
-        Map<String, Integer> carAndDistanceStatus = new HashMap<>();
+    private int findMaxCountOfDistance() {
+        int maxCountOfDistance = Integer.MIN_VALUE;
 
         for (final Car car : cars) {
-            carAndDistanceStatus.put(car.getName(), car.getDistance());
+            maxCountOfDistance = Math.max(car.getDistance(), maxCountOfDistance);
         }
 
-        return carAndDistanceStatus;
+        return maxCountOfDistance;
+    }
+
+    private void addWinnerName(final List<String> winnerNames, final Car car, final int maxCountOfDistance) {
+        if (car.getDistance() == maxCountOfDistance) {
+            winnerNames.add(car.getCarName());
+        }
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
