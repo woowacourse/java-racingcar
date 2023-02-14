@@ -1,3 +1,5 @@
+import common.ExecuteContext;
+import common.InputContext;
 import controller.CarRaceController;
 import domain.repository.CarRaceResultRepositoryImpl;
 import domain.service.CarRaceService;
@@ -19,7 +21,7 @@ public class Application {
 
     private static CarRaceController config() {
         return new CarRaceController(new InputView(), new OutputView(),
-            makeValidator(), makeService());
+            makeValidator(), makeService(), new InputContext(), new ExecuteContext());
     }
 
     private static CarRaceService makeService() {

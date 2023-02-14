@@ -25,7 +25,8 @@ public class Name {
     }
 
     private boolean isCarNameLengthInRange(final int nameLength) {
-        return nameLength >= MIN_NAME_LENGTH && nameLength <= MAX_NAME_LENGTH;
+        return nameLength >= MIN_NAME_LENGTH
+            && nameLength <= MAX_NAME_LENGTH;
     }
 
     @Override
