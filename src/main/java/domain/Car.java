@@ -1,24 +1,22 @@
 package domain;
 
-public class Car {
-    private final static int MOVE_STANDARD = 4;
+import domain.engine.Engine;
 
+public class Car {
     private final Name name;
     private final Position position;
+    private final Engine engine;
 
-    public Car(Name name) {
+    public Car(Name name, Engine engine) {
         this.name = name;
         this.position = new Position();
+        this.engine = engine;
     }
 
-    public void tryMove(int number) {
-        if (isMovable(number)) {
+    public void tryMove() {
+        if (engine.isMovable()) {
             position.move();
         }
-    }
-
-    private boolean isMovable(int number) {
-        return number >= MOVE_STANDARD;
     }
 
     public Position getPosition() {

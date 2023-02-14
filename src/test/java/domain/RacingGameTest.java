@@ -2,20 +2,21 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import domain.engine.Engine;
+import domain.engine.MovableEngine;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameTest {
-    private static final int movableNumber = 9;
-
+    private final Engine engine = new MovableEngine();
 
     @DisplayName("더 많이 움직인 자동차가 우승자가 된다.")
     @Test
-    public void test1() {
-        Car car1 = new Car(new Name("k7"));
-        Car car2 = new Car(new Name("audi"));
+    public void getWinnersTest() {
+        Car car1 = new Car(new Name("k7"), engine);
+        Car car2 = new Car(new Name("audi"), engine);
 
         Cars cars = new Cars(Arrays.asList(car1, car2));
 
@@ -28,10 +29,10 @@ class RacingGameTest {
 
     @DisplayName("많이 움직인 자동차가 2개 이상인 경우 공동 우승자가 된다.")
     @Test
-    public void test2() {
-        Car car1 = new Car(new Name("k7"));
-        Car car2 = new Car(new Name("audi"));
-        Car car3 = new Car(new Name("bmw"));
+    public void getJointWinnersTest() {
+        Car car1 = new Car(new Name("k7"), engine);
+        Car car2 = new Car(new Name("audi"), engine);
+        Car car3 = new Car(new Name("bmw"), engine);
 
 
         Cars cars = new Cars(Arrays.asList(car1, car2, car3));
@@ -46,7 +47,7 @@ class RacingGameTest {
 
     public void moveByCount(Car car, int count) {
         for (int i = 0; i < count; i++) {
-            car.tryMove(movableNumber);
+            car.tryMove();
         }
     }
 }
