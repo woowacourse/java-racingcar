@@ -1,9 +1,7 @@
 package view;
 
 import exception.BlankInputException;
-import exception.BlankNameException;
 import exception.DuplicateCarNameException;
-import exception.WrongNameLengthException;
 import exception.WrongRoundException;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -14,8 +12,6 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String NAME_SEPARATOR = ",";
-    private static final int NAME_MIN_LENGTH = 1;
-    private static final int NAME_MAX_LENGTH = 5;
     private static final int ROUND_MIN_VALUE = 1;
     private static final String INPUT_CAR_NAMES_MESSAGE =
             "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -43,7 +39,6 @@ public class InputView {
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
         validateNameDuplication(inputCarsName.length, carsName.size());
-        carsName.forEach(this::validateCarName);
         return carsName;
     }
 
@@ -53,21 +48,6 @@ public class InputView {
         }
     }
 
-    private void validateCarName(String carName) {
-        if (carName.isBlank()) {
-            throw new BlankNameException();
-        }
-        if (!validateNameLength(carName)) {
-            throw new WrongNameLengthException();
-        }
-    }
-
-    private boolean validateNameLength(String name) {
-        int length = name.length();
-
-        return length >= NAME_MIN_LENGTH && length <= NAME_MAX_LENGTH;
-    }
-
     public int inputRound() {
         print(INPUT_ROUND_MESSAGE);
 
@@ -75,7 +55,6 @@ public class InputView {
         validateBlank(input);
 
         int inputRound = mapToRoundNumber(input);
-        validateRoundRange(inputRound);
         return inputRound;
     }
 
@@ -83,12 +62,6 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new WrongRoundException();
-        }
-    }
-
-    private void validateRoundRange(int inputRound) {
-        if (inputRound < ROUND_MIN_VALUE) {
             throw new WrongRoundException();
         }
     }
