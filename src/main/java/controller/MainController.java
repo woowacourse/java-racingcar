@@ -1,15 +1,15 @@
 package controller;
 
+import model.car.CarRegisterer;
+import model.car.Cars;
+import model.manager.CarMoveManager;
+import view.InputView;
+import view.OutputView;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
-import model.car.Car;
-import model.manager.CarMoveManager;
-import model.car.CarRepository;
-import util.RandomNumberGenerator;
-import view.InputView;
-import view.OutputView;
 
 public class MainController {
 
@@ -17,23 +17,25 @@ public class MainController {
     private final OutputView outputView;
     private final Map<GameStatus, Supplier<GameStatus>> gameGuide;
     private final CarMoveManager carMoveManager;
+    private final CarRegisterer carRegisterer;
 
     public MainController(InputView inputView, OutputView outputView, CarMoveManager carMoveManager) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.carMoveManager = carMoveManager;
         this.gameGuide = initializeGameGuide();
+        this.carMoveManager = carMoveManager;
+        this.carRegisterer = new CarRegisterer();
     }
 
     private Map<GameStatus, Supplier<GameStatus>> initializeGameGuide() {
         Map<GameStatus, Supplier<GameStatus>> gameGuide = new EnumMap<>(GameStatus.class);
-        gameGuide.put(GameStatus.SET_CARS, this::setCars);
-        gameGuide.put(GameStatus.MOVE_CARS, this::moveCars);
+        gameGuide.put(GameStatus.CAR_REGISTRATION, this::registerCars);
+        gameGuide.put(GameStatus.GAME_START, this::race);
         return gameGuide;
     }
 
     public void play() {
-        GameStatus gameStatus = progress(GameStatus.SET_CARS);
+        GameStatus gameStatus = progress(GameStatus.CAR_REGISTRATION);
         while (gameStatus.isContinue(gameStatus)) {
             gameStatus = progress(gameStatus);
         }
@@ -44,44 +46,44 @@ public class MainController {
             return gameGuide.get(gameStatus).get();
         } catch (IllegalArgumentException exception) {
             outputView.printExceptionMessage(exception);
-            return GameStatus.APPLICATION_EXIT;
+            return gameStatus;
         } catch (NullPointerException exception) {
-            return GameStatus.APPLICATION_EXIT;
+            return GameStatus.GAME_EXIT;
+        } catch (Exception exception) {
+            return GameStatus.GAME_EXIT;
         }
     }
 
-    private GameStatus moveCars() {
-        int moveCount = inputView.readMoveCount();
-        outputView.printResultMessage();
-        moveAllCars(moveCount);
-        outputView.printWinners(CarRepository.getWinners());
-        return GameStatus.APPLICATION_EXIT;
-    }
-
-    private GameStatus setCars() {
+    private GameStatus registerCars() {
         List<String> carNames = inputView.readCarNames();
-        carNames.stream()
-                .map(Car::new)
-                .forEach(CarRepository::addCars);
-        return GameStatus.MOVE_CARS;
+        carNames.stream().forEach(carName -> carRegisterer.registerCar(carName));
+        return GameStatus.GAME_START;
     }
 
-    private void moveAllCars(int moveCount) {
+    private GameStatus race() {
+        int moveCount = inputView.readMoveCount();
+        Cars cars = carRegisterer.prepareCars();
+        moveAllCars(moveCount, cars);
+        outputView.printResultMessage();
+        outputView.printWinners(cars.getWinners());
+        return GameStatus.GAME_EXIT;
+    }
+
+    private void moveAllCars(int moveCount, Cars cars) {
         for (int i = 0; i < moveCount; i++) {
-            CarRepository.cars()
-                    .forEach(car -> car.move(carMoveManager.isMove(RandomNumberGenerator.getRandomNumber())));
-            outputView.printResult(CarRepository.cars());
+            cars.moveAllCarsOnce(carMoveManager);
+            outputView.printResult(cars.getCurrentResult());
         }
     }
 
     private enum GameStatus {
-        SET_CARS, MOVE_CARS, APPLICATION_EXIT;
+        CAR_REGISTRATION, GAME_START, GAME_EXIT;
 
         GameStatus() {
         }
 
         boolean isContinue(GameStatus gameStatus) {
-            return !gameStatus.equals(APPLICATION_EXIT);
+            return !gameStatus.equals(GAME_EXIT);
         }
     }
 }

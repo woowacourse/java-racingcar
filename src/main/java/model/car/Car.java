@@ -10,8 +10,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(boolean isMove) {
-        if (isMove) {
+    public void move(boolean isMoveForward) {
+        if (isMoveForward) {
             position++;
         }
     }
@@ -24,8 +24,8 @@ public class Car {
         return position;
     }
 
-    public boolean isWinner(int maxPosition) {
-        return position == maxPosition;
+    public boolean isSame(int position) {
+        return this.position == position;
     }
 
 }

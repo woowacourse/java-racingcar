@@ -17,6 +17,7 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("자동차가 처음에 위치가 0으로 올바르게 초기화 되는지 검사한다.")
     void initialPositionTest() {
         Assertions.assertEquals(gitJjang.getPosition(), 0);
         Assertions.assertEquals(irene.getPosition(), 0);
@@ -31,11 +32,11 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("움직인 칸수에 따라 우승자가 정상적으로 판단되는지 검사한다.")
-    void winnerTest() {
+    @DisplayName("현재 위치가 움직인 칸수에 따라 정상적으로 판단되는지 검사한다.")
+    void positionTest() {
         moveEachCars();
-        Assertions.assertTrue(gitJjang.isWinner(1));
-        Assertions.assertFalse(irene.isWinner(1));
+        Assertions.assertTrue(gitJjang.isSame(1));
+        Assertions.assertFalse(irene.isSame(1));
     }
 
     private void moveEachCars() {
