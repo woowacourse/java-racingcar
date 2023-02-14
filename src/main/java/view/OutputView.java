@@ -40,4 +40,8 @@ public class OutputView {
     private static String makeWinnerInfo(List<String> winners) {
         return String.join(WINNER_INFO_DELIMITER, winners);
     }
+
+    public static void printErrorMessage(final String errorMessage){
+        System.out.println(errorMessage);
+    }
 }

@@ -2,8 +2,6 @@ package view;
 
 import static java.util.Collections.addAll;
 
-import domain.Names;
-import domain.TryCount;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,26 +14,16 @@ public class InputView {
     private static final String COMMA = ",";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static Names requestCarName() {
+    public static List<String> requestCarName() {
         System.out.println(REQUEST_CAR_NAME_MESSAGE);
 
-        try {
-            return new Names(sliceNameByComma(input()));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return requestCarName();
-        }
+        return sliceNameByComma(input());
     }
 
-    public static TryCount requestTryCount() {
+    public static int requestTryCount() {
         System.out.println(REQUEST_TRY_COUNT_MESSAGE);
 
-        try {
-            return new TryCount(input());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return requestTryCount();
-        }
+        return Integer.parseInt(input());
     }
 
     private static String input() {

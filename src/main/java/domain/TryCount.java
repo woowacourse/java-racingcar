@@ -3,23 +3,17 @@ package domain;
 public class TryCount {
 
     private static final int EXCEPTION_FLAG = 0;
+    private static final int DEDUCT_STEP = 1;
     private static final String ENTER_POSITIVE_INTEGER = "[ERROR] 양의 정수를 입력해주세요.";
     private final int tryCount;
 
-    public TryCount(final String input) {
-        this.tryCount = convertAndValidate(input);
+    public TryCount(final int count) {
+        validateInputRange(count);
+        this.tryCount = count;
     }
 
-    private TryCount(final int tryCount) {
-        this.tryCount = tryCount;
-    }
-
-    private int convertAndValidate(String input) {
-        int tryCount = Integer.parseInt(input);
-
-        validateInputRange(tryCount);
-
-        return tryCount;
+    private TryCount(final int count, final int deductValue) {
+        this.tryCount = count - deductValue;
     }
 
     private void validateInputRange(final int inputCount) {
@@ -29,7 +23,7 @@ public class TryCount {
     }
 
     public TryCount deduct() {
-        return new TryCount(tryCount - 1);
+        return new TryCount(tryCount, DEDUCT_STEP);
     }
 
     public boolean isOpportunity() {

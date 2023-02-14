@@ -30,7 +30,12 @@ public class RacingGameController {
     }
 
     private Names getNames() {
-        return InputView.requestCarName();
+        try {
+            return new Names(InputView.requestCarName());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getNames();
+        }
     }
 
     private List<RacingCar> createRacingCar(Names names) {
@@ -41,7 +46,12 @@ public class RacingGameController {
     }
 
     private TryCount getTryCount() {
-        return InputView.requestTryCount();
+        try {
+            return new TryCount(InputView.requestTryCount());
+        }catch (IllegalArgumentException e){
+            OutputView.printErrorMessage(e.getMessage());
+            return getTryCount();
+        }
     }
 
     private void playGame() {
