@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.vo.Name;
-import racingcar.vo.Position;
 
 public class Car implements Comparable<Car>{
     private static final int INIT_POSITION = 0;
@@ -19,10 +18,6 @@ public class Car implements Comparable<Car>{
         if (power >= BOUNDARY) {
             position.increase();
         }
-    }
-
-    public boolean isSamePosition(Car other) {
-        return other.position == this.position;
     }
 
     @Override
