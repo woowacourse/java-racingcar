@@ -37,19 +37,19 @@ public class Car {
         return intGenerator.getOneNumber() >= MINIMUM_NUMBER_TO_MOVE;
     }
 
+    private void validateName(String name) {
+        String trimmedName = name.trim();
+        if (trimmedName.length() < MINIMUM_NAME_LENGTH || MAXIMUM_NAME_LENGTH < trimmedName.length()) {
+            throw new IllegalArgumentException(WRONG_LENGTH_OF_NAME_ANNOUNCEMENT);
+        }
+    }
+
     public String getName() {
         return name;
     }
 
     public int getMovedCount() {
         return movedCount;
-    }
-
-    private void validateName(String name) {
-        String trimmedName = name.trim();
-        if (trimmedName.length() < MINIMUM_NAME_LENGTH || MAXIMUM_NAME_LENGTH < trimmedName.length()) {
-            throw new IllegalArgumentException(WRONG_LENGTH_OF_NAME_ANNOUNCEMENT);
-        }
     }
 
 }

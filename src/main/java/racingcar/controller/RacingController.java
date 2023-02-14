@@ -3,8 +3,8 @@ package racingcar.controller;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.dto.CarDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -24,10 +24,7 @@ public class RacingController {
     public void doRacing() {
         createCars();
         repeatTryMovingByInputCount();
-        List<CarDto> carDtos = cars.getCars().stream()
-                .map(CarDto::new)
-                .collect(Collectors.toList());
-        outputView.printResult(carDtos);
+        outputView.printResult(cars.getCars());
         outputView.printWinner(cars.getWinner());
     }
 
@@ -39,8 +36,7 @@ public class RacingController {
 
     private Cars getCars() {
         try {
-            Cars cars = new Cars(inputView.inputCarNames());
-            return cars;
+            return new Cars(inputView.inputCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return new Cars(Collections.emptyList());
@@ -55,10 +51,7 @@ public class RacingController {
         outputView.announceBeforePrintResult();
         for (int i = 0; i < tryCount; i++) {
             cars.requestMoveEachCar();
-            List<CarDto> carDtos = cars.getCars().stream()
-                    .map(CarDto::new)
-                    .collect(Collectors.toList());
-            outputView.printResult(carDtos);
+            outputView.printResult(cars.getCars());
         }
     }
 

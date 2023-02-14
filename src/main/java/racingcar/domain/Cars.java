@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.dto.CarDto;
 import racingcar.util.IntGenerator;
 
 public class Cars {
@@ -32,17 +31,14 @@ public class Cars {
         return cars;
     }
 
-    public List<CarDto> getWinner() {
+    public List<Car> getWinner() {
         int winnerCount = 0;
-        List<CarDto> carDtos = cars.stream()
-                .map(CarDto::new)
-                .collect(Collectors.toList());
-        for (CarDto carDto : carDtos) {
-            winnerCount = getMaxMovedCount(winnerCount, carDto.getMovedCount());
+        for (Car car : cars) {
+            winnerCount = getMaxMovedCount(winnerCount, car.getMovedCount());
         }
         final int finalWinnerCount = winnerCount;
-        return carDtos.stream()
-                .filter(carDto -> carDto.getMovedCount() == finalWinnerCount)
+        return cars.stream()
+                .filter(car -> car.getMovedCount() == finalWinnerCount)
                 .collect(Collectors.toList());
     }
     
