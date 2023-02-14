@@ -21,7 +21,8 @@ public class CarTest {
         Car car = new Car("move");
         car.move(input);
 
-        assertThat(car.getDistance()).isEqualTo(1);
+        assertThat(car.getDistance())
+                .isEqualTo(1);
     }
 
     @DisplayName("전진하는 경우")
@@ -30,9 +31,13 @@ public class CarTest {
     void moveTrue(int input, int expected) {
         Car car = new Car("move");
 
-        IntStream.range(0, input).forEach(moveCount -> car.move(4));
+        IntStream.range(0, input)
+                .forEach(
+                        moveCount -> car.move(4)
+                );
 
-        assertThat(car.getDistance()).isEqualTo(expected);
+        assertThat(car.getDistance())
+                .isEqualTo(expected);
     }
 
     @DisplayName("전진하지 않는 경우")
@@ -42,7 +47,8 @@ public class CarTest {
         Car car = new Car("stay");
         car.move(input);
 
-        assertThat(car.getDistance()).isEqualTo(0);
+        assertThat(car.getDistance())
+                .isEqualTo(0);
     }
 
     @DisplayName("공백이 포함되어 글자가 1 ~ 5 글자가 아닌 경우")

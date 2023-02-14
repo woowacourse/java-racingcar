@@ -28,7 +28,7 @@ public class Cars {
         }
     }
 
-    public void moveAll(PowerGenerator powerGenerator) { // 모든 Car 들을 moveAll
+    public void moveAll(PowerGenerator powerGenerator) {
         cars.forEach(car -> moveEach(powerGenerator, car));
     }
 

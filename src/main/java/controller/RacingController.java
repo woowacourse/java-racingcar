@@ -31,7 +31,7 @@ public class RacingController {
         Cars cars = new Cars(inputCars);
         GameCount gameCount = new GameCount(inputView.requestNumberOfTimes());
         progress(cars, gameCount);
-        end(cars);
+        finish(cars);
     }
 
     private void progress(Cars cars, GameCount gameCount) {
@@ -47,7 +47,7 @@ public class RacingController {
         outputView.printResult(cars.getCars());
     }
 
-    private void end(Cars cars) {
+    private void finish(Cars cars) {
         outputView.printWinners(cars.getWinners());
     }
 

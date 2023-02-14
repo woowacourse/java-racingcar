@@ -23,8 +23,7 @@ public class CarsTest {
         Cars cars = new Cars(inputCars);
         cars.moveAll(createCustomPowerGenerator(4));
 
-        assertThat(cars
-                .getCars()
+        assertThat(cars.getCars()
                 .stream()
                 .allMatch(car -> car.isSameDistance(1)))
                 .isTrue();

@@ -4,12 +4,8 @@ public class Car {
 
     private static final int THRESHOLD = 4;
     private static final int DEFAULT_INITIAL_POSITION = 0;
-    private static final int CAR_NAME_LENGTH_LOWER_BOUND_INCLUSIVE = 1;
-    private static final int CAR_NAME_LENGTH_UPPER_BOUND_INCLUSIVE = 5;
 
-    private static final String CAR_NAME_LENGTH_ERROR = "자동차명은 1 ~ 5 글자로 입력해야합니다.";
-
-    private final String name;
+    private final Name name;
     private int distance;
 
     public Car(String name) {
@@ -17,20 +13,8 @@ public class Car {
     }
 
     public Car(String name, int distance) {
-        String validCarName = validateCarNamesLength(name);
-        this.name = validCarName;
+        this.name = new Name(name);
         this.distance = distance;
-    }
-
-    private String validateCarNamesLength(String name) {
-        name = name.trim();
-
-        if (!(CAR_NAME_LENGTH_LOWER_BOUND_INCLUSIVE <= name.length()
-                && name.length() <= CAR_NAME_LENGTH_UPPER_BOUND_INCLUSIVE)) {
-            throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR);
-        }
-
-        return name;
     }
 
     public void move(int power) {
@@ -44,7 +28,7 @@ public class Car {
     }
 
     public String getName() {
-        return this.name;
+        return this.name.getName();
     }
 
     public boolean isSameDistance(int distance) {
@@ -55,7 +39,7 @@ public class Car {
     public boolean equals(Object object) {
         return object instanceof Car
                 && ((Car) object).getName()
-                .equals(this.name);
+                .equals(this.name.getName());
     }
 
     @Override
