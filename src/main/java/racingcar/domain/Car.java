@@ -31,12 +31,8 @@ public class Car {
         }
     }
 
-    public int compareTo(final Car other) {
-        return this.currentPosition.getPosition() - other.currentPosition.getPosition();
-    }
-
-    public boolean isSamePosition(final Car target) {
-        return currentPosition.equals(target.currentPosition);
+    public boolean isSamePosition(final Position targetPosition) {
+        return currentPosition.equals(targetPosition);
     }
 
     private boolean isMovable(final int number) {

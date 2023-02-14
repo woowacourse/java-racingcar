@@ -17,7 +17,9 @@ public class WinnerMakerTest {
                 .filter(car -> car.getName().equals("박정훈"))
                 .forEach(car -> car.move(new TestNumberGenerator(4)));
 
-        assertThat(WinnerMaker.getWinnerCarsName(cars.getLatestResult()))
+        WinnerMaker winnerMaker = new WinnerMaker();
+
+        assertThat(winnerMaker.getWinnerCarsName(cars.getLatestResult()))
                 .isEqualTo(List.of("박정훈"));
     }
 }

@@ -6,18 +6,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinnerMaker {
-    public static List<String> getWinnerCarsName(final List<Car> cars) {
-        Car winner = getWinner(cars);
+    public List<String> getWinnerCarsName(final List<Car> cars) {
+        Position maxPosition = getMaxPosition(cars);
 
         return cars.stream()
-                .filter(car -> car.isSamePosition(winner))
+                .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private static Car getWinner(final List<Car> cars) {
+    private Position getMaxPosition(List<Car> cars) {
         return cars.stream()
-                .max(Car::compareTo)
+                .map(Car::getCurrentPosition)
+                .max(Position::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException(ErrorConstant.ERROR_PREFIX + "비교할 자동차가 없습니다."));
     }
 }

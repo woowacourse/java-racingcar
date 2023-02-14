@@ -79,7 +79,8 @@ public class RacingCarController {
     }
 
     private void prizeWinner(Cars cars) {
-        List<String> winnersName = WinnerMaker.getWinnerCarsName(cars.getLatestResult());
+        WinnerMaker winnerMaker = new WinnerMaker();
+        List<String> winnersName = winnerMaker.getWinnerCarsName(cars.getLatestResult());
         OutputView.printFinalResult(winnersName);
     }
 }

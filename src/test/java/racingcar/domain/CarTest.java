@@ -93,7 +93,7 @@ class CarTest {
             other.move(numberGenerator);
         }
 
-        assertThat(car.compareTo(other))
+        assertThat(car.getCurrentPosition().compareTo(other.getCurrentPosition()))
                 .isEqualTo(expected);
     }
 
@@ -107,7 +107,7 @@ class CarTest {
             other.move(numberGenerator);
         }
 
-        assertThat(car.isSamePosition(other))
+        assertThat(car.isSamePosition(other.getCurrentPosition()))
                 .isEqualTo(expected);
     }
 }
