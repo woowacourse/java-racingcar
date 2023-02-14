@@ -3,11 +3,11 @@ package repository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.model.Car;
 import domain.model.Name;
 import domain.repository.CarRaceResultRepository;
 import domain.repository.CarRaceResultRepositoryImpl;
 import java.util.List;
-import domain.model.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -96,5 +96,19 @@ class CarRaceResultRepositoryTest {
         //then
         assertThat(carRaceResultRepository.getRaceResult().get(car1.getName())).isEqualTo(2);
         assertThat(carRaceResultRepository.getRaceResult().get(car2.getName())).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("초기화 메소드를 테스트한다.")
+    public void checkClear() {
+        //given
+        Car car = new Car(new Name("car"));
+        carRaceResultRepository.save(car);
+
+        //when
+        carRaceResultRepository.clear();
+
+        //then
+        assertThat(carRaceResultRepository.findAllCars()).isEmpty();
     }
 }
