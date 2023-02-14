@@ -4,12 +4,11 @@ import util.validator.CarNameValidator;
 
 public class Car {
 
-    private final String name;
+    private final CarName name;
     private int position;
 
     public Car(String name) {
-        new CarNameValidator().validate(name);
-        this.name = name;
+        this.name =  new CarName(name);
     }
 
     public void move(boolean isMove) {
@@ -19,7 +18,7 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getPosition() {
