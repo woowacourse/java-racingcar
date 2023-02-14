@@ -36,7 +36,7 @@ public class RacingController {
         outputView.printWinnerCars(track.findWinner());
     }
 
-    public void terminated(final Exception e) {
+    public void terminated(final IllegalArgumentException e) {
         outputView.printErrorMessage(e);
     }
 }

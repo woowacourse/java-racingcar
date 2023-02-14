@@ -1,6 +1,8 @@
 package racingcar;
 
 import racingcar.controller.RacingController;
+import racingcar.exception.DuplicateCarNamesException;
+import racingcar.exception.ExceedCarNameLengthException;
 import racingcar.model.car.strategy.MovingStrategy;
 import racingcar.model.car.strategy.RandomMovingStrategy;
 import racingcar.view.InputView;
@@ -18,7 +20,7 @@ public class Application {
 
         try {
             racingController.start(randomMovingStrategy);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             racingController.terminated(e);
         }
     }
