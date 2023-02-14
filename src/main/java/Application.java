@@ -1,4 +1,4 @@
-import domain.controller.CarRaceController;
+import controller.CarRaceController;
 import domain.repository.CarRaceResultRepositoryImpl;
 import domain.service.CarRaceService;
 import domain.service.CarRaceServiceImpl;
