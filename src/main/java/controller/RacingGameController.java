@@ -2,27 +2,27 @@ package controller;
 
 import domain.Cars;
 import domain.GameCount;
+import domain.PowerGenerator;
 import view.InputView;
 import view.OutputView;
-
-import java.util.Random;
 
 public class RacingGameController {
     private GameCount gameCount;
     private Cars cars;
 
-    private final Random powerGenerator=new Random();
+    private final PowerGenerator powerGenerator;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingGameController(InputView inputView, OutputView outputView) {
+    public RacingGameController(PowerGenerator powerGenerator, InputView inputView, OutputView outputView) {
+        this.powerGenerator = powerGenerator;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void init() {
-        this.cars=makeCars();
-        this.gameCount=makeGameCount();
+        this.cars = makeCars();
+        this.gameCount = makeGameCount();
     }
 
     public void run() {

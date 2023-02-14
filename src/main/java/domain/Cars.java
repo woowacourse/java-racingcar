@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int RANDOM_UPPER_BOUND_EXCLUSIVE = 10;
     private static final String DUPLICATED_CAR_NAMES = "차 이름은 중복될 수 없습니다";
 
     private final List<Car> cars = new ArrayList<>();
@@ -18,8 +17,8 @@ public class Cars {
         return new Cars(names);
     }
 
-    public void move(Random powerGenerator) {
-        cars.forEach(car -> car.move(nextPower(powerGenerator)));
+    public void move(PowerGenerator powerGenerator) {
+        cars.forEach(car -> car.move(powerGenerator.nextPower()));
     }
 
     public List<String> getWinners() {
@@ -36,10 +35,6 @@ public class Cars {
         cars.forEach(car -> result.put(car.getName(), car.getPosition()));
 
         return result;
-    }
-
-    private int nextPower(Random powerGenerator) {
-        return powerGenerator.nextInt(RANDOM_UPPER_BOUND_EXCLUSIVE);
     }
 
     private void validate(List<String> names) {

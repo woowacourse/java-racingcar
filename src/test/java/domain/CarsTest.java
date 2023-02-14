@@ -2,13 +2,12 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
     @DisplayName("중복된 이름이 있으면 예외 발생")
@@ -20,26 +19,30 @@ class CarsTest {
     }
 
     @DisplayName("우승자는 가장 멀리 간 차들이다")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 3, 5, 9})
-    void getWinnersTest(int next) {
+    @Test
+    void getWinnersTest() {
         //given
         Cars cars = Cars.from(List.of("a", "b", "c"));
+        List<Integer> powers = List.of(0, 9, 9);
 
         //when
-        cars.move(generator(next));
+        cars.move(new TestPowerGenerator(powers));
 
         //then
         assertThat(cars.getWinners())
-                .containsExactly("a", "b", "c");
+                .containsExactly("b", "c");
     }
 
-    private Random generator(int next){
-        return new Random(){
-            @Override
-            public int nextInt(int bound){
-                return next;
-            }
-        };
+    private static class TestPowerGenerator implements PowerGenerator {
+        Iterator<Integer> iterator;
+
+        public TestPowerGenerator(List<Integer> powers) {
+            this.iterator = powers.iterator();
+        }
+
+        @Override
+        public int nextPower() {
+            return iterator.next();
+        }
     }
 }
