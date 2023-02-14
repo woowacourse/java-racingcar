@@ -14,7 +14,6 @@ public class OutputView {
     }
 
     public void printWinners(List<String> winnerNames) {
-        System.out.println(winnerNames);
         String winnerString = stringifyWinners(winnerNames);
         System.out.print(winnerString);
         System.out.println(RESULT_POSTFIX);
