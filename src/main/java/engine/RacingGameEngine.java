@@ -5,6 +5,7 @@ import console.OutputView;
 import domain.Car;
 import domain.Cars;
 import domain.Name;
+import utils.RandomNumberGenerator;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -48,10 +49,12 @@ public class RacingGameEngine {
 
     private void startRace(Cars cars, int tryCount) {
 
+        CarEngine carEngine = new CarEngine(new RandomNumberGenerator());
+
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount; i++) {
-            CarEngine.moveCar(cars);
+            carEngine.moveCar(cars);
             OutputView.printCurrentStatus(cars);
         }
     }

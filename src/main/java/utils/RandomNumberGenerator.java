@@ -1,8 +1,11 @@
 package utils;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
 
-    public static int generateRandomNumber() {
-        return (int) (Math.random() * 10);
+    private static final int RANDOM_NUMBER_UPPER_BOUND = 10;
+
+    @Override
+    public int generateNumber() {
+        return (int) (Math.random() * RANDOM_NUMBER_UPPER_BOUND);
     }
 }

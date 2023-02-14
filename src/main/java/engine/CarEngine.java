@@ -2,21 +2,27 @@ package engine;
 
 import domain.Car;
 import domain.Cars;
-import utils.RandomNumberGenerator;
+import utils.NumberGenerator;
 
 public class CarEngine {
 
-    public static void moveCar(Cars cars) {
+    private final NumberGenerator numberGenerator;
+
+    public CarEngine(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
+
+    public void moveCar(Cars cars) {
         for (Car car : cars.getCars()) {
             doRace(car);
         }
     }
 
-    private static boolean canMove() {
-        return RandomNumberGenerator.generateRandomNumber() >= 4;
+    private boolean canMove() {
+        return numberGenerator.generateNumber() >= 4;
     }
 
-    private static void doRace(final Car car) {
+    private void doRace(final Car car) {
         if (canMove()) {
             car.move();
         }
