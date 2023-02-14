@@ -1,6 +1,5 @@
 package racingcar.view.inputview;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public abstract class InputView {
