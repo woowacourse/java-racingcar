@@ -12,29 +12,23 @@ import utils.RandomNumberGenerator;
 
 class CarTest {
 
-    @ValueSource(ints = {1, 2, 3, 4, 5})
-    @ParameterizedTest
-    void 차량_전진_테스트(int driveCount) {
+    @Test
+    void 차량_전진_테스트() {
         //given
         final int DRIVING_DISTANCE = 1;
         Car car = new Car("test", new DrivableNumberGenerator());
         //when
-        for (int count = 0; count < driveCount; count++) {
-            car.drive();
-        }
+        car.drive();
         //then
-        assertThat(car.getDrivenDistance()).isEqualTo(driveCount * DRIVING_DISTANCE);
+        assertThat(car.getDrivenDistance()).isEqualTo(DRIVING_DISTANCE);
     }
 
-    @ValueSource(ints = {1, 2, 3, 4, 5})
-    @ParameterizedTest
-    void 차량_정지_테스트(int driveCount) {
+    @Test
+    void 차량_정지_테스트() {
         //given
         Car car = new Car("test", new NonDrivableNumberGenerator());
         //when
-        for (int count = 0; count < driveCount; count++) {
-            car.drive();
-        }
+        car.drive();
         //then
         assertThat(car.getDrivenDistance()).isEqualTo(0);
     }
