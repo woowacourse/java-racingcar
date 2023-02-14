@@ -4,7 +4,7 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RandomNumberGenerator;
-import racingcar.domain.TryCount;
+import racingcar.domain.Lap;
 import racingcar.domain.WinnerMaker;
 import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
@@ -25,9 +25,9 @@ public class RacingCarController {
 
     public void run() {
         Cars cars = initCars();
-        TryCount tryCount = initTryCount();
+        Lap lap = initTryCount();
         OutputView.printResultMessage();
-        race(cars, tryCount, numberGenerator);
+        race(cars, lap, numberGenerator);
         showFinalStatus(cars);
         prizeWinner(cars);
     }
@@ -47,21 +47,21 @@ public class RacingCarController {
         return List.of(input.split(","));
     }
 
-    private TryCount initTryCount() {
+    private Lap initTryCount() {
         try {
             int tries = InputView.inputTries();
-            return new TryCount(tries);
+            return new Lap(tries);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initTryCount();
         }
     }
 
-    private void race(Cars cars, TryCount tryCount, NumberGenerator numberGenerator) {
-        while (!tryCount.isFinish()) {
+    private void race(Cars cars, Lap lap, NumberGenerator numberGenerator) {
+        while (!lap.isFinish()) {
             List<Car> movedCars = cars.moveCars(numberGenerator);
             List<CarStatus> carStatuses = mapCarsToCarStatuses(movedCars);
-            tryCount.reduce();
+            lap.reduce();
             OutputView.printCarStatus(carStatuses);
         }
     }
