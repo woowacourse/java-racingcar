@@ -1,6 +1,7 @@
 package racingCar.controller;
 
 import racingCar.domain.RacingGame;
+import racingCar.domain.TryCount;
 import racingCar.util.RepeaterUtil;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
@@ -8,12 +9,15 @@ import java.util.List;
 
 public class RacingController {
 
-    private final RacingGame racingGame = new RacingGame();
+    private RacingGame racingGame;
 
     public void run() {
         List<String> carNames = RepeaterUtil.repeat(this::generateCars);
-        int tryCount = RepeaterUtil.repeat(this::readTryCount);
-        racingGame.play(carNames, tryCount);
+        TryCount tryCount = readTryCount();
+        racingGame = new RacingGame(carNames);
+        for (int count = 1; count <= tryCount.getTryCount(); count++) {
+            OutputView.printRacing(racingGame.race());
+        }
         OutputView.printWinners(racingGame.findWinners());
     }
 
@@ -21,7 +25,7 @@ public class RacingController {
         return RepeaterUtil.repeat(InputView::readCarNames);
     }
 
-    private int readTryCount() {
-        return RepeaterUtil.repeat(InputView::readTryCount);
+    private TryCount readTryCount() {
+        return new TryCount(RepeaterUtil.repeat(InputView::readTryCount));
     }
 }
