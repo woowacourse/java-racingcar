@@ -2,57 +2,58 @@ package controller;
 
 import domain.Cars;
 import domain.GameCount;
+import domain.PowerGenerator;
 import view.InputView;
 import view.OutputView;
 
 public class RacingGameController {
-    private GameCount count;
+    private GameCount gameCount;
     private Cars cars;
 
+    private final PowerGenerator powerGenerator;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingGameController(InputView inputView, OutputView outputView) {
+    public RacingGameController(PowerGenerator powerGenerator, InputView inputView, OutputView outputView) {
+        this.powerGenerator = powerGenerator;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void init() {
-        while (!readCarNames()) ;
-        while (!readTryCount()) ;
+        this.cars = makeCars();
+        this.gameCount = makeGameCount();
     }
 
     public void run() {
         outputView.initResult();
 
-        while (!count.isOver()) {
-            cars.move();
-            count.play();
+        while (!gameCount.isOver()) {
+            cars.move(powerGenerator);
+            gameCount.play();
             outputView.printRaceResult(cars.getResult());
         }
 
         outputView.printWinners(cars.getWinners());
     }
 
-    private boolean readCarNames() {
+    private Cars makeCars() {
         try {
-            this.cars = Cars.from(inputView.readCarName());
-            return true;
+            return Cars.from(inputView.readCarNames());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-        }
 
-        return false;
+            return makeCars();
+        }
     }
 
-    private boolean readTryCount() {
+    private GameCount makeGameCount() {
         try {
-            this.count = new GameCount(inputView.readTryCount());
-            return true;
+            return new GameCount(inputView.readTryCount());
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-        }
 
-        return false;
+            return makeGameCount();
+        }
     }
 }
