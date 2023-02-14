@@ -21,7 +21,8 @@ public class RacingCarController {
 
     public void run() throws IOException {
         Cars cars = getCars();
-        race(cars);
+        AttemptNumber attemptNumber = getAttemptNumber();
+        race(cars, attemptNumber);
         printWinners(cars);
     }
 
@@ -35,18 +36,17 @@ public class RacingCarController {
         }
     }
 
-    private void race(final Cars cars) throws IOException {
+    private AttemptNumber getAttemptNumber() throws IOException {
         try {
-            AttemptNumber attemptNumber = new AttemptNumber(InputView.readAttemptNumber());
-            OutputView.printResult();
-            raceCars(cars, attemptNumber);
+            int number = InputView.readAttemptNumber();
+            return new AttemptNumber(number);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            race(cars);
+            return getAttemptNumber();
         }
     }
 
-    private void raceCars(final Cars cars, final AttemptNumber attemptNumber) {
+    private void race(final Cars cars, final AttemptNumber attemptNumber) throws IOException {
         while (attemptNumber.isRemain()) {
             attemptNumber.decrease();
             cars.moveAll(numberGenerator);
