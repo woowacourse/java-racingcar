@@ -6,7 +6,6 @@ import static racingcar.config.CarMovementConfig.*;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,12 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CarMovementTest {
     NumberGenerator numberGenerator;
     CarMovement carMovement;
-
-    @DisplayName("자동차 이동 기능 생성 성공 테스트")
-    @Test
-    void createRandomCarMovementTest() {
-        assertThat(carMovement = new CarMovement(numberGenerator)).isInstanceOf(CarMovement.class);
-    }
 
     @DisplayName("자동차 이동 테스트")
     @ParameterizedTest(name = "number = {0}, isMoveForward = {1}")

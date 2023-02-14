@@ -6,7 +6,7 @@ import static racingcar.exception.ErrorMessages.CARS_SIZE_EXCEPTION;
 import static racingcar.exception.ErrorMessages.CAR_NAME_DUPLICATE_EXCEPTION;
 
 public class Cars {
-    private final Set<Car> cars = new LinkedHashSet<>();
+    final Set<Car> cars = new LinkedHashSet<>();
 
     public void generateCars(List<String> carNames) {
         validateCarsSizeOneOrZero(carNames);
@@ -17,6 +17,14 @@ public class Cars {
 
     public void moveCars() {
         cars.forEach(Car::move);
+    }
+
+    public Map<String, Integer> getCarsState() {
+        Map<String, Integer> carsState = new LinkedHashMap<>();
+        for (Car car : cars) {
+            carsState.put(car.getName(), car.getPosition());
+        }
+        return Collections.unmodifiableMap(carsState);
     }
 
     public List<String> findWinnerNames() {
@@ -33,15 +41,7 @@ public class Cars {
         cars.clear();
     }
 
-    public Map<String, Integer> getCarsState() {
-        Map<String, Integer> carsState = new HashMap<>();
-        for (Car car : cars) {
-            carsState.put(car.getName(), car.getPosition());
-        }
-        return Collections.unmodifiableMap(carsState);
-    }
-
-    private void generateCar(String name) {
+    protected void generateCar(String name) {
         Car newCar = new Car(name);
         validateDuplicatedCarName(newCar);
         cars.add(newCar);

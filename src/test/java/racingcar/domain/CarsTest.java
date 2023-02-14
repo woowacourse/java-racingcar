@@ -13,9 +13,24 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.utils.CarMoveNumberGenerator;
 
 class CarsTest {
     Cars cars;
+
+    private class TestCars extends Cars {
+        private final NumberGenerator numberGenerator;
+
+        public TestCars(NumberGenerator numberGenerator) {
+            this.numberGenerator = numberGenerator;
+        }
+
+        @Override
+        protected void generateCar(String name) {
+            Car newCar = new Car(name, numberGenerator);
+            this.cars.add(newCar);
+        }
+    }
 
     @BeforeEach
     void setup() {
@@ -46,13 +61,14 @@ class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("Cars 자동차 이동 정상 작동 테스트")
+    @DisplayName("Cars 내 모든 자동차 move 호출 테스트")
     @Test
     void moveCarsTest() {
-        cars.generateCars(List.of("pobi", "crong", "honux"));
-        cars.moveCars();
-        Map<String, Integer> carsState = cars.getCarsState();
-        assertThat(carsState.values()).containsOnly(0, 1);
+        TestCars testCars = new TestCars(new CarMoveNumberGenerator());
+        testCars.generateCars(List.of("pobi", "crong", "honux"));
+        testCars.moveCars();
+        Map<String, Integer> carsState = testCars.getCarsState();
+        assertThat(carsState.values()).containsOnly(1);
     }
 
     @DisplayName("자동차 경기 우승자들 이름 조회 테스트")

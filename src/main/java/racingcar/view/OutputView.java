@@ -1,10 +1,7 @@
 package racingcar.view;
 
-import racingcar.datatransfer.CarDTO;
-import racingcar.datatransfer.GameResultResponse;
-import racingcar.datatransfer.RoundResultResponse;
-
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final String RESULT_MESSAGE = System.lineSeparator() + "실행결과";
@@ -16,12 +13,11 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printRoundResult(RoundResultResponse roundResultResponse) {
+    public void printRoundResult(Map<String, Integer> carsState) {
         StringBuilder resultBuilder = new StringBuilder();
-        List<CarDTO> carDTOs = roundResultResponse.getRoundResult();
-        for (CarDTO carDTO : carDTOs) {
-            int carPosition = carDTO.getCarPosition();
-            resultBuilder.append(carDTO.getCarName())
+        for (Map.Entry<String, Integer> carState : carsState.entrySet()) {
+            int carPosition = carState.getValue();
+            resultBuilder.append(carState.getKey())
                     .append(RESULT_SEPARATOR)
                     .append(PATH.repeat(carPosition))
                     .append(System.lineSeparator());
@@ -29,8 +25,8 @@ public class OutputView {
         System.out.println(resultBuilder);
     }
 
-    public void printEndGameResult(GameResultResponse gameResultResponse) {
-        String winnerNames = String.join(", ", gameResultResponse.getWinnerNames());
+    public void printEndGameResult(List<String> gameResult) {
+        String winnerNames = String.join(", ", gameResult);
         System.out.println(winnerNames + GAME_RESULT_MESSAGE);
     }
 
