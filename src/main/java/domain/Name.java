@@ -13,12 +13,11 @@ public class Name {
     }
 
     private void validate(String name) {
-        validateToContainBlank(name);
+        validateContainBlank(name);
         validateLength(name);
     }
 
-    //TODO: 메소드명 변경
-    private void validateToContainBlank(String name) {
+    private void validateContainBlank(String name) {
         if (name.contains(BLANK)) {
             throw new IllegalArgumentException(String.format("이름에 공백을 포함할 수 없습니다. 입력값 : %s", name));
         }
