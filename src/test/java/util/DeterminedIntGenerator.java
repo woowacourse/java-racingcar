@@ -1,10 +1,9 @@
-package racingcar.util;
+package util;
 
 import java.util.Random;
+import racingcar.util.IntGenerator;
 
 public class DeterminedIntGenerator implements IntGenerator {
-
-    private static final String NOT_DETERMINED_NUMBER_ANNOUNCEMENT = "[ERROR] 최솟값과 최댓값이 같아야 합니다.";
 
     private final int determinedNumber;
 

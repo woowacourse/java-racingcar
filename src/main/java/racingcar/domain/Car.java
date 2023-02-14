@@ -6,43 +6,23 @@ import racingcar.util.RandomIntGenerator;
 
 public class Car {
 
-    private static final int MINIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE = 0;
-    private static final int MAXIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE = 9;
-    private static final int MINIMUM_NUMBER_TO_MOVE = 4;
+    private static final int INITIAL_MOVED_COUNT = 0;
+    private static final int MINIMUM_BOUNDARY_OF_POWER = 0;
+    private static final int MAXIMUM_BOUNDARY_OF_POWER = 9;
+    private static final int MINIMUM_POWER_TO_MOVE = 4;
     private static final int MINIMUM_NAME_LENGTH = 1;
     private static final int MAXIMUM_NAME_LENGTH = 5;
-    private static final String WRONG_LENGTH_OF_NAME_ANNOUNCEMENT = "[ERROR] 잘못된 이름 길이입니다.";
+    static final String WRONG_LENGTH_OF_NAME_ANNOUNCEMENT = "[ERROR] 잘못된 이름 길이입니다.";
 
-    private String name;
+    private final String name;
     private int movedCount;
-    private IntGenerator intGenerator;
-
-    public Car(String name) {
-        validateName(name);
-        this.name = name;
-        this.intGenerator = new RandomIntGenerator();
-    }
+    private final IntGenerator intGenerator;
 
     public Car(String name, IntGenerator intGenerator) {
         validateName(name);
         this.name = name;
-        this.movedCount = 0;
+        this.movedCount = INITIAL_MOVED_COUNT;
         this.intGenerator = intGenerator;
-    }
-
-    public void tryMove() {
-        if (canMove()) {
-            this.movedCount++;
-        }
-    }
-
-    private boolean canMove() {
-        return intGenerator.getByRange(MINIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE,
-                MAXIMUM_BOUNDARY_NUMBER_DETERMINING_MOVE) >= MINIMUM_NUMBER_TO_MOVE;
-    }
-
-    public CarDto getStatus() {
-        return new CarDto(this.name, this.movedCount);
     }
 
     private void validateName(String name) {
@@ -51,6 +31,25 @@ public class Car {
             return;
         }
         throw new IllegalArgumentException(WRONG_LENGTH_OF_NAME_ANNOUNCEMENT);
+    }
+
+    public void tryMove() {
+        if (canMove(intGenerator
+                .getByRange(MINIMUM_BOUNDARY_OF_POWER, MAXIMUM_BOUNDARY_OF_POWER))) {
+            this.movedCount++;
+        }
+    }
+
+    private boolean canMove(int power) {
+        return power >= MINIMUM_POWER_TO_MOVE;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getMovedCount() {
+        return this.movedCount;
     }
 
 }

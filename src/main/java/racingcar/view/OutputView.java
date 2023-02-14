@@ -1,6 +1,7 @@
 package racingcar.view;
 
-import java.util.ArrayList;
+import static racingcar.view.Constants.NAME_SEPARATOR;
+
 import java.util.LinkedList;
 import java.util.List;
 import racingcar.dto.CarDto;
@@ -36,10 +37,8 @@ public class OutputView {
         winnerDtos.forEach(winnerDto -> {
             winnerNames.add(winnerDto.getName());
         });
-        System.out.print(String.join(",", winnerNames));
+        System.out.print(String.join(NAME_SEPARATOR, winnerNames));
         System.out.println(WINNER_ANNOUNCEMENT);
     }
-
-
 
 }

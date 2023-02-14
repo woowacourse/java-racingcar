@@ -1,13 +1,12 @@
 package racingcar.controller;
 
-import java.util.Collections;
+import java.util.List;
 import racingcar.domain.Cars;
+import racingcar.util.RandomIntGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingController {
-
-    private static final int WRONG_TRY_COUNT = 0;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -26,26 +25,16 @@ public class RacingController {
     }
 
     private void createCars() {
-        do {
-            this.cars = getCars();
-        } while (this.cars.isEmpty());
-    }
-
-    private Cars getCars() {
         try {
-            Cars cars = new Cars(inputView.inputCarNames());
-            return cars;
+            this.cars = new Cars(inputView.inputCarNames(), List.of(new RandomIntGenerator()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return new Cars(Collections.emptyList());
+            createCars();
         }
     }
 
     private void repeatTryMovingByInputCount() {
-        int tryCount;
-        do {
-            tryCount = getTryCount();
-        } while (tryCount == WRONG_TRY_COUNT);
+        int tryCount = getTryCount();
         outputView.announceBeforePrintResult();
         for (int i = 0; i < tryCount; i++) {
             cars.requestMoveEachCar();
@@ -54,13 +43,11 @@ public class RacingController {
     }
 
     private int getTryCount() {
-        int tryCount;
         try {
-            tryCount = inputView.getTryCount();
-            return tryCount;
+            return inputView.getTryCount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return WRONG_TRY_COUNT;
+            return getTryCount();
         }
     }
 
