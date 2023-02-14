@@ -48,4 +48,18 @@ class AttemptNumberTest {
         //then
         assertThat(attemptNumber.getAttemptNumber()).isEqualTo(afterValue);
     }
+
+    @DisplayName("isRemain 메서드는 attemptNumber 값이 남아있는지 확인한다.")
+    @ParameterizedTest
+    @CsvSource({"1,false", "2,true"})
+    void should_DecreaseByOne_When_UsingDecreaseMethod(int beforeDecrease, boolean isRemain) {
+        //given
+        AttemptNumber attemptNumber = new AttemptNumber(beforeDecrease);
+
+        //when
+        attemptNumber.decrease();
+
+        //then
+        assertThat(attemptNumber.isRemain()).isEqualTo(isRemain);
+    }
 }
