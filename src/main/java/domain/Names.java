@@ -9,9 +9,9 @@ public class Names {
     private static final int MIN_PARTICIPANT = 2;
     private final List<Name> names = new ArrayList<>();
 
-    public Names(final List<String> input) {
-        validateMinParticipantNumber(input);
-        input.stream()
+    public Names(final List<String> names) {
+        validateMinParticipantNumber(names);
+        names.stream()
                 .map(Name::new)
                 .forEach(this.names::add);
     }
