@@ -42,7 +42,7 @@ public class RaceTest {
     }
 
     @Test
-    @DisplayName("사용자가 입력한 횟수만큼 경주를 진행했다면 true를 리턴한다.")
+    @DisplayName("사용자가 입력한 횟수만큼 경주를 진행했다면 false를 리턴한다.")
     void givenRaceOrder_thenReturnTrue() {
         // given
         String userRaceCount = "3";
@@ -53,11 +53,11 @@ public class RaceTest {
 
         // then
         assertThat(isRaceFinish)
-                .isTrue();
+                .isFalse();
     }
 
     @Test
-    @DisplayName("사용자가 입력한 횟수만큼 경주를 진행하지 않았다면 false를 리턴한다.")
+    @DisplayName("사용자가 입력한 횟수만큼 경주를 진행하지 않았다면 true를 리턴한다.")
     void givenRaceOrder_thenReturnFalse() {
         // given
         String userRaceCount = "3";
@@ -69,6 +69,6 @@ public class RaceTest {
 
         // then
         assertThat(isRaceFinish)
-                .isFalse();
+                .isTrue();
     }
 }
