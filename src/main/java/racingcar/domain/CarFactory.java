@@ -14,9 +14,6 @@ public class CarFactory {
         return createCarsByNames(carNames, startPoint);
     }
 
-    /**
-     * TODO: createCarsByNames() 메서드의 경우에도 List반환 시 방어적 복사를 해야하나요?
-     */
     private static List<Car> createCarsByNames(List<String> carNames, int startPoint) {
         return carNames.stream()
                 .map(carName -> new Car(carName, startPoint))
