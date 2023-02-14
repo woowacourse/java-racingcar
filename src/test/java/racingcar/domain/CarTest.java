@@ -3,7 +3,6 @@ package racingcar.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -17,22 +16,6 @@ class CarTest {
     @BeforeEach
     void setup() {
         car = new Car("pobi", 0);
-    }
-
-    @Test
-    @DisplayName("현재 상태와 일치하는 DTO를 생성하는지 확인한다")
-    void checkCurrentStatusCompletely() {
-        int numberAbleToMove = 9;
-        int moveCount = 5;
-
-        for (int i = 0; i < moveCount; i++) {
-            car.move(new TestNumberGenerator(numberAbleToMove));
-        }
-
-        assertThat(car.checkCurrentStatus().getName())
-                .isEqualTo(car.getName());
-        assertThat(car.checkCurrentStatus().getCurrentPosition())
-                .isEqualTo(moveCount);
     }
 
     @ParameterizedTest
@@ -64,7 +47,7 @@ class CarTest {
         void move(int number) {
             car.move(new TestNumberGenerator(number));
 
-            assertThat(car.checkCurrentStatus().getCurrentPosition())
+            assertThat(car.getCurrentPosition())
                     .isEqualTo(1);
         }
 
@@ -74,7 +57,7 @@ class CarTest {
         void notMove(int number) {
             car.move(new TestNumberGenerator(number));
 
-            assertThat(car.checkCurrentStatus().getCurrentPosition())
+            assertThat(car.getCurrentPosition())
                     .isEqualTo(0);
         }
     }
