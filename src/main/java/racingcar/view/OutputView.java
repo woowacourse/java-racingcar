@@ -2,14 +2,23 @@ package racingcar.view;
 
 import java.util.List;
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 public class OutputView {
+    StringBuffer stringBuffer = new StringBuffer();
+
     private static final String CAR_POSITION_SIGN = "-";
     private static final String COLON = " : ";
     private static final String RESULT_POSTFIX = "가 최종 우승했습니다.";
 
     public void printPosition(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car.getName() + COLON + CAR_POSITION_SIGN.repeat(car.getPosition())));
+        for (Car car: cars) {
+            stringBuffer.append(car.getName());
+            stringBuffer.append(COLON);
+            stringBuffer.append(CAR_POSITION_SIGN.repeat(car.getPosition()));
+            System.out.println(stringBuffer);
+            stringBuffer.setLength(0);
+        }
         enterLine();
     }
 
