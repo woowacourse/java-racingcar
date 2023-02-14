@@ -1,13 +1,10 @@
 package controller;
 
-import domain.Car;
-import domain.NumberGenerator;
-import domain.RacingGame;
+import domain.*;
 import utils.Log;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGameController {
@@ -16,10 +13,10 @@ public class RacingGameController {
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public RacingGameController(NumberGenerator numberGenerator) {
+    public RacingGameController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.numberGenerator = numberGenerator;
+        this.numberGenerator = new RandomNumberGenerator();
     }
 
     public void run() {
@@ -28,7 +25,7 @@ public class RacingGameController {
     }
 
     private RacingGame init() {
-        List<Car> cars = generateCars();
+        Cars cars = generateCars();
         int gameTrial = generateGameTrial();
         return new RacingGame(cars, gameTrial, numberGenerator);
     }
@@ -36,18 +33,18 @@ public class RacingGameController {
     private void play(RacingGame racingGame) {
         outputView.showInfoMessage();
         while (racingGame.canContinue()) {
-            List<Car> cars = racingGame.run();
-            outputView.showCars(cars);
+            Cars cars = racingGame.run();
+            outputView.showCars(cars.getCars());
         }
         outputView.showWinner(racingGame.getWinners());
     }
 
-    private List<Car> generateCars() {
+    private Cars generateCars() {
         try {
-            return inputView.readCars()
+            return new Cars(inputView.readCarNames()
                     .stream()
                     .map(Car::new)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         } catch (IllegalArgumentException e) {
             Log.error(e.getMessage());
             return generateCars();
