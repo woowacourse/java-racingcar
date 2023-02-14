@@ -16,12 +16,12 @@ public class Controller {
             = new RandomNumberGenerator();
 
     public void runGame() {
-        Cars cars = setCars();
+        Cars cars = initCarData();
         movePerRounds(cars, setTryCount());
         outputView.printWinner(cars.getWinners());
     }
 
-    private Cars setCars() {
+    private Cars initCarData() {
         messageView.printCarNameMessage();
 
         try {
@@ -30,7 +30,7 @@ public class Controller {
             return new Cars(carNames);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return setCars();
+            return initCarData();
         }
     }
 
