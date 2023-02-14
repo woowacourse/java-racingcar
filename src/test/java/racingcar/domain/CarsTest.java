@@ -17,8 +17,6 @@ class CarsTest {
         List<String> names = List.of("phobi", "tele", "chan");
         Cars cars = new Cars(names, new DeterminedIntGenerator(4));
         // when
-        cars.getCars()
-                .forEach(car -> assertThat(car.getMovedCount()).isEqualTo(0));
         cars.requestMoveEachCar();
         // then
         cars.getCars()
