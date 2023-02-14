@@ -26,13 +26,10 @@ public class GameController {
     }
 
     private Game createGame() {
-        List<Car> cars = handleExceptionByRepeating(() -> {
-            List<String> carNames = INPUT_VIEW.inputCarNames();
-            return makeCarsWith(carNames);
-        });
         return handleExceptionByRepeating(() -> {
+            List<String> carNames = INPUT_VIEW.inputCarNames();
             int trialCount = INPUT_VIEW.inputTrialCount();
-            return new Game(cars, trialCount);
+            return new Game(makeCarsWith(carNames), trialCount);
         });
     }
 
