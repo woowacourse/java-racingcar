@@ -15,7 +15,7 @@ public class InputView {
     }
 
     public static int inputTries() {
-        try{
+        try {
             System.out.println(TRIES_INPUT_MESSAGE);
             return sc.nextInt();
         } catch (InputMismatchException e) {
