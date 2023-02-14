@@ -7,7 +7,6 @@ public class Race {
     private TryTime tryTime;
 
     public Race(final List<Car> cars) {
-        checkCarsHasDuplicate(cars);
         this.cars = new Cars(cars);
     }
 
@@ -16,15 +15,6 @@ public class Race {
             throw new IllegalStateException("시도횟수는 이미 초기화되어 있습니다.");
         }
         this.tryTime = new TryTime(tryTime);
-    }
-
-    private void checkCarsHasDuplicate(final List<Car> cars) {
-        final long nonDuplicateNameCountInCars = cars.stream()
-                .distinct()
-                .count();
-        if (nonDuplicateNameCountInCars != cars.size()) {
-            throw new IllegalArgumentException("자동차 이름은 중복일 수 없습니다.");
-        }
     }
 
     public boolean canRace() {
