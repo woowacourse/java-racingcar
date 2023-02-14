@@ -4,6 +4,7 @@ import domain.Car;
 import domain.Cars;
 import domain.GameCount;
 import domain.PowerGenerator;
+import util.CarNamesDivider;
 import view.InputView;
 import view.OutputView;
 
@@ -16,18 +17,20 @@ public class RacingController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final CarNamesDivider carNamesDivider;
 
     public RacingController() {
         inputView = new InputView(System.in);
         outputView = new OutputView();
+        carNamesDivider = new CarNamesDivider();
     }
 
     public void run() {
-        List<Car> inputCars = inputView.requestCarNames()
-                .stream()
+        String carNames = inputView.requestCarNames();
+        List<String> carNamesByDivider = carNamesDivider.divideCarNames(carNames);
+        List<Car> inputCars = carNamesByDivider.stream()
                 .map(Car::new)
                 .collect(toList());
-
         Cars cars = new Cars(inputCars);
         GameCount gameCount = new GameCount(inputView.requestNumberOfTimes());
         progress(cars, gameCount);

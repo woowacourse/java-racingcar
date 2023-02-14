@@ -1,6 +1,6 @@
 package domain;
 
-public class Name {
+public class CarName {
 
     private static final int CAR_NAME_LENGTH_LOWER_BOUND_INCLUSIVE = 1;
     private static final int CAR_NAME_LENGTH_UPPER_BOUND_INCLUSIVE = 5;
@@ -9,7 +9,7 @@ public class Name {
 
     private final String name;
 
-    public Name(String name) {
+    public CarName(String name) {
         this.name = validateAndTrimCarName(name);
     }
 
