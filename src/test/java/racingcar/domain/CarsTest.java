@@ -26,6 +26,14 @@ class CarsTest {
     }
 
     @Test
+    @DisplayName("이름의 공백을 제거하고 중복 체크를 한다")
+    void trimTest() {
+        assertThatThrownBy(() -> new Cars(new String[]{"aa", " aa "}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복");
+    }
+
+    @Test
     @DisplayName("경기에 참여하는 차가 한대일때 예외가 발생한다")
     void oneCarTest() {
 

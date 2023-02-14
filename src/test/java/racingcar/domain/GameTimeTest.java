@@ -12,7 +12,7 @@ class GameTimeTest {
 
     @ParameterizedTest
     @DisplayName("시도 횟수 예외 입력 테스트")
-    @ValueSource(strings = {"501", "-1", "숫자아님"})
+    @ValueSource(strings = {"500", "501", "-1", "숫자아님"})
     void initTest(String param) {
         assertThatThrownBy(() -> new GameTime(param))
                 .isInstanceOf(IllegalArgumentException.class);

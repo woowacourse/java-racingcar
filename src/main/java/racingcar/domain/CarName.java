@@ -20,7 +20,7 @@ public class CarName {
     }
 
     private static void validateLength(String carName) {
-        if (carName.length() >= MAX_LENGTH) {
+        if (carName.length() > MAX_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 차 이름은 5글자 이하로 입력해야합니다.");
         }
     }

@@ -24,8 +24,10 @@ class CarTest {
     @DisplayName("3이하 정지, 4이상 전진")
     void carMoveTest(int number, int position) {
         Car car = new Car("aa");
+
         car.move(number);
         int carPosition = car.getPosition();
+
         assertThat(carPosition)
                 .isEqualTo(position);
     }
