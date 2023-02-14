@@ -1,11 +1,12 @@
-package racingcar;
+package racingcar.domain;
 
 public class GameTime {
 
     private static final int MAX_GAME_TIME = 500;
     private static final int RANGE_BOUNDARY = 0;
 
-    private int gameTime;
+    private final int gameTime;
+    private int timeSpent = 0;
 
     public GameTime(String gameTime) {
         int parsedGameTime = validateParsing(gameTime);
@@ -28,18 +29,18 @@ public class GameTime {
 
     private static int validateParsing(String gameTime) {
         try {
-            int gameTimeParsed = Integer.parseInt(gameTime);
+            Integer.parseInt(gameTime);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
         return Integer.parseInt(gameTime);
     }
 
-    public boolean isNotZero() {
-        return gameTime != 0;
+    public boolean isPlayable() {
+        return gameTime != timeSpent;
     }
 
     public void runOnce() {
-        gameTime--;
+        timeSpent++;
     }
 }

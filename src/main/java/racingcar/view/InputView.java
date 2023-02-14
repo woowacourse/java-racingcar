@@ -7,11 +7,12 @@ import static racingcar.view.OutputConstant.*;
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String DELIMITER = ",";
 
-    public String inputCarName() {
+    public String[] inputCarName() {
         System.out.println(INPUT_CAR_NAME);
         String input = scanner.nextLine();
-        return input;
+        return input.split(DELIMITER);
     }
 
     public String inputGameTime() {

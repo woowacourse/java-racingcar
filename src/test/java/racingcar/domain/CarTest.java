@@ -1,10 +1,9 @@
-package racingcar;
+package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.domain.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +14,8 @@ class CarTest {
     void carInitPositionTest() {
         Car car = new Car("aa");
         int position = car.getPosition();
-        assertThat(position).isEqualTo(0);
+        assertThat(position)
+                .isEqualTo(0);
     }
 
     @ParameterizedTest
@@ -23,8 +23,11 @@ class CarTest {
     @DisplayName("3이하 정지, 4이상 전진")
     void carMoveTest(int number, int position) {
         Car car = new Car("aa");
+
         car.move(number);
         int carPosition = car.getPosition();
-        assertThat(carPosition).isEqualTo(position);
+
+        assertThat(carPosition)
+                .isEqualTo(position);
     }
 }
