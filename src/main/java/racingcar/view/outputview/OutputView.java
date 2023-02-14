@@ -1,5 +1,7 @@
 package racingcar.view.outputview;
 
+import racingcar.model.car.Cars;
+
 import java.util.HashMap;
 
 public abstract class OutputView {
@@ -21,6 +23,10 @@ public abstract class OutputView {
 
     abstract void initialTrackErrorMessage();
 
+    public abstract void printCurrentCarsPosition(Cars cars);
+
+    public abstract void printWinnerCars(Cars cars);
+
     protected void insertErrorMessage(int errorNumber, String errorMessage) {
         errorMessageTable.put(errorNumber, errorMessage);
     };
@@ -28,4 +34,5 @@ public abstract class OutputView {
     public void printErrorMessage(int errorNumber) {
         System.out.println(errorMessageTable.get(errorNumber));
     }
+
 }

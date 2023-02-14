@@ -6,7 +6,7 @@ import racingcar.exception.ExceedCarNameLengthException;
 import racingcar.exception.HasBlankCarNameException;
 import racingcar.exception.InvalidCarNameFormatException;
 import racingcar.model.car.strategy.TestMovingStrategy;
-import racingcar.view.OutputView;
+import racingcar.view.outputview.KoreanOutputView;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -45,9 +45,9 @@ class CarTest {
         String expected = "pobi : -";
 
         // when
-        String actual = String.format(OutputView.POSITION_CAR_STATE_FORMAT,
+        String actual = String.format(KoreanOutputView.POSITION_CAR_STATE_FORMAT,
                 pobi.getCarName(),
-                OutputView.POSITION_CAR_FORMAT_SYMBOL.repeat(pobi.getPosition()));
+                KoreanOutputView.POSITION_CAR_FORMAT_SYMBOL.repeat(pobi.getPosition()));
 
         // then
         assertThat(actual).isEqualTo(expected);
