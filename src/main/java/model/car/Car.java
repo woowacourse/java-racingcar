@@ -1,13 +1,14 @@
 package model.car;
 
+import util.validator.CarNameValidator;
+
 public class Car {
 
-    private final String name;
+    private final CarName name;
     private int position;
 
     public Car(String name) {
-        this.name = name;
-        this.position = 0;
+        this.name =  new CarName(name);
     }
 
     public void move(boolean isMove) {
@@ -17,7 +18,7 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getPosition() {

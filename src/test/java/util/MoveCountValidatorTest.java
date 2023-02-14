@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import util.MoveCountValidator.Message;
+import util.validator.MoveCountValidator;
+import util.validator.MoveCountValidator.Message;
 
 class MoveCountValidatorTest {
     private MoveCountValidator moveCountValidator;
@@ -48,7 +49,6 @@ class MoveCountValidatorTest {
                     .isThrownBy(() -> moveCountValidator.validate("0"))
                     .withMessageStartingWith(Message.EXCEPTION_NUMBER_RANGE.getMessage());
         }
-
     }
 
     @Nested
@@ -59,7 +59,5 @@ class MoveCountValidatorTest {
             assertThatCode(() -> moveCountValidator.validate(input))
                     .doesNotThrowAnyException();
         }
-
     }
-
 }
