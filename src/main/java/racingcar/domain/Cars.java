@@ -12,10 +12,19 @@ public class Cars {
     }
 
     public List<String> getWinnerNames() {
-        Car winner = cars.stream().max(Car::compareTo).get();
+        final Car maxPositionCar = findMaxPositionCar();
+        return findSamePositionCars(maxPositionCar);
+    }
 
+    private Car findMaxPositionCar() {
         return cars.stream()
-                .filter(car -> car.compareTo(winner) == 0)
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("차량 리스트가 비었습니다."));
+    }
+
+    private List<String> findSamePositionCars(Car maxPositionCar) {
+        return cars.stream()
+                .filter(maxPositionCar::isSamePosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
