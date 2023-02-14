@@ -41,12 +41,11 @@ public class RaceController {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private List<Car> toCars(final List<CarDto> cars) {
-        return cars.stream()
+    private List<Car> toCars(final List<CarDto> carDtos) {
+        return carDtos.stream()
                 .map(car -> new Car(car.getName(), car.getPosition()))
                 .collect(Collectors.toUnmodifiableList());
     }
-
 
     private <T, U, R> R repeatUntilInitialValid(final Function<U, R> object, final Function<T, U> mapper
             , final Supplier<T> reader) {
