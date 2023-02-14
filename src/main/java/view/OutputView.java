@@ -14,11 +14,11 @@ public class OutputView {
     }
 
     private void printEachRoundResult(List<CarStatusDto> carStatusDtos) {
-        carStatusDtos.forEach(this::printEachCarsPosition);
+        carStatusDtos.forEach(this::printEachCarPosition);
         System.out.println("");
     }
 
-    private void printEachCarsPosition(CarStatusDto carStatusDto) {
+    private void printEachCarPosition(CarStatusDto carStatusDto) {
         System.out.println(carStatusDto.getName() + " : " + POSITION_MARK.repeat(carStatusDto.getPosition()));
     }
 
