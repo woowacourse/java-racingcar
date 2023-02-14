@@ -19,7 +19,7 @@ public class Cars {
     }
 
     public void move(Random powerGenerator) {
-        cars.forEach(car -> car.move(powerGenerator.nextInt(RANDOM_UPPER_BOUND_EXCLUSIVE)));
+        cars.forEach(car -> car.move(nextPower(powerGenerator)));
     }
 
     public List<String> getWinners() {
@@ -36,6 +36,10 @@ public class Cars {
         cars.forEach(car -> result.put(car.getName(), car.getPosition()));
 
         return result;
+    }
+
+    private int nextPower(Random powerGenerator) {
+        return powerGenerator.nextInt(RANDOM_UPPER_BOUND_EXCLUSIVE);
     }
 
     private void validate(List<String> names) {
