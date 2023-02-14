@@ -13,28 +13,29 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printRaceResult(List<CarStatusDto> initCarStatus, List<RaceResultDto> totalRaceResult) {
-        StringBuilder raceResult = new StringBuilder();
-        createInitCarResult(initCarStatus, raceResult);
-        totalRaceResult.forEach(raceResultDto -> createTotalRaceResult(raceResultDto, raceResult));
-        System.out.println("\n" + raceResult.toString().trim());
+    public void printInitCarStatus(List<CarStatusDto> initCarStatus) {
+        StringBuilder initCarResult = new StringBuilder();
+        initCarResult.append(RESULT_MESSAGE.getValue());
+        initCarStatus
+                .forEach(carStatusDto -> createCarStatus(carStatusDto, initCarResult));
+        System.out.println("\n" + initCarResult);
     }
 
-    private void createInitCarResult(List<CarStatusDto> initCarStatus, StringBuilder raceResult) {
-        raceResult.append(RESULT_MESSAGE.getValue());
-        initCarStatus
-                .forEach(carStatusDto -> createTotalRaceResult(carStatusDto, raceResult));
-        raceResult.append("\n");
+    public void printRaceResult(List<RaceResultDto> totalRaceResult) {
+        StringBuilder raceResult = new StringBuilder();
+        totalRaceResult
+                .forEach(raceResultDto -> createTotalRaceResult(raceResultDto, raceResult));
+        System.out.println("\n" + raceResult.toString().trim());
     }
 
     private void createTotalRaceResult(RaceResultDto raceResultDto, StringBuilder raceResult) {
         raceResultDto.getCarRaceResult()
-                .forEach(carStatusDto -> createTotalRaceResult(carStatusDto, raceResult));
+                .forEach(carStatusDto -> createCarStatus(carStatusDto, raceResult));
         raceResult.append("\n");
     }
 
-    private void createTotalRaceResult(CarStatusDto carStatusDto, StringBuilder raceResult) {
-        raceResult.append(carStatusDto.getCarName())
+    private void createCarStatus(CarStatusDto carStatusDto, StringBuilder carStatus) {
+        carStatus.append(carStatusDto.getCarName())
                 .append(NAME_POSITION_DELIMITER.getValue())
                 .append(RACE_MARK.getValue().repeat(carStatusDto.getCarPosition()))
                 .append("\n");

@@ -49,7 +49,7 @@ public class RaceTest {
         Race testRace = createTestRace(userRaceCount);
 
         // when
-        boolean isRaceFinish = testRace.isRaceFinish(Integer.parseInt(userRaceCount));
+        boolean isRaceFinish = testRace.isRunning(Integer.parseInt(userRaceCount));
 
         // then
         assertThat(isRaceFinish)
@@ -65,7 +65,7 @@ public class RaceTest {
         int raceCount = 2;
 
         // when
-        boolean isRaceFinish = testRace.isRaceFinish(raceCount);
+        boolean isRaceFinish = testRace.isRunning(raceCount);
 
         // then
         assertThat(isRaceFinish)

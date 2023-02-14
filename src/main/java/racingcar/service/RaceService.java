@@ -24,15 +24,19 @@ public class RaceService {
         List<RaceResultDto> raceResults = new ArrayList<>();
         int raceCount = 0;
 
-        while (!race.isRaceFinish(raceCount++)) {
-            RaceResultDto raceResult = startRaceAndGetResult(cars);
+        while (race.isRunning(raceCount++)) {
+            startRace(cars);
+            RaceResultDto raceResult = getRaceResult(cars);
             raceResults.add(raceResult);
         }
         return raceResults;
     }
 
-    private RaceResultDto startRaceAndGetResult(final Cars cars) {
+    private void startRace(final Cars cars) {
         cars.race();
+    }
+
+    private RaceResultDto getRaceResult(final Cars cars) {
         List<CarStatusDto> carRaceResult = carsService.getCarStatus(cars);
         return RaceResultDto.createRaceResultDto(carRaceResult);
     }

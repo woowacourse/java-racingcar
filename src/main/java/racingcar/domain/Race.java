@@ -14,7 +14,7 @@ public class Race {
         return new Race(raceCount);
     }
 
-    public boolean isRaceFinish(int raceCount) {
-        return raceCount == this.raceCount.getCount();
+    public boolean isRunning(int raceCount) {
+        return raceCount != this.raceCount.getCount();
     }
 }
