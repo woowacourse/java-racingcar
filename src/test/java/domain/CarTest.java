@@ -28,9 +28,8 @@ class CarTest {
     @ValueSource(strings = {" ", "", "\n", "abcdef"})
     void validateCarNameWithFailureCaseTest(String carName) {
         assertThatThrownBy(() -> new Car(carName, 0))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(RuntimeException.class);
     }
-
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "a", "abc", "abcde"})

@@ -23,14 +23,10 @@ public class RacingController {
             makeRacingGame(readCarNames(), readGameTry());
             startRacingGame();
             makeRacingGameResult();
-        } catch (IllegalArgumentException e) {
+        } catch (RuntimeException e) {
             consoleView.printExceptionMessage(e.getMessage());
             start();
         }
-    }
-
-    private void makeRacingGame(List<String> carNames, int gameTry) {
-        this.racingGame = new RacingGame(carNames, gameTry, new RandomNumberGenerator());
     }
 
     private List<String> readCarNames() {
@@ -42,20 +38,24 @@ public class RacingController {
         }
     }
 
-    private void startRacingGame() {
-        consoleView.printGameResultMessage();
-        while (racingGame.isGameOnGoing()) {
-            racingGame.start();
-            consoleView.printRacingStatus(racingGame.getCars());
-        }
-    }
-
     private int readGameTry() {
         try {
             return inputView.readGameTry();
         } catch (IllegalArgumentException e) {
             consoleView.printExceptionMessage(e.getMessage());
             return readGameTry();
+        }
+    }
+
+    private void makeRacingGame(List<String> carNames, int gameTry) {
+        this.racingGame = new RacingGame(carNames, gameTry, new RandomNumberGenerator());
+    }
+
+    private void startRacingGame() {
+        consoleView.printGameResultMessage();
+        while (racingGame.isGameOnGoing()) {
+            racingGame.start();
+            consoleView.printRacingStatus(racingGame.getCars());
         }
     }
 

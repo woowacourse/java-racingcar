@@ -1,8 +1,8 @@
 package domain;
 
-public class Position {
+import exception.PositionInvalidException;
 
-    private static final String POSITION_CANNOT_BE_NEGATIVE = "[ERROR] 자동차의 위치 값은 음수일 수 없습니다.";
+public class Position {
 
     private int position;
 
@@ -17,7 +17,7 @@ public class Position {
 
     private void validatePositionIsNotNegative(int position) {
         if (position < 0) {
-            throw new IllegalArgumentException(POSITION_CANNOT_BE_NEGATIVE);
+            throw new PositionInvalidException();
         }
     }
 

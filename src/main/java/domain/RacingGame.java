@@ -1,5 +1,7 @@
 package domain;
 
+import exception.NoCarsExistException;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -9,7 +11,6 @@ public class RacingGame {
 
     private static final int DEFAULT_START_LINE = 0;
     private static final int MOVABLE_BOUND = 4;
-    private static final String NO_CARS_EXIST = "[ERROR] 자동차가 존재하지 않습니다.";
 
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
@@ -56,6 +57,6 @@ public class RacingGame {
     private Car getFurthestCar() {
         return cars.stream()
                 .max(Car::comparePosition)
-                .orElseThrow(() -> new IllegalArgumentException(NO_CARS_EXIST));
+                .orElseThrow(NoCarsExistException::new);
     }
 }
