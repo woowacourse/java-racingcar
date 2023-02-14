@@ -11,7 +11,7 @@ class TryCountValidationTest {
     @DisplayName("validateTryCount() : 이동 거리가 음수인 경우 IllegalArgumentException 발생")
     void test_ValidateTryCount_IllegalArgumentException() {
         // given
-        int input = -1;
+        final int input = -1;
 
         // when & then
         assertThrows(IllegalArgumentException.class,
@@ -22,7 +22,7 @@ class TryCountValidationTest {
     @DisplayName("validateTryCount() 성공 경우")
     void test_validateTryCount_success() {
         // given
-        final int input = 3;
+        final int input = 0;
 
         // when, then
         TryCountValidation.validateTryCount(input);
