@@ -27,7 +27,7 @@ class TryCountTest {
         TryCount tryCount = new TryCount(1);
 
         // when
-        tryCount.tryMove();
+        tryCount.moveUntilZero();
 
         // expected
         assertThat(tryCount.isAvailable())

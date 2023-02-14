@@ -20,8 +20,8 @@ public class TryCount {
         return count > 0;
     }
 
-    public void tryMove() {
-        if (count > 0) {
+    public void moveUntilZero() {
+        if (isAvailable()) {
             count--;
         }
     }

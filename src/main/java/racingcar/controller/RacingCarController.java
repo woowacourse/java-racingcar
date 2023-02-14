@@ -60,7 +60,7 @@ public class RacingCarController {
         while (tryCount.isAvailable()) {
             racingCarService.moveCars(randomMoveStrategy);
             printCarStatuses();
-            tryCount.tryMove();
+            tryCount.moveUntilZero();
         }
         printCarStatuses();
         findWinners();
