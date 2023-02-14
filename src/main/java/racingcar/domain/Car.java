@@ -10,10 +10,10 @@ public class Car {
     private final String name;
     private final Position currentPosition;
 
-    public Car(final String name, final int startPoint) {
+    public Car(final String name) {
         validateName(name);
         this.name = name;
-        this.currentPosition = new Position(startPoint);
+        this.currentPosition = new Position();
     }
 
     public String getName() {

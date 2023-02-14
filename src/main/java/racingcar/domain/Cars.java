@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-
-    private static final int START_POINT = 0;
     private static final int MINIMUM_CAR_COUNT = 2;
+
     private final List<Car> cars;
 
     public Cars(final List<String> carNames) {
@@ -45,7 +44,7 @@ public class Cars {
 
     private List<Car> createCarsByNames(final List<String> carNames) {
         return carNames.stream()
-                .map(carName -> new Car(carName, START_POINT))
+                .map(Car::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -17,7 +17,7 @@ class CarTest {
 
     @BeforeEach
     void setup() {
-        car = new Car("pobi", 0);
+        car = new Car("pobi");
     }
 
     @Nested
@@ -26,7 +26,7 @@ class CarTest {
         @Test
         @DisplayName("자동차 이름의 길이가 5자를 초과하면 예외가 발생한다.")
         void overLengthCarNameTest() {
-            assertThatThrownBy(() -> new Car("abcdefg", 0))
+            assertThatThrownBy(() -> new Car("abcdefg"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("이름의 길이는 1이상 5이하여야 합니다.");
         }
@@ -35,7 +35,7 @@ class CarTest {
         @ValueSource(strings = {"  ", ""})
         @DisplayName("자동차 이름의 길이가 1자 미만이거나 빈칸으로만 이루어진 경우 예외가 발생한다.")
         void underLengthCarNameTest(String name) {
-            assertThatThrownBy(() -> new Car(name, 0))
+            assertThatThrownBy(() -> new Car(name))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("이름의 길이는 1이상 5이하여야 합니다.");
         }
@@ -87,7 +87,11 @@ class CarTest {
     @CsvSource(value = {"3,-3", "1,-1", "0,0"})
     @DisplayName("자동차 위치 비교를 정확하게 하는지 검증한다.")
     void compareToTest(int otherPosition, int expected) {
-        Car other = new Car("crong", otherPosition);
+        Car other = new Car("crong");
+        numberGenerator = new TestNumberGenerator(8);
+        for (int i = 0; i < otherPosition; i++) {
+            other.move(numberGenerator);
+        }
 
         assertThat(car.compareTo(other))
                 .isEqualTo(expected);
@@ -97,7 +101,11 @@ class CarTest {
     @DisplayName("isMovable에 대한 테스트")
     @CsvSource(value = {"3,false", "0,true"})
     void isSamePositionTest(int targetPosition, boolean expected) {
-        Car other = new Car("crong", targetPosition);
+        Car other = new Car("crong");
+        numberGenerator = new TestNumberGenerator(8);
+        for (int i = 0; i < targetPosition; i++) {
+            other.move(numberGenerator);
+        }
 
         assertThat(car.isSamePosition(other))
                 .isEqualTo(expected);

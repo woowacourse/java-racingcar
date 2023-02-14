@@ -12,7 +12,7 @@ class PositionTest {
 
     @BeforeEach
     void setup() {
-        position = new Position(0);
+        position = new Position();
     }
 
     @Test
@@ -34,7 +34,7 @@ class PositionTest {
     @Test
     @DisplayName("위치값이 같으면 같은 Position으로 인식하는지 확인한다.")
     void equalsTest() {
-        Position targetPosition = new Position(0);
+        Position targetPosition = new Position();
 
         assertThat(position)
                 .isEqualTo(targetPosition);

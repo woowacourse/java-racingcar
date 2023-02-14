@@ -3,10 +3,12 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Position {
+    private static final int START_POSITION = 0;
+
     private int position;
 
-    public Position(final int position) {
-        this.position = position;
+    public Position() {
+        this.position = START_POSITION;
     }
 
     public void move() {
