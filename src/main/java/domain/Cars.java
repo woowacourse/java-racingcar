@@ -1,7 +1,5 @@
 package domain;
 
-import utils.Engine;
-
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -14,9 +12,9 @@ public class Cars implements Iterable<Car> {
         this.cars = cars;
     }
 
-    public void moveCars(Engine engine) {
+    public void moveCars() {
         for (Car car : cars) {
-            car.tryMove(engine);
+            car.tryMove();
         }
     }
 
