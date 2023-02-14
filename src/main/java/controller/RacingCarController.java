@@ -47,6 +47,7 @@ public class RacingCarController {
     }
 
     private void race(final Cars cars, final AttemptNumber attemptNumber) throws IOException {
+        OutputView.printResult();
         while (attemptNumber.isRemain()) {
             attemptNumber.decrease();
             cars.moveAll(numberGenerator);
