@@ -15,8 +15,9 @@ public class Cars {
         List<String> carNames = splitCarName(carsName);
 
         for (String name : carNames) {
-            validDuplication(name);
-            cars.add(new Car(new Name(name)));
+            Name newName = new Name(name);
+            validDuplication(newName);
+            cars.add(new Car(newName));
         }
     }
 
@@ -24,9 +25,9 @@ public class Cars {
         return Arrays.asList(carsName.split(COMMA));
     }
 
-    private void validDuplication(String newName) {
+    private void validDuplication(Name newName) {
         boolean isDuplication = cars.stream()
-                .anyMatch(name -> name.equals(newName));
+                                    .anyMatch(car -> car.isDuplicate(newName));
 
         if (isDuplication) {
             throw new IllegalArgumentException(
@@ -54,7 +55,8 @@ public class Cars {
     public int getMaxLocation() {
         return cars.stream()
                    .max(Comparator.comparingInt(Car::getLocation))
-                   .get()
+                   .orElseThrow(() ->
+                           new IllegalArgumentException(ExceptionMessage.GET_MAX_LOCATION_MESSAGE.getExceptionMessage()))
                    .getLocation();
     }
 }
