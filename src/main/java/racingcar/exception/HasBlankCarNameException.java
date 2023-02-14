@@ -1,9 +1,9 @@
 package racingcar.exception;
 
-public class HasBlankCarNameException extends IllegalArgumentException {
+public class HasBlankCarNameException extends CustomException {
     private static final int ERROR_NUMBER = 102;
 
-    public static int getErrorNumber() {
-        return ERROR_NUMBER;
+    public HasBlankCarNameException() {
+        super(ERROR_NUMBER);
     }
 }

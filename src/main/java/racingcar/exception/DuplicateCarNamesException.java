@@ -1,9 +1,9 @@
 package racingcar.exception;
 
-public class DuplicateCarNamesException extends IllegalArgumentException {
+public class DuplicateCarNamesException extends CustomException {
     private static final int ERROR_NUMBER = 100;
 
-    public static int getErrorNumber() {
-        return ERROR_NUMBER;
+    public DuplicateCarNamesException() {
+        super(ERROR_NUMBER);
     }
 }

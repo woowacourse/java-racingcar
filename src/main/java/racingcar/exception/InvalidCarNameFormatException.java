@@ -1,9 +1,9 @@
 package racingcar.exception;
 
-public class InvalidCarNameFormatException extends IllegalArgumentException {
+public class InvalidCarNameFormatException extends CustomException {
     private static final int ERROR_NUMBER = 103;
 
-    public static int getErrorNumber() {
-        return ERROR_NUMBER;
+    public InvalidCarNameFormatException() {
+        super(ERROR_NUMBER);
     }
 }

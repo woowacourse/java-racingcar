@@ -1,9 +1,9 @@
 package racingcar.exception;
 
-public class NotExistCarsException extends IllegalArgumentException {
+public class NotExistCarsException extends CustomException {
     private static final int ERROR_NUMBER = 106;
 
-    public static int getErrorNumber() {
-        return ERROR_NUMBER;
+    public NotExistCarsException() {
+        super(ERROR_NUMBER);
     }
 }

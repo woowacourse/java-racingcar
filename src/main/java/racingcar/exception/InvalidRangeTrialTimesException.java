@@ -1,9 +1,9 @@
 package racingcar.exception;
 
-public class InvalidRangeTrialTimesException extends IllegalArgumentException {
+public class InvalidRangeTrialTimesException extends CustomException {
     private static final int ERROR_NUMBER = 104;
 
-    public static int getErrorNumber() {
-        return ERROR_NUMBER;
+    public InvalidRangeTrialTimesException() {
+        super(ERROR_NUMBER);
     }
 }
