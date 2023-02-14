@@ -70,7 +70,7 @@ public class CarRaceController {
     }
 
     private void printWinnerResult(final Cars cars) {
-        List<String> winners = carsService.pickWinners(cars);
+        List<String> winners = carsService.pickWinnerNames(cars);
         outputView.printWinnersResult(winners);
     }
 }

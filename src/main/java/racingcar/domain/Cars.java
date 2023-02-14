@@ -34,7 +34,7 @@ public class Cars {
         });
     }
 
-    public List<String> pickWinners() {
+    public List<String> getWinnerNames() {
         Car maxPositionCar = getMaxPositionCar();
 
         return cars.stream()

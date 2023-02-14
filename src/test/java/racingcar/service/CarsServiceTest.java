@@ -8,7 +8,6 @@ import racingcar.domain.Cars;
 import racingcar.domain.dto.CarStatusDto;
 import racingcar.mock.MockNumberGenerator;
 import racingcar.provider.TestProvider;
-import racingcar.util.EnumUtil;
 
 import java.util.List;
 
@@ -70,7 +69,7 @@ class CarsServiceTest {
         testCars.race();
 
         // when
-        List<String> winners = carsService.pickWinners(testCars);
+        List<String> winners = carsService.pickWinnerNames(testCars);
 
         // then
         assertThat(winners.size())
@@ -85,7 +84,7 @@ class CarsServiceTest {
     void givenCarInfo_thenPickWinners() {
         // when
         testCars.race();
-        List<String> winners = carsService.pickWinners(testCars);
+        List<String> winners = carsService.pickWinnerNames(testCars);
 
         // then
         assertThat(winners)

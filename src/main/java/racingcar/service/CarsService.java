@@ -22,7 +22,7 @@ public class CarsService {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<String> pickWinners(final Cars carsInfo) {
-        return carsInfo.pickWinners();
+    public List<String> pickWinnerNames(final Cars carsInfo) {
+        return carsInfo.getWinnerNames();
     }
 }
