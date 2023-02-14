@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class CarNameTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"moreThanFive", "", " "})
+    @ValueSource(strings = {"sixsix", "moreThanFive", "", " "})
     @DisplayName("입력이 불가능한 케이스에 대해 예외 발생")
     void exceptionCase(String values) {
         assertThatThrownBy(() -> new CarName(values))

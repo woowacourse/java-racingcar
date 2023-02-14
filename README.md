@@ -66,4 +66,4 @@
 - [X] Main과 Controller 통합
 - [X] CarName, Position 객체로 포장
 - [X] 새로운 객체들에 대한 test 코드 추가
-- [ ] test case 보완
+- [X] test case 보완
