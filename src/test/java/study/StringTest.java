@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class StringTest {
+class StringTest {
     @Test
     @DisplayName("문자열 split 테스트(Delimiter : ,) ")
-    public void split_success() {
+    void split_success() {
         String strWithDelimiter = "1,2";
         String strWithoutDelimiter = "1";
 
@@ -30,7 +30,7 @@ public class StringTest {
 
     @Test
     @DisplayName("문자열 괄호 제거 테스트")
-    public void remove_parenthesis_success() {
+    void remove_parenthesis_success() {
         String str = "(1,2)";
         str = str.replaceAll("\\(|\\)", "");
         assertThat(str).isEqualTo("1,2");
@@ -38,7 +38,7 @@ public class StringTest {
 
     @Test
     @DisplayName("특정 위치의 문자를 가져오는 것을 테스트")
-    public void getchar_at_specific_index_fail() {
+    void getchar_at_specific_index_fail() {
         String str = "abc";
         int idx = 6;
         assertThatThrownBy(() -> {

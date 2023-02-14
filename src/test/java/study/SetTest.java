@@ -12,7 +12,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SetTest {
+class SetTest {
     private Set<Integer> numbers;
 
     @BeforeEach

@@ -2,6 +2,17 @@
 
 자동차 경주 미션 저장소
 
+### 2단계 피드백 반영사항 
+- [x] Application class 패키지 변경. Controller class 생성
+- [x] final 키워드 확인, 컨벤션 정렬 확인
+- [x] 도메인 로직 테스트 추가. (테스트 커버리지 활용)
+
+### 1단계 피드백 반영사항
+- [x] MVC 패턴 적용 (domain과 view 영역 분리)
+- [x] production code 는 toString() 대신 출력해주는 메소드를 만들어 출력
+- [x] field 접근제어자 확인. final 키워드 확인
+- [x] java convention 지키기
+
 ## 기능요구사항
 
 - [x] 각 자동차 이름 입력받기
