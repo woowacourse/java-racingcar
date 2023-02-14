@@ -15,15 +15,20 @@ public class Winners {
     }
 
     private List<Winner> calculateWinners(Cars cars) {
-        int winnerPosition = cars.getCars().stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(DEFAULT_MAX);
+        int winnerPosition = getWinnerPosition(cars);
 
         return cars.getCars().stream()
                     .filter(isSamePosition(winnerPosition))
-                    .map(car -> new Winner(car.getCarName()))
+                    .map(Car::getCarName)
+                    .map(Winner::new)
                     .collect(Collectors.toUnmodifiableList());
+    }
+
+    private int getWinnerPosition(Cars cars) {
+        return cars.getCars().stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(DEFAULT_MAX);
     }
 
     private Predicate<Car> isSamePosition(int winnerPosition) {
