@@ -18,7 +18,7 @@ class InputViewTest {
 
     private InputView inputView;
 
-    void before(String input) {
+    void initInputView(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         inputView = new InputView(new Scanner(System.in));
     }
@@ -27,7 +27,7 @@ class InputViewTest {
     void 자동차이름_입력값이_빈문자일_경우_오류를던진다() {
         //given
         final String input = "\n";
-        before(input);
+        initInputView(input);
         //when then
         assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] ")
@@ -37,7 +37,7 @@ class InputViewTest {
     @Test
     void 자동차이름_입력값_앞뒤에_공백이존재하면_무시한다() {
         //given
-        before("  one,two,three                  ");
+        initInputView("  one,two,three                  ");
         //when
         List<String> result = inputView.readCarNames();
         //then
@@ -49,7 +49,7 @@ class InputViewTest {
     void 올바른_자동차_이름_입력값을_받았을_때(List<String> carNames) {
         //given
         final String DELIMITER = ",";
-        before(String.join(DELIMITER, carNames));
+        initInputView(String.join(DELIMITER, carNames));
         //when
         List<String> result = inputView.readCarNames();
         //then
@@ -69,7 +69,7 @@ class InputViewTest {
     void 시도횟수_입력값이_빈문자일_경우_오류를던진다() {
         //given
         final String input = "\n";
-        before(input);
+        initInputView(input);
         //when then
         assertThatThrownBy(inputView::readCount).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] ")
@@ -80,7 +80,7 @@ class InputViewTest {
     @ParameterizedTest
     void 시도횟수_입력값이_정수가_아닐경우_오류를던진다(String input) {
         //given
-        before(input);
+        initInputView(input);
         //when then
         assertThatThrownBy(inputView::readCount).isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] ")
