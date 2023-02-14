@@ -1,13 +1,13 @@
 package domain.repository;
 
 import domain.exception.ErrorCode;
+import domain.model.Car;
 import domain.model.Name;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-import domain.model.Car;
 
 public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
 

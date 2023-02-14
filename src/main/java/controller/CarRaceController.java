@@ -69,6 +69,4 @@ public class CarRaceController {
             outputView.printMoveResult(carRaceService.move());
         }
     }
-
-
 }

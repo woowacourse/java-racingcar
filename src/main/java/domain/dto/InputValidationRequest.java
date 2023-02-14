@@ -1,7 +1,7 @@
 package domain.dto;
 
-import java.util.List;
 import domain.type.ValidationType;
+import java.util.List;
 
 public class InputValidationRequest {
 
