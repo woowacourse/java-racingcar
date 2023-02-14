@@ -45,6 +45,10 @@ public class Cars implements Iterable<Car> {
                 .orElseGet(Position::create);
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     @Override
     public Iterator<Car> iterator() {
         return cars.iterator();

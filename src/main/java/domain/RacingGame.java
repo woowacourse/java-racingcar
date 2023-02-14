@@ -19,6 +19,11 @@ public class RacingGame {
         this.tryCount = tryCount;
     }
 
+    public RacingGame(Cars cars, TryCount tryCount) {
+        this.cars = cars;
+        this.tryCount = tryCount;
+    }
+
     public List<Cars> start(MovingStrategy strategy) {
         List<Cars> movingStatus = new ArrayList<>();
 
