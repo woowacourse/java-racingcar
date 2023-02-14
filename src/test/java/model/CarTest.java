@@ -3,6 +3,7 @@ package model;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.model.Car;
+import domain.model.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,7 +17,7 @@ class CarTest {
         //given
         //when
         //then
-        assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car(new Name(name))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
@@ -25,7 +26,7 @@ class CarTest {
     void createCarWithCorrectNameRange(String name) {
         //given
         //when
-        new Car(name);
+        new Car(new Name(name));
         //then
     }
 }
