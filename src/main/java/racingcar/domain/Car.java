@@ -21,7 +21,7 @@ public class Car {
     }
 
     public int findGreaterPosition(int maxPosition) {
-        return position.comparePosition(maxPosition);
+        return position.compareAndFindPosition(maxPosition);
     }
 
     public boolean isWinner(int maxPosition) {

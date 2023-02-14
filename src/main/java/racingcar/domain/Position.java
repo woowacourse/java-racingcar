@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 public class Position {
 
     private int position;
@@ -12,7 +14,7 @@ public class Position {
         position++;
     }
 
-    public int comparePosition(int maxPosition) {
+    public int compareAndFindPosition(int maxPosition) {
         return Math.max(this.position, maxPosition);
     }
 
