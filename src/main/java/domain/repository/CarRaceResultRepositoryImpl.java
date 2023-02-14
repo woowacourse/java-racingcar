@@ -1,12 +1,13 @@
-package repository;
+package domain.repository;
 
-import exception.ErrorCode;
+import domain.exception.ErrorCode;
+import domain.model.Car;
+import domain.model.Name;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-import model.Car;
 
 public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
 
@@ -25,7 +26,7 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public int findByName(final String name) {
+    public int findByName(final Name name) {
         return moveCountBoard.get(moveCountBoard
             .keySet()
             .stream()
@@ -36,14 +37,14 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public Map<String, Integer> getRaceResult() {
-        Map<String, Integer> nameResult = new HashMap<>();
+    public Map<Name, Integer> getRaceResult() {
+        Map<Name, Integer> nameResult = new HashMap<>();
         moveCountBoard.forEach((key, value) -> nameResult.put(key.getName(), value));
         return nameResult;
     }
 
     @Override
-    public List<String> findAllCars() {
+    public List<Name> findAllCars() {
         return moveCountBoard.keySet()
             .stream()
             .map(Car::getName)
@@ -51,14 +52,18 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public void moveByName(final String name) {
-        Car car = moveCountBoard
-            .keySet()
+    public void moveByName(final Name name) {
+        Car car = moveCountBoard.keySet()
             .stream()
             .filter(key -> key.getName().equals(name))
             .findAny()
             .orElseThrow(() -> new IllegalArgumentException(ErrorCode.CAR_NOT_FOUND.getMessage()));
         moveCountBoard.replace(car, moveCountBoard.get(car) + MOVE_UNIT);
+    }
+
+    @Override
+    public void clear() {
+        this.moveCountBoard.clear();
     }
 
     private void validateCarDuplicate(final Car car) {

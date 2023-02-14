@@ -2,14 +2,15 @@ package validation;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import dto.InputValidationRequest;
+import domain.dto.InputValidationRequest;
+import domain.validation.InputValidationChain;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import type.ValidationType;
-import validation.impl.EmptyValueValidationChain;
-import validation.impl.NumberRangeValidationChain;
-import validation.impl.PositiveNumberValidationChain;
+import domain.type.ValidationType;
+import domain.validation.impl.EmptyValueValidationChain;
+import domain.validation.impl.NumberRangeValidationChain;
+import domain.validation.impl.PositiveNumberValidationChain;
 
 public class InputValidationTest {
 

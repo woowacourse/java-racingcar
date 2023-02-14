@@ -13,7 +13,7 @@ public class InputView {
 
     public String requestCarName() {
         System.out.println(REQUEST_CAR_NAME);
-        return scanner.nextLine();
+        return scanner.nextLine().replace(" ", "");
     }
 
     public String requestMoveCount() {

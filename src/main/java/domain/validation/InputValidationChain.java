@@ -1,6 +1,6 @@
-package validation;
+package domain.validation;
 
-import dto.InputValidationRequest;
+import domain.dto.InputValidationRequest;
 
 public interface InputValidationChain {
 

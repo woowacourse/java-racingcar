@@ -5,19 +5,22 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringTest {
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2", "1, 2"})
     @DisplayName(", 로 문자열이 나눠지는 경우를 테스트한다")
-    void checkStringSplitByComma() {
+    void checkStringSplitByComma(String input) {
         //given
         //when
-        String[] result = splitStringByDelimiter("1,2");
+        String[] result = input.replace(" ", "")
+            .split(",");
 
         //then
-        assertThat(result).contains("1")
-            .contains("2");
+        assertThat(result).containsExactly("1", "2");
     }
 
     @Test
@@ -29,11 +32,6 @@ public class StringTest {
 
         //then
         assertThat(result).containsExactly("1");
-    }
-
-    private String[] splitStringByDelimiter(String input) {
-        String delimiter = ",";
-        return input.split(delimiter);
     }
 
     @Test
@@ -82,5 +80,9 @@ public class StringTest {
         assertThat(result).isEqualTo('b');
     }
 
+    private String[] splitStringByDelimiter(String input) {
+        String delimiter = ",";
+        return input.split(delimiter);
+    }
 
 }

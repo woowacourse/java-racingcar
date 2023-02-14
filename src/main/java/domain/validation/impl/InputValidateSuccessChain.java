@@ -1,7 +1,7 @@
-package validation.impl;
+package domain.validation.impl;
 
-import dto.InputValidationRequest;
-import validation.InputValidationChain;
+import domain.dto.InputValidationRequest;
+import domain.validation.InputValidationChain;
 
 public class InputValidateSuccessChain implements InputValidationChain {
 

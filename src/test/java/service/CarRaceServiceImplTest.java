@@ -3,12 +3,18 @@ package service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.model.Name;
+import domain.repository.CarRaceResultRepositoryImpl;
+import domain.service.CarRaceService;
+import domain.service.CarRaceServiceImpl;
+import domain.service.NumberGenerator;
+import domain.service.RandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import repository.CarRaceResultRepositoryImpl;
 
 class CarRaceServiceImplTest {
 
@@ -35,12 +41,13 @@ class CarRaceServiceImplTest {
     void saveCars() {
         //given
         carRaceService = makeCarRaceService(new RandomNumberGenerator());
-        List<String> names = List.of("car1", "car2");
+        List<String> letters = List.of("car1", "car2");
 
         //when
-        Map<String, Integer> cars = carRaceService.saveCars(names);
+        Map<Name, Integer> cars = carRaceService.saveCars(letters);
 
         //then
+        List<Name> names = letters.stream().map(Name::new).collect(Collectors.toList());
         assertThat(cars.keySet()).containsAll(names);
     }
 
@@ -53,7 +60,7 @@ class CarRaceServiceImplTest {
         carRaceService.saveCars(names);
 
         //when
-        Map<String, Integer> result = carRaceService.move();
+        Map<Name, Integer> result = carRaceService.move();
 
         //then
         for (Integer raceResult : result.values()) {
@@ -70,7 +77,7 @@ class CarRaceServiceImplTest {
         carRaceService.saveCars(names);
 
         //when
-        Map<String, Integer> result = carRaceService.move();
+        Map<Name, Integer> result = carRaceService.move();
 
         //then
         for (Integer raceResult : result.values()) {
@@ -88,6 +95,19 @@ class CarRaceServiceImplTest {
             names.add(String.valueOf(i));
         }
 
+        //when
+        //then
+        assertThatThrownBy(() -> carRaceService.saveCars(names))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+    
+    @Test
+    @DisplayName("중복된 차 이름이 들어온 경우")
+    public void duplicateCarNameSave() {
+        //given
+        carRaceService = makeCarRaceService(new RandomNumberGenerator());
+        List<String> names = List.of("car", "car");
+        
         //when
         //then
         assertThatThrownBy(() -> carRaceService.saveCars(names))
