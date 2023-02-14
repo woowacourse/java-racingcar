@@ -9,7 +9,7 @@ public class OutputView {
 
     private static final String SEPARATOR = " : ";
     private static final String DELIMITER = ", ";
-    private static final String MOVE_DISTANCE_COUNT = "-";
+    private static final String MOVE_DISTANCE_DELIMITER = "-";
     private static final String NEW_LINE = System.lineSeparator();
 
     public void requestOfCarNames() {
@@ -38,7 +38,7 @@ public class OutputView {
             currentRacingStatusMessage
                     .append(carName)
                     .append(SEPARATOR)
-                    .append(MOVE_DISTANCE_COUNT.repeat(countOfMovingDistance))
+                    .append(MOVE_DISTANCE_DELIMITER.repeat(countOfMovingDistance))
                     .append(NEW_LINE);
         }
 
