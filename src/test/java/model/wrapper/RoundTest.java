@@ -14,7 +14,7 @@ class RoundTest {
     void continueRace(int input) {
         Round round = new Round(input);
 
-        boolean result = round.isRacing();
+        boolean result = round.canRacing();
 
         Assertions.assertThat(result).isTrue();
     }
@@ -24,7 +24,7 @@ class RoundTest {
     void exitRace() {
         Round round = new Round(0);
 
-        boolean result = round.isRacing();
+        boolean result = round.canRacing();
 
         Assertions.assertThat(result).isFalse();
     }

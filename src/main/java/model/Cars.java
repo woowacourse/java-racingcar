@@ -20,7 +20,7 @@ public class Cars {
     public List<RacingRoundStateDto> race(Round round) {
         List<RacingRoundStateDto> racingResult = new ArrayList<>();
 
-        while (round.isRacing()) {
+        while (round.canRacing()) {
             racingResult.add(race());
         }
         return racingResult;
@@ -30,6 +30,7 @@ public class Cars {
         List<RacingCarStateDto> racingCarsStateDto = cars.stream()
                 .map(Car::race)
                 .collect(Collectors.toUnmodifiableList());
+
         return new RacingRoundStateDto(racingCarsStateDto);
     }
 

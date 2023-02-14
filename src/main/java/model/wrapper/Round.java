@@ -19,7 +19,7 @@ public class Round {
         }
     }
 
-    public boolean isRacing() {
+    public boolean canRacing() {
         return round-- >= ROUND_MIN_VALUE;
     }
 }
