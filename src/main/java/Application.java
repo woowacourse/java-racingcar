@@ -6,8 +6,11 @@ import view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        RaceController raceController = new RaceController(new InputView(), new OutputView(),
-            new RandomNumberGenerator());
+        RaceController raceController = new RaceController(
+            new InputView(),
+            new OutputView(),
+            new RandomNumberGenerator()
+        );
         raceController.play();
     }
 }
