@@ -2,6 +2,7 @@ package racingcar.view;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ViewRenderer {
     private static final String COLON = ":";
@@ -10,14 +11,9 @@ public class ViewRenderer {
     private static final String NEW_LINE = "\n";
 
     public String renderRoundResult(Map<String, Integer> roundResults) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Map.Entry<String, Integer> result : roundResults.entrySet()) {
-            stringBuilder.append(result.getKey());
-            stringBuilder.append(SPACE + COLON + SPACE);
-            stringBuilder.append(DASH.repeat(result.getValue()));
-            stringBuilder.append(NEW_LINE);
-        }
-        return stringBuilder.toString();
+        return roundResults.entrySet().stream()
+                .map(result -> result.getKey() + SPACE + COLON + SPACE + DASH.repeat(result.getValue()) + NEW_LINE)
+                .collect(Collectors.joining());
     }
 
     public String renderWinners(List<String> winners) {
