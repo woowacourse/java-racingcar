@@ -1,10 +1,10 @@
-package racingcar.vo;
+package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.vo.Position;
+import racingcar.domain.Position;
 
 class PositionTest {
 

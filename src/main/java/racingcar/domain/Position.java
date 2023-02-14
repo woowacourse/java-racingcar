@@ -1,4 +1,4 @@
-package racingcar.vo;
+package racingcar.domain;
 
 public class Position {
     private static final int FORWARD_ONE_BLOCK = 1;
