@@ -1,7 +1,6 @@
 package controller;
 
 import common.ExecuteContext;
-import common.InputContext;
 import domain.dto.InputValidationRequest;
 import domain.model.Name;
 import domain.service.CarRaceService;
@@ -21,17 +20,15 @@ public class CarRaceController {
     private final OutputView outputView;
     private final InputValidationChain validator;
     private final CarRaceService carRaceService;
-    private final InputContext inputContext;
     private final ExecuteContext executeContext;
 
     public CarRaceController(InputView inputView, OutputView outputView,
-        InputValidationChain validator, CarRaceService carRaceService, InputContext inputContext,
+        InputValidationChain validator, CarRaceService carRaceService,
         ExecuteContext executeContext) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.validator = validator;
         this.carRaceService = carRaceService;
-        this.inputContext = inputContext;
         this.executeContext = executeContext;
     }
 
@@ -49,7 +46,7 @@ public class CarRaceController {
     }
 
     private String getCarNames() {
-        return inputContext.workWithInputStrategy(validator, validator -> {
+        return executeContext.workWithOptionStrategy(() -> {
             final String cars = inputView.requestCarName();
             validator.validate(
                 new InputValidationRequest(List.of(ValidationType.EMPTY_VALUE), cars));
@@ -58,7 +55,7 @@ public class CarRaceController {
     }
 
     private int requestCarMoveCount() {
-        return inputContext.workWithInputStrategy(validator, validator -> {
+        return executeContext.workWithOptionStrategy(() -> {
             final String moveCount = inputView.requestMoveCount();
             validator.validate(new InputValidationRequest(List.of(ValidationType.EMPTY_VALUE,
                 ValidationType.NUMBER_RANGE, ValidationType.POSITIVE_NUMBER), moveCount));
