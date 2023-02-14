@@ -1,67 +1,67 @@
 package domain;
 
-import java.util.Collections;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import racing.domain.WinnerJudgeImpl;
+import racing.domain.car.Car;
+import racing.domain.race.Race;
+import racing.domain.race.WinnerJudge;
 
 class RaceTest {
-
-    @Nested
-    class judgeWinners {
-        List<String> winners;
-
-        @BeforeEach
-        void setup() {
-            Race race = new Race(List.of("rosie", "hong"), new TestNumberPicker(4, 1));
-            race.tryMoveOneTime();
-            winners = race.judgeWinners().stream().map(car -> car.name).collect(Collectors.toList());
-        }
-
-        @Test
-        @DisplayName("반환값에 우승자가 포함되어 있는지 테스트")
-        void shouldContainsWinners() {
-            Assertions.assertThat(winners)
-                    .containsExactly("rosie");
-        }
-
-        @Test
-        @DisplayName("반환값에 우승자가 아닌 사람이 포함되어 있지 않은지 테스트")
-        void shouldNotContainNonWinners() {
-            Assertions.assertThat(winners)
-                    .doesNotContain("hong");
-        }
-    }
-
     @Nested
     @DisplayName("이름 중복 검증기능")
-    class duplicatedNameTest {
+    class DuplicatedNameTest {
         @Test
         @DisplayName("이름이 중복으로 입력되었을 때 예외 발생")
         void throwExceptionWhenDuplicateNameExists() {
-            Assertions.assertThatThrownBy(() -> new Race(List.of("rosie", "hong", "rosie")))
+            Assertions.assertThatThrownBy(() -> new Race(List.of("rosie", "hong", "rosie"), new WinnerJudgeImpl()))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
 
-    static class TestNumberPicker implements NumberPicker {
-        private final Queue<Integer> numbers = new PriorityQueue<>(Collections.reverseOrder());
+    @Nested
+    @DisplayName("우승자를 판별 기능은")
+    class GetWinnersTest {
+        private Race race;
+        private WinnerJudge mockWinnerJudge;
 
-        public TestNumberPicker(Integer... numbers) {
-            for (Integer number : numbers) {
-                this.numbers.add(number);
-            }
+
+        @Test
+        @DisplayName("우승자를 반드시 포함해서 알려준다")
+        void shouldContainWinners() {
+            // given
+            mockWinnerJudge = cars -> List.of(new Car("rosie"));
+            race = new Race(List.of("rosie", "hong"), mockWinnerJudge);
+
+            // when
+            List<Car> winners = race.getWinners();
+
+            //then
+            assertThat(getNamesOf(winners)).contains("rosie");
         }
 
-        @Override
-        public int pickNumber() {
-            return numbers.poll();
+        private List<String> getNamesOf(List<Car> winners) {
+            return winners.stream().map(Car::getName).collect(Collectors.toList());
+        }
+
+        @Test
+        @DisplayName("우승자가 아닌 사람을 포함하지 않고 알려준다.")
+        void shouldNotContainNonWinners() {
+            // given
+            mockWinnerJudge = cars -> List.of(new Car("rosie"));
+            race = new Race(List.of("rosie", "hong"), mockWinnerJudge);
+
+            // when
+            List<Car> winners = race.getWinners();
+
+            //then
+            assertThat(getNamesOf(winners)).doesNotContain("hong");
         }
     }
 }
