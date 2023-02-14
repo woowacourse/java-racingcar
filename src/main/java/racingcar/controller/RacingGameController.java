@@ -1,77 +1,94 @@
 package racingcar.controller;
 
+import racingcar.domain.Car;
 import racingcar.domain.CarFactory;
+import racingcar.domain.NumberGenerator;
 import racingcar.domain.RacingCars;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.domain.TryCount;
+import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.InputMismatchException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGameController {
 
+    private static final String CAR_NAME_DELIMITER = ",";
+    private static final int RACE_START_POINT = 0;
+    private static final int MINIMUM_RANDOM_NUMBER = 0;
+    private static final int MAXIMUM_RANDOM_NUMBER = 9;
+
     public void run() {
         RacingCars cars = createCars();
-        int tries = getTries();
+        TryCount tries = getTries();
 
         OutputView.printResultMessage();
-        raceCars(cars, tries);
+        raceCars(cars, tries.getTries());
         showFinalResult(cars);
-    }
-
-    private void raceCars(RacingCars cars, int tries) {
-        for (int i = 0; i < tries; i++) {
-            cars.moveCars(new RandomNumberGenerator());
-            OutputView.printRaceResult(cars.showRaceResult());
-        }
     }
 
     private RacingCars createCars() {
         try {
-            String input = InputView.inputCarNames();
-            return new RacingCars(CarFactory.generate(input));
+            List<String> carNames = extractCarNames(InputView.inputCarNames());
+            List<Car> cars = CarFactory.generate(carNames, RACE_START_POINT);
+            return new RacingCars(cars);
+
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return createCars();
         }
     }
 
-    /**
-     * TODO : InputView에서 숫자아닌 값을 입력했을 경우, "숫자를 입력해주세요" 라는 에러 메시지를 전달하기 위해 아래와 같이 작성하였습니다
-     * 하지만 예외처리를 controller에서 하드코딩으로 했다는 점과
-     * TryCount라는 객체 또한 후에 시도횟수의 최소 입력값을 바꿀 수도 있기 떄문에 객체로 생성하였는데
-     * 이러한 시도가 맞는지 의문이 듭니다.
-     * 시도횟수(1이상), 차 이름(,구분자로 구분되고, n개 이상)의 유효성 검사를 inputView에서 해야하는지 도메인 객체에서 해야하는지 헷갈립니다.
+    /** TODO: extractCarNames(String input) 메서드 같은 경우에는,
+     * view에서 받은값을 원하는 모양으로 자료를 가공하여 CarFactory Domain에 전달하는 것인데
+     * Controller에서 만드는 것이 맞을까요?
+     * 아니면, CarFactory에서 값을 가공하는 것이 더 적합할까요?
      */
-    private int getTries() {
-        try {
-            TryCount tries = new TryCount(InputView.inputTries());
-            return tries.getTries();
+    private List<String> extractCarNames(String input) {
+        return Arrays.stream(input.split(CAR_NAME_DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toUnmodifiableList());
+    }
 
-        } catch (InputMismatchException e) {
-            throw new IllegalArgumentException("숫자를 입력해주세요.");
+    private TryCount getTries() {
+        try {
+            int tries = InputView.inputTries();
+            return new TryCount(tries);
+
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getTries();
         }
     }
 
-    /**
-     * TODO : 최종 결과를 출력할 때, 차의 이름과 현재 차들의 위치를 다시 한번 출력하는데,
-     * 이때  이미 생성된 DTO인스턴스(List<CarStatus>)를 저장하는 곳이 없어,
-     * 또 다시 cars.showRaceResult()를 불러왔습니다.
-     * 이러한 경우, 생성한 DTO를 다른 객체에 저장했다가(예를들면, List<CarStatus>를 저장하는 RaceResult 객체를 컨트롤러에서 생성)
-     * 해당 dto가 필요할때 컨트롤러가 꺼내어 view에 넘겨도 DTO사용에 위배되지 않는지 궁금합니다.
-     **/
+    private void raceCars(RacingCars cars, int tries) {
+        NumberGenerator numberGenerator = new RandomNumberGenerator(MINIMUM_RANDOM_NUMBER, MAXIMUM_RANDOM_NUMBER);
+
+        for (int i = 0; i < tries; i++) {
+            cars.moveCars(numberGenerator);
+            List<CarStatus> raceResult = showRaceResult(cars);
+            OutputView.printRaceResult(raceResult);
+        }
+    }
+
+    private List<CarStatus> showRaceResult(RacingCars racingCars) {
+        return racingCars.getCars().stream()
+                .map(car -> new CarStatus(car.getName(), car.getCurrentPosition()))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     private void showFinalResult(RacingCars cars) {
-        OutputView.printRaceResult(cars.showRaceResult());
+        List<CarStatus> raceResult = showRaceResult(cars);
+        OutputView.printRaceResult(raceResult);
+
         showWinners(cars);
     }
 
     private void showWinners(RacingCars cars) {
-        List<String> winnersName = cars.pickWinnerCarsName();
+        List<String> winnersName = cars.pickWinnerCarNames();
         OutputView.printFinalResult(winnersName);
     }
 }
