@@ -15,9 +15,17 @@ public class Output {
         System.out.println(message);
     }
 
-    public static void printEachCarDistance(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car.getName() + " : " + MOVE_INDICATOR.repeat(car.getDistance())));
+    public static void printEachTryCarDistance(List<Car> cars, int index) {
+        cars.forEach(car ->
+                System.out.println(car.getName() + " : " + MOVE_INDICATOR.repeat(car.getDistanceRecord(index))));
         System.out.println();
+    }
+
+    public static void printEachCarResult(List<Car> cars, int tryCount){
+        printMessage("실행 결과");
+        for (int index = 0; index < tryCount; index++){
+            printEachTryCarDistance(cars, index);
+        }
     }
 
     public static void printWinner(Winner winner) {
@@ -26,4 +34,5 @@ public class Output {
                 .collect(Collectors.joining(SEPERATOR));
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
+
 }
