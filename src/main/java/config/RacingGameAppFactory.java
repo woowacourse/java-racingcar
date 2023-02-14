@@ -1,27 +1,42 @@
 package config;
 
+import domain.RacingGame;
 import application.RacingGameApplication;
+import utils.ExceptionHandler;
 import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
 import view.InputView;
-import view.InputViewProxy;
+import view.ConsoleInputView;
 import view.OutputView;
+import java.lang.reflect.Proxy;
 
 public class RacingGameAppFactory {
 
-    public RacingGameApplication generateApp() {
-        return new RacingGameApplication(initInputView(), initOutputView(), initNumberGenerator());
+    private RacingGameAppFactory() {
+        throw new IllegalStateException("인스턴스화 할 수 없는 클래스입니다.");
     }
 
-    private InputView initInputView() {
-        return new InputViewProxy(new InputView());
+    public static RacingGameApplication generate() {
+        return new RacingGameApplication(initInputView(), initOutputView(), initRacingGame());
     }
 
-    private OutputView initOutputView() {
+    private static InputView initInputView() {
+        InputView inputView = new ConsoleInputView();
+        InputView inputViewRetry = (InputView) Proxy.newProxyInstance(InputView.class.getClassLoader(),
+                new Class[]{InputView.class},
+                new ExceptionHandler(inputView));
+        return inputViewRetry;
+    }
+
+    private static OutputView initOutputView() {
         return new OutputView();
     }
 
-    private NumberGenerator initNumberGenerator() {
+    private static RacingGame initRacingGame() {
+        return new RacingGame(initNumberGenerator());
+    }
+
+    private static NumberGenerator initNumberGenerator() {
         return new RandomNumberGenerator();
     }
 }

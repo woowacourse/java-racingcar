@@ -1,59 +1,46 @@
 package application;
 
-import domain.Car;
 import domain.Cars;
-import utils.NumberGenerator;
+import domain.Name;
+import domain.RacingGame;
 import domain.TryCount;
-import dto.request.CarNameDto;
 import dto.response.CarStatusDto;
 import dto.response.WinnersNameDto;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGameApplication {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final NumberGenerator numberGenerator;
+    private final RacingGame racingGame;
 
-    public RacingGameApplication(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
+    public RacingGameApplication(InputView inputView,
+                                 OutputView outputView,
+                                 RacingGame racingGame) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.numberGenerator = numberGenerator;
+        this.racingGame = racingGame;
     }
 
     public void run() {
-        List<CarNameDto> carNameDtos = inputView.sendCarsName();
+        List<Name> names = inputView.sendCarsName();
         TryCount tryCount = inputView.sendTryCount();
+        Cars cars = Cars.of(names);
 
-        Cars cars = getCars(carNameDtos);
-
-        playGame(tryCount, cars);
-        printResult(cars);
+        play(tryCount, cars);
+        printWinners(cars);
     }
 
-    private Cars getCars(List<CarNameDto> carNameDtos) {
-        return carNameDtos.stream()
-                .map(carNameDto -> new Car(carNameDto.getName()))
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Cars::new));
+    private void play(TryCount tryCount, Cars cars) {
+        List<List<CarStatusDto>> result = racingGame.play(cars, tryCount);
+        outputView.printGameResult(result);
     }
 
-    private void playGame(TryCount tryCount, Cars cars) {
-        for (int i = 0; i < tryCount.getTryCount(); i++) {
-            cars.moveCars(numberGenerator);
-            List<CarStatusDto> carStatusDtos = cars.getCars()
-                    .stream()
-                    .map(CarStatusDto::of)
-                    .collect(Collectors.toList());
-            outputView.printEachRound(carStatusDtos);
-        }
-    }
-
-    private void printResult(Cars cars) {
-        List<Car> winners = cars.findWinners();
-        outputView.printWinners(WinnersNameDto.of(winners));
+    private void printWinners(Cars cars) {
+        WinnersNameDto winners = racingGame.findWinners(cars);
+        outputView.printWinners(winners);
     }
 }

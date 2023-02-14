@@ -2,69 +2,74 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import utils.NumberGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static domain.Car.MINIMUM_NUMBER_TO_MOVE;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarsTest {
 
-    private final NumberGenerator mockNumberGenerator = new MockNumberGenerator();
+    private static final int MINIMUM_NUMBER_TO_MOVE = 4;
+    private static final int DEFAULT_POSITION_VALUE = 0;
 
     @DisplayName("moveCars를 통해 조건을 충족시킨 Car를 move 시킨다.")
-    @ParameterizedTest
-    @CsvSource(value = {"0:1", "1:0", "2:1"}, delimiter = ':')
-    void test1(int index, int expectedPosition) {
-        Car carA = new Car("carA");
-        Car carB = new Car("carB");
-        Car carC = new Car("carC");
+    @Test
+    void moveCars() {
+        Cars cars = createCars(3);
+        int[] moveOrder = {MINIMUM_NUMBER_TO_MOVE, MINIMUM_NUMBER_TO_MOVE - 1, MINIMUM_NUMBER_TO_MOVE};
+        MockNumberGenerator mockNumberGenerator = new MockNumberGenerator(moveOrder);
 
-        Cars cars = new Cars(List.of(carA, carB, carC));
+        cars.move(mockNumberGenerator);
 
-        cars.moveCars(mockNumberGenerator);
+        List<Integer> positions = cars.getCars()
+                .stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
 
-        Car carAfterMove = cars.getCars().get(index);
-        assertEquals(carAfterMove.getPosition(), expectedPosition);
+        assertThat(positions)
+                .containsExactly(DEFAULT_POSITION_VALUE + 1, DEFAULT_POSITION_VALUE, DEFAULT_POSITION_VALUE + 1);
     }
 
     @DisplayName("findWinners()를 통해 position이 가장 높은 Car들을 가져온다")
     @Test
-    void test2() {
-        Car carA = new Car("carA");
-        Car carB = new Car("carB");
-        Car carC = new Car("carC");
+    void findWinners() {
+        Cars cars = createCars(3);
+        int[] moveOrder = {MINIMUM_NUMBER_TO_MOVE, MINIMUM_NUMBER_TO_MOVE - 1, MINIMUM_NUMBER_TO_MOVE};
+        MockNumberGenerator mockNumberGenerator = new MockNumberGenerator(moveOrder);
 
-        Cars cars = new Cars(List.of(carA, carB, carC));
-
-        cars.moveCars(mockNumberGenerator);
+        cars.move(mockNumberGenerator);
         List<Car> winners = cars.findWinners();
 
-        assertThat(winners).containsExactly(carA, carC);
+        assertThat(winners).containsExactly(cars.getCars().get(0), cars.getCars().get(2));
+    }
+
+    private Cars createCars(int size) {
+        List<Name> names = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            names.add(new Name("car" + i));
+        }
+        return Cars.of(names);
     }
 
     /**
-     * 홀수번은 move가 가능한 숫자를, 짝수번에는 move가 불가능한 숫자를 반환하는 NumberGenerator
+     * 생성자를 통해 원하는 숫자를 순서대로 출력해주는 NumberGenerator
      */
     class MockNumberGenerator implements NumberGenerator {
 
-        private List<Integer> values = List.of(MINIMUM_NUMBER_TO_MOVE , MINIMUM_NUMBER_TO_MOVE-1);
+        private final int[] values;
         private int index = 0;
+
+        public MockNumberGenerator(int... value) {
+            this.values = value;
+        }
 
         @Override
         public int generate() {
-            Integer value = values.get(index);
-
-            if (index == 0) {
-                index++;
-                return value;
-            }
-
-            index--;
+            int value = values[index];
+            index++;
             return value;
         }
     }
