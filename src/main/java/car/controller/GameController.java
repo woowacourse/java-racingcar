@@ -1,6 +1,7 @@
 package car.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import car.domain.Car;
@@ -12,6 +13,8 @@ import car.view.OutputView;
 
 public class GameController {
 
+    private static final String EXCEPTION_PREFIX = "[ERROR]";
+
     private static final InputView INPUT_VIEW = new InputView();
     private static final OutputView OUTPUT_VIEW = new OutputView();
 
@@ -19,9 +22,15 @@ public class GameController {
     private final MoveChance moveChance = new RandomMoveChance();
 
     public GameController() {
-        List<String> carNames = INPUT_VIEW.inputCarNames();
-        int trialCount = INPUT_VIEW.inputTrialCount();
-        game = new Game(makeCarsWith(carNames), trialCount);
+        game = createGame();
+    }
+
+    private Game createGame() {
+        return handleExceptionByRepeating(() -> {
+            List<String> carNames = INPUT_VIEW.inputCarNames();
+            int trialCount = INPUT_VIEW.inputTrialCount();
+            return new Game(makeCarsWith(carNames), trialCount);
+        });
     }
 
     public void play() {
@@ -46,5 +55,14 @@ public class GameController {
     private void showResult() {
         OUTPUT_VIEW.printStatusOf(game.getCars());
         OUTPUT_VIEW.printWinners(game.findWinners());
+    }
+
+    private <T> T handleExceptionByRepeating(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (Exception exception) {
+            System.out.println(EXCEPTION_PREFIX + exception.getMessage());
+            return handleExceptionByRepeating(supplier);
+        }
     }
 }

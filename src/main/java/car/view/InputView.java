@@ -23,6 +23,8 @@ public class InputView {
 
     public int inputTrialCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return SCANNER.nextInt();
+        int input = SCANNER.nextInt();
+        SCANNER.nextLine();
+        return input;
     }
 }
