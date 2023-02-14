@@ -1,7 +1,5 @@
 package racingcar.strategy;
 
-import java.util.Random;
-
 public class MovableStrategy implements MovingStrategy {
 
     @Override
