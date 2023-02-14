@@ -34,13 +34,10 @@ public class Cars {
         });
     }
 
-    public List<String> getWinnerNames() {
-        Car maxPositionCar = getMaxPositionCar();
-
+    public Car getMaxPositionCar() {
         return cars.stream()
-                .filter(maxPositionCar::isSamePosition)
-                .map(Car::getName)
-                .collect(Collectors.toUnmodifiableList());
+                .max(Car::compareTo)
+                .orElseThrow(() -> new NoResourceException(String.format(NO_RESOURCE_MESSAGE.getValue(), "차량 리스트")));
     }
 
     private List<Car> create(final String carNames) {
@@ -59,12 +56,6 @@ public class Cars {
         if (cars.size() != uniqueCarCount) {
             throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
         }
-    }
-
-    private Car getMaxPositionCar() {
-        return cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow(() -> new NoResourceException(String.format(NO_RESOURCE_MESSAGE.getValue(), "차량 리스트")));
     }
 
     @Override

@@ -21,8 +21,4 @@ public class CarsService {
                 .map(car -> CarStatusDto.create(car.getName(), car.getPosition()))
                 .collect(Collectors.toUnmodifiableList());
     }
-
-    public List<String> pickWinnerNames(final Cars carsInfo) {
-        return carsInfo.getWinnerNames();
-    }
 }

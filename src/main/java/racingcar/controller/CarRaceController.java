@@ -3,10 +3,12 @@ package racingcar.controller;
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
 import racingcar.domain.RaceNumberGenerator;
+import racingcar.domain.WinnerCar;
 import racingcar.domain.dto.CarStatusDto;
 import racingcar.domain.dto.RaceResultDto;
 import racingcar.service.CarsService;
 import racingcar.service.RaceService;
+import racingcar.service.WinnerCarService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -25,6 +27,8 @@ public class CarRaceController {
 
     private final RaceService raceService;
 
+    private final WinnerCarService winnerCarService;
+
     private final RaceNumberGenerator numberGenerator;
 
     public CarRaceController() {
@@ -32,31 +36,41 @@ public class CarRaceController {
         outputView = new OutputView();
         carsService = new CarsService();
         raceService = new RaceService(carsService);
+        winnerCarService = new WinnerCarService();
         numberGenerator = new RaceNumberGenerator();
     }
 
     public void race() {
-        Cars cars = getUserInputAndCreateCars();
-        Race race = getUserInputAndCreateRace();
+        String carNames = getCarNames();
+        Cars cars = createCars(carNames);
+        String tryCount = getTryCount();
+        Race race = createRace(tryCount);
+
         printInitCarStatus(cars);
         printRaceResult(cars, race);
         printWinnerResult(cars);
     }
 
-    private Cars getUserInputAndCreateCars() {
+    private String getCarNames() {
         return inputView.getUserInput(() -> {
             OutputView.printMessage(GET_CAR_NAMES_MESSAGE.getValue());
-            String carNames = inputView.readConsole();
-            return carsService.createCars(carNames, numberGenerator);
+            return inputView.readConsole();
         });
     }
 
-    private Race getUserInputAndCreateRace() {
+    private Cars createCars(String carNames) {
+        return carsService.createCars(carNames, numberGenerator);
+    }
+
+    private String getTryCount() {
         return inputView.getUserInput(() -> {
             OutputView.printMessage(GET_TRY_COUNT_MESSAGE.getValue());
-            String tryCount = inputView.readConsole();
-            return raceService.createRace(tryCount);
+            return inputView.readConsole();
         });
+    }
+
+    private Race createRace(String tryCount) {
+        return raceService.createRace(tryCount);
     }
 
     private void printInitCarStatus(Cars cars) {
@@ -70,7 +84,8 @@ public class CarRaceController {
     }
 
     private void printWinnerResult(final Cars cars) {
-        List<String> winners = carsService.pickWinnerNames(cars);
+        WinnerCar winnerCar = winnerCarService.createWinnerCar(cars);
+        List<String> winners = winnerCarService.getWinnerNames(winnerCar);
         outputView.printWinnersResult(winners);
     }
 }
