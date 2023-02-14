@@ -1,21 +1,14 @@
 package racingcar.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.util.Converter;
 
 public class Cars {
-    private static final String CAR_NAMES_DELETMETER = ",";
-
-    private static final String CAR_ERROR = "[ERROR] 차량 리스트가 비었습니다";
-
     private final List<Car> cars;
 
     public Cars(String carNames) {
-        String[] split = carNames.split(CAR_NAMES_DELETMETER);
-        this.cars = Arrays.stream(split)
-                .map(Car::new)
-                .collect(Collectors.toUnmodifiableList());
+        this.cars = Converter.stringToCars(carNames);
     }
 
     public List<String> getWinnerNames() {
