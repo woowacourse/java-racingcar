@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import static racingcar.view.Constants.NAME_SEPARATOR;
+
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -14,7 +16,6 @@ public class InputView {
     private static final int MAXIMUM_TRY_COUNT = 9;
     public static final String DUPLICATE_NAME_ANNOUNCEMENT = "[ERROR] 이름은 중복될 수 없습니다. ";
     private static final String WRONG_TRY_COUNT_ANNOUNCEMENT = "[ERROR] 잘못된 시도 횟수입니다.";
-    private static final String NAME_SEPARATOR = ",";
 
     private final Scanner scanner;
 
