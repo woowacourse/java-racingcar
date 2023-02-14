@@ -42,7 +42,7 @@ class CarsTest {
 
     @ParameterizedTest
     @NullSource
-    @DisplayName("자동차 이름에 null 값이 들어오면 split 시 에외가 발생한다.")
+    @DisplayName("자동차 이름에 null 값이 들어오면 split 시 예외가 발생한다.")
     void givenNullCarNames_thenFail(final String carNames) {
         assertThatThrownBy(() -> Cars.create(carNames, numberGenerator))
                 .isInstanceOf(NullPointerException.class);
