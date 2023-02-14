@@ -11,12 +11,13 @@ import racinggame.view.Output;
 import java.util.List;
 
 public class RacingGameController {
-    private final CarGenerator carGenerator = new CarGenerator();
+    private static final NumberGenerator numberGenerator = new RandomNumberGenerator();
+    private static final CarGenerator carGenerator = new CarGenerator();
+
     private String[] carNames;
     private int tryCount;
     private RacingGame racingGame;
     private List<Car> cars;
-    private NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() {
         init();
