@@ -13,6 +13,10 @@ public class Car {
         this.location = CAR_LOCATION_INITIALIZATION;
     }
 
+    public boolean isDuplicate(Name name) {
+        return this.name.equals(name);
+    }
+
     public void moveByNumber(int number) {
         if (number >= MIN_NUMBER_FOR_CAR_MOVE) {
             this.moveCar();
