@@ -18,7 +18,8 @@ class CarsTest {
     @DisplayName("validate() : 자동차 명이 중복이면 에러가 터진다.")
     void test_validate() {
         // given
-        List<Car> cars = List.of(new Car("jay", 0), new Car("jay", 0));
+        Car duplicateCar = new Car("jay", 0);
+        List<Car> cars = List.of(duplicateCar, duplicateCar);
 
         // when & then
         assertThatThrownBy(() -> new Cars(cars))
