@@ -35,7 +35,7 @@ public class Cars {
 
     private Car findMaxPositionCar() {
         return cars.stream()
-                .max(Car::compareTo)
+                .reduce(Car::isWin)
                 .orElseThrow(() -> new IllegalArgumentException("자동차 위치의 최대값을 구할 수 없습니다."));
     }
 
