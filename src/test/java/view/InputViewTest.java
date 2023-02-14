@@ -36,4 +36,5 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차명을 입력해주셔야합니다.");
     }
+
 }

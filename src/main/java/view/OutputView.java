@@ -39,4 +39,5 @@ public class OutputView {
                 .map(Car::getName)
                 .collect(joining(WINNERS_DELIMITER));
     }
+
 }

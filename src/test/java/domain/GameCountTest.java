@@ -60,4 +60,5 @@ class GameCountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("게임은 횟수만큼만 진행해야합니다.");
     }
+
 }

@@ -13,4 +13,5 @@ public class PowerGenerator {
     public int generate(int upperBound) {
         return powerGenerator.nextInt(upperBound);
     }
+
 }

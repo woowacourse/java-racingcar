@@ -60,4 +60,5 @@ public class CarTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차명은 1 ~ 5 글자로 입력해야합니다.");
     }
+
 }

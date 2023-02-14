@@ -52,4 +52,5 @@ public class GameCount {
         return !(NUMBER_OF_TIME_LOWER_BOUND_INCLUSIVE <= numberOfTimes
                 && numberOfTimes <= NUMBER_OF_TIME_UPPER_BOUND_INCLUSIVE);
     }
+
 }

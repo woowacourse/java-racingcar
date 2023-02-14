@@ -38,4 +38,5 @@ public class InputView {
         System.out.println(NUMBER_OF_TIME_INPUT_HEADER);
         return reader.nextLine();
     }
+
 }

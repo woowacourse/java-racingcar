@@ -50,4 +50,5 @@ public class RacingController {
     private void end(Cars cars) {
         outputView.printWinners(cars.getWinners());
     }
+
 }

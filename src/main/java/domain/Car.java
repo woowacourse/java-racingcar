@@ -62,4 +62,5 @@ public class Car {
     public int hashCode() {
         return this.name.hashCode();
     }
+
 }
