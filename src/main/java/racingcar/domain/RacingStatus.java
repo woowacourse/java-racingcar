@@ -10,6 +10,7 @@ public class RacingStatus {
     public static final int MIN = 0;
     private static final int GO = 4;
     private static final String NAME_DELIMITER = ",";
+
     private final List<Car> cars;
     private final NumberPicker numberPicker;
 
@@ -42,7 +43,7 @@ public class RacingStatus {
 
     public List<String> findWinner() {
         int max = findMax();
-        //Todo : 이 부분 getter를 제거하고 싶은데 마땅한 방법이 떠오르지 않습니다. 좋은 해결책이 있을까요?
+
         return cars.stream()
                 .filter(car -> car.getStatus() == max)
                 .map(Car::getCarName)

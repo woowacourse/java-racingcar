@@ -3,13 +3,12 @@ package racingcar.domain;
 import racingcar.dto.RacingStatusDto;
 
 class Car {
-
     private final CarName carName;
     private Status status;
 
     public Car(String carName) {
         this.carName = new CarName(carName);
-        status = Status.INIT();
+        status = Status.init();
     }
 
     public void move() {

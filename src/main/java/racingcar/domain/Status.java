@@ -11,7 +11,7 @@ final class Status {
         this.moveCount = moveCount;
     }
 
-    public static Status INIT() {
+    public static Status init() {
         return new Status(INIT_NUMBER);
     }
 

@@ -22,7 +22,7 @@ class InputViewTest {
     void printInputTryCountGuide_메서드_테스트() {
         inputView.printInputTryCountGuide();
 
-        assertThat(mockOutput.output()).isEqualTo("시도할 회수는 몇회인가요?\n");
+        assertThat(mockOutput.output()).isEqualTo("시도할 횟수는 몇회인가요?\n");
     }
 
     @Test

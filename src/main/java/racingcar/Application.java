@@ -14,6 +14,6 @@ public class Application {
                 new UserInput(),
                 new OutputView(new ConsoleOutput()),
                 new InputView(new ConsoleOutput()));
-        controller.raceTracks();
+        controller.game();
     }
 }

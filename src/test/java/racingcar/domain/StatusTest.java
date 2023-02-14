@@ -11,13 +11,13 @@ class StatusTest {
 
     @Test
     void INIT_메서드로_초기화() {
-        Status status = Status.INIT();
+        Status status = Status.init();
         assertThat(status.getMoveCount()).isEqualTo(0);
     }
 
     @Test
     void NEXT_메서드로_증가된_Status_값객체_생성() {
-        Status status = Status.INIT();
+        Status status = Status.init();
         Status movedStatus = status.next();
         assertThat(movedStatus.getMoveCount()).isEqualTo(1);
         assertThat(movedStatus).isNotEqualTo(status);
