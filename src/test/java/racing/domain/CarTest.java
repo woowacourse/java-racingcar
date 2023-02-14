@@ -36,4 +36,17 @@ class CarTest {
         int position = car.getPosition();
         assertThat(position).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("position이 앞에 있는 차를 반환한다")
+    void winTest() {
+        Car boxster = new Car("박스터");
+        Car hyundai = new Car("현대");
+
+        boxster.move(4);
+
+        Car win = boxster.isWin(hyundai);
+
+        assertThat(win).isEqualTo(boxster);
+    }
 }
