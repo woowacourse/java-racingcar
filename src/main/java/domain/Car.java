@@ -1,5 +1,7 @@
 package domain;
 
+import utils.Engine;
+
 public class Car {
     private final static int MOVE_STANDARD = 4;
 
@@ -11,8 +13,8 @@ public class Car {
         this.position = new Position();
     }
 
-    public void tryMove(int number) {
-        if (isMovable(number)) {
+    public void tryMove(Engine engine) {
+        if (isMovable(engine.generatePower())) {
             position.move();
         }
     }

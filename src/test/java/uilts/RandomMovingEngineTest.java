@@ -2,18 +2,18 @@ package uilts;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.NormalRandomGenerator;
+import utils.RandomMovingEngine;
 
 import static org.assertj.core.api.Assertions.*;
 
-class NormalRandomGeneratorTest {
+class RandomMovingEngineTest {
 
     @DisplayName("난수의 범위는 0 이상 9 이하이다.")
     @Test
     public void randomNumberRangeTest() {
-        int randomNumber = NormalRandomGenerator.createRandomNumber();
+        int randomPower = new RandomMovingEngine().generatePower();
 
-        assertThat(randomNumber).isLessThanOrEqualTo(9)
+        assertThat(randomPower).isLessThanOrEqualTo(9)
                 .isGreaterThanOrEqualTo(0);
     }
 }

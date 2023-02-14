@@ -3,6 +3,7 @@ package controller;
 import domain.Name;
 import domain.RacingGame;
 import domain.TryCount;
+import utils.Engine;
 import view.InputView;
 import view.OutputView;
 
@@ -10,7 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingGameManager {
+    private final Engine engine;
     private RacingGame racingGame;
+
+    public RacingGameManager(Engine engine){
+        this.engine = engine;
+    }
 
     public void run() {
         List<Name> carNames = readCarNames();
@@ -27,7 +33,7 @@ public class RacingGameManager {
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount.getCount(); i++) {
-            racingGame.moveCars();
+            racingGame.moveCars(engine);
             OutputView.printAllCars(racingGame.getCars());
         }
     }

@@ -1,6 +1,6 @@
 package domain;
 
-import utils.NormalRandomGenerator;
+import utils.Engine;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -14,9 +14,9 @@ public class Cars implements Iterable<Car> {
         this.cars = cars;
     }
 
-    public void moveCars() {
+    public void moveCars(Engine engine) {
         for (Car car : cars) {
-            car.tryMove(NormalRandomGenerator.createRandomNumber());
+            car.tryMove(engine);
         }
     }
 

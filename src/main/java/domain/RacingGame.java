@@ -1,5 +1,7 @@
 package domain;
 
+import utils.Engine;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +16,8 @@ public class RacingGame {
         this.cars = new Cars(collect);
     }
 
-    public void moveCars() {
-        cars.moveCars();
+    public void moveCars(Engine engine) {
+        cars.moveCars(engine);
     }
 
     public Cars decideWinners() {
