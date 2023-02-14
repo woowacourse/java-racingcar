@@ -1,6 +1,7 @@
 package controller;
 
 import domain.dto.InputValidationRequest;
+import domain.model.Name;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class CarRaceController {
         outputView.printWinner(carRaceService.getResult());
     }
 
-    private Map<String, Integer> saveCar() {
+    private Map<Name, Integer> saveCar() {
         final String cars = inputView.requestCarName();
         validator.validate(new InputValidationRequest(List.of(ValidationType.EMPTY_VALUE), cars));
         return carRaceService.saveCars(
@@ -46,7 +47,7 @@ public class CarRaceController {
         return Integer.parseInt(moveCount);
     }
 
-    private void move(final Map<String, Integer> initialCarStatus, final int moveCount) {
+    private void move(final Map<Name, Integer> initialCarStatus, final int moveCount) {
         outputView.printInitialStatus(initialCarStatus);
         for (int count = 0; count < moveCount; count++) {
             outputView.printMoveResult(carRaceService.move());

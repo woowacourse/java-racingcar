@@ -1,7 +1,9 @@
 package view;
 
+import domain.model.Name;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -14,23 +16,24 @@ public class OutputView {
     public OutputView() {
     }
 
-    public void printInitialStatus(final Map<String, Integer> initialStatus) {
+    public void printInitialStatus(final Map<Name, Integer> initialStatus) {
         System.out.println("\n" + RESULT_HEAD);
         printMoveResult(initialStatus);
     }
 
-    public void printMoveResult(final Map<String, Integer> result) {
+    public void printMoveResult(final Map<Name, Integer> result) {
         result.entrySet()
             .forEach(this::printEachResult);
         System.out.println();
     }
 
-    public void printWinner(final List<String> winners) {
-        System.out.printf(WINNER_FORMAT + "\n", String.join(WINNER_DELIMITER, winners));
+    public void printWinner(final List<Name> winners) {
+        List<String> names = winners.stream().map(Name::toString).collect(Collectors.toList());
+        System.out.printf(WINNER_FORMAT + "\n", String.join(WINNER_DELIMITER, names));
     }
 
-    private void printEachResult(final Map.Entry<String, Integer> carMoveCount) {
-        System.out.printf(RESULT_FORMAT + "\n", carMoveCount.getKey(),
+    private void printEachResult(final Map.Entry<Name, Integer> carMoveCount) {
+        System.out.printf(RESULT_FORMAT + "\n", carMoveCount.getKey().toString(),
             generateMoveStatus(carMoveCount.getValue()));
     }
 

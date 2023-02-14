@@ -1,18 +1,19 @@
 package domain.repository;
 
+import domain.model.Car;
+import domain.model.Name;
 import java.util.List;
 import java.util.Map;
-import domain.model.Car;
 
 public interface CarRaceResultRepository {
 
     void save(Car car);
 
-    int findByName(String name);
+    int findByName(Name name);
 
-    Map<String, Integer> getRaceResult();
+    Map<Name, Integer> getRaceResult();
 
-    List<String> findAllCars();
+    List<Name> findAllCars();
 
-    void moveByName(String name);
+    void moveByName(Name name);
 }

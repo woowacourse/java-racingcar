@@ -1,13 +1,14 @@
 package domain.service;
 
+import domain.model.Name;
 import java.util.List;
 import java.util.Map;
 
 public interface CarRaceService {
 
-    Map<String, Integer> saveCars(List<String> names);
+    Map<Name, Integer> saveCars(List<String> names);
 
-    Map<String, Integer> move();
+    Map<Name, Integer> move();
 
-    List<String> getResult();
+    List<Name> getResult();
 }

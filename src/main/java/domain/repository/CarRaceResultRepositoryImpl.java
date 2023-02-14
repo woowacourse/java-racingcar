@@ -1,6 +1,7 @@
 package domain.repository;
 
 import domain.exception.ErrorCode;
+import domain.model.Name;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public int findByName(final String name) {
+    public int findByName(final Name name) {
         return moveCountBoard.get(moveCountBoard
             .keySet()
             .stream()
@@ -36,14 +37,14 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public Map<String, Integer> getRaceResult() {
-        Map<String, Integer> nameResult = new HashMap<>();
+    public Map<Name, Integer> getRaceResult() {
+        Map<Name, Integer> nameResult = new HashMap<>();
         moveCountBoard.forEach((key, value) -> nameResult.put(key.getName(), value));
         return nameResult;
     }
 
     @Override
-    public List<String> findAllCars() {
+    public List<Name> findAllCars() {
         return moveCountBoard.keySet()
             .stream()
             .map(Car::getName)
@@ -51,7 +52,7 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
     }
 
     @Override
-    public void moveByName(final String name) {
+    public void moveByName(final Name name) {
         Car car = moveCountBoard.keySet()
             .stream()
             .filter(key -> key.getName().equals(name))

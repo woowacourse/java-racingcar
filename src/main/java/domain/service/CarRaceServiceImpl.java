@@ -1,6 +1,7 @@
 package domain.service;
 
 import domain.exception.ErrorCode;
+import domain.model.Name;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -24,22 +25,22 @@ public class CarRaceServiceImpl implements CarRaceService {
     }
 
     @Override
-    public Map<String, Integer> saveCars(final List<String> names) {
+    public Map<Name, Integer> saveCars(final List<String> names) {
         validateCarCount(names);
-        names.forEach(name -> carRaceResultRepository.save(new Car(name)));
+        names.forEach(name -> carRaceResultRepository.save(new Car(new Name(name))));
         return carRaceResultRepository.getRaceResult();
     }
 
     @Override
-    public Map<String, Integer> move() {
-        List<String> cars = carRaceResultRepository.findAllCars();
+    public Map<Name, Integer> move() {
+        List<Name> cars = carRaceResultRepository.findAllCars();
         cars.forEach(this::moveCar);
         return carRaceResultRepository.getRaceResult();
     }
 
     @Override
-    public List<String> getResult() {
-        Map<String, Integer> resultBoard = carRaceResultRepository.getRaceResult();
+    public List<Name> getResult() {
+        Map<Name, Integer> resultBoard = carRaceResultRepository.getRaceResult();
         Integer max = Collections.max(resultBoard.values());
         return resultBoard.entrySet()
             .stream()
@@ -48,9 +49,9 @@ public class CarRaceServiceImpl implements CarRaceService {
             .collect(Collectors.toList());
     }
 
-    private void moveCar(final String car) {
+    private void moveCar(final Name name) {
         if (numberGenerator.generateNumber(MAX_RANDOM_NUMBER) >= MOVE_LIMIT) {
-            carRaceResultRepository.moveByName(car);
+            carRaceResultRepository.moveByName(name);
         }
     }
 
