@@ -8,7 +8,7 @@ public class RaceApplication {
         RaceController controller = config.raceController();
 
         RaceState raceState = RaceState.INPUT_CARS_NAME;
-        while (raceState.isRacing()) {
+        while (raceState.canRacing()) {
             raceState = controller.run(raceState);
         }
     }

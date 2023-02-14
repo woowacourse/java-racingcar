@@ -11,7 +11,7 @@ class RaceStateTest {
     @EnumSource(names = {"APPLICATION_EXIT", "APPLICATION_EXCEPTION"})
     @DisplayName("RaceState의 값이 APPLICATION_EXIT, APPLICATION_EXCEPTION이라면 false를 반환한다.")
     void exitRace(RaceState raceState) {
-        boolean result = raceState.isRacing();
+        boolean result = raceState.canRacing();
 
         Assertions.assertThat(result).isFalse();
     }
@@ -20,7 +20,7 @@ class RaceStateTest {
     @EnumSource(names = {"INPUT_CARS_NAME", "INPUT_RACE_ROUND", "RACE", "CALCULATE_WINNERS"})
     @DisplayName("RaceState의 값이 APPLICATION_EXIT가 아니라면 true를 반환한다.")
     void continueRace(RaceState raceState) {
-        boolean result = raceState.isRacing();
+        boolean result = raceState.canRacing();
 
         Assertions.assertThat(result).isTrue();
     }

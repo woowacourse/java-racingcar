@@ -9,7 +9,7 @@ public enum RaceState {
     APPLICATION_EXIT,
     APPLICATION_EXCEPTION;
 
-    public boolean isRacing() {
+    public boolean canRacing() {
         return this != APPLICATION_EXIT && this != APPLICATION_EXCEPTION;
     }
 }
