@@ -9,11 +9,11 @@ public class Car {
     private static final int MOVE_FORWARD_MAX_NUMBER = 9;
 
     private final String name;
-    private int position;
+    private final Position position;
 
     public Car(String name) {
         this.name = name;
-        this.position = 0;
+        this.position = new Position();
     }
 
     public String getName() {
@@ -21,21 +21,13 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
     public void move(int powerValue) {
-        position += decideMovingValue(powerValue);
-    }
-
-    private int decideMovingValue(int powerValue) {
-        if (STOP_MIN_NUMBER <= powerValue && powerValue <= STOP_MAX_NUMBER) {
-            return 0;
-        }
         if (MOVE_FORWARD_MIN_NUMBER <= powerValue && powerValue <= MOVE_FORWARD_MAX_NUMBER) {
-            return 1;
+            position.moveForward();
         }
-        return 0;
     }
 
     @Override
