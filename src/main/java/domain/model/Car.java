@@ -1,34 +1,16 @@
 package domain.model;
 
-import domain.exception.ErrorCode;
 import java.util.Objects;
 
 public class Car {
 
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
-    private final String name;
+    private final Name name;
 
-    public Car(final String name) {
-        validate(name);
+    public Car(final Name name) {
         this.name = name;
     }
 
-    private void validate(final String name) {
-        if (isCarNameLengthInRange(name.length())) {
-            return;
-        }
-        throw new IllegalArgumentException(
-            String.format(ErrorCode.CAR_NAME_OUT_OF_RANGE.getMessage(), MIN_NAME_LENGTH,
-                MAX_NAME_LENGTH));
-    }
-
-    private boolean isCarNameLengthInRange(final int nameLength) {
-        return nameLength >= MIN_NAME_LENGTH &&
-            nameLength <= MAX_NAME_LENGTH;
-    }
-
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
