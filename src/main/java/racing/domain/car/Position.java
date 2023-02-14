@@ -2,6 +2,7 @@ package racing.domain.car;
 
 public class Position {
     private static final int DEFAULT_START_POSITION = 0;
+
     private int value = DEFAULT_START_POSITION;
 
     public Position() {

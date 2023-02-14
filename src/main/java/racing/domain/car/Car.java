@@ -7,8 +7,10 @@ public class Car {
     private static final int LEAST_CONDITION = 4;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int ONE_STEP = 1;
+
     private final String name;
     private final Position position;
+
     private NumberPicker numberPicker = new RandomNumberPicker();
 
 
