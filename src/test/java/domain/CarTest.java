@@ -20,13 +20,13 @@ class CarTest {
 
         //when & then
         assertThatThrownBy(() -> {
-            Car car = new Car(Name.fromName(name));
+            new Car(Name.fromName(name));
         }).isInstanceOf(IllegalArgumentException.class)
           .hasMessage(expectedMessage);
     }
 
     @Test
-    @DisplayName("Car() : 차 이름이 5글자 이상일 경우 IllegalArgumentException 발생")
+    @DisplayName("Car() : 차 이름이 5글자 초과일 경우 IllegalArgumentException 발생")
     void test_carConstructor_IllegalArgumentException() {
         //given
         String name = "abcdef";
@@ -34,7 +34,7 @@ class CarTest {
 
         //when & then
         assertThatThrownBy(() -> {
-            Car car = new Car(Name.fromName(name));
+            new Car(Name.fromName(name));
         }).isInstanceOf(IllegalArgumentException.class)
           .hasMessage(expectedMessage);
     }
@@ -44,6 +44,6 @@ class CarTest {
     @DisplayName("Car() : 차 이름이 빈칸이 아니고, 1글자 이상 5글자 이하일 경우 제대로 생성된다.")
     void test_carConstructor_success(String name) throws Exception {
         //when & then
-        Car car = new Car(Name.fromName(name));
+        new Car(Name.fromName(name));
     }
 }
