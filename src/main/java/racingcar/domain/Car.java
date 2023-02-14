@@ -1,15 +1,12 @@
 package racingcar.domain;
 
-import racingcar.dto.CarStatus;
-
-import static racingcar.constant.GameConstant.MINIMUM_NUMBER_TO_MOVE;
-
 public class Car {
-    private final String name;
+    public static final int MINIMUM_NUMBER_TO_MOVE = 4;
+    private final CarName name;
     private final Position currentPosition;
 
     public Car(String name, int startPoint) {
-        this.name = name;
+        this.name = new CarName(name);
         this.currentPosition = new Position(startPoint);
     }
 
@@ -19,10 +16,6 @@ public class Car {
         if (isMovable(randomNumber)) {
             currentPosition.move();
         }
-    }
-
-    public CarStatus checkCurrentStatus() {
-        return new CarStatus(name, currentPosition);
     }
 
     public int compareTo(Car other) {
@@ -38,6 +31,11 @@ public class Car {
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
+
+    public int getCurrentPosition() {
+        return currentPosition.getPosition();
+    }
+
 }
