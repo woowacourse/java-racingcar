@@ -15,7 +15,7 @@ public abstract class OutputView {
         initialCarsErrorMessage();
         initialCarErrorMessage();
         initialTrackErrorMessage();
-    };
+    }
 
     abstract void initialCarsErrorMessage();
 
@@ -29,7 +29,9 @@ public abstract class OutputView {
 
     protected void insertErrorMessage(int errorNumber, String errorMessage) {
         errorMessageTable.put(errorNumber, errorMessage);
-    };
+    }
+
+    ;
 
     public void printErrorMessage(int errorNumber) {
         System.out.println(errorMessageTable.get(errorNumber));
