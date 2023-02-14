@@ -13,10 +13,10 @@ public class Cars {
 
     public Cars(String carsName) {
         List<String> carNames = splitCarName(carsName);
-        validDuplication(carNames);
 
         for (String name : carNames) {
-            cars.add(new Car(name));
+            validDuplication(name);
+            cars.add(new Car(new Name(name)));
         }
     }
 
@@ -24,10 +24,11 @@ public class Cars {
         return Arrays.asList(carsName.split(COMMA));
     }
 
-    private void validDuplication(List<String> carNames) {
-        long duplicationSize = carNames.stream().distinct().count();
+    private void validDuplication(String newName) {
+        boolean isDuplication = cars.stream()
+                .anyMatch(name -> name.equals(newName));
 
-        if (carNames.size() != duplicationSize) {
+        if (isDuplication) {
             throw new IllegalArgumentException(
                     ExceptionMessage.DUPLICATION_CAR_NAME_MESSAGE.getExceptionMessage());
         }

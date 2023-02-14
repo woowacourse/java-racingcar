@@ -10,7 +10,7 @@ class CarTest {
     @ParameterizedTest(name = "Car 객체 생성 테스트 name = {0}")
     @ValueSource(strings = {"pobi", "crong", "honux", " hi ", "  jj503   "})
     void createCarTest(String name) {
-        Car car = new Car(name);
+        Car car = new Car(new Name(name));
         assertThat(car.getName()).isEqualTo(name.trim());
     }
 
@@ -18,7 +18,7 @@ class CarTest {
     @ValueSource(strings = {"pobiiii", "", "  "})
     void createExceptionCarTest(String name) {
         assertThatThrownBy(() -> {
-            new Car(name);
+            new Car(new Name(name));
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -26,7 +26,7 @@ class CarTest {
     @ParameterizedTest(name = "랜덤 값이 4미만일 경우 테스트 - 멈춤, randNum = {0}")
     @ValueSource(ints = {0, 1, 2, 3})
     void stopByRandom(int randNum) {
-        Car car = new Car("test");
+        Car car = new Car(new Name("test"));
         car.moveByNumber(randNum);
 
         assertThat(car.getLocation()).isEqualTo(0);
@@ -35,7 +35,7 @@ class CarTest {
     @ParameterizedTest(name = "랜덤 값이 4미만일 경우 테스트 - 전진, randNum = {0}")
     @ValueSource(ints = {4, 5, 6, 7})
     void moveByRandom(int randNum) {
-        Car car = new Car("test");
+        Car car = new Car(new Name("test"));
         car.moveByNumber(randNum);
 
         assertThat(car.getLocation()).isEqualTo(1);

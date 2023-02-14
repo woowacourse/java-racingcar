@@ -1,33 +1,16 @@
 package domain;
 
-import constant.ExceptionMessage;
-
 public class Car {
     private static final int CAR_LOCATION_INITIALIZATION = 0;
-    private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final int CAR_MOVE_FORWARD = 1;
     private static final int MIN_NUMBER_FOR_CAR_MOVE = 4;
 
-    private final String name;
+    private final Name name;
     private int location;
 
-    public Car(String name) {
-        name = name.trim();
-        validCarName(name);
+    public Car(Name name) {
         this.name = name;
         this.location = CAR_LOCATION_INITIALIZATION;
-    }
-
-    private void validCarName(String name) {
-        if (name.length() > MAX_CAR_NAME_LENGTH) {
-            throw new IllegalArgumentException(
-                    ExceptionMessage.CAR_NAME_WRONG_LENGTH_MESSAGE.getExceptionMessage());
-        }
-
-        if (name.isBlank()) {
-            throw new IllegalArgumentException(
-                    ExceptionMessage.CAR_NAME_BLANK_MESSAGE.getExceptionMessage());
-        }
     }
 
     public void moveByNumber(int number) {
@@ -41,7 +24,7 @@ public class Car {
     }
 
     public String getName() {
-        return this.name;
+        return this.name.getName();
     }
 
     public int getLocation() {
