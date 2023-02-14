@@ -34,6 +34,13 @@ class CarNameValidatorTest {
                     .withMessage(Message.EXCEPTION_CAR_NAME_LENGTH.getMessage());
         }
 
+        @Test
+        void blankNameTest() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> carNameValidator.validate(""))
+                    .withMessage(Message.EXCEPTION_CAR_NAME_BLANK.getMessage());
+        }
+
     }
 
     @Nested

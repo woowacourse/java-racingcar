@@ -41,14 +41,14 @@ public class InputView {
     }
 
     private enum Message {
-        EXCEPTION_CAR_NUMBER("2개 이상의 자동차를 입력해 주세요."),
+        EXCEPTION_CAR_NUMBER("%s개 이상의 자동차를 입력해 주세요.", String.valueOf(MIN_CAR_NUMBER)),
         INPUT_CARS("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."),
         INPUT_MOVE_COUNT("시도할 회수는 몇회인가요?");
 
         private final String message;
 
-        Message(String message) {
-            this.message = message;
+        Message(String message, Object... replaces) {
+            this.message = String.format(message, replaces);
         }
     }
 }

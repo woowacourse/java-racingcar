@@ -18,25 +18,25 @@ public class OutputView {
     }
 
     public void printResultMessage() {
-        System.out.println(Message.OUTPUT_RESULT_MESSAGE.message);
+        System.out.println(Constants.OUTPUT_RESULT_MESSAGE.message);
     }
 
     public void printResult(List<Car> cars) {
         for (Car car : cars) {
-            System.out.printf(Message.OUTPUT_RESULT_FORMAT.message, car.getName(), createResultDisplay(car));
+            System.out.printf(Constants.OUTPUT_RESULT_FORMAT.message, car.getName(), createResultDisplay(car));
         }
         System.out.println();
     }
 
     private static String createResultDisplay(Car car) {
-        return Message.OUTPUT_LINES.message.repeat(car.getPosition());
+        return Constants.OUTPUT_LINES.message.repeat(car.getPosition());
     }
 
     public void printWinners(List<String> winners) {
-        System.out.printf(Message.OUTPUT_WINNER.message, String.join(", ", winners));
+        System.out.printf(Constants.OUTPUT_WINNER.message, String.join(", ", winners));
     }
 
-    private enum Message {
+    private enum Constants {
         OUTPUT_RESULT_MESSAGE("실행 결과"),
         OUTPUT_RESULT_FORMAT("%s : %s%n"),
         OUTPUT_LINES("-"),
@@ -44,7 +44,7 @@ public class OutputView {
 
         private final String message;
 
-        Message(String message) {
+        Constants(String message) {
             this.message = message;
         }
     }
