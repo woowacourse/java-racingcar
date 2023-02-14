@@ -3,8 +3,7 @@ package domain;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toUnmodifiableList;
+import static java.util.stream.Collectors.*;
 
 public class Cars {
     private static final String DUPLICATE_CAR_NAMES_ERROR_MESSAGE = "차 이름은 중복될 수 없습니다";
@@ -57,9 +56,7 @@ public class Cars {
     }
 
     public Map<String, Integer> getCarsPosition() {
-        Map<String, Integer> result = new LinkedHashMap<>();
-        cars.forEach(car -> result.put(car.getName(), car.getPosition()));
-
-        return result;
+        return cars.stream()
+                .collect(toMap(Car::getName, Car::getPosition, (x, y) -> x, LinkedHashMap::new));
     }
 }

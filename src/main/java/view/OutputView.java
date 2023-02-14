@@ -14,13 +14,12 @@ public class OutputView {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public void printResultOpening() {
-        printBlankLine();
-        System.out.println(RESULT_OPENING_MESSAGE);
+        System.out.println(System.lineSeparator() + RESULT_OPENING_MESSAGE);
     }
 
     public void printRaceResult(Map<String, Integer> raceResult) {
         raceResult.forEach((carName, position) -> System.out.println(generateRaceResultFormat(carName, position)));
-        printBlankLine();
+        System.out.println();
     }
 
     private String generateRaceResultFormat(String name, Integer position) {
@@ -38,9 +37,5 @@ public class OutputView {
 
     public void printError(String errorMessage) {
         System.out.println(ERROR_MESSAGE_PREFIX + errorMessage);
-    }
-
-    private void printBlankLine() {
-        System.out.println();
     }
 }

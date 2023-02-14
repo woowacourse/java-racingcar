@@ -71,7 +71,7 @@ class CarsTest {
         assertThat(defaultCars.identifyWinners()).containsExactly("def", "ghi");
     }
 
-    private class TestNumberGenerator implements NumberGenerator {
+    private static class TestNumberGenerator implements NumberGenerator {
         private Iterator<Integer> iterator;
 
         public TestNumberGenerator(int... sequence) {
