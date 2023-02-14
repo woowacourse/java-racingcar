@@ -1,26 +1,28 @@
 package controller;
 
-import service.CarService;
+import exception.DuplicateCarNameException;
+import model.Car;
+import model.Cars;
 import service.wrapper.Round;
 import utils.RacingNumberGenerator;
+import utils.StringUtils;
 import view.InputView;
 import view.OutputView;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarController {
 
-    private final CarService carService;
-
-    public CarController(CarService carService) {
-        this.carService = carService;
-    }
+    private Cars cars;
 
     public void run(RacingNumberGenerator generator) {
         try {
-            carService.initCars(InputView.inputCarsName());
+            cars = generateCars(InputView.inputCarsName());
             Round round = generateRound();
 
             race(generator, round);
-            OutputView.printWinner(carService.getWinner());
+            OutputView.printWinner(cars.getWinner());
         } catch (IllegalArgumentException exception) {
             OutputView.printExceptionMessage(exception.getMessage());
             run(generator);
@@ -30,8 +32,8 @@ public class CarController {
     private void race(RacingNumberGenerator generator, Round round) {
         OutputView.printRoundStartMessage();
         for (int count = 0; count < round.getRound(); count++) {
-            carService.race(generator);
-            OutputView.printRound(carService.getCarsDto());
+            cars.race(generator);
+            OutputView.printRound(cars.getCarsDto());
         }
     }
 
@@ -42,5 +44,29 @@ public class CarController {
             OutputView.printExceptionMessage(exception.getMessage());
             return generateRound();
         }
+    }
+
+    public Cars generateCars(String inputCarsName) {
+        String[] carsName = StringUtils.splitBySeparator(inputCarsName);
+        checkDuplication(carsName);
+        return new Cars(mapToCars(carsName));
+    }
+
+    private List<Car> mapToCars(String[] carsName) {
+        return Arrays.stream(carsName)
+                .map(Car::new)
+                .collect(Collectors.toList());
+    }
+
+    private void checkDuplication(String[] carsName) {
+        if (getDistinctCarsCount(carsName) != carsName.length) {
+            throw new DuplicateCarNameException();
+        }
+    }
+
+    private long getDistinctCarsCount(String[] carsName) {
+        return Arrays.stream(carsName)
+                .distinct()
+                .count();
     }
 }
