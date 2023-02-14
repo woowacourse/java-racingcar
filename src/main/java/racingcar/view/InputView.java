@@ -12,7 +12,7 @@ public class InputView {
 
             return inputCarNamesScanner();
         } catch (IllegalArgumentException e) {
-            OutputView.error(e.getMessage());
+            OutputView.printError(e.getMessage());
             return inputCarNames();
         }
     }
@@ -33,7 +33,7 @@ public class InputView {
 
             return inputTryCountScanner();
         } catch (IllegalArgumentException e) {
-            OutputView.error(e.getMessage());
+            OutputView.printError(e.getMessage());
 
             return inputTryCount();
         }

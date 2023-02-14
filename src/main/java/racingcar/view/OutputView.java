@@ -9,11 +9,11 @@ public class OutputView {
 
     private static final String POSITION_SIGN = "-";
 
-    public static void error(String errorMessage) {
+    public static void printError(String errorMessage) {
         System.out.println(errorMessage);
     }
 
-    public static void playRound() {
+    public static void printPlayRound() {
         System.out.println("\n실행 결과");
     }
 

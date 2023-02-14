@@ -24,7 +24,7 @@ public class RacingcarGame {
     public void run() {
         cars = makeCars(carNames);
 
-        OutputView.playRound();
+        OutputView.printPlayRound();
         for (int i = 0; i < tryCount; i++) {
             cars.move();
             OutputView.printResult(cars);
