@@ -63,7 +63,7 @@
 - [X] 도메인의 뷰에 대한 의존 해결
   - [X] cars 객체 생성시
   - [X] Winners 출력시
-- [ ] Main과 Controller 통합
+- [X] Main과 Controller 통합
 - [X] CarName, Position 객체로 포장
 - [X] 새로운 객체들에 대한 test 코드 추가
 - [ ] test case 보완
