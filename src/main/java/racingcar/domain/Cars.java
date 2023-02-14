@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.MovingStrategy;
@@ -31,7 +32,15 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public int findMaxPosition() {
+    public List<Car> findWinners() {
+        int maxPosition = findMaxPosition();
+
+        return cars.stream()
+                .filter(car -> car.isWinner(maxPosition))
+                .collect(Collectors.toList());
+    }
+
+    private int findMaxPosition() {
         int maxPosition = 0;
 
         for (Car car : cars) {
@@ -39,12 +48,5 @@ public class Cars {
         }
 
         return maxPosition;
-    }
-
-    public List<Car> findWinners(int winnerPosition) {
-        return cars
-                .stream()
-                .filter(car -> car.isSamePosition(winnerPosition))
-                .collect(Collectors.toList());
     }
 }

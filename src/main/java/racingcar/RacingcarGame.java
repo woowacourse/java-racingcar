@@ -30,7 +30,7 @@ public class RacingcarGame {
             OutputView.printResult(cars);
         }
 
-        List<Car> winners = findWinner(cars);
+        List<Car> winners = cars.findWinners();
         OutputView.printWinner(winners);
     }
 
@@ -39,7 +39,7 @@ public class RacingcarGame {
         validateCarCount(participants);
 
         return new Cars(Arrays.stream(participants)
-                .map(Car::new)
+                .map(carName -> new Car(carName, 0))
                 .collect(Collectors.toList()));
     }
 
@@ -47,11 +47,5 @@ public class RacingcarGame {
         if (names.length < MINIMUM_PARTICIPANT) {
             throw new IllegalArgumentException("[ERROR] 경주는 최소 " + MINIMUM_PARTICIPANT + "명이 필요해요.");
         }
-    }
-
-    private List<Car> findWinner(Cars cars) {
-        int winnerPosition = cars.findMaxPosition();
-
-        return cars.findWinners(winnerPosition);
     }
 }
