@@ -3,54 +3,65 @@ package racingcar.controller;
 import java.util.List;
 
 import racingcar.domain.Car;
-import racingcar.repository.CarRepository;
-import racingcar.service.CarService;
-import racingcar.service.RandomNumberGenerator;
+import racingcar.domain.RacingGame;
+import racingcar.domain.RacingCars;
+import racingcar.utils.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-	private CarRepository carRepository = new CarRepository();
+	private RacingCars racingCars = new RacingCars();
 	int roundCount;
 
 	public void run() {
-		while (!getCarNames()) ;
-		while (!getRoundCount()) ;
-		move(roundCount);
+		while (!isValidCarNames()) ;
+		while (!isValidRoundCount()) ;
+		startRound(roundCount);
 	}
 
-	private boolean getCarNames() {
+	private boolean isValidCarNames() {
 		try {
-			OutputView.printCarNameRequestMsg();
-			List<String> carNames = InputView.readCarNames();
-			carNames.stream().forEach(carName -> carRepository.add(new Car(carName)));
+			addToRacingCars(inputCarNames());
 			return true;
 		} catch (Exception e) {
-			carRepository.clear();
+			racingCars.clear();
 			System.out.println(e.getMessage());
 			return false;
 		}
 	}
 
-	private boolean getRoundCount() {
+	private List<String> inputCarNames() {
+		OutputView.printCarNameRequestMsg();
+		return InputView.readCarNames();
+	}
+
+	private void addToRacingCars(List<String> carNames) {
+		carNames.forEach(carName -> racingCars.add(new Car(carName)));
+	}
+
+	private boolean isValidRoundCount() {
 		try {
-			OutputView.printRoundCountRequestMsg();
-			roundCount = InputView.readRoundCount();
+			roundCount = inputRoundCount();
 			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return false;
 		}
-		return false;
 	}
 
-	private void move(int roundCount) {
-		CarService carService = new CarService(new RandomNumberGenerator());
-		OutputView.printOutputMsg();
-		OutputView.printRacingState(carService.getPositionToString());
+	private int inputRoundCount() {
+		OutputView.printRoundCountRequestMsg();
+		return InputView.readRoundCount();
+	}
+
+	private void startRound(int roundCount) {
+		RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
+		OutputView.printRoundResultMsg();
+		OutputView.printRoundState(racingCars.getCars());
 		for (int i = 0; i < roundCount; i++) {
-			carService.moveCars();
-			OutputView.printRacingState(carService.getPositionToString());
+			racingGame.moveCars();
+			OutputView.printRoundState(racingCars.getCars());
 		}
-		OutputView.printRacingResult(carService.getWinners());
+		OutputView.printRacingResult(racingGame.getWinners());
 	}
 }

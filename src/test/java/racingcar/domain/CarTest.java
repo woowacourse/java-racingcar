@@ -17,14 +17,22 @@ class CarTest {
 
 		@Test
 		@DisplayName("5자 이하의 이름인 경우 정상적으로 생성되어야 한다.")
-		void carInitSuccessTest() {
+		void carCreateSuccessTest() {
 			final String name = "abcde";
 			Car car = new Car(name);
+		}
+		@Test
+		@DisplayName("입력이 공백인 경우 IllegalArgumentException을 발생시켜야 한다.")
+		void carCreateBlankFailTest() {
+			final String name = "   ";
+
+			assertThatThrownBy(() -> new Car(name))
+					.isInstanceOf(IllegalArgumentException.class);
 		}
 
 		@Test
 		@DisplayName("5자 초과의 이름인 경우 IllegalArgumentException을 발생시켜야 한다.")
-		void carInitFailTest() {
+		void carCreateLengthFailTest() {
 			final String name = "abcdef";
 
 			assertThatThrownBy(() -> new Car(name))
@@ -48,15 +56,5 @@ class CarTest {
 			Arguments.of(3, 0),
 			Arguments.of(6, 1)
 		);
-	}
-
-	@Test
-	@DisplayName("차 객체의 위치 정보가 움직인만큼 문자열로 출력되어야 한다.")
-	void toStringTest() {
-		Car car = new Car("woowa");
-		car.move(4);
-		car.move(4);
-
-		assertThat(car.toString()).isEqualTo("woowa : ---");
 	}
 }

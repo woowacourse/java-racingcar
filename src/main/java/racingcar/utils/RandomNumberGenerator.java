@@ -1,8 +1,8 @@
-package racingcar.service;
+package racingcar.utils;
 
 public class RandomNumberGenerator implements NumberGenerator {
 	@Override
-	public int getNumber()  {
+	public int generateNumber()  {
 		return (int)(Math.random()*10);
 	}
 }
