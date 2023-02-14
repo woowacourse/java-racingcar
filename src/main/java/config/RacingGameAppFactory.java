@@ -6,7 +6,7 @@ import utils.ExceptionHandler;
 import utils.NumberGenerator;
 import utils.RandomNumberGenerator;
 import view.InputView;
-import view.InputViewImpl;
+import view.ConsoleInputView;
 import view.OutputView;
 import java.lang.reflect.Proxy;
 
@@ -21,7 +21,7 @@ public class RacingGameAppFactory {
     }
 
     private static InputView initInputView() {
-        InputView inputView = new InputViewImpl();
+        InputView inputView = new ConsoleInputView();
         InputView inputViewRetry = (InputView) Proxy.newProxyInstance(InputView.class.getClassLoader(),
                 new Class[]{InputView.class},
                 new ExceptionHandler(inputView));

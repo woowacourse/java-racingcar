@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class InputViewImpl implements InputView {
+public class ConsoleInputView implements InputView {
 
     @Override
     public List<Name> sendCarsName() {
