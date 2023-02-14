@@ -29,6 +29,7 @@ public class NumberRaceController implements RaceController {
         this.raceMappings.put(RaceState.INPUT_RACE_ROUND, this::initRaceRound);
         this.raceMappings.put(RaceState.RACE, this::race);
         this.raceMappings.put(RaceState.CALCULATE_WINNERS, this::calculateWinners);
+        this.raceMappings.put(RaceState.APPLICATION_EXCEPTION, this::exit);
     }
 
     @Override
@@ -60,6 +61,10 @@ public class NumberRaceController implements RaceController {
     private RaceState calculateWinners() {
         outputView.printWinners(raceGame.calculateWinners());
 
+        return RaceState.APPLICATION_EXIT;
+    }
+
+    private RaceState exit() {
         return RaceState.APPLICATION_EXIT;
     }
 }
