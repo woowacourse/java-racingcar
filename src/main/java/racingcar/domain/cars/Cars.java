@@ -3,7 +3,6 @@ package racingcar.domain.cars;
 import racingcar.domain.car.Car;
 import racingcar.domain.numbergenerator.NumberGenerator;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Cars {
@@ -13,7 +12,7 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         validate(cars);
-        this.cars = Collections.unmodifiableList(cars);
+        this.cars = List.copyOf(cars);
     }
 
     private void validate(List<Car> cars) {
