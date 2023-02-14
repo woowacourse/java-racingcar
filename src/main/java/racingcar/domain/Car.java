@@ -15,9 +15,9 @@ public class Car {
         this.turnCount = 0;
     }
 
-    public void moveWith(int power, RacingRule rule) {
+    public void moveWith(int acceleratingPower, RacingRule rule) {
         turnCount++;
-        if (rule.isMovable(power)) {
+        if (rule.isMovable(acceleratingPower)) {
             position++;
         }
     }
