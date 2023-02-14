@@ -1,10 +1,11 @@
 package racingcar;
 
-import racingcar.domain.CarMovement;
-import racingcar.domain.Cars;
-import racingcar.domain.GameManager;
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumberGenerator;
+import racingcar.controller.GameController;
+import racingcar.domain.car.CarMovement;
+import racingcar.domain.game.Cars;
+import racingcar.domain.game.GameManager;
+import racingcar.domain.number.NumberGenerator;
+import racingcar.domain.number.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -16,9 +17,13 @@ public class RacingCarApplication {
 		final NumberGenerator numberGenerator = new RandomNumberGenerator();
 		final CarMovement carMovement = new CarMovement(numberGenerator);
 		final Cars cars = new Cars();
+		final GameManager gameManager = new GameManager(carMovement, cars);
+		final GameController gameController = new GameController(inputView, outputView, gameManager);
 
-		final GameManager gameManager = new GameManager(inputView, outputView, carMovement, cars);
+		// enum을 활용한 차량 이동 버전(V1)
+		// gameController.playGameV1();
 
-		gameManager.playGame();
+		// 전략 패턴을 활용한 차량 이동 버전(V2)
+		gameController.playGameV2();
 	}
 }

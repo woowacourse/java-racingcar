@@ -11,7 +11,8 @@ public enum ExceptionMessage {
 	GAME_ROUND_INPUT_EXCEPTION("[ERROR] 시도할 게임 회수를 다시 입력해주세요."),
 	GAME_ROUND_INPUT_FORMAT_DIGIT_EXCEPTION("[ERROR] 시도할 게임 회수는 양의 정수이어야 합니다."),
 	GAME_ROUND_INPUT_FORMAT_ZERO_EXCEPTION("[ERROR] 시도할 게임 회수는 0으로 시작할 수 없습니다."),
-	GAME_ROUND_INPUT_BLANK_EXCEPTION("[ERROR] 시도할 게임 회수는 공백이거나 빌 수 없습니다.")
+	GAME_ROUND_INPUT_BLANK_EXCEPTION("[ERROR] 시도할 게임 회수는 공백이거나 빌 수 없습니다."),
+	MOVEMENT_NOT_FOUND_EXCEPTION("[ERROR] 존재하지 않는 숫자 범위로 움직임을 찾을 수 없습니다.")
 	;
 
 	private final String message;

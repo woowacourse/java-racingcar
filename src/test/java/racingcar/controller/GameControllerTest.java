@@ -1,7 +1,8 @@
-package racingcar;
+package racingcar.controller;
 
 import static java.nio.charset.StandardCharsets.*;
 import static org.assertj.core.api.Assertions.*;
+import static racingcar.dummy.TestDataDummy.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,18 +18,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import racingcar.domain.CarMovement;
-import racingcar.domain.Cars;
-import racingcar.domain.GameManager;
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumberGenerator;
+import racingcar.domain.game.Cars;
+import racingcar.domain.game.GameManager;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-class RacingCarGameTest {
+@DisplayName("게임 컨트롤러")
+class GameControllerTest {
+	GameController gameController;
 	GameManager gameManager;
-	NumberGenerator numberGenerator;
-	CarMovement carMovement;
 	Cars cars;
 	OutputView outputView;
 	InputView inputView;
@@ -38,8 +36,6 @@ class RacingCarGameTest {
 
 	@BeforeEach
 	void setUp() {
-		numberGenerator = new RandomNumberGenerator();
-		carMovement = new CarMovement(numberGenerator);
 		cars = new Cars();
 	}
 
@@ -50,10 +46,10 @@ class RacingCarGameTest {
 		outputStream.close();
 	}
 
-	@DisplayName("자동차 경주 통합 정상 작동 성공 테스트")
+	@DisplayName("자동차 경주 통합 정상 작동 성공 버전 V1 테스트")
 	@ParameterizedTest(name = "carNames = {0}")
 	@MethodSource("playGameDummy")
-	void playGameSuccessTest(String carNames) {
+	void playGameSuccessV1Test(String carNames) {
 		inputStream = new ByteArrayInputStream(carNames.getBytes(UTF_8));
 		outputStream = new ByteArrayOutputStream();
 		printStream = new PrintStream(outputStream);
@@ -64,17 +60,40 @@ class RacingCarGameTest {
 		cars = new Cars();
 		outputView = new OutputView();
 		inputView = new InputView();
-		gameManager = new GameManager(inputView, outputView, carMovement, cars);
+		gameManager = new GameManager(CAR_MOVEMENT_FORWARD, cars);
+		gameController = new GameController(inputView, outputView, gameManager);
 
-		gameManager.playGame();
+		gameController.playGameV1();
 
 		assertThat(outputStream.toString()).contains("최종 우승했습니다.");
 	}
 
-	@DisplayName("자동차 경주 통합 예외 처리 후 정상 작동 성공 테스트")
+	@DisplayName("자동차 경주 통합 정상 작동 성공 버전 V2 테스트")
+	@ParameterizedTest(name = "carNames = {0}")
+	@MethodSource("playGameDummy")
+	void playGameSuccessV2Test(String carNames) {
+		inputStream = new ByteArrayInputStream(carNames.getBytes(UTF_8));
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
+
+		System.setIn(inputStream);
+		System.setOut(printStream);
+
+		cars = new Cars();
+		outputView = new OutputView();
+		inputView = new InputView();
+		gameManager = new GameManager(CAR_MOVEMENT_FORWARD, cars);
+		gameController = new GameController(inputView, outputView, gameManager);
+
+		gameController.playGameV2();
+
+		assertThat(outputStream.toString()).contains("최종 우승했습니다.");
+	}
+
+	@DisplayName("자동차 경주 통합 예외 처리 후 정상 작동 성공 버전 V1 테스트")
 	@ParameterizedTest(name = "inputWithException = {0}")
 	@MethodSource("playGameExceptionDummy")
-	void playGameExceptionTest(String inputWithException) {
+	void playGameExceptionV1Test(String inputWithException) {
 		inputStream = new ByteArrayInputStream(inputWithException.getBytes(UTF_8));
 		outputStream = new ByteArrayOutputStream();
 		printStream = new PrintStream(outputStream);
@@ -85,9 +104,33 @@ class RacingCarGameTest {
 		cars = new Cars();
 		outputView = new OutputView();
 		inputView = new InputView();
-		gameManager = new GameManager(inputView, outputView, carMovement, cars);
+		gameManager = new GameManager(CAR_MOVEMENT_FORWARD, cars);
+		gameController = new GameController(inputView, outputView, gameManager);
 
-		gameManager.playGame();
+		gameController.playGameV1();
+		String gameTotalMessage = outputStream.toString();
+
+		assertThat(gameTotalMessage).contains("[ERROR]", "최종 우승했습니다.");
+	}
+
+	@DisplayName("자동차 경주 통합 예외 처리 후 정상 작동 성공 버전 V2 테스트")
+	@ParameterizedTest(name = "inputWithException = {0}")
+	@MethodSource("playGameExceptionDummy")
+	void playGameExceptionV2Test(String inputWithException) {
+		inputStream = new ByteArrayInputStream(inputWithException.getBytes(UTF_8));
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
+
+		System.setIn(inputStream);
+		System.setOut(printStream);
+
+		cars = new Cars();
+		outputView = new OutputView();
+		inputView = new InputView();
+		gameManager = new GameManager(CAR_MOVEMENT_FORWARD, cars);
+		gameController = new GameController(inputView, outputView, gameManager);
+
+		gameController.playGameV2();
 		String gameTotalMessage = outputStream.toString();
 
 		assertThat(gameTotalMessage).contains("[ERROR]", "최종 우승했습니다.");
