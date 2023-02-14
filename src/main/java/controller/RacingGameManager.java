@@ -14,7 +14,7 @@ public class RacingGameManager {
     private final Engine engine;
     private RacingGame racingGame;
 
-    public RacingGameManager(Engine engine){
+    public RacingGameManager(Engine engine) {
         this.engine = engine;
     }
 

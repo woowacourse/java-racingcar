@@ -3,8 +3,6 @@ package domain;
 import utils.Engine;
 
 public class Car {
-    private final static int MOVE_STANDARD = 4;
-
     private final Name name;
     private final Position position;
 
@@ -14,13 +12,9 @@ public class Car {
     }
 
     public void tryMove(Engine engine) {
-        if (isMovable(engine.generatePower())) {
+        if (engine.isMovable()) {
             position.move();
         }
-    }
-
-    private boolean isMovable(int number) {
-        return number >= MOVE_STANDARD;
     }
 
     public Position getPosition() {

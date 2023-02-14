@@ -1,13 +1,15 @@
 package utils;
 
-import java.util.Random;
+import static utils.RandomPowerGenerator.createRandomPower;
 
 public class RandomMovingEngine implements Engine {
-    private final static Random random = new Random();
-    private final static int RANDOM_RANGE = 10;
+    private final static int MOVE_STANDARD = 4;
 
     @Override
-    public int generatePower() {
-        return random.nextInt(RANDOM_RANGE);
+    public boolean isMovable() {
+        if (createRandomPower() >= MOVE_STANDARD)
+            return true;
+
+        return false;
     }
 }

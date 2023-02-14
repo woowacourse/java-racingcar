@@ -1,5 +1,5 @@
 package utils;
 
 public interface Engine {
-    public int generatePower();
+    public boolean isMovable();
 }
