@@ -1,7 +1,8 @@
 package racingcar.controller;
 
-import java.util.Collections;
+import java.util.List;
 import racingcar.domain.Cars;
+import racingcar.util.RandomIntGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -25,7 +26,7 @@ public class RacingController {
 
     private void createCars() {
         try {
-            this.cars = new Cars(inputView.inputCarNames());
+            this.cars = new Cars(inputView.inputCarNames(), List.of(new RandomIntGenerator()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             createCars();

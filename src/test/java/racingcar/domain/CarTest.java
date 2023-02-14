@@ -34,7 +34,7 @@ class CarTest {
         // given
         String appropriateName = "테스트이름";
         // when
-        Car car = new Car(appropriateName);
+        Car car = new Car(appropriateName, new RandomIntGenerator());
         // then
         assertThat(car.getName()).isEqualTo(appropriateName);
     }
