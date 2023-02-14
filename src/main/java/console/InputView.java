@@ -11,7 +11,6 @@ public class InputView {
     }
 
     public int inputTryCount() {
-        final int tryCount = ScannerUtil.readNumber();
-        return tryCount;
+        return ScannerUtil.readNumber();
     }
 }
