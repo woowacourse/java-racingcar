@@ -4,11 +4,12 @@ import java.util.List;
 import racingcar.domain.Car;
 
 public class OutputView {
-    StringBuffer stringBuffer = new StringBuffer();
-
+    private static final int ZERO = 0;
     private static final String CAR_POSITION_SIGN = "-";
     private static final String COLON = " : ";
     private static final String RESULT_POSTFIX = "가 최종 우승했습니다.";
+
+    StringBuffer stringBuffer = new StringBuffer();
 
     public void printPosition(List<Car> cars) {
         for (Car car: cars) {
@@ -16,7 +17,7 @@ public class OutputView {
             stringBuffer.append(COLON);
             stringBuffer.append(CAR_POSITION_SIGN.repeat(car.getPosition()));
             System.out.println(stringBuffer);
-            stringBuffer.setLength(0);
+            stringBuffer.setLength(ZERO);
         }
         enterLine();
     }
