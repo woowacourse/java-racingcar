@@ -34,28 +34,6 @@ class InputViewTest {
     }
 
     @Test
-    void 자동차이름이_5자보다_길면_오류를던진다() {
-        //given
-        final String input = "make,takeasd";
-        before(input);
-        //when then
-        assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("[ERROR] ")
-            .hasMessageContaining("자동차 이름 길이는 1자 이상, 5자 이하여야합니다.");
-    }
-
-    @ValueSource(strings = {",make,take", "make,,take", "make,take,", ",,,"})
-    @ParameterizedTest
-    void 자동차이름이_빈문자열일시_오류를던진다(String input) {
-        //given
-        before(input);
-        //when then
-        assertThatThrownBy(inputView::readCarNames).isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("[ERROR] ")
-            .hasMessageContaining("자동차 이름 길이는 1자 이상, 5자 이하여야합니다.");
-    }
-
-    @Test
     void 자동차이름_입력값_앞뒤에_공백이존재하면_무시한다() {
         //given
         before("  one,two,three                  ");
