@@ -1,12 +1,14 @@
 package racingcar.dto;
 
+import racingcar.domain.Car;
+
 public class CarDto {
     private final String name;
     private final int movedCount;
 
-    public CarDto(String name, int movedCount) {
-        this.name = name;
-        this.movedCount = movedCount;
+    public CarDto(Car car) {
+        this.name = car.getName();
+        this.movedCount = car.getMovedCount();
     }
 
     public String getName() {
