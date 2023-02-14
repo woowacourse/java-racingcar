@@ -13,7 +13,7 @@ public class CarName {
 
     private void validate(final String carName) {
         if (carName == null) {
-            throw new IllegalArgumentException("자동차를 한 대 이상 작성해주세요.");
+            throw new IllegalArgumentException("자동차 이름을 입력해주세요.");
         }
 
         if (carName.length() > CAR_NAME_LENGTH_MAX) {

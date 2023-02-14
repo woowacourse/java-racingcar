@@ -39,7 +39,7 @@ public class NameTest {
     void test_name_constructor_fail_empty_name() {
         // given
         String carName = null;
-        String expectedMessage = "자동차를 한 대 이상 작성해주세요.";
+        String expectedMessage = "자동차 이름을 입력해주세요.";
 
         // when & then
         assertThatThrownBy(() -> new CarName(carName))
