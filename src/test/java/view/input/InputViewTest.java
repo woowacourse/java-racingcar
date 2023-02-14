@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +20,7 @@ class InputViewTest {
 
     void before(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        inputView = new InputView();
+        inputView = new InputView(new Scanner(System.in));
     }
 
     @Test

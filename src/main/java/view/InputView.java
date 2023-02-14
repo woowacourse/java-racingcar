@@ -13,7 +13,11 @@ public class InputView {
     private final static String EMPTY_INPUT = "입력값이 없습니다.";
     private final static String NOT_PROPER_COUNT = "시도횟수는 양의 정수여야합니다.";
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+
+    public InputView(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     public List<String> readCarNames() {
         final String DELIMITER = ",";
