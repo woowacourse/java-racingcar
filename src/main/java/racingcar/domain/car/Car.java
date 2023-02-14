@@ -12,16 +12,14 @@ public class Car {
     private final String name;
     private int position;
 
+    public Car(String name) {
+        this(name, DEFAULT_POSITION);
+    }
+
     public Car(String name, int position) {
         validate(name);
         this.name = name;
         this.position = position;
-    }
-
-    public Car(String name) {
-        validate(name);
-        this.name = name;
-        this.position = DEFAULT_POSITION;
     }
 
     private void validate(String name) {
