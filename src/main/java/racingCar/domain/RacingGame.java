@@ -1,44 +1,37 @@
 package racingCar.domain;
 
-import racingCar.util.RepeaterUtil;
-import racingCar.view.InputView;
 import racingCar.view.OutputView;
 import java.util.List;
 
 public class RacingGame {
 
-    private static final int MIN_TRY_COUNT = 1;
+    private final static int MIN_TRY_COUNT = 1;
 
     private Cars cars;
     private int tryCount;
 
-    public void play() {
-        RepeaterUtil.run(this::generateCars);
-        RepeaterUtil.run(this::readTryCount);
-        playRacing(cars, tryCount);
-        OutputView.printWinners(cars.findWinners());
-    }
-
-    private void generateCars() {
-        List<String> carNames = RepeaterUtil.repeat(InputView::readCarNames);
+    public void play(List<String> carNames, int tryCount) {
         this.cars = new Cars(carNames);
+        validate(tryCount);
+        this.tryCount = tryCount;
+
+        race();
     }
 
-    private void readTryCount() {
-        this.tryCount = RepeaterUtil.repeat(InputView::readTryCount);
-        validateTryCount(tryCount);
-    }
-
-    void validateTryCount(int tryCount) {
+    private void validate(int tryCount) {
         if (tryCount < MIN_TRY_COUNT) {
-            throw new IllegalArgumentException("시도 횟수는 1회 이상이어야 합니다");
+            throw new IllegalArgumentException("시도횟수는 1회 이상이어야 합니다.");
         }
     }
 
-    private void playRacing(Cars cars, int tryCount) {
+    private void race() {
         for (int count = 1; count <= tryCount; count++) {
             cars.move();
             OutputView.printRacing(cars.getCars());
         }
+    }
+
+    public List<String> findWinners() {
+        return cars.findWinners();
     }
 }

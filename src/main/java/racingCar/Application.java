@@ -1,10 +1,10 @@
 package racingCar;
 
-import racingCar.domain.RacingGame;
+import racingCar.controller.RacingController;
 
 public class Application {
     public static void main(String[] args) {
-        RacingGame racingGame = new RacingGame();
-        racingGame.play();
+        RacingController controller = new RacingController();
+        controller.run();
     }
 }
