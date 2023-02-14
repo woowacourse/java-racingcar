@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println(RESULT_HEADER);
     }
 
-    public void printResult(List<Car> cars) { // Cars 를 다 받아서 작성
+    public void printResult(List<Car> cars) {
         cars.forEach(car -> System.out.print(printCarResult(car)));
         System.out.println();
     }

@@ -5,7 +5,7 @@ public class Car {
     private static final int THRESHOLD = 4;
     private static final int DEFAULT_INITIAL_POSITION = 0;
 
-    private final CarName carName;
+    private final CarName name;
     private int distance;
 
     public Car(String name) {
@@ -13,7 +13,7 @@ public class Car {
     }
 
     public Car(String name, int distance) {
-        this.carName = new CarName(name);
+        this.name = new CarName(name);
         this.distance = distance;
     }
 
@@ -28,7 +28,7 @@ public class Car {
     }
 
     public String getName() {
-        return this.carName.getName();
+        return this.name.getName();
     }
 
     public boolean isSameDistance(int distance) {
@@ -39,12 +39,13 @@ public class Car {
     public boolean equals(Object object) {
         return object instanceof Car
                 && ((Car) object).getName()
-                .equals(this.carName.getName());
+                .equals(this.name.getName());
     }
 
     @Override
     public int hashCode() {
-        return this.carName.hashCode();
+        return this.name.getName()
+                .hashCode();
     }
 
 }
