@@ -2,6 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.Engine;
 import utils.MovableEngine;
 
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingGameTest {
+    private final Engine engine = new MovableEngine();
 
     @DisplayName("더 많이 움직인 자동차가 우승자가 된다.")
     @Test
@@ -45,7 +47,7 @@ class RacingGameTest {
 
     public void moveByCount(Car car, int count) {
         for (int i = 0; i < count; i++) {
-            car.tryMove(new MovableEngine());
+            car.tryMove(engine);
         }
     }
 }
