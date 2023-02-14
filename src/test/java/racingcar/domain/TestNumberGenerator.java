@@ -5,7 +5,7 @@ public class TestNumberGenerator implements NumberGenerator {
 
     @Override
     public int generate() {
-        return INIT_MOVE;
+        return INIT_MOVE -= 1;
     }
 
 }
