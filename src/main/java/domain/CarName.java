@@ -2,6 +2,9 @@ package domain;
 
 public class CarName {
 
+    private static final int MIN_CAR_NAME_LENGTH = 1;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    
     private final String name;
 
     public CarName(final String name) {
@@ -15,8 +18,6 @@ public class CarName {
 
     private void validateLength(final String carName) {
         final String NOT_PROPER_CAR_NAME_LENGTH = "[ERROR] 자동차 이름 길이는 %d자 이상, %d자 이하여야합니다.";
-        final int MIN_CAR_NAME_LENGTH = 1;
-        final int MAX_CAR_NAME_LENGTH = 5;
 
         if (carName.length() < MIN_CAR_NAME_LENGTH || carName.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException(

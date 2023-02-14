@@ -4,6 +4,9 @@ import utils.NumberGenerator;
 
 public class Car {
 
+    private static final int DRIVING_DISTANCE = 1;
+    private static final int MOVING_STANDARD = 4;
+
     private final CarName name;
     private int drivenDistance = 0;
     private final NumberGenerator numberGenerator;
@@ -14,9 +17,6 @@ public class Car {
     }
 
     public void drive() {
-        final int DRIVING_DISTANCE = 1;
-        final int MOVING_STANDARD = 4;
-
         int number = chooseNumber();
         if (number >= MOVING_STANDARD) {
             drivenDistance += DRIVING_DISTANCE;
