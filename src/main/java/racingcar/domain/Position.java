@@ -3,14 +3,15 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Position {
+    private static final int DISTANCE_TO_MOVE = 1;
     private int position;
 
-    public Position(int position) {
-        this.position = position;
+    public Position(int startPoint) {
+        this.position = startPoint;
     }
 
     public void move() {
-        position++;
+        position += DISTANCE_TO_MOVE;
     }
 
     public int getPosition() {

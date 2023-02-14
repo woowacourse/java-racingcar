@@ -1,10 +1,10 @@
 package racingcar.domain;
 
-public class TestNumberGenerator implements NumberGenerator {
+public class MockNumberGenerator implements NumberGenerator {
 
     private final int number;
 
-    TestNumberGenerator(int number) {
+    MockNumberGenerator(int number) {
         this.number = number;
     }
 
