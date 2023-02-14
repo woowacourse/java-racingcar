@@ -14,13 +14,28 @@ class CarsTest {
     private static final String CAR_B_NAME = "carB";
     private static final String CAR_C_NAME = "carC";
 
+    @DisplayName("from 정적 팩터리 메서드를 통해 올바른 Cars 를 반환받을 수 있다.")
+    @Test
+    void should_ReturnCars_When_UsingFromMethod() {
+        //given
+        List<String> carNames = List.of(CAR_A_NAME, CAR_B_NAME, CAR_C_NAME);
+
+        //when
+        Cars cars = Cars.from(carNames);
+
+        //then
+        assertThat(cars.getCars())
+                .extracting("name")
+                .containsExactly(CAR_A_NAME, CAR_B_NAME, CAR_C_NAME);
+    }
+
     @DisplayName("moveAll 메서드는 모든 자동차를 움직일 수 있다.")
     @Test
     void should_MoveAllCars_When_UsingMoveAllMethod() {
         //given
-        Car carA = new Car(CAR_A_NAME);
-        Car carB = new Car(CAR_B_NAME);
-        Car carC = new Car(CAR_C_NAME);
+        Car carA = Car.from(CAR_A_NAME);
+        Car carB = Car.from(CAR_B_NAME);
+        Car carC = Car.from(CAR_C_NAME);
         Cars cars = new Cars(List.of(carA, carB, carC));
 
         //when
@@ -37,9 +52,9 @@ class CarsTest {
     @Test
     void should_ReturnWinners_When_UsingFindWinnersMethod() {
         //given
-        Car carA = new Car(CAR_A_NAME, 3);
-        Car carB = new Car(CAR_B_NAME, 0);
-        Car carC = new Car(CAR_C_NAME, 3);
+        Car carA = Car.of(CAR_A_NAME, 3);
+        Car carB = Car.of(CAR_B_NAME, 0);
+        Car carC = Car.of(CAR_C_NAME, 3);
         Cars cars = new Cars(List.of(carA, carB, carC));
 
         //when

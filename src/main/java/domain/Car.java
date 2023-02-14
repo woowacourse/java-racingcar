@@ -2,45 +2,35 @@ package domain;
 
 public class Car {
 
-    private static final String NO_NAME_EXISTS_MESSAGE = "[ERROR] 자동차의 이름은 반드시 있어야 합니다.";
-    private static final String INVALID_LENGTH_MESSAGE = "[ERROR] 자동차의 이름은 5글자까지 가능합니다.";
     private static final int MOVED_LOWER_BOUND = 4;
 
-    private final String name;
-    private int position;
+    private final Name name;
+    private final Position position;
 
-    public Car(final String name) throws IllegalArgumentException {
-        validate(name);
-        this.name = name;
-        this.position = 0;
+    private Car(final String name, final int position) {
+        this.name = new Name(name);
+        this.position = new Position(position);
     }
 
-    public Car(final String name, final int position) throws IllegalArgumentException {
-        validate(name);
-        this.name = name;
-        this.position = position;
+    public static Car from(final String name) {
+        return new Car(name, 0);
     }
 
-    private void validate(final String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException(NO_NAME_EXISTS_MESSAGE);
-        }
-        if (name.length() > 5) {
-            throw new IllegalArgumentException(INVALID_LENGTH_MESSAGE);
-        }
+    public static Car of(final String name, final int position) {
+        return new Car(name, position);
     }
 
     public void move(final int number) {
         if (number >= MOVED_LOWER_BOUND) {
-            position++;
+            position.increase();
         }
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 }

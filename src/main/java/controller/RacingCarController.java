@@ -1,5 +1,6 @@
 package controller;
 
+import domain.AttemptNumber;
 import domain.Cars;
 import dto.CarDto;
 import utils.NumberGenerator;
@@ -12,11 +13,16 @@ import java.util.List;
 
 public class RacingCarController {
 
-    private final NumberGenerator numberGenerator = new RandomNumberGenerator();
+    private final NumberGenerator numberGenerator;
+
+    public RacingCarController() {
+        this.numberGenerator = new RandomNumberGenerator();
+    }
 
     public void run() throws IOException {
         Cars cars = getCars();
-        race(cars);
+        AttemptNumber attemptNumber = getAttemptNumber();
+        race(cars, attemptNumber);
         printWinners(cars);
     }
 
@@ -30,23 +36,33 @@ public class RacingCarController {
         }
     }
 
-    private void race(final Cars cars) throws IOException {
-        int attemptNumber = InputView.readAttemptNumber();
+    private AttemptNumber getAttemptNumber() throws IOException {
+        try {
+            int number = InputView.readAttemptNumber();
+            return new AttemptNumber(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getAttemptNumber();
+        }
+    }
+
+    private void race(final Cars cars, final AttemptNumber attemptNumber) throws IOException {
         OutputView.printResult();
-        while ((attemptNumber--) > 0) {
+        while (attemptNumber.isRemain()) {
+            attemptNumber.decrease();
             cars.moveAll(numberGenerator);
             printStatus(cars);
         }
     }
 
     private void printStatus(final Cars cars) {
-        List<CarDto> carDtos = CarDto.getCarDtos(cars);
+        List<CarDto> carDtos = CarDto.getInstances(cars);
         OutputView.printStatus(carDtos);
     }
 
     private void printWinners(final Cars cars) {
         Cars winnerCars = cars.findWinners();
-        List<CarDto> winnerCarDtos = CarDto.getCarDtos(winnerCars);
+        List<CarDto> winnerCarDtos = CarDto.getInstances(winnerCars);
         OutputView.printWinners(winnerCarDtos);
     }
 }

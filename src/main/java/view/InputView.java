@@ -1,6 +1,6 @@
 package view;
 
-import utils.NumberValidator;
+import utils.IntegerParser;
 import utils.StringParser;
 
 import java.io.BufferedReader;
@@ -25,7 +25,7 @@ public class InputView {
         try {
             System.out.println(READ_ATTEMPT_NUMBER_MESSAGE);
             String input = bufferedReader.readLine();
-            return NumberValidator.parseInt(input);
+            return IntegerParser.parse(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readAttemptNumber();
