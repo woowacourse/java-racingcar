@@ -5,24 +5,25 @@ import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.FinalRoundChecker;
 import racingcar.domain.RandomValueGenerator;
+import racingcar.domain.StandardRacingRule;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class Service {
+public class RacingCarService {
 
-    private final Cars cars;
+    private Cars cars;
     private FinalRoundChecker finalRoundChecker;
 
 
-    public Service() {
-        this.cars = new Cars();
-    }
-
     public void makeCars(String carNames) {
-        for (String name : new CarNames(carNames).getNames()) {
-            cars.add(new Car(name));
-        }
+        cars = new Cars(new CarNames(carNames).getNames()
+                .stream()
+                .map(name -> new Car(name))
+                .collect(Collectors.toUnmodifiableList())
+        );
+
     }
 
     public void setNumberOfRounds(int numberOfRounds) {
@@ -30,16 +31,11 @@ public class Service {
     }
 
     public boolean isEnd() {
-        return finalRoundChecker.isFinal(cars.getTurnCount());
+        return finalRoundChecker.isFinal(cars.getCurrentRound());
     }
 
     public void playRound() {
-        RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
-
-        do {
-            int value = randomValueGenerator.generate();
-            cars.addNextCarValue(value);
-        } while (!cars.isRoundOver());
+        cars.moveCars(new RandomValueGenerator(), new StandardRacingRule());
     }
 
     public Map<String, Integer> getCurrentRoundResult() {

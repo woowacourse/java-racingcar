@@ -5,27 +5,29 @@ import racingcar.util.Validator;
 public class Car {
 
     private final String name;
-    private ValueLog valuelog;
+    private int position;
+    private int turnCount;
 
     public Car(String name) {
-        Validator.validateNameLength(name);
-        Validator.validateNotEmptyInput(name);
-
+        Validator.validateCarName(name);
         this.name = name;
-        this.valuelog = new ValueLog();
+        this.position = 0;
+        this.turnCount = 0;
     }
 
-    public void addValue(int value) {
-        valuelog.add(value);
+    public void moveWith(int acceleratingPower, RacingRule rule) {
+        turnCount++;
+        if (rule.isMovable(acceleratingPower)) {
+            position++;
+        }
     }
 
-
-    public int getLogSize() {
-        return valuelog.size();
+    public int getPosition() {
+        return position;
     }
 
-    public int getPosition(int step, int threshold) {
-        return step * valuelog.stepNumber(threshold);
+    public int getTurnCount() {
+        return turnCount;
     }
 
     public String getName() {

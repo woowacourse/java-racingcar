@@ -6,8 +6,9 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private final Scanner scanner = new Scanner(System.in);
+
     public String inputCarNames() {
-        Scanner scanner = new Scanner(System.in);
         String carNames = scanner.nextLine();
         Validator.validateNotEmptyInput(carNames);
 
@@ -15,7 +16,6 @@ public class InputView {
     }
 
     public int inputNumberOfRounds() {
-        Scanner scanner = new Scanner(System.in);
         String numberOfRounds = scanner.nextLine();
         Validator.validateNaturalNumber(numberOfRounds);
 

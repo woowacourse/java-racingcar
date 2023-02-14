@@ -1,16 +1,24 @@
 package racingcar.domain;
 
+import racingcar.util.Validator;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarNames {
 
-    private final List<String> names;
-
     private final String CAR_NAME_DELIMITER = ",";
 
+    private final List<String> names;
+
     public CarNames(String carNames) {
-        names = List.copyOf(Arrays.asList(carNames.split(CAR_NAME_DELIMITER)));
+        List<String> splitNames = Arrays.asList(carNames.split(CAR_NAME_DELIMITER));
+        names = splitNames.stream()
+                .map(String::trim)
+                .collect(Collectors.toUnmodifiableList());
+
+        Validator.validateDuplication(names);
     }
 
     public List<String> getNames() {
