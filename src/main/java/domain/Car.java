@@ -62,16 +62,11 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public String toString() {
-        return name;
-    }
-
-    @Override
     public int compareTo(final Car otherCar) {
         return this.position - otherCar.position;
     }
 
-    public boolean samePosition(final Car otherCar) {
+    public boolean isSamePosition(final Car otherCar) {
         return this.position == otherCar.position;
     }
 }

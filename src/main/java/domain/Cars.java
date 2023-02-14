@@ -31,7 +31,7 @@ public class Cars {
     public List<Car> getWinners() {
         final Car winner = Collections.max(cars, Car::compareTo);
         return cars.stream()
-                .filter(car -> car.samePosition(winner))
+                .filter(car -> car.isSamePosition(winner))
                 .collect(Collectors.toUnmodifiableList());
     }
 
