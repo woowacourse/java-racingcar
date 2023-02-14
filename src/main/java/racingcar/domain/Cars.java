@@ -2,7 +2,8 @@ package racingcar.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.RandomMaker;
+import racingcar.MovingStrategy;
+import racingcar.RandomMovingStrategy;
 
 public class Cars {
 
@@ -17,7 +18,11 @@ public class Cars {
     }
 
     public void move() {
-        cars.forEach(car -> car.move(RandomMaker.random()));
+        MovingStrategy randomMovingStrategy = new RandomMovingStrategy();
+
+        for (Car car : cars) {
+            car.move(randomMovingStrategy);
+        }
     }
 
     public List<String> getResult(String positionSign) {

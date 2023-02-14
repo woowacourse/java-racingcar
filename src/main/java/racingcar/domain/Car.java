@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.MovingStrategy;
+
 public class Car {
 
     private static final int MOVING_CONDITION = 4;
@@ -11,8 +13,8 @@ public class Car {
         this.name = new Name(name);
     }
 
-    public void move(int movingCondition) {
-        if (movingCondition >= MOVING_CONDITION) {
+    public void move(MovingStrategy strategy) {
+        if (strategy.move() >= MOVING_CONDITION) {
             position++;
         }
     }
