@@ -2,6 +2,7 @@ package racingCar.domain;
 
 public class Car {
 
+    private static final String POSITION_MARK = "-";
     private static final int MIN_FUEL = 4;
 
     private final CarName name;
@@ -28,5 +29,9 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public String getState() {
+        return name.getName() + " : " + POSITION_MARK.repeat(position);
     }
 }

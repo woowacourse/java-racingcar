@@ -14,9 +14,9 @@ public class OutputView {
         System.out.println(errorMsg);
     }
 
-    public static void printRacing(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(car.getName() + " : " + MARK_POSITION.repeat(car.getPosition()));
+    public static void printRacing(List<String> states) {
+        for (String state : states) {
+            System.out.println(state);
         }
         System.out.print(System.lineSeparator());
     }

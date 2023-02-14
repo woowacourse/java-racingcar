@@ -1,11 +1,11 @@
 package racingCar.domain;
 
+import static java.util.stream.Collectors.toList;
+
 import racingCar.util.NumberPickerUtil;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -22,7 +22,7 @@ public class Cars {
 
         this.cars = names.stream()
                 .map(carName -> new Car(carName, INIT_CAR_POSITION))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private void validateDuplicate(List<String> carNames) {
@@ -49,7 +49,7 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public int findMaxPosition() {
@@ -59,7 +59,9 @@ public class Cars {
                 .orElse(INIT_CAR_POSITION);
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+    public List<String> getStates() {
+        return cars.stream()
+                .map(Car::getState)
+                .collect(toList());
     }
 }

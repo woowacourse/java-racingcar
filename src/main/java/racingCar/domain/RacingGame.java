@@ -27,7 +27,7 @@ public class RacingGame {
     private void race() {
         for (int count = 1; count <= tryCount; count++) {
             cars.move();
-            OutputView.printRacing(cars.getCars());
+            OutputView.printRacing(cars.getStates());
         }
     }
 
