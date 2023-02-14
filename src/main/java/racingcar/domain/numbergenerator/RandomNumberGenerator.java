@@ -6,9 +6,11 @@ public class RandomNumberGenerator implements NumberGenerator{
 
     private static final int BOUND = 10;
 
+
+    private static final Random random = new Random();
+
     @Override
     public int generateNumber() {
-        Random random = new Random();
         return random.nextInt(BOUND);
     }
 }
