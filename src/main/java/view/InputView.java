@@ -1,8 +1,8 @@
 package view;
 
 import domain.TryCount;
-import dto.input.ReadCarNamesDto;
-import dto.input.ReadTryCountDto;
+import dto.input.CarNameRequest;
+import dto.input.TryCountRequest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,21 +24,21 @@ public class InputView {
         return InputViewSingletonHelper.INPUT_VIEW;
     }
 
-    public ReadCarNamesDto readCarNames() {
+    public CarNameRequest readCarNames() {
         printMessage(Message.ASK_CAR_NAMES);
         List<String> input = Arrays.stream(readLine().split(DELIMITER))
                 .collect(Collectors.toUnmodifiableList());
         validateDuplicatedCarNames(input);
 
-        return new ReadCarNamesDto(input);
+        return new CarNameRequest(input);
     }
 
-    public ReadTryCountDto readTryCount() {
+    public TryCountRequest readTryCount() {
         printMessage(Message.ASK_TRY_COUNT);
 
         int input = validateCount(readLine());
 
-        return new ReadTryCountDto(new TryCount(input));
+        return new TryCountRequest(new TryCount(input));
     }
 
     private static void validateDuplicatedCarNames(List<String> input) {

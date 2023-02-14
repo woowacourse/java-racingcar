@@ -2,10 +2,10 @@ package dto.input;
 
 import java.util.List;
 
-public class ReadCarNamesDto {
+public class CarNameRequest {
     private final List<String> carNames;
 
-    public ReadCarNamesDto(final List<String> carNames) {
+    public CarNameRequest(final List<String> carNames) {
         this.carNames = carNames;
     }
 

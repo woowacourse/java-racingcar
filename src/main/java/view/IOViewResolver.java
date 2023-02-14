@@ -1,7 +1,7 @@
 package view;
 
-import dto.input.ReadCarNamesDto;
-import dto.input.ReadTryCountDto;
+import dto.input.CarNameRequest;
+import dto.input.TryCountRequest;
 import dto.output.PrintCriticalExceptionDto;
 import dto.output.PrintExceptionDto;
 import dto.output.PrintMovingStatusDto;
@@ -26,8 +26,8 @@ public class IOViewResolver {
     }
 
     private void initInputViewMappings(InputView inputView) {
-        inputViewMap.put(ReadCarNamesDto.class, inputView::readCarNames);
-        inputViewMap.put(ReadTryCountDto.class, inputView::readTryCount);
+        inputViewMap.put(CarNameRequest.class, inputView::readCarNames);
+        inputViewMap.put(TryCountRequest.class, inputView::readTryCount);
     }
 
     private void initOutputViewMappings(OutputView outputView) {

@@ -4,8 +4,8 @@ import domain.Cars;
 import domain.GameProcess;
 import domain.Name;
 import domain.RacingGame;
-import dto.input.ReadCarNamesDto;
-import dto.input.ReadTryCountDto;
+import dto.input.CarNameRequest;
+import dto.input.TryCountRequest;
 import dto.output.PrintCriticalExceptionDto;
 import dto.output.PrintExceptionDto;
 import dto.output.PrintMovingStatusDto;
@@ -52,9 +52,9 @@ public class RacingGameController {
     }
 
     private GameProcess readCarNames() {
-        ReadCarNamesDto readCarNamesDto = ioViewResolver.inputViewResolve(ReadCarNamesDto.class);
+        CarNameRequest carNameRequest = ioViewResolver.inputViewResolve(CarNameRequest.class);
 
-        this.carNames = readCarNamesDto.getCarNames()
+        this.carNames = carNameRequest.getCarNames()
                 .stream()
                 .map(Name::of)
                 .collect(Collectors.toUnmodifiableList());
@@ -63,9 +63,9 @@ public class RacingGameController {
     }
 
     private GameProcess readTryCount() {
-        ReadTryCountDto readTryCountDto = ioViewResolver.inputViewResolve(ReadTryCountDto.class);
+        TryCountRequest tryCountRequest = ioViewResolver.inputViewResolve(TryCountRequest.class);
 
-        racingGame = new RacingGame(carNames, readTryCountDto.getTryCount());
+        racingGame = new RacingGame(carNames, tryCountRequest.getTryCount());
 
         return GameProcess.START_RACE;
     }

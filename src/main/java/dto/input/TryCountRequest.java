@@ -2,10 +2,10 @@ package dto.input;
 
 import domain.TryCount;
 
-public class ReadTryCountDto {
+public class TryCountRequest {
     private final TryCount tryCount;
 
-    public ReadTryCountDto(final TryCount tryCount) {
+    public TryCountRequest(final TryCount tryCount) {
         this.tryCount = tryCount;
     }
 
