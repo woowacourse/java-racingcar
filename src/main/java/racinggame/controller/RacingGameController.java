@@ -3,6 +3,8 @@ package racinggame.controller;
 import racinggame.domain.Car;
 import racinggame.domain.CarGenerator;
 import racinggame.domain.RacingGame;
+import racinggame.utils.NumberGenerator;
+import racinggame.utils.RandomNumberGenerator;
 import racinggame.view.Input;
 import racinggame.view.Output;
 
@@ -14,10 +16,11 @@ public class RacingGameController {
     private int tryCount;
     private RacingGame racingGame;
     private List<Car> cars;
+    private NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() {
         init();
-        racingGame = new RacingGame(cars, tryCount);
+        racingGame = new RacingGame(cars, tryCount, this.numberGenerator);
         racingGame.run();
         printResult(cars, tryCount);
     }

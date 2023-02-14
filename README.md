@@ -3,9 +3,9 @@
 자동차 경주 미션 저장소
 
 ### 2단계 피드백 반영사항 
-- [ ] Application class 패키지 변경. Controller class 생성
-- [ ] final 키워드 확인
-- [ ] 도메인 로직 테스트 추가. (테스트 커버리지 활용)
+- [x] Application class 패키지 변경. Controller class 생성
+- [x] final 키워드 확인, 컨벤션 정렬 확인
+- [x] 도메인 로직 테스트 추가. (테스트 커버리지 활용)
 
 ## 기능요구사항
 

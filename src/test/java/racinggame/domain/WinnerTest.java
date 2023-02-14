@@ -10,10 +10,10 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class WinnerTest {
-    private static Car car1;
-    private static Car car2;
-    private static Car car3;
-    private static Winner winner;
+    static Car car1;
+    static Car car2;
+    static Car car3;
+    static Winner winner;
 
     @BeforeAll
     static void setup() {

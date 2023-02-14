@@ -8,7 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class CarTest {
     @Test
     @DisplayName("Car 생성 테스트")
-    void create(){
+    void create() {
         Car car = new Car("jena");
     }
 
@@ -27,6 +27,4 @@ class CarTest {
         car.move(3);
         assertThat(car.getDistance()).isEqualTo(0);
     }
-
-
 }

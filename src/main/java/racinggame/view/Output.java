@@ -21,9 +21,9 @@ public class Output {
         System.out.println();
     }
 
-    public static void printEachCarResult(List<Car> cars, int tryCount){
+    public static void printEachCarResult(List<Car> cars, int tryCount) {
         printMessage("실행 결과");
-        for (int index = 0; index < tryCount; index++){
+        for (int index = 0; index < tryCount; index++) {
             printEachTryCarDistance(cars, index);
         }
     }
