@@ -20,7 +20,6 @@ public class CarName {
         return new CarName(carName);
     }
 
-
     private void validateNameBlank(final String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException(String.format(BLANK_MESSAGE.getValue(), "이름"));
