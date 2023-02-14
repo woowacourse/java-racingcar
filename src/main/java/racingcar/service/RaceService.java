@@ -17,7 +17,7 @@ public class RaceService {
     }
 
     public Race createRace(final String raceCount) {
-        return Race.createRace(raceCount);
+        return Race.create(raceCount);
     }
 
     public List<RaceResultDto> getRaceResults(final Cars cars, final Race race) {
@@ -38,6 +38,6 @@ public class RaceService {
 
     private RaceResultDto getRaceResult(final Cars cars) {
         List<CarStatusDto> carRaceResult = carsService.getCarStatus(cars);
-        return RaceResultDto.createRaceResultDto(carRaceResult);
+        return RaceResultDto.create(carRaceResult);
     }
 }

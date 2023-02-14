@@ -39,7 +39,7 @@ class RaceServiceTest {
         // when
         List<RaceResultDto> raceResults = raceService.getRaceResults(testCars, testRace);
         int normalCarRaceResultCount = (int) raceResults.stream()
-                .filter(raceResult -> raceResult.getCarRaceResult().size() == carCount)
+                .filter(raceResult -> raceResult.getCarRaceResults().size() == carCount)
                 .count();
 
         // then

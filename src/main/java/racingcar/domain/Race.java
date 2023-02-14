@@ -7,10 +7,10 @@ public class Race {
     private final RaceCount raceCount;
 
     private Race(final String raceCount) {
-        this.raceCount = RaceCount.createRaceCount(raceCount);
+        this.raceCount = RaceCount.create(raceCount);
     }
 
-    public static Race createRace(final String raceCount) {
+    public static Race create(final String raceCount) {
         return new Race(raceCount);
     }
 

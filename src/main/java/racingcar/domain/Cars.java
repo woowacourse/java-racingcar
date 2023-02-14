@@ -18,12 +18,12 @@ public class Cars {
     private final NumberGenerator numberGenerator;
 
     private Cars(final String carNames, final NumberGenerator numberGenerator) {
-        this.cars = createCars(carNames);
+        this.cars = create(carNames);
         this.numberGenerator = numberGenerator;
         validateDuplicateCarName();
     }
 
-    public static Cars createCars(final String carNames, final NumberGenerator numberGenerator) {
+    public static Cars create(final String carNames, final NumberGenerator numberGenerator) {
         return new Cars(carNames, numberGenerator);
     }
 
@@ -43,10 +43,10 @@ public class Cars {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private List<Car> createCars(final String carNames) {
+    private List<Car> create(final String carNames) {
         String[] names = splitCarNames(carNames);
         return Arrays.stream(names)
-                .map(Car::createCar)
+                .map(Car::create)
                 .collect(Collectors.toList());
     }
 

@@ -28,7 +28,7 @@ public class CarTest {
     @DisplayName("Car 객체 생성 시 validation 정상적으로 작동한다.")
     @ValueSource(strings = {"junpk", "jney", "pobi", "neo"})
     void givenNormalCarName_thenSuccess(final String carName) {
-        assertThatCode(() -> Car.createCar(carName))
+        assertThatCode(() -> Car.create(carName))
                 .doesNotThrowAnyException();
     }
 
@@ -36,7 +36,7 @@ public class CarTest {
     @DisplayName("5글자 초과의 이름이 들어왔을 경우 예외가 발생한다.")
     @ValueSource(strings = {"junpak", "journey", "pobiconan", "neocat"})
     void givenFiveOverLength_thenFail(final String carName) {
-        assertThatThrownBy(() -> Car.createCar(carName))
+        assertThatThrownBy(() -> Car.create(carName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(String.format(LENGTH_MESSAGE.getValue(), CAR_NAME_MAX_LENGTH.getValue()));
     }
@@ -45,7 +45,7 @@ public class CarTest {
     @DisplayName("이름이 공백일 경우 예외가 발생한다.")
     @EmptySource
     void givenBlankName_thenFail(final String carName) {
-        assertThatThrownBy(() -> Car.createCar(carName))
+        assertThatThrownBy(() -> Car.create(carName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(String.format(BLANK_MESSAGE.getValue(), "이름"));
     }
@@ -84,7 +84,7 @@ public class CarTest {
     @DisplayName("입력으로 들어온 위치와 현재 자동차의 위치가 일치하면 true를 리턴한다.")
     void givenSamePosition_thenReturnTrue() {
         // given
-        Car diffCar = Car.createCar("test");
+        Car diffCar = Car.create("test");
 
         // when
         boolean isSamePosition = testCar.isSamePosition(diffCar);
@@ -98,7 +98,7 @@ public class CarTest {
     @DisplayName("입력으로 들어온 위치와 현재 자동차의 위치가 일치하지 않는다면 false를 리턴한다.")
     void givenSamePosition_thenReturnFalse() {
         // given
-        Car diffCar = Car.createCar("test");
+        Car diffCar = Car.create("test");
         diffCar.move(9);
 
         // when

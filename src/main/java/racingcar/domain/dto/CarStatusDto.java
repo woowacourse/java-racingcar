@@ -11,7 +11,7 @@ public class CarStatusDto {
         this.carPosition = carPosition;
     }
 
-    public static CarStatusDto createCarRaceDto(final String carName, final int carPosition) {
+    public static CarStatusDto create(final String carName, final int carPosition) {
         return new CarStatusDto(carName, carPosition);
     }
 

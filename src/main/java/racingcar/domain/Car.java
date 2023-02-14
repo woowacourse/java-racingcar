@@ -14,11 +14,11 @@ public class Car implements Comparable<Car> {
     private final CarPosition position;
 
     private Car(final String name) {
-        this.name = CarName.createCarName(name);
-        this.position = CarPosition.createCarPosition();
+        this.name = CarName.create(name);
+        this.position = CarPosition.create();
     }
 
-    public static Car createCar(final String name) {
+    public static Car create(final String name) {
         return new Car(name);
     }
 

@@ -33,10 +33,10 @@ class CarsTest {
     @DisplayName("정상적인 자동차 이름이 들어오면 예외가 발생하지 않는다.")
     void givenNormalCarNames_thenSuccess(final String carNames) {
         // when & then
-        assertThatCode(() -> Cars.createCars(carNames, numberGenerator))
+        assertThatCode(() -> Cars.create(carNames, numberGenerator))
                 .doesNotThrowAnyException();
 
-        assertThat(Cars.createCars(carNames, numberGenerator))
+        assertThat(Cars.create(carNames, numberGenerator))
                 .isEqualTo(testCars);
     }
 
@@ -44,7 +44,7 @@ class CarsTest {
     @NullSource
     @DisplayName("자동차 이름에 null 값이 들어오면 split 시 에외가 발생한다.")
     void givenNullCarNames_thenFail(final String carNames) {
-        assertThatThrownBy(() -> Cars.createCars(carNames, numberGenerator))
+        assertThatThrownBy(() -> Cars.create(carNames, numberGenerator))
                 .isInstanceOf(NullPointerException.class);
     }
 
@@ -52,7 +52,7 @@ class CarsTest {
     @ValueSource(strings = {"pobi,pobi", "pobi, pobi"})
     @DisplayName("자동차 이름에 중복값이 들어오면 예외가 발생한다.")
     void givenDuplicateCarNames_thenFail(final String carNames) {
-        assertThatThrownBy(() -> Cars.createCars(carNames, numberGenerator))
+        assertThatThrownBy(() -> Cars.create(carNames, numberGenerator))
                 .isInstanceOf(GlobalException.class)
                 .isExactlyInstanceOf(DuplicateException.class)
                 .hasMessageContaining(DUPLICATE_MESSAGE.getValue());

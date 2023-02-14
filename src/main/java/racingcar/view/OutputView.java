@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     private void createTotalRaceResult(RaceResultDto raceResultDto, StringBuilder raceResult) {
-        raceResultDto.getCarRaceResult()
+        raceResultDto.getCarRaceResults()
                 .forEach(carStatusDto -> createCarStatus(carStatusDto, raceResult));
         raceResult.append("\n");
     }

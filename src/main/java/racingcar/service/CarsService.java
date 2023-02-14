@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 public class CarsService {
 
     public Cars createCars(final String carNames, final NumberGenerator numberGenerator) {
-        return Cars.createCars(carNames, numberGenerator);
+        return Cars.create(carNames, numberGenerator);
     }
 
     public List<CarStatusDto> getCarStatus(final Cars carsInfo) {
         List<Car> cars = carsInfo.getCars();
 
         return cars.stream()
-                .map(car -> CarStatusDto.createCarRaceDto(car.getName(), car.getPosition()))
+                .map(car -> CarStatusDto.create(car.getName(), car.getPosition()))
                 .collect(Collectors.toUnmodifiableList());
     }
 

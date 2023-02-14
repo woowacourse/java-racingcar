@@ -8,7 +8,7 @@ import racingcar.mock.MockNumberGenerator;
 public class TestProvider {
 
     public static Car createTestCar(final String carName) {
-        return Car.createCar(carName);
+        return Car.create(carName);
     }
 
     public static MockNumberGenerator createMockNumberGenerator(final boolean isIncrease) {
@@ -16,10 +16,10 @@ public class TestProvider {
     }
 
     public static Cars createTestCars(final String carNames, final MockNumberGenerator numberGenerator) {
-        return Cars.createCars(carNames, numberGenerator);
+        return Cars.create(carNames, numberGenerator);
     }
 
     public static Race createTestRace(final String raceCount) {
-        return Race.createRace(raceCount);
+        return Race.create(raceCount);
     }
 }
