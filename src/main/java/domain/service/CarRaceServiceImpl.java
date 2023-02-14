@@ -27,7 +27,7 @@ public class CarRaceServiceImpl implements CarRaceService {
     @Override
     public Map<Name, Integer> saveCars(final List<String> names) {
         validateCarCount(names);
-        names.forEach(name -> carRaceResultRepository.save(new Car(new Name(name))));
+        trySaveCar(names);
         return carRaceResultRepository.getRaceResult();
     }
 
@@ -47,6 +47,15 @@ public class CarRaceServiceImpl implements CarRaceService {
             .filter(status -> status.getValue().equals(max))
             .map(Entry::getKey)
             .collect(Collectors.toList());
+    }
+
+    private void trySaveCar(List<String> names) {
+        try {
+            names.forEach(name -> carRaceResultRepository.save(new Car(new Name(name))));
+        } catch (IllegalArgumentException e) {
+            carRaceResultRepository.clear();
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
     private void moveCar(final Name name) {

@@ -16,4 +16,6 @@ public interface CarRaceResultRepository {
     List<Name> findAllCars();
 
     void moveByName(Name name);
+
+    void clear();
 }

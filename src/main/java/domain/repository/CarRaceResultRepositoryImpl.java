@@ -61,6 +61,11 @@ public class CarRaceResultRepositoryImpl implements CarRaceResultRepository {
         moveCountBoard.replace(car, moveCountBoard.get(car) + MOVE_UNIT);
     }
 
+    @Override
+    public void clear() {
+        this.moveCountBoard.clear();
+    }
+
     private void validateCarDuplicate(final Car car) {
         if (moveCountBoard.containsKey(car)) {
             throw new IllegalArgumentException(ErrorCode.CAR_NAME_DUPLICATE.getMessage());
