@@ -23,16 +23,16 @@ public class RacingCarController {
     }
 
     public void newCarNames() {
-        boolean isContinue = true;
-        while (isContinue) {
-            isContinue = isExceptionNewCarNames();
+        boolean hasException = true;
+        while (hasException) {
+            hasException = newCarNamesHasException();
         }
     }
 
     public void newGameRound() {
-        boolean isContinue = true;
-        while (isContinue) {
-            isContinue = isExceptionNewGameRound();
+        boolean hasException = true;
+        while (hasException) {
+            hasException = newGameRoundHasException();
         }
     }
 
@@ -46,7 +46,7 @@ public class RacingCarController {
         outputView.printEndGameResult(winnerNames);
     }
 
-    private boolean isExceptionNewCarNames() {
+    private boolean newCarNamesHasException() {
         try {
             CarNamesRequest inputCarNames = inputView.inputCarName();
             gameManager.createCars(inputCarNames);
@@ -57,7 +57,7 @@ public class RacingCarController {
         }
     }
 
-    private boolean isExceptionNewGameRound() {
+    private boolean newGameRoundHasException() {
         try {
             GameRoundRequest inputGameRound = inputView.inputGameRound();
             gameManager.createGameRound(inputGameRound);
