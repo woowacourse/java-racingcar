@@ -2,8 +2,6 @@ package domain;
 
 import constant.ExceptionMessage;
 
-import java.util.Objects;
-
 public class Name {
     private static final int MAX_CAR_NAME_LENGTH = 5;
 
@@ -30,7 +28,7 @@ public class Name {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Name) {
-            return name.equals(((Name) obj).name);
+            return this.name.equals(((Name) obj).name);
         }
 
         return false;
