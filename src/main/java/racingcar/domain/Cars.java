@@ -1,11 +1,8 @@
 package racingcar.domain;
 
-import racingcar.validator.CarValidator;
-import racingcar.validator.DefaultCarValidator;
-
-import java.util.*;
-
-import static racingcar.exception.ErrorMessages.CAR_NAME_DUPLICATE_EXCEPTION;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Cars {
     private final List<Car> cars = new ArrayList<>();

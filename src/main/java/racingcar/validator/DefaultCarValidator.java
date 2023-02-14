@@ -1,7 +1,5 @@
 package racingcar.validator;
 
-import racingcar.domain.Car;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,16 +9,15 @@ import static racingcar.exception.ErrorMessages.*;
 public class DefaultCarValidator implements CarValidator {
     private static final int CAR_NAME_MAX_LENGTH = 5;
 
-    @Override
-    public void validateCarName(String name) {
-        validateNameNullOrBlank(name);
-        validateNameLength(name);
-    }
 
     @Override
-    public void validateCarNamesSize(List<String> carNames) {
+    public void validateCarNames(List<String> carNames) {
         validateDuplicatedCarName(carNames);
         validateCarsSizeOneOrZero(carNames);
+        for (String carName : carNames) {
+            validateNameNullOrBlank(carName);
+            validateNameLength(carName);
+        }
     }
 
     private void validateNameNullOrBlank(String name) {
