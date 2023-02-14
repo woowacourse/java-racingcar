@@ -1,27 +1,26 @@
 package racingCar.domain;
 
-import racingCar.dto.CarDto;
-
 public class Car {
 
-    private static final int MOVE_MIN_NUM = 4;
+    private static final String POSITION_MARK = "-";
+    private static final int MIN_FUEL = 4;
 
-    private CarName name;
-    private Position position;
+    private final CarName name;
+    private int position;
 
     public Car(String carName, int initPosition) {
         name = new CarName(carName);
-        position = new Position(initPosition);
+        position = initPosition;
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= MOVE_MIN_NUM) {
-            position.increase();
+    public void move(int fuel) {
+        if (fuel >= MIN_FUEL) {
+            position++;
         }
     }
 
-    public boolean isSamePosition(int other) {
-        return position.getPosition() == other;
+    public boolean isSamePosition(int otherPosition) {
+        return this.position == otherPosition;
     }
 
     public String getName() {
@@ -29,10 +28,10 @@ public class Car {
     }
 
     public int getPosition() {
-        return position.getPosition();
+        return position;
     }
 
-    public CarDto toDto() {
-        return new CarDto(this.name, this.position);
+    public String getState() {
+        return name.getName() + " : " + POSITION_MARK.repeat(position);
     }
 }

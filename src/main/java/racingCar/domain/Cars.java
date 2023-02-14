@@ -1,20 +1,20 @@
 package racingCar.domain;
 
-import racingCar.dto.CarDto;
-import racingCar.util.NumberPicker;
+import static java.util.stream.Collectors.toList;
+
+import racingCar.util.NumberPickerUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Cars {
 
     private static final int MIN_CAR_SIZE = 2;
     private static final int INIT_CAR_POSITION = 0;
-    private static final int MIN_NUMBER_RANGE = 0;
-    private static final int MAX_NUMBER_RANGE = 9;
+    private static final int MIN_NUMBER = 0;
+    private static final int MAX_NUMBER = 9;
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<String> names) {
         validateDuplicate(names);
@@ -22,7 +22,7 @@ public class Cars {
 
         this.cars = names.stream()
                 .map(carName -> new Car(carName, INIT_CAR_POSITION))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private void validateDuplicate(List<String> carNames) {
@@ -38,9 +38,9 @@ public class Cars {
         }
     }
 
-    public void moveCars(NumberPicker numberPicker) {
+    public void move() {
         for (Car car : cars) {
-            car.move(numberPicker.pickNumberInRange(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE));
+            car.move(NumberPickerUtil.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
         }
     }
 
@@ -49,7 +49,7 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public int findMaxPosition() {
@@ -59,9 +59,9 @@ public class Cars {
                 .orElse(INIT_CAR_POSITION);
     }
 
-    public List<CarDto> toDtos() {
+    public List<String> getStates() {
         return cars.stream()
-                .map(Car::toDto)
-                .collect(Collectors.toList());
+                .map(Car::getState)
+                .collect(toList());
     }
 }

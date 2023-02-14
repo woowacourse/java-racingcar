@@ -25,4 +25,15 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("position이 같은 경우")
+    void isSamePosition_same() {
+        assertThat(car.isSamePosition(0)).isTrue();
+    }
+
+    @Test
+    @DisplayName("position이 다른 경우")
+    void isSamePosition_different() {
+        assertThat(car.isSamePosition(1)).isFalse();
+    }
 }
