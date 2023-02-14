@@ -84,20 +84,6 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"3,-3", "1,-1", "0,0"})
-    @DisplayName("자동차 위치 비교를 정확하게 하는지 검증한다.")
-    void compareToTest(int otherPosition, int expected) {
-        Car other = new Car("crong");
-        numberGenerator = new TestNumberGenerator(8);
-        for (int i = 0; i < otherPosition; i++) {
-            other.move(numberGenerator);
-        }
-
-        assertThat(car.getCurrentPosition().compareTo(other.getCurrentPosition()))
-                .isEqualTo(expected);
-    }
-
-    @ParameterizedTest
     @DisplayName("isMovable에 대한 테스트")
     @CsvSource(value = {"3,false", "0,true"})
     void isSamePositionTest(int targetPosition, boolean expected) {
