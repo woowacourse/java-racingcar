@@ -37,7 +37,8 @@ public class InputView {
     }
 
     private void checkDuplication(String rawCarNames, List<String> carNames) {
-        Set<String> uniqueCarNames = Arrays.stream(rawCarNames.split(NAME_SEPARATOR)).map(String::trim)
+        Set<String> uniqueCarNames = Arrays.stream(rawCarNames.split(NAME_SEPARATOR))
+                .map(String::trim)
                 .collect(Collectors.toSet());
         if (uniqueCarNames.size() != carNames.size()) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ANNOUNCEMENT);
