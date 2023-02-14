@@ -8,16 +8,16 @@ public class Car {
     private static final int MOVE_FORWARD_MIN_NUMBER = 4;
     private static final int MOVE_FORWARD_MAX_NUMBER = 9;
 
-    private final String name;
+    private final Name name;
     private final Position position;
 
     public Car(String name) {
-        this.name = name;
+        this.name = new Name(name);
         this.position = new Position();
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getPosition() {
