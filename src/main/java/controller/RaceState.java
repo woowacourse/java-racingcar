@@ -6,9 +6,10 @@ public enum RaceState {
     INPUT_RACE_ROUND,
     RACE,
     CALCULATE_WINNERS,
-    APPLICATION_EXIT;
+    APPLICATION_EXIT,
+    APPLICATION_EXCEPTION;
 
     public boolean isRacing() {
-        return this != APPLICATION_EXIT;
+        return this != APPLICATION_EXIT && this != APPLICATION_EXCEPTION;
     }
 }
