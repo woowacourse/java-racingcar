@@ -2,8 +2,8 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.Engine;
-import utils.MovableEngine;
+import domain.engine.Engine;
+import domain.engine.MovableEngine;
 
 import java.util.Arrays;
 

@@ -1,7 +1,7 @@
 package domain;
 
-import utils.Engine;
-import utils.RandomMovingEngine;
+import domain.engine.Engine;
+import domain.engine.RandomMovingEngine;
 
 import java.util.List;
 import java.util.stream.Collectors;

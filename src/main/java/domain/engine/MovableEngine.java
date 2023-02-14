@@ -1,4 +1,4 @@
-package utils;
+package domain.engine;
 
 public class MovableEngine implements Engine {
 

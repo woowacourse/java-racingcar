@@ -1,4 +1,4 @@
-package utils;
+package domain.engine;
 
 import static utils.RandomPowerGenerator.createRandomPower;
 

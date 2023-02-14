@@ -3,8 +3,8 @@ package domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.ImmovableEngine;
-import utils.MovableEngine;
+import domain.engine.ImmovableEngine;
+import domain.engine.MovableEngine;
 
 @DisplayName("자동차는 ")
 class CarTest {

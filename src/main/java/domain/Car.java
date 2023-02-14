@@ -1,6 +1,6 @@
 package domain;
 
-import utils.Engine;
+import domain.engine.Engine;
 
 public class Car {
     private final Name name;
