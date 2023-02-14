@@ -1,16 +1,13 @@
 package racingcar.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.numbergenerator.UserNumberGenerator;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
