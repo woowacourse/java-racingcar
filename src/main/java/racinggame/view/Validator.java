@@ -48,7 +48,9 @@ public class Validator {
     }
 
     private void checkDouble(String[] carNames) {
-        List<String> nonDuplicatedCarNames = Arrays.stream(carNames).distinct().collect(Collectors.toList());
+        List<String> nonDuplicatedCarNames = Arrays.stream(carNames)
+                .distinct()
+                .collect(Collectors.toList());
         if (nonDuplicatedCarNames.size() != carNames.length) {
             throw new IllegalArgumentException(CARNAMES_DUPLICATE_ERROR_MESSAGE);
         }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RacingGame {
     private final Winner winner;
-    private List<Car> cars;
+    private final List<Car> cars;
     private int tryCount;
 
     public RacingGame(List<Car> cars, int tryCount) {
