@@ -1,9 +1,11 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -12,10 +14,38 @@ import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.service.CarService;
 
 class CarTest {
+    CarService carService = new CarService();
+
+    @Nested
+    @DisplayName("시도할 횟수 테스트")
+    class TestTryCount {
+        @ParameterizedTest(name = "{index} ==> tryCount : ''{0}''")
+        @ValueSource(ints = {1, 5, 123})
+        @DisplayName("시도할 횟수가 숫자인 경우 성공")
+        void Should_Success_시도할_횟수가_숫자인_경우(int tryCount) {
+            assertInstanceOf(Integer.class, tryCount);
+        }
+
+        @ParameterizedTest(name = "{index} ==> tryCount : ''{0}''")
+        @ValueSource(ints = {-1, -2, 0})
+        @DisplayName("시도할 횟수가 0 이하인 경우 예외 발생")
+        void Should_ThrowException_시도할_횟수가_0이하인_경우(int tryCount) {
+            assertThatThrownBy(() -> carService.validateNegativeCount(tryCount))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(String.format("[ERROR] 시도할 횟수는 %d보다 큰 숫자여야 합니다.", Car.MIN_TRY_COUNT));
+        }
+
+        @ParameterizedTest(name = "{index} ==> tryCount : ''{0}''")
+        @ValueSource(ints = {2, 4, 7})
+        @DisplayName("시도할 횟수가 0보다 큰 경우 성공")
+        void Should_Success_시도할_횟수가_0보다_큰_경우(int tryCount) {
+            assertDoesNotThrow(() -> carService.validateNegativeCount(tryCount));
+        }
+    }
+
     @Nested
     @DisplayName("전진 테스트")
     class TestForward {
-        CarService carService = new CarService();
         Car car = new Car("test", 0);
         Position position = car.getPosition();
 
@@ -39,7 +69,6 @@ class CarTest {
     @Nested
     @DisplayName("우승자 반환 테스트")
     class TestWinner {
-        CarService carService = new CarService();
         Cars cars = new Cars(new ArrayList<Car>());
 
         @Test
