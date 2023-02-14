@@ -9,7 +9,7 @@ public class Position {
         this.position = INIT_POSITION;
     }
 
-    public void moveForward() {
+    public void move() {
         position++;
     }
 
