@@ -49,9 +49,9 @@
 
 ## Utils
 
-### NumberValidator
+### IntegerParser
 
-- [x] 시도할 횟수가 숫자인지 검증한다.
+- [x] 입력 값을 정수로 변환한다.
 
 ### NumberGenerator
 
