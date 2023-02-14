@@ -100,6 +100,19 @@ class CarRaceServiceImplTest {
         assertThatThrownBy(() -> carRaceService.saveCars(names))
             .isInstanceOf(IllegalArgumentException.class);
     }
+    
+    @Test
+    @DisplayName("중복된 차 이름이 들어온 경우")
+    public void duplicateCarNameSave() {
+        //given
+        carRaceService = makeCarRaceService(new RandomNumberGenerator());
+        List<String> names = List.of("car", "car");
+        
+        //when
+        //then
+        assertThatThrownBy(() -> carRaceService.saveCars(names))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 
     private CarRaceServiceImpl makeCarRaceService(NumberGenerator numberGenerator) {
         return new CarRaceServiceImpl(new CarRaceResultRepositoryImpl(), numberGenerator);
