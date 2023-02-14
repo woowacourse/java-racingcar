@@ -15,7 +15,7 @@ public class Car {
 
     public void move(int number) {
         if (number >= BOUNDARY) {
-            this.position.moveForward();
+            this.position.move();
         }
     }
 
