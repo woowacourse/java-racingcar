@@ -17,9 +17,8 @@ public class Cars {
         this.cars = createCarsByNames(carNames);
     }
 
-    public List<Car> moveCars(final NumberGenerator numberGenerator) {
+    public void moveCars(final NumberGenerator numberGenerator) {
         cars.forEach(car -> car.move(numberGenerator));
-        return Collections.unmodifiableList(cars);
     }
 
     public List<Car> getLatestResult() {

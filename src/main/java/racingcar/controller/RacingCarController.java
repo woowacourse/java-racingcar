@@ -59,7 +59,8 @@ public class RacingCarController {
 
     private void race(Cars cars, Lap lap, NumberGenerator numberGenerator) {
         while (!lap.isFinish()) {
-            List<Car> movedCars = cars.moveCars(numberGenerator);
+            cars.moveCars(numberGenerator);
+            List<Car> movedCars = cars.getLatestResult();
             List<CarStatus> carStatuses = mapCarsToCarStatuses(movedCars);
             lap.reduce();
             OutputView.printCarStatus(carStatuses);

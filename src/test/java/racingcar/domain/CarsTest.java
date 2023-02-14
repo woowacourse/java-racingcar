@@ -43,7 +43,8 @@ class CarsTest {
         void updateMovedCarSuccess() {
             cars = new Cars(carNames);
             NumberGenerator numberGenerator = new RandomNumberGenerator(0, 9);
-            List<Car> movedResult = cars.moveCars(numberGenerator);
+            cars.moveCars(numberGenerator);
+            List<Car> movedResult = cars.getLatestResult();
             assertThat(cars.getLatestResult())
                     .isEqualTo(movedResult);
         }
