@@ -45,7 +45,7 @@ class CarTest {
         @ValueSource(ints = {4, 5})
         @DisplayName("랜덤 숫자가 4이상이면 이동한다")
         void move(int number) {
-            car.move(new TestNumberGenerator(number));
+            car.move(new MockNumberGenerator(number));
 
             assertThat(car.getCurrentPosition())
                     .isEqualTo(1);
@@ -55,7 +55,7 @@ class CarTest {
         @ValueSource(ints = {1, 3})
         @DisplayName("랜덤 숫자가 4미만이면 이동하지 않는다")
         void notMove(int number) {
-            car.move(new TestNumberGenerator(number));
+            car.move(new MockNumberGenerator(number));
 
             assertThat(car.getCurrentPosition())
                     .isEqualTo(0);
