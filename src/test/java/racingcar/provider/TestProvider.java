@@ -3,6 +3,7 @@ package racingcar.provider;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Race;
+import racingcar.domain.WinnerCar;
 import racingcar.mock.MockNumberGenerator;
 
 public class TestProvider {
@@ -21,5 +22,9 @@ public class TestProvider {
 
     public static Race createTestRace(final String raceCount) {
         return Race.create(raceCount);
+    }
+
+    public static WinnerCar createTestWinnerCar(Cars cars) {
+        return WinnerCar.create(cars);
     }
 }

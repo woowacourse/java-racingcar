@@ -59,35 +59,4 @@ class CarsServiceTest {
         assertThat(normalPositionCarCount)
                 .isEqualTo(carCount);
     }
-
-    @Test
-    @DisplayName("우승한 자동차를 뽑는다.")
-    void givenCarInfo_thenPickWinner() {
-        // given
-        MockNumberGenerator numberGenerator = TestProvider.createMockNumberGenerator(true);
-        Cars testCars = TestProvider.createTestCars(testCarNames, numberGenerator);
-        testCars.race();
-
-        // when
-        List<String> winners = carsService.pickWinnerNames(testCars);
-
-        // then
-        assertThat(winners.size())
-                .isEqualTo(1);
-
-        assertThat(winners)
-                .isEqualTo(List.of("honux"));
-    }
-
-    @Test
-    @DisplayName("우승한 자동차 리스트를 뽑는다.")
-    void givenCarInfo_thenPickWinners() {
-        // when
-        testCars.race();
-        List<String> winners = carsService.pickWinnerNames(testCars);
-
-        // then
-        assertThat(winners)
-                .isEqualTo(List.of("pobi", "crong", "honux"));
-    }
 }
