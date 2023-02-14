@@ -29,10 +29,10 @@ public class Cars {
                 .max(Car::compareTo)
                 .orElse(null);
 
-        return sortWinner(winner);
+        return sort(winner);
     }
 
-    private List<WinnerCarDto> sortWinner(Car winner) {
+    private List<WinnerCarDto> sort(Car winner) {
         return cars.stream()
                 .filter(car -> car.isSamePosition(winner))
                 .map(car -> new WinnerCarDto(car.getName()))
