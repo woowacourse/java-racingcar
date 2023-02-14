@@ -37,9 +37,13 @@ public class RacingGameEngine {
 
     private Cars makeCars(String carName) {
 
-        return new Cars(Arrays.stream(carName.split(SPLIT_DELIMITER))
-                              .map((name) -> new Car(Name.fromName(name)))
-                              .collect(Collectors.toList()));
+        try {
+            return new Cars(Arrays.stream(carName.split(SPLIT_DELIMITER))
+                                  .map((name) -> new Car(Name.fromName(name)))
+                                  .collect(Collectors.toList()));
+        } catch (IllegalArgumentException exception) {
+            return makeCars(getCarName());
+        }
     }
 
     private void startRace(Cars cars, int tryCount) {
