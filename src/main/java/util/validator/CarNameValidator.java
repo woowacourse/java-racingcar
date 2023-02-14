@@ -10,7 +10,7 @@ public class CarNameValidator extends Validator {
 
 
     private void validateCarNameLength(String name) {
-        if (name.isBlank()) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException(Message.EXCEPTION_CAR_NAME_BLANK.message);
         }
         if (name.length() > MAX_NAME_LENGTH) {

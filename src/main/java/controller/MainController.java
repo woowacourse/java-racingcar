@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import model.car.Car;
 import model.car.Cars;
 import model.manager.CarMoveManager;
-import util.number.RandomNumberGenerator;
+import util.number.SecureRandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -54,7 +54,9 @@ public class MainController {
 
     private GameStatus setCars() {
         List<String> carNames = inputView.readCarNames();
-        carNames.stream().map(Car::new).forEach(cars::addCar);
+        carNames.stream()
+                .map(Car::new)
+                .forEach(cars::addCar);
         return GameStatus.PLAY_GAME;
     }
 
@@ -75,7 +77,7 @@ public class MainController {
     }
 
     private boolean isMove() {
-        return carMoveManager.isMove(RandomNumberGenerator.getRandomNumber());
+        return carMoveManager.isMove(SecureRandomNumberGenerator.getRandomNumber());
     }
 
     private enum GameStatus {

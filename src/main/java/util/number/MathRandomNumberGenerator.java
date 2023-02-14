@@ -1,6 +1,6 @@
 package util.number;
 
-public class RandomNumberGenerator {
+public class MathRandomNumberGenerator {
     private static final int MAX_NUMBER = 9;
 
     public static int getRandomNumber() {
