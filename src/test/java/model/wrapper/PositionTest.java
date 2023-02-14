@@ -1,7 +1,5 @@
 package model.wrapper;
 
-import helper.StubMovableRacingNumberGenerator;
-import helper.StubUnmovableRacingNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +9,8 @@ class PositionTest {
 
     private static final int MOVE_STATE = 1;
     private static final int STOP_STATE = 0;
+    private static final int MOVABLE_VALUE = 4;
+    private static final int UNMOVABLE_VALUE = 3;
 
     private Position position;
 
@@ -22,7 +22,7 @@ class PositionTest {
     @Test
     @DisplayName("4 이상의 값이 생성되면 한칸 전진한다.")
     void move() {
-        position.move(new StubMovableRacingNumberGenerator());
+        position.move(MOVABLE_VALUE);
 
         Assertions.assertThat(position.getPosition()).isSameAs(MOVE_STATE);
     }
@@ -30,7 +30,7 @@ class PositionTest {
     @Test
     @DisplayName("3 이하의 값이 생성되면 멈춘다.")
     void stop() {
-        position.move(new StubUnmovableRacingNumberGenerator());
+        position.move(UNMOVABLE_VALUE);
 
         Assertions.assertThat(position.getPosition()).isSameAs(STOP_STATE);
     }

@@ -1,9 +1,18 @@
 package view;
 
+import exception.BlankInputException;
+import exception.DuplicateCarNameException;
+import exception.WrongRoundException;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class InputView {
 
+    private static final String NAME_SEPARATOR = ",";
+    private static final int ROUND_MIN_VALUE = 1;
     private static final String INPUT_CAR_NAMES_MESSAGE =
             "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String INPUT_ROUND_MESSAGE =
@@ -15,14 +24,52 @@ public class InputView {
         this.scanner = scanner;
     }
 
-    public String inputCarsName() {
+    public Set<String> inputCarsName() {
         print(INPUT_CAR_NAMES_MESSAGE);
-        return input();
+
+        String input = input();
+        validateBlank(input);
+
+        return mapToValidCarsName(input);
     }
 
-    public String inputRound() {
+    private Set<String> mapToValidCarsName(String input) {
+        String[] inputCarsName = input.split(NAME_SEPARATOR);
+        LinkedHashSet<String> carsName = Arrays.stream(inputCarsName)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        validateNameDuplication(inputCarsName.length, carsName.size());
+        return carsName;
+    }
+
+    private void validateNameDuplication(int nameSize, int carSize) {
+        if (nameSize != carSize) {
+            throw new DuplicateCarNameException();
+        }
+    }
+
+    public int inputRound() {
         print(INPUT_ROUND_MESSAGE);
-        return input();
+
+        String input = input();
+        validateBlank(input);
+
+        int inputRound = mapToRoundNumber(input);
+        return inputRound;
+    }
+
+    private int mapToRoundNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new WrongRoundException();
+        }
+    }
+
+    private void validateBlank(String input) {
+        if (input.isBlank()) {
+            throw new BlankInputException();
+        }
     }
 
     private void print(String message) {

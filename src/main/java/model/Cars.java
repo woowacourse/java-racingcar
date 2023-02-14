@@ -1,55 +1,48 @@
 package model;
 
-import dto.CarDto;
+import dto.RacingCarStateDto;
+import dto.RacingRoundStateDto;
 import dto.WinnerCarDto;
-import exception.DuplicateCarNameException;
-import java.util.Arrays;
+import exception.EmptyCarsException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import utils.RacingNumberGenerator;
+import model.wrapper.Round;
 
 public class Cars {
 
-    private static final String SEPARATOR = ",";
-
     private final List<Car> cars;
 
-    public Cars(String inputNames) {
-        String[] carsName = inputNames.split(SEPARATOR);
-        List<Car> inputCars = Arrays.stream(carsName)
-                .distinct()
-                .map(Car::new)
-                .collect(Collectors.toList());
-
-        validateNameDuplication(carsName.length, inputCars.size());
-        cars = inputCars;
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    private void validateNameDuplication(int nameSize, int carSize) {
-        if (nameSize != carSize) {
-            throw new DuplicateCarNameException();
+    public List<RacingRoundStateDto> race(Round round) {
+        List<RacingRoundStateDto> racingResult = new ArrayList<>();
+
+        while (round.canRacing()) {
+            racingResult.add(race());
         }
+        return racingResult;
     }
 
-    public void race(RacingNumberGenerator generator) {
-        cars.forEach(car -> car.race(generator));
+    private RacingRoundStateDto race() {
+        List<RacingCarStateDto> racingCarsStateDto = cars.stream()
+                .map(Car::race)
+                .collect(Collectors.toUnmodifiableList());
+
+        return new RacingRoundStateDto(racingCarsStateDto);
     }
 
-    public List<CarDto> getCarsDto() {
-        return cars.stream()
-                .map(Car::mapToCarDto)
-                .collect(Collectors.toList());
-    }
-
-    public List<WinnerCarDto> processWinner() {
+    public List<WinnerCarDto> calculateWinners() {
         Car winner = cars.stream()
                 .max(Car::compareTo)
-                .orElse(null);
+                .orElseThrow(EmptyCarsException::new);
 
-        return sortWinner(winner);
+        return addSamePositionCars(winner);
     }
 
-    private List<WinnerCarDto> sortWinner(Car winner) {
+    private List<WinnerCarDto> addSamePositionCars(Car winner) {
         return cars.stream()
                 .filter(car -> car.isSamePosition(winner))
                 .map(Car::mapToWinnerCarDto)

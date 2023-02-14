@@ -1,25 +1,19 @@
 package model.wrapper;
 
-import utils.RacingNumberGenerator;
-
 public class Position implements Comparable<Position> {
 
-    private static final int MOVABLE_VALUE = 4;
+    private static final int MOVABLE_INCLUSIVE_VALUE = 4;
 
     private int position = 0;
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void move(RacingNumberGenerator generator) {
-        if (isMovable(generator)) {
+    public void move(int movableNumber) {
+        if (isMovable(movableNumber)) {
             position++;
         }
     }
 
-    private boolean isMovable(RacingNumberGenerator generator) {
-        return generator.generate() >= MOVABLE_VALUE;
+    private boolean isMovable(int movableNumber) {
+        return movableNumber >= MOVABLE_INCLUSIVE_VALUE;
     }
 
     public boolean isSamePosition(Position otherPosition) {
@@ -29,5 +23,9 @@ public class Position implements Comparable<Position> {
     @Override
     public int compareTo(Position otherPosition) {
         return this.position - otherPosition.position;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

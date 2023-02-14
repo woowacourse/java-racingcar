@@ -16,7 +16,7 @@ public class Name {
     }
 
     private void validateName(String name) {
-        if (!validateBlank(name)) {
+        if (name.isBlank()) {
             throw new BlankNameException();
         }
         if (!validateLength(name)) {
@@ -28,12 +28,6 @@ public class Name {
         int length = name.length();
 
         return length >= NAME_MIN_LENGTH && length <= NAME_MAX_LENGTH;
-    }
-
-    private boolean validateBlank(String name) {
-        int length = name.trim().length();
-
-        return length != 0;
     }
 
     public String getName() {
