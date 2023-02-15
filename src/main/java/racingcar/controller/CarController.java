@@ -12,32 +12,33 @@ import racingcar.view.OutputView;
 public class CarController {
 
 	public void playGame() {
-		getCarNames();
-		int roundCount = getRoundCount();
+		retryInitCarNames();
+		int roundCount = retryReadingRoundCount();
 		move(roundCount);
 	}
 
-	private void getCarNames() {
+	private void retryInitCarNames() {
+		OutputView.printCarNameRequestMsg();
 		try {
-			OutputView.printCarNameRequestMsg();
 			List<String> carNames = InputView.readCarNames();
 			carNames.stream()
 				.forEach(carName -> CarRepository.add(new Car(carName)));
 		} catch (Exception e) {
 			OutputView.printErrorMsg(e.getMessage());
-			getCarNames();
+			retryInitCarNames();
 		}
 	}
 
-	private int getRoundCount() {
+	private int retryReadingRoundCount() {
+		int roundCount = -1;
+		OutputView.printRoundCountRequestMsg();
 		try {
-			OutputView.printRoundCountRequestMsg();
-			return InputView.readRoundCount();
+			roundCount = InputView.readRoundCount();
 		} catch (Exception e) {
 			OutputView.printErrorMsg(e.getMessage());
-			getRoundCount();
+			retryReadingRoundCount();
 		}
-		return -1;
+		return roundCount;
 	}
 
 	private void move(int roundCount) {
