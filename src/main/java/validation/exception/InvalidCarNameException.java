@@ -1,10 +1,8 @@
 package validation.exception;
 
-import validation.ErrorMessages;
-
-public class InvalidCarNameException extends RuntimeException {
+public class InvalidCarNameException extends IllegalArgumentException {
 
     public InvalidCarNameException() {
-        super(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+        super();
     }
 }

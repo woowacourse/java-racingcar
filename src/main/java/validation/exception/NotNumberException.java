@@ -1,10 +1,8 @@
 package validation.exception;
 
-import validation.ErrorMessages;
-
-public class NotNumberException extends RuntimeException {
+public class NotNumberException extends IllegalArgumentException {
 
     public NotNumberException() {
-        super(ErrorMessages.NOT_A_NUMBER.getMessage());
+        super();
     }
 }

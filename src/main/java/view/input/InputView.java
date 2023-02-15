@@ -1,6 +1,11 @@
 package view.input;
 
 import java.util.Scanner;
+import validation.ErrorMessages;
+import validation.exception.ContainsInvalidWordException;
+import validation.exception.InvalidCarNameException;
+import validation.exception.InvalidCountException;
+import validation.exception.NotNumberException;
 
 public class InputView {
 
@@ -14,6 +19,21 @@ public class InputView {
 
     public void showEnterCountMessage() {
         System.out.println(ENTER_COUNT);
+    }
+
+    public void printError(IllegalArgumentException exception) {
+        if (exception instanceof ContainsInvalidWordException) {
+            System.out.println(ErrorMessages.CONTAINS_INVALID_WORD.getMessage());
+        }
+        if (exception instanceof InvalidCarNameException) {
+            System.out.println(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+        }
+        if (exception instanceof InvalidCountException) {
+            System.out.println(ErrorMessages.INVALID_COUNT.getMessage());
+        }
+        if (exception instanceof NotNumberException) {
+            System.out.println(ErrorMessages.NOT_A_NUMBER.getMessage());
+        }
     }
 
     public String getInputUntilExist() {

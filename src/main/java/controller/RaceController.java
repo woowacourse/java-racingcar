@@ -30,8 +30,8 @@ public class RaceController {
         try {
             String input = inputView.getInputUntilExist();
             joinAllParticipants(input);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            inputView.printError(exception);
             getCarNamesUntilValid(inputView);
         }
     }
@@ -45,8 +45,8 @@ public class RaceController {
     private void getCountUntilValid(InputView inputView) {
         try {
             race = new Race(inputView.getInputUntilExist());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            inputView.printError(exception);
             getCountUntilValid(inputView);
         }
     }
@@ -65,11 +65,7 @@ public class RaceController {
         return Arrays.stream(input.split(delimiter, -1)).map(String::strip)
             .collect(Collectors.toList());
     }
-
-    //TODO : 우승자 판단을 위해 getter 사용이 필요한가?
-    //TODO : 우승자 판단을 하는 방식을 컨트롤러에서 알아야 하나?
-    //TODO : 우승자 판단을 하는 기준이 변경 될 경우 어디서 코드를 변경할 것인가?
-
+    
     public List<Car> getWinners() {
         List<Car> candidates = participants.showAllParticipants();
         int maxDistance = candidates.stream()
