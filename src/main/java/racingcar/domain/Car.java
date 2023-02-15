@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.util.IntGenerator;
-import racingcar.util.RacingCarIntGenerator;
 
 public class Car {
 
