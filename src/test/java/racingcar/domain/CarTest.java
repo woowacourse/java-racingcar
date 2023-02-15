@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.util.DeterminedIntGenerator;
+import racingcar.util.RacingCarIntGenerator;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -29,7 +30,7 @@ class CarTest {
         // given
         String appropriateName = "테스트이름";
         // when
-        Car car = new Car(appropriateName);
+        Car car = new Car(appropriateName, new RacingCarIntGenerator());
         // then
         assertThat(car.getName()).isEqualTo(appropriateName);
     }
@@ -43,7 +44,7 @@ class CarTest {
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> { // when
-                    new Car(wrongName);
+                    new Car(wrongName, new RacingCarIntGenerator());
                 });
     }
 }

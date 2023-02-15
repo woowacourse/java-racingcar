@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.util.IntGenerator;
+import racingcar.util.RacingCarIntGenerator;
 
 public class Cars {
 
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
-        this.cars = new LinkedList<>();
-        carNames.forEach(carName -> cars.add(new Car(carName)));
+        this(carNames, new RacingCarIntGenerator());
     }
 
     public Cars(List<String> carNames, IntGenerator intGenerator) {
