@@ -18,5 +18,4 @@ public enum ExceptionMessage {
     public String getMessage() {
         return EXCEPTION_HEADER + message;
     }
-
 }

@@ -12,7 +12,7 @@ public class Cars {
     public Cars(List<String> cars) {
         validateDuplicateCarNames(cars);
         this.cars = cars.stream()
-                .map(s -> new Car(s, 0))
+                .map(Car::new)
                 .collect(Collectors.toList());
     }
 
