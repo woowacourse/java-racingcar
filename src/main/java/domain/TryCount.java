@@ -1,7 +1,5 @@
 package domain;
 
-import error.ErrorMessage;
-
 public class TryCount {
     private static final int MIN_COUNT = 1;
 
@@ -22,7 +20,7 @@ public class TryCount {
 
     private void validate(int count) {
         if (count < MIN_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getValue());
+            throw new IllegalArgumentException(String.format("시도 횟수는 %d회 이상이여야 합니다.", MIN_COUNT));
         }
     }
 }

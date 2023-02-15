@@ -1,7 +1,8 @@
 package domain;
 
-import utils.RandomGenerator;
+import utils.MovingStrategy;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -14,9 +15,17 @@ public class Cars implements Iterable<Car> {
         this.cars = cars;
     }
 
-    public void moveCars(RandomGenerator generator) {
+    public Cars(Cars cars) {
+        List<Car> result = new ArrayList<>();
         for (Car car : cars) {
-            car.move(generator.movable());
+            result.add(new Car(car));
+        }
+        this.cars = result;
+    }
+
+    public void moveCars(MovingStrategy strategy) {
+        for (Car car : cars) {
+            car.move(strategy.movable());
         }
     }
 
@@ -33,7 +42,11 @@ public class Cars implements Iterable<Car> {
         return cars.stream()
                 .map(Car::getPosition)
                 .max(Comparator.comparingInt(Position::getPosition))
-                .get();
+                .orElseGet(Position::create);
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     @Override

@@ -13,6 +13,11 @@ public class Car {
         this(name, Position.create());
     }
 
+    public Car(Car car) {
+        this.name = new Name(car.getName());
+        this.position = new Position(car.getPosition());
+    }
+
     public void move(boolean movable) {
         if (movable) {
             position.move();

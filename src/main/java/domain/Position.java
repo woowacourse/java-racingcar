@@ -11,6 +11,10 @@ public class Position {
         this.position = position;
     }
 
+    public Position(Position position) {
+        this.position = position.getPosition();
+    }
+
     public static Position of(int position) {
         return new Position(position);
     }
