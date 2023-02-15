@@ -1,7 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
-import factory.CarFactory;
-import validator.NumberOfTryValidator;
+import racingcar.domain.factory.CarFactory;
 
 import java.util.List;
 
@@ -13,11 +12,9 @@ public class RacingCarGame {
         CarRepository.updateCars(CarFactory.from(carNames));
     }
 
-    public void repeatRounds() {
-        MoveStrategy moveStrategy = new RandomBasedStrategy();
-
+    public void race(Movement movement) {
         for (Car car : CarRepository.findAll()) {
-            car.move(moveStrategy);
+            car.move(movement);
         }
     }
 

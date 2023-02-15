@@ -1,5 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,11 +22,21 @@ class CarRepositoryTest {
     @BeforeEach
     @MethodSource
     void setUp() {
-        Car pobi = new Car("pobi", 2);
-        Car mery = new Car("mery", 3);
-        Car abel = new Car("abel", 2);
+        Car pobi = new Car("pobi");
+        Car mery = new Car("mery");
+        Car abel = new Car("abel");
+        
+        moveByCount(pobi, 2);
+        moveByCount(mery, 3);
+        moveByCount(abel, 2);
+        
         List<Car> cars = List.of(pobi, mery, abel);
         CarRepository.updateCars(cars);
+    }
+    
+    private void moveByCount(Car car, int moveOfTry) {
+        IntStream.range(0, moveOfTry)
+                .forEach(count -> car.move(() -> true));
     }
 
     @Test
@@ -55,8 +67,24 @@ class CarRepositoryTest {
     private static Stream<Arguments> provideCars() {
         return Stream.of(
                 Arguments.of(Collections.emptyList()),
-                Arguments.of(List.of(new Car("pobi", 0)))
+                Arguments.of(List.of(new Car("pobi")))
         );
+    }
+    
+    @Test
+    @DisplayName("중복되는 차 이름이 있을 때 예외를 발생시킨다.")
+    void validateDuplicatedCarNames() {
+        List<Car> cars = List.of(new Car("aa"), new Car("aa"));
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(() -> CarRepository.updateCars(cars));
+    }
+    
+    @Test
+    @DisplayName("입력한 차가 한 대인 경우 예외를 발생시킨다.")
+    void validateLessThanMinimumNumberOfCars() {
+        List<Car> cars = List.of(new Car("aa"));
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(() -> CarRepository.updateCars(cars));
     }
 
     @AfterEach
