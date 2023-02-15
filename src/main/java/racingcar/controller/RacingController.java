@@ -21,7 +21,7 @@ public class RacingController {
     public void doRacing() {
         createCars();
         repeatTryMovingByInputCount();
-        outputView.printResult(cars.getStatuses());
+        outputView.printResult(cars.getCars());
         outputView.printWinner(cars.getWinner());
     }
 
@@ -33,8 +33,7 @@ public class RacingController {
 
     private Cars getCars() {
         try {
-            Cars cars = new Cars(inputView.inputCarNames());
-            return cars;
+            return new Cars(inputView.inputCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return new Cars(Collections.emptyList());
@@ -49,7 +48,7 @@ public class RacingController {
         outputView.announceBeforePrintResult();
         for (int i = 0; i < tryCount; i++) {
             cars.requestMoveEachCar();
-            outputView.printResult(cars.getStatuses());
+            outputView.printResult(cars.getCars());
         }
     }
 

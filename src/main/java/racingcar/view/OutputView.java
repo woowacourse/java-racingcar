@@ -1,9 +1,8 @@
 package racingcar.view;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import racingcar.dto.CarDto;
+import racingcar.domain.Car;
 
 public class OutputView {
     private static final String BEFORE_PRINT_RESULT_ANNOUNCEMENT = System.lineSeparator() + "실행 결과";
@@ -15,11 +14,11 @@ public class OutputView {
         System.out.println(BEFORE_PRINT_RESULT_ANNOUNCEMENT);
     }
 
-    public void printResult(List<CarDto> carDtos) {
-        carDtos.forEach(carDto -> {
-            System.out.print(carDto.getName());
+    public void printResult(List<Car> cars) {
+        cars.forEach(car -> {
+            System.out.print(car.getName());
             System.out.print(NAME_AND_COUNT_PREFIX);
-            printMovedDistance(carDto.getMovedCount());
+            printMovedDistance(car.getMovedCount());
         });
         System.out.println();
     }
@@ -31,10 +30,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinner(List<CarDto> winnerDtos) {
+    public void printWinner(List<Car> winnerCars) {
         List<String> winnerNames = new LinkedList<>();
-        winnerDtos.forEach(winnerDto -> {
-            winnerNames.add(winnerDto.getName());
+        winnerCars.forEach(car -> {
+            winnerNames.add(car.getName());
         });
         System.out.print(String.join(",", winnerNames));
         System.out.println(WINNER_ANNOUNCEMENT);

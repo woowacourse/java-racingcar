@@ -13,7 +13,7 @@ public class InputView {
     private static final int MAXIMUM_TRY_COUNT = 9;
     private static final String WRONG_TRY_COUNT_ANNOUNCEMENT = "[ERROR] 잘못된 시도 횟수입니다.";
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public InputView() {
         this.scanner = new Scanner(System.in);
@@ -29,7 +29,7 @@ public class InputView {
     public int getTryCount() {
         int tryCount = inputTryCount();
         validateTryCount(tryCount);
-        scanner.nextLine(); //TODO : 직관적인 버퍼비우기 해결방법 찾아보기
+        scanner.nextLine();
         return tryCount;
     }
 

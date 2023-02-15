@@ -5,50 +5,46 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.dto.CarDto;
 import racingcar.util.DeterminedIntGenerator;
+import racingcar.util.RacingCarIntGenerator;
 
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
     @ParameterizedTest
-    @DisplayName("1회 이동 시도")
+    @DisplayName("이동 시도 시, 정수 값에 따라 이동 횟수가 달라진다.")
     @CsvSource(value = {"1:0", "3:0", "4:1", "9:1"}, delimiter = ':')
-    void shouldPlusOneAtMovedCountWhenMove(int number, int addedMovedCount) {
+    void shouldPlusOneAtMovedCountWhenMove(int number, int movedCount) {
         // given
         Car targetCar = new Car("test", new DeterminedIntGenerator(number));
-        CarDto carDtoBeforeMove = targetCar.getStatus();
         // when
         targetCar.tryMove();
-        CarDto carDtoAfterMove = targetCar.getStatus();
         // then
-        assertThat(carDtoAfterMove.getName()).isEqualTo(carDtoBeforeMove.getName()).as("이름이 같아야 한다.");
-        assertThat(carDtoAfterMove.getMovedCount()).isEqualTo(carDtoBeforeMove.getMovedCount() + addedMovedCount)
-                .as("이동 횟수는 1이 더해진다.");
+        assertThat(targetCar.getMovedCount()).isEqualTo(movedCount);
     }
 
     @Test
-    @DisplayName("올바른 이름으로 생성")
+    @DisplayName("적절한 길이의 이름으로 Car를 생성한다.")
     void shouldCreateCarCorrectlyWhenUseAppropriateName() {
         // given
         String appropriateName = "테스트이름";
         // when
-        Car car = new Car(appropriateName);
+        Car car = new Car(appropriateName, new RacingCarIntGenerator());
         // then
-        assertThat(car.getStatus().getName()).isEqualTo(appropriateName);
+        assertThat(car.getName()).isEqualTo(appropriateName);
     }
 
     @ParameterizedTest
-    @DisplayName("예외 발생 - 잘못된 이름 길이")
-    @ValueSource(strings = {"아주 긴 이름입니다", " "})
+    @DisplayName("잘못된 길이의 이름으로 Car를 생성하면 예외가 발생한다.")
+    @ValueSource(strings = {"가나다라마바", " "})
     void shouldThrowIllegalArgumentExceptionWhenUseLongName(String inputName) {
         // given
         String wrongName = inputName;
-        // when TODO: then 분리
+        // then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> {
-                    new Car(wrongName);
+                .isThrownBy(() -> { // when
+                    new Car(wrongName, new RacingCarIntGenerator());
                 });
     }
 }

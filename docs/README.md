@@ -28,8 +28,7 @@
   numbers.add(2);
   numbers.add(3);
   }
-
-  }```
+  ```
 
 * size 메소드
   - [x] Set의 크기를 잘 반환하는지 확인하는 테스트 구현
