@@ -1,6 +1,5 @@
-package controller;
+package domain;
 
-import domain.Car;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

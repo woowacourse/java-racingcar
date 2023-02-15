@@ -49,6 +49,17 @@
     - domain: 핵심 비즈니스 로직
     - view 패키지의 객체가 domain 패키지 객체에 의존할 수 있지만, domain 패키지의 객체는 view 패키지 객체에 의존하지 않도록 구현
 
+
+## 2단계 피드백 요구사항
+
+- [x] RacingGame 컨트롤러인가? 도메인인가?
+- [ ] RacingGame의 moveCars 메서드 테스트 작성하기
+  - 전략 패턴 참고
+- [ ] RandomNumberGenerator의 getPower 메서드명 고민해보기
+- [ ] Validator.checkDigits를 사용하지 않고 parseInt에서 숫자 검증 가능한지 고민해보기
+- [ ] RacingGame 메서드 테스트 추가하기
+- [ ] 매직넘버 상수화하기
+
 ## 우아한테크코스 코드리뷰
 
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
