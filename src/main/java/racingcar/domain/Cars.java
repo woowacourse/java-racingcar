@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,16 +33,19 @@ public class Cars {
     }
 
     public List<Car> getWinner() {
-        int winnerCount = 0;
-        for (Car car : cars) {
-            winnerCount = getMaxMovedCount(winnerCount, car.getMovedCount());
-        }
-        final int finalWinnerCount = winnerCount;
+        int winnerCount = getWinnerCount();
         return cars.stream()
-                .filter(car -> car.getMovedCount() == finalWinnerCount)
+                .filter(car -> car.getMovedCount() == winnerCount)
                 .collect(Collectors.toList());
     }
-    
+
+    private int getWinnerCount() {
+        return cars.stream()
+                .mapToInt(Car::getMovedCount)
+                .max()
+                .orElseThrow();
+    }
+
     private int getMaxMovedCount(int winnerCount, int movedCount) {
         return Math.max(winnerCount, movedCount);
     }
