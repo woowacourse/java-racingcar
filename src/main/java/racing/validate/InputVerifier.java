@@ -3,7 +3,6 @@ package racing.validate;
 import racing.view.output.OutputView;
 
 public class InputVerifier {
-
     public static void validateNameLength(String input) {
         for (String name : input.split(",")) {
             checkNameLength(name);
@@ -11,13 +10,13 @@ public class InputVerifier {
         }
     }
 
-    private static void checkSpace(String name) {
+    public static void checkSpace(String name) {
         if (name.contains(" ")) {
             throw new IllegalArgumentException(OutputView.CANT_CONTAIN_SPACE);
         }
     }
 
-    private static void checkNameLength(String name) {
+    public static void checkNameLength(String name) {
         if (isValidLength(name)) {
             throw new IllegalArgumentException(OutputView.UNSUITABLE_LENGTH);
         }
