@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import utils.powerGenerator.PowerGenerator;
-import utils.powerGenerator.RandomPowerGenerator;
 import view.ResultView;
 
 public class RacingGame {
-    private PowerGenerator powerGenerator;
     private final List<Car> cars;
+    private final PowerGenerator powerGenerator;
     private int tryCount;
 
-    public RacingGame(String[] carNames, int tryCount, RandomPowerGenerator powerGenerator) {
+    public RacingGame(String[] carNames, int tryCount, PowerGenerator powerGenerator) {
         this.powerGenerator = powerGenerator;
         this.cars = generateCars(carNames);
         this.tryCount = tryCount;
@@ -31,7 +30,6 @@ public class RacingGame {
         while (!isEnd()) {
             moveCars();
             ResultView.printPositionOfCars(cars);
-            System.out.println();
         }
     }
 
