@@ -15,22 +15,22 @@ public class OutputView {
     private static final String RACE_START_MESSAGE = "실행 결과";
     private static final String DELIMITER = ", ";
 
-    public void printRoundStartMessage() {
+    public static void printRoundStartMessage() {
         print(LINE_FEED);
         print(RACE_START_MESSAGE);
     }
 
-    public void printRound(List<CarDto> carsDto) {
+    public static void printRound(List<CarDto> carsDto) {
         carsDto.forEach(dto -> print(String.format(ROUND_FORMAT, dto.getName(),
                 getCarPositionState(dto.getPosition()))));
         print(LINE_FEED);
     }
 
-    private String getCarPositionState(int position) {
+    private static String getCarPositionState(int position) {
         return POSITION_STATE.repeat(Math.max(0, position));
     }
 
-    public void printWinner(List<WinnerCarDto> winnersDto) {
+    public static void printWinner(List<WinnerCarDto> winnersDto) {
         String winners = winnersDto.stream()
                 .map(WinnerCarDto::getName)
                 .collect(Collectors.joining(DELIMITER));
@@ -38,11 +38,11 @@ public class OutputView {
         print(String.format(WINNER_FORMAT, winners));
     }
 
-    private void print(String message) {
+    private static void print(String message) {
         System.out.println(message);
     }
 
-    public void printExceptionMessage(String message) {
+    public static void printExceptionMessage(String message) {
         print(ERROR_FORMAT + message);
     }
 }
