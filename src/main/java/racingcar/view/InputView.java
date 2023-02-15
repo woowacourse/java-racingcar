@@ -13,7 +13,7 @@ public class InputView {
     private static final int MAXIMUM_TRY_COUNT = 9;
     private static final String WRONG_TRY_COUNT_ANNOUNCEMENT = "[ERROR] 잘못된 시도 횟수입니다.";
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public InputView() {
         this.scanner = new Scanner(System.in);
