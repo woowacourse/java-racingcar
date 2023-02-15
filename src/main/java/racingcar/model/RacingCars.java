@@ -1,6 +1,7 @@
 package racingcar.model;
 
-import java.util.ArrayList;
+import racingcar.CarNumberGenerator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,13 @@ public class RacingCars {
 
     public RacingCars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    public void tryOneTime(CarNumberGenerator carNumberGenerator) {
+        for (Car car : cars) {
+            int randomValue = carNumberGenerator.generate();
+            car.move(car.canMoving(randomValue));
+        }
     }
 
     public List<Car> getWinners() {
