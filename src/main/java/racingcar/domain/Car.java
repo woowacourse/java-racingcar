@@ -2,7 +2,6 @@ package racingcar.domain;
 
 public class Car {
     public static final int MIN_TRY_COUNT = 0;
-    public static final int RANDOM_NUMBER_BOUNDARY = 10;
     public static final int FORWARD_BOUNDARY = 4;
 
     private final Name name;

@@ -32,22 +32,17 @@ public class CarService {
         return cars.getCars();
     }
 
-    public void runRound(int round) {
+    public void runRound(MoveStrategy moveStrategy, int round) {
         for (Car car : cars.getCars()) {
             Position position = car.getPosition();
-            runForward(car, makeRandomNumber(), round);
+            runForward(moveStrategy, car, round);
         }
     }
 
-    public void runForward(Car car, int randomNumber, int round) {
-        if (randomNumber >= Car.FORWARD_BOUNDARY) {
+    public void runForward(MoveStrategy moveStrategy, Car car, int round) {
+        if (moveStrategy.isMovable()) {
             car.movePosition(round);
         }
-    }
-
-    private int makeRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(Car.RANDOM_NUMBER_BOUNDARY);
     }
 
     public List<String> findWinner() {

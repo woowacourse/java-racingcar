@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.service.CarService;
+import racingcar.service.RandomMoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -47,9 +48,10 @@ public class RacingcarController {
     }
 
     public void run() {
+        RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         OutputView.printResultMessage();
         for (int i = 1; i <= tryCount; i++) {
-            carService.runRound(i);
+            carService.runRound(randomMoveStrategy, i);
             OutputView.printRoundResult(carService.getCarsStatus());
         }
     }

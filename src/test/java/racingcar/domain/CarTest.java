@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.service.CarService;
+import racingcar.service.FixedMoveStrategy;
 
 class CarTest {
     CarService carService = new CarService();
@@ -53,7 +54,8 @@ class CarTest {
         @ValueSource(ints = {0, 2})
         @DisplayName("랜덤 값이 4보다 작은 경우 멈춤")
         void Should_Success_랜덤값이_4보다_작은_경우(int number) {
-            carService.runForward(car, number, 1);
+            FixedMoveStrategy fixedMoveStrategy = new FixedMoveStrategy(number);
+            carService.runForward(fixedMoveStrategy, car, 1);
             assertThat(position.getPosition()).isEqualTo(0);
         }
 
@@ -61,7 +63,8 @@ class CarTest {
         @ValueSource(ints = {4, 7})
         @DisplayName("랜덤 값이 4 이상인 경우 전진")
         void Should_Success_랜덤값이_4이상인_경우(int number) {
-            carService.runForward(car, number, 1);
+            FixedMoveStrategy fixedMoveStrategy = new FixedMoveStrategy(number);
+            carService.runForward(fixedMoveStrategy, car, 1);
             assertThat(position.getPosition()).isEqualTo(1);
         }
     }
@@ -74,9 +77,10 @@ class CarTest {
         @Test
         @DisplayName("가장 위치 값이 큰 사람이 1명일 때, 1명의 우승자를 반환한다.")
         void Should_Success_우승자가_1명인_경우() {
+            FixedMoveStrategy fixedMoveStrategy = new FixedMoveStrategy(Car.FORWARD_BOUNDARY);
             cars.addCar(new Car("pobi", 0));
             cars.addCar(new Car("neo", 0));
-            carService.runForward(cars.getCars().get(0), Car.FORWARD_BOUNDARY, 1);
+            carService.runForward(fixedMoveStrategy, cars.getCars().get(0), 1);
             assertThat(cars.getWinner()).containsExactly("pobi");
         }
 
