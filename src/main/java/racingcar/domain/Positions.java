@@ -1,51 +1,41 @@
 package racingcar.domain;
 
-import racingcar.dto.RacingStatusDto;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RacingStatus {
+public class Positions {
     public static final int MIN = 0;
     private static final int GO = 4;
     private static final String NAME_DELIMITER = ",";
 
     private final List<Car> cars;
-    private final NumberPicker numberPicker;
+    private final RandomNumberPicker randomNumberPicker;
 
-    public RacingStatus(String carNames, NumberPicker numberPicker) {
+    public Positions(String carNames, RandomNumberPicker randomNumberPicker) {
         cars = Arrays.stream(carNames.split(NAME_DELIMITER))
                 .map(Car::new)
                 .collect(Collectors.toList());
 
-        this.numberPicker = numberPicker;
+        this.randomNumberPicker = randomNumberPicker;
     }
 
     public void moveCars() {
-        for (Car car : cars) {
-            move(car);
-        }
+        cars.forEach(this::moveCar);
     }
 
-    private void move(Car car) {
-        int number = numberPicker.pickNumber();
+    private void moveCar(Car car) {
+        int number = randomNumberPicker.pickNumber();
         if (number >= GO) {
             car.move();
         }
-    }
-
-    public List<RacingStatusDto> toDto() {
-        return cars.stream()
-                .map(Car::toDto)
-                .collect(Collectors.toList());
     }
 
     public List<String> findWinner() {
         int max = findMax();
 
         return cars.stream()
-                .filter(car -> car.getStatus() == max)
+                .filter(car -> car.getPosition() == max)
                 .map(Car::getCarName)
                 .collect(Collectors.toList());
     }
@@ -53,7 +43,7 @@ public class RacingStatus {
     private int findMax() {
         int max = MIN;
         for (Car car : cars) {
-            max = Math.max(car.getStatus(), max);
+            max = Math.max(car.getPosition(), max);
         }
         return max;
     }
