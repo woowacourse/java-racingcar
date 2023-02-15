@@ -12,7 +12,6 @@ public class OutputView {
     private static final String EXECUTE_RESULT = "실행 결과";
     public static final String COLON = " : ";
     public static final String HYPHEN = "-";
-    public static final String COMMA = ", ";
 
     public static void printPhrase() {
         System.out.println();
@@ -20,8 +19,14 @@ public class OutputView {
     }
 
     public static void printStep(Cars cars) {
-        cars.printCarsState();
+        printCarsState(cars);
         System.out.println();
+    }
+
+    private static void printCarsState(Cars cars) {
+        for (Car car : cars.getCars()) {
+            printCarState(car);
+        }
     }
 
     public static void printCarState(Car car) {
@@ -31,10 +36,14 @@ public class OutputView {
     }
 
     private static void printHyphen(Car car) {
-        car.addHyphen();
+        addHyphen(car);
     }
 
-    public static void printFinalResult(StringBuilder sb) {
-        System.out.println(sb.toString() + FINAL_WINNER);
+    private static void addHyphen(Car car) {
+        System.out.print(HYPHEN.repeat(car.getStep()));
+    }
+
+    public static void printFinalResult(String winnersWithComma) {
+        System.out.println(winnersWithComma + FINAL_WINNER);
     }
 }
