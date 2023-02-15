@@ -9,6 +9,11 @@ public class ResultView {
         for (Car car : cars) {
             System.out.printf("%s : %s%n", car.getName(), "-".repeat(car.getPosition()));
         }
+        System.out.println();
+    }
+
+    public static void printStart() {
+        System.out.println("실행 결과");
     }
 
     public static void printWinners(List<Car> winners) {

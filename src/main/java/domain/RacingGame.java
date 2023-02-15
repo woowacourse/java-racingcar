@@ -24,7 +24,7 @@ public class RacingGame {
     }
 
     public void start() {
-        System.out.println("실행 결과");
+        ResultView.printStart();
         while (!isEnd()) {
             moveCars();
             ResultView.printPositionOfCars(cars);
