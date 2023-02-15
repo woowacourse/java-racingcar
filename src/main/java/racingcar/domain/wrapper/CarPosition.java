@@ -10,7 +10,7 @@ public class CarPosition {
         this.position = position;
     }
 
-    public static CarPosition of() {
+    public static CarPosition create() {
         return new CarPosition(INIT_POSITION.getValue());
     }
 

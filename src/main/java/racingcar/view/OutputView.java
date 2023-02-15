@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.dto.CarRaceDto;
+import racingcar.domain.dto.CarStatusDto;
 import racingcar.domain.dto.RaceResultDto;
 
 import java.util.List;
@@ -9,34 +9,35 @@ import static racingcar.enumType.OutputMessage.*;
 
 public class OutputView {
 
-    public void printMessage(String message) {
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 
-    public void printRaceResult(List<CarRaceDto> initCarResult, List<RaceResultDto> totalRaceResult) {
-        StringBuilder raceResult = new StringBuilder();
-        createInitCarResult(initCarResult, raceResult);
-        totalRaceResult.forEach(raceResultDto -> createTotalRaceResult(raceResultDto, raceResult));
-        System.out.println("\n" + raceResult.toString().trim());
+    public void printInitCarStatus(List<CarStatusDto> initCarStatus) {
+        StringBuilder initCarResult = new StringBuilder();
+        initCarResult.append(RESULT_MESSAGE.getValue());
+        initCarStatus
+                .forEach(carStatusDto -> createCarStatus(carStatusDto, initCarResult));
+        System.out.println(initCarResult);
     }
 
-    private void createInitCarResult(List<CarRaceDto> carRaceResult, StringBuilder raceResult) {
-        raceResult.append(RESULT_MESSAGE.getValue());
-        carRaceResult
-                .forEach(carRaceDto -> createTotalRaceResult(carRaceDto, raceResult));
-        raceResult.append("\n");
+    public void printRaceResult(List<RaceResultDto> totalRaceResult) {
+        StringBuilder raceResult = new StringBuilder();
+        totalRaceResult
+                .forEach(raceResultDto -> createTotalRaceResult(raceResultDto, raceResult));
+        System.out.println(raceResult.toString().trim());
     }
 
     private void createTotalRaceResult(RaceResultDto raceResultDto, StringBuilder raceResult) {
-        raceResultDto.getCarRaceResult()
-                .forEach(carRaceDto -> createTotalRaceResult(carRaceDto, raceResult));
+        raceResultDto.getCarRaceResults()
+                .forEach(carStatusDto -> createCarStatus(carStatusDto, raceResult));
         raceResult.append("\n");
     }
 
-    private void createTotalRaceResult(CarRaceDto carRaceDto, StringBuilder raceResult) {
-        raceResult.append(carRaceDto.getCarName())
+    private void createCarStatus(CarStatusDto carStatusDto, StringBuilder carStatus) {
+        carStatus.append(carStatusDto.getCarName())
                 .append(NAME_POSITION_DELIMITER.getValue())
-                .append(RACE_MARK.getValue().repeat(carRaceDto.getCarPosition()))
+                .append(RACE_MARK.getValue().repeat(carStatusDto.getCarPosition()))
                 .append("\n");
     }
 

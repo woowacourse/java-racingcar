@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.dto.CarRaceDto;
 import racingcar.domain.wrapper.CarName;
 import racingcar.domain.wrapper.CarPosition;
 
@@ -8,23 +7,19 @@ import java.util.Objects;
 
 import static racingcar.domain.constant.CarConstant.CAR_FORWARD_NUMBER;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private final CarName name;
 
     private final CarPosition position;
 
     private Car(final String name) {
-        this.name = CarName.of(name);
-        this.position = CarPosition.of();
+        this.name = CarName.create(name);
+        this.position = CarPosition.create();
     }
 
-    public static Car of(final String name) {
+    public static Car create(final String name) {
         return new Car(name);
-    }
-
-    public CarRaceDto getCarRaceResult() {
-        return CarRaceDto.of(name.getName(), position.getPosition());
     }
 
     public void move(final int power) {
@@ -33,8 +28,8 @@ public class Car {
         }
     }
 
-    public boolean isSamePosition(final int position) {
-        return this.position.getPosition() == position;
+    public boolean isSamePosition(final Car diffCar) {
+        return position.getPosition() == diffCar.position.getPosition();
     }
 
     @Override
@@ -48,6 +43,11 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public int compareTo(Car diffCar) {
+        return position.getPosition() - diffCar.position.getPosition();
     }
 
     public String getName() {

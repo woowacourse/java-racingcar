@@ -16,10 +16,9 @@ public class CarName {
         this.name = name.trim();
     }
 
-    public static CarName of(final String carName) {
+    public static CarName create(final String carName) {
         return new CarName(carName);
     }
-
 
     private void validateNameBlank(final String name) {
         if (name.isBlank()) {

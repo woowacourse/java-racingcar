@@ -1,18 +1,15 @@
 package racingcar.domain;
 
-import racingcar.domain.dto.CarRaceDto;
 import racingcar.exception.DuplicateException;
+import racingcar.exception.NoResourceException;
 import racingcar.util.NumberGenerator;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static racingcar.domain.constant.CarConstant.INIT_POSITION;
 import static racingcar.domain.constant.CarsConstant.SPLIT_DELIMITER;
 import static racingcar.enumType.ExceptionMessage.DUPLICATE_MESSAGE;
+import static racingcar.enumType.ExceptionMessage.NO_RESOURCE_MESSAGE;
 
 public class Cars {
 
@@ -21,58 +18,44 @@ public class Cars {
     private final NumberGenerator numberGenerator;
 
     private Cars(final String carNames, final NumberGenerator numberGenerator) {
-        this.cars = createCars(carNames);
+        this.cars = create(carNames);
         this.numberGenerator = numberGenerator;
         validateDuplicateCarName();
     }
 
-    public static Cars of(final String carNames, final NumberGenerator numberGenerator) {
+    public static Cars create(final String carNames, final NumberGenerator numberGenerator) {
         return new Cars(carNames, numberGenerator);
     }
 
-    private List<Car> createCars(String carNames) {
+    public void race() {
+        cars.forEach(car -> {
+            int power = numberGenerator.generate();
+            car.move(power);
+        });
+    }
+
+    public Car getMaxPositionCar() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new NoResourceException(String.format(NO_RESOURCE_MESSAGE.getValue(), "차량 리스트")));
+    }
+
+    private List<Car> create(final String carNames) {
         String[] names = splitCarNames(carNames);
         return Arrays.stream(names)
-                .map(Car::of)
+                .map(Car::create)
                 .collect(Collectors.toList());
     }
 
-    private String[] splitCarNames(String carNames) {
+    private String[] splitCarNames(final String carNames) {
         return carNames.split(SPLIT_DELIMITER.getValue());
     }
 
     private void validateDuplicateCarName() {
-        int nonDuplicateCount = new HashSet<>(cars).size();
-        if (cars.size() != nonDuplicateCount) {
+        int uniqueCarCount = new HashSet<>(cars).size();
+        if (cars.size() != uniqueCarCount) {
             throw new DuplicateException(DUPLICATE_MESSAGE.getValue());
         }
-    }
-
-    public List<CarRaceDto> initStatus() {
-        return cars.stream()
-                .map(Car::getCarRaceResult)
-                .collect(Collectors.toList());
-    }
-
-    public List<CarRaceDto> race() {
-        return cars.stream().map(car -> {
-            int power = numberGenerator.generate();
-            car.move(power);
-            return car.getCarRaceResult();
-        }).collect(Collectors.toList());
-    }
-
-    public List<String> pickWinners() {
-        return cars.stream()
-                .filter(car -> car.isSamePosition(getMaxPosition()))
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    private int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max().orElse(INIT_POSITION.getValue());
     }
 
     @Override
@@ -86,5 +69,9 @@ public class Cars {
     @Override
     public int hashCode() {
         return Objects.hash(cars);
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

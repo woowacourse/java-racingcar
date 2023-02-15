@@ -4,17 +4,17 @@ import java.util.List;
 
 public class RaceResultDto {
 
-    private final List<CarRaceDto> carRaceResult;
+    private final List<CarStatusDto> carRaceResults;
 
-    private RaceResultDto(final List<CarRaceDto> carRaceResult) {
-        this.carRaceResult = carRaceResult;
+    private RaceResultDto(final List<CarStatusDto> carRaceResults) {
+        this.carRaceResults = carRaceResults;
     }
 
-    public static RaceResultDto of(final List<CarRaceDto> carRaceDtos) {
-        return new RaceResultDto(carRaceDtos);
+    public static RaceResultDto create(final List<CarStatusDto> carRaceResult) {
+        return new RaceResultDto(carRaceResult);
     }
 
-    public List<CarRaceDto> getCarRaceResult() {
-        return carRaceResult;
+    public List<CarStatusDto> getCarRaceResults() {
+        return carRaceResults;
     }
 }
