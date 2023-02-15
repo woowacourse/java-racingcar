@@ -1,12 +1,14 @@
-package utils;
+package utils.powerGenerator;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class RandomPowerGenerator implements PowerGenerator {
     private static final int upperBound = 10;
     private static final Random random = new Random();
 
-    public static int getPower() {
+
+    @Override
+    public int generate() {
         return random.nextInt(upperBound);
     }
 }

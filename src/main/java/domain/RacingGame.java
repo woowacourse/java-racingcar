@@ -3,14 +3,17 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import utils.RandomNumberGenerator;
+import utils.powerGenerator.PowerGenerator;
+import utils.powerGenerator.RandomPowerGenerator;
 import view.ResultView;
 
 public class RacingGame {
+    private PowerGenerator powerGenerator;
     private final List<Car> cars;
     private int tryCount;
 
-    public RacingGame(String[] carNames, int tryCount) {
+    public RacingGame(String[] carNames, int tryCount, RandomPowerGenerator powerGenerator) {
+        this.powerGenerator = powerGenerator;
         this.cars = generateCars(carNames);
         this.tryCount = tryCount;
     }
@@ -57,7 +60,7 @@ public class RacingGame {
 
     private void moveCars() {
         for (Car car : cars) {
-            int power = RandomNumberGenerator.getPower();
+            int power = powerGenerator.generate();
             car.move(power);
         }
     }
