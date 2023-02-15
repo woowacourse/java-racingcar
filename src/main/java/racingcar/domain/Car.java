@@ -10,11 +10,11 @@ class Car {
     }
 
     public void move() {
-        position = position.next();
+        position = position.move();
     }
 
     public int getPosition() {
-        return position.getMoveCount();
+        return position.getPosition();
     }
 
     public String getCarName() {
