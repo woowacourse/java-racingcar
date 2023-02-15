@@ -2,10 +2,8 @@ package racingcar.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.Position;
 
 public class CarService {
     private Cars cars;
@@ -34,7 +32,6 @@ public class CarService {
 
     public void runRound(MoveStrategy moveStrategy, int round) {
         for (Car car : cars.getCars()) {
-            Position position = car.getPosition();
             runForward(moveStrategy, car, round);
         }
     }
