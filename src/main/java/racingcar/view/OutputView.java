@@ -30,4 +30,8 @@ public class OutputView {
 			.collect(Collectors.joining(", "));
 		System.out.println(racingResult + RESULT_SUFFIX);
 	}
+
+	public static void printErrorMsg(final String errorMsg) {
+		System.out.println(errorMsg);
+	}
 }

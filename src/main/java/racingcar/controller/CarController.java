@@ -10,12 +10,11 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-	private int roundCount;
 
 	public void playGame() {
 		getCarNames();
-		getRoundCount();
-		move();
+		int roundCount = getRoundCount();
+		move(roundCount);
 	}
 
 	private void getCarNames() {
@@ -25,22 +24,23 @@ public class CarController {
 			carNames.stream()
 				.forEach(carName -> CarRepository.add(new Car(carName)));
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			OutputView.printErrorMsg(e.getMessage());
 			getCarNames();
 		}
 	}
 
-	private void getRoundCount() {
+	private int getRoundCount() {
 		try {
 			OutputView.printRoundCountRequestMsg();
-			roundCount = InputView.readRoundCount();
+			return InputView.readRoundCount();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			OutputView.printErrorMsg(e.getMessage());
 			getRoundCount();
 		}
+		return -1;
 	}
 
-	private void move() {
+	private void move(int roundCount) {
 		CarService carService = new CarService(new RandomNumberGenerator());
 		OutputView.printOutputMsg();
 		OutputView.printRacingState(carService.getPositionToString());
