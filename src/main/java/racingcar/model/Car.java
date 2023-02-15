@@ -13,10 +13,7 @@ public class Car {
     }
 
     public boolean canMoving(int randomValue) {
-        if (randomValue >= MIN_MOVING_NUM) {
-            return true;
-        }
-        return false;
+        return randomValue >= MIN_MOVING_NUM;
     }
 
     public void move(boolean isMoving) {
@@ -33,10 +30,7 @@ public class Car {
     }
 
     public boolean isSamePositionCar(Car maxPositionCar) {
-        if (this.position == maxPositionCar.getPosition()) {
-            return true;
-        }
-        return false;
+        return this.position == maxPositionCar.getPosition();
     }
 
     public String getName() {

@@ -1,6 +1,7 @@
 package racingcar.controller;
 
-import racingcar.RandomNumberGenerator;
+import racingcar.CarNumberGenerator;
+import racingcar.CarRandomNumberGenerator;
 import racingcar.model.Car;
 import racingcar.model.RacingCars;
 import racingcar.view.InputView;
@@ -15,9 +16,11 @@ import java.util.stream.Collectors;
 public class RacingCarController {
 
     private static final int START_POSITION = 0;
+    private final CarNumberGenerator carNumberGenerator = new CarRandomNumberGenerator();
     private OutputView outputView = OutputView.getInstance();
     private InputView inputView = InputView.getInstance();
     private RacingCars racingCars;
+
 
     public void run() {
         List<Car> cars = generateCars();
@@ -26,32 +29,6 @@ public class RacingCarController {
 
         race(tryNum);
         showWinners();
-    }
-
-    private void showWinners() {
-        List<String> winners = convertWinnersNameForPrint(racingCars.getWinners());
-        outputView.printWinners(winners);
-    }
-
-    private void race(int tryNum) {
-        outputView.printRacingResultMessage();
-        for (int repeatIndex = 0; repeatIndex < tryNum; repeatIndex++) {
-            List<Car> currentCars = racingCars.getCars();
-            tryOneTime(currentCars);
-            outputView.printCurrentRacingCarsPosition(convertRacingCarsResultForPrint(currentCars));
-        }
-    }
-
-    private static void tryOneTime(List<Car> currentCars) {
-        for (Car currentCar : currentCars) {
-            int randomValue = RandomNumberGenerator.generate();
-            currentCar.move(currentCar.canMoving(randomValue));
-        }
-    }
-
-    private int getTryNum() {
-        outputView.printReadTryNumMessage();
-        return inputView.readTryNum();
     }
 
     private List<Car> generateCars() {
@@ -64,6 +41,20 @@ public class RacingCarController {
         return cars;
     }
 
+    private int getTryNum() {
+        outputView.printReadTryNumMessage();
+        return inputView.readTryNum();
+    }
+
+    private void race(int tryNum) {
+        outputView.printRacingResultMessage();
+        for (int repeatIndex = 0; repeatIndex < tryNum; repeatIndex++) {
+            List<Car> currentCars = racingCars.getCars();
+            racingCars.tryOneTime(carNumberGenerator);
+            outputView.printCurrentRacingCarsPosition(convertRacingCarsResultForPrint(currentCars));
+        }
+    }
+
     private Map<String, Integer> convertRacingCarsResultForPrint(List<Car> currentCars) {
         Map<String, Integer> racingCarsResult = new HashMap<>();
         for (Car currentCar : currentCars) {
@@ -72,11 +63,15 @@ public class RacingCarController {
         return racingCarsResult;
     }
 
+    private void showWinners() {
+        List<String> winners = convertWinnersNameForPrint(racingCars.getWinners());
+        outputView.printWinners(winners);
+    }
+
     private List<String> convertWinnersNameForPrint(List<Car> winners) {
         return winners.stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
-
 
 }
