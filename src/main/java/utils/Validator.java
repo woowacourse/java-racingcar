@@ -5,13 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Validator {
-    public static void checkDigits(String input) {
-        boolean isMatch = input.matches("\\d+");
-        if (!isMatch) {
-            throw new IllegalArgumentException("[ERROR] : 시도 횟수는 숫자만 입력이 가능합니다.");
-        }
-    }
-
     public static void checkRange(int tryCount) {
         if (tryCount < 1 || tryCount > 100) {
             throw new IllegalArgumentException("[ERROR] : 시도 횟수는 1 이상 100 이하의 양의 정수만 가능합니다.");

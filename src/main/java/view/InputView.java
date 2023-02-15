@@ -29,9 +29,12 @@ public class InputView {
     }
 
     private static int parseTryCount(String input) {
-        Validator.checkDigits(input);
-        int tryCount = Integer.parseInt(input);
-        Validator.checkRange(tryCount);
-        return tryCount;
+        try {
+            int tryCount = Integer.parseInt(input);
+            Validator.checkRange(tryCount);
+            return tryCount;
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] : 시도 횟수는 숫자만 입력이 가능합니다.");
+        }
     }
 }

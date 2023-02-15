@@ -56,7 +56,7 @@
 - [ ] RacingGame의 moveCars 메서드 테스트 작성하기
   - 전략 패턴 참고
 - [ ] RandomNumberGenerator의 getPower 메서드명 고민해보기
-- [ ] Validator.checkDigits를 사용하지 않고 parseInt에서 숫자 검증 가능한지 고민해보기
+- [x] Validator.checkDigits를 사용하지 않고 parseInt에서 숫자 검증 가능한지 고민해보기
 - [ ] RacingGame 메서드 테스트 추가하기
 - [ ] 매직넘버 상수화하기
 
