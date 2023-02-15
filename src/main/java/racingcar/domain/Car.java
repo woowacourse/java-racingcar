@@ -6,13 +6,13 @@ public class Car {
 	private String name;
 	private int position;
 
-	public Car(String name) {
+	public Car(final String name) {
 		validateNameLength(name);
 		this.name = name;
 		this.position = 0;
 	}
 
-	private void validateNameLength(String name) {
+	private void validateNameLength(final String name) {
 		if (name.length() > NAME_MAX_LENGTH) {
 			throw new IllegalArgumentException("[ERROR]: 자동차 이름은 5자 이하여야 합니다.");
 		}
@@ -20,7 +20,7 @@ public class Car {
 
 	public void move(int power) {
 		if (isMovable(power)) {
-			position ++;
+			position++;
 		}
 	}
 
@@ -36,8 +36,7 @@ public class Car {
 		return name;
 	}
 
-	@Override
-	public String toString() {
+	public String printCarNameWithPosition() {
 		StringBuilder sb = new StringBuilder(this.name + " : -");
 		for (int i = 0; i < position; i++) {
 			sb.append("-");

@@ -10,39 +10,35 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-	private CarRepository carRepository = new CarRepository();
-	int roundCount;
 
 	public void playGame() {
-		// TODO: while의 조건문에 사용되는 메서드는 오류 발생 여부 판별 & view 작업 처리 두 가지를 동시에 하고 있음.
-		while (!getCarNames()) ;
-		while (!getRoundCount()) ;
+		retryInitCarNames();
+		int roundCount = retryReadingRoundCount();
 		move(roundCount);
 	}
 
-	private boolean getCarNames() {
+	private void retryInitCarNames() {
+		OutputView.printCarNameRequestMsg();
 		try {
-			OutputView.printCarNameRequestMsg();
 			List<String> carNames = InputView.readCarNames();
 			carNames.stream()
-				.forEach(carName -> carRepository.add(new Car(carName)));
-			return true;
+				.forEach(carName -> CarRepository.add(new Car(carName)));
 		} catch (Exception e) {
-			carRepository.clear();
-			System.out.println(e.getMessage());
-			return false;
+			OutputView.printErrorMsg(e.getMessage());
+			retryInitCarNames();
 		}
 	}
 
-	private boolean getRoundCount() {
+	private int retryReadingRoundCount() {
+		int roundCount = -1;
+		OutputView.printRoundCountRequestMsg();
 		try {
-			OutputView.printRoundCountRequestMsg();
 			roundCount = InputView.readRoundCount();
-			return true;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			OutputView.printErrorMsg(e.getMessage());
+			retryReadingRoundCount();
 		}
-		return false;
+		return roundCount;
 	}
 
 	private void move(int roundCount) {

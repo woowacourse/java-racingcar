@@ -12,6 +12,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CarTest {
+	private static final int CAR_MOVE_MIN = 4;
+	private static final int CAR_UNMOVED_POS = 0;
+	private static final int CAR_SINGLE_MOVED_POS = 1;
+
 	@Nested
 	class carInitTest {
 
@@ -35,7 +39,7 @@ class CarTest {
 	@ParameterizedTest
 	@DisplayName("4 이상의 값이 입력되면 차의 위치가 1 증가해야 하고, 4 미만의 값이 입력되면 차의 위치가 유지되어야 한다.")
 	@MethodSource("carMoveTestSource")
-	void carMoveTest(int number, int expected) {
+	void carMoveTest(final int number, final int expected) {
 		Car car = new Car("woowa");
 		car.move(number);
 
@@ -44,9 +48,9 @@ class CarTest {
 
 	private static Stream<Arguments> carMoveTestSource() {
 		return Stream.of(
-			Arguments.of(4, 1),
-			Arguments.of(3, 0),
-			Arguments.of(6, 1)
+			Arguments.of(CAR_MOVE_MIN, CAR_SINGLE_MOVED_POS),
+			Arguments.of(CAR_MOVE_MIN - 1, CAR_UNMOVED_POS),
+			Arguments.of(CAR_MOVE_MIN + 1, CAR_SINGLE_MOVED_POS)
 		);
 	}
 
@@ -54,9 +58,9 @@ class CarTest {
 	@DisplayName("차 객체의 위치 정보가 움직인만큼 문자열로 출력되어야 한다.")
 	void toStringTest() {
 		Car car = new Car("woowa");
-		car.move(4);
-		car.move(4);
+		car.move(CAR_MOVE_MIN);
+		car.move(CAR_MOVE_MIN);
 
-		assertThat(car.toString()).isEqualTo("woowa : ---");
+		assertThat(car.printCarNameWithPosition()).isEqualTo("woowa : ---");
 	}
 }

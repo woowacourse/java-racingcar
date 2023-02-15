@@ -8,10 +8,10 @@ import racingcar.domain.Car;
 import racingcar.repository.CarRepository;
 
 public class CarService {
-	private NumberGenerator numberGenerator;
-	List<Car> cars = CarRepository.getCars();
+	private final List<Car> cars = CarRepository.getCars();
+	private final NumberGenerator numberGenerator;
 
-	public CarService(NumberGenerator numberGenerator) {
+	public CarService(final NumberGenerator numberGenerator) {
 		this.numberGenerator = numberGenerator;
 	}
 
@@ -32,7 +32,7 @@ public class CarService {
 
 	public String getPositionToString() {
 		return cars.stream()
-			.map(car -> car.toString())
+			.map(car -> car.printCarNameWithPosition())
 			.collect(Collectors.joining("\n"));
 	}
 }

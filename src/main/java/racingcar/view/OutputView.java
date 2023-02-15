@@ -21,13 +21,17 @@ public class OutputView {
 		System.out.println(RESULT_STARTING_MSG);
 	}
 
-	public static void printRacingState(String state) {
+	public static void printRacingState(final String state) {
 		System.out.println(state + "\n");
 	}
 
-	public static void printRacingResult(List<String> result) {
+	public static void printRacingResult(final List<String> result) {
 		String racingResult = result.stream()
 			.collect(Collectors.joining(", "));
 		System.out.println(racingResult + RESULT_SUFFIX);
+	}
+
+	public static void printErrorMsg(final String errorMsg) {
+		System.out.println(errorMsg);
 	}
 }
