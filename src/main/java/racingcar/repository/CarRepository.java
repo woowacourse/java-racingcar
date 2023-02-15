@@ -16,6 +16,7 @@ public class CarRepository {
 
 	private static void validateCarName(final Car car) {
 		if (cars.containsKey(car.getName())) {
+			cars.clear();
 			throw new IllegalArgumentException("[ERROR]: 중복된 차 이름이 있습니다.");
 		}
 	}
