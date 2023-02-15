@@ -22,12 +22,14 @@ public class Positions {
     }
 
     public void moveCars() {
-        cars.forEach(this::moveCar);
+        for (Car car : cars) {
+            int randomNumber = randomNumberPicker.pickNumber();
+            moveCar(car, randomNumber);
+        }
     }
 
-    private void moveCar(Car car) {
-        int number = randomNumberPicker.pickNumber();
-        if (number >= GO) {
+    public void moveCar(Car car, int randomNumber) {
+        if (randomNumber >= GO) {
             car.move();
         }
     }

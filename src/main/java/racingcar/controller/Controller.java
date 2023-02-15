@@ -14,8 +14,16 @@ public class Controller {
     private Positions positions;
 
     public Controller(RandomNumberPicker randomNumberPicker) {
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         this.randomNumberPicker = randomNumberPicker;
+    }
+
+    private static int validateInputTryCount() {
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(InputView.printInputTryCountError());
+        }
     }
 
     public void game() {
@@ -42,26 +50,8 @@ public class Controller {
         return validateInputTryCount();
     }
 
-    private static int validateInputTryCount() {
-        try {
-            return Integer.parseInt(scanner.nextLine());
-        }catch(IllegalArgumentException e){
-            throw new IllegalArgumentException(InputView.printInputTryCountError());
-        }
-    }
-
-
     private void printWinner() {
         OutputView.printWinner(positions.findWinner());
-    }
-
-    private void getCarName(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            getCarName(runnable);
-        }
     }
 
     private void raceTracks(int gameCount) {
