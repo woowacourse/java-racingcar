@@ -21,7 +21,7 @@ class CarNameTest {
     }
 
     @Test
-    void 생성시_5이하의_길이가_들어오면_잘_생성됨() {
+    void 생성시_5이하의_길이가_들어오면_잘_생성된다() {
         assertDoesNotThrow(() -> new CarName("12345"));
     }
 }
