@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.vo;
 
 import racingcar.util.Validator;
 
@@ -14,4 +14,5 @@ public class Name {
     public String getName() {
         return this.name;
     }
+
 }

@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import racingcar.util.Validator;
+import racingcar.vo.Name;
 
-public class Car {
+public class Car implements Comparable<Car>{
     private static final int INIT_POSITION = 0;
     private static final int BOUNDARY = 4;
 
@@ -14,22 +14,27 @@ public class Car {
         this.position = new Position(INIT_POSITION);
     }
 
-    public void move(int moveNumber) {
-        if (moveNumber >= BOUNDARY) {
+    public void move(int power) {
+        if (power >= BOUNDARY) {
             position.increase();
         }
     }
 
-    public Position getPosition() {
-        return position;
+    public boolean isSamePosition(Car other) {
+        return other.position == this.position;
     }
 
-    public Name getName() {
-        return name;
+    @Override
+    public int compareTo(Car other) {
+        return this.position.getPosition() - other.position.getPosition();
     }
 
-    public int getIntPosition(){
-        return this.position.getPosition();
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return position.getPosition();
     }
 
 }

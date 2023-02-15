@@ -1,5 +1,6 @@
 package racingcar;
 
+import racingcar.controller.Controller;
 import racingcar.view.OutputView;
 
 public class Application {
@@ -7,9 +8,8 @@ public class Application {
 
     public static void main(String[] args) {
         try {
-            RacingCarApplication racingCarApplication = new RacingCarApplication();
-            racingCarApplication.playingGame();
-            racingCarApplication.printFinalResult();
+            Controller controller = new Controller();
+            controller.run();
         } catch (Exception error) {
             outputView.printError(error);
         }
