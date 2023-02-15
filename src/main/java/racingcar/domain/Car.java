@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-class Car {
+public class Car {
     private final CarName carName;
     private Position position;
 
