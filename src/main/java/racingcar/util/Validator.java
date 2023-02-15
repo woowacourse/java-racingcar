@@ -28,8 +28,7 @@ public class Validator {
         }
     }
 
-    public static int validateGameTime(String input) {
-        int inputNumber = validateStringToInt(input);
+    public static int validateGameTime(int inputNumber) {
         validateGameTimeRange(inputNumber);
         return inputNumber;
     }
@@ -38,16 +37,6 @@ public class Validator {
         if (inputNumber <= MIN_GAME_TIME) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NOT_POSITIVE_NUMBER);
         }
-    }
-
-    private static int validateStringToInt(String input) {
-        Integer integer = null;
-        try {
-            integer = Integer.valueOf(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_PREFIX + ErrorMessage.NOT_NUMBER);
-        }
-        return integer;
     }
 
     public static void validateCarNameNoInputByArray(String[] split) {
