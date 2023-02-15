@@ -16,17 +16,17 @@ public class OutputView {
         this.output = output;
     }
 
-    public void printStatusGuide() {
+    public void printPositionGuide() {
         output.println();
         output.println(STATUS_GUIDE_MESSAGE);
     }
 
-    public void printStatus(List<RacingStatusDto> racingStatus) {
-        racingStatus.forEach(this::printOneStatus);
+    public void printPosition(List<RacingStatusDto> racingStatus) {
+        racingStatus.forEach(this::printOnePosition);
         output.println();
     }
 
-    private void printOneStatus(RacingStatusDto racingStatus) {
+    private void printOnePosition(RacingStatusDto racingStatus) {
         output.print(racingStatus.getCarName());
         output.print(COLON);
 

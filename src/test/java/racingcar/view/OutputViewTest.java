@@ -31,7 +31,7 @@ class OutputViewTest {
 
     @Test
     void printStatusGuide_메서드_테스트() {
-        outputView.printStatusGuide();
+        outputView.printPositionGuide();
 
         assertThat(mockOutput.output()).contains("실행 결과");
     }
@@ -41,7 +41,7 @@ class OutputViewTest {
         List<RacingStatusDto> dtos = List.of(
                 new RacingStatusDto(1, "judy"),
                 new RacingStatusDto(2, "nunu"));
-        outputView.printStatus(dtos);
+        outputView.printPosition(dtos);
 
         assertThat(mockOutput.output()).contains("judy : -", "nunu : --");
     }
