@@ -10,7 +10,7 @@ public class InputView {
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static List<String> readCarNames() {
-		final String carNames = scanner.nextLine();
+		String carNames = scanner.nextLine();
 		InputValidator.validateBlankedNames(carNames);
 		return splitByDelimAndTrimNames(carNames, DELIMITER);
 	}
@@ -22,7 +22,7 @@ public class InputView {
 	}
 
 	public static int readRoundCount() {
-		final String roundCount = scanner.nextLine();
+		String roundCount = scanner.nextLine();
 		InputValidator.validateRoundCount(roundCount);
 		System.out.println();
 		return Integer.parseInt(roundCount);

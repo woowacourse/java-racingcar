@@ -21,7 +21,7 @@ public class CarController {
 	private void getCarNames() {
 		try {
 			OutputView.printCarNameRequestMsg();
-			final List<String> carNames = InputView.readCarNames();
+			List<String> carNames = InputView.readCarNames();
 			carNames.stream()
 				.forEach(carName -> CarRepository.add(new Car(carName)));
 		} catch (Exception e) {

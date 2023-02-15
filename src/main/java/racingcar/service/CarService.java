@@ -20,7 +20,7 @@ public class CarService {
 	}
 
 	public List<String> getWinners() {
-		final int maxPosition = cars.stream()
+		int maxPosition = cars.stream()
 			.max(Comparator.comparingInt(Car::getPosition)).get()
 			.getPosition();
 

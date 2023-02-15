@@ -3,7 +3,7 @@ package racingcar.domain;
 public class Car {
 	private static final int NAME_MAX_LENGTH = 5;
 	private static final int MOVE_MIN_POWER = 4;
-	private final String name;
+	private String name;
 	private int position;
 
 	public Car(final String name) {
