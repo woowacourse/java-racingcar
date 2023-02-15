@@ -1,6 +1,7 @@
 package racingcar.view;
 
-import racingcar.dto.RacingStatusDto;
+import racingcar.domain.Car;
+import racingcar.domain.Positions;
 
 import java.util.List;
 
@@ -10,38 +11,35 @@ public class OutputView {
     private static final String STATUS_GUIDE_MESSAGE = "실행 결과";
     private static final String COLON = " : ";
     private static final String CAR_POSITION = "-";
-    private final Output output;
 
-    public OutputView(Output output) {
-        this.output = output;
+    public static void printPositionGuide() {
+        System.out.println();
+        System.out.println(STATUS_GUIDE_MESSAGE);
     }
 
-    public void printPositionGuide() {
-        output.println();
-        output.println(STATUS_GUIDE_MESSAGE);
-    }
-
-    public void printPosition(List<RacingStatusDto> racingStatus) {
-        racingStatus.forEach(this::printOnePosition);
-        output.println();
-    }
-
-    private void printOnePosition(RacingStatusDto racingStatus) {
-        output.print(racingStatus.getCarName());
-        output.print(COLON);
-
-        for (int i = 0; i < racingStatus.getStatus(); i++) {
-            output.print(CAR_POSITION);
+    public static void printPositions(List<Car> cars) {
+        for (Car car : cars) {
+            printPosition(car);
         }
-        output.println();
+        System.out.println();
     }
 
-    public void printWinner(List<String> winners) {
-        output.print(String.join(WINNER_DELIMITER, winners));
-        output.println(WINNER_GUIDE_MESSAGE);
+    public static void printPosition(Car car) {
+        System.out.print(car.getCarName());
+        System.out.print(COLON);
+
+        for (int i = 0; i < car.getPosition(); i++) {
+            System.out.print(CAR_POSITION);
+        }
+        System.out.println();
     }
 
-    public void printErrorMessage(String errorMessage) {
-        output.println(errorMessage);
+    public static void printWinner(List<String> winners) {
+        System.out.print(String.join(WINNER_DELIMITER, winners));
+        System.out.println(WINNER_GUIDE_MESSAGE);
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }
