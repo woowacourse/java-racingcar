@@ -1,21 +1,23 @@
 package racingcar.validator;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static racingcar.exception.ErrorMessages.*;
 
 public class DefaultCarValidator implements CarValidator {
     private static final int CAR_NAME_MAX_LENGTH = 5;
 
-    @Override
-    public void validateCarName(String name) {
-        validateNameNullOrBlank(name);
-        validateNameLength(name);
-    }
 
     @Override
-    public void validateCarNamesSize(List<String> carNames) {
+    public void validateCarNames(List<String> carNames) {
+        validateDuplicatedCarName(carNames);
         validateCarsSizeOneOrZero(carNames);
+        for (String carName : carNames) {
+            validateNameNullOrBlank(carName);
+            validateNameLength(carName);
+        }
     }
 
     private void validateNameNullOrBlank(String name) {
@@ -35,6 +37,13 @@ public class DefaultCarValidator implements CarValidator {
         int carsSize = carNames.size();
         if (carsSize == 0 || carsSize == 1) {
             throw new IllegalArgumentException(CARS_SIZE_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validateDuplicatedCarName(List<String> carNames) {
+        Set<String> duplicatedCheckListToSet = new HashSet<>(carNames);
+        if (duplicatedCheckListToSet.size() != carNames.size()) {
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 }

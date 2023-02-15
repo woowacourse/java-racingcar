@@ -3,32 +3,30 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Car {
+    private static final int STOP_MIN_NUMBER = 0;
+    private static final int STOP_MAX_NUMBER = 3;
+    private static final int MOVE_FORWARD_MIN_NUMBER = 4;
+    private static final int MOVE_FORWARD_MAX_NUMBER = 9;
 
-    private final String name;
-    private final CarMovement carMovement;
-    private int position;
+    private final Name name;
+    private final Position position;
 
     public Car(String name) {
-        this(name, new CarMovement(new RandomNumberGenerator()));
-    }
-
-    public Car(String name, CarMovement carMovement) {
-        this.name = name;
-        this.position = 0;
-        this.carMovement = carMovement;
+        this.name = new Name(name);
+        this.position = new Position();
     }
 
     public String getName() {
-        return name;
+        return name.getName();
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 
-    public void move() {
-        if (carMovement.isCarMoveForward()) {
-            position++;
+    public void move(int powerValue) {
+        if (MOVE_FORWARD_MIN_NUMBER <= powerValue && powerValue <= MOVE_FORWARD_MAX_NUMBER) {
+            position.moveForward();
         }
     }
 
