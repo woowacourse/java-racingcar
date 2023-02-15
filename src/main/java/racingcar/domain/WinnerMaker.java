@@ -11,7 +11,7 @@ public class WinnerMaker {
 
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
-                .map(Car::getName)
+                .map(car -> car.getCarName().getName())
                 .collect(Collectors.toUnmodifiableList());
     }
 

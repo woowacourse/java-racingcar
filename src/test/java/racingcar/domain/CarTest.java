@@ -77,8 +77,8 @@ class CarTest {
             car.move(numberGenerator);
         }
 
-        assertThat(car.getName())
-                .isEqualTo(car.getName());
+        assertThat(car.getCarName())
+                .isEqualTo(car.getCarName());
         assertThat(car.getCurrentPosition().getPosition())
                 .isEqualTo(moveCount);
     }

@@ -69,7 +69,7 @@ public class RacingCarController {
 
     private List<CarStatus> mapCarsToCarStatuses(List<Car> cars) {
         return cars.stream()
-                .map(car -> new CarStatus(car.getName(), car.getCurrentPosition()))
+                .map(car -> new CarStatus(car.getCarName(), car.getCurrentPosition()))
                 .collect(Collectors.toUnmodifiableList());
     }
 
