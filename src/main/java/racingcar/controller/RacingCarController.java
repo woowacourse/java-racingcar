@@ -1,6 +1,11 @@
 package racingcar.controller;
 
-import racingcar.domain.*;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.NumberGenerator;
+import racingcar.domain.RandomNumberGenerator;
+import racingcar.domain.Lap;
+import racingcar.domain.WinnerMaker;
 import racingcar.dto.CarStatus;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -20,9 +25,9 @@ public class RacingCarController {
 
     public void run() {
         Cars cars = initCars();
-        int tries = initTries();
+        Lap lap = initTryCount();
         OutputView.printResultMessage();
-        race(cars, tries, numberGenerator);
+        race(cars, lap, numberGenerator);
         showFinalStatus(cars);
         prizeWinner(cars);
     }
@@ -42,26 +47,29 @@ public class RacingCarController {
         return List.of(input.split(","));
     }
 
-    private int initTries() {
+    private Lap initTryCount() {
         try {
-            return InputView.inputTries();
+            int tries = InputView.inputTries();
+            return new Lap(tries);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return initTries();
+            return initTryCount();
         }
     }
 
-    private void race(Cars cars, int tries, NumberGenerator numberGenerator) {
-        for (int i = 0; i < tries; i++) {
-            List<Car> movedCars = cars.moveCars(numberGenerator);
+    private void race(Cars cars, Lap lap, NumberGenerator numberGenerator) {
+        while (!lap.isFinish()) {
+            cars.moveCars(numberGenerator);
+            List<Car> movedCars = cars.getLatestResult();
             List<CarStatus> carStatuses = mapCarsToCarStatuses(movedCars);
+            lap.reduce();
             OutputView.printCarStatus(carStatuses);
         }
     }
 
     private List<CarStatus> mapCarsToCarStatuses(List<Car> cars) {
         return cars.stream()
-                .map(car -> new CarStatus(car.getName(), car.getCurrentPosition()))
+                .map(car -> new CarStatus(car.getCarName(), car.getCurrentPosition()))
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -72,7 +80,8 @@ public class RacingCarController {
     }
 
     private void prizeWinner(Cars cars) {
-        List<String> winnersName = WinnerMaker.getWinnerCarsName(cars.getLatestResult());
+        WinnerMaker winnerMaker = new WinnerMaker();
+        List<String> winnersName = winnerMaker.getWinnerCarsName(cars.getLatestResult());
         OutputView.printFinalResult(winnersName);
     }
 }

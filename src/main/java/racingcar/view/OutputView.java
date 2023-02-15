@@ -18,6 +18,7 @@ public class OutputView {
             int moveCount = carStatus.getCurrentPosition();
             System.out.println(carStatus.getName() + DELIMITER + MOVING_SYMBOL.repeat(moveCount));
         });
+
         System.out.println();
     }
 

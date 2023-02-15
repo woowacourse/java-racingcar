@@ -13,11 +13,11 @@ public class WinnerMakerTest {
     void prizeWinnersTest() {
         Cars cars = new Cars(List.of("박정훈", "김혜수", "윤예지", "원하연"));
         List<Car> movedCars = cars.getLatestResult();
-        movedCars.stream()
-                .filter(car -> car.getName().equals("박정훈"))
-                .forEach(car -> car.move(new TestNumberGenerator(4)));
+        movedCars.get(0)
+                .move(new TestNumberGenerator(4));
+        WinnerMaker winnerMaker = new WinnerMaker();
 
-        assertThat(WinnerMaker.getWinnerCarsName(cars.getLatestResult()))
+        assertThat(winnerMaker.getWinnerCarsName(cars.getLatestResult()))
                 .isEqualTo(List.of("박정훈"));
     }
 }
