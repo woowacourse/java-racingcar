@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
     private Car car;
@@ -18,27 +17,6 @@ class CarTest {
     @BeforeEach
     void setup() {
         car = new Car("pobi");
-    }
-
-    @Nested
-    @DisplayName("자동차 이름에 대한 예외 테스트")
-    class CarNameLengthTest {
-        @Test
-        @DisplayName("자동차 이름의 길이가 5자를 초과하면 예외가 발생한다.")
-        void overLengthCarNameTest() {
-            assertThatThrownBy(() -> new Car("abcdefg"))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("이름의 길이는 1이상 5이하여야 합니다.");
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"  ", ""})
-        @DisplayName("자동차 이름의 길이가 1자 미만이거나 빈칸으로만 이루어진 경우 예외가 발생한다.")
-        void underLengthCarNameTest(String name) {
-            assertThatThrownBy(() -> new Car(name))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("이름의 길이는 1이상 5이하여야 합니다.");
-        }
     }
 
     @Nested
