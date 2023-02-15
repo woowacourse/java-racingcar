@@ -1,7 +1,7 @@
 package console;
 
 import utils.ScannerUtil;
-import validation.CarInfoValidation;
+import validation.DuplicatedCarNameValidation;
 import validation.TryCountValidation;
 
 import java.util.InputMismatchException;
@@ -11,7 +11,7 @@ public class InputView {
     public static String inputCarName() {
         try {
             final String carInfo = ScannerUtil.readLine();
-            CarInfoValidation.validateCar(carInfo);
+            DuplicatedCarNameValidation.validateCar(carInfo);
             return carInfo;
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());

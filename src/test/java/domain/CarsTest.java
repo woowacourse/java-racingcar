@@ -33,9 +33,8 @@ class CarsTest {
     }
 
     private Car createCar(String name) {
-        return new Car(name);
+        return new Car(Name.fromName(name));
     }
-
 
     @Test
     @DisplayName("getCurrentStatus() : 현재 움직인 거리를 보여준다.")

@@ -4,6 +4,8 @@ import console.InputView;
 import console.OutputView;
 import domain.Car;
 import domain.Cars;
+import domain.Name;
+import utils.RandomNumberGenerator;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -35,20 +37,24 @@ public class RacingGameEngine {
     }
 
     private Cars makeCars(String carName) {
-        String[] splitCarName = carName.split(SPLIT_DELIMITER);
 
-        Cars cars = new Cars(Arrays.stream(splitCarName)
-                                   .map(Car::new)
-                                   .collect(Collectors.toList()));
-        return cars;
+        try {
+            return new Cars(Arrays.stream(carName.split(SPLIT_DELIMITER))
+                                  .map((name) -> new Car(Name.fromName(name)))
+                                  .collect(Collectors.toList()));
+        } catch (IllegalArgumentException exception) {
+            return makeCars(getCarName());
+        }
     }
 
     private void startRace(Cars cars, int tryCount) {
 
+        CarEngine carEngine = new CarEngine(new RandomNumberGenerator());
+
         OutputView.printResultMessage();
 
         for (int i = 0; i < tryCount; i++) {
-            CarEngine.moveCar(cars);
+            carEngine.moveCar(cars);
             OutputView.printCurrentStatus(cars);
         }
     }
