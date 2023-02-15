@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,10 +43,6 @@ public class Cars {
                 .mapToInt(Car::getMovedCount)
                 .max()
                 .orElseThrow();
-    }
-
-    private int getMaxMovedCount(int winnerCount, int movedCount) {
-        return Math.max(winnerCount, movedCount);
     }
 
     public boolean isEmpty() {
