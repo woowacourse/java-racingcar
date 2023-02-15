@@ -5,8 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Validator {
+
+    public static final int MIN_TRY_COUNT = 1;
+    public static final int MAX_TRY_COUNT = 100;
+    public static final int MIN_NAME_LENGTH = 0;
+
     public static void checkRange(int tryCount) {
-        if (tryCount < 1 || tryCount > 100) {
+        if (tryCount < MIN_TRY_COUNT || tryCount > MAX_TRY_COUNT) {
             throw new IllegalArgumentException("[ERROR] : 시도 횟수는 1 이상 100 이하의 양의 정수만 가능합니다.");
         }
     }
@@ -31,7 +36,7 @@ public class Validator {
     }
 
     public static void checkEmpty(String[] carNameArr) {
-        if (carNameArr.length == 0) {
+        if (carNameArr.length == MIN_NAME_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 빈 이름들은 입력할 수 없습니다.");
         }
     }
