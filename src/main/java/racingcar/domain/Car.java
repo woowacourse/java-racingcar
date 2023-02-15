@@ -13,8 +13,9 @@ public class Car {
         this.position = new Position(position);
     }
 
-    public void movePosition() {
+    public void movePosition(int round) {
         this.position.increasePosition();
+        position.validateCurrentPosition(position.getPosition(), round);
     }
 
     public String getName() {

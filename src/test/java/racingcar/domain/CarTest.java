@@ -53,7 +53,7 @@ class CarTest {
         @ValueSource(ints = {0, 2})
         @DisplayName("랜덤 값이 4보다 작은 경우 멈춤")
         void Should_Success_랜덤값이_4보다_작은_경우(int number) {
-            carService.runForward(car, number);
+            carService.runForward(car, number, 1);
             assertThat(position.getPosition()).isEqualTo(0);
         }
 
@@ -61,7 +61,7 @@ class CarTest {
         @ValueSource(ints = {4, 7})
         @DisplayName("랜덤 값이 4 이상인 경우 전진")
         void Should_Success_랜덤값이_4이상인_경우(int number) {
-            carService.runForward(car, number);
+            carService.runForward(car, number, 1);
             assertThat(position.getPosition()).isEqualTo(1);
         }
     }
@@ -76,7 +76,7 @@ class CarTest {
         void Should_Success_우승자가_1명인_경우() {
             cars.addCar(new Car("pobi", 0));
             cars.addCar(new Car("neo", 0));
-            carService.runForward(cars.getCars().get(0), Car.FORWARD_BOUNDARY);
+            carService.runForward(cars.getCars().get(0), Car.FORWARD_BOUNDARY, 1);
             assertThat(cars.getWinner()).containsExactly("pobi");
         }
 

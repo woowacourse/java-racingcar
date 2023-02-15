@@ -35,14 +35,13 @@ public class CarService {
     public void runRound(int round) {
         for (Car car : cars.getCars()) {
             Position position = car.getPosition();
-            runForward(car, makeRandomNumber());
-            position.validateCurrentPosition(position.getPosition(), round);
+            runForward(car, makeRandomNumber(), round);
         }
     }
 
-    public void runForward(Car car, int randomNumber) {
+    public void runForward(Car car, int randomNumber, int round) {
         if (randomNumber >= Car.FORWARD_BOUNDARY) {
-            car.movePosition();
+            car.movePosition(round);
         }
     }
 
