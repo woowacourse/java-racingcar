@@ -1,8 +1,8 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.constants.CarConstant;
 import racingcar.service.CarService;
+import racingcar.service.RandomMoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -16,22 +16,19 @@ public class RacingcarController {
 
     public void start() {
         carService.initializeCars();
-        while (readNameInput()) {
-            carService.initializeCars();
-        }
-        while (readCountInput()) {
-        }
+        readNameInput();
+        readCountInput();
     }
 
-    private boolean readNameInput() {
+    private void readNameInput() {
         try {
             OutputView.printNameInput();
             List<String> carNames = splitCarNames(InputView.readCarNames());
             carService.makeCar(carNames);
-            return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return true;
+            carService.initializeCars();
+            readNameInput();
         }
     }
 
@@ -39,29 +36,22 @@ public class RacingcarController {
         return List.of(carNames.split(","));
     }
 
-    private boolean readCountInput() {
+    private void readCountInput() {
         try {
             OutputView.printCountInput();
             tryCount = InputView.readTryCount();
-            validateNegativeCount(tryCount);
-            return false;
+            carService.validateNegativeCount(tryCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return true;
-        }
-    }
-
-    private void validateNegativeCount(int tryCount) {
-        int minTryCount = CarConstant.MIN_TRY_COUNT.getNumber();
-        if (tryCount <= minTryCount) {
-            throw new IllegalArgumentException(String.format("[ERROR] 시도할 횟수는 %d보다 큰 숫자여야 합니다.", minTryCount));
+            readCountInput();
         }
     }
 
     public void run() {
+        RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
         OutputView.printResultMessage();
         for (int i = 1; i <= tryCount; i++) {
-            carService.runRound(i);
+            carService.runRound(randomMoveStrategy, i);
             OutputView.printRoundResult(carService.getCarsStatus());
         }
     }

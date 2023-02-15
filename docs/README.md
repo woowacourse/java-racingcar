@@ -49,3 +49,38 @@
   - [x] 최종 이동 결과를 출력하는 기능
   - [x] 가장 이동 거리가 큰 자동차를 찾는 기능
   - [x] 우승자를 출력하는 기능
+
+---
+
+## 2단계 미션 - 리팩토링 요구사항
+
+- [x] enum으로 선언한 CarConstant를 Car 클래스 내부로 이동
+- [x] enum으로 선언한 InputConstant, OutputConstant를 OutputView 클래스 내부로 이동
+- [x] 시도 횟수 검증에 대한 메서드를 Controller에서 Service로 이동
+- [x] distance에서 position으로 네이밍 변경
+- Car 클래스의 책임 분리
+  - [x] Name 클래스 분리
+  - [x] Position 클래스 분리
+- [x] while문 대신 try-catch문 안에서 반복할 수 있도록 변경
+- [x] findWinner 메서드에 대한 책임 이동
+- [x] 현재 위치 검증에 대한 메서드 위치 변경
+- [x] 자동차 전진을 할 때 전략 패턴을 사용하도록 변경
+- [x] 부족한 테스트 코드 작성
+
+---
+
+## 테스트 목록
+
+- NameTest
+  - [x] 자동차 이름 길이 테스트
+  - [x] 자동차 이름 형식 테스트
+
+- PositionTest
+  - [x] 자동차 시작 위치 테스트
+  - [x] 자동차 현재 위치 테스트
+
+- CarTest
+  - [x] 시도할 횟수 예외 테스트
+  - [x] 값에 따른 전진 테스트
+  - [ ] 라운드 진행 테스트..?
+  - [x] 우승자 반환 테스트
