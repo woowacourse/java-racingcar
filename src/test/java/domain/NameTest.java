@@ -3,7 +3,6 @@ package domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import exception.NameIsOutOfBoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +14,7 @@ public class NameTest {
     @ValueSource(strings = {"", "abcdef"})
     void incorrectNameLengthTest(final String name) {
         assertThatThrownBy(() -> new Name(name))
-                .isInstanceOf(NameIsOutOfBoundException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest

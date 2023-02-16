@@ -11,9 +11,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class TryCountTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"-1", "0", "-100", "1.5", "문자임"})
+    @ValueSource(ints = {-1, 0, -100})
     @DisplayName("양의 정수가 아닐 경우 Exception 발생")
-    void validateNotPositiveInteger(final String tryCount) {
+    void validateNotPositiveInteger(final int tryCount) {
         //when
         //then
         assertThatThrownBy(() -> new TryCount(tryCount));
@@ -22,6 +22,6 @@ public class TryCountTest {
     @Test
     @DisplayName("TryCount 1에서 차감을 한번 하면 0이다.")
     void deductAndValidateZero() {
-        assertThat(new TryCount("1").deduct().isOpportunity()).isFalse();
+        assertThat(new TryCount(1).deduct().isOpportunity()).isFalse();
     }
 }

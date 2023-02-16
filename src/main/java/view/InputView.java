@@ -16,12 +16,14 @@ public class InputView {
 
     public static List<String> requestCarName() {
         System.out.println(REQUEST_CAR_NAME_MESSAGE);
+
         return sliceNameByComma(input());
     }
 
-    public static String requestTryCount() {
+    public static int requestTryCount() {
         System.out.println(REQUEST_TRY_COUNT_MESSAGE);
-        return input();
+
+        return Integer.parseInt(input());
     }
 
     private static String input() {
