@@ -1,30 +1,56 @@
 package racing.domain;
 
-import static racing.view.output.OutputView.HYPHEN;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-public class Car {
+public class Cars {
 
-    private final String name;
-    private int step;
+    private final List<Car> cars;
 
-    public Car(String name) {
-        this.name = name;
-        this.step = 0;
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public String getName() {
-        return name;
+    // 테스트를 위한 메서드
+    public Car getCar(int n) {
+        return cars.get(n);
     }
 
-    public int getStep() {
-        return step;
+    public void calculator(Random random) {
+        cars.stream()
+                .filter(car -> 4 <= random.nextInt(10))
+                .forEach(Car::move);
     }
 
-    public void increaseStep() {
-        this.step++;
+    public List<String> getPrintForm() {
+        List<String> forms = new ArrayList<>();
+        for (Car car : cars) {
+            forms.add(car.getCarStepForm());
+        }
+        return forms;
     }
 
-    public void addHyphen() {
-        System.out.print(HYPHEN.repeat(step));
+    public List<String> getWinners() {
+        int winnerStep = getWinnerStep();
+        return findWinners(winnerStep);
+    }
+
+    private int getWinnerStep() {
+        int winnerStep = 0;
+        for (Car car : cars) {
+            winnerStep = car.getCarStep(winnerStep);
+        }
+        return winnerStep;
+    }
+
+    private List<String> findWinners(int winnerStep) {
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.getStep() == winnerStep) {
+                winners.add(car.getName());
+            }
+        }
+        return winners;
     }
 }
