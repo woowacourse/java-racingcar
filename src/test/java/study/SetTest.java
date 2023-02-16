@@ -1,11 +1,10 @@
 package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,12 +34,12 @@ public class SetTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
     void isContained(int number) {
-        assertTrue(numbers.contains(number));
+        Assertions.assertTrue(numbers.contains(number));
     }
 
     @ParameterizedTest
     @CsvSource(value = {"1,true", "2,true", "3,true", "4,false", "5,false"}, delimiter = ',')
     void isContained2(int number, boolean expected) {
-        assertEquals(numbers.contains(number), expected);
+        Assertions.assertEquals(numbers.contains(number), expected);
     }
 }

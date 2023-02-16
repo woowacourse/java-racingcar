@@ -1,8 +1,17 @@
+import domain.RacingGame;
+import utils.powerGenerator.RandomPowerGenerator;
+import view.InputView;
+import view.ResultView;
+
 public class Application {
     public static void main(String[] args) {
-        RacingGame racingGame = new RacingGame();
-        racingGame.initGame();
+        final RandomPowerGenerator randomPowerGenerator = new RandomPowerGenerator();
+        final String[] carNames = InputView.getCarNames();
+        final int tryCount = InputView.getTryCount();
+        System.out.println();
+
+        RacingGame racingGame = new RacingGame(carNames, tryCount, randomPowerGenerator);
         racingGame.start();
-        racingGame.printResult();
+        ResultView.printWinners(racingGame.getWinners());
     }
 }
