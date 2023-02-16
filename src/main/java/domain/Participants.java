@@ -27,10 +27,10 @@ public class Participants {
     }
 
     private int findIdentifier(String name) {
-        final int INIT_NUMBER = 0;
+        final int initNumber = 0;
         if (!nameCount.containsKey(name)) {
-            nameCount.put(name, INIT_NUMBER);
-            return INIT_NUMBER;
+            nameCount.put(name, initNumber);
+            return initNumber;
         }
         return nameCount.merge(name, 1, Integer::sum);
     }

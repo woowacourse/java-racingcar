@@ -2,8 +2,10 @@ package view.input;
 
 import java.util.Scanner;
 import validation.ErrorMessages;
-import validation.InputValidator;
-import validation.ValidateResult;
+import validation.exception.ContainsInvalidWordException;
+import validation.exception.InvalidCarNameException;
+import validation.exception.InvalidCountException;
+import validation.exception.NotNumberException;
 
 public class InputView {
 
@@ -19,26 +21,32 @@ public class InputView {
         System.out.println(ENTER_COUNT);
     }
 
+    public void printError(IllegalArgumentException exception) {
+        if (exception instanceof ContainsInvalidWordException) {
+            System.out.println(ErrorMessages.CONTAINS_INVALID_WORD.getMessage());
+        }
+        if (exception instanceof InvalidCarNameException) {
+            System.out.println(ErrorMessages.INVALID_CAR_NAME_LENGTH.getMessage());
+        }
+        if (exception instanceof InvalidCountException) {
+            System.out.println(ErrorMessages.INVALID_COUNT.getMessage());
+        }
+        if (exception instanceof NotNumberException) {
+            System.out.println(ErrorMessages.NOT_A_NUMBER.getMessage());
+        }
+    }
+
     public String getInputUntilExist() {
         try {
             return getInput();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return getInputUntilExist();
         }
     }
 
     private String getInput() throws IllegalArgumentException {
-        String input = readLine();
-        validateEmpty(input);
-        return input;
-    }
-
-    private void validateEmpty(String input) {
-        ValidateResult validateResult = InputValidator.validate(input);
-        if (validateResult == ValidateResult.FAIL_EMPTY) {
-            throw new IllegalArgumentException(ErrorMessages.EMPTY_INPUT.getMessage());
-        }
+        return readLine();
     }
 
     private String readLine() {

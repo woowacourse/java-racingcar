@@ -8,8 +8,8 @@ public class CountValidator {
     private static final int MAX_COUNT = 1000000000;
 
     public static ValidateResult validate(final String input) {
-        final String EMPTY = "";
-        if (input == null || input.equals(EMPTY) || !isNum(input)) {
+        final String empty = "";
+        if (input == null || input.equals(empty) || !isNum(input)) {
             return ValidateResult.FAIL_NOT_A_NUMBER;
         }
         if (!isValidCount(input)) {

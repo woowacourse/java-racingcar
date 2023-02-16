@@ -1,23 +1,24 @@
 package domain;
 
 import validation.CountValidator;
-import validation.ErrorMessages;
 import validation.ValidateResult;
+import validation.exception.InvalidCountException;
+import validation.exception.NotNumberException;
 
 public class Race {
 
-    private final int TOTAL_COUNT;
+    private final int totalCount;
     private int currentCount = 0;
 
     public Race(final String totalCount) {
         ValidateResult validateResult = CountValidator.validate(totalCount);
         if (validateResult == ValidateResult.FAIL_NOT_A_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessages.NOT_A_NUMBER.getMessage());
+            throw new NotNumberException();
         }
         if (validateResult == ValidateResult.FAIL_INVALID_COUNT) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_COUNT.getMessage());
+            throw new InvalidCountException();
         }
-        this.TOTAL_COUNT = Integer.parseInt(totalCount);
+        this.totalCount = Integer.parseInt(totalCount);
     }
 
     public void addCount() {
@@ -25,6 +26,6 @@ public class Race {
     }
 
     public boolean isFinished() {
-        return TOTAL_COUNT == currentCount;
+        return totalCount == currentCount;
     }
 }

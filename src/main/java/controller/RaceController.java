@@ -13,9 +13,9 @@ import view.output.OutputView;
 
 public class RaceController {
 
-    private final Participants participants;
     private Race race;
-    private final int DRIVING_DISTANCE = 1;
+    private final Participants participants;
+    private static final int DRIVING_DISTANCE = 1;
 
     public RaceController() {
         participants = new Participants();
@@ -30,8 +30,8 @@ public class RaceController {
         try {
             String input = inputView.getInputUntilExist();
             joinAllParticipants(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            inputView.printError(exception);
             getCarNamesUntilValid(inputView);
         }
     }
@@ -45,16 +45,17 @@ public class RaceController {
     private void getCountUntilValid(InputView inputView) {
         try {
             race = new Race(inputView.getInputUntilExist());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            inputView.printError(exception);
             getCountUntilValid(inputView);
         }
     }
 
     public void joinAllParticipants(String carNames) {
+        final String delimiter = ",";
         try {
-            splitWordsBy(carNames, ",").forEach((carName) -> participants.join(carName.strip()));
-        } catch (IllegalArgumentException exception) {
+            splitWordsBy(carNames, delimiter).forEach((carName) -> participants.join(carName.strip()));
+        } catch (Exception exception) {
             participants.reset();
             throw exception;
         }
@@ -64,15 +65,16 @@ public class RaceController {
         return Arrays.stream(input.split(delimiter, -1)).map(String::strip)
             .collect(Collectors.toList());
     }
-
+    
     public List<Car> getWinners() {
         List<Car> candidates = participants.showAllParticipants();
-        int maxDistance = candidates.stream().max(Comparator.comparing(Car::getDrivenDistance))
-            .get().getDrivenDistance();
-        List<Car> winners = candidates.stream()
-            .filter(car -> car.getDrivenDistance() == maxDistance)
+        int maxDistance = candidates.stream()
+            .map(Car::getDrivenDistance)
+            .max(Comparator.naturalOrder())
+            .orElse(0);
+        return candidates.stream()
+            .filter(car -> car.isWinner(maxDistance))
             .collect(Collectors.toList());
-        return winners;
     }
 
     public void driveOrNot(Car car, NumberGenerator numberGenerator) {
@@ -83,8 +85,8 @@ public class RaceController {
     }
 
     private boolean isEnoughToMove(final int score) {
-        final int MIN_SCORE = 4;
-        return score >= MIN_SCORE;
+        final int minScore = 4;
+        return score >= minScore;
     }
 
     public void printRoundResult(OutputView outputView) {
