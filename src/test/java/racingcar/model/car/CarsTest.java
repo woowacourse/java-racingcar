@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.TestDataManager;
 import racingcar.exception.DuplicateCarNamesException;
 import racingcar.exception.NotExistCarsException;
-import racingcar.model.car.strategy.ForwardMovingStrategy;
+import racingcar.model.car.strategy.TestMovingStrategy;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ class CarsTest {
         String carNames = ",,,";
 
         assertThatThrownBy(() -> {
-            new Cars(carNames, new ForwardMovingStrategy());
+            new Cars(carNames, new TestMovingStrategy(new int[]{1}));
         }).isInstanceOf(NotExistCarsException.class);
     }
 
@@ -28,7 +28,7 @@ class CarsTest {
     @Test
     void validateDuplicateCarsNameTest() {
         assertThatThrownBy(() -> {
-            new Cars("pobi,pobi", new ForwardMovingStrategy());
+            new Cars("pobi,pobi", new TestMovingStrategy(new int[]{1}));
         }).isInstanceOf(DuplicateCarNamesException.class);
     }
 

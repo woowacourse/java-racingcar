@@ -16,7 +16,7 @@ public class Car {
     private int position;
     private final MovingStrategy movingStrategy;
 
-    public Car(String carName, MovingStrategy movingStrategy) {
+    public Car(final String carName, final MovingStrategy movingStrategy) {
         validate(carName);
 
         this.carName = carName;
@@ -24,25 +24,25 @@ public class Car {
         this.movingStrategy = movingStrategy;
     }
 
-    private void validate(String carName) {
+    private void validate(final String carName) {
         validateHasBlank(carName);
         validateValue(carName);
         validateOverMaxNameLength(carName);
     }
 
-    private void validateValue(String carName) {
+    private void validateValue(final String carName) {
         if (!STRING_PATTERN.matcher(carName).matches()) {
             throw new InvalidCarNameFormatException();
         }
     }
 
-    private void validateHasBlank(String carName) {
+    private void validateHasBlank(final String carName) {
         if (carName.isBlank()) {
             throw new HasBlankCarNameException();
         }
     }
 
-    private void validateOverMaxNameLength(String carName) {
+    private void validateOverMaxNameLength(final String carName) {
         if (carName.length() > MAX_NAME_LENGTH) {
             throw new ExceedCarNameLengthException();
         }
@@ -52,7 +52,7 @@ public class Car {
         position++;
     }
 
-    public boolean isWinner(int maxPosition) {
+    public boolean isWinner(final int maxPosition) {
         return position == maxPosition;
     }
 

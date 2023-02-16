@@ -15,25 +15,25 @@ public class Track {
     private final Cars cars;
     private int trialTimes;
 
-    public Track(Cars cars, String trialTimes) {
+    public Track(final Cars cars, final String trialTimes) {
         validate(trialTimes);
 
         this.cars = cars;
         this.trialTimes = Integer.parseInt(trialTimes);
     }
 
-    private void validate(String trialTimes) {
+    private void validate(final String trialTimes) {
         validateNumber(trialTimes);
         validateRange(trialTimes);
     }
 
-    private void validateNumber(String trialTimes) {
+    private void validateNumber(final String trialTimes) {
         if (!NUMBER_PATTERN.matcher(trialTimes).matches()) {
             throw new InvalidTrialTimesFormatException();
         }
     }
 
-    private void validateRange(String trialTimes) {
+    private void validateRange(final String trialTimes) {
         int trialTimesNumber = Integer.parseInt(trialTimes);
 
         if (trialTimesNumber < TRIAL_MIN_TIMES || trialTimesNumber > TRIAL_MAX_TIMES) {
