@@ -3,50 +3,38 @@ package controller;
 import domain.RacingGame;
 import domain.RandomNumberGenerator;
 import view.input.InputView;
-import view.output.OutputView;
+import view.output.ConsoleView;
 
 import java.util.List;
 
 public class RacingController {
 
     private final InputView inputView;
-    private final OutputView outputView;
+    private final ConsoleView consoleView;
     private RacingGame racingGame;
 
-    public RacingController(InputView inputView, OutputView outputView) {
+    public RacingController(InputView inputView, ConsoleView consoleView) {
         this.inputView = inputView;
-        this.outputView = outputView;
+        this.consoleView = consoleView;
     }
 
     public void start() {
         try {
-            makeRacingGame(readCarNames());
-            startRacingGame(readGameTry());
+            makeRacingGame(readCarNames(), readGameTry());
+            startRacingGame();
             makeRacingGameResult();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (RuntimeException e) {
+            consoleView.printExceptionMessage(e.getMessage());
             start();
         }
-    }
-
-    private void makeRacingGame(List<String> carNames) {
-        this.racingGame = new RacingGame(carNames, new RandomNumberGenerator());
     }
 
     private List<String> readCarNames() {
         try {
             return inputView.readCarName();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            consoleView.printExceptionMessage(e.getMessage());
             return readCarNames();
-        }
-    }
-
-    private void startRacingGame(int gameTry) {
-        outputView.printGameResultMessage();
-        for (int i = 0; i < gameTry; i++) {
-            racingGame.start();
-            outputView.printRacingStatus(racingGame.getCars());
         }
     }
 
@@ -54,13 +42,25 @@ public class RacingController {
         try {
             return inputView.readGameTry();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            consoleView.printExceptionMessage(e.getMessage());
             return readGameTry();
         }
     }
 
+    private void makeRacingGame(List<String> carNames, int gameTry) {
+        this.racingGame = new RacingGame(carNames, gameTry, new RandomNumberGenerator());
+    }
+
+    private void startRacingGame() {
+        consoleView.printGameResultMessage();
+        while (racingGame.isGameOnGoing()) {
+            racingGame.start();
+            consoleView.printRacingStatus(racingGame.getCars());
+        }
+    }
+
     private void makeRacingGameResult() {
-        outputView.printRacingStatus(racingGame.getCars());
-        outputView.printRacingWinners(racingGame.getWinners());
+        consoleView.printRacingStatus(racingGame.getCars());
+        consoleView.printRacingWinners(racingGame.getWinners());
     }
 }

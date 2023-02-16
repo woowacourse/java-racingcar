@@ -1,5 +1,7 @@
 package domain;
 
+import exception.NoCarsExistException;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -7,16 +9,18 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
-    private final int MOVABLE_BOUND = 4;
+    private static final int DEFAULT_START_LINE = 0;
+    private static final int MOVABLE_BOUND = 4;
 
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
+    private final Coin gameCoin;
 
-    public RacingGame(List<String> splitCarNames, NumberGenerator numberGenerator) {
+    public RacingGame(List<String> splitCarNames, int gameTry, NumberGenerator numberGenerator) {
         cars = splitCarNames.stream()
-                .map(Car::new)
+                .map(carName -> new Car(carName, DEFAULT_START_LINE))
                 .collect(Collectors.toList());
-
+        gameCoin = new Coin(gameTry);
         this.numberGenerator = numberGenerator;
     }
 
@@ -24,6 +28,7 @@ public class RacingGame {
         for (Car car : cars) {
             moveCar(car);
         }
+        gameCoin.use();
     }
 
     private void moveCar(Car car) {
@@ -31,6 +36,10 @@ public class RacingGame {
         if (randomNumber >= MOVABLE_BOUND) {
             car.move();
         }
+    }
+
+    public boolean isGameOnGoing() {
+        return gameCoin.isLeft();
     }
 
     public List<Car> getCars() {
@@ -41,13 +50,13 @@ public class RacingGame {
         Car furthestCar = getFurthestCar();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == furthestCar.getPosition())
+                .filter(car -> car.hasSamePositionWith(furthestCar))
                 .collect(Collectors.toList());
     }
 
     private Car getFurthestCar() {
         return cars.stream()
-                .max(Comparator.comparingInt(Car::getPosition))
-                .orElseThrow(RuntimeException::new);
+                .max(Car::comparePosition)
+                .orElseThrow(NoCarsExistException::new);
     }
 }
