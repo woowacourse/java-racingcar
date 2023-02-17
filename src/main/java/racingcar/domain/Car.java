@@ -1,27 +1,20 @@
 package racingcar.domain;
 
-import racingcar.dto.RacingStatusDto;
-
-class Car {
-
+public class Car {
     private final CarName carName;
-    private Status status;
+    private Position position;
 
     public Car(String carName) {
         this.carName = new CarName(carName);
-        status = Status.INIT();
+        position = Position.init();
     }
 
     public void move() {
-        status = status.next();
+        position = position.move();
     }
 
-    public RacingStatusDto toDto() {
-        return new RacingStatusDto(status.getMoveCount(), carName.getName());
-    }
-
-    public int getStatus() {
-        return status.getMoveCount();
+    public int getPosition() {
+        return position.getPosition();
     }
 
     public String getCarName() {

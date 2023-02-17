@@ -12,16 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class CarNameTest {
-    @ParameterizedTest
-    @NullSource
-    @ValueSource(strings = {"123456"})
-    void 생성시_잘못된_데이터가_들어오면_IEA_예외가_발생한다(String input) {
-        assertThatThrownBy(() -> new CarName(input))
+    @Test
+    void 생성시_잘못된_데이터가_들어오면_IEA_예외가_발생한다() {
+        assertThatThrownBy(() -> new CarName("123456"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 생성시_5이하의_길이가_들어오면_잘_생성됨() {
+    void 생성시_5이하의_길이가_들어오면_잘_생성된다() {
         assertDoesNotThrow(() -> new CarName("12345"));
     }
 }

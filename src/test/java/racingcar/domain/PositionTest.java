@@ -7,19 +7,19 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class StatusTest {
+class PositionTest {
 
     @Test
     void INIT_메서드로_초기화() {
-        Status status = Status.INIT();
-        assertThat(status.getMoveCount()).isEqualTo(0);
+        Position position = Position.init();
+        assertThat(position.getPosition()).isEqualTo(0);
     }
 
     @Test
     void NEXT_메서드로_증가된_Status_값객체_생성() {
-        Status status = Status.INIT();
-        Status movedStatus = status.next();
-        assertThat(movedStatus.getMoveCount()).isEqualTo(1);
-        assertThat(movedStatus).isNotEqualTo(status);
+        Position position = Position.init();
+        Position movedPosition = position.move();
+        assertThat(movedPosition.getPosition()).isEqualTo(1);
+        assertThat(movedPosition).isNotEqualTo(position);
     }
 }

@@ -1,68 +1,69 @@
 package racingcar.controller;
 
-import racingcar.domain.NumberPicker;
-import racingcar.domain.RacingStatus;
-import racingcar.view.Input;
+import racingcar.domain.Positions;
+import racingcar.domain.RandomNumberPicker;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.function.Supplier;
+import java.util.Scanner;
 
 public class Controller {
-    public static final String GAME_COUNT_ERROR_MESSAGE = "올바른 회수를 입력해주세요";
-    private final NumberPicker numberPicker;
-    private final Input input;
-    private final OutputView outputView;
-    private final InputView inputView;
-    private RacingStatus racingStatus;
+    public static Scanner scanner;
 
-    public Controller(NumberPicker numberPicker, Input input, OutputView outputView, InputView inputView) {
-        this.numberPicker = numberPicker;
-        this.input = input;
-        this.outputView = outputView;
-        this.inputView = inputView;
+    private final RandomNumberPicker randomNumberPicker;
+    private Positions positions;
+
+    public Controller(RandomNumberPicker randomNumberPicker) {
+        scanner = new Scanner(System.in);
+        this.randomNumberPicker = randomNumberPicker;
     }
 
-    public void raceTracks() {
-        handleError(this::carNameInput);
-
-        inputView.printInputTryCountGuide();
-        int gameCount = handleError(input::gameCountInput);
-
-        outputView.printStatusGuide();
-        for (int i = 0; i < gameCount; i++) {
-            racingStatus.moveCars();
-            outputView.printStatus(racingStatus.toDto());
+    private static int validateInputTryCount() {
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(InputView.printInputTryCountError());
         }
-
-        outputView.printWinner(racingStatus.findWinner());
     }
 
-    private void carNameInput() {
+    public void game() {
         String carNames = inputCarNames();
-        racingStatus = new RacingStatus(carNames, numberPicker);
+        createCars(carNames);
+        int gameCount = inputTryCount();
+
+        raceTracks(gameCount);
+        printWinner();
     }
 
     private String inputCarNames() {
-        inputView.printInputCarNameGuide();
-        return input.carNameInput();
+        InputView.printInputCarNameGuide();
+        return scanner.nextLine();
     }
 
-    private <T> T handleError(Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(GAME_COUNT_ERROR_MESSAGE);
-            return handleError(supplier);
-        }
+    private void createCars(String carNames) {
+        positions = new Positions(carNames, randomNumberPicker);
     }
 
-    private void handleError(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            handleError(runnable);
+    private int inputTryCount() {
+        InputView.printInputTryCountGuide();
+
+        return validateInputTryCount();
+    }
+
+    private void printWinner() {
+        OutputView.printWinner(positions.findWinner());
+    }
+
+    private void raceTracks(int gameCount) {
+        OutputView.printPositionGuide();
+
+        raceTrack(gameCount);
+    }
+
+    private void raceTrack(int gameCount) {
+        for (int i = 0; i < gameCount; i++) {
+            positions.moveCars();
+            OutputView.printPositions(positions.getCars());
         }
     }
 }
