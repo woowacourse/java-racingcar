@@ -2,34 +2,34 @@ package domain;
 
 public class Car {
 
-    private static final int MOVING_STANDARD_NUM = 4;
-    private static final int ADD_POSITION = 1;
-    private static final int INIT_POSITION = 0;
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    private int position = INIT_POSITION;
+    private int position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         validateNameLength(name.length());
         this.name = name;
+        this.position = position;
     }
 
     public void move(int number) {
         if (isAllowedToMove(number)) {
-            this.position += ADD_POSITION;
+            this.position += 1;
         }
     }
 
     private void validateNameLength(int nameSize) {
-        if (nameSize < MIN_NAME_LENGTH || nameSize > MAX_NAME_LENGTH) {
+        if (!isValidNameLength(nameSize)) {
             throw new IllegalArgumentException("[ERROR] 1에서 5사이의 이름 길이만 입력 가능합니다.");
         }
     }
 
+    private static boolean isValidNameLength(int nameSize) {
+        return nameSize >= 1 && nameSize <= 5;
+    }
+
     private boolean isAllowedToMove(int number) {
-        return number >= MOVING_STANDARD_NUM;
+        return number >= 4;
     }
 
     public String getName() {
