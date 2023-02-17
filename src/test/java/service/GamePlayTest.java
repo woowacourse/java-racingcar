@@ -18,8 +18,8 @@ import genertor.FixedNumberGenerator;
 class GamePlayTest {
 
     Cars cars;
-    Car car = new Car("kim");
-    GamePlay gamePlay = new GamePlay();
+    Car car = new Car("kim",0);
+    GamePlay gamePlay = new GamePlay(cars, new FixedNumberGenerator());
 
     @BeforeEach
     void setUp() {
@@ -30,7 +30,7 @@ class GamePlayTest {
     @ParameterizedTest
     @CsvSource(value = {"1:1", "4:4", "9:9"}, delimiter = ':')
     void testPlay(int tryTimes, int expected) {
-        gamePlay.play(cars, tryTimes, new FixedNumberGenerator());
+        gamePlay.play(cars, tryTimes);
         assertThat(cars.getCars().get(0).getPosition()).isEqualTo(expected);
     }
 
@@ -39,7 +39,7 @@ class GamePlayTest {
     void testTryTimesValidation() {
         assertThatThrownBy(
             () -> {
-                gamePlay.play(cars, 0, new FixedNumberGenerator());
+                gamePlay.play(cars, 0);
             }
         ).isInstanceOf(IllegalArgumentException.class);
     }
