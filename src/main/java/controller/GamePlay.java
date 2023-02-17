@@ -5,38 +5,39 @@ import static view.OutputView.printWinner;
 
 import domain.Cars;
 import genertor.NumberGenerator;
-import genertor.RandomNumberGenerator;
-import service.CarFactory;
 import view.InputView;
 import view.OutputView;
 
 public class GamePlay {
 
-    private static final int MIN_TRYTIMES = 1;
-    private static final String NOTICE_TRYTIMES = "[ERROR] 시도 횟수는 최소 1회 이상입니다.";
+    private final Cars cars;
+    private final NumberGenerator numberGenerator;
+
+    public GamePlay(Cars cars, NumberGenerator numberGenerator) {
+        this.cars = cars;
+        this.numberGenerator = numberGenerator;
+    }
 
     public void gameStart() {
         OutputView.printInputCarNamesNotice();
-        Cars cars = new Cars(CarFactory.buildCars(InputView.inputCarNames()));
         OutputView.printInputTryTimesNotice();
         int tryTimes = InputView.inputTryTimes();
         printResultNotice();
-        play(cars, tryTimes, new RandomNumberGenerator());
+        play(cars, tryTimes);
         printWinner(cars.findWinners());
     }
 
-    public void play(Cars cars, int tryTimes,
-        NumberGenerator numberGenerator) {
+    public void play(Cars cars, int tryTimes) {
         validateTryTimes(tryTimes);
-        for (int i = 0; i < tryTimes; i++) {
+        while (tryTimes-- > 0) {
             cars.moveCars(numberGenerator);
             OutputView.printCarNameAndPosition(cars);
         }
     }
 
     private void validateTryTimes(int tryTimes) {
-        if (tryTimes < MIN_TRYTIMES) {
-            throw new IllegalArgumentException(NOTICE_TRYTIMES);
+        if (tryTimes < 1) {
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 최소 1회 이상입니다.");
         }
     }
 }
