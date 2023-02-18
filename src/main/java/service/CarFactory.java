@@ -1,20 +1,18 @@
 package service;
 
-
-import static utils.Constant.INIT_POSITION;
-
 import domain.Car;
-import domain.Name;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class CarFactory {
 
-    public static Map<Car, Integer> buildCars(List<String> carNames) {
-        Map<Car, Integer> cars = new HashMap<>();
+    private CarFactory() {
+    }
+
+    public static List<Car> buildCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
-            cars.put(new Car(new Name(carName)), INIT_POSITION);
+            cars.add(new Car(carName,0));
         }
         return cars;
     }
