@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameSystem {
-
-    private static final int DEFAULT_POSITION = 0;
+    
     private static final int MINIMUM_GAME_ROUND = 0;
     private static final int START_ROUND = 1;
     private final int finalRound;
@@ -64,7 +63,7 @@ public class GameSystem {
         return gameResultOfCars.stream()
                 .max(Comparator.comparing(GameResultOfCar::getPosition))
                 .map(GameResultOfCar::getPosition)
-                .orElse(DEFAULT_POSITION);
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     private List<GameResultOfCar> findGameResultOfTopPositionedCars(List<GameResultOfCar> gameResultOfFinalRoundCars, int position) {
