@@ -5,6 +5,7 @@ import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.record.GameRecorder;
 import racingcar.domain.result.GameResultOfCar;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,8 +56,8 @@ public class GameSystem {
     private List<GameResultOfCar> getGameResultsOfFinalRound() {
         return gameRecorder.getRecords()
                 .stream()
-                .filter(gameResultOfCar -> gameResultOfCar.getGameRound() == finalRound)
-                .collect(Collectors.toUnmodifiableList());
+                .filter(gameResultOfCar -> gameResultOfCar.isSameGameRound(finalRound))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     private int findTopPosition(List<GameResultOfCar> gameResultOfCars) {
@@ -68,7 +69,7 @@ public class GameSystem {
 
     private List<GameResultOfCar> findGameResultOfTopPositionedCars(List<GameResultOfCar> gameResultOfFinalRoundCars, int position) {
         return gameResultOfFinalRoundCars.stream()
-                .filter(gameResultOfCar -> gameResultOfCar.getPosition() == position)
-                .collect(Collectors.toUnmodifiableList());
+                .filter(gameResultOfCar -> gameResultOfCar.isSamePosition(position))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

@@ -14,6 +14,14 @@ public class GameResultOfCar {
         this.position = position;
     }
 
+    public boolean isSameGameRound(final int gameRound) {
+        return this.gameRound == gameRound;
+    }
+
+    public boolean isSamePosition(final int position) {
+        return this.position == position;
+    }
+
     public int getGameRound() {
         return gameRound;
     }
