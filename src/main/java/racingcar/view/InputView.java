@@ -13,7 +13,7 @@ public class InputView {
     private final Scanner scanner;
     private final OutputView outputView;
 
-    public InputView(Scanner scanner, OutputView outputView) {
+    public InputView(final Scanner scanner, final OutputView outputView) {
         this.scanner = scanner;
         this.outputView = outputView;
     }
@@ -36,13 +36,13 @@ public class InputView {
         return Integer.parseInt(gameRoundContent);
     }
 
-    private void validateCarNames(String content) {
+    private void validateCarNames(final String content) {
         if (content.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.BLANK_INPUT_ERROR_FOR_CAR_NAMES.getMessage());
         }
     }
 
-    private void validateGameRound(String content) {
+    private void validateGameRound(final String content) {
         if (!content.matches(FORMAT_OF_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_ERROR_FOR_GAME_ROUND.getMessage());
         }

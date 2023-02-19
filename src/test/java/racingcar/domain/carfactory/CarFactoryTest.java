@@ -24,7 +24,7 @@ class CarFactoryTest {
     @ParameterizedTest
     @MethodSource("getCarNames")
     @DisplayName("createCars 메소드에 자동차 이름 배열을 입력하였을 때, Cars 객체를 생성하는지 확인")
-    void createCars_test(List<String> carNames) {
+    void createCars_test(final List<String> carNames) {
         Cars cars = carFactory.createCars(carNames);
 
         assertThat(cars).isInstanceOf(Cars.class);

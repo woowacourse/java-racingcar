@@ -9,20 +9,21 @@ public class Car {
     private static final int MAXIMUM_ROUND = 5;
     private static final int MINIMUM_ROUND = 1;
     private static final int MOVING_BOUND = 4;
+
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(final String name) {
         this(name, DEFAULT_POSITION);
     }
 
-    public Car(String name, int position) {
+    public Car(final String name, final int position) {
         validate(name);
         this.name = name;
         this.position = position;
     }
 
-    private void validate(String name) {
+    private void validate(final String name) {
         if (isInvalidFormat(name)) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 영어로만 구성되어야 합니다.");
         }
@@ -31,21 +32,21 @@ public class Car {
         }
     }
 
-    private boolean isOutOfRange(String name) {
+    private boolean isOutOfRange(final String name) {
         return name.length() > MAXIMUM_ROUND || name.length() < MINIMUM_ROUND;
     }
 
-    private boolean isInvalidFormat(String name) {
+    private boolean isInvalidFormat(final String name) {
         return !name.matches(ENGLISH_FORMAT);
     }
 
-    public void move(int power) {
+    public void move(final int power) {
         if (isMovable(power)) {
             position++;
         }
     }
 
-    private boolean isMovable(int power) {
+    private boolean isMovable(final int power) {
         return power >= MOVING_BOUND;
     }
 
@@ -58,7 +59,7 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

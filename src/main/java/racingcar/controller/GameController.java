@@ -16,7 +16,7 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public GameController(InputView inputView, OutputView outputView) {
+    public GameController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -31,12 +31,12 @@ public class GameController {
         outputView.printWinners(gameSystem.getWinnersGameResult());
     }
 
-    private Cars makeCars(List<String> carNames) {
+    private Cars makeCars(final List<String> carNames) {
         CarFactory carFactory = new CarFactory();
         return carFactory.createCars(carNames);
     }
 
-    private GameSystem createGameSystem(int gameRound) {
+    private GameSystem createGameSystem(final int gameRound) {
         return new GameSystem(gameRound, new GameRecorder(new ArrayList<>()));
     }
 }

@@ -12,7 +12,7 @@ public enum Message {
     WINNER_GUIDE("%s가 최종 우승했습니다.");
     private final String message;
 
-    Message(String message) {
+    Message(final String message) {
         this.message = message;
     }
 

@@ -10,12 +10,12 @@ public class Cars {
     private static final int MINIMUM_SIZE = 2;
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         validate(cars);
         this.cars = List.copyOf(cars);
     }
 
-    private void validate(List<Car> cars) {
+    private void validate(final List<Car> cars) {
         if (isOutOfSize(cars)) {
             throw new IllegalArgumentException("[ERROR] 자동차는 2대 이상 입력되어야 합니다.");
         }
@@ -24,17 +24,17 @@ public class Cars {
         }
     }
 
-    private boolean isOutOfSize(List<Car> cars) {
+    private boolean isOutOfSize(final List<Car> cars) {
         return cars.size() < MINIMUM_SIZE;
     }
 
-    private boolean hasDuplication(List<Car> cars) {
+    private boolean hasDuplication(final List<Car> cars) {
         return cars.stream()
                 .distinct()
                 .count() != cars.size();
     }
 
-    public void moveBy(NumberGenerator numberGenerator) {
+    public void moveBy(final NumberGenerator numberGenerator) {
         for (Car car : cars) {
             car.move(numberGenerator.generate());
         }
