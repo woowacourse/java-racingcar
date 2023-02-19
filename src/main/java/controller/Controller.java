@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Cars;
-import domain.Trial;
-import domain.Winner;
-import util.RandomNumberMaker;
+import domain.RacingGame;
 import view.InputView;
 import view.OutputView;
 
@@ -12,18 +9,18 @@ public class Controller {
 	private final OutputView outputView = new OutputView();
 
 	public void run() {
-		Cars cars = inputView.askCars();
-		Trial trial = inputView.askTrial();
-		for (int i = 0; i < trial.getTrial(); i++) {
-			printRound(cars);
-		}
-		outputView.printWinner(new Winner(cars));
+		String carNames = inputView.askCars();
+		RacingGame racingGame = new RacingGame(carNames);
+
+		int trial = inputView.askTrial();
+		outputView.printResultMessage();
+		startRacing(trial, racingGame);
+		outputView.printWinner(racingGame.getCars().winners());
 	}
 
-	private void printRound(Cars cars) {
-		for (int j = 0; j < cars.getCarsSize(); j++) {
-			cars.addDistance(RandomNumberMaker.makeNumber(), j);
+	public void startRacing(int trial, RacingGame racingGame) {
+		for (int i = 0; i < trial; i++) {
+			outputView.printCarsDistance(racingGame.moveCars());
 		}
-		outputView.printCarsDistance(cars);
 	}
 }

@@ -1,29 +1,38 @@
 package domain;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import static domain.CarFactory.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("자동차들의")
 class CarsTest {
-	List<Car> cars;
+
+	private static final String CARS_NAME = "benz,audi,honda";
+
+	private Cars cars;
 
 	@BeforeEach
-	public void initialize() {
-		cars = new ArrayList<>(List.of(new Car("benz"), new Car("honda"), new Car("audi")));
+	void setUp() {
+		cars = new Cars(arrangeCars(CARS_NAME));
 	}
 
-	@DisplayName("총 개수 테스트")
 	@Test
-	void checkCarsSize() {
-		assertThat(cars.size()).isEqualTo(3);
+	@DisplayName("모든 자동차들이 전진 조건에 만족하면 전진합니다")
+	public void moveCars() {
+		cars.moveCars(() -> true);
+		for (Car car : cars.getCars()) {
+			assertEquals(car.getPosition(), 1);
+		}
+	}
 
-		cars.add(new Car("ford"));
-		assertThat(cars.size()).isEqualTo(4);
+	@Test
+	@DisplayName("모든 자동차들이 전진 조건에 만족하지 않으면 정지합니다")
+	public void stopCars() {
+		cars.moveCars(() -> false);
+		for (Car car : cars.getCars()) {
+			assertEquals(car.getPosition(), 0);
+		}
 	}
 }
