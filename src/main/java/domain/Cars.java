@@ -1,32 +1,39 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
-import domain.strategy.RandomNumberStrategy;
+import domain.strategy.MovingStrategy;
 
 public class Cars {
-	private static final RandomNumberStrategy randomNumberStrategy = new RandomNumberStrategy();
-
 	private final List<Car> cars;
 
-	public Cars(List<Car> input) {
-		this.cars = new ArrayList<>(input);
+	public Cars(List<Car> cars) {
+		this.cars = cars;
 	}
 
-	public int getCarsSize() {
-		return this.cars.size();
+	public void moveCars(MovingStrategy movingStrategy) {
+		cars.forEach(car -> car.move(movingStrategy));
 	}
 
-	public void move() {
-		cars.forEach(car -> car.move(randomNumberStrategy.movable()));
-	}
+	public String winners() {
+		int maxPosition = 0;
+		for (Car value : cars) {
+			if (maxPosition < value.getPosition()) {
+				maxPosition = value.getPosition();
+			}
+		}
 
-	public Car getCar(int index) {
-		return this.cars.get(index);
+		StringJoiner finalWinners = new StringJoiner(", ");
+		for (Car value : cars) {
+			if (value.getPosition() == maxPosition) {
+				finalWinners.add(value.getName());
+			}
+		}
+		return finalWinners.toString();
 	}
 
 	public List<Car> getCars() {
-		return this.cars;
+		return cars;
 	}
 }
