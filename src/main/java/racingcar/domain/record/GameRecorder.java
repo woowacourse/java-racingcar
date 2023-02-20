@@ -1,24 +1,36 @@
 package racingcar.domain.record;
 
+import racingcar.domain.car.Car;
 import racingcar.domain.cars.Cars;
+import racingcar.domain.result.GameResultOfCar;
 
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameRecorder {
 
-    private final Set<GameResultOfCar> records;
-    private final GameRecordManager gameRecordManager;
+    private final List<GameResultOfCar> records;
 
-    public GameRecorder(Set<GameResultOfCar> records, GameRecordManager gameRecordManager) {
+    public GameRecorder(final List<GameResultOfCar> records) {
         this.records = records;
-        this.gameRecordManager = gameRecordManager;
     }
 
-    public void record(int gameRound, Cars cars) {
-        records.addAll(gameRecordManager.makeGameResultsOfCars(gameRound, cars));
+    public void record(final int gameRound, final Cars cars) {
+        records.addAll(makeResults(gameRound, cars));
     }
 
-    public Set<GameResultOfCar> getRecords() {
+    public List<GameResultOfCar> makeResults(final int gameRound, final Cars cars) {
+        return cars.getCars()
+                .stream()
+                .map(car -> createGameResultOfCar(gameRound, car))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private GameResultOfCar createGameResultOfCar(final int gameRound, final Car car) {
+        return new GameResultOfCar(gameRound, car.getName(), car.getPosition());
+    }
+
+    public List<GameResultOfCar> getRecords() {
         return records;
     }
 }

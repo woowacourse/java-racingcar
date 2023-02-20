@@ -1,4 +1,4 @@
-package racingcar.domain.record;
+package racingcar.domain.result;
 
 import java.util.Objects;
 
@@ -14,6 +14,14 @@ public class GameResultOfCar {
         this.position = position;
     }
 
+    public boolean isSameGameRound(final int gameRound) {
+        return this.gameRound == gameRound;
+    }
+
+    public boolean isSamePosition(final int position) {
+        return this.position == position;
+    }
+
     public int getGameRound() {
         return gameRound;
     }
@@ -27,7 +35,7 @@ public class GameResultOfCar {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

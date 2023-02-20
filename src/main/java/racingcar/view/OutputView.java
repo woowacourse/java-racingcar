@@ -1,9 +1,9 @@
 package racingcar.view;
 
-import racingcar.domain.record.GameResultOfCar;
+import racingcar.domain.result.GameResultOfCar;
 import racingcar.view.message.Message;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -18,11 +18,7 @@ public class OutputView {
         print(Message.GAME_ROUND_INPUT_GUIDE.getMessage());
     }
 
-    public void printResultGuide() {
-        print(Message.GAME_RESULT_GUIDE.getMessage());
-    }
-
-    public void printAllGameResults(Set<GameResultOfCar> gameResultOfAllCars) {
+    public void printAllGameResults(final List<GameResultOfCar> gameResultOfAllCars) {
         printResultGuide();
         int gameRound = getFirstGameRound(gameResultOfAllCars);
         for (GameResultOfCar gameResultOfCar : gameResultOfAllCars) {
@@ -34,43 +30,47 @@ public class OutputView {
         }
     }
 
-    private int getFirstGameRound(Set<GameResultOfCar> gameResultOfAllCars) {
+    private void printResultGuide() {
+        print(Message.GAME_RESULT_GUIDE.getMessage());
+    }
+
+    private int getFirstGameRound(final List<GameResultOfCar> gameResultOfAllCars) {
         return gameResultOfAllCars.stream()
                 .map(GameResultOfCar::getGameRound)
                 .min(Integer::compareTo)
                 .orElse(DEFAULT_ROUND);
     }
 
-    private void printBlankLineBy(int gameRound, GameResultOfCar gameResultOfCar) {
+    private void printBlankLineBy(final int gameRound, final GameResultOfCar gameResultOfCar) {
         if (gameRound != gameResultOfCar.getGameRound()) {
             print(Message.EMPTY_MESSAGE.getMessage());
         }
     }
 
-    private String makeResultMessage(String carName, int position) {
+    private String makeResultMessage(final String carName, final int position) {
         return String.format(Message.RESULT_DELIMITER.getMessage(), carName, makePositionMessage(position));
     }
 
-    private String makePositionMessage(int position) {
+    private String makePositionMessage(final int position) {
         String positionMarker = Message.POSITION_MARKER.getMessage();
         return positionMarker.repeat(position);
     }
 
-    public void printWinners(Set<GameResultOfCar> gameResultOfWinners) {
+    public void printWinners(final List<GameResultOfCar> gameResultOfWinners) {
         print(makeWinnersMessage(gameResultOfWinners, Message.WINNER_DELIMITER.getMessage()));
     }
 
-    private String makeWinnersMessage(Set<GameResultOfCar> gameResultOfWinners, String delimiter) {
+    private String makeWinnersMessage(final List<GameResultOfCar> gameResultOfWinners, final String delimiter) {
         return String.format(Message.WINNER_GUIDE.getMessage(), makeWinnerNames(gameResultOfWinners, delimiter));
     }
 
-    private String makeWinnerNames(Set<GameResultOfCar> gameResultOfWinners, String delimiter) {
+    private String makeWinnerNames(final List<GameResultOfCar> gameResultOfWinners, final String delimiter) {
         return gameResultOfWinners.stream()
                 .map(GameResultOfCar::getCarName)
                 .collect(Collectors.joining(delimiter));
     }
 
-    private void print(String message) {
+    private void print(final String message) {
         System.out.println(message);
     }
 }

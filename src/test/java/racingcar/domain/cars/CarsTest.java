@@ -24,14 +24,14 @@ class CarsTest {
     @ParameterizedTest
     @MethodSource("getCars")
     @DisplayName("생성자에 길이가 2 이상이고 중복이 없는 자동차 객체 배열이 입력되었을 때, 오류가 발생하지 않는지 확인")
-    void create_test(List<Car> cars) {
+    void create_test(final List<Car> cars) {
         assertDoesNotThrow(() -> new Cars(cars));
     }
 
     @ParameterizedTest
     @MethodSource("getWrongCars")
     @DisplayName("생성자에 이름이 중복되거나 길이가 2 미만인 자동차 객체 배열이 입력되었을 때, 오류를 발생시키는지 확인")
-    void create_error_test(List<Car> cars) {
+    void create_error_test(final List<Car> cars) {
         assertThatThrownBy(() -> new Cars(cars))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
@@ -40,7 +40,7 @@ class CarsTest {
     @ParameterizedTest
     @MethodSource("getCars")
     @DisplayName("moveBy 메소드에 자동차가 움직일만한 power가 입력되었을 때, 자동차들이 이동하는지 확인")
-    void moveBy_moving_test(List<Car> exampleCars) {
+    void moveBy_moving_test(final List<Car> exampleCars) {
         Cars cars = new Cars(exampleCars);
         List<Integer> unmovedPositions = getPositionOfCars(cars);
 
@@ -53,7 +53,7 @@ class CarsTest {
     @ParameterizedTest
     @MethodSource("getCars")
     @DisplayName("moveBy 메소드에 자동차가 움직이지 못할 power가 입력되었을 때, 자동차들이 멈춰있는지 확인")
-    void moveBy_stopping_test(List<Car> exampleCars) {
+    void moveBy_stopping_test(final List<Car> exampleCars) {
         Cars cars = new Cars(exampleCars);
         List<Integer> unmovedPositions = getPositionOfCars(cars);
 
@@ -63,7 +63,7 @@ class CarsTest {
         assertThat(movedPositions).isEqualTo(unmovedPositions);
     }
 
-    private List<Integer> getPositionOfCars(Cars cars) {
+    private List<Integer> getPositionOfCars(final Cars cars) {
         return cars.getCars()
                 .stream()
                 .map(Car::getPosition)
