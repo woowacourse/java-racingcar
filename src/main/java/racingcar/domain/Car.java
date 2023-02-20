@@ -1,10 +1,15 @@
 package racingcar.domain;
 
 public class Car {
-    private String name;
-    private int distance;
     private static final int NAME_MAX_LENGTH = 5;
     private static final int NAME_MIN_LENGTH = 0;
+    private static final int DISTANCE_DEFAULT = 0;
+    private final String name;
+    private int distance;
+
+    public Car(String name) {
+        this(name, DISTANCE_DEFAULT);
+    }
 
     public Car(String name, int distance) {
         validateNameLength(name);
@@ -14,8 +19,7 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > NAME_MAX_LENGTH
-                || name.length() <= NAME_MIN_LENGTH) {
+        if (name.length() > NAME_MAX_LENGTH || name.length() <= NAME_MIN_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름의 길이는 1부터 5 사이여야 합니다.");
         }
     }

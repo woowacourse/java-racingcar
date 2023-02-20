@@ -11,12 +11,11 @@ import racingcar.domain.Cars;
 public class CarService {
     private static final int RANDOM_NUM_MAX_VALUE = 10;
     private static final int MOVE_CRITERIA = 4;
-    private static final int DISTANCE_DEFAULT = 0;
     private static final int TRY_COUNT_MIN = 0;
-    private Cars cars = new Cars(new ArrayList<Car>());
+    private Cars cars = new Cars(new ArrayList<>());
 
     public void makeCars(List<String> carNames) {
-        cars = new Cars(new ArrayList<Car>());
+        cars = new Cars(new ArrayList<>());
         makeCar(carNames);
     }
 
@@ -28,7 +27,7 @@ public class CarService {
 
     private void makeCar(List<String> carNames) {
         for (String carName : carNames) {
-            Car car = new Car(carName, DISTANCE_DEFAULT);
+            Car car = new Car(carName);
             cars.addCarInformation(car);
         }
     }
@@ -59,7 +58,6 @@ public class CarService {
     }
 
     public List<String> finishGame() {
-        List<String> winner = cars.findWinner(cars.findMaxDistance());
-        return winner;
+        return cars.findWinner(cars.findMaxDistance());
     }
 }
