@@ -41,9 +41,9 @@
 - InputView
     - [x] 자동차 이름 입력받은 후 split하는 메소드 inputview로 책임 분리
     - [x] Scanner 접근 제한자 private 수정
-    - [x] static 제거하기
+    - [x] 접근 제어자 수정(static 제거)
 - OutputView
-    - [ ] static 제거하기
+    - [x] 접근 제어자 수정(static 제거)
     - [ ] Constant 패키지에 나눠져 있는 상수 위치 변경
     - [ ] printCarResult 메소드 출력 방법 수정
     - [ ] printWinners 메소드 출력 방법 수정
