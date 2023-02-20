@@ -44,7 +44,7 @@
     - [x] 접근 제어자 수정(static 제거)
 - OutputView
     - [x] 접근 제어자 수정(static 제거)
-    - [ ] Constant 패키지에 나눠져 있는 상수 위치 변경
+    - [x] 사용되는 상수들 Constant 패키지 삭제 후 위치 변경을 통한 접근 최소화
     - [ ] printCarResult 메소드 출력 방법 수정
     - [ ] printWinners 메소드 출력 방법 수정
 - Car
