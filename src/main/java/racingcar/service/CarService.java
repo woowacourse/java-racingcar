@@ -5,20 +5,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import racingcar.constants.InputConstant;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
 public class CarService {
-    private Cars cars = new Cars(new ArrayList<Car>());
     private static final int RANDOM_NUM_MAX_VALUE = 10;
     private static final int MOVE_CRITERIA = 4;
     private static final int DISTANCE_DEFAULT = 0;
     private static final int TRY_COUNT_MIN = 0;
+    private Cars cars = new Cars(new ArrayList<Car>());
 
-    public void makeCars(String carNameInput) {
+    public void makeCars(List<String> carNames) {
         cars = new Cars(new ArrayList<Car>());
-        List<String> carNames = splitCarNames(carNameInput);
         makeCar(carNames);
     }
 
@@ -33,10 +31,6 @@ public class CarService {
             Car car = new Car(carName, DISTANCE_DEFAULT);
             cars.addCarInformation(car);
         }
-    }
-
-    public List<String> splitCarNames(String carNames) {
-        return List.of(carNames.split(InputConstant.CAR_NAME_SPLIT_DELIMITER.getMessage()));
     }
 
     public Map<String, Integer> runRound() {

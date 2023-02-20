@@ -1,13 +1,15 @@
 package racingcar.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+    private static final String DELIMITER = ",";
     static Scanner scanner = new Scanner(System.in);
 
-    public static String readCarNames() {
+    public static List<String> readCarNames() {
         String carNames = scanner.nextLine();
-        return carNames;
+        return List.of(carNames.split(DELIMITER));
     }
 
     public static int readTryCount() {
