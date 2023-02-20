@@ -45,8 +45,6 @@
 - OutputView
     - [x] 접근 제어자 수정(static 제거)
     - [x] 사용되는 상수들 Constant 패키지 삭제 후 위치 변경을 통한 접근 최소화
-    - [ ] printCarResult 메소드 출력 방법 수정
-    - [ ] printWinners 메소드 출력 방법 수정
 - Car
     - [ ] 생성자 체이닝을 통해 객체 생성 시 distance = 0으로 초기화
     - [ ] Car 객체에게 메시지를 던져서, Car 자신이 전진을 위한 값을 판단하고, 전진할 수 있으면 전진시키도록 변경
