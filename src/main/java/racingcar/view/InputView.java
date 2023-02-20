@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class InputView {
     private static final String DELIMITER = ",";
-    static Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> readCarNames() {
+    public List<String> readCarNames() {
         String carNames = scanner.nextLine();
         return List.of(carNames.split(DELIMITER));
     }
 
-    public static int readTryCount() {
+    public int readTryCount() {
         try {
             int tryCount = Integer.parseInt(scanner.nextLine());
             return tryCount;

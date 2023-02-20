@@ -7,6 +7,7 @@ import racingcar.view.OutputView;
 
 public class RacingcarController {
     private final CarService carService;
+    private final InputView inputView = new InputView();
     private int tryCount;
 
     public RacingcarController(CarService carService) {
@@ -27,7 +28,7 @@ public class RacingcarController {
     private void initializeCarNames() {
         try {
             OutputView.printNameInput();
-            carService.makeCars(InputView.readCarNames());
+            carService.makeCars(inputView.readCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             initializeCarNames();
@@ -37,7 +38,7 @@ public class RacingcarController {
     private void initializeTryCount() {
         try {
             OutputView.printCountInput();
-            tryCount = InputView.readTryCount();
+            tryCount = inputView.readTryCount();
             carService.validateCountInput(tryCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

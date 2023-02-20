@@ -39,10 +39,9 @@
 ### 리팩토링 목록
 
 - InputView
-    - [ ] 자동차 이름 입력받은 후 split하는 메소드 inputview로 책임 분리
-    - [ ] Scanner 접근 제한자 private 수정
-    - [ ] static 제거하기
-    - [ ] Constant 패키지에 나눠져 있는 상수 위치 변경
+    - [x] 자동차 이름 입력받은 후 split하는 메소드 inputview로 책임 분리
+    - [x] Scanner 접근 제한자 private 수정
+    - [x] static 제거하기
 - OutputView
     - [ ] static 제거하기
     - [ ] Constant 패키지에 나눠져 있는 상수 위치 변경
@@ -51,6 +50,7 @@
 - Car
     - [ ] 생성자 체이닝을 통해 객체 생성 시 distance = 0으로 초기화
     - [ ] Car 객체에게 메시지를 던져서, Car 자신이 전진을 위한 값을 판단하고, 전진할 수 있으면 전진시키도록 변경
+    - [ ] Name, Distance VO로 변경하기
 - Cars
     - [ ] makeCars 메소드 사용하지 않고, 생성자에서 바로 초기화하도록 변경
 - Test
