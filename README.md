@@ -39,19 +39,21 @@
 ### 리팩토링 목록
 
 - InputView
-    - [x] 자동차 이름 입력받은 후 split하는 메소드 inputview로 책임 분리
-    - [x] Scanner 접근 제한자 private 수정
-    - [x] 접근 제어자 수정(static 제거)
+  - [x] 자동차 이름 입력받은 후 split하는 메소드 inputview로 책임 분리
+  - [x] Scanner 접근 제한자 private 수정
+  - [x] 접근 제어자 수정(static 제거)
 - OutputView
-    - [x] 접근 제어자 수정(static 제거)
-    - [x] 사용되는 상수들 Constant 패키지 삭제 후 위치 변경을 통한 접근 최소화
+  - [x] 접근 제어자 수정(static 제거)
+  - [x] 사용되는 상수들 Constant 패키지 삭제 후 위치 변경을 통한 접근 최소화
 - Car
-    - [x] 생성자 체이닝을 통해 객체 생성 시 distance = 0으로 초기화
-    - [x] Car 객체에게 메시지를 던져서, Car 자신이 전진을 위한 값을 판단하고, 전진할 수 있으면 전진시키도록 변경
-    - [x] Name, Distance VO로 변경하기
+  - [x] 생성자 체이닝을 통해 객체 생성 시 distance = 0으로 초기화
+  - [x] Car 객체에게 메시지를 던져서, Car 자신이 전진을 위한 값을 판단하고, 전진할 수 있으면 전진시키도록 변경
+  - [x] Name, Distance VO로 변경하기
 - Cars
-    - [ ] makeCars 메소드 사용하지 않고, 생성자에서 바로 초기화하도록 변경
+  - [x] makeCars 메소드 사용하지 않고, 생성자에서 바로 초기화하도록 변경
+- RacingcarController
+  - [ ] 메소드 네이밍 수정
 - Test
-    - [ ] 컨텍스트를 자동차 객체 생성 단위가 아닌 Validation 단위로 묶은 배경
-    - [ ] Cars에 대한 단위 테스트 추가
+  - [ ] 컨텍스트를 자동차 객체 생성 단위가 아닌 Validation 단위로 묶은 배경
+  - [ ] Cars에 대한 단위 테스트 추가
 - [ ] 메소드 정렬 순서 실행 순서에 맞도록 리팩토링
