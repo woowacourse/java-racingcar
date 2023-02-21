@@ -10,7 +10,6 @@ import racingcar.domain.Cars;
 
 public class CarService {
     private static final int RANDOM_NUM_MAX_VALUE = 10;
-    private static final int MOVE_CRITERIA = 4;
     private static final int TRY_COUNT_MIN = 0;
     private Cars cars = new Cars(new ArrayList<>());
 
@@ -37,22 +36,16 @@ public class CarService {
         Random random = new Random();
         for (Car car : cars.getCarInformation()) {
             int randomNumber = random.nextInt(RANDOM_NUM_MAX_VALUE);
-            runForward(car, randomNumber);
-            roundResult.put(car.getName(), car.getDistance());
+            car.runForward(randomNumber);
+            roundResult.put(car.getName().getName(), car.getDistance().getDistance());
         }
         return roundResult;
-    }
-
-    public void runForward(Car car, int engine) {
-        if (engine >= MOVE_CRITERIA) {
-            car.increaseDistance();
-        }
     }
 
     public Map<String, Integer> finishRound() {
         Map<String, Integer> roundResult = new LinkedHashMap<>();
         for (Car car : cars.getCarInformation()) {
-            roundResult.put(car.getName(), car.getDistance());
+            roundResult.put(car.getName().getName(), car.getDistance().getDistance());
         }
         return roundResult;
     }

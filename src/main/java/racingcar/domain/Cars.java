@@ -22,7 +22,7 @@ public class Cars {
     public int findMaxDistance() {
         int maxDistance = -1;
         for (Car car : this.carInformation) {
-            maxDistance = Math.max(car.getDistance(), maxDistance);
+            maxDistance = Math.max(car.getDistance().getDistance(), maxDistance);
         }
         return maxDistance;
     }
@@ -35,8 +35,8 @@ public class Cars {
     }
 
     private void compareDistance(Car car, int maxDistance) {
-        if (car.getDistance() == maxDistance) {
-            winner.add(car.getName());
+        if (car.getDistance().getDistance() == maxDistance) {
+            winner.add(car.getName().getName());
         }
     }
 }
