@@ -9,7 +9,6 @@ public class Cars {
     private static final int RANDOM_NUM_MAX_VALUE = 10;
     private static final Random random = new Random();
     private final List<Car> cars;
-    private final List<String> winner = new ArrayList<>();
 
     public Cars(List<String> carNames) {
         this.cars = convertToCar(carNames);
@@ -28,9 +27,10 @@ public class Cars {
     }
 
     public List<String> getWinner() {
+        List<String> winner = new ArrayList<>();
         int maxDistance = findMaxDistance();
         for (Car car : this.cars) {
-            compareDistance(car, maxDistance);
+            compareDistance(winner, car, maxDistance);
         }
         return winner;
     }
@@ -43,7 +43,7 @@ public class Cars {
         return maxDistance;
     }
 
-    private void compareDistance(Car car, int maxDistance) {
+    private void compareDistance(List<String> winner, Car car, int maxDistance) {
         if (car.getDistance().getDistance() == maxDistance) {
             winner.add(car.getName().getName());
         }
