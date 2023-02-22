@@ -1,7 +1,8 @@
 package racingcar.view;
 
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
+import racingcar.domain.Car;
 
 public class OutputView {
     private static final String CAR_NAME_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
@@ -24,30 +25,18 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-
-    public void printRoundResult(Map<String, Integer> roundResult) {
-        for (Map.Entry<String, Integer> result : roundResult.entrySet()) {
-            String carName = result.getKey();
-            int distance = result.getValue();
-            printCarResult(carName, distance);
-        }
-    }
-
-    public void printCarResult(String carName, int distance) {
-        String carResult = carName + CAR_INFORMATION_DELIMITER
-                + DISTANCE_COMMAND.repeat(distance);
-        System.out.println(carResult);
+    public void printRoundResult(List<Car> roundResult) {
+        roundResult
+                .forEach(car -> System.out.println(car.getName().getName()
+                        + CAR_INFORMATION_DELIMITER
+                        + DISTANCE_COMMAND.repeat(car.getDistance().getDistance())));
+        System.out.println();
     }
 
     public void printWinners(List<String> winnerNames) {
-        StringBuilder stringBuilder = new StringBuilder("\n");
-        String str = String.join(WINNER_NAME_DELIMITER, winnerNames);
-        stringBuilder.append(str).append(WINNER_MESSAGE);
-        System.out.println(stringBuilder);
-    }
-
-
-    public void printNewLine() {
-        System.out.println();
+        System.out.println(winnerNames.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(WINNER_NAME_DELIMITER))
+                + WINNER_MESSAGE);
     }
 }
