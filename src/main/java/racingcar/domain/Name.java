@@ -3,6 +3,7 @@ package racingcar.domain;
 public class Name {
     private static final int NAME_MAX_LENGTH = 5;
     private static final int NAME_MIN_LENGTH = 0;
+
     private final String name;
 
     public Name(String name) {

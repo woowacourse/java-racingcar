@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class Cars {
     private static final int RANDOM_NUM_MAX_VALUE = 10;
     private static final Random random = new Random();
+
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {

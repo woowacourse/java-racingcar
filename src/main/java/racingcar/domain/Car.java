@@ -3,6 +3,7 @@ package racingcar.domain;
 public class Car {
     private static final int DISTANCE_DEFAULT = 0;
     private static final int MOVE_CRITERIA = 4;
+
     private final Name name;
     private final Distance distance;
 

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class InputView {
     private static final String DELIMITER = ",";
+
     private final Scanner scanner = new Scanner(System.in);
 
     public List<String> readCarNames() {
