@@ -3,11 +3,11 @@ package racingcar.domain;
 public class TryCount {
     private static final int TRY_COUNT_MIN = 0;
 
-    private final int tryCount;
+    private final int value;
 
     public TryCount(int tryCount) {
         validateCountInput(tryCount);
-        this.tryCount = tryCount;
+        this.value = tryCount;
     }
 
     private void validateCountInput(int tryCount) {
@@ -16,7 +16,7 @@ public class TryCount {
         }
     }
 
-    public int getTryCount() {
-        return tryCount;
+    public int getValue() {
+        return value;
     }
 }

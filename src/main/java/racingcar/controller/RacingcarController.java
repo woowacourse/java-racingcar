@@ -20,7 +20,7 @@ public class RacingcarController {
     }
 
     private void playRound(Cars cars, TryCount tryCount) {
-        for (int i = 0; i < tryCount.getTryCount(); i++) {
+        for (int i = 0; i < tryCount.getValue(); i++) {
             List<Car> roundResult = cars.runRound();
             outputView.printRoundResult(roundResult);
         }

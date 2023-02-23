@@ -21,6 +21,6 @@ class TryCountTest {
     @ValueSource(ints = {1, 2})
     @DisplayName("시도횟수가 0보다 클 경우 성공")
     void Should_Success_When_TryCountMoreThan0(int tryCount) {
-        assertThat(new TryCount(tryCount).getTryCount()).isEqualTo(tryCount);
+        assertThat(new TryCount(tryCount).getValue()).isEqualTo(tryCount);
     }
 }

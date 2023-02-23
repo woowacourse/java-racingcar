@@ -4,12 +4,12 @@ public class Name {
     private static final int NAME_MAX_LENGTH = 5;
     private static final int NAME_MIN_LENGTH = 0;
 
-    private final String name;
+    private final String value;
 
-    public Name(String name) {
-        validateNameLength(name);
-        validateNameFormat(name);
-        this.name = name;
+    public Name(String value) {
+        validateNameLength(value);
+        validateNameFormat(value);
+        this.value = value;
     }
 
     private void validateNameLength(String name) {
@@ -24,7 +24,7 @@ public class Name {
         }
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 }

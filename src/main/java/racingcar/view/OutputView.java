@@ -27,7 +27,7 @@ public class OutputView {
 
     public void printRoundResult(List<Car> roundResult) {
         roundResult
-                .forEach(car -> System.out.println(car.getName().getName()
+                .forEach(car -> System.out.println(car.getName().getValue()
                         + CAR_INFORMATION_DELIMITER
                         + DISTANCE_COMMAND.repeat(car.getDistance().getDistance())));
         System.out.println();

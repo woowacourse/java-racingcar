@@ -46,7 +46,7 @@ public class Cars {
 
     private void compareDistance(List<String> winner, Car car, int maxDistance) {
         if (car.getDistance().getDistance() == maxDistance) {
-            winner.add(car.getName().getName());
+            winner.add(car.getName().getValue());
         }
     }
 
