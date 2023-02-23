@@ -39,11 +39,10 @@ public class Cars {
     }
 
     private int findMaxDistance() {
-        int maxDistance = -1;
-        for (Car car : this.cars) {
-            maxDistance = Math.max(car.getDistance().getValue(), maxDistance);
-        }
-        return maxDistance;
+        return this.cars.stream()
+                .mapToInt(car -> car.getDistance().getValue())
+                .max()
+                .orElse(-1);
     }
 
     private void compareDistance(List<String> winner, Car car, int maxDistance) {
