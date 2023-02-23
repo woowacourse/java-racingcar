@@ -41,13 +41,13 @@ public class Cars {
     private int findMaxDistance() {
         int maxDistance = -1;
         for (Car car : this.cars) {
-            maxDistance = Math.max(car.getDistance().getDistance(), maxDistance);
+            maxDistance = Math.max(car.getDistance().getValue(), maxDistance);
         }
         return maxDistance;
     }
 
     private void compareDistance(List<String> winner, Car car, int maxDistance) {
-        if (car.getDistance().getDistance() == maxDistance) {
+        if (car.getDistance().getValue() == maxDistance) {
             winner.add(car.getName().getValue());
         }
     }

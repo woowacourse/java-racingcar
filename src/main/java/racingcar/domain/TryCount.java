@@ -5,9 +5,9 @@ public class TryCount {
 
     private final int value;
 
-    public TryCount(int tryCount) {
-        validateCountInput(tryCount);
-        this.value = tryCount;
+    public TryCount(int value) {
+        validateCountInput(value);
+        this.value = value;
     }
 
     private void validateCountInput(int tryCount) {

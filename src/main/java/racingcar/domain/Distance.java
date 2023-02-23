@@ -1,17 +1,17 @@
 package racingcar.domain;
 
 public class Distance {
-    private int distance;
+    private int value;
 
-    public Distance(int distance) {
-        this.distance = distance;
+    public Distance(int value) {
+        this.value = value;
     }
 
     public void increaseDistance() {
-        this.distance++;
+        this.value++;
     }
 
-    public int getDistance() {
-        return distance;
+    public int getValue() {
+        return value;
     }
 }
