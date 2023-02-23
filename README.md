@@ -65,8 +65,8 @@
    - [x] TryCount.java 
    - [x] Name.java
 - [x]  원시값 포장 시  `값의 의미`는 클래스 이름에 표현됐으니 필드는 value 로 표현
-- [ ]  개행 리팩토링
-   - [ ]  .forEach, .stream과 같이 시작되는 부분에는 개행 삭제
-   - [ ]  stream의 메서드 호출마다 개행
+- [x]  개행 리팩토링
+   - [x]  .forEach, .stream과 같이 시작되는 부분에는 개행 삭제
+   - [x]  stream의 메서드 호출마다 개행
 - [ ]  Cars.java 클래스의 findMaxDistance() 메서드에 stream의 max를 사용하는 방식으로 리팩토링
 - [ ]  Cars에 대한 테스트 추가

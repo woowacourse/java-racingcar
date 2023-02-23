@@ -16,7 +16,9 @@ public class Cars {
     }
 
     private List<Car> convertToCar(List<String> carNames) {
-        return carNames.stream().map(Car::new).collect(Collectors.toList());
+        return carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public List<Car> runRound() {
