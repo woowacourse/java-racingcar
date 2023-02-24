@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Cars {
     private static final int RANDOM_NUM_MAX_VALUE = 10;
+    private static final String DELIMITER = ",";
     private static final Random random = new Random();
 
     private final List<Car> cars;
 
-    public Cars(List<String> carNames) {
-        this.cars = convertToCar(carNames);
+    public Cars(String carNames) {
+        this(Stream.of(carNames.split(DELIMITER))
+                .map(Car::new)
+                .collect(Collectors.toList()));
     }
 
-    private List<Car> convertToCar(List<String> carNames) {
-        return carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public List<Car> runRound() {
