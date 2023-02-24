@@ -1,47 +1,41 @@
 package racingcar.view;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import racingcar.constants.InputConstant;
-import racingcar.constants.OutputConstant;
+import java.util.stream.Collectors;
+import racingcar.domain.Car;
 
 public class OutputView {
-    public static void printNameInput() {
-        System.out.println(InputConstant.CAR_NAME_INPUT_MESSAGE.getMessage());
+    private static final String CAR_NAME_INPUT_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String TRY_COUNT_INPUT_MESSAGE = "시도할 회수는 몇회인가요?";
+    private static final String RESULT_MESSAGE = "실행 결과";
+    private static final String CAR_INFORMATION_DELIMITER = " : ";
+    private static final String DISTANCE_COMMAND = "-";
+    private static final String WINNER_MESSAGE = "가 최종 우승했습니다.";
+    private static final String WINNER_NAME_DELIMITER = ", ";
+
+    public void printNameInput() {
+        System.out.println(CAR_NAME_INPUT_MESSAGE);
     }
 
-    public static void printCountInput() {
-        System.out.println(InputConstant.TRY_COUNT_INPUT_MESSAGE.getMessage());
+    public void printCountInput() {
+        System.out.println(TRY_COUNT_INPUT_MESSAGE);
     }
 
-    public static void printResultMessage() {
-        System.out.println(OutputConstant.RESULT_MESSAGE.getMessage());
+    public void printResultMessage() {
+        System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printRoundResult(LinkedHashMap<String, Integer> roundResult) {
-        for (String key : roundResult.keySet()) {
-            Integer value = roundResult.get(key);
-            printCarResult(key, value);
-        }
+    public void printRoundResult(List<Car> roundResult) {
+        roundResult.forEach(car -> System.out.println(car.getName().getValue()
+                + CAR_INFORMATION_DELIMITER
+                + DISTANCE_COMMAND.repeat(car.getDistance().getValue())));
+        System.out.println();
     }
 
-    public static void printCarResult(String carName, int distance) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(carName).append(OutputConstant.CAR_INFORMATION_DELIMITER.getMessage());
-        for (int i = 0; i < distance; i++) {
-            stringBuilder.append(OutputConstant.DISTANCE_COMMAND.getMessage());
-        }
-        System.out.println(stringBuilder.toString());
-    }
-
-    public static void printWinners(List<String> winnerNames) {
-        StringBuilder stringBuilder = new StringBuilder("\n");
-        String str = String.join(OutputConstant.WINNER_NAME_DELIMITER.getMessage(), winnerNames);
-        stringBuilder.append(str).append(OutputConstant.WINNER_MESSAGE.getMessage());
-        System.out.println(stringBuilder.toString());
-    }
-
-    public static void printNewLine() {
-        System.out.println("");
+    public void printWinners(List<String> winnerNames) {
+        System.out.println(winnerNames.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(WINNER_NAME_DELIMITER))
+                + WINNER_MESSAGE);
     }
 }

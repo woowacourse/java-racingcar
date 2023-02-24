@@ -2,41 +2,58 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Cars {
-    private final List<Car> carInformation;
-    private final List<String> winner = new ArrayList<>();
+    private static final int RANDOM_NUM_MAX_VALUE = 10;
+    private static final String DELIMITER = ",";
+    private static final Random random = new Random();
 
-    public Cars(List<Car> carInformation) {
-        this.carInformation = carInformation;
+    private final List<Car> cars;
+
+    public Cars(String carNames) {
+        this(Stream.of(carNames.split(DELIMITER))
+                .map(Car::new)
+                .collect(Collectors.toList()));
     }
 
-    public void addCarInformation(Car car) {
-        this.carInformation.add(car);
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public List<Car> getCarInformation() {
-        return this.carInformation;
-    }
-
-    public int findMaxDistance() {
-        int maxDistance = -1;
-        for (Car car : this.carInformation) {
-            maxDistance = Math.max(car.getDistance(), maxDistance);
+    public List<Car> runRound() {
+        for (Car car : this.cars) {
+            int randomNumber = random.nextInt(RANDOM_NUM_MAX_VALUE);
+            car.runForward(randomNumber);
         }
-        return maxDistance;
+        return this.cars;
     }
 
-    public List<String> findWinner(int maxDistance) {
-        for (Car car : this.carInformation) {
-            compareDistance(car, maxDistance);
+    public List<String> getWinner() {
+        List<String> winner = new ArrayList<>();
+        int maxDistance = findMaxDistance();
+        for (Car car : this.cars) {
+            compareDistance(winner, car, maxDistance);
         }
         return winner;
     }
 
-    private void compareDistance(Car car, int maxDistance) {
-        if (car.getDistance() == maxDistance) {
-            winner.add(car.getName());
+    private int findMaxDistance() {
+        return this.cars.stream()
+                .mapToInt(car -> car.getDistance().getValue())
+                .max()
+                .orElse(-1);
+    }
+
+    private void compareDistance(List<String> winner, Car car, int maxDistance) {
+        if (car.getDistance().getValue() == maxDistance) {
+            winner.add(car.getName().getValue());
         }
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

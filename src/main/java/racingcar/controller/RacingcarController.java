@@ -1,55 +1,49 @@
 package racingcar.controller;
 
-import java.util.LinkedHashMap;
-import racingcar.service.CarService;
+import java.util.List;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingcarController {
-    private final CarService carService;
-    private int tryCount;
-
-    public RacingcarController(CarService carService) {
-        this.carService = carService;
-    }
-
-    public void start() {
-        initializeCarNames();
-        initializeTryCount();
-    }
-
-    public void initializeCarNames() {
-        try {
-            OutputView.printNameInput();
-            carService.validateNameInput(InputView.readCarNames());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            initializeCarNames();
-        }
-    }
-
-    public void initializeTryCount() {
-        try {
-            OutputView.printCountInput();
-            tryCount = InputView.readTryCount();
-            carService.validateCountInput(tryCount);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            initializeTryCount();
-        }
-    }
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
-        OutputView.printResultMessage();
-        for (int i = 0; i < tryCount; i++) {
-            LinkedHashMap<String, Integer> roundResult = carService.runRound();
-            OutputView.printRoundResult(roundResult);
-            OutputView.printNewLine();
+        Cars cars = makeCars();
+        TryCount tryCount = makeTryCount();
+        outputView.printResultMessage();
+        playRound(cars, tryCount);
+        outputView.printWinners(cars.getWinner());
+    }
+
+    private void playRound(Cars cars, TryCount tryCount) {
+        for (int i = 0; i < tryCount.getValue(); i++) {
+            List<Car> roundResult = cars.runRound();
+            outputView.printRoundResult(roundResult);
+        }
+        outputView.printRoundResult(cars.getCars());
+    }
+
+    private Cars makeCars() {
+        try {
+            outputView.printNameInput();
+            return new Cars(inputView.readCarNames());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return makeCars();
         }
     }
 
-    public void finish() {
-        OutputView.printRoundResult(carService.finishRound());
-        OutputView.printWinners(carService.finishGame());
+    private TryCount makeTryCount() {
+        try {
+            outputView.printCountInput();
+            return new TryCount(inputView.readTryCount());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return makeTryCount();
+        }
     }
 }

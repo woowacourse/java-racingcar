@@ -1,41 +1,32 @@
 package racingcar.domain;
 
-import java.util.Map;
-import racingcar.constants.CarConstant;
-
 public class Car {
-    private String name;
-    private int distance;
+    private static final int DISTANCE_DEFAULT = 0;
+    private static final int MOVE_CRITERIA = 4;
+
+    private final Name name;
+    private final Distance distance;
+
+    public Car(String name) {
+        this(name, DISTANCE_DEFAULT);
+    }
 
     public Car(String name, int distance) {
-        validateNameLength(name);
-        validateNameFormat(name);
-        this.name = name;
-        this.distance = distance;
+        this.name = new Name(name);
+        this.distance = new Distance(distance);
     }
 
-    private void validateNameLength(String name) {
-        if (name.length() > CarConstant.NAME_MAX_LENGTH.getNumber()
-                || name.length() <= CarConstant.NAME_MIN_LENGTH.getNumber()) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름의 길이는 1부터 5 사이여야 합니다.");
+    public void runForward(int engine) {
+        if (engine >= MOVE_CRITERIA) {
+            this.distance.increaseDistance();
         }
     }
 
-    private void validateNameFormat(String name) {
-        if (!name.matches("^[a-zA-Z0-9]*$")) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 영숫자로 이루어져야 합니다.");
-        }
-    }
-
-    public void increaseDistance() {
-        this.distance++;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getDistance() {
+    public Distance getDistance() {
         return distance;
+    }
+
+    public Name getName() {
+        return name;
     }
 }
