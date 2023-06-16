@@ -15,10 +15,13 @@ public class GameStarter {
         InputView inputView = new InputView();
         Filter filter = new Filter();
 
+        checkInput(inputView, filter);
+    }
+
+    private void checkInput(InputView inputView, Filter filter) {
         do {
             carNum = inputView.getCarNumber();
             tryCount = inputView.getTryCount();
         } while (!filter.CheckInputValidate(carNum) || !filter.CheckInputValidate(tryCount));
-
     }
 }
