@@ -13,7 +13,12 @@ public class GameStarter {
     //어플리케이션 흐름 제어
     private void run() {
         InputView inputView = new InputView();
-        carNum = inputView.getCarNumber();
-        tryCount = inputView.getTryCount();
+        Filter filter = new Filter();
+
+        do {
+            carNum = inputView.getCarNumber();
+            tryCount = inputView.getTryCount();
+        } while (!filter.CheckInputValidate(carNum) || !filter.CheckInputValidate(tryCount));
+
     }
 }
