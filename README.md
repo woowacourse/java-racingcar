@@ -12,7 +12,7 @@
 ## ⚙️ 개발환경
 - 'java 8'
 - **IDE** : intelliJ 2022.1.2
-- **Test Framework** : unit(5.x.x)
+- **Test Framework** : Junit(5.x.x)
 
 <br>
 
