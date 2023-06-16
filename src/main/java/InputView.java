@@ -8,4 +8,11 @@ public class InputView {
 
         return carNumber;
     }
+
+    public int getTryCount() {
+        System.out.println("시도할 횟수는 몇 회인가요?");
+        int tryCount = scanner.nextInt();
+
+        return tryCount;
+    }
 }

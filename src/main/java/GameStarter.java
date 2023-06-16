@@ -2,6 +2,7 @@
 public class GameStarter {
 
     int carNum;
+    int tryCount;
 
     //어플리케이션 시작
     public static void main(String[] args) {
@@ -13,5 +14,6 @@ public class GameStarter {
     private void run() {
         InputView inputView = new InputView();
         carNum = inputView.getCarNumber();
+        tryCount = inputView.getTryCount();
     }
 }
