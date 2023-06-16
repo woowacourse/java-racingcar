@@ -12,10 +12,9 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.24.2'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
 }
-
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
+        languageVersion = JavaLanguageVersion.of(11)
     }
 }
 
