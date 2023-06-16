@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
+
 //어플리케이션을 시작 및 제어하는 main 클래스
 public class GameStarter {
 
+    static List<Car> carList = new ArrayList<>();
     int carNum;
     int tryCount;
 
@@ -14,8 +18,11 @@ public class GameStarter {
     private void run() {
         InputView inputView = new InputView();
         Filter filter = new Filter();
+        CarFactory carFactory = new CarFactory();
 
         checkInput(inputView, filter);
+
+        carFactory.makeCar(carNum);
     }
 
     private void checkInput(InputView inputView, Filter filter) {
