@@ -20,6 +20,17 @@ public class InputViewTest {
         assertThat(Integer.parseInt(input)).isEqualTo(inputView.getCarNumber());
     }
 
+    @DisplayName("전진 시도 횟수 입력 테스트")
+    @Test
+    void ViewTest2() {
+        InputView inputView = new InputView();
+        String input = "5";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        InputView.scanner = new Scanner(System.in);
+        assertThat(Integer.parseInt(input)).isEqualTo(inputView.getTryCount());
+    }
     //int값을 byte배열로 바꿔주는 메서드
     public  byte[] intToByteArray(int value) {
         byte[] byteArray = new byte[4];
