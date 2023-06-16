@@ -21,8 +21,8 @@ public class GameStarter {
         CarFactory carFactory = new CarFactory();
 
         checkInput(inputView, filter);
-
         carFactory.makeCar(carNum);
+        carList.forEach(carFactory::setRandomNumber);
     }
 
     private void checkInput(InputView inputView, Filter filter) {

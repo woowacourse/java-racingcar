@@ -1,8 +1,8 @@
 public class Car {
     int location = 0;
-    int randomNumber;
+    double randomNumber;
 
-    public void foward() {
+    public void forward() {
         this.location += 1;
     }
 }
