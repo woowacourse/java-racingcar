@@ -30,4 +30,24 @@ public class CarTest {
 
         assertThat(GameStarter.carList.size()).isEqualTo(3);
     }
+
+    @DisplayName("차량 랜덤 변수 생성 테스트")
+    @Test
+    void CarTest3() {
+        RandomNumberFactory factory = new RandomNumberFactory();
+
+        assertThat(factory.makeRandomNumber()).isBetween(0.0, 10.0);
+    }
+
+    @DisplayName("차량 랜덤 변수 삽입 테스트")
+    @Test
+    void CarTest4() {
+        CarFactory factory = new CarFactory();
+        GameStarter.carList.forEach(factory::setRandomNumber);
+
+        assertThat(GameStarter.carList.stream()
+                .filter(car -> car.randomNumber < 10 && car.randomNumber > 0)
+                .collect(Collectors.toList()))
+                .isEqualTo(GameStarter.carList);
+    }
 }
