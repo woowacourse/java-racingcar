@@ -20,6 +20,7 @@ public class GameStarter {
     //어플리케이션 흐름 제어
     private void run() {
         initGameProperty();
+        startGame(tryCount);
     }
 
     private void initGameProperty() {
@@ -27,12 +28,22 @@ public class GameStarter {
         carFactory.makeCar(carNum);
     }
 
-    private void startGame() {
-        carList.forEach(car -> car.setRandomNumber(carFactory.insertRandomNumber()));
-        carList.stream()
-                .filter(car -> filter.CheckRandomNumber(car.getRandomNumber()))
-                .collect(Collectors.toList())
-                .forEach(Car::forward);
+    private void startGame(int tryCount) {
+        ResultView resultView = new ResultView();
+        for (int i = 0; i < tryCount; i++) {
+            carList.forEach(car -> car.setRandomNumber(carFactory.insertRandomNumber()));
+            carList.stream()
+                    .filter(car -> filter.CheckRandomNumber(car.getRandomNumber()))
+                    .collect(Collectors.toList())
+                    .forEach(Car::forward);
+
+            showResult(carList, resultView);
+        }
+    }
+
+    private void showResult(List<Car> carList, ResultView resultView) {
+        carList.forEach(resultView::showCarLocation);
+        System.out.println();
     }
 
     private void checkInput(InputView inputView, Filter filter) {

@@ -4,7 +4,7 @@ public class Car {
     private double randomNumber;
 
     public Car() {
-        this.location = 0;
+        this.location = 1;
         this.randomNumber = INITIAL_RANDOM_NUMBER;
     }
 
