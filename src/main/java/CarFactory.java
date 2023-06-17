@@ -7,7 +7,7 @@ public class CarFactory {
         }
     }
 
-    public void setRandomNumber(Car car) {
-        car.randomNumber = factory.makeRandomNumber();
+    public double insertRandomNumber() {
+        return factory.makeRandomNumber();
     }
 }

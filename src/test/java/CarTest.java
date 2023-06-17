@@ -43,10 +43,10 @@ public class CarTest {
     @Test
     void CarTest4() {
         CarFactory factory = new CarFactory();
-        GameStarter.carList.forEach(factory::setRandomNumber);
+        GameStarter.carList.forEach(car -> car.setRandomNumber(factory.insertRandomNumber()));
 
         assertThat(GameStarter.carList.stream()
-                .filter(car -> car.randomNumber < 10 && car.randomNumber > 0)
+                .filter(car -> car.getRandomNumber() < 10 && car.getRandomNumber() > 0)
                 .collect(Collectors.toList()))
                 .isEqualTo(GameStarter.carList);
     }

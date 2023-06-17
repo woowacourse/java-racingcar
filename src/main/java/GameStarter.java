@@ -4,7 +4,7 @@ import java.util.List;
 //어플리케이션을 시작 및 제어하는 main 클래스
 public class GameStarter {
 
-    static List<Car> carList = new ArrayList<>();
+    public static List<Car> carList = new ArrayList<>();
     int carNum;
     int tryCount;
 
@@ -22,7 +22,7 @@ public class GameStarter {
 
         checkInput(inputView, filter);
         carFactory.makeCar(carNum);
-        carList.forEach(carFactory::setRandomNumber);
+        carList.forEach(car -> car.setRandomNumber(carFactory.insertRandomNumber()));
     }
 
     private void checkInput(InputView inputView, Filter filter) {
