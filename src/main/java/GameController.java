@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController {
-    GameView gameView = new GameView();
     private final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     GameView gameView = new GameView();
     private List<String> nameList;
@@ -35,6 +34,11 @@ public class GameController {
             GameView.showProgress(carList);
             System.out.println();
         }
+        List<String> winners = new ArrayList<>(getWinners());
+        gameView.showWinner(winners);
+
+    }
+
     public String getCarNames() throws IOException {
         return input.readLine();
     }
@@ -50,3 +54,14 @@ public class GameController {
                 .forEach(Car::incrementCount);
     }
 
+    public List<String> getWinners() {
+        int maxCount = carList.stream().mapToInt(Car::getCount)
+                .max()
+                .orElse(0);
+        return carList.stream()
+                .filter(car -> car.getCount() == maxCount)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+}
