@@ -24,6 +24,16 @@ public class GameController {
         for (String name : nameList) {
             carList.add(new Car(name.trim()));
         }
+
+        gameView.askTryCounts();
+        int times = getTryTimes();
+
     public String getCarNames() throws IOException {
         return input.readLine();
     }
+
+    public int getTryTimes() throws IOException {
+        String tryTimesStr = input.readLine();
+        return Integer.parseInt(tryTimesStr);
+    }
+
