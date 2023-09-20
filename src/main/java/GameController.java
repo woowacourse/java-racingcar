@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class GameController {
     GameView gameView = new GameView();
     private final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    GameView gameView = new GameView();
     private List<String> nameList;
     private List<Car> carList;
     private Dice dice = new Dice();
@@ -28,6 +29,12 @@ public class GameController {
         gameView.askTryCounts();
         int times = getTryTimes();
 
+        gameView.printRacingStart();
+        for (int i = 0; i < times; i++) {
+            setProgress();
+            GameView.showProgress(carList);
+            System.out.println();
+        }
     public String getCarNames() throws IOException {
         return input.readLine();
     }
@@ -35,5 +42,11 @@ public class GameController {
     public int getTryTimes() throws IOException {
         String tryTimesStr = input.readLine();
         return Integer.parseInt(tryTimesStr);
+    }
+
+    public void setProgress() {
+        carList.stream()
+                .filter(car -> dice.validateMove())
+                .forEach(Car::incrementCount);
     }
 

@@ -25,6 +25,12 @@ public class Car {
         if (!nameSet.add(name)) {
             throw new IllegalArgumentException("이름이 중복됩니다.");
         }
+    }
+
+    public int incrementCount() {
+        return this.count++;
+    }
+
     public String getName() {
         return name;
     }
