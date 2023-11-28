@@ -30,13 +30,13 @@ class RacingGameTest {
         TryCount tryCount = new TryCount(10);
 
         // when
-        List<List<Car>> records = racingGame.playGame(tryCount);
+        List<List<Record>> records = racingGame.playGame(tryCount);
 
         // then
         assertSoftly(softly -> {
             softly.assertThat(records).hasSize(tryCount.value());
 
-            List<Car> lastRecord = records.get(records.size() - 1);
+            List<Record> lastRecord = records.get(records.size() - 1);
             assertThat(lastRecord)
                     .filteredOn(it -> it.distance() == tryCount.value())
                     .hasSize(cars.cars().size());
