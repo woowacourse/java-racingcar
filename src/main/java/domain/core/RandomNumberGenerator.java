@@ -1,4 +1,4 @@
-package domain;
+package domain.core;
 
 public class RandomNumberGenerator implements NumberGenerator {
 

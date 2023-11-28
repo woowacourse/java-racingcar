@@ -1,5 +1,6 @@
-package domain;
+package domain.core;
 
+import domain.vo.Distance;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

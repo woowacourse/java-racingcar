@@ -1,4 +1,4 @@
-package domain;
+package domain.vo;
 
 import java.util.Objects;
 

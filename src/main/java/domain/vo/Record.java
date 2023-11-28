@@ -1,4 +1,4 @@
-package domain;
+package domain.vo;
 
 public class Record {
 

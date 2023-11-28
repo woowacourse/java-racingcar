@@ -1,4 +1,7 @@
-package domain;
+package domain.core;
+
+import domain.vo.Distance;
+import domain.vo.Name;
 
 public class Car {
 

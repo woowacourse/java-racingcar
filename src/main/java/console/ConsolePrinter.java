@@ -1,7 +1,7 @@
 package console;
 
-import domain.Car;
-import domain.Record;
+import domain.core.Car;
+import domain.vo.Record;
 import java.util.List;
 import java.util.stream.Collectors;
 

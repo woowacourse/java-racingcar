@@ -1,8 +1,9 @@
-package domain;
+package domain.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import domain.vo.Name;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;

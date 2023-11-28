@@ -1,13 +1,21 @@
-package domain;
+package domain.vo;
 
 import java.util.Objects;
 
-public class TryCount {
+public class Distance {
 
     private final int value;
 
-    public TryCount(int value) {
+    public Distance(int value) {
         this.value = value;
+    }
+
+    public static Distance initial() {
+        return new Distance(0);
+    }
+
+    public Distance plus(int value) {
+        return new Distance(this.value + value);
     }
 
     public int value() {
@@ -18,8 +26,8 @@ public class TryCount {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TryCount tryCount = (TryCount) o;
-        return value == tryCount.value;
+        Distance distance = (Distance) o;
+        return value == distance.value;
     }
 
     @Override

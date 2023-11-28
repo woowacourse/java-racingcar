@@ -1,4 +1,4 @@
-package domain;
+package domain.vo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
@@ -28,7 +28,6 @@ class DistanceTest {
         int value = -10;
 
         // when
-
         // then
         assertThatNoException().isThrownBy(() -> new Distance(value));
     }
