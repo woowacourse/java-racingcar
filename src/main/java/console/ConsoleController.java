@@ -16,9 +16,9 @@ public class ConsoleController {
     private final ConsolePrinter printer = new ConsolePrinter();
 
     public void playGame() {
-        List<Car> cars = makeCars();
+        Cars cars = makeCars();
         TryCount tryCount = readTryCount();
-        RacingGame racingGame = new RacingGame(new RandomNumberGenerator(), new Cars(cars));
+        RacingGame racingGame = new RacingGame(new RandomNumberGenerator(), cars);
 
         List<List<Record>> playRecords = racingGame.playGame(tryCount);
         printer.printPlayRecords(playRecords);
@@ -27,16 +27,19 @@ public class ConsoleController {
         printer.printWinners(winners);
     }
 
-    private List<Car> makeCars() {
+    private Cars makeCars() {
         List<String> inputNames = reader.readCarNames();
-        return inputNames.stream()
+        List<Car> cars = inputNames.stream()
                 .map(Name::new)
                 .map(Car::new)
                 .collect(Collectors.toList());
+
+        return new Cars(cars);
     }
 
     private TryCount readTryCount() {
         int inputTryCount = reader.readTryCount();
+        
         return new TryCount(inputTryCount);
     }
 }

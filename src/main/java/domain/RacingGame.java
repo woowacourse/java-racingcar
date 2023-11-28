@@ -16,14 +16,19 @@ public class RacingGame {
 
     public List<List<Record>> playGame(TryCount tryCount) {
         List<List<Record>> records = new ArrayList<>();
+
         for (int i = 0; i < tryCount.value(); i++) {
             List<Car> result = cars.playOnce(numberGenerator);
-            List<Record> record = result.stream()
-                    .map(car -> new Record(car.name(), car.distance()))
-                    .collect(Collectors.toList());
+            List<Record> record = convertTo(result);
             records.add(record);
         }
         return records;
+    }
+
+    private List<Record> convertTo(List<Car> result) {
+        return result.stream()
+                .map(car -> new Record(car.name(), car.distance()))
+                .collect(Collectors.toList());
     }
 
     public List<Car> winners() {
