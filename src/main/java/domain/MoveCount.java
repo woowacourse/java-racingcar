@@ -13,6 +13,10 @@ public class MoveCount {
         return new MoveCount(moveCount);
     }
 
+    public void consume() {
+        moveCount--;
+    }
+
     public void validate(int moveCount) {
         validateRange(moveCount);
     }
