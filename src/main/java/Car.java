@@ -10,6 +10,14 @@ public class Car {
         this.distance = 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
     public void moveCar() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         int randomNumber = random.nextInt(10);
