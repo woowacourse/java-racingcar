@@ -29,7 +29,7 @@ public class InputUtils {
     }
 
     public static <T> T retryOnException(Supplier<T> supplier) {
-        while(true) {
+        while (true) {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {

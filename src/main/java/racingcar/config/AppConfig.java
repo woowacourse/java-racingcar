@@ -7,7 +7,8 @@ import racingcar.view.console.ConsoleInputView;
 import racingcar.view.console.ConsoleOutputView;
 
 public class AppConfig {
-    private AppConfig() {}
+    private AppConfig() {
+    }
 
     public static InputView consoleInputView() {
         return new ConsoleInputView();
