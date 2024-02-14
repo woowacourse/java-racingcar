@@ -10,6 +10,10 @@ public class Car {
         this.carName = carName;
     }
 
+    public static Car from(String name) {
+        return new Car(name);
+    }
+
     public Integer getPosition() {
         return this.position;
     }
@@ -20,12 +24,8 @@ public class Car {
         }
     }
 
-    public void move() {
+    private void move() {
         position++;
-    }
-
-    public static Car from(String name) {
-        return new Car(name);
     }
 
     private void validate(String carName) {
@@ -37,5 +37,4 @@ public class Car {
             throw new IllegalArgumentException();
         }
     }
-
 }
