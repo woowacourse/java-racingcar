@@ -11,10 +11,18 @@ public class RacingGameController {
 
     public void run() {
         Cars cars = inputView.readCars();
-        inputView.readCount();
-        RacingGame racingGame = RacingGame.of(3, cars);
-        racingGame.play();
+        int count = inputView.readCount();
+        RacingGame racingGame = RacingGame.of(count, cars, new RandomMovementGenerator(new RandomNumberGenerator()));
+        outputView.showStatusMessage();
+        play(cars, count);
         Winners winners = Winners.from(cars);
+        outputView.showResult(winners);
+    }
 
+    public void play(Cars cars, int count) {
+        for (int i = 0; i < count; i++) {
+            cars.move(new RandomMovementGenerator(new RandomNumberGenerator()));
+            outputView.showStatus(cars);
+        }
     }
 }

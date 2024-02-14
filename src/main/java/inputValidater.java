@@ -50,7 +50,7 @@ public class inputValidater {
     }
 
     private void validateNumeric(String input) {
-        if (input.matches("-?\\d+")) { // 성능 그지
+        if (!input.matches("-?\\d+")) { // 성능 그지
             throw new IllegalArgumentException();
         }
     }

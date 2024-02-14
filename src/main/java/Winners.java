@@ -15,4 +15,8 @@ public class Winners {
     private static List<Car> getWinners(Cars cars) {
         return cars.getMaxDistanceCars();
     }
+
+    public List<Car> getWinners() {
+        return winners;
+    }
 }
