@@ -6,14 +6,16 @@ import view.InputView;
 
 public class Application {
     private static List<Car> cars;
+    private static int numberOfAttempts;
 
     public static void main(String[] args) {
         run();
     }
 
     public static void run() {
-        // input
         while (makeCars())
+            ;
+        while (getNumberOfAttempts())
             ;
         // car race
         // output
@@ -39,4 +41,12 @@ public class Application {
         return cars;
     }
 
+    private static boolean getNumberOfAttempts() {
+        try {
+            numberOfAttempts = InputView.readNumberOfAttempts();
+            return true;
+        } catch (IOException | IllegalArgumentException e) {
+            return false;
+        }
+    }
 }
