@@ -18,9 +18,14 @@ public class Application {
             ;
         while (getNumberOfAttempts())
             ;
-        race();
-        // output
+        //실행결과 출력
 
+        StringBuilder log = new StringBuilder("실행 결과");
+
+        for (int i = 0; i < numberOfAttempts; i++) {
+            log.append(race()).append("\n\n");
+        }
+        
     }
 
     private static boolean makeCars() {
@@ -51,14 +56,19 @@ public class Application {
         }
     }
 
-    private static void race() {
+    private static String race() {
+        StringBuilder log = new StringBuilder();
+
         //indent 2
         for (Car car : cars) {
             int randomNumber = generateRandomNumber();
             if (randomNumber >= 4) {
                 car.move();
             }
+            log.append(car.toString());
         }
+
+        return log.toString();
     }
 
     private static int generateRandomNumber() {
