@@ -33,4 +33,22 @@ public class InputView {
 
         return splitCarNames;
     }
+
+    public int getTryCount() {
+        String input = scanner.nextLine();
+        int tryCount;
+        try {
+            tryCount = Integer.parseInt(input);
+            if (tryCount <= 0) {
+                throw new IllegalArgumentException("시도할 회수는 자연수를 입력해 주세요.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("시도할 회수는 숫자여야만 가능합니다.");
+            return getTryCount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getTryCount();
+        }
+        return tryCount;
+    }
 }
