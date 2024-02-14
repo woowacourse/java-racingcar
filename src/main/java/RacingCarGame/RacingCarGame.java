@@ -7,10 +7,11 @@ import java.util.Scanner;
 public class RacingCarGame {
     public void run() {
         boolean nameProgress = true;
+        final Scanner scanner = new Scanner(System.in);
         while (nameProgress) {
             try {
                 System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-                final Scanner scanner = new Scanner(System.in);
+
                 String rawCarNames = scanner.nextLine();
 
                 if (rawCarNames == null || rawCarNames.isEmpty()) {
@@ -31,9 +32,19 @@ public class RacingCarGame {
             }
         }
 
+        int count;
         boolean countProgress = true;
         while(countProgress) {
-            System.out.println("시도할 횟수는 몇회인가요?");
+            try {
+                System.out.println("시도할 횟수는 몇회인가요?");
+                String rawCount = scanner.nextLine();
+                if(rawCount == null || rawCount.isEmpty()) {
+                    throw new IllegalArgumentException("올바르지 않은 횟수 입력입니다.다시 입력해주세요.");
+                }
+                count = Integer.parseInt(rawCount);
+            } catch (RuntimeException exception) {
+                System.out.println(exception.getMessage());
+            }
 
         }
     }
