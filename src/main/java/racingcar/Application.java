@@ -10,7 +10,8 @@ public class Application {
         String input = sc.nextLine();
         Cars cars = new Cars(input);
 
-        // 2. 게임 횟수를 입력받고 레이싱 게임을 생성한다.
+        String countInput = sc.nextLine();
+        RacingGame racingGame = new RacingGame(countInput, cars);
 
         // 3. 게임 실행 및 결과 출력
     }
