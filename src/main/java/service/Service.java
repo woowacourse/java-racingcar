@@ -4,6 +4,9 @@ import domain.Car;
 
 public class Service {
 
+    private static int RANDOM_NUMBER_RANGE = 10;
+    private static int MOVE_BOUNDARY_NUMBER = 4;
+
     public static void moveForward(Car car) {
         if (willMove()) {
             car.move();
@@ -11,7 +14,7 @@ public class Service {
     }
 
     private static boolean willMove() {
-        int randomNumber = (int) (Math.random() * 10);
-        return randomNumber >= 4;
+        int randomNumber = (int) (Math.random() * RANDOM_NUMBER_RANGE);
+        return randomNumber >= MOVE_BOUNDARY_NUMBER;
     }
 }
