@@ -21,6 +21,10 @@ public class Car {
         return randomNumber >= MINIMUM_NUMBER_TO_MOVE;
     }
 
+    public String getName() {
+        return name.getName();
+    }
+
     public int getPosition() {
         return position;
     }

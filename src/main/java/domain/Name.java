@@ -17,4 +17,8 @@ public class Name {
                     String.format(NAME_EXCEPTION_MESSAGE, MAX_LENGTH_OF_NAME));
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
