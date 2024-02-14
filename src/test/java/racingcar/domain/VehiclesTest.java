@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 class VehiclesTest {
 
     @Test
-    @DisplayName("자동차 이름을 넣으면 쉼표로 구분하여 자동차 객체들을 생성한다")
-    public void fromTest() {
+    @DisplayName("자동차 이름을 넣으면 쉼표로 구분하여 자동차 객체들을 생성한다.")
+    void createVehicleTest() {
         //given
         String userInput = "choco,seyan,pobi";
 
