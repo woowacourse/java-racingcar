@@ -16,4 +16,12 @@ public class RacingcarService {
         }
         return new RoundResult(carPerformances);
     }
+
+    public List<String> pickOutWinners(List<Car> cars) {
+        int maxDistance = Car.findMaxDistance(cars);
+        return cars.stream()
+                .filter(car -> car.isSameDistance(maxDistance))
+                .map(Car::getName)
+                .toList();
+    }
 }

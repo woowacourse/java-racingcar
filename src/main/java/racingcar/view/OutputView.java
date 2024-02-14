@@ -2,6 +2,7 @@ package racingcar.view;
 
 import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULTS_INTRO;
 import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULT_FORMAT;
+import static racingcar.constant.ViewMessage.OUTPUT_WINNERS;
 
 import java.util.List;
 import racingcar.dto.CarPerformance;
@@ -9,6 +10,7 @@ import racingcar.dto.RoundResult;
 
 public class OutputView {
     private static final String MOVEMENT_FORMAT = "-";
+    private static final String SEPARATOR = ", ";
 
     public void printRoundResults(List<RoundResult> roundResults) {
         System.out.println(OUTPUT_ROUND_RESULTS_INTRO.getMessage());
@@ -24,5 +26,10 @@ public class OutputView {
             System.out.printf(OUTPUT_ROUND_RESULT_FORMAT.getMessage(), carName, movements);
         }
         System.out.println();
+    }
+
+    public void printWinners(List<String> winners) {
+        String winnerNames = String.join(SEPARATOR, winners);
+        System.out.printf(OUTPUT_WINNERS.getMessage(), winnerNames);
     }
 }

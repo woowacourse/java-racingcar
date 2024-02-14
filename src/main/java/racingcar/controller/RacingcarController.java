@@ -26,6 +26,9 @@ public class RacingcarController {
             roundResults.add(roundResult);
             round.decreaseCount();
         }
+
+        List<String> winners = racingcarService.pickOutWinners(cars);
         outputView.printRoundResults(roundResults);
+        outputView.printWinners(winners);
     }
 }

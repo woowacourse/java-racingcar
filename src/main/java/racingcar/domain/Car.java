@@ -3,6 +3,7 @@ package racingcar.domain;
 import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 import racingcar.dto.CarPerformance;
 
 public class Car {
@@ -33,5 +34,20 @@ public class Car {
 
     public CarPerformance getCurrentPerformance() {
         return new CarPerformance(name, movedDistance);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isSameDistance(int distance) {
+        return distance == movedDistance;
+    }
+
+    public static int findMaxDistance(List<Car> cars) {
+        return cars.stream()
+                .mapToInt(car -> car.movedDistance)
+                .max()
+                .getAsInt();
     }
 }
