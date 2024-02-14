@@ -13,4 +13,8 @@ public class TryCount {
             throw new IllegalArgumentException("시도 횟수는 1 이상 120 이하여야 합니다.");
         }
     }
+
+    public void decreaseTryCount() {
+        tryCount--;
+    }
 }
