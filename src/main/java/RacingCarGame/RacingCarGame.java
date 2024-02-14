@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class RacingCarGame {
     public void run() {
-        boolean flag = true;
-        while (flag) {
+        boolean nameProgress = true;
+        while (nameProgress) {
             try {
                 System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
                 final Scanner scanner = new Scanner(System.in);
@@ -16,7 +16,7 @@ public class RacingCarGame {
                 if (rawCarNames == null || rawCarNames.isEmpty()) {
                     throw new IllegalArgumentException("빈 문자열은 입력할 수 없습니다. 다시 입력해주세요.");
                 }
-
+                // "포비,,브라운"
                 String[] carNames = rawCarNames.split(",");
                 List<String> finalCarNames = new ArrayList<>();
                 for (String carName : carNames) {
@@ -25,12 +25,16 @@ public class RacingCarGame {
                     }
                     finalCarNames.add(carName.trim());
                 }
-                flag = false;
+                nameProgress = false;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
 
-        // "포비,,브라운"
+        boolean countProgress = true;
+        while(countProgress) {
+            System.out.println("시도할 횟수는 몇회인가요?");
+
+        }
     }
 }
