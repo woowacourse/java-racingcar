@@ -15,6 +15,13 @@ public class InputView {
         return splitByComma(input);
     }
 
+    public static int readTryCount(Supplier<String> reader) {
+        System.out.println("시도할 회수는 몇회인가요?");
+        String input = reader.get();
+        validateNotEmpty(input);
+        return parseTryCount(input);
+    }
+
     private static void validateNotEmpty(String input) throws IllegalArgumentException{
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
@@ -29,5 +36,25 @@ public class InputView {
 
     private static List<String> splitByComma(String input) {
         return Arrays.stream(input.split(",")).toList();
+    }
+
+    private static int parseTryCount(final String input) {
+        int tryCount;
+        try {
+            tryCount = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("시도 횟수는 양의 정수를 입력해야 합니다.");
+        }
+        validateTryCountRange(tryCount);
+        return tryCount;
+    }
+
+    private static void validateTryCountRange(final int tryCount) {
+        if (tryCount <= 0) {
+            throw new IllegalArgumentException("시도 횟수는 양의 정수를 입력해야 합니다.");
+        }
+        if (tryCount > 1_000) {
+            throw new IllegalArgumentException("시도 횟수는 1,000 이하여야 합니다.");
+        }
     }
 }
