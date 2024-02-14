@@ -19,6 +19,12 @@ public class Validator {
         validateNameDuplication(names);
     }
 
+    public static void validateRound(int round) {
+        if (round < MIN_ROUND || round > MAX_ROUND) {
+            throw new IllegalArgumentException("1-100로 시도 횟수를 적어주세요.");
+        }
+    }
+
     private static void validateNameRules(String name) {
         if (!name.matches(NAME_RULE)) {
             throw new IllegalArgumentException("1~5자의 알파벳만 입력 가능합니다.");
@@ -29,12 +35,6 @@ public class Validator {
         Set<String> nonDuplicatedNames = new HashSet<>(names);
         if (nonDuplicatedNames.size() != names.size()) {
             throw new IllegalArgumentException("중복된 자동차 이름이 있습니다.");
-        }
-    }
-
-    public static void validateRound(int round) {
-        if (round < MIN_ROUND || round > MAX_ROUND) {
-            throw new IllegalArgumentException("1-100로 시도 횟수를 적어주세요.");
         }
     }
 }
