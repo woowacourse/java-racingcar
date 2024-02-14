@@ -1,67 +1,33 @@
 package racing.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 class Racing {
-    private final List<Car> cars;
     private final int maxTurn;
-    private int turn;
+    private final Cars cars;
+    private int nowTurn = 1;
 
-    public Racing(List<Car> cars, int maxTurn) {
-        this.cars = Collections.unmodifiableList(cars);
+    Racing(int maxTurn, Cars cars) {
         this.maxTurn = maxTurn;
+        this.cars = cars;
     }
 
-    void doRace(List<Integer> numbers) {
-        if (turn == maxTurn) {
-            return;
+    void nextTurn(List<Integer> racingConditions) {
+        if (nowTurn <= maxTurn) {
+            nowTurn += 1;
+            cars.move(racingConditions);
         }
-        for (int index = 0; index < cars.size(); index++) {
-            Car car = cars.get(index);
-            Integer raceCondition = numbers.get(index);
-            doRace(car, raceCondition);
-        }
-        turn += 1;
     }
 
-    private static void doRace(Car car, Integer raceCondition) {
-        if (raceCondition >= 4) {
-            car.go();
-            return;
-        }
-        car.stop();
+    Map<String, Integer> getCarsStatus() {
+        return cars.getCarsStatus();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Racing racing = (Racing) o;
-        return new HashSet<>(cars).containsAll(racing.cars);
-    }
-
-    @Override
-    public int hashCode() {
-        return cars.hashCode();
-    }
-
-    List<Car> getWinners() {
-        if (turn != maxTurn) {
-            throw new RuntimeException("아직 레이싱이 끝나지 않았습니다.");
-        }
-        Car winner = cars.stream()
-                .sorted()
-                .findFirst()
-                .orElseThrow();
-        return cars.stream()
-                .filter(car -> car.hasSameDistance(winner))
+    List<String> getWinnerNames() {
+        List<Car> maxCars = cars.getMax();
+        return maxCars.stream()
+                .map(Car::getName)
                 .toList();
     }
 }

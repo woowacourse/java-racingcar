@@ -1,22 +1,16 @@
 package racing.dto;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Map;
 
 public class RacingResult {
-    private final List<String> names;
-    private final List<String> distances;
+    private final Map<String, Integer> carsStatus;
 
-    public RacingResult(List<String> names, List<String> distances) {
-        this.names = Collections.unmodifiableList(names);
-        this.distances = Collections.unmodifiableList(distances);
+    public RacingResult(Map<String, Integer> carsStatus) {
+        this.carsStatus = Collections.unmodifiableMap(carsStatus);
     }
 
-    public List<String> getNames() {
-        return names;
-    }
-
-    public List<String> getDistances() {
-        return distances;
+    public Map<String, Integer> getCarsStatus() {
+        return carsStatus;
     }
 }

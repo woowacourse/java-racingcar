@@ -18,15 +18,15 @@ public class RacingManager {
         List<String> carNames = getCarNames(scanner);
         InputGuideOutputManager.printInputMaxRacingTurn();
         int maxTurn = getMaxTurn(scanner);
-
-        List<Car> cars = makeCars(carNames);
-        Racing racing = new Racing(cars, maxTurn);
-        List<RacingResult> racingResults = doRace(carNames, maxTurn, cars, racing);
+        Cars cars = makeCars(carNames);
+        Racing racing = new Racing(maxTurn, cars);
+        List<RacingResult> racingResults = IntStream.range(0, maxTurn).mapToObj(value -> {
+            List<Integer> racingConditions = RandomGenerator.generate(carNames.size());
+            racing.nextTurn(racingConditions);
+            return RacingDTOMapper.from(racing);
+        }).toList();
         RacingResultOutputManager.printResult(racingResults);
-        List<Car> winners = racing.getWinners();
-        List<String> winnerNames = winners.stream()
-                .map(Car::getName)
-                .toList();
+        List<String> winnerNames = racing.getWinnerNames();
         RacingResultOutputManager.printWinner(winnerNames);
     }
 
@@ -42,21 +42,10 @@ public class RacingManager {
                 () -> RacingMaxTurnInputManager.getMaxTurnFromConsole(scanner));
     }
 
-    private static List<Car> makeCars(List<String> carNames) {
-        return carNames.stream()
+    private static Cars makeCars(List<String> carNames) {
+        List<Car> cars = carNames.stream()
                 .map(name -> new Car(0, name))
                 .toList();
-    }
-
-    private static List<RacingResult> doRace(List<String> carNames, int maxTurn, List<Car> cars,
-                                             Racing racing) {
-        return IntStream.range(0, maxTurn).mapToObj(value -> {
-            List<Integer> raceConditions = RandomGenerator.generate(cars.size());
-            racing.doRace(raceConditions);
-            List<String> distances = cars.stream()
-                    .map(car -> "-".repeat(car.getDistance()))
-                    .toList();
-            return new RacingResult(carNames, distances);
-        }).toList();
+        return new Cars(cars);
     }
 }

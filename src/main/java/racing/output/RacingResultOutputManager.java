@@ -1,6 +1,7 @@
 package racing.output;
 
 import java.util.List;
+import java.util.Map;
 import racing.dto.RacingResult;
 
 public class RacingResultOutputManager {
@@ -12,11 +13,9 @@ public class RacingResultOutputManager {
     }
 
     private static void printEachResult(RacingResult racingResult) {
-        List<String> names = racingResult.getNames();
-        List<String> distances = racingResult.getDistances();
-        for (int index = 0; index < names.size(); index++) {
-            System.out.printf("%s : %s\n", names.get(index), distances.get(index));
-        }
+        Map<String, Integer> carsStatus = racingResult.getCarsStatus();
+        carsStatus.keySet().forEach(carName -> System.out.printf("%s : %s\n", carName,
+                "-".repeat(carsStatus.get(carName))));
     }
 
     public static void printWinner(List<String> winnerNames) {
