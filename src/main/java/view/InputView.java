@@ -10,5 +10,9 @@ public class InputView {
         return scanner.next();
     }
 
-    
+    // 메서드 이름 생각
+    public static String inputTryCount() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        return scanner.next();
+    }
 }
