@@ -7,10 +7,10 @@
 - [온라인 코드 리뷰 과정](https://github.com/woowacourse/woowacourse-docs/blob/master/maincourse/README.md)
 
 ## 기능목록
-- [ ] 이름 입력받기
+- [x] 이름 입력받기
   - [x] 쉼표 기준 분류하기
   - [x] 이름 5글자 이하인지 확인
-  - [ ] 이름 중복이 존재하는 지 확인
+  - [x] 이름 중복이 존재하는 지 확인
   - //TODO 이름 예외 처리
 - [ ] 시도할 횟수 입력받기
   - [ ] 숫자인지 확인
