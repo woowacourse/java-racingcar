@@ -37,8 +37,14 @@ public class GameController {
                                             .toList();
 
             outputView.printPerRound(carDtos);
-
         }
+
+        List<String> winner = cars.findWinner()
+                .stream()
+                .map(car -> car.getName())
+                .toList();
+
+        outputView.printWinners(winner);
 
     }
 
