@@ -30,7 +30,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("횟수는 숫자이어야합니다.");
+            throw new IllegalArgumentException("시도 횟수는 숫자여야 한다.");
         }
     }
 }
