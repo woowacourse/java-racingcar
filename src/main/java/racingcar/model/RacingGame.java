@@ -15,4 +15,15 @@ public class RacingGame {
                 .filter(car -> raceRule.isGo())
                 .forEach(Car::move);
     }
+
+    public Cars findWinners() {
+        int maxProgress = cars.stream()
+                .map(Car::getProgress)
+                .reduce(Integer::max)
+                .orElse(0);
+
+        return new Cars(cars.stream()
+                .filter(car -> car.getProgress() == maxProgress)
+                .toList());
+    }
 }
