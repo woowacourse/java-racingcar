@@ -38,6 +38,5 @@ public class CarTest {
         Car car = new Car("pobi", () -> 3);
         car.tryForward();
         assertThat(car.captureCarState().forwardCount()).isEqualTo(0);
-
     }
 }
