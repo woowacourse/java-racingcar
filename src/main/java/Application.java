@@ -2,6 +2,7 @@ import domain.Car;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import view.InputView;
 
 public class Application {
@@ -17,7 +18,7 @@ public class Application {
             ;
         while (getNumberOfAttempts())
             ;
-        // car race
+        race();
         // output
 
     }
@@ -48,5 +49,20 @@ public class Application {
         } catch (IOException | IllegalArgumentException e) {
             return false;
         }
+    }
+
+    private static void race() {
+        //indent 2
+        for (Car car : cars) {
+            int randomNumber = generateRandomNumber();
+            if (randomNumber >= 4) {
+                car.move();
+            }
+        }
+    }
+
+    private static int generateRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(10);
     }
 }
