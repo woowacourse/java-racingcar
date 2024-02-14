@@ -13,22 +13,11 @@ public class RacingCarController {
                 .map(Car::new)
                 .toList();
 
-        int count = InputView.inputTryCount();
-        if (count <= 0) {
-            throw new IllegalArgumentException("시도 횟수는 1 회 이상이어야 합니다.");
-        }
-
+        int trialAmount = InputView.inputTryCount();
+        TrialCount trialCount = new TrialCount(trialAmount);
+        trialCount.repeat(() -> progressRacing(cars));
         OutputView.printResultTitle();
 
-        for (int i = 0; i < count; i++) {
-            cars.forEach((car) -> {
-                Random random = new Random();
-                int randomInt = Math.abs(random.nextInt() % 10);
-                car.move(randomInt >= 4);
-            });
-
-            OutputView.printProgress(cars);
-        }
 
         int maxPosition = cars.stream().mapToInt(Car::getPosition)
                 .max()
@@ -38,5 +27,16 @@ public class RacingCarController {
                 .filter(car -> car.getPosition() == maxPosition)
                 .toList();
         OutputView.printWinners(winners);
+    }
+
+    private static void progressRacing(List<Car> cars) {
+        cars.forEach(RacingCarController::moveRandomly);
+        OutputView.printProgress(cars);
+    }
+
+    private static void moveRandomly(Car car) {
+        Random random = new Random();
+        int randomInt = Math.abs(random.nextInt() % 10);
+        car.move(randomInt >= 4);
     }
 }

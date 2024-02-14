@@ -2,6 +2,7 @@ package domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -21,5 +22,29 @@ class TrialCountTest {
     void creationSuccessTest(int amount) {
         Assertions.assertThatCode(() -> new TrialCount(amount))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("특정 횟수 만큼 반복 동작한다.")
+    @Test
+    void repeatTest() {
+        int expected = 4;
+        TrialCount trialCount = new TrialCount(expected);
+        Count count = new Count();
+
+        trialCount.repeat(count::addCount);
+
+        Assertions.assertThat(count.getAmount()).isEqualTo(expected);
+    }
+
+    static class Count {
+        private int amount;
+
+        public void addCount() {
+            amount++;
+        }
+
+        public int getAmount() {
+            return amount;
+        }
     }
 }

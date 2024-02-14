@@ -15,4 +15,14 @@ public class TrialCount {
             throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다");
         }
     }
+
+    public void repeat(Runnable consumer) {
+        for (int i = 0; i < amount; i++) {
+            consumer.run();
+        }
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }
