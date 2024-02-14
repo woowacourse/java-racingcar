@@ -1,7 +1,7 @@
 package model;
 
 public class Racing {
-    private final int tryCount;
+    private int tryCount;
 
     public Racing(int tryCount) {
         validateTryCount(tryCount);
@@ -14,9 +14,15 @@ public class Racing {
         }
     }
 
-    public void tryToForward(Cars cars) {
-        for (int i = 1; i <= tryCount; i++) {
-            cars.tryForward();
+    public void doTry(Cars cars) {
+        if (!canTry()) {
+            return;
         }
+        cars.tryForward();
+        tryCount--;
+    }
+
+    public boolean canTry() {
+       return tryCount > 0;
     }
 }
