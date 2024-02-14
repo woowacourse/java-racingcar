@@ -3,6 +3,7 @@ package view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import utils.InputValidator;
 
 public class InputView {
 
@@ -13,6 +14,7 @@ public class InputView {
         System.out.println(CAR_NAME_MSG);
         Scanner in = new Scanner(System.in);
         String carNames = in.next();
+        InputValidator.carNamesValidator(carNames);
         return Arrays.asList(carNames.split(","));
     }
 
@@ -20,7 +22,7 @@ public class InputView {
         System.out.println(TRY_NUMBER_MSG);
         Scanner in = new Scanner(System.in);
         String tryNumber = in.next();
-        // 숫자가 아닌 경우 및 음수인 경우 예외 처리
+        InputValidator.tryNumberValidator(tryNumber);
         return Integer.parseInt(tryNumber);
     }
 }
