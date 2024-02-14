@@ -28,6 +28,18 @@ public class Cars {
         cars.forEach(car -> car.go(generator.generate()));
     }
 
+    public List<Car> findWinner() {
+        //TODO: 예외 고민해보기
+        final int maxPosition = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(IllegalStateException::new);
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .toList();
+    }
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
