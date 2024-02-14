@@ -18,7 +18,8 @@ public class Controller {
         int inputAttemptLimit = inputAttemptLimit();
         List<Car> cars = service.setCars(service.separateCarName(inputCarName));
         service.playGame(cars,inputAttemptLimit);
-
+        List<String> winners = service.getWinner(cars, service.getMaxPosition(cars));
+        OutputView.printWinners(winners);
     }
 
     private String inputCarName() {

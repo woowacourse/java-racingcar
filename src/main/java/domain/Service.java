@@ -6,6 +6,7 @@ import java.util.Random;
 import view.OutputView;
 
 public class Service {
+    public static final Car NONCANDIDATE_CAR = new Car("");
     public Service() {
     }
 
@@ -31,12 +32,27 @@ public class Service {
         }
     }
 
+    public List<String> getWinner(List<Car> cars, int maxPosition) {
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            winners.add(findWinner(car,maxPosition));
+        }
+        return winners;
+    }
+
     public int getMaxPosition(List<Car> cars) {
         int max = -1;
         for (Car car : cars) {
             max = compareValue(car, max);
         }
         return max;
+    }
+
+    private String findWinner(Car car, int maxPosition) {
+        if (car.getLocation() == maxPosition) {
+            return car.getCarName();
+        }
+        return NONCANDIDATE_CAR.getCarName();
     }
 
     private int compareValue(Car car, int max) {
@@ -46,7 +62,7 @@ public class Service {
         return max;
     }
 
-    
+
     private void playRacing(List<Car> cars) {
         for (Car car : cars) {
             goOrStop(car, randomNumberGenerator());
