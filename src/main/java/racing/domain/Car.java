@@ -49,4 +49,12 @@ class Car implements Comparable<Car> {
     boolean hasSameDistance(Car other) {
         return distance == other.distance;
     }
+
+    String getName() {
+        return name;
+    }
+
+    int getDistance() {
+        return distance;
+    }
 }
