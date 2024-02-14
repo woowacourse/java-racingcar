@@ -37,8 +37,8 @@ public class RacingCarController {
     private void startRacing(int tryNumber, Cars cars) {
         outputView.printResultHeader();
         for (int i=0; i<tryNumber; i++) {
-            List<Integer> randomNumbers = generator.generate(cars.getCarsSize());
-            cars.moveCars(randomNumbers);
+            List<Integer> randomMoveNumbers = generator.generate(cars.getCarsSize());
+            cars.moveCars(randomMoveNumbers);
             String totalMovementDetails = cars.getTotalMovementDetails();
             outputView.printResult(totalMovementDetails);
         }
