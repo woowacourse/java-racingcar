@@ -31,8 +31,6 @@ public class InputValidator {
         }
     }
 
-
-
     public void validateAvailableCarNames(List<String> parsedCarNames){
         validateIsMultipleCarNames(parsedCarNames);
         validateIsDuplicate(parsedCarNames);
@@ -48,6 +46,27 @@ public class InputValidator {
         Set<String> nameSet = new HashSet<>(parsedInputs);
 
         if(nameSet.size() != parsedInputs.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateTryNumber(String tryNumber) {
+        try {
+            validateIsNumeric(tryNumber);
+            validateIsPositive(tryNumber);
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateIsNumeric(String tryNumber) {
+        if(!tryNumber.matches("\\+")) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateIsPositive(String tryNumber) {
+        if(Integer.parseInt(tryNumber) <= 0) {
             throw new IllegalArgumentException();
         }
     }

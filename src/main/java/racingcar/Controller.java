@@ -8,6 +8,7 @@ public class Controller {
     public void run() {
         List<String> carNames = inputView.getCarNames();
         inputValidator.validateAvailableCarNames(carNames);
+        int tryNumber = inputView.getTryNumber();
 
     }
 }

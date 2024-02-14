@@ -19,8 +19,6 @@ public class InputView {
         return parseCarNames;
     }
 
-
-
     private List<String> parseCarName (String initialInput) {
         return Arrays.stream(Arrays.stream(initialInput.split(","))
                 .map(String::trim)
@@ -28,4 +26,11 @@ public class InputView {
                 .toList();
     }
 
+    public int getTryNumber() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        String tryNumber = sc.nextLine();
+        inputValidator.validateTryNumber(tryNumber);
+
+        return Integer.parseInt(tryNumber);
+    }
 }
