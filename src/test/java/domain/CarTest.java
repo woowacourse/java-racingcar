@@ -16,7 +16,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"123456", "1234567", "9999999999999"})
     void testCreateCarWithInvalidLengthName(String carName) {
-        assertThatThrownBy(() -> Car.from(carName, 0))
+        assertThatThrownBy(() -> Car.of(carName, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,13 +24,13 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = {"1234", "123", "12"})
     void testCreateCarWithValidLengthName(String carName) {
-        assertThatCode(() -> Car.from(carName, 0)).doesNotThrowAnyException();
+        assertThatCode(() -> Car.of(carName, 0)).doesNotThrowAnyException();
     }
 
     @DisplayName("차는 움직임을 시도한 후 원래 자리에 멈춰있거나 한 칸 움직인다.")
     @Test
     void tryMoveThen() {
-        Car car = Car.from("car", 0);
+        Car car = Car.of("car", 0);
         car.tryMove();
         assertThat(car.getPosition()).isIn(List.of(0, 1));
     }

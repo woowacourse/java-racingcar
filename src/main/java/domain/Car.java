@@ -11,7 +11,7 @@ public class Car {
         this.position = position;
     }
 
-    public static Car from(String name, int position) {
+    public static Car of(String name, int position) {
         return new Car(name, position);
     }
 
