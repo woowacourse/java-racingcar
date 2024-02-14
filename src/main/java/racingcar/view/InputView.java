@@ -4,7 +4,7 @@ import racingcar.dto.request.RaceCountRequest;
 import racingcar.dto.request.RaceParticipantsRequest;
 
 public interface InputView {
-    RaceParticipantsRequest readRacingCars();
+    RaceParticipantsRequest readRaceParticipants();
 
     RaceCountRequest readRaceCount();
 }
