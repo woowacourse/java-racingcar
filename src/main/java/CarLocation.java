@@ -5,10 +5,8 @@ public class CarLocation {
         location = 0;
     }
 
-    public void increaseLocation(int randomNumber) {
-        if (randomNumber >= 4) {
-            location++;
-        }
+    public void increaseLocation() {
+        location++;
     }
 
     public int getLocation() {
