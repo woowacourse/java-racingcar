@@ -1,16 +1,23 @@
 package model;
 
 import model.intgenerator.IntGenerator;
+import model.intgenerator.RandomIntGenerator;
 
 public class Car {
     private static final int CONDITION = 4;
     private final String name;
+    private final IntGenerator intGenerator;
     private int forwardCount;
 
-    public Car(String name) {
+    public Car(String name, IntGenerator intGenerator) {
         validate(name);
         this.name = name;
         this.forwardCount = 0;
+        this.intGenerator = intGenerator;
+    }
+
+    public static Car fromRandomGenerator(String name) {
+        return new Car(name, new RandomIntGenerator());
     }
 
     private void validate(String name) {
@@ -23,7 +30,7 @@ public class Car {
         }
     }
 
-    public void tryForward(IntGenerator intGenerator) {
+    public void tryForward() {
         int number = intGenerator.pickNumber();
         if (number >= CONDITION) {
             forwardCount++;

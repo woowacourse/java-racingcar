@@ -3,7 +3,6 @@ package model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import model.intgenerator.IntGenerator;
 
 public class Cars {
     private final List<Car> cars;
@@ -16,7 +15,7 @@ public class Cars {
         validateNamesSize(names);
         validateDuplicateName(names);
         List<Car> cars = names.stream()
-                .map(name -> new Car(name))
+                .map(name -> Car.fromRandomGenerator(name))
                 .toList();
         return new Cars(cars);
     }
@@ -34,9 +33,9 @@ public class Cars {
         }
     }
 
-    public void tryForward(IntGenerator intGenerator) {
+    public void tryForward() {
         for (Car car : cars) {
-            car.tryForward(intGenerator);
+            car.tryForward();
         }
     }
 
