@@ -1,7 +1,5 @@
 package racingcar.controller;
 
-import java.io.OutputStream;
-
 import racingcar.model.Cars;
 import racingcar.model.RaceRule;
 import racingcar.model.RacingGame;
@@ -24,9 +22,12 @@ public class Controller {
         RacingGame racingGame = new RacingGame(cars);
         int moveCount = inputView.askMoveCount();
         RaceRule raceRule = () -> Randoms.pickNumberInRange() >= 4;
+        outputView.printProgressGuide();
         while (moveCount-- > 0) {
             racingGame.move(raceRule);
             outputView.printProgress(cars);
         }
+        Cars winners = racingGame.findWinners();
+        outputView.printWinners(winners);
     }
 }
