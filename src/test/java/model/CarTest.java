@@ -10,8 +10,8 @@ class CarTest {
     @DisplayName("숫자가 4 이상인 경우 전진한다.")
     @Test
     void move() {
-        Car car = new Car("배키", () -> 4);
-        car.move();
+        Car car = new Car("배키");
+        car.move(4);
 
         String result = car.generateMovement();
         String expected = "-";
@@ -22,8 +22,8 @@ class CarTest {
     @DisplayName("숫자가 3 이하인 경우 전진하지 않는다.")
     @Test
     void notMove() {
-        Car car = new Car("명오", () -> 3);
-        car.move();
+        Car car = new Car("명오");
+        car.move(3);
 
         String result = car.generateMovement();
         String expected = "";
