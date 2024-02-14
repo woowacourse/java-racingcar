@@ -19,4 +19,17 @@ public class Converter {
         }
         return cars;
     }
+
+    public static int toRound(String rawRound) {
+        int round;
+
+        try {
+            round = Integer.parseInt(rawRound);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        }
+
+        Validator.validateRound(round);
+        return round;
+    }
 }
