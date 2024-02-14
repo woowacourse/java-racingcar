@@ -23,7 +23,7 @@ public class Car {
 
     //TODO:number 변수명 변경하기
     public void drive(int number) {
-        if(checkForward(number)) {
+        if (checkForward(number)) {
             forward += 1;
         }
     }
@@ -32,4 +32,8 @@ public class Car {
         return number >= MIN_FORWARD_NUMBER;
     }
 
+    @Override
+    public String toString() {
+        return name + " : " + "-".repeat(forward);
+    }
 }
