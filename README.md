@@ -17,7 +17,7 @@
 
 - [X] 사용자로부터 자동차 이름을 입력받는다.
     - [X] 자동차 이름은 쉼표로 구분한다.
-- [ ] 사용자로부터 시도할 횟수를 입력받는다.
+- [X] 사용자로부터 시도할 횟수를 입력받는다.
 - [ ] 시도 횟수는 자연수로 한정한다.
 - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.

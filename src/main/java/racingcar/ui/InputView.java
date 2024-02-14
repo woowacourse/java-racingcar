@@ -10,4 +10,10 @@ public class InputView {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         return bufferedReader.readLine();
     }
+
+    public static String readTryCount() throws IOException {
+        System.out.println(OutputCommand.ASK_TRY_COUNT);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        return bufferedReader.readLine();
+    }
 }

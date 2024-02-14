@@ -8,6 +8,7 @@ public class RacingCarGame {
     public void start() {
         try {
             Vehicles vehicles = Vehicles.from(InputView.readCarNames());
+            InputView.readTryCount();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
