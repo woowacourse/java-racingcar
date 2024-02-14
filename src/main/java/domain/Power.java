@@ -1,6 +1,10 @@
 package domain;
 
+import jdk.jfr.Threshold;
+
 public class Power {
+
+    private static final Integer THRESHOLD = 4;
 
     private final Integer power;
 
@@ -10,5 +14,9 @@ public class Power {
 
     public static Power from(int power) {
         return new Power(power);
+    }
+
+    public boolean isSufficientPower() {
+        return THRESHOLD <= this.power;
     }
 }
