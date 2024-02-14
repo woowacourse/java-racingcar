@@ -5,11 +5,15 @@ import java.util.Scanner;
 public class InputView {
     private final Scanner scanner = new Scanner(System.in);
 
-    public String readNames(){
-        return scanner.nextLine();
+    private String readLine() {
+        String input = scanner.nextLine();
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
-    public int readTryCount(){
-        return Integer.parseInt(scanner.nextLine());
+    public int readInt(){
+        return Integer.parseInt(readLine());
     }
 }
