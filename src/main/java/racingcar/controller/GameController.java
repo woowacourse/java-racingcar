@@ -13,7 +13,6 @@ public class GameController {
     public void run() {
         String names = inputView.readCarNames();
 
-        System.out.println(names);
     }
 
 }
