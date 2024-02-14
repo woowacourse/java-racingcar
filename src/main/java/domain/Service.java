@@ -98,7 +98,7 @@ public class Service {
         return random.nextInt(9);
     }
 
-    public void goOrStop(Car car, int randomNumber) {
+    private void goOrStop(Car car, int randomNumber) {
         if (randomNumber >= 4) {
             car.incLocation();
         }
