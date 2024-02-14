@@ -2,7 +2,7 @@ package domain;
 
 public class MoveCount {
 
-    private final Integer moveCount;
+    private Integer moveCount;
 
     private MoveCount(Integer moveCount) {
         validate(moveCount);
