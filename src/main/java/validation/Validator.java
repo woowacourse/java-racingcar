@@ -17,6 +17,14 @@ public class Validator {
             validateNameRules(name);
         }
         validateNameDuplication(names);
+        validateCarAmount(names);
+    }
+
+    private static void validateCarAmount(List<String> names) {
+        int namesSize = names.size();
+        if (namesSize < MIN_CAR_LENGTH || namesSize > MAX_CAR_LENGTH) {
+            throw new IllegalArgumentException("차량은 1~100대만 허용합니다.");
+        }
     }
 
     public static void validateRound(int round) {
