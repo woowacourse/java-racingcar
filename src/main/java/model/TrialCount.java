@@ -13,4 +13,8 @@ public class TrialCount {
             throw new IllegalArgumentException();
         }
     }
+
+    public void reduce() {
+        number--;
+    }
 }
