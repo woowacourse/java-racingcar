@@ -36,4 +36,14 @@ class InputViewTest {
     }
 
 
+    @Test
+    @DisplayName("라운드 횟수를 입력받는다.")
+    void moveCountTest() throws Exception{
+        //given
+        setInput("5");
+        //when
+        int moveCount = inputView.askMoveCount();
+        //then
+        assertThat(moveCount).isEqualTo(5);
+     }
 }
