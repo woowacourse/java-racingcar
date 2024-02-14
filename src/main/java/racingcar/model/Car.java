@@ -7,6 +7,10 @@ public class Car {
     private int position;
 
     private Car(String name, int position) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException();
+        }
+
         this.name = name;
         this.position = position;
     }
@@ -19,5 +23,9 @@ public class Car {
         if (number >= MIN_NUMBER) {
             position++;
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
