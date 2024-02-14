@@ -23,7 +23,9 @@ public class Car {
         return this.position.equals(car.position);
     }
 
-    public void move() {
-        this.position = position.increase();
+    public void move(MoveCondition moveCondition) {
+        if (moveCondition.isMovable()) {
+            this.position = position.increase();
+        }
     }
 }

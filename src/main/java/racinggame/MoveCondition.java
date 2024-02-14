@@ -1,2 +1,6 @@
-package racinggame;public interface MoveCondition {
+package racinggame;
+
+public interface MoveCondition {
+
+    boolean isMovable();
 }

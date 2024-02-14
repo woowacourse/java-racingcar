@@ -20,8 +20,18 @@ class CarTest {
     void move() {
         Car car = Car.from("아톰");
 
-        car.move();
+        car.move(() -> true);
 
         assertThat(car.isSamePosition(Car.of("other", 1))).isTrue();
+    }
+
+    @DisplayName("전진 조건을 만족하지 않으면 전진하지 않는다.")
+    @Test
+    void noMove() {
+        Car car = Car.from("아톰");
+
+        car.move(() -> false);
+
+        assertThat(car.isSamePosition(Car.of("other", 0))).isTrue();
     }
 }
