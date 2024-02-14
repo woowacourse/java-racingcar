@@ -14,4 +14,12 @@ public class Car {
             this.count += 1;
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCount() {
+        return count;
+    }
 }
