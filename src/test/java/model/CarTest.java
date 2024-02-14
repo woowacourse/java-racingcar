@@ -17,4 +17,19 @@ public class CarTest {
         assertThatThrownBy(() -> new Car("pobibi"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 주어진_값이_4_이상인_경우_전진한다() {
+        Car car = new Car("pobi");
+        car.tryForward(() -> 4);
+        assertThat(car.captureCarState().forwardCount()).isEqualTo(1);
+    }
+
+    @Test
+    void 주어진_값이_4_미만인_경우_전진하지_않는다() {
+        Car car = new Car("pobi");
+        car.tryForward(() -> 3);
+        assertThat(car.captureCarState().forwardCount()).isEqualTo(0);
+
+    }
 }

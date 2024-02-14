@@ -3,6 +3,7 @@ package model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import model.intgenerator.IntGenerator;
 
 public class Cars {
     private final List<Car> cars;
@@ -33,4 +34,15 @@ public class Cars {
         }
     }
 
+    public void tryForward(IntGenerator intGenerator) {
+        for (Car car : cars) {
+            car.tryForward(intGenerator);
+        }
+    }
+
+    public List<CarState> captureCarStates() {
+        return cars.stream()
+                .map(car -> car.captureCarState())
+                .toList();
+    }
 }
