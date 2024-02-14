@@ -9,14 +9,16 @@ import racing.input.RacingMaxTurnInputManager;
 import racing.output.InputGuideOutputManager;
 import racing.output.RacingResultOutputManager;
 import util.RandomGenerator;
+import util.RetryHelper;
 
 public class RacingManager {
     public static void raceStart() {
         Scanner scanner = new Scanner(System.in);
         InputGuideOutputManager.printInputCarNames();
-        List<String> carNames = CarNameInputManager.getNameFromConsole(scanner);
+        List<String> carNames = getCarNames(scanner);
         InputGuideOutputManager.printInputMaxRacingTurn();
-        int maxTurn = RacingMaxTurnInputManager.getMaxTurnFromConsole(scanner);
+        int maxTurn = getMaxTurn(scanner);
+
         List<Car> cars = makeCars(carNames);
         Racing racing = new Racing(cars, maxTurn);
         List<RacingResult> racingResults = doRace(carNames, maxTurn, cars, racing);
@@ -26,6 +28,18 @@ public class RacingManager {
                 .map(Car::getName)
                 .toList();
         RacingResultOutputManager.printWinner(winnerNames);
+    }
+
+    private static List<String> getCarNames(Scanner scanner) {
+        RetryHelper carNameInputManager = new RetryHelper(5);
+        return carNameInputManager.retry(
+                () -> CarNameInputManager.getNameFromConsole(scanner));
+    }
+
+    private static int getMaxTurn(Scanner scanner) {
+        RetryHelper maxTurnInputManager = new RetryHelper(5);
+        return maxTurnInputManager.retry(
+                () -> RacingMaxTurnInputManager.getMaxTurnFromConsole(scanner));
     }
 
     private static List<Car> makeCars(List<String> carNames) {

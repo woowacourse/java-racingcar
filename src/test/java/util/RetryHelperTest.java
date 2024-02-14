@@ -23,7 +23,7 @@ class RetryHelperTest {
         final int[] retryCount = {0};
         RetryHelper retryHelper = new RetryHelper(2);
         Assertions.assertThatThrownBy(() -> retryHelper.retry(() -> {
-                    if (retryCount[0] > 4) {
+                    if (retryCount[0] > 2) {
                         return "test";
                     }
                     retryCount[0]++;

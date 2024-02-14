@@ -12,7 +12,7 @@ public final class RetryHelper {
 
     public <E> E retry(Supplier<E> supplier) {
         E result = null;
-        while (result == null && retryCount < maxRetryCount) {
+        while (result == null && retryCount <= maxRetryCount) {
             result = useSupplier(supplier);
             retryCount += 1;
         }
