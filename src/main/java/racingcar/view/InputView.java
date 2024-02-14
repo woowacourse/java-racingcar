@@ -11,13 +11,13 @@ public class InputView {
     private static final String DELIMITER = ",";
 
     public static String[] inputNames() throws IOException {
-        System.out.printf(NAME_INPUT_DESCRIPTION);
+        System.out.println(NAME_INPUT_DESCRIPTION);
         String rawNames = br.readLine();
         return rawNames.split(DELIMITER);
     }
 
     public static int inputMoveCount() throws IOException {
-        System.out.printf(MOVE_COUNT_INPUT_DESCRIPTION);
+        System.out.println(MOVE_COUNT_INPUT_DESCRIPTION);
         String moveCount = br.readLine();
         return Integer.parseInt(moveCount);
     }
