@@ -20,7 +20,9 @@ public class Controller {
 
         OutputView.printRoundResult();
 
+        // TODO: 이 부분을 Service로 옮겼으면 좋겠다
         for (int i = 0; i < round; i++) {
+            // TODO: List<Car>를 한 번에 처리할 Cars 클래스 만드는 것 고려
             for (Car car : cars) {
                 Service.moveForward(car);
             }

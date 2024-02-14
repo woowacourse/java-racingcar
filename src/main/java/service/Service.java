@@ -2,7 +2,6 @@ package service;
 
 import domain.Car;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Service {
 
@@ -29,6 +28,7 @@ public class Service {
         return winnerNames;
     }
 
+    // TODO: 확장성 고려하기 -> move에 대한 전략이 바뀔 것을 대비
     private static boolean willMove() {
         int randomNumber = (int) (Math.random() * RANDOM_NUMBER_RANGE);
         return randomNumber >= MOVE_BOUNDARY_NUMBER;
