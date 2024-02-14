@@ -3,6 +3,8 @@ package racingcar.domain;
 import racingcar.service.RandomNumberGenerator;
 
 public class Car {
+    private static final String CAR_POSITION_SYMBOL = "-";
+
     private final String name;
     private int position = 0;
 
@@ -48,5 +50,9 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public String result() {
+        return name + " : " + CAR_POSITION_SYMBOL.repeat(position);
     }
 }

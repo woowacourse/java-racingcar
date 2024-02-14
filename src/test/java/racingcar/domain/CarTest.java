@@ -72,5 +72,14 @@ class CarTest {
             assertThat(car.getPosition())
                     .isEqualTo(0);
         }
+
+        @Test
+        @DisplayName("[Success] 자동차 결과를 '이름 : -'와 같은 형태로 반환한다.")
+        void getResult() {
+            car.move(4);
+
+            assertThat(car.result())
+                    .isEqualTo("a : -");
+        }
     }
 }
