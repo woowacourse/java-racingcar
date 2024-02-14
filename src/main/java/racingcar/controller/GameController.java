@@ -11,6 +11,7 @@ import racingcar.view.OutputView;
 
 public class GameController {
     private final List<Car> carList = new ArrayList<>();
+    private final List<Car> winnerList = new ArrayList<>();
     private String[] names;
     private int moveCount;
 
@@ -32,6 +33,7 @@ public class GameController {
             names = InputView.inputNames();
             Validator.validateCarName(names);
         } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
             return false;
         }
         return true;
@@ -49,6 +51,7 @@ public class GameController {
             moveCount = InputView.inputMoveCount();
             Validator.validateMoveCount(moveCount);
         } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
             return false;
         }
         return true;
@@ -66,16 +69,29 @@ public class GameController {
             doRound();
         }
 
+        int max = 0;
+        for (Car car : carList) {
+            max = Math.max(max, car.getPosition());
+        }
+
+        for (Car car : carList) {
+            if (car.getPosition() == max) {
+                winnerList.add(car);
+            }
+        }
+
+        OutputView.printWinnerList(winnerList);
     }
 
     private void doRound() {
-        for (Car car: carList) {
+        for (Car car : carList) {
             int randomNumber = RandomNumberGenerator.generate();
             if (randomNumber >= 4) {
                 car.move();
             }
             OutputView.printPosition(car);
         }
+        OutputView.println();
     }
 
 }
