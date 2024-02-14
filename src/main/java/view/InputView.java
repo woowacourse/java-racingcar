@@ -23,6 +23,7 @@ public class InputView {
         String input = br.readLine();
         validateNullAndBlank(input);
         return Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
                 .toList();
     }
 
@@ -33,6 +34,7 @@ public class InputView {
     }
 
     public int inputTrialCount() throws IOException {
+        System.out.println("시도할 회수는 몇회인가요?");
         String input = br.readLine();
         validateNumeric(input);
         return Integer.parseInt(input);
