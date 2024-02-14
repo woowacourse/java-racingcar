@@ -18,4 +18,12 @@ public class Car {
             this.movement++;
         }
     }
+
+    public String getCarName(){
+        return name;
+    }
+
+    public int getMovement() {
+        return movement;
+    }
 }

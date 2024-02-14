@@ -12,13 +12,16 @@ public class Cars {
         this.generator = generator;
     }
 
-    public void totalCarMovement(int tryNumber) {
-        for(int i = 0; i<tryNumber;i++){
-            moveCars();
-        }
+    public void moveCars() {
+        cars.forEach(car -> car.move(generator.get()));
     }
 
-    private void moveCars() {
-        cars.forEach(car -> car.move(generator.get()));
+    public String getTotalMovementDetails(){
+        StringBuilder details = new StringBuilder();
+        cars.forEach(car -> details.append(car.getCarName())
+                .append(" : ")
+                .append("-".repeat(car.getMovement()))
+                .append("\n"));
+        return details.toString();
     }
 }
