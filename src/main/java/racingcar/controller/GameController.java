@@ -10,7 +10,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-    private List<Car> carList;
+    private final List<Car> carList = new ArrayList<>();
     private String[] names;
     private int moveCount;
 
@@ -55,7 +55,6 @@ public class GameController {
     }
 
     private void initCars(String[] carNames) {
-        List<Car> carList = new ArrayList<>();
         for (String name : carNames) {
             carList.add(new Car(name));
         }
