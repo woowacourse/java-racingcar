@@ -1,5 +1,7 @@
 package RacingCarGame;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class RacingCarGame {
@@ -14,10 +16,12 @@ public class RacingCarGame {
                 }
 
                 String[] carNames = rawCarNames.split(",");
+                List<String> finalCarNames = new ArrayList<>();
                 for (String carName : carNames) {
                     if (carName.length() <= 0 || carName.length() > 5) {
                         throw new IllegalArgumentException("올바르지 않는 자동차 이름입니다. 다시 입력해주세요.");
                     }
+                    finalCarNames.add(carName.trim());
                 }
                 flag = false;
             } catch (IllegalArgumentException exception) {
