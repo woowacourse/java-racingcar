@@ -7,9 +7,11 @@ import racingcar.domain.Round;
 import racingcar.dto.RoundResult;
 import racingcar.service.RacingcarService;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingcarController {
     private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final RacingcarService racingcarService = new RacingcarService();
 
     public void run() {
@@ -24,6 +26,6 @@ public class RacingcarController {
             roundResults.add(roundResult);
             round.decreaseCount();
         }
-
+        outputView.printRoundResults(roundResults);
     }
 }

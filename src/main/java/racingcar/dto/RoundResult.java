@@ -9,4 +9,8 @@ public class RoundResult {
     public RoundResult(List<CarPerformance> carPerformances) {
         this.carPerformances = Collections.unmodifiableList(carPerformances);
     }
+
+    public List<CarPerformance> getCarPerformances() {
+        return carPerformances;
+    }
 }

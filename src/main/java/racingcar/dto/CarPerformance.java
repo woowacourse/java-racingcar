@@ -8,4 +8,12 @@ public class CarPerformance {
         this.carName = carName;
         this.distance = distance;
     }
+
+    public String getCarName() {
+        return carName;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
 }
