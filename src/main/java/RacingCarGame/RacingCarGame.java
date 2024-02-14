@@ -9,8 +9,10 @@ public class RacingCarGame {
         boolean flag = true;
         while (flag) {
             try {
+                System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
                 final Scanner scanner = new Scanner(System.in);
                 String rawCarNames = scanner.nextLine();
+
                 if (rawCarNames == null || rawCarNames.isEmpty()) {
                     throw new IllegalArgumentException("빈 문자열은 입력할 수 없습니다. 다시 입력해주세요.");
                 }
