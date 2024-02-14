@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,4 +28,7 @@ public class Cars {
         cars.forEach(car -> car.go(generator.generate()));
     }
 
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
+    }
 }
