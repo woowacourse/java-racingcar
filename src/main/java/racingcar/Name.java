@@ -26,4 +26,8 @@ public class Name {
             throw new RuntimeException();
         }
     }
+
+    public String getValue() {
+        return value;
+    }
 }
