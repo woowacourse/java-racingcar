@@ -13,7 +13,7 @@ class VehiclesTest {
     @DisplayName("자동차 이름을 넣으면 쉼표로 구분하여 자동차 객체들을 생성한다")
     public void fromTest() {
         //given
-        String userInput = "chocochip,seyang,pobi";
+        String userInput = "choco,seyan,pobi";
 
         //when
         Vehicles vehicles = Vehicles.from(userInput);
