@@ -13,4 +13,10 @@ public class Racing {
             throw new IllegalArgumentException("시도 횟수는 1 이상이어야한다");
         }
     }
+
+    public void tryToForward(Cars cars) {
+        for (int i = 1; i <= tryCount; i++) {
+            cars.tryForward();
+        }
+    }
 }
