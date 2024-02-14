@@ -1,10 +1,10 @@
 package racingcar.view;
 
 import racingcar.dto.request.RaceCountRequest;
-import racingcar.dto.request.RacingCarsRequest;
+import racingcar.dto.request.RaceParticipantsRequest;
 
 public interface InputView {
-    RacingCarsRequest readRacingCars();
+    RaceParticipantsRequest readRacingCars();
 
     RaceCountRequest readRaceCount();
 }
