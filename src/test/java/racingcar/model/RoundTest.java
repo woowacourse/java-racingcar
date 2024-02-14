@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class TryCountTest {
+class RoundTest {
 
 
     @DisplayName("유효하지 않은 입력 시 예외")
@@ -18,7 +18,7 @@ class TryCountTest {
         // when
         // then
 
-        Assertions.assertThatThrownBy(() -> TryCount.from(value))
+        Assertions.assertThatThrownBy(() -> Round.from(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +28,7 @@ class TryCountTest {
     void from() {
         // given
         // when
-        TryCount tryCount = TryCount.from("5");
+        Round round = Round.from("5");
 
         // then
 

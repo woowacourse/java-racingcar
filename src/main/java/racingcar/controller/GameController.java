@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.model.TryCount;
+import racingcar.model.Round;
 import racingcar.view.InputView;
 
 public class GameController {
@@ -15,7 +15,7 @@ public class GameController {
         String names = inputView.readCarNames();
 
         String tryRound = inputView.readTryRound();
-        TryCount tryCount = TryCount.from(tryRound);
+        Round round = Round.from(tryRound);
     }
 
 }
