@@ -1,7 +1,5 @@
 package model;
 
-import java.util.function.Supplier;
-
 public class Car {
 
     private static final int MOVE_NUMBER = 4;
