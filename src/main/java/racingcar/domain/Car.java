@@ -3,6 +3,7 @@ package racingcar.domain;
 import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.dto.CarPerformance;
 
 public class Car {
 
@@ -28,5 +29,9 @@ public class Car {
 
     private boolean isGoState() {
         return Randoms.pickNumberInRange(0, 9) > 3;
+    }
+
+    public CarPerformance getCurrentPerformance() {
+        return new CarPerformance(name, movedDistance);
     }
 }
