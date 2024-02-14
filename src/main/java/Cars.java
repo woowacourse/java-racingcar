@@ -11,6 +11,12 @@ public class Cars {
                 .toList();
     }
 
+    public void tryMove(){
+        for (Car car : cars) {
+            car.tryMove();
+        }
+    }
+
     public List<String> getWinnersName() {
         List<String> winnersName = new ArrayList<>();
         int maxLocation = getMaxLocation();

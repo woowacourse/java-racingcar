@@ -1,10 +1,9 @@
-import java.util.Random;
-
 public class Car {
     private final String name;
     private int location;
 
     public Car(String name) {
+        //TODO : 이름 제약사항 처리
         this.name = name;
         location = 0;
     }
