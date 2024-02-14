@@ -23,6 +23,7 @@ class Racing {
             Integer raceCondition = numbers.get(index);
             doRace(car, raceCondition);
         }
+        turn += 1;
     }
 
     private static void doRace(Car car, Integer raceCondition) {
@@ -49,5 +50,18 @@ class Racing {
     @Override
     public int hashCode() {
         return cars.hashCode();
+    }
+
+    List<Car> getWinners() {
+        if (turn != maxTurn) {
+            throw new RuntimeException("아직 레이싱이 끝나지 않았습니다.");
+        }
+        Car winner = cars.stream()
+                .sorted()
+                .findFirst()
+                .orElseThrow();
+        return cars.stream()
+                .filter(car -> car.hasSameDistance(winner))
+                .toList();
     }
 }

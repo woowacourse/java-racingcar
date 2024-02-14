@@ -18,4 +18,13 @@ class RacingTest {
         Assertions.assertThat(testRacing)
                 .isEqualTo(expectedRacing);
     }
+
+    @Test
+    void getWinners() {
+        List<Car> testCars = List.of(new Car(0, "test1"), new Car(1, "test2"));
+        Racing racing = new Racing(testCars, 1);
+        racing.doRace(List.of(1, 1));
+        List<Car> result = racing.getWinners();
+        Assertions.assertThat(result).isEqualTo(List.of(new Car(1, "test2")));
+    }
 }

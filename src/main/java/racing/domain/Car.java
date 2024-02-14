@@ -1,6 +1,6 @@
 package racing.domain;
 
-class Car {
+class Car implements Comparable<Car> {
 
     private final String name;
     private int distance;
@@ -39,5 +39,14 @@ class Car {
     }
 
     void stop() {
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return o.distance - distance;
+    }
+
+    boolean hasSameDistance(Car other) {
+        return distance == other.distance;
     }
 }
