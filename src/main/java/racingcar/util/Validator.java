@@ -3,7 +3,7 @@ package racingcar.util;
 import java.util.List;
 import java.util.Set;
 
-public class Validation {
+public class Validator {
     public static void validateNullName(final String carNames) {
         if(carNames == null) {
             throw new IllegalArgumentException("자동차 이름 목록은 null일 수 없습니다.");
