@@ -18,4 +18,10 @@ public class CarsTest {
         assertThatThrownBy(() -> Cars.fromNames(List.of("pobi", "pobi")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 자동차가_한_대_미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> Cars.fromNames(List.of()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
