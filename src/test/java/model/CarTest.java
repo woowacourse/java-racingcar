@@ -13,7 +13,11 @@ class CarTest {
     void move() {
         Car car = new Car("배키", () -> 4);
         car.move();
-        assertThat(car.generateMovement()).isEqualTo("-");
+
+        String result = car.generateMovement();
+        String expected = "-";
+
+        assertThat(result).isEqualTo(expected);
     }
 
     @DisplayName("숫자가 3 이하인 경우 전진하지 않는다.")
@@ -21,6 +25,10 @@ class CarTest {
     void notMove() {
         Car car = new Car("명오", () -> 3);
         car.move();
-        assertThat(car.generateMovement()).isEqualTo("");
+
+        String result = car.generateMovement();
+        String expected = "";
+
+        assertThat(result).isEqualTo(expected);
     }
 }
