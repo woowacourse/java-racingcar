@@ -2,10 +2,11 @@ package model;
 
 import java.lang.runtime.ObjectMethods;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class Car {
+public class Car{
     private String name;
     private List<CarStatus> statuses;
     public Car(String name) {
@@ -46,4 +47,16 @@ public class Car {
     public int hashCode() {
         return Objects.hash(name, statuses);
     }
+
+    public List<CarStatus> getStatuses() {
+        return new ArrayList<>(statuses);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+   public int getForwardCount(){
+        return (int) statuses.stream().filter(carStatus -> carStatus.equals(CarStatus.FORWARD)).count();
+   }
 }
