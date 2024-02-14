@@ -23,6 +23,6 @@ class CarsTest {
 
         List<Car> winners = cars.chooseWinner();
 
-        assertThat(winners).contains(winner);
+        assertThat(winners).containsExactly(winner);
     }
 }
