@@ -5,13 +5,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class InputView {
+    private static final Pattern NUMERIC_PATTERN = Pattern.compile("^[0-9]*$");
+
+    private final BufferedReader br;
+
+    public InputView() {
+        this.br = new BufferedReader(new InputStreamReader(System.in));
+    }
+
     private static final String DELIMITER = ",";
 
     public List<String> inputCarsName() throws IOException {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = br.readLine();
         validateNullAndBlank(input);
         return Arrays.stream(input.split(DELIMITER))
@@ -23,6 +31,20 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    public int inputTrialCount() throws IOException {
+        String input = br.readLine();
+        validateNumeric(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validateNumeric(String input){
+        if (!NUMERIC_PATTERN.matcher(input).matches()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 
 
 }
