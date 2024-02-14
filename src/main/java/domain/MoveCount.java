@@ -17,6 +17,10 @@ public class MoveCount {
         moveCount--;
     }
 
+    public boolean isCountZero() {
+        return 0 == moveCount;
+    }
+
     public void validate(int moveCount) {
         validateRange(moveCount);
     }
