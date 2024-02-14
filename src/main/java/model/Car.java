@@ -1,7 +1,6 @@
 package model;
 
 import java.util.function.Supplier;
-import utils.RandomNumberGenerator;
 
 public class Car {
 

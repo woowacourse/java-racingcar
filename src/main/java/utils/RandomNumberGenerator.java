@@ -1,6 +1,5 @@
 package utils;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 public class RandomNumberGenerator implements Supplier<Integer> {
