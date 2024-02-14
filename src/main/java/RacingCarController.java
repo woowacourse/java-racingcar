@@ -1,5 +1,5 @@
-package domain;
-
+import domain.Car;
+import domain.TrialCount;
 import java.util.List;
 import java.util.Random;
 import view.InputView;
@@ -18,14 +18,7 @@ public class RacingCarController {
         trialCount.repeat(() -> progressRacing(cars));
         OutputView.printResultTitle();
 
-
-        int maxPosition = cars.stream().mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
-
-        List<Car> winners = cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .toList();
+        List<Car> winners = findWinners(cars);
         OutputView.printWinners(winners);
     }
 
@@ -38,5 +31,15 @@ public class RacingCarController {
         Random random = new Random();
         int randomInt = Math.abs(random.nextInt() % 10);
         car.move(randomInt >= 4);
+    }
+
+    private static List<Car> findWinners(List<Car> cars) {
+        int maxPosition = cars.stream().mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .toList();
     }
 }
