@@ -15,4 +15,9 @@ public class InputView {
         List<Car> cars = Arrays.stream(splittedInput).map(Car::new).toList();
         return new Cars(cars);
     }
+
+    public int askMoveCount() {
+        System.out.println("\n시도할 회수는 몇회인가요?");
+        return Integer.parseInt(Console.readLine());
+    }
 }

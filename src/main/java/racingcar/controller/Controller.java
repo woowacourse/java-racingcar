@@ -13,5 +13,6 @@ public class Controller {
 
     public void run() {
         Cars cars = inputView.askCarNames();
+        int moveCount = inputView.askMoveCount();
     }
 }
