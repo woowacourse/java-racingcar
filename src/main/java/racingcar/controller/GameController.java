@@ -3,7 +3,6 @@ package racingcar.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import racingcar.model.Car;
 import racingcar.utils.RandomNumberGenerator;
 import racingcar.utils.Validator;
@@ -62,7 +61,15 @@ public class GameController {
         }
     }
 
-    private void playRound() {
+    public void play() {
+        OutputView.printResultDescription();
+        for (int i = 0; i < moveCount; i++) {
+            doRound();
+        }
+
+    }
+
+    private void doRound() {
         for (Car car: carList) {
             int randomNumber = RandomNumberGenerator.generate();
             if (randomNumber >= 4) {
@@ -71,6 +78,5 @@ public class GameController {
             OutputView.printPosition(car);
         }
     }
-
 
 }
