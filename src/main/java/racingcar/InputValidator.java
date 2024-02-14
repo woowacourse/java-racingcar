@@ -60,7 +60,7 @@ public class InputValidator {
     }
 
     private void validateIsNumeric(String tryNumber) {
-        if(!tryNumber.matches("\\+")) {
+        if(!tryNumber.matches("\\d+")) {
             throw new IllegalArgumentException();
         }
     }
