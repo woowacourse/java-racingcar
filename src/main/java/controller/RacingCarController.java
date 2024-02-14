@@ -12,10 +12,12 @@ public class RacingCarController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final RandomNumberGenerator generator;
 
-    public RacingCarController(InputView inputView, OutputView outputView) {
+    public RacingCarController(InputView inputView, OutputView outputView, RandomNumberGenerator generator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.generator = generator;
     }
 
     public void run(){
@@ -28,14 +30,15 @@ public class RacingCarController {
 
     private List<Car> createCars(List<String> carNames) {
         return carNames.stream()
-                .map(carName -> new Car(carName,new RandomNumberGenerator()))
+                .map(Car::new)
                 .toList();
     }
 
     private void startRacing(int tryNumber, Cars cars) {
         outputView.printResultHeader();
         for (int i=0; i<tryNumber; i++) {
-            cars.moveCars();
+            List<Integer> randomNumbers = generator.generate(cars.getCarsSize());
+            cars.moveCars(randomNumbers);
             String totalMovementDetails = cars.getTotalMovementDetails();
             outputView.printResult(totalMovementDetails);
         }

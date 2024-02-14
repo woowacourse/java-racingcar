@@ -9,8 +9,10 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveCars() {
-        cars.forEach(Car::move);
+    public void moveCars(List<Integer> numbers) {
+        for(int i = 0; i< numbers.size();i++){
+            cars.get(i).move(numbers.get(i));
+        }
     }
 
     public String getTotalMovementDetails(){
@@ -29,5 +31,9 @@ public class Cars {
                 .map(Car::getCarName)
                 .toList();
         return String.join(", ",winnersName);
+    }
+
+    public int getCarsSize() {
+        return cars.size();
     }
 }
