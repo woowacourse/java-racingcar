@@ -2,16 +2,17 @@ package domain;
 
 public class Car {
     private final String carName;
+    private Integer position;
     private final PowerGenerator powerGenerator = new PowerGenerator(new RandomNumberGenerator());
-    private Integer position = 0;
 
-    private Car(String carName) {
+    private Car(String carName, int position) {
         validate(carName);
         this.carName = carName;
+        this.position = position;
     }
 
-    public static Car from(String name) {
-        return new Car(name);
+    public static Car from(String name, int position) {
+        return new Car(name, position);
     }
 
     public Integer getPosition() {
