@@ -17,4 +17,8 @@ public class TryCount {
     public void decreaseTryCount() {
         tryCount--;
     }
+
+    public boolean isZero() {
+        return tryCount == 0;
+    }
 }
