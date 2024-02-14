@@ -15,7 +15,7 @@ public class RacingGameTest {
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
         RacingGame racingGame = new RacingGame(cars);
 
-        List<Integer> expected = List.of(1,1);
+        List<Integer> expected = List.of(1, 1);
 
         //when
         RaceRule rule = () -> true;
@@ -46,5 +46,25 @@ public class RacingGameTest {
                         .map(Car::getProgress)
                         .toList())
                 .isEqualTo(expected);
+    }
+
+    @DisplayName("우승자를 판별한다")
+    @Test
+    void findWinnersTest() {
+        //given
+        Car winner = new Car("winner");
+        Car loser = new Car("loser");
+
+        //when
+        winner.move();
+        Cars cars = new Cars(List.of(winner, loser));
+        RacingGame racingGame = new RacingGame(cars);
+
+        //then
+        Cars actual = racingGame.findWinners();
+        Assertions.assertThat(actual.stream()
+                        .findFirst()
+                        .orElseThrow())
+                .isEqualTo(winner);
     }
 }
