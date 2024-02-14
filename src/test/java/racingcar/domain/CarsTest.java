@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
