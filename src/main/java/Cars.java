@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Cars {
@@ -7,6 +9,17 @@ public class Cars {
         this.cars = names.stream()
                 .map(name -> new Car(name))
                 .toList();
+    }
+
+    public List<String> getWinnersName() {
+        List<String> winnersName = new ArrayList<>();
+        int maxLocation = getMaxLocation();
+        for (Car car : cars) {
+            if (car.getLocation() == maxLocation) {
+                winnersName.add(car.getName());
+            }
+        }
+        return winnersName;
     }
 
     private int getMaxLocation() {
