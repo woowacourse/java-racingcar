@@ -1,12 +1,23 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Cars {
     List<Car> cars;
 
+    public Cars(List<Car> cars) {
+        this.cars = cars;
+    }
+
     public static Cars fromEmpty() {
-        return new Cars();
+        return new Cars(new ArrayList<>());
+    }
+
+    public static Cars from(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+        for (String carName : carNames) {
+            cars.add(Car.fromName(carName));
+        }
+        return new Cars(cars);
     }
 
     public void move(RandomMovementGenerator randomMovementGenerator) {

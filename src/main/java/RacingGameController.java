@@ -10,8 +10,8 @@ public class RacingGameController {
     }
 
     public void run() {
-        inputView.readCars();
-        Cars cars = Cars.fromEmpty();
+        Cars cars = inputView.readCars();
+        inputView.readCount();
         RacingGame racingGame = RacingGame.of(3, cars);
         racingGame.play();
         Winners winners = Winners.from(cars);
