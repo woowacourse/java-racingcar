@@ -10,6 +10,9 @@ public class InputUtils {
     }
 
     public static List<String> splitByComma(String input) {
+        if (input == null) {
+            return List.of();
+        }
         return Arrays.stream(input.split(DELIMITER, -1)).toList();
     }
 }
