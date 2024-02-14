@@ -21,6 +21,21 @@ class VehiclesTest {
 
         //then
         IntStream.range(0, cars.size())
-                .forEach(times -> assertEquals(cars.get(times).getName(), userInput.split(",")[times]));
+                .forEach(times -> assertEquals(cars.get(times).getName(), userInput.split(",")[times].trim()));
+    }
+
+    @Test
+    @DisplayName("자동차 이름은 쉼표로 분리된 뒤 앞뒤 공백이 제거된다.")
+    void trimCarNamesTest() {
+        //given
+        String userInput = "  choco , seyan, po bi ";
+
+        //when
+        Vehicles vehicles = Vehicles.from(userInput);
+        List<Car> cars = vehicles.getCars();
+
+        //then
+        IntStream.range(0, cars.size())
+                .forEach(times -> assertEquals(cars.get(times).getName(), userInput.split(",")[times].trim()));
     }
 }

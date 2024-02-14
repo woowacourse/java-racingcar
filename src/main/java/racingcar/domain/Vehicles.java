@@ -9,6 +9,7 @@ public class Vehicles {
 
     public static Vehicles from(String userInput) {
         return new Vehicles(Arrays.stream(userInput.split(","))
+                .map(String::trim)
                 .map(Car::new)
                 .collect(Collectors.toList())
         );
