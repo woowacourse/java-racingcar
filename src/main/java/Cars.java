@@ -8,7 +8,26 @@ public class Cars {
         this.carList = carList;
     }
 
+    public void moveAll(List<Integer> randomNumbers) {
+        for (int index = 0; index < randomNumbers.size(); index++) {
+            Car car = carList.get(index);
+            int randomNumber = randomNumbers.get(index);
+            car.move(randomNumber);
+        }
+    }
+
+    public int getMaxLocation() {
+        return carList.stream()
+                .mapToInt(Car::getCarLocation)
+                .max()
+                .getAsInt();
+    }
+
     public List<Car> getCarList() {
         return Collections.unmodifiableList(carList);
+    }
+
+    public int getSize() {
+        return carList.size();
     }
 }
