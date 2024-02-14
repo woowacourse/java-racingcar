@@ -23,8 +23,7 @@ public class RacingCarController {
         Cars cars = new Cars(createCars(carNames));
         int tryNumber = Retry.retryOnException(inputView::inputTryNumber);
         startRacing(tryNumber, cars);
-
-
+        outputView.printWinner(cars.findWinners());
     }
 
     private List<Car> createCars(List<String> carNames) {
@@ -34,6 +33,7 @@ public class RacingCarController {
     }
 
     private void startRacing(int tryNumber, Cars cars) {
+        outputView.printResultHeader();
         for (int i=0; i<tryNumber; i++) {
             cars.moveCars();
             String totalMovementDetails = cars.getTotalMovementDetails();

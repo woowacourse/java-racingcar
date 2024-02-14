@@ -21,4 +21,13 @@ public class Cars {
                 .append("\n"));
         return details.toString();
     }
+
+    public String findWinners() {
+        int maxMovement = cars.stream().mapToInt(Car::getMovement).max().getAsInt();
+        List<String> winnersName = cars.stream()
+                .filter(car -> car.getMovement() == maxMovement)
+                .map(Car::getCarName)
+                .toList();
+        return String.join(", ",winnersName);
+    }
 }

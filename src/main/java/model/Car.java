@@ -30,4 +30,8 @@ public class Car {
     public String generateMovement() {
         return STEP.repeat(movement);
     }
+
+    public int getMovement() {
+        return movement;
+    }
 }
