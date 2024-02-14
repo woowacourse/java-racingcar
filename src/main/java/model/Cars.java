@@ -5,22 +5,20 @@ import java.util.function.Supplier;
 
 public class Cars {
     private final List<Car> cars;
-    private final Supplier<Integer> generator;
 
-    public Cars(List<Car> cars, Supplier<Integer> generator) {
+    public Cars(List<Car> cars) {
         this.cars = cars;
-        this.generator = generator;
     }
 
     public void moveCars() {
-        cars.forEach(car -> car.move(generator.get()));
+        cars.forEach(Car::move);
     }
 
     public String getTotalMovementDetails(){
         StringBuilder details = new StringBuilder();
         cars.forEach(car -> details.append(car.getCarName())
                 .append(" : ")
-                .append("-".repeat(car.getMovement()))
+                .append(car.generateMovement())
                 .append("\n"));
         return details.toString();
     }
