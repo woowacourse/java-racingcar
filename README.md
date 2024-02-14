@@ -32,7 +32,7 @@
 - Cars
   - 필드: 자동차 리스트
   - getter
-- Race
+- RacingGame
   - 필드: Cars
   - 경기 진행
   - 우승자 선정
