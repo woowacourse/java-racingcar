@@ -3,9 +3,12 @@ package racingcar.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import racingcar.model.Car;
+import racingcar.utils.RandomNumberGenerator;
 import racingcar.utils.Validator;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class GameController {
     private List<Car> carList;
@@ -58,5 +61,16 @@ public class GameController {
             carList.add(new Car(name));
         }
     }
+
+    private void playRound() {
+        for (Car car: carList) {
+            int randomNumber = RandomNumberGenerator.generate();
+            if (randomNumber >= 4) {
+                car.move();
+            }
+            OutputView.printPosition(car);
+        }
+    }
+
 
 }
