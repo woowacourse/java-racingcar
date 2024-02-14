@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.domain.Car;
+import racingcar.domain.Round;
 import racingcar.view.InputView;
 
 public class RacingcarController {
@@ -11,6 +12,6 @@ public class RacingcarController {
         List<Car> cars = inputView.readCarNames().stream()
                 .map(Car::new)
                 .toList();
-
+        Round round = new Round(inputView.readTryCount());
     }
 }
