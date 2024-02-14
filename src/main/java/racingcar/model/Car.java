@@ -6,12 +6,13 @@ public class Car implements Comparable<Car> {
 
     private final String name;
     private Integer progress;
+
     public Car(String name) {
         this.name = name;
         this.progress = 0;
     }
 
-    public void goForward(){
+    public void move(){
         this.progress++;
     }
     public String getName() {
@@ -24,7 +25,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car other) {
-        return this.progress - other.progress;
+        return Integer.compare(this.progress, other.progress);
     }
 
     @Override
