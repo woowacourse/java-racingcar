@@ -8,7 +8,7 @@ public class RandomNumberGenerator {
     private RandomNumberGenerator() {
     }
 
-    public static int generateRandomNumber(final int maximum) {
-        return random.nextInt(maximum + 1); // bound 미만의 숫자를 return하기 때문에 +1
+    public static int generate(final int max) {
+        return random.nextInt(max + 1); // bound 미만의 숫자를 return하기 때문에 +1
     }
 }
