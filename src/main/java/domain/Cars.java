@@ -20,6 +20,10 @@ public class Cars {
                 .toList();
     }
 
+    public void tryMoveAll() {
+        cars.forEach(car -> car.tryMove());
+    }
+
     private Integer getFurthestPosition() {
         return cars.stream()
                 .map(Car::getPosition)
