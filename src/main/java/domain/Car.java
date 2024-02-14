@@ -8,4 +8,8 @@ public class Car {
         this.name = name;
         location = 0;
     }
+
+    public void incLocation() {
+        location += 1;
+    }
 }

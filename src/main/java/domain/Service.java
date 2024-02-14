@@ -14,5 +14,10 @@ public class Service {
         Random random = new Random();
         return random.nextInt(9);
     }
-}
 
+    public void goOrStop(Car car, int randomNumber) {
+        if (randomNumber >= 4) {
+            car.incLocation();
+        }
+    }
+}
