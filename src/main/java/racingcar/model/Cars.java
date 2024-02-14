@@ -21,4 +21,10 @@ public class Cars {
 
         return new Cars(cars);
     }
+
+
+    public void go(NumberGenerator generator) {
+        cars.forEach(car -> car.go(generator.generate()));
+    }
+
 }
