@@ -23,4 +23,21 @@ public class Game {
     private List<Car> convertToCar(List<String> carNames){
         return carNames.stream().map(Car::new).toList();
     }
+
+    public int getParticipantSize(){
+        return participant.size();
+    }
+
+    public List<Car> proceed(List<Integer> result){
+        for(int i = 0; i < result.size(); i++){
+            if(CarStatus.decide(result.get(i)).equals(CarStatus.FORWARD)){
+                participant.get(i).forward();
+                continue;
+            }
+            participant.get(i).stop();
+        }
+        return new ArrayList<>(participant);
+    }
+
+
 }
