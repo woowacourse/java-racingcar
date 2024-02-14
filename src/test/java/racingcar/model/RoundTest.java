@@ -1,7 +1,8 @@
 package racingcar.model;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,20 +18,42 @@ class RoundTest {
         // given
         // when
         // then
-
-        Assertions.assertThatThrownBy(() -> Round.from(value))
+        assertThatThrownBy(() -> Round.from(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Disabled
-    @DisplayName("라운드 횟수 실행")
-    @Test
-    void from() {
+    @DisplayName("진행중인 라운드 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "5", "100"})
+    void isEndFalse(String source) {
         // given
         // when
-        Round round = Round.from("5");
+        Round round = Round.from(source);
+        // then
+        assertThat(round.isEnd()).isFalse();
+    }
+
+    @DisplayName("라운드 종료 확인")
+    @Test
+    void isEndTrue() {
+        // given
+        // when
+        Round round = Round.from("0");
 
         // then
+        assertThat(round.isEnd()).isTrue();
+    }
 
+    @DisplayName("라운드 실행시 값이 1 감소한다.")
+    @Test
+    void progress() {
+        // given
+        Round round = Round.from("2");
+
+        // when
+        round.progress();
+
+        // then
+        assertThat(round).extracting("value").isEqualTo(1);
     }
 }
