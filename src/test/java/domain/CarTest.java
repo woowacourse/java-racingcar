@@ -31,4 +31,12 @@ class CarTest {
         assertThat(car).extracting("forward").isEqualTo(1);
     }
 
+    @DisplayName("자동차 멈춤 테스트")
+    @ValueSource(ints = {1, 2, 3})
+    @ParameterizedTest()
+    void stopTest(int addNumber) {
+        Car car = new Car("test");
+        car.drive(MIN_FORWARD_NUMBER - addNumber);
+        assertThat(car).extracting("forward").isEqualTo(0);
+    }
 }
