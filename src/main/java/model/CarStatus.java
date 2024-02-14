@@ -9,4 +9,11 @@ public enum CarStatus {
     CarStatus(String output) {
         this.output = output;
     }
+
+    public static CarStatus decide(int num){
+        if(num >= 4){
+            return FORWARD;
+        }
+        return STOP;
+    }
 }
