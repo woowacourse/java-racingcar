@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("자동차 이동 횟수 도메인 테스트")
 class MoveCountTest {
@@ -25,5 +23,27 @@ class MoveCountTest {
     @ValueSource(ints = {0, 3, 5})
     void testCreateMoveCountWithValidValue(int moveCount) {
         assertThatCode(() -> MoveCount.from(moveCount)).doesNotThrowAnyException();
+    }
+
+    @DisplayName("움직일 수 있는 횟수를 차감할 수 있다")
+    @Test
+    void testConsumeCount() {
+        MoveCount moveCount = MoveCount.from(1);
+        moveCount.consume();
+        assertThat(moveCount.isCountZero()).isTrue();
+    }
+
+    @DisplayName("움직일 수 있는 횟수가 0인지 체크할 수 있다")
+    @Test
+    void testDetectCountZero() {
+        MoveCount moveCount = MoveCount.from(0);
+        assertThat(moveCount.isCountZero()).isTrue();
+    }
+
+    @DisplayName("움직일 수 있는 횟수가 0이 아닌지 체크할 수 있다.")
+    @Test
+    void testDetectCountNonZero() {
+        MoveCount moveCount = MoveCount.from(1);
+        assertThat(moveCount.isCountZero()).isFalse();
     }
 }
