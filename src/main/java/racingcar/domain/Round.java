@@ -4,7 +4,7 @@ import static racingcar.constant.ExceptionMessage.INVALID_ROUND_FORMAT;
 import static racingcar.constant.ExceptionMessage.INVALID_ROUND_RANGE;
 
 public class Round {
-    private final int count;
+    private int count;
 
     public Round(String count) {
         this.count = tryConvertRoundCount(count);
@@ -23,5 +23,13 @@ public class Round {
         } catch(NumberFormatException e) {
             throw INVALID_ROUND_FORMAT.getException();
         }
+    }
+
+    public boolean isRemain() {
+        return count > 0;
+    }
+
+    public void decreaseCount() {
+        count--;
     }
 }
