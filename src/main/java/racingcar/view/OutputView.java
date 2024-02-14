@@ -1,13 +1,44 @@
 package racingcar.view;
 
+import java.util.List;
 import racingcar.model.Car;
 
 public class OutputView {
+    public static void println() {
+        System.out.println();
+    }
+
+    public static void println(String text) {
+        System.out.println(text);
+    }
+
+    public static void print(String text) {
+        System.out.print(text);
+    }
+
+    public static void printResultDescription() {
+        println();
+        println("실행 결과");
+    }
+
     public static void printPosition(Car car) {
-        System.out.print(car.getName() + " ");
+        print(car.getName() + " : ");
         for (int i = 0; i < car.getPosition(); i++) {
             System.out.print("-");
         }
-        System.out.println();
+        println();
+    }
+
+    public static void printExceptionMessage(String message) {
+        println(message);
+    }
+
+    public static void printWinnerList(List<Car> winnerList) {
+        List<String> names = winnerList.stream()
+                .map(Car::getName)
+                .toList();
+
+        String winnerNames = String.join(", ", names);
+        println(winnerNames + "가 최종 우승했습니다.");
     }
 }
