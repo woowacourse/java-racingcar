@@ -1,0 +1,16 @@
+package model;
+
+public class TrialCount {
+    private int number;
+
+    public TrialCount(int number) {
+        validatePositive(number);
+        this.number = number;
+    }
+
+    private void validatePositive(int number) {
+        if(number <= 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+}
