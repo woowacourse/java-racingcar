@@ -22,4 +22,18 @@ public class Validation {
             throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
         }
     }
+
+    public static int validateInteger(final String tryCount) {
+        try {
+            return Integer.parseInt(tryCount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("시도 회수는 정수여야 합니다.");
+        }
+    }
+
+    public static void validateTryCount(final int tryCount) {
+        if (tryCount < 1) {
+            throw new IllegalArgumentException("시도할 회수는 양의 정수여야 합니다.");
+        }
+    }
 }
