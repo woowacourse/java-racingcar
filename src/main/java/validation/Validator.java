@@ -6,7 +6,11 @@ import java.util.Set;
 
 public class Validator {
 
-    public static final String NAME_RULE = "^[a-zA-Z]{1,5}$";
+    private static final String NAME_RULE = "^[a-zA-Z]{1,5}$";
+    private static final int MIN_ROUND = 1;
+    private static final int MAX_ROUND = 100;
+    private static final int MIN_CAR_LENGTH = 1;
+    private static final int MAX_CAR_LENGTH = 100;
 
     public static void validateCarNames(List<String> names) {
         for (String name : names) {
@@ -25,6 +29,12 @@ public class Validator {
         Set<String> nonDuplicatedNames = new HashSet<>(names);
         if (nonDuplicatedNames.size() != names.size()) {
             throw new IllegalArgumentException("중복된 자동차 이름이 있습니다.");
+        }
+    }
+
+    public static void validateRound(int round) {
+        if (round < MIN_ROUND || round > MAX_ROUND) {
+            throw new IllegalArgumentException("1-100로 시도 횟수를 적어주세요.");
         }
     }
 }
