@@ -18,7 +18,7 @@ public class TryCount {
         tryCount--;
     }
 
-    public boolean isZero() {
-        return tryCount == 0;
+    public boolean hasTryCount() {
+        return tryCount > 0;
     }
 }
