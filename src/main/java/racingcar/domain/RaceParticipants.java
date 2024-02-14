@@ -11,7 +11,7 @@ public class RaceParticipants {
 
 
     public RaceParticipants(List<Car> cars) {
-        this.cars = new ArrayList<>();
+        this.cars = new ArrayList<>(cars);
     }
 
     public List<Car> getCars() {
