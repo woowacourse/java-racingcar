@@ -1,9 +1,11 @@
 package utils;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
-public class RandomNumberGenerator {
-    public int oneDigit(){
+public class RandomNumberGenerator implements Supplier<Integer> {
+    @Override
+    public Integer get() {
         return (int) (Math.random()*10);
     }
 }
