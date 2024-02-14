@@ -1,3 +1,5 @@
+package racingcar;
+
 public class Car {
 
     private static final int MIN_NUMBER = 4;
