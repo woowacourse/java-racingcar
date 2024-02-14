@@ -57,4 +57,16 @@ class CarRacingTest {
         assertThatThrownBy(() -> CarRacing.createTryCount(tryAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("우승자 판독 테스트")
+    void decideWinners() {
+        // given
+        String carNames = "pobi,crong,honux";
+        String expected = "pobi,crong,honux";
+        // when
+        Cars cars = CarRacing.createCars(carNames);
+        //then
+        assertThat(CarRacing.getWinners(cars)).hasSize(3);
+    }
 }

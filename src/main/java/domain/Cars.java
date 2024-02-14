@@ -28,4 +28,13 @@ public class Cars {
     public List<Car> getCars() {
         return cars;
     }
+
+    public int getCarsMaxPosition() {
+        int maxPosition = -1;
+        for (Car car : cars) {
+            maxPosition = Math.max(car.getPosition(), maxPosition);
+        }
+
+        return maxPosition;
+    }
 }

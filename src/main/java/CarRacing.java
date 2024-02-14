@@ -21,6 +21,11 @@ public class CarRacing {
         TryCount tryCount = createTryCount(inputView.readTryAmount());
 
         printMoveResult(tryCount, cars);
+        printWinners(cars);
+    }
+
+    private static void printWinners(Cars cars) {
+        outputView.printWinners(getWinners(cars));
     }
 
     private static void printMoveResult(TryCount tryCount, Cars cars) {
@@ -41,5 +46,17 @@ public class CarRacing {
             cars.tryMove();
             outputView.printCarsPosition(cars.getCars());
         }
+    }
+
+    public static List<String> getWinners(Cars cars) {
+        int maxPosition = cars.getCarsMaxPosition();
+
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars.getCars()) {
+            if(car.getPosition() == maxPosition) {
+                winners.add(car.getName());
+            }
+        }
+        return winners;
     }
 }

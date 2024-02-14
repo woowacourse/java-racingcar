@@ -3,6 +3,7 @@ package io;
 import domain.Car;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 public class OutputView {
 
@@ -24,5 +25,14 @@ public class OutputView {
             positionBar.append("-");
         }
         return positionBar.toString();
+    }
+
+    public void printWinners(List<String> winners) {
+        StringJoiner winnerJoiner = new StringJoiner(", ");
+        for (String winner : winners) {
+            winnerJoiner.add(winner);
+        }
+
+        System.out.println(String.format("%s가 최종 우승했습니다.", winnerJoiner));
     }
 }
