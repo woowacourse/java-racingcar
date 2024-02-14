@@ -1,5 +1,6 @@
 import domain.Car;
 import domain.Cars;
+import domain.TryCount;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,5 +37,24 @@ class CarRacingTest {
         assertThatThrownBy(() -> {
             CarRacing.createCars(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 5, 10, 30, 40})
+    @DisplayName("시도 횟수 생성 성공 테스트")
+    void createTryCountSuccess(int tryAmount) {
+        //when
+        TryCount tryCount = CarRacing.createTryCount(tryAmount);
+
+        //then
+        assertThat(tryCount.getAmount()).isEqualTo(tryAmount);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -30})
+    @DisplayName("시도 횟수 생성 실패 테스트")
+    void createTryCountFail(int tryAmount) {
+        assertThatThrownBy(() -> CarRacing.createTryCount(tryAmount))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

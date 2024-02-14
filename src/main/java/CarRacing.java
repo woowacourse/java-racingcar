@@ -1,4 +1,5 @@
 import domain.Cars;
+import domain.TryCount;
 import io.InputView;
 
 import java.util.Arrays;
@@ -10,10 +11,15 @@ public class CarRacing {
     }
 
     public static void start() {
-        Cars cars = createCars(inputView.read());
+        Cars cars = createCars(inputView.readCarNames());
+        TryCount tryCount = createTryCount(inputView.readTryAmount());
     }
 
     public static Cars createCars(String carNames) {
         return new Cars(Arrays.asList(carNames.split(",")));
+    }
+
+    public static TryCount createTryCount(int amount) {
+        return new TryCount(amount);
     }
 }
