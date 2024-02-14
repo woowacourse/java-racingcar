@@ -7,18 +7,19 @@ public class CarName {
 
     public CarName(String name) {
         validate(name);
-        this.name = name;
+        this.name = name.trim();
     }
 
     public String getName() {
         return name;
     }
 
-    public void validate(String name) {
+    private void validate(final String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException();
         }
-        if (name.length() > MIN_LENGTH) {
+
+        if (name.trim().length() > MIN_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

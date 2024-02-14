@@ -42,8 +42,9 @@ class CarsTest {
     void invalidSeparator(String value) {
         Assertions.assertThatThrownBy(() -> Cars.from(value))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
+
+
 
     static class TestNumberGenerator implements NumberGenerator {
 
