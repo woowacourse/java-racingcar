@@ -7,6 +7,7 @@ public class Retry {
         try{
             return supplier.get();
         }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] " + e.getMessage());
             return retryOnException(supplier);
         }
     }
