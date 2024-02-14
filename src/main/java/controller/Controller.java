@@ -5,17 +5,20 @@ import domain.Service;
 import java.util.List;
 import java.util.Scanner;
 import view.InputView;
+import view.OutputView;
 
 public class Controller {
-    private Service service;
+    private final Service service;
     public Controller(Service service) {
         this.service = service;
     }
 
     public void run() {
         String inputCarName = inputCarName();
-        inputAttemptLimit();
-        service.setCars(service.separateCarName(inputCarName));
+        int inputAttemptLimit = inputAttemptLimit();
+        List<Car> cars = service.setCars(service.separateCarName(inputCarName));
+        service.playGame(cars,inputAttemptLimit);
+
     }
 
     private String inputCarName() {
