@@ -1,11 +1,9 @@
 package utils;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static utils.ErrorMessage.CAR_NAME_TOO_LONG;
 import static utils.ErrorMessage.NOT_POSITIVE_NUMBER;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
