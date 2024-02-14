@@ -19,6 +19,10 @@ public class Position {
         return new Position(position);
     }
 
+    public Position increase() {
+        return Position.from(position + 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

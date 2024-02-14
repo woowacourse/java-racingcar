@@ -48,4 +48,13 @@ class PositionTest {
             .doesNotThrowAnyException();
     }
 
+    @DisplayName("자동차의 위치를 증가시킨다.")
+    @Test
+    void positionIncrease() {
+        int initialValue = 0;
+        Position position = Position.from(initialValue);
+
+        assertThat(position.increase()).isEqualTo(Position.from(initialValue + 1));
+    }
+
 }
