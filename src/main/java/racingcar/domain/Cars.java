@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
+import racingcar.service.RandomNumberGenerator;
 
 public class Cars {
     private final List<Car> cars;
@@ -31,5 +32,15 @@ public class Cars {
         if (carNames.size() < 2 || carNames.size() > 10) {
             throw new IllegalArgumentException("자동차 대수는 2대 이상 10대 이하여야 합니다.");
         }
+    }
+
+    public void move() {
+        cars.forEach(car -> car.move(RandomNumberGenerator.generateRandomNumber(9)));
+    }
+
+    public List<String> result() {
+        return cars.stream()
+                .map(Car::result)
+                .toList();
     }
 }
