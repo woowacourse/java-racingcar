@@ -15,7 +15,14 @@ public class Vehicles {
         );
     }
 
+    private void validateNonDuplicated(List<Car> cars) {
+        if (cars.size() != cars.stream().map(Car::getName).collect(Collectors.toSet()).size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private Vehicles(List<Car> cars) {
+        validateNonDuplicated(cars);
         Cars = cars;
     }
 
