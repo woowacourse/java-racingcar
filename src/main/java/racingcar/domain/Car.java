@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME;
+
 public class Car {
 
     private final String name;
@@ -11,7 +13,7 @@ public class Car {
 
     private void validateNameLength(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 다섯 자 이내로 입력해 주세요.");
+            throw INVALID_CAR_NAME.getException();
         }
     }
 }

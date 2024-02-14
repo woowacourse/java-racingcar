@@ -14,4 +14,3 @@ public enum ViewMessage {
 		return message;
 	}
 }
-// INPUT_CAR_NAMES
