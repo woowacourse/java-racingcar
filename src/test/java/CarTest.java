@@ -10,4 +10,10 @@ class CarTest {
         assertThatCode(() -> new Car("테스트")).doesNotThrowAnyException();
     }
 
+    @DisplayName("자동차 이름 5자 초과 예외 테스트")
+    @Test
+    void validateCarNameLengthTest() {
+        assertThatThrownBy(() -> new Car("실패하는테스트")).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
