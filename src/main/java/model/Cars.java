@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public class Cars {
     private final List<Car> cars;
