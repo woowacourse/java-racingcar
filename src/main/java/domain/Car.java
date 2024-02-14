@@ -10,6 +10,14 @@ public class Car {
         this.score = 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
     public void move() {
         this.score++;
     }
