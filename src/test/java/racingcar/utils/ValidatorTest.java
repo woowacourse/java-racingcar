@@ -33,4 +33,13 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차의 이름은 영어로만 이루어져야 합니다.");
     }
+
+    @Test
+    @DisplayName("이동 횟수가 자연수가 아닌 경우 예외가 발생한다.")
+    void isNatural() {
+        final int wrongNumber = -1;
+        assertThatThrownBy(() -> Validator.validateMoveCount(wrongNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이동 횟수는 자연수여야 합니다.");
+    }
 }
