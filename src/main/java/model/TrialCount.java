@@ -17,4 +17,10 @@ public class TrialCount {
     public void reduce() {
         number--;
     }
+
+
+    public boolean isRest() {
+        return number > 0;
+    }
+
 }
