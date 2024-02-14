@@ -21,6 +21,9 @@ public class RacingCarController {
     public void run(){
         List<String> carNames = Retry.retryOnException(inputView::inputCarNames);
         Cars cars = new Cars(createCars(carNames));
+        int tryNumber = Retry.retryOnException(inputView::inputTryNumber);
+        startRacing(tryNumber, cars);
+
 
     }
 
@@ -28,5 +31,13 @@ public class RacingCarController {
         return carNames.stream()
                 .map(carName -> new Car(carName,new RandomNumberGenerator()))
                 .toList();
+    }
+
+    private void startRacing(int tryNumber, Cars cars) {
+        for (int i=0; i<tryNumber; i++) {
+            cars.moveCars();
+            String totalMovementDetails = cars.getTotalMovementDetails();
+            outputView.printResult(totalMovementDetails);
+        }
     }
 }
