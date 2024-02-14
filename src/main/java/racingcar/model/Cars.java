@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    private static final String SEPARATOR = ",";
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -14,7 +15,8 @@ public class Cars {
     }
 
     public static Cars from(final String carsName) {
-        String[] names = carsName.split(",");
+        validateSeparator(carsName);
+        String[] names = carsName.split(SEPARATOR);
 
         List<Car> cars = Arrays.stream(names)
                 .map(Car::from)
@@ -23,6 +25,12 @@ public class Cars {
         return new Cars(cars);
     }
 
+
+    private static void validateSeparator(final String carsName) {
+        if (carsName.endsWith(SEPARATOR)) {
+            throw new IllegalArgumentException();
+        }
+    }
 
     public void go(NumberGenerator generator) {
         cars.forEach(car -> car.go(generator.generate()));

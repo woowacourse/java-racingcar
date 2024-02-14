@@ -6,14 +6,20 @@ public class CarName {
     private final String name;
 
     public CarName(String name) {
-        if (name.length() > MIN_LENGTH) {
-            throw new IllegalArgumentException();
-        }
-
+        validate(name);
         this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void validate(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException();
+        }
+        if (name.length() > MIN_LENGTH) {
+            throw new IllegalArgumentException();
+        }
     }
 }
