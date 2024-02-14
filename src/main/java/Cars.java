@@ -8,4 +8,12 @@ public class Cars {
                 .map(name -> new Car(name))
                 .toList();
     }
+
+    private int getMaxLocation() {
+        int maxLocation = 0;
+        for (Car car : cars) {
+            maxLocation = Math.max(maxLocation, car.getLocation());
+        }
+        return maxLocation;
+    }
 }
