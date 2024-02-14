@@ -5,7 +5,14 @@ public class Game {
 
     public static Game from(String userTryCount) throws NumberFormatException {
         int tryCount = parseUserInput(userTryCount);
+        validNaturalNumber(tryCount);
         return new Game(tryCount);
+    }
+
+    private static void validNaturalNumber(int tryCount) {
+        if (tryCount <= 0) {
+            throw new NumberFormatException();
+        }
     }
 
     private static int parseUserInput(String userTryCount) {
