@@ -6,8 +6,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class CarNameInputManager {
-    public static List<String> getNameFromConsole() {
-        Scanner scanner = new Scanner(System.in);
+    public static List<String> getNameFromConsole(Scanner scanner) {
         String input = scanner.next();
         return getName(input);
     }
