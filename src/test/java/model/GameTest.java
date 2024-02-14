@@ -28,4 +28,12 @@ class GameTest {
 
     }
 
+
+    @Test
+    @DisplayName("우승자를 알아 낼 수 있다.")
+    void findWinners(){
+        Game game = new Game(List.of("포비", "왼손"));
+        game.proceed(List.of(4,0));
+        assertThat(game.findWinners().get(0).getName()).isEqualTo("포비");
+    }
 }

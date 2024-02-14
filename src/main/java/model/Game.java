@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Game {
@@ -24,10 +25,6 @@ public class Game {
         return carNames.stream().map(Car::new).toList();
     }
 
-    public int getParticipantSize(){
-        return participant.size();
-    }
-
     public List<Car> proceed(List<Integer> result){
         for(int i = 0; i < result.size(); i++){
             if(CarStatus.decide(result.get(i)).equals(CarStatus.FORWARD)){
@@ -39,5 +36,21 @@ public class Game {
         return new ArrayList<>(participant);
     }
 
+    public List<Car> findWinners() {
+        List<Car> winners = new ArrayList<>();
+        int winnersScore = Collections.max(participant.stream()
+                .map(Car::getForwardCount)
+                .toList());
 
+        for (Car car : participant){
+            if(car.getForwardCount() == winnersScore){
+                winners.add(car);
+            }
+        }
+        return winners;
+    }
+
+    public int getParticipantsSize(){
+        return participant.size();
+    }
 }
