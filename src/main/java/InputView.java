@@ -1,9 +1,17 @@
-import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
+
+    public static List<String> readCarNames() {
+        String input = sc.nextLine();
+        return Arrays.stream(input.split(","))
+                .toList();
+    }
+
     public static int readRoundNumber() {
         System.out.println("시도할 횟수는 몇회인가요?");
         while (true) {
