@@ -24,5 +24,11 @@ public class Round {
         return value == 0;
     }
 
-
+    // TODO: 괜찮은 이름 찾기
+    public void progress() {
+        if (isEnd()) {
+            throw new IllegalStateException();
+        }
+        value--;
+    }
 }
