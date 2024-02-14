@@ -1,7 +1,11 @@
 package domain;
 
+import java.util.regex.Pattern;
+
 public class Name {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final Pattern NAME_CONDITION = Pattern.compile("^[가-힣a-zA-Z]*$");
+
     private final String name;
 
     private Name(String name) {
@@ -19,6 +23,7 @@ public class Name {
         validateBlank(name);
         validateStartsWithBlank(name);
         validateEndsWithBlank(name);
+        validateEnglishOrKorean(name);
     }
 
     private static void validateCarNameLength(String name) {
@@ -48,6 +53,12 @@ public class Name {
     private static void validateEndsWithBlank(String name) {
         if (name.endsWith(" ")) {
             throw new IllegalArgumentException("자동차 이름은 공백으로 끝날 수 없습니다.");
+        }
+    }
+
+    private static void validateEnglishOrKorean(String name) {
+        if (!NAME_CONDITION.matcher(name).matches()) {
+            throw new IllegalArgumentException("자동차 이름은 영어 또는 한글만 가능합니다.");
         }
     }
 }
