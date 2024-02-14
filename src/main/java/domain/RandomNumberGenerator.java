@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
     private static final int UPPER_BOUND = 10;
 
     private final Random random = new Random();

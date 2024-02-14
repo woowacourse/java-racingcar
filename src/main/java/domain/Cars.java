@@ -42,4 +42,12 @@ public class Cars {
                 .distinct()
                 .count();
     }
+
+    public void moveCars(NumberGenerator randomNumberGenerator) {
+        cars.forEach(car -> car.move(randomNumberGenerator.generate()));
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
 }
