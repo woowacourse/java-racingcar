@@ -1,3 +1,5 @@
+package domain;
+
 import util.Constants;
 
 import static util.Exceptions.MAX_NAME_EXCEPTION;
