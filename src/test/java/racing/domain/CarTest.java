@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -30,4 +31,16 @@ class CarTest {
         assertThatThrownBy(()->new Car(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {4,9})
+    @DisplayName("랜덤값이 4이상이면 자동차를 전진합니다")
+    void moveForward(int randomNumber){
+        Car car = new Car("pobi");
+        car.moveForward(randomNumber);
+        String[] split = car.toString().split(" : ");
+        int position = split[1].length();
+        assertEquals(1 ,position);
+    }
+
 }
