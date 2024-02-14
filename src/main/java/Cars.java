@@ -7,7 +7,11 @@ public class Cars {
         return new Cars();
     }
 
-    public void move() {
-        cars.forEach(Car::move);
+    public void move(RandomMovementGenerator randomMovementGenerator) {
+        for (Car car : cars) {
+            if (randomMovementGenerator.generate()) {
+                car.move();
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 public class RacingGame {
     private final int count;
     private Cars cars;
+    private RandomMovementGenerator randomMovementGenerator;
 
     public RacingGame(int count) {
         this.count = count;
@@ -16,7 +17,7 @@ public class RacingGame {
 
     public void play() {
         for (int i = 0; i < count; i++) {
-            cars.move();
+            cars.move(randomMovementGenerator);
         }
     }
 }

@@ -15,7 +15,7 @@ public class CarsTest {
     @DisplayName("차들을 움직이면 거리가 늘어난다.")
     void carsMove() {
         Cars cars = Cars.fromEmpty();
-        cars.move();
+        cars.move(new RandomMovementGenerator(new RandomNumberGenerator()));
     }
 
 }
