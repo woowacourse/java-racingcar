@@ -8,7 +8,7 @@ public class Cars {
 
     public Cars(List<String> carNames) {
         // 자동차 개수 검증
-        if(carNames.size() <= 1) {
+        if (carNames.size() <= 1) {
             throw new IllegalArgumentException();
         }
 
@@ -17,6 +17,12 @@ public class Cars {
             cars.add(new Car(carName));
         }
         this.cars = cars;
+    }
+
+    public void tryMove() {
+        for (Car car : cars) {
+            car.tryMove(RandomNumberGenerator.generate());
+        }
     }
 
     public List<Car> getCars() {

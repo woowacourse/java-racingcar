@@ -14,7 +14,17 @@ public class Car {
         this.position = 0;
     }
 
+    public void tryMove(int number) {
+        if (number >= 4) {
+            position++;
+        }
+    }
+
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
