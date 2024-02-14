@@ -12,4 +12,12 @@ public class Car {
     public void incLocation() {
         location += 1;
     }
+
+    public String getCarName() {
+        return name;
+    }
+
+    public int getLocation() {
+        return location;
+    }
 }

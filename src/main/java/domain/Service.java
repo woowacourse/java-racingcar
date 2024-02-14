@@ -20,12 +20,26 @@ public class Service {
         return cars;
     }
 
-    public int randomNumberGenerator() {
+    public void playGame(List<Car> cars,int attemptLimit) {
+        int count=0;
+        while (count < attemptLimit) {
+            playRacing(cars);
+            count++;
+        }
+    }
+
+    private void playRacing(List<Car> cars) {
+        for (Car car : cars) {
+            goOrStop(car,randomNumberGenerator());
+        }
+    }
+
+    private int randomNumberGenerator() {
         Random random = new Random();
         return random.nextInt(9);
     }
 
-    public void goOrStop(Car car, int randomNumber) {
+    private void goOrStop(Car car, int randomNumber) {
         if (randomNumber >= 4) {
             car.incLocation();
         }
