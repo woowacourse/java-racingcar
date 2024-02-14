@@ -7,13 +7,21 @@ import java.io.InputStreamReader;
 public class InputView {
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static String inputRacingCars() throws IOException {
+    public static String inputRacingCars() {
         OutputView.printRequestCarNamesMessage();
-        return br.readLine();
+        try {
+            return br.readLine();
+        } catch(IOException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public static String inputTryCount() throws IOException {
+    public static String inputTryCount() {
         OutputView.printRequestTryCountMessage();
-        return br.readLine();
+        try {
+            return br.readLine();
+        } catch(IOException e) {
+            throw new IllegalArgumentException();
+        }
     }
 }
