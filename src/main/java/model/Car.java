@@ -1,62 +1,62 @@
 package model;
 
-import java.lang.runtime.ObjectMethods;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class Car{
-    private String name;
-    private List<CarStatus> statuses;
-    public Car(String name) {
-        validateNullAndEmpty(name);
-        validateNameLength(name);
-        this.name = name;
-        this.statuses = new ArrayList<>();
-    }
+public class Car {
+  private final String name;
+  private final List<CarStatus> statuses;
 
-    private void validateNullAndEmpty(String name) {
-        if (Objects.isNull(name) || name.isBlank()) {
-            throw new IllegalArgumentException();
-        }
-    }
+  public Car(String name) {
+    validateNullAndEmpty(name);
+    validateNameLength(name);
+    this.name = name;
+    this.statuses = new ArrayList<>();
+  }
 
-    private void validateNameLength(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException();
-        }
+  private void validateNullAndEmpty(String name) {
+    if (Objects.isNull(name) || name.isBlank()) {
+      throw new IllegalArgumentException();
     }
+  }
 
-    public void forward(){
-        statuses.add(CarStatus.FORWARD);
+  private void validateNameLength(String name) {
+    if (name.length() > 5) {
+      throw new IllegalArgumentException();
     }
-    public void stop(){
-        statuses.add(CarStatus.STOP);
-    }
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(name, car.name) && Objects.equals(statuses, car.statuses);
-    }
+  public void forward() {
+    statuses.add(CarStatus.FORWARD);
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, statuses);
-    }
+  public void stop() {
+    statuses.add(CarStatus.STOP);
+  }
 
-    public List<CarStatus> getStatuses() {
-        return new ArrayList<>(statuses);
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Car car = (Car) o;
+    return Objects.equals(name, car.name) && Objects.equals(statuses, car.statuses);
+  }
 
-    public String getName() {
-        return name;
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, statuses);
+  }
 
-   public int getForwardCount(){
-        return (int) statuses.stream().filter(carStatus -> carStatus.equals(CarStatus.FORWARD)).count();
-   }
+  public List<CarStatus> getStatuses() {
+    return new ArrayList<>(statuses);
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getForwardCount() {
+    return (int) statuses.stream().filter(carStatus -> carStatus.equals(CarStatus.FORWARD)).count();
+  }
 }
