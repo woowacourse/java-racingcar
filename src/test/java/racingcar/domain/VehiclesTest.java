@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("자동차들")
 class VehiclesTest {
@@ -47,6 +49,14 @@ class VehiclesTest {
         String userInput = "choco,seyan,choco";
 
         //when & then
+        assertThrows(IllegalArgumentException.class, () -> Vehicles.from(userInput));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "    "})
+    @DisplayName("사용자 입력이 빈칸이면, 예와가 발생한다.")
+    public void verifyBlankUserInput(String userInput) {
+        //given&when & then
         assertThrows(IllegalArgumentException.class, () -> Vehicles.from(userInput));
     }
 }
