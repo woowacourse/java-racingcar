@@ -14,6 +14,11 @@ public class RacingCarGame {
                 }
 
                 String[] carNames = rawCarNames.split(",");
+                for (String carName : carNames) {
+                    if (carName.length() <= 0 || carName.length() > 5) {
+                        throw new IllegalArgumentException("올바르지 않는 자동차 이름입니다. 다시 입력해주세요.");
+                    }
+                }
                 flag = false;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
