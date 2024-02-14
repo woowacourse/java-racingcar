@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import view.OutputView;
 
 public class Service {
     public Service() {
@@ -20,17 +21,35 @@ public class Service {
         return cars;
     }
 
-    public void playGame(List<Car> cars,int attemptLimit) {
-        int count=0;
+    public void playGame(List<Car> cars, int attemptLimit) {
+        OutputView.printHeadLine();
+        int count = 0;
         while (count < attemptLimit) {
             playRacing(cars);
+            OutputView.printResult(cars);
             count++;
         }
     }
 
+    public int getMaxPosition(List<Car> cars) {
+        int max = -1;
+        for (Car car : cars) {
+            max = compareValue(car, max);
+        }
+        return max;
+    }
+
+    private int compareValue(Car car, int max) {
+        if (max <= car.getLocation()) {
+            max = car.getLocation();
+        }
+        return max;
+    }
+
+    
     private void playRacing(List<Car> cars) {
         for (Car car : cars) {
-            goOrStop(car,randomNumberGenerator());
+            goOrStop(car, randomNumberGenerator());
         }
     }
 
