@@ -15,6 +15,9 @@ public class TryCount {
     }
 
     public void decreaseTryCount() {
+        if (tryCount == 0) {
+            throw new IllegalStateException("시도 횟수가 모두 소진되었습니다.");
+        }
         tryCount--;
     }
 
