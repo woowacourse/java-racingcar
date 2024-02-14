@@ -10,17 +10,33 @@ public class RacingCars {
         this.racingCars = racingCars;
     }
 
-    public void startRound() {
-        racingCars.forEach(RacingCars::moveCar);
+    public String startRounds(String counts) {
+        validateCounts(counts);
+        int roundCounts = Integer.parseInt(counts);
+        StringBuilder roundResult = new StringBuilder();
+        for (int i = 0; i < roundCounts; i++) {
+            racingCars.forEach(RacingCars::moveCar);
+            roundResult.append(getRoundResult());
+            roundResult.append("\n\n");
+        }
+        return roundResult.toString();
     }
 
-    public static void moveCar(Car car) {
+    private static void validateCounts(String name) {
+        try {
+            Integer.parseInt(name);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void moveCar(Car car) {
         if (Racing.isMoveForward()) {
             car.moveForward();
         }
     }
 
-    public String getRoundResult() {
+    private String getRoundResult() {
         return racingCars.stream()
                 .map(RacingCars::generateResult)
                 .collect(Collectors.joining("\n"));
