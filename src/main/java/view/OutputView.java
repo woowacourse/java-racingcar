@@ -2,6 +2,7 @@ package view;
 
 import domain.Car;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -14,6 +15,13 @@ public class OutputView {
             System.out.printf("%s : %s\n", car.getName(), "-".repeat(car.getPosition()));
         }
         System.out.println();
+    }
+
+    public static void printWinners(List<Car> cars) {
+        String winnerNames = cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+        System.out.printf("%s가 최종 우승했습니다.", winnerNames);
     }
 
     public static void printException(Exception exception) {

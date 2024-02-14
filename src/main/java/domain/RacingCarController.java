@@ -30,5 +30,13 @@ public class RacingCarController {
             OutputView.printProgress(cars);
         }
 
+        int maxPosition = cars.stream().mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+
+        List<Car> winners = cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .toList();
+        OutputView.printWinners(winners);
     }
 }
