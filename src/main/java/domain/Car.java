@@ -20,4 +20,8 @@ public class Car {
         }
     }
 
+    //TODO:number 변수명 변경하기
+    public void drive(int number) {
+    }
+
 }
