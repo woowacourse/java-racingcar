@@ -6,7 +6,7 @@ import java.util.Random;
 import view.OutputView;
 
 public class Service {
-    public static final Car NONCANDIDATE_CAR = new Car("");
+    public final Car NONCANDIDATE_CAR = new Car("");
     public Service() {
     }
 
