@@ -1,24 +1,27 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static util.Exceptions.DUPLICATED_NAME_EXCEPTION;
 
 public class Cars {
 
-    private final List<Car> Cars;
+    private final List<Car> cars;
 
     public Cars(List<String> names) {
         validateDuplicatedNames(names);
-        Cars = convertNamesToCars(names);
+        cars = convertNamesToCars(names);
     }
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != Set.copyOf(names).size()) {
             throw new IllegalArgumentException(DUPLICATED_NAME_EXCEPTION.getMessage());
         }
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     private List<Car> convertNamesToCars(List<String> names) {
@@ -29,5 +32,14 @@ public class Cars {
         }
 
         return cars;
+    }
+
+    //TODO : getter를 없앨 수는 없을까 ㅜㅜ
+    public int getMaxForward() {
+        return cars.stream()
+                .sorted(Car::compareTo)
+                .toList()
+                .get(0)
+                .getForward();
     }
 }

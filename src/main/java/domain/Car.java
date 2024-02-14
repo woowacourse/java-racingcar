@@ -2,10 +2,12 @@ package domain;
 
 import util.Constants;
 
+import java.util.Comparator;
+
 import static util.Constants.MIN_FORWARD_NUMBER;
 import static util.Exceptions.MAX_NAME_EXCEPTION;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int forward;
 
@@ -19,6 +21,10 @@ public class Car {
         if (name.length() > Constants.MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(MAX_NAME_EXCEPTION.getMessage());
         }
+    }
+
+    public int getForward() {
+        return forward;
     }
 
     //TODO:number 변수명 변경하기
@@ -35,5 +41,10 @@ public class Car {
     @Override
     public String toString() {
         return name + " : " + "-".repeat(forward);
+    }
+
+    @Override
+    public int compareTo(Car c) {
+        return Integer.compare(c.forward, forward);
     }
 }
