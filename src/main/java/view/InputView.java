@@ -10,8 +10,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static Integer getRacingRounds() {
+    public static String getRacingRounds() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        return scanner.nextLine();
     }
 }
