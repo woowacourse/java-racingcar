@@ -42,7 +42,7 @@ public class CarRacing {
             cars.add(new Car(carName, accelerator));
         }
 
-        return new Cars(cars, new CarAccelerator());
+        return new Cars(cars);
     }
 
     public TryCount createTryCount(int amount) {

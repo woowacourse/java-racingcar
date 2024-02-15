@@ -25,7 +25,7 @@ class CarsTest {
         List<Car> carInfos = List.of(car1, car2);
         //when
         //then
-        Assertions.assertThatCode(() -> new Cars(carInfos, accelerator));
+        Assertions.assertThatCode(() -> new Cars(carInfos));
     }
 
     @Test
@@ -36,7 +36,7 @@ class CarsTest {
         List<Car> carInfos = List.of(car);
         //when
         //then
-        Assertions.assertThatThrownBy(() -> new Cars(carInfos, accelerator))
+        Assertions.assertThatThrownBy(() -> new Cars(carInfos))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -49,7 +49,7 @@ class CarsTest {
         List<Car> carInfos = List.of(car1, car2);
         //when
         //then
-        Assertions.assertThatThrownBy(() -> new Cars(carInfos, accelerator))
+        Assertions.assertThatThrownBy(() -> new Cars(carInfos))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -63,7 +63,7 @@ class CarsTest {
         Car car3 = new Car("honux", carAccelerator);
 
         List<Car> carInfos = List.of(car1, car2, car3);
-        Cars cars = new Cars(carInfos, carAccelerator);
+        Cars cars = new Cars(carInfos);
 
         //when
         car1.moveForward(4);

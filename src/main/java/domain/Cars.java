@@ -5,13 +5,11 @@ import java.util.List;
 
 public class Cars {
     private List<Car> cars;
-    private final CarAccelerator accelerator;
 
-    public Cars(List<Car> cars, CarAccelerator accelerator) {
+    public Cars(List<Car> cars) {
         validate(cars);
 
         this.cars = cars;
-        this.accelerator = accelerator;
     }
 
     private void validate(List<Car> cars) {
