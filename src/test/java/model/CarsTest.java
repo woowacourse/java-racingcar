@@ -33,9 +33,9 @@ class CarsTest {
         Cars cars = new Cars(List.of(myungOh, baeky));
         cars.moveCars(move);
 
-        int result = cars.findWinners().size();
+        List<Car> result = cars.findWinners();
 
-        assertThat(result).isEqualTo(expected);
+        assertThat(result).hasSize(expected);
     }
 
 }
