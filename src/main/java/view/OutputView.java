@@ -13,7 +13,7 @@ public class OutputView {
     // TODO : 대쉬 반복 ..잘해보기
     public static void printResult(List<Car> cars) {
         for (Car car : cars) {
-            System.out.println(car.getCarName() + ":" + repeatDash(car.getLocation()));
+            System.out.println(car.getCarName() + " : " + repeatDash(car.getLocation()));
         }
         System.out.println();
     }

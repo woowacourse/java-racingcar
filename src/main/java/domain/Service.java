@@ -22,9 +22,14 @@ public class Service {
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
+        validateCar(cars);
+        return cars;
+    }
+
+    private void validateCar(List<Car> cars) {
+        validateCarAmount(cars);
         validateDuplicateName(cars);
         validateFalseName(cars);
-        return cars;
     }
 
     private void validateDuplicateName(List<Car> cars) {
@@ -44,6 +49,12 @@ public class Service {
     private void validateBlankName(String carName) {
         if (carName.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 빈 이름은 사용할 수 없습니다.");
+        }
+    }
+
+    private void validateCarAmount(List<Car> cars) {
+        if (cars.size() == 1) {
+            throw new IllegalArgumentException("[ERROR] 경주할 자동차를 두 대 이상 입력해주세요.");
         }
     }
 

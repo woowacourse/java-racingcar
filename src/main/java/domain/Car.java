@@ -8,7 +8,7 @@ public class Car {
 
     public Car(String name) {
         validator(name);
-        this.name = name;
+        this.name = removeBlank(name);
         location = 0;
     }
 
