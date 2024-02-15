@@ -16,18 +16,29 @@ public class Race {
     public Race(String inValidNameStr) {
         cars = new ArrayList<>();
         List<String> invalidNames = Convertor.convertStringToList(inValidNameStr);
-        validateDuplicatedCarName(invalidNames);
+        validate(invalidNames);
 
         for (String name : invalidNames) {
             cars.add(new Car(new Name(name)));
         }
     }
 
-    private void validateDuplicatedCarName(List<String> inValidNames) {
-        Set<String> uniqueNames = new HashSet<>(inValidNames);
+    private void validate(List<String> invalidNames) {
+        validateDuplicatedCarName(invalidNames);
+        validateMinimumNumberOfCars(invalidNames);
+    }
 
-        if (uniqueNames.size() != inValidNames.size()) {
+    private void validateDuplicatedCarName(List<String> invalidNames) {
+        Set<String> uniqueNames = new HashSet<>(invalidNames);
+
+        if (uniqueNames.size() != invalidNames.size()) {
             throw new IllegalArgumentException("중복된 이름의 자동차는 사용할 수 없습니다.");
+        }
+    }
+
+    private void validateMinimumNumberOfCars(List<String> invalidNames) {
+        if (invalidNames.size() < 2) {
+            throw new IllegalArgumentException("레이스에 참여하는 자동차는 최소 2대 이상이어야 합니다.");
         }
     }
 
