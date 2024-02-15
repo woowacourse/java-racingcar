@@ -13,6 +13,7 @@ class JudgeTest {
 
     @Test
     void getWinners() {
+        //given
         Car one = new Car("one");
         Car two = new Car("two");
         Car three = new Car("three");
@@ -26,8 +27,10 @@ class JudgeTest {
         two.move(0);
         three.move(8);
 
+        //when
         String winners = judge.getWinners(cars);
 
+        //then
         assertThat(winners).isEqualTo("one, three가 최종 우승했습니다.");
     }
 }
