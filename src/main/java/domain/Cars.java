@@ -1,8 +1,12 @@
 package domain;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import dto.CarNameRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     public static final int MIN_CAR_COUNT = 2;
@@ -35,21 +39,16 @@ public class Cars {
     }
 
     public List<Car> getMaxDistanceCars() {
-        List<Car> maxDistanceCars = new ArrayList<>();
-        Car maxDistanceCar = cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException("최댓값 계산에 오류가 발생했습니다."));
-
-        for (Car car : cars) {
-            addWinners(car, maxDistanceCar, maxDistanceCars);
-        }
-        return maxDistanceCars;
+        Car maxDistanceCar = getMaxDistanceCar(cars);
+        return cars.stream()
+                .filter(car -> car.isSameDistance(maxDistanceCar))
+                .collect(toList());
     }
 
-    private void addWinners(Car car, Car maxDistanceCar, List<Car> winners) {
-        if (car.isSameDistance(maxDistanceCar)) {
-            winners.add(car);
-        }
+    private static Car getMaxDistanceCar(List<Car> cars) {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("최댓값 계산에 오류가 발생했습니다."));
     }
 
     public List<Car> getCars() {
