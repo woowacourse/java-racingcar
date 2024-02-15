@@ -16,15 +16,25 @@ public class MainController {
     }
 
     private Cars getCars() {
-        final List<String> carNames = InputView.readCarNames(new ConsoleReader());
-        return new Cars(carNames);
+        try {
+            final List<String> carNames = InputView.readCarNames(new ConsoleReader());
+            return new Cars(carNames);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getCars();
+        }
     }
 
     private int getTryCount() {
-        return InputView.readTryCount(new ConsoleReader());
+        try {
+            return InputView.readTryCount(new ConsoleReader());
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getTryCount();
+        }
     }
 
-    private void proceedRounds(final Cars cars, final int tryCount){
+    private void proceedRounds(final Cars cars, final int tryCount) {
         OutputView.printResultSubject();
         IntStream.rangeClosed(1, tryCount)
                 .forEach(i -> proceedOneRound(cars));
