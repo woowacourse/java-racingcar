@@ -11,6 +11,8 @@ public class OutputView {
     private static final String POSITION_EXPRESSION_SYMBOL = "-";
     private static final String WINNERS_MESSAGE = "가 최종 우승했습니다.";
     private static final String WINNER_DELIMITER = ", ";
+    private static final String ERROR_SUFFIX = "[ERROR]";
+    private static final String ERROR_MESSAGE_FORMAT = "%s %s";
 
     public void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
@@ -42,5 +44,9 @@ public class OutputView {
         return winners.stream()
                 .map(CarDto::getName)
                 .toList();
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(String.format(ERROR_MESSAGE_FORMAT, ERROR_SUFFIX, errorMessage));
     }
 }
