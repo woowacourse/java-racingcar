@@ -30,4 +30,8 @@ public class OutputView {
     private String formatWinners(List<String> winners) {
         return String.join(", ", winners);
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 }
