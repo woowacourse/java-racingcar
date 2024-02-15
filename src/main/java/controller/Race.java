@@ -10,7 +10,9 @@ import model.Car;
 import model.Cars;
 import model.Name;
 import model.NumberGenerator;
+import model.TryCount;
 import view.InputView;
+import view.OutputView;
 
 public class Race {
     private final NumberGenerator numberGenerator;
@@ -19,12 +21,30 @@ public class Race {
         this.numberGenerator = numberGenerator;
     }
 
+    public void start() {
+        Cars cars = createCars();
+        TryCount tryCount = createTryCount();
+        OutputView.printResultHeader();
+        while (tryCount.hasTryCount()) {
+            moveCars(cars);
+            OutputView.printCarNameAndPosition(cars);
+            tryCount.decreaseTryCount();
+        }
+        List<String> winners = getWinners(cars);
+        OutputView.printWinners(winners);
+    }
+
     private Cars createCars() {
         String[] carNames = InputView.inputCarNames();
         return Arrays.stream(carNames)
                 .map(Name::new)
                 .map(Car::new)
                 .collect(collectingAndThen(toList(), Cars::new));
+    }
+
+    private TryCount createTryCount() {
+        int tryCount = InputView.inputTryCount();
+        return new TryCount(tryCount);
     }
 
     private void moveCars(Cars cars) {
