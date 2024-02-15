@@ -12,6 +12,10 @@ public class CarRacingGame {
         this.round = new Round(inputRound);
     }
 
+    public List<Car> findWinners() {
+        return cars.findCarsAtMaxPosition();
+    }
+
     public boolean isGameEnd() {
         return round.isLast();
     }

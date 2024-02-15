@@ -42,4 +42,13 @@ class CarsTest {
             assertThat(car.getPosition()).isEqualTo(0);
         }
     }
+
+    @Test
+    @DisplayName("가장 멀리 이동한 자동차들을 찾을 수 있다.")
+    void findCarsAtMaxPosition() {
+        Cars cars = new Cars("pobi,crong,honux");
+        List<Car> carsAtMaxPosition = cars.findCarsAtMaxPosition();
+
+        assertThat(carsAtMaxPosition.size()).isEqualTo(3);
+    }
 }

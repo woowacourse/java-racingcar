@@ -1,14 +1,11 @@
 package racingcar.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CarRacingGameTest {
 
@@ -40,5 +37,14 @@ class CarRacingGameTest {
 
         carRacingGame.playRound(() -> 3);
         assertThat(carRacingGame.isGameEnd()).isTrue();
+    }
+
+    @Test
+    @DisplayName("우승자를 구할 수 있다.")
+    void findWinners() {
+        CarRacingGame carRacingGame = new CarRacingGame("pobi,crong,honux", "1");
+        List<Car> winners = carRacingGame.findWinners();
+
+        assertThat(winners.size()).isEqualTo(3);
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public class Cars {
     private static final String INVALID_CARS_SIZE_EXCEPTION_MESSAGE = "게임에 참여하는 자동차의 수는 최소 %d대 이상이어야 합니다.";
     private static final String DUPLICATE_CAR_NAMES_EXCEPTION_MESSAGE = "게임에 참여하는 자동차들의 이름은 중복될 수 없습니다.";
+    private static final String EMPTY_CARS_EXCEPTION_MESSAGE = "차량 리스트가 비어있습니다.";
     private static final String CAR_NAME_DELIMITER = ",";
     private static final int MINIMUM_CARS_SIZE = 1;
 
@@ -47,6 +48,23 @@ public class Cars {
         cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
+    public List<Car> findCarsAtMaxPosition() {
+        int maxPosition = findMaxPosition();
+        return findCarsByPosition(maxPosition);
+    }
+
+    private int findMaxPosition() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .max(Integer::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException(EMPTY_CARS_EXCEPTION_MESSAGE));
+    }
+
+    private List<Car> findCarsByPosition(int maxPosition) {
+        return cars.stream()
+                .filter(car -> car.isPositionEqualTo(maxPosition))
+                .toList();
+    }
 
     public List<Car> getCars() {
         return cars;
