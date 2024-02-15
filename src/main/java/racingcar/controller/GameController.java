@@ -15,7 +15,7 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public GameController(InputView inputView, OutputView outputView) {
+    public GameController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -28,7 +28,7 @@ public class GameController {
 
         outputView.printCarsPosition(createCarDtos(cars));
 
-        List<String> winnersName = findWinnersName(cars);
+        final List<String> winnersName = findWinnersName(cars);
         outputView.printWinners(winnersName);
     }
 
@@ -53,7 +53,7 @@ public class GameController {
             cars.go(generator);
             round.progress();
 
-            List<CarDto> carDtos = createCarDtos(cars);
+            final List<CarDto> carDtos = createCarDtos(cars);
 
             outputView.printCarsPosition(carDtos);
         }

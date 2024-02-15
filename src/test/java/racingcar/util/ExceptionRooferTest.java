@@ -19,20 +19,20 @@ class ExceptionRooferTest {
         String result = ExceptionRoofer.generate(testSupply, testConsumer);
 
         // then
-        Assertions.assertThat(result).isEqualTo("1");
-        Assertions.assertThat(TestConsumer.value).isEqualTo("[ERROR] 다시 입력하세요.");
-
+        Assertions.assertThat(result).isEqualTo(String.valueOf(TestSupply.LIMIT));
+        Assertions.assertThat(TestConsumer.value).isEqualTo("[ERROR] 다시 입력하세요." + TestSupply.LIMIT);
     }
 
     static class TestSupply implements Supplier<String> {
 
+        private static final int LIMIT = 20000;
         private static int index = 0;
 
         @Override
         public String get() {
-            if (index == 0) {
+            if (index != LIMIT) {
                 index++;
-                throw new IllegalArgumentException("[ERROR] 다시 입력하세요.");
+                throw new IllegalArgumentException("[ERROR] 다시 입력하세요." + index);
             }
             return String.valueOf(index);
         }
@@ -40,13 +40,10 @@ class ExceptionRooferTest {
 
     static class TestConsumer implements Consumer<String> {
 
-
         private static String value;
         @Override
         public void accept(String value) {
             TestConsumer.value = value;
         }
-
-
     }
 }

@@ -9,9 +9,10 @@ import racingcar.message.ErrorMessage;
 public class Cars {
 
     private static final String SEPARATOR = ",";
-    private List<Car> cars;
+    private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    private Cars(final List<Car> cars) {
+        validateDuplicateName(cars);
         this.cars = cars;
     }
 
@@ -22,17 +23,8 @@ public class Cars {
                 .map(Car::from)
                 .collect(Collectors.toList());
 
-        validateDuplicateName(cars);
-
         return new Cars(cars);
     }
-
-    private static void validateDuplicateName(final List<Car> cars) {
-        if (cars.size() != Set.copyOf(cars).size()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
-        }
-    }
-
 
     private static void validateSeparator(final String carsName) {
         if (carsName.endsWith(SEPARATOR)) {
@@ -40,26 +32,34 @@ public class Cars {
         }
     }
 
-    public void go(NumberGenerator generator) {
+    private void validateDuplicateName(final List<Car> cars) {
+        if (cars.size() != Set.copyOf(cars).size()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
+        }
+    }
+
+    public void go(final NumberGenerator generator) {
         cars.forEach(car -> car.go(generator.generate()));
     }
 
     public List<Car> findWinner() {
-        //TODO: 예외 고민해보기
-        final int maxPosition = cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow(IllegalStateException::new);
+        final int maxPosition = getMaxPosition();
 
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .toList();
     }
 
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(IllegalStateException::new);
+    }
+
     public List<Car> getCars() {
         return cars.stream()
                 .map(Car::copy)
                 .toList();
-//        return Collections.unmodifiableList(cars);
     }
 }

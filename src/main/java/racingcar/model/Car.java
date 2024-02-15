@@ -9,7 +9,7 @@ public class Car {
     private final CarName name;
     private int position;
 
-    private Car(CarName name, int position) {
+    private Car(final CarName name, final int position) {
         this.name = name;
         this.position = position;
     }

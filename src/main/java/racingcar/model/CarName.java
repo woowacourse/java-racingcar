@@ -7,13 +7,9 @@ public class CarName {
     private static final int MIN_LENGTH = 5;
     private final String name;
 
-    public CarName(String name) {
+    public CarName(final String name) {
         validate(name);
         this.name = name.trim();
-    }
-
-    public String getName() {
-        return name;
     }
 
     private void validate(final String name) {
@@ -24,6 +20,10 @@ public class CarName {
         if (name.trim().length() > MIN_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
 

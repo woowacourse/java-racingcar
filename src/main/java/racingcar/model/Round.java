@@ -6,7 +6,7 @@ public class Round {
 
     private int value;
 
-    private Round(int value) {
+    private Round(final int value) {
         this.value = value;
     }
 
@@ -18,7 +18,7 @@ public class Round {
         return new Round(value);
     }
 
-    private static int parseInt(String source) {
+    private static int parseInt(final String source) {
         try {
             return Integer.parseInt(source);
         }  catch (NumberFormatException exception) {

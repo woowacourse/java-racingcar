@@ -5,22 +5,12 @@ import java.util.function.Supplier;
 
 public class ExceptionRoofer {
 
-    public static <T> T generate(Supplier<T> supplier,  Consumer<String> consumer) {
+    public static <T> T generate(final Supplier<T> supplier, final Consumer<String> consumer) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException exception) {
             consumer.accept(exception.getMessage());
             return generate(supplier, consumer);
-        }
-    }
-
-    public static <T> T generate1(Supplier<T> supplier, Consumer<String> consumer) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                consumer.accept(e.getMessage());
-            }
         }
     }
 }
