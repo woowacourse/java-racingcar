@@ -1,10 +1,10 @@
 package racing.domain;
 
-import racing.util.RandomGenerator;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import racing.util.RandomGenerator;
 
 public class Cars {
     private List<Car> cars;
@@ -12,8 +12,7 @@ public class Cars {
     public Cars(String rawNames) {
         List<String> carNames = stringToList(rawNames);
         validate(carNames);
-        List<Car> cars = carNames.stream().map(Car::new).collect(Collectors.toList());;
-        this.cars = cars;
+        this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
     private void validate(List<String> cars) {
@@ -29,7 +28,7 @@ public class Cars {
 
     private List<String> stringToList(String string) {
         List<String> names = new ArrayList<>();
-        for(String name:string.split(",")){
+        for (String name : string.split(",")) {
             names.add(name.trim());
         }
         return names;
@@ -42,13 +41,13 @@ public class Cars {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Car car: cars){
+        for (Car car : cars) {
             stringBuilder.append(car.toString()).append("\n");
         }
         return stringBuilder.toString();
     }
 
-    public List<Car> findFurthestCars(){
+    public List<Car> findFurthestCars() {
         Collections.sort(cars);
         return cars.stream().filter((car) -> car.isSame(cars.get(0))).toList();
     }

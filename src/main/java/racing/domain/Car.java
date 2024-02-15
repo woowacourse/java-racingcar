@@ -1,10 +1,6 @@
 package racing.domain;
 
-import racing.util.RandomGenerator;
-
-import java.util.Collections;
-
-public class Car implements Comparable<Car>{
+public class Car implements Comparable<Car> {
     private final String name;
     private int position;
 
@@ -14,18 +10,18 @@ public class Car implements Comparable<Car>{
         this.position = 0;
     }
 
-    public void validate(String name){
+    public void validate(String name) {
         validateSize(name);
     }
 
     private void validateSize(String name) {
-        if(name.length() > 5 || name.isEmpty()){
+        if (name.length() > 5 || name.isEmpty()) {
             throw new IllegalArgumentException();
         }
     }
 
     public void moveForward(int value) {
-        if(value>=4){
+        if (value >= 4) {
             this.position++;
         }
     }
@@ -37,7 +33,7 @@ public class Car implements Comparable<Car>{
 
     @Override
     public int compareTo(Car otherCar) {
-        return otherCar.position-this.position;
+        return otherCar.position - this.position;
     }
 
     public boolean isSame(Car car) {

@@ -12,9 +12,9 @@ public class Race {
         this.tryCount = tryCount;
     }
 
-    public List<String> proceedRace(){
+    public List<String> proceedRace() {
         List<String> result = new ArrayList<>();
-        while(tryCount.isRemain()){
+        while (tryCount.isRemain()) {
             tryCount.consume();
             cars.proceedRound();
             result.add(cars.toString());
@@ -22,7 +22,7 @@ public class Race {
         return result;
     }
 
-    public List<Car> getWinners(){
+    public List<Car> getWinners() {
         return cars.findFurthestCars();
     }
 }
