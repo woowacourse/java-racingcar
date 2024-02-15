@@ -21,7 +21,7 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("이름이 5자가 넘어가지 않는 자동차는 셍성 검증에 성공한다.")
+    @DisplayName("이름이 5자가 넘어가지 않는 자동차는 생성 검증에 성공한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1234", "123", "12"})
     void testCreateCarWithValidLengthName(String carName) {

@@ -31,7 +31,7 @@ public class RacingGameController {
     }
 
     private void findWinners(Cars cars) {
-        List<Car> winners = cars.chooseWinner();
+        List<Car> winners = cars.chooseWinners();
         outputView.printWinner(winners);
     }
 

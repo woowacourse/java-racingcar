@@ -20,7 +20,7 @@ class CarsTest {
                         Car.of("car3", 3),
                         winner));
 
-        List<Car> winners = cars.chooseWinner();
+        List<Car> winners = cars.chooseWinners();
 
         assertThat(winners).containsExactly(winner);
     }

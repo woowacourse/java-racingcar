@@ -19,7 +19,7 @@ public class Cars {
         return cars;
     }
 
-    public List<Car> chooseWinner() {
+    public List<Car> chooseWinners() {
         int maxPosition = getFurthestPosition();
         return cars.stream()
                 .filter(car -> car.getPosition().equals(maxPosition))
@@ -27,7 +27,7 @@ public class Cars {
     }
 
     public void tryMoveAll() {
-        cars.forEach(car -> car.tryMove());
+        cars.forEach(Car::tryMove);
     }
 
     private Integer getFurthestPosition() {
