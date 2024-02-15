@@ -4,8 +4,10 @@ import java.util.List;
 import model.Cars;
 
 public class OutputView {
-
     private static final String WINNER_NAME_DELIMITER = ", ";
+
+    private OutputView() {
+    }
 
     public static void printResultHeader() {
         System.out.println();
