@@ -6,11 +6,10 @@ public class Car {
 
     public Car(Name name) {
         this.name = name;
-        this.position = 0;
     }
 
-    public void move() {
-        position++;
+    public void moveForward() {
+        this.position++;
     }
 
     public String getName() {
