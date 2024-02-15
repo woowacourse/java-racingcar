@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,10 +12,10 @@ import racingcar.generator.MovingStub;
 
 class RacingGameTest {
 
-    @DisplayName("이동 횟수가 1 미만 또는 숫자가 아닌 경우 예외를 발생한다.")
+    @DisplayName("이동 횟수가 1 미만 숫자인 경우 예외를 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"0", "asd", ""})
-    void exceptionInvalidCountInput(String given) {
+    @ValueSource(strings = {"0", "-1", "-10000"})
+    void exceptionInvalidCountInput(int given) {
         //given
         List<String> carNames = List.of("a", "b", "c");
         List<Car> carList = carNames.stream()
@@ -34,7 +34,7 @@ class RacingGameTest {
     @Test
     void runGameByCount() {
         //given
-        String count = "3";
+        int count = 3;
         List<String> carNames = List.of("a", "b", "c");
         List<Car> carList = carNames.stream()
                 .map(Car::new)
