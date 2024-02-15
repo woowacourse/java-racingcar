@@ -30,7 +30,6 @@ public class Service {
         }
     }
 
-    // TODO: 확장성 고려하기 -> move에 대한 전략이 바뀔 것을 대비
     private static boolean willMove() {
         int randomNumber = (int) (Math.random() * RANDOM_NUMBER_RANGE);
         return randomNumber >= MOVE_BOUNDARY_NUMBER;
