@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static racingcar.constant.ExceptionMessage.DUPLICATED_CAR_NAME;
 import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME_LENGTH;
 
 import java.util.List;
@@ -21,7 +22,18 @@ public class Car {
             throw INVALID_CAR_NAME_LENGTH.getException();
         }
     }
-    
+
+    public static void validateUniqueCarNames(List<Car> cars) {
+        int uniqueCarNamesCount = (int)cars.stream()
+                .map(car -> car.name)
+                .distinct()
+                .count();
+
+        if (uniqueCarNamesCount != cars.size()) {
+            throw DUPLICATED_CAR_NAME.getException();
+        }
+    }
+
     public void goIfOilEnough(int oil) {
         if (oil >= REQUIRED_OIL) {
             movedDistance++;
@@ -48,4 +60,5 @@ public class Car {
                 .map(car -> car.name)
                 .toList();
     }
+
 }

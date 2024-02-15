@@ -33,4 +33,12 @@ public class RacingcarService {
     private int decideOilAmount() {
         return RandomNumberGenerator.generate(MIN_OIL_AMOUNT, MAX_OIL_AMOUNT);
     }
+
+    public List<Car> createCars(List<String> carNames) {
+        List<Car> cars = carNames.stream()
+                .map(Car::new)
+                .toList();
+        Car.validateUniqueCarNames(cars);
+        return cars;
+    }
 }

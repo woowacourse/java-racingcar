@@ -40,9 +40,8 @@ public class RacingcarController {
     }
 
     private List<Car> readCars() {
-        return inputView.readCarNames().stream()
-                .map(Car::new)
-                .toList();
+        List<String> carNames = inputView.readCarNames();
+        return racingcarService.createCars(carNames);
     }
 
     private Round readRound() {
