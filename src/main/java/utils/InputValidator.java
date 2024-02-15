@@ -32,7 +32,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);
         }
     }
 

@@ -3,6 +3,7 @@ package utils;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static utils.ErrorMessage.CAR_NAME_IS_BLANK;
 import static utils.ErrorMessage.CAR_NAME_TOO_LONG;
+import static utils.ErrorMessage.NOT_NUMBER;
 import static utils.ErrorMessage.NOT_POSITIVE_NUMBER;
 
 import java.util.stream.Stream;
@@ -34,8 +35,9 @@ class InputValidatorTest {
 
     static Stream<Arguments> invalidTryNumber() {
         return Stream.of(
-                Arguments.of("배키","시도 횟수가 숫자가 아니다.", NOT_POSITIVE_NUMBER),
-                Arguments.of("-1","시도 횟수가 음수이다.", NOT_POSITIVE_NUMBER)
+                Arguments.of("배키","시도 횟수가 숫자가 아니다.", NOT_NUMBER),
+                Arguments.of("-1","시도 횟수가 음수이다.", NOT_POSITIVE_NUMBER),
+                Arguments.of(" ","시도 횟수가 빈 문자이다.", NOT_NUMBER)
         );
     }
 
