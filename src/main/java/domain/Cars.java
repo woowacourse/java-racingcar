@@ -17,11 +17,18 @@ public class Cars {
     private final CarAccelerator accelerator;
 
     public Cars(List<Car> cars, CarAccelerator accelerator) {
-        // 자동차 개수 검증
-        if (cars.size() <= 1) {
-            throw new IllegalArgumentException();
-        }
-        // 자동차 이름 중복 검증
+        validate(cars);
+
+        this.cars = cars;
+        this.accelerator = accelerator;
+    }
+
+    private void validate(List<Car> cars) {
+        validateCarSize(cars);
+        validateCarNameDuplication(cars);
+    }
+
+    private void validateCarNameDuplication(List<Car> cars) {
         int actualCarAmount = cars.size();
         long distinctCarAmount = cars.stream()
                 .map(Car::getName)
@@ -30,9 +37,12 @@ public class Cars {
         if(actualCarAmount != distinctCarAmount) {
             throw new IllegalArgumentException();
         }
+    }
 
-        this.cars = cars;
-        this.accelerator = accelerator;
+    private void validateCarSize(List<Car> cars) {
+        if (cars.size() <= 1) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public void tryMove() {

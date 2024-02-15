@@ -9,18 +9,28 @@ public class Car {
     private static final int MIN_MOVABLE_POWER = 4;
 
     public Car(String name, CarAccelerator accelerator) {
+        validate(name);
+
+        this.name = name;
+        this.position = 0;
+        this.accelerator = accelerator;
+    }
+
+    private void validate(String name) {
+        validateName(name);
+        validateNameLength(name);
+    }
+
+    private void validateName(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException();
         }
-        String trimmedName = name.trim();
+    }
 
-        if (trimmedName.length() < 1 || trimmedName.length() > 5) {
+    private void validateNameLength(String name) {
+        if (name.length() < 1 || name.length() > 5) {
             throw new IllegalArgumentException();
         }
-
-        this.name = trimmedName;
-        this.position = 0;
-        this.accelerator = accelerator;
     }
 
     public int pushAccelerator() {
