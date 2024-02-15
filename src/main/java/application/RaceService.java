@@ -1,5 +1,7 @@
 package application;
 
+import java.util.List;
+import model.Car;
 import model.Cars;
 import util.NumberGenerator;
 
@@ -19,5 +21,13 @@ public class RaceService {
                         car.moveForward();
                     }
                 });
+    }
+
+    public List<String> findWinners(Cars cars) {
+        int maxPosition = cars.findMaxPosition();
+        return cars.getCars().stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .map(Car::getName)
+                .toList();
     }
 }

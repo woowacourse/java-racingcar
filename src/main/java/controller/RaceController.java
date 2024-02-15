@@ -33,7 +33,7 @@ public class RaceController {
             outputView.printCarNameAndPosition(cars);
             tryCount.decreaseTryCount();
         }
-        List<String> winners = cars.getWinners();
+        List<String> winners = raceService.findWinners(cars);
         outputView.printWinners(winners);
     }
 
