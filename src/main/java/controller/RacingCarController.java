@@ -7,6 +7,7 @@ import utils.MovesGenerator;
 import utils.Retry;
 import view.InputView;
 import view.OutputView;
+import view.dto.CarDto;
 
 public class RacingCarController {
 
@@ -39,8 +40,8 @@ public class RacingCarController {
         for (int i = 0; i < tryNumber; i++) {
             List<Boolean> moves = movesGenerator.generate(cars.getCarsSize());
             cars.moveCars(moves);
-            String totalMovementDetails = cars.getTotalMovementDetails();
-            outputView.printResult(totalMovementDetails);
+            List<CarDto> carDtos = cars.getTotalMovementDetails();
+            outputView.printTotalResult(carDtos);
         }
     }
 }

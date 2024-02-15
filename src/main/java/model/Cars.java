@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import view.dto.CarDto;
 
 public class Cars {
     private final List<Car> cars;
@@ -15,13 +16,8 @@ public class Cars {
         }
     }
 
-    public String getTotalMovementDetails() {
-        StringBuilder details = new StringBuilder();
-        cars.forEach(car -> details.append(car.getCarName())
-                .append(" : ")
-                .append(car.generateMovement())
-                .append("\n"));
-        return details.toString();
+    public List<CarDto> getTotalMovementDetails() {
+        return cars.stream().map(car -> new CarDto(car.getCarName(), car.getMovement())).toList();
     }
 
     public String findWinners() {

@@ -2,7 +2,6 @@ package model;
 
 public class Car {
 
-    private static final String STEP = "-";
     private final String name;
     private int movement;
 
@@ -19,10 +18,6 @@ public class Car {
 
     public String getCarName() {
         return name;
-    }
-
-    public String generateMovement() {
-        return STEP.repeat(movement);
     }
 
     public int getMovement() {
