@@ -1,5 +1,5 @@
 import controller.RacingCarController;
-import utils.MovesGenerator;
+import model.MovesGenerator;
 import view.InputView;
 import view.OutputView;
 

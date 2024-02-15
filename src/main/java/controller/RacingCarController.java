@@ -4,7 +4,7 @@ import java.util.List;
 import model.Car;
 import model.Cars;
 import utils.Converter;
-import utils.MovesGenerator;
+import model.MovesGenerator;
 import utils.Retry;
 import view.InputView;
 import view.OutputView;
