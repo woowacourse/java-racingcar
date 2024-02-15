@@ -1,5 +1,7 @@
 package view;
 
+import static view.ViewMessages.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -8,7 +10,7 @@ public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static List<String> enterCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        System.out.println(CAR_NAMES_REQUEST_MESSAGE);
         String rawCarNames = scanner.nextLine();
         return validateCarNames(rawCarNames);
     }
@@ -20,7 +22,7 @@ public class InputView {
     }
 
     private static List<String> split(String rawCarNames) {
-        return Arrays.stream(rawCarNames.split(","))
+        return Arrays.stream(rawCarNames.split(CAR_NAMES_SPLIT_SYMBOL))
                 .toList();
     }
 
@@ -31,7 +33,7 @@ public class InputView {
     }
 
     public static int enterCount() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println(COUNT_REQUEST_MESSAGE);
         String rawCount = scanner.nextLine();
         return validateCount(rawCount);
     }
