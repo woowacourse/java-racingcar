@@ -11,14 +11,14 @@ public class Cars {
     private static final String SEPARATOR = ",";
     private List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         this.cars = cars;
     }
 
     public static Cars from(final String carsName) {
         validateSeparator(carsName);
 
-        List<Car> cars = Arrays.stream(carsName.split(SEPARATOR))
+        final List<Car> cars = Arrays.stream(carsName.split(SEPARATOR))
                 .map(Car::from)
                 .collect(Collectors.toList());
 
@@ -27,7 +27,7 @@ public class Cars {
         return new Cars(cars);
     }
 
-    private static void validateDuplicateName(List<Car> cars) {
+    private static void validateDuplicateName(final List<Car> cars) {
         if (cars.size() != Set.copyOf(cars).size()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
         }

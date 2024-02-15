@@ -1,19 +1,21 @@
 package racingcar.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import racingcar.dto.CarDto;
 
 public class OutputView {
 
-    public void printPerRound(List<CarDto> carDtos) {
-        carDtos.forEach(carDto -> System.out.println(carDto.name() + " : " + "-".repeat(carDto.position())));
+    public void printCarsPosition(final List<CarDto> carDtos) {
+        carDtos.forEach(this::printCarPosition);
         System.out.println();
     }
 
-    public void printWinners(List<String> winners) {
-        String winnerJoining = winners.stream()
-                        .collect(Collectors.joining(", "));
+    private void printCarPosition(final CarDto carDto) {
+        System.out.println(carDto.name() + " : " + "-".repeat(carDto.position()));
+    }
+
+    public void printWinners(final List<String> winners) {
+        final String winnerJoining = String.join(", ", winners);
         System.out.printf("%s가 최종 우승했습니다.", winnerJoining);
     }
 

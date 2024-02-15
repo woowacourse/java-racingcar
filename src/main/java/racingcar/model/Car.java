@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Car {
 
     private static final int MIN_NUMBER = 4;
+    private static final int START_POSITION = 0;
     private final CarName name;
     private int position;
 
@@ -14,7 +15,7 @@ public class Car {
     }
 
     public static Car from(final String name) {
-        return new Car(new CarName(name), 0);
+        return new Car(new CarName(name), START_POSITION);
     }
 
     public void go(final int number) {

@@ -24,6 +24,29 @@ public class GameController {
         final Cars cars = getCars();
         final Round round = getRound();
 
+        play(round, cars);
+
+        outputView.printCarsPosition(createCarDtos(cars));
+
+        List<String> winnersName = findWinnersName(cars);
+        outputView.printWinners(winnersName);
+    }
+
+    private Cars getCars() {
+        return ExceptionRoofer.generate(() -> {
+            final String names = inputView.readCarNames();
+            return Cars.from(names);
+        }, outputView::printError);
+    }
+
+    private Round getRound() {
+        return ExceptionRoofer.generate(() -> {
+            final String tryRound = inputView.readTryRound();
+            return Round.from(tryRound);
+        }, outputView::printError);
+    }
+
+    private void play(final Round round, final Cars cars) {
         final RandomNumberGenerator generator = new RandomNumberGenerator();
 
         while (round.isContinue()) {
@@ -32,35 +55,18 @@ public class GameController {
 
             List<CarDto> carDtos = createCarDtos(cars);
 
-            outputView.printPerRound(carDtos);
+            outputView.printCarsPosition(carDtos);
         }
+    }
 
-        outputView.printPerRound(createCarDtos(cars));
-
-        List<String> winner = cars.findWinner()
+    private List<String> findWinnersName(final Cars cars) {
+        return cars.findWinner()
                 .stream()
                 .map(Car::getName)
                 .toList();
-
-        outputView.printWinners(winner);
     }
 
-    private Cars getCars() {
-        return ExceptionRoofer.generate(() -> {
-            String names = inputView.readCarNames();
-            return Cars.from(names);
-        }, outputView::printError);
-    }
-
-    private Round getRound() {
-        return ExceptionRoofer.generate(() -> {
-            String tryRound = inputView.readTryRound();
-            Round round = Round.from(tryRound);
-            return round;
-        }, outputView::printError);
-    }
-
-    private List<CarDto> createCarDtos(Cars cars) {
+    private List<CarDto> createCarDtos(final Cars cars) {
         return cars.getCars()
                 .stream()
                 .map(CarDto::from)
