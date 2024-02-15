@@ -16,3 +16,13 @@ class ServiceTest {
         Assertions.assertThat(carName).isEqualTo(List.of("릴리", "애쉬", "엘라"));
     }
 
+    @DisplayName("자동차 객체 리스트가 올바르게 생성된다")
+    @Test
+    void setCarTest() {
+        List<String> carName = List.of("ash", "lily", "ella");
+        List<Car> cars = service.setCars(carName);
+        System.out.println(cars.get(0).getCarName());
+        Assertions.assertThat(cars.get(0).getCarName()).isEqualTo("ash");
+        Assertions.assertThat(cars.get(0).getLocation()).isEqualTo(0);
+    }
+
