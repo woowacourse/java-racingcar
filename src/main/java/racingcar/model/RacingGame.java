@@ -1,13 +1,24 @@
 package racingcar.model;
 
-import java.util.stream.IntStream;
-
 public class RacingGame {
 
     private final Cars cars;
+    private int moveCount;
 
-    public RacingGame(Cars cars) {
+    public RacingGame(Cars cars, int moveCount) {
+        validate(moveCount);
         this.cars = cars;
+        this.moveCount = moveCount;
+    }
+
+    private void validate(int moveCount) {
+        if (moveCount < 0) {
+            throw new IllegalArgumentException("시도할 회수는 0이상입니다.");
+        }
+    }
+
+    public boolean isGameOver(){
+        return moveCount-- <= 0;
     }
 
     public void move(RaceRule raceRule) {
