@@ -37,7 +37,7 @@ public class RacingCarController {
 
     private void playRacing() {
         outputView.writeResultMessage();
-        for (int i=0; i<round.getRound(); i++) {
+        for (int i = 0; i < round.getRound(); i++) {
             cars.moveCars();
             outputView.writeRoundResult(cars);
         }

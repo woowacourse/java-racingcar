@@ -50,7 +50,7 @@ public class Car {
     public String toString() {
         StringBuilder trace = new StringBuilder();
         trace.append(name).append(" : ");
-        for (int i=0; i<position; i++) {
+        for (int i = 0; i < position; i++) {
             trace.append("-");
         }
         return trace.toString();
