@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.ui.OutputCommand.COMMA;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +11,7 @@ public class Vehicles {
 
     public static Vehicles from(String userInput) {
         validate(userInput);
-        return new Vehicles(Arrays.stream(userInput.split(","))
+        return new Vehicles(Arrays.stream(userInput.split(COMMA))
                 .map(String::trim)
                 .map(Car::new)
                 .collect(Collectors.toList())
@@ -38,7 +40,7 @@ public class Vehicles {
     }
 
     private static boolean hasDuplicateName(String userInput) {
-        return userInput.split(",").length != Arrays.stream(userInput.split(","))
+        return userInput.split(COMMA).length != Arrays.stream(userInput.split(COMMA))
                 .collect(Collectors.toSet()).size();
     }
 

@@ -7,6 +7,9 @@ import racingcar.util.RandomUtil;
 public class Car {
     private static final int CAR_NAME_MAX_LENGTH = 5;
     private static final int MOVE_BOUNDARY = 4;
+    private static final int BOUNDARY_RANDOM_MIN = 0;
+    private static final int BOUNDARY_RANDOM_MAX = 9;
+    private static final int DEFAULT_FORWARD = 0;
     private final String name;
     private int forward;
     private static final RandomUtil randomUtil = new RandomNumber();
@@ -14,7 +17,7 @@ public class Car {
     Car(String name) {
         validate(name);
         this.name = name;
-        forward = 0;
+        forward = DEFAULT_FORWARD;
     }
 
     private void validate(String name) {
@@ -35,7 +38,7 @@ public class Car {
     }
 
     private static boolean isBiggerThanBoundary() {
-        return randomUtil.generate(0, 9) >= MOVE_BOUNDARY;
+        return randomUtil.generate(BOUNDARY_RANDOM_MIN, BOUNDARY_RANDOM_MAX) >= MOVE_BOUNDARY;
     }
 
     private void printStatus() {

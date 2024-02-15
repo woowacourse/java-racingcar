@@ -4,6 +4,7 @@ import java.util.stream.IntStream;
 import racingcar.ui.OutputView;
 
 public class Game {
+    private static final int NATURAL_NUMBER_BOUNDARY = 0;
     private final int tryCount;
     private final Vehicles vehicles;
 
@@ -20,7 +21,7 @@ public class Game {
     }
 
     private static boolean isSmallerThanZero(int number) {
-        return number <= 0;
+        return number <= NATURAL_NUMBER_BOUNDARY;
     }
 
     private static int parseUserInput(String userTryCount) {
