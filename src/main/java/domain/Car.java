@@ -1,5 +1,7 @@
 package domain;
 
+import dto.CarStatus;
+
 public class Car {
 
     public static final int INITIAL_DISTANCE = 0;
@@ -23,7 +25,7 @@ public class Car {
         }
     }
 
-    public int getDistance() {
-        return distance;
+    public CarStatus getStatus() {
+        return new CarStatus(name, distance);
     }
 }

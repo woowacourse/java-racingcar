@@ -14,4 +14,8 @@ public class RacingCount {
             throw new RuntimeException("0이상의 숫자가 입력되어야 합니다.");
         }
     }
+
+    public int getCount() {
+        return count;
+    }
 }

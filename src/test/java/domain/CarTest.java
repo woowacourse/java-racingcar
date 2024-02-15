@@ -16,9 +16,10 @@ class CarTest {
 
         // When
         car.move();
+        int distance = car.getStatus().distance();
 
         // Then
-        assertThat(car.getDistance()).isEqualTo(1);
+        assertThat(distance).isEqualTo(1);
     }
 
     @DisplayName("3이하의 난수가 뽑히면 전진하지 않는다..")
@@ -30,8 +31,9 @@ class CarTest {
 
         // When
         car.move();
+        int distance = car.getStatus().distance();
 
         // Then
-        assertThat(car.getDistance()).isEqualTo(0);
+        assertThat(distance).isEqualTo(0);
     }
 }
