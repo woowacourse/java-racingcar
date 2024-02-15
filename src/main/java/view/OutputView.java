@@ -12,23 +12,20 @@ public class OutputView {
         System.out.println(result + "가 최종 우승했습니다.");
     }
 
-//    public void showStatus(Cars cars) {
-//        for (Car car : cars.getCars()) {
-//            System.out.println(car.getName() + " : " + "-".repeat(car.getDistance()));
-//        }
-//        System.out.println();
-//    }
-
     public void showStatusMessage() {
         System.out.println("실행 결과");
     }
 
     public void showStatus(List<List<CarStatusResponse>> result) {
         for (List<CarStatusResponse> turnResult : result) {
-            for (CarStatusResponse carStatusResponse : turnResult) {
-                System.out.println(carStatusResponse.getName() + " : " + "-".repeat(carStatusResponse.getDistance()));
-            }
-            System.out.println();
+            showResult(turnResult);
         }
+    }
+
+    private static void showResult(List<CarStatusResponse> turnResult) {
+        for (CarStatusResponse carStatusResponse : turnResult) {
+            System.out.println(carStatusResponse.getName() + " : " + "-".repeat(carStatusResponse.getDistance().getDistance()));
+        }
+        System.out.println();
     }
 }

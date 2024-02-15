@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinnersResponse {
-    private List<String> names;
+    private final List<String> names;
 
     public WinnersResponse(Winners winners) {
         this.names = convertToNames(winners);

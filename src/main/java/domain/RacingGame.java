@@ -5,8 +5,8 @@ import java.util.List;
 
 public class RacingGame {
     private final int count;
-    private Cars cars;
-    private RandomMovementGenerator randomMovementGenerator;
+    private final Cars cars;
+    private final RandomMovementGenerator randomMovementGenerator;
 
 
     public RacingGame(int count, Cars cars, RandomMovementGenerator randomMovementGenerator) {
@@ -37,6 +37,7 @@ public class RacingGame {
             for (Car car : cars.getCars()) { //TODO cars한테 메시지 보내기
                 carsStatus.add(new CarStatusResponse(car));
             }
+            gameResultResponse.add(carsStatus);
         }
         return gameResultResponse;
     }

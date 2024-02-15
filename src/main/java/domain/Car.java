@@ -1,13 +1,14 @@
 package domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
-    private int distance;
+    private Distance distance; //TODO: final
     private String name;
 
-    public Car(String name) {
+    public Car(String name, Distance distance) {
         validate(name);
         this.name = name;
+        this.distance = distance;
     }
 
     private void validate(String name) {
@@ -22,19 +23,19 @@ public class Car {
 
 
     public static Car fromName(String name) {
-        return new Car(name);
+        return new Car(name, Distance.init());
     }
 
     public static Car fromEmpty() {
-        return new Car("");
+        return new Car("", Distance.init());
     }
 
 
     public void move() {
-        this.distance++;
+        distance.increase();
     }
 
-    public int getDistance() {
+    public Distance getDistance() {
         return distance;
     }
 
@@ -42,9 +43,11 @@ public class Car {
         return name;
     }
 
-    public boolean isSameDistance(int maxDistance) {
-        return distance == maxDistance;
+    public boolean isSameDistance(Car maxDistance) {
+        return distance.isSameDistance(maxDistance.distance);
     }
-
-
+    @Override
+    public int compareTo(Car other) {
+        return this.distance.compareTo(other.distance);
+    }
 }

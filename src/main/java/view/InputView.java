@@ -1,13 +1,12 @@
 package view;
 
-import domain.Cars;
 import dto.CarNameRequest;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputView {
     Scanner scanner = new Scanner(System.in);
-    inputValidater inputValidater = new inputValidater();
+    InputValidater inputValidater = new InputValidater();
 
     public CarNameRequest readCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -23,4 +22,7 @@ public class InputView {
         inputValidater.validateCount(input);
         return Integer.parseInt(input);
     }
+
+
+
 }

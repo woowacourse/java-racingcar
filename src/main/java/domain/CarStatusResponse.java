@@ -2,7 +2,7 @@ package domain;
 
 public class CarStatusResponse {
     private final String name;
-    private final int distance;
+    private final Distance distance;
 
     public CarStatusResponse(Car car) {
         this.name = car.getName();
@@ -13,7 +13,7 @@ public class CarStatusResponse {
         return name;
     }
 
-    public int getDistance() {
+    public Distance getDistance() {
         return distance;
     }
 }
