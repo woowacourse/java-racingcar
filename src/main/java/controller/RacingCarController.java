@@ -15,7 +15,7 @@ public class RacingCarController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingCarController(InputView inputView, OutputView outputView) {
+    public RacingCarController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -31,7 +31,7 @@ public class RacingCarController {
 
     private Cars initCars() {
         try {
-            List<String> carNames = inputView.inputCars();
+            List<String> carNames = inputView.inputCarNames();
 
             return CarFactory.generateCars(carNames);
         } catch (RuntimeException e) {
@@ -51,7 +51,7 @@ public class RacingCarController {
         }
     }
 
-    private List<String> racing(Cars cars, RacingCount racingCount) {
+    private List<String> racing(final Cars cars, final RacingCount racingCount) {
         outputView.printResultMessageTitle();
         for (int i = 0; i < racingCount.getCount(); i++) {
             List<CarStatus> raceResult = cars.race();
@@ -61,7 +61,7 @@ public class RacingCarController {
         return getWinners(cars);
     }
 
-    private List<String> getWinners(Cars cars) {
+    private List<String> getWinners(final Cars cars) {
         RacingRule racingRule = new RacingRule();
 
         return racingRule.getWinners(cars)
