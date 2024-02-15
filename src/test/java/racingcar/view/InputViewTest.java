@@ -3,7 +3,6 @@ package racingcar.view;
 import static org.assertj.core.api.Assertions.assertThat;
 import static racingcar.TestUtil.setInput;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.utils.Console;
 
 class InputViewTest {
 
@@ -39,7 +39,7 @@ class InputViewTest {
 
     @Test
     @DisplayName("라운드 횟수를 입력받는다.")
-    void moveCountTest() throws Exception{
+    void moveCountTest() {
         //given
         setInput("5");
         //when
