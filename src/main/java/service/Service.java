@@ -7,7 +7,7 @@ import domain.Car;
 import java.util.List;
 
 public class Service {
-
+    
     public static List<String> getWinnerNames(List<Car> cars) {
         int maxScore = cars.stream()
             .mapToInt(Car::getScore)
