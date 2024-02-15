@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+
+    private static final int MIN_CAR_NAME_COUNT = 2;
     private List<Car> cars;
 
     private Cars(List<Car> cars) {
@@ -25,12 +27,19 @@ public class Cars {
 
     private static void validate(List<String> names) {
         checkDuplicatedName(names);
+        checkNameCount(names);
     }
 
     private static void checkDuplicatedName(List<String> names) {
         long nameCount = names.stream().distinct().count();
         if (names.size() != nameCount) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    private static void checkNameCount(List<String> names) {
+        if (names.size() < MIN_CAR_NAME_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 2개 이상이어야 합니다.");
         }
     }
 
