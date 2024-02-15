@@ -1,6 +1,9 @@
 package view;
 
 public class OutputView {
+    private OutputView() {
+    }
+
     public static void printResultNotice() {
         System.out.println();
         System.out.println("실행 결과");
