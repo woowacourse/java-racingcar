@@ -8,6 +8,8 @@ public class OutputView {
 
     public static final String POSITION_SHAPE = "-";
 
+    private OutputView() {}
+
     public static void printResultTitle() {
         System.out.println("실행 결과");
     }
