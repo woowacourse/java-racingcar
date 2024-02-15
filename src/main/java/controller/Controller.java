@@ -25,15 +25,15 @@ public class Controller {
         OutputView.printWinners(winnerNames);
     }
 
-    private static int getRound() {
-        OutputView.printRound();
-        String rawRound = InputView.read();
-        return Converter.toRound(rawRound);
-    }
-
     private static List<Car> getCars() {
         OutputView.printCarNames();
         String rawCarNames = InputView.read();
         return Converter.toCars(rawCarNames);
+    }
+
+    private static int getRound() {
+        OutputView.printRound();
+        String rawRound = InputView.read();
+        return Converter.toRound(rawRound);
     }
 }
