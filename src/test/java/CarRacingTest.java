@@ -77,10 +77,14 @@ class CarRacingTest {
     void decideWinners() {
         // given
         String carNames = "pobi,crong,honux";
-        String expected = "pobi,crong,honux";
         // when
         Cars cars = carRacing.createCars(carNames, accelerator);
+        List<String> actualWinners = carRacing.getWinners(cars);
+        List<String> expectedWinners = List.of("pobi", "crong", "honux");
         //then
-        assertThat(carRacing.getWinners(cars)).hasSize(3);
+        assertAll(
+                () -> assertThat(actualWinners).hasSize(expectedWinners.size()),
+                () -> assertThat(actualWinners).containsExactlyElementsOf(expectedWinners)
+        );
     }
 }
