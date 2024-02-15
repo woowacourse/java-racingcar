@@ -33,11 +33,21 @@ public class Service {
     }
 
     private void validateDuplicateName(List<Car> cars) {
-        Set<Car> validateCar = new HashSet<>(cars);
+        int duplication = 0;
+        for (Car car:cars) {
+            duplication = validateDuplication(car.getCarName());
+        }
 
-        if (cars.size() != validateCar.size()) {
+        if (cars.size() != duplication) {
             throw new IllegalArgumentException("[ERROR] 중복된 이름이 존재합니다.");
         }
+    }
+
+    private int validateDuplication(String carName) {
+        Set<String> validateCar = new HashSet<>();
+        validateCar.add(carName);
+        
+        return validateCar.size();
     }
 
     private void validateFalseName(List<Car> cars) {
