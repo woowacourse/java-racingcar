@@ -21,13 +21,6 @@ public class Validator {
         validateCarAmount(names);
     }
 
-    private static void validateCarAmount(List<String> names) {
-        int namesSize = names.size();
-        if (namesSize < MIN_CAR_LENGTH || namesSize > MAX_CAR_LENGTH) {
-            throw new IllegalArgumentException("차량은 1~100대만 허용합니다.");
-        }
-    }
-
     public static void validateRound(int round) {
         if (round < MIN_ROUND || round > MAX_ROUND) {
             throw new IllegalArgumentException("1-100로 시도 횟수를 적어주세요.");
@@ -44,6 +37,13 @@ public class Validator {
         Set<String> nonDuplicatedNames = new HashSet<>(names);
         if (nonDuplicatedNames.size() != names.size()) {
             throw new IllegalArgumentException("중복된 자동차 이름이 있습니다.");
+        }
+    }
+
+    private static void validateCarAmount(List<String> names) {
+        int namesSize = names.size();
+        if (namesSize < MIN_CAR_LENGTH || namesSize > MAX_CAR_LENGTH) {
+            throw new IllegalArgumentException("차량은 1~100대만 허용합니다.");
         }
     }
 }
