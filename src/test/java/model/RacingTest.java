@@ -35,4 +35,19 @@ public class RacingTest {
 
         assertThat(before).isNotEqualTo(after);
     }
+
+    @Test
+    void 우승자는_한명_이상일_수_있다() {
+        Car car1 = new Car("pobi", () -> 1);
+        Car car2 = new Car("dora", () -> 3);
+        Car car3 = new Car("ella", () -> 4);
+        Car car4 = new Car("lupy", () -> 5);
+        Car car5 = new Car("jojo", () -> 7);
+        Cars cars = new Cars(List.of(car1, car2, car3, car4, car5));
+
+        Racing racing = new Racing(1);
+        racing.doTry(cars);
+        List<String> winnerNames = racing.determineWinner(cars);
+        assertThat(winnerNames.size()).isEqualTo(3);
+    }
 }

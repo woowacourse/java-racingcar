@@ -45,4 +45,18 @@ public class Cars {
                 .map(car -> car.captureCarState())
                 .toList();
     }
+
+    public List<String> findAllNameByForwardCount(int targetForwardCount) {
+        return cars.stream()
+                .filter(car -> car.hasForwardCount(targetForwardCount))
+                .map(Car::getName)
+                .toList();
+    }
+
+    public int calculateMaxForwardCount() {
+        return cars.stream()
+                .mapToInt(Car::getForwardCount)
+                .max()
+                .orElse(0);
+    }
 }

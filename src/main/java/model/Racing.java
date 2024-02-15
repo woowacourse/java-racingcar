@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Racing {
     private int tryCount;
 
@@ -24,5 +26,10 @@ public class Racing {
 
     public boolean canTry() {
        return tryCount > 0;
+    }
+
+    public List<String> determineWinner(Cars cars) {
+        int maxForwardCount = cars.calculateMaxForwardCount();
+        return cars.findAllNameByForwardCount(maxForwardCount);
     }
 }
