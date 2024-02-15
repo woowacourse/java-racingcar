@@ -4,6 +4,10 @@ import java.util.List;
 import racingcar.model.Car;
 
 public class OutputView {
+    private static final String WINNER_DESCRIPTION = "가 최종 우승했습니다.";
+    private static final String RESULT_DESCRIPTION = "실행 결과";
+    private static final String NO_WINNER_DESCRIPTION = "최대 이동 거리가 0이므로 우승한 자동차가 없습니다.";
+
     public static void println() {
         System.out.println();
     }
@@ -18,18 +22,15 @@ public class OutputView {
 
     public static void printResultDescription() {
         println();
-        println("실행 결과");
+        println(RESULT_DESCRIPTION);
     }
 
     public static void printPosition(Car car) {
-        print(car.getName() + " : ");
-        for (int i = 0; i < car.getPosition(); i++) {
-            System.out.print("-");
-        }
+        println(car.toString());
         println();
     }
 
-    public static void printExceptionMessage(String message) {
+    public static void printException(String message) {
         println(message);
     }
 
@@ -39,10 +40,10 @@ public class OutputView {
                 .toList();
 
         String winnerNames = String.join(", ", names);
-        println(winnerNames + "가 최종 우승했습니다.");
+        println(winnerNames + WINNER_DESCRIPTION);
     }
 
     public static void printNoWinner() {
-        println("최대 이동 거리가 0이므로 우승한 자동차가 없습니다.");
+        println(NO_WINNER_DESCRIPTION);
     }
 }
