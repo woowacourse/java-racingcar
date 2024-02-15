@@ -24,6 +24,10 @@ public class RacingController implements Controller {
     public void run() {
         RaceParticipants raceParticipants = readRaceParticipants();
         int raceCount = readRaceCount();
+        for (int i = 0; i < raceCount; i++) {
+            raceParticipants.move();
+            //todo: output view
+        }
     }
 
     private RaceParticipants readRaceParticipants() {

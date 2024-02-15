@@ -10,7 +10,6 @@ import racingcar.exception.InvalidInputException;
 public class RaceParticipants {
     private final List<Car> cars;
 
-
     public RaceParticipants(List<Car> cars) {
         validateDuplicateNames(cars);
         this.cars = new ArrayList<>(cars);
@@ -21,6 +20,10 @@ public class RaceParticipants {
         if (carNames.size() != carNames.stream().distinct().count()) {
             throw new InvalidInputException(ErrorMessage.DUPLICATE_CAR_NAMES);
         }
+    }
+
+    public void move() {
+        cars.forEach(Car::move);
     }
 
     public List<Car> getCars() {
