@@ -47,6 +47,7 @@ public class Cars {
         cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
+
     public List<racingcar.domain.Car> getCars() {
         return cars;
     }
