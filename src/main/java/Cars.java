@@ -6,6 +6,12 @@ public class Cars {
     List<Car> cars;
 
     public Cars(List<String> names, NumberGenerator numberGenerator) {
+        if (names.size() == 0) {
+            throw new IllegalArgumentException();
+        }
+        if (names.stream().distinct().count() != names.size()) {
+            throw new IllegalArgumentException();
+        }
         this.cars = names.stream()
                 .map(name -> new Car(name, numberGenerator))
                 .toList();

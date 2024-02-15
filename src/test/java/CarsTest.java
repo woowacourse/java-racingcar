@@ -29,4 +29,11 @@ class CarsTest {
         assertThatThrownBy(() -> new Cars(Collections.EMPTY_LIST, new Random()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("중복된 이름을 사용하면 예외가 발생한다.")
+    void duplicatedNameExceptionTest() {
+        assertThatThrownBy(() -> new Cars(List.of("takan", "takan"), new Random()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
