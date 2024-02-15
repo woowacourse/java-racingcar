@@ -3,6 +3,7 @@ package controller;
 import domain.Attempt;
 import domain.Cars;
 import domain.RandomNumberGenerator;
+import domain.Winners;
 import util.StringConvertor;
 import view.ExceptionRetryHandler;
 import view.InputView;
@@ -21,7 +22,7 @@ public class RacingController {
         Cars cars = ExceptionRetryHandler.retryUntilValid(this::receiveCarNames);
         Attempt attempt = ExceptionRetryHandler.retryUntilValid(this::receiveTryCount);
         racing(cars, attempt);
-        outputView.printWinners(cars.getWinners());
+        outputView.printWinners(Winners.from(cars));
     }
 
     private Cars receiveCarNames() {

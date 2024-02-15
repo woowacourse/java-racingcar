@@ -55,20 +55,4 @@ public class Cars {
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
-
-    public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
-
-        return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .toList();
-
-    }
-
-    private int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .getAsInt();
-    }
 }

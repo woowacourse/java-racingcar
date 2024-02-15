@@ -2,7 +2,7 @@ package view;
 
 import domain.Car;
 import domain.Cars;
-import java.util.List;
+import domain.Winners;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -26,14 +26,12 @@ public class OutputView {
         for (Car car : cars.getCars()) {
             builder.append(String.format("%s : %s\n", car.getName(), MOVE_EXPRESS.repeat(car.getPosition())));
         }
-
         System.out.println(builder);
     }
 
-    public void printWinners(List<Car> winners) {
+    public void printWinners(Winners winners) {
         StringJoiner stringJoiner = new StringJoiner(COMMA);
-        winners.forEach(winner -> stringJoiner.add(winner.getName()));
-
+        winners.getWinners().forEach(stringJoiner::add);
         System.out.printf("%s가 최종 우승했습니다.", stringJoiner);
     }
 }
