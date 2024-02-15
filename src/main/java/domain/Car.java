@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Optional;
 import utils.RandomNumberGenerator;
 
 public class Car {
@@ -20,5 +21,12 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public Optional<String> getNameIfMax(int max) {
+        if(position == max) {
+            return Optional.of(carName.getName());
+        }
+        return Optional.empty();
     }
 }

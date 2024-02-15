@@ -13,4 +13,8 @@ public class CarName {
             throw new IllegalArgumentException("");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

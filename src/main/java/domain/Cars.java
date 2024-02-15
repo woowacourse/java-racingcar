@@ -1,6 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Cars {
     private List<Car> cars;
@@ -29,5 +31,20 @@ public class Cars {
         for (Car car : cars) {
             car.move();
         }
+    }
+
+    public List<String> judge() {
+        List<String> winners = new ArrayList<>();
+        int max = cars.stream()
+                .mapToInt(car -> car.getPosition())
+                .max()
+                .orElseThrow(() -> new IllegalStateException());
+        for(Car car : cars)  {
+            Optional<String> name =  car.getNameIfMax(max);
+            if(name.isPresent()) {
+                winners.add(name.get());
+            }
+        }
+        return winners;
     }
 }
