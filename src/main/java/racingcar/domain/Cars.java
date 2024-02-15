@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,10 +10,10 @@ public class Cars {
         this.cars = names.stream().map(Car::new).toList();
     }
 
-    public void moveAllCars() {
+    public void moveAllCars(final RandomNumber randomNumber) {
         for(Car car: cars) {
-            int randomNumber = RandomNumber.generate();
-            car.move(randomNumber);
+            final int condition = randomNumber.generate();
+            car.move(condition);
         }
     }
 
