@@ -2,6 +2,9 @@ package racingcar.domain;
 
 import static racingcar.exception.ExceptionMessage.*;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Car implements Comparable<Car> {
     private static final String CAR_POSITION_SYMBOL = "-";
 
@@ -26,8 +29,11 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateNameStyle(final String name) {
-        final String regex = "^[a-zA-Z0-9_-]";
-        if (!name.matches(regex)) {
+        final String regex = "[^a-zA-Z0-9_-]";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(name);
+
+        if (matcher.find()) {
             throw new IllegalArgumentException(INVALID_CAR_NAME.getMessage());
         }
     }
