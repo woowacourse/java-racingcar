@@ -1,6 +1,7 @@
 package domain;
 
 public class CarName {
+    private static final int NAME_LENGTH_UPPER_BOUND = 5;
     private String name;
 
     public CarName(String name) {
@@ -9,7 +10,7 @@ public class CarName {
     }
 
     private void validateLength(String name) {
-        if(name.length() > 5) {
+        if(name.length() > NAME_LENGTH_UPPER_BOUND) {
             throw new IllegalArgumentException("");
         }
     }

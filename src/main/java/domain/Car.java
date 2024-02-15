@@ -4,6 +4,7 @@ import java.util.Optional;
 import utils.RandomNumberGenerator;
 
 public class Car {
+    private static final int MOVE_LOWER_BOUND = 4;
     private CarName carName;
     private int position;
 
@@ -14,7 +15,7 @@ public class Car {
 
     public void move() {
         int randomNumber = RandomNumberGenerator.generate();
-        if (randomNumber >= 4) {
+        if (randomNumber >= MOVE_LOWER_BOUND) {
             position++;
         }
     }
