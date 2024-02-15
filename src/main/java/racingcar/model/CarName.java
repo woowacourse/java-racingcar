@@ -23,4 +23,6 @@ public class CarName {
             throw new IllegalArgumentException();
         }
     }
+
+
 }

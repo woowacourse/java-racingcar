@@ -3,6 +3,7 @@ package racingcar.model;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -16,13 +17,20 @@ public class Cars {
 
     public static Cars from(final String carsName) {
         validateSeparator(carsName);
-        String[] names = carsName.split(SEPARATOR);
 
-        List<Car> cars = Arrays.stream(names)
+        List<Car> cars = Arrays.stream(carsName.split(SEPARATOR))
                 .map(Car::from)
                 .collect(Collectors.toList());
 
+        validateDuplicateName(cars);
+
         return new Cars(cars);
+    }
+
+    private static void validateDuplicateName(List<Car> cars) {
+        if (cars.size() != Set.of(cars).size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
 

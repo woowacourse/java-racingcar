@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -40,7 +42,7 @@ class CarsTest {
     @ParameterizedTest
     @ValueSource(strings = {"a,b,,", ",akd,ll", "a,,b", ","})
     void invalidSeparator(String value) {
-        Assertions.assertThatThrownBy(() -> Cars.from(value))
+        assertThatThrownBy(() -> Cars.from(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -53,5 +55,15 @@ class CarsTest {
         public int generate() {
             return value++;
         }
+    }
+
+    @DisplayName("자동차 이름이 중복시 예외 발생")
+    @Test
+    void duplicatedName() {
+        // given
+        // when
+        // then
+        assertThatThrownBy(() -> Cars.from("aa,aa"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

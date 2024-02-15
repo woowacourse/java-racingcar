@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 public class Car {
 
     private static final int MIN_NUMBER = 4;
@@ -27,5 +29,21 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Car car)) {
+            return false;
+        }
+        return Objects.equals(getName(), car.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
     }
 }
