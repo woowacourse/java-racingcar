@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 class CarsTest {
 
-    @DisplayName("자동차 이동 거리 정보를 생성한다.")
     @Test
+    @DisplayName("자동차 이동 거리 정보를 생성한다.")
     void getTotalMovementDetailsTest() {
         Cars cars = new Cars(List.of(new Car("명오"), new Car("배키")));
         cars.moveCars(List.of(5,2));

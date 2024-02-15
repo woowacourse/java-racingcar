@@ -24,7 +24,7 @@ public class InputValidator {
 
     private static void validateCarNameExists(String carName) {
         if(carName.isBlank()){
-            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_NOT_EXIST);
+            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_IS_BLANK);
         }
     }
 
