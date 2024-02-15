@@ -5,13 +5,14 @@ import domain.Car;
 import java.util.List;
 import service.Service;
 import view.InputView;
+import view.IterativeReader;
 import view.OutputView;
 
 public class Controller {
 
     public static void start() {
-        List<Car> cars = getCars();
-        int round = getRound();
+        List<Car> cars = IterativeReader.errorHandledRead(Controller::getCars);
+        int round = IterativeReader.errorHandledRead(Controller::getRound);
 
         OutputView.printRoundResult();
 
