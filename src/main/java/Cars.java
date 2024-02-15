@@ -27,7 +27,7 @@ public class Cars {
         return Collections.unmodifiableList(carList);
     }
 
-    public int getSize() {
+    public int getCount() {
         return carList.size();
     }
 }
