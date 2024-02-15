@@ -21,6 +21,16 @@ public class Cars {
         if (cars.size() <= 1) {
             throw new IllegalArgumentException();
         }
+        // 자동차 이름 중복 검증
+        int actualCarAmount = cars.size();
+        long distinctCarAmount = cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count();
+        if(actualCarAmount != distinctCarAmount) {
+            throw new IllegalArgumentException();
+        }
+
         this.cars = cars;
         this.accelerator = accelerator;
     }

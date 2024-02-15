@@ -41,6 +41,19 @@ class CarsTest {
     }
 
     @Test
+    @DisplayName("입력받은 자동차의 이름에 중복이 있으면 객체 생성에 실패한다")
+    void createCarsFailWhenNameDuplicated() {
+        //given
+        Car car1 = new Car("pobi", accelerator);
+        Car car2 = new Car("pobi", accelerator);
+        List<Car> carInfos = List.of(car1, car2);
+        //when
+        //then
+        Assertions.assertThatThrownBy(() -> new Cars(carInfos, accelerator))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("자동차들 중 가장 많이 이동한 차량의 Position을 반환한다")
     void getCarsMaxPosition() {
         //given
