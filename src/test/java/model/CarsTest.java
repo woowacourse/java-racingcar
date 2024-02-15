@@ -1,11 +1,13 @@
 package model;
 
 import static fixture.CarFixture.자동차;
+import static fixture.CarFixture.자동차들;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
@@ -37,17 +39,18 @@ class CarsTest {
     }
 
     @Test
-    void 가장_많이_전진한_자동차들을_반환한다() {
+    void 가장_많이_전진한_자동차의_위치를_반환한다() {
         // given
         Car car1 = 자동차("pobi");
         Car car2 = 자동차("crong");
-        List<Car> cars = List.of(car1, car2);
-        Cars racingCars = new Cars(cars);
-        car1.moveForward();
+        Cars racingCars = 자동차들(car1, car2);
+        int moveCount = 5;
+
         // when
-        List<String> winners = racingCars.getWinners();
+        IntStream.range(0, moveCount).forEach(i -> car1.moveForward());
+        int maxPosition = racingCars.findMaxPosition();
 
         // then
-        assertEquals(winners.get(0), "pobi");
+        assertThat(maxPosition).isEqualTo(moveCount);
     }
 }
