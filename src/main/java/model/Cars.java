@@ -20,12 +20,12 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars from(List<String> carNames) {
-        validate(carNames);
+    public static Cars from(List<String> names) {
+        validate(names);
 
         List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
+        for (String name : names) {
+            cars.add(Car.from(name));
         }
         return new Cars(cars);
     }
