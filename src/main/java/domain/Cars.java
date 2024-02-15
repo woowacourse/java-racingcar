@@ -19,4 +19,15 @@ public class Cars {
                 .toList();
 
     }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public int getMaxDistance() {
+        return cars.stream()
+                .mapToInt(car -> car.getStatus().distance())
+                .max()
+                .orElseGet(() -> 0);
+    }
 }

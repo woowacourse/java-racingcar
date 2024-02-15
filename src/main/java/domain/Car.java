@@ -17,6 +17,12 @@ public class Car {
         this.distance = INITIAL_DISTANCE;
     }
 
+    public Car(RandomNumberGenerator randomNumberGenerator, final String name, final int distance) {
+        this.randomNumberGenerator = randomNumberGenerator;
+        this.name = name;
+        this.distance = distance;
+    }
+
     public void move() {
         int randomNumber = randomNumberGenerator.generateRandomNumberInRange(0, 9);
 
