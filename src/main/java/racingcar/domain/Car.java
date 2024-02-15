@@ -2,12 +2,12 @@ package racingcar.domain;
 
 import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import racingcar.dto.CarPerformance;
 
 public class Car {
 
+    private static final int REQUIRED_OIL = 4;
     private final String name;
     private int movedDistance = 0;
 
@@ -22,14 +22,10 @@ public class Car {
         }
     }
     
-    public void go() {
-        if (isGoState()) {
+    public void goIfOilEnough(int oil) {
+        if (oil >= REQUIRED_OIL) {
             movedDistance++;
         }
-    }
-
-    private boolean isGoState() {
-        return Randoms.pickNumberInRange(0, 9) > 3;
     }
 
     public CarPerformance getCurrentPerformance() {
