@@ -4,7 +4,7 @@ import java.util.List;
 public class RacingcarApplication {
     public static void main(String[] args) {
         OutputView outputView = new OutputView();
-        InputView inputView = new InputView();
+        InputView inputView = new InputView(outputView);
         List<Car> cars = new ArrayList<>();
 
         List<String> carNames = inputView.getCarName();
