@@ -29,7 +29,7 @@ public class RacingGameController {
     public void run() {
         CarNameRequest carsNameRequest = retryUntilNoException(inputView::readCars);
         Count count = Count.from(retryUntilNoException(inputView::readCount));
-        Cars cars = retryUntilNoException(Cars::fromDto, carsNameRequest);
+        Cars cars = retryUntilNoException(carsNameRequest::toCars);
         RacingGame racingGame = RacingGame.of(count, cars,
                 new RandomMovementGenerator(new RandomNumberGenerator()));
         outputView.showStatusMessage();

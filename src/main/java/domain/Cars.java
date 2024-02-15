@@ -28,14 +28,6 @@ public class Cars {
         return new Cars(List.of(Car.fromEmpty(), Car.fromEmpty()));
     }
 
-    public static Cars fromDto(CarNameRequest carsNameRequest) {
-        List<Car> carsTmp = new ArrayList<>();
-        for (String carName : carsNameRequest.list()) {
-            carsTmp.add(Car.fromName(carName));
-        }
-        return new Cars(carsTmp);
-    }
-
     public void move(RandomMovementGenerator randomMovementGenerator) {
         for (Car car : cars) {
             moveCar(randomMovementGenerator, car);
