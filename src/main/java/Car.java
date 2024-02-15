@@ -3,7 +3,9 @@ public class Car {
     private int location;
 
     public Car(String name) {
-        //TODO : 이름 제약사항 처리
+        if (name == null || name.isBlank() || name.length() > 5) {
+            throw new IllegalArgumentException("잘못된 이름입니다.");
+        }
         this.name = name;
         location = 0;
     }

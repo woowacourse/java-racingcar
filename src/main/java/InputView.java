@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
@@ -9,10 +10,16 @@ public class InputView {
     public static List<String> readCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = sc.nextLine();
-
-        //TODO : 구분자로 끝나는 경우 예외 처리
+        if(isFinishWithDelimiter(input)){
+            throw new IllegalArgumentException("잘못된 이름입니다.");
+        }
         return Arrays.stream(input.split(","))
                 .toList();
+    }
+
+    private static boolean isFinishWithDelimiter(String input) {
+        Pattern finishWithDelimiterRegex = Pattern.compile(".*,$");
+        return finishWithDelimiterRegex.matcher(input).matches();
     }
 
     public static int readRoundNumber() {
