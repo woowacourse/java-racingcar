@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 import model.Car;
 import model.Cars;
-import utils.RandomNumberGenerator;
+import utils.NumberGenerator;
 import utils.Retry;
 import view.InputView;
 import view.OutputView;
@@ -12,9 +12,9 @@ public class RacingCarController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final RandomNumberGenerator generator;
+    private final NumberGenerator generator;
 
-    public RacingCarController(InputView inputView, OutputView outputView, RandomNumberGenerator generator) {
+    public RacingCarController(InputView inputView, OutputView outputView, NumberGenerator generator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.generator = generator;
@@ -37,7 +37,7 @@ public class RacingCarController {
     private void startRacing(int tryNumber, Cars cars) {
         outputView.printResultHeader();
         for (int i = 0; i < tryNumber; i++) {
-            List<Integer> randomMoveNumbers = generator.generate(cars.getCarsSize());
+            List<Integer> randomMoveNumbers = generator.generateOneDigitRandomNumbers(cars.getCarsSize());
             cars.moveCars(randomMoveNumbers);
             String totalMovementDetails = cars.getTotalMovementDetails();
             outputView.printResult(totalMovementDetails);
