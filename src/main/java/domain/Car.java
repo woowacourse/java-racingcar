@@ -13,10 +13,15 @@ public class Car implements Comparable<Car> {
     private int forward;
 
     public Car(String name) {
-        validateCarNameLength(name);
-        validateNameFormat(name);
+        validate(name);
+
         this.name = name;
         this.forward = 0;
+    }
+
+    private void validate(String name){
+        validateCarNameLength(name);
+        validateNameFormat(name);
     }
 
     private void validateCarNameLength(String name) {

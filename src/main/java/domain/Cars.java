@@ -34,7 +34,6 @@ public class Cars {
         return cars;
     }
 
-    //TODO : getter를 없앨 수는 없을까 ㅜㅜ
     public int getMaxForward() {
         return cars.stream()
                 .sorted(Car::compareTo)
