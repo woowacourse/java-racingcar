@@ -30,6 +30,25 @@ class RaceTest {
     }
 
     @Nested
+    @DisplayName("경주에 참여하는 자동차의 수를 테스트")
+    class NumberOfCarsSizeTest {
+        @Test
+        @DisplayName("경주에 참여하는 자동차의 수가 2대 이상이라면 클래스가 정상 생성된다.")
+        void validateNumberOfCarsIsOver2() {
+            assertThatNoException()
+                    .isThrownBy(() -> new Race("호기,재즈,상돌,아루,폴라"));
+        }
+
+        @Test
+        @DisplayName("경주에 참여하는 자동차의 수가 2대 미만이라면 에러를 발생시킨다.")
+        void validateNumberOfCarsIsLess2() {
+            Assertions.assertThatThrownBy(() -> new Race("호기"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("레이스에 참여하는 자동차는 최소 2대 이상이어야 합니다.");
+        }
+    }
+
+    @Nested
     @DisplayName("우승자가 단일일 경우와 여러명일 경우를 테스트")
     class ShowWinnerTest {
         @Test
