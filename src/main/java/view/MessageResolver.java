@@ -9,7 +9,7 @@ public class MessageResolver {
 
     public String resolveMoveResultMessage(List<Car> cars) {
         return cars.stream()
-                .map(car -> car.getCarName().toString() + " : " + resolveCarPositionMessage(car.getPosition()))
+                .map(car -> car.getCarName() + " : " + resolveCarPositionMessage(car.getPosition()))
                 .collect(Collectors.joining("\n")) + "\n";
     }
 
