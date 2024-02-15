@@ -1,7 +1,7 @@
 package racingcar.constant;
 
 public enum ExceptionMessage {
-    INVALID_CAR_NAME("이름은 다섯 자 이내로 입력해 주세요."),
+    INVALID_CAR_NAME_LENGTH("이름은 1자 이상 5자 이내로 입력해 주세요."),
     INVALID_ROUND_RANGE("시도 횟수는 1 이상 입력해 주세요."),
     INVALID_ROUND_FORMAT("시도 횟수는 숫자만 입력해 주세요.");
 
