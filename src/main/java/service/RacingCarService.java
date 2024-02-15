@@ -45,6 +45,13 @@ public class RacingCarService {
         return new Cars(names);
     }
 
+    public List<String> getMovement(Cars cars) {
+        List<String> movement = new ArrayList<>();
+        cars.getCars().forEach(car -> movement.add(car.getName()));
+
+        return movement;
+    }
+
     public List<String> findWinners(Cars cars) {
         List<Car> winners =  cars.getCars().stream()
                 .sorted(Car::compareTo)
