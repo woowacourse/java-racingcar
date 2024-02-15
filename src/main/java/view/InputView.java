@@ -5,41 +5,38 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);
 
-    public InputView() {
-        scanner = new Scanner(System.in);
-    }
-    public List<String> enterCarNames() {
+    public static List<String> enterCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String rawCarNames = scanner.nextLine();
         return validateCarNames(rawCarNames);
     }
 
-    private List<String> validateCarNames(String rawCarNames){
+    private static List<String> validateCarNames(String rawCarNames){
         validateBlankInput(rawCarNames);
         List<String> carNames = split(rawCarNames);
         return carNames.stream().map(name -> name.trim()).toList();
     }
 
-    private List<String> split(String rawCarNames) {
+    private static List<String> split(String rawCarNames) {
         return Arrays.stream(rawCarNames.split(","))
                 .toList();
     }
 
-    private void validateBlankInput(String carNames) {
+    private static void validateBlankInput(String carNames) {
         if (carNames == null || carNames.isEmpty()) {
            throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다. 다시 입력해주세요.");
         }
     }
 
-    public int enterCount() {
+    public static int enterCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         String rawCount = scanner.nextLine();
         return validateCount(rawCount);
     }
 
-    private int validateCount(String rawCount) {
+    private static int validateCount(String rawCount) {
         try {
             return Integer.parseInt(rawCount);
         } catch (NumberFormatException exception) {

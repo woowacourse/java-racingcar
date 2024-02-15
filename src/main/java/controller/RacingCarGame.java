@@ -8,15 +8,9 @@ import view.OutputView;
 import java.util.function.Supplier;
 
 public class RacingCarGame {
-    private final InputView inputView;
-
-    public RacingCarGame(InputView inputView) {
-        this.inputView = inputView;
-    }
-
     public void run() {
-        Cars cars = retry(() -> new Cars(inputView.enterCarNames()));
-        Count count = retry(() -> new Count(inputView.enterCount()));
+        Cars cars = retry(() -> new Cars(InputView.enterCarNames()));
+        Count count = retry(() -> new Count(InputView.enterCount()));
 
         OutputView.printNewLine();
 

@@ -3,8 +3,7 @@ import view.InputView;
 
 public class Application {
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        RacingCarGame racingCarGame = new RacingCarGame(inputView);
+        RacingCarGame racingCarGame = new RacingCarGame();
         racingCarGame.run();
     }
 }
