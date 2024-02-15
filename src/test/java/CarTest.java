@@ -38,7 +38,7 @@ class CarTest {
     }
 
     @ParameterizedTest(name = "{0}을 이름으로 사용하면 예외가 발생한다.")
-    @ValueSource(strings = {"", " ", "123456"})
+    @ValueSource(strings = {"", " ", "zangsu"})
     void illegalNameExceptionTest(String name) {
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class);
