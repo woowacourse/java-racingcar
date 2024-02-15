@@ -5,6 +5,7 @@ import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;
 import java.util.stream.Stream;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,5 +41,24 @@ class CarsTest {
                 Arguments.arguments(List.of("1")),
                 Arguments.arguments(List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"))
         );
+    }
+
+    @Test
+    @DisplayName("[Success] 자동차 전진 횟수가 가장 많은 차들의 이름을 반환한다")
+    void getWinners() {
+        Car car1 = new Car("car1");
+        car1.move(4);
+        car1.move(4);
+        Car car2 = new Car("car2");
+        car2.move(4);
+        car2.move(4);
+        Car car3 = new Car("car3");
+        car3.move(1);
+        car3.move(1);
+
+        Cars cars = new Cars(List.of(car1, car2, car3));
+
+        Assertions.assertThat(cars.getWinners())
+                .isEqualTo(List.of("car1", "car2"));
     }
 }
