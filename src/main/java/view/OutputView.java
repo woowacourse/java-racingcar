@@ -23,4 +23,9 @@ public class OutputView {
     private String generateRacingResultMessage(final CarStatus status) {
         return status.name() + " : " + DISTANCE_SYMBOL.repeat(status.distance());
     }
+
+    public void printWinners(List<String> winners) {
+        String message = String.join(", ", winners);
+        System.out.println(message + "가 최종 우승했습니다.");
+    }
 }
