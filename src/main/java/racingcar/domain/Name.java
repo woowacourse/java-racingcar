@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.exception.InvalidNameLengthException;
+
 public class Name {
     private static final int MAX_LENGTH = 5;
 
@@ -17,13 +19,13 @@ public class Name {
 
     private void validateNameLength(String value) {
         if (value.length() > MAX_LENGTH) {
-            throw new RuntimeException();
+            throw new InvalidNameLengthException();
         }
     }
 
     private void validateNameNotBlank(String value) {
         if (value.isBlank()) {
-            throw new RuntimeException();
+            throw new InvalidNameLengthException();
         }
     }
 

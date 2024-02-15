@@ -2,6 +2,8 @@ package racingcar.view;
 
 import java.util.Arrays;
 import java.util.List;
+import racingcar.exception.NotANumberException;
+import racingcar.exception.TryNumberOutOfRangeException;
 import racingcar.view.reader.Reader;
 
 public class InputView {
@@ -36,13 +38,13 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new RuntimeException();
+            throw new NotANumberException();
         }
     }
 
     private void validateNumberInRange(int number) {
         if (number < MIN_RACE_RANGE || number > MAX_RACE_RANGE) {
-            throw new RuntimeException();
+            throw new TryNumberOutOfRangeException();
         }
     }
 }
