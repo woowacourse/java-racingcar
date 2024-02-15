@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public static void printHeadLine() {
         System.out.println();
         System.out.println("실행 결과");
@@ -38,4 +42,5 @@ public class OutputView {
             System.out.print(", ");
         }
     }
+
 }

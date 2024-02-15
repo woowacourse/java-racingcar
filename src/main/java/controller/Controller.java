@@ -15,8 +15,7 @@ public class Controller {
     }
 
     public void run() {
-        String inputCarName = inputCarName();
-        List<Car> cars = service.setCars(service.separateCarName(inputCarName));
+        List<Car> cars = inputCarName();
         int inputAttemptLimit = inputAttemptLimit();
         validateNumber(inputAttemptLimit);
         service.playGame(cars, inputAttemptLimit);
@@ -24,21 +23,32 @@ public class Controller {
         OutputView.printWinners(winners);
     }
 
-    private String inputCarName() {
-        InputView.requestCarName();
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+    private List<Car> inputCarName() {
+        try {
+            InputView.requestCarName();
+            Scanner scanner = new Scanner(System.in);
+            return service.setCars(service.separateCarName(scanner.nextLine()));
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputCarName();
+        }
+
     }
 
     private int inputAttemptLimit() {
-        InputView.requestAttemptLimit();
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        try {
+            InputView.requestAttemptLimit();
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextInt();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputAttemptLimit();
+        }
     }
 
     private void validateNumber(int inputAttemptLimit) {
         if (inputAttemptLimit <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 양수여야 합니다.");
         }
     }
 }
