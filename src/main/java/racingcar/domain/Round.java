@@ -7,11 +7,11 @@ public class Round {
     private static final String VALID_ROUND_REGEX = "[0-9]+";
     private static final int MINIMUM_ROUND = 0;
 
-    private final int round;
+    private int remainingRound;
 
     public Round(String inputRound) {
         validateRound(inputRound);
-        this.round = Integer.parseInt(inputRound);
+        this.remainingRound = Integer.parseInt(inputRound);
     }
 
     private void validateRound(String inputRound) {
@@ -23,5 +23,13 @@ public class Round {
 
     private boolean isValidRound(String inputRound) {
         return Pattern.matches(VALID_ROUND_REGEX, inputRound);
+    }
+
+    public boolean isLast() {
+        return remainingRound == MINIMUM_ROUND;
+    }
+
+    public void decrease() {
+        this.remainingRound--;
     }
 }

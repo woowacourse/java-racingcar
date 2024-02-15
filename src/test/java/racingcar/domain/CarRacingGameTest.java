@@ -1,10 +1,12 @@
 package racingcar.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,5 +30,15 @@ class CarRacingGameTest {
 
         List<Car> carList = carRacingGame.getRoundResult();
         carList.forEach(car -> assertThat(car.getPosition()).isEqualTo(0));
+    }
+
+    @Test
+    @DisplayName("자동차 경주 게임 종료 여부를 판별할 수 있다.")
+    void isGameEnd() {
+        CarRacingGame carRacingGame = new CarRacingGame("pobi,crong,honux", "1");
+        assertThat(carRacingGame.isGameEnd()).isFalse();
+
+        carRacingGame.playRound(() -> 3);
+        assertThat(carRacingGame.isGameEnd()).isTrue();
     }
 }

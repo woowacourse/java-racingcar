@@ -12,8 +12,13 @@ public class CarRacingGame {
         this.round = new Round(inputRound);
     }
 
+    public boolean isGameEnd() {
+        return round.isLast();
+    }
+
     public void playRound(NumberGenerator numberGenerator) {
         cars.moveCars(numberGenerator);
+        round.decrease();
     }
 
     public List<Car> getRoundResult() {
