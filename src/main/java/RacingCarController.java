@@ -1,6 +1,7 @@
 import domain.Car;
 import domain.Cars;
 import domain.RandomDigitSupplier;
+import domain.RandomMoveStrategy;
 import domain.TrialCount;
 import java.util.List;
 import view.InputView;
@@ -22,7 +23,7 @@ public class RacingCarController {
     private static Cars inputCars() {
         try {
             List<String> carNames = InputView.inputNames();
-            return Cars.of(carNames, new RandomDigitSupplier());
+            return Cars.of(carNames, new RandomMoveStrategy(new RandomDigitSupplier()));
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return inputCars();
@@ -40,7 +41,7 @@ public class RacingCarController {
     }
 
     private static void progressRacing(Cars cars) {
-        cars.moveRandomly();
+        cars.move();
         OutputView.printProgress(cars.getCarList());
     }
 }

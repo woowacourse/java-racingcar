@@ -1,31 +1,27 @@
 package domain;
 
 import java.util.List;
-import java.util.function.IntSupplier;
 
 public class Cars {
 
-    private static final int MIN_MOVABLE_DIGIT = 4;
-
     private final List<Car> carList;
-    private final IntSupplier digitSupplier;
+    private final MoveStrategy moveStrategy;
 
-    public Cars(List<Car> carList, IntSupplier digitSupplier) {
+    public Cars(List<Car> carList, MoveStrategy moveStrategy) {
         this.carList = carList;
-        this.digitSupplier = digitSupplier;
+        this.moveStrategy = moveStrategy;
     }
 
-    public static Cars of(List<String> carNames, IntSupplier randomNumberGenerator) {
+    public static Cars of(List<String> carNames, MoveStrategy moveStrategy) {
         List<Car> carList = carNames.stream()
                 .map(Car::new)
                 .toList();
-        return new Cars(carList, randomNumberGenerator);
+        return new Cars(carList, moveStrategy);
     }
 
-    public void moveRandomly() {
+    public void move() {
         carList.forEach((car) -> {
-            int randomInt = digitSupplier.getAsInt();
-            car.move(randomInt >= MIN_MOVABLE_DIGIT);
+            car.move(moveStrategy.isMove());
         });
     }
 

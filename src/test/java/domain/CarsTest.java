@@ -9,25 +9,13 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class CarsTest {
 
-    @DisplayName("임의의 숫자가 3 이하인 경우에는 이동하지 않고, 4 이상인 경우에는 이동한다")
-    @ParameterizedTest
-    @CsvSource({"3, 0", "4, 1"})
-    void moveRandomlyTest(int randomInt, int expectedPosition) {
-        Cars cars = new Cars(List.of(new MockCar()), () -> randomInt);
-
-        cars.moveRandomly();
-
-        int actualPosition = cars.getCarList().get(0).getPosition();
-        Assertions.assertThat(actualPosition).isEqualTo(expectedPosition);
-    }
-
     @DisplayName("가장 멀리간 차가 우승자가 된다.")
     @Test
     void findSingleWinnerTest() {
         MockCar carA = new MockCar(1);
         MockCar carB = new MockCar(2);
         List<Car> carList = List.of(carA, carB);
-        Cars cars = new Cars(carList, () -> 0);
+        Cars cars = new Cars(carList, () -> true);
 
         List<Car> winners = cars.findWinner();
 
@@ -41,11 +29,23 @@ class CarsTest {
         MockCar carB = new MockCar(2);
         MockCar carC = new MockCar(1);
         List<Car> carList = List.of(carA, carB, carC);
-        Cars cars = new Cars(carList, () -> 0);
+        Cars cars = new Cars(carList, () -> true);
 
         List<Car> winners = cars.findWinner();
 
         Assertions.assertThat(winners).containsExactlyInAnyOrder(carA, carB);
     }
 
+    @DisplayName("전략에 따라 전진 유무가 결정된다.")
+    @ParameterizedTest
+    @CsvSource({"true, 1", "false, 0"})
+    void moveTest(boolean isMove, int expectedPosition) {
+        MockCar carA = new MockCar();
+        List<Car> carList = List.of(carA);
+        Cars cars = new Cars(carList, () -> isMove);
+
+        cars.move();
+
+        Assertions.assertThat(carA.getPosition()).isEqualTo(expectedPosition);
+    }
 }
