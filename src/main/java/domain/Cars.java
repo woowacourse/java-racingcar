@@ -13,6 +13,10 @@ public class Cars {
         return new Cars(cars);
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+    
     public List<Car> chooseWinner() {
         int maxPosition = getFurthestPosition();
         return cars.stream()
