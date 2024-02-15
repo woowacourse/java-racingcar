@@ -22,7 +22,7 @@ public class Car implements Comparable<Car> {
     private void validateName(final String name) {
         validateNotNull(name);
         validateNameStyle(name);
-        validateNameSize(name);
+        validateNameLength(name);
     }
 
     private void validateNotNull(final String name) {
@@ -41,7 +41,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    private void validateNameSize(final String name) {
+    private void validateNameLength(final String name) {
         if (name.trim().length() > MAX_NAME_LENGTH.getValue()) {
             throw new IllegalArgumentException(INVALID_CAR_NAME_SIZE.getMessage());
         }
