@@ -69,34 +69,35 @@ public class GameController {
             doRound();
         }
 
-        int max = 0;
-        for (Car car : carList) {
-            max = Math.max(max, car.getPosition());
-        }
-
-        if (max == 0) {
-            OutputView.printNoWinner();
-            return;
-        }
-
-        for (Car car : carList) {
-            if (car.getPosition() == max) {
-                winnerList.add(car);
-            }
-        }
-
-        OutputView.printWinnerList(winnerList);
+        int max = findMaxPosition(carList);
+        finish(carList, max);
     }
 
     private void doRound() {
         for (Car car : carList) {
-            int randomNumber = RandomNumberGenerator.generate();
-            if (randomNumber >= 4) {
-                car.move();
-            }
+            car.move(RandomNumberGenerator.generate());
             OutputView.printPosition(car);
         }
         OutputView.println();
     }
 
+    private int findMaxPosition(List<Car> carList) {
+        return carList.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+    }
+
+    private void finish(List<Car> carList, int max) {
+        if (max == 0) {
+            OutputView.printNoWinner();
+            return;
+        }
+
+        carList.stream()
+                .filter(car -> car.getPosition() == max)
+                .forEach(winnerList::add);
+
+        OutputView.printWinnerList(winnerList);
+    }
 }
