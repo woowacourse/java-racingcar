@@ -8,7 +8,7 @@ public class Car {
 
     private final RandomNumberGenerator randomNumberGenerator;
     private final String name;
-    
+
     private int distance;
 
     public Car(RandomNumberGenerator randomNumberGenerator, final String name, final int distance) {
@@ -30,6 +30,10 @@ public class Car {
     }
 
     public void move() {
+        if (randomNumberGenerator == null) {
+            return;
+        }
+
         int randomNumber = randomNumberGenerator.generateRandomNumberInRange(0, 9);
 
         if (randomNumber >= 4) {
