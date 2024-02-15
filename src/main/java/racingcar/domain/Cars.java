@@ -10,8 +10,16 @@ public class Cars {
         this.cars = new ArrayList<>();
     }
 
-    public void addCar(final Car car) {
+    public void addCar(final String carName) {
+        Car car = new Car(carName);
         cars.add(car);
+    }
+
+    public void moveAllCars() {
+        for(Car car: cars) {
+            int randomNumber = RandomNumber.generate();
+            car.move(randomNumber);
+        }
     }
 
     public List<Car> getCars() {
