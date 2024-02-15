@@ -1,11 +1,12 @@
 package domain.car;
 
 import domain.random.RandomNumberGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
     @DisplayName("자동차들의 최대 전진 거리를 구한다.")
@@ -22,6 +23,6 @@ class CarsTest {
         int maxDistance = cars.getMaxDistance();
 
         // Then
-        Assertions.assertThat(maxDistance).isEqualTo(3);
+        assertThat(maxDistance).isEqualTo(3);
     }
 }

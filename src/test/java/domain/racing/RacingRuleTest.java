@@ -3,11 +3,12 @@ package domain.racing;
 import domain.car.Car;
 import domain.car.Cars;
 import domain.random.RandomNumberGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class RacingRuleTest {
     @DisplayName("레이싱 우승자 이름 목록을 반환한다.")
@@ -25,7 +26,7 @@ class RacingRuleTest {
         List<Car> winners = racingRule.getWinners(cars);
 
         // Then
-        Assertions.assertThat(winners).hasSize(2);
+        assertThat(winners).hasSize(2);
     }
 
     @DisplayName("모든 자동차의 최종 전진거리가 0일 경우 빈 리스트를 반환한다.")
@@ -43,6 +44,6 @@ class RacingRuleTest {
         List<Car> winners = racingRule.getWinners(cars);
 
         // Then
-        Assertions.assertThat(winners).isEmpty();
+        assertThat(winners).isEmpty();
     }
 }
