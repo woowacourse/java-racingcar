@@ -9,12 +9,12 @@ public class RandomUtils {
 
     private static final Random random = ThreadLocalRandom.current();
 
-    public static int pickNumberInRange(int startInclusive, int endInclusive) {
+    public static int pickNumberInRange(final int startInclusive, final int endInclusive) {
         validateRange(startInclusive, endInclusive);
         return startInclusive + random.nextInt(endInclusive - startInclusive + 1);
     }
 
-    private static void validateRange(int startInclusive, int endInclusive) {
+    private static void validateRange(final int startInclusive, final int endInclusive) {
         if (startInclusive > endInclusive) {
             throw new IllegalArgumentException("startInclusive는 endInclusive보다 작거나 같아야 합니다.");
         }

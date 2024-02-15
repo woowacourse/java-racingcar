@@ -27,7 +27,7 @@ class RaceParticipantsTest {
     @ValueSource(strings = {"a,b,b", "a,b,c,b", "a,b,c,b,c"})
     void 중복된_자동차_이름이_있을_경우_실패(String name) {
         //when
-        RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
+        final RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
 
         //then
         assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(mockMovingStrategy))
@@ -39,17 +39,17 @@ class RaceParticipantsTest {
         @Test
         void 우승자가_한_명인_경우() {
             //given
-            Car car1 = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
-            Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, true, false)));
-            Car car3 = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
+            final Car car1 = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
+            final Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, true, false)));
+            final Car car3 = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
 
-            RaceParticipants raceParticipants = new RaceParticipants(List.of(car1, car2, car3));
+            final RaceParticipants raceParticipants = new RaceParticipants(List.of(car1, car2, car3));
             for (int i = 0; i < 3; i++) {
                 raceParticipants.move();
             }
 
             //when
-            List<Car> raceWinners = raceParticipants.getRaceWinners();
+            final List<Car> raceWinners = raceParticipants.getRaceWinners();
 
             //then
             assertThat(raceWinners).hasSize(1).isEqualTo(List.of(car1));

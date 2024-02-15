@@ -27,36 +27,37 @@ public class RacingController implements Controller {
     @Override
     public void run() {
         RaceParticipants raceParticipants = readRaceParticipants();
-        int raceCount = readRaceCount();
+        final int raceCount = readRaceCount();
         race(raceCount, raceParticipants);
         printRaceWinners(raceParticipants);
     }
 
     private RaceParticipants readRaceParticipants() {
         return InputUtils.retryOnException(() -> {
-            RaceParticipantsRequest dto = inputView.readRaceParticipants();
+            final RaceParticipantsRequest dto = inputView.readRaceParticipants();
             return dto.toRaceParticipants(movingStrategy);
         });
     }
 
     private int readRaceCount() {
         return InputUtils.retryOnException(() -> {
-            RaceCountRequest dto = inputView.readRaceCount();
+            final RaceCountRequest dto = inputView.readRaceCount();
             return dto.toInt();
         });
     }
 
-    private void race(int raceCount, RaceParticipants raceParticipants) {
+    private void race(final int raceCount, final RaceParticipants raceParticipants) {
         outputView.printRaceResultHeaderMessage();
         for (int i = 0; i < raceCount; i++) {
             raceParticipants.move();
-            List<Car> raceResult = raceParticipants.getCars();
+
+            final List<Car> raceResult = raceParticipants.getCars();
             outputView.printRaceResult(RaceResultResponse.from(raceResult));
         }
     }
 
-    private void printRaceWinners(RaceParticipants raceParticipants) {
-        List<Car> raceWinners = raceParticipants.getRaceWinners();
+    private void printRaceWinners(final RaceParticipants raceParticipants) {
+        final List<Car> raceWinners = raceParticipants.getRaceWinners();
         outputView.printRaceWinners(RaceWinnersResponse.from(raceWinners));
     }
 }

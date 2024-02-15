@@ -6,7 +6,7 @@ public class DefaultMovingStrategy implements MovingStrategy {
     private static final int MOVING_THRESHOLD = 4;
     private final NumberGenerator numberGenerator;
 
-    public DefaultMovingStrategy(NumberGenerator numberGenerator) {
+    public DefaultMovingStrategy(final NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 

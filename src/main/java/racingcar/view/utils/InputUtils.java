@@ -12,7 +12,7 @@ public class InputUtils {
     private InputUtils() {
     }
 
-    public static int parseToInt(String input) {
+    public static int parseToInt(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -20,14 +20,14 @@ public class InputUtils {
         }
     }
 
-    public static List<String> splitByComma(String input) {
+    public static List<String> splitByComma(final String input) {
         if (input == null) {
             return List.of();
         }
         return Arrays.stream(input.split(DELIMITER, -1)).toList();
     }
 
-    public static <T> T retryOnException(Supplier<T> supplier) {
+    public static <T> T retryOnException(final Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

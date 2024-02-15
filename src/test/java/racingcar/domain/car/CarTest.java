@@ -24,8 +24,8 @@ class CarTest {
     @Test
     void 자동차_움직임_성공() {
         // given
-        List<Boolean> movableList = List.of(true, false, true, false, true);
-        Car car = new Car("car", new MockMovingStrategy(movableList));
+        final List<Boolean> movableList = List.of(true, false, true, false, true);
+        final Car car = new Car("car", new MockMovingStrategy(movableList));
 
         // when
         for (int i = 0; i < movableList.size(); i++) {
@@ -39,8 +39,8 @@ class CarTest {
     @Test
     void 자동차_위치를_비교한다() {
         // given
-        Car car1 = new Car("car1", new MockMovingStrategy(List.of(true, true)));
-        Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, false)));
+        final Car car1 = new Car("car1", new MockMovingStrategy(List.of(true, true)));
+        final Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, false)));
 
         // when
         for (int i = 0; i < 2; i++) {

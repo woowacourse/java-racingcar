@@ -25,13 +25,13 @@ class RaceParticipantsRequestTest {
     @Test
     void toRaceParticipants를_이용해서_RaceParticipants로_변환_성공() {
         //given
-        List<String> carNames = List.of("a", "bb", "ccc");
-        String inputNames = String.join(",", carNames);
+        final List<String> carNames = List.of("a", "bb", "ccc");
+        final String inputNames = String.join(",", carNames);
 
         //when
-        RaceParticipants raceParticipants = new RaceParticipantsRequest(inputNames)
+        final RaceParticipants raceParticipants = new RaceParticipantsRequest(inputNames)
                 .toRaceParticipants(mockMovingStrategy);
-        List<String> expectedCarNames = raceParticipants.getCars().stream()
+        final List<String> expectedCarNames = raceParticipants.getCars().stream()
                 .map(Car::getName)
                 .toList();
 
@@ -40,10 +40,10 @@ class RaceParticipantsRequestTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", ",일", "일,,이", "일,이,"})
-    void toRaceParticipants를_이용해서_RaceParticipants로_변환_실패(String name) {
+    @ValueSource(strings = {"", "  ", ",일", "일,,이", "일,이,"})
+    void toRaceParticipants를_이용해서_RaceParticipants로_변환_실패(final String name) {
         //when
-        RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
+        final RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
 
         //then
         assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(mockMovingStrategy))

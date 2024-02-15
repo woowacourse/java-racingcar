@@ -12,7 +12,7 @@ public class CarName {
         this.name = name;
     }
 
-    private void validateNameLength(String name) {
+    private void validateNameLength(final String name) {
         if (name.isBlank() || name.length() > MAX_NAME_LENGTH) {
             throw new InvalidInputException(ErrorMessage.INVALID_CAR_NAME_LENGTH);
         }

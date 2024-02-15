@@ -8,8 +8,8 @@ class PositionTest {
     @Test
     void forward메서드_테스트() {
         // given
-        int value = 0;
-        Position position = new Position(value);
+        final int value = 0;
+        final Position position = new Position(value);
 
         // when
         position.forward();
@@ -21,8 +21,8 @@ class PositionTest {
     @Test
     void compareTo메서드_테스트() {
         // given
-        Position position1 = new Position(1);
-        Position position2 = new Position(2);
+        final Position position1 = new Position(1);
+        final Position position2 = new Position(2);
 
         // when & then
         assertThat(position1.compareTo(position2)).isEqualTo(-1);

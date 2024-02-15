@@ -8,7 +8,7 @@ public class MockMovingStrategy implements MovingStrategy {
     private final List<Boolean> movableList;
     private int currentIndex = 0;
 
-    public MockMovingStrategy(List<Boolean> movableList) {
+    public MockMovingStrategy(final List<Boolean> movableList) {
         this.movableList = new ArrayList<>(movableList);
     }
 

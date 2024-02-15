@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Position implements Comparable<Position> {
     private int value;
 
-    public Position(int value) {
+    public Position(final int value) {
         this.value = value;
     }
 
@@ -18,7 +18,7 @@ public class Position implements Comparable<Position> {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -35,7 +35,7 @@ public class Position implements Comparable<Position> {
     }
 
     @Override
-    public int compareTo(Position o) {
+    public int compareTo(final Position o) {
         return Integer.compare(this.value, o.value);
     }
 }

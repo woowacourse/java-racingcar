@@ -14,7 +14,7 @@ public record RaceCountRequest(String input) {
         return count;
     }
 
-    private void validateRaceCountRange(int count) {
+    private void validateRaceCountRange(final int count) {
         if (count > MAX_RACE_COUNT || MIN_RACE_COUNT > count) {
             throw new InvalidInputException(ErrorMessage.INVALID_RACE_COUNT_RANGE);
         }
