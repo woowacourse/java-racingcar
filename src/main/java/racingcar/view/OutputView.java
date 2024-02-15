@@ -1,3 +1,7 @@
+package racingcar.view;
+
+import racingcar.domain.Car;
+
 import java.util.List;
 
 public class OutputView {
@@ -10,7 +14,7 @@ public class OutputView {
         }
         System.out.println();
     }
-    
+
     public void printWinners(List<Car> cars) {
         int longestDistance = cars.stream()
                 .mapToInt(Car::getDistance)

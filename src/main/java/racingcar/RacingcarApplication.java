@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+package racingcar;
 
 public class RacingcarApplication {
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package racingcar.domain;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Car {
