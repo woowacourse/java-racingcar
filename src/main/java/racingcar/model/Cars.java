@@ -21,8 +21,7 @@ public class Cars {
     private void validateDuplicateName() {
         if (cars.size() != cars.stream()
                 .distinct()
-                .toList()
-                .size()) {
+                .count()) {
             throw new IllegalArgumentException("중복된 자동차 이름은 허용하지 않습니다.");
         }
     }
