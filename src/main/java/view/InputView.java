@@ -11,4 +11,11 @@ public class InputView {
         InputValidator.validateComma(input);
         return input;
     }
+
+    public int readTryCount() {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        InputValidator.validateTryCount(input);
+        return Integer.parseInt(input);
+    }
 }
