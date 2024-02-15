@@ -24,7 +24,6 @@ public class MainController {
         CarRacingGame carRacingGame = repeat(this::initializeCarRacingGame);
 
         race(carRacingGame);
-
         showWinners(carRacingGame.findWinners());
     }
 

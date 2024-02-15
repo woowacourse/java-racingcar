@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NameTest {
+
     @ParameterizedTest
     @ValueSource(strings = {"", "banana"})
     @DisplayName("이름이 공백이거나 5글자를 초과하면 예외가 발생한다.")
