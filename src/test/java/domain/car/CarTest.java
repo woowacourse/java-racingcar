@@ -32,7 +32,7 @@ class CarTest {
 
         // When & Then
         assertThatThrownBy(() -> new Car(randomNumberGenerator, soLongCarName))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
 
@@ -45,7 +45,7 @@ class CarTest {
 
         // When & Then
         assertThatThrownBy(() -> new Car(randomNumberGenerator, emptyName))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
 
@@ -58,7 +58,7 @@ class CarTest {
 
         // When & Then
         assertThatThrownBy(() -> new Car(randomNumberGenerator, carName))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("RandomNumberGenerator가 존재하지 않습니다.");
     }
 

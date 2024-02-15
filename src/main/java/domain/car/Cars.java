@@ -17,7 +17,6 @@ public class Cars {
                 .peek(Car::move)
                 .map(Car::getStatus)
                 .toList();
-
     }
 
     public List<Car> getCars() {

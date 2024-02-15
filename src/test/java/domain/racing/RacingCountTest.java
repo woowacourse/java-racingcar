@@ -30,7 +30,7 @@ class RacingCountTest {
 
         // When & Then
         assertThatThrownBy(() -> new RacingCount(count))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("1이상의 숫자가 입력되어야 합니다.");
     }
 }
