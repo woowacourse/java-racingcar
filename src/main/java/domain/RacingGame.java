@@ -31,9 +31,9 @@ public class RacingGame {
     public List<List<CarStatusResponse>> getTurnResult() { //TODO: 찝찝함. 중요한데 메소드 역할이 여러개 섞여있음.
         List<List<CarStatusResponse>> gameResultResponse  = new ArrayList<>();
         int currentCount = 1;
-        while (count.isValidRange(currentCount)) {
+        while (count.isGreaterOrThan(currentCount)) {
             List<CarStatusResponse> carsStatus = new ArrayList<>();
-            cars.move(new RandomMovementGenerator(new RandomNumberGenerator()));
+            cars.move(randomMovementGenerator);
             addStatus(carsStatus);
             gameResultResponse.add(carsStatus);
             currentCount++;

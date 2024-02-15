@@ -1,26 +1,29 @@
 package view;
 
 public class InputValidater {
+
+    public static final String DELIMITER = ",";
+
     public void validateCars(String input) {
         validateBlank(input);
-        validateDuplicatedDelimeter(input);
+        validateDuplicatedDelimiter(input);
         validateStartWord(input);
         validateEndWord(input);
     }
 
     private void validateEndWord(String input) {
-        if (input.endsWith(",")) {
+        if (input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException("구분자로 끝날 수 없습니다.");
         }
     }
 
     private void validateStartWord(String input) {
-        if (input.startsWith(",")) {
+        if (input.startsWith(DELIMITER)) {
             throw new IllegalArgumentException("구분자로 시작할 수 없습니다.");
         }
     }
 
-    private void validateDuplicatedDelimeter(String input) {
+    private void validateDuplicatedDelimiter(String input) {
         if (input.contains(",,")) { // TODO: 추후 리펙터링 할 것!
             throw new IllegalArgumentException("올바른 형식으로 입력해주세요.");
         }
@@ -36,7 +39,7 @@ public class InputValidater {
         validateBlank(input);
         validateNumeric(input);
         validateRange(input);
-        validatePostive(input);
+        validatePositive(input);
     }
 
     private void validateRange(String input) {
@@ -47,7 +50,7 @@ public class InputValidater {
         }
     }
 
-    private void validatePostive(String input) {
+    private void validatePositive(String input) {
         if (Integer.parseInt(input) <= 0) {
             throw new IllegalArgumentException("양수를 입력해주세요.");
         }

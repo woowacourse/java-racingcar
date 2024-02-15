@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
+    public static final int MIN_CAR_COUNT = 2;
+    public static final int MAX_CAR_COUNT = 50;
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -17,13 +19,13 @@ public class Cars {
     }
 
     private void validate(List<Car> cars) {
-        if (!(cars.size() >= 2 && cars.size() <= 50)) {
+        if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
             throw new IllegalArgumentException("자동차는 2대에서 50대 사이로 입력해주세요.");
         }
     }
 
     public static Cars fromEmpty() {
-        return new Cars(new ArrayList<>());
+        return new Cars(List.of(Car.fromEmpty(), Car.fromEmpty()));
     }
 
     public static Cars fromDto(CarNameRequest carsNameRequest) {
@@ -47,15 +49,15 @@ public class Cars {
     }
 
     public List<Car> getMaxDistanceCars() {
-        List<Car> winners = new ArrayList<>();
+        List<Car> maxDistanceCars = new ArrayList<>();
         Car maxDistanceCar = cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow(() -> new IllegalArgumentException("최댓값 계산에 오류가 발생했습니다."));
 
         for (Car car : cars) {
-            addWinners(car, maxDistanceCar, winners);
+            addWinners(car, maxDistanceCar, maxDistanceCars);
         }
-        return winners;
+        return maxDistanceCars;
     }
 
     private static void addWinners(Car car, Car maxDistanceCar, List<Car> winners) {

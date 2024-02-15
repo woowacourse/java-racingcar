@@ -1,6 +1,8 @@
 package domain;
 
 public class Count {
+    public static final int MIN_COUNT = 1;
+    public static final int MAX_COUNT = 100;
     private final int count;
 
     public Count(int count) {
@@ -9,7 +11,7 @@ public class Count {
     }
 
     private void validate(int count) {
-        if (!(count >= 1 && count <= 100)) {
+        if (!(count >= MIN_COUNT && count <= MAX_COUNT)) {
             throw new IllegalArgumentException("횟수는 1에서 100사이로 입력해주세요.");
         }
     }
@@ -19,10 +21,12 @@ public class Count {
     }
 
     public static Count init() {
-        return new Count(0);
+        return new Count(1);
     }
 
-    public boolean isValidRange(int currentCount) {
+    public boolean isGreaterOrThan(int currentCount) {
         return currentCount <= count;
     }
+
+
 }

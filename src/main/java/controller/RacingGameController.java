@@ -1,6 +1,5 @@
 package controller;
 
-import domain.Car;
 import domain.CarStatusResponse;
 import domain.Cars;
 import domain.Count;
@@ -11,7 +10,6 @@ import domain.Winners;
 import dto.CarNameRequest;
 import dto.WinnersResponse;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import view.InputView;
@@ -29,9 +27,9 @@ public class RacingGameController {
     }
 
     public void run() {
-        CarNameRequest carsNameRequest = readUntillNoException(inputView::readCars);
-        Count count = Count.from(readUntillNoException(inputView::readCount));
-        Cars cars = readUntillNoException(Cars::fromDto, carsNameRequest);
+        CarNameRequest carsNameRequest = retryUntillNoException(inputView::readCars);
+        Count count = Count.from(retryUntillNoException(inputView::readCount));
+        Cars cars = retryUntillNoException(Cars::fromDto, carsNameRequest);
         RacingGame racingGame = RacingGame.of(count, cars,
                 new RandomMovementGenerator(new RandomNumberGenerator())); //TODO: 차차
         outputView.showStatusMessage();
@@ -46,21 +44,21 @@ public class RacingGameController {
     }
 
 
-    private <T> T readUntillNoException(Supplier<T> supplier) {
+    private <T> T retryUntillNoException(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readUntillNoException(supplier);
+            return retryUntillNoException(supplier);
         }
     }
 
-    private <T, R> R readUntillNoException(Function<T, R> function, T input) {
+    private <T, R> R retryUntillNoException(Function<T, R> function, T input) {
         try {
             return function.apply(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readUntillNoException(function, input);
+            return retryUntillNoException(function, input);
         }
     }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 public class RandomMovementGenerator {
+    public static final int MOVABLE_CRITERION = 4;
     private final RandomNumberGenerator randomNumberGenerator;
 
     public RandomMovementGenerator(RandomNumberGenerator randomNumberGenerator) {
@@ -8,6 +9,6 @@ public class RandomMovementGenerator {
     }
 
     public boolean generate() {
-        return randomNumberGenerator.generate() >= 4;
+        return randomNumberGenerator.generate() >= MOVABLE_CRITERION;
     }
 }

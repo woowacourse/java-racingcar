@@ -1,6 +1,8 @@
 package domain;
 
 public class Name {
+    public static final int MIN_NAME_LENGTH = 1;
+    public static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     public Name(String name) {
@@ -15,12 +17,12 @@ public class Name {
     }
 
     private boolean isValidSize(String name) {
-        return name.length() >= 1 && name.length() <= 5;
+        return name.length() >= MIN_NAME_LENGTH && name.length() <= MAX_NAME_LENGTH;
     }
 
 
     public static Name empty() {
-        return new Name("");
+        return new Name(" ");
     }
 
     public static Name from(String name) {
