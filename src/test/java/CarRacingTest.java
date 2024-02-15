@@ -61,7 +61,7 @@ class CarRacingTest {
         TryCount tryCount = carRacing.createTryCount(tryAmount);
 
         //then
-        assertThat(tryCount.getAmount()).isEqualTo(tryAmount);
+        assertThat(tryCount.getValue()).isEqualTo(tryAmount);
     }
 
     @ParameterizedTest

@@ -1,16 +1,16 @@
 package domain;
 
 public class TryCount {
-    private int amount;
+    private int value;
 
-    public TryCount(int amount) {
-        if(amount < 1) {
+    public TryCount(int value) {
+        if(value < 1) {
             throw new IllegalArgumentException();
         }
-        this.amount = amount;
+        this.value = value;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getValue() {
+        return value;
     }
 }

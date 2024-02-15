@@ -17,7 +17,7 @@ import java.util.List;
  * - 이럴 때 현재 차용한 필드 초기화 방식을 사용하면 변경이 불가능한 딱딱한 설계가 문제가 됨
  * - 떄문에 IO 객체는 생성자 주입 방식으로 초기화해주었으면 좋겠다고 느낌
  * <p>
- * TODO: 메서드, 도메인 객체 네이밍 리팩토링
+ * TODO: 메서드, 도메인 객체 네이밍 리팩토링 (O)
  * 코드와 현실의 패러타임 차이가 있지만 그래도 객체지향적으로 네이밍을 리팩토링했으면 함.
  * 예를 들어 TryCount?
  */
@@ -70,7 +70,7 @@ public class CarRacing {
     }
 
     public void tryMove(TryCount tryCount, Cars cars) {
-        for (int i = 0; i < tryCount.getAmount(); i++) {
+        for (int i = 0; i < tryCount.getValue(); i++) {
             cars.tryMove();
             outputView.printCarsPosition(cars.getCars());
         }
