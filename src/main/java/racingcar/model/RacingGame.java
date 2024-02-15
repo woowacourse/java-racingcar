@@ -12,8 +12,8 @@ public class RacingGame {
     }
 
     private void validate(int moveCount) {
-        if (moveCount < 0) {
-            throw new IllegalArgumentException("시도할 회수는 0이상입니다.");
+        if (moveCount <= 0 || moveCount > 300 ) {
+            throw new IllegalArgumentException("시도할 회수는 0~300 사이입니다.");
         }
     }
 

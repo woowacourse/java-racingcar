@@ -9,16 +9,27 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(final List<Car> cars) {
-        validate(cars);
         this.cars = Collections.unmodifiableList(cars);
+        validate();
     }
 
-    private void validate(final List<Car> cars) {
+    private void validate() {
+        validateDuplicateName();
+        validateSize();
+    }
+
+    private void validateDuplicateName() {
         if (cars.size() != cars.stream()
                 .distinct()
                 .toList()
                 .size()) {
             throw new IllegalArgumentException("중복된 자동차 이름은 허용하지 않습니다.");
+        }
+    }
+
+    private void validateSize(){
+        if(cars.isEmpty() || cars.size() > 40){
+            throw new IllegalArgumentException("자동차의 대수는 1~40 사이입니다.");
         }
     }
 
