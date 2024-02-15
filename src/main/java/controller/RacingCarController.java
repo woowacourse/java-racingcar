@@ -9,6 +9,8 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static util.Exceptions.NULL_EXCEPTION;
+
 public class RacingCarController {
 
     private final InputView inputView;
@@ -28,13 +30,23 @@ public class RacingCarController {
     private Cars getCars() {
         String carsName = inputView.inputCarsName();
 
+        validateIsNull(carsName);
+
         return null;
     }
 
     private int getCount() {
         String count = inputView.inputCount();
 
+        validateIsNull(count);
+
         return racingCarService.getCount(count);
+    }
+
+    private void validateIsNull(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException(NULL_EXCEPTION.getMessage());
+        }
     }
 
     private void printMovement(Cars cars) {
