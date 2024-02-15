@@ -1,10 +1,9 @@
 package view;
 
 import constant.Information;
+import java.util.List;
 import model.Car;
 import model.CarStatus;
-
-import java.util.List;
 
 public class OutputView {
   private static final String DELIMITER = " : ";

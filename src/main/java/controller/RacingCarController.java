@@ -1,12 +1,11 @@
 package controller;
 
+import java.io.IOException;
 import model.Game;
 import model.RandomGenerator;
 import model.TrialCount;
 import view.InputView;
 import view.OutputView;
-
-import java.io.IOException;
 
 public class RacingCarController {
   private final InputView inputView;

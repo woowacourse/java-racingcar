@@ -2,7 +2,6 @@ package view;
 
 import constant.Exception;
 import constant.Information;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -4,7 +4,7 @@ public enum CarStatus {
   FORWARD("-"),
   STOP("");
 
-  private final static int FORWARD_CONDITION = 4;
+  private static final int FORWARD_CONDITION = 4;
 
   private final String output;
 

@@ -1,7 +1,6 @@
 package model;
 
 import constant.Exception;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
