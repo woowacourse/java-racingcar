@@ -13,9 +13,13 @@ public class Count {
     }
 
     private void validate(int count) {
-        if (!(count >= MIN_COUNT && count <= MAX_COUNT)) {
+        if (!isValidCount(count)) {
             throw new IllegalArgumentException("횟수는 1에서 100사이로 입력해주세요.");
         }
+    }
+
+    private static boolean isValidCount(int count) {
+        return count >= MIN_COUNT && count <= MAX_COUNT;
     }
 
     public static Count from(int count) {

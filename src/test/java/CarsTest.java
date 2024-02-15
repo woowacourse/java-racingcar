@@ -16,14 +16,6 @@ public class CarsTest {
         assertThatCode(Cars::fromEmpty).doesNotThrowAnyException();
     }
 
-
-    @Test
-    @DisplayName("차들을 움직이면 거리가 늘어난다.")
-    void carsMove() {
-        Cars cars = Cars.fromEmpty();
-        cars.move(new RandomMovementGenerator(new RandomNumberGenerator()));
-    }
-
     @Test
     @DisplayName("최대 거리인 자동차들를 구한다")
     void getMaxDistance() {

@@ -27,9 +27,9 @@ public class RacingGameController {
     }
 
     public void run() {
-        CarNameRequest carsNameRequest = retryUntillNoException(inputView::readCars);
-        Count count = Count.from(retryUntillNoException(inputView::readCount));
-        Cars cars = retryUntillNoException(Cars::fromDto, carsNameRequest);
+        CarNameRequest carsNameRequest = retryUntilNoException(inputView::readCars);
+        Count count = Count.from(retryUntilNoException(inputView::readCount));
+        Cars cars = retryUntilNoException(Cars::fromDto, carsNameRequest);
         RacingGame racingGame = RacingGame.of(count, cars,
                 new RandomMovementGenerator(new RandomNumberGenerator()));
         outputView.showStatusMessage();
@@ -44,21 +44,21 @@ public class RacingGameController {
     }
 
 
-    private <T> T retryUntillNoException(Supplier<T> supplier) {
+    private <T> T retryUntilNoException(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return retryUntillNoException(supplier);
+            return retryUntilNoException(supplier);
         }
     }
 
-    private <T, R> R retryUntillNoException(Function<T, R> function, T input) {
+    private <T, R> R retryUntilNoException(Function<T, R> function, T input) {
         try {
             return function.apply(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return retryUntillNoException(function, input);
+            return retryUntilNoException(function, input);
         }
     }
 }

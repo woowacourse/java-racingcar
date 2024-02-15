@@ -32,7 +32,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("차 이름의 길이가 1 이상 5이하면 예외를 발생시킨다")
+    @DisplayName("차 이름의 길이가 1 이상 5이하가 아니면 예외를 발생시킨다")
     void invalidCarName() {
         assertThatIllegalArgumentException().isThrownBy(() -> Car.fromName("abcdefg"));
     }

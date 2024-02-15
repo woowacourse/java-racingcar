@@ -20,7 +20,7 @@ public class Cars {
 
     private void validate(List<Car> cars) {
         if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
-            throw new IllegalArgumentException("자동차는 2대에서 50대 사이로 입력해주세요.");
+            throw new IllegalArgumentException("정상적인 경주를 위해 자동차는 2대에서 50대 사이로 입력해주세요.");
         }
     }
 
@@ -68,9 +68,5 @@ public class Cars {
 
     public List<Car> getCars() {
         return cars;
-    }
-
-    public void add(Car car) {
-
     }
 }

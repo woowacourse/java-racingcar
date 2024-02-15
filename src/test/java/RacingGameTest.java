@@ -18,13 +18,4 @@ class RacingGameTest {
         RacingGame racingGame = RacingGame.fromCount(1);
         assertThat(racingGame).extracting("count").isEqualTo(Count.from(1));
     }
-
-    @Test
-    @DisplayName("자동차들이 횟수만큼 잘 움직이는지 확인한다.")
-    void play() {
-        RacingGame racingGame = RacingGame.fromCount(1);
-//        racingGame.play();
-
-    }
-
 }
