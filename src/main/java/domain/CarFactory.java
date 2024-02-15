@@ -5,6 +5,8 @@ import java.util.List;
 
 public class CarFactory {
 
+    public static final int MIN_CAR_NAMES_COUNT = 2;
+    
     private static final RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
 
     public static Cars generateCars(final List<String> carNames) {
@@ -19,7 +21,7 @@ public class CarFactory {
     }
 
     private static void validateCarNamesCount(final List<String> carNames) {
-        if (carNames.size() < 2) {
+        if (carNames.size() < MIN_CAR_NAMES_COUNT) {
             throw new IllegalArgumentException("자동차 이름의 개수는 2이상이여야 합니다.");
         }
     }

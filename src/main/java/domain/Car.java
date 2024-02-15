@@ -5,6 +5,9 @@ import dto.CarStatus;
 public class Car {
 
     public static final int INITIAL_DISTANCE = 0;
+    public static final int MIN_NAME_LENGTH = 1;
+    public static final int MAX_NAME_LENGTH = 5;
+    public static final int FORWARD_NUMBER = 4;
 
     private final RandomNumberGenerator randomNumberGenerator;
     private final String name;
@@ -24,7 +27,7 @@ public class Car {
 
     private void validateCarName(final String name) {
         final int length = name.length();
-        if (length < 1 || length > 5) {
+        if (length < MIN_NAME_LENGTH || length > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
         }
     }
@@ -36,7 +39,7 @@ public class Car {
 
         final int randomNumber = randomNumberGenerator.generateRandomNumberInRange(0, 9);
 
-        if (randomNumber >= 4) {
+        if (randomNumber >= FORWARD_NUMBER) {
             distance++;
         }
     }

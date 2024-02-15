@@ -2,6 +2,8 @@ package domain;
 
 public class RacingCount {
 
+    public static final int MIN_ROUND_COUNT = 1;
+
     private final int count;
 
     public RacingCount(final int count) {
@@ -10,7 +12,7 @@ public class RacingCount {
     }
 
     private void validateCount(final int count) {
-        if (count < 1) {
+        if (count < MIN_ROUND_COUNT) {
             throw new IllegalArgumentException("1이상의 숫자가 입력되어야 합니다.");
         }
     }
