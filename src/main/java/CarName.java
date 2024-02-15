@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class CarName {
     private final String name;
 
@@ -10,7 +8,7 @@ public class CarName {
 
     private void validate(String name) {
         if (isInvalidNameLength(name)) {
-            throw new IllegalArgumentException("[ERROR] 이름 길이는 1~5글자");
+            throw new IllegalArgumentException("[ERROR] 이름 길이는 1 이상 5 이하여야 합니다.");
         }
     }
 

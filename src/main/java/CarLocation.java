@@ -8,12 +8,8 @@ public class CarLocation {
 
     private void validate(int location) {
         if (location < 0) {
-            throw new IllegalArgumentException("[ERROR] 음수 위치");
+            throw new IllegalArgumentException("[ERROR] 위치에는 음수가 입력될 수 없습니다.");
         }
-    }
-
-    public CarLocation() {
-        this(0);
     }
 
     public void increaseLocation() {
