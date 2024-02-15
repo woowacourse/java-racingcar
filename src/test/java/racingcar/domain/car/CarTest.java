@@ -43,11 +43,10 @@ class CarTest {
         Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, false)));
 
         // when
-        car1.move();
-        car2.move();
-
-        car1.move();
-        car2.move();
+        for (int i = 0; i < 2; i++) {
+            car1.move();
+            car2.move();
+        }
 
         // then
         assertSoftly(softly -> {

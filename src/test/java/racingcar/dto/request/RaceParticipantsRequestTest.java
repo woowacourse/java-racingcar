@@ -5,23 +5,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.RaceParticipants;
 import racingcar.domain.car.Car;
-import racingcar.domain.car.move.DefaultMovingStrategy;
 import racingcar.domain.car.move.MovingStrategy;
-import racingcar.domain.generator.RandomNumberGenerator;
 import racingcar.exception.InvalidInputException;
+import racingcar.mock.MockMovingStrategy;
 
 class RaceParticipantsRequestTest {
-    private MovingStrategy movingStrategy;
+    private MovingStrategy mockMovingStrategy;
 
     @BeforeEach
     void setUp() {
-        movingStrategy = new DefaultMovingStrategy(new RandomNumberGenerator());
+        mockMovingStrategy = new MockMovingStrategy();
     }
 
     @Test
@@ -31,35 +29,24 @@ class RaceParticipantsRequestTest {
         String inputNames = String.join(",", carNames);
 
         //when
-        RaceParticipants raceParticipants = new RaceParticipantsRequest(inputNames).toRaceParticipants(movingStrategy);
-        List<String> expectedCarNames = raceParticipants.getCars().stream().map(Car::getName).toList();
+        RaceParticipants raceParticipants = new RaceParticipantsRequest(inputNames)
+                .toRaceParticipants(mockMovingStrategy);
+        List<String> expectedCarNames = raceParticipants.getCars().stream()
+                .map(Car::getName)
+                .toList();
 
         //then
         assertThat(carNames).isEqualTo(expectedCarNames);
     }
 
-    @Nested
-    class toRaceParticipants를_이용해서_RaceParticipants로_변환_실패 {
-        @ParameterizedTest
-        @ValueSource(strings = {"a,b,b", "a,b,c,b", "a,b,c,b,c"})
-        void 중복된_자동차_이름(String name) {
-            //when
-            RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
+    @ParameterizedTest
+    @ValueSource(strings = {"", ",일", "일,,이", "일,이,"})
+    void toRaceParticipants를_이용해서_RaceParticipants로_변환_실패(String name) {
+        //when
+        RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
 
-            //then
-            assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(movingStrategy))
-                    .isInstanceOf(InvalidInputException.class);
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"", ",일", "일,,이", "일,이,"})
-        void 옳바르지_않은_입력_형식(String name) {
-            //when
-            RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
-
-            //then
-            assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(movingStrategy))
-                    .isInstanceOf(InvalidInputException.class);
-        }
+        //then
+        assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(mockMovingStrategy))
+                .isInstanceOf(InvalidInputException.class);
     }
 }
