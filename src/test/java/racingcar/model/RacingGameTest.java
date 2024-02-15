@@ -25,12 +25,12 @@ public class RacingGameTest {
     void goTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars,0);
+        RacingGame racingGame = new RacingGame(cars,1);
 
         List<Integer> expected = List.of(1, 1);
 
         //when
-        RaceRule rule = () -> true;
+        CarMoveRule rule = () -> true;
         racingGame.move(rule);
 
         //then
@@ -45,12 +45,12 @@ public class RacingGameTest {
     void stopTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars,0);
+        RacingGame racingGame = new RacingGame(cars,1);
 
         List<Integer> expected = List.of(0, 0);
 
         //when
-        RaceRule rule = () -> false;
+        CarMoveRule rule = () -> false;
         racingGame.move(rule);
 
         //then
@@ -70,7 +70,7 @@ public class RacingGameTest {
         //when
         winner.move();
         Cars cars = new Cars(List.of(winner, loser));
-        RacingGame racingGame = new RacingGame(cars, 0);
+        RacingGame racingGame = new RacingGame(cars, 1);
 
         //then
         Cars actual = racingGame.findWinners();
@@ -86,7 +86,6 @@ public class RacingGameTest {
         //given
         Cars cars = new Cars(List.of(new Car("자동차1")));
         int moveCount = 0;
-
 
         //when & then
         Assertions.assertThatThrownBy(() -> new RacingGame(cars, moveCount))
