@@ -18,7 +18,7 @@ public class OutputView {
      }
 
      public void printRacingResult() {
-         System.out.println("실행 결과");
+         System.out.println("\n실행 결과");
      }
 
     public void printRacingProceed(Cars cars) {
@@ -30,9 +30,9 @@ public class OutputView {
         System.out.println(builder);
     }
 
-    public void printWinners(Cars cars) {
+    public void printWinners(List<Car> winners) {
         StringJoiner stringJoiner = new StringJoiner(COMMA);
-        cars.getCars().forEach(car -> stringJoiner.add(car.getName()));
+        winners.forEach(winner -> stringJoiner.add(winner.getName()));
 
         System.out.printf("%s가 최종 우승했습니다.", stringJoiner);
     }
