@@ -16,7 +16,6 @@ public class Car {
         return this.position == position;
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
