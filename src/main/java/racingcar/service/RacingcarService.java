@@ -19,9 +19,9 @@ public class RacingcarService {
 
     public List<String> pickOutWinners(List<Car> cars) {
         int maxDistance = Car.findMaxDistance(cars);
-        return cars.stream()
+        List<Car> winners =  cars.stream()
                 .filter(car -> car.isSameDistance(maxDistance))
-                .map(Car::getName)
                 .toList();
+        return Car.mapCarsToName(winners);
     }
 }

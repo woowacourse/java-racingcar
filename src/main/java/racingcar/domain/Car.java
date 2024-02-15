@@ -36,10 +36,6 @@ public class Car {
         return new CarPerformance(name, movedDistance);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean isSameDistance(int distance) {
         return distance == movedDistance;
     }
@@ -49,5 +45,11 @@ public class Car {
                 .mapToInt(car -> car.movedDistance)
                 .max()
                 .getAsInt();
+    }
+
+    public static List<String> mapCarsToName(List<Car> cars) {
+        return cars.stream()
+                .map(car -> car.name)
+                .toList();
     }
 }
