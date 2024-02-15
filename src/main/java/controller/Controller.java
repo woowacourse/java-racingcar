@@ -11,8 +11,8 @@ import view.OutputView;
 public class Controller {
 
     public static void start() {
-        List<Car> cars = IterativeReader.errorHandledRead(Controller::getCars);
-        int round = IterativeReader.errorHandledRead(Controller::getRound);
+        List<Car> cars = IterativeReader.readUntilNoError(Controller::getCars);
+        int round = IterativeReader.readUntilNoError(Controller::getRound);
 
         OutputView.printRoundResult();
 
