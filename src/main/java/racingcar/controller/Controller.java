@@ -15,14 +15,14 @@ public class Controller {
     private final OutputView outputView = new OutputView();
     private final InputValidator inputValidator = new InputValidator();
     private List<Car> cars;
-    private Referee referee = new Referee();
+    private final Referee referee = new Referee();
 
     public void run() {
         List<String> carNames = inputView.getCarNames();
         inputValidator.validateAvailableCarNames(carNames);
         int tryNumber = inputView.getTryNumber();
         generateCarList(carNames);
-        outputView.printResultPrompt();
+        outputView.printResultHeaderPrompt();
         while(tryNumber-- > 0){
             runRace();
         }
@@ -34,7 +34,7 @@ public class Controller {
             car.move();
             outputView.printResult(car.getName(), car.getPosition());
         }
-        System.out.println();
+        OutputView.parseLine();
     }
 
     private void generateCarList(List<String> carNames) {

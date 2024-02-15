@@ -1,6 +1,8 @@
 package racingcar.view;
 
 import racingcar.view.validator.InputValidator;
+import static racingcar.view.OutputView.*;
+import static racingcar.view.UserMessage.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +12,7 @@ public class InputView {
     Scanner sc = new Scanner(System.in);
     final InputValidator inputValidator = new InputValidator();
     public List<String> getCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        displayMessage(USER_CAR_NAME_INPUT_PROMPT);
         String initialInput = sc.nextLine();
         inputValidator.validateIsBlank(initialInput);
 
@@ -27,7 +29,7 @@ public class InputView {
     }
 
     public int getTryNumber() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        displayMessage(USER_TRY_NUMBER_INPUT_PROMPT);
         String tryNumber = sc.nextLine();
         inputValidator.validateTryNumber(tryNumber);
 

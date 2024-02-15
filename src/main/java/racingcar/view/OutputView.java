@@ -1,17 +1,26 @@
 package racingcar.view;
 
 import java.util.List;
+import static racingcar.view.UserMessage.*;
 
 public class OutputView {
-    public void printResultPrompt() {
-        System.out.println("실행 결과");
+
+    public static void displayMessage(String message){
+        System.out.println(message);
+    }
+    public void printResultHeaderPrompt() {
+        displayMessage(RESULT_HEADER_PROMPT);
+    }
+
+    public static void parseLine(){
+        System.out.print(System.lineSeparator());
     }
 
     public void printResult(String name, int position) {
-        System.out.println(name + " : " + "-".repeat(position));
+        displayMessage(name + " : " + CAR_POSITION_PROGRESS_BAR.repeat(position));
     }
 
     public void printWinners(List<String> winners) {
-        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+        System.out.println(String.join(", ", winners) + RESULT_SUFFIX_PROMPT);
     }
 }
