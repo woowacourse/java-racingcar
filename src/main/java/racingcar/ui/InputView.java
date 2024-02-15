@@ -1,7 +1,5 @@
 package racingcar.ui;
 
-import static racingcar.ui.OutputCommand.INPUT_ERROR_MESSAGE;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,7 +11,7 @@ public class InputView {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
-            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+            throw new IllegalArgumentException();
         }
     }
 
@@ -23,7 +21,7 @@ public class InputView {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
-            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+            throw new IllegalArgumentException();
         }
     }
 }

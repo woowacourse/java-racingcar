@@ -17,7 +17,7 @@ public class RacingCarGame {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                OutputView.printInputErrorMessage();
             }
         }
     }
