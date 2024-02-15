@@ -3,14 +3,13 @@ package controller;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import model.Car;
 import model.Cars;
 import model.Name;
-import util.NumberGenerator;
 import model.TryCount;
+import util.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -30,7 +29,7 @@ public class Race {
             OutputView.printCarNameAndPosition(cars);
             tryCount.decreaseTryCount();
         }
-        List<String> winners = getWinners(cars);
+        List<String> winners = cars.getWinners();
         OutputView.printWinners(winners);
     }
 
@@ -55,20 +54,5 @@ public class Race {
                         car.moveForward();
                     }
                 });
-    }
-
-    private List<String> getWinners(final Cars cars) {
-        List<String> winners = new ArrayList<>();
-        int maxPosition = 0;
-        for (Car car : cars.getCars()) {
-            if (car.getPosition() > maxPosition) {
-                maxPosition = car.getPosition();
-                winners.clear();
-                winners.add(car.getName());
-            } else if (car.getPosition() == maxPosition) {
-                winners.add(car.getName());
-            }
-        }
-        return winners;
     }
 }

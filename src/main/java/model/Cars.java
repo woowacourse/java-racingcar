@@ -22,6 +22,21 @@ public class Cars {
         }
     }
 
+    public List<String> getWinners() {
+        int maxPosition = this.findMaxPosition();
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .map(Car::getName)
+                .toList();
+    }
+
+    private int findMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+    }
+
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
