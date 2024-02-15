@@ -11,9 +11,6 @@ class RacingCarsTest {
     @Test
     public void test(){
         RacingCarNames racingCarNames = new RacingCarNames("pobi,zeze,bito");
-        RacingCars racingCars = racingCarNames.createRacingCars();
-
-        racingCars.
     }
 
 }
