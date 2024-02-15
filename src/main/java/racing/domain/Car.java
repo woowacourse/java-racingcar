@@ -30,6 +30,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return name + " : " + "-".repeat(position);
+        return name + " : " + "-".repeat(position)+"\n";
     }
 }

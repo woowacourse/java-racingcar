@@ -1,5 +1,7 @@
 package racing.domain;
 
+import racing.util.RandomGenerator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,4 +36,16 @@ public class Cars {
         return names;
     }
 
+    public void proceedRound() {
+        cars.forEach(car -> car.moveForward(RandomGenerator.generate()));
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Car car: cars){
+            stringBuilder.append(car.toString());
+        }
+        return stringBuilder.toString();
+    }
 }

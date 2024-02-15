@@ -1,7 +1,7 @@
 package racing.domain;
 
 public class TryCount {
-    private final int tryCount;
+    private int tryCount;
 
     public TryCount(int tryCount) {
         validate(tryCount);
@@ -13,4 +13,13 @@ public class TryCount {
             throw new IllegalArgumentException();
         }
     }
+
+    public boolean isRemain() {
+        return tryCount > 0;
+    }
+
+    public void consume() {
+        tryCount--;
+    }
+
 }
