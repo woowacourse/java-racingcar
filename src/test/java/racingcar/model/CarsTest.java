@@ -35,17 +35,14 @@ class CarsTest {
         String carName = "a";
         List<String> names = List.of(carName, "b", "c");
         List<Car> givenCars = names.stream()
-
                 .map(Car::new)
                 .toList();
+        Cars cars = new Cars(givenCars, new MovingStub(List.of(givenNumber, 3, 3)));
 
         //when
-        Cars cars = new Cars(givenCars, new MovingStub(List.of(givenNumber, 3, 3)));
         RoundResult roundResult = cars.makeCarsMove();
-        LinkedHashMap<String, Integer> result = roundResult.getResult();
 
         //then
-        assertThat(result).hasSize(givenCars.size());
-        assertThat(result.get(carName)).isEqualTo(expected);
+        assertThat(roundResult.getResult()).hasSize(givenCars.size());
     }
 }

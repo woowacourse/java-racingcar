@@ -25,7 +25,7 @@ public class RacingController {
 
         inputView.finishReadingInput();
 
-        TotalResult totalResult = playRacingGame(racingGame);
+        TotalResult totalResult = racingGame.run();
         printResult(totalResult);
     }
 
@@ -40,10 +40,6 @@ public class RacingController {
     private RacingGame createRacingGame(Cars cars) {
         int tryCount = inputView.readTryCount();
         return new RacingGame(tryCount, cars);
-    }
-
-    private TotalResult playRacingGame(RacingGame racingGame) {
-        return new TotalResult(racingGame.run());
     }
 
     private void printResult(TotalResult totalResult) {

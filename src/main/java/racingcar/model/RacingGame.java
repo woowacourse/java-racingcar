@@ -16,12 +16,12 @@ public class RacingGame {
         this.cars = cars;
     }
 
-    public List<RoundResult> run() {
+    public TotalResult run() {
         List<RoundResult> gameResult = new ArrayList<>();
         for (int i = 0; i < tryCount; i++) {
             gameResult.add(cars.makeCarsMove());
         }
-        return gameResult;
+        return new TotalResult(gameResult);
     }
 
     private void validateTryCount(int tryCount) {

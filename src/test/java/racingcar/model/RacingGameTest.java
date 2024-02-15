@@ -17,13 +17,7 @@ class RacingGameTest {
     @ValueSource(strings = {"0", "-1", "-10000"})
     void exceptionInvalidCountInput(int given) {
         //given
-        List<String> carNames = List.of("a", "b", "c");
-        List<Car> carList = carNames.stream()
-                .map(Car::new)
-                .toList();
-
-        //when
-        Cars cars = new Cars(carList, new MovingStub(List.of(4, 4, 3)));
+        Cars cars = createCars();
 
         //then
         assertThatThrownBy(() -> new RacingGame(given, cars))
@@ -35,17 +29,21 @@ class RacingGameTest {
     void runGameByCount() {
         //given
         int count = 3;
+        Cars cars = createCars();
+        RacingGame racingGame = new RacingGame(count, cars);
+
+        //when
+        TotalResult totalResult = racingGame.run();
+
+        //then
+        assertThat(totalResult.getTotalResult()).hasSize(count);
+    }
+
+    private static Cars createCars() {
         List<String> carNames = List.of("a", "b", "c");
         List<Car> carList = carNames.stream()
                 .map(Car::new)
                 .toList();
-
-        //when
-        Cars cars = new Cars(carList, new MovingStub(List.of(4, 4, 3)));
-        RacingGame racingGame = new RacingGame(count, cars);
-        List<RoundResult> roundResults = racingGame.run();
-
-        //then
-        assertThat(roundResults).hasSize(count);
+        return new Cars(carList, new MovingStub(List.of(4, 4, 3)));
     }
 }
