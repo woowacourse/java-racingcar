@@ -4,7 +4,6 @@ import model.Cars;
 import model.Round;
 import view.InputView;
 import view.OutputView;
-
 import java.io.IOException;
 import java.util.List;
 
