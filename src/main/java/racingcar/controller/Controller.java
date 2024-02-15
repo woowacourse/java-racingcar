@@ -1,10 +1,12 @@
 package racingcar.controller;
 
+import static racingcar.utils.Randoms.THRESHOLD;
+
 import java.util.function.Supplier;
 
 import racingcar.exception.ExceptionHandler;
 import racingcar.model.Cars;
-import racingcar.model.RaceRule;
+import racingcar.model.CarMoveRule;
 import racingcar.model.RacingGame;
 import racingcar.utils.Randoms;
 import racingcar.view.InputView;
@@ -25,10 +27,10 @@ public class Controller {
     public void run() {
         Cars cars = runWithExceptionHandler(inputView::askCarNames);
         RacingGame racingGame = runWithExceptionHandler(() -> createRacingGame(cars));
-        RaceRule raceRule = () -> Randoms.pickNumberInRange() >= 4;
+        CarMoveRule carMoveRule = () -> Randoms.pickNumber() >= THRESHOLD;
         outputView.printProgressGuide();
         while (!racingGame.isGameOver()) {
-            racingGame.move(raceRule);
+            racingGame.move(carMoveRule);
             outputView.printProgress(cars);
         }
         Cars winners = racingGame.findWinners();

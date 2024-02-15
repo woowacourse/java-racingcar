@@ -1,5 +1,5 @@
 package racingcar.model;
 
-public interface RaceRule {
+public interface CarMoveRule {
     boolean isGo();
 }
