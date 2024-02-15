@@ -4,9 +4,16 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+    private final OutputView outputView;
+
+    public InputView() {
+        this.outputView = new OutputView();
+        this.scanner = new Scanner(System.in);
+    }
 
     public List<String> getCarName() {
+        outputView.printCarNameInputMessage();
         String input = scanner.nextLine();
         List<String> splitCarNames = new ArrayList<>();
 
@@ -35,6 +42,7 @@ public class InputView {
     }
 
     public int getTryCount() {
+        outputView.printTryCountInputMessage();
         String input = scanner.nextLine();
         int tryCount;
         try {
