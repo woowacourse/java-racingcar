@@ -7,6 +7,7 @@ public class OutputView {
 
     private static final String RESULT_FORMAT = "%s : %s";
     private static final String STEP = "-";
+    private static final String DELIMITER = ",";
 
     public void printResultHeader() {
         System.out.println();
@@ -21,7 +22,8 @@ public class OutputView {
         System.out.println(String.format(RESULT_FORMAT, carDto.getCarName(), STEP.repeat(carDto.getMovement())));
     }
 
-    public void printWinner(String winners) {
-        System.out.println(winners + "가 최종 우승했습니다.");
+    public void printWinner(List<CarDto> winners) {
+        List<String> winnerNames = winners.stream().map(CarDto::getCarName).toList();
+        System.out.println(String.join(DELIMITER, winnerNames));
     }
 }

@@ -1,13 +1,15 @@
 package view.dto;
 
+import model.Car;
+
 public class CarDto {
 
-    private String carName;
-    private int movement;
+    private final String carName;
+    private final int movement;
 
-    public CarDto(String carName, int movement) {
-        this.carName = carName;
-        this.movement = movement;
+    public CarDto(Car car) {
+        this.carName = car.getCarName();
+        this.movement = car.getMovement();
     }
 
     public String getCarName() {

@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 import model.Car;
 import model.Cars;
+import utils.Converter;
 import utils.MovesGenerator;
 import utils.Retry;
 import view.InputView;
@@ -26,7 +27,7 @@ public class RacingCarController {
         Cars cars = new Cars(createCars(carNames));
         int tryNumber = Retry.retryOnException(inputView::inputTryNumber);
         race(tryNumber, cars);
-        outputView.printWinner(cars.findWinners());
+        outputView.printWinner(Converter.convertCarToCarDtos(cars.findWinners()));
     }
 
     private List<Car> createCars(List<String> carNames) {
@@ -40,7 +41,7 @@ public class RacingCarController {
         for (int i = 0; i < tryNumber; i++) {
             List<Boolean> moves = movesGenerator.generate(cars.getCarsSize());
             cars.moveCars(moves);
-            List<CarDto> carDtos = cars.getTotalMovementDetails();
+            List<CarDto> carDtos = cars.convertCarsToCarDtos();
             outputView.printTotalResult(carDtos);
         }
     }

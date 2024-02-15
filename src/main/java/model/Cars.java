@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import utils.Converter;
 import view.dto.CarDto;
 
 public class Cars {
@@ -16,17 +17,15 @@ public class Cars {
         }
     }
 
-    public List<CarDto> getTotalMovementDetails() {
-        return cars.stream().map(car -> new CarDto(car.getCarName(), car.getMovement())).toList();
+    public List<CarDto> convertCarsToCarDtos() {
+        return Converter.convertCarToCarDtos(cars);
     }
 
-    public String findWinners() {
+    public List<Car> findWinners() {
         int maxMovement = cars.stream().mapToInt(Car::getMovement).max().getAsInt();
-        List<String> winnersName = cars.stream()
+        return cars.stream()
                 .filter(car -> car.getMovement() == maxMovement)
-                .map(Car::getCarName)
                 .toList();
-        return String.join(", ", winnersName);
     }
 
     public int getCarsSize() {
