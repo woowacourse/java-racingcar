@@ -1,6 +1,5 @@
 package domain.car;
 
-import domain.car.CarFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ class CarFactoryTest {
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage("자동차 이름의 개수는 2이상이여야 합니다.");
     }
-    
+
     @DisplayName("중복된 이름이 있는 문자열 리스트가 입력되면 예외가 발생한다.")
     @Test
     void initCarsThrowExceptionWhenDuplicatedCarNames() throws Exception {
