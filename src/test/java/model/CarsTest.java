@@ -1,5 +1,6 @@
 package model;
 
+import static fixture.CarFixture.자동차;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,9 +12,10 @@ class CarsTest {
     @Test
     void 중복된_자동차가_존재하지_않으면_예외가_발생하지_않는다() {
         // given
-        Car car1 = new Car(new Name("pobi"));
-        Car car2 = new Car(new Name("crong"));
-        Car car3 = new Car(new Name("honux"));
+
+        Car car1 = 자동차("pobi");
+        Car car2 = 자동차("crong");
+        Car car3 = 자동차("honux");
         List<Car> cars = List.of(car1, car2, car3);
 
         // when & then
@@ -23,9 +25,9 @@ class CarsTest {
     @Test
     void 중복된_자동차가_존재하면_예외가_발생한다() {
         // given
-        Car car1 = new Car(new Name("pobi"));
-        Car car2 = new Car(new Name("crong"));
-        Car car3 = new Car(new Name("pobi"));
+        Car car1 = 자동차("pobi");
+        Car car2 = 자동차("pobi");
+        Car car3 = 자동차("honux");
         List<Car> cars = List.of(car1, car2, car3);
 
         // when & then
