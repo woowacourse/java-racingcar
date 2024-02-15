@@ -45,4 +45,6 @@ public class Car {
     public boolean isSameDistance(int maxDistance) {
         return distance == maxDistance;
     }
+
+
 }

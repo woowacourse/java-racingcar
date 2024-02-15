@@ -1,7 +1,12 @@
 package controller;
 
+import domain.CarStatusResponse;
 import domain.Cars;
 import domain.RacingGame;
+import domain.Winners;
+import dto.CarNameRequest;
+import dto.WinnersResponse;
+import java.util.List;
 import view.InputView;
 import view.OutputView;
 
@@ -17,19 +22,17 @@ public class RacingGameController {
     }
 
     public void run() {
-        Cars cars = inputView.readCars();
+        CarNameRequest carsNameRequest = inputView.readCars();
         int count = inputView.readCount();
         RacingGame racingGame = RacingGame.of(count, cars, new RandomMovementGenerator(new RandomNumberGenerator()));
         outputView.showStatusMessage();
-        play(cars, count);
+        play(cars, count, racingGame);
         Winners winners = Winners.from(cars);
-        outputView.showResult(winners);
+        outputView.showResult(new WinnersResponse(winners));
     }
 
-    public void play(Cars cars, int count) {
-        for (int i = 0; i < count; i++) {
-            cars.move(new RandomMovementGenerator(new RandomNumberGenerator()));
-            outputView.showStatus(cars);
-        }
+    public void play(Cars cars, int count, RacingGame racingGame) {
+        List<List<CarStatusResponse>> result = racingGame.getTurnResult();
+        outputView.showStatus(result);
     }
 }
