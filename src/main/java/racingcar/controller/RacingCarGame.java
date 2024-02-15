@@ -8,12 +8,20 @@ import racingcar.ui.OutputView;
 
 public class RacingCarGame {
     public void start() {
-        Vehicles vehicles = requestUntilValidated(() -> Vehicles.from(InputView.readCarNames()));
-        Game game = requestUntilValidated(() -> Game.from(InputView.readTryCount(), vehicles));
-        OutputView.printNewLine();
-        OutputView.printResultTitle();
+        Game game = getGame();
+        printResultLine();
         game.proceed();
         OutputView.printWinner(game.getWinner());
+    }
+
+    private static void printResultLine() {
+        OutputView.printNewLine();
+        OutputView.printResultTitle();
+    }
+
+    private Game getGame() {
+        Vehicles vehicles = requestUntilValidated(() -> Vehicles.from(InputView.readCarNames()));
+        return requestUntilValidated(() -> Game.from(InputView.readTryCount(), vehicles));
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {

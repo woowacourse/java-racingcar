@@ -15,7 +15,11 @@ public class OutputView {
     }
 
     public static void printCarResult(String carName, int distance) {
-        System.out.printf(CAR_RESULT_FORMAT, carName, "-".repeat(distance));
+        System.out.printf(CAR_RESULT_FORMAT, carName, getRepeatedHyphen(distance));
+    }
+
+    private static String getRepeatedHyphen(int distance) {
+        return "-".repeat(distance);
     }
 
     public static void printResultTitle() {

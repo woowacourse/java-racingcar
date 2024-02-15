@@ -14,9 +14,13 @@ public class Game {
     }
 
     private static void validNaturalNumber(int tryCount) {
-        if (tryCount <= 0) {
+        if (isSmallerThanZero(tryCount)) {
             throw new NumberFormatException();
         }
+    }
+
+    private static boolean isSmallerThanZero(int number) {
+        return number <= 0;
     }
 
     private static int parseUserInput(String userTryCount) {

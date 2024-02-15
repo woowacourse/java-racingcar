@@ -18,16 +18,24 @@ public class Car {
     }
 
     private void validate(String name) {
-        if (name.length() > CAR_NAME_MAX_LENGTH) {
+        if (isLongerThanMaxLength(name)) {
             throw new IllegalArgumentException();
         }
     }
 
+    private static boolean isLongerThanMaxLength(String name) {
+        return name.length() > CAR_NAME_MAX_LENGTH;
+    }
+
     public void move() {
-        if (randomUtil.generate(0, 9) >= MOVE_BOUNDARY) {
+        if (isBiggerThanBoundary()) {
             forward++;
         }
         printStatus();
+    }
+
+    private static boolean isBiggerThanBoundary() {
+        return randomUtil.generate(0, 9) >= MOVE_BOUNDARY;
     }
 
     private void printStatus() {

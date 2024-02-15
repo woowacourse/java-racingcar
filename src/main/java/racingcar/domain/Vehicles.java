@@ -32,9 +32,14 @@ public class Vehicles {
     }
 
     private static void validateNonDuplicated(String userInput) {
-        if (userInput.split(",").length != Arrays.stream(userInput.split(",")).collect(Collectors.toSet()).size()) {
+        if (hasDuplicateName(userInput)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private static boolean hasDuplicateName(String userInput) {
+        return userInput.split(",").length != Arrays.stream(userInput.split(","))
+                .collect(Collectors.toSet()).size();
     }
 
     void move() {
