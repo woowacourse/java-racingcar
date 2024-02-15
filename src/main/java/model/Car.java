@@ -7,6 +7,8 @@ public class Car {
     private static final int INITIAL_POSITION = 0;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int FORWARD_MIN_NUMBER = 4;
+    private static final String NAME_DELIMITER = " : ";
+    private static final String TRACE = "-";
 
     private int position;
     private String name;
@@ -51,9 +53,9 @@ public class Car {
     @Override
     public String toString() {
         StringBuilder trace = new StringBuilder();
-        trace.append(name).append(" : ");
+        trace.append(name).append(NAME_DELIMITER);
         for (int i = 0; i < position; i++) {
-            trace.append("-");
+            trace.append(TRACE);
         }
         return trace.toString();
     }

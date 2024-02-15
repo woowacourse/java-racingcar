@@ -12,6 +12,7 @@ public class Cars {
 
     private static final int MIN_CAR_NAME_COUNT = 2;
     private static final int MIN_POSITION = 0;
+    private static final String NEW_LINE = "\n";
 
     private List<Car> cars;
 
@@ -74,7 +75,7 @@ public class Cars {
     public String toString() {
         StringBuilder allTrace = new StringBuilder();
         for (Car car : cars) {
-            allTrace.append(car).append("\n");
+            allTrace.append(car).append(NEW_LINE);
         }
         return allTrace.toString();
     }
