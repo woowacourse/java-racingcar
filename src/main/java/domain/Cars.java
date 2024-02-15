@@ -12,10 +12,14 @@ public class Cars {
 
     public Cars(List<String> carNames) {
         validateUniqueName(carNames);
-        List<Car> cars = carNames.stream()
+        List<Car> cars = convertToCarList(carNames);
+        this.cars = cars;
+    }
+
+    private List<Car> convertToCarList(List<String> carNames) {
+        return carNames.stream()
                 .map(name -> new Car(new CarName(name)))
                 .toList();
-        this.cars = cars;
     }
 
     private void validateUniqueName(List<String> names) {
@@ -25,9 +29,13 @@ public class Cars {
     }
 
     private boolean isDuplicatedName(List<String> names) {
-        return names.stream()
+        return getDistinctCount(names) != names.size();
+    }
+
+    private int getDistinctCount(List<String> names) {
+        return (int) names.stream()
                 .distinct()
-                .count() != names.size();
+                .count();
     }
 
     public void move() {
@@ -38,17 +46,21 @@ public class Cars {
 
     public Winners judge() {
         List<String> winners = new ArrayList<>();
-        int max = cars.stream()
-                .mapToInt(car -> car.getPosition())
-                .max()
-                .orElseThrow(() -> new IllegalStateException());
+        int max = findMaxPosition();
         for(Car car : cars)  {
-            Optional<String> name =  car.getNameIfMax(max);
-            if(name.isPresent()) {
-                winners.add(name.get());
+            Optional<String> maxCarName =  car.getNameIfMax(max);
+            if(maxCarName.isPresent()) {
+                winners.add(maxCarName.get());
             }
         }
         return new Winners(winners);
+    }
+
+    private int findMaxPosition() {
+        return cars.stream()
+                .mapToInt(car -> car.getPosition())
+                .max()
+                .orElseThrow(() -> new IllegalStateException());
     }
 
     public List<Car> getCars() {
