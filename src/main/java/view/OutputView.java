@@ -8,8 +8,12 @@ public class OutputView {
 
     private final static String DISTANCE_SYMBOL = "-";
 
-    public void printRacingResult(List<CarStatus> carStatuses) {
+    public void printResultMessageTitle() {
+        System.out.println();
         System.out.println("실행 결과");
+    }
+
+    public void printRacingResult(List<CarStatus> carStatuses) {
         carStatuses.stream()
                 .map(this::generateRacingResultMessage)
                 .forEach(System.out::println);
