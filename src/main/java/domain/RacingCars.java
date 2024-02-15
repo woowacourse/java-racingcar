@@ -1,12 +1,21 @@
 package domain;
 
+import static domain.ExceptionMessages.DUPLICATE_CAR_NAME_EXCEPTION;
+import static domain.ExceptionMessages.TRY_COUNT_NUMBER_FORMAT_EXCEPTION;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    private List<Car> racingCars;
+    private final List<Car> racingCars;
 
     public RacingCars(List<Car> racingCars) {
+        Set<Car> distinctCars = new HashSet<>(racingCars);
+        if (racingCars.size() != distinctCars.size()) {
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME_EXCEPTION.getMessage());
+        }
         this.racingCars = racingCars;
     }
 
@@ -22,11 +31,11 @@ public class RacingCars {
         return roundResult.toString();
     }
 
-    private static void validateCounts(String name) {
+    private static void validateCounts(String counts) {
         try {
-            Integer.parseInt(name);
+            Integer.parseInt(counts);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(TRY_COUNT_NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 
@@ -44,7 +53,9 @@ public class RacingCars {
 
     private static String generateResult(Car car) {
         String distance = "-";
-        return car.getCarName() + " : " + distance.repeat(car.getDistance());
+        return car.getCarName()
+                + " : "
+                + distance.repeat(car.getDistance());
     }
 
     public String getWinners() {
