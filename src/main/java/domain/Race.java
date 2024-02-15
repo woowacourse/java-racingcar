@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
@@ -15,12 +16,18 @@ public class Race {
     public String play() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < count; i++) {
-            cars.forEach(car -> {
-                car.move(RandomGenerator.getRandomNumber());
-                stringBuilder.append(car.getResult());
-            });
-            stringBuilder.append(System.lineSeparator());
+            stringBuilder.append(getResults())
+                    .append(System.lineSeparator());
         }
         return stringBuilder.toString();
+    }
+
+    private String getResults() {
+        List<String> results = new ArrayList<>();
+        cars.forEach(car -> {
+            car.move(RandomGenerator.getRandomNumber());
+            results.add(car.getResult());
+        });
+        return String.join("", results);
     }
 }
