@@ -11,6 +11,9 @@ import domain.Winners;
 import dto.CarNameRequest;
 import dto.WinnersResponse;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
@@ -26,9 +29,9 @@ public class RacingGameController {
     }
 
     public void run() {
-        CarNameRequest carsNameRequest = inputView.readCars();
-        Count count = Count.from(inputView.readCount());
-        Cars cars = Cars.fromDto(carsNameRequest);
+        CarNameRequest carsNameRequest = readUntillNoException(inputView::readCars);
+        Count count = Count.from(readUntillNoException(inputView::readCount));
+        Cars cars = readUntillNoException(Cars::fromDto, carsNameRequest);
         RacingGame racingGame = RacingGame.of(count, cars,
                 new RandomMovementGenerator(new RandomNumberGenerator())); //TODO: 차차
         outputView.showStatusMessage();
@@ -40,5 +43,24 @@ public class RacingGameController {
     public void play(RacingGame racingGame) {
         List<List<CarStatusResponse>> result = racingGame.getTurnResult();
         outputView.showStatus(result);
+    }
+
+
+    private <T> T readUntillNoException(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readUntillNoException(supplier);
+        }
+    }
+
+    private <T, R> R readUntillNoException(Function<T, R> function, T input) {
+        try {
+            return function.apply(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readUntillNoException(function, input);
+        }
     }
 }

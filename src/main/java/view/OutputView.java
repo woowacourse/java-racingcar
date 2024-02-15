@@ -24,7 +24,7 @@ public class OutputView {
 
     private static void showResult(List<CarStatusResponse> turnResult) {
         for (CarStatusResponse carStatusResponse : turnResult) {
-            System.out.println(carStatusResponse.getName() + " : " + "-".repeat(carStatusResponse.getDistance().getDistance()));
+            System.out.println(carStatusResponse.getName() + " : " + "-".repeat(carStatusResponse.getDistance()));
         }
         System.out.println();
     }

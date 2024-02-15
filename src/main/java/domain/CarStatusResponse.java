@@ -2,18 +2,18 @@ package domain;
 
 public class CarStatusResponse {
     private final String name;
-    private final Distance distance;
+    private final int distance;
 
     public CarStatusResponse(Car car) {
-        this.name = car.getName();
-        this.distance = car.getDistance();
+        this.name = car.getName().getName();
+        this.distance = car.getDistance().getDistance();
     }
 
     public String getName() {
         return name;
     }
 
-    public Distance getDistance() {
+    public int getDistance() {
         return distance;
     }
 }

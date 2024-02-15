@@ -15,7 +15,7 @@ public class WinnersResponse {
     private List<String> convertToNames(Winners winners) {
         List<String> names = new ArrayList<>();
         for (Car winner : winners.winners()) {
-            names.add(winner.getName());
+            names.add(winner.getName().getName());
         }
         return names;
     }

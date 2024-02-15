@@ -10,7 +10,7 @@ public class Count {
 
     private void validate(int count) {
         if (!(count >= 1 && count <= 100)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("횟수는 1에서 100사이로 입력해주세요.");
         }
     }
 

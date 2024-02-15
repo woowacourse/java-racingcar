@@ -10,7 +10,7 @@ public class Name {
 
     private void validate(String name) {
         if (!isValidSize(name)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름은 1~5자로 입력해주세요.");
         }
     }
 
