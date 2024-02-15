@@ -22,4 +22,7 @@ public class Race {
         return result;
     }
 
+    public List<Car> getWinners(){
+        return cars.findFurthestCars();
+    }
 }

@@ -2,18 +2,17 @@ package racing.domain;
 
 import racing.util.RandomGenerator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Cars {
-    private final List<Car> cars;
+    private List<Car> cars;
 
     public Cars(String rawNames) {
         List<String> carNames = stringToList(rawNames);
         validate(carNames);
-        List<Car> cars = carNames.stream().map(Car::new).toList();
+        List<Car> cars = carNames.stream().map(Car::new).collect(Collectors.toList());;
         this.cars = cars;
     }
 
@@ -47,5 +46,10 @@ public class Cars {
             stringBuilder.append(car.toString());
         }
         return stringBuilder.toString();
+    }
+
+    public List<Car> findFurthestCars(){
+        Collections.sort(cars);
+        return cars.stream().filter((car) -> car.isSame(cars.get(0))).toList();
     }
 }

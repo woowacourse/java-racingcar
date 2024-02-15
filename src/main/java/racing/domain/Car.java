@@ -2,7 +2,9 @@ package racing.domain;
 
 import racing.util.RandomGenerator;
 
-public class Car {
+import java.util.Collections;
+
+public class Car implements Comparable<Car>{
     private final String name;
     private int position;
 
@@ -31,5 +33,18 @@ public class Car {
     @Override
     public String toString() {
         return name + " : " + "-".repeat(position)+"\n";
+    }
+
+    @Override
+    public int compareTo(Car otherCar) {
+        return otherCar.position-this.position;
+    }
+
+    public boolean isSame(Car car) {
+        return this.position == car.position;
+    }
+
+    public String getName() {
+        return name;
     }
 }
