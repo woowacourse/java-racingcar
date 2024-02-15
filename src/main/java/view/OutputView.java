@@ -6,7 +6,7 @@ import java.util.List;
 
 public class OutputView {
 
-    private final static String DISTANCE_SYMBOL = "-";
+    private static final String DISTANCE_SYMBOL = "-";
 
     public void printResultMessageTitle() {
         System.out.println();
