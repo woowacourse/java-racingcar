@@ -26,6 +26,8 @@ public enum MoveStatus {
   }
 
   public static String join(String delimiter, List<MoveStatus> moveStatuses) {
-    return String.join(delimiter, moveStatuses.stream().map(MoveStatus::getOutput).toList());
+    return String.join(delimiter, moveStatuses.stream()
+            .map(MoveStatus::getOutput)
+            .toList());
   }
 }
