@@ -1,3 +1,5 @@
+package domain;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -32,6 +34,14 @@ class ValidatorTest {
         @DisplayName("이름은 중복일 수 없다")
         void invalidateCarName() {
             String[] names = new String[]{"hi", "hi"};
+            Assertions.assertThatThrownBy(() -> Validator.validateParticipant(names))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        @DisplayName("참여자는 두명 이상이다")
+        void invalidateParticipant() {
+            String[] names = new String[]{"hi"};
             Assertions.assertThatThrownBy(() -> Validator.validateParticipant(names))
                     .isInstanceOf(IllegalArgumentException.class);
         }
