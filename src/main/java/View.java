@@ -37,8 +37,9 @@ public class View {
     public int readCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         try {
-            String count = scanner.nextLine();
-            return Validator.validateCount(count);
+            int count = Integer.parseInt(scanner.nextLine());
+            Validator.validateCount(count);
+            return count;
         } catch (Exception e) {
             System.out.println("다시 입력해주세요.");
             return readCount();

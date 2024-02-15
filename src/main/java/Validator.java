@@ -1,18 +1,20 @@
+import java.util.Arrays;
+
 public class Validator {
+
+    private Validator() {
+    }
+
     public static void validateCarName(String name) {
         if (!name.matches("^[a-zA-Z가-힣]{1,5}$")) {
             throw new IllegalArgumentException();
         }
     }
 
-    public static int validateCount(String rawCount) {
-        isDigit(rawCount);
-
-        int count = Integer.parseInt(rawCount);
-        if (count <= 0) {
+    public static void validateCount(int count) {
+        if (count < 0 || count > 100) {
             throw new IllegalArgumentException();
         }
-        return count;
     }
 
     public static void validateParticipant(String[] carNames) {
