@@ -63,3 +63,16 @@ class ServiceTest {
         Assertions.assertThat(service.getWinner(cars, 1)).isEqualTo(List.of("ash", ""));
     }
 
+    @DisplayName("최장 이동 거리를 올바르게 구한다")
+    @Test
+    void getMaxPositionTest() {
+        Car ash = new Car("ash");
+        Car lily = new Car("lily");
+
+        List<Car> cars = List.of(ash, lily);
+
+        ash.incLocation();
+
+        Assertions.assertThat(service.getMaxPosition(cars)).isEqualTo(1);
+    }
+}
