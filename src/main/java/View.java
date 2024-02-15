@@ -37,4 +37,9 @@ public class View {
             return readCount();
         }
     }
+
+    public void printRace(String moveResult) {
+        System.out.println("\n" + "실행 결과");
+        System.out.print(moveResult);
+    }
 }

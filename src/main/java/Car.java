@@ -1,5 +1,7 @@
 public class Car implements Comparable<Car>, Movable {
 
+    private static final String FORMAT = "%s : %s\n";
+
     private final String name;
     private int location = 0;
 
@@ -10,6 +12,10 @@ public class Car implements Comparable<Car>, Movable {
 
     public String getName() {
         return name;
+    }
+
+    public String getResult() {
+        return String.format(FORMAT, name, "-".repeat(location));
     }
 
     @Override

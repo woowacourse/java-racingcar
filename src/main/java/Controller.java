@@ -10,6 +10,7 @@ public class Controller {
 
         Race race = new Race(count, cars);
         String playResult = race.play();
+        view.printRace(playResult);
     }
 
 }
