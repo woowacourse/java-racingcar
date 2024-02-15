@@ -1,13 +1,13 @@
 package config;
 
-import controller.Controller;
+import controller.RacingCarController;
 import view.InputView;
 import view.OutputView;
 
 public class AppConfig {
 
-    public static Controller config() {
-        return new Controller(inputView(), outputView());
+    public static RacingCarController config() {
+        return new RacingCarController(inputView(), outputView());
     }
 
     private static InputView inputView() {

@@ -1,10 +1,10 @@
 import config.AppConfig;
-import controller.Controller;
+import controller.RacingCarController;
 
 public class RacingCarApplication {
 
     public static void main(String[] args) {
-        Controller controller = AppConfig.config();
-        controller.run();
+        RacingCarController racingCarController = AppConfig.config();
+        racingCarController.run();
     }
 }
