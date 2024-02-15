@@ -2,7 +2,7 @@ package domain.racing;
 
 import domain.car.Car;
 import domain.car.Cars;
-import domain.racing.RacingRule;
+import domain.random.RandomNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,11 +14,12 @@ class RacingRuleTest {
     @Test
     void getWinners() throws Exception {
         // Given
+        RandomNumberGenerator randomNumberGenerator = (start, end) -> 5;
         RacingRule racingRule = new RacingRule();
         Cars cars = new Cars(List.of
-                (new Car(null, "test1", 0),
-                        new Car(null, "test2", 3),
-                        new Car(null, "test3", 3)));
+                (new Car(randomNumberGenerator, "test1", 0),
+                        new Car(randomNumberGenerator, "test2", 3),
+                        new Car(randomNumberGenerator, "test3", 3)));
 
         // When
         List<Car> winners = racingRule.getWinners(cars);

@@ -13,6 +13,7 @@ public class Car {
     private int distance;
 
     public Car(final RandomNumberGenerator randomNumberGenerator, final String name, final int distance) {
+        validateRandomNumberGenerator(randomNumberGenerator);
         validateCarName(name);
         this.randomNumberGenerator = randomNumberGenerator;
         this.name = name;
@@ -21,6 +22,12 @@ public class Car {
 
     public Car(final RandomNumberGenerator randomNumberGenerator, final String name) {
         this(randomNumberGenerator, name, INITIAL_DISTANCE);
+    }
+
+    private void validateRandomNumberGenerator(final RandomNumberGenerator randomNumberGenerator) {
+        if (randomNumberGenerator == null) {
+            throw new RuntimeException("RandomNumberGenerator가 존재하지 않습니다.");
+        }
     }
 
     private void validateCarName(final String name) {
