@@ -75,7 +75,7 @@ class ValidatorTest {
     @DisplayName("라운드 테스트 : 예외입력")
     void validateRound_invalidateInputs() {
         // given
-        int[] invalidateInputs = {-1, -2, 101, 102};
+        int[] invalidateInputs = {0, -1, 101, 102};
 
         // when - then
         for (int invalidateInput : invalidateInputs) {
