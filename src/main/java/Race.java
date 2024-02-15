@@ -9,4 +9,16 @@ public class Race {
         this.count = count;
         this.cars = cars;
     }
+
+    public String play() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            cars.forEach(car -> {
+                car.move();
+                stringBuilder.append(car.getResult());
+            });
+            stringBuilder.append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
+    }
 }
