@@ -1,13 +1,36 @@
 package controller;
 
+import domain.RacingCar;
 import domain.RacingCarNames;
-import exception.NotNumberPositiveException;
+import domain.TryNumber;
 import view.InputView;
+import view.OutputView;
+
+import java.util.List;
 
 public class RacingCarController {
     public void start() {
         RacingCarNames racingCarNames = readRacingCarNames();
-        int moveCount = readMoveCount();
+        List<RacingCar> racingCars = racingCarNames.createRacingCars();
+        TryNumber tryNumber = readTryNumber();
+
+        OutputView.printRacingStartMessage();
+        do {
+            tryRacing(racingCars);
+            tryNumber.decrease();
+        } while(tryNumber.isTryable());
+    }
+
+    private void tryRacing(List<RacingCar> racingCars) {
+        for (RacingCar racingCar : racingCars) {
+            racingCar.race();
+            printResult(racingCar);
+        }
+        System.out.println();
+    }
+
+    public void printResult(RacingCar racingCar) {
+        OutputView.printResult(racingCar.getName(), racingCar.getMoveNumber());
     }
 
     private RacingCarNames readRacingCarNames() {
@@ -15,16 +38,8 @@ public class RacingCarController {
             return new RacingCarNames(carNames);
     }
 
-    private int readMoveCount() {
+    private TryNumber readTryNumber() {
         String input = InputView.inputMoveCount();
-        int moveCount = Integer.parseInt(input);
-        validatePositiveMoveCount(moveCount);
-        return moveCount;
-    }
-
-    private void validatePositiveMoveCount(int moveCount) {
-        if (moveCount <= 0) {
-            throw new NotNumberPositiveException();
-        }
+        return new TryNumber(Integer.parseInt(input));
     }
 }

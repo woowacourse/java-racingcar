@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCarNames {
     private List<String> names;
@@ -10,6 +11,12 @@ public class RacingCarNames {
         checkCarNameDuplication(splitNames);
         validateNamesLength(splitNames);
         this.names = splitNames;
+    }
+
+    public List<RacingCar> createRacingCars() {
+        return names.stream()
+                .map(RacingCar::new)
+                .collect(Collectors.toList());
     }
 
     private void validateNamesLength(List<String> names) {
