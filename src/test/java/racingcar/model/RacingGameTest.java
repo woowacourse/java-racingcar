@@ -79,4 +79,17 @@ public class RacingGameTest {
                         .orElseThrow())
                 .isEqualTo(winner);
     }
+
+    @DisplayName("시도 횟수는 1~300 벗어나면 예외를 발생한다.")
+    @Test
+    void validateTest(){
+        //given
+        Cars cars = new Cars(List.of(new Car("자동차1")));
+        int moveCount = 0;
+
+
+        //when & then
+        Assertions.assertThatThrownBy(() -> new RacingGame(cars, moveCount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

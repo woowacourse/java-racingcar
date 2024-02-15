@@ -1,6 +1,8 @@
 package racingcar.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,5 +23,18 @@ public class CarsTest {
         Assertions.assertThatThrownBy(() -> new Cars(carList))
                 .isInstanceOf(IllegalArgumentException.class);
 
+    }
+
+    @DisplayName("자동차 대수는 1~40을 벗어날 경우 예외를 발생시킨다.")
+    @Test
+    void validateTest(){
+        //given
+        List<Car> carList = new ArrayList<>();
+        IntStream.rangeClosed(0, 50)
+                .forEach(index -> carList.add(new Car("car"+ index)));
+
+        //when & then
+        Assertions.assertThatThrownBy(() -> new Cars(carList))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
