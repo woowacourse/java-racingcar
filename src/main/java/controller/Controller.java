@@ -1,3 +1,10 @@
+package controller;
+
+import domain.Car;
+import domain.Judge;
+import domain.Race;
+import view.View;
+
 import java.util.List;
 
 public class Controller {

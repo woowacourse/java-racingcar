@@ -1,3 +1,8 @@
+package view;
+
+import domain.Car;
+import domain.Validator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;

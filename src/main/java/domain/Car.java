@@ -1,3 +1,5 @@
+package domain;
+
 public class Car implements Comparable<Car>, Movable {
 
     private static final String FORMAT = "%s : %s\n";
