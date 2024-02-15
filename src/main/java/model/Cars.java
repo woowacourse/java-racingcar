@@ -25,4 +25,13 @@ public class Cars {
             car.moveForward(generateRandomNumber());
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder allTrace = new StringBuilder();
+        for (Car car : cars) {
+            allTrace.append(car).append("\n");
+        }
+        return allTrace.toString();
+    }
 }

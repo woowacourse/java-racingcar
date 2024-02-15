@@ -34,4 +34,14 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder trace = new StringBuilder();
+        trace.append(name).append(" : ");
+        for (int i=0; i<position; i++) {
+            trace.append("-");
+        }
+        return trace.toString();
+    }
 }
