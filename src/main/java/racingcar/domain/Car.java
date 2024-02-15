@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import racingcar.service.RandomNumberGenerator;
+import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final String CAR_POSITION_SYMBOL = "-";
 
     private final String name;
@@ -54,5 +54,13 @@ public class Car {
 
     public String result() {
         return name + " : " + CAR_POSITION_SYMBOL.repeat(position);
+    }
+
+    public int compareTo(Car other) {
+        return this.position - other.position;
+    }
+
+    public boolean isSamePosition(Car other) {
+        return this.position == other.position;
     }
 }

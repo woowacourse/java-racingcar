@@ -35,12 +35,30 @@ public class Cars {
     }
 
     public void move() {
-        cars.forEach(car -> car.move(RandomNumberGenerator.generateRandomNumber(9)));
+        cars.forEach(car -> car.move(RandomNumberGenerator.generate(9)));
     }
 
     public List<String> result() {
         return cars.stream()
                 .map(Car::result)
                 .toList();
+    }
+
+    public List<String> getWinners() {
+        final Car highestPositionCar = getHighestPositionCar();
+        return getSamePositionCars(highestPositionCar);
+    }
+
+    private List<String> getSamePositionCars(final Car highestPositionCar) {
+        return cars.stream()
+                .filter(highestPositionCar::isSamePosition)
+                .map(Car::getName)
+                .toList();
+    }
+
+    private Car getHighestPositionCar() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
