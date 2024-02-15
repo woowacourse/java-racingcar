@@ -20,7 +20,6 @@ public class Controller {
 
         OutputView.printRoundResult();
 
-        // TODO: 이 부분을 Service로 옮겼으면 좋겠다
         for (int i = 0; i < round; i++) {
             Service.playOneRound(cars);
             OutputView.printScore(cars);
