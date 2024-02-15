@@ -21,7 +21,7 @@ class RacingCountTest {
         assertThat(racingCount).isNotNull();
     }
 
-    @DisplayName("0이하의 정수가 입력되면 예외가 발생한다.")
+    @DisplayName("1미만의 정수가 입력되면 예외가 발생한다.")
     @Test
     void createRacingCountThrowExceptionWithInvalidInput() throws Exception {
         // Given
@@ -30,6 +30,6 @@ class RacingCountTest {
         // When & Then
         assertThatThrownBy(() -> new RacingCount(count))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage("0이상의 숫자가 입력되어야 합니다.");
+                .hasMessage("1이상의 숫자가 입력되어야 합니다.");
     }
 }
