@@ -17,7 +17,7 @@ public class Controller {
 
     public void run() {
         List<Car> cars = inputCarName();
-        int inputAttemptLimit = inputAttemptLimit();
+        int inputAttemptLimit = validateLimitNum(inputAttemptLimit());
         service.playGame(cars, inputAttemptLimit);
         List<String> winners = service.getWinner(cars, service.getMaxPosition(cars));
         OutputView.printWinners(winners);
@@ -38,22 +38,26 @@ public class Controller {
         try {
             InputView.requestAttemptLimit();
             Scanner scanner = new Scanner(System.in);
-            int inputAttemptLimit = scanner.nextInt();
-            validateNumber(inputAttemptLimit);
-            return inputAttemptLimit;
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return inputAttemptLimit();
+            return scanner.nextInt();
         } catch (InputMismatchException e) {
             OutputView.printErrorMessage("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
             return inputAttemptLimit();
         }
     }
 
-    private void validateNumber(int inputAttemptLimit) {
+    public int validateLimitNum(int inputAttemptLimit) {
+        try {
+            validateNumber(inputAttemptLimit);
+            return inputAttemptLimit;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputAttemptLimit();
+        }
+    }
+
+    public void validateNumber(int inputAttemptLimit) {
         if (inputAttemptLimit <= 0) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 양수여야 합니다.");
         }
     }
-
 }
