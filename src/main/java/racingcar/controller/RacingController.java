@@ -6,6 +6,7 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.move.MovingStrategy;
 import racingcar.dto.request.RaceCountRequest;
 import racingcar.dto.request.RaceParticipantsRequest;
+import racingcar.dto.response.RaceResultResponse;
 import racingcar.dto.response.RaceWinnersResponse;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -49,7 +50,8 @@ public class RacingController implements Controller {
         outputView.printRaceResultHeaderMessage();
         for (int i = 0; i < raceCount; i++) {
             raceParticipants.move();
-            outputView.printRaceResult(raceParticipants.getRaceResult());
+            List<Car> raceResult = raceParticipants.getCars();
+            outputView.printRaceResult(RaceResultResponse.from(raceResult));
         }
     }
 

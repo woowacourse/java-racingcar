@@ -1,5 +1,6 @@
 package racingcar.view.console;
 
+import java.util.Map;
 import racingcar.dto.response.RaceResultResponse;
 import racingcar.dto.response.RaceWinnersResponse;
 import racingcar.view.OutputView;
@@ -13,14 +14,20 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printRaceResult(RaceResultResponse raceResultResponse) {
-        // pobi: ---
+        String raceResultFormat = "%s : %s%n";
+        Map<String, Integer> raceResult = raceResultResponse.raceResult();
+
+        raceResult.forEach((carName, position) -> {
+            String currentPosition = "-".repeat(position);
+            System.out.printf(raceResultFormat, carName, currentPosition);
+        });
+        System.out.println();
     }
 
     @Override
     public void printRaceWinners(RaceWinnersResponse raceWinnersResponse) {
         String raceWinners = String.join(", ", raceWinnersResponse.raceWinners());
 
-        System.out.println();
         System.out.printf("%s가 최종 우승했습니다.", raceWinners);
     }
 }
