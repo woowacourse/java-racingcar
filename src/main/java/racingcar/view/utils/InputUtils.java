@@ -24,7 +24,7 @@ public class InputUtils {
         if (input == null) {
             return List.of();
         }
-        return Arrays.stream(input.split(DELIMITER, -1)).toList();
+        return Arrays.stream(input.split(DELIMITER, -1)).map(String::trim).toList();
     }
 
     public static <T> T retryOnException(final Supplier<T> supplier) {
