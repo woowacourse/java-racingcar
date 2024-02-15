@@ -6,6 +6,7 @@ import java.util.function.IntSupplier;
 public class Cars {
 
     private static final int MIN_MOVABLE_DIGIT = 4;
+
     private final List<Car> carList;
     private final IntSupplier digitSupplier;
 
@@ -22,7 +23,6 @@ public class Cars {
     }
 
     public void moveRandomly() {
-
         carList.forEach((car) -> {
             int randomInt = digitSupplier.getAsInt();
             car.move(randomInt >= MIN_MOVABLE_DIGIT);
@@ -33,7 +33,6 @@ public class Cars {
         int maxPosition = carList.stream().mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
-
         return carList.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .toList();

@@ -26,7 +26,6 @@ public class InputView {
 
     public static int inputTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-
         try {
             return Integer.parseInt(input());
         } catch (NumberFormatException e) {

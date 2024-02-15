@@ -6,7 +6,6 @@ public class TrialCount {
 
     public TrialCount(int amount) {
         validate(amount);
-
         this.amount = amount;
     }
 
