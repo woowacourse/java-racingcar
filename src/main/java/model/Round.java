@@ -1,5 +1,7 @@
 package model;
 
+import static util.ErrorMessage.*;
+
 import java.util.regex.Pattern;
 
 public class Round {
@@ -26,19 +28,19 @@ public class Round {
 
     private static void checkIsNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수를 입력해 주십시오.");
+            throw new IllegalArgumentException(ERROR_ROUND_IS_NULL.getMessage());
         }
     }
 
     private static void checkIsNumber(String input) {
         if (!Pattern.matches(NATURAL_FORMAT_REGEX, input)) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 자연수여야 합니다.");
+            throw new IllegalArgumentException(ERROR_ROUND_IS_NATURAL_NUMBER.getMessage());
         }
     }
 
     private static void checkIsZero(String input) {
         if (input.equals(ZERO)) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 자연수여야 합니다.");
+            throw new IllegalArgumentException(ERROR_ROUND_IS_NATURAL_NUMBER.getMessage());
         }
     }
 

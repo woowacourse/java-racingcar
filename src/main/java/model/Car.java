@@ -1,5 +1,7 @@
 package model;
 
+import static util.ErrorMessage.*;
+
 public class Car {
 
     private static final int INITIAL_POSITION = 0;
@@ -22,13 +24,13 @@ public class Car {
 
     private void checkNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw new IllegalStateException("[ERROR] 자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
+            throw new IllegalStateException(ERROR_NAME_LENGTH.getMessage());
         }
     }
 
     private void checkBlankOrNull(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalStateException("[ERROR] 자동차 이름을 입력해 주십시오.");
+            throw new IllegalStateException(ERROR_IS_BLANK_OR_NULL.getMessage());
         }
     }
 

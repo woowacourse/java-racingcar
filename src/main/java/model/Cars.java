@@ -1,5 +1,7 @@
 package model;
 
+import static util.ErrorMessage.ERROR_DUPLICATED_NAME;
+import static util.ErrorMessage.ERROR_NAME_COUNT;
 import static util.Util.*;
 
 import java.util.ArrayList;
@@ -35,13 +37,13 @@ public class Cars {
     private static void checkDuplicatedName(List<String> names) {
         long nameCount = names.stream().distinct().count();
         if (names.size() != nameCount) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATED_NAME.getMessage());
         }
     }
 
     private static void checkNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 2개 이상이어야 합니다.");
+            throw new IllegalArgumentException(ERROR_NAME_COUNT.getMessage());
         }
     }
 
