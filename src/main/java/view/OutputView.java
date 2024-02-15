@@ -25,6 +25,10 @@ public class OutputView {
     }
 
     public void printWinners(final List<String> winners) {
+        if (winners.isEmpty()) {
+            System.out.println("우승자가 없습니다.");
+        }
+
         String message = String.join(", ", winners);
         System.out.println(message + "가 최종 우승했습니다.");
     }
