@@ -53,4 +53,15 @@ class InputViewTest {
         // then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "", "\n", "1v", " "})
+    @DisplayName("횟수로 숫자가 아닌 문자열이 입력되면 예외를 발생한다.")
+    void invalidTryCountTest(String input) {
+        // given
+        InputView view = setupInputStream(input);
+        // when, then
+        Assertions.assertThatThrownBy(view::getTryNumber)
+                .isInstanceOf(RuntimeException.class);
+    }
 }
