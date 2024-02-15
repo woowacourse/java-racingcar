@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final int MOVE_FORWARD_LOWER_BOUND = 3;
     private final String name;
     private int distance = 0;
 
@@ -30,8 +31,10 @@ public class Car {
         }
     }
 
-    public void moveForward() {
-        distance++;
+    public void moveForward(final int condition) {
+        if (condition > MOVE_FORWARD_LOWER_BOUND) {
+            distance++;
+        }
     }
 
     public String getCarName() {

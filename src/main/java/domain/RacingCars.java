@@ -24,7 +24,7 @@ public class RacingCars {
         int roundCounts = Integer.parseInt(counts);
         StringBuilder roundResult = new StringBuilder();
         for (int i = 0; i < roundCounts; i++) {
-            racingCars.forEach(RacingCars::moveCar);
+            racingCars.forEach(car -> car.moveForward(NumberGenerator.generateRandomNumber()));
             roundResult.append(getRoundResult());
             roundResult.append("\n\n");
         }
@@ -36,12 +36,6 @@ public class RacingCars {
             Integer.parseInt(counts);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(TRY_COUNT_NUMBER_FORMAT_EXCEPTION.getMessage());
-        }
-    }
-
-    private static void moveCar(Car car) {
-        if (Racing.isMoveForward()) {
-            car.moveForward();
         }
     }
 
