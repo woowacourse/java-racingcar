@@ -6,6 +6,9 @@ import domain.Cars;
 import java.util.ArrayList;
 import java.util.List;
 
+import static util.Exceptions.NUMBER_FORMAT_EXCEPTION;
+import static util.Exceptions.NUMBER_RANGE_EXCEPTION;
+
 public class RacingCarService {
 
     public int getCount(String rawCount) {
@@ -20,7 +23,7 @@ public class RacingCarService {
     // TODO: validateNumberFormat을 isParsable과 분리할지 합칠지 고민
     private void validateNumberFormat(String rawCount) {
         if(isParsable(rawCount)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 
@@ -35,7 +38,7 @@ public class RacingCarService {
 
     private void validateInvalidNumber(int count) {
         if (count <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_RANGE_EXCEPTION.getMessage());
         }
     }
 

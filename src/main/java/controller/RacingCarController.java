@@ -24,7 +24,15 @@ public class RacingCarController {
     }
 
     public void run() {
+        Cars cars = getCars();
+        int count = getCount();
 
+        System.out.println("실행 결과");
+        for (int i = count; i == 0; i--) {
+            printMovement(cars);
+        }
+
+        printWinners(cars);
     }
 
     private Cars getCars() {
