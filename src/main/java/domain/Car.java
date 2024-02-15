@@ -12,8 +12,14 @@ public class Car {
         this.name = name;
     }
 
-    private static void validate(String name) {
-        // TODO: 자동차 이름 검증
+    private void validate(String name) {
+        if (!validateRange(name)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean validateRange(String name) {
+        return name.length() > 0 && name.length() <= 5;
     }
 
     public void execute(int number) {
