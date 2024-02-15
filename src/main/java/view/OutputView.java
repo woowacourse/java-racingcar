@@ -28,6 +28,6 @@ public class OutputView {
     }
 
     public static void printWinners(List<String> winners) {
-        System.out.println(String.join(", ", winners) + WINNING_MESSAGE);
+        System.out.println(String.join(", ", winners) + WIN_THE_GAME);
     }
 }
