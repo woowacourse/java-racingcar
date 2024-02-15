@@ -16,11 +16,18 @@ public class Car {
     }
 
     private void validate(String name) {
+        checkBlankOrNull(name);
         checkNameLength(name);
     }
 
     private void checkNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
+            throw new IllegalStateException("[ERROR] 자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
+        }
+    }
+
+    private void checkBlankOrNull(String name) {
+        if (name == null || name.isBlank()) {
             throw new IllegalStateException("[ERROR] 자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
         }
     }
