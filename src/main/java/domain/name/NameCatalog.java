@@ -1,14 +1,13 @@
-package domain;
+package domain.name;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CarNameCatalog {
+public class NameCatalog {
     private List<Name> names;
 
-    public CarNameCatalog(List<Name> carNames) {
+    public NameCatalog(List<Name> carNames) {
         validate(carNames);
         this.names = carNames;
     }

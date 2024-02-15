@@ -1,4 +1,4 @@
-package domain;
+package domain.race;
 public class RaceCount {
     private final Integer value;
     public RaceCount(final Integer value){

@@ -1,5 +1,7 @@
 package domain;
 
+import domain.car.Car;
+import domain.name.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

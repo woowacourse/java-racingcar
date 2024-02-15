@@ -1,5 +1,10 @@
 package controller;
-import domain.*;
+import domain.car.Car;
+import domain.car.Cars;
+import domain.name.NameCatalog;
+import domain.race.RaceCount;
+import domain.race.RaceProgress;
+import domain.race.RaceResult;
 import util.NumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -13,22 +18,35 @@ public class GameController {
         this.outputView = outputView;
     }
     public void play() {
-        CarNameCatalog carNameCatalog = inputView.inputCarNameCatalog();
-        Cars cars = Cars.from(carNameCatalog);
+        Cars cars = register();
+
         RaceCount raceCount = inputView.inputRaceCount();
-        List<RaceProgress> raceProgresses = IntStream.range(0, raceCount.getValue())
+
+        racing(cars.getValue(),raceCount.getValue());
+
+        finish(cars.getValue());
+    }
+    private Cars register(){
+        NameCatalog nameCatalog = inputView.inputCarNameCatalog();
+        return Cars.from(nameCatalog);
+    }
+
+    private void racing(final List<Car> cars, Integer raceCount){
+        List<RaceProgress> raceProgresses = IntStream.range(0, raceCount)
                 .mapToObj(i -> {
-                    progress(cars.getValue());
-                    return RaceProgress.from(cars.getValue());
+                    race(cars);
+                    return RaceProgress.from(cars);
                 })
                 .toList();
         outputView.printRaceProgresses(raceProgresses);
-        RaceResult raceResult = RaceResult.of(cars.getValue());
-        outputView.printRaceResult(raceResult);
     }
-    private void progress(final List<Car> cars) {
+    private void race(final List<Car> cars) {
         cars.forEach(car -> {
             car.race(NumberGenerator.generate(Car.FORWARD_MAX_NUMBER));
         });
+    }
+    private void finish(final List<Car> cars){
+        RaceResult raceResult = RaceResult.of(cars);
+        outputView.printRaceResult(raceResult);
     }
 }

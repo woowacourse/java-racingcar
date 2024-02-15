@@ -1,5 +1,8 @@
 package domain;
 
+import domain.car.Car;
+import domain.name.Name;
+import domain.race.RaceCarInfo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +18,5 @@ class RaceCarInfoTest {
         RaceCarInfo raceCarInfo = RaceCarInfo.from(car);
 
         assertInstanceOf(RaceCarInfo.class, raceCarInfo);
-
     }
-
 }

@@ -1,4 +1,6 @@
-package domain;
+package domain.car;
+
+import domain.name.Name;
 
 public class Car  {
     public static final Integer FORWARD_MAX_NUMBER = 10;

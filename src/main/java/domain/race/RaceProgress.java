@@ -1,4 +1,6 @@
-package domain;
+package domain.race;
+
+import domain.car.Car;
 
 import java.util.List;
 import java.util.stream.Collectors;

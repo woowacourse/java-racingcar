@@ -1,5 +1,9 @@
 package domain;
 
+import domain.car.Cars;
+import domain.name.Name;
+import domain.name.NameCatalog;
+import domain.race.RaceProgress;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +15,8 @@ public class RaceProgressTest {
     @DisplayName("자동차 목록 포함한 일급객체를 통해 자동차 결과를 포함한 일급객체를 만든다.")
     void createRaceProgress() {
         List<Name> names = List.of(new Name("pond"),new Name("poby"));
-        CarNameCatalog carNameCatalog = new CarNameCatalog(names);
-        Cars cars = Cars.from(carNameCatalog);
+        NameCatalog nameCatalog = new NameCatalog(names);
+        Cars cars = Cars.from(nameCatalog);
 
         RaceProgress raceProgress = RaceProgress.from(cars.getValue());
 

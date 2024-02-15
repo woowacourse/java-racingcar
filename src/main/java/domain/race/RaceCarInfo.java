@@ -1,4 +1,7 @@
-package domain;
+package domain.race;
+
+import domain.name.Name;
+import domain.car.Car;
 
 public class RaceCarInfo {
     private final Name name;

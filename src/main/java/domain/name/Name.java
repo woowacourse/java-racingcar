@@ -1,4 +1,4 @@
-package domain;
+package domain.name;
 
 public class Name {
     private String value;
@@ -10,10 +10,10 @@ public class Name {
     }
     private void validate(String value){
         if(value.isBlank()){
-            throw new IllegalArgumentException("blank");
+            throw new IllegalArgumentException("공백 이름입니다!");
         }
         if(value.length()>LENGTH_LIMIT){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("이름은 최대 %d 글자입니다!",LENGTH_LIMIT));
         }
     }
 

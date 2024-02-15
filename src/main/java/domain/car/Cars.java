@@ -1,4 +1,6 @@
-package domain;
+package domain.car;
+
+import domain.name.NameCatalog;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,9 +12,9 @@ public class Cars {
         this.value = cars;
     }
 
-    public static Cars from(CarNameCatalog carNameCatalog) {
+    public static Cars from(NameCatalog nameCatalog) {
 
-        List<Car> cars = carNameCatalog.getNames()
+        List<Car> cars = nameCatalog.getNames()
                 .stream()
                 .map(Car::new)
                 .toList();
