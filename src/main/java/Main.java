@@ -1,9 +1,9 @@
 import application.RaceService;
 import controller.RaceController;
-import util.CarNamesValidator;
-import util.RandomNumberGenerator;
 import ui.InputView;
 import ui.OutputView;
+import util.CarNamesValidator;
+import util.RandomNumberGenerator;
 import util.TryCountValidator;
 
 public class Main {
