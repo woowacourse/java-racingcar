@@ -17,11 +17,11 @@ class RacingCarsTest {
     void createCars() {
         cars = new ArrayList<>();
         Car pobiCar = new Car("pobi");
-        pobiCar.moveForward();
+        pobiCar.moveForward(4);
 
         Car junCar = new Car("jun");
         Car guguCar = new Car("gugu");
-        guguCar.moveForward();
+        guguCar.moveForward(4);
 
         cars.add(pobiCar);
         cars.add(junCar);
@@ -48,7 +48,7 @@ class RacingCarsTest {
     @DisplayName("최종 자동차 경주 우승자 정보를 반환해야 한다.")
     void isValidWinnerResult() {
         RacingCars racingCars = new RacingCars(cars);
-        assertEquals(racingCars.getWinners(), "pobi, gugu");
+        assertEquals("pobi, gugu", racingCars.getWinners());
     }
 
     @Test
