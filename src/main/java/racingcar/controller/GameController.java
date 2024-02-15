@@ -73,12 +73,12 @@ public class GameController {
     }
 
     public void finish() {
-        List<Car> winnerGroup = carGroup.findWinnerGroup();
-        if (winnerGroup.isEmpty()) {
+        List<Car> winners = carGroup.findWinners();
+        if (winners.isEmpty()) {
             OutputView.printNoWinner();
             return;
         }
 
-        OutputView.printWinnerList(winnerGroup);
+        OutputView.printWinnerList(winners);
     }
 }

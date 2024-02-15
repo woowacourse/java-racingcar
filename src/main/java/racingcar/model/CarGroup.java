@@ -16,7 +16,7 @@ public class CarGroup {
             car.move(RandomNumberGenerator.generate());
         }
     }
-    public List<Car> findWinnerGroup() {
+    public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
                 .filter((car -> car.getPosition() == maxPosition))
