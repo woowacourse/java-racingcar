@@ -28,6 +28,7 @@ public class OutputView {
         for (Car car : carList) {
             System.out.println(car.getName() + " : " + new String("-").repeat(car.getScore()));
         }
+        System.out.println();
     }
 
     public static void printWinners(List<String> winners) {

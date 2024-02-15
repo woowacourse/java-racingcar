@@ -24,7 +24,6 @@ public class Controller {
         for (int i = 0; i < round; i++) {
             Service.playOneRound(cars);
             OutputView.printScore(cars);
-            System.out.println();
         }
 
         List<String> winnerNames = Service.getWinnerNames(cars);
