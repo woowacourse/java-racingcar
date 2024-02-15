@@ -9,10 +9,15 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class InputView {
-    private InputView() {}
+    private static final String ASK_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
+    private static final String ASK_TRY_COUNT = "시도할 회수는 몇회인가요?";
+    private static final String DELIMITER = ",";
+
+    private InputView() {
+    }
 
     public static List<String> readCarNames(Supplier<String> reader) {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        System.out.println(ASK_CAR_NAMES);
         String input = reader.get();
         validateNotEmpty(input);
         validateEndsWithComma(input);
@@ -20,26 +25,26 @@ public class InputView {
     }
 
     public static int readTryCount(Supplier<String> reader) {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println(ASK_TRY_COUNT);
         String input = reader.get();
         validateNotEmpty(input);
         return parseTryCount(input);
     }
 
-    private static void validateNotEmpty(String input) throws IllegalArgumentException{
+    private static void validateNotEmpty(String input) throws IllegalArgumentException {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL.getMessage());
         }
     }
 
     private static void validateEndsWithComma(String input) throws IllegalArgumentException {
-        if (input.endsWith(",")) {
+        if (input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
         }
     }
 
     private static List<String> splitByComma(String input) {
-        return Arrays.stream(input.split(",")).toList();
+        return Arrays.stream(input.split(DELIMITER)).toList();
     }
 
     private static int parseTryCount(final String input) {
