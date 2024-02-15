@@ -34,3 +34,11 @@ class ServiceTest {
                 .hasMessageContaining("두 대 이상");
     }
 
+    @DisplayName("입력된 자동차 이름 중에 중복되는 이름이 존재하면 예외가 발생한다")
+    @Test
+    void duplicationTest() {
+        Assertions.assertThatThrownBy(() -> service.setCars(List.of("Ash", "Ash", "Lily")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복");
+    }
+
