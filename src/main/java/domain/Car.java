@@ -40,15 +40,14 @@ public class Car implements Comparable<Car> {
         return forward;
     }
 
-    //TODO:number 변수명 변경하기
-    public void drive(int number) {
-        if (checkForward(number)) {
+    public void drive(int randomNumber) {
+        if (checkForward(randomNumber)) {
             forward += 1;
         }
     }
 
-    private boolean checkForward(int number) {
-        return number >= MIN_FORWARD_NUMBER;
+    private boolean checkForward(int randomNumber) {
+        return randomNumber >= MIN_FORWARD_NUMBER;
     }
 
     @Override
