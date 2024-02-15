@@ -5,11 +5,19 @@ import domain.Cars;
 import domain.MoveCount;
 import util.StringParser;
 import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
 public class RacingGameController {
-    private InputView inputView;
+
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public RacingGameController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void run() {
 
@@ -17,15 +25,22 @@ public class RacingGameController {
 
         MoveCount moveCount = prepareMoveCount();
 
+        outputView.printResultPrefix();
         executeRace(cars, moveCount);
 
+        findWinners(cars);
+    }
+
+    private void findWinners(Cars cars) {
+        List<Car> winners = cars.chooseWinner();
+        outputView.printWinner(winners);
     }
 
     private void executeRace(Cars cars, MoveCount moveCount) {
         while (!moveCount.isCountZero()) {
             cars.tryMoveAll();
             moveCount.consume();
-            //TODO: 자동차들의 위치를 출력
+            outputView.printRaceResult(cars.getCars());
         }
     }
 
@@ -37,9 +52,8 @@ public class RacingGameController {
                     .map(carName -> Car.of(carName, 0))
                     .toList());
         } catch (IllegalArgumentException e) {
-            prepareCars();
+            return prepareCars();
         }
-        throw new RuntimeException();
     }
 
     private MoveCount prepareMoveCount() {
@@ -47,9 +61,8 @@ public class RacingGameController {
             Integer count = StringParser.parseToInt(inputView.requestMoveCount());
             return MoveCount.from(count);
         } catch (IllegalArgumentException e){
-            prepareMoveCount();
+            return prepareMoveCount();
         }
-        throw new RuntimeException();
     }
 
 
