@@ -10,12 +10,12 @@ public class Cars {
     }
 
     public void moveCars(List<Integer> moveNumbers) {
-        for(int i = 0; i< moveNumbers.size();i++){
+        for (int i = 0; i < moveNumbers.size(); i++) {
             cars.get(i).move(moveNumbers.get(i));
         }
     }
 
-    public String getTotalMovementDetails(){
+    public String getTotalMovementDetails() {
         StringBuilder details = new StringBuilder();
         cars.forEach(car -> details.append(car.getCarName())
                 .append(" : ")
@@ -30,7 +30,7 @@ public class Cars {
                 .filter(car -> car.getMovement() == maxMovement)
                 .map(Car::getCarName)
                 .toList();
-        return String.join(", ",winnersName);
+        return String.join(", ", winnersName);
     }
 
     public int getCarsSize() {

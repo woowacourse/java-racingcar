@@ -2,19 +2,20 @@ package utils;
 
 public class InputValidator {
     private static final int CAR_NAME_MAX_LENGTH = 5;
-    public static void carNamesValidator(String carNames){
-        for(String carName : carNames.split(",")){
+
+    public static void carNamesValidator(String carNames) {
+        for (String carName : carNames.split(",")) {
             validateCarNameLength(carName);
         }
     }
 
-    public static void tryNumberValidator(String number){
+    public static void tryNumberValidator(String number) {
         int validateNumber = validateNumber(number);
         validateNegativeNumber(validateNumber);
     }
 
     private static void validateCarNameLength(String carName) {
-        if(carName.length()> CAR_NAME_MAX_LENGTH){
+        if (carName.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.CAR_NAME_TOO_LONG);
         }
     }

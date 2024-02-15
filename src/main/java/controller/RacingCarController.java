@@ -20,7 +20,7 @@ public class RacingCarController {
         this.generator = generator;
     }
 
-    public void run(){
+    public void run() {
         List<String> carNames = Retry.retryOnException(inputView::inputCarNames);
         Cars cars = new Cars(createCars(carNames));
         int tryNumber = Retry.retryOnException(inputView::inputTryNumber);
@@ -36,7 +36,7 @@ public class RacingCarController {
 
     private void startRacing(int tryNumber, Cars cars) {
         outputView.printResultHeader();
-        for (int i=0; i<tryNumber; i++) {
+        for (int i = 0; i < tryNumber; i++) {
             List<Integer> randomMoveNumbers = generator.generate(cars.getCarsSize());
             cars.moveCars(randomMoveNumbers);
             String totalMovementDetails = cars.getTotalMovementDetails();
