@@ -1,8 +1,10 @@
-package model;
+package util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.RepeatedTest;
+import util.NumberGenerator;
+import util.RandomNumberGenerator;
 
 class RandomNumberGeneratorTest {
     private final NumberGenerator randomNumberGenerator = new RandomNumberGenerator();

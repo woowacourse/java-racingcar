@@ -9,7 +9,7 @@ import java.util.List;
 import model.Car;
 import model.Cars;
 import model.Name;
-import model.NumberGenerator;
+import util.NumberGenerator;
 import model.TryCount;
 import view.InputView;
 import view.OutputView;
