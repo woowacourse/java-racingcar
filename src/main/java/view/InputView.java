@@ -29,7 +29,7 @@ public class InputView {
 
     private void validateBlankInput(String carNames) {
         if (carNames == null || carNames.isEmpty()) {
-           throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다. 다시 입력해주세요.")
+           throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다. 다시 입력해주세요.");
         }
     }
 
