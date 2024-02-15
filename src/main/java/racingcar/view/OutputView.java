@@ -9,15 +9,15 @@ public class OutputView {
     private static final String RESULT_MESSAGE = NEWLINE + "실행 결과";
     private static final String COLON = " : ";
     private static final String POSITION_EXPRESSION_SYMBOL = "-";
+    private static final String WINNERS_MESSAGE = "가 최종 우승했습니다.";
+    private static final String WINNER_DELIMITER = ", ";
 
     public void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
     }
 
     public void printRoundResult(List<CarDto> cars) {
-        for (CarDto car : cars) {
-            printCarInformation(car);
-        }
+        cars.forEach(this::printCarInformation);
         System.out.println();
     }
 
@@ -29,5 +29,18 @@ public class OutputView {
                 .append(POSITION_EXPRESSION_SYMBOL.repeat(car.getPosition()));
 
         System.out.println(informationBuilder);
+    }
+
+    public void printWinners(List<CarDto> winners) {
+        List<String> winnerNames = findWinnerNames(winners);
+        String names = String.join(WINNER_DELIMITER, winnerNames);
+
+        System.out.println(names.concat(WINNERS_MESSAGE));
+    }
+
+    private static List<String> findWinnerNames(List<CarDto> winners) {
+        return winners.stream()
+                .map(CarDto::getName)
+                .toList();
     }
 }
