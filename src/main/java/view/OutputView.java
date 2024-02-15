@@ -1,5 +1,6 @@
 package view;
 
+import domain.GameResult;
 import dto.CarStatus;
 import dto.TurnResult;
 import dto.WinnersResponse;
@@ -16,8 +17,8 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void showStatus(List<TurnResult> result) {
-        for (TurnResult turnResult : result) {
+    public void showStatus(GameResult result) {
+        for (TurnResult turnResult : result.getGameResult()) {
             showResult(turnResult);
         }
     }

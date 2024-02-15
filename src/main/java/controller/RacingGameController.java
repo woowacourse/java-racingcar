@@ -2,6 +2,7 @@ package controller;
 
 import domain.Cars;
 import domain.Count;
+import domain.GameResult;
 import domain.RacingGame;
 import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
@@ -39,7 +40,7 @@ public class RacingGameController {
     }
 
     public void play(RacingGame racingGame) {
-        List<TurnResult> result = racingGame.getGameResult();
+        GameResult result = racingGame.getGameResult();
         outputView.showStatus(result);
     }
 

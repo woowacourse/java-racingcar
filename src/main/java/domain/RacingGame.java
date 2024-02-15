@@ -28,15 +28,15 @@ public class RacingGame {
         return new RacingGame(count, cars, randomMovementGenerator);
     }
 
-    public List<TurnResult> getGameResult() {
-        List<TurnResult> raceResult = new ArrayList<>();
+    public GameResult getGameResult() {
+        List<TurnResult> gameResult = new ArrayList<>();
         int currentCount = 1;
 
         while (count.isGreaterOrThan(currentCount)) {
             cars.move(randomMovementGenerator);
-            raceResult.add(TurnResult.from(cars));
+            gameResult.add(TurnResult.from(cars));
             currentCount++;
         }
-        return raceResult;
+        return new GameResult(gameResult);
     }
 }
