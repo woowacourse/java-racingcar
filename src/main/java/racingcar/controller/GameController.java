@@ -23,11 +23,11 @@ public class GameController {
     private void readCarNames() throws IOException {
         boolean shouldCarNameInput = true;
         while (shouldCarNameInput) {
-            shouldCarNameInput = getCarNames();
+            shouldCarNameInput = doReadCarNames();
         }
     }
 
-    private boolean getCarNames() throws IOException {
+    private boolean doReadCarNames() throws IOException {
         try {
             OutputView.printlnInputName();
             names = NameParser.parse(InputView.inputNames());
@@ -42,11 +42,11 @@ public class GameController {
     private void readMoveCount() throws IOException {
         boolean shouldMoveCountInput = true;
         while (shouldMoveCountInput) {
-            shouldMoveCountInput = getMoveCount();
+            shouldMoveCountInput = doReadMoveCount();
         }
     }
 
-    private boolean getMoveCount() throws IOException {
+    private boolean doReadMoveCount() throws IOException {
         try {
             OutputView.printlnInputMoveCount();
             moveCount = InputView.inputMoveCount();
