@@ -2,6 +2,7 @@ package racingcar.view;
 
 import java.util.List;
 import racingcar.model.Car;
+import racingcar.model.CarGroup;
 
 public class OutputView {
     private static final String WINNER_DESCRIPTION = "가 최종 우승했습니다.";
@@ -16,26 +17,21 @@ public class OutputView {
         System.out.println(text);
     }
 
-    public static void print(String text) {
-        System.out.print(text);
-    }
-
     public static void printResultDescription() {
         println();
         println(RESULT_DESCRIPTION);
     }
 
-    public static void printPosition(Car car) {
-        println(car.toString());
-        println();
+    public static void printPosition(CarGroup carGroup) {
+        println(carGroup.toString());
     }
 
     public static void printException(String message) {
         println(message);
     }
 
-    public static void printWinnerList(List<Car> winnerList) {
-        List<String> names = winnerList.stream()
+    public static void printWinnerList(List<Car> winnerGroup) {
+        List<String> names = winnerGroup.stream()
                 .map(Car::getName)
                 .toList();
 

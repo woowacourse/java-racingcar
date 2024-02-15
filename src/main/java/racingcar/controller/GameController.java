@@ -1,17 +1,15 @@
 package racingcar.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import racingcar.model.Car;
-import racingcar.utils.RandomNumberGenerator;
+import racingcar.model.CarGroup;
 import racingcar.utils.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-    private final List<Car> carGroup = new ArrayList<>();
-    private final List<Car> winnerGroup = new ArrayList<>();
+    private final CarGroup carGroup = new CarGroup();
     private String[] names;
     private int moveCount;
 
@@ -66,37 +64,20 @@ public class GameController {
     public void play() {
         OutputView.printResultDescription();
         for (int i = 0; i < moveCount; i++) {
-            doRound();
+            carGroup.race();
+            OutputView.printPosition(carGroup);
+
         }
 
-        int max = findMaxPosition(carGroup);
-        finish(carGroup, max);
+        finish();
     }
 
-    private void doRound() {
-        for (Car car : carGroup) {
-            car.move(RandomNumberGenerator.generate());
-            OutputView.printPosition(car);
-        }
-        OutputView.println();
-    }
-
-    private int findMaxPosition(List<Car> carGroup) {
-        return carGroup.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
-    }
-
-    private void finish(List<Car> carGroup, int max) {
-        if (max == 0) {
+    public void finish() {
+        List<Car> winnerGroup = carGroup.findWinnerGroup();
+        if (winnerGroup.isEmpty()) {
             OutputView.printNoWinner();
             return;
         }
-
-        carGroup.stream()
-                .filter(car -> car.getPosition() == max)
-                .forEach(winnerGroup::add);
 
         OutputView.printWinnerList(winnerGroup);
     }

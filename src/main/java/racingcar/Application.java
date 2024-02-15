@@ -8,5 +8,6 @@ public class Application {
         GameController controller = new GameController();
         controller.init();
         controller.play();
+        controller.finish();
     }
 }
