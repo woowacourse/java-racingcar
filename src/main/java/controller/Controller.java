@@ -10,13 +10,8 @@ import view.OutputView;
 public class Controller {
 
     public static void start() {
-        OutputView.printCarNames();
-        String rawCarNames = InputView.read();
-        List<Car> cars = Converter.toCars(rawCarNames);
-
-        OutputView.printRound();
-        String rawRound = InputView.read();
-        int round = Converter.toRound(rawRound);
+        List<Car> cars = getCars();
+        int round = getRound();
 
         OutputView.printRoundResult();
 
@@ -27,5 +22,17 @@ public class Controller {
 
         List<String> winnerNames = Service.getWinnerNames(cars);
         OutputView.printWinners(winnerNames);
+    }
+
+    private static int getRound() {
+        OutputView.printRound();
+        String rawRound = InputView.read();
+        return Converter.toRound(rawRound);
+    }
+
+    private static List<Car> getCars() {
+        OutputView.printCarNames();
+        String rawCarNames = InputView.read();
+        return Converter.toCars(rawCarNames);
     }
 }
