@@ -1,17 +1,24 @@
 package racingcar.controller;
 
-import java.io.IOException;
+import java.util.function.Supplier;
+import racingcar.domain.Game;
 import racingcar.domain.Vehicles;
 import racingcar.ui.InputView;
+import racingcar.ui.OutputView;
 
 public class RacingCarGame {
     public void start() {
-        try {
-            Vehicles vehicles = Vehicles.from(InputView.readCarNames());
-            InputView.readTryCount();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Vehicles vehicles = requestUntilValidated(() -> Vehicles.from(InputView.readCarNames()));
+        Game game = requestUntilValidated(() -> Game.from(InputView.readTryCount()));
+    }
 
+    private <T> T requestUntilValidated(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

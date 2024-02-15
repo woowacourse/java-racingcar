@@ -23,8 +23,8 @@
 - [X] 사용자로부터 시도할 횟수를 입력받는다.
     - [X] 시도할 횟수가 자연수인지 검증한다.
 - [X] 시도 횟수를 자연수로 변환한다.
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [X] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 - [ ] 게임 완료 후 가장 많이 전진한 자동차를 최종 우승자로 출력한다.
     - [ ] 우승자는 한 명 이상일 수도 있으면, 컴마(',')로 구분하여 모두 출력한다.
 - [ ] 게임 라운드마다 모든 자동차의 전진 진행 상황을 출력한다.
