@@ -2,6 +2,7 @@ package controller;
 
 import domain.Cars;
 import util.StringConvertor;
+import view.ExceptionRetryHandler;
 import view.InputView;
 import view.OutputView;
 
@@ -15,11 +16,8 @@ public class RacingController {
     }
 
     public void run() {
-        outputView.printCarNamesInputText();
-        String carNames = inputView.readCarNames();
-        Cars cars = Cars.from(StringConvertor.convertListSplitByComma(carNames));
-        outputView.printTryCountInputText();
-        int tryCount = inputView.readTryCount();
+        Cars cars = ExceptionRetryHandler.retryUntilValid(this::receiveCarNames);
+        int tryCount = ExceptionRetryHandler.retryUntilValid(this::receiveTryCount);
 
         outputView.printRacingResult();
         while (tryCount != 0) {
@@ -29,5 +27,16 @@ public class RacingController {
         }
 
         outputView.printWinners(cars.getWinners());
+    }
+
+    private Cars receiveCarNames() {
+        outputView.printCarNamesInputText();
+        String carNames = inputView.readCarNames();
+        return Cars.from(StringConvertor.convertListSplitByComma(carNames));
+    }
+
+    private int receiveTryCount() {
+        outputView.printTryCountInputText();
+        return inputView.readTryCount();
     }
 }

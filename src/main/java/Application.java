@@ -1,4 +1,5 @@
 import controller.RacingController;
+import view.ErrorView;
 import view.InputView;
 import view.OutputView;
 
