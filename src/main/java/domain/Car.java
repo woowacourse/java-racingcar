@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Random;
 import util.RandomNumber;
 
 public class Car {

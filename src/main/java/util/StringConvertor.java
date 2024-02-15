@@ -1,7 +1,6 @@
 package util;
 
 import domain.Car;
-import domain.Cars;
 import java.util.Arrays;
 import java.util.List;
 
