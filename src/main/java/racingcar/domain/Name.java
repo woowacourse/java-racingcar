@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 public class Name {
     private static final String NAME_EXCEPTION_MESSAGE = "자동차의 이름은 공백이거나 %d자를 초과할 수 없습니다.";

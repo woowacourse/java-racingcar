@@ -1,4 +1,4 @@
-package view;
+package racingcar.view;
 
 public class InputValidator {
     private static final String BLANK_EXCEPTION_MESSAGE = "입력은 공백일 수 없습니다.";

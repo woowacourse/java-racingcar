@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,23 +9,23 @@ public class Cars {
     private static final String CAR_NAME_DELIMITER = ",";
     private static final int MINIMUM_CARS_SIZE = 1;
 
-    private final List<Car> cars;
+    private final List<racingcar.domain.Car> cars;
 
     public Cars(String inputCarNames) {
-        List<Car> cars = mapCar(inputCarNames);
+        List<racingcar.domain.Car> cars = mapCar(inputCarNames);
         validateCars(cars);
 
         this.cars = cars;
     }
 
-    private List<Car> mapCar(String inputCarNames) {
+    private List<racingcar.domain.Car> mapCar(String inputCarNames) {
         return Arrays.stream(inputCarNames.split(CAR_NAME_DELIMITER))
                 .map(String::trim)
-                .map(Car::new)
+                .map(racingcar.domain.Car::new)
                 .toList();
     }
 
-    private void validateCars(List<Car> cars) {
+    private void validateCars(List<racingcar.domain.Car> cars) {
         if (cars.size() < MINIMUM_CARS_SIZE) {
             throw new IllegalArgumentException(
                     String.format(INVALID_CARS_SIZE_EXCEPTION_MESSAGE, MINIMUM_CARS_SIZE));
@@ -36,18 +36,18 @@ public class Cars {
         }
     }
 
-    private boolean hasDuplicateCarName(List<Car> cars) {
+    private boolean hasDuplicateCarName(List<racingcar.domain.Car> cars) {
         return cars.size() != cars.stream()
-                .map(Car::getName)
+                .map(racingcar.domain.Car::getName)
                 .distinct()
                 .count();
     }
 
-    public void moveCars(NumberGenerator randomNumberGenerator) {
-        cars.forEach(car -> car.move(randomNumberGenerator.generate()));
+    public void moveCars(NumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
-    public List<Car> getCars() {
+    public List<racingcar.domain.Car> getCars() {
         return cars;
     }
 }
