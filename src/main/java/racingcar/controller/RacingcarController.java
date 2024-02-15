@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import racingcar.domain.Car;
 import racingcar.domain.Round;
 import racingcar.dto.RoundResult;
@@ -15,10 +16,8 @@ public class RacingcarController {
     private final RacingcarService racingcarService = new RacingcarService();
 
     public void run() {
-        List<Car> cars = inputView.readCarNames().stream()
-                .map(Car::new)
-                .toList();
-        Round round = new Round(inputView.readTryCount());
+        List<Car> cars = retryOnException(this::readCars);
+        Round round = retryOnException(this::readRound);
 
         List<RoundResult> roundResults = new ArrayList<>();
         while (round.isRemain()) {
@@ -30,5 +29,24 @@ public class RacingcarController {
         List<String> winners = racingcarService.pickOutWinners(cars);
         outputView.printRoundResults(roundResults);
         outputView.printWinners(winners);
+    }
+
+    private List<Car> readCars() {
+        return inputView.readCarNames().stream()
+                .map(Car::new)
+                .toList();
+    }
+
+    private Round readRound() {
+        return new Round(inputView.readTryCount());
+    }
+
+    public <T> T retryOnException(Supplier<T> retryOperation) {
+        try {
+            return retryOperation.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            return retryOnException(retryOperation);
+        }
     }
 }

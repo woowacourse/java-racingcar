@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import static racingcar.constant.ViewMessage.OUTPUT_EXCEPTION_PREFIX;
 import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULTS_INTRO;
 import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULT_FORMAT;
 import static racingcar.constant.ViewMessage.OUTPUT_WINNERS;
@@ -31,5 +32,9 @@ public class OutputView {
     public void printWinners(List<String> winners) {
         String winnerNames = String.join(SEPARATOR, winners);
         System.out.printf(OUTPUT_WINNERS.getMessage(), winnerNames);
+    }
+
+    public void printError(IllegalArgumentException e) {
+        System.out.println(OUTPUT_EXCEPTION_PREFIX.getMessage() + e.getMessage());
     }
 }

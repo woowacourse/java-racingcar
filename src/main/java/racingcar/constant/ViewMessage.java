@@ -5,7 +5,8 @@ public enum ViewMessage {
 	INPUT_TRY_COUNT("시도할 회수는 몇회인가요?"),
 	OUTPUT_ROUND_RESULTS_INTRO("\n실행 결과"),
 	OUTPUT_ROUND_RESULT_FORMAT("%s : %s\n"),
-	OUTPUT_WINNERS("%s가 최종 우승했습니다.");
+	OUTPUT_WINNERS("%s가 최종 우승했습니다."),
+	OUTPUT_EXCEPTION_PREFIX("[ERROR] ");
 	private final String message;
 
 	ViewMessage(String message) {
