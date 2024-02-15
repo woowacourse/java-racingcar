@@ -20,7 +20,7 @@ public class RacingTest {
     }
 
     @Test
-    void 시도횟수만큼_전진을_시도한다() {
+    void 시도횟수가_0이_되면_전진이_불가하다() {
         Car car1 = new Car("pobi", () -> 1);
         Car car2 = new Car("dora", () -> 3);
         Car car3 = new Car("ella", () -> 4);
@@ -28,13 +28,11 @@ public class RacingTest {
         Car car5 = new Car("jojo", () -> 7);
         Cars cars = new Cars(List.of(car1, car2, car3, car4, car5));
 
-        Racing racing = new Racing(3);
-        racing.tryToForward(cars);
+        Racing racing = new Racing(1);
+        boolean before = racing.canTry();
+        racing.doTry(cars);
+        boolean after = racing.canTry();
 
-        assertThat(cars.captureCarStates().get(0).forwardCount()).isEqualTo(0);
-        assertThat(cars.captureCarStates().get(1).forwardCount()).isEqualTo(0);
-        assertThat(cars.captureCarStates().get(2).forwardCount()).isEqualTo(3);
-        assertThat(cars.captureCarStates().get(3).forwardCount()).isEqualTo(3);
-        assertThat(cars.captureCarStates().get(4).forwardCount()).isEqualTo(3);
+        assertThat(before).isNotEqualTo(after);
     }
 }
