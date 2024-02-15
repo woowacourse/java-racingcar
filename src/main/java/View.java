@@ -42,4 +42,8 @@ public class View {
         System.out.println("\n" + "실행 결과");
         System.out.print(moveResult);
     }
+
+    public void printWinners(String winners) {
+        System.out.println(winners);
+    }
 }
