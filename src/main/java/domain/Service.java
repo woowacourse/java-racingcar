@@ -1,12 +1,15 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import view.OutputView;
 
 public class Service {
     public final Car NONCANDIDATE_CAR = new Car("");
+
     public Service() {
     }
 
@@ -19,7 +22,16 @@ public class Service {
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
+        validateDuplicateName(cars);
         return cars;
+    }
+
+    private void validateDuplicateName(List<Car> cars) {
+        Set<Car> validateCar = new HashSet<>(cars);
+
+        if (cars.size() != validateCar.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 이름이 존재합니다.");
+        }
     }
 
     public void playGame(List<Car> cars, int attemptLimit) {
@@ -35,7 +47,7 @@ public class Service {
     public List<String> getWinner(List<Car> cars, int maxPosition) {
         List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            winners.add(findWinner(car,maxPosition));
+            winners.add(findWinner(car, maxPosition));
         }
         return winners;
     }
