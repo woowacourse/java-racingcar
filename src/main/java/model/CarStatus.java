@@ -4,6 +4,8 @@ public enum CarStatus {
   FORWARD("-"),
   STOP("");
 
+  private final static int FORWARD_CONDITION = 4;
+
   private final String output;
 
   CarStatus(String output) {
@@ -15,7 +17,7 @@ public enum CarStatus {
   }
 
   public static CarStatus decide(int num) {
-    if (num >= 4) {
+    if (num >= FORWARD_CONDITION) {
       return FORWARD;
     }
     return STOP;
