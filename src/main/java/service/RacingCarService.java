@@ -22,7 +22,7 @@ public class RacingCarService {
 
     // TODO: validateNumberFormat을 isParsable과 분리할지 합칠지 고민
     private void validateNumberFormat(String rawCount) {
-        if(isParsable(rawCount)){
+        if(!isParsable(rawCount)){
             throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
