@@ -39,11 +39,11 @@ class RaceParticipantsTest {
         @Test
         void 우승자가_한_명인_경우() {
             //given
-            final Car car1 = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
-            final Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, true, false)));
-            final Car car3 = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
+            final Car winner = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
+            final Car second = new Car("car2", new MockMovingStrategy(List.of(true, true, false)));
+            final Car third = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
 
-            final RaceParticipants raceParticipants = new RaceParticipants(List.of(car1, car2, car3));
+            final RaceParticipants raceParticipants = new RaceParticipants(List.of(winner, second, third));
             for (int i = 0; i < 3; i++) {
                 raceParticipants.move();
             }
@@ -52,17 +52,17 @@ class RaceParticipantsTest {
             final List<Car> raceWinners = raceParticipants.getRaceWinners();
 
             //then
-            assertThat(raceWinners).hasSize(1).isEqualTo(List.of(car1));
+            assertThat(raceWinners).hasSize(1).isEqualTo(List.of(winner));
         }
 
         @Test
         void 우승자가_여러_명인_경우() {
             //given
-            Car car1 = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
-            Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, true, true)));
-            Car car3 = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
+            Car winner1 = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
+            Car winner2 = new Car("car2", new MockMovingStrategy(List.of(true, true, true)));
+            Car second = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
 
-            RaceParticipants raceParticipants = new RaceParticipants(List.of(car1, car2, car3));
+            RaceParticipants raceParticipants = new RaceParticipants(List.of(winner1, winner2, second));
             for (int i = 0; i < 3; i++) {
                 raceParticipants.move();
             }
@@ -71,7 +71,7 @@ class RaceParticipantsTest {
             List<Car> raceWinners = raceParticipants.getRaceWinners();
 
             //then
-            assertThat(raceWinners).hasSize(2).isEqualTo(List.of(car1, car2));
+            assertThat(raceWinners).hasSize(2).isEqualTo(List.of(winner1, winner2));
         }
     }
 }

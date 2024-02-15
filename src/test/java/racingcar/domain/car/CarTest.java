@@ -39,20 +39,20 @@ class CarTest {
     @Test
     void 자동차_위치를_비교한다() {
         // given
-        final Car car1 = new Car("car1", new MockMovingStrategy(List.of(true, true)));
-        final Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, false)));
+        final Car frontCar = new Car("car1", new MockMovingStrategy(List.of(true, true)));
+        final Car behindCar = new Car("car2", new MockMovingStrategy(List.of(true, false)));
 
         // when
         for (int i = 0; i < 2; i++) {
-            car1.move();
-            car2.move();
+            frontCar.move();
+            behindCar.move();
         }
 
         // then
         assertSoftly(softly -> {
-            softly.assertThat(car1.compareTo(car1)).isEqualTo(0);
-            softly.assertThat(car1.compareTo(car2)).isEqualTo(1);
-            softly.assertThat(car2.compareTo(car1)).isEqualTo(-1);
+            softly.assertThat(frontCar.compareTo(frontCar)).isEqualTo(0);
+            softly.assertThat(frontCar.compareTo(behindCar)).isEqualTo(1);
+            softly.assertThat(behindCar.compareTo(frontCar)).isEqualTo(-1);
         });
     }
 }
