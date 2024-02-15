@@ -22,6 +22,12 @@ class CarTest {
         assertThatThrownBy(() -> new Car("실패하는테스트")).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("자동차 이름 공백 포함 예외 테스트")
+    @Test
+    void validateCarNameBlankTest() {
+        assertThatThrownBy(() -> new Car("실패하는 테스트")).isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("자동차 전진 테스트")
     @ValueSource(ints = {0, 1, 2, 3})
     @ParameterizedTest()
