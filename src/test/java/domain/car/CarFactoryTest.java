@@ -6,7 +6,22 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class CarFactoryTest {
+
+    @DisplayName("유효한 문자열 리스트가 입력되면 Cars 객체를 반환한다.")
+    @Test
+    void generateCars() throws Exception {
+        // Given
+        List<String> carNames = List.of("car1", "car2", "car3");
+
+        // When
+        Cars cars = CarFactory.generateCars(carNames);
+
+        // Then
+        assertThat(cars).isNotNull();
+    }
 
     @DisplayName("2미만 크기의 문자열 리스트가 입력되면 예외가 발생한다.")
     @Test
