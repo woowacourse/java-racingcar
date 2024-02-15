@@ -1,11 +1,11 @@
 package controller;
 
-import domain.CarStatusResponse;
 import domain.Cars;
 import domain.Count;
 import domain.RacingGame;
 import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
+import domain.TurnResult;
 import domain.Winners;
 import dto.CarNameRequest;
 import dto.WinnersResponse;
@@ -39,7 +39,7 @@ public class RacingGameController {
     }
 
     public void play(RacingGame racingGame) {
-        List<List<CarStatusResponse>> result = racingGame.getTurnResult();
+        List<TurnResult> result = racingGame.getTurnResult();
         outputView.showStatus(result);
     }
 

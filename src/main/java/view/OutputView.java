@@ -1,9 +1,9 @@
 package view;
 
-import domain.CarStatusResponse;
+import domain.CarStatus;
+import domain.TurnResult;
 import dto.WinnersResponse;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
     public void showResult(WinnersResponse rawWinners) { //TODO: formatter로 넣든지, dto 쓸것!
@@ -16,15 +16,15 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void showStatus(List<List<CarStatusResponse>> result) {
-        for (List<CarStatusResponse> turnResult : result) {
+    public void showStatus(List<TurnResult> result) {
+        for (TurnResult turnResult : result) {
             showResult(turnResult);
         }
     }
 
-    private static void showResult(List<CarStatusResponse> turnResult) {
-        for (CarStatusResponse carStatusResponse : turnResult) {
-            System.out.println(carStatusResponse.getName() + " : " + "-".repeat(carStatusResponse.getDistance()));
+    private static void showResult(TurnResult turnResult) {
+        for (CarStatus carStatus : turnResult.getCarStatuses()) {
+            System.out.println(carStatus.getName() + " : " + "-".repeat(carStatus.getDistance()));
         }
         System.out.println();
     }

@@ -69,4 +69,8 @@ public class Cars {
     public List<Car> getCars() {
         return cars;
     }
+
+    public void add(Car car) {
+
+    }
 }

@@ -1,12 +1,16 @@
 package domain;
 
-public class CarStatusResponse {
+public class CarStatus {
     private final String name;
     private final int distance;
 
-    public CarStatusResponse(Car car) {
+    public CarStatus(Car car) {
         this.name = car.getName().getName();
         this.distance = car.getDistance().getDistance();
+    }
+
+    public static CarStatus of(Car car) {
+        return new CarStatus(car);
     }
 
     public String getName() {

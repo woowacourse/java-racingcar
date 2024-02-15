@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Count {
     public static final int MIN_COUNT = 1;
     public static final int MAX_COUNT = 100;
@@ -28,5 +30,20 @@ public class Count {
         return currentCount <= count;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Count count1 = (Count) o;
+        return count == count1.count;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(count);
+    }
 }
