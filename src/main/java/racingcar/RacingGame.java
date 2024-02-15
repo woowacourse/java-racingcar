@@ -1,5 +1,9 @@
 package racingcar;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 public class RacingGame {
 
     private final int count;
@@ -10,6 +14,14 @@ public class RacingGame {
         validateCount(count);
         this.count = count;
         this.cars = cars;
+    }
+
+    public List<RoundResult> gameStart() {
+        List<RoundResult> gameResult = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            gameResult.add(createRoundResult(cars.getCarStatus()));
+        }
+        return gameResult;
     }
 
     private void validateCount(int count) {
@@ -26,11 +38,8 @@ public class RacingGame {
         }
     }
 
-    public void gameStart() {
-
+    private RoundResult createRoundResult(LinkedHashMap<String, Integer> carStatus) {
+        return new RoundResult(carStatus);
     }
 
-    private int generateRandomNumber() {
-        return 0;
-    }
 }

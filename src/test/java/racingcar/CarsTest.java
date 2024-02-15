@@ -1,19 +1,49 @@
 package racingcar;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import racingcar.generator.MovingStub;
 
 class CarsTest {
 
-    @ParameterizedTest
-    @NullSource
-    @ValueSource(strings = {"", ","})
-    void exceptionInvalidInput(String given) {
+    @DisplayName("중복되는 자동차 이름이 있을 경우 예외가 발생한다.")
+    @Test
+    void exceptionByDuplicate() {
+        //given
+        List<String> names = List.of("a", "a", "c");
+        List<Car> cars = names.stream()
+                .map(Car::new)
+                .toList();
+
         //when //then
-        assertThrows(IllegalArgumentException.class, () -> new Cars(given));
+        assertThatThrownBy(() -> new Cars(cars, new MovingStub(List.of(4, 3, 3))))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("자동차별 현재 위치 정보를 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"5,1", "3,0"})
+    void getCarStatus(int givenNumber, int expected) {
+        //given
+        String givenCarName = "a";
+        List<String> names = List.of(givenCarName, "b", "c");
+        List<Car> givenCars = names.stream()
+                .map(Car::new)
+                .toList();
+
+        //when
+        Cars cars = new Cars(givenCars, new MovingStub(List.of(givenNumber, 3, 3)));
+        LinkedHashMap<String, Integer> result = cars.getCarStatus();
+
+        //then
+        assertThat(result).hasSize(givenCars.size());
+        assertThat(result.get(givenCarName)).isEqualTo(expected);
+    }
 }
