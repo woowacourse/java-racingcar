@@ -29,14 +29,14 @@ class TrialCountTest {
     void repeatTest() {
         int expected = 4;
         TrialCount trialCount = new TrialCount(expected);
-        Count count = new Count();
+        CountForRepeatTest count = new CountForRepeatTest();
 
         trialCount.repeat(count::addCount);
 
         Assertions.assertThat(count.getAmount()).isEqualTo(expected);
     }
 
-    static class Count {
+    static class CountForRepeatTest {
         private int amount;
 
         public void addCount() {
