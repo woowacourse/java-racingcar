@@ -1,6 +1,6 @@
 package model;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final Name name;
     private int distance;
 
@@ -19,5 +19,14 @@ public class Car {
             dis += "-";
         }
         return dis;
+    }
+
+    public String getName() {
+        return name.getName();
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return o.distance - this.distance;
     }
 }
