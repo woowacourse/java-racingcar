@@ -2,7 +2,7 @@ package domain;
 
 public interface Movable {
 
-    void move();
+    void move(int number);
 
     int getLocation();
 }

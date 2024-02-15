@@ -16,7 +16,7 @@ public class Race {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < count; i++) {
             cars.forEach(car -> {
-                car.move();
+                car.move(RandomGenerator.getRandomNumber());
                 stringBuilder.append(car.getResult());
             });
             stringBuilder.append(System.lineSeparator());

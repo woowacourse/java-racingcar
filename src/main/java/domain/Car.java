@@ -21,8 +21,7 @@ public class Car implements Comparable<Car>, Movable {
     }
 
     @Override
-    public void move() {
-        int randomNumber = RandomGenerator.getRandomNumber();
+    public void move(int randomNumber) {
         if (randomNumber >= 4) {
             location++;
         }
