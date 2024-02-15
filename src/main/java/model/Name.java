@@ -12,7 +12,8 @@ public class Name {
 
     private void verifyNameLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 1자 이상 5자 이하여야 합니다.");
+            throw new IllegalArgumentException(
+                    String.format("이름은 %d자 이상 %d자 이하여야 합니다.", MIN_NAME_LENGTH, MAX_NAME_LENGTH));
         }
     }
 
