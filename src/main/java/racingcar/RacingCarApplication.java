@@ -14,7 +14,6 @@ public class RacingCarApplication {
         InputView inputView = new InputView(reader);
         OutputView outputView = new OutputView();
         NumberGenerator numberGenerator = new RandomNumberGenerator();
-
         CarController controller = new CarController(inputView, outputView, numberGenerator);
         controller.run();
 

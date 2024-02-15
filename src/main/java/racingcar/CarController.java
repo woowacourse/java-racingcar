@@ -1,9 +1,10 @@
 package racingcar;
 
 import java.util.List;
+import racingcar.domain.Car;
+import racingcar.domain.CarFactory;
 import racingcar.domain.CarStatus;
 import racingcar.domain.Circuit;
-import racingcar.domain.Engine;
 import racingcar.random.NumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -24,8 +25,9 @@ public class CarController {
         List<String> carNames = inputView.getNames();
         int tryNumber = inputView.getTryNumber();
 
-        Engine engine = new Engine(numberGenerator);
-        Circuit circuit = new Circuit(carNames, engine);
+        CarFactory carFactory = new CarFactory(numberGenerator);
+        List<Car> cars = carFactory.createCars(carNames);
+        Circuit circuit = new Circuit(cars);
 
         outputView.printResultMessage();
         for (int tries = 0; tries < tryNumber; tries++) {

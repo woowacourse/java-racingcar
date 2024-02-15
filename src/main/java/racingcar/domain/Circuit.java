@@ -6,10 +6,8 @@ public class Circuit {
 
     private final List<Car> cars;
 
-    public Circuit(final List<String> carNames, Engine engine) {
-        this.cars = carNames.stream()
-                    .map(name -> new Car(name, engine))
-                    .toList();
+    public Circuit(final List<Car> cars) {
+        this.cars = cars;
     }
 
     public void startRace() {
