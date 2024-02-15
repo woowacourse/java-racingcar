@@ -7,14 +7,20 @@ import dto.WinnersResponse;
 import java.util.List;
 
 public class OutputView {
+    private final Printer printer;
+
+    public OutputView(Printer printer) {
+        this.printer = printer;
+    }
+
     public void showResult(WinnersResponse rawWinners) {
         List<String> winners = rawWinners.getNames();
         String result = String.join(",", winners);
-        System.out.println(result + "가 최종 우승했습니다.");
+        printer.printLine(result + "가 최종 우승했습니다.");
     }
 
     public void showStatusMessage() {
-        System.out.println("실행 결과");
+        printer.printLine("실행 결과");
     }
 
     public void showStatus(GameResult result) {
@@ -23,10 +29,10 @@ public class OutputView {
         }
     }
 
-    private static void showResult(TurnResult turnResult) {
+    private void showResult(TurnResult turnResult) {
         for (CarStatus carStatus : turnResult.getCarStatuses()) {
-            System.out.println(carStatus.getName() + " : " + "-".repeat(carStatus.getDistance()));
+            printer.printLine(carStatus.getName() + " : " + "-".repeat(carStatus.getDistance()));
         }
-        System.out.println();
+        printer.printEmptyLine();
     }
 }
