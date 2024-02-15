@@ -1,5 +1,7 @@
-package domain;
+package domain.car;
 
+import domain.car.Car;
+import domain.random.RandomNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

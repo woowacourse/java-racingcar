@@ -1,4 +1,4 @@
-package domain;
+package domain.racing;
 
 public class RacingCount {
 

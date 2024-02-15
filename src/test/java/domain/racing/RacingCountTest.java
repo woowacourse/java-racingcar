@@ -1,5 +1,6 @@
-package domain;
+package domain.racing;
 
+import domain.racing.RacingCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

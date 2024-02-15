@@ -1,5 +1,8 @@
-package domain;
+package domain.racing;
 
+import domain.car.Car;
+import domain.car.Cars;
+import domain.racing.RacingRule;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

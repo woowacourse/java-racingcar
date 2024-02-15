@@ -1,4 +1,4 @@
-package domain;
+package domain.car;
 
 import dto.CarStatus;
 

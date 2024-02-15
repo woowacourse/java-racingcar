@@ -1,4 +1,4 @@
-package domain;
+package domain.random;
 
 import java.util.Random;
 

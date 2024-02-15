@@ -1,9 +1,9 @@
 package controller;
 
-import domain.CarFactory;
-import domain.Cars;
-import domain.RacingCount;
-import domain.RacingRule;
+import domain.car.CarFactory;
+import domain.car.Cars;
+import domain.racing.RacingCount;
+import domain.racing.RacingRule;
 import dto.CarStatus;
 import view.InputView;
 import view.OutputView;

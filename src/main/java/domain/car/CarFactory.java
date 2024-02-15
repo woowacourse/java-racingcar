@@ -1,4 +1,7 @@
-package domain;
+package domain.car;
+
+import domain.random.RandomNumberGenerator;
+import domain.random.RandomNumberGeneratorImpl;
 
 import java.util.HashSet;
 import java.util.List;

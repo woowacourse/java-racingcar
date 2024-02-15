@@ -1,4 +1,7 @@
-package domain;
+package domain.racing;
+
+import domain.car.Car;
+import domain.car.Cars;
 
 import java.util.List;
 

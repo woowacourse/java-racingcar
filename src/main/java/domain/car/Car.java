@@ -1,5 +1,6 @@
-package domain;
+package domain.car;
 
+import domain.random.RandomNumberGenerator;
 import dto.CarStatus;
 
 public class Car {
