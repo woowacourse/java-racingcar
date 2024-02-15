@@ -1,21 +1,23 @@
 package view;
 
 import java.util.Scanner;
-import view.validation.InputValidator;
+import view.validation.DigitValidator;
+import view.validation.SplitValidator;
 
 public class InputView {
+    private static final String COMMA = ",";
 
     public String readCarNames() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        InputValidator.validateCarNames(input);
+        SplitValidator.validate(input, COMMA);
         return input;
     }
 
     public int readTryCount() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        InputValidator.validateTryCount(input);
+        DigitValidator.validateIsDigit(input);
         return Integer.parseInt(input);
     }
 }
