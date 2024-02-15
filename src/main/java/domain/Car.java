@@ -9,7 +9,7 @@ public class Car {
         validate(carName);
         this.carName = carName;
         this.position = position;
-        this.powerGenerator = new PowerGenerator(new RandomNumberGenerator());
+        this.powerGenerator = new PowerGenerator();
     }
 
     public static Car of(String name, int position) {
@@ -25,7 +25,7 @@ public class Car {
     }
 
     public void tryMove() {
-        if (powerGenerator.generatePower().isSufficientPower()) {
+        if (powerGenerator.generate().isSufficientPower()) {
             move();
         }
     }

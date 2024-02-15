@@ -1,12 +1,15 @@
 package domain;
 
 public class PowerGenerator {
-    private final RandomNumberGenerator randomNumberGenerator;
+    private static final Integer MIN = 0;
+    private static final Integer MAX = 9;
 
-    public PowerGenerator(RandomNumberGenerator randomNumberGenerator) {
-        this.randomNumberGenerator = randomNumberGenerator;
+    public Power generate() {
+        Integer randomNumber = makeRandomNumber();
+        return Power.from(randomNumber);
     }
-    public Power generatePower() {
-        return Power.from(randomNumberGenerator.generate());
+
+    public Integer makeRandomNumber() {
+        return (int) (Math.random() * (MAX - MIN + 1) + MIN);
     }
 }
