@@ -12,9 +12,8 @@ public class CarGroup {
     }
 
     public void race() {
-        for (Car car : cars) {
-            car.move(RandomNumberGenerator.generate());
-        }
+        cars.forEach(car -> car.move(RandomNumberGenerator.generate()));
+
     }
 
     public List<Car> findWinners() {

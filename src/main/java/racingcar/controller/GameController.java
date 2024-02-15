@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import java.io.IOException;
 import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
@@ -14,7 +13,7 @@ public class GameController {
     private List<String> names;
     private int moveCount;
 
-    public void init() throws IOException {
+    public void init() {
         readCarNames();
         readMoveCount();
         initCars(names);
@@ -53,7 +52,6 @@ public class GameController {
             Validator.validateMoveCount(moveCount);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
-            return false;
         }
         return true;
     }
