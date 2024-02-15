@@ -27,7 +27,8 @@ public class RacingCarController {
         Cars cars = getCars();
         int count = getCount();
 
-        System.out.println("실행 결과");
+        outputView.printMovementTitle();
+
         for (int i = count; i >= 0; i--) {
             racingCarService.moveCars(cars);
             printMovement(cars);
