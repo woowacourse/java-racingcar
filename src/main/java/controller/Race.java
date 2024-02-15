@@ -14,6 +14,7 @@ import view.InputView;
 import view.OutputView;
 
 public class Race {
+    private static final int MOVE_THRESHOLD = 4;
     private final NumberGenerator numberGenerator;
 
     public Race(NumberGenerator numberGenerator) {
@@ -50,7 +51,7 @@ public class Race {
         cars.getCars()
                 .forEach(car -> {
                     int number = numberGenerator.generateNumber();
-                    if (number >= 4) {
+                    if (number >= MOVE_THRESHOLD) {
                         car.moveForward();
                     }
                 });
