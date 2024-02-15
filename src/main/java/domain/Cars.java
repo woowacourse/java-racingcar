@@ -13,7 +13,6 @@ public class Cars {
         this.cars = cars;
     }
 
-    // todo: 방어적 복사본
     public static Cars from(List<Car> cars) {
         validate(cars);
         return new Cars(cars);
@@ -46,5 +45,9 @@ public class Cars {
         if (duplicatedName.size() != cars.size()) {
             throw new IllegalArgumentException("중복된 자동차가 있을 수 없습니다.");
         }
+    }
+
+    public void moveAll() {
+        cars.forEach(Car::move);
     }
 }
