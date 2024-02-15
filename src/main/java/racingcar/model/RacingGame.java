@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class RacingGame {
@@ -20,7 +19,7 @@ public class RacingGame {
     public List<RoundResult> run() {
         List<RoundResult> gameResult = new ArrayList<>();
         for (int i = 0; i < tryCount; i++) {
-            gameResult.add(createRoundResult(cars.makeCarsMove()));
+            gameResult.add(cars.makeCarsMove());
         }
         return gameResult;
     }
@@ -29,9 +28,5 @@ public class RacingGame {
         if (tryCount < MINIMUM_TRY_COUNT) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private RoundResult createRoundResult(LinkedHashMap<String, Integer> carStatus) {
-        return new RoundResult(carStatus);
     }
 }

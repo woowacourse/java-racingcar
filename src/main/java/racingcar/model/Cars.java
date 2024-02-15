@@ -17,7 +17,7 @@ public class Cars {
         this.generator = generator;
     }
 
-    public LinkedHashMap<String, Integer> makeCarsMove() {
+    public RoundResult makeCarsMove() {
         LinkedHashMap<String, Integer> carStatus = new LinkedHashMap<>();
         for (Car car : cars) {
             car.move(generator.generate());
@@ -25,7 +25,7 @@ public class Cars {
             int position = car.getPosition();
             carStatus.put(carName, position);
         }
-        return carStatus;
+        return new RoundResult(carStatus);
     }
 
     private void validateCarNames(List<Car> cars) {

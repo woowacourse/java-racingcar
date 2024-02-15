@@ -9,9 +9,9 @@ public class TotalResult {
         this.totalResult = totalResult;
     }
 
-    public List<String> selectWinner() {
+    public List<String> getWinner() {
         RoundResult roundResult = totalResult.get(totalResult.size() - 1);
-        return roundResult.getWinners();
+        return roundResult.selectWinners();
     }
 
     public List<RoundResult> getTotalResult() {

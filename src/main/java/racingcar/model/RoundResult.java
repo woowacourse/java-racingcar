@@ -16,7 +16,7 @@ public class RoundResult {
         return result;
     }
 
-    public List<String> getWinners() {
+    public List<String> selectWinners() {
         int maxPosition = Collections.max(result.values());
         return result.keySet()
                 .stream()

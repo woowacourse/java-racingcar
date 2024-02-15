@@ -12,8 +12,8 @@ public class OutputView {
         System.out.println("실행 결과");
         for (RoundResult roundResult : totalResult.getTotalResult()) {
             LinkedHashMap<String, Integer> result = roundResult.getResult();
-            for (String s : result.keySet()) {
-                System.out.println(s + " : " + "-".repeat(result.get(s)));
+            for (String carName : result.keySet()) {
+                System.out.printf("%s : %s%n", carName, "-".repeat(result.get(carName)));
             }
             System.out.println();
         }

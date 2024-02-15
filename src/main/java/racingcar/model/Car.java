@@ -31,12 +31,12 @@ public class Car {
     }
 
     private void validateName(String name) {
-        if (isNameEmpty() || name.length() > MAXIMUM_CAR_NAME_LENGTH) {
+        if (isNameEmpty(name) || name.length() > MAXIMUM_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean isNameEmpty() {
+    private boolean isNameEmpty(String name) {
         return name == null || name.isEmpty();
     }
 }

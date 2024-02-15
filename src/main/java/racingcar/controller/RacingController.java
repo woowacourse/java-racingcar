@@ -23,7 +23,7 @@ public class RacingController {
         Cars cars = createCars();
         RacingGame racingGame = createRacingGame(cars);
 
-        inputView.closeScanner();
+        inputView.finishReadingInput();
 
         TotalResult totalResult = playRacingGame(racingGame);
         printResult(totalResult);
@@ -48,6 +48,6 @@ public class RacingController {
 
     private void printResult(TotalResult totalResult) {
         outputView.printResult(totalResult);
-        outputView.printWinnerInfo(totalResult.selectWinner());
+        outputView.printWinnerInfo(totalResult.getWinner());
     }
 }

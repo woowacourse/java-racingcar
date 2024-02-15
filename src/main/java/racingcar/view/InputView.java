@@ -22,7 +22,7 @@ public class InputView {
         return parseInt(input);
     }
 
-    public void closeScanner() {
+    public void finishReadingInput() {
         SCANNER.close();
     }
 
