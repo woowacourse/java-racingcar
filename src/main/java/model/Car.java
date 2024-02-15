@@ -12,4 +12,12 @@ public class Car {
     public void move() {
         distance++;
     }
+
+    public String showDistance() {
+        String dis = "";
+        for (int i = 0; i < distance; i++) {
+            dis += "-";
+        }
+        return dis;
+    }
 }
