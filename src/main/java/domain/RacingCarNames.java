@@ -13,10 +13,10 @@ public class RacingCarNames {
         this.names = splitNames;
     }
 
-    public List<RacingCar> createRacingCars() {
-        return names.stream()
+    public RacingCars createRacingCars() {
+        return new RacingCars(names.stream()
                 .map(RacingCar::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     private void validateNamesLength(List<String> names) {

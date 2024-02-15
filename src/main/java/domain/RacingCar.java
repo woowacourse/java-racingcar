@@ -1,6 +1,8 @@
 package domain;
 
-public class RacingCar {
+import java.util.Comparator;
+
+public class RacingCar implements Comparable<RacingCar>{
     private String name;
     private int moveNumber = 0;
 
@@ -20,5 +22,14 @@ public class RacingCar {
         if (RandomNumberUtil.getRandomNumber() >= 4) {
             this.moveNumber++;
         }
+    }
+
+    public boolean isSameDistance(RacingCar racingCar) {
+        return racingCar.moveNumber == this.moveNumber;
+    }
+
+    @Override
+    public int compareTo(RacingCar o) {
+        return o.moveNumber - this.moveNumber;
     }
 }
