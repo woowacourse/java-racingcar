@@ -1,15 +1,30 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarsTest {
+
+    private Car kaki;
+    private Car naknak;
+    private Cars cars;
+
+    @BeforeEach
+    void init() {
+        kaki = Car.from("kaki");
+        naknak = Car.from("nak");
+        cars = Cars.from(List.of(kaki, naknak));
+    }
 
     @DisplayName("경주에 참가한 자동차들에 대한 예외 발생 테스트")
     @Nested
@@ -61,5 +76,40 @@ class CarsTest {
             assertThatCode(() -> Cars.from(cars))
                     .doesNotThrowAnyException();
         }
+    }
+
+    @DisplayName("경주에 참가한 자동차들의 움직임 테스트")
+    @Nested
+    class CarsMoveTest {
+        @DisplayName("랜덤한 숫자가 0에서 3 사이의 숫자라면 자동차들은 움직이지 않는다.")
+        @ParameterizedTest
+        @ValueSource(ints = {0, 1, 2, 3})
+        void carsStopTest(int number) {
+            cars.moveAll(() -> number);
+            List<Integer> carPositions = cars.getCars().stream()
+                    .map(Car::getPosition)
+                    .toList();
+            assertThat(carPositions).containsExactly(0, 0);
+        }
+
+        @DisplayName("랜덤한 숫자가 4에서 9 사이의 숫자라면 자동차들은 1만큼 전진한다.")
+        @ParameterizedTest
+        @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+        void carsMoveTest(int number) {
+            cars.moveAll(() -> number);
+            List<Integer> carPositions = cars.getCars().stream()
+                    .map(Car::getPosition)
+                    .toList();
+            assertThat(carPositions).containsExactly(1, 1);
+        }
+    }
+
+    @DisplayName("가장 많이 움직인 자동차가 최종 우승자가 된다.")
+    @Test
+    void winnerTest() {
+        naknak.move(() -> 9);
+
+        assertThat(cars.getWinners())
+                .containsExactly(naknak);
     }
 }
