@@ -35,6 +35,10 @@ public class Car {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         StringBuilder trace = new StringBuilder();

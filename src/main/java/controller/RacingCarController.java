@@ -24,6 +24,7 @@ public class RacingCarController {
         readCarNames();
         readRound();
         playRacing();
+        findWinners();
     }
 
     private void readCarNames() throws IOException {
@@ -41,5 +42,9 @@ public class RacingCarController {
             cars.moveCars();
             outputView.writeRoundResult(cars);
         }
+    }
+
+    private void findWinners() {
+        outputView.writeWinners(cars.findWinnerNames());
     }
 }
