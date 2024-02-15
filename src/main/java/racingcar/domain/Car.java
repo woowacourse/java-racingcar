@@ -33,4 +33,12 @@ public class Car {
     private void printStatus() {
         OutputView.printCarResult(name, forward);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getForward() {
+        return forward;
+    }
 }

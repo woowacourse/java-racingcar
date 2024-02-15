@@ -34,4 +34,8 @@ public class Game {
             OutputView.printNewLine();
         });
     }
+
+    public Winner getWinner() {
+        return Winner.from(vehicles.getBiggestCars());
+    }
 }

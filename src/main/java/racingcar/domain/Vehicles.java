@@ -40,4 +40,9 @@ public class Vehicles {
     void move() {
         cars.forEach(Car::move);
     }
+
+    List<Car> getBiggestCars() {
+        int biggestForward = cars.stream().mapToInt(Car::getForward).max().getAsInt();
+        return cars.stream().filter(car -> car.getForward() == biggestForward).toList();
+    }
 }
