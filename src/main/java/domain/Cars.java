@@ -1,13 +1,13 @@
 package domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final CarPosition INITIAL_POSITION = new CarPosition(0);
     private static final int MIN_CARS_SIZE = 2;
     private static final int MAX_CARS_SIZE = 20;
+
     private final List<Car> cars;
 
     private Cars(List<Car> cars) {

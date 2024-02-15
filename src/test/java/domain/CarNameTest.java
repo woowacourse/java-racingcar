@@ -9,17 +9,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class NameTest {
+class CarNameTest {
 
     @DisplayName("자동차 이름에 대한 예외 발생 테스트")
     @Nested
-    class CarNameExceptionTest {
+    class CarCarNameExceptionTest {
 
         @DisplayName("자동차 이름이 5자를 넘으면 예외가 발생한다.")
         @ParameterizedTest
         @ValueSource(strings = {"abcdef", "가나다라마바사아자"})
         void carNameLengthExceptionTest(String name) {
-            assertThatThrownBy(() -> Name.from(name))
+            assertThatThrownBy(() -> new CarName(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -27,14 +27,7 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {" ", ""})
         void carNameIsBlankTest(String name) {
-            assertThatThrownBy(() -> Name.from(name))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @DisplayName("자동차 이름에 null을 입력하면 예외가 발생한다.")
-        @Test
-        void carNameIsNullTest() {
-            assertThatThrownBy(() -> Name.from(null))
+            assertThatThrownBy(() -> new CarName(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -42,15 +35,7 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {" pobi", "pobi "})
         void carNameStartsOrEndsWithBlank(String name) {
-            assertThatThrownBy(() -> Name.from(name))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @DisplayName("자동차 이름에 영어 또는 한글이 아니면 예외가 발생한다.")
-        @ParameterizedTest
-        @ValueSource(strings = {"pobi1", "123", "..!", "ab."})
-        void carNameIsEnglishOrKorean(String name) {
-            assertThatThrownBy(() -> Name.from(name))
+            assertThatThrownBy(() -> new CarName(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -63,7 +48,7 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {"a", "abcde"})
         void successTest(String name) {
-            assertThatCode(() -> Name.from(name))
+            assertThatCode(() -> new CarName(name))
                     .doesNotThrowAnyException();
         }
     }

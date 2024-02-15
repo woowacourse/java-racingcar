@@ -3,16 +3,16 @@ package domain;
 public class Car {
     private static final int MOVE_BOUND_NUMBER = 4;
 
-    private final Name name;
+    private final CarName carName;
     private int position;
 
-    public Car(Name name, int position) {
-        this.name = name;
+    public Car(CarName carName, int position) {
+        this.carName = carName;
         this.position = position;
     }
 
     public static Car from(String name) {
-        return new Car(Name.from(name), 0);
+        return new Car(new CarName(name), 0);
     }
 
     public void move(NumberGenerator numberGenerator) {
@@ -22,7 +22,7 @@ public class Car {
     }
 
     public String getName() {
-        return name.getName();
+        return carName.getName();
     }
 
     public int getPosition() {
