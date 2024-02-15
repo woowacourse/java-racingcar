@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static racingcar.InputValidator.*;
-
 public class InputView {
     Scanner sc = new Scanner(System.in);
     final InputValidator inputValidator = new InputValidator();
