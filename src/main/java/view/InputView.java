@@ -7,12 +7,12 @@ import utils.InputValidator;
 
 public class InputView {
 
+    private static final Scanner in = new Scanner(System.in);
     private static final String CAR_NAME_MSG = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String TRY_NUMBER_MSG = "시도할 횟수는 몇회인가요?";
 
     public List<String> inputCarNames() {
         System.out.println(CAR_NAME_MSG);
-        Scanner in = new Scanner(System.in);
         String carNames = in.next();
         InputValidator.carNamesValidator(carNames);
         return Arrays.asList(carNames.split(","));
@@ -20,7 +20,6 @@ public class InputView {
 
     public int inputTryNumber() {
         System.out.println(TRY_NUMBER_MSG);
-        Scanner in = new Scanner(System.in);
         String tryNumber = in.next();
         InputValidator.tryNumberValidator(tryNumber);
         return Integer.parseInt(tryNumber);
