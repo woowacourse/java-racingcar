@@ -31,6 +31,10 @@ public class Car {
         }
     }
 
+    public CarInfo getInfo() {
+        return new CarInfo(name.getName(), position.getPosition());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
