@@ -4,7 +4,7 @@ import racingcar.exception.ErrorMessage;
 import racingcar.exception.InvalidInputException;
 
 public class CarName {
-    private final static int MAX_NAME_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
     public CarName(final String name) {
