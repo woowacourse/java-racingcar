@@ -1,8 +1,12 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Cars {
     private static final int MIN_CARS_SIZE = 2;
@@ -38,10 +42,10 @@ public class Cars {
     }
 
     private static void validateDuplication(List<Car> cars) {
-        Set<String> duplicatedName = new HashSet<>();
-        for (Car car : cars) {
-            duplicatedName.add(car.getName());
-        }
+        Set<String> duplicatedName = cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toSet());
+
         if (duplicatedName.size() != cars.size()) {
             throw new IllegalArgumentException("중복된 자동차가 있을 수 없습니다.");
         }
@@ -49,5 +53,21 @@ public class Cars {
 
     public void moveAll() {
         cars.forEach(Car::move);
+    }
+
+    public List<Car> getWinners() {
+        int maxPosition = getMaxPosition();
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .toList();
+
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .getAsInt();
     }
 }
