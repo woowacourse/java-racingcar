@@ -8,12 +8,24 @@ import org.junit.jupiter.api.Test;
 
 public class RacingGameTest {
 
+    @DisplayName("시도 횟수가 음수일 경우 예외를 발생한다.")
+    @Test
+    void negativeMoveCountTest() {
+        // given
+        int moveCount = -1;
+        Cars cars = new Cars(List.of(new Car("자동차1")));
+
+        // when & then
+        Assertions.assertThatThrownBy(() -> new RacingGame(cars, moveCount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("자동차들이 전진한다.")
     @Test
     void goTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars);
+        RacingGame racingGame = new RacingGame(cars,0);
 
         List<Integer> expected = List.of(1, 1);
 
@@ -33,7 +45,7 @@ public class RacingGameTest {
     void stopTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars);
+        RacingGame racingGame = new RacingGame(cars,0);
 
         List<Integer> expected = List.of(0, 0);
 
@@ -52,13 +64,13 @@ public class RacingGameTest {
     @Test
     void findWinnersTest() {
         //given
-        Car winner = new Car("winner");
-        Car loser = new Car("loser");
+        Car winner = new Car("win");
+        Car loser = new Car("lose");
 
         //when
         winner.move();
         Cars cars = new Cars(List.of(winner, loser));
-        RacingGame racingGame = new RacingGame(cars);
+        RacingGame racingGame = new RacingGame(cars, 0);
 
         //then
         Cars actual = racingGame.findWinners();
