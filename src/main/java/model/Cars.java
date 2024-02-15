@@ -14,11 +14,24 @@ public class Cars {
     }
 
     public static Cars from(List<String> carNames) {
+        validate(carNames);
+
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
         return new Cars(cars);
+    }
+
+    private static void validate(List<String> names) {
+        checkDuplicatedName(names);
+    }
+
+    private static void checkDuplicatedName(List<String> names) {
+        long nameCount = names.stream().distinct().count();
+        if (names.size() != nameCount) {
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+        }
     }
 
     public void moveCars() {
