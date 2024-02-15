@@ -1,7 +1,10 @@
 import domain.Car;
+import domain.CarRacing;
 import domain.Cars;
 import domain.TryCount;
-import org.assertj.core.api.Assertions;
+import io.InputView;
+import io.OutputView;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +16,11 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarRacingTest {
+    private CarRacing carRacing;
+    @BeforeEach
+    void init() {
+        this.carRacing = new CarRacing(new InputView(), new OutputView());
+    }
 
     @Test
     @DisplayName("자동차 생성 성공 테스트")
@@ -20,7 +28,7 @@ class CarRacingTest {
         // given
         String carNames = "pobi,crong,honux";
         // when
-        List<Car> cars = CarRacing.createCars(carNames).getCars();
+        List<Car> cars = carRacing.createCars(carNames).getCars();
         // then
         assertThat(cars).hasSize(3);
         assertAll(
@@ -35,7 +43,7 @@ class CarRacingTest {
     @DisplayName("자동차 생성 실패 테스트")
     void createCarsFail(String carNames) {
         assertThatThrownBy(() -> {
-            CarRacing.createCars(carNames);
+            carRacing.createCars(carNames);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,7 +52,7 @@ class CarRacingTest {
     @DisplayName("시도 횟수 생성 성공 테스트")
     void createTryCountSuccess(int tryAmount) {
         //when
-        TryCount tryCount = CarRacing.createTryCount(tryAmount);
+        TryCount tryCount = carRacing.createTryCount(tryAmount);
 
         //then
         assertThat(tryCount.getAmount()).isEqualTo(tryAmount);
@@ -54,7 +62,7 @@ class CarRacingTest {
     @ValueSource(ints = {0, -1, -30})
     @DisplayName("시도 횟수 생성 실패 테스트")
     void createTryCountFail(int tryAmount) {
-        assertThatThrownBy(() -> CarRacing.createTryCount(tryAmount))
+        assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -65,8 +73,8 @@ class CarRacingTest {
         String carNames = "pobi,crong,honux";
         String expected = "pobi,crong,honux";
         // when
-        Cars cars = CarRacing.createCars(carNames);
+        Cars cars = carRacing.createCars(carNames);
         //then
-        assertThat(CarRacing.getWinners(cars)).hasSize(3);
+        assertThat(carRacing.getWinners(cars)).hasSize(3);
     }
 }
