@@ -7,14 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarStatusTest {
-    @Test
-    @DisplayName("자동차의 전진과 후진을 판단할 수 있다.")
-    void decide() {
-        assertAll(
-                () -> assertThat(CarStatus.decide(4)).isEqualTo(CarStatus.FORWARD),
-                () -> assertThat(CarStatus.decide(3)).isEqualTo(CarStatus.STOP)
-        );
-
-    }
-
+  @Test
+  @DisplayName("자동차의 전진과 후진을 판단할 수 있다.")
+  void decide() {
+    assertAll(
+        () -> assertThat(CarStatus.decide(4)).isEqualTo(CarStatus.FORWARD),
+        () -> assertThat(CarStatus.decide(3)).isEqualTo(CarStatus.STOP));
+  }
 }
