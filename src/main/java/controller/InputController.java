@@ -21,7 +21,7 @@ public class InputController {
         }
     }
 
-    public int makeTryNumber() {
+    public int makeTryCount() {
         try {
             String invalidTryCount = inputTryCount();
             validateTryCountFormat(invalidTryCount);
@@ -30,7 +30,7 @@ public class InputController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
-            return makeTryNumber();
+            return makeTryCount();
         }
     }
 }
