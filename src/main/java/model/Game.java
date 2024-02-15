@@ -1,5 +1,7 @@
 package model;
 
+import constant.Exception;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Game {
     int originCount = carNames.size();
     int distinctCount = (int) carNames.stream().distinct().count();
     if (originCount != distinctCount) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(Exception.DUPLICATE.toString());
     }
   }
 
@@ -42,7 +44,6 @@ public class Game {
 
   public List<Car> findWinners() {
     int winnersScore = Collections.max(participant.stream().map(Car::getForwardCount).toList());
-
     return participant.stream().filter(car -> car.getForwardCount() == winnersScore).toList();
   }
 
