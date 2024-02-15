@@ -20,4 +20,9 @@ public class InputView {
         return Arrays.asList(splitNames);
     }
 
+    public String readRound() throws IOException {
+        System.out.println("시도할 회수는 몇회인가요?");
+        return bufferedReader.readLine();
+    }
+
 }
