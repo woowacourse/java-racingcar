@@ -21,15 +21,15 @@ public class Car {
         return randomNumber >= MINIMUM_NUMBER_TO_MOVE;
     }
 
+    public boolean isPositionEqualTo(int position) {
+        return this.position == position;
+    }
+
     public String getName() {
         return name.getName();
     }
 
     public int getPosition() {
         return position;
-    }
-
-    public boolean isPositionEqualTo(int position) {
-        return this.position == position;
     }
 }
