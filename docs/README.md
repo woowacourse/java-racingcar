@@ -2,16 +2,25 @@
 
 ## 개발 기능 목록
 
-### Car
-
-#### 이름과 함께 자동차를 생성한다
-#### 난수가 일정 숫자 이상일 경우 위치를 전진한다. 
+## Domain
 
 ### Name
+
+#### 문자열을 통해 이름을 생성한다
 
 #### Name 이 공백이면 `IllegalArgumentException` 을 발생한다.
 
 #### Name 이 5글자 이상이면 `IllegalArgumentException` 을 발생한다.
+
+### NameCatalog
+
+#### 이름이 중복이면 'IllegalArgumentException' 을 발생한다. 
+
+### Car
+
+#### 이름을 통해 자동차를 생성한다.
+
+#### 들어온 숫자가 일정 숫자 이상일 경우 위치를 전진한다.
 
 ### RaceCount
 
@@ -21,12 +30,14 @@
 
 ### RaceResult
 
-#### 자동차들을 통해 경기 결과를 생성한다
+#### 자동차들 위치를 통해 우승 자동차들을 결정한다
 
-#### 우승한 자동차들을 알려준다
+## Util
 
-### InputView
+### NumberGenerator
 
-#### 중복되지 않은 Name 을 입력 받는다
+#### 0부터 입력한 숫자 중 랜덤한 숫자를 생성한다
 
-##### 중복되는 Name 이 있으면 `IllegalArgumentException` 을 발생한다.
+### Splitter
+
+#### 문자열을 쉼표를 구분자로 분리한다
