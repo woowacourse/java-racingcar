@@ -1,7 +1,6 @@
 package racingcar;
 
 import java.util.List;
-import racingcar.domain.Car;
 import racingcar.domain.CarStatus;
 import racingcar.domain.Circuit;
 import racingcar.domain.Engine;
@@ -22,12 +21,11 @@ public class CarController {
     }
 
     public void run() {
-        List<String> names = inputView.getNames();
+        List<String> carNames = inputView.getNames();
         int tryNumber = inputView.getTryNumber();
 
         Engine engine = new Engine(numberGenerator);
-        List<Car> cars = createCars(names, engine);
-        Circuit circuit = new Circuit(cars);
+        Circuit circuit = new Circuit(carNames, engine);
 
         outputView.printResultMessage();
         for (int tries = 0; tries < tryNumber; tries++) {
@@ -37,12 +35,6 @@ public class CarController {
         }
 
         reportWinners(circuit);
-    }
-
-    private List<Car> createCars(List<String> names, Engine engine) {
-        return names.stream()
-                .map(name -> new Car(name, engine))
-                .toList();
     }
 
     private void reportWinners(Circuit circuit) {
