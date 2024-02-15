@@ -1,7 +1,7 @@
 package enums;
 
 public enum Delimiter {
-    COMMA(",", "^[a-zA-Z]+(,[a-zA-Z]+)*$", "쉼표");
+    COMMA(",", "^[a-zA-Z가-힣\\d]+(,[a-zA-Z가-힣\\d]+)*$", "쉼표");
 
     private final String value;
     private final String regex;
