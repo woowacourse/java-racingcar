@@ -18,13 +18,13 @@ public class CarFixture {
         return new Car(new Name(name));
     }
 
-    public static Cars 자동차들() {
-        return new Cars(List.of(자동차("prin"), 자동차("mark")));
-    }
-
     public static Cars 자동차들(int count) {
         return IntStream.range(0, count)
                 .mapToObj(i -> 자동차("car" + i))
                 .collect(collectingAndThen(toList(), Cars::new));
+    }
+
+    public static Cars 자동차들(Car... cars) {
+        return new Cars(List.of(cars));
     }
 }
