@@ -3,6 +3,7 @@ package controller;
 import domain.Car;
 import domain.CarStatusResponse;
 import domain.Cars;
+import domain.Count;
 import domain.RacingGame;
 import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
@@ -26,7 +27,7 @@ public class RacingGameController {
 
     public void run() {
         CarNameRequest carsNameRequest = inputView.readCars();
-        int count = inputView.readCount();
+        Count count = Count.from(inputView.readCount());
         Cars cars = Cars.fromDto(carsNameRequest);
         RacingGame racingGame = RacingGame.of(count, cars,
                 new RandomMovementGenerator(new RandomNumberGenerator())); //TODO: 차차
