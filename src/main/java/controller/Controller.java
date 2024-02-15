@@ -22,7 +22,7 @@ public class Controller {
 
     public void run() {
         Cars cars = initCars();
-        RacingCount racingCount = inputView.inputRacingCount();
+        RacingCount racingCount = inputRacingCount();
 
         List<String> winners = racing(cars, racingCount);
 
@@ -30,9 +30,25 @@ public class Controller {
     }
 
     private Cars initCars() {
-        List<String> carNames = inputView.inputCars();
+        try {
+            List<String> carNames = inputView.inputCars();
 
-        return CarFactory.generateCars(carNames);
+            return CarFactory.generateCars(carNames);
+        } catch (RuntimeException e) {
+            outputView.printInputCarNamesErrorMessage();
+
+            return initCars();
+        }
+    }
+
+    private RacingCount inputRacingCount() {
+        try {
+            return inputView.inputRacingCount();
+        } catch (RuntimeException e) {
+            outputView.printInputRacingCountErrorMessage();
+
+            return inputRacingCount();
+        }
     }
 
     private List<String> racing(Cars cars, RacingCount racingCount) {

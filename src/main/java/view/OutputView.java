@@ -28,4 +28,12 @@ public class OutputView {
         String message = String.join(", ", winners);
         System.out.println(message + "가 최종 우승했습니다.");
     }
+
+    public void printInputCarNamesErrorMessage() {
+        System.out.println("자동차 이름은 1이상, 5이하의 ,로 구분한 문자열만 가능합니다.");
+    }
+
+    public void printInputRacingCountErrorMessage() {
+        System.out.println("경주 횟수는 1이상의 정수만 입력할 수 있습니다.");
+    }
 }
