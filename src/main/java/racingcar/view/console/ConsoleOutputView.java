@@ -18,6 +18,9 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printRaceWinners(RaceWinnersResponse raceWinnersResponse) {
-        // pobi, cron가 최종 우승했습니다.
+        String raceWinners = String.join(", ", raceWinnersResponse.raceWinners());
+
+        System.out.println();
+        System.out.printf("%s가 최종 우승했습니다.", raceWinners);
     }
 }

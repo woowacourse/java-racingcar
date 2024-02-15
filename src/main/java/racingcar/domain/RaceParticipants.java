@@ -29,4 +29,14 @@ public class RaceParticipants {
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
+
+    public List<Car> getRaceWinners() {
+        Car winner = cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow();
+
+        return cars.stream()
+                .filter(car -> car.compareTo(winner) == 0)
+                .toList();
+    }
 }
