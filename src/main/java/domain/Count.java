@@ -13,4 +13,8 @@ public class Count {
             throw new IllegalArgumentException();
         }
     }
+
+    public int get() {
+        return count;
+    }
 }

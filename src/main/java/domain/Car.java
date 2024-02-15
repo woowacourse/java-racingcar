@@ -29,4 +29,8 @@ public class Car {
         }
         return Optional.empty();
     }
+
+    public String getName() {
+        return carName.getName();
+    }
 }

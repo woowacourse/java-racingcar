@@ -3,6 +3,7 @@ package domain;
 import dto.Winners;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,5 +49,9 @@ public class Cars {
             }
         }
         return new Winners(winners);
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
