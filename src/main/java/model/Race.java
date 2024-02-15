@@ -1,5 +1,7 @@
 package model;
 
+import static utils.RandomNumberGenerator.generateRandomNumber;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,4 +16,15 @@ public class Race {
         }
     }
 
+    public void oneGame() {
+        for (Car car : cars) {
+            executeRandomMove(car, generateRandomNumber());
+        }
+    }
+
+    private static void executeRandomMove(Car car, int randomNumber) {
+        if (randomNumber >= 4) {
+            car.move();
+        }
+    }
 }
