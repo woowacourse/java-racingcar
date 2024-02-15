@@ -24,7 +24,7 @@ class RacingGameTest {
 
         game.moveAll();
 
-        assertThat(game.getCars()).isEqualTo(createMovedCars());
+        assertThat(game.getCars()).isEqualTo(createMovedCars(1));
     }
 
     @DisplayName("경주에 참여하는 자동차의 수는 최소 2대이다.")
@@ -41,6 +41,16 @@ class RacingGameTest {
             .isInstanceOf(RuntimeException.class);
     }
 
+    @DisplayName("라운드 수 만큼 경주를 진행할 수 있다.")
+    @Test
+    void race() {
+        RacingGame game = RacingGame.of(createCars(), moveCondition());
+
+        game.race(Round.from(3));
+
+        assertThat(game.getCars()).isEqualTo(createMovedCars(3));
+    }
+
     private List<Car> createCars() {
         return List.of(
             Car.from("아톰"),
@@ -48,12 +58,13 @@ class RacingGameTest {
         );
     }
 
-    private List<Car> createMovedCars() {
+    private List<Car> createMovedCars(int position) {
         return List.of(
-            Car.of("아톰", 1),
-            Car.of("이상", 1)
+            Car.of("아톰", position),
+            Car.of("이상", position)
         );
     }
+
 
     private MoveCondition moveCondition() {
         return () -> true;

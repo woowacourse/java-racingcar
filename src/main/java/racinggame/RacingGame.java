@@ -24,6 +24,13 @@ public class RacingGame {
         return new RacingGame(cars, moveCondition);
     }
 
+    public void race(Round round) {
+        while (!round.isEnd()) {
+            moveAll();
+            round = round.decrease();
+        }
+    }
+
     public void moveAll() {
         cars.forEach(car -> car.move(moveCondition));
     }
