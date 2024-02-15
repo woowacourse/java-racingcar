@@ -10,7 +10,6 @@ public class Car {
 
     public Car(String name, CarAccelerator accelerator) {
         validate(name);
-
         this.name = name;
         this.position = 0;
         this.accelerator = accelerator;

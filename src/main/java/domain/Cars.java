@@ -8,7 +8,6 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         validate(cars);
-
         this.cars = cars;
     }
 
