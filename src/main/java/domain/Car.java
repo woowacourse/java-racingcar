@@ -1,14 +1,12 @@
 package domain;
 
-import util.RandomNumber;
-
 public class Car {
     private static final int MOVE_BOUND_NUMBER = 4;
 
     private final Name name;
     private int position;
 
-    private Car(Name name, int position) {
+    public Car(Name name, int position) {
         this.name = name;
         this.position = position;
     }
@@ -17,8 +15,8 @@ public class Car {
         return new Car(Name.from(name), 0);
     }
 
-    public void move() {
-        if (RandomNumber.getRandomNumber() >= MOVE_BOUND_NUMBER) {
+    public void move(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MOVE_BOUND_NUMBER) {
             position++;
         }
     }

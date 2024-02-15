@@ -48,8 +48,8 @@ public class Cars {
         }
     }
 
-    public void moveAll() {
-        cars.forEach(Car::move);
+    public void moveAll(NumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(numberGenerator));
     }
 
     public List<Car> getCars() {

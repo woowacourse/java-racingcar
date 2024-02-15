@@ -1,15 +1,13 @@
-package util;
+package domain;
 
 import java.util.Random;
 
-public class RandomNumber {
+public class RandomNumberGenerator implements NumberGenerator {
     private static final int MAX_NUMBER_RANGE = 10;
     private static Random random = new Random();
 
-    private RandomNumber() {
-    }
-
-    public static int getRandomNumber() {
+    @Override
+    public int generate() {
         return random.nextInt(MAX_NUMBER_RANGE);
     }
 }

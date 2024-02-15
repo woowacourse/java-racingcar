@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Cars;
+import domain.RandomNumberGenerator;
 import util.StringConvertor;
 import view.ExceptionRetryHandler;
 import view.InputView;
@@ -21,7 +22,7 @@ public class RacingController {
 
         outputView.printRacingResult();
         while (tryCount != 0) {
-            cars.moveAll();
+            cars.moveAll(new RandomNumberGenerator());
             outputView.printRacingProceed(cars);
             tryCount--;
         }
