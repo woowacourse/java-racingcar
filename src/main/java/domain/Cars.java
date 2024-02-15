@@ -1,5 +1,7 @@
 package domain;
 
+import dto.Winners;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +35,7 @@ public class Cars {
         }
     }
 
-    public List<String> judge() {
+    public Winners judge() {
         List<String> winners = new ArrayList<>();
         int max = cars.stream()
                 .mapToInt(car -> car.getPosition())
@@ -45,6 +47,6 @@ public class Cars {
                 winners.add(name.get());
             }
         }
-        return winners;
+        return new Winners(winners);
     }
 }
