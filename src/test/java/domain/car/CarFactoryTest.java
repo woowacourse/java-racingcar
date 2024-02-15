@@ -8,7 +8,7 @@ import java.util.List;
 
 class CarFactoryTest {
 
-    @DisplayName("1 이하 크기의 문자열 리스트가 입력되면 예외가 발생한다.")
+    @DisplayName("2미만 크기의 문자열 리스트가 입력되면 예외가 발생한다.")
     @Test
     void initCarsThrowExceptionWhenListSizeLessThanOne() throws Exception {
         // Given
