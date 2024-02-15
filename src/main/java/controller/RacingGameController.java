@@ -15,8 +15,7 @@ public class RacingGameController {
 
         Cars cars = prepareCars();
 
-        Integer count = StringParser.parseToInt(inputView.requestMoveCount());
-        MoveCount moveCount = MoveCount.from(count);
+        MoveCount moveCount = prepareMoveCount();
 
         executeRace(cars, moveCount);
 
@@ -39,6 +38,16 @@ public class RacingGameController {
                     .toList());
         } catch (IllegalArgumentException e) {
             prepareCars();
+        }
+        throw new RuntimeException();
+    }
+
+    private MoveCount prepareMoveCount() {
+        try {
+            Integer count = StringParser.parseToInt(inputView.requestMoveCount());
+            return MoveCount.from(count);
+        } catch (IllegalArgumentException e){
+            prepareMoveCount();
         }
         throw new RuntimeException();
     }
