@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Car {
   private final int NAME_LENGTH_CONDITION = 5;
   private final String name;
-  private final List<CarStatus> statuses;
+  private final List<MoveStatus> statuses;
 
   public Car(String name) {
     validateNullAndEmpty(name);
@@ -30,11 +30,11 @@ public class Car {
   }
 
   public void forward() {
-    statuses.add(CarStatus.FORWARD);
+    statuses.add(MoveStatus.FORWARD);
   }
 
   public void stop() {
-    statuses.add(CarStatus.STOP);
+    statuses.add(MoveStatus.STOP);
   }
 
   @Override
@@ -50,7 +50,7 @@ public class Car {
     return Objects.hash(name, statuses);
   }
 
-  public List<CarStatus> getStatuses() {
+  public List<MoveStatus> getStatuses() {
     return new ArrayList<>(statuses);
   }
 
@@ -59,6 +59,7 @@ public class Car {
   }
 
   public int getForwardCount() {
-    return (int) statuses.stream().filter(carStatus -> carStatus.equals(CarStatus.FORWARD)).count();
+    return (int)
+        statuses.stream().filter(carStatus -> carStatus.equals(MoveStatus.FORWARD)).count();
   }
 }
