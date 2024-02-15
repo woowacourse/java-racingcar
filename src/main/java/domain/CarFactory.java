@@ -1,21 +1,20 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarFactory {
     private final List<Car> cars;
 
     public CarFactory(String carNames) {
-        cars = generateCars(carNames);
+        this.cars = generateCars(carNames);
     }
 
     private List<Car> generateCars(String carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames.split(",")) {
-            cars.add(new Car(carName));
-        }
-        return cars;
+        return Arrays.stream(carNames.split(","))
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public List<Car> getAllCars() {
@@ -24,20 +23,15 @@ public class CarFactory {
 
     public List<Car> getWinners() {
         int maxPosition = getMaxPosition();
-        List<Car> winners = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
-                winners.add(car);
-            }
-        }
-        return winners;
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .toList();
     }
 
     private int getMaxPosition() {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-        return maxPosition;
+        return cars.stream()
+                .mapToInt(car -> car.getPosition())
+                .max()
+                .orElse(0);
     }
 }
