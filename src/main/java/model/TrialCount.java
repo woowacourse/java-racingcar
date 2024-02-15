@@ -1,5 +1,7 @@
 package model;
 
+import constant.Exception;
+
 public class TrialCount {
   private int number;
 
@@ -10,7 +12,7 @@ public class TrialCount {
 
   private void validatePositive(int number) {
     if (number <= 0) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(Exception.POSITIVE.toString());
     }
   }
 
