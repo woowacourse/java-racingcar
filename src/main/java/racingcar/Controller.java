@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    final InputView inputView = new InputView();
-    final OutputView outputView = new OutputView();
-    final InputValidator inputValidator = new InputValidator();
-    List<Car> cars;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final InputValidator inputValidator = new InputValidator();
+    private List<Car> cars;
+    private Referee referee = new Referee();
 
     public void run() {
         List<String> carNames = inputView.getCarNames();
@@ -15,19 +16,18 @@ public class Controller {
         int tryNumber = inputView.getTryNumber();
         generateCarList(carNames);
         outputView.printResultPrompt();
-        while(tryNumber != 0){
+        while(tryNumber-- > 0){
             runRace();
-            tryNumber--;
         }
-
+        outputView.printWinners(referee.generateWinners(cars));
     }
 
     private void runRace() {
         for(Car car : cars) {
             car.move();
             outputView.printResult(car.getName(), car.getPosition());
-            System.out.println();
         }
+        System.out.println();
     }
 
     private void generateCarList(List<String> carNames) {
