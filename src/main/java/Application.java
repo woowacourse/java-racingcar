@@ -1,11 +1,14 @@
-import domain.RaceManager;
+import domain.FieldTest;
+import utils.NumberGenerator;
+import utils.RandomGenerator;
 import view.InputView;
 
 public class Application {
     private static final InputView inputView = new InputView(System.in);
+    private static final NumberGenerator numberGenerator = new RandomGenerator();
 
     public static void main(String[] args) {
-        RaceManager raceManager = new RaceManager(inputView);
-        raceManager.run();
+        FieldTest fieldTest = new FieldTest(inputView, numberGenerator);
+        fieldTest.run();
     }
 }

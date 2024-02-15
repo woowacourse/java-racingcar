@@ -1,20 +1,23 @@
 package domain;
 
 import java.io.IOException;
+import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class RaceManager {
+public class FieldTest {
     private final InputView inputView;
     private final CarFactory carFactory;
     private final Field field;
+    private final NumberGenerator numberGenerator;
     private final int numberOfAttempts;
 
-    public RaceManager(InputView inputView) {
+    public FieldTest(InputView inputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.carFactory = repeatUntilGetValidCarNames();
         this.numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
-        this.field = new Field(carFactory);
+        this.field = new Field(carFactory, numberGenerator);
+        this.numberGenerator = numberGenerator;
     }
 
     private CarFactory repeatUntilGetValidCarNames() {
