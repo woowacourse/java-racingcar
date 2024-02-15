@@ -22,17 +22,17 @@ public class Service {
         return winnerNames;
     }
 
-    // TODO: 확장성 고려하기 -> move에 대한 전략이 바뀔 것을 대비
-    private static boolean willMove() {
-        int randomNumber = (int) (Math.random() * RANDOM_NUMBER_RANGE);
-        return randomNumber >= MOVE_BOUNDARY_NUMBER;
-    }
-
     public static void playOneRound(List<Car> cars) {
         for (Car car : cars) {
             if (willMove()) {
                 car.move();
             }
         }
+    }
+
+    // TODO: 확장성 고려하기 -> move에 대한 전략이 바뀔 것을 대비
+    private static boolean willMove() {
+        int randomNumber = (int) (Math.random() * RANDOM_NUMBER_RANGE);
+        return randomNumber >= MOVE_BOUNDARY_NUMBER;
     }
 }
