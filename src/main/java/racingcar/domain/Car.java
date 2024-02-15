@@ -8,7 +8,7 @@ public class Car {
     private int position = INITIAL_POSITION;
 
     public Car(String name) {
-        this.name = new racingcar.domain.Name(name);
+        this.name = new Name(name);
     }
 
     public void move(int randomNumber) {

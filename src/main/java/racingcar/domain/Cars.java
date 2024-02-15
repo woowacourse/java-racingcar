@@ -9,23 +9,23 @@ public class Cars {
     private static final String CAR_NAME_DELIMITER = ",";
     private static final int MINIMUM_CARS_SIZE = 1;
 
-    private final List<racingcar.domain.Car> cars;
+    private final List<Car> cars;
 
     public Cars(String inputCarNames) {
-        List<racingcar.domain.Car> cars = mapCar(inputCarNames);
+        List<Car> cars = mapCar(inputCarNames);
         validateCars(cars);
 
         this.cars = cars;
     }
 
-    private List<racingcar.domain.Car> mapCar(String inputCarNames) {
+    private List<Car> mapCar(String inputCarNames) {
         return Arrays.stream(inputCarNames.split(CAR_NAME_DELIMITER))
                 .map(String::trim)
-                .map(racingcar.domain.Car::new)
+                .map(Car::new)
                 .toList();
     }
 
-    private void validateCars(List<racingcar.domain.Car> cars) {
+    private void validateCars(List<Car> cars) {
         if (cars.size() < MINIMUM_CARS_SIZE) {
             throw new IllegalArgumentException(
                     String.format(INVALID_CARS_SIZE_EXCEPTION_MESSAGE, MINIMUM_CARS_SIZE));
@@ -36,9 +36,9 @@ public class Cars {
         }
     }
 
-    private boolean hasDuplicateCarName(List<racingcar.domain.Car> cars) {
+    private boolean hasDuplicateCarName(List<Car> cars) {
         return cars.size() != cars.stream()
-                .map(racingcar.domain.Car::getName)
+                .map(Car::getName)
                 .distinct()
                 .count();
     }
@@ -48,7 +48,7 @@ public class Cars {
     }
 
 
-    public List<racingcar.domain.Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 }
