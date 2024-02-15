@@ -5,7 +5,7 @@ import model.dto.CarState;
 
 public class OutputView {
     public void printPlayResult() {
-        System.out.println("실행 결과");
+        System.out.println("\n실행 결과");
     }
 
     public void printCapturedCarStates(List<CarState> carStates) {
@@ -21,5 +21,13 @@ public class OutputView {
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    public void printFinalResult(List<String> winners) {
+        System.out.println(formatWinners(winners) + "가 최종 우승했습니다.");
+    }
+
+    private String formatWinners(List<String> winners) {
+        return String.join(", ", winners);
     }
 }
