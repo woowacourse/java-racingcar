@@ -21,19 +21,11 @@ public class RacingCarService {
         return count;
     }
 
-    // TODO: validateNumberFormat을 isParsable과 분리할지 합칠지 고민
     private void validateNumberFormat(String rawCount) {
-        if(!isParsable(rawCount)){
-            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
-        }
-    }
-
-    private boolean isParsable(String rawCount) {
         try {
             Integer.parseInt(rawCount);
-            return true;
         } catch (NumberFormatException e) {
-            return false;
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 

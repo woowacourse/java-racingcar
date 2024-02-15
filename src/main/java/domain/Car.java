@@ -31,7 +31,6 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    // TODO: getName 삭제 제거 고려해보기
     public String getName() {
         return name;
     }
@@ -59,4 +58,5 @@ public class Car implements Comparable<Car> {
     public int compareTo(Car c) {
         return Integer.compare(c.forward, forward);
     }
+
 }
