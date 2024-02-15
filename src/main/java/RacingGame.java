@@ -10,18 +10,22 @@ public class RacingGame {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public RacingGame() {
-    }
-
     public void run() {
         String names = retryInputOnException(this::receiveNames);
         int trialCount = retryInputOnException(this::receiveTrialCount);
 
         Cars cars = loadCars(names);
-        System.out.println();
-        System.out.println("실행 결과");
         race(trialCount, cars);
         announceWinners(cars);
+    }
+
+    private <T> T retryInputOnException(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE);
+            return retryInputOnException(supplier);
+        }
     }
 
     private String receiveNames() {
@@ -66,18 +70,29 @@ public class RacingGame {
     }
 
     private Cars loadCars(String carNames) {
-        return new Cars(Arrays.stream(carNames.split(","))
+        List<Car> carList = Arrays.stream(carNames.split(","))
                 .map(Car::from)
-                .toList()
-        );
+                .toList();
+
+        return new Cars(carList);
     }
 
     private void race(int trialCount, Cars cars) {
+        printResultPrefix();
         for (int i = 0; i < trialCount; i++) {
-            List<Integer> randomNumbers = createRandomNumber(cars.getSize());
+            List<Integer> randomNumbers = createRandomNumber(cars.getCount());
             cars.moveAll(randomNumbers);
             printCurrentRace(cars);
         }
+    }
+
+    private void printResultPrefix() {
+        System.out.println();
+        System.out.println("실행 결과");
+    }
+
+    protected List<Integer> createRandomNumber(int carCount) {
+        return Randoms.getRandomNumbers(carCount, MAX_RANDOM_NUMBER_RANGE);
     }
 
     private void printCurrentRace(Cars cars) {
@@ -94,18 +109,5 @@ public class RacingGame {
                 .collect(Collectors.joining(", ")) + "가 최종 우승했습니다.";
         ;
         System.out.println(winners);
-    }
-
-    private <T> T retryInputOnException(Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE);
-            return retryInputOnException(supplier);
-        }
-    }
-
-    protected List<Integer> createRandomNumber(int carCount) {
-        return Randoms.getRandomNumbers(carCount, MAX_RANDOM_NUMBER_RANGE);
     }
 }
