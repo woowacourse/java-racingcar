@@ -51,7 +51,6 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    //TODO : Car.tryMove 테스트
     @ParameterizedTest(name = "{0}이면 전진하지 않는다.")
     @ValueSource(ints = {0, 1, 2, 3})
     void dontMoveTest(int generatedValue) {
@@ -71,5 +70,4 @@ class CarTest {
         car.tryMove();
         assertThat(car.getLocation()).isEqualTo(prevLocation + 1);
     }
-
 }

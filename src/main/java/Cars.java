@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Cars {
@@ -14,6 +15,10 @@ public class Cars {
         this.cars = names.stream()
                 .map(name -> new Car(name, numberGenerator))
                 .toList();
+    }
+
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
     public void tryMove() {

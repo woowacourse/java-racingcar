@@ -36,4 +36,20 @@ class CarsTest {
         assertThatThrownBy(() -> new Cars(List.of("takan", "takan"), new Random()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("우승자 선정이 정상적으로 동작한다.")
+    void chooseWinnerTest() {
+        Cars cars = new Cars(List.of(
+                new Car("atto", new Constant(9)),
+                new Car("takan", new Constant(0)),
+                new Car("siso", new Constant(5))
+        ));
+        for (int round = 1; round <= 3; round++) {
+            cars.tryMove();
+        }
+
+        assertThat(cars.getWinnersName())
+                .containsAll(List.of("atto", "siso"));
+    }
 }
