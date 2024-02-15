@@ -10,31 +10,35 @@ import model.Car;
 import model.Cars;
 import model.Name;
 import model.TryCount;
-import view.InputView;
-import view.OutputView;
+import ui.InputView;
+import ui.OutputView;
 
 public class RaceController {
+    private final InputView inputView;
+    private final OutputView outputView;
     private final RaceService raceService;
 
-    public RaceController(RaceService raceService) {
+    public RaceController(InputView inputView, OutputView outputView, RaceService raceService) {
+        this.inputView = inputView;
+        this.outputView = outputView;
         this.raceService = raceService;
     }
 
     public void start() {
         Cars cars = createCars();
         TryCount tryCount = createTryCount();
-        OutputView.printResultHeader();
+        outputView.printResultHeader();
         while (tryCount.hasTryCount()) {
             raceService.moveCars(cars);
-            OutputView.printCarNameAndPosition(cars);
+            outputView.printCarNameAndPosition(cars);
             tryCount.decreaseTryCount();
         }
         List<String> winners = cars.getWinners();
-        OutputView.printWinners(winners);
+        outputView.printWinners(winners);
     }
 
     private Cars createCars() {
-        String[] carNames = InputView.inputCarNames();
+        String[] carNames = inputView.inputCarNames();
         return Arrays.stream(carNames)
                 .map(Name::new)
                 .map(Car::new)
@@ -42,7 +46,7 @@ public class RaceController {
     }
 
     private TryCount createTryCount() {
-        int tryCount = InputView.inputTryCount();
+        int tryCount = inputView.inputTryCount();
         return new TryCount(tryCount);
     }
 }
