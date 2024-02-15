@@ -17,12 +17,11 @@ public class RacingCarGame {
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                OutputView.printInputErrorMessage();
-            }
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            OutputView.printInputErrorMessage();
+            return requestUntilValidated(supplier);
         }
     }
 }
