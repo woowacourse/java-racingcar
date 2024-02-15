@@ -15,7 +15,7 @@ public class Car implements Comparable<Car> {
         this.progress = 0;
     }
 
-    public void move(){
+    public void move() {
         this.progress++;
     }
 

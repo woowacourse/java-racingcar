@@ -19,7 +19,7 @@ public class RacingGame {
         }
     }
 
-    public boolean isGameOver(){
+    public boolean isGameOver() {
         return moveCount-- <= 0;
     }
 

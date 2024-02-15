@@ -9,7 +9,7 @@ import racingcar.utils.Console;
 
 public class InputView {
 
-    public Cars askCarNames(){
+    public Cars askCarNames() {
         System.out.println("\n경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNames = readLine();
         String[] splittedInput = carNames.split(",");

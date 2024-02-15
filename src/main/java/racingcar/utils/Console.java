@@ -6,17 +6,17 @@ public class Console {
 
     private static Scanner scanner;
 
-    private Console(){
+    private Console() {
     }
 
-    private static Scanner getInstance(){
+    private static Scanner getInstance() {
         if (scanner == null){
             scanner = new Scanner(System.in);
         }
         return scanner;
     }
 
-    public static String readLine(){
+    public static String readLine() {
         return getInstance().nextLine();
     }
 

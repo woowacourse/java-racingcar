@@ -28,7 +28,7 @@ public class Cars {
     }
 
     private void validateSize(){
-        if(cars.isEmpty() || cars.size() > 40){
+        if(cars.isEmpty() || cars.size() > 40) {
             throw new IllegalArgumentException("자동차의 대수는 1~40 사이입니다.");
         }
     }
