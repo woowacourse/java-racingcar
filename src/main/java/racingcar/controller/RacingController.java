@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.generator.RandomGenerator;
+import racingcar.generator.RandomNumberGenerator;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.RacingGame;
@@ -20,7 +20,7 @@ public class RacingController {
     }
 
     public void run() {
-        Cars cars = registerCar();
+        Cars cars = createCars();
         RacingGame racingGame = createRacingGame(cars);
 
         inputView.closeScanner();
@@ -29,25 +29,25 @@ public class RacingController {
         printResult(totalResult);
     }
 
-    private Cars registerCar() {
-        List<String> strings = inputView.readCarNames();
-        List<Car> cars = strings.stream()
+    private Cars createCars() {
+        List<String> carNames = inputView.readCarNames();
+        List<Car> cars = carNames.stream()
                 .map(Car::new)
                 .toList();
-        return new Cars(cars, new RandomGenerator());
+        return new Cars(cars, new RandomNumberGenerator());
     }
 
     private RacingGame createRacingGame(Cars cars) {
-        int count = inputView.readCount();
-        return new RacingGame(count, cars);
+        int tryCount = inputView.readTryCount();
+        return new RacingGame(tryCount, cars);
     }
 
     private TotalResult playRacingGame(RacingGame racingGame) {
-        return new TotalResult(racingGame.gameStart());
+        return new TotalResult(racingGame.run());
     }
 
     private void printResult(TotalResult totalResult) {
         outputView.printResult(totalResult);
-        outputView.printWinnerInfo(totalResult);
+        outputView.printWinnerInfo(totalResult.selectWinner());
     }
 }

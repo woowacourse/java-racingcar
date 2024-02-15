@@ -19,8 +19,7 @@ public class OutputView {
         }
     }
 
-    public void printWinnerInfo(TotalResult totalResult) {
-        List<String> winners = totalResult.selectWinner();
+    public void printWinnerInfo(List<String> winners) {
         System.out.printf("최종 우승자: %s%n", String.join(", ", winners));
     }
 }

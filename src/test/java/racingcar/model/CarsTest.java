@@ -32,18 +32,18 @@ class CarsTest {
     @CsvSource(value = {"5,1", "3,0"})
     void getCarStatus(int givenNumber, int expected) {
         //given
-        String givenCarName = "a";
-        List<String> names = List.of(givenCarName, "b", "c");
+        String carName = "a";
+        List<String> names = List.of(carName, "b", "c");
         List<Car> givenCars = names.stream()
                 .map(Car::new)
                 .toList();
 
         //when
         Cars cars = new Cars(givenCars, new MovingStub(List.of(givenNumber, 3, 3)));
-        LinkedHashMap<String, Integer> result = cars.getCarStatus();
+        LinkedHashMap<String, Integer> result = cars.makeCarsMove();
 
         //then
         assertThat(result).hasSize(givenCars.size());
-        assertThat(result.get(givenCarName)).isEqualTo(expected);
+        assertThat(result.get(carName)).isEqualTo(expected);
     }
 }

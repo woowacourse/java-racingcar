@@ -6,25 +6,27 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final int count;
+    private static final int MINIMUM_TRY_COUNT = 1;
+
+    private final int tryCount;
     private final Cars cars;
 
-    public RacingGame(int count, Cars cars) {
-        validateCount(count);
-        this.count = count;
+    public RacingGame(int tryCount, Cars cars) {
+        validateTryCount(tryCount);
+        this.tryCount = tryCount;
         this.cars = cars;
     }
 
-    public List<RoundResult> gameStart() {
+    public List<RoundResult> run() {
         List<RoundResult> gameResult = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            gameResult.add(createRoundResult(cars.getCarStatus()));
+        for (int i = 0; i < tryCount; i++) {
+            gameResult.add(createRoundResult(cars.makeCarsMove()));
         }
         return gameResult;
     }
 
-    private void validateCount(int count) {
-        if (count < 1) {
+    private void validateTryCount(int tryCount) {
+        if (tryCount < MINIMUM_TRY_COUNT) {
             throw new IllegalArgumentException();
         }
     }
@@ -32,5 +34,4 @@ public class RacingGame {
     private RoundResult createRoundResult(LinkedHashMap<String, Integer> carStatus) {
         return new RoundResult(carStatus);
     }
-
 }

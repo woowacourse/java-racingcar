@@ -4,20 +4,20 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.generator.IntegerGenerator;
+import racingcar.generator.NumberGenerator;
 
 public class Cars {
 
     private final List<Car> cars;
-    private final IntegerGenerator generator;
+    private final NumberGenerator generator;
 
-    public Cars(List<Car> cars, IntegerGenerator generator) {
+    public Cars(List<Car> cars, NumberGenerator generator) {
         validateCarNames(cars);
         this.cars = cars;
         this.generator = generator;
     }
 
-    public LinkedHashMap<String, Integer> getCarStatus() {
+    public LinkedHashMap<String, Integer> makeCarsMove() {
         LinkedHashMap<String, Integer> carStatus = new LinkedHashMap<>();
         for (Car car : cars) {
             car.move(generator.generate());

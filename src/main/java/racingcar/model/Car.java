@@ -2,16 +2,21 @@ package racingcar.model;
 
 public class Car {
 
+    private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+    private static final int MINIMUM_STEP_FORWARD_STANDARD = 4;
+    private static final int DEFAULT_POSITION = 0;
+
     private final String name;
     private int position;
 
     public Car(String name) {
-        this.name = validateName(name);
-        this.position = 0;
+        validateName(name);
+        this.name = name;
+        this.position = DEFAULT_POSITION;
     }
 
     public int move(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= MINIMUM_STEP_FORWARD_STANDARD) {
             position++;
         }
         return position;
@@ -25,10 +30,13 @@ public class Car {
         return position;
     }
 
-    private String validateName(String name) {
-        if (name == null || name.length() > 5 || name.isEmpty()) {
+    private void validateName(String name) {
+        if (isNameEmpty() || name.length() > MAXIMUM_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
-        return name;
+    }
+
+    private boolean isNameEmpty() {
+        return name == null || name.isEmpty();
     }
 }

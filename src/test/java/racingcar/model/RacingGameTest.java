@@ -43,9 +43,9 @@ class RacingGameTest {
         //when
         Cars cars = new Cars(carList, new MovingStub(List.of(4, 4, 3)));
         RacingGame racingGame = new RacingGame(count, cars);
-        List<RoundResult> roundResults = racingGame.gameStart();
+        List<RoundResult> roundResults = racingGame.run();
 
         //then
-        assertThat(roundResults).hasSize(3);
+        assertThat(roundResults).hasSize(count);
     }
 }

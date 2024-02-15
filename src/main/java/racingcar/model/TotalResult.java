@@ -11,7 +11,7 @@ public class TotalResult {
 
     public List<String> selectWinner() {
         RoundResult roundResult = totalResult.get(totalResult.size() - 1);
-        return roundResult.getWinner();
+        return roundResult.getWinners();
     }
 
     public List<RoundResult> getTotalResult() {
