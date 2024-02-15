@@ -25,7 +25,7 @@ class CarTest {
         car = new Car(VALID_CAR_NAME);
     }
 
-    @DisplayName("이름이 5자 초과이면 예외 발생한다")
+    @DisplayName("이름이 5자 초과이면 예외를 던진다")
     @ParameterizedTest
     @ValueSource(strings = {"점심은순두부", "1234567"})
     void testInvalidNameLength(String carName) {
@@ -33,7 +33,7 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("이름이 5자 이하이면 예외 발생하지 않는다")
+    @DisplayName("이름이 5자 이하이면 예외를 던지지 않는다")
     @ParameterizedTest
     @ValueSource(strings = {"점심순두부", "1"})
     void testValidNameLength(String carName) {
