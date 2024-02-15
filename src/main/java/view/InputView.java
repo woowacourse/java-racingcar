@@ -12,7 +12,7 @@ public class InputView {
 
     public List<String> inputCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
 
         return Stream.of(input.split(","))
                 .map(String::trim)
@@ -21,12 +21,12 @@ public class InputView {
 
     public RacingCount inputRacingCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        int input = parseNumber(scanner.nextLine());
+        final int input = parseNumber(scanner.nextLine());
 
         return new RacingCount(input);
     }
 
-    private int parseNumber(String input) {
+    private int parseNumber(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
