@@ -1,6 +1,7 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class View {
 
@@ -8,23 +9,29 @@ public class View {
 
     public List<Car> readCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String userInput = scanner.nextLine();
-        String[] carNames = userInput.split(",");
-
+        String[] carNames = readCarNames();
         return getCars(carNames);
+    }
+
+    private String[] readCarNames() {
+        String userInput = scanner.nextLine();
+        return userInput.split(",");
     }
 
     private List<Car> getCars(String[] carNames) {
         try {
-            List<Car> cars = new ArrayList<>();
-            for (String carName : carNames) {
-                cars.add(new Car(carName));
-            }
-            return cars;
+            Validator.validateParticipant(carNames);
+            return makeCars(carNames);
         } catch (IllegalArgumentException e) {
             System.out.println("다시 입력해주세요.");
             return readCars();
         }
+    }
+
+    private static List<Car> makeCars(String[] carNames) {
+        return Arrays.stream(carNames)
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public int readCount() {

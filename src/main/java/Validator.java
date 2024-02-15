@@ -15,11 +15,23 @@ public class Validator {
         return count;
     }
 
-    private static void isDigit(String rawCount) {
-        for (int i = 0; i < rawCount.length(); i++) {
-            if (!Character.isDigit(rawCount.charAt(i))) {
-                throw new IllegalArgumentException();
-            }
+    public static void validateParticipant(String[] carNames) {
+        validateAmount(carNames);
+        validateDuplicated(carNames);
+    }
+
+    private static void validateAmount(String[] carNames) {
+        if (carNames.length <= 1) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateDuplicated(String[] carNames) {
+        long uniqueCount = Arrays.stream(carNames)
+                .distinct()
+                .count();
+        if (uniqueCount != carNames.length) {
+            throw new IllegalArgumentException();
         }
     }
 }
