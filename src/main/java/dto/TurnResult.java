@@ -1,5 +1,7 @@
-package domain;
+package dto;
 
+import domain.Car;
+import domain.Cars;
 import java.util.ArrayList;
 import java.util.List;
 

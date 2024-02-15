@@ -2,7 +2,7 @@ package domain;
 
 public class Car implements Comparable<Car> {
 
-    private final Distance distance; //TODO: final
+    private final Distance distance;
     private final Name name;
 
     public Car(Name name, Distance distance) {

@@ -1,12 +1,12 @@
 package view;
 
-import domain.CarStatus;
-import domain.TurnResult;
+import dto.CarStatus;
+import dto.TurnResult;
 import dto.WinnersResponse;
 import java.util.List;
 
 public class OutputView {
-    public void showResult(WinnersResponse rawWinners) { //TODO: formatter로 넣든지, dto 쓸것!
+    public void showResult(WinnersResponse rawWinners) {
         List<String> winners = rawWinners.getNames();
         String result = String.join(",", winners);
         System.out.println(result + "가 최종 우승했습니다.");

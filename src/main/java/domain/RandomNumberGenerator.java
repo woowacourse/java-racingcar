@@ -9,6 +9,6 @@ public class RandomNumberGenerator {
 
     public int generate() {
         Random random = new Random();
-        return random.nextInt(MIN_VALUE, MAX_VALUE + 1);  //TODO: 매직넘버
+        return random.nextInt(MIN_VALUE, MAX_VALUE + 1);
     }
 }

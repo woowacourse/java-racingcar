@@ -5,7 +5,7 @@ import domain.Count;
 import domain.RacingGame;
 import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
-import domain.TurnResult;
+import dto.TurnResult;
 import domain.Winners;
 import dto.CarNameRequest;
 import dto.WinnersResponse;
@@ -31,7 +31,7 @@ public class RacingGameController {
         Count count = Count.from(retryUntillNoException(inputView::readCount));
         Cars cars = retryUntillNoException(Cars::fromDto, carsNameRequest);
         RacingGame racingGame = RacingGame.of(count, cars,
-                new RandomMovementGenerator(new RandomNumberGenerator())); //TODO: 차차
+                new RandomMovementGenerator(new RandomNumberGenerator()));
         outputView.showStatusMessage();
         play(racingGame);
         Winners winners = Winners.from(cars);
@@ -39,7 +39,7 @@ public class RacingGameController {
     }
 
     public void play(RacingGame racingGame) {
-        List<TurnResult> result = racingGame.getTurnResult();
+        List<TurnResult> result = racingGame.getGameResult();
         outputView.showStatus(result);
     }
 

@@ -1,4 +1,6 @@
-package domain;
+package dto;
+
+import domain.Car;
 
 public class CarStatus {
     private final String name;

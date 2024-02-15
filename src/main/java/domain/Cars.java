@@ -61,7 +61,7 @@ public class Cars {
     }
 
     private static void addWinners(Car car, Car maxDistanceCar, List<Car> winners) {
-        if (car.isSameDistance(maxDistanceCar)) {  //TODO: 메서드 분리 더 잘하기
+        if (car.isSameDistance(maxDistanceCar)) {
             winners.add(car);
         }
     }

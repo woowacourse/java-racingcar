@@ -24,7 +24,7 @@ public class InputValidater {
     }
 
     private void validateDuplicatedDelimiter(String input) {
-        if (input.contains(",,")) { // TODO: 추후 리펙터링 할 것!
+        if (input.contains(DELIMITER.repeat(2))) {
             throw new IllegalArgumentException("올바른 형식으로 입력해주세요.");
         }
     }
@@ -45,7 +45,7 @@ public class InputValidater {
     private void validateRange(String input) {
         try {
             Integer.parseInt(input);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정상적인 범위의 수를 입력해주세요.");
         }
     }
