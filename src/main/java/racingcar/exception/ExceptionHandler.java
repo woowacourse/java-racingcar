@@ -11,7 +11,7 @@ public class ExceptionHandler {
             try {
                 return callback.get();
             } catch (IllegalArgumentException exception) {
-                System.out.printf("%s%s%n%n", ERROR, exception.getMessage());
+                System.out.printf("%n%s%s%n%n", ERROR, exception.getMessage());
             }
         }
     }
