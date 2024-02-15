@@ -14,12 +14,6 @@ public class Cars {
         this.cars = cars;
     }
 
-    private void validate(List<Car> cars) {
-        if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
-            throw new IllegalArgumentException("정상적인 경주를 위해 자동차는 2대에서 50대 사이로 입력해주세요.");
-        }
-    }
-
     public static Cars from(List<Car> cars) {
         return new Cars(cars);
     }
@@ -28,16 +22,16 @@ public class Cars {
         return new Cars(List.of(Car.fromEmpty(), Car.fromEmpty()));
     }
 
-    public void move(RandomMovementGenerator randomMovementGenerator) {
-        for (Car car : cars) {
-            moveCar(randomMovementGenerator, car);
+    private void validate(List<Car> cars) {
+        if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
+            throw new IllegalArgumentException("정상적인 경주를 위해 자동차는 2대에서 50대 사이로 입력해주세요.");
         }
     }
 
-    private static void moveCar(RandomMovementGenerator randomMovementGenerator, Car car) {
-        if (randomMovementGenerator.generate()) {
-            car.move();
-        }
+    public void move(RandomMovementGenerator randomMovementGenerator) {
+        cars.stream()
+                .filter(car -> randomMovementGenerator.generate())
+                .forEach(Car::move);
     }
 
     public List<Car> getMaxDistanceCars() {
@@ -52,7 +46,7 @@ public class Cars {
         return maxDistanceCars;
     }
 
-    private static void addWinners(Car car, Car maxDistanceCar, List<Car> winners) {
+    private void addWinners(Car car, Car maxDistanceCar, List<Car> winners) {
         if (car.isSameDistance(maxDistanceCar)) {
             winners.add(car);
         }

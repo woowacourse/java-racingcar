@@ -10,6 +10,14 @@ public class Name {
         this.name = name;
     }
 
+    public static Name empty() {
+        return new Name(" ");
+    }
+
+    public static Name from(String name) {
+        return new Name(name);
+    }
+
     private void validate(String name) {
         if (!isValidSize(name)) {
             throw new IllegalArgumentException("이름은 1~5자로 입력해주세요.");
@@ -18,14 +26,6 @@ public class Name {
 
     private boolean isValidSize(String name) {
         return name.length() >= MIN_NAME_LENGTH && name.length() <= MAX_NAME_LENGTH;
-    }
-
-    public static Name empty() {
-        return new Name(" ");
-    }
-
-    public static Name from(String name) {
-        return new Name(name);
     }
 
     public String getName() {

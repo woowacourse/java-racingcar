@@ -25,10 +25,6 @@ public class Distance implements Comparable<Distance> {
         return this.distance == maxDistance.distance;
     }
 
-    public int getDistance() {
-        return distance;
-    }
-
     @Override
     public int compareTo(Distance other) {
         return this.distance - other.distance;
@@ -49,5 +45,9 @@ public class Distance implements Comparable<Distance> {
     @Override
     public int hashCode() {
         return Objects.hash(distance);
+    }
+
+    public int getDistance() {
+        return distance;
     }
 }
