@@ -15,6 +15,14 @@ public class Car {
         }
     }
 
+    public boolean isSameCount(final int count) {
+        return this.count == count;
+    }
+
+    public boolean isAlsoWinner(final Car car) {
+        return car.isSameCount(count);
+    }
+
     public String getName() {
         return name;
     }

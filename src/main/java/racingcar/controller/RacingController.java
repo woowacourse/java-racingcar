@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.util.Parser;
 import racingcar.util.Validator;
@@ -39,6 +40,9 @@ public class RacingController {
         for(int i = 0 ; i < parsedTryCount; i++) {
             moveCars(cars);
         }
+
+        List<Car> winners = cars.determineWinner();
+        outputView.printWinners(winners);
     }
 
     private void moveCars(final Cars cars) {
