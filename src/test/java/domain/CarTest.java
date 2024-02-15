@@ -20,7 +20,8 @@ class CarTest {
 
     @Test
     void move() {
-        //Todo
+        car.move(4);
+        assertThat(car.getLocation()).isEqualTo(1);
     }
 
     @Test
