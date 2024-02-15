@@ -20,7 +20,6 @@ public class RacingController implements Controller {
     public void run() {
         RaceParticipants raceParticipants = readRaceParticipants();
         int raceCount = readRaceCount();
-
     }
 
     private RaceParticipants readRaceParticipants() {

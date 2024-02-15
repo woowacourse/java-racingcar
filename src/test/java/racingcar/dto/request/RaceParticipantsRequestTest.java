@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class RaceParticipantsRequestTest {
     @Test
-    void toRaceParticipants를_RaceParticipants로_변환_성공() {
+    void toRaceParticipants를_이용해서_RaceParticipants로_변환_성공() {
         //given
         List<String> carNames = List.of("a", "bb", "ccc");
         String inputNames= String.join( ",", carNames);
@@ -28,7 +28,7 @@ class RaceParticipantsRequestTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", ",일", "일,,이", "일,이,"})
-    void toRaceParticipants를_RaceParticipants로_변환_실패(String name) {
+    void toRaceParticipants를_이용해서_RaceParticipants로_변환_실패(String name) {
         //when
         RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
 
