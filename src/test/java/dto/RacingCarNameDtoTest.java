@@ -1,5 +1,6 @@
 package dto;
 
+import domain.RacingCarNames;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ class RacingCarNameDtoTest {
     public void testCarNameLength() {
         String carNameOverThan5Length = "racingcar";
 
-        Assertions.assertThatThrownBy(() -> new RacingCarNameDto(carNameOverThan5Length))
+        Assertions.assertThatThrownBy(() -> new RacingCarNames(carNameOverThan5Length))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

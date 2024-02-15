@@ -1,30 +1,30 @@
 package controller;
 
-import dto.RacingCarNameDto;
+import domain.RacingCarNames;
+import exception.NotNumberPositiveException;
 import view.InputView;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingCarController {
     public void start() {
-        List<String> carNames = splitCarName(InputView.inputCarNames());
-        List<RacingCarNameDto> racingCarNamesDtos = carNames.stream().map(RacingCarNameDto::new).collect(Collectors.toList());
-        checkCarNameDuplication(racingCarNamesDtos);
+        RacingCarNames racingCarNames = readRacingCarNames();
+        int moveCount = readMoveCount();
     }
 
-    private List<String> splitCarName(String input) {
-        List<String> names = List.of(input.split(","));
-        return names;
+    private RacingCarNames readRacingCarNames() {
+            String carNames = InputView.inputCarNames();
+            return new RacingCarNames(carNames);
     }
 
-    private void checkCarNameDuplication(List<RacingCarNameDto> racingCarNameDtos) {
-        if (isDuplicated(racingCarNameDtos)) {
-            throw new IllegalArgumentException("중복된 이름이 존재합니다.");
+    private int readMoveCount() {
+        String input = InputView.inputMoveCount();
+        int moveCount = Integer.parseInt(input);
+        validatePositiveMoveCount(moveCount);
+        return moveCount;
+    }
+
+    private void validatePositiveMoveCount(int moveCount) {
+        if (moveCount <= 0) {
+            throw new NotNumberPositiveException();
         }
-    }
-
-    private boolean isDuplicated(List<RacingCarNameDto> racingCarNameDtos) {
-        return racingCarNameDtos.stream().distinct().count() < racingCarNameDtos.size();
     }
 }
