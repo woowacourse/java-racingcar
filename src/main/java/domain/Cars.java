@@ -20,9 +20,7 @@ public class Cars {
     }
 
     public void move() {
-        carList.forEach((car) -> {
-            car.move(moveStrategy.isMove());
-        });
+        carList.forEach(car -> car.move(moveStrategy.isMove()));
     }
 
     public List<Car> findWinner() {
