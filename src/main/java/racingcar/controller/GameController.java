@@ -67,7 +67,7 @@ public class GameController {
                 .toList();
     }
 
-    private <T>  T generate(Supplier<T> supplier) {
+    private <T> T generate(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

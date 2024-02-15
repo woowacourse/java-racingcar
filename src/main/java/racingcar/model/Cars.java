@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import racingcar.message.ErrorMessage;
 
 public class Cars {
 
@@ -29,14 +30,14 @@ public class Cars {
 
     private static void validateDuplicateName(List<Car> cars) {
         if (cars.size() != Set.copyOf(cars).size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
         }
     }
 
 
     private static void validateSeparator(final String carsName) {
         if (carsName.endsWith(SEPARATOR)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
         }
     }
 
