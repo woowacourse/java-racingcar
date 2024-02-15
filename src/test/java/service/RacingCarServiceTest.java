@@ -19,6 +19,12 @@ class RacingCarServiceTest {
         racingCarService = new RacingCarService();
     }
 
+    @DisplayName("Cars 생성 테스트")
+    @Test
+    void getCarsTest() {
+        assertThat(racingCarService.getCars("가,나,다").getCars()).hasSize(3);
+    }
+
     @DisplayName("우승자 1명 테스트")
     @Test
     void findWinnerTest() {

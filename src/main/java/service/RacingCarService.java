@@ -8,6 +8,11 @@ import java.util.List;
 
 public class RacingCarService {
 
+    public Cars getCars(String rawNames){
+        List<String> names = List.of(rawNames.split(","));
+        return new Cars(names);
+    }
+
     public List<String> findWinners(Cars cars) {
         List<Car> winners =  cars.getCars().stream()
                 .sorted(Car::compareTo)
