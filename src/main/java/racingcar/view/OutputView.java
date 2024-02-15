@@ -36,4 +36,8 @@ public class OutputView {
     public void printResultMsg() {
         System.out.println(RESULT_MSG);
     }
+
+    public void printErrorMsg(String errorMsg) {
+        System.out.println(errorMsg);
+    }
 }
