@@ -1,6 +1,7 @@
 package domain;
 
-public class Car {
+public class Car  {
+    public static final Integer FORWARD_MAX_NUMBER = 10;
     private final Name name;
     private Integer position;
     private static final Integer FORWARD_THRESHOLD=4;
@@ -21,5 +22,10 @@ public class Car {
         if(number>=FORWARD_THRESHOLD){
             this.position++;
         }
+    }
+
+    @Override
+    public String toString() {
+        return name.getValue();
     }
 }
