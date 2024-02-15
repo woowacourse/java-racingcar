@@ -1,12 +1,22 @@
 package racingcar.domain.car;
 
 import java.util.Objects;
+import racingcar.exception.ErrorMessage;
+import racingcar.exception.InvalidInputException;
 
 public class Position implements Comparable<Position> {
+    public static final int MIN_POSITION = 0;
     private int value;
 
     public Position(final int value) {
+        validateRange(value);
         this.value = value;
+    }
+
+    private void validateRange(int value) {
+        if (value < MIN_POSITION) {
+            throw new InvalidInputException(ErrorMessage.INVALID_POSITION);
+        }
     }
 
     public void forward() {
