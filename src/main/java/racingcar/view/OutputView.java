@@ -1,7 +1,6 @@
 package racingcar.view;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -20,5 +19,9 @@ public class OutputView {
 
     public static void printWinners(final List<String> winners) {
         System.out.printf("%s가 최종 우승했습니다.", String.join(", ", winners));
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
