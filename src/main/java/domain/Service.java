@@ -34,8 +34,9 @@ public class Service {
 
     private void validateDuplicateName(List<Car> cars) {
         int duplication = 0;
+        Set<String> validateCar = new HashSet<>();
         for (Car car:cars) {
-            duplication = validateDuplication(car.getCarName());
+            duplication = validateDuplication(car.getCarName(), validateCar);
         }
 
         if (cars.size() != duplication) {
@@ -43,10 +44,8 @@ public class Service {
         }
     }
 
-    private int validateDuplication(String carName) {
-        Set<String> validateCar = new HashSet<>();
+    private int validateDuplication(String carName, Set<String> validateCar) {
         validateCar.add(carName);
-        
         return validateCar.size();
     }
 
