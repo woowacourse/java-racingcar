@@ -1,9 +1,7 @@
-import domain.Car;
-import domain.CarRacing;
-import domain.Cars;
-import domain.TryCount;
+import domain.*;
 import io.InputView;
 import io.OutputView;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarRacingTest {
     private CarRacing carRacing;
+
+    private static CarAccelerator accelerator;
+
+    @BeforeAll
+    static void initAll() {
+        accelerator = new CarAccelerator();
+    }
+
     @BeforeEach
     void init() {
         this.carRacing = new CarRacing(new InputView(), new OutputView());
@@ -28,7 +34,7 @@ class CarRacingTest {
         // given
         String carNames = "pobi,crong,honux";
         // when
-        List<Car> cars = carRacing.createCars(carNames).getCars();
+        List<Car> cars = carRacing.createCars(carNames, accelerator).getCars();
         // then
         assertThat(cars).hasSize(3);
         assertAll(
@@ -43,7 +49,7 @@ class CarRacingTest {
     @DisplayName("자동차 생성 실패 테스트")
     void createCarsFail(String carNames) {
         assertThatThrownBy(() -> {
-            carRacing.createCars(carNames);
+            carRacing.createCars(carNames, accelerator);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -73,7 +79,7 @@ class CarRacingTest {
         String carNames = "pobi,crong,honux";
         String expected = "pobi,crong,honux";
         // when
-        Cars cars = carRacing.createCars(carNames);
+        Cars cars = carRacing.createCars(carNames, accelerator);
         //then
         assertThat(carRacing.getWinners(cars)).hasSize(3);
     }

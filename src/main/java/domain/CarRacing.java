@@ -4,7 +4,6 @@ import io.InputView;
 import io.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -33,7 +32,7 @@ public class CarRacing {
 
 
     public void start() {
-        Cars cars = createCars(inputView.readCarNames());
+        Cars cars = createCars(inputView.readCarNames(), new CarAccelerator());
         TryCount tryCount = createTryCount(inputView.readTryAmount());
 
         printMoveResult(tryCount, cars);
@@ -50,13 +49,18 @@ public class CarRacing {
     }
 
     /**
-     * TODO: Cars 생성자 매개변수 변경
+     * TODO: Cars 생성자 매개변수 변경 (O)
      * carNames가 아니라 List<Car>를 입력하도록 Car 컬렉션을 먼저 생성하고
      * 해당 컬렉션을 통해 Cars 객체 생성
      * 이유는 Cars 객체 상단의 TODO를 참조
      */
-    public Cars createCars(String carNames) {
-        return new Cars(Arrays.asList(carNames.split(",")));
+    public Cars createCars(String carNames, CarAccelerator accelerator) {
+        List<Car> cars = new ArrayList<>();
+        for (String carName : carNames.split(",")) {
+            cars.add(new Car(carName, accelerator));
+        }
+
+        return new Cars(cars, new CarAccelerator());
     }
 
     public TryCount createTryCount(int amount) {
