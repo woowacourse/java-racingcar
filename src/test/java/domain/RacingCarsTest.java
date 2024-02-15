@@ -11,10 +11,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RacingCarsTest {
-    private static final List<Car> cars = new ArrayList<>();
+    private static List<Car> cars;
 
     @BeforeEach
     void createCars() {
+        cars = new ArrayList<>();
         Car pobiCar = new Car("pobi");
         pobiCar.moveForward();
 
@@ -48,5 +49,12 @@ class RacingCarsTest {
     void isValidWinnerResult() {
         RacingCars racingCars = new RacingCars(cars);
         assertEquals(racingCars.getWinners(), "pobi, gugu");
+    }
+
+    @Test
+    @DisplayName("자동차 이름은 중복될 수 없다.")
+    void isDuplicatedCarName() {
+        List<Car> cars = new ArrayList<>(List.of(new Car("pobi"), new Car("pobi")));
+        assertThrows(IllegalArgumentException.class, () -> new RacingCars(cars));
     }
 }
