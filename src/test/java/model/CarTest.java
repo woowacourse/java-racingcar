@@ -14,7 +14,7 @@ public class CarTest {
     @ParameterizedTest
     @CsvSource({"5, 1", "3, 0", "4, 1"})
     void moveForwardTest(int randomNumber, int expectedPosition) {
-        Car car = new Car("lemon");
+        Car car = Car.from("lemon");
         car.moveForward(randomNumber);
 
         assertThat(car.getPosition()).isEqualTo(expectedPosition);
@@ -24,7 +24,7 @@ public class CarTest {
     void carNameLengthTest() {
         String wrongName = "abcdef";
 
-        assertThatThrownBy(() -> new Car(wrongName))
+        assertThatThrownBy(() -> Car.from(wrongName))
                 .isInstanceOf(IllegalStateException.class);
     }
 
@@ -32,7 +32,7 @@ public class CarTest {
     @NullSource
     @ValueSource(strings = {"", "    "})
     void carNameBlankOrNullTest(String wrongName) {
-        assertThatThrownBy(() -> new Car(wrongName))
+        assertThatThrownBy(() -> Car.from(wrongName))
                 .isInstanceOf(IllegalStateException.class);
     }
 }

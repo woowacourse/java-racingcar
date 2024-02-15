@@ -13,24 +13,28 @@ public class Car {
     private int position;
     private String name;
 
-    public Car(String name) {
-        validate(name);
+    private Car(String name) {
         this.position = INITIAL_POSITION;
         this.name = name;
     }
 
-    private void validate(String name) {
+    public static Car from(String name) {
+        validate(name);
+        return new Car(name);
+    }
+
+    private static void validate(String name) {
         checkBlankOrNull(name);
         checkNameLength(name);
     }
 
-    private void checkNameLength(String name) {
+    private static void checkNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
             throw new IllegalStateException(ERROR_NAME_LENGTH.getMessage());
         }
     }
 
-    private void checkBlankOrNull(String name) {
+    private static void checkBlankOrNull(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalStateException(ERROR_IS_BLANK_OR_NULL.getMessage());
         }
