@@ -7,7 +7,6 @@ import racingcar.util.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingController {
@@ -26,7 +25,7 @@ public class RacingController {
             String carNames = inputView.readCarNames();
             Validator.validateNullName(carNames);
             List<String> parsedCarNames = Parser.parseCarNames(carNames);
-            Validator.validateDuplicatedNames(parsedCarNames);
+            Validator.validateCarNames(parsedCarNames);
             return parsedCarNames;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMsg(e.getMessage());
@@ -34,34 +33,34 @@ public class RacingController {
         }
     }
 
-    private Cars createCars(List<String> names) {
-        Cars cars = new Cars();
-        for(String name: names) {
-            Validator.validateCarNamesFormat(name);
-            cars.addCar(name);
+    private int readTryCount() {
+        try {
+            String tryCount = inputView.readTryCount();
+            int parsedTryCount = Validator.validateInteger(tryCount);
+            Validator.validateTryCount(parsedTryCount);
+            return parsedTryCount;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMsg(e.getMessage());
+            return readTryCount();
         }
-        return cars;
-    }
-
-    public void run() {
-        List<String> parsedCarNames = readCarNames();
-        Cars cars = createCars(parsedCarNames);
-
-        String tryCount = inputView.readTryCount();
-        int parsedTryCount = Validator.validateInteger(tryCount);
-        Validator.validateTryCount(parsedTryCount);
-
-        outputView.printResultMsg();
-        for(int i = 0 ; i < parsedTryCount; i++) {
-            moveCars(cars);
-        }
-
-        List<Car> winners = cars.determineWinner();
-        outputView.printWinners(winners);
     }
 
     private void moveCars(final Cars cars) {
         cars.moveAllCars();
         outputView.printCarPosition(cars);
+    }
+
+    public void run() {
+        List<String> carNames = readCarNames();
+        Cars cars = new Cars(carNames);
+        int tryCount = readTryCount();
+
+        outputView.printResultMsg();
+        for(int i = 0 ; i < tryCount; i++) {
+            moveCars(cars);
+        }
+
+        List<Car> winners = cars.determineWinner();
+        outputView.printWinners(winners);
     }
 }

@@ -8,13 +8,8 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars() {
-        this.cars = new ArrayList<>();
-    }
-
-    public void addCar(final String carName) {
-        Car car = new Car(carName);
-        cars.add(car);
+    public Cars(final List<String> names) {
+        this.cars = names.stream().map(Car::new).toList();
     }
 
     public void moveAllCars() {

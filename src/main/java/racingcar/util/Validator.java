@@ -10,13 +10,20 @@ public class Validator {
         }
     }
 
-    public static void validateCarNamesFormat(final String carName) {
+    public static void validateCarNames(final List<String> carNames) {
+        for(String carName: carNames) {
+            validateCarNamesFormat(carName);
+        }
+        validateDuplicatedNames(carNames);
+    }
+
+    private static void validateCarNamesFormat(final String carName) {
         if (carName.isBlank() || carName.isEmpty() || carName.length() > 5) {
             throw new IllegalArgumentException("자동차 이름은 1자 이상 5자 이하여야 합니다.");
         }
     }
 
-    public static void validateDuplicatedNames(final List<String> carNames) {
+    private static void validateDuplicatedNames(final List<String> carNames) {
         final Set<String> uniqueNames = Set.copyOf(carNames);
         if(uniqueNames.size() != carNames.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
