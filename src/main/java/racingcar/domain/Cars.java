@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 public class Cars {
@@ -24,5 +26,12 @@ public class Cars {
 
     public List<Car> getCars() {
         return this.cars;
+    }
+
+    public List<Car> determineWinner(List<Car> cars) {
+        Car winnerCar = cars.stream().max(Comparator.comparing(Car::getCount)).get();
+        for(Car car : cars) {
+
+        }
     }
 }
