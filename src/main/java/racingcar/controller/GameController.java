@@ -10,8 +10,8 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-    private final List<Car> carList = new ArrayList<>();
-    private final List<Car> winnerList = new ArrayList<>();
+    private final List<Car> carGroup = new ArrayList<>();
+    private final List<Car> winnerGroup = new ArrayList<>();
     private String[] names;
     private int moveCount;
 
@@ -33,7 +33,7 @@ public class GameController {
             names = InputView.inputNames();
             Validator.validateCarName(names);
         } catch (IllegalArgumentException e) {
-            OutputView.printExceptionMessage(e.getMessage());
+            OutputView.printException(e.getMessage());
             return false;
         }
         return true;
@@ -51,7 +51,7 @@ public class GameController {
             moveCount = InputView.inputMoveCount();
             Validator.validateMoveCount(moveCount);
         } catch (IllegalArgumentException e) {
-            OutputView.printExceptionMessage(e.getMessage());
+            OutputView.printException(e.getMessage());
             return false;
         }
         return true;
@@ -59,7 +59,7 @@ public class GameController {
 
     private void initCars(String[] carNames) {
         for (String name : carNames) {
-            carList.add(new Car(name));
+            carGroup.add(new Car(name));
         }
     }
 
@@ -69,35 +69,35 @@ public class GameController {
             doRound();
         }
 
-        int max = findMaxPosition(carList);
-        finish(carList, max);
+        int max = findMaxPosition(carGroup);
+        finish(carGroup, max);
     }
 
     private void doRound() {
-        for (Car car : carList) {
+        for (Car car : carGroup) {
             car.move(RandomNumberGenerator.generate());
             OutputView.printPosition(car);
         }
         OutputView.println();
     }
 
-    private int findMaxPosition(List<Car> carList) {
-        return carList.stream()
+    private int findMaxPosition(List<Car> carGroup) {
+        return carGroup.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
     }
 
-    private void finish(List<Car> carList, int max) {
+    private void finish(List<Car> carGroup, int max) {
         if (max == 0) {
             OutputView.printNoWinner();
             return;
         }
 
-        carList.stream()
+        carGroup.stream()
                 .filter(car -> car.getPosition() == max)
-                .forEach(winnerList::add);
+                .forEach(winnerGroup::add);
 
-        OutputView.printWinnerList(winnerList);
+        OutputView.printWinnerList(winnerGroup);
     }
 }
