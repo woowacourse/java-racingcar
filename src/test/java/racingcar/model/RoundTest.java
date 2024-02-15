@@ -25,23 +25,23 @@ class RoundTest {
     @DisplayName("진행중인 라운드 확인")
     @ParameterizedTest
     @ValueSource(strings = {"1", "5", "100"})
-    void isEndFalse(String source) {
+    void isContinueTrue(String source) {
         // given
         // when
         Round round = Round.from(source);
         // then
-        assertThat(round.isEnd()).isFalse();
+        assertThat(round.isContinue()).isTrue();
     }
 
     @DisplayName("라운드 종료 확인")
     @Test
-    void isEndTrue() {
+    void isContinueFalse() {
         // given
         // when
         Round round = Round.from("0");
 
         // then
-        assertThat(round.isEnd()).isTrue();
+        assertThat(round.isContinue()).isFalse();
     }
 
     @DisplayName("라운드 실행시 값이 1 감소한다.")

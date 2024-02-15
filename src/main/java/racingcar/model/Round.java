@@ -22,13 +22,13 @@ public class Round {
         }
     }
 
-    public boolean isEnd() {
-        return value == 0;
+    public boolean isContinue() {
+        return value > 0;
     }
 
     // TODO: 괜찮은 이름 찾기
     public void progress() {
-        if (isEnd()) {
+        if (!isContinue()) {
             //TODO: 이 예외 처리 고민해보기
             // 사용자 입장에선 발생할 수 없는 예외
             throw new IllegalStateException(ErrorMessage.INVALID_ROUND.get());

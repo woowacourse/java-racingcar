@@ -24,9 +24,9 @@ public class GameController {
         final Cars cars = getCars();
         final Round round = getRound();
 
-        RandomNumberGenerator generator = new RandomNumberGenerator();
+        final RandomNumberGenerator generator = new RandomNumberGenerator();
 
-        while (!round.isEnd()) {
+        while (round.isContinue()) {
             cars.go(generator);
             round.progress();
 
