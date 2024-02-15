@@ -4,13 +4,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import racingcar.domain.car.Car;
+import racingcar.exception.ErrorMessage;
+import racingcar.exception.InvalidInputException;
 
 public class RaceParticipants {
     private final List<Car> cars;
 
 
     public RaceParticipants(List<Car> cars) {
+        validateDuplicateNames(cars);
         this.cars = new ArrayList<>(cars);
+    }
+
+    private void validateDuplicateNames(List<Car> cars) {
+        List<String> carNames = cars.stream().map(Car::getName).toList();
+        if (carNames.size() != carNames.stream().distinct().count()) {
+            throw new InvalidInputException(ErrorMessage.DUPLICATE_CAR_NAMES);
+        }
     }
 
     public List<Car> getCars() {

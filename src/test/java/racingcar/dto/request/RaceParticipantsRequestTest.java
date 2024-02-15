@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -37,14 +38,28 @@ class RaceParticipantsRequestTest {
         assertThat(carNames).isEqualTo(expectedCarNames);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"", ",일", "일,,이", "일,이,"})
-    void toRaceParticipants를_이용해서_RaceParticipants로_변환_실패(String name) {
-        //when
-        RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
+    @Nested
+    class toRaceParticipants를_이용해서_RaceParticipants로_변환_실패 {
+        @ParameterizedTest
+        @ValueSource(strings = {"a,b,b", "a,b,c,b", "a,b,c,b,c"})
+        void 중복된_자동차_이름(String name) {
+            //when
+            RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
 
-        //then
-        assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(movingStrategy))
-                .isInstanceOf(InvalidInputException.class);
+            //then
+            assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(movingStrategy))
+                    .isInstanceOf(InvalidInputException.class);
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"", ",일", "일,,이", "일,이,"})
+        void 옳바르지_않은_입력_형식(String name) {
+            //when
+            RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
+
+            //then
+            assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(movingStrategy))
+                    .isInstanceOf(InvalidInputException.class);
+        }
     }
 }
