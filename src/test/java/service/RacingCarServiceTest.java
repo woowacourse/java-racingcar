@@ -45,5 +45,20 @@ class RacingCarServiceTest {
         assertThat(racingCarService.findWinners(cars)).containsAll(List.of("가", "다"));
     }
 
+    @DisplayName("모두가 우승자 테스트")
+    @Test
+    void findWinnersAllTest() {
+        Cars cars = new Cars(List.of("가", "나", "다"));
+
+        cars.getCars().get(0).drive(MIN_FORWARD_NUMBER);
+        cars.getCars().get(0).drive(MIN_FORWARD_NUMBER);
+        cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
+        cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
+        cars.getCars().get(2).drive(MIN_FORWARD_NUMBER);
+        cars.getCars().get(2).drive(MIN_FORWARD_NUMBER);
+
+        assertThat(racingCarService.findWinners(cars)).containsAll(List.of("가", "나", "다"));
+    }
+
 
 }
