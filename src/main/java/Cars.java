@@ -5,9 +5,9 @@ import java.util.List;
 public class Cars {
     List<Car> cars;
 
-    public Cars(List<String> names) {
+    public Cars(List<String> names, NumberGenerator numberGenerator) {
         this.cars = names.stream()
-                .map(name -> new Car(name))
+                .map(name -> new Car(name, numberGenerator))
                 .toList();
     }
 

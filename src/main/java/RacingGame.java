@@ -23,7 +23,7 @@ public class RacingGame {
     private static Cars createCars() {
         while (true) {
             try {
-                return new Cars(InputView.readCarNames());
+                return new Cars(InputView.readCarNames(), new Random());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

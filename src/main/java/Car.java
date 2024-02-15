@@ -1,18 +1,21 @@
 public class Car {
     private final String name;
     private int location;
+    private NumberGenerator numberGenerator;
 
-    public Car(String name) {
+    public Car(String name, NumberGenerator numberGenerator) {
         if (name == null || name.isBlank() || name.length() > 5) {
             throw new IllegalArgumentException("잘못된 이름입니다.");
         }
         this.name = name;
+        this.numberGenerator = numberGenerator;
         location = 0;
     }
 
     public void tryMove() {
-        if ((int) (Math.random() * 9) >= 4) {
-            location++;
+        int number = numberGenerator.generate();
+        if (number >= 4) {
+            location += 1;
         }
     }
 
