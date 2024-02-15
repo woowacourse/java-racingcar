@@ -16,7 +16,7 @@ public class RaceController {
 
     public void startRace() {
         Race race = inputController.makeRace();
-        int tryCount = inputController.makeTryNumber();
+        int tryCount = inputController.makeTryCount();
 
         showRaceResult();
         proceedRound(tryCount, race);

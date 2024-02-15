@@ -6,8 +6,10 @@ import model.Car;
 import model.Race;
 
 public class OutputView {
+    private static final String OUTPUT_RESULT_MESSAGE = "\n실행 결과";
+
     public static void showRaceResult() {
-        System.out.println("\n실행 결과");
+        System.out.println(OUTPUT_RESULT_MESSAGE);
     }
 
     public static void showRoundResult(Race race) {
@@ -29,6 +31,6 @@ public class OutputView {
         for (String winner : winners) {
             result.add(winner);
         }
-        System.out.println(result.toString());
+        System.out.println(result);
     }
 }
