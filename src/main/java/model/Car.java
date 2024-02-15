@@ -1,10 +1,13 @@
 package model;
 
+import constant.Exception;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Car {
+  private final int NAME_LENGTH_CONDITION = 5;
   private final String name;
   private final List<CarStatus> statuses;
 
@@ -17,13 +20,13 @@ public class Car {
 
   private void validateNullAndEmpty(String name) {
     if (Objects.isNull(name) || name.isBlank()) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(Exception.CAR_NAME_NULL_BLANK.toString());
     }
   }
 
   private void validateNameLength(String name) {
-    if (name.length() > 5) {
-      throw new IllegalArgumentException();
+    if (name.length() > NAME_LENGTH_CONDITION) {
+      throw new IllegalArgumentException(Exception.CAR_NAME_LENGTH.toString());
     }
   }
 
