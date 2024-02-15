@@ -2,12 +2,27 @@ package model;
 
 public class Car {
 
-    private static final int FORWARD_MIN_NUMBER = 4;
     private static final int INITIAL_POSITION = 0;
-    private int position;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int FORWARD_MIN_NUMBER = 4;
 
-    public Car() {
+    private int position;
+    private String name;
+
+    public Car(String name) {
+        validate(name);
         this.position = INITIAL_POSITION;
+        this.name = name;
+    }
+
+    private void validate(String name) {
+        checkNameLength(name);
+    }
+
+    private void checkNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
+            throw new IllegalStateException("[ERROR] 자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
+        }
     }
 
     public void moveForward(int randomNumber) {
