@@ -1,28 +1,29 @@
 package domain;
 
 import java.util.List;
-import java.util.Random;
+import java.util.function.IntSupplier;
 
 public class Cars {
 
     private final List<Car> carList;
+    private final IntSupplier randomNumberGenerator;
 
-    private Cars(List<Car> carList) {
+    public Cars(List<Car> carList, IntSupplier randomNumberGenerator) {
         this.carList = carList;
+        this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public static Cars createByNames(List<String> carNames) {
+    public static Cars of(List<String> carNames, IntSupplier randomNumberGenerator) {
         List<Car> carList = carNames.stream()
                 .map(Car::new)
                 .toList();
-        return new Cars(carList);
+        return new Cars(carList, randomNumberGenerator);
     }
 
     public void moveRandomly() {
-        Random random = new Random();
 
         carList.forEach((car) -> {
-            int randomInt = Math.abs(random.nextInt() % 10);
+            int randomInt = randomNumberGenerator.getAsInt();
             car.move(randomInt >= 4);
         });
     }
