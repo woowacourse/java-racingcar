@@ -61,4 +61,8 @@ public class Name {
             throw new IllegalArgumentException("자동차 이름은 영어 또는 한글만 가능합니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

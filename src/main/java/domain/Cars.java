@@ -1,9 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -53,6 +50,10 @@ public class Cars {
 
     public void moveAll() {
         cars.forEach(Car::move);
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 
     public List<Car> getWinners() {
