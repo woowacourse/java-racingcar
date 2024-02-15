@@ -1,7 +1,6 @@
 package domain;
 
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 
 import org.assertj.core.api.Assertions;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 import utils.RandomNumberGenerator;
 import static org.mockito.BDDMockito.given;
 
