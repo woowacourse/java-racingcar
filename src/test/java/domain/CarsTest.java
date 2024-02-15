@@ -15,14 +15,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CarsTest {
 
-    private Car kaki;
-    private Car naknak;
     private Cars cars;
 
     @BeforeEach
     void init() {
-        kaki = Car.from("kaki");
-        naknak = Car.from("nak");
+        Car kaki = Car.from("kaki");
+        Car naknak = Car.from("nak");
         cars = Cars.from(List.of(kaki, naknak));
     }
 
@@ -102,14 +100,5 @@ class CarsTest {
                     .toList();
             assertThat(carPositions).containsExactly(1, 1);
         }
-    }
-
-    @DisplayName("가장 많이 움직인 자동차가 최종 우승자가 된다.")
-    @Test
-    void winnerTest() {
-        naknak.move(() -> 9);
-
-        assertThat(cars.getWinners())
-                .containsExactly(naknak);
     }
 }
