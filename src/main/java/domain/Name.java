@@ -15,6 +15,9 @@ public class Name {
         if(value.length()>LENGTH_LIMIT){
             throw new IllegalArgumentException();
         }
+    }
 
+    public String getValue() {
+        return value;
     }
 }
