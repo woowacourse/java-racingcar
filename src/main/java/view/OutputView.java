@@ -7,6 +7,7 @@ import model.MoveStatus;
 
 public class OutputView {
   private static final String DELIMITER = " : ";
+
   public void printResultComment() {
     System.out.println(System.lineSeparator() + Information.RESULT_COMMENT);
   }
@@ -19,9 +20,8 @@ public class OutputView {
   }
 
   public void printWinner(List<Car> cars) {
-    System.out.println(
-        String.format(Information.WINNER.toString(), String.join(", ", cars.stream().map(Car::getName).toList())));
+    System.out.printf(
+            (Information.WINNER.toString()) + "%n",
+        String.join(", ", cars.stream().map(Car::getName).toList()));
   }
-
-
 }

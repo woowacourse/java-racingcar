@@ -32,8 +32,8 @@ class GameTest {
 
     assertAll(
         () -> assertThat(cars).containsExactly(pobi, left),
-        () -> assertThat(cars.get(0).getStatuses()).isEqualTo(of(CarStatus.FORWARD)),
-        () -> assertThat(cars.get(1).getStatuses()).isEqualTo(of(CarStatus.STOP)));
+        () -> assertThat(cars.get(0).getStatuses()).isEqualTo(of(MoveStatus.FORWARD)),
+        () -> assertThat(cars.get(1).getStatuses()).isEqualTo(of(MoveStatus.STOP)));
   }
 
   @Test
