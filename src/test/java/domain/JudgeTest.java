@@ -18,19 +18,18 @@ class JudgeTest {
         Car two = new Car("two");
         Car three = new Car("three");
 
-        List<Car> cars = new ArrayList<>();
-        cars.add(one);
-        cars.add(two);
-        cars.add(three);
+        List<Car> cars = new ArrayList<>(List.of(one, two, three));
 
         one.move(4);
         two.move(0);
         three.move(8);
 
         //when
-        String winners = judge.getWinners(cars);
+        List<Car> winners = judge.getWinners(cars);
 
         //then
-        assertThat(winners).isEqualTo("one, three가 최종 우승했습니다.");
+        assertThat(winners.size()).isEqualTo(2);
+        assertThat(winners.get(0).getName()).isEqualTo("one");
+        assertThat(winners.get(1).getName()).isEqualTo("three");
     }
 }
