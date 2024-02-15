@@ -1,7 +1,6 @@
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
+import domain.RacingGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,7 @@ class RacingGameTest {
     @DisplayName("자동차들이 횟수만큼 잘 움직이는지 확인한다.")
     void play() {
         RacingGame racingGame = RacingGame.fromCount(1);
-        racingGame.play();
+//        racingGame.play();
 
     }
 

@@ -1,3 +1,5 @@
+package domain;
+
 public class RacingGame {
     private final int count;
     private Cars cars;

@@ -1,3 +1,5 @@
+package domain;
+
 public class RandomMovementGenerator {
     private final RandomNumberGenerator randomNumberGenerator;
 
