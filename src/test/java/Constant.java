@@ -1,5 +1,6 @@
 public class Constant implements NumberGenerator {
-    int generatedValue;
+    private final int generatedValue;
+
     public Constant(int generatedValue) {
         this.generatedValue = generatedValue;
     }

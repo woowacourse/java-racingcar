@@ -1,10 +1,12 @@
 public class Car {
+    private static final int MOVE_THRESHOLD = 4;
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int location;
-    private NumberGenerator numberGenerator;
+    private final NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
-        if (name == null || name.isBlank() || name.length() > 5) {
+        if (name == null || name.isBlank() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("잘못된 이름입니다.");
         }
         this.name = name;
@@ -14,7 +16,7 @@ public class Car {
 
     public void tryMove() {
         int number = numberGenerator.generate();
-        if (number >= 4) {
+        if (number >= MOVE_THRESHOLD) {
             location += 1;
         }
     }

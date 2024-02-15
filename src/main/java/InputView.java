@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
+    private static final Pattern FINISH_WITH_DELIMITER_REGEX = Pattern.compile(".*,$");
 
     public static List<String> readCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -17,8 +18,7 @@ public class InputView {
     }
 
     private static boolean isFinishWithDelimiter(String input) {
-        Pattern finishWithDelimiterRegex = Pattern.compile(".*,$");
-        return finishWithDelimiterRegex.matcher(input).matches();
+        return FINISH_WITH_DELIMITER_REGEX.matcher(input).matches();
     }
 
     public static int readRoundNumber() {
@@ -29,7 +29,6 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("자연수를 입력해 주세요.");
         }
-
         if (number < 1) {
             throw new IllegalArgumentException("자연수를 입력해 주세요.");
         }

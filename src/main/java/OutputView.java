@@ -1,6 +1,9 @@
 import java.util.List;
 
 public class OutputView {
+
+    public static final String LOCATION_UNIT_MESSAGE = "-";
+
     public static void showRoundStart() {
         System.out.println("\n실행 결과");
     }
@@ -11,8 +14,9 @@ public class OutputView {
         }
         System.out.println();
     }
-    public static void showCarLocation(String name, int location) {
-        System.out.println(name + " : " + "-".repeat(location));
+
+    private static void showCarLocation(String name, int location) {
+        System.out.println(name + " : " + LOCATION_UNIT_MESSAGE.repeat(location));
     }
 
     public static void showWinners(List<String> winnersName) {

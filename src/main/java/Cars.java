@@ -1,23 +1,22 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Cars {
-    List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<String> names, NumberGenerator numberGenerator) {
-        if (names.size() == 0) {
-            throw new IllegalArgumentException();
+        if (names.isEmpty()) {
+            throw new IllegalArgumentException("이름이 입력되지 않았습니다.");
         }
         if (names.stream().distinct().count() != names.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
         }
         this.cars = names.stream()
                 .map(name -> new Car(name, numberGenerator))
                 .toList();
     }
 
-    public void tryMove(){
+    public void tryMove() {
         for (Car car : cars) {
             car.tryMove();
         }
@@ -26,20 +25,17 @@ public class Cars {
     public List<String> getWinnersName() {
         List<String> winnersName = new ArrayList<>();
         int maxLocation = getMaxLocation();
-        for (Car car : cars) {
-            if (car.getLocation() == maxLocation) {
-                winnersName.add(car.getName());
-            }
-        }
+        cars.stream()
+                .filter(car -> car.getLocation() == maxLocation)
+                .forEach(car -> winnersName.add(car.getName()));
         return winnersName;
     }
 
     private int getMaxLocation() {
-        int maxLocation = 0;
-        for (Car car : cars) {
-            maxLocation = Math.max(maxLocation, car.getLocation());
-        }
-        return maxLocation;
+        return cars.stream()
+                .mapToInt(car -> car.getLocation())
+                .max()
+                .orElse(0);
     }
 
     public List<Car> getRoundResult() {
