@@ -23,6 +23,7 @@ public class Service {
             cars.add(new Car(carName));
         }
         validateDuplicateName(cars);
+        validateFalseName(cars);
         return cars;
     }
 
@@ -31,6 +32,18 @@ public class Service {
 
         if (cars.size() != validateCar.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 이름이 존재합니다.");
+        }
+    }
+
+    private void validateFalseName(List<Car> cars) {
+        for (Car car : cars) {
+            validateBlankName(car.getCarName());
+        }
+    }
+
+    private void validateBlankName(String carName) {
+        if (carName.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 빈 이름은 사용할 수 없습니다.");
         }
     }
 
