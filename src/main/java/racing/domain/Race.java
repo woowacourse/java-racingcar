@@ -1,5 +1,8 @@
 package racing.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Race {
     private final Cars cars;
     private final TryCount tryCount;
@@ -9,10 +12,14 @@ public class Race {
         this.tryCount = tryCount;
     }
 
-    public void proceedRace(){
+    public List<String> proceedRace(){
+        List<String> result = new ArrayList<>();
         while(tryCount.isRemain()){
             tryCount.consume();
             cars.proceedRound();
+            result.add(cars.toString());
         }
+        return result;
     }
+
 }
