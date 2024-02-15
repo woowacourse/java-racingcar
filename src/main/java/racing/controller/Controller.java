@@ -1,5 +1,6 @@
 package racing.controller;
 
+import racing.domain.Car;
 import racing.domain.Cars;
 import racing.domain.Race;
 import racing.domain.TryCount;
@@ -25,5 +26,6 @@ public class Controller {
         List<String> result = race.proceedRace();
 
         outputView.printResult(result);
+        outputView.printWinners(race.getWinners());
     }
 }
