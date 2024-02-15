@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import static racingcar.config.RacingCarConfig.MAX_TRY_COUNT;
+import static racingcar.config.RacingCarConfig.MIN_TRY_COUNT;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;
@@ -52,10 +54,10 @@ public class InputView {
     }
 
     private static void validateTryCountRange(final int tryCount) {
-        if (tryCount <= 0) {
+        if (tryCount <= MIN_TRY_COUNT.getValue()) {
             throw new IllegalArgumentException(ONLY_POSITIVE_NUMBER.getMessage());
         }
-        if (tryCount > 1_000) {
+        if (tryCount > MAX_TRY_COUNT.getValue()) {
             throw new IllegalArgumentException(INVALID_TRY_COUNT.getMessage());
         }
     }
