@@ -12,29 +12,33 @@ import java.util.Optional;
 public class Cars {
     private List<Car> cars;
 
-    public Cars(List<String> carNames) {
-        validateUniqueName(carNames);
-        List<Car> cars = convertToCarList(carNames);
+    public Cars(List<Car> cars) {
         this.cars = cars;
     }
 
-    private List<Car> convertToCarList(List<String> carNames) {
+    public static Cars from(List<String> carNames) {
+        validateUniqueName(carNames);
+        List<Car> cars = convertToCarList(carNames);
+        return new Cars(cars);
+    }
+
+    private static List<Car> convertToCarList(List<String> carNames) {
         return carNames.stream()
                 .map(name -> new Car(new CarName(name)))
                 .toList();
     }
 
-    private void validateUniqueName(List<String> names) {
+    private static void validateUniqueName(List<String> names) {
         if(isDuplicatedName(names)) {
             throw RacingCarGameException.from(ErrorMessage.DUPLICATED_NAME_ERROR);
         }
     }
 
-    private boolean isDuplicatedName(List<String> names) {
+    private static boolean isDuplicatedName(List<String> names) {
         return getDistinctCount(names) != names.size();
     }
 
-    private int getDistinctCount(List<String> names) {
+    private static int getDistinctCount(List<String> names) {
         return (int) names.stream()
                 .distinct()
                 .count();

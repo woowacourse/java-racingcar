@@ -12,7 +12,7 @@ class CarsTest {
                 "toby", "tebah", "anna", "brown", "brown"
         );
         assertThrows(IllegalArgumentException.class, () ->
-            new Cars(carNames)
+            Cars.from(carNames)
         );
     }
 }

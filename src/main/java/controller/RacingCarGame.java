@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 public class RacingCarGame {
     public void run() {
-        Cars cars = retry(() -> new Cars(InputView.enterCarNames()));
+        Cars cars = retry(() -> Cars.from(InputView.enterCarNames()));
         Count count = retry(() -> new Count(InputView.enterCount()));
 
         OutputView.printNewLine();
