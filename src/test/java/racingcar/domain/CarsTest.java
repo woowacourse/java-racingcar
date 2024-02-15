@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static racingcar.exception.ExceptionMessage.*;
 
@@ -13,6 +14,15 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
+    @Test
+    @DisplayName("[Success] 자동차가 정상적으로 생성됨")
+    void createCars() {
+        List<Car> cars = List.of(new Car("a"), new Car("b"));
+
+        assertThatCode(() -> new Cars(cars))
+                .doesNotThrowAnyException();
+    }
+
     @Test
     @DisplayName("[Exception] 중복된 자동차 이름이 있으면 예외를 던진다")
     void createCarsByDuplicateCarNames() {
