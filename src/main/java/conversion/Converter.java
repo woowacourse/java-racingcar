@@ -10,7 +10,7 @@ public class Converter {
 
     public static List<Car> toCars(String rawCarNames) {
         List<Car> cars = new ArrayList<>();
-        List<String> carNames = Arrays.stream(rawCarNames.split(",")).toList();
+        List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*")).toList();
 
         Validator.validateCarNames(carNames);
 
