@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final int MIN_CAR_NAME_COUNT = 2;
+    private static final int MIN_POSITION = 0;
+
     private List<Car> cars;
 
     private Cars(List<Car> cars) {
@@ -62,7 +64,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElse(0);
+                .orElse(MIN_POSITION);
     }
 
 
