@@ -66,7 +66,7 @@ class RacingGameTest {
 
     @DisplayName("공동 우승자를 선정한다.")
     @Test
-    void findWinner2() {
+    void findWinners() {
         RacingGame game = RacingGame.of(createCars(), moveCondition());
 
         List<String> expected = game.findWinnerName();
