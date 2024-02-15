@@ -1,7 +1,7 @@
 package domain;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class CarFactory {
 
@@ -25,7 +25,7 @@ public class CarFactory {
     }
 
     private static void validateDuplicatedCarNames(List<String> carNames) {
-        int distinctSize = Set.of(carNames).size();
+        int distinctSize = new HashSet<>(carNames).size();
 
         if (carNames.size() != distinctSize) {
             throw new RuntimeException("중복된 자동차 이름을 허용하지 않습니다.");
