@@ -18,7 +18,7 @@ class NameTest {
         @DisplayName("자동차 이름이 5자를 넘으면 예외가 발생한다.")
         @ParameterizedTest
         @ValueSource(strings = {"abcdef", "가나다라마바사아자"})
-        void CarNameLengthExceptionTest(String name) {
+        void carNameLengthExceptionTest(String name) {
             assertThatThrownBy(() -> Name.from(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -26,14 +26,14 @@ class NameTest {
         @DisplayName("자동차 이름에 공백이나 스페이스를 사용하면 예외가 발생한다.")
         @ParameterizedTest
         @ValueSource(strings = {" ", ""})
-        void CarNameIsBlankTest(String name) {
+        void carNameIsBlankTest(String name) {
             assertThatThrownBy(() -> Name.from(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("자동차 이름에 null을 입력하면 예외가 발생한다.")
         @Test
-        void CarNameIsNullTest() {
+        void carNameIsNullTest() {
             assertThatThrownBy(() -> Name.from(null))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -41,7 +41,7 @@ class NameTest {
         @DisplayName("자동차 이름 앞 뒤에 공백이 존재하면 예외가 발생한다.")
         @ParameterizedTest
         @ValueSource(strings = {" pobi", "pobi "})
-        void CarNameStartsOrEndsWithBlank(String name) {
+        void carNameStartsOrEndsWithBlank(String name) {
             assertThatThrownBy(() -> Name.from(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -49,7 +49,7 @@ class NameTest {
         @DisplayName("자동차 이름에 영어 또는 한글이 아니면 예외가 발생한다.")
         @ParameterizedTest
         @ValueSource(strings = {"pobi1", "123", "..!", "ab."})
-        void CarNameIsEnglishOrKorean(String name) {
+        void carNameIsEnglishOrKorean(String name) {
             assertThatThrownBy(() -> Name.from(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
