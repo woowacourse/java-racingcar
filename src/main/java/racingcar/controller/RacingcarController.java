@@ -19,16 +19,24 @@ public class RacingcarController {
         List<Car> cars = retryOnException(this::readCars);
         Round round = retryOnException(this::readRound);
 
+        List<RoundResult> roundResults = simulateCarsInRound(round, cars);
+        awardWinners(cars, roundResults);
+    }
+
+    private void awardWinners(List<Car> cars, List<RoundResult> roundResults) {
+        List<String> winners = racingcarService.pickOutWinners(cars);
+        outputView.printRoundResults(roundResults);
+        outputView.printWinners(winners);
+    }
+
+    private List<RoundResult> simulateCarsInRound(Round round, List<Car> cars) {
         List<RoundResult> roundResults = new ArrayList<>();
         while (round.isRemain()) {
             RoundResult roundResult = racingcarService.processRound(cars);
             roundResults.add(roundResult);
             round.decreaseCount();
         }
-
-        List<String> winners = racingcarService.pickOutWinners(cars);
-        outputView.printRoundResults(roundResults);
-        outputView.printWinners(winners);
+        return roundResults;
     }
 
     private List<Car> readCars() {
