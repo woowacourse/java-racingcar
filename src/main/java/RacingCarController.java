@@ -9,16 +9,34 @@ import view.OutputView;
 public class RacingCarController {
 
     public static void run() {
-        List<String> carNames = InputView.inputNames();
-        Cars cars = Cars.of(carNames, new RandomDigitSupplier());
+        Cars cars = inputCars();
+        TrialCount trialCount = inputTrialCount();
 
-        int trialAmount = InputView.inputTryCount();
-        TrialCount trialCount = new TrialCount(trialAmount);
         trialCount.repeat(() -> progressRacing(cars));
         OutputView.printResultTitle();
 
-        List<Car> winners = cars.findWinner(); // TODO findWinner 테스트 필요
+        List<Car> winners = cars.findWinner();
         OutputView.printWinners(winners);
+    }
+
+    private static Cars inputCars() {
+        try {
+            List<String> carNames = InputView.inputNames();
+            return Cars.of(carNames, new RandomDigitSupplier());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return inputCars();
+        }
+    }
+
+    private static TrialCount inputTrialCount() {
+        try {
+            int trialAmount = InputView.inputTryCount();
+            return new TrialCount(trialAmount);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return inputTrialCount();
+        }
     }
 
     private static void progressRacing(Cars cars) {
