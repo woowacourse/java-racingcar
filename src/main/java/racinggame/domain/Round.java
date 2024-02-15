@@ -9,15 +9,19 @@ public class Round {
     }
 
     public static Round from(int round) {
-        if (round < 1 || round > 10) {
-            throw new RuntimeException();
-        }
+        checkRoundInRange(round);
 
         return new Round(round);
     }
 
-    public boolean isEnd() {
-        return round == 0;
+    private static void checkRoundInRange(int round) {
+        if (round < 1 || round > 10) {
+            throw new RuntimeException();
+        }
+    }
+
+    public boolean isPlayable() {
+        return round > 0;
     }
 
     public Round decrease() {

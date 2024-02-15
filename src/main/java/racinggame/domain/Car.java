@@ -20,19 +20,22 @@ public class Car {
         return new Car(Name.from(name), Position.from(position));
     }
 
-    // TODO : 테스트코드에서만 사용되고 있음.
-    public boolean isSamePosition(Car car) {
-        return this.position.equals(car.position);
+    public boolean isSamePosition(int target) {
+        return position.getPosition() == target;
     }
 
     public void move(MoveCondition moveCondition) {
         if (moveCondition.isMovable()) {
-            this.position = position.increase();
+            position = position.increase();
         }
     }
 
-    public CarInfo getInfo() {
-        return new CarInfo(name.getName(), position.getPosition());
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return position.getPosition();
     }
 
     @Override

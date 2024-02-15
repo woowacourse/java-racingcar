@@ -11,7 +11,6 @@ import racinggame.domain.Round;
 import racinggame.domain.RoundResult;
 import racinggame.domain.condition.RandomMoveCondition;
 
-// TODO : Main을 리팩터링하기 전에 이동한다.
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -39,6 +38,6 @@ public class Main {
             System.out.println();
         });
 
-        System.out.format("%s가 최종 우승했습니다.", game.findWinnerName());
+        System.out.format("%s가 최종 우승했습니다.", String.join(", ", game.findWinnerName()));
     }
 }

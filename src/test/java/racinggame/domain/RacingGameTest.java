@@ -7,10 +7,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racinggame.domain.Car;
-import racinggame.domain.MoveCondition;
-import racinggame.domain.RacingGame;
-import racinggame.domain.Round;
 
 class RacingGameTest {
 
@@ -26,7 +22,7 @@ class RacingGameTest {
     void moveAll() {
         RacingGame game = RacingGame.of(createCars(), moveCondition());
 
-        game.moveAll();
+        game.race(Round.from(1));
 
         assertThat(game.getCars()).isEqualTo(createMovedCars(1));
     }
@@ -62,9 +58,10 @@ class RacingGameTest {
 
         RacingGame game = RacingGame.of(movedCars, moveCondition());
 
-        String expected = game.findWinnerName();
+        List<String> expected = game.findWinnerName();
 
-        assertThat(expected).isEqualTo("이상");
+        assertThat(expected).containsExactly("이상");
+        assertThat(expected.size()).isEqualTo(1);
     }
 
     @DisplayName("공동 우승자를 선정한다.")
@@ -72,9 +69,10 @@ class RacingGameTest {
     void findWinner2() {
         RacingGame game = RacingGame.of(createCars(), moveCondition());
 
-        String expected = game.findWinnerName();
+        List<String> expected = game.findWinnerName();
 
-        assertThat(expected).isEqualTo("아톰, 이상");
+        assertThat(expected).containsExactly("아톰", "이상");
+        assertThat(expected.size()).isEqualTo(2);
     }
 
     private List<Car> createCars() {

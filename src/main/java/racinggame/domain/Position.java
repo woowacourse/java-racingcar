@@ -2,7 +2,7 @@ package racinggame.domain;
 
 import java.util.Objects;
 
-public class Position {
+class Position {
 
     private final int position;
 
@@ -11,12 +11,15 @@ public class Position {
     }
 
     public static Position from(int position) {
-        // 검증 필요
+        checkIsNonNegative(position);
+
+        return new Position(position);
+    }
+
+    private static void checkIsNonNegative(int position) {
         if (position < 0) {
             throw new RuntimeException();
         }
-
-        return new Position(position);
     }
 
     public Position increase() {
