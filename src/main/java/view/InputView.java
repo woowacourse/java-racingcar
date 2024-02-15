@@ -19,8 +19,8 @@ public class InputView {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             return br.readLine();
-        } catch (IOException e) {
-            return input();
+        } catch (IOException exception) {
+            throw new IllegalStateException("입력 단계에서 에러가 발생했습니다.");
         }
     }
 
@@ -28,7 +28,7 @@ public class InputView {
         System.out.println("시도할 회수는 몇회인가요?");
         try {
             return Integer.parseInt(input());
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("시도 횟수는 숫자이어야 합니다.");
         }
     }

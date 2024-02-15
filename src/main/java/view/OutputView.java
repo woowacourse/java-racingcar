@@ -6,13 +6,15 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    public static final String POSITION_SHAPE = "-";
+
     public static void printResultTitle() {
         System.out.println("실행 결과");
     }
 
     public static void printProgress(List<Car> cars) {
         for (Car car : cars) {
-            System.out.printf("%s : %s\n", car.getName(), "-".repeat(car.getPosition()));
+            System.out.printf("%s : %s\n", car.getName(), POSITION_SHAPE.repeat(car.getPosition()));
         }
         System.out.println();
     }
