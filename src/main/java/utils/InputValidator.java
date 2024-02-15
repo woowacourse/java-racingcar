@@ -6,6 +6,7 @@ public class InputValidator {
     public static void carNamesValidator(String carNames) {
         for (String carName : carNames.split(",")) {
             validateCarNameLength(carName);
+            validateCarNameExists(carName);
         }
     }
 
@@ -14,9 +15,16 @@ public class InputValidator {
         validateNegativeNumber(validateNumber);
     }
 
+
     private static void validateCarNameLength(String carName) {
         if (carName.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.CAR_NAME_TOO_LONG);
+        }
+    }
+
+    private static void validateCarNameExists(String carName) {
+        if(carName.isBlank()){
+            throw new IllegalArgumentException(ErrorMessage.CAR_NAME_NOT_EXIST);
         }
     }
 
