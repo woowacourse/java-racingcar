@@ -1,5 +1,7 @@
 package model;
 
+import static util.Util.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,5 +18,11 @@ public class Cars {
             cars.add(new Car(carName));
         }
         return new Cars(cars);
+    }
+
+    public void moveCars() {
+        for (Car car : cars) {
+            car.moveForward(generateRandomNumber());
+        }
     }
 }

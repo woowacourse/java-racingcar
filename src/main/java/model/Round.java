@@ -34,4 +34,8 @@ public class Round {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 자연수여야 합니다.");
         }
     }
+
+    public int getRound() {
+        return round;
+    }
 }

@@ -19,6 +19,7 @@ public class RacingCarController {
     public void run() throws IOException {
         readCarNames();
         readRound();
+        playRacing();
     }
 
     private void readCarNames() throws IOException {
@@ -28,5 +29,11 @@ public class RacingCarController {
 
     private void readRound() throws IOException {
         round = Round.from(inputView.readRound());
+    }
+
+    private void playRacing() {
+        for (int i=0; i<round.getRound(); i++) {
+            cars.moveCars();
+        }
     }
 }
