@@ -1,9 +1,7 @@
 package domain;
 
-import java.util.Comparator;
-
 public class RacingCar implements Comparable<RacingCar>{
-    private String name;
+    private final String name;
     private int moveNumber = 0;
 
     public RacingCar(String name) {

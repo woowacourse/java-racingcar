@@ -7,8 +7,8 @@ public class RacingCarNames {
     private List<String> names;
 
     public RacingCarNames(String names) {
-        List<String> splitNames = splitCarName(names);
-        checkCarNameDuplication(splitNames);
+        List<String> splitNames = splitCarNames(names);
+        validateDuplication(splitNames);
         validateNamesLength(splitNames);
         this.names = splitNames;
     }
@@ -31,12 +31,11 @@ public class RacingCarNames {
         }
     }
 
-    private List<String> splitCarName(String input) {
-        List<String> names = List.of(input.split(","));
-        return names;
+    private List<String> splitCarNames(String input) {
+        return List.of(input.split(","));
     }
 
-    private void checkCarNameDuplication(List<String> racingCarNames) {
+    private void validateDuplication(List<String> racingCarNames) {
         if (isDuplicated(racingCarNames)) {
             throw new IllegalArgumentException("중복된 이름이 존재합니다.");
         }

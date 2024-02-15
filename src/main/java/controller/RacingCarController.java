@@ -11,8 +11,7 @@ import java.util.List;
 
 public class RacingCarController {
     public void start() {
-        RacingCarNames racingCarNames = readRacingCarNames();
-        RacingCars racingCars = racingCarNames.createRacingCars();
+        RacingCars racingCars = readRacingCars();
         TryNumber tryNumber = readTryNumber();
 
         OutputView.printRacingStartMessage();
@@ -21,9 +20,14 @@ public class RacingCarController {
             tryNumber.decrease();
         } while(tryNumber.isTryable());
 
-        List<RacingCar> winners = racingCars.getWinners();
+        List<String> winners = racingCars.getWinners();
+        OutputView.printWinners(winners);
     }
 
+    private RacingCars readRacingCars() {
+        RacingCarNames racingCarNames = readRacingCarNames();
+        return racingCarNames.createRacingCars();
+    }
 
     private RacingCarNames readRacingCarNames() {
         String carNames = InputView.inputCarNames();
