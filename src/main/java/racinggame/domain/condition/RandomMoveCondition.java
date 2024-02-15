@@ -1,7 +1,7 @@
-package racinggame.condition;
+package racinggame.domain.condition;
 
 import java.util.Random;
-import racinggame.MoveCondition;
+import racinggame.domain.MoveCondition;
 
 public class RandomMoveCondition implements MoveCondition {
 

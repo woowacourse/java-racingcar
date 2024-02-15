@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import racinggame.condition.RandomMoveCondition;
+import racinggame.domain.Car;
+import racinggame.domain.RacingGame;
+import racinggame.domain.Round;
+import racinggame.domain.RoundResult;
+import racinggame.domain.condition.RandomMoveCondition;
 
 // TODO : Main을 리팩터링하기 전에 이동한다.
 public class Main {

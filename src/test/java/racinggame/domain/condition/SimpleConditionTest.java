@@ -1,4 +1,4 @@
-package racinggame.condition;
+package racinggame.domain.condition;
 
 public class SimpleConditionTest {
 }
