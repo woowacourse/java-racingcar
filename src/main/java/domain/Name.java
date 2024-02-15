@@ -5,7 +5,7 @@ public class Name {
     public static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    public Name(String name) {
+    private Name(String name) {
         validate(name);
         this.name = name;
     }
@@ -19,7 +19,6 @@ public class Name {
     private boolean isValidSize(String name) {
         return name.length() >= MIN_NAME_LENGTH && name.length() <= MAX_NAME_LENGTH;
     }
-
 
     public static Name empty() {
         return new Name(" ");

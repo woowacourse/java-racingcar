@@ -9,7 +9,7 @@ public class RacingGame {
     private final Cars cars;
     private final RandomMovementGenerator randomMovementGenerator;
 
-    public RacingGame(Count count, Cars cars, RandomMovementGenerator randomMovementGenerator) {
+    private RacingGame(Count count, Cars cars, RandomMovementGenerator randomMovementGenerator) {
         this.count = count;
         this.cars = cars;
         this.randomMovementGenerator = randomMovementGenerator;

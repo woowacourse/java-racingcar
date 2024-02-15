@@ -7,7 +7,7 @@ public class Count {
     public static final int MAX_COUNT = 100;
     private final int count;
 
-    public Count(int count) {
+    private Count(int count) {
         validate(count);
         this.count = count;
     }

@@ -9,19 +9,19 @@ public class Cars {
     public static final int MAX_CAR_COUNT = 50;
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars) {
         validate(cars);
         this.cars = cars;
-    }
-
-    public static Cars from(List<Car> cars) {
-        return new Cars(cars);
     }
 
     private void validate(List<Car> cars) {
         if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
             throw new IllegalArgumentException("정상적인 경주를 위해 자동차는 2대에서 50대 사이로 입력해주세요.");
         }
+    }
+
+    public static Cars from(List<Car> cars) {
+        return new Cars(cars);
     }
 
     public static Cars fromEmpty() {

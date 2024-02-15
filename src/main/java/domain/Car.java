@@ -5,7 +5,7 @@ public class Car implements Comparable<Car> {
     private final Distance distance;
     private final Name name;
 
-    public Car(Name name, Distance distance) {
+    private Car(Name name, Distance distance) {
         this.name = name;
         this.distance = distance;
     }
@@ -22,17 +22,8 @@ public class Car implements Comparable<Car> {
         return new Car(Name.from(name), Distance.from(distance));
     }
 
-
     public void move() {
         distance.increase();
-    }
-
-    public Distance getDistance() {
-        return distance;
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public boolean isSameDistance(Car maxDistance) {
@@ -42,5 +33,13 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car other) {
         return this.distance.compareTo(other.distance);
+    }
+
+    public Distance getDistance() {
+        return distance;
+    }
+
+    public Name getName() {
+        return name;
     }
 }
