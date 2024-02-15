@@ -2,6 +2,10 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -41,5 +45,35 @@ class CarTest {
 
             assertThat(car.showDistance()).isEqualTo("--");
         }
+    }
+
+    @Nested
+    @DisplayName("정렬 테스트")
+    class SortCars {
+        @Test
+        @DisplayName("내림차순 정렬 테스트")
+        void sortTest() {
+            List<Car> cars = new ArrayList<>();
+            Car car1 = new Car(new Name("호기"));
+            Car car2 = new Car(new Name("재즈"));
+            Car car3 = new Car(new Name("상돌"));
+            Car car4 = new Car(new Name("아루"));
+            cars.add(car1);
+            cars.add(car2);
+            cars.add(car3);
+            cars.add(car4);
+
+            car1.move();
+            car1.move();
+            car3.move();
+            car4.move();
+            car4.move();
+            car4.move();
+
+            Collections.sort(cars);
+
+            Assertions.assertThat(cars.get(0)).isSameAs(car4);
+        }
+
     }
 }
