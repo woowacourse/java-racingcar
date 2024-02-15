@@ -1,6 +1,10 @@
 package racingcar.config;
 
 import racingcar.controller.RacingController;
+import racingcar.domain.car.move.DefaultMovingStrategy;
+import racingcar.domain.car.move.MovingStrategy;
+import racingcar.domain.generator.NumberGenerator;
+import racingcar.domain.generator.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.console.ConsoleInputView;
@@ -18,10 +22,19 @@ public class AppConfig {
         return new ConsoleOutputView();
     }
 
+    public static NumberGenerator randomNumberGenerator() {
+        return new RandomNumberGenerator();
+    }
+
+    public static MovingStrategy defaultMovingStrategy() {
+        return new DefaultMovingStrategy(randomNumberGenerator());
+    }
+
     public static RacingController racingController() {
         return new RacingController(
                 consoleInputView(),
-                consoleOutputView()
+                consoleOutputView(),
+                defaultMovingStrategy()
         );
     }
 }

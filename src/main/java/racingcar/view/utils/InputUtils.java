@@ -1,11 +1,10 @@
 package racingcar.view.utils;
 
-import racingcar.exception.ErrorMessage;
-import racingcar.exception.InvalidInputException;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
+import racingcar.exception.ErrorMessage;
+import racingcar.exception.InvalidInputException;
 
 public class InputUtils {
     private static final String DELIMITER = ",";

@@ -1,10 +1,9 @@
 package racingcar.domain;
 
-import racingcar.domain.car.Car;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import racingcar.domain.car.Car;
 
 public class RaceParticipants {
     private final List<Car> cars;

@@ -1,10 +1,9 @@
 package racingcar.view.console;
 
+import java.util.Scanner;
 import racingcar.dto.request.RaceCountRequest;
 import racingcar.dto.request.RaceParticipantsRequest;
 import racingcar.view.InputView;
-
-import java.util.Scanner;
 
 public class ConsoleInputView implements InputView {
     private final Scanner scanner = new Scanner(System.in);
