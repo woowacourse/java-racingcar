@@ -34,4 +34,19 @@ class CarsTest {
         assertThatThrownBy(() -> new Cars(cars))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 가장_많이_전진한_자동차들을_반환한다() {
+        // given
+        Car car1 = 자동차("pobi");
+        Car car2 = 자동차("crong");
+        List<Car> cars = List.of(car1, car2);
+        Cars racingCars = new Cars(cars);
+        car1.moveForward();
+        // when
+        List<String> winners = racingCars.getWinners();
+
+        // then
+        assertEquals(winners.get(0), "pobi");
+    }
 }
