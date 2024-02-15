@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import model.Cars;
 
 public class OutputView {
@@ -14,5 +15,9 @@ public class OutputView {
                         System.out.printf("%s : %s%n", car.getName(), "-".repeat(car.getPosition()))
                 );
         System.out.println();
+    }
+
+    public static void printWinners(List<String> winners) {
+        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
     }
 }
