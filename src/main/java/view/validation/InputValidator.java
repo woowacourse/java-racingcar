@@ -10,9 +10,20 @@ public class InputValidator {
     private InputValidator() {
     }
 
-    public static void validateComma(String input) {
+    public static void validateCarNames(String input) {
+        validateComma(input);
+        validateEndsWithComma(input);
+    }
+
+    private static void validateComma(String input) {
         if (!input.contains(COMMA)) {
             throw new IllegalArgumentException("자동차 이름은 쉼표로 구분하여 입력해야 합니다.");
+        }
+    }
+
+    private static void validateEndsWithComma(String input) {
+        if (input.endsWith(COMMA)) {
+            throw new IllegalArgumentException("자동차 이름은 쉼표로 끝날 수 없습니다.");
         }
     }
 

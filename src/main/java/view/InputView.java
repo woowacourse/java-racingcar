@@ -8,7 +8,7 @@ public class InputView {
     public String readCarNames() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        InputValidator.validateComma(input);
+        InputValidator.validateCarNames(input);
         return input;
     }
 
