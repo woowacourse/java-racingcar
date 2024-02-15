@@ -2,7 +2,6 @@ package model;
 
 public class Car {
 
-    private static final int MOVE_STANDARD = 4;
     private static final String STEP = "-";
     private final String name;
     private int movement;
@@ -12,8 +11,8 @@ public class Car {
         this.movement = 0;
     }
 
-    public void move(int moveNumber) {
-        if (moveNumber >= MOVE_STANDARD) {
+    public void move(boolean move) {
+        if (move) {
             this.movement++;
         }
     }

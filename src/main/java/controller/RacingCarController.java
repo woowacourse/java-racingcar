@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 import model.Car;
 import model.Cars;
-import utils.NumberGenerator;
+import utils.MovesGenerator;
 import utils.Retry;
 import view.InputView;
 import view.OutputView;
@@ -12,19 +12,19 @@ public class RacingCarController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final NumberGenerator generator;
+    private final MovesGenerator movesGenerator;
 
-    public RacingCarController(InputView inputView, OutputView outputView, NumberGenerator generator) {
+    public RacingCarController(InputView inputView, OutputView outputView, MovesGenerator movesGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.generator = generator;
+        this.movesGenerator = movesGenerator;
     }
 
     public void run() {
         List<String> carNames = Retry.retryOnException(inputView::inputCarNames);
         Cars cars = new Cars(createCars(carNames));
         int tryNumber = Retry.retryOnException(inputView::inputTryNumber);
-        startRacing(tryNumber, cars);
+        race(tryNumber, cars);
         outputView.printWinner(cars.findWinners());
     }
 
@@ -34,11 +34,11 @@ public class RacingCarController {
                 .toList();
     }
 
-    private void startRacing(int tryNumber, Cars cars) {
+    private void race(int tryNumber, Cars cars) {
         outputView.printResultHeader();
         for (int i = 0; i < tryNumber; i++) {
-            List<Integer> randomMoveNumbers = generator.generateOneDigitRandomNumbers(cars.getCarsSize());
-            cars.moveCars(randomMoveNumbers);
+            List<Boolean> moves = movesGenerator.generate(cars.getCarsSize());
+            cars.moveCars(moves);
             String totalMovementDetails = cars.getTotalMovementDetails();
             outputView.printResult(totalMovementDetails);
         }

@@ -9,9 +9,9 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveCars(List<Integer> moveNumbers) {
-        for (int i = 0; i < moveNumbers.size(); i++) {
-            cars.get(i).move(moveNumbers.get(i));
+    public void moveCars(List<Boolean> moves) {
+        for (int i = 0; i < moves.size(); i++) {
+            cars.get(i).move(moves.get(i));
         }
     }
 
