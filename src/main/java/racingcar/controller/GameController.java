@@ -1,12 +1,12 @@
 package racingcar.controller;
 
 import java.util.List;
-import java.util.function.Supplier;
 import racingcar.dto.CarDto;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.RandomNumberGenerator;
 import racingcar.model.Round;
+import racingcar.util.ExceptionRoofer;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -46,18 +46,18 @@ public class GameController {
     }
 
     private Cars getCars() {
-        return generate(() -> {
+        return ExceptionRoofer.generate(() -> {
             String names = inputView.readCarNames();
             return Cars.from(names);
-        });
+        }, outputView::printError);
     }
 
     private Round getRound() {
-        return generate(() -> {
+        return ExceptionRoofer.generate(() -> {
             String tryRound = inputView.readTryRound();
             Round round = Round.from(tryRound);
             return round;
-        });
+        }, outputView::printError);
     }
 
     private List<CarDto> createCarDtos(Cars cars) {
@@ -65,16 +65,6 @@ public class GameController {
                 .stream()
                 .map(CarDto::from)
                 .toList();
-    }
-
-    private <T> T generate(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException exception) {
-                outputView.printError(exception.getMessage());
-            }
-        }
     }
 
 }
