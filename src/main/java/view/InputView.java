@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 public class InputView {
 
-    Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
-    public List<String> inputCars() {
+    public List<String> inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = sc.nextLine();
 
@@ -26,11 +26,11 @@ public class InputView {
         return new RacingCount(input);
     }
 
-    private int parseNumber(String input) {
+    private int parseNumber(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력값이 정수가 아닙니다.");
+            throw new IllegalArgumentException("정수만 입력할 수 있습니다.");
         }
     }
 }
