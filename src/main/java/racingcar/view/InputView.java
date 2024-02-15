@@ -22,6 +22,6 @@ public class InputView {
     }
 
     private String readLine() {
-        return Console.readLine().trim();
+        return Console.readLine().replaceAll(" ", "");
     }
 }
