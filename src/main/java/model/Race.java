@@ -4,17 +4,30 @@ import static utils.RandomNumberGenerator.generateRandomNumber;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import utils.Convertor;
 
 public class Race {
     private final List<Car> cars;
 
-    public Race(String nameStr) {
+    public Race(String inValidNameStr) {
         cars = new ArrayList<>();
-        String[] names = nameStr.split(",");
-        for (String name : names) {
+        List<String> invalidNames = Convertor.convertStringToList(inValidNameStr);
+        validateDuplicatedCarName(invalidNames);
+
+        for (String name : invalidNames) {
             cars.add(new Car(new Name(name)));
+        }
+    }
+
+    private void validateDuplicatedCarName(List<String> inValidNames) {
+        Set<String> uniqueNames = new HashSet<>(inValidNames);
+
+        if (uniqueNames.size() != inValidNames.size()) {
+            throw new IllegalArgumentException("중복된 이름의 자동차는 사용할 수 없습니다.");
         }
     }
 
