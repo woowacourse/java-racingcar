@@ -8,6 +8,7 @@ public class OutputView {
     private static final String WINNERS_DELIMITER = ", ";
 
     private OutputView() {
+        // 인스턴스 생성 방지용
     }
 
     public static void printResultSubject() {

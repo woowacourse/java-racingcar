@@ -6,6 +6,7 @@ public class RandomNumberGenerator {
     private static final Random random = new Random();
 
     private RandomNumberGenerator() {
+        // 인스턴스 생성 방지용
     }
 
     public static int generate(final int max) {

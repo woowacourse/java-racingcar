@@ -14,6 +14,7 @@ public class InputView {
     private static final String DELIMITER = ",";
 
     private InputView() {
+        // 인스턴스 생성 방지용
     }
 
     public static List<String> readCarNames(Supplier<String> reader) {
