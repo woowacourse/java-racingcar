@@ -49,7 +49,7 @@ public class CarsTest {
     }
 
     @Nested
-    class Function {
+    class Feature {
         @Test
         @DisplayName("차를 2개 추가")
         void testSplit() {

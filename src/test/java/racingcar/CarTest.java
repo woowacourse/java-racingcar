@@ -22,7 +22,7 @@ public class CarTest {
     }
 
     @Nested
-    class Function {
+    class Feature {
         @Test
         @DisplayName("차 1칸 이동")
         void testMove() {

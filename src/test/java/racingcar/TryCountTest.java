@@ -7,7 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.model.TryCount;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class TryCountTest {
 
@@ -15,7 +16,7 @@ public class TryCountTest {
     class ValidateInput {
         @Test
         @DisplayName("입력값이 문자이면 예외를 발생한다.")
-        void testIsNotNumeric(){
+        void testIsNotNumeric() {
             String given = "문자열";
             assertThatThrownBy(() -> new TryCount(given))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -23,7 +24,7 @@ public class TryCountTest {
 
         @Test
         @DisplayName("입력값이 음수이면 예외를 발생한다.")
-        void testIsMinusValue(){
+        void testIsMinusValue() {
             String given = "-1";
             assertThatThrownBy(() -> new TryCount(given))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -31,7 +32,7 @@ public class TryCountTest {
     }
 
     @Nested
-    class Function {
+    class Feature {
         @Test
         @DisplayName("trycount 소비")
         void testConsume() {
@@ -45,7 +46,7 @@ public class TryCountTest {
         @ParameterizedTest
         @DisplayName("1 이상인지 확인")
         @CsvSource({"0,false",
-        "1,true"})
+                "1,true"})
         void testUntilZero(String given, boolean expected) {
             TryCount count = new TryCount(given);
             boolean actual = count.untilZero();
