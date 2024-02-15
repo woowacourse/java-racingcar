@@ -1,8 +1,10 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -11,6 +13,12 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarsTest {
+    private Cars cars;
+
+    @BeforeEach
+    void setUp() {
+        cars = new Cars("pobi,crong,honux");
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"", "pobi,pobi"})
@@ -19,34 +27,19 @@ class CarsTest {
         assertThrows(IllegalArgumentException.class, () -> new Cars(input));
     }
 
-    @Test
-    @DisplayName("random 값이 4일 경우, 자동차들을 이동시킬 수 있다.")
-    void moveCarsTest() {
-        Cars cars = new Cars("pobi,crong,honux");
-        cars.moveCars(() -> 4);
+    @ParameterizedTest
+    @CsvSource(value = {"4, 1", "3, 0"})
+    @DisplayName("random 값이 4 이상일 경우 자동차들을 이동시키고, random 값이 4 미만인 경우 자동차들을 이동시키지 않는다.")
+    void moveTest(int randomNumber, int expected) {
+        cars.moveCars(() -> randomNumber);
 
         List<Car> carList = cars.getCars();
-        for (Car car : carList) {
-            assertThat(car.getPosition()).isEqualTo(1);
-        }
-    }
-
-    @Test
-    @DisplayName("ramdom 값이 3인 경우 자동차들은 이동하지 않는다.")
-    void notMoveCarsTest() {
-        Cars cars = new Cars("pobi,crong,honux");
-        cars.moveCars(() -> 3);
-
-        List<Car> carList = cars.getCars();
-        for (Car car : carList) {
-            assertThat(car.getPosition()).isEqualTo(0);
-        }
+        carList.forEach(car -> assertThat(car.getPosition()).isEqualTo(expected));
     }
 
     @Test
     @DisplayName("가장 멀리 이동한 자동차들을 찾을 수 있다.")
     void findCarsAtMaxPosition() {
-        Cars cars = new Cars("pobi,crong,honux");
         List<Car> carsAtMaxPosition = cars.findCarsAtMaxPosition();
 
         assertThat(carsAtMaxPosition.size()).isEqualTo(3);

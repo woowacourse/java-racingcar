@@ -1,29 +1,21 @@
 package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
-    @Test
-    @DisplayName("자동차는 random 값이 4 이상이면 전진한다.")
-    void move() {
+    @ParameterizedTest
+    @CsvSource(value = {"4, 1", "3, 0"})
+    @DisplayName("random 값이 4 이상일 경우 자동차는 이동하고, random 값이 4 미만인 경우 자동차는 이동하지 않는다.")
+    void moveTest(int randomNumber, int expected) {
         Car car = new Car("pobi");
-        car.move(4);
+        car.move(randomNumber);
 
-        int result = car.getPosition();
-        assertThat(result).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("자동차는 random 값이 3 이하이면 전진하지 않는다.")
-    void stop() {
-        Car car = new Car("pobi");
-        car.move(3);
-
-        int result = car.getPosition();
-        assertThat(result).isEqualTo(0);
+        int actual = car.getPosition();
+        assertThat(actual).isEqualTo(expected);
     }
 }
