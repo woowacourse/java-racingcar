@@ -26,7 +26,7 @@ public class MoveCount {
     }
 
     private void validateRange(int moveCount) {
-        if (moveCount < 0) {
+        if (moveCount <= 0) {
             throw new IllegalArgumentException();
         }
     }
