@@ -1,5 +1,7 @@
 package model;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
+
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -7,6 +9,25 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class RaceTest {
+
+    @Nested
+    @DisplayName("중복된 자동차 이름이 존재하는지 테스트")
+    class CarNameTest {
+        @Test
+        @DisplayName("자동차 이름이 모두 유니크하면 클래스가 정상 생성된다")
+        void validateNotDuplicatedCarName() {
+            assertThatNoException()
+                    .isThrownBy(() -> new Race("호기,재즈,상돌,아루,폴라"));
+        }
+
+        @Test
+        @DisplayName("중복된 자동차 이름이 존재하면 에러를 발생시킨다.")
+        void validateDuplicatedCarName() {
+            Assertions.assertThatThrownBy(() -> new Race("호기,재즈,호기,상돌"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("중복된 이름의 자동차는 사용할 수 없습니다.");
+        }
+    }
 
     @Nested
     @DisplayName("우승자가 단일일 경우와 여러명일 경우를 테스트")
