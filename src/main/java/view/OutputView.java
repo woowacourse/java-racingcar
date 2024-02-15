@@ -11,6 +11,10 @@ public class OutputView {
         this.messageResolver = messageResolver;
     }
 
+    public void printResultPrefix() {
+        System.out.println("\n실행 결과");
+    }
+
     public void printRaceResult(List<Car> cars) {
         System.out.println(messageResolver.resolveMoveResultMessage(cars));
     }
