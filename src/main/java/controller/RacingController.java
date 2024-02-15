@@ -1,9 +1,9 @@
 package controller;
 
 import java.util.List;
-import model.CarState;
 import model.Cars;
 import model.Racing;
+import model.dto.CarState;
 import view.InputView;
 import view.OutputView;
 
@@ -34,7 +34,7 @@ public class RacingController {
         }
     }
 
-    public void end() {
+    public void end(Racing racing, Cars cars) {
 
     }
 }

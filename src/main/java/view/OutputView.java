@@ -1,7 +1,7 @@
 package view;
 
 import java.util.List;
-import model.CarState;
+import model.dto.CarState;
 
 public class OutputView {
     public void printPlayResult() {

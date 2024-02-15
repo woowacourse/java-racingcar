@@ -1,5 +1,6 @@
 package model;
 
+import model.dto.CarState;
 import model.intgenerator.IntGenerator;
 import model.intgenerator.RandomIntGenerator;
 
