@@ -22,3 +22,22 @@
 - [X] : 우승자를 출력한다.
   - [X] : 가장 멀리 간 사람이 우승한다.
   - [X] : 공동 우승자가 존재할 수 있다. (쉼표로 구분)
+
+## 소스코드 구조
+```text
+main
+└── java
+     ├── domain
+     ├── view
+     ├── RacingCarController.java
+     └── RacingCarApplication.java
+```
+
+- domain
+  - '자동차 경주 미션'의 비즈니스 로직을 담고 있다.
+- view
+  - 입출력 로직을 담고 있다.
+- RacingCarController
+  - '자동차 경주 미션'의 제어 로직을 담고 있다.
+- RacingCarApplication
+  - 프로그램의 실행 시작 지점이다.
