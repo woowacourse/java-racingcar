@@ -20,11 +20,7 @@ public class OutputView {
     }
 
     private String makeTraces(int count) {
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < count; i++) {
-            sb.append(TRACE);
-        }
-        return sb.toString();
+        return TRACE.repeat(count);
     }
 
     public void printWinners(final List<Car> winners) {
