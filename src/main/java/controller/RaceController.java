@@ -1,7 +1,10 @@
 package controller;
 
+import static view.OutputView.showRaceResult;
+import static view.OutputView.showRoundResult;
+import static view.OutputView.showWinners;
+
 import model.Race;
-import view.OutputView;
 
 public class RaceController {
 
@@ -11,16 +14,19 @@ public class RaceController {
         this.inputController = new InputController();
     }
 
-    public void process() {
+    public void startRace() {
         Race race = inputController.makeRace();
-        int tryNumber = inputController.makeTryNumber();
+        int tryCount = inputController.makeTryNumber();
 
-        OutputView.showRaceResult();
-        for (int i = 0; i < tryNumber; i++) {
+        showRaceResult();
+        proceedRound(tryCount, race);
+        showWinners(race);
+    }
+
+    private static void proceedRound(int tryCount, Race race) {
+        for (int round = 0; round < tryCount; round++) {
             race.oneGame();
-            OutputView.showRoundResult(race);
+            showRoundResult(race);
         }
-
-        OutputView.showWinners(race);
     }
 }
