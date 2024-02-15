@@ -6,6 +6,7 @@ import view.MessageResolver;
 import view.OutputView;
 
 public class Config {
+
     public RacingGameController racingGameController() {
         return new RacingGameController(inputView(), outputView());
     }
@@ -21,5 +22,4 @@ public class Config {
     public MessageResolver messageResolver() {
         return new MessageResolver();
     }
-
 }

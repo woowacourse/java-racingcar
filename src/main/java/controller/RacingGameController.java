@@ -3,11 +3,10 @@ package controller;
 import domain.Car;
 import domain.Cars;
 import domain.MoveCount;
+import java.util.List;
 import util.StringParser;
 import view.InputView;
 import view.OutputView;
-
-import java.util.List;
 
 public class RacingGameController {
 
@@ -60,10 +59,8 @@ public class RacingGameController {
         try {
             Integer count = StringParser.parseToInt(inputView.requestMoveCount());
             return MoveCount.from(count);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return prepareMoveCount();
         }
     }
-
-
 }

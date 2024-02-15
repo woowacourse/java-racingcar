@@ -1,10 +1,10 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-
-import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("범위 난수 생성 테스트")
 class PowerGeneratorTest {

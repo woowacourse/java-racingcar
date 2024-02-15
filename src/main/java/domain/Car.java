@@ -1,6 +1,7 @@
 package domain;
 
 public class Car {
+
     private final String carName;
     private Integer position;
     private final PowerGenerator powerGenerator;

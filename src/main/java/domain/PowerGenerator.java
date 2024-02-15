@@ -1,6 +1,7 @@
 package domain;
 
 public class PowerGenerator {
+
     private static final Integer MIN = 0;
     private static final Integer MAX = 9;
 
