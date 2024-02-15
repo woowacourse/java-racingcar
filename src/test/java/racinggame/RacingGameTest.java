@@ -51,6 +51,28 @@ class RacingGameTest {
         assertThat(game.getCars()).isEqualTo(createMovedCars(3));
     }
 
+    @DisplayName("우승자를 선정한다.")
+    @Test
+    void findWinner() {
+        List<Car> movedCars = createMovedCars(1, 2);
+
+        RacingGame game = RacingGame.of(movedCars, moveCondition());
+
+        String expected = game.findWinnerName();
+
+        assertThat(expected).isEqualTo("이상");
+    }
+
+    @DisplayName("공동 우승자를 선정한다.")
+    @Test
+    void findWinner2() {
+        RacingGame game = RacingGame.of(createCars(), moveCondition());
+
+        String expected = game.findWinnerName();
+
+        assertThat(expected).isEqualTo("아톰, 이상");
+    }
+
     private List<Car> createCars() {
         return List.of(
             Car.from("아톰"),
@@ -65,6 +87,12 @@ class RacingGameTest {
         );
     }
 
+    private List<Car> createMovedCars(int position1, int position2) {
+        return List.of(
+            Car.of("아톰", position1),
+            Car.of("이상", position2)
+        );
+    }
 
     private MoveCondition moveCondition() {
         return () -> true;

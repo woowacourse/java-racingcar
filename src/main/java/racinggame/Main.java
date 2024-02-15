@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import racinggame.condition.RandomMoveCondition;
 
+// TODO : Main을 리팩터링하기 전에 이동한다.
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -34,10 +35,6 @@ public class Main {
             System.out.println();
         });
 
-        System.out.format("%s가 최종 우승했습니다.", findWinnerNames());
-    }
-
-    private static String findWinnerNames() {
-        return "아톰, 이상";
+        System.out.format("%s가 최종 우승했습니다.", game.findWinnerName());
     }
 }

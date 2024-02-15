@@ -2,6 +2,7 @@ package racinggame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGame {
 
@@ -47,5 +48,20 @@ public class RacingGame {
 
     public List<RoundResult> getResult() {
         return results;
+    }
+
+    public String findWinnerName() {
+        int max = cars.stream()
+            .map(car -> car.getInfo().position())
+            .max(Integer::compareTo)
+            .orElseThrow();
+
+        List<Car> winners = cars.stream()
+            .filter(car -> car.getInfo().position() == max)
+            .toList();
+
+        return winners.stream()
+            .map(car -> car.getInfo().name())
+            .collect(Collectors.joining(", "));
     }
 }
