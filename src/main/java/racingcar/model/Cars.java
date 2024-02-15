@@ -1,7 +1,6 @@
 package racingcar.model;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -58,6 +57,9 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return cars.stream()
+                .map(Car::copy)
+                .toList();
+//        return Collections.unmodifiableList(cars);
     }
 }

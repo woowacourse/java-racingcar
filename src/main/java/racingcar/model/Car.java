@@ -23,6 +23,10 @@ public class Car {
         }
     }
 
+    public Car copy() {
+        return new Car(name, position);
+    }
+
     public String getName() {
         return name.getName();
     }

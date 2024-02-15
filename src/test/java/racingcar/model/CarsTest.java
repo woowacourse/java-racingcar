@@ -67,5 +67,35 @@ class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("getter로 가져온 List는 수정이 불가")
+    @Test
+    void add() {
+        // given
+        Cars cars = Cars.from("a,b,c");
 
+        // when
+        List<Car> unmodifiedCars = cars.getCars();
+
+        // then
+        Assertions.assertThatThrownBy(() -> unmodifiedCars.add(Car.from("새로운차")))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+
+    @DisplayName("getter로 얻은 자동차의 상태를 변경할 수 없다.")
+    @Test
+    void invalidChangeState() {
+        // given
+        Cars cars = Cars.from("a,b,c");
+        List<Car> unmodifiedCars = cars.getCars();
+        Car unmodifyCar = unmodifiedCars.get(0);
+        unmodifyCar.go(4);
+
+        // when
+        List<Car> originCars = cars.getCars();
+        Car originCar = originCars.get(0);
+
+        // then
+        Assertions.assertThat(originCar.getPosition()).isNotEqualTo(unmodifyCar.getPosition());
+    }
 }
