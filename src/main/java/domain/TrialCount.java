@@ -21,8 +21,4 @@ public class TrialCount {
             consumer.run();
         }
     }
-
-    public int getAmount() {
-        return amount;
-    }
 }

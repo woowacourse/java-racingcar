@@ -1,10 +1,9 @@
 package domain;
 
 import java.util.Random;
-import java.util.function.Function;
 import java.util.function.IntSupplier;
 
-public class RandomMove implements IntSupplier {
+public class RandomDigitSupplier implements IntSupplier {
 
     private static final Random RANDOM = new Random();
 

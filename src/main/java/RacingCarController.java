@@ -1,6 +1,6 @@
 import domain.Car;
 import domain.Cars;
-import domain.RandomMove;
+import domain.RandomDigitSupplier;
 import domain.TrialCount;
 import java.util.List;
 import view.InputView;
@@ -10,7 +10,7 @@ public class RacingCarController {
 
     public static void run() {
         List<String> carNames = InputView.inputNames();
-        Cars cars = Cars.of(carNames, new RandomMove());
+        Cars cars = Cars.of(carNames, new RandomDigitSupplier());
 
         int trialAmount = InputView.inputTryCount();
         TrialCount trialCount = new TrialCount(trialAmount);
