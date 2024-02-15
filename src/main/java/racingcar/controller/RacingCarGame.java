@@ -10,6 +10,8 @@ public class RacingCarGame {
     public void start() {
         Vehicles vehicles = requestUntilValidated(() -> Vehicles.from(InputView.readCarNames()));
         Game game = requestUntilValidated(() -> Game.from(InputView.readTryCount(), vehicles));
+        OutputView.printNewLine();
+        OutputView.printResultTitle();
         game.proceed();
     }
 

@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import java.util.stream.IntStream;
+import racingcar.ui.OutputView;
+
 public class Game {
     private final int tryCount;
     private final Vehicles vehicles;
@@ -26,6 +29,9 @@ public class Game {
     }
 
     public void proceed() {
-        vehicles.move();
+        IntStream.range(0, tryCount).forEach((i) -> {
+            vehicles.move();
+            OutputView.printNewLine();
+        });
     }
 }

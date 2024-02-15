@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.ui.OutputView;
 import racingcar.util.RandomNumber;
 import racingcar.util.RandomUtil;
 
@@ -22,17 +23,14 @@ public class Car {
         }
     }
 
-    String getName() {
-        return name;
-    }
-
-    int getForward() {
-        return forward;
-    }
-
     public void move() {
         if (randomUtil.generate(0, 9) >= MOVE_BOUNDARY) {
             forward++;
         }
+        printStatus();
+    }
+
+    private void printStatus() {
+        OutputView.printCarResult(name, forward);
     }
 }
