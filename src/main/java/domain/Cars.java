@@ -1,6 +1,8 @@
 package domain;
 
 import dto.Winners;
+import exception.ErrorMessage;
+import exception.RacingCarGameException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +26,7 @@ public class Cars {
 
     private void validateUniqueName(List<String> names) {
         if(isDuplicatedName(names)) {
-            throw new IllegalArgumentException();
+            throw RacingCarGameException.from(ErrorMessage.DUPLICATED_NAME_ERROR);
         }
     }
 

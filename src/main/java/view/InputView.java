@@ -1,5 +1,8 @@
 package view;
 
+import exception.ErrorMessage;
+import exception.RacingCarGameException;
+
 import static view.ViewMessages.*;
 
 import java.util.Arrays;
@@ -28,7 +31,7 @@ public class InputView {
 
     private static void validateBlankInput(String carNames) {
         if (carNames == null || carNames.isEmpty()) {
-           throw new IllegalArgumentException("빈 문자열을 입력할 수 없습니다. 다시 입력해주세요.");
+           throw RacingCarGameException.from(ErrorMessage.BLANK_INPUT_ERROR);
         }
     }
 
@@ -42,7 +45,7 @@ public class InputView {
         try {
             return Integer.parseInt(rawCount);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("정수를 입력해주세요.");
+            throw RacingCarGameException.from(ErrorMessage.INVALID_COUNT_ERROR);
         }
     }
 }

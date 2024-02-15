@@ -1,5 +1,8 @@
 package domain;
 
+import exception.ErrorMessage;
+import exception.RacingCarGameException;
+
 public class Count {
     private static final int COUNT_LOWER_BOUND = 1;
     private int value;
@@ -11,7 +14,7 @@ public class Count {
 
     private void validatePositive(int count) {
         if (count < COUNT_LOWER_BOUND) {
-            throw new IllegalArgumentException();
+            throw RacingCarGameException.from(ErrorMessage.INVALID_COUNT_ERROR);
         }
     }
 
