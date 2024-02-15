@@ -6,6 +6,8 @@ public class Car {
     private int position;
     private final CarAccelerator accelerator;
 
+    private static final int MIN_MOVABLE_POWER = 4;
+
     public Car(String name, CarAccelerator accelerator) {
         if (name.length() < 1 || name.length() > 5) {
             throw new IllegalArgumentException();
@@ -21,7 +23,7 @@ public class Car {
     }
 
     public void moveForward(int power) {
-        if (power >= 4) {
+        if (power >= MIN_MOVABLE_POWER) {
             position++;
         }
     }
