@@ -1,6 +1,6 @@
 package racing.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +10,7 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(String rawNames) {
-        List<String> carNames = stringToList(rawNames);
+        List<String> carNames = parseNames(rawNames);
         validate(carNames);
         this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
@@ -26,12 +26,8 @@ public class Cars {
         }
     }
 
-    private List<String> stringToList(String string) {
-        List<String> names = new ArrayList<>();
-        for (String name : string.split(",")) {
-            names.add(name.trim());
-        }
-        return names;
+    private List<String> parseNames(String names) {
+        return Arrays.stream(names.split(",")).map(String::trim).toList();
     }
 
     public void proceedRound() {
@@ -40,11 +36,9 @@ public class Cars {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Car car : cars) {
-            stringBuilder.append(car.toString()).append("\n");
-        }
-        return stringBuilder.toString();
+        return cars.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining("\n", "", "\n"));
     }
 
     public List<Car> findFurthestCars() {
