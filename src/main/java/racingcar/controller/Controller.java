@@ -1,14 +1,12 @@
 package racingcar.controller;
 
-import static racingcar.utils.Random.THRESHOLD;
-
 import java.util.function.Supplier;
 
 import racingcar.exception.ExceptionHandler;
-import racingcar.model.Cars;
 import racingcar.model.CarMoveRule;
+import racingcar.model.Cars;
+import racingcar.model.DefaultCarMoveRule;
 import racingcar.model.RacingGame;
-import racingcar.utils.Random;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -25,9 +23,9 @@ public class Controller {
     }
 
     public void run() {
-        Cars cars = runWithExceptionHandler(inputView::askCarNames);
-        RacingGame racingGame = runWithExceptionHandler(() -> createRacingGame(cars));
-        CarMoveRule carMoveRule = () -> Random.pickNumber() >= THRESHOLD;
+        Cars cars = createCars();
+        RacingGame racingGame = createRacingGame(cars);
+        CarMoveRule carMoveRule = new DefaultCarMoveRule();
         outputView.printProgressGuide();
         while (!racingGame.isGameOver()) {
             racingGame.move(carMoveRule);
@@ -37,9 +35,15 @@ public class Controller {
         outputView.printWinners(winners);
     }
 
-    private RacingGame createRacingGame(Cars cars){
-        int moveCount = inputView.askMoveCount();
-        return new RacingGame(cars, moveCount);
+    private Cars createCars() {
+        return runWithExceptionHandler(inputView::askCarNames);
+    }
+
+    private RacingGame createRacingGame(Cars cars) {
+        return runWithExceptionHandler(() -> {
+            int moveCount = inputView.askMoveCount();
+            return new RacingGame(cars, moveCount);
+        });
     }
 
     private <T> T runWithExceptionHandler(Supplier<T> callback) {
