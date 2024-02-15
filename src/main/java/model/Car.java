@@ -28,7 +28,7 @@ public class Car {
 
     private void checkBlankOrNull(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalStateException("[ERROR] 자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
+            throw new IllegalStateException("[ERROR] 자동차 이름을 입력해 주십시오.");
         }
     }
 
