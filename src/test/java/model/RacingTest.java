@@ -4,9 +4,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class RacingTest {
+    Cars cars;
+
+    @BeforeEach
+    void setUp() {
+        Car car1 = new Car("pobi", () -> 3);
+        Car car2 = new Car("dora", () -> 4);
+        Car car3 = new Car("ella", () -> 5);
+        cars = new Cars(List.of(car1, car2, car3));
+    }
     @Test
     void 시도횟수로_경주를_생성한다() {
         Racing racing = new Racing(3);
@@ -21,13 +31,6 @@ public class RacingTest {
 
     @Test
     void 시도횟수가_0이_되면_전진이_불가하다() {
-        Car car1 = new Car("pobi", () -> 1);
-        Car car2 = new Car("dora", () -> 3);
-        Car car3 = new Car("ella", () -> 4);
-        Car car4 = new Car("lupy", () -> 5);
-        Car car5 = new Car("jojo", () -> 7);
-        Cars cars = new Cars(List.of(car1, car2, car3, car4, car5));
-
         Racing racing = new Racing(1);
         boolean before = racing.canTry();
         racing.doTry(cars);
@@ -38,16 +41,10 @@ public class RacingTest {
 
     @Test
     void 우승자는_한명_이상일_수_있다() {
-        Car car1 = new Car("pobi", () -> 1);
-        Car car2 = new Car("dora", () -> 3);
-        Car car3 = new Car("ella", () -> 4);
-        Car car4 = new Car("lupy", () -> 5);
-        Car car5 = new Car("jojo", () -> 7);
-        Cars cars = new Cars(List.of(car1, car2, car3, car4, car5));
-
         Racing racing = new Racing(1);
         racing.doTry(cars);
         List<String> winnerNames = racing.determineWinner(cars);
-        assertThat(winnerNames.size()).isEqualTo(3);
+
+        assertThat(winnerNames.size()).isEqualTo(2);
     }
 }

@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import model.intgenerator.IntGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class CarTest {
     IntGenerator intGenerator;
@@ -26,17 +28,11 @@ public class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 주어진_값이_4_이상인_경우_전진한다() {
-        Car car = new Car("pobi", () -> 4);
+    @ParameterizedTest
+    @CsvSource({"pobi, 4, 1", "pobi, 3, 0"})
+    void 주어진_값이_4_이상인_경우_전진한다(String name, int number, int forwardCount) {
+        Car car = new Car(name, () -> number);
         car.tryForward();
-        assertThat(car.captureCarState().forwardCount()).isEqualTo(1);
-    }
-
-    @Test
-    void 주어진_값이_4_미만인_경우_전진하지_않는다() {
-        Car car = new Car("pobi", () -> 3);
-        car.tryForward();
-        assertThat(car.captureCarState().forwardCount()).isEqualTo(0);
+        assertThat(car.captureCarState().forwardCount()).isEqualTo(forwardCount);
     }
 }
