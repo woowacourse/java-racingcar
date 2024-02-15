@@ -6,7 +6,7 @@ public class Car {
     private NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
-        numberGenerator = new RandomNumberGenerator();
+        this.numberGenerator = numberGenerator;
         this.name = name;
     }
 
