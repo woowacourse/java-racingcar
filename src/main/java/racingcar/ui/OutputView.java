@@ -4,6 +4,10 @@ package racingcar.ui;
 import static racingcar.ui.OutputCommand.CAR_RESULT_FORMAT;
 import static racingcar.ui.OutputCommand.ERROR_PREFIX;
 import static racingcar.ui.OutputCommand.RESULT_TITLE;
+import static racingcar.ui.OutputCommand.WINNERS_DELIMITER;
+import static racingcar.ui.OutputCommand.WINNER_FORMAT;
+
+import racingcar.domain.Winner;
 
 public class OutputView {
     public static void printInputErrorMessage() {
@@ -16,10 +20,13 @@ public class OutputView {
 
     public static void printResultTitle() {
         System.out.println(RESULT_TITLE);
-
     }
 
     public static void printNewLine() {
         System.out.print("\n");
+    }
+
+    public static void printWinner(Winner winner) {
+        System.out.printf(WINNER_FORMAT, String.join(WINNERS_DELIMITER, winner.getWinners()));
     }
 }

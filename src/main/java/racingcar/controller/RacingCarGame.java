@@ -13,7 +13,7 @@ public class RacingCarGame {
         OutputView.printNewLine();
         OutputView.printResultTitle();
         game.proceed();
-        game.getWinner();
+        OutputView.printWinner(game.getWinner());
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {
