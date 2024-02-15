@@ -5,6 +5,9 @@ import domain.Car;
 import java.util.List;
 
 public class OutputView {
+
+    private static final String RACE_RESULT_PREFIX = "\n실행 결과";
+
     private final MessageResolver messageResolver;
 
     public OutputView(MessageResolver messageResolver) {
@@ -12,7 +15,7 @@ public class OutputView {
     }
 
     public void printResultPrefix() {
-        System.out.println("\n실행 결과");
+        System.out.println(RACE_RESULT_PREFIX);
     }
 
     public void printRaceResult(List<Car> cars) {
