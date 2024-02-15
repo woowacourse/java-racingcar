@@ -5,14 +5,14 @@ import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class FieldTest {
+public class RaceManager {
     private final InputView inputView;
     private final CarFactory carFactory;
     private final Field field;
     private final NumberGenerator numberGenerator;
     private final int numberOfAttempts;
 
-    public FieldTest(InputView inputView, NumberGenerator numberGenerator) {
+    public RaceManager(InputView inputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.carFactory = repeatUntilGetValidCarNames();
         this.numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
