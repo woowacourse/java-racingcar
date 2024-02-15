@@ -38,7 +38,6 @@ public class CarGroup {
             sb.append("\n");
         }
 
-        sb.append("\n");
         return sb.toString();
     }
 }

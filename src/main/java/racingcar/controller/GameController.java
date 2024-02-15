@@ -68,8 +68,6 @@ public class GameController {
             OutputView.printPosition(carGroup);
 
         }
-
-        finish();
     }
 
     public void finish() {
