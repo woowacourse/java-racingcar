@@ -1,15 +1,17 @@
-import domain.CarFactory;
-import domain.Field;
+package domain;
+
 import java.io.IOException;
 import view.InputView;
 import view.OutputView;
 
 public class RaceManager {
+    private final InputView inputView;
     private final CarFactory carFactory;
     private final Field field;
     private final int numberOfAttempts;
 
-    public RaceManager() {
+    public RaceManager(InputView inputView) {
+        this.inputView = inputView;
         this.carFactory = repeatUntilGetValidCarNames();
         this.numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
         this.field = new Field(carFactory);
@@ -17,16 +19,17 @@ public class RaceManager {
 
     private CarFactory repeatUntilGetValidCarNames() {
         try {
-            String carNames = InputView.readCarNames();
+            String carNames = inputView.readCarNames();
             return new CarFactory(carNames);
         } catch (IOException | IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return repeatUntilGetValidCarNames();
         }
     }
 
     private int repeatUntilGetValidNumberOfAttempts() {
         try {
-            return InputView.readNumberOfAttempts();
+            return inputView.readNumberOfAttempts();
         } catch (IOException | IllegalArgumentException e) {
             return repeatUntilGetValidNumberOfAttempts();
         }
