@@ -1,0 +1,28 @@
+package view;
+
+import domain.Car;
+import domain.RaceProgress;
+import domain.RaceResult;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class OutputView {
+    private void newLine(){
+        System.out.println();
+    }
+    public void printRaceProgresses(List<RaceProgress> raceProgresses){
+        newLine();
+        System.out.println("실행 결과");
+        raceProgresses.stream().forEach(System.out::println);
+    }
+    public void printRaceResult(RaceResult raceResult){
+        String racerList = raceResult
+                .getWinnerCars()
+                .stream()
+                .map(Car::toString)
+                .collect(Collectors.joining(", "));
+
+        System.out.println(racerList+"가 최종 우승했습니다.");
+    }
+}
