@@ -1,5 +1,6 @@
 package model;
 
+import static utils.Convertor.convertStringToList;
 import static utils.RandomNumberGenerator.generateRandomNumber;
 
 import java.util.ArrayList;
@@ -8,14 +9,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import utils.Convertor;
 
 public class Race {
+    private final String INVALID_NUMBER_OF_CARS_ERROR_MESSAGE = "레이스에 참여하는 자동차는 최소 2대 이상이어야 합니다.";
+    private final String CAR_NAME_DUPLICATED_ERROR_MESSAGE = "중복된 이름의 자동차는 사용할 수 없습니다.";
     private final List<Car> cars;
 
     public Race(String inValidNameStr) {
         cars = new ArrayList<>();
-        List<String> invalidNames = Convertor.convertStringToList(inValidNameStr);
+        List<String> invalidNames = convertStringToList(inValidNameStr);
         validate(invalidNames);
 
         for (String name : invalidNames) {
@@ -32,13 +34,13 @@ public class Race {
         Set<String> uniqueNames = new HashSet<>(invalidNames);
 
         if (uniqueNames.size() != invalidNames.size()) {
-            throw new IllegalArgumentException("중복된 이름의 자동차는 사용할 수 없습니다.");
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATED_ERROR_MESSAGE);
         }
     }
 
     private void validateMinimumNumberOfCars(List<String> invalidNames) {
         if (invalidNames.size() < 2) {
-            throw new IllegalArgumentException("레이스에 참여하는 자동차는 최소 2대 이상이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_OF_CARS_ERROR_MESSAGE);
         }
     }
 
