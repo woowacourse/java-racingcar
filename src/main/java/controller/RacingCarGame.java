@@ -15,7 +15,7 @@ public class RacingCarGame {
         OutputView.printNewLine();
 
         OutputView.printResultMessage();
-        for (int i = 0; i < count.get(); i++) {
+        for (int i = 0; i < count.getValue(); i++) {
             cars.move();
             OutputView.printResult(cars);
         }

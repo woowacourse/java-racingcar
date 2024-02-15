@@ -20,10 +20,6 @@ public class Car {
         }
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public Optional<String> getNameIfMax(int max) {
         if(position == max) {
             return Optional.of(carName.getName());
@@ -33,5 +29,9 @@ public class Car {
 
     public String getName() {
         return carName.getName();
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

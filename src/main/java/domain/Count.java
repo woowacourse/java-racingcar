@@ -2,11 +2,11 @@ package domain;
 
 public class Count {
     private static final int COUNT_LOWER_BOUND = 1;
-    private int count;
+    private int value;
 
-    public Count(int count) {
-        validatePositive(count);
-        this.count = count;
+    public Count(int value) {
+        validatePositive(value);
+        this.value = value;
     }
 
     private void validatePositive(int count) {
@@ -15,7 +15,7 @@ public class Count {
         }
     }
 
-    public int get() {
-        return count;
+    public int getValue() {
+        return value;
     }
 }
