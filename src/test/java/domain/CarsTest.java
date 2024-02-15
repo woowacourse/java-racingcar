@@ -76,7 +76,7 @@ class CarsTest {
         car3.moveForward(4);
 
         //then
-        Assertions.assertThat(cars.getCarsMaxPosition()).isEqualTo(3);
+        Assertions.assertThat(cars.getWinnerPosition()).isEqualTo(3);
     }
 
 }

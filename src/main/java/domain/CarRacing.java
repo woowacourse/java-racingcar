@@ -57,14 +57,11 @@ public class CarRacing {
     }
 
     public List<String> getWinners(Cars cars) {
-        int maxPosition = cars.getCarsMaxPosition();
+        int winnerPosition = cars.getWinnerPosition();
 
-        List<String> winners = new ArrayList<>();
-        for (Car car : cars.getCars()) {
-            if (car.getPosition() == maxPosition) {
-                winners.add(car.getName());
-            }
-        }
-        return winners;
+        return cars.getCars().stream()
+                .filter(car -> car.getPosition() == winnerPosition)
+                .map(Car::getName)
+                .toList();
     }
 }
