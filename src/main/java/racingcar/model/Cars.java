@@ -28,7 +28,7 @@ public class Cars {
     }
 
     private static void validateDuplicateName(List<Car> cars) {
-        if (cars.size() != Set.of(cars).size()) {
+        if (cars.size() != Set.copyOf(cars).size()) {
             throw new IllegalArgumentException();
         }
     }
