@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import java.util.Objects;
+import static racingcar.exception.ExceptionMessage.*;
 
 public class Car implements Comparable<Car> {
     private static final String CAR_POSITION_SYMBOL = "-";
@@ -21,20 +21,20 @@ public class Car implements Comparable<Car> {
 
     private void validateNotNull(final String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("자동차 이름에 공백을 입력할 수 없습니다.");
+            throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
         }
     }
 
     private void validateNameStyle(final String name) {
         final String regex = "^[a-zA-Z0-9_-]";
         if (!name.matches(regex)) {
-            throw new IllegalArgumentException("올바르지 않은 자동차 이름입니다.");
+            throw new IllegalArgumentException(INVALID_CAR_NAME.getMessage());
         }
     }
 
     private void validateNameSize(final String name) {
         if (name.trim().length() > 5) {
-            throw new IllegalArgumentException("자동차 이름의 길이가 5를 초과합니다");
+            throw new IllegalArgumentException(INVALID_CAR_NAME_SIZE.getMessage());
         }
     }
 

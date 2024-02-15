@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.exception.ExceptionMessage.*;
+
 import java.util.List;
 import racingcar.service.RandomNumberGenerator;
 
@@ -24,13 +26,13 @@ public class Cars {
                 .distinct()
                 .count();
         if (carNames.size() != uniqueCarNames) {
-            throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
+            throw new IllegalArgumentException(NOT_DUPLICATED_CAR_NAME.getMessage());
         }
     }
 
     private void validateSize(final List<String> carNames) {
         if (carNames.size() < 2 || carNames.size() > 10) {
-            throw new IllegalArgumentException("자동차 대수는 2대 이상 10대 이하여야 합니다.");
+            throw new IllegalArgumentException(INVALID_CARS_SIZE.getMessage());
         }
     }
 

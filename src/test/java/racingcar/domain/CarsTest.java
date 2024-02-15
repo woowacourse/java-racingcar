@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -16,7 +17,7 @@ class CarsTest {
     void createCarsByDuplicateCarNames() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Cars(List.of("123", "123")))
-                .withMessage("자동차 이름은 중복될 수 없습니다.");
+                .withMessage(NOT_DUPLICATED_CAR_NAME.getMessage());
     }
 
     @ParameterizedTest
@@ -25,7 +26,7 @@ class CarsTest {
     void createCarsByInvalidSize(List<String> carNames) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Cars(carNames))
-                .withMessage("자동차 대수는 2대 이상 10대 이하여야 합니다.");
+                .withMessage(INVALID_CARS_SIZE.getMessage());
     }
 
     private static Stream<Arguments> InputCarNames() {

@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import static racingcar.exception.ExceptionMessage.*;
+
 import java.util.List;
 import java.util.Arrays;
 import java.util.function.Supplier;
@@ -24,13 +26,13 @@ public class InputView {
 
     private static void validateNotEmpty(String input) throws IllegalArgumentException{
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
+            throw new IllegalArgumentException(NOT_NULL.getMessage());
         }
     }
 
     private static void validateEndsWithComma(String input) throws IllegalArgumentException {
         if (input.endsWith(",")) {
-            throw new IllegalArgumentException("자동차 이름에 공백을 입력할 수 없습니다.");
+            throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
         }
     }
 
@@ -43,7 +45,7 @@ public class InputView {
         try {
             tryCount = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("시도 횟수는 양의 정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(ONLY_POSITIVE_NUMBER.getMessage());
         }
         validateTryCountRange(tryCount);
         return tryCount;
@@ -51,10 +53,10 @@ public class InputView {
 
     private static void validateTryCountRange(final int tryCount) {
         if (tryCount <= 0) {
-            throw new IllegalArgumentException("시도 횟수는 양의 정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(ONLY_POSITIVE_NUMBER.getMessage());
         }
         if (tryCount > 1_000) {
-            throw new IllegalArgumentException("시도 횟수는 1,000 이하여야 합니다.");
+            throw new IllegalArgumentException(INVALID_TRY_COUNT.getMessage());
         }
     }
 }
