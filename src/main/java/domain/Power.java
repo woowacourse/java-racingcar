@@ -1,7 +1,5 @@
 package domain;
 
-import jdk.jfr.Threshold;
-
 public class Power {
 
     private static final Integer THRESHOLD = 4;

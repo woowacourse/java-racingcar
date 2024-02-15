@@ -3,12 +3,13 @@ package domain;
 public class Car {
     private final String carName;
     private Integer position;
-    private final PowerGenerator powerGenerator = new PowerGenerator(new RandomNumberGenerator());
+    private final PowerGenerator powerGenerator;
 
     private Car(String carName, int position) {
         validate(carName);
         this.carName = carName;
         this.position = position;
+        this.powerGenerator = new PowerGenerator(new RandomNumberGenerator());
     }
 
     public static Car of(String name, int position) {
