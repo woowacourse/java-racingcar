@@ -7,16 +7,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("랜덤")
-class RandomUtilTest {
+class RandomNumberTest {
     @Test
     @DisplayName("값의 최소와 최대 범위를 제한한다.")
     public void testRandomBetween() {
         //given
         int minLimit = 0;
         int maxLimit = 9;
+        RandomUtil randomUtil = new RandomNumber();
 
         //when
-        int randomNumber = RandomUtil.pickRandomNumber(minLimit, maxLimit);
+        int randomNumber = randomUtil.generate(minLimit, maxLimit);
 
         //then
         assertThat(randomNumber).isBetween(minLimit, maxLimit);
@@ -28,9 +29,10 @@ class RandomUtilTest {
         //given
         int minLimit = 5;
         int maxLimit = 4;
+        RandomUtil randomUtil = new RandomNumber();
 
         //when & then
-        assertThatThrownBy(() -> RandomUtil.pickRandomNumber(minLimit, maxLimit))
+        assertThatThrownBy(() -> randomUtil.generate(minLimit, maxLimit))
                 .isInstanceOf(IllegalStateException.class);
     }
 }

@@ -14,17 +14,21 @@ class GameTest {
     @DisplayName("시도할 횟수를 변환하여 게임을 생성한다")
     public void createGameTest() {
         //given
+        String userCarNames = "choco,seyan";
         String userTryCount = "5";
 
         //when&then
-        assertDoesNotThrow(() -> Game.from(userTryCount));
+        assertDoesNotThrow(() -> Game.from(userTryCount, Vehicles.from(userCarNames)));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "1.5", "", " ", "1 2"})
     @DisplayName("시도할 횟수가 자연수가 아닐 경우 예외가 발생한다")
     public void nonNaturalNumberTest(String userTryCount) {
-        //given & when & then
-        assertThrows(NumberFormatException.class, () -> Game.from(userTryCount));
+        //given
+        String userCarNames = "choco,seyan";
+
+        //when & then
+        assertThrows(NumberFormatException.class, () -> Game.from(userTryCount, Vehicles.from(userCarNames)));
     }
 }
