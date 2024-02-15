@@ -16,10 +16,11 @@ public class CarGroup {
             car.move(RandomNumberGenerator.generate());
         }
     }
+
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
-                .filter((car -> car.getPosition() == maxPosition))
+                .filter((car -> car.getPosition() > 0 && car.getPosition() == maxPosition))
                 .toList();
     }
 
