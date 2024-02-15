@@ -1,6 +1,5 @@
 package service;
 
-import domain.Car;
 import domain.Cars;
 import util.RandomGenerator;
 
@@ -51,24 +50,5 @@ public class RacingCarService {
     public void moveCars(Cars cars) {
         cars.getCars()
             .forEach(car -> car.drive(RandomGenerator.pickRandomNumber()));
-    }
-
-    public List<String> findWinners(Cars cars) {
-        List<Car> winners =  cars.getCars().stream()
-                .sorted(Car::compareTo)
-                .takeWhile(car -> car.getForward() == cars.getMaxForward())
-                .toList();
-
-        return getWinnerNames(winners);
-    }
-
-    private List<String> getWinnerNames(List<Car> winners) {
-        List<String> winnerNames = new ArrayList<>();
-
-        for (Car winner : winners) {
-            winnerNames.add(winner.getName());
-        }
-
-        return winnerNames;
     }
 }

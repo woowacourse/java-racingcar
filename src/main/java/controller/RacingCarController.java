@@ -1,12 +1,11 @@
 package controller;
 
-import domain.Car;
 import domain.Cars;
+import service.JudgeService;
 import service.RacingCarService;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static util.Exceptions.NULL_EXCEPTION;
@@ -16,11 +15,13 @@ public class RacingCarController {
     private final InputView inputView;
     private final OutputView outputView;
     private final RacingCarService racingCarService;
+    private final JudgeService judgeService;
 
-    public RacingCarController(RacingCarService racingCarService, InputView inputView, OutputView outputView) {
+    public RacingCarController(RacingCarService racingCarService, InputView inputView, OutputView outputView, JudgeService judgeService) {
         this.racingCarService = racingCarService;
         this.inputView = inputView;
         this.outputView = outputView;
+        this.judgeService = judgeService;
     }
 
     public void run() {
@@ -65,7 +66,7 @@ public class RacingCarController {
     }
 
     private void printWinners(Cars cars) {
-        List<String> winners = racingCarService.findWinners(cars);
+        List<String> winners = judgeService.findWinners(cars);
         outputView.printWinners(winners);
     }
 
