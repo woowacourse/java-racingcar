@@ -32,7 +32,7 @@ public class RacingCarController {
 
         validateIsNull(carsName);
 
-        return null;
+        return racingCarService.getCars(carsName);
     }
 
     private int getCount() {
