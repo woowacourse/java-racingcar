@@ -24,9 +24,9 @@ public class OutputView {
     }
 
     public static void printScore(List<Car> carList) {
-        // TODO: toString override vs getter 사용  고민해보기
+        // toString override vs getter 사용 고민해보기
         for (Car car : carList) {
-            System.out.println(car.getName() + " : " + new String("-").repeat(car.getScore()));
+            System.out.println(car.getName() + " : " + "-".repeat(car.getScore()));
         }
         System.out.println();
     }
