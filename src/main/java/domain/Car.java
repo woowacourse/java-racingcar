@@ -18,6 +18,10 @@ public class Car implements Comparable<Car> {
         return new Car(Name.empty(), Distance.init());
     }
 
+    public static Car of(String name, int distance) {
+        return new Car(Name.from(name), Distance.from(distance));
+    }
+
 
     public void move() {
         distance.increase();
@@ -34,6 +38,7 @@ public class Car implements Comparable<Car> {
     public boolean isSameDistance(Car maxDistance) {
         return distance.isSameDistance(maxDistance.distance);
     }
+
     @Override
     public int compareTo(Car other) {
         return this.distance.compareTo(other.distance);

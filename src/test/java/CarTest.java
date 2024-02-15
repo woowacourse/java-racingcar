@@ -35,4 +35,12 @@ class CarTest {
     void invalidCarName() {
         assertThatIllegalArgumentException().isThrownBy(() -> Car.fromName("abcdefg"));
     }
+
+    @Test
+    @DisplayName("두 차가 같은 거리인지 확인한다")
+    void isSameDistance() {
+        Car car = Car.of("포비", 1);
+        Car otherCar = Car.of("커비", 1);
+        assertThat(car.isSameDistance(otherCar)).isTrue();
+    }
 }

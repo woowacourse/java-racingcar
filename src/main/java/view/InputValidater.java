@@ -1,6 +1,6 @@
 package view;
 
-public class InputValidater { //TODO: 첫 글자 대문자
+public class InputValidater {
     public void validateCars(String input) {
         validateBlank(input);
         validateDuplicatedDelimeter(input);

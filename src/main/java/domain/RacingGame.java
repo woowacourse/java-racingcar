@@ -28,7 +28,7 @@ public class RacingGame {
         return new RacingGame(count, cars, randomMovementGenerator);
     }
 
-    public List<List<CarStatusResponse>> getTurnResult() {
+    public List<List<CarStatusResponse>> getTurnResult() { //TODO: 찝찝함. 중요한데 메소드 역할이 여러개 섞여있음.
         List<List<CarStatusResponse>> gameResultResponse  = new ArrayList<>();
         int currentCount = 1;
         while (count.isValidRange(currentCount)) {

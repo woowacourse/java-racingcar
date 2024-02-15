@@ -8,19 +8,22 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validate(cars);
         this.cars = cars;
+    }
+
+    public static Cars from(List<Car> cars) {
+        return new Cars(cars);
+    }
+
+    private void validate(List<Car> cars) {
+        if (!(cars.size() >= 2 && cars.size() <= 50)) {
+            throw new IllegalArgumentException("자동차는 2대에서 50대 사이로 입력해주세요.");
+        }
     }
 
     public static Cars fromEmpty() {
         return new Cars(new ArrayList<>());
-    }
-
-    public static Cars from(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(Car.fromName(carName));
-        }
-        return new Cars(cars);
     }
 
     public static Cars fromDto(CarNameRequest carsNameRequest) {

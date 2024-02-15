@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Distance implements Comparable<Distance> {
     private int distance;
 
@@ -9,6 +11,10 @@ public class Distance implements Comparable<Distance> {
 
     public static Distance init() {
         return new Distance(0);
+    }
+
+    public static Distance from(int distance) {
+        return new Distance(distance);
     }
 
     public void increase() {
@@ -26,5 +32,22 @@ public class Distance implements Comparable<Distance> {
     @Override
     public int compareTo(Distance other) {
         return this.distance - other.distance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Distance distance1 = (Distance) o;
+        return distance == distance1.distance;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(distance);
     }
 }
