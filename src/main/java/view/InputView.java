@@ -21,8 +21,16 @@ public class InputView {
 
     public RacingCount inputRacingCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        int input = sc.nextInt();
+        int input = parseNumber(sc.nextLine());
 
         return new RacingCount(input);
+    }
+
+    private int parseNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("입력값이 정수가 아닙니다.");
+        }
     }
 }
