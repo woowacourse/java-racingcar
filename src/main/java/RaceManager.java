@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import view.InputView;
+import view.OutputView;
 
 public class RaceManager {
     private static List<Car> cars;
@@ -15,7 +16,7 @@ public class RaceManager {
         repeatUntilGetValidNumberOfAttempts();
     }
 
-    private static void repeatUntilGetValidCarNames() {
+    private void repeatUntilGetValidCarNames() {
         try {
             String carNames = InputView.readCarNames();
             CarFactory carFactory = new CarFactory();
@@ -25,7 +26,7 @@ public class RaceManager {
         }
     }
 
-    private static void repeatUntilGetValidNumberOfAttempts() {
+    private void repeatUntilGetValidNumberOfAttempts() {
         try {
             numberOfAttempts = InputView.readNumberOfAttempts();
         } catch (IOException | IllegalArgumentException e) {
@@ -33,11 +34,11 @@ public class RaceManager {
         }
     }
 
-    public static void run() {
-        String raceResult = race();
+    public void run() {
+        OutputView.printResult(getResult());
     }
 
-    public static String race() {
+    private String race() {
         StringBuilder log = new StringBuilder();
 
         //indent 2
@@ -47,21 +48,19 @@ public class RaceManager {
                 car.move();
             }
             log.append(car.toString());
+            log.append("\n");
         }
-
-        log.append(getResult());
-
         return log.toString();
     }
 
 
-    private static int generateRandomNumber() {
+    private int generateRandomNumber() {
         Random random = new Random();
         return random.nextInt(10);
     }
 
-    public static String getResult() {
-        StringBuilder result = new StringBuilder("실행 결과");
+    public String getResult() {
+        StringBuilder result = new StringBuilder("실행 결과\n");
 
         for (int i = 0; i < numberOfAttempts; i++) {
             result.append(race()).append("\n\n");
@@ -79,7 +78,7 @@ public class RaceManager {
         return result.append(winnerResult).toString();
     }
 
-    private static int getMaxPosition() {
+    private int getMaxPosition() {
         int maxPosition = 0;
         for (Car car : cars) {
             maxPosition = Math.max(maxPosition, car.getPosition());
@@ -87,7 +86,7 @@ public class RaceManager {
         return maxPosition;
     }
 
-    private static List<Car> getWinners(int maxPosition) {
+    private List<Car> getWinners(int maxPosition) {
         List<Car> winners = new ArrayList<>();
         for (Car car : cars) {
             if (car.getPosition() == maxPosition) {
