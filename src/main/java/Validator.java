@@ -12,7 +12,7 @@ public class Validator {
     }
 
     public static void validateCount(int count) {
-        if (count < 0 || count > 100) {
+        if (count <= 0 || count > 100) {
             throw new IllegalArgumentException();
         }
     }
