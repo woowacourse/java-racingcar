@@ -35,7 +35,7 @@ public class Cars {
     }
 
     public void proceedRound() {
-        cars.forEach(car -> car.moveForward(RandomGenerator.generate()));
+        cars.forEach(car -> car.moveByNumber(RandomGenerator.generate()));
     }
 
     @Override

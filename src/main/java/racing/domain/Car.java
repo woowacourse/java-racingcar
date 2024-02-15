@@ -1,6 +1,8 @@
 package racing.domain;
 
 public class Car implements Comparable<Car> {
+    public static final int MAX_NAME_LENGTH = 5;
+    public static final int MINIMUM_FORWARD_NUMBER = 4;
     private final String name;
     private int position;
 
@@ -15,13 +17,13 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateSize(String name) {
-        if (name.length() > 5 || name.isEmpty()) {
+        if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
             throw new IllegalArgumentException();
         }
     }
 
-    public void moveForward(int value) {
-        if (value >= 4) {
+    public void moveByNumber(int value) {
+        if (value >= MINIMUM_FORWARD_NUMBER) {
             this.position++;
         }
     }
