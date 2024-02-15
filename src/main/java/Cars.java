@@ -35,4 +35,8 @@ public class Cars {
         }
         return maxLocation;
     }
+
+    public List<Car> getRoundResult() {
+        return cars;
+    }
 }
