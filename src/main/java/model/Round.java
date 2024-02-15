@@ -19,8 +19,15 @@ public class Round {
     }
 
     private static void validate(String input) {
+        checkIsNull(input);
         checkIsNumber(input);
         checkIsZero(input);
+    }
+
+    private static void checkIsNull(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("[ERROR] 시도 횟수를 입력해 주십시오.");
+        }
     }
 
     private static void checkIsNumber(String input) {
