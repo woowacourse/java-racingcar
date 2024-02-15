@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Attempt;
 import domain.Cars;
 import domain.RandomNumberGenerator;
 import util.StringConvertor;
@@ -18,15 +19,8 @@ public class RacingController {
 
     public void run() {
         Cars cars = ExceptionRetryHandler.retryUntilValid(this::receiveCarNames);
-        int tryCount = ExceptionRetryHandler.retryUntilValid(this::receiveTryCount);
-
-        outputView.printRacingResult();
-        while (tryCount != 0) {
-            cars.moveAll(new RandomNumberGenerator());
-            outputView.printRacingProceed(cars);
-            tryCount--;
-        }
-
+        Attempt attempt = ExceptionRetryHandler.retryUntilValid(this::receiveTryCount);
+        racing(cars, attempt);
         outputView.printWinners(cars.getWinners());
     }
 
@@ -36,8 +30,18 @@ public class RacingController {
         return Cars.from(StringConvertor.convertListSplitByComma(carNames));
     }
 
-    private int receiveTryCount() {
+    private Attempt receiveTryCount() {
         outputView.printTryCountInputText();
-        return inputView.readTryCount();
+        return Attempt.from(inputView.readTryCount());
+    }
+
+    private void racing(Cars cars, Attempt attempt) {
+        outputView.printRacingResult();
+        int attemptCount = attempt.getCount();
+        while (attemptCount != 0) {
+            cars.moveAll(new RandomNumberGenerator());
+            outputView.printRacingProceed(cars);
+            attemptCount--;
+        }
     }
 }
