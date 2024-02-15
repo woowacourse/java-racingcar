@@ -50,3 +50,16 @@ class ServiceTest {
                 .hasMessageContaining("빈 이름");
     }
 
+    @DisplayName("최종 우승자를 올바르게 결정한다")
+    @Test
+    void getWinnerTest() {
+        Car ash = new Car("ash");
+        Car lily = new Car("lily");
+
+        List<Car> cars = List.of(ash, lily);
+
+        ash.incLocation();
+
+        Assertions.assertThat(service.getWinner(cars, 1)).isEqualTo(List.of("ash", ""));
+    }
+
