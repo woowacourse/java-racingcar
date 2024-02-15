@@ -67,8 +67,7 @@ public class Cars {
         }
         return maxPosition;
     }
-
-
+    
     @Override
     public String toString() {
         StringBuilder allTrace = new StringBuilder();

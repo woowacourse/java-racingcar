@@ -13,6 +13,7 @@ public class OutputView {
     public void writeResultMessage() {
         System.out.println(WRITE_RESULT);
     }
+
     public void writeRoundResult(Cars cars) {
         System.out.println(cars);
     }
