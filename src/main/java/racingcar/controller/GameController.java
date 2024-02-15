@@ -66,7 +66,6 @@ public class GameController {
         for (int i = 0; i < moveCount; i++) {
             carGroup.race();
             OutputView.printPosition(carGroup);
-
         }
     }
 
