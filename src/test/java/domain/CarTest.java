@@ -1,5 +1,6 @@
 package domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ class CarTest {
     void forwardCar() throws Exception {
         // Given
         RandomNumberGenerator randomNumberGenerator = (start, end) -> 5;
-        Car car = new Car(randomNumberGenerator, "tester");
+        Car car = new Car(randomNumberGenerator, "test");
 
         // When
         car.move();
@@ -27,7 +28,7 @@ class CarTest {
     void notForwardCar() throws Exception {
         // Given
         RandomNumberGenerator randomNumberGenerator = (start, end) -> 2;
-        Car car = new Car(randomNumberGenerator, "tester");
+        Car car = new Car(randomNumberGenerator, "test");
 
         // When
         car.move();
@@ -35,5 +36,29 @@ class CarTest {
 
         // Then
         assertThat(distance).isEqualTo(0);
+    }
+
+    @DisplayName("5보다 큰 길이의 이름을 입력하면 예외가 발생합니다.")
+    @Test
+    void createCarThrowExceptionWhenInputInvalidName() throws Exception {
+        // Given
+        String soLongCarName = "chicken-boy";
+
+        // When & Then
+        Assertions.assertThatThrownBy(() -> new Car(null, soLongCarName))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
+    }
+
+    @DisplayName("공백의 이름을 입력하면 예외가 발생합니다.")
+    @Test
+    void createCarThrowExceptionWhenInputEmptyName() throws Exception {
+        // Given
+        String emptyName = "";
+
+        // When & Then
+        Assertions.assertThatThrownBy(() -> new Car(null, emptyName))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
 }
