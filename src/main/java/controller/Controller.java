@@ -9,6 +9,7 @@ import view.OutputView;
 
 public class Controller {
     private final Service service;
+
     public Controller(Service service) {
         this.service = service;
     }
@@ -17,7 +18,8 @@ public class Controller {
         String inputCarName = inputCarName();
         List<Car> cars = service.setCars(service.separateCarName(inputCarName));
         int inputAttemptLimit = inputAttemptLimit();
-        service.playGame(cars,inputAttemptLimit);
+        validateNumber(inputAttemptLimit);
+        service.playGame(cars, inputAttemptLimit);
         List<String> winners = service.getWinner(cars, service.getMaxPosition(cars));
         OutputView.printWinners(winners);
     }
@@ -32,5 +34,11 @@ public class Controller {
         InputView.requestAttemptLimit();
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
+    }
+
+    private void validateNumber(int inputAttemptLimit) {
+        if (inputAttemptLimit <= 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }
