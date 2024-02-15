@@ -41,4 +41,8 @@ public class OutputView {
         String winnerNames = String.join(", ", names);
         println(winnerNames + "가 최종 우승했습니다.");
     }
+
+    public static void printNoWinner() {
+        println("최대 이동 거리가 0이므로 우승한 자동차가 없습니다.");
+    }
 }

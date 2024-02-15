@@ -74,6 +74,11 @@ public class GameController {
             max = Math.max(max, car.getPosition());
         }
 
+        if (max == 0) {
+            OutputView.printNoWinner();
+            return;
+        }
+
         for (Car car : carList) {
             if (car.getPosition() == max) {
                 winnerList.add(car);
