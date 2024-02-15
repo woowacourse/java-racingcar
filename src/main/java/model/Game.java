@@ -7,34 +7,34 @@ import java.util.List;
 
 public class Game {
 
-  private final List<Car> participant;
+  private final List<Car> cars;
 
-  public Game(List<String> carNames) {
-    validateDuplicate(carNames);
-    this.participant = convertToCar(carNames);
+  public Game(List<String> carsName) {
+    validateDuplicate(carsName);
+    this.cars = convertToCar(carsName);
   }
 
-  private void validateDuplicate(List<String> carNames) {
-    int originCount = carNames.size();
-    int distinctCount = (int) carNames.stream().distinct().count();
+  private void validateDuplicate(List<String> carsName) {
+    int originCount = carsName.size();
+    int distinctCount = (int) carsName.stream().distinct().count();
     if (originCount != distinctCount) {
       throw new IllegalArgumentException(Exception.DUPLICATE.toString());
     }
   }
 
-  private List<Car> convertToCar(List<String> carNames) {
-    return carNames.stream().map(Car::new).toList();
+  private List<Car> convertToCar(List<String> carsName) {
+    return carsName.stream().map(Car::new).toList();
   }
 
-  public List<Car> proceed(List<Integer> results) {
-    for (int i = 0; i < results.size(); i++) {
-      applyStatus(results.get(i), participant.get(i));
+  public List<Car> proceed(List<Integer> randomNumbers) {
+    for (int i = 0; i < randomNumbers.size(); i++) {
+      applyStatus(randomNumbers.get(i), cars.get(i));
     }
-    return new ArrayList<>(participant);
+    return new ArrayList<>(cars);
   }
 
-  private void applyStatus(int result, Car car) {
-    if (CarStatus.decide(result).equals(CarStatus.FORWARD)) {
+  private void applyStatus(int randomNumber, Car car) {
+    if (MoveStatus.decide(randomNumber).equals(MoveStatus.FORWARD)) {
       car.forward();
       return;
     }
@@ -42,11 +42,11 @@ public class Game {
   }
 
   public List<Car> findWinners() {
-    int winnersScore = Collections.max(participant.stream().map(Car::getForwardCount).toList());
-    return participant.stream().filter(car -> car.getForwardCount() == winnersScore).toList();
+    int winnersScore = Collections.max(cars.stream().map(Car::getForwardCount).toList());
+    return cars.stream().filter(car -> car.getForwardCount() == winnersScore).toList();
   }
 
   public int getParticipantsSize() {
-    return participant.size();
+    return cars.size();
   }
 }
