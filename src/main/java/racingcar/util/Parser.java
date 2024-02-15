@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Parser {
     public static List<String> parseCarNames(final String input) {
-        return Arrays.stream(input.split(",")).map(String::trim).toList();
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .toList();
     }
 }

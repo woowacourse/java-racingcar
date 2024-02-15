@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
-
     @Test
     @DisplayName("전진 조건 값이 4 이상이면 전진한다.")
     void moveTest() {

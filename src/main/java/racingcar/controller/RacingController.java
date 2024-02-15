@@ -52,16 +52,17 @@ public class RacingController {
     }
 
     public void run() {
-        List<String> carNames = readCarNames();
-        Cars cars = new Cars(carNames);
-        int tryCount = readTryCount();
+        final List<String> carNames = readCarNames();
+        final Cars cars = new Cars(carNames);
+        final int tryCount = readTryCount();
 
         outputView.printResultMsg();
         for(int i = 0 ; i < tryCount; i++) {
             moveCars(cars);
         }
 
-        List<Car> winners = cars.determineWinner();
+        final List<Car> winners = cars.determineWinner();
         outputView.printWinners(winners);
+        inputView.closeScanner();
     }
 }
