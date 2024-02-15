@@ -14,7 +14,13 @@ public class Car {
         // TODO: 자동차 이름 검증
     }
 
-    public void move() {
+    public void execute(int number) {
+        if (number >= 4) {
+            this.move();
+        }
+    }
+
+    private void move() {
         position++;
     }
 
