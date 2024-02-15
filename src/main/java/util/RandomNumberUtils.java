@@ -11,7 +11,6 @@ import java.util.Random;
  * 0, 9는 매직 넘버이기 때문에 어떤 의미를 가졌는지 상수화시켜 이름을 부여하면 좋겠음
  * ex) MIN_POWER_RANGE, MAX_POWER_RANGE
  */
-
 public class RandomNumberUtils {
     private static final Random random = new Random();
 

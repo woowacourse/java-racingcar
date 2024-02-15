@@ -9,7 +9,7 @@ public class TryCount {
     }
 
     private void validate(int value) {
-        if(value < 1) {
+        if (value < 1) {
             throw new IllegalArgumentException();
         }
     }

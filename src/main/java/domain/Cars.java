@@ -34,7 +34,7 @@ public class Cars {
                 .map(Car::getName)
                 .distinct()
                 .count();
-        if(actualCarAmount != distinctCarAmount) {
+        if (actualCarAmount != distinctCarAmount) {
             throw new IllegalArgumentException();
         }
     }
