@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     public static void printNewLine() {
-        System.out.print("\n");
+        System.out.print(System.lineSeparator());
     }
 
     public static void printWinner(Winner winner) {
