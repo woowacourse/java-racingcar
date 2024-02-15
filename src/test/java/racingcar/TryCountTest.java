@@ -44,9 +44,9 @@ public class TryCountTest {
         }
 
         @ParameterizedTest
-        @DisplayName("1 이상인지 확인")
         @CsvSource({"0,false",
                 "1,true"})
+        @DisplayName("1 이상인지 확인")
         void testUntilZero(String given, boolean expected) {
             TryCount count = new TryCount(given);
             boolean actual = count.untilZero();
