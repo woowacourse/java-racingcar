@@ -1,6 +1,8 @@
 package domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,10 +20,11 @@ class CarTest {
         assertThat(car.getResult()).isEqualTo("abc : \n");
     }
 
-    @Test
-    void move() {
-        car.move(4);
-        assertThat(car.getLocation()).isEqualTo(1);
+    @ParameterizedTest
+    @CsvSource(value = {"4,1", "3,0"}, delimiter = ',')
+    void move(int randomNumber, int expect) {
+        car.move(randomNumber);
+        assertThat(car.getLocation()).isEqualTo(expect);
     }
 
     @Test
