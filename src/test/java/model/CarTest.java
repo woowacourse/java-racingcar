@@ -1,5 +1,6 @@
 package model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -21,5 +22,26 @@ class CarTest {
     void validateNameLength() {
         String name = "dddddd";
         assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("경주 현황을 기록할 수 있다.")
+  void getStatues() {
+        Car car = create();
+        assertThat(car.getStatuses()).containsExactly(CarStatus.FORWARD, CarStatus.STOP, CarStatus.FORWARD);
+    }
+    @Test
+    @DisplayName("전진한 횟수를 알 수 있다.")
+    void getForwardCount() {
+        Car car = create();
+        assertThat(car.getForwardCount()).isEqualTo(2);
+    }
+
+    private Car create(){
+        Car car = new Car("pobi");
+        car.forward();
+        car.stop();
+        car.forward();
+        return car;
     }
 }
