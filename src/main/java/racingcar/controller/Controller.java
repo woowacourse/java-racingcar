@@ -1,4 +1,11 @@
-package racingcar;
+package racingcar.controller;
+
+import racingcar.model.RandomNumberGenerator;
+import racingcar.view.validator.InputValidator;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
+import racingcar.model.Car;
+import racingcar.model.Referee;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,17 +1,16 @@
-package racingcar;
+package racingcar.model;
 
 public class Car {
-
-
     private final String name;
     private int position;
 
-    public Car(String name) {
+    public Car(String name, NumberGenerator numberGenerator) {
+        numberGenerator = new RandomNumberGenerator();
         this.name = name;
     }
 
     private boolean canMove(){
-        int random = (int) (Math.random()*10);
+        int random = numberGenerator.generateNumber(10);
         return random >= 4;
     }
 

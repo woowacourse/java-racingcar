@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.view.validator;
 
 import java.util.Arrays;
 import java.util.HashSet;
