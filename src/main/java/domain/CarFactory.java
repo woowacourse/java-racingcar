@@ -20,7 +20,7 @@ public class CarFactory {
 
     private static void validateCarNamesCount(final List<String> carNames) {
         if (carNames.size() < 2) {
-            throw new RuntimeException("자동차 이름의 개수는 2이상이여야 합니다.");
+            throw new IllegalArgumentException("자동차 이름의 개수는 2이상이여야 합니다.");
         }
     }
 
@@ -28,7 +28,7 @@ public class CarFactory {
         final int distinctSize = new HashSet<>(carNames).size();
 
         if (carNames.size() != distinctSize) {
-            throw new RuntimeException("중복된 자동차 이름을 허용하지 않습니다.");
+            throw new IllegalArgumentException("중복된 자동차 이름을 허용하지 않습니다.");
         }
     }
 }

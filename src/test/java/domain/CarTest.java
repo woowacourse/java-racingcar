@@ -46,7 +46,7 @@ class CarTest {
 
         // When & Then
         Assertions.assertThatThrownBy(() -> new Car(null, soLongCarName))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
 
@@ -58,7 +58,7 @@ class CarTest {
 
         // When & Then
         Assertions.assertThatThrownBy(() -> new Car(null, emptyName))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
 }

@@ -34,7 +34,7 @@ public class Controller {
             final List<String> carNames = inputView.inputCars();
 
             return CarFactory.generateCars(carNames);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printInputCarNamesErrorMessage();
 
             return initCars();
@@ -44,7 +44,7 @@ public class Controller {
     private RacingCount inputRacingCount() {
         try {
             return inputView.inputRacingCount();
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printInputRacingCountErrorMessage();
 
             return inputRacingCount();

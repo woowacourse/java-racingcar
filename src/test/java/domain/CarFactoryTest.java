@@ -16,7 +16,7 @@ class CarFactoryTest {
 
         // When & Then
         Assertions.assertThatThrownBy(() -> CarFactory.generateCars(invalidInput))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름의 개수는 2이상이여야 합니다.");
     }
     
@@ -28,7 +28,7 @@ class CarFactoryTest {
 
         // When & Then
         Assertions.assertThatThrownBy(() -> CarFactory.generateCars(invalidInput))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 자동차 이름을 허용하지 않습니다.");
     }
 }
