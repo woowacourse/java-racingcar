@@ -14,7 +14,7 @@ public class Car {
 
     private void validator(String name) {
         if (!validateSize(name)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다");
         }
     }
 

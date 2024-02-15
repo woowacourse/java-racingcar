@@ -2,6 +2,7 @@ package controller;
 
 import domain.Car;
 import domain.Service;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import view.InputView;
@@ -17,13 +18,12 @@ public class Controller {
     public void run() {
         List<Car> cars = inputCarName();
         int inputAttemptLimit = inputAttemptLimit();
-        validateNumber(inputAttemptLimit);
         service.playGame(cars, inputAttemptLimit);
         List<String> winners = service.getWinner(cars, service.getMaxPosition(cars));
         OutputView.printWinners(winners);
     }
 
-    private List<Car> inputCarName() {
+    public List<Car> inputCarName() {
         try {
             InputView.requestCarName();
             Scanner scanner = new Scanner(System.in);
@@ -32,16 +32,20 @@ public class Controller {
             OutputView.printErrorMessage(e.getMessage());
             return inputCarName();
         }
-
     }
 
-    private int inputAttemptLimit() {
+    public int inputAttemptLimit() {
         try {
             InputView.requestAttemptLimit();
             Scanner scanner = new Scanner(System.in);
-            return scanner.nextInt();
+            int inputAttemptLimit = scanner.nextInt();
+            validateNumber(inputAttemptLimit);
+            return inputAttemptLimit;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
+            return inputAttemptLimit();
+        } catch (InputMismatchException e) {
+            OutputView.printErrorMessage("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
             return inputAttemptLimit();
         }
     }
@@ -51,4 +55,5 @@ public class Controller {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 양수여야 합니다.");
         }
     }
+
 }
