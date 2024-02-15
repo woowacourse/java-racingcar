@@ -49,7 +49,7 @@ class ValidatorTest {
         // 테스트 케이스 생성 - [ "A", "AA", "AAA", ... ]
         for (int i = 65; i <= 90; i++) {
             String alphabet = Character.toString((char) i);
-            for (int j = 1 ; j <= 5; j++) {
+            for (int j = 1; j <= 5; j++) {
                 nameTooManyCars.add(alphabet.repeat(j));
             }
         }
@@ -60,12 +60,27 @@ class ValidatorTest {
     }
 
     @Test
-    @DisplayName("")
-    void validateRound() {
+    @DisplayName("라운드 테스트 : 정상입력")
+    void validateRound_validateInputs() {
         // given
+        int[] validateInputs = {1, 2, 50, 99, 100};
 
-        // when
+        // when - then
+        for (int validateInput : validateInputs) {
+            assertDoesNotThrow(() -> Validator.validateRound(validateInput));
+        }
+    }
 
-        // then
+    @Test
+    @DisplayName("라운드 테스트 : 예외입력")
+    void validateRound_invalidateInputs() {
+        // given
+        int[] invalidateInputs = {-1, -2, 101, 102};
+
+        // when - then
+        for (int invalidateInput : invalidateInputs) {
+            assertThrows(IllegalArgumentException.class,
+                () -> Validator.validateRound(invalidateInput));
+        }
     }
 }
