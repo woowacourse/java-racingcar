@@ -20,6 +20,13 @@ public class RacingCarController {
 
     private Cars getCars() {
         String carsName = inputView.inputCarsName();
+
         return null;
+    }
+
+    private int getCount() {
+        String count = inputView.inputCount();
+
+        return racingCarService.getCount(count);
     }
 }
