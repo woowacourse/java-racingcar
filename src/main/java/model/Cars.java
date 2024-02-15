@@ -6,6 +6,8 @@ import java.util.Set;
 import model.dto.CarState;
 
 public class Cars {
+    private static final int MIN_CAR_NAMES_SIZE = 1;
+    private static final int DEFAULT_MAX_FORWARD_COUNT = 0;
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -13,16 +15,20 @@ public class Cars {
     }
 
     public static Cars fromNames(List<String> names) {
-        validateNamesSize(names);
-        validateDuplicateName(names);
+        validate(names);
         List<Car> cars = names.stream()
                 .map(name -> Car.fromRandomGenerator(name))
                 .toList();
         return new Cars(cars);
     }
 
+    private static void validate(List<String> names) {
+        validateNamesSize(names);
+        validateDuplicateName(names);
+    }
+
     private static void validateNamesSize(List<String> names) {
-        if (names.size() < 1) {
+        if (names.size() < MIN_CAR_NAMES_SIZE) {
             throw new IllegalArgumentException("자동차는 한 대 이상어야아 한다");
         }
     }
@@ -57,6 +63,6 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getForwardCount)
                 .max()
-                .orElse(0);
+                .orElse(DEFAULT_MAX_FORWARD_COUNT);
     }
 }

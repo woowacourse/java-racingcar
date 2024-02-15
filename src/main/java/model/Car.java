@@ -5,6 +5,7 @@ import model.intgenerator.IntGenerator;
 import model.intgenerator.RandomIntGenerator;
 
 public class Car {
+    private static final int MAX_NAME_LENGTH = 5;
     private static final int CONDITION = 4;
     private final String name;
     private final IntGenerator intGenerator;
@@ -21,12 +22,12 @@ public class Car {
         return new Car(name, new RandomIntGenerator());
     }
 
-    private void validate(String name) {
+    private static void validate(String name) {
         validateNameLength(name);
     }
 
-    private void validateNameLength(String name) {
-        if (name.length() > 5) {
+    private static void validateNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 공백 포함 5자 이하여야 한다.");
         }
     }
