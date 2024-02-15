@@ -40,7 +40,7 @@ class CarTest {
         car.moveForward(randomNumber);
         String[] split = car.toString().split(" : ");
         int position = split[1].length();
-        assertEquals(1 ,position);
+        assertEquals(1, position);
     }
 
 }

@@ -43,7 +43,7 @@ public class Cars {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for(Car car: cars){
-            stringBuilder.append(car.toString());
+            stringBuilder.append(car.toString()).append("\n");
         }
         return stringBuilder.toString();
     }

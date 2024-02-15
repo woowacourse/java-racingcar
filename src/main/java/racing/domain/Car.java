@@ -32,7 +32,7 @@ public class Car implements Comparable<Car>{
 
     @Override
     public String toString() {
-        return name + " : " + "-".repeat(position)+"\n";
+        return name + " : " + "-".repeat(position);
     }
 
     @Override
