@@ -17,6 +17,7 @@ public class CarTest {
     @CsvSource({"5, 1", "3, 0", "4, 1"})
     void moveForwardTest(int randomNumber, int expectedPosition) {
         Car car = Car.from("lemon");
+
         car.moveForward(randomNumber);
 
         assertThat(car.getPosition()).isEqualTo(expectedPosition);
