@@ -27,12 +27,15 @@ class TrialCountTest {
     @DisplayName("특정 횟수 만큼 반복 동작한다.")
     @Test
     void repeatTest() {
+        // given
         int expected = 4;
         TrialCount trialCount = new TrialCount(expected);
         CountForRepeatTest count = new CountForRepeatTest();
 
+        // when
         trialCount.repeat(count::addCount);
 
+        // then
         Assertions.assertThat(count.getAmount()).isEqualTo(expected);
     }
 

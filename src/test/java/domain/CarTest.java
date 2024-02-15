@@ -27,10 +27,13 @@ class CarTest {
     @ParameterizedTest
     @CsvSource({"true, 1", "false, 0"})
     void moveTest(boolean isMoved, int expected) {
+        // given
         Car car = new Car("name");
 
+        // when
         car.move(isMoved);
 
+        // then
         Assertions.assertThat(car.getPosition()).isEqualTo(expected);
     }
 }
