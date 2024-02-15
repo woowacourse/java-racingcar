@@ -10,10 +10,14 @@ class RacingCarsTest {
     @DisplayName("우승자를 구한다.")
     @Test
     public void test(){
-        RacingCarNames racingCarNames = new RacingCarNames("pobi,zeze,bito");
-        RacingCars racingCars = racingCarNames.createRacingCars();
+        NumberGenerator numberGenerator = new NumberGenerator() {
+            @Override
+            public int generateNumber() {
+                return 5;
+            }
+        };
 
-        racingCars.
+        new RacingCar("pobi", numberGenerator);
     }
 
 }

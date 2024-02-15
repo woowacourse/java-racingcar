@@ -1,15 +1,18 @@
 package controller;
 
-import domain.RacingCar;
-import domain.RacingCarNames;
-import domain.RacingCars;
-import domain.TryNumber;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
 
 public class RacingCarController {
+    private NumberGenerator numberGenerator;
+
+    public RacingCarController(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
+
     public void start() {
         RacingCars racingCars = readRacingCars();
         TryNumber tryNumber = readTryNumber();
@@ -26,7 +29,7 @@ public class RacingCarController {
 
     private RacingCars readRacingCars() {
         RacingCarNames racingCarNames = readRacingCarNames();
-        return racingCarNames.createRacingCars();
+        return racingCarNames.createRacingCars(numberGenerator);
     }
 
     private RacingCarNames readRacingCarNames() {
