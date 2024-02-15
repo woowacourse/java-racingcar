@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
+import racingcar.utils.NameParser;
 import racingcar.utils.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
     private final CarGroup carGroup = new CarGroup();
-    private String[] names;
+    private List<String> names;
     private int moveCount;
 
     public void init() throws IOException {
@@ -28,7 +29,8 @@ public class GameController {
 
     private boolean getCarNames() throws IOException {
         try {
-            names = InputView.inputNames();
+            OutputView.printlnInputName();
+            names = NameParser.parse(InputView.inputNames());
             Validator.validateCarName(names);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
@@ -46,6 +48,7 @@ public class GameController {
 
     private boolean getMoveCount() throws IOException {
         try {
+            OutputView.printlnInputMoveCount();
             moveCount = InputView.inputMoveCount();
             Validator.validateMoveCount(moveCount);
         } catch (IllegalArgumentException e) {
@@ -55,7 +58,7 @@ public class GameController {
         return true;
     }
 
-    private void initCars(String[] carNames) {
+    private void initCars(List<String> carNames) {
         for (String name : carNames) {
             carGroup.add(new Car(name));
         }
