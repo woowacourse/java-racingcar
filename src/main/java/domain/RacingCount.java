@@ -10,8 +10,8 @@ public class RacingCount {
     }
 
     private void validateCount(final int count) {
-        if (count <= 0) {
-            throw new RuntimeException("0이상의 숫자가 입력되어야 합니다.");
+        if (count < 1) {
+            throw new RuntimeException("1이상의 숫자가 입력되어야 합니다.");
         }
     }
 
