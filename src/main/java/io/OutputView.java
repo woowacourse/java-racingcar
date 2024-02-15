@@ -5,12 +5,7 @@ import domain.Car;
 import java.util.List;
 import java.util.StringJoiner;
 
-/**
- * TODO: 매직 리터럴 제거(O)
- * 출력되는 메시지 이외에 "-", " ,", "%s : %s"와 같은 딜리미터는 매직 리터럴로 간주됨
- * 메시지는 "실행 결과" 등과 같이 어떤 내용을 출력하는 지 문자열의 값 자체에서 표시하고 있지만
- * delimiter 등에 해당하는 -와 , 등의 문자는 어떤 의미를 가지는 지 네이밍을 통해 알려주면 가독성에 도움이 되겠다고 생각됨.
- */
+
 public class OutputView {
     private static final String CAR_POSITION_MESSAGE = "%s : %s";
     private static final String CAR_POSITION_BAR = "-";
