@@ -42,3 +42,11 @@ class ServiceTest {
                 .hasMessageContaining("중복");
     }
 
+    @DisplayName("입력된 자동차 이름이 공백이면 예외가 발생한다")
+    @Test
+    void blankNameTest() {
+        Assertions.assertThatThrownBy(() -> service.setCars(List.of("Ash", "", "Lily")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("빈 이름");
+    }
+
