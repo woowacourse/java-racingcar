@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Vehicles {
-    private final List<Car> Cars;
+    private final List<Car> cars;
 
     public static Vehicles from(String userInput) {
         validate(userInput);
@@ -17,7 +17,7 @@ public class Vehicles {
     }
 
     private Vehicles(List<Car> cars) {
-        Cars = cars;
+        this.cars = cars;
     }
 
     private static void validate(String userInput) {
@@ -37,7 +37,7 @@ public class Vehicles {
         }
     }
 
-    public List<Car> getCars() {
-        return Cars;
+    void move() {
+        cars.forEach(Car::move);
     }
 }
