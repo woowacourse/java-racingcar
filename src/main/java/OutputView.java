@@ -1,8 +1,8 @@
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
+
+    private static final String MESSAGE_NOT_EXIST_CAR = "생성된 자동차가 없습니다.";
 
     public void printTryResult(List<Car> cars) {
         for (Car car : cars) {
@@ -15,7 +15,7 @@ public class OutputView {
         int longestDistance = cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
-                .orElseThrow(() -> new IllegalArgumentException("생성된 자동차가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(MESSAGE_NOT_EXIST_CAR));
 
         String winnerNames = String.join(", ",
                 cars.stream()
