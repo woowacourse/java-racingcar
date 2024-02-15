@@ -16,6 +16,7 @@ public class OutputView {
 
     public void printTotalResult(List<CarDto> carDtos) {
         carDtos.forEach(OutputView::printMovement);
+        System.out.println();
     }
 
     private static void printMovement(CarDto carDto) {
@@ -24,6 +25,6 @@ public class OutputView {
 
     public void printWinner(List<CarDto> winners) {
         List<String> winnerNames = winners.stream().map(CarDto::getCarName).toList();
-        System.out.println(String.join(DELIMITER, winnerNames));
+        System.out.print(String.join(DELIMITER, winnerNames) + "가 최종 우승했습니다.");
     }
 }
