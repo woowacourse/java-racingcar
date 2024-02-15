@@ -1,10 +1,10 @@
 package racingcar.utils;
 
-public class Randoms {
+public class Random {
 
     public static final int THRESHOLD = 4;
 
     public static int pickNumber(){
-         return (int) (Math.abs(Math.random() * 10));
+         return (int) (Math.random() * 10);
     }
 }
