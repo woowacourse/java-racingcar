@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class ServiceTest {
 
     @Test
-    @DisplayName("우승자 판별 테스트: 정상 입력")
+    @DisplayName("우승자 판별 테스트")
     void getWinnerNames_validCase() {
         // given
         List<Car> cars = new ArrayList<>();
