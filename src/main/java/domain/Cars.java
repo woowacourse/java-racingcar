@@ -32,9 +32,9 @@ public class Cars {
         }
     }
 
-    public void move(RandomMovementGenerator randomMovementGenerator) {
+    public void move(MovementGenerator randomMovementGenerator) {
         cars.stream()
-                .filter(car -> randomMovementGenerator.generate())
+                .filter(car -> randomMovementGenerator.generate().equals(Movement.MOVE))
                 .forEach(Car::move);
     }
 

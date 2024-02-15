@@ -7,9 +7,9 @@ import java.util.List;
 public class RacingGame {
     private final Count count;
     private final Cars cars;
-    private final RandomMovementGenerator randomMovementGenerator;
+    private final MovementGenerator randomMovementGenerator;
 
-    private RacingGame(Count count, Cars cars, RandomMovementGenerator randomMovementGenerator) {
+    private RacingGame(Count count, Cars cars, MovementGenerator randomMovementGenerator) {
         this.count = count;
         this.cars = cars;
         this.randomMovementGenerator = randomMovementGenerator;
@@ -24,7 +24,7 @@ public class RacingGame {
         return new RacingGame(Count.init(), Cars.fromEmpty(), new RandomMovementGenerator(new RandomNumberGenerator()));
     }
 
-    public static RacingGame of(Count count, Cars cars, RandomMovementGenerator randomMovementGenerator) {
+    public static RacingGame of(Count count, Cars cars, MovementGenerator randomMovementGenerator) {
         return new RacingGame(count, cars, randomMovementGenerator);
     }
 

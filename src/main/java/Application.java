@@ -1,10 +1,14 @@
 import controller.RacingGameController;
-import view.ConsolePrinter;
-import view.ConsoleReader;
+import domain.MovementGenerator;
+import domain.NumberGenerator;
+import domain.RandomMovementGenerator;
+import domain.RandomNumberGenerator;
+import view.Printer.ConsolePrinter;
+import view.Reader.ConsoleReader;
 import view.InputView;
 import view.OutputView;
-import view.Printer;
-import view.Reader;
+import view.Printer.Printer;
+import view.Reader.Reader;
 
 public class Application {
 
@@ -15,7 +19,10 @@ public class Application {
         InputView inputView = InputView.of(reader, printer);
         OutputView outputView = new OutputView(printer);
 
-        RacingGameController racingGameController = new RacingGameController(inputView, outputView);
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        MovementGenerator movementGenerator = new RandomMovementGenerator(numberGenerator);
+
+        RacingGameController racingGameController = new RacingGameController(inputView, outputView, movementGenerator);
         racingGameController.run();
     }
 }

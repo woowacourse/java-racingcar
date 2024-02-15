@@ -13,6 +13,6 @@ public record CarNameRequest(List<String> carNames) {
     public Cars toCars() {
         return carNames.stream()
                 .map(Car::fromName)
-                .collect(collectingAndThen(toList(), Cars::new));
+                .collect(collectingAndThen(toList(), Cars::from));
     }
 }

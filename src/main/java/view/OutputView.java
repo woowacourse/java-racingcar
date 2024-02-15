@@ -5,6 +5,7 @@ import dto.CarStatus;
 import dto.TurnResult;
 import dto.WinnersResponse;
 import java.util.List;
+import view.Printer.Printer;
 
 public class OutputView {
     private final Printer printer;
@@ -24,14 +25,13 @@ public class OutputView {
     }
 
     public void showStatus(GameResult result) {
-        for (TurnResult turnResult : result.getGameResult()) {
-            showResult(turnResult);
-        }
+        result.getGameResult().forEach(this::showResult);
     }
 
     private void showResult(TurnResult turnResult) {
         for (CarStatus carStatus : turnResult.getCarStatuses()) {
-            printer.printLine(carStatus.getName() + " : " + "-".repeat(carStatus.getDistance()));
+            String mark = "-".repeat(carStatus.getDistance());
+            printer.printLine("%s : %s", carStatus.getName(), mark);
         }
         printer.printEmptyLine();
     }

@@ -3,6 +3,7 @@ package controller;
 import domain.Cars;
 import domain.Count;
 import domain.GameResult;
+import domain.MovementGenerator;
 import domain.RacingGame;
 import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
@@ -16,16 +17,18 @@ import view.OutputView;
 public class RacingGameController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final MovementGenerator movementGenerator;
 
-    public RacingGameController(InputView inputView, OutputView outputView) {
+    public RacingGameController(InputView inputView, OutputView outputView, MovementGenerator movementGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.movementGenerator = movementGenerator;
     }
 
     public void run() {
         Cars cars = getCars();
         Count count = Count.from(retryUntilNoException(inputView::readCount));
-        RacingGame racingGame = RacingGame.of(count, cars, new RandomMovementGenerator(new RandomNumberGenerator()));
+        RacingGame racingGame = RacingGame.of(count, cars, movementGenerator);
 
         outputView.showStatusMessage();
         play(racingGame);
