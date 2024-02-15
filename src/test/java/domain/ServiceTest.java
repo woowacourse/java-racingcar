@@ -26,3 +26,11 @@ class ServiceTest {
         Assertions.assertThat(cars.get(0).getLocation()).isEqualTo(0);
     }
 
+    @DisplayName("입력된 자동차 이름이 한 개라면 예외가 발생한다")
+    @Test
+    void amountTest() {
+        Assertions.assertThatThrownBy(() -> service.setCars(List.of("Ash")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("두 대 이상");
+    }
+
