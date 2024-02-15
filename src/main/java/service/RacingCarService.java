@@ -42,7 +42,9 @@ public class RacingCarService {
 
     public List<String> getMovement(Cars cars) {
         List<String> movement = new ArrayList<>();
-        cars.getCars().forEach(car -> movement.add(car.toString()));
+
+        cars.getCars()
+            .forEach(car -> movement.add(car.toString()));
 
         return movement;
     }
