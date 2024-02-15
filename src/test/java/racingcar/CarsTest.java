@@ -1,14 +1,11 @@
 package racingcar;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.controller.NumericGenerator;
-import racingcar.model.Car;
 import racingcar.model.Cars;
 
 import java.util.ArrayList;
@@ -21,9 +18,10 @@ public class CarsTest {
     static class TestNumericGenerator implements NumericGenerator {
         private List<Integer> numbers = new ArrayList<>();
         private int position = 0;
-        public TestNumericGenerator(int arg, int ... args) {
+
+        public TestNumericGenerator(int arg, int... args) {
             numbers.add(arg);
-            for(int item : args){
+            for (int item : args) {
                 numbers.add(item);
             }
         }
@@ -42,9 +40,9 @@ public class CarsTest {
     @Nested
     class ValidateInput {
         @ParameterizedTest
-        @ValueSource(strings={",포케", "폭포,"})
+        @ValueSource(strings = {",포케", "폭포,"})
         @DisplayName("콤마가 맨 앞 또는 맨 뒤에 위치하면 에러 발생")
-        void testNameUnderFive(String given){
+        void testNameUnderFive(String given) {
             assertThatThrownBy(() -> new Cars(new TestNumericGenerator(3), given))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -55,15 +53,15 @@ public class CarsTest {
         @Test
         @DisplayName("차를 2개 추가")
         void testSplit() {
-            Cars cars = new Cars(new TestNumericGenerator(3),"차,2개");
+            Cars cars = new Cars(new TestNumericGenerator(3), "차,2개");
             String actual = cars.toString();
-            assertThat(actual).contains("차","2개");
+            assertThat(actual).contains("차", "2개");
         }
 
         @Test
         @DisplayName("랜덤 넘버가 4 이상인 경우 차 위치 이동")
         void testMoveCarsMove() {
-            Cars cars = new Cars(new TestNumericGenerator(4),"차,2개");
+            Cars cars = new Cars(new TestNumericGenerator(4), "차,2개");
             cars.moveCars();
             String actual = cars.toString();
             assertThat(actual).isEqualTo("차 : -\n2개 : -");
@@ -72,7 +70,7 @@ public class CarsTest {
         @Test
         @DisplayName("랜덤 넘버가 3 이하인 경우 차 정지")
         void testMoveCarsStop() {
-            Cars cars = new Cars(new TestNumericGenerator(3),"차,2개");
+            Cars cars = new Cars(new TestNumericGenerator(3), "차,2개");
             cars.moveCars();
             String actual = cars.toString();
             assertThat(actual).isEqualTo("차 : \n2개 : ");
@@ -81,7 +79,7 @@ public class CarsTest {
         @Test
         @DisplayName("폭포가 4 포케가 3이 나오면 우승자는 폭포여야 함")
         void testCalculatorWinner() {
-            Cars cars = new Cars(new TestNumericGenerator(4,3),"폭포,포케");
+            Cars cars = new Cars(new TestNumericGenerator(4, 3), "폭포,포케");
             cars.moveCars();
             String actual = cars.calculateWinner();
             assertThat(actual).isEqualTo("폭포");
@@ -90,7 +88,7 @@ public class CarsTest {
         @Test
         @DisplayName("폭포가 4 포케가 4, 무빈이 3이 나오면 우승자는 폭포여야 함")
         void testCalculatorMultiWinner() {
-            Cars cars = new Cars(new TestNumericGenerator(4,4,3),"폭포,포케,무빈");
+            Cars cars = new Cars(new TestNumericGenerator(4, 4, 3), "폭포,포케,무빈");
             cars.moveCars();
             String actual = cars.calculateWinner();
             assertThat(actual).isEqualTo("폭포, 포케");

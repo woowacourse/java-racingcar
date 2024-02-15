@@ -3,13 +3,10 @@ package racingcar.model;
 import racingcar.controller.NumericGenerator;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Cars {
     private NumericGenerator generator;
@@ -45,8 +42,8 @@ public class Cars {
     }
 
     public void moveCars() {
-        for(Car car : cars) {
-            if( generator.generate() >= 4) {
+        for (Car car : cars) {
+            if (generator.generate() >= 4) {
                 car.move();
             }
         }
@@ -64,7 +61,7 @@ public class Cars {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return cars.stream()
                 .map(Car::toString)
                 .collect(Collectors.joining("\n"));

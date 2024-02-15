@@ -1,7 +1,5 @@
 package racingcar.model;
 
-import java.util.stream.IntStream;
-
 public class Car {
     private String name;
     private int position;
@@ -12,12 +10,12 @@ public class Car {
         this.position = 0;
     }
 
-    private void validate(String name){
+    private void validate(String name) {
         nameUnderFive(name);
     }
 
     private static void nameUnderFive(String name) {
-        if ( name.length() > 5) {
+        if (name.length() > 5) {
             throw new IllegalArgumentException();
         }
     }

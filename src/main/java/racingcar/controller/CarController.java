@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import racingcar.controller.numericgenerator.RandomNumericGenerator;
-import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.TryCount;
 import racingcar.view.InputView;
