@@ -20,14 +20,26 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차들을 이동시킬 수 있다.")
-    void moveCars() {
+    @DisplayName("random 값이 4일 경우, 자동차들을 이동시킬 수 있다.")
+    void moveCarsTest() {
         racingcar.domain.Cars cars = new racingcar.domain.Cars("pobi,crong,honux");
         cars.moveCars(() -> 4);
 
         List<racingcar.domain.Car> carList = cars.getCars();
         for (racingcar.domain.Car car : carList) {
             assertThat(car.getPosition()).isEqualTo(1);
+        }
+    }
+
+    @Test
+    @DisplayName("ramdom 값이 3인 경우 자동차들은 이동하지 않는다.")
+    void notMoveCarsTest() {
+        racingcar.domain.Cars cars = new racingcar.domain.Cars("pobi,crong,honux");
+        cars.moveCars(() -> 3);
+
+        List<racingcar.domain.Car> carList = cars.getCars();
+        for (racingcar.domain.Car car : carList) {
+            assertThat(car.getPosition()).isEqualTo(0);
         }
     }
 }
