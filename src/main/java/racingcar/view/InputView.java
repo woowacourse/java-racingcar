@@ -8,18 +8,18 @@ public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String inputCarNames() {
-        System.out.println(INPUT_CAR_NAMES_MESSAGE);
+        return inputTemplate(INPUT_CAR_NAMES_MESSAGE);
+    }
+
+    public static String inputRound() {
+        return inputTemplate(INPUT_ROUND_MESSAGE);
+    }
+
+    private static String inputTemplate(String inputMessage) {
+        System.out.println(inputMessage);
         String input = scanner.nextLine();
 
         InputValidator.validate(input);
         return input;
-    }
-
-    public static int inputRound() {
-        System.out.println(INPUT_ROUND_MESSAGE);
-        String input = scanner.nextLine();
-
-        InputValidator.validate(input);
-        return Integer.parseInt(input);
     }
 }
