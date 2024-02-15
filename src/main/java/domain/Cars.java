@@ -35,7 +35,7 @@ public class Cars {
 
     public void tryMove() {
         for (Car car : cars) {
-            car.moveForward(car.pushAccelerator());
+            car.pushAccelerator();
         }
     }
 

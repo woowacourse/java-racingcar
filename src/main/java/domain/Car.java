@@ -32,8 +32,8 @@ public class Car {
         }
     }
 
-    public int pushAccelerator() {
-        return accelerator.push();
+    public void pushAccelerator() {
+        moveForward(accelerator.push());
     }
 
     public void moveForward(int power) {
