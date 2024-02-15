@@ -1,5 +1,10 @@
 package validation;
 
+import static constant.Numbers.MAX_CAR_LENGTH;
+import static constant.Numbers.MAX_ROUND;
+import static constant.Numbers.MIN_CAR_LENGTH;
+import static constant.Numbers.MIN_ROUND;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,10 +12,6 @@ import java.util.Set;
 public class Validator {
 
     private static final String NAME_RULE = "^[a-zA-Z]{1,5}$";
-    private static final int MIN_ROUND = 1;
-    private static final int MAX_ROUND = 100;
-    private static final int MIN_CAR_LENGTH = 1;
-    private static final int MAX_CAR_LENGTH = 100;
 
     public static void validateCarNames(List<String> names) {
         for (String name : names) {

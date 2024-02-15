@@ -1,12 +1,12 @@
 package service;
 
+import static constant.Numbers.MOVE_BOUNDARY_NUMBER;
+import static constant.Numbers.RANDOM_NUMBER_RANGE;
+
 import domain.Car;
 import java.util.List;
 
 public class Service {
-
-    private static final int RANDOM_NUMBER_RANGE = 10;
-    private static final int MOVE_BOUNDARY_NUMBER = 4;
 
     public static List<String> getWinnerNames(List<Car> cars) {
         int maxScore = cars.stream()
