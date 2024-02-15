@@ -2,9 +2,11 @@ package racingcar.domain;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static racingcar.exception.ExceptionMessage.*;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -14,6 +16,13 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
+    @Test
+    @DisplayName("[Success] 자동차가 정상적으로 생성됨")
+    void createCars() {
+        assertThatCode(() -> new Car("car"))
+                .doesNotThrowAnyException();
+    }
+
     @Nested
     class ValidateCarName {
         @ParameterizedTest
