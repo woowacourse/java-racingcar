@@ -26,7 +26,7 @@ public class RacingCarNames {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.isBlank() || name.length() > 5) {
             throw new IllegalArgumentException("이름은 5글자 이하만 가능합니다.");
         }
     }

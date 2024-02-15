@@ -16,6 +16,7 @@ public class TryNumber {
     public void decrease() {
         number --;
     }
+
     private void validatePositiveMoveCount(int number) {
         if (number <= 0) {
             throw new NotNumberPositiveException();
