@@ -10,14 +10,13 @@ public class Winners {
     }
 
     public static Winners from(Cars cars) {
-        return new Winners(getWinners(cars).stream()
+        return new Winners(findWinners(cars).stream()
                 .map(Car::getName)
                 .toList());
     }
 
-    public static List<Car> getWinners(Cars cars) {
+    private static List<Car> findWinners(Cars cars) {
         int maxPosition = getMaxPosition(cars);
-
         return cars.getCars().stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .toList();
