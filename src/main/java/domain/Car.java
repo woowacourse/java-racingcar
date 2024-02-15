@@ -19,6 +19,10 @@ public class Car {
         return this.position;
     }
 
+    public String getCarName() {
+        return this.carName;
+    }
+
     public void tryMove() {
         if (powerGenerator.generatePower().isSufficientPower()) {
             move();
