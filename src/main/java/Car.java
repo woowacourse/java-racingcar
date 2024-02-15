@@ -8,10 +8,10 @@ public class Car {
         this.carLocation = carLocation;
     }
 
-    public static Car fromName(String name) {
+    public static Car from(String name, int location) {
         return new Car(
                 new CarName(name),
-                new CarLocation()
+                new CarLocation(location)
         );
     }
 
