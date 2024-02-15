@@ -14,11 +14,12 @@ public class Car implements Comparable<Car> {
     }
 
     public String showDistance() {
-        String dis = "";
-        for (int i = 0; i < distance; i++) {
-            dis += "-";
+        StringBuilder distance = new StringBuilder();
+        for (int i = 0; i < this.distance; i++) {
+            distance.append("-");
         }
-        return dis;
+
+        return distance.toString();
     }
 
     public String getName() {
