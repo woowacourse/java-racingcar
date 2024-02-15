@@ -1,11 +1,21 @@
 ## 도메인 용어 정리
 
-- 이름 racinggame.Name
+- 이름 Name
 - 자동차 Car
 - 이동조건 MoveCondition
 - 라운드 Round
 - 위치 Position
 - 자동차경주게임 RacingGame
+
+```mermaid
+graph TD
+  Car --> Name
+  Car --> Position
+  RacingGame --> Round
+  RacingGame --> MoveCondition
+  RacingGame --> Cars
+  Cars --> Car
+```
 
 ## 기능 목록
 
