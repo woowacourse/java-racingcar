@@ -3,6 +3,7 @@ package racingcar.model;
 public class Car {
     private final String name;
     private int position;
+    private NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
         numberGenerator = new RandomNumberGenerator();

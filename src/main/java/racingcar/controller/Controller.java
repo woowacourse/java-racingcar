@@ -40,7 +40,7 @@ public class Controller {
     private void generateCarList(List<String> carNames) {
         cars = new ArrayList<>();
         for(String carName : carNames){
-            Car car = new Car(carName);
+            Car car = new Car(carName, new RandomNumberGenerator());
             cars.add(car);
         }
     }
