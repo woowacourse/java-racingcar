@@ -12,6 +12,7 @@ public class MainController {
         final Cars cars = getCars();
         final int tryCount = getTryCount();
         proceedRounds(cars, tryCount);
+        printResult(cars);
     }
 
     private Cars getCars() {
@@ -23,7 +24,7 @@ public class MainController {
         return InputView.readTryCount(new ConsoleReader());
     }
 
-    public void proceedRounds(final Cars cars, final int tryCount){
+    private void proceedRounds(final Cars cars, final int tryCount){
         OutputView.printResultSubject();
         IntStream.rangeClosed(1, tryCount)
                 .forEach(i -> proceedOneRound(cars));
@@ -32,5 +33,9 @@ public class MainController {
     private void proceedOneRound(final Cars cars) {
         cars.move();
         OutputView.printResult(cars.result());
+    }
+
+    private void printResult(final Cars cars) {
+        OutputView.printWinners(cars.getWinners());
     }
 }
