@@ -11,30 +11,23 @@ import racingcar.service.RandomNumberGenerator;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(final List<String> carNames) {
-        validateNotDuplicate(carNames);
-        validateSize(carNames);
-        this.cars = createCars(carNames);
-
+    public Cars(final List<Car> cars) {
+        validateNotDuplicate(cars);
+        validateSize(cars);
+        this.cars = cars;
     }
 
-    private List<Car> createCars(final List<String> carNames) {
-        return carNames.stream()
-                .map(Car::new)
-                .toList();
-    }
-
-    private void validateNotDuplicate(final List<String> carNames) {
-        long uniqueCarNames = carNames.stream()
+    private void validateNotDuplicate(final List<Car> cars) {
+        long uniqueCarNames = cars.stream()
                 .distinct()
                 .count();
-        if (carNames.size() != uniqueCarNames) {
+        if (cars.size() != uniqueCarNames) {
             throw new IllegalArgumentException(NOT_DUPLICATED_CAR_NAME.getMessage());
         }
     }
 
-    private void validateSize(final List<String> carNames) {
-        if (carNames.size() < MIN_CARS_SIZE.getValue() || carNames.size() > MAX_CARS_SIZE.getValue()) {
+    private void validateSize(final List<Car> cars) {
+        if (cars.size() < MIN_CARS_SIZE.getValue() || cars.size() > MAX_CARS_SIZE.getValue()) {
             throw new IllegalArgumentException(INVALID_CARS_SIZE.getMessage());
         }
     }

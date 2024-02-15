@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -17,12 +18,18 @@ public class MainController {
 
     private Cars getCars() {
         try {
-            final List<String> carNames = InputView.readCarNames(new ConsoleReader());
-            return new Cars(carNames);
+            final List<Car> cars = createCars(InputView.readCarNames(new ConsoleReader()));
+            return new Cars(cars);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getCars();
         }
+    }
+
+    private List<Car> createCars(final List<String> carNames) {
+        return carNames.stream()
+                .map(Car::new)
+                .toList();
     }
 
     private int getTryCount() {

@@ -4,6 +4,7 @@ import static racingcar.config.RacingCarConfig.CAR_MOVE_THRESHOLD;
 import static racingcar.config.RacingCarConfig.MAX_NAME_LENGTH;
 import static racingcar.exception.ExceptionMessage.*;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,5 +71,22 @@ public class Car implements Comparable<Car> {
 
     public boolean isSamePosition(Car other) {
         return this.position == other.position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

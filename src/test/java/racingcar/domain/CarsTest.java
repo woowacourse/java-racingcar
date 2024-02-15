@@ -15,8 +15,10 @@ class CarsTest {
     @Test
     @DisplayName("[Exception] 중복된 자동차 이름이 있으면 예외를 던진다")
     void createCarsByDuplicateCarNames() {
+        List<Car> cars = List.of(new Car("123"), new Car("123"));
+
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Cars(List.of("123", "123")))
+                .isThrownBy(() -> new Cars(cars))
                 .withMessage(NOT_DUPLICATED_CAR_NAME.getMessage());
     }
 
@@ -24,8 +26,12 @@ class CarsTest {
     @MethodSource("InputCarNames")
     @DisplayName("[Exception] 자동차 대수가 2대 미만이거나 10대 초과하면 예외를 던진다")
     void createCarsByInvalidSize(List<String> carNames) {
+        List<Car> cars = carNames.stream()
+                .map(Car::new)
+                .toList();
+
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Cars(carNames))
+                .isThrownBy(() -> new Cars(cars))
                 .withMessage(INVALID_CARS_SIZE.getMessage());
     }
 
