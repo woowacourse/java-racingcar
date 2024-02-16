@@ -1,7 +1,7 @@
 package model;
 
 import static fixture.CarFixture.자동차;
-import static fixture.CarFixture.자동차들;
+import static fixture.RacingGameFixture.레이싱게임;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -45,7 +45,7 @@ class RacingGameTest {
         Car winner = 자동차("prin");
         Car loser1 = 자동차("mark");
         Car loser2 = 자동차("pobi");
-        RacingGame racingGame = 자동차들(winner, loser1, loser2);
+        RacingGame racingGame = 레이싱게임(winner, loser1, loser2);
         winner.moveForward(movableNumberGenerator);
 
         // when
@@ -62,7 +62,7 @@ class RacingGameTest {
         Car loser = 자동차("prin");
         Car winner1 = 자동차("mark");
         Car winner2 = 자동차("pobi");
-        RacingGame racingGame = 자동차들(loser, winner1, winner2);
+        RacingGame racingGame = 레이싱게임(loser, winner1, winner2);
         winner1.moveForward(movableNumberGenerator);
         winner2.moveForward(movableNumberGenerator);
 
