@@ -1,25 +1,16 @@
 package racing.domain;
 
-import java.util.regex.Pattern;
-
 class Car implements Comparable<Car> {
+
+  static final int ONCE_MOVE_DISTANCE = 1;
 
   private final String name;
   private int distance;
 
   Car(int distance, String name) {
-    validateName(name);
+    CarNameValidator.validate(name);
     this.distance = distance;
     this.name = name;
-  }
-
-  private void validateName(String name) {
-    if (name.length() < 1 || name.length() > 5) {
-      throw new RuntimeException("이름의 길이는 1 이상 5 이하여야 합니다.");
-    }
-    if (!Pattern.matches("^[a-zA-Z]+$", name)) {
-      throw new RuntimeException("이름은 알파벳 대소문자로만 이루어져야 합니다.");
-    }
   }
 
   @Override
@@ -47,7 +38,7 @@ class Car implements Comparable<Car> {
   }
 
   void go() {
-    distance += 1;
+    distance += ONCE_MOVE_DISTANCE;
   }
 
   void stop() {
