@@ -2,14 +2,18 @@ package io;
 
 import io.validator.InputValidator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
+
+    private static final String CAR_NAMES_DELIMITER = ",";
     private final Scanner sc = new Scanner(System.in);
 
-    public String readCarNames() {
+    public List<String> readCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return sc.nextLine();
+        String rawCarNames = sc.nextLine();
+        return List.of(rawCarNames.split(CAR_NAMES_DELIMITER));
     }
 
     public int readTryAmount() {

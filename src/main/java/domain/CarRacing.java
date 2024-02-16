@@ -11,16 +11,13 @@ public class CarRacing {
     private final InputView inputView;
     private final OutputView outputView;
 
-    private static final String CAR_NAMES_DELIMITER = ",";
-
     public CarRacing(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-
     public void start() {
-        Cars cars = createCars(inputView.readCarNames(), new CarAccelerator());
+        Cars cars = createCars(inputView.readCarNames());
         TryCount tryCount = createTryCount(inputView.readTryAmount());
 
         printMoveResult(tryCount, cars);
@@ -36,9 +33,9 @@ public class CarRacing {
         tryMove(tryCount, cars);
     }
 
-    public Cars createCars(String carNames, CarAccelerator accelerator) {
+    public Cars createCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
-        for (String carName : carNames.split(CAR_NAMES_DELIMITER)) {
+        for (String carName : carNames) {
             cars.add(new Car(carName));
         }
 

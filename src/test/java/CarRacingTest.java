@@ -1,6 +1,15 @@
-import domain.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
+import domain.Car;
+import domain.CarAccelerator;
+import domain.CarRacing;
+import domain.Cars;
+import domain.TryCount;
 import io.InputView;
 import io.OutputView;
+import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,15 +17,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-
 class CarRacingTest {
-    private CarRacing carRacing;
-
     private static CarAccelerator accelerator;
+    private CarRacing carRacing;
 
     @BeforeAll
     static void initAll() {
@@ -29,12 +32,12 @@ class CarRacingTest {
     }
 
     @Test
-    @DisplayName("자동차 생성 성공 테스트")
+    @DisplayName("Cars 생성 성공 테스트")
     void createCarsSuccess() {
         // given
-        String carNames = "pobi,crong,honux";
+        List<String> carNames = List.of("pobi", "crong", "honux");
         // when
-        List<Car> cars = carRacing.createCars(carNames, accelerator).getCars();
+        List<Car> cars = carRacing.createCars(carNames).getCars();
         // then
         assertThat(cars).hasSize(3);
         assertAll(
@@ -44,12 +47,11 @@ class CarRacingTest {
         );
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"", "pobi", "aabbcc,pobi"})
-    @DisplayName("자동차 생성 실패 테스트")
-    void createCarsFail(String carNames) {
+    @Test
+    @DisplayName("Cars 생성 실패 테스트")
+    void createCarsFail() {
         assertThatThrownBy(() -> {
-            carRacing.createCars(carNames, accelerator);
+            carRacing.createCars(List.of("", "pobi", "aabbcc,pobi"));
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -71,13 +73,14 @@ class CarRacingTest {
         assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     @DisplayName("우승자 판독 테스트")
     void decideWinners() {
         // given
-        String carNames = "pobi,crong,honux";
+        List<String> carNames = List.of("pobi", "crong", "honux");
         // when
-        Cars cars = carRacing.createCars(carNames, accelerator);
+        Cars cars = carRacing.createCars(carNames);
         List<String> actualWinners = carRacing.getWinners(cars);
         List<String> expectedWinners = List.of("pobi", "crong", "honux");
         //then
