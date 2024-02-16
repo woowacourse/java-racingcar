@@ -7,8 +7,6 @@ import util.RandomGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static util.Exceptions.NUMBER_RANGE_EXCEPTION;
-
 public class RacingCarService {
 
     public int getCount(String rawCount) {
@@ -40,13 +38,14 @@ public class RacingCarService {
         return new Cars(names);
     }
 
-    public List<String> getMovement(Cars cars) {
-        List<String> movement = new ArrayList<>();
+    public List<String> getCurrentStatus(Cars cars) {
+        List<String> currentStatus = new ArrayList<>();
 
-        cars.getCars()
-            .forEach(car -> movement.add(car.toString()));
+        cars.getCars().forEach(car -> {
+            currentStatus.add(car.getName() + " : " + "-".repeat(car.getForward()));
+        });
 
-        return movement;
+        return currentStatus;
     }
 
     public void moveCars(Cars cars) {

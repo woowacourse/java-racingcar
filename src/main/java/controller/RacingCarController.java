@@ -61,7 +61,7 @@ public class RacingCarController {
     }
 
     private void printMovement(Cars cars) {
-        List<String> movement = racingCarService.getMovement(cars);
+        List<String> movement = racingCarService.getCurrentStatus(cars);
         outputView.printMovement(movement);
     }
 
