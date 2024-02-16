@@ -11,11 +11,11 @@ public class Game {
   private final List<Car> cars;
 
   public Game(List<String> carsName) {
-    validateDuplicate(carsName);
+    validateNotDuplicate(carsName);
     this.cars = convertToCar(carsName);
   }
 
-  private void validateDuplicate(List<String> carsName) {
+  private void validateNotDuplicate(List<String> carsName) {
     int originCount = carsName.size();
     int distinctCount = (int) carsName.stream().distinct().count();
     if (originCount != distinctCount) {
