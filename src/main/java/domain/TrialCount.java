@@ -15,9 +15,9 @@ public class TrialCount {
         }
     }
 
-    public void repeat(Runnable consumer) {
+    public void repeat(Runnable runnable) {
         for (int i = 0; i < amount; i++) {
-            consumer.run();
+            runnable.run();
         }
     }
 }
