@@ -20,5 +20,4 @@ class ParserTest {
         //then
         assertThat(parsedCarNames).containsExactly("미아", "메이슨", "포비");
     }
-
 }
