@@ -1,4 +1,4 @@
-package domain;
+package domain.car;
 
 public class CarName {
     private static final int MAX_NAME_LENGTH = 5;

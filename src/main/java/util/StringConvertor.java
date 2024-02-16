@@ -1,6 +1,8 @@
 package util;
 
-import domain.Car;
+import domain.car.Car;
+import domain.car.RandomDriveStrategy;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +14,6 @@ public class StringConvertor {
 
     public static List<Car> convertListSplitByComma(String value) {
         return Arrays.stream(value.split(COMMA))
-                .map(Car::from).toList();
+                .map(name -> Car.createOnStart(name, new RandomDriveStrategy(RandomDriveStrategy::generateRandomPower))).toList();
     }
 }

@@ -1,5 +1,8 @@
 package domain;
 
+import domain.car.Car;
+import domain.car.CarPosition;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -48,8 +51,8 @@ public class Cars {
         }
     }
 
-    public void moveAll(NumberGenerator numberGenerator) {
-        cars.forEach(car -> car.move(numberGenerator));
+    public void moveAll() {
+        cars.forEach(Car::move);
     }
 
     public List<Car> getCars() {

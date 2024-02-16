@@ -1,6 +1,6 @@
 package view;
 
-import domain.Car;
+import domain.car.Car;
 import domain.Cars;
 import domain.Winners;
 import java.util.StringJoiner;

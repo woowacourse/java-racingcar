@@ -1,5 +1,7 @@
 package domain;
 
+import domain.car.Car;
+
 import java.util.List;
 
 public class Winners {
