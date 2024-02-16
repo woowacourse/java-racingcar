@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.Test;
 
 class TryCountValidatorTest {
-    private final TryCountValidator tryCountValidator = new TryCountValidator();
+    private final InputValidator tryCountValidator = new TryCountValidator();
 
     @Test
     void 숫자가_아닐_경우_예외가_발생한다() {

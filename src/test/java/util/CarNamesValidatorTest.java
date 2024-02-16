@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarNamesValidatorTest {
-    private final CarNamesValidator carNamesValidator = new CarNamesValidator();
+    private final InputValidator carNamesValidator = new CarNamesValidator();
 
     @ParameterizedTest
     @ValueSource(strings = {"prin.mark", "prin;mark"})
