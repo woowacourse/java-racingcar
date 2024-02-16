@@ -2,11 +2,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RacingGame {
     private static final int MAX_RANDOM_NUMBER_RANGE = 9;
+    private static final Pattern NAME_REGEX = Pattern.compile("(.+)((,)(.+))*");
+    private static final Pattern TRIAL_REGEX = Pattern.compile("[0-9]+");
     private static final String ERROR_MESSAGE = "[ERROR] 입력 형식이 올바르지 않습니다.";
+    public static final String SEPARATOR = ",";
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -36,8 +40,7 @@ public class RacingGame {
     }
 
     private void validateCarNames(String names) {
-        final String NAMES_REGEX = "(.+)((,)(.+))*";
-        if (isInvalidFormat(names, NAMES_REGEX)) {
+        if (isInvalidFormat(names, NAME_REGEX)) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
         if (hasInvalidNameLength(names.split(","))) {
@@ -59,18 +62,17 @@ public class RacingGame {
     }
 
     private void validateTrialCount(String trialCount) {
-        final String COUNT_FORMAT = "[0-9]+";
-        if (isInvalidFormat(trialCount, COUNT_FORMAT)) {
+        if (isInvalidFormat(trialCount, TRIAL_REGEX)) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
 
-    private boolean isInvalidFormat(String input, String regex) {
-        return !input.matches(regex);
+    private boolean isInvalidFormat(String input, Pattern pattern) {
+        return !pattern.matcher(input).matches();
     }
 
     private Cars loadCars(String carNames) {
-        List<Car> carList = Arrays.stream(carNames.split(","))
+        List<Car> carList = Arrays.stream(carNames.split(SEPARATOR))
                 .map(Car::from)
                 .toList();
 
@@ -107,7 +109,6 @@ public class RacingGame {
                 .filter(car -> car.getCarLocation() == cars.getMaxLocation())
                 .map(Car::getCarName)
                 .collect(Collectors.joining(", ")) + "가 최종 우승했습니다.";
-        ;
         System.out.println(winners);
     }
 }
