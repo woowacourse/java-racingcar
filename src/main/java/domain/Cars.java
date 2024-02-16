@@ -35,6 +35,6 @@ public class Cars {
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .orElseThrow(
-                        () -> new NoSuchElementException("가장 멀리 간 자동차의 위치를 구하는 것에 실패하였습니다\n 자동차 수: " + cars.size()));
+                        () -> new NoSuchElementException("[INTERNAL ERROR] 가장 먼 자동차 위치 구하기 실패\n 자동차 수: " + cars.size()));
     }
 }
