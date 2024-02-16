@@ -85,11 +85,11 @@ class CarTest {
 
     static class TestStopAccelerator implements Accelerator {
 
-        static final int MOVE = 3;
+        static final int NOT_MOVE = 3;
 
         @Override
         public int push() {
-            return MOVE;
+            return NOT_MOVE;
         }
     }
 }
