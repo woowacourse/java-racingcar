@@ -36,4 +36,12 @@ public class StringParserTest {
         assertThatThrownBy(() -> StringParser.parseToInt(target))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("문자열에 공백이 들어간 경우 앞뒤 공백을 제거한다.")
+    @Test
+    void testBlank() {
+        String target = "리비   ,에버,      테니,잉크,제리";
+        List<String> split = StringParser.split(target, ",");
+        assertThat(split).containsExactly("리비", "에버", "테니", "잉크", "제리");
+    }
 }

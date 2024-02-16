@@ -8,7 +8,9 @@ public class StringParser {
     public static final String ERROR_OF_TYPE = "[ERROR] 올바르지 않은 형식의 입력값입니다.";
 
     public static List<String> split(String target, String delimiter) {
-        return Arrays.stream(target.split(delimiter)).toList();
+        return Arrays.stream(target.split(delimiter))
+                .map(String::trim)
+                .toList();
     }
 
     public static Integer parseToInt(String target) {
