@@ -1,12 +1,12 @@
 package service;
 
 import domain.Cars;
+import util.Exceptions;
 import util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static util.Exceptions.NUMBER_FORMAT_EXCEPTION;
 import static util.Exceptions.NUMBER_RANGE_EXCEPTION;
 
 public class RacingCarService {
@@ -24,13 +24,13 @@ public class RacingCarService {
         try {
             Integer.parseInt(rawCount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(Exceptions.NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 
     private void validateInvalidNumber(int count) {
         if (count <= 0) {
-            throw new IllegalArgumentException(NUMBER_RANGE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(Exceptions.NUMBER_RANGE_EXCEPTION.getMessage());
         }
     }
 

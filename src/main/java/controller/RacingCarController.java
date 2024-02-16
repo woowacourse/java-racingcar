@@ -3,12 +3,12 @@ package controller;
 import domain.Cars;
 import service.JudgeService;
 import service.RacingCarService;
+import util.Exceptions;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
 
-import static util.Exceptions.NULL_EXCEPTION;
 
 public class RacingCarController {
 
@@ -56,7 +56,7 @@ public class RacingCarController {
 
     private void validateIsNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException(NULL_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(Exceptions.NULL_EXCEPTION.getMessage());
         }
     }
 

@@ -1,9 +1,11 @@
 package domain;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import util.Exceptions;
 
-import static util.Exceptions.DUPLICATED_NAME_EXCEPTION;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 public class Cars {
 
@@ -16,7 +18,7 @@ public class Cars {
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != Set.copyOf(names).size()) {
-            throw new IllegalArgumentException(DUPLICATED_NAME_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(Exceptions.DUPLICATED_NAME_EXCEPTION.getMessage());
         }
     }
 
