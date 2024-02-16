@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ class RoundResultTest {
     @Test
     void selectWinners() {
         //given
-        LinkedHashMap<String, Integer> moveResult = new LinkedHashMap<>();
+        Map<String, Integer> moveResult = new LinkedHashMap<>();
         moveResult.put("a", 1);
         moveResult.put("b", 2);
         moveResult.put("c", 2);

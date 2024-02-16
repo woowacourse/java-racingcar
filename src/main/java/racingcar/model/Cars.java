@@ -2,6 +2,7 @@ package racingcar.model;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import racingcar.generator.NumberGenerator;
@@ -18,7 +19,7 @@ public class Cars {
     }
 
     public RoundResult makeCarsMove() {
-        LinkedHashMap<String, Integer> carStatus = new LinkedHashMap<>();
+        Map<String, Integer> carStatus = new LinkedHashMap<>();
         for (Car car : cars) {
             car.move(generator.generate());
             String carName = car.getName();

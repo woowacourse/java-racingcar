@@ -1,18 +1,18 @@
 package racingcar.model;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RoundResult {
 
-    private LinkedHashMap<String, Integer> result;
+    private Map<String, Integer> result;
 
-    public RoundResult(LinkedHashMap<String, Integer> result) {
+    public RoundResult(Map<String, Integer> result) {
         this.result = result;
     }
 
-    public LinkedHashMap<String, Integer> getResult() {
+    public Map<String, Integer> getResult() {
         return result;
     }
 
