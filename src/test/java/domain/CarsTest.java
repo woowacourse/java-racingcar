@@ -9,10 +9,12 @@ import java.util.List;
 
 class CarsTest {
     private static CarAccelerator accelerator;
+    private static Accelerator testMoveForwardAccelerator;
 
     @BeforeAll
     static void init() {
         accelerator = new CarAccelerator();
+        testMoveForwardAccelerator = new TestMoveForwardAccelerator();
     }
 
 
@@ -20,23 +22,23 @@ class CarsTest {
     @DisplayName("입력받은 자동차의 개수가 2대 이상이면 객체 생성에 성공한다")
     void createCarsSuccess() {
         //given
-        Car car1 = new Car("pobi", accelerator);
-        Car car2 = new Car("pobi", accelerator);
+        Car car1 = new Car("pobi");
+        Car car2 = new Car("pobi");
         List<Car> carInfos = List.of(car1, car2);
         //when
         //then
-        Assertions.assertThatCode(() -> new Cars(carInfos));
+        Assertions.assertThatCode(() -> new Cars(carInfos, testMoveForwardAccelerator));
     }
 
     @Test
     @DisplayName("입력받은 자동차의 개수가 1대 이하이면 객체 생성에 실패한다")
     void createCarsFail() {
         //given
-        Car car = new Car("pobi", accelerator);
+        Car car = new Car("pobi");
         List<Car> carInfos = List.of(car);
         //when
         //then
-        Assertions.assertThatThrownBy(() -> new Cars(carInfos))
+        Assertions.assertThatThrownBy(() -> new Cars(carInfos, testMoveForwardAccelerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,12 +46,12 @@ class CarsTest {
     @DisplayName("입력받은 자동차의 이름에 중복이 있으면 객체 생성에 실패한다")
     void createCarsFailWhenNameDuplicated() {
         //given
-        Car car1 = new Car("pobi", accelerator);
-        Car car2 = new Car("pobi", accelerator);
+        Car car1 = new Car("pobi");
+        Car car2 = new Car("pobi");
         List<Car> carInfos = List.of(car1, car2);
         //when
         //then
-        Assertions.assertThatThrownBy(() -> new Cars(carInfos))
+        Assertions.assertThatThrownBy(() -> new Cars(carInfos, testMoveForwardAccelerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -58,25 +60,33 @@ class CarsTest {
     void getCarsMaxPosition() {
         //given
         CarAccelerator carAccelerator = new CarAccelerator();
-        Car car1 = new Car("pobi", carAccelerator);
-        Car car2 = new Car("crong", carAccelerator);
-        Car car3 = new Car("honux", carAccelerator);
+        Car car1 = new Car("pobi");
+        Car car2 = new Car("crong");
+        Car car3 = new Car("honux");
 
         List<Car> carInfos = List.of(car1, car2, car3);
-        Cars cars = new Cars(carInfos);
+        Cars cars = new Cars(carInfos, testMoveForwardAccelerator);
 
         //when
-        car1.moveForward(4);
-        car1.moveForward(4);
-        car1.moveForward(4);
+        car1.moveForward(testMoveForwardAccelerator);
+        car1.moveForward(testMoveForwardAccelerator);
+        car1.moveForward(testMoveForwardAccelerator);
 
-        car2.moveForward(4);
-        car2.moveForward(4);
+        car2.moveForward(testMoveForwardAccelerator);
+        car2.moveForward(testMoveForwardAccelerator);
 
-        car3.moveForward(4);
+        car3.moveForward(testMoveForwardAccelerator);
 
         //then
         Assertions.assertThat(cars.getWinnerPosition()).isEqualTo(3);
     }
 
+    static class TestMoveForwardAccelerator implements Accelerator {
+
+        static final int MOVE = 4;
+        @Override
+        public int push() {
+            return MOVE;
+        }
+    }
 }

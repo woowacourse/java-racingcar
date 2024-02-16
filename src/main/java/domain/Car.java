@@ -2,17 +2,14 @@ package domain;
 
 public class Car {
     private final String name;
-
     private int position;
-    private final CarAccelerator accelerator;
 
     private static final int MIN_MOVABLE_POWER = 4;
 
-    public Car(String name, CarAccelerator accelerator) {
+    public Car(String name) {
         validate(name);
         this.name = name;
         this.position = 0;
-        this.accelerator = accelerator;
     }
 
     private void validate(String name) {
@@ -32,12 +29,8 @@ public class Car {
         }
     }
 
-    public int pushAccelerator() {
-        return accelerator.push();
-    }
-
-    public void moveForward(int power) {
-        if (power >= MIN_MOVABLE_POWER) {
+    public void moveForward(Accelerator accelerator) {
+        if (accelerator.push() >= MIN_MOVABLE_POWER) {
             position++;
         }
     }

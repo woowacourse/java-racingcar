@@ -39,10 +39,10 @@ public class CarRacing {
     public Cars createCars(String carNames, CarAccelerator accelerator) {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames.split(CAR_NAMES_DELIMITER)) {
-            cars.add(new Car(carName, accelerator));
+            cars.add(new Car(carName));
         }
 
-        return new Cars(cars);
+        return new Cars(cars, new CarAccelerator());
     }
 
     public TryCount createTryCount(int amount) {
