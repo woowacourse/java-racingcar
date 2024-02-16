@@ -1,15 +1,13 @@
 package domain;
 
-import view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    private List<RacingCar> racingCars;
-    private RandomNumberUtil randomNumberUtil = new RandomNumberUtil();
+    private final List<RacingCar> racingCars;
+    private final RandomNumberUtil randomNumberUtil = new RandomNumberUtil();
 
     public RacingCars(List<RacingCar> racingCars) {
         this.racingCars = racingCars;
