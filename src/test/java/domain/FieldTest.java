@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import utils.NumberGenerator;
 
-public class FieldTestTest {
+public class FieldTest {
     @Test
     void test() {
         Field field = new Field(new CarFactory("pobi,weve"), new FixedNumberGenerator());
