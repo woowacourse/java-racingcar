@@ -7,17 +7,18 @@ import model.Race;
 public class OutputView {
     private static final String OUTPUT_RESULT_MESSAGE = "\n실행 결과";
 
-    public void printRaceResult() {
+    public void printRaceResult(Race race) {
         System.out.println(OUTPUT_RESULT_MESSAGE);
+        printRoundResult(race);
     }
 
-    public void printRoundResult(Race race) {
+    private void printRoundResult(Race race) {
         StringBuilder roundResult = new StringBuilder();
 
         for (Car car : race.getCars()) {
             roundResult.append(car.getName())
                     .append(" : ")
-                    .append(car.showDistance())
+                    .append("-".repeat(car.getDistance()))
                     .append("\n");
         }
 
