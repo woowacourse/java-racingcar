@@ -8,6 +8,7 @@ import model.dto.CarState;
 public class Cars {
     private static final int MIN_CAR_NAMES_SIZE = 1;
     private static final int DEFAULT_MAX_FORWARD_COUNT = 0;
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
