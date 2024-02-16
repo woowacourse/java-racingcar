@@ -20,10 +20,6 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     private List<Car> convertNamesToCars(List<String> names) {
         List<Car> cars = new ArrayList<>();
 
@@ -36,5 +32,9 @@ public class Cars {
 
     public int getMaxForward() {
         return cars.stream().max(Car::compareTo).get().getForward();
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }
