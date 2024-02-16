@@ -7,15 +7,20 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import support.ImmovableNumberGenerator;
+import support.MovableNumberGenerator;
+import util.NumberGenerator;
 
 class CarTest {
+    private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
+
     @Test
     void 자동차를_한칸_전진한다() {
         // given
         Car car = 자동차();
 
         // when
-        car.moveForward();
+        car.moveForward(movableNumberGenerator);
 
         // then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -29,7 +34,7 @@ class CarTest {
 
         // when
         IntStream.range(0, moveCount)
-                .forEach(i -> car.moveForward());
+                .forEach(i -> car.moveForward(movableNumberGenerator));
 
         // then
         assertThat(car.getPosition()).isEqualTo(moveCount);
