@@ -34,9 +34,9 @@ public class Game {
     }
 
     public void proceed() {
-        IntStream.range(0, tryCount).forEach((i) -> {
             vehicles.move();
             OutputView.printNewLine();
+        IntStream.range(0, tryCount).forEach(i -> {
         });
     }
 
