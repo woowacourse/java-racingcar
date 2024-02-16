@@ -44,5 +44,7 @@ Java Naming Conventions가이드를 참고하여 메서드 이름 수정
 
 ### 테스트 코드와 프로덕션 코드 분리
 
-- [ ] model/Trycount getValue 접근제어자 변경
+- [X] model/Trycount getValue 접근제어자 변경
+    - [X] test에 racingcar.model 패키지 생성
+    - [X] CarsTest, CarTest 패키지 이동
 

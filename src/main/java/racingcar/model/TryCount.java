@@ -38,7 +38,7 @@ public class TryCount {
         return value > 0;
     }
 
-    public int getValue() {
+    int getValue() {
         return value;
     }
 }
