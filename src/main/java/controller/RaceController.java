@@ -3,7 +3,6 @@ package controller;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import application.RaceService;
 import java.util.Arrays;
 import java.util.List;
 import model.Car;
@@ -12,16 +11,17 @@ import model.Name;
 import model.TryCount;
 import ui.InputView;
 import ui.OutputView;
+import util.NumberGenerator;
 
 public class RaceController {
+    private final NumberGenerator numberGenerator;
     private final InputView inputView;
     private final OutputView outputView;
-    private final RaceService raceService;
 
-    public RaceController(InputView inputView, OutputView outputView, RaceService raceService) {
+    public RaceController(NumberGenerator numberGenerator, InputView inputView, OutputView outputView) {
+        this.numberGenerator = numberGenerator;
         this.inputView = inputView;
         this.outputView = outputView;
-        this.raceService = raceService;
     }
 
     public void start() {
@@ -29,11 +29,11 @@ public class RaceController {
         TryCount tryCount = createTryCount();
         outputView.printResultHeader();
         while (tryCount.hasTryCount()) {
-            raceService.moveCars(cars);
+            cars.moveCars(numberGenerator);
             outputView.printCarNameAndPosition(cars);
             tryCount.decreaseTryCount();
         }
-        List<String> winners = raceService.findWinners(cars);
+        List<String> winners = cars.findWinners();
         outputView.printWinners(winners);
     }
 

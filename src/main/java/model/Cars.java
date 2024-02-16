@@ -2,6 +2,7 @@ package model;
 
 import java.util.Collections;
 import java.util.List;
+import util.NumberGenerator;
 
 public class Cars {
     private final List<Car> cars;
@@ -22,7 +23,21 @@ public class Cars {
         }
     }
 
-    public int findMaxPosition() {
+    public void moveCars(NumberGenerator numberGenerator) {
+        for (Car car : cars) {
+            car.moveForward(numberGenerator);
+        }
+    }
+
+    public List<String> findWinners() {
+        int maxPosition = this.findMaxPosition();
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .map(Car::getName)
+                .toList();
+    }
+
+    private int findMaxPosition() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
