@@ -19,7 +19,7 @@ class CarsTest {
         cars.go(() -> 5);
 
         // when
-        List<Car> winner = cars.findWinner();
+        List<Car> winner = cars.findWinners();
 
         // then
         assertThat(winner).hasSize(3);
@@ -33,7 +33,7 @@ class CarsTest {
         cars.go(new TestNumberGenerator());
 
         // when
-        List<Car> winner = cars.findWinner();
+        List<Car> winner = cars.findWinners();
 
         // then
         assertThat(winner).hasSize(1).extracting("name").isEqualTo(List.of("cc"));

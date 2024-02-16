@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -42,19 +43,18 @@ public class Cars {
         cars.forEach(car -> car.go(generator.generate()));
     }
 
-    public List<Car> findWinner() {
-        final int maxPosition = getMaxPosition();
+    public List<Car> findWinners() {
+        final Car winnerCar = findWinner();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(winnerCar))
                 .toList();
     }
 
-    private int getMaxPosition() {
+    private Car findWinner() {
         return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow(() -> new IllegalStateException("[ERROR] 최대 포지션을 찾을 수 없습니다."));
+                .max(Comparator.naturalOrder())
+                .orElseThrow(() -> new IllegalStateException("[ERROR] 우승자를 찾을 수 없습니다."));
     }
 
     public List<Car> getCars() {

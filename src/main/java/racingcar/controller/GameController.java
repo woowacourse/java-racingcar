@@ -64,7 +64,7 @@ public class GameController {
     }
 
     private List<String> findWinnersName(final Cars cars) {
-        return cars.findWinner()
+        return cars.findWinners()
                 .stream()
                 .map(Car::getName)
                 .toList();

@@ -25,6 +25,10 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public boolean isSamePosition(final Car other) {
+        return position == other.position;
+    }
+
     public Car copy() {
         return new Car(name, position);
     }
