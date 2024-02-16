@@ -16,18 +16,11 @@ public class OutputView {
         }
     }
 
-    public void printWinners(List<Car> cars) {
-        int longestDistance = cars.stream()
-                .mapToInt(Car::getDistance)
-                .max()
-                .orElseThrow(() -> new IllegalArgumentException(MESSAGE_NOT_EXIST_CAR));
-
+    public void printWinners(List<Car> winningCars) {
         String winnerNames = String.join(", ",
-                cars.stream()
-                        .filter(car -> car.getDistance() == longestDistance)
+                winningCars.stream()
                         .map(Car::getName)
-                        .toList()
-        );
+                        .toList());
 
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }

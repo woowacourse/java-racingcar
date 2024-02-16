@@ -21,7 +21,8 @@ public class GameManager {
             moveCars(cars);
             outputView.printTryResult(cars);
         }
-        outputView.printWinners(cars);
+        List<Car> winners = decideWinners(cars);
+        outputView.printWinners(winners);
     }
 
     private void makeNewCars(List<Car> cars, List<String> carNames) {
@@ -34,5 +35,16 @@ public class GameManager {
         for (Car car : cars) {
             car.moveCar(new RandomCondition());
         }
+    }
+
+    private List<Car> decideWinners(List<Car> cars) {
+        int longestDistance = cars.stream()
+                .mapToInt(Car::getDistance)
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException(MESSAGE_NOT_EXIST_CAR));
+
+        return cars.stream()
+                .filter(car -> car.getDistance() == longestDistance)
+                .toList();
     }
 }
