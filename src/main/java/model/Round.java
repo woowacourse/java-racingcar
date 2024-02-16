@@ -1,6 +1,7 @@
 package model;
 
-import static util.ErrorMessage.*;
+import static util.ErrorMessage.ERROR_ROUND_IS_NATURAL_NUMBER;
+import static util.ErrorMessage.ERROR_ROUND_IS_NULL;
 
 import java.util.regex.Pattern;
 

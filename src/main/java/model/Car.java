@@ -1,6 +1,6 @@
 package model;
 
-import static util.ErrorMessage.*;
+import static util.ErrorMessage.ERROR_NAME_LENGTH;
 
 public class Car {
 
