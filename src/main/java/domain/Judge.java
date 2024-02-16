@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Judge {
 
-    public List<Car> getWinners(List<Car> cars) {
+    public List<Car> getWinners(RaceCars raceCars) {
+        List<Car> cars = raceCars.getCars();
         cars.sort(Collections.reverseOrder());
         int furthestLocation = cars.get(0).getLocation();
         return cars.stream()
