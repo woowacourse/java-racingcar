@@ -5,7 +5,7 @@ import util.Exceptions;
 
 import static util.Constants.MIN_FORWARD_NUMBER;
 
-public class Car implements Comparable<Car> {
+public class Car {
     private final String name;
     private int forward;
 
@@ -49,11 +49,6 @@ public class Car implements Comparable<Car> {
 
     public int getForward() {
         return forward;
-    }
-
-    @Override
-    public int compareTo(Car c) {
-        return Integer.compare(c.forward, forward);
     }
 
 }

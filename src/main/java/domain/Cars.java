@@ -2,10 +2,7 @@ package domain;
 
 import util.Exceptions;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Cars {
 
@@ -34,7 +31,7 @@ public class Cars {
 
     public int getMaxForward() {
         return cars.stream()
-                .sorted(Car::compareTo)
+                .sorted(Comparator.comparing(Car::getForward).reversed())
                 .toList()
                 .get(0)
                 .getForward();
