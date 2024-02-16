@@ -1,7 +1,5 @@
 package model;
 
-import static utils.Convertor.convertStringToList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,31 +15,30 @@ public class Race {
 
     private final List<Car> cars;
 
-    public Race(String inValidNameStr) {
+    public Race(List<String> carNames) {
         cars = new ArrayList<>();
-        List<String> invalidNames = convertStringToList(inValidNameStr);
-        validate(invalidNames);
+        validate(carNames);
 
-        for (String name : invalidNames) {
-            cars.add(new Car(new Name(name)));
+        for (String carName : carNames) {
+            cars.add(new Car(new Name(carName)));
         }
     }
 
-    private void validate(List<String> invalidNames) {
-        validateDuplicatedCarName(invalidNames);
-        validateMinimumNumberOfCars(invalidNames);
+    private void validate(List<String> carNames) {
+        validateDuplicatedCarName(carNames);
+        validateMinimumNumberOfCars(carNames);
     }
 
-    private void validateDuplicatedCarName(List<String> invalidNames) {
-        Set<String> uniqueNames = new HashSet<>(invalidNames);
+    private void validateDuplicatedCarName(List<String> carNames) {
+        Set<String> uniqueCarNames = new HashSet<>(carNames);
 
-        if (uniqueNames.size() != invalidNames.size()) {
+        if (uniqueCarNames.size() != carNames.size()) {
             throw new IllegalArgumentException(CAR_NAME_DUPLICATED_ERROR_MESSAGE);
         }
     }
 
-    private void validateMinimumNumberOfCars(List<String> invalidNames) {
-        if (invalidNames.size() < MIN_NUMBER_OF_CARS) {
+    private void validateMinimumNumberOfCars(List<String> carNames) {
+        if (carNames.size() < MIN_NUMBER_OF_CARS) {
             throw new IllegalArgumentException(NOT_ENOUGH_CARS_ERROR_MESSAGE);
         }
     }
