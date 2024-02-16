@@ -10,9 +10,9 @@ public class Cars {
         this.cars = names.stream().map(Car::new).toList();
     }
 
-    public void moveAllCars(final RandomNumber randomNumber) {
+    public void moveAllCars(final RandomNumberGenerator randomNumberGenerator) {
         for(Car car: cars) {
-            final int condition = randomNumber.generate();
+            final int condition = randomNumberGenerator.generate();
             car.move(condition);
         }
     }

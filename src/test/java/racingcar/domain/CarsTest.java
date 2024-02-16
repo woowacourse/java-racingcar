@@ -15,7 +15,7 @@ class CarsTest {
         Cars cars = new Cars(List.of("미아", "메이슨"));
 
         //when
-        cars.moveAllCars(new RandomNumberForward());
+        cars.moveAllCars(new RandomNumberGeneratorForward());
 
         //then
         List<Car> movedCars = cars.getCars();
@@ -31,7 +31,7 @@ class CarsTest {
         Cars cars = new Cars(List.of("미아", "메이슨"));
 
         //when
-        cars.moveAllCars(new RandomNumberStop());
+        cars.moveAllCars(new RandomNumberGeneratorStop());
 
         //then
         List<Car> movedCars = cars.getCars();

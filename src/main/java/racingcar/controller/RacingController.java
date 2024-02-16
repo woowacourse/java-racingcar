@@ -2,7 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.RandomNumberImpl;
+import racingcar.domain.RandomNumberGeneratorImpl;
 import racingcar.util.Parser;
 import racingcar.util.Validator;
 import racingcar.view.InputView;
@@ -62,7 +62,7 @@ public class RacingController {
     }
 
     private void moveCars(final Cars cars) {
-        cars.moveAllCars(new RandomNumberImpl());
+        cars.moveAllCars(new RandomNumberGeneratorImpl());
         outputView.printCarPosition(cars);
     }
 }

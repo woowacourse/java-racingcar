@@ -1,5 +1,5 @@
 package racingcar.domain;
 
-public interface RandomNumber {
+public interface RandomNumberGenerator {
     int generate();
 }
