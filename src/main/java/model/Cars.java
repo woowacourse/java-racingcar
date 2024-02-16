@@ -17,7 +17,7 @@ public class Cars {
     public static Cars fromNames(List<String> names) {
         validate(names);
         List<Car> cars = names.stream()
-                .map(name -> Car.fromRandomGenerator(name))
+                .map(Car::fromRandomGenerator)
                 .toList();
         return new Cars(cars);
     }
