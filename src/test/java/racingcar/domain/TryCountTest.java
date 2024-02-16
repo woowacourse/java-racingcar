@@ -11,7 +11,8 @@ class TryCountTest {
     @ValueSource(ints = {1, 2, 3, 4})
     @DisplayName("시도 횟수가 1 이상이면 객체 생성에 성공한다")
     void createTryCountSuccess(int value) {
-        Assertions.assertThatCode(() -> new TryCount(value));
+        Assertions.assertThatCode(() -> new TryCount(value))
+                .doesNotThrowAnyException();
     }
 
     @ParameterizedTest

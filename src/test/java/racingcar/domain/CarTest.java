@@ -25,7 +25,8 @@ class CarTest {
     @ValueSource(strings = {"p", "po", "poo", "pooo", "poooo"})
     @DisplayName("자동차 이름의 길이가 1 이상 5 이하로 주어지면 자동차가 정상적으로 생성된다")
     void createCarSuccess(String carName) {
-        Assertions.assertThatCode(() -> new Car(carName));
+        Assertions.assertThatCode(() -> new Car(carName))
+                .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
@@ -62,10 +63,8 @@ class CarTest {
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 0, 1, 2, 3})
-    @DisplayName("4 미만의 값을 받으면 자동차가 이동하지 않는다")
-    void doNotMoveCar(int power) {
+    @Test
+    void doNotMoveCar() {
         //given
         Car car = new Car("pobi");
         //when

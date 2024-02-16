@@ -20,11 +20,12 @@ class CarsTest {
     void createCarsSuccess() {
         //given
         Car car1 = new Car("pobi");
-        Car car2 = new Car("pobi");
+        Car car2 = new Car("crong");
         List<Car> carInfos = List.of(car1, car2);
         //when
         //then
-        Assertions.assertThatCode(() -> new Cars(carInfos, testMoveForwardAccelerator));
+        Assertions.assertThatCode(() -> new Cars(carInfos, testMoveForwardAccelerator))
+                .doesNotThrowAnyException();
     }
 
     @Test
@@ -56,7 +57,6 @@ class CarsTest {
     @DisplayName("자동차들 중 가장 많이 이동한 차량의 Position을 반환한다")
     void getCarsMaxPosition() {
         //given
-        CarAccelerator carAccelerator = new CarAccelerator();
         Car car1 = new Car("pobi");
         Car car2 = new Car("crong");
         Car car3 = new Car("honux");
