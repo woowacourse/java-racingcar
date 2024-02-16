@@ -9,8 +9,10 @@ public class Car implements Comparable<Car> {
         this.distance = 0;
     }
 
-    public void move() {
-        distance++;
+    public void move(int randomNumber) {
+        if (randomNumber >= 4) {
+            distance++;
+        }
     }
 
     public int getDistance() {
