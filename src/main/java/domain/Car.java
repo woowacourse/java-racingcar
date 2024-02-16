@@ -4,12 +4,13 @@ public class Car {
 
     private final CarName carName;
     private Integer position;
-    private final PowerGenerator powerGenerator;
+
+    private final PowerStrategy powerStrategy;
 
     private Car(CarName carName, int position) {
         this.carName = carName;
         this.position = position;
-        this.powerGenerator = new PowerGenerator();
+        this.powerStrategy = PowerStrategy.from();
     }
 
     public static Car of(String name, int position) {
@@ -26,7 +27,7 @@ public class Car {
     }
 
     public void tryMove() {
-        if (powerGenerator.generate().isSufficientPower()) {
+        if (powerStrategy.canMove()) {
             move();
         }
     }
