@@ -60,10 +60,11 @@ public class Cars {
     }
 
     private int getMaxPosition() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(MIN_POSITION);
+        int maxPosition = MIN_POSITION;
+        for (Car car : cars) {
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+        return maxPosition;
     }
 
 
