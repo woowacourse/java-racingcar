@@ -1,7 +1,5 @@
 package model;
 
-import static util.ErrorMessage.ERROR_NAME_LENGTH;
-
 public class Car {
 
     private static final int INITIAL_POSITION = 0;
@@ -24,7 +22,7 @@ public class Car {
 
     private static void validateNameLength(String name) {
         if (name == null || name.trim().isEmpty() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalStateException(ERROR_NAME_LENGTH.getMessage());
+            throw new IllegalStateException("자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
         }
     }
 

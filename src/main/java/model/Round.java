@@ -2,9 +2,6 @@ package model;
 
 import java.util.regex.Pattern;
 
-import static util.ErrorMessage.ERROR_ROUND_IS_NATURAL_NUMBER;
-import static util.ErrorMessage.ERROR_ROUND_IS_NULL;
-
 public class Round {
 
     private static final String NATURAL_FORMAT_REGEX = "^[\\d]*$";
@@ -28,19 +25,19 @@ public class Round {
 
     private static void checkIsNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException(ERROR_ROUND_IS_NULL.getMessage());
+            throw new IllegalArgumentException("시도 횟수를 입력해 주십시오.");
         }
     }
 
     private static void checkIsNumber(String input) {
         if (!Pattern.matches(NATURAL_FORMAT_REGEX, input)) {
-            throw new IllegalArgumentException(ERROR_ROUND_IS_NATURAL_NUMBER.getMessage());
+            throw new IllegalArgumentException("시도 횟수는 자연수여야 합니다.");
         }
     }
 
     private static void checkIsZero(String input) {
         if (input.equals(0)) {
-            throw new IllegalArgumentException(ERROR_ROUND_IS_NATURAL_NUMBER.getMessage());
+            throw new IllegalArgumentException("시도 횟수를 입력해 주세요.");
         }
     }
 

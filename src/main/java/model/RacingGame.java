@@ -1,7 +1,5 @@
 package model;
 
-import static util.ErrorMessage.ERROR_DUPLICATED_NAME;
-import static util.ErrorMessage.ERROR_NAME_COUNT;
 import static util.Util.generateRandomNumber;
 
 import java.util.ArrayList;
@@ -40,13 +38,13 @@ public class RacingGame {
     private static void checkDuplicatedName(List<String> names) {
         long nameCount = names.stream().distinct().count();
         if (names.size() != nameCount) {
-            throw new IllegalArgumentException(ERROR_DUPLICATED_NAME.getMessage());
+            throw new IllegalArgumentException("자동차의 이름은 중복될 수 없습니다.");
         }
     }
 
     private static void checkNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
-            throw new IllegalArgumentException(ERROR_NAME_COUNT.getMessage());
+            throw new IllegalArgumentException("자동차 이름은 2개 이상이어야 합니다.");
         }
     }
 
