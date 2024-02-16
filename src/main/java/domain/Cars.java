@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class RacingCars {
+public class Cars {
 
     public static final String DUPLICATE_CAR_NAME_EXCEPTION = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
     public static final String TRY_COUNT_NUMBER_FORMAT_EXCEPTION = "[ERROR] 시도 횟수는 숫자여야 합니다.";
 
     private final List<Car> racingCars;
 
-    public RacingCars(List<Car> racingCars) {
+    public Cars(List<Car> racingCars) {
         Set<Car> distinctCars = new HashSet<>(racingCars);
         if (racingCars.size() != distinctCars.size()) {
             throw new IllegalArgumentException(DUPLICATE_CAR_NAME_EXCEPTION);
@@ -49,7 +49,7 @@ public class RacingCars {
 
     private String getRoundResult() {
         return racingCars.stream()
-                .map(RacingCars::generateResult)
+                .map(Cars::generateResult)
                 .collect(Collectors.joining("\n"));
     }
 

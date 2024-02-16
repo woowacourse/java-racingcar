@@ -1,18 +1,19 @@
 package controller;
 
 import domain.Car;
-import domain.RacingCars;
-import java.util.ArrayList;
-import java.util.List;
+import domain.Cars;
 import view.InputView;
 import view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingController {
     public void startRacing() {
         String carNames = InputView.getCarNames();
         List<Car> cars = parseCarNames(carNames);
 
-        RacingCars racingCars = new RacingCars(cars);
+        Cars racingCars = new Cars(cars);
         String roundCounts = InputView.getRacingRounds();
         String roundResults = racingCars.startRounds(roundCounts);
 
