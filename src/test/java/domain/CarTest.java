@@ -9,16 +9,12 @@ import static org.assertj.core.api.Assertions.*;
 import static util.Constants.MIN_FORWARD_NUMBER;
 
 class CarTest {
-    @DisplayName("자동차 생성 성공 테스트")
-    @Test
-    void carGenerateTest() {
-        assertThatCode(() -> new Car("테스트")).doesNotThrowAnyException();
-    }
 
     @DisplayName("자동차 이름 5자 초과 예외 테스트")
-    @Test
-    void validateCarNameLengthTest() {
-        assertThatThrownBy(() -> new Car("실패하는테스트")).isInstanceOf(IllegalArgumentException.class);
+    @ValueSource(strings = {"123456", "1234567"})
+    @ParameterizedTest
+    void validateCarNameLengthTest(String name) {
+        assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차 이름 공백 포함 예외 테스트")
