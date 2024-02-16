@@ -13,13 +13,13 @@ public class Car {
     }
 
     private void validate(String name) {
-        if (!validateRange(name)) {
+        if (isNameLengthOutOfRange(name)) {
             throw new IllegalArgumentException("1이상 5이하의 이름을 입력하세요.");
         }
     }
 
-    private boolean validateRange(String name) {
-        return name.length() > 0 && name.length() <= 5;
+    private boolean isNameLengthOutOfRange(String name) {
+        return name.length() < 1 || name.length() > 5;
     }
 
     public void execute(int number) {
