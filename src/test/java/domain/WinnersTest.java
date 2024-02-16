@@ -1,7 +1,6 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +14,7 @@ class WinnersTest {
         Car kaki = Car.from("kaki");
         Car nak = Car.from("nak");
         Cars cars = Cars.from(List.of(kaki, nak));
-        nak.move(() -> 9);
+        nak.move(new FakeNumberGenerator(9));
         Winners winners = Winners.from(cars);
         assertThat(winners.getWinners())
                 .containsExactly("nak");
