@@ -23,7 +23,7 @@ public class Controller {
             view.printRace(cars);
         }
 
-        String winners = judge.getWinners(cars);
+        List<Car> winners = judge.getWinners(cars);
         view.printWinners(winners);
     }
 }

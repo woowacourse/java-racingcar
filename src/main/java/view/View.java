@@ -63,4 +63,11 @@ public class View {
         }
         System.out.println();
     }
+
+    public void printWinners(List<Car> winners) {
+        String winnerNotice = winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", ", "", "가 최종 우승했습니다."));
+        System.out.println(winnerNotice);
+    }
 }
