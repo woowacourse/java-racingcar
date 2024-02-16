@@ -1,6 +1,7 @@
 import domain.*;
 import io.InputView;
 import io.OutputView;
+import io.validator.InputValidator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +29,7 @@ class CarRacingTest {
 
     @BeforeEach
     void init() {
-        this.carRacing = new CarRacing(new InputView(), new OutputView());
+        this.carRacing = new CarRacing(new InputView(new InputValidator()), new OutputView());
     }
 
     @Test

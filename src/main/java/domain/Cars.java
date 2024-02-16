@@ -8,6 +8,8 @@ public class Cars {
 
     private static final int MIN_CAR_SIZE = 2;
     private static final int MAX_CAR_SIZE = 5;
+    public static final String CARS_SIZE_RANGE_ERROR_MESSAGE = String.format("자동차 수는 %d 이상, %d 이하여야 합니다", MIN_CAR_SIZE, MAX_CAR_SIZE);
+    public static final String CAR_NAME_DUPLICATION_ERROR_MESSAGE = "자동차 이름은 중복이 불가능합니다.";
 
     public Cars(List<Car> cars) {
         validate(cars);
@@ -27,13 +29,13 @@ public class Cars {
                 .count();
 
         if (actualCarAmount != distinctCarAmount) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CAR_NAME_DUPLICATION_ERROR_MESSAGE);
         }
     }
 
     private void validateCarSize(List<Car> cars) {
         if (cars.size() < MIN_CAR_SIZE || cars.size() > MAX_CAR_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(CARS_SIZE_RANGE_ERROR_MESSAGE);
         }
     }
 
