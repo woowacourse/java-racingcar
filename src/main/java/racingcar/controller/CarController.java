@@ -7,18 +7,15 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
-    private Cars cars;
-    private TryCount tryCount;
-
     public void startGame() {
         String receivedCarNames = InputView.inputRacingCars();
-        cars = new Cars(new RandomNumericGenerator(), receivedCarNames);
+        Cars cars = new Cars(new RandomNumericGenerator(), receivedCarNames);
 
         String receivedCount = InputView.inputTryCount();
-        tryCount = new TryCount(receivedCount);
+        TryCount tryCount = new TryCount(receivedCount);
 
         OutputView.printResultMessage();
-        while(tryCount.untilZero()){
+        while (tryCount.untilZero()) {
             cars.moveCars();
             OutputView.printCarStatus(cars);
             tryCount.consume();
