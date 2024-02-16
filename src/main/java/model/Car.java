@@ -13,6 +13,10 @@ public class Car implements Comparable<Car> {
         distance++;
     }
 
+    public int getDistance() {
+        return distance;
+    }
+
     public String getName() {
         return name.getName();
     }
