@@ -8,7 +8,6 @@ import static util.ErrorMessage.ERROR_ROUND_IS_NULL;
 public class Round {
 
     private static final String NATURAL_FORMAT_REGEX = "^[\\d]*$";
-    private static final String ZERO = "0";
 
     private int round;
 
@@ -40,7 +39,7 @@ public class Round {
     }
 
     private static void checkIsZero(String input) {
-        if (input.equals(ZERO)) {
+        if (input.equals(0)) {
             throw new IllegalArgumentException(ERROR_ROUND_IS_NATURAL_NUMBER.getMessage());
         }
     }
