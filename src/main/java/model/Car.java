@@ -1,6 +1,5 @@
 package model;
 
-import model.dto.CarState;
 import model.intgenerator.IntGenerator;
 import model.intgenerator.RandomIntGenerator;
 
@@ -37,10 +36,6 @@ public class Car {
         if (number >= FORWARD_THRESHOLD) {
             forwardCount++;
         }
-    }
-
-    public CarState captureCarState() {
-        return CarState.create(this);
     }
 
     public String getName() {

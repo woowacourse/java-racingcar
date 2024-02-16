@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import model.dto.CarState;
 import model.intgenerator.IntGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,6 @@ public class CarTest {
     void 주어진_값이_4_이상인_경우_전진한다(String name, int number, int forwardCount) {
         Car car = new Car(name, () -> number);
         car.tryForward();
-        assertThat(car.captureCarState().forwardCount()).isEqualTo(forwardCount);
+        assertThat(CarState.create(car).forwardCount()).isEqualTo(forwardCount);
     }
 }
