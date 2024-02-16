@@ -22,4 +22,15 @@ class CarTest {
         assertThat(position).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("움직이지 않는 엔진의 경우, 전진하지 않는다.")
+    void stoppedEngineTest() {
+        // given
+        Car car = new Car("car", poweredOffEngine);
+        // when
+        car.move();
+        // then
+        int position = car.getStatus().position();
+        assertThat(position).isZero();
+    }
 }
