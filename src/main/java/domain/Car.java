@@ -17,6 +17,16 @@ public class Car {
         return new Car(name, position);
     }
 
+    private void validate(String carName) {
+        validateCarNameLength(carName);
+    }
+
+    private void validateCarNameLength(String carName) {
+        if (carName.length() > 5) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public Integer getPosition() {
         return this.position;
     }
@@ -33,15 +43,5 @@ public class Car {
 
     private void move() {
         position++;
-    }
-
-    private void validate(String carName) {
-        validateCarNameLength(carName);
-    }
-
-    private void validateCarNameLength(String carName) {
-        if (carName.length() > 5) {
-            throw new IllegalArgumentException();
-        }
     }
 }
