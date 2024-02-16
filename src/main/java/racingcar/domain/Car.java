@@ -2,15 +2,16 @@ package racingcar.domain;
 
 import static racingcar.exception.ExceptionMessage.*;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import racingcar.dto.CarStatus;
 
 public class Car implements Comparable<Car> {
     private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_-]");
     private static final int MAX_NAME_LENGTH = 5;
     private static final int CAR_MOVE_THRESHOLD = 4;
-    private static final String CAR_POSITION_SYMBOL = "-";
 
     private final String name;
     private int position = 0;
@@ -60,8 +61,8 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public String result() {
-        return name + " : " + CAR_POSITION_SYMBOL.repeat(position);
+    public CarStatus getCarStatus() {
+        return new CarStatus(name, position);
     }
 
     public int compareTo(Car other) {

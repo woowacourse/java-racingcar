@@ -3,6 +3,7 @@ package racingcar.domain;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;
+import racingcar.dto.CarStatus;
 import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
@@ -37,9 +38,9 @@ public class Cars {
         cars.forEach(car -> car.move(RandomNumberGenerator.generate(MAX_RANDOM_NUMBER)));
     }
 
-    public List<String> result() {
+    public List<CarStatus> result() {
         return cars.stream()
-                .map(Car::result)
+                .map(Car::getCarStatus)
                 .toList();
     }
 
