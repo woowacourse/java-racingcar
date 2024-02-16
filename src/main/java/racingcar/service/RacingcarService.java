@@ -5,12 +5,9 @@ import java.util.List;
 import racingcar.domain.Car;
 import racingcar.dto.CarPerformance;
 import racingcar.dto.RoundResult;
-import racingcar.util.RandomNumberGenerator;
+import racingcar.domain.RandomOilGenerator;
 
 public class RacingcarService {
-
-    private static final int MIN_OIL_AMOUNT = 0;
-    private static final int MAX_OIL_AMOUNT = 9;
 
     public RoundResult processRound(List<Car> cars) {
         List<CarPerformance> carPerformances = new ArrayList<>();
@@ -31,7 +28,7 @@ public class RacingcarService {
     }
 
     private int decideOilAmount() {
-        return RandomNumberGenerator.generate(MIN_OIL_AMOUNT, MAX_OIL_AMOUNT);
+        return RandomOilGenerator.generate();
     }
 
     public List<Car> createCars(List<String> carNames) {
