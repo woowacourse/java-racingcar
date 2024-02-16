@@ -8,7 +8,7 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RacingController {
+public class RacingGame {
     public void startRacing() {
         String carNames = InputView.getCarNames();
         List<Car> cars = parseCarNames(carNames);
