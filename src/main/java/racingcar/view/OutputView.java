@@ -20,8 +20,8 @@ public class OutputView {
 
     private void printRoundResult(RoundResult roundResult) {
         for (CarPerformance carPerformance : roundResult.getCarPerformances()) {
-            String carName = carPerformance.getCarName();
-            int distance = carPerformance.getDistance();
+            String carName = carPerformance.carName();
+            int distance = carPerformance.distance();
             String movements = MOVEMENT_FORMAT.repeat(distance);
 
             System.out.printf(OUTPUT_ROUND_RESULT_FORMAT.getMessage(), carName, movements);
