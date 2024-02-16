@@ -6,23 +6,23 @@ public class Car {
     private final String name;
     private int forward;
 
-    Car(String name) {
+    Car(final String name) {
         validate(name);
         this.name = name;
         forward = DEFAULT_FORWARD;
     }
 
-    private void validate(String name) {
+    private void validate(final String name) {
         if (isLongerThanMaxLength(name)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static boolean isLongerThanMaxLength(String name) {
+    private static boolean isLongerThanMaxLength(final String name) {
         return name.length() > CAR_NAME_MAX_LENGTH;
     }
 
-    public void move(CarMoveStrategy carMoveStrategy) {
+    public void move(final CarMoveStrategy carMoveStrategy) {
         if (carMoveStrategy.isMovable()) {
             forward++;
         }

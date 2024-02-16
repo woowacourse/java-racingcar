@@ -5,11 +5,11 @@ import java.util.List;
 public class Winner {
     private final List<String> winners;
 
-    public static Winner from(List<Car> cars) {
+    public static Winner from(final List<Car> cars) {
         return new Winner(cars.stream().map(Car::getName).toList());
     }
 
-    private Winner(List<String> winners) {
+    private Winner(final List<String> winners) {
         this.winners = winners;
     }
 

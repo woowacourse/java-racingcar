@@ -15,27 +15,27 @@ public class Game {
         }
     };
 
-    public static Game from(String userTryCount, Vehicles vehicles) throws NumberFormatException {
+    public static Game from(final String userTryCount, final Vehicles vehicles) throws NumberFormatException {
         int tryCount = parseUserInput(userTryCount);
         validNaturalNumber(tryCount);
         return new Game(tryCount, vehicles);
     }
 
-    private static void validNaturalNumber(int tryCount) {
+    private static void validNaturalNumber(final int tryCount) {
         if (isSmallerThanZero(tryCount)) {
             throw new NumberFormatException();
         }
     }
 
-    private static boolean isSmallerThanZero(int number) {
+    private static boolean isSmallerThanZero(final int number) {
         return number <= NATURAL_NUMBER_BOUNDARY;
     }
 
-    private static int parseUserInput(String userTryCount) {
+    private static int parseUserInput(final String userTryCount) {
         return Integer.parseInt(userTryCount);
     }
 
-    private Game(int tryCount, Vehicles vehicles) {
+    private Game(final int tryCount, final Vehicles vehicles) {
         this.tryCount = tryCount;
         this.vehicles = vehicles;
     }

@@ -17,16 +17,16 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + OutputCommand.INPUT_ERROR_MESSAGE);
     }
 
-    public static void printVehicles(Vehicles vehicles) {
+    public static void printVehicles(final Vehicles vehicles) {
         vehicles.getCars().forEach(OutputView::printCarResult);
         printNewLine();
     }
 
-    public static void printCarResult(Car car) {
+    public static void printCarResult(final Car car) {
         System.out.printf(CAR_RESULT_FORMAT, car.getName(), getRepeatedHyphen(car.getForward()));
     }
 
-    private static String getRepeatedHyphen(int distance) {
+    private static String getRepeatedHyphen(final int distance) {
         return HYPHEN.repeat(distance);
     }
 
@@ -38,7 +38,7 @@ public class OutputView {
         System.out.print(System.lineSeparator());
     }
 
-    public static void printWinner(Winner winner) {
+    public static void printWinner(final Winner winner) {
         System.out.printf(WINNER_FORMAT, String.join(WINNERS_DELIMITER, winner.getWinners()));
     }
 }

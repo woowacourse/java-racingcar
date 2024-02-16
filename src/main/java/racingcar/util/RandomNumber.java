@@ -13,12 +13,12 @@ public class RandomNumber implements RandomUtil {
      * @return int
      */
     @Override
-    public int generate(int minLimit, int maxLimit) {
+    public int generate(final int minLimit, final int maxLimit) {
         validate(minLimit, maxLimit);
         return random.nextInt(maxLimit - minLimit) + minLimit;
     }
 
-    private static void validate(int minLimit, int maxLimit) {
+    private static void validate(final int minLimit, final int maxLimit) {
         if (minLimit > maxLimit) {
             throw new IllegalStateException();
         }
