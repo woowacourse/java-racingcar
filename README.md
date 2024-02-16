@@ -52,7 +52,7 @@
 - [ ] `vehicles`에 List 자료형을 `unmodifiableList`로 변경한다.
 - [X] 변경이 안될 매개변수에 final 키워드를 붙인다.
 - [X] IntStream 내에 불필요 관호 제거한다.
-- [ ] Winner 테스트의 불필요 코드 제거한다.
+- [X] Winner 테스트의 불필요 코드 제거한다.
 - [X] `Car`가 `Random`에 직접적으로 의존하지 않도록 수정한다.
 - [ ] `getBiggestCars`에 좀 더 적절한 이름으로 수정한다.
 - [X] 도메인 단위 테스트를 추가적으로 진행한다.

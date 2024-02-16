@@ -17,7 +17,6 @@ class WinnerTest {
 
         //when
         Vehicles vehicles = Vehicles.from(userInput);
-        vehicles.getBiggestCars();
         Winner winner = Winner.from(vehicles.getBiggestCars());
 
         //then
