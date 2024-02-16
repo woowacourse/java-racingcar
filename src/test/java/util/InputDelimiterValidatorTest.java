@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class CarNamesValidatorTest {
-    private final InputValidator carNamesValidator = new CarNamesValidator();
+class InputDelimiterValidatorTest {
+    private final InputValidator inputDelimiterValidator = new InputDelimiterValidator();
 
     @ParameterizedTest
     @ValueSource(strings = {"prin.mark", "prin;mark"})
     void 지정한_구분자로_구분되어_있지_않을_경우_예외가_발생한다(String input) {
         // when & then
-        assertThatThrownBy(() -> carNamesValidator.validate(input))
+        assertThatThrownBy(() -> inputDelimiterValidator.validate(input))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,7 +24,7 @@ class CarNamesValidatorTest {
         String input = "prin,mark";
 
         // when & then
-        assertDoesNotThrow(() -> carNamesValidator.validate(input));
+        assertDoesNotThrow(() -> inputDelimiterValidator.validate(input));
     }
 
     @Test
@@ -33,7 +33,7 @@ class CarNamesValidatorTest {
         String input = "prin,mark,";
 
         // when & then
-        assertThatThrownBy(() -> carNamesValidator.validate(input))
+        assertThatThrownBy(() -> inputDelimiterValidator.validate(input))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -43,6 +43,6 @@ class CarNamesValidatorTest {
         String input = "prin";
 
         // when & then
-        assertDoesNotThrow(() -> carNamesValidator.validate(input));
+        assertDoesNotThrow(() -> inputDelimiterValidator.validate(input));
     }
 }
