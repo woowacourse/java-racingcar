@@ -22,7 +22,7 @@ class RandomMovingCarsTest {
         @DisplayName("참가 자동차가 2대 미만 이라면 예외를 발생시킨다.")
         @Test
         void carsMinSizeExceptionTest() {
-            assertThatThrownBy(() -> RandomMovingCars.from(createRandomMovingCars(List.of("pobi"))))
+            assertThatThrownBy(() -> new RandomMovingCars(createRandomMovingCars(List.of("pobi"))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -33,14 +33,14 @@ class RandomMovingCarsTest {
             for (int i = 65; i < 86; i++) {
                 carNames.add("car" + (char) i);
             }
-            assertThatThrownBy(() -> RandomMovingCars.from(createRandomMovingCars(carNames)))
+            assertThatThrownBy(() -> new RandomMovingCars(createRandomMovingCars(carNames)))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("중복된 자동차 이름이 있으면 예외가 발생한다.")
         @Test
         void carsDuplicationExceptionTest() {
-            assertThatThrownBy(() -> RandomMovingCars.from(createRandomMovingCars(List.of("pobi", "pobi", "jun"))))
+            assertThatThrownBy(() -> new RandomMovingCars(createRandomMovingCars(List.of("pobi", "pobi", "jun"))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -52,7 +52,7 @@ class RandomMovingCarsTest {
         @DisplayName("2대의 자동차가 참여하는 것은 예외가 발생하지않는다.")
         @Test
         void successTest1() {
-            assertThatCode(() -> RandomMovingCars.from(createRandomMovingCars(List.of("pobi", "jun"))))
+            assertThatCode(() -> new RandomMovingCars(createRandomMovingCars(List.of("pobi", "jun"))))
                     .doesNotThrowAnyException();
         }
 
@@ -63,7 +63,7 @@ class RandomMovingCarsTest {
             for (int i = 65; i < 85; i++) {
                 carNames.add("car" + (char) i);
             }
-            assertThatCode(() -> RandomMovingCars.from(createRandomMovingCars(carNames)))
+            assertThatCode(() -> new RandomMovingCars(createRandomMovingCars(carNames)))
                     .doesNotThrowAnyException();
         }
     }
@@ -85,7 +85,7 @@ class RandomMovingCarsTest {
             Car pobi = Car.createOnStart("pobi");
             Car jun = Car.createOnStart("jun");
 
-            RandomMovingCars randomMovingCars = RandomMovingCars.from(List.of(
+            RandomMovingCars randomMovingCars = new RandomMovingCars(List.of(
                     new RandomMovingCar(pobi, () -> number),
                     new RandomMovingCar(jun, () -> number)
             ));
@@ -108,7 +108,7 @@ class RandomMovingCarsTest {
             Car pobi = Car.createOnStart("pobi");
             Car jun = Car.createOnStart("jun");
 
-            RandomMovingCars randomMovingCars = RandomMovingCars.from(List.of(
+            RandomMovingCars randomMovingCars = new RandomMovingCars(List.of(
                     new RandomMovingCar(pobi, () -> number),
                     new RandomMovingCar(jun, () -> number)
             ));

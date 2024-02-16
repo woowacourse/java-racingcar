@@ -21,7 +21,7 @@ class WinnersTest {
         kaki.move(1);
 
         // then
-        RandomMovingCars randomMovingCars = RandomMovingCars.from(List.of(
+        RandomMovingCars randomMovingCars = new RandomMovingCars(List.of(
                 new RandomMovingCar(kaki, () -> 0),
                 new RandomMovingCar(nak, () -> 0)
         ));

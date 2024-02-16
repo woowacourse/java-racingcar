@@ -13,13 +13,9 @@ public class RandomMovingCars {
 
     private final List<RandomMovingCar> cars;
 
-    private RandomMovingCars(List<RandomMovingCar> cars) {
-        this.cars = cars;
-    }
-
-    public static RandomMovingCars from(List<RandomMovingCar> cars) {
+    public RandomMovingCars(List<RandomMovingCar> cars) {
         validate(cars);
-        return new RandomMovingCars(cars);
+        this.cars = cars;
     }
 
     private static void validate(List<RandomMovingCar> cars) {
