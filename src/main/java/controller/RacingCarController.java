@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import model.Game;
-import model.RandomGenerator;
 import model.TrialCount;
 import view.InputView;
 import view.OutputView;
@@ -21,7 +20,7 @@ public class RacingCarController {
     TrialCount trialCount = new TrialCount(inputView.inputTrialCount());
     outputView.printResultComment();
     while (trialCount.isRest()) {
-      outputView.printResult(game.proceed(RandomGenerator.run(game.getParticipantsSize())));
+      outputView.printResult(game.proceed());
       trialCount.reduce();
     }
     outputView.printWinner(game.findWinners());

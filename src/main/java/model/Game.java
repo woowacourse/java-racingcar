@@ -4,6 +4,7 @@ import constant.Exception;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
 
@@ -26,9 +27,9 @@ public class Game {
     return carsName.stream().map(Car::new).toList();
   }
 
-  public List<Car> proceed(List<Integer> randomNumbers) {
-    for (int i = 0; i < randomNumbers.size(); i++) {
-      applyStatus(randomNumbers.get(i), cars.get(i));
+  public List<Car> proceed() {
+    for (Car car : cars) {
+      applyStatus(new Random().nextInt(10), car);
     }
     return new ArrayList<>(cars);
   }
@@ -46,7 +47,8 @@ public class Game {
     return cars.stream().filter(car -> car.getForwardCount() == winnersScore).toList();
   }
 
-  public int getParticipantsSize() {
-    return cars.size();
+  List<Car> findWinners(List<Car> cars) {
+    int winnersScore = Collections.max(cars.stream().map(Car::getForwardCount).toList());
+    return cars.stream().filter(car -> car.getForwardCount() == winnersScore).toList();
   }
 }
