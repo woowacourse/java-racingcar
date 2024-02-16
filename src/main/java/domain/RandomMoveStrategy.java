@@ -4,7 +4,7 @@ import java.util.function.IntSupplier;
 
 public class RandomMoveStrategy implements MoveStrategy {
 
-    public static final int MIN_MOVABLE_DIGIT = 4;
+    private static final int MIN_MOVABLE_DIGIT = 4;
 
     private final IntSupplier supplier;
 
