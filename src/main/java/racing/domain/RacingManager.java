@@ -17,6 +17,12 @@ public class RacingManager {
         InputGuideOutputManager.printInputCarNames();
         List<String> carNames = getCarNames(scanner);
         InputGuideOutputManager.printInputMaxRacingTurn();
+        Racing racing = play(scanner, carNames);
+        List<String> winnerNames = racing.getWinnerNames();
+        RacingResultOutputManager.printWinner(winnerNames);
+    }
+
+    private static Racing play(Scanner scanner, List<String> carNames) {
         int maxTurn = getMaxTurn(scanner);
         Cars cars = makeCars(carNames);
         Racing racing = new Racing(maxTurn, cars);
@@ -26,8 +32,7 @@ public class RacingManager {
             return RacingDTOMapper.from(racing);
         }).toList();
         RacingResultOutputManager.printResult(racingResults);
-        List<String> winnerNames = racing.getWinnerNames();
-        RacingResultOutputManager.printWinner(winnerNames);
+        return racing;
     }
 
     private static List<String> getCarNames(Scanner scanner) {
