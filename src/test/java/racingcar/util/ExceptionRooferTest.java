@@ -41,6 +41,7 @@ class ExceptionRooferTest {
     static class TestConsumer implements Consumer<String> {
 
         private static String value;
+
         @Override
         public void accept(String value) {
             TestConsumer.value = value;

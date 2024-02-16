@@ -47,10 +47,10 @@ class CarsTest {
     }
 
 
-
     static class TestNumberGenerator implements NumberGenerator {
 
         private static int value = 2;
+
         @Override
         public int generate() {
             return value++;

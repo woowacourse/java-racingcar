@@ -34,5 +34,4 @@ class CarTest {
         // then
         Assertions.assertThat(car.getPosition()).isEqualTo(0);
     }
-
 }
