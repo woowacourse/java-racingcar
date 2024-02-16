@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import racingcar.message.ErrorMessage;
 
 public class Cars {
@@ -23,7 +22,7 @@ public class Cars {
 
         final List<Car> cars = Arrays.stream(carsName.split(SEPARATOR))
                 .map(Car::from)
-                .collect(Collectors.toList());
+                .toList();
 
         return new Cars(cars);
     }
