@@ -5,8 +5,8 @@ import racingcar.exception.InvalidInputException;
 import racingcar.view.utils.InputUtils;
 
 public record RaceCountRequest(String input) {
-    private static final int MAX_RACE_COUNT = 100;
-    private static final int MIN_RACE_COUNT = 1;
+    public static final int MAX_RACE_COUNT = 100;
+    public static final int MIN_RACE_COUNT = 1;
 
     public int toInt() {
         int count = InputUtils.parseToInt(input);
