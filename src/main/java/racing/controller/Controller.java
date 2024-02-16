@@ -8,6 +8,7 @@ import racing.view.InputView;
 import racing.view.OutputView;
 
 public class Controller {
+
     private final InputView inputView;
     private final OutputView outputView;
 

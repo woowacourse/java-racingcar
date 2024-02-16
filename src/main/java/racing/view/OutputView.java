@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import racing.domain.Car;
 
 public class OutputView {
+
     private static final String RESULT = "\n실행 결과";
     private static final String WINNERS = "%s가 최종 우승했습니다.";
 
