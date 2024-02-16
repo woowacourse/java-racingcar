@@ -7,19 +7,13 @@ import view.OutputView;
 import java.util.List;
 
 public class RacingCarController {
-    private NumberGenerator numberGenerator;
-
-    public RacingCarController(NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
-    }
-
     public void start() {
         RacingCars racingCars = readRacingCars();
         TryNumber tryNumber = readTryNumber();
-
         OutputView.printRacingStartMessage();
         do {
-            racingCars.tryRace();
+            racingCars.tryRace().forEach(this::printResult);
+            System.out.println();
             tryNumber.decrease();
         } while(tryNumber.isTryable());
 
@@ -27,9 +21,13 @@ public class RacingCarController {
         OutputView.printWinners(winners);
     }
 
+    private void printResult(RaceResult raceResult) {
+        OutputView.printResult(raceResult.getName(), raceResult.getMoveNumber());
+    }
+
     private RacingCars readRacingCars() {
         RacingCarNames racingCarNames = readRacingCarNames();
-        return racingCarNames.createRacingCars(numberGenerator);
+        return racingCarNames.createRacingCars();
     }
 
     private RacingCarNames readRacingCarNames() {

@@ -2,23 +2,26 @@ package domain;
 
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
     private List<RacingCar> racingCars;
+    private RandomNumberUtil randomNumberUtil = new RandomNumberUtil();
 
     public RacingCars(List<RacingCar> racingCars) {
         this.racingCars = racingCars;
     }
 
-    public void tryRace() {
+    public List<RaceResult> tryRace() {
+        List<RaceResult> raceResults = new ArrayList<>();
         for (RacingCar racingCar : racingCars) {
-            racingCar.race();
-            printResult(racingCar);
+            racingCar.race(this.randomNumberUtil.generator());
+            raceResults.add(new RaceResult(racingCar.getName(), racingCar.getMoveNumber()));
         }
-        System.out.println();
+        return raceResults;
     }
 
     public List<String> getWinners() {
@@ -29,9 +32,5 @@ public class RacingCars {
                 .filter(racingCar -> racingCar.hasSameDistance(winner))
                 .map(RacingCar::getName)
                 .collect(Collectors.toList());
-    }
-
-    private void printResult(RacingCar racingCar) {
-        OutputView.printResult(racingCar.getName(), racingCar.getMoveNumber());
     }
 }

@@ -1,12 +1,10 @@
 package domain;
 
 public class RacingCar implements Comparable<RacingCar>{
-    private NumberGenerator numberGenerator;
     private final String name;
     private int moveNumber = 0;
 
-    public RacingCar(String name, NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
+    public RacingCar(String name) {
         this.name = name;
     }
 
@@ -18,8 +16,8 @@ public class RacingCar implements Comparable<RacingCar>{
         return moveNumber;
     }
 
-    public void race() {
-        if (numberGenerator.generator() >= 4) {
+    public void race(int randomNumber) {
+        if (randomNumber >= 4) {
             this.moveNumber++;
         }
     }
