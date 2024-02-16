@@ -3,7 +3,7 @@ package racing.domain;
 public class Car implements Comparable<Car> {
 
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_FORWARD_CONDITION = 4;
+    public static final int MIN_FORWARD_CONDITION = 4;
     public static final String POSITION_MARKER = "-";
 
     private final String name;
@@ -13,6 +13,12 @@ public class Car implements Comparable<Car> {
         validate(name);
         this.name = name;
         this.position = 0;
+    }
+
+    Car(String name, int position) {
+        validate(name);
+        this.name = name;
+        this.position = position;
     }
 
     private void validate(String name) {
