@@ -58,7 +58,7 @@
   - [x] cars.move -> 반복문, 호출 정도만 필요하므로 테스트 필요 적음
   - [x] getGameResult.getGameResult
   - [x] RandomNumberGenerator.generate -> 자바 자체 메서드 이용한 것으로 테스트 필요 적음
-  - [ ] Winner.getWinners
+  - [x] Winner.getWinners
 - [ ] 테스트 코드 리팩토링
  
 # 🧐 추가 반영할 부분
