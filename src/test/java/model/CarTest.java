@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -16,7 +15,7 @@ class CarTest {
     @Nested
     @DisplayName("자동차 이동 테스트")
     class MoveTest {
-        Car car;
+        private Car car;
 
         @BeforeEach
         void setUp() {
@@ -26,24 +25,24 @@ class CarTest {
         @Test
         @DisplayName("전진을 안 한 경우")
         void notMoveTest() {
-            assertThat(car.showDistance()).isEqualTo("");
+            assertThat(car.getDistance()).isEqualTo(0);
         }
 
         @Test
         @DisplayName("한 칸 전진")
         void moveOneTest() {
-            car.move();
+            car.move(5);
 
-            assertThat(car.showDistance()).isEqualTo("-");
+            assertThat(car.getDistance()).isEqualTo(1);
         }
 
         @Test
         @DisplayName("두 칸 전진")
         void moveTwoTest() {
-            car.move();
-            car.move();
+            car.move(5);
+            car.move(4);
 
-            assertThat(car.showDistance()).isEqualTo("--");
+            assertThat(car.getDistance()).isEqualTo(2);
         }
     }
 
@@ -63,16 +62,16 @@ class CarTest {
             cars.add(car3);
             cars.add(car4);
 
-            car1.move();
-            car1.move();
-            car3.move();
-            car4.move();
-            car4.move();
-            car4.move();
+            car1.move(4);
+            car1.move(5);
+            car3.move(6);
+            car4.move(4);
+            car4.move(5);
+            car4.move(7);
 
             Collections.sort(cars);
 
-            Assertions.assertThat(cars.get(0)).isSameAs(car4);
+            assertThat(cars.get(0)).isSameAs(car4);
         }
 
     }
