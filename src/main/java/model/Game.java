@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Game {
-  private final static int POWER_THRESHOLD = 4;
+  private static final int POWER_THRESHOLD = 4;
 
   private final List<Car> cars;
 

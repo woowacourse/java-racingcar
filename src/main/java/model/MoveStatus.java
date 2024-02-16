@@ -6,7 +6,6 @@ public enum MoveStatus {
   FORWARD("-"),
   STOP("");
 
-
   private final String output;
 
   MoveStatus(String output) {
@@ -21,4 +20,3 @@ public enum MoveStatus {
     return output;
   }
 }
-

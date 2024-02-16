@@ -33,5 +33,4 @@ class CarTest {
     car.forward();
     assertThat(car.getForwardCount()).isEqualTo(2);
   }
-
 }
