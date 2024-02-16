@@ -48,4 +48,8 @@ public class Car implements Comparable<Car> {
     public String getName() {
         return name;
     }
+
+    public int getPosition() {
+        return position;
+    }
 }

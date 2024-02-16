@@ -32,13 +32,11 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @DisplayName("랜덤값이 4이상이면 자동차를 전진합니다")
+    @DisplayName("랜덤값이 4이상이면 자동차 전진")
     @ValueSource(ints = {4, 9})
     void moveForward(int randomNumber) {
         Car car = new Car("pobi");
         car.moveByNumber(randomNumber);
-        String[] split = car.toString().split(" : ");
-        int position = split[1].length();
-        assertThat(position).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 }
