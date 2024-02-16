@@ -22,7 +22,7 @@ public class RacingCarController {
     }
 
     private void printResult(RaceResult raceResult) {
-        OutputView.printResult(raceResult.getName(), raceResult.getMoveNumber());
+        OutputView.printResult(raceResult.name(), raceResult.moveNumber());
     }
 
     private RacingCars readRacingCars() {
