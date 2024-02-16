@@ -31,7 +31,8 @@ public class Cars {
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableSet());
         if (distinctNames.size() != cars.size()) {
-            throw new IllegalArgumentException();
+            String message = "자동차 이름은 중복될 수 없습니다.";
+            throw new IllegalArgumentException(message);
         }
     }
 }

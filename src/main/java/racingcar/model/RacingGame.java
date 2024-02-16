@@ -29,7 +29,8 @@ public class RacingGame {
 
     private void validateTryCount(int tryCount) {
         if (tryCount < MINIMUM_TRY_COUNT) {
-            throw new IllegalArgumentException();
+            String message = "TryCount가 " + MINIMUM_TRY_COUNT + "보다 작은 숫자가 입력되었습니다. 입력값 : " + tryCount;
+            throw new IllegalArgumentException(message);
         }
     }
 }

@@ -28,7 +28,8 @@ public class InputView {
 
     private static void validateInput(String input) {
         if (input == null || input.isEmpty() || input.endsWith(",")) {
-            throw new IllegalArgumentException();
+            String message = "자동차 이름 입력은 공백이거나 구분자(,)로 끝날 수 없습니다.";
+            throw new IllegalArgumentException(message);
         }
     }
 
@@ -36,7 +37,8 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            String message = "입력 횟수는 숫자 형식이어야 합니다.";
+            throw new IllegalArgumentException(message);
         }
     }
 }

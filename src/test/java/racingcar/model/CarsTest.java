@@ -21,7 +21,8 @@ class CarsTest {
 
         //when //then
         assertThatThrownBy(() -> new Cars(cars))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름은 중복될 수 없습니다.");
     }
 
     @DisplayName("자동차별 현재 위치 정보를 반환한다.")
