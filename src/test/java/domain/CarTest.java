@@ -20,7 +20,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
     void carStopTest(int number) {
-        car.move(new FakeNumberGenerator(number));
+        car.move(new FakeNumber(number));
         assertThat(car.getPosition()).isEqualTo(0);
     }
 
@@ -28,7 +28,7 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void carMoveTest(int number) {
-        car.move(new FakeNumberGenerator(number));
+        car.move(new FakeNumber(number));
         assertThat(car.getPosition()).isEqualTo(1);
     }
 }

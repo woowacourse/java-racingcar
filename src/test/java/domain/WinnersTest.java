@@ -14,7 +14,7 @@ class WinnersTest {
         Car kaki = Car.from("kaki");
         Car nak = Car.from("nak");
         Cars cars = Cars.from(List.of(kaki, nak));
-        nak.move(new FakeNumberGenerator(9));
+        nak.move(new FakeNumber(9));
         Winners winners = Winners.from(cars);
         assertThat(winners.getWinners())
                 .containsExactly("nak");

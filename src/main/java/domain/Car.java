@@ -17,8 +17,8 @@ public class Car {
         return new Car(Name.from(name), 0);
     }
 
-    public void move(NumberGenerator numberGenerator) {
-        if (numberGenerator.generateRangeOf(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE) >= MOVE_BOUND_NUMBER) {
+    public void move(Number number) {
+        if (number.get() >= MOVE_BOUND_NUMBER) {
             position++;
         }
     }
