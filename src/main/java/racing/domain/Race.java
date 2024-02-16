@@ -13,11 +13,11 @@ public class Race {
         this.tryCount = tryCount;
     }
 
-    public List<String> proceedRace() {
+    public List<String> proceed() {
         List<String> result = new ArrayList<>();
         while (tryCount.isRemain()) {
             tryCount.consume();
-            cars.proceedRound();
+            cars.moveAll();
             result.add(cars.toString());
         }
         return result;

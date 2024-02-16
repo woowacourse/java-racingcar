@@ -14,7 +14,7 @@ public class Car implements Comparable<Car> {
         this.position = 0;
     }
 
-    public void validate(String name) {
+    private void validate(String name) {
         validateSize(name);
     }
 
@@ -30,6 +30,10 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public boolean isSame(Car car) {
+        return this.position == car.position;
+    }
+
     @Override
     public String toString() {
         return name + " : " + "-".repeat(position);
@@ -38,10 +42,6 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car otherCar) {
         return otherCar.position - this.position;
-    }
-
-    public boolean isSame(Car car) {
-        return this.position == car.position;
     }
 
     public String getName() {

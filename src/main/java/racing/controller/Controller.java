@@ -22,7 +22,7 @@ public class Controller {
         TryCount tryCount = new TryCount(inputView.readTryCount());
 
         Race race = new Race(cars, tryCount);
-        List<String> result = race.proceedRace();
+        List<String> result = race.proceed();
 
         outputView.printResult(result);
         outputView.printWinners(race.getWinners());

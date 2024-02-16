@@ -16,6 +16,10 @@ public class Cars {
         this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
+    private List<String> parseNames(String names) {
+        return Arrays.stream(names.split(",")).map(String::trim).toList();
+    }
+
     private void validate(List<String> cars) {
         validateDuplicateName(cars);
     }
@@ -27,12 +31,13 @@ public class Cars {
         }
     }
 
-    private List<String> parseNames(String names) {
-        return Arrays.stream(names.split(",")).map(String::trim).toList();
+    public void moveAll() {
+        cars.forEach(car -> car.moveByNumber(RandomGenerator.generate()));
     }
 
-    public void proceedRound() {
-        cars.forEach(car -> car.moveByNumber(RandomGenerator.generate()));
+    public List<Car> findFurthestCars() {
+        Collections.sort(cars);
+        return cars.stream().filter((car) -> car.isSame(cars.get(0))).toList();
     }
 
     @Override
@@ -40,10 +45,5 @@ public class Cars {
         return cars.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining("\n", "", "\n"));
-    }
-
-    public List<Car> findFurthestCars() {
-        Collections.sort(cars);
-        return cars.stream().filter((car) -> car.isSame(cars.get(0))).toList();
     }
 }

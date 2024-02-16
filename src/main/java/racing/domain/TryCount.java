@@ -22,5 +22,4 @@ public class TryCount {
     public void consume() {
         tryCount--;
     }
-
 }
