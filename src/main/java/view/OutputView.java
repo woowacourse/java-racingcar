@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-
+    public static final String ERROR_PREFIX = "[ERROR] ";
     private static final String WINNER_DELIMITER = ", ";
     private static final String WRITE_RESULT = "\n실행 결과";
     private static final String WRITE_WINNERS = "가 최종 우승했습니다.";
