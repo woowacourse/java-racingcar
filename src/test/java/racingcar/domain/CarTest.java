@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.condition.FalseCondition;
+import racingcar.condition.TrueCondition;
 
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
@@ -21,7 +23,7 @@ class CarTest {
         Car car = new Car("apple");
 
         int beforeDistance = car.getDistance();
-        car.moveCar();
+        car.moveCar(new TrueCondition());
         int afterDistance = car.getDistance();
 
         Assertions.assertThat(afterDistance).isEqualTo(beforeDistance + 1);
@@ -34,7 +36,7 @@ class CarTest {
         Car car = new Car("apple");
 
         int beforeDistance = car.getDistance();
-        car.moveCar();
+        car.moveCar(new FalseCondition());
         int afterDistance = car.getDistance();
 
         Assertions.assertThat(afterDistance).isEqualTo(beforeDistance);

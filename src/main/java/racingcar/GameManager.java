@@ -1,5 +1,6 @@
 package racingcar;
 
+import racingcar.condition.RandomCondition;
 import racingcar.domain.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -25,7 +26,7 @@ public class GameManager {
 
     private void moveCars() {
         for (Car car : cars) {
-            car.moveCar();
+            car.moveCar(new RandomCondition());
         }
     }
 

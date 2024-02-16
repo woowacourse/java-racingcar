@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.condition.MovingCarCondition;
+
 public class Car {
 
     private String name;
@@ -19,9 +21,8 @@ public class Car {
     }
 
     // 0 ~ 9 까지의 랜덤한 수를 생성해 4이상일 경우 전진, 4미만일 경우 정지한다.
-    public void moveCar() {
-        int randomNumber = RandomGenerator.getRandomNumberUnderTen();
-        if (randomNumber >= 4) {
+    public void moveCar(MovingCarCondition condition) {
+        if (condition.isSatisfied()) {
             distance++;
         }
         if (distance < 0) {
