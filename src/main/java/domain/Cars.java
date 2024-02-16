@@ -13,11 +13,15 @@ public class Cars {
     private final List<Car> racingCars;
 
     public Cars(List<Car> racingCars) {
+        validateCars(racingCars);
+        this.racingCars = racingCars;
+    }
+
+    private static void validateCars(List<Car> racingCars) {
         Set<Car> distinctCars = new HashSet<>(racingCars);
         if (racingCars.size() != distinctCars.size()) {
             throw new IllegalArgumentException(DUPLICATE_CAR_NAME_EXCEPTION);
         }
-        this.racingCars = racingCars;
     }
 
     private static String generateResult(Car car) {
@@ -35,6 +39,7 @@ public class Cars {
         }
     }
 
+    // TODO [LTH]: 메서드 위치 적합성 따지기
     public String startRounds(String counts) {
         validateCounts(counts);
         int roundCounts = Integer.parseInt(counts);
@@ -53,6 +58,7 @@ public class Cars {
                 .collect(Collectors.joining("\n"));
     }
 
+    // TODO [LTH]: 제곱 스트림 분리하기
     public String getWinners() {
         return racingCars.stream()
                 .filter(car -> car.getDistance() == getMaxDistance())
