@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private static final String POSITION_SHAPE = "-";
+
     private OutputView() {
     }
-
-    public static final String POSITION_SHAPE = "-";
 
     public static void printResultTitle() {
         System.out.printf("%n실행 결과%n");
