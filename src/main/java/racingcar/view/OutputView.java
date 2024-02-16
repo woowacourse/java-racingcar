@@ -6,8 +6,6 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String MESSAGE_NOT_EXIST_CAR = "생성된 자동차가 없습니다.";
-
     public void printTryResult(List<Car> cars) {
         System.out.println();
         System.out.println("실행 결과");

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
+    private static final String MESSAGE_NOT_EXIST_CAR = "생성된 자동차가 없습니다.";
     OutputView outputView = new OutputView();
     InputView inputView = new InputView(outputView);
 
