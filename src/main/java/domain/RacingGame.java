@@ -1,33 +1,24 @@
 package domain;
 
-import dto.TurnResult;
-import java.util.ArrayList;
-import java.util.List;
-
 public class RacingGame {
-    private final Count count;
-    private final Cars cars;
+    private final Count countLeft;
     private final MovementGenerator randomMovementGenerator;
 
-    private RacingGame(Count count, Cars cars, MovementGenerator randomMovementGenerator) {
-        this.count = count;
-        this.cars = cars;
+    private RacingGame(Count countLeft, MovementGenerator randomMovementGenerator) {
+        this.countLeft = countLeft;
         this.randomMovementGenerator = randomMovementGenerator;
     }
 
-    public static RacingGame of(Count count, Cars cars, MovementGenerator randomMovementGenerator) {
-        return new RacingGame(count, cars, randomMovementGenerator);
+    public static RacingGame of(Count count, MovementGenerator randomMovementGenerator) {
+        return new RacingGame(count, randomMovementGenerator);
     }
 
-    public GameResult getGameResult() { // TODO: 게임 실행 메서드와 결과를 반환하는 매서드로 나누고 싶음
-        List<TurnResult> gameResult = new ArrayList<>();
-        int currentCount = 1;
+    public boolean canRun() {
+        return countLeft.isExits();
+    }
 
-        while (count.isGreaterOrThan(currentCount)) {
-            cars.move(randomMovementGenerator);
-            gameResult.add(TurnResult.from(cars));
-            currentCount++;
-        }
-        return new GameResult(gameResult);
+    public void playTurn(Cars cars) {
+        cars.move(randomMovementGenerator);
+        this.countLeft.decrease();
     }
 }

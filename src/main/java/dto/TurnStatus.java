@@ -1,28 +1,25 @@
 package dto;
 
-import domain.Car;
 import domain.Cars;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class TurnResult {
+public class TurnStatus {
     private final List<CarStatus> carStatuses;
 
-    public TurnResult(List<CarStatus> carStatuses) {
+    public TurnStatus(List<CarStatus> carStatuses) {
         this.carStatuses = carStatuses;
     }
 
-    public static TurnResult from(Cars cars) {
-        return new TurnResult(convertToDto(cars));
+    public static TurnStatus from(Cars cars) {
+        return new TurnStatus(convertToCarsStatus(cars));
     }
 
-    private static List<CarStatus> convertToDto(Cars cars) {
-        List<CarStatus> carStatusesTmp = new ArrayList<>();
-        for (Car car : cars.getCars()) {
-            carStatusesTmp.add(CarStatus.of(car));
-        }
-        return carStatusesTmp;
+    private static List<CarStatus> convertToCarsStatus(Cars cars) {
+        return cars.getCars().stream()
+                .map(CarStatus::of)
+                .collect(Collectors.toList());
     }
 
     public List<CarStatus> getCarStatuses() {
@@ -37,7 +34,7 @@ public class TurnResult {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        TurnResult that = (TurnResult) o;
+        TurnStatus that = (TurnStatus) o;
         return Objects.equals(carStatuses, that.carStatuses);
     }
 

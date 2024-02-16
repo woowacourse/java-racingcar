@@ -2,7 +2,6 @@ package controller;
 
 import domain.Cars;
 import domain.Count;
-import domain.GameResult;
 import domain.MovementGenerator;
 import domain.NumberGenerator;
 import domain.RacingGame;
@@ -10,6 +9,7 @@ import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
 import domain.Winners;
 import dto.CarNameRequest;
+import dto.TurnStatus;
 import dto.WinnersResponse;
 import java.util.function.Supplier;
 import view.InputView;
@@ -28,13 +28,13 @@ public class RacingGameController {
         Cars cars = getCars();
         Count count = Count.from(retryUntilNoException(inputView::readCount));
 
-        RacingGame racingGame = RacingGame.of(count, cars, createRandomMovementGenerator());
+        RacingGame racingGame = RacingGame.of(count, createRandomMovementGenerator());
 
         outputView.showStatusMessage();
-        play(racingGame);
+        play(racingGame, cars);
 
         Winners winners = Winners.from(cars);
-        outputView.showResult(new WinnersResponse(winners));
+        outputView.showWinners(new WinnersResponse(winners));
     }
 
     private static MovementGenerator createRandomMovementGenerator() {
@@ -48,9 +48,11 @@ public class RacingGameController {
         return retryUntilNoException(carsNameRequest::toCars);
     }
 
-    public void play(RacingGame racingGame) {
-        GameResult result = racingGame.getGameResult();
-        outputView.showStatus(result);
+    public void play(RacingGame racingGame, Cars cars) {
+        while (racingGame.canRun()) {
+            racingGame.playTurn(cars);
+            outputView.showTurnResult(TurnStatus.from(cars));
+        }
     }
 
     private <T> T retryUntilNoException(Supplier<T> supplier) {
