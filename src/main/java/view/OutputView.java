@@ -1,6 +1,6 @@
 package view;
 
-import constant.Information;
+import common.Information;
 import java.util.List;
 import model.Car;
 import model.MoveStatus;

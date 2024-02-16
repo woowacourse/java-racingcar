@@ -1,6 +1,6 @@
 package model;
 
-import constant.Exception;
+import common.Exception;
 
 public class TrialCount {
   private int number;
