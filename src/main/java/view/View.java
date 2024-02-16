@@ -1,7 +1,8 @@
 package view;
 
 import domain.Car;
-import domain.Validator;
+import domain.Count;
+import domain.RaceCars;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,23 +13,21 @@ public class View {
     private static final String FORMAT = "%s : %s";
     private final Scanner scanner = new Scanner(System.in);
 
-    public List<Car> readCars() {
+    public RaceCars readCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String[] carNames = readCarNames();
+        String carNames = scanner.nextLine();
         return getCars(carNames);
     }
 
-    private String[] readCarNames() {
-        String userInput = scanner.nextLine();
-        return userInput.split(",");
-    }
-
-    private List<Car> getCars(String[] carNames) {
+    private RaceCars getCars(String carNames) {
         try {
-            Validator.validateParticipant(carNames);
-            return makeCars(carNames);
+            String[] names = carNames.split(",");
+            List<Car> cars = Arrays.stream(names)
+                    .map(Car::new)
+                    .collect(Collectors.toList());
+            return new RaceCars(cars);
         } catch (IllegalArgumentException e) {
-            System.out.println("다시 입력해주세요.");
+            System.out.println(e.getMessage());
             return readCars();
         }
     }
@@ -48,7 +47,8 @@ public class View {
         System.out.println("\n실행 결과");
     }
 
-    public void printRace(List<Car> cars) {
+    public void printRace(RaceCars raceCars) {
+        List<Car> cars = raceCars.getCars();
         for (Car car : cars) {
             String location = "-".repeat(car.getLocation());
             String result = String.format(FORMAT, car.getName(), location);

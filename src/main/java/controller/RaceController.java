@@ -3,7 +3,7 @@ package controller;
 import domain.Car;
 import domain.Count;
 import domain.Judge;
-import domain.Race;
+import domain.RaceCars;
 import view.View;
 
 import java.util.List;
@@ -14,17 +14,21 @@ public class Controller {
     private final Judge judge = new Judge();
 
     public void start() {
-        List<Car> cars = view.readCars();
+        RaceCars raceCars = view.readCars();
         Count count = view.readCount();
 
-        Race race = new Race(cars, count);
         view.printResultNotice();
-        while (race.hasCount()) {
-            race.play();
-            view.printRace(cars);
+        while (count.isRemain()) {
+            race(raceCars, count);
         }
 
-        List<Car> winners = judge.getWinners(cars);
+        List<Car> winners = judge.getWinners(raceCars);
         view.printWinners(winners);
+    }
+
+    private void race(RaceCars raceCars, Count count) {
+        raceCars.play();
+        count.down();
+        view.printRace(raceCars);
     }
 }
