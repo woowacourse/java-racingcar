@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomGenerator {
 
-    static public int generate() {
+    public static int generate() {
         Random random = new Random();
         return random.nextInt(10);
     }
