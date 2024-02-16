@@ -1,9 +1,7 @@
 package racingcar.domain;
 
-import static racingcar.constant.ExceptionMessage.DUPLICATED_CAR_NAME;
 import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME_LENGTH;
 
-import java.util.List;
 import racingcar.dto.CarPerformance;
 
 public class Car {
@@ -19,20 +17,17 @@ public class Car {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getMovedDistance() {
+        return movedDistance;
+    }
+
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
             throw INVALID_CAR_NAME_LENGTH.getException();
-        }
-    }
-
-    public static void validateUniqueCarNames(List<Car> cars) {
-        int uniqueCarNamesCount = (int)cars.stream()
-                .map(car -> car.name)
-                .distinct()
-                .count();
-
-        if (uniqueCarNamesCount != cars.size()) {
-            throw DUPLICATED_CAR_NAME.getException();
         }
     }
 
@@ -49,18 +44,4 @@ public class Car {
     public boolean isSameDistance(int distance) {
         return distance == movedDistance;
     }
-
-    public static int findMaxDistance(List<Car> cars) {
-        return cars.stream()
-                .mapToInt(car -> car.movedDistance)
-                .max()
-                .getAsInt();
-    }
-
-    public static List<String> mapCarsToName(List<Car> cars) {
-        return cars.stream()
-                .map(car -> car.name)
-                .toList();
-    }
-
 }
