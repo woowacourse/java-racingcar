@@ -1,7 +1,6 @@
 package domain;
 
-public class Car implements Comparable<Car>, Movable {
-
+public class Car implements Comparable<Car> {
     private static final String FORMAT = "%s : %s\n";
 
     private final String name;
@@ -20,14 +19,13 @@ public class Car implements Comparable<Car>, Movable {
         return String.format(FORMAT, name, "-".repeat(location));
     }
 
-    @Override
     public void move(int randomNumber) {
         if (randomNumber >= 4) {
             location++;
         }
     }
 
-    @Override
+
     public int getLocation() {
         return location;
     }
