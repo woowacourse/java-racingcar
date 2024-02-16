@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Car {
 
     private static final int DEFAULT_POSITION_VALUE = 0;
-    
+
     private final Name name;
     private Position position;
 
@@ -14,7 +14,7 @@ public class Car {
         this.position = position;
     }
 
-    public static Car from(String name) {
+    public static Car createDefaultPositionCar(String name) {
         return new Car(Name.from(name), Position.from(DEFAULT_POSITION_VALUE));
     }
 

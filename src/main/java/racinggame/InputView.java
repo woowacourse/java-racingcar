@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import racinggame.domain.Car;
+import java.util.Objects;
+import racinggame.domain.Cars;
 import racinggame.domain.Round;
 
 class InputView {
@@ -15,13 +16,11 @@ class InputView {
     private InputView() {
     }
 
-    public static List<Car> readNames() throws IOException {
+    public static Cars readCars() throws IOException {
         String inputNames = readLine("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         List<String> carNames = Arrays.asList(inputNames.split(DELIMITER));
 
-        return carNames.stream()
-            .map(Car::from)
-            .toList();
+        return Cars.of(Objects.requireNonNull(carNames));
     }
 
     public static Round readRound() throws IOException {
