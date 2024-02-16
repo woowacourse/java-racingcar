@@ -11,8 +11,8 @@ import view.OutputView;
 public class Controller {
 
     public static void start() {
-        List<Car> cars = IterativeReader.readUntilNoError(Controller::getCars);
-        int round = IterativeReader.readUntilNoError(Controller::getRound);
+        List<Car> cars = IterativeReader.readUntilNoError(Controller::findCars);
+        int round = IterativeReader.readUntilNoError(Controller::findRound);
 
         OutputView.printRoundResult();
 
@@ -25,13 +25,13 @@ public class Controller {
         OutputView.printWinners(winnerNames);
     }
 
-    private static List<Car> getCars() {
+    private static List<Car> findCars() {
         OutputView.printCarNames();
         String rawCarNames = InputView.read();
         return Converter.toCars(rawCarNames);
     }
 
-    private static int getRound() {
+    private static int findRound() {
         OutputView.printRound();
         String rawRound = InputView.read();
         return Converter.toRound(rawRound);
