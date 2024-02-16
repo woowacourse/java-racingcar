@@ -40,5 +40,4 @@ class CarTest {
         int position = split[1].length();
         assertEquals(1, position);
     }
-
 }
