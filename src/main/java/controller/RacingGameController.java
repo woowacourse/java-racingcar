@@ -10,6 +10,8 @@ import view.OutputView;
 
 public class RacingGameController {
 
+    private static final String CAR_NAMES_DELIMITER = ",";
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -46,7 +48,7 @@ public class RacingGameController {
     private Cars prepareCars() {
         try {
             String name = inputView.requestCarName();
-            List<String> carNames = StringParser.split(name, ",");
+            List<String> carNames = StringParser.split(name, CAR_NAMES_DELIMITER);
             return Cars.from(carNames.stream()
                     .map(carName -> Car.of(carName, 0))
                     .toList());
