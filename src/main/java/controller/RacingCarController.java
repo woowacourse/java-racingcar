@@ -5,7 +5,7 @@ import model.Car;
 import model.Cars;
 import utils.Converter;
 import model.MovesGenerator;
-import utils.Retry;
+import view.RetryOnException;
 import view.InputView;
 import view.OutputView;
 import view.dto.CarDto;
@@ -23,9 +23,9 @@ public class RacingCarController {
     }
 
     public void run() {
-        List<String> carNames = Retry.retryOnException(inputView::inputCarNames);
+        List<String> carNames = RetryOnException.retryInputOnIllegalArgumentException(inputView::inputCarNames);
         Cars cars = new Cars(createCars(carNames));
-        int tryNumber = Retry.retryOnException(inputView::inputTryNumber);
+        int tryNumber = RetryOnException.retryInputOnIllegalArgumentException(inputView::inputTryNumber);
         race(tryNumber, cars);
         outputView.printWinner(Converter.convertCarToCarDtos(cars.findWinners()));
     }
