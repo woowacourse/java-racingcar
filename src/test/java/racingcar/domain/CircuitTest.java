@@ -11,7 +11,6 @@ class CircuitTest {
     Engine poweredOnEngine = new Engine((startInclusive, endInclusive) -> 9);
     Engine poweredOffEngine = new Engine((startInclusive, endInclusive) -> 0);
 
-
     @Test
     @DisplayName("현재 경주의 상태를 올바르게 반환한다.")
     void raceStatusTest() {
