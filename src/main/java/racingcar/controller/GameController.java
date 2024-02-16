@@ -6,7 +6,7 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.RandomNumberGenerator;
 import racingcar.model.Round;
-import racingcar.utill.ExceptionRoofer;
+import racingcar.util.ExceptionHandler;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,8 +21,8 @@ public class GameController {
     }
 
     public void run() {
-        final Cars cars = ExceptionRoofer.retry(this::getCars, outputView::printError);
-        final Round round = ExceptionRoofer.retry(this::getRound, outputView::printError);
+        final Cars cars = ExceptionHandler.retry(this::getCars, outputView::printError);
+        final Round round = ExceptionHandler.retry(this::getRound, outputView::printError);
 
         play(round, cars);
 

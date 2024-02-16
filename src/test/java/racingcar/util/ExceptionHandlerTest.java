@@ -1,4 +1,4 @@
-package racingcar.utill;
+package racingcar.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ExceptionRooferTest {
+class ExceptionHandlerTest {
 
     @DisplayName("예외 시 다시 실행")
     @Test
@@ -17,7 +17,7 @@ class ExceptionRooferTest {
         TestConsumer testConsumer = new TestConsumer();
 
         // when
-        String result = ExceptionRoofer.retry(testSupply, testConsumer);
+        String result = ExceptionHandler.retry(testSupply, testConsumer);
 
         // then
         assertThat(result).isEqualTo(String.valueOf(TestSupply.LIMIT));

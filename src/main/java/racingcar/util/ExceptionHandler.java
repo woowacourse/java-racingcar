@@ -1,11 +1,11 @@
-package racingcar.utill;
+package racingcar.util;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class ExceptionRoofer {
+public class ExceptionHandler {
 
-    private ExceptionRoofer() {
+    private ExceptionHandler() {
     }
 
     public static <T> T retry(final Supplier<T> supplier, final Consumer<String> consumer) {
