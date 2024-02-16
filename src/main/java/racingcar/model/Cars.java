@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.message.ErrorMessage;
 
 public class Cars {
 
@@ -28,13 +27,13 @@ public class Cars {
 
     private static void validateSeparator(final String carsName) {
         if (carsName.endsWith(SEPARATOR)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
+            throw new IllegalArgumentException("[ERROR] 구분자로 끝날 수 없습니다.");
         }
     }
 
     private void validateDuplicateName(final List<Car> cars) {
         if (cars.size() != Set.copyOf(cars).size()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
+            throw new IllegalArgumentException("[ERROR] 중복된 이름이 존재합니다.");
         }
     }
 
@@ -54,7 +53,7 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
-                .orElseThrow(IllegalStateException::new);
+                .orElseThrow(() -> new IllegalStateException("[ERROR] 최대 포지션을 찾을 수 없습니다."));
     }
 
     public List<Car> getCars() {

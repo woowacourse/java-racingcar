@@ -2,7 +2,7 @@ package racingcar.model;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private static final int MIN_NUMBER = 4;
     private static final int START_POSITION = 0;
@@ -34,6 +34,11 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        return Integer.compare(position, o.position);
     }
 
     @Override

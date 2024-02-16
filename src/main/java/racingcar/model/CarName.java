@@ -1,7 +1,5 @@
 package racingcar.model;
 
-import racingcar.message.ErrorMessage;
-
 public class CarName {
 
     private static final int MIN_LENGTH = 5;
@@ -14,11 +12,11 @@ public class CarName {
 
     private void validate(final String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 빈 값일 수 없습니다.");
         }
 
         if (name.trim().length() > MIN_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME.get());
+            throw new IllegalArgumentException("[ERROR] 자동차 이름의 길이는 " + MIN_LENGTH + "이하만 가능 합니다.");
         }
     }
 
