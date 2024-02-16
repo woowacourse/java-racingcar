@@ -23,13 +23,13 @@ class RacingCarServiceTest {
         assertThat(racingCarService.makeCars("가,나,다").getCars()).hasSize(3);
     }
 
-    @DisplayName("반복 횟수 입력 예 처리 테스트")
+    @DisplayName("반복 횟수 입력 시 숫자가 아닌 값 예외 처리 테스트")
     @Test
     void getCountNotNumberTest() {
         assertThatThrownBy(() -> racingCarService.getCount("notNumber")).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("반복 횟수 입력 예 처리 테스트")
+    @DisplayName("반복 횟수 입력 입력 시 0 이하의 값 처리 테스트")
     @ValueSource(strings = {"-1", "0"})
     @ParameterizedTest
     void getCountInvalidNumberTest(String count) {
