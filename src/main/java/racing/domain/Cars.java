@@ -19,7 +19,7 @@ public class Cars {
         validateDuplicateName(cars);
     }
 
-    private static void validateDuplicateName(List<String> cars) {
+    private void validateDuplicateName(List<String> cars) {
         int count = (int) cars.stream().distinct().count();
         if (count != cars.size()) {
             throw new IllegalArgumentException();
