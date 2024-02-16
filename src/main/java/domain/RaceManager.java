@@ -1,9 +1,10 @@
 package domain;
 
-import java.io.IOException;
 import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
+
+import java.io.IOException;
 
 public class RaceManager {
     private final InputView inputView;
