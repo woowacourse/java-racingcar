@@ -16,10 +16,6 @@ public class MoveCount {
     }
 
     private void validate(int moveCount) {
-        validateRange(moveCount);
-    }
-
-    private void validateRange(int moveCount) {
         if (moveCount <= 0) {
             throw new IllegalArgumentException(ERROR_OF_MOVE_COUNT_RANGE);
         }
