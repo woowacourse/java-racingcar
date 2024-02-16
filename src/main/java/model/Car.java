@@ -61,7 +61,7 @@ public class Car {
     }
 
     private static void validateNameExists(String carName) {
-        if(carName.isBlank()){
+        if (carName.isBlank()) {
             throw new IllegalArgumentException(CAR_NAME_IS_BLANK);
         }
     }
