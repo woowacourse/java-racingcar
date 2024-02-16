@@ -13,14 +13,17 @@ public class RacingGame {
     }
 
     private void validateDuplicateCarNames(List<Car> cars) {
-        long distinctCount = cars.stream()
-                .map(Car::getName)
-                .distinct()
-                .count();
-
+        long distinctCount = this.getDistinctCount(cars);
         if (distinctCount != cars.size()) {
             throw new IllegalArgumentException("중복된 이름의 자동차가 존재합니다.");
         }
+    }
+
+    private long getDistinctCount(List<Car> cars) {
+        return cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count();
     }
 
     public void moveCars(NumberGenerator numberGenerator) {
