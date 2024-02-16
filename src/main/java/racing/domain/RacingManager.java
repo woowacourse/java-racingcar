@@ -16,7 +16,7 @@ public class RacingManager {
         Scanner scanner = new Scanner(System.in);
         InputGuideOutputManager.printInputCarNames();
         List<String> carNames = getCarNames(scanner);
-        InputGuideOutputManager.printInputMaxRacingTurn();
+        //InputGuideOutputManager.printInputMaxRacingTurn();
         Racing racing = play(scanner, carNames);
         List<String> winnerNames = racing.getWinnerNames();
         RacingResultOutputManager.printWinner(winnerNames);
@@ -44,7 +44,10 @@ public class RacingManager {
     private static int getMaxTurn(Scanner scanner) {
         RetryHelper maxTurnInputManager = new RetryHelper(5);
         return maxTurnInputManager.retry(
-                () -> RacingMaxTurnInputManager.getMaxTurnFromConsole(scanner));
+                () -> {
+                    InputGuideOutputManager.printInputMaxRacingTurn();
+                    return RacingMaxTurnInputManager.getMaxTurnFromConsole(scanner);
+                });
     }
 
     private static Cars makeCars(List<String> carNames) {
