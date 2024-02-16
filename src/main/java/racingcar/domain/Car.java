@@ -1,6 +1,8 @@
 package racingcar.domain;
 
 public class Car {
+    private static final int MOVEMENT_CRITERIA = 3;
+
     private final String name;
     private int movement;
 
@@ -10,7 +12,7 @@ public class Car {
     }
 
     public void move(final int condition) {
-        if (condition > 3 ) {
+        if (condition > MOVEMENT_CRITERIA ) {
             this.movement += 1;
         }
     }
