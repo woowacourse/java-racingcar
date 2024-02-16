@@ -16,7 +16,7 @@ public class RacingGame {
 
         Cars cars = loadCars(names);
         race(trialCount, cars);
-        announceWinners(cars);
+        printWinners(cars);
     }
 
     private <T> T retryInputOnException(Supplier<T> supplier) {
@@ -36,8 +36,8 @@ public class RacingGame {
     }
 
     private void validateCarNames(String names) {
-        final String NAMES_REGEX = "(.+)((,)(.+))*";
-        if (isInvalidFormat(names, NAMES_REGEX)) {
+        final String VALID_CAR_NAMES_REGEX = "(.+)((,)(.+))*";
+        if (isInvalidFormat(names, VALID_CAR_NAMES_REGEX)) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
         if (hasInvalidNameLength(names.split(","))) {
@@ -102,7 +102,7 @@ public class RacingGame {
         System.out.println();
     }
 
-    private void announceWinners(Cars cars) {
+    private void printWinners(Cars cars) {
         String winners = cars.getCarList().stream()
                 .filter(car -> car.getCarLocation() == cars.getMaxLocation())
                 .map(Car::getCarName)
