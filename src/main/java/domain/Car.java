@@ -33,14 +33,6 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getForward() {
-        return forward;
-    }
-
     public void drive(int randomNumber) {
         if (checkForward(randomNumber)) {
             forward += 1;
@@ -49,6 +41,14 @@ public class Car implements Comparable<Car> {
 
     private boolean checkForward(int randomNumber) {
         return randomNumber >= MIN_FORWARD_NUMBER;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getForward() {
+        return forward;
     }
 
     @Override
