@@ -32,7 +32,7 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateNameStyle(final String name) {
-        final String regex = "[^a-zA-Z0-9_-]";
+        final String regex = "[^ㄱ-ㅎ가-힣a-zA-Z0-9_-]";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(name);
 

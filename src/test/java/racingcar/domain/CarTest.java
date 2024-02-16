@@ -14,7 +14,8 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"car", "CAR", "_car", "-car", "자동차", "ㅈㄷㅊ"})
     @DisplayName("[Success] 자동차가 정상적으로 생성됨")
     void createCars() {
         assertThatCode(() -> new Car("car"))
@@ -34,8 +35,8 @@ class CarTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"가나다", "!!", ",,"})
-        @DisplayName("[Exception] 자동차 이름에 숫자, 영문, '-', '_' 외에 다른 문자가 포함되면 예외를 던진다")
+        @ValueSource(strings = {"!!", ",,"})
+        @DisplayName("[Exception] 자동차 이름에 한글, 숫자, 영문, '-', '_' 외에 다른 문자가 포함되면 예외를 던진다")
         void createCarByInvalidCharacter(final String name) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Car(name))
