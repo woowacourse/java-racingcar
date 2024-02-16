@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.RandomNumberGenerator;
 import racingcar.domain.RandomNumberGeneratorImpl;
 import racingcar.util.Parser;
 import racingcar.util.Validator;
@@ -14,9 +15,7 @@ public class RacingController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingController(
-            final InputView inputView,
-            final OutputView outputView) {
+    public RacingController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -27,8 +26,9 @@ public class RacingController {
         final int tryCount = readTryCount();
 
         outputView.printResultMsg();
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
         for(int i = 0 ; i < tryCount; i++) {
-            moveCars(cars);
+            moveCars(cars, randomNumberGenerator);
         }
 
         final List<Car> winners = cars.determineWinner();
@@ -61,8 +61,8 @@ public class RacingController {
         }
     }
 
-    private void moveCars(final Cars cars) {
-        cars.moveAll(new RandomNumberGeneratorImpl());
+    private void moveCars(final Cars cars, final RandomNumberGenerator randomNumberGenerator) {
+        cars.moveAll(randomNumberGenerator);
         outputView.printCarPosition(cars);
     }
 }
