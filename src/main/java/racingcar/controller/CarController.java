@@ -10,7 +10,6 @@ public class CarController {
     public void startGame() {
         String receivedCarNames = InputView.inputRacingCars();
         Cars cars = new Cars(new RandomNumericGenerator(), receivedCarNames);
-
         String receivedCount = InputView.inputTryCount();
         TryCount tryCount = new TryCount(receivedCount);
 
