@@ -19,7 +19,7 @@ public class CarName {
 
     private void validateLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름은 5 글자를 넘을 수 없습니다.");
+            throw new IllegalArgumentException(String.format("자동차 이름은 %d 글자를 넘을 수 없습니다.", MAX_NAME_LENGTH));
         }
     }
 

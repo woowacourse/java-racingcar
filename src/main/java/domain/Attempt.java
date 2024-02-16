@@ -15,7 +15,7 @@ public class Attempt {
 
     private static void validateMinTryCount(int input) {
         if (input < MIN_TRY_COUNT) {
-            throw new IllegalArgumentException("시도 횟수는 1이상이어야 합니다.");
+            throw new IllegalArgumentException(String.format("시도 횟수는 %d 이상이어야 합니다.", MIN_TRY_COUNT));
         }
     }
 
