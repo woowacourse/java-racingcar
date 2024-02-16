@@ -1,11 +1,9 @@
 package domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.Arrays;
 
 class JudgeTest {
 
@@ -17,19 +15,17 @@ class JudgeTest {
         Car one = new Car("one");
         Car two = new Car("two");
         Car three = new Car("three");
-
-        List<Car> cars = new ArrayList<>(List.of(one, two, three));
-
-        one.move(4);
-        two.move(0);
-        three.move(8);
+        Cars cars = new Cars(Arrays.asList(one, two, three));
 
         //when
-        List<Car> winners = judge.getWinners(cars);
+        one.move(4);
+        one.move(4);
+        one.move(4);
+        three.move(4);
+        three.move(4);
+        three.move(4);
 
         //then
-        assertThat(winners.size()).isEqualTo(2);
-        assertThat(winners.get(0).getName()).isEqualTo("one");
-        assertThat(winners.get(1).getName()).isEqualTo("three");
+        Assertions.assertThat(judge.getWinners(cars)).contains(one, three);
     }
 }

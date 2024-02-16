@@ -1,8 +1,9 @@
 package controller;
 
 import domain.Car;
+import domain.Cars;
+import domain.Count;
 import domain.Judge;
-import domain.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -17,77 +18,53 @@ public class CarRaceStarter {
     private final Judge judge = new Judge();
 
     public void start() {
-        List<Car> cars = makeCars();
-        int count = makeCount();
+        Cars cars = makeCars();
+        Count count = makeCount();
 
-        raceStart(count, cars);
+        raceStart(cars, count);
 
         List<Car> winners = judge.getWinners(cars);
         outputView.printWinners(winners);
     }
 
-    private List<Car> makeCars() {
+    private Cars makeCars() {
         try {
             outputView.printInputCarNamesMessage();
             List<String> carNames = getCarNames();
-            return carNames.stream()
-                    .map(Car::new)
-                    .collect(Collectors.toList());
+            return collectCars(carNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         return makeCars();
     }
 
+    private Cars collectCars(List<String> carNames) {
+        return new Cars(carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList()));
+    }
+
     private List<String> getCarNames() {
         String userInput = inputView.getUserInput();
-        List<String> carNames = Arrays.stream(userInput.split(",")).toList();
-        validateParticipant(carNames);
-        return carNames;
+        return Arrays.stream(userInput.split(",")).toList();
     }
 
-    private void validateParticipant(List<String> carNames) {
-        validateAmount(carNames);
-        validateDuplicated(carNames);
-    }
-
-    private void validateAmount(List<String> carNames) {
-        if (carNames.size() < 2) {
-            throw new IllegalArgumentException("2인 이상의 참가자를 입력해주세요.");
-        }
-    }
-
-    private void validateDuplicated(List<String> carNames) {
-        long uniqueCount = carNames.stream()
-                .distinct()
-                .count();
-        if (uniqueCount != carNames.size()) {
-            throw new IllegalArgumentException("중복된 이름이 있습니다.");
-        }
-    }
-
-    private int makeCount() {
+    private Count makeCount() {
         try {
             outputView.printInputCountMessage();
             int count = Integer.parseInt(inputView.getUserInput());
-            validateCount(count);
-            return count;
+            return new Count(count);
         } catch (IllegalArgumentException e) {
             System.out.println("1~100 사이로 입력해주세요.");
         }
         return makeCount();
     }
 
-    private void validateCount(int count) {
-        if (count <= 0 || count > 100) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void raceStart(int count, List<Car> cars) {
+    private void raceStart(Cars cars, Count count) {
         outputView.printMoveResultMessage();
-        for (int i = 0; i < count; i++) {
-            cars.forEach(car -> car.move(RandomGenerator.getRandomNumber()));
+        while (count.hasCount()) {
+            cars.moveCars();
+            count.minusOneCount();
             outputView.printMoveResult(cars);
         }
     }
