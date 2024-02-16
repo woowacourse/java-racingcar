@@ -1,18 +1,14 @@
 package utils;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static utils.ErrorMessage.CAR_NAME_IS_BLANK;
-import static utils.ErrorMessage.CAR_NAME_TOO_LONG;
 import static utils.ErrorMessage.NOT_NUMBER;
 import static utils.ErrorMessage.NOT_POSITIVE_NUMBER;
 
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
 

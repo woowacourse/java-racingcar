@@ -13,13 +13,13 @@ public class InputView {
 
     public List<String> inputCarNames() {
         System.out.println(CAR_NAME_MSG);
-        String carNames = in.next();
+        String carNames = in.nextLine();
         return Arrays.asList(carNames.split(","));
     }
 
     public int inputTryNumber() {
         System.out.println(TRY_NUMBER_MSG);
-        String tryNumber = in.next();
+        String tryNumber = in.nextLine();
         InputValidator.tryNumberValidator(tryNumber);
         return Integer.parseInt(tryNumber);
     }
