@@ -26,10 +26,14 @@ class CarsTest {
     @Test
     @DisplayName("가장 먼 전진 거리를 가진 자동차가 우승")
     void findFurthestCars() {
-        List<String> carNames = List.of("pobi", "crong", "honux");
-        List<Integer> positions = List.of(1, 2, 3);
+        Car winner = new Car("honux", 3);
+        List<String> carNames = List.of("pobi", "crong", winner.getName());
+        List<Integer> positions = List.of(1, 2, winner.getPosition());
         Cars cars = new Cars(carNames, positions);
+
         List<Car> furthestCars = cars.findFurthestCars();
-        assertThat(furthestCars.get(0).getName()).isEqualTo("honux");
+
+        assertThat(furthestCars).hasSize(1)
+                .extracting("name").containsExactly(winner.getName());
     }
 }
