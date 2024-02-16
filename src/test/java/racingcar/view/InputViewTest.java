@@ -1,14 +1,16 @@
 package racingcar.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.exception.NotANumberException;
+import racingcar.exception.TryNumberOutOfRangeException;
 import racingcar.view.reader.ConsoleReader;
 
 class InputViewTest {
@@ -37,8 +39,8 @@ class InputViewTest {
         // given
         InputView view = setupInputStream(input);
         // when, then
-        Assertions.assertThatThrownBy(view::getTryNumber)
-                .isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(view::getTryNumber)
+                .isInstanceOf(TryNumberOutOfRangeException.class);
     }
 
     @ParameterizedTest
@@ -61,7 +63,7 @@ class InputViewTest {
         // given
         InputView view = setupInputStream(input);
         // when, then
-        Assertions.assertThatThrownBy(view::getTryNumber)
-                .isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(view::getTryNumber)
+                .isInstanceOf(NotANumberException.class);
     }
 }
