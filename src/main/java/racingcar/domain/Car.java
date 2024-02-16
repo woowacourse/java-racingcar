@@ -8,7 +8,9 @@ import racingcar.dto.CarPerformance;
 
 public class Car {
 
+    private static final int MAX_NAME_LENGTH = 5;
     private static final int REQUIRED_OIL = 4;
+
     private final String name;
     private int movedDistance = 0;
 
@@ -18,7 +20,7 @@ public class Car {
     }
 
     private void validateNameLength(String name) {
-        if (name.length() > 5 || name.isEmpty()) {
+        if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
             throw INVALID_CAR_NAME_LENGTH.getException();
         }
     }

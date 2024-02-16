@@ -4,6 +4,9 @@ import static racingcar.constant.ExceptionMessage.INVALID_ROUND_FORMAT;
 import static racingcar.constant.ExceptionMessage.INVALID_ROUND_RANGE;
 
 public class Round {
+
+    private static final int MIN_ROUND_COUNT = 1;
+
     private int count;
 
     public Round(String count) {
@@ -12,7 +15,7 @@ public class Round {
     }
 
     private void validateCountRange() {
-        if (count < 1) {
+        if (count < MIN_ROUND_COUNT) {
             throw INVALID_ROUND_RANGE.getException();
         }
     }
