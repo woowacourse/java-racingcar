@@ -2,7 +2,9 @@ package controller;
 
 import static utils.TryCountValidator.validateTryCountFormat;
 
+import java.util.List;
 import model.Race;
+import utils.InputStringParser;
 import view.InputView;
 
 public class InputController {
@@ -14,7 +16,7 @@ public class InputController {
 
     public Race getRace() {
         try {
-            String carNames = inputView.inputCarName();
+            List<String> carNames = InputStringParser.parseInputToList(inputView.inputCarName());
             return new Race(carNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
