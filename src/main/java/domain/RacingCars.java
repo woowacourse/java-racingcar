@@ -26,7 +26,7 @@ public class RacingCars {
         RacingCar winner = racingCars.get(0);
 
         return racingCars.stream()
-                .filter(racingCar -> racingCar.isSameDistance(winner))
+                .filter(racingCar -> racingCar.hasSameDistance(winner))
                 .map(RacingCar::getName)
                 .collect(Collectors.toList());
     }
