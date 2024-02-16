@@ -26,8 +26,8 @@ public class Car {
         }
     }
 
-    public void moveForward(int randomNumber) {
-        if (randomNumber >= FORWARD_MIN_NUMBER) {
+    public void moveForward(int power) {
+        if (power >= FORWARD_MIN_NUMBER) {
             position++;
         }
     }
