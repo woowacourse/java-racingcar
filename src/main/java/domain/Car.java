@@ -1,8 +1,7 @@
 package domain;
 
 public class Car implements Comparable<Car> {
-    private static final String FORMAT = "%s : %s\n";
-
+    private static final int STANDARD = 4;
     private final String name;
     private int location = 0;
 
@@ -20,7 +19,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= STANDARD) {
             location++;
         }
     }
