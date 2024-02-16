@@ -20,19 +20,19 @@ public class Cars {
         this.racingCars = racingCars;
     }
 
-    private static void validateCounts(String counts) {
-        try {
-            Integer.parseInt(counts);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(TRY_COUNT_NUMBER_FORMAT_EXCEPTION);
-        }
-    }
-
     private static String generateResult(Car car) {
         String distance = "-";
         return car.getCarName()
                 + " : "
                 + distance.repeat(car.getDistance());
+    }
+
+    private void validateCounts(String counts) {
+        try {
+            Integer.parseInt(counts);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(TRY_COUNT_NUMBER_FORMAT_EXCEPTION);
+        }
     }
 
     public String startRounds(String counts) {
