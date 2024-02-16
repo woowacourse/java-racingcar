@@ -2,6 +2,7 @@ package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,6 @@ class RoundResultTest {
 
         //then
         assertThat(winners).hasSize(2);
-        assertThat(winners).containsExactlyInAnyOrder("b", "c");
+        assertThat(winners).isEqualTo(Arrays.asList("b", "c"));
     }
 }
