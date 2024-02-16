@@ -14,7 +14,7 @@ public class Cars {
     }
 
     private void validateDuplicatedNames(List<String> names) {
-        if (names.size() != Set.copyOf(names).size()) {
+        if (names.size() != names.stream().distinct().toList().size()) {
             throw new IllegalArgumentException(DUPLICATED_NAME_EXCEPTION.getMessage());
         }
     }
