@@ -8,10 +8,17 @@ public class TryCount {
     }
 
     public int validatedInput(String input) {
+        isNumericString(input);
+
+        int number = Integer.parseInt(input);
+        isOverZero(number);
+        
+        return number;
+    }
+
+    private void isNumericString(String input) {
         try {
-            int number = Integer.parseInt(input);
-            isOverZero(number);
-            return number;
+            Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }

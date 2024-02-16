@@ -38,7 +38,9 @@ Java Naming Conventions가이드를 참고하여 메서드 이름 수정
 
 ### 메서드 분리
 
-- [ ] model/Trycount validateInput 메서드 분리
+- [X] model/Trycount validateInput 메서드 분리
+    - [X] 입력 값이 숫자가 아닌 경우 
+    - [X] 입력 값이 음수인 경우
 
 ### 테스트 코드와 프로덕션 코드 분리
 
