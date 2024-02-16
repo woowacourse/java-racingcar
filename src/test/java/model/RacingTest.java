@@ -17,6 +17,7 @@ public class RacingTest {
         Car car3 = new Car("ella", () -> 5);
         cars = new Cars(List.of(car1, car2, car3));
     }
+
     @Test
     void 시도횟수로_경주를_생성한다() {
         Racing racing = new Racing(3);
