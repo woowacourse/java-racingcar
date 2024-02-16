@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Car {
 
     private static final String CAR_NAME_TOO_LONG = "자동차 이름이 5자 초과입니다.";
@@ -32,6 +34,18 @@ public class Car {
 
     public int getMovement() {
         return movement;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
     }
 
 
