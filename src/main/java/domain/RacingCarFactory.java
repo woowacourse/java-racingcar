@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingCarFactory {
     private final List<String> names;
@@ -13,7 +14,7 @@ public class RacingCarFactory {
     }
 
     public List<RacingCar> create() {
-        return names.stream().map(RacingCar::new).toList();
+        return names.stream().map(RacingCar::new).collect(Collectors.toList());
     }
 
     private void validateNamesLength(List<String> names) {

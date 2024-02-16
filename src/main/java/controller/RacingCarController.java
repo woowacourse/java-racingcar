@@ -13,12 +13,17 @@ public class RacingCarController {
 
         OutputView.printRacingStartMessage();
         do {
-            racingCars.tryRace();
+            tryRace(racingCars);
             tryNumber.decrease();
         } while(tryNumber.isTryable());
 
         List<String> winners = racingCars.getWinners();
         OutputView.printWinners(winners);
+    }
+
+    private void tryRace(RacingCars racingCars) {
+        List<RaceResult> results = racingCars.tryRace();
+        printResult(results);
     }
 
     private RacingCars readRacingCars() {
@@ -38,5 +43,10 @@ public class RacingCarController {
         } catch(NumberFormatException numberFormatException) {
             throw new NumberFormatException("시도횟수는 숫자만 입력가능합니다.");
         }
+    }
+
+    private void printResult(List<RaceResult> raceResults) {
+        raceResults.forEach(raceResult -> OutputView.printResult(raceResult.name(), raceResult.moveCount()));
+        System.out.println();
     }
 }

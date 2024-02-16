@@ -1,7 +1,6 @@
 package domain;
 
-import view.OutputView;
-
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,14 +12,15 @@ public class RacingCars {
         this.racingCars = racingCarFactory.create();
     }
 
-    public void tryRace() {
+    public List<RaceResult> tryRace() {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
+
+        List<RaceResult> raceResults = new ArrayList<>();
         for (RacingCar racingCar : racingCars) {
             racingCar.race(numberGenerator.generateNumber());
-            printResult(racingCar);
+            raceResults.add(new RaceResult(racingCar.getName(), racingCar.getMoveNumber()));
         }
-
-        System.out.println();
+        return raceResults;
     }
 
     public List<String> getWinners() {
@@ -31,9 +31,5 @@ public class RacingCars {
                 .filter(racingCar -> racingCar.isSameDistance(winner))
                 .map(RacingCar::getName)
                 .collect(Collectors.toList());
-    }
-
-    private void printResult(RacingCar racingCar) {
-        OutputView.printResult(racingCar.getName(), racingCar.getMoveNumber());
     }
 }
