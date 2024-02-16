@@ -48,6 +48,6 @@ public class Game {
     }
 
     public Winner getWinner() {
-        return Winner.from(vehicles.getBiggestCars());
+        return Winner.from(vehicles.findFarthestCars());
     }
 }

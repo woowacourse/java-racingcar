@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Vehicles {
+    private static final int MIN_DISTANCE = 0;
     private final List<Car> cars;
 
     public static Vehicles from(final String userInput) {
@@ -48,9 +49,9 @@ public class Vehicles {
         cars.forEach(car -> car.move(carMoveStrategy));
     }
 
-    List<Car> getBiggestCars() {
-        int biggestForward = cars.stream().mapToInt(Car::getForward).max().getAsInt();
-        return cars.stream().filter(car -> car.getForward() == biggestForward).toList();
+    List<Car> findFarthestCars() {
+        int farthestDistance = cars.stream().mapToInt(Car::getForward).max().orElse(MIN_DISTANCE);
+        return cars.stream().filter(car -> car.getForward() == farthestDistance).toList();
     }
 
     public List<Car> getCars() {
