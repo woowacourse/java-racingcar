@@ -10,7 +10,7 @@ public class PowerStrategyTest {
 
     @Test
     @DisplayName("자동차는 랜덤 숫자에 따라 움직이거나 움직일 수 없다.")
-    void canMoveByRandomNumber() { // TODO: can test random value?
+    void canMoveByRandomNumber() {
         assertThat(PowerStrategy.from().canMove()).isTrue();
     }
 }
