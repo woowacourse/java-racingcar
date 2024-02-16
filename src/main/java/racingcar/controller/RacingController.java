@@ -1,10 +1,10 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.generator.RandomNumberGenerator;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.RacingGame;
+import racingcar.model.RandomNumberGenerator;
 import racingcar.model.TotalResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -34,12 +34,12 @@ public class RacingController {
         List<Car> cars = carNames.stream()
                 .map(Car::new)
                 .toList();
-        return new Cars(cars, new RandomNumberGenerator());
+        return new Cars(cars);
     }
 
     private RacingGame createRacingGame(Cars cars) {
         int tryCount = inputView.readTryCount();
-        return new RacingGame(tryCount, cars);
+        return new RacingGame(tryCount, cars, new RandomNumberGenerator());
     }
 
     private void printResult(TotalResult totalResult) {

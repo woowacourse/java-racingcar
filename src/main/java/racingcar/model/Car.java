@@ -15,8 +15,14 @@ public class Car {
         this.position = DEFAULT_POSITION;
     }
 
-    public int move(int randomNumber) {
-        if (randomNumber >= MINIMUM_STEP_FORWARD_STANDARD) {
+    Car(String name, int position) {
+        validateName(name);
+        this.name = name;
+        this.position = position;
+    }
+
+    public int move(int number) {
+        if (number >= MINIMUM_STEP_FORWARD_STANDARD) {
             position++;
         }
         return position;

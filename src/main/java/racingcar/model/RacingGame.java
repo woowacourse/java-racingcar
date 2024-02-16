@@ -9,17 +9,20 @@ public class RacingGame {
 
     private final int tryCount;
     private final Cars cars;
+    private final RandomNumberGenerator randomNumberGenerator;
 
-    public RacingGame(int tryCount, Cars cars) {
+    public RacingGame(int tryCount, Cars cars, RandomNumberGenerator randomNumberGenerator) {
         validateTryCount(tryCount);
         this.tryCount = tryCount;
         this.cars = cars;
+        this.randomNumberGenerator = randomNumberGenerator;
     }
 
     public TotalResult run() {
         List<RoundResult> gameResult = new ArrayList<>();
         for (int i = 0; i < tryCount; i++) {
-            gameResult.add(cars.makeCarsMove());
+            cars.makeCarMove(randomNumberGenerator);
+            gameResult.add(cars.getRoundResult());
         }
         return new TotalResult(gameResult);
     }

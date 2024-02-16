@@ -7,9 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.generator.MovingStub;
 
 class CarsTest {
 
@@ -23,26 +20,29 @@ class CarsTest {
                 .toList();
 
         //when //then
-        assertThatThrownBy(() -> new Cars(cars, new MovingStub(List.of(4, 3, 3))))
+        assertThatThrownBy(() -> new Cars(cars))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차별 현재 위치 정보를 반환한다.")
-    @ParameterizedTest
-    @CsvSource(value = {"5,1", "3,0"})
-    void getCarStatus(int givenNumber, int expected) {
+    @Test
+    void getRoundResult() {
         //given
-        String carName = "a";
-        List<String> names = List.of(carName, "b", "c");
-        List<Car> givenCars = names.stream()
-                .map(Car::new)
-                .toList();
-        Cars cars = new Cars(givenCars, new MovingStub(List.of(givenNumber, 3, 3)));
+        String givenName = "daon";
+        int givenPosition = 1;
+
+        List<Car> givenCars = List.of(
+                new Car(givenName, givenPosition),
+                new Car("ted", 2)
+        );
+        Cars cars = new Cars(givenCars);
 
         //when
-        RoundResult roundResult = cars.makeCarsMove();
+        RoundResult roundResult = cars.getRoundResult();
+        LinkedHashMap<String, Integer> result = roundResult.getResult();
 
         //then
-        assertThat(roundResult.getResult()).hasSize(givenCars.size());
+        assertThat(result).hasSize(givenCars.size());
+        assertThat(result.get(givenName)).isEqualTo(givenPosition);
     }
 }

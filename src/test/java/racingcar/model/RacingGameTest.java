@@ -8,7 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.generator.MovingStub;
 
 class RacingGameTest {
 
@@ -20,7 +19,7 @@ class RacingGameTest {
         Cars cars = createCars();
 
         //then
-        assertThatThrownBy(() -> new RacingGame(given, cars))
+        assertThatThrownBy(() -> new RacingGame(given, cars, new RandomNumberGenerator()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +29,7 @@ class RacingGameTest {
         //given
         int count = 3;
         Cars cars = createCars();
-        RacingGame racingGame = new RacingGame(count, cars);
+        RacingGame racingGame = new RacingGame(count, cars, new RandomNumberGenerator());
 
         //when
         TotalResult totalResult = racingGame.run();
@@ -44,6 +43,6 @@ class RacingGameTest {
         List<Car> carList = carNames.stream()
                 .map(Car::new)
                 .toList();
-        return new Cars(carList, new MovingStub(List.of(4, 4, 3)));
+        return new Cars(carList);
     }
 }
