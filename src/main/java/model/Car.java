@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Car {
-  private final int NAME_LENGTH_CONDITION = 5;
+  private static final int MAX_NAME_LENGTH = 5;
   private final String name;
   private final List<MoveStatus> statuses;
 
@@ -24,7 +24,7 @@ public class Car {
   }
 
   private void validateNameLength(String name) {
-    if (name.length() > NAME_LENGTH_CONDITION) {
+    if (name.length() > MAX_NAME_LENGTH) {
       throw new IllegalArgumentException(Exception.CAR_NAME_LENGTH.toString());
     }
   }
