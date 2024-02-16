@@ -4,7 +4,7 @@ import racingcar.exception.InvalidNameLengthException;
 
 public class Name {
 
-    private static final int MAX_LENGTH = 5;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String value;
 
@@ -20,7 +20,7 @@ public class Name {
     }
 
     private void validateNameLength(String value) {
-        if (value.length() > MAX_LENGTH) {
+        if (value.length() > MAX_NAME_LENGTH) {
             throw new InvalidNameLengthException();
         }
     }
