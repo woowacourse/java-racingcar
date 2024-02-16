@@ -7,7 +7,7 @@ public class TryCount {
         this.value = validatedInput(input);
     }
 
-    public int validatedInput(String input) {
+    private int validatedInput(String input) {
         isNumericString(input);
 
         int number = Integer.parseInt(input);

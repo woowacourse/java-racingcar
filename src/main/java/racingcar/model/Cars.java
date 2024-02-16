@@ -23,7 +23,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void isValidInput(String input) {
+    private void isValidInput(String input) {
         final String REGEX_VALID_INPUT_CHECK = "^[^,]+(,[^,]+)*$";
         Pattern pattern = Pattern.compile(REGEX_VALID_INPUT_CHECK);
         Matcher matcher = pattern.matcher(input);
