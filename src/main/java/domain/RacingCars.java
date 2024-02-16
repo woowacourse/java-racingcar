@@ -12,9 +12,7 @@ public class RacingCars {
         this.racingCars = racingCarFactory.create();
     }
 
-    public List<RaceResult> tryRace() {
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-
+    public List<RaceResult> tryRace(NumberGenerator numberGenerator) {
         List<RaceResult> raceResults = new ArrayList<>();
         for (RacingCar racingCar : racingCars) {
             racingCar.race(numberGenerator.generateNumber());
