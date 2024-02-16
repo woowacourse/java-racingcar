@@ -29,7 +29,7 @@ public class Cars {
                 .max()
                 .orElse(0);
         return carList.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isPositionedAt(maxPosition))
                 .toList();
     }
 

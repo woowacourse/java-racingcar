@@ -33,4 +33,16 @@ class CarTest {
 
         Assertions.assertThat(car.getPosition()).isEqualTo(expected);
     }
+
+    @DisplayName("자동차가 해당 위치에 있는지 파악할 수 있다")
+    @ParameterizedTest
+    @CsvSource({"1, true", "2, false"})
+    void isPositionedAtTest(int position, boolean expected) {
+        Car oneMovedCar = new Car("name");
+        oneMovedCar.move(true);
+
+        boolean actual = oneMovedCar.isPositionedAt(position);
+
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
 }
