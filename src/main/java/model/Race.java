@@ -11,8 +11,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Race {
-    private final String INVALID_NUMBER_OF_CARS_ERROR_MESSAGE = "레이스에 참여하는 자동차는 최소 2대 이상이어야 합니다.";
-    private final String CAR_NAME_DUPLICATED_ERROR_MESSAGE = "중복된 이름의 자동차는 사용할 수 없습니다.";
+    private static final int MIN_NUMBER_OF_CARS = 2;
+    private static final String NOT_ENOUGH_CARS_ERROR_MESSAGE = "레이스에 참여하는 자동차는 최소 2대 이상이어야 합니다.";
+    private static final String CAR_NAME_DUPLICATED_ERROR_MESSAGE = "중복된 이름의 자동차는 사용할 수 없습니다.";
+
     private final List<Car> cars;
 
     public Race(String inValidNameStr) {
@@ -39,8 +41,8 @@ public class Race {
     }
 
     private void validateMinimumNumberOfCars(List<String> invalidNames) {
-        if (invalidNames.size() < 2) {
-            throw new IllegalArgumentException(INVALID_NUMBER_OF_CARS_ERROR_MESSAGE);
+        if (invalidNames.size() < MIN_NUMBER_OF_CARS) {
+            throw new IllegalArgumentException(NOT_ENOUGH_CARS_ERROR_MESSAGE);
         }
     }
 
