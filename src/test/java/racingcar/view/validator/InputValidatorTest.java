@@ -3,7 +3,9 @@ package racingcar.view.validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -19,7 +21,7 @@ class InputValidatorTest {
     @Test
     @DisplayName("이름 사이에 공백이 존재하는 자동차 이름 테스트")
     void validateNameWithSpace() {
-        assertThrows(IllegalArgumentException.class, () -> validator.validateAvailableName(Arrays.asList("ca r","car1")));
+        assertThrows(IllegalArgumentException.class, () -> validator.validateAvailableName(Arrays.asList("ca r", "car1")));
     }
 
     @Test

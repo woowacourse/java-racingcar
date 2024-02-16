@@ -5,21 +5,22 @@ import java.util.List;
 import java.util.Set;
 
 public class InputValidator {
-    
-    public void validateAvailableName(List<String> parsedInputs){
-        for(String inputName : parsedInputs){
+
+    public void validateAvailableName(List<String> parsedInputs) {
+        for (String inputName : parsedInputs) {
             hasSpaceInName(inputName);
             isAvailableLength(inputName);
         }
     }
 
     public void validateIsBlank(String initialInput) {
-        if(initialInput.isBlank()) {
+        if (initialInput.isBlank()) {
             throw new IllegalArgumentException();
         }
     }
+
     private void hasSpaceInName(String inputName) {
-        if(inputName.contains(" ")) {
+        if (inputName.contains(" ")) {
             throw new IllegalArgumentException();
         }
     }
@@ -30,7 +31,7 @@ public class InputValidator {
         }
     }
 
-    public void validateAvailableCarNames(List<String> parsedCarNames){
+    public void validateAvailableCarNames(List<String> parsedCarNames) {
         validateIsMultipleCarNames(parsedCarNames);
         validateIsDuplicate(parsedCarNames);
     }
@@ -44,7 +45,7 @@ public class InputValidator {
     private void validateIsDuplicate(List<String> parsedInputs) {
         Set<String> nameSet = new HashSet<>(parsedInputs);
 
-        if(nameSet.size() != parsedInputs.size()) {
+        if (nameSet.size() != parsedInputs.size()) {
             throw new IllegalArgumentException();
         }
     }
@@ -59,13 +60,13 @@ public class InputValidator {
     }
 
     private void validateIsNumeric(String tryNumber) {
-        if(!tryNumber.matches("\\d+")) {
+        if (!tryNumber.matches("\\d+")) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateIsPositive(String tryNumber) {
-        if(Integer.parseInt(tryNumber) <= 0) {
+        if (Integer.parseInt(tryNumber) <= 0) {
             throw new IllegalArgumentException();
         }
     }
