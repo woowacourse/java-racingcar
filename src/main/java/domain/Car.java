@@ -2,19 +2,27 @@ package domain;
 
 public class Car {
 
+    private static final Integer CAR_INITIAL_POSITION = 0;
     private final String carName;
     private Integer position;
     private final PowerGenerator powerGenerator;
 
-    private Car(String carName, int position) {
+    private Car(String carName) {
+        validate(carName);
+        this.carName = carName;
+        this.position = CAR_INITIAL_POSITION;
+        this.powerGenerator = new PowerGenerator();
+    }
+
+    Car(String carName, int position) {
         validate(carName);
         this.carName = carName;
         this.position = position;
         this.powerGenerator = new PowerGenerator();
     }
 
-    public static Car of(String name, int position) {
-        return new Car(name, position);
+    public static Car from(String name) {
+        return new Car(name);
     }
 
     private void validate(String carName) {

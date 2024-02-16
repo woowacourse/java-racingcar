@@ -50,7 +50,7 @@ public class RacingGameController {
             String name = inputView.requestCarName();
             List<String> carNames = StringParser.split(name, CAR_NAMES_DELIMITER);
             return Cars.from(carNames.stream()
-                    .map(carName -> Car.of(carName, 0))
+                    .map(Car::from)
                     .toList());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
