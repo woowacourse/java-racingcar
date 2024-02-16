@@ -35,10 +35,6 @@ public class Cars {
     }
 
     public int getMaxForward() {
-        return cars.stream()
-                .sorted(Car::compareTo)
-                .toList()
-                .get(0)
-                .getForward();
+        return cars.stream().max(Car::compareTo).get().getForward();
     }
 }
