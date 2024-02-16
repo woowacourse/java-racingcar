@@ -15,7 +15,7 @@ class CarTest {
 
         return Stream.of(
                 Arguments.of(true, 1, "true면 전진한다."),
-                Arguments.of(false, 0, "false면 전진한다.")
+                Arguments.of(false, 0, "false면 전진하지 않는다.")
         );
     }
 
