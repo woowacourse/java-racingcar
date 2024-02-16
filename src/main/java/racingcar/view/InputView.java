@@ -7,15 +7,15 @@ public class InputView {
     private static final String INPUT_ROUND_MESSAGE = "시도할 회수는 몇회인가요?";
     private static Scanner scanner = new Scanner(System.in);
 
-    public String inputCarNames() {
+    public static String inputCarNames() {
         return inputTemplate(INPUT_CAR_NAMES_MESSAGE);
     }
 
-    public String inputRound() {
+    public static String inputRound() {
         return inputTemplate(INPUT_ROUND_MESSAGE);
     }
 
-    private String inputTemplate(String inputMessage) {
+    private static String inputTemplate(String inputMessage) {
         System.out.println(inputMessage);
         String input = scanner.nextLine();
 

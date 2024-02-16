@@ -12,13 +12,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class MainController {
-    private final InputView inputView;
-    private final OutputView outputView;
-
-    public MainController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-    }
 
     public void run() {
         CarRacingGame carRacingGame = repeat(this::initializeCarRacingGame);
@@ -28,8 +21,8 @@ public class MainController {
     }
 
     private CarRacingGame initializeCarRacingGame() {
-        String inputCarNames = inputView.inputCarNames();
-        String inputRound = inputView.inputRound();
+        String inputCarNames = InputView.inputCarNames();
+        String inputRound = InputView.inputRound();
 
         return new CarRacingGame(inputCarNames, inputRound);
     }
@@ -37,7 +30,7 @@ public class MainController {
     private void race(CarRacingGame carRacingGame) {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
 
-        outputView.printResultMessage();
+        OutputView.printResultMessage();
         while (!carRacingGame.isGameEnd()) {
             carRacingGame.playRound(numberGenerator);
             showRoundResult(carRacingGame);
@@ -48,13 +41,13 @@ public class MainController {
         List<Car> roundResult = carRacingGame.getRoundResult();
         List<CarDto> roundResultDto = toDto(roundResult);
 
-        outputView.printRoundResult(roundResultDto);
+        OutputView.printRoundResult(roundResultDto);
     }
 
     private void showWinners(List<Car> winners) {
         List<CarDto> winnersDto = toDto(winners);
 
-        outputView.printWinners(winnersDto);
+        OutputView.printWinners(winnersDto);
     }
 
     private List<CarDto> toDto(List<Car> roundResult) {
@@ -67,7 +60,7 @@ public class MainController {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return repeat(inputReader);
         }
     }
