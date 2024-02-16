@@ -14,6 +14,39 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("자동차들")
 class VehiclesTest {
     @Test
+    @DisplayName("생성에 성공한다.")
+    public void createVehiclesTest() {
+        //given
+        String userInput = "choco";
+        String name = "choco";
+
+        //when
+        Vehicles vehicles = Vehicles.from(userInput);
+        List<Car> cars = vehicles.getCars();
+
+        //then
+        assertEquals(cars.get(0).getName(), name);
+    }
+
+    @Test
+    @DisplayName("생성된 자동차들 중 변경 시, 예외가 발생한다.")
+    public void changeListCarTest() {
+        //given
+        String userInput = "choco";
+        String addInput = "seyan";
+
+        //when
+        Vehicles vehicles = Vehicles.from(userInput);
+        Vehicles addVehicles = Vehicles.from(addInput);
+
+        List<Car> cars = vehicles.getCars();
+        Car toAddCar = addVehicles.getCars().get(0);
+        
+        //then
+        assertThrows(UnsupportedOperationException.class, () -> cars.add(toAddCar));
+    }
+
+    @Test
     @DisplayName("중복된 자동차 이름이 있을 경우 예외가 발생한다.")
     public void verifyNonDuplicateCarNames() {
         //given

@@ -14,7 +14,7 @@ public class Vehicles {
         return new Vehicles(Arrays.stream(userInput.split(COMMA))
                 .map(String::trim)
                 .map(Car::new)
-                .collect(Collectors.toList())
+                .toList()
         );
     }
 

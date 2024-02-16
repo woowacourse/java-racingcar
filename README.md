@@ -49,7 +49,7 @@
 ## 피드백 수정사항
 
 - [X] Car 도메인의 View 로직을 분리한다.
-- [ ] `vehicles`에 List 자료형을 `unmodifiableList`로 변경한다.
+- [X] `vehicles`에 List 자료형을 `unmodifiableList`로 변경한다.
 - [X] 변경이 안될 매개변수에 final 키워드를 붙인다.
 - [X] IntStream 내에 불필요 관호 제거한다.
 - [X] Winner 테스트의 불필요 코드 제거한다.
