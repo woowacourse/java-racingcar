@@ -32,7 +32,8 @@ class CarsTest {
 
         // when & then
         assertThatThrownBy(() -> new Cars(cars))
-                .isExactlyInstanceOf(IllegalArgumentException.class);
+                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름의 자동차가 존재합니다.");
     }
 
     @Test
