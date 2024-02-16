@@ -10,7 +10,7 @@ public class Cars {
         this.cars = names.stream().map(Car::new).toList();
     }
 
-    public void moveAllCars(final RandomNumberGenerator randomNumberGenerator) {
+    public void moveAll(final RandomNumberGenerator randomNumberGenerator) {
         for(Car car: cars) {
             final int condition = randomNumberGenerator.generate();
             car.move(condition);
@@ -22,7 +22,7 @@ public class Cars {
     }
 
     public List<Car> determineWinner() {
-        Car winnerCar = cars.stream()
+        final Car winnerCar = cars.stream()
                 .max(Comparator.comparing(Car::getMovement))
                 .get();
         return cars.stream()

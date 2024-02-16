@@ -62,7 +62,7 @@ public class RacingController {
     }
 
     private void moveCars(final Cars cars) {
-        cars.moveAllCars(new RandomNumberGeneratorImpl());
+        cars.moveAll(new RandomNumberGeneratorImpl());
         outputView.printCarPosition(cars);
     }
 }
