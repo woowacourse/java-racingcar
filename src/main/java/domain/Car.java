@@ -2,6 +2,8 @@ package domain;
 
 public class Car {
     private static final int MOVE_BOUND_NUMBER = 4;
+    private static final int MIN_NUMBER_RANGE = 0;
+    private static final int MAX_NUMBER_RANGE = 9;
 
     private final Name name;
     private int position;
@@ -16,7 +18,7 @@ public class Car {
     }
 
     public void move(NumberGenerator numberGenerator) {
-        if (numberGenerator.generate() >= MOVE_BOUND_NUMBER) {
+        if (numberGenerator.generateRangeOf(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE) >= MOVE_BOUND_NUMBER) {
             position++;
         }
     }

@@ -25,7 +25,6 @@ public class Cars {
         validateDuplication(cars);
     }
 
-
     private static void validateMinCarsSize(List<Car> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
             throw new IllegalArgumentException(String.format("자동차는 %d대 이상이 참가해야 합니다.", MIN_CARS_SIZE));

@@ -2,6 +2,7 @@ package controller;
 
 import domain.Attempt;
 import domain.Cars;
+import domain.NumberGenerator;
 import domain.RandomNumberGenerator;
 import domain.Winners;
 import util.StringConvertor;
@@ -39,8 +40,9 @@ public class RacingController {
     private void racing(Cars cars, Attempt attempt) {
         outputView.printRacingResult();
         int attemptCount = attempt.getCount();
+        NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         while (attemptCount != 0) {
-            cars.moveAll(new RandomNumberGenerator());
+            cars.moveAll(randomNumberGenerator);
             outputView.printRacingProceed(cars);
             attemptCount--;
         }
