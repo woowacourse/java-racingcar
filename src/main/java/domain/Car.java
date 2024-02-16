@@ -18,7 +18,7 @@ public class Car {
         this.name = name;
     }
 
-    private void validateCarName(String name) {
+    private void validateCarName(final String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_CAR_NAME_EXCEPTION);
         }
