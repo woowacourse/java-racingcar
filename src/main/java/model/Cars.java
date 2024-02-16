@@ -1,8 +1,7 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
-import utils.Converter;
-import view.dto.CarDto;
 
 public class Cars {
     private final List<Car> cars;
@@ -17,15 +16,15 @@ public class Cars {
         }
     }
 
-    public List<CarDto> convertCarsToCarDtos() {
-        return Converter.convertCarToCarDtos(cars);
-    }
-
     public List<Car> findWinners() {
         int maxMovement = cars.stream().mapToInt(Car::getMovement).max().getAsInt();
         return cars.stream()
                 .filter(car -> car.getMovement() == maxMovement)
                 .toList();
+    }
+
+    public List<Car> getPresentCarsStatus() {
+        return Collections.unmodifiableList(cars);
     }
 
     public int getCarsSize() {

@@ -23,8 +23,7 @@ public class OutputView {
         System.out.println(String.format(RESULT_FORMAT, carDto.getCarName(), STEP.repeat(carDto.getMovement())));
     }
 
-    public void printWinner(List<CarDto> winners) {
-        List<String> winnerNames = winners.stream().map(CarDto::getCarName).toList();
-        System.out.print(String.join(DELIMITER, winnerNames) + "가 최종 우승했습니다.");
+    public void printWinner(List<String> winners) {
+        System.out.print(String.join(DELIMITER, winners) + "가 최종 우승했습니다.");
     }
 }
