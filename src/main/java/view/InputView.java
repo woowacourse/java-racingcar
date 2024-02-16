@@ -22,11 +22,11 @@ public class InputView implements AutoCloseable {
   public List<String> inputCarsName() throws IOException {
     System.out.println(Information.INPUT_CAR_NAMES);
     String input = reader.readLine();
-    validateNullAndBlank(input);
+    validateNotNullAndBlank(input);
     return Arrays.stream(input.split(DELIMITER)).map(String::trim).toList();
   }
 
-  private void validateNullAndBlank(String input) {
+  private void validateNotNullAndBlank(String input) {
     if (input == null || input.isBlank()) {
       throw new IllegalArgumentException(Exception.INPUT_NULL_BLANK.toString());
     }
