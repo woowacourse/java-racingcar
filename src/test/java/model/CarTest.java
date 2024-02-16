@@ -6,11 +6,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import support.ImmovableNumberGenerator;
 import support.MovableNumberGenerator;
 import util.NumberGenerator;
 
 class CarTest {
     private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
+    private final NumberGenerator immovableNumberGenerator = new ImmovableNumberGenerator();
 
     @Test
     void 자동차를_한칸_전진한다() {
@@ -37,6 +39,18 @@ class CarTest {
 
         // then
         assertThat(car.getPosition()).isEqualTo(moveCount);
+    }
+
+    @Test
+    void 자동차를_전진하지_않는다() {
+        // given
+        Car car = 자동차();
+
+        // when
+        car.moveForward(immovableNumberGenerator);
+
+        // then
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
