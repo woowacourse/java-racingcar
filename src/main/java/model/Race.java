@@ -1,7 +1,6 @@
 package model;
 
 import static utils.Convertor.convertStringToList;
-import static utils.RandomNumberGenerator.generateRandomNumber;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,18 +40,6 @@ public class Race {
     private void validateMinimumNumberOfCars(List<String> invalidNames) {
         if (invalidNames.size() < 2) {
             throw new IllegalArgumentException(INVALID_NUMBER_OF_CARS_ERROR_MESSAGE);
-        }
-    }
-
-    public void oneGame() {
-        for (Car car : cars) {
-            executeRandomMove(car, generateRandomNumber());
-        }
-    }
-
-    private static void executeRandomMove(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
-            car.move();
         }
     }
 
