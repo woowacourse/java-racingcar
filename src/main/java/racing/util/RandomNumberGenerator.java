@@ -2,9 +2,10 @@ package racing.util;
 
 import java.util.Random;
 
-public class RandomGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
 
-    public static int generate() {
+    @Override
+    public int generate() {
         Random random = new Random();
         return random.nextInt(10);
     }

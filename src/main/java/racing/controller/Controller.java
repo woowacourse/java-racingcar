@@ -4,6 +4,7 @@ import java.util.List;
 import racing.domain.Cars;
 import racing.domain.Race;
 import racing.domain.TryCount;
+import racing.util.RandomNumberGenerator;
 import racing.view.InputView;
 import racing.view.OutputView;
 
@@ -17,11 +18,11 @@ public class Controller {
         this.outputView = outputView;
     }
 
-    public void startGame() {
+    public void startGame(RandomNumberGenerator randomNumberGenerator) {
         Cars cars = new Cars(inputView.readNames());
         TryCount tryCount = new TryCount(inputView.readTryCount());
 
-        Race race = new Race(cars, tryCount);
+        Race race = new Race(cars, tryCount, randomNumberGenerator);
         List<String> result = race.proceed();
 
         outputView.printResult(result);
