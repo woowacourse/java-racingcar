@@ -1,6 +1,5 @@
 package view;
 
-import java.util.List;
 import java.util.StringJoiner;
 import model.Car;
 import model.Race;
@@ -25,12 +24,13 @@ public class OutputView {
         System.out.println(roundResult);
     }
 
-    public void showWinners(Race race) {
-        List<String> winners = race.selectWinners();
-        StringJoiner result = new StringJoiner(", ", "", "가 최종 우승했습니다.");
-        for (String winner : winners) {
-            result.add(winner);
-        }
-        System.out.println(result);
+    public void printWinners(Race race) {
+        System.out.println(generateWinnerString(race));
+    }
+
+    private StringJoiner generateWinnerString(Race race) {
+        StringJoiner winners = new StringJoiner(", ", "", "가 최종 우승했습니다.");
+        race.selectWinners().forEach(winners::add);
+        return winners;
     }
 }
