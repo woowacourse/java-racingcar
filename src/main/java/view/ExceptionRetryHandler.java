@@ -1,5 +1,6 @@
 package view;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ExceptionRetryHandler {
@@ -7,13 +8,21 @@ public class ExceptionRetryHandler {
 
     private ExceptionRetryHandler() {}
 
-    public static <R> R retryUntilValid(Supplier<R> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException exception) {
-                System.out.println(ERROR_PREFIX + exception.getMessage());
-            }
+    public static <R> R handle(Supplier<R> supplier) {
+        Optional<R> result = Optional.empty();
+        while (result.isEmpty()) {
+            result = retry(supplier);
+        }
+
+        return result.get();
+    }
+
+    private static <R> Optional<R> retry(Supplier<R> supplier) {
+        try {
+            return Optional.of(supplier.get());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(ERROR_PREFIX + exception.getMessage());
+            return Optional.empty();
         }
     }
 }
