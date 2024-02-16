@@ -9,13 +9,11 @@ public class InputView {
 
     public String inputCarName() {
         System.out.println(MESSAGE_PROMPT_CAR_NAMES);
-
         return scanner.nextLine();
     }
 
     public String inputTryCount() {
         System.out.println(MESSAGE_PROMPT_TRY_COUNT);
-
         return scanner.nextLine();
     }
 }
