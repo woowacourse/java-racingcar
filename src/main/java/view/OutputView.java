@@ -1,7 +1,7 @@
 package view;
 
-import dto.CarStatus;
-import dto.TurnStatus;
+import dto.CarReponse;
+import dto.CarsReponse;
 import dto.WinnersResponse;
 import java.util.List;
 import view.Printer.Printer;
@@ -17,14 +17,10 @@ public class OutputView {
         printer.printLine("실행 결과");
     }
 
-//
-//    public void showStatus(TurnsStatus result) {
-//        result.getGameResult().forEach(this::showResult);
-//    }
-public void showTurnResult(TurnStatus turnStatus) {
-        for (CarStatus carStatus : turnStatus.getCarStatuses()) {
-            String mark = "-".repeat(carStatus.getDistance());
-            printer.printLine("%s : %s", carStatus.getName(), mark);
+public void showTurnResult(CarsReponse carsReponse) {
+        for (CarReponse carReponse : carsReponse.getCarsReponses()) {
+            String mark = "-".repeat(carReponse.getDistance());
+            printer.printLine("%s : %s", carReponse.getName(), mark);
         }
         printer.printEmptyLine();
     }

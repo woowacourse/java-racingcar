@@ -3,17 +3,17 @@ package dto;
 import domain.Car;
 import java.util.Objects;
 
-public class CarStatus {
+public class CarReponse {
     private final String name;
     private final int distance;
 
-    public CarStatus(Car car) {
+    public CarReponse(Car car) {
         this.name = car.getName().getName();
         this.distance = car.getDistance().getDistance();
     }
 
-    public static CarStatus of(Car car) {
-        return new CarStatus(car);
+    public static CarReponse of(Car car) {
+        return new CarReponse(car);
     }
 
     @Override
@@ -24,8 +24,8 @@ public class CarStatus {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CarStatus carStatus = (CarStatus) o;
-        return distance == carStatus.distance && Objects.equals(name, carStatus.name);
+        CarReponse carReponse = (CarReponse) o;
+        return distance == carReponse.distance && Objects.equals(name, carReponse.name);
     }
 
     @Override

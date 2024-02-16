@@ -9,7 +9,7 @@ import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
 import domain.Winners;
 import dto.CarNameRequest;
-import dto.TurnStatus;
+import dto.CarsReponse;
 import dto.WinnersResponse;
 import java.util.function.Supplier;
 import view.InputView;
@@ -51,7 +51,7 @@ public class RacingGameController {
     public void play(RacingGame racingGame, Cars cars) {
         while (racingGame.canRun()) {
             racingGame.playTurn(cars);
-            outputView.showTurnResult(TurnStatus.from(cars));
+            outputView.showTurnResult(CarsReponse.from(cars));
         }
     }
 
