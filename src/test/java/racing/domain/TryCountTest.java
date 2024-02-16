@@ -1,7 +1,7 @@
 package racing.domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ class TryCountTest {
     @Test
     @DisplayName("정상적으로 TryCount를 생성합니다.")
     void createTryCount() {
-        assertDoesNotThrow(() -> new TryCount(5));
+        assertThatCode(() -> new TryCount(5)).doesNotThrowAnyException();
     }
 
     @ParameterizedTest

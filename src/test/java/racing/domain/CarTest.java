@@ -1,8 +1,8 @@
 package racing.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ class CarTest {
     @Test
     @DisplayName("정상적인 자동차 객체 생성")
     void createCar() {
-        assertDoesNotThrow(() -> new Car("pobi"));
+        assertThatCode(() -> new Car("pobi")).doesNotThrowAnyException();
     }
 
     @Test
@@ -32,13 +32,13 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {4, 9})
     @DisplayName("랜덤값이 4이상이면 자동차를 전진합니다")
+    @ValueSource(ints = {4, 9})
     void moveForward(int randomNumber) {
         Car car = new Car("pobi");
         car.moveByNumber(randomNumber);
         String[] split = car.toString().split(" : ");
         int position = split[1].length();
-        assertEquals(1, position);
+        assertThat(position).isEqualTo(1);
     }
 }
