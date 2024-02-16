@@ -45,7 +45,7 @@ class InputViewTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "100"})
-    @DisplayName("시도한 범위가 올바른 범위라면, 정수로 변환한다")
+    @DisplayName("시도한 범위가 올바른 범위라면, 양의 정수로 변환한다")
     void tryCountConvertTest(String input) {
         // given
         InputView view = setupInputStream(input);
