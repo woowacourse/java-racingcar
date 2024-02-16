@@ -47,9 +47,7 @@ public class Race {
     public void start() {
         for (Car car : cars) {
             int randomNumber = new Random().nextInt(10);
-            if (randomNumber >= 4) {
-                car.move();
-            }
+            car.move(randomNumber);
         }
     }
 
