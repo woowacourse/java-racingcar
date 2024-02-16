@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Cars;
-import service.JudgeService;
 import service.RacingCarService;
 import util.Exceptions;
 import view.InputView;
@@ -15,13 +14,11 @@ public class RacingCarController {
     private final InputView inputView;
     private final OutputView outputView;
     private final RacingCarService racingCarService;
-    private final JudgeService judgeService;
 
-    public RacingCarController(RacingCarService racingCarService, InputView inputView, OutputView outputView, JudgeService judgeService) {
+    public RacingCarController(RacingCarService racingCarService, InputView inputView, OutputView outputView) {
         this.racingCarService = racingCarService;
         this.inputView = inputView;
         this.outputView = outputView;
-        this.judgeService = judgeService;
     }
 
     public void run() {
@@ -66,7 +63,7 @@ public class RacingCarController {
     }
 
     private void printWinners(Cars cars) {
-        List<String> winners = judgeService.findWinners(cars);
+        List<String> winners = cars.findWinners();
         outputView.printWinners(winners);
     }
 

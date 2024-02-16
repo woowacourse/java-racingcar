@@ -29,6 +29,23 @@ public class Cars {
         return cars;
     }
 
+    public List<String> findWinners() {
+        List<Car> winners = cars.stream()
+                .sorted(Comparator.comparing(Car::getForward).reversed())
+                .takeWhile(car -> car.getForward() == getMaxForward())
+                .toList();
+
+        return getWinnerNames(winners);
+    }
+
+    private List<String> getWinnerNames(List<Car> winners) {
+        List<String> winnerNames = new ArrayList<>();
+
+        winners.forEach(winner -> winnerNames.add(winner.getName()));
+
+        return winnerNames;
+    }
+
     public int getMaxForward() {
         return cars.stream()
                 .max(Comparator.comparing(Car::getForward))
