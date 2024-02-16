@@ -1,22 +1,38 @@
 package domain;
 
-import static domain.ExceptionMessages.DUPLICATE_CAR_NAME_EXCEPTION;
-import static domain.ExceptionMessages.TRY_COUNT_NUMBER_FORMAT_EXCEPTION;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RacingCars {
+
+    public static final String DUPLICATE_CAR_NAME_EXCEPTION = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
+    public static final String TRY_COUNT_NUMBER_FORMAT_EXCEPTION = "[ERROR] 시도 횟수는 숫자여야 합니다.";
+
     private final List<Car> racingCars;
 
     public RacingCars(List<Car> racingCars) {
         Set<Car> distinctCars = new HashSet<>(racingCars);
         if (racingCars.size() != distinctCars.size()) {
-            throw new IllegalArgumentException(DUPLICATE_CAR_NAME_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME_EXCEPTION);
         }
         this.racingCars = racingCars;
+    }
+
+    private static void validateCounts(String counts) {
+        try {
+            Integer.parseInt(counts);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(TRY_COUNT_NUMBER_FORMAT_EXCEPTION);
+        }
+    }
+
+    private static String generateResult(Car car) {
+        String distance = "-";
+        return car.getCarName()
+                + " : "
+                + distance.repeat(car.getDistance());
     }
 
     public String startRounds(String counts) {
@@ -31,25 +47,10 @@ public class RacingCars {
         return roundResult.toString();
     }
 
-    private static void validateCounts(String counts) {
-        try {
-            Integer.parseInt(counts);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(TRY_COUNT_NUMBER_FORMAT_EXCEPTION.getMessage());
-        }
-    }
-
     private String getRoundResult() {
         return racingCars.stream()
                 .map(RacingCars::generateResult)
                 .collect(Collectors.joining("\n"));
-    }
-
-    private static String generateResult(Car car) {
-        String distance = "-";
-        return car.getCarName()
-                + " : "
-                + distance.repeat(car.getDistance());
     }
 
     public String getWinners() {
