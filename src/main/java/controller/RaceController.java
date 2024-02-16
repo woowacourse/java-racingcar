@@ -1,32 +1,30 @@
 package controller;
 
-import static view.OutputView.showRaceResult;
-import static view.OutputView.showRoundResult;
-import static view.OutputView.showWinners;
-
 import model.Race;
+import view.OutputView;
 
 public class RaceController {
-
     private final InputController inputController;
+    private final OutputView outputView;
 
     public RaceController() {
         this.inputController = new InputController();
+        this.outputView = new OutputView();
     }
 
     public void startRace() {
-        Race race = inputController.makeRace();
-        int tryCount = inputController.makeTryCount();
+        Race race = inputController.getRace();
+        int tryCount = inputController.getTryCount();
 
-        showRaceResult();
-        proceedRound(tryCount, race);
-        showWinners(race);
+        outputView.printResultMessage();
+        proceedRound(race, tryCount);
+        outputView.printWinners(race);
     }
 
-    private static void proceedRound(int tryCount, Race race) {
+    private void proceedRound(Race race, int tryCount) {
         for (int round = 0; round < tryCount; round++) {
-            race.oneGame();
-            showRoundResult(race);
+            race.start();
+            outputView.printRoundResult(race);
         }
     }
 }
