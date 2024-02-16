@@ -31,9 +31,8 @@ public class Cars {
 
     public int getMaxForward() {
         return cars.stream()
-                .sorted(Comparator.comparing(Car::getForward).reversed())
-                .toList()
-                .get(0)
+                .max(Comparator.comparing(Car::getForward))
+                .orElseThrow()
                 .getForward();
     }
 
