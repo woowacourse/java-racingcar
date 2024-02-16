@@ -1,7 +1,6 @@
 package service;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static service.Service.getWinnerNames;
 
 import domain.Car;
 import java.util.ArrayList;
