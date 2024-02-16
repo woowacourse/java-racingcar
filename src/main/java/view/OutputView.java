@@ -20,8 +20,7 @@ public class OutputView {
   }
 
   public void printWinner(List<Car> cars) {
-    System.out.printf(
-            (Information.WINNER.getMessage()) + "%n",
-        String.join(", ", cars.stream().map(Car::getName).toList()));
+    String winnersName = String.join(", ", cars.stream().map(Car::getName).toList());
+    System.out.printf((Information.WINNER.getMessage()) + "%n", winnersName);
   }
 }
