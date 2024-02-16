@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class RoundTest {
 
-    @DisplayName("시도 횟수 입력 값을 검증한다.")
+    @DisplayName("시도 횟수 입력 값이 자연수가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = {"+4", "ss", "", "   ", "-1", "3.2", "0"})
