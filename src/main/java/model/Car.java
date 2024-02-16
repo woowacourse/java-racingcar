@@ -1,6 +1,7 @@
 package model;
 
 public class Car implements Comparable<Car> {
+    public static final int MOVE_THRESHOLD = 4;
     private final Name name;
     private int distance;
 
@@ -10,7 +11,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= MOVE_THRESHOLD) {
             distance++;
         }
     }
