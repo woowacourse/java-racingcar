@@ -22,13 +22,13 @@ public class RacingCarController {
     }
 
     private RacingCars readRacingCars() {
-        RacingCarNames racingCarNames = readRacingCarNames();
-        return racingCarNames.createRacingCars();
+        RacingCarFactory racingCarFactory = readRacingCarNames();
+        return new RacingCars(racingCarFactory);
     }
 
-    private RacingCarNames readRacingCarNames() {
+    private RacingCarFactory readRacingCarNames() {
         String carNames = InputView.inputCarNames();
-        return new RacingCarNames(carNames);
+        return new RacingCarFactory(carNames);
     }
 
     private TryNumber readTryNumber() {

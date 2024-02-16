@@ -4,13 +4,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RacingCarNamesTest {
+class RacingCarFactoryTest {
     @DisplayName("레이싱카 이름이 5글자 이하인지 확인한다.")
     @Test
     public void testCarNameLength() {
         String carNameOverThan5Length = "racingcar";
 
-        Assertions.assertThatThrownBy(() -> new RacingCarNames(carNameOverThan5Length))
+        Assertions.assertThatThrownBy(() -> new RacingCarFactory(carNameOverThan5Length))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 5글자 이하만 가능합니다.");
     }
@@ -20,7 +20,7 @@ class RacingCarNamesTest {
     public void testCarNameDuplication() {
         String duplicatedNames = "rac,rac,bito";
 
-        Assertions.assertThatThrownBy(() -> new RacingCarNames(duplicatedNames))
+        Assertions.assertThatThrownBy(() -> new RacingCarFactory(duplicatedNames))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 이름이 존재합니다.");
     }

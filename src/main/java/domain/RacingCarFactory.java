@@ -1,22 +1,19 @@
 package domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class RacingCarNames {
-    private List<String> names;
+public class RacingCarFactory {
+    private final List<String> names;
 
-    public RacingCarNames(String names) {
+    public RacingCarFactory(String names) {
         List<String> splitNames = splitCarNames(names);
         validateDuplication(splitNames);
         validateNamesLength(splitNames);
         this.names = splitNames;
     }
 
-    public RacingCars createRacingCars() {
-        return new RacingCars(names.stream()
-                .map(name -> new RacingCar(name))
-                .collect(Collectors.toList()));
+    public List<RacingCar> create() {
+        return names.stream().map(RacingCar::new).toList();
     }
 
     private void validateNamesLength(List<String> names) {

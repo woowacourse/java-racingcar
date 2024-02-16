@@ -9,13 +9,12 @@ import java.util.stream.Collectors;
 public class RacingCars {
     private List<RacingCar> racingCars;
 
-    public RacingCars(List<RacingCar> racingCars) {
-        this.racingCars = racingCars;
+    public RacingCars(RacingCarFactory racingCarFactory) {
+        this.racingCars = racingCarFactory.create();
     }
 
     public void tryRace() {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
-
         for (RacingCar racingCar : racingCars) {
             racingCar.race(numberGenerator.generateNumber());
             printResult(racingCar);
