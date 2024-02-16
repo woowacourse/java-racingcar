@@ -22,7 +22,7 @@ public class InputView {
     private String readLine() {
         String input = scanner.nextLine();
         if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력이 null이거나 비어 있습니다.");
         }
         return input;
     }

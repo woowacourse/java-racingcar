@@ -11,7 +11,7 @@ public class TryCount {
 
     private void validate(int tryCount) {
         if (tryCount <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("시도가 0 이하입니다.");
         }
     }
 

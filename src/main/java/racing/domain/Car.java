@@ -21,7 +21,7 @@ public class Car implements Comparable<Car> {
 
     private void validateSize(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름 길이가 초과되었습니다.");
         }
     }
 
