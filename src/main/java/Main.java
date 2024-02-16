@@ -5,6 +5,11 @@ import view.OutputView;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    new RacingCarController(new InputView(), new OutputView()).run();
+    try (InputView inputView = new InputView()) {
+      new RacingCarController(inputView, new OutputView()).run();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
   }
 }
