@@ -14,7 +14,6 @@ public class InputView {
     public List<String> inputCarNames() {
         System.out.println(CAR_NAME_MSG);
         String carNames = in.next();
-        InputValidator.carNamesValidator(carNames);
         return Arrays.asList(carNames.split(","));
     }
 

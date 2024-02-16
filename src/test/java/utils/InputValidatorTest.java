@@ -16,22 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
 
-    static Stream<Arguments> invalidCarName() {
-        return Stream.of(
-                Arguments.of(" ","차 이름이 공백이다.", CAR_NAME_IS_BLANK),
-                Arguments.of("","차 이름이 빈 문자열이다.", CAR_NAME_IS_BLANK),
-                Arguments.of("명오배키켬미","차 이름이 5자를 초과한다.", CAR_NAME_TOO_LONG)
-        );
-    }
 
-    @ParameterizedTest(name = "{1}")
-    @DisplayName("자동차 이름 예외 발생")
-    @MethodSource("invalidCarName")
-    public void invalidCarNameThrowException(String carName, String reason, String errorMessage) {
-        assertThatThrownBy(() -> InputValidator.carNamesValidator(carName))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(errorMessage);
-    }
 
     static Stream<Arguments> invalidTryNumber() {
         return Stream.of(

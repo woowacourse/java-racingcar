@@ -23,14 +23,14 @@ public class RacingCarController {
     }
 
     public void run() {
-        List<String> carNames = RetryOnException.retryInputOnIllegalArgumentException(inputView::inputCarNames);
-        Cars cars = new Cars(createCars(carNames));
+        Cars cars = RetryOnException.retryInputOnIllegalArgumentException(() -> new Cars(createCars()));
         int tryNumber = RetryOnException.retryInputOnIllegalArgumentException(inputView::inputTryNumber);
         race(tryNumber, cars);
         outputView.printWinner(Converter.convertCarToCarDtos(cars.findWinners()));
     }
 
-    private List<Car> createCars(List<String> carNames) {
+    private List<Car> createCars() {
+        List<String> carNames = inputView.inputCarNames();
         return carNames.stream()
                 .map(Car::new)
                 .toList();
