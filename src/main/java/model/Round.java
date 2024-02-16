@@ -1,8 +1,9 @@
 package model;
 
-import static util.ErrorMessage.*;
-
 import java.util.regex.Pattern;
+
+import static util.ErrorMessage.ERROR_ROUND_IS_NATURAL_NUMBER;
+import static util.ErrorMessage.ERROR_ROUND_IS_NULL;
 
 public class Round {
 

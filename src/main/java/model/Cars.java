@@ -2,7 +2,7 @@ package model;
 
 import static util.ErrorMessage.ERROR_DUPLICATED_NAME;
 import static util.ErrorMessage.ERROR_NAME_COUNT;
-import static util.Util.*;
+import static util.Util.generateRandomNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,6 @@ public class Cars {
                 .max()
                 .orElse(MIN_POSITION);
     }
-
 
     @Override
     public String toString() {
