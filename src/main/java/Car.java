@@ -26,7 +26,7 @@ public class Car {
 
     public void move(int randomNumber) {
         if (randomNumber >= MIN_NUMBER_FOR_MOVE) {
-            carLocation.increaseLocation();
+            carLocation.increase();
         }
     }
 
