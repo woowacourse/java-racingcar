@@ -25,7 +25,7 @@ public class RacingGameTest {
     void goTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars,1);
+        RacingGame racingGame = new RacingGame(cars, 1);
 
         List<Integer> expected = List.of(1, 1);
 
@@ -34,10 +34,7 @@ public class RacingGameTest {
         racingGame.move(rule);
 
         //then
-        Assertions.assertThat(cars.stream()
-                        .map(Car::getProgress)
-                        .toList())
-                .isEqualTo(expected);
+        Assertions.assertThat(cars.stream().map(Car::getProgress).toList()).isEqualTo(expected);
     }
 
     @DisplayName("자동차는 룰의 조건에 따라 전진하지 않기도 한다.")
@@ -45,7 +42,7 @@ public class RacingGameTest {
     void stopTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars,1);
+        RacingGame racingGame = new RacingGame(cars, 1);
 
         List<Integer> expected = List.of(0, 0);
 
@@ -54,10 +51,7 @@ public class RacingGameTest {
         racingGame.move(rule);
 
         //then
-        Assertions.assertThat(cars.stream()
-                        .map(Car::getProgress)
-                        .toList())
-                .isEqualTo(expected);
+        Assertions.assertThat(cars.stream().map(Car::getProgress).toList()).isEqualTo(expected);
     }
 
     @DisplayName("가장 먼거리를 이동한 우승자를 판별한다")
@@ -74,15 +68,12 @@ public class RacingGameTest {
 
         //then
         Cars actual = racingGame.findWinners();
-        Assertions.assertThat(actual.stream()
-                        .findFirst()
-                        .orElseThrow())
-                .isEqualTo(winner);
+        Assertions.assertThat(actual.stream().findFirst().orElseThrow()).isEqualTo(winner);
     }
 
     @DisplayName("시도 횟수는 1~300 벗어나면 예외를 발생한다.")
     @Test
-    void validateTest(){
+    void validateTest() {
         //given
         Cars cars = new Cars(List.of(new Car("자동차1")));
         int moveCount = 0;

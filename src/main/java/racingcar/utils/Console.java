@@ -10,7 +10,7 @@ public class Console {
     }
 
     private static Scanner getInstance() {
-        if (scanner == null){
+        if (scanner == null) {
             scanner = new Scanner(System.in);
         }
         return scanner;

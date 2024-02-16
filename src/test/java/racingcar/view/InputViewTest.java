@@ -46,5 +46,5 @@ class InputViewTest {
         int moveCount = inputView.askMoveCount();
         //then
         assertThat(moveCount).isEqualTo(5);
-     }
+    }
 }

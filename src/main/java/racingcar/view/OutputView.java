@@ -12,15 +12,13 @@ public class OutputView {
     }
 
     public void printProgress(Cars cars) {
-        cars.stream()
-                .forEach(this::printCarProgress);
+        cars.stream().forEach(this::printCarProgress);
         System.out.println();
     }
 
     public void printWinners(Cars cars) {
         StringJoiner stringJoiner = new StringJoiner(", ");
-        cars.stream()
-                .forEach(car -> stringJoiner.add(car.getName()));
+        cars.stream().forEach(car -> stringJoiner.add(car.getName()));
         System.out.printf("%s가 최종 우승했습니다.", stringJoiner);
     }
 

@@ -28,8 +28,8 @@ public class Cars {
         }
     }
 
-    private void validateSize(){
-        if(cars.isEmpty() || cars.size() > MAX_SIZE) {
+    private void validateSize() {
+        if (cars.isEmpty() || cars.size() > MAX_SIZE) {
             throw new IllegalArgumentException("자동차의 대수는 1~40 사이입니다.");
         }
     }

@@ -40,8 +40,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public boolean equals(Object other) {
-        return other instanceof Car car
-                && this.name.equals(car.name);
+        return other instanceof Car car && this.name.equals(car.name);
     }
 
     @Override

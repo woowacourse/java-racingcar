@@ -14,7 +14,7 @@ public class RacingGame {
     }
 
     private void validate(int moveCount) {
-        if (moveCount <= 0 || moveCount > MAX_MOVE_COUNT ) {
+        if (moveCount <= 0 || moveCount > MAX_MOVE_COUNT) {
             throw new IllegalArgumentException("시도할 회수는 1~300 사이입니다.");
         }
     }
@@ -24,19 +24,12 @@ public class RacingGame {
     }
 
     public void move(CarMoveRule carMoveRule) {
-        cars.stream()
-                .filter(car -> carMoveRule.isGo())
-                .forEach(Car::move);
+        cars.stream().filter(car -> carMoveRule.isGo()).forEach(Car::move);
     }
 
     public Cars findWinners() {
-        int maxProgress = cars.stream()
-                .map(Car::getProgress)
-                .reduce(Integer::max)
-                .orElse(0);
+        int maxProgress = cars.stream().map(Car::getProgress).reduce(Integer::max).orElse(0);
 
-        return new Cars(cars.stream()
-                .filter(car -> car.getProgress() == maxProgress)
-                .toList());
+        return new Cars(cars.stream().filter(car -> car.getProgress() == maxProgress).toList());
     }
 }
