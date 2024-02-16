@@ -24,4 +24,8 @@ public class OutputView {
     public void printWinner(List<Car> winners) {
         System.out.println(messageResolver.resolveWinnerMessage(winners));
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
