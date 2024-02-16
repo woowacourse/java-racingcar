@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 class CarTest {
 
-    Engine poweredOnEngine = new Engine((startInclusive, endInclusive) -> 9);
-    Engine poweredOffEngine = new Engine((startInclusive, endInclusive) -> 0);
+    Engine poweredOnEngine = new Engine(() -> 9);
+    Engine poweredOffEngine = new Engine(() -> 0);
 
     @Test
     @DisplayName("움직이는 엔진의 경우, 올바르게 앞으로 전진한다.")

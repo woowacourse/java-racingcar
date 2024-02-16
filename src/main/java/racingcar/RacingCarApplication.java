@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.random.NumberGenerator;
-import racingcar.random.RandomNumberGenerator;
+import racingcar.random.RacingCarNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.reader.ConsoleReader;
@@ -13,7 +13,7 @@ public class RacingCarApplication {
         Reader reader = new ConsoleReader(System.in);
         InputView inputView = new InputView(reader);
         OutputView outputView = new OutputView();
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        NumberGenerator numberGenerator = new RacingCarNumberGenerator();
         CarController controller = new CarController(inputView, outputView, numberGenerator);
         controller.run();
 
