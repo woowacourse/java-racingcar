@@ -1,6 +1,7 @@
 package model;
 
 public class Name {
+
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
@@ -12,7 +13,8 @@ public class Name {
 
     private void verifyNameLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름은 1자 이상 5자 이하여야 합니다.");
+            throw new IllegalArgumentException("이름은 " + MIN_NAME_LENGTH + "자 이상 "
+                    + MAX_NAME_LENGTH + "자 이하여야 합니다.");
         }
     }
 
