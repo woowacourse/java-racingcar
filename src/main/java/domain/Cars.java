@@ -1,8 +1,8 @@
 package domain;
 
-import java.util.*;
+import util.Exceptions;
 
-import static util.Exceptions.DUPLICATED_NAME_EXCEPTION;
+import java.util.*;
 
 public class Cars {
 
@@ -15,7 +15,7 @@ public class Cars {
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != names.stream().distinct().toList().size()) {
-            throw new IllegalArgumentException(DUPLICATED_NAME_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(Exceptions.DUPLICATED_NAME_EXCEPTION.getMessage());
         }
     }
 
