@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 public class Cars {
 
+    private static final int MIN_SIZE = 1;
     private static final int MAX_SIZE = 40;
 
     private final List<Car> cars;
@@ -28,9 +29,11 @@ public class Cars {
         }
     }
 
-    private void validateSize(){
-        if(cars.isEmpty() || cars.size() > MAX_SIZE) {
-            throw new IllegalArgumentException("자동차의 대수는 1~40 사이입니다.");
+    private void validateSize() {
+        if (cars.isEmpty() || cars.size() > MAX_SIZE) {
+            throw new IllegalArgumentException(
+                    "자동차의 대수는 %d~%d 사이입니다.".formatted(MIN_SIZE, MAX_SIZE)
+            );
         }
     }
 

@@ -2,6 +2,7 @@ package racingcar.model;
 
 public class RacingGame {
 
+    private static final int MIN_MOVE_COUNT = 1;
     private static final int MAX_MOVE_COUNT = 300;
 
     private final Cars cars;
@@ -14,16 +15,22 @@ public class RacingGame {
     }
 
     private void validate(int moveCount) {
-        if (moveCount <= 0 || moveCount > MAX_MOVE_COUNT ) {
-            throw new IllegalArgumentException("시도할 회수는 1~300 사이입니다.");
+        if (moveCount < MIN_MOVE_COUNT || moveCount > MAX_MOVE_COUNT) {
+            throw new IllegalArgumentException(
+                    "시도할 회수는 %d~%d 사이입니다.".formatted(MIN_MOVE_COUNT, MAX_MOVE_COUNT)
+            );
         }
     }
 
-    public boolean isGameOver() {
-        return moveCount-- <= 0;
+    public void decreaseMoveCount() {
+        moveCount--;
     }
 
-    public void move(CarMoveRule carMoveRule) {
+    public boolean isGameOver() {
+        return moveCount < MIN_MOVE_COUNT;
+    }
+
+    public void moveCars(CarMoveRule carMoveRule) {
         cars.stream()
                 .filter(car -> carMoveRule.isGo())
                 .forEach(Car::move);
@@ -34,7 +41,6 @@ public class RacingGame {
                 .map(Car::getProgress)
                 .reduce(Integer::max)
                 .orElse(0);
-
         return new Cars(cars.stream()
                 .filter(car -> car.getProgress() == maxProgress)
                 .toList());

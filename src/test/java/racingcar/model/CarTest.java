@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
@@ -17,26 +19,10 @@ class CarTest {
         assertThat(car.getProgress()).isEqualTo(1);
     }
 
-    @DisplayName("이름이 5글자를 초과할 경우 예외를 발생한다.")
-    @Test
-    void exceededCarNameTest() {
-        String name = "메르세데스벤츠";
-        assertThatThrownBy(() -> new Car(name))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("이름에 빈 문자열이 입력될 경우 예외를 발생한다.")
-    @Test
-    void emptyCarNameTest() {
-        String name = "";
-        assertThatThrownBy(() -> new Car(name))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("이름에 공백이 입력될 경우 예외를 발생한다.")
-    @Test
-    void blankCarNameTest() {
-        String name = " ";
+    @DisplayName("이름이 공백이거나 1~5 글자 범위를 벗어날 경우 예외를 발생한다.")
+    @ValueSource(strings = {"메르세데스벤츠", "", " "})
+    @ParameterizedTest
+    void exceededCarNameTest(String name) {
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class);
     }

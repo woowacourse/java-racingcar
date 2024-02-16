@@ -5,6 +5,8 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class RacingGameTest {
 
@@ -25,13 +27,13 @@ public class RacingGameTest {
     void goTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars,1);
+        RacingGame racingGame = new RacingGame(cars, 1);
 
         List<Integer> expected = List.of(1, 1);
 
         //when
         CarMoveRule rule = () -> true;
-        racingGame.move(rule);
+        racingGame.moveCars(rule);
 
         //then
         Assertions.assertThat(cars.stream()
@@ -45,13 +47,13 @@ public class RacingGameTest {
     void stopTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars,1);
+        RacingGame racingGame = new RacingGame(cars, 1);
 
         List<Integer> expected = List.of(0, 0);
 
         //when
         CarMoveRule rule = () -> false;
-        racingGame.move(rule);
+        racingGame.moveCars(rule);
 
         //then
         Assertions.assertThat(cars.stream()
@@ -80,9 +82,10 @@ public class RacingGameTest {
                 .isEqualTo(winner);
     }
 
-    @DisplayName("시도 횟수는 1~300 벗어나면 예외를 발생한다.")
-    @Test
-    void validateTest(){
+    @DisplayName("시도 횟수가 1~300 범위를 벗어나면 예외를 발생한다.")
+    @ValueSource(ints = {-1, 0, 301})
+    @ParameterizedTest
+    void validateTest() {
         //given
         Cars cars = new Cars(List.of(new Car("자동차1")));
         int moveCount = 0;
