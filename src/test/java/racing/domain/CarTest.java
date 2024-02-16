@@ -39,4 +39,13 @@ class CarTest {
         car.moveByNumber(randomNumber);
         assertThat(car.getPosition()).isEqualTo(1);
     }
+
+    @ParameterizedTest
+    @DisplayName("랜덤값이 3이하면 자동차 멈춤")
+    @ValueSource(ints = {0, 3})
+    void doesNotMoveForward(int randomNumber) {
+        Car car = new Car("pobi");
+        car.moveByNumber(randomNumber);
+        assertThat(car.getPosition()).isEqualTo(0);
+    }
 }
