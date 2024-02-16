@@ -70,11 +70,10 @@ public class Cars {
                 .orElse(MIN_POSITION);
     }
 
-    @Override
-    public String toString() {
+    public String showAllCarTrace() {
         StringBuilder allTrace = new StringBuilder();
         for (Car car : cars) {
-            allTrace.append(car).append(NEW_LINE);
+            allTrace.append(car.showTrace()).append(NEW_LINE);
         }
         return allTrace.toString();
     }

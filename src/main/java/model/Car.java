@@ -43,8 +43,7 @@ public class Car {
         return name;
     }
 
-    @Override
-    public String toString() {
+    public String showTrace() {
         StringBuilder trace = new StringBuilder();
         trace.append(name).append(NAME_DELIMITER);
         for (int i = 0; i < position; i++) {
