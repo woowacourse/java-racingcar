@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import racingcar.generator.MovingStub;
+import racingcar.generator.RandomNumberGenerator;
 
 class CarsTest {
 
@@ -27,17 +28,15 @@ class CarsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("자동차별 현재 위치 정보를 반환한다.")
-    @ParameterizedTest
-    @CsvSource(value = {"5,1", "3,0"})
-    void getCarStatus(int givenNumber, int expected) {
+    @DisplayName("등록된 자동차에게 전진 명령을 내린다.")
+    @Test
+    void makeCarsMove() {
         //given
-        String carName = "a";
-        List<String> names = List.of(carName, "b", "c");
+        List<String> names = List.of("a", "b", "c");
         List<Car> givenCars = names.stream()
                 .map(Car::new)
                 .toList();
-        Cars cars = new Cars(givenCars, new MovingStub(List.of(givenNumber, 3, 3)));
+        Cars cars = new Cars(givenCars, new RandomNumberGenerator());
 
         //when
         RoundResult roundResult = cars.makeCarsMove();
