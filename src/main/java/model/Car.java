@@ -23,6 +23,14 @@ public class Car {
         return this.position == position;
     }
 
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -37,13 +45,5 @@ public class Car {
     @Override
     public int hashCode() {
         return this.name.hashCode();
-    }
-
-    public String getName() {
-        return name.getName();
-    }
-
-    public int getPosition() {
-        return this.position;
     }
 }
