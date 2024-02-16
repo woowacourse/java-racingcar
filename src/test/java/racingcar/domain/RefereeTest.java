@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class RefereeTest {
 
     @Test
-    @DisplayName("단독 우승자 판독 테스트")
+    @DisplayName("가장 멀리 이동한 자동차가 1대라면 단독 우승자를 가려낸다.")
     void decideSingleWinner() {
         // given
         Car car1 = new Car("pobi");
@@ -32,7 +32,7 @@ class RefereeTest {
     }
 
     @Test
-    @DisplayName("공동 우승자 판독 테스트")
+    @DisplayName("가장 멀리 이동한 자동차가 여러 대라면 공동 우승자를 가려낸다.")
     void decideJointWinners() {
         // given
         Car car1 = new Car("pobi");
