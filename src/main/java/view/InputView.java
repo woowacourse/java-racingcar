@@ -3,7 +3,6 @@ package view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import utils.ErrorMessage;
 
 public class InputView {
 
@@ -20,27 +19,8 @@ public class InputView {
     public int inputTryNumber() {
         System.out.println(TRY_NUMBER_MSG);
         String tryNumber = in.nextLine();
-        validatePositiveNumber(tryNumber);
+        InputNumberValidator.validatePositiveNumber(tryNumber);
         return Integer.parseInt(tryNumber);
     }
 
-
-    private void validatePositiveNumber(String number) {
-        int validateNumber = validateNumber(number);
-        validatePositive(validateNumber);
-    }
-
-    private int validateNumber(String number) {
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);
-        }
-    }
-
-    private void validatePositive(int number) {
-        if (number < 0) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_NUMBER);
-        }
-    }
 }
