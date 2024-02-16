@@ -2,19 +2,19 @@ package domain;
 
 public class Car {
 
-    private final String carName;
+    private final CarName carName;
     private Integer position;
     private final PowerGenerator powerGenerator;
 
-    private Car(String carName, int position) {
-        validate(carName);
+    private Car(CarName carName, int position) {
         this.carName = carName;
         this.position = position;
         this.powerGenerator = new PowerGenerator();
     }
 
     public static Car of(String name, int position) {
-        return new Car(name, position);
+        CarName carName = CarName.from(name);
+        return new Car(carName, position);
     }
 
     public Integer getPosition() {
@@ -22,7 +22,7 @@ public class Car {
     }
 
     public String getCarName() {
-        return this.carName;
+        return this.carName.getCarName();
     }
 
     public void tryMove() {
@@ -33,15 +33,5 @@ public class Car {
 
     private void move() {
         position++;
-    }
-
-    private void validate(String carName) {
-        validateCarNameLength(carName);
-    }
-
-    private void validateCarNameLength(String carName) {
-        if (carName.length() > 5) {
-            throw new IllegalArgumentException();
-        }
     }
 }
