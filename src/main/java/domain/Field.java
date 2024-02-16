@@ -26,7 +26,7 @@ public class Field {
     private void runSingleAttempt(List<Car> cars) {
         for (Car car : cars) {
             int randomNumber = numberGenerator.getNumber();
-            car.execute(randomNumber);
+            car.move(randomNumber);
         }
     }
 

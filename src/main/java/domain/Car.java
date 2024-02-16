@@ -22,14 +22,10 @@ public class Car {
         return name.length() < 1 || name.length() > 5;
     }
 
-    public void execute(int number) {
+    public void move(int number) {
         if (number >= 4) {
-            this.move();
+            position++;
         }
-    }
-
-    private void move() {
-        position++;
     }
 
     public boolean isSamePosition(int position) {

@@ -11,10 +11,10 @@ public class CarFactoryTest {
     @Test
     @DisplayName("자동차 이름이 정상적으로 생성되는가")
     void cars_generation_test() {
-        String carNames = "mangcho,weve,pobi,neo";
+        String carNames = "mang,weve,pobi,neo";
 
         CarFactory carFactory = new CarFactory(carNames);
-        List<Car> expected = List.of(new Car("mangcho"), new Car("weve"), new Car("pobi"),
+        List<Car> expected = List.of(new Car("mang"), new Car("weve"), new Car("pobi"),
                 new Car("neo"));
 
         assertThat(carFactory.getAllCars()).containsExactlyElementsOf(expected);
@@ -23,12 +23,12 @@ public class CarFactoryTest {
     @Test
     @DisplayName("우승자가 정상적으로 반환되는가")
     void get_winners_test() {
-        String carNames = "mangcho,weve,pobi,neo";
+        String carNames = "mang,weve,pobi,neo";
         CarFactory carFactory = new CarFactory(carNames);
 
         List<Car> cars = carFactory.getAllCars();
         Car winner = cars.get(0);
-        winner.execute(9);
+        winner.move(9);
 
         assertThat(carFactory.getWinners()).containsExactly(winner);
     }
