@@ -25,7 +25,7 @@ class CarsTest {
 
     @Test
     @DisplayName("가장 먼 전진 거리를 가진 자동차가 우승")
-    void findFurthestCars() {
+    void findFurthestCar() {
         Car winner = new Car("honux", 3);
         List<String> carNames = List.of("pobi", "crong", winner.getName());
         List<Integer> positions = List.of(1, 2, winner.getPosition());
@@ -35,5 +35,17 @@ class CarsTest {
 
         assertThat(furthestCars).hasSize(1)
                 .extracting("name").containsExactly(winner.getName());
+    }
+
+    @Test
+    @DisplayName("가장 먼 전진 거리를 가진 자동차가 여러 대면 모두 우승")
+    void findFurthestCars() {
+        List<String> carNames = List.of("pobi", "crong", "honux");
+        List<Integer> positions = List.of(1, 2, 2);
+        Cars cars = new Cars(carNames, positions);
+
+        List<Car> furthestCars = cars.findFurthestCars();
+
+        assertThat(furthestCars).hasSize(2);
     }
 }
