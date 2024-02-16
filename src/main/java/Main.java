@@ -2,9 +2,9 @@ import controller.RaceController;
 import ui.InputView;
 import ui.OutputView;
 import util.InputDelimiterValidator;
+import util.InputIntegerValidator;
 import util.NumberGenerator;
 import util.RandomNumberGenerator;
-import util.InputIntegerValidator;
 
 public class Main {
     public static void main(String[] args) {
