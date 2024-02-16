@@ -6,6 +6,9 @@ import java.util.List;
 public class Cars {
     private List<Car> cars;
 
+    private static final int MIN_CAR_SIZE = 2;
+    private static final int MAX_CAR_SIZE = 5;
+
     public Cars(List<Car> cars) {
         validate(cars);
         this.cars = cars;
@@ -29,7 +32,7 @@ public class Cars {
     }
 
     private void validateCarSize(List<Car> cars) {
-        if (cars.size() <= 1) {
+        if (cars.size() < MIN_CAR_SIZE || cars.size() > MAX_CAR_SIZE) {
             throw new IllegalArgumentException();
         }
     }

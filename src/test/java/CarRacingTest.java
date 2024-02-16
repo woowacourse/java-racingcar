@@ -48,7 +48,7 @@ class CarRacingTest {
     }
 
     @ParameterizedTest
-    @MethodSource("lottoNumbersAndRank")
+    @MethodSource("createCarsFailTestArguments")
     @DisplayName("자동차 생성 실패 테스트")
     void createCarsFail(List<String> carNames) {
         assertThatThrownBy(() -> {
@@ -56,7 +56,7 @@ class CarRacingTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    static Stream<Arguments> lottoNumbersAndRank() {
+    static Stream<Arguments> createCarsFailTestArguments() {
         return Stream.of(
                 Arguments.arguments(List.of("")),
                 Arguments.arguments(List.of("pobi")),
