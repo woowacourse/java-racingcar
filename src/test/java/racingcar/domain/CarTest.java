@@ -23,6 +23,7 @@ class CarTest {
     }
 
     @Nested
+    @DisplayName("자동차 이름")
     class ValidateCarName {
         @ParameterizedTest
         @NullAndEmptySource
@@ -53,6 +54,7 @@ class CarTest {
     }
 
     @Nested
+    @DisplayName("자동차 전진")
     class CarMovement {
         private Car car;
 
