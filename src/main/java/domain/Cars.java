@@ -23,13 +23,13 @@ public class Cars {
                 .distinct()
                 .count();
         if (actualCarAmount != distinctCarAmount) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차의 이름은 중복될 수 없습니다.");
         }
     }
 
     private void validateCarSize(List<Car> cars) {
         if (cars.size() <= 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 경주를 위해선 2대 이상의 자동차가 필요합니다.");
         }
     }
 

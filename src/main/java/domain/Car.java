@@ -22,13 +22,13 @@ public class Car {
 
     private void validateName(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차의 이름은 null이나 빈 문자열이 될 수 없습니다.");
         }
     }
 
     private void validateNameLength(String name) {
         if (name.length() < 1 || name.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차의 이름의 길이는 1 이상 5 이하여야 합니다.");
         }
     }
 
