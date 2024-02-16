@@ -8,24 +8,26 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 import model.NumberGenerator;
 
+
 class RaceTest {
 
     private ByteArrayOutputStream outputStreamCaptor;
-    private TestNumberGenerator testNumberGenerator = new TestNumberGenerator();
-    private Race race = new Race(testNumberGenerator);
+    private TestNumberGenerator testNumberGenerator;
+    private Race race;
 
-    class TestNumberGenerator implements NumberGenerator {
-        private int number;
+    static class TestNumberGenerator implements NumberGenerator {
+
+        private final int number;
+
+        public TestNumberGenerator(int number) {
+            this.number = number;
+        }
+
         @Override
         public int generateNumber() {
             return this.number;
         }
-
-        public void setNumber(int number) {
-            this.number = number;
-        }
     }
-
 
     @Test
     void 차가_전진하지_않는_메인_로직_테스트() {
@@ -33,7 +35,8 @@ class RaceTest {
         System.setIn(new ByteArrayInputStream("mark,prin\n1".getBytes()));
         outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
-        testNumberGenerator.setNumber(1);
+
+        race = new Race(new TestNumberGenerator(1));
 
         // when
         race.start();
@@ -44,10 +47,6 @@ class RaceTest {
                 "mark : ",
                 "prin : ",
                 "mark, prin가 최종 우승했습니다."
-                );
+        );
     }
-
-
-
-
 }
