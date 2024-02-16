@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,11 +18,10 @@ class TotalResultTest {
         List<RoundResult> roundResults = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            LinkedHashMap<String, Integer> moveResult = new LinkedHashMap<>();
-            moveResult.put("a", 1);
-            moveResult.put("b", 2);
-            moveResult.put("c", 2 + i);
-
+            Map<CarName, Position> moveResult = new LinkedHashMap<>();
+            moveResult.put(new CarName("a"), new Position(1));
+            moveResult.put(new CarName("b"), new Position(2));
+            moveResult.put(new CarName("c"), new Position(2 + i));
             roundResults.add(new RoundResult(moveResult));
         }
 

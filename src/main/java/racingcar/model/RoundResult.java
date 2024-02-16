@@ -1,26 +1,35 @@
 package racingcar.model;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RoundResult {
 
-    private LinkedHashMap<String, Integer> result;
+    private final Map<CarName, Position> result;
 
-    public RoundResult(LinkedHashMap<String, Integer> result) {
+    public RoundResult(Map<CarName, Position> result) {
         this.result = result;
     }
 
-    public LinkedHashMap<String, Integer> getResult() {
+    public Map<CarName, Position> getResult() {
         return result;
     }
 
     public List<String> selectWinners() {
-        int maxPosition = Collections.max(result.values());
+        int maxPosition = getMaxPosition();
         return result.keySet()
                 .stream()
-                .filter(key -> result.get(key) == maxPosition)
+                .filter(key -> result.get(key).getPosition() == maxPosition)
+                .map(CarName::getName)
                 .toList();
+    }
+
+    private int getMaxPosition() {
+        List<Integer> positions = result.values()
+                .stream()
+                .map(Position::getPosition)
+                .toList();
+        return Collections.max(positions);
     }
 }

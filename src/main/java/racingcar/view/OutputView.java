@@ -1,7 +1,9 @@
 package racingcar.view;
 
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import racingcar.model.CarName;
+import racingcar.model.Position;
 import racingcar.model.RoundResult;
 import racingcar.model.TotalResult;
 
@@ -11,9 +13,11 @@ public class OutputView {
         System.out.println();
         System.out.println("실행 결과");
         for (RoundResult roundResult : totalResult.getTotalResult()) {
-            LinkedHashMap<String, Integer> result = roundResult.getResult();
-            for (String carName : result.keySet()) {
-                System.out.printf("%s : %s%n", carName, "-".repeat(result.get(carName)));
+            Map<CarName, Position> result = roundResult.getResult();
+            for (CarName carName : result.keySet()) {
+                String name = carName.getName();
+                int position = result.get(carName).getPosition();
+                System.out.printf("%s : %s%n", name, "-".repeat(position));
             }
             System.out.println();
         }

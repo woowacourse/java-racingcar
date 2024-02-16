@@ -3,10 +3,14 @@ package racingcar.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
 
@@ -26,24 +30,30 @@ class CarsTest {
     }
 
     @DisplayName("자동차별 현재 위치 정보를 반환한다.")
-    @Test
-    void getRoundResult() {
+    @ParameterizedTest
+    @MethodSource("carNameAndPosition")
+    void getRoundResult(CarName carName, Position position) {
         //given
-        String givenName = "daon";
-        int givenPosition = 1;
-
         List<Car> givenCars = List.of(
-                new Car(givenName, givenPosition),
+                new Car(carName.getName(), position.getPosition()),
                 new Car("ted", 2)
         );
         Cars cars = new Cars(givenCars);
 
         //when
         RoundResult roundResult = cars.getRoundResult();
-        LinkedHashMap<String, Integer> result = roundResult.getResult();
+        Map<CarName, Position> result = roundResult.getResult();
 
         //then
         assertThat(result).hasSize(givenCars.size());
-        assertThat(result.get(givenName)).isEqualTo(givenPosition);
+        assertThat(result.get(carName)).isEqualTo(position);
+    }
+
+    static Stream<Arguments> carNameAndPosition() {
+        return Stream.of(
+                Arguments.arguments(new CarName("daon"), new Position(1)),
+                Arguments.arguments(new CarName("ikjo"), new Position(5)),
+                Arguments.arguments(new CarName("lilly"), new Position(3))
+        );
     }
 }
