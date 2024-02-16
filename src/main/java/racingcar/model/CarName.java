@@ -5,6 +5,7 @@ import racingcar.message.ErrorMessage;
 public class CarName {
 
     private static final int MIN_LENGTH = 5;
+
     private final String name;
 
     public CarName(final String name) {

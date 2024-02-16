@@ -6,6 +6,7 @@ public class Car implements Comparable<Car> {
 
     private static final int MIN_NUMBER = 4;
     private static final int START_POSITION = 0;
+
     private final CarName name;
     private int position;
 
