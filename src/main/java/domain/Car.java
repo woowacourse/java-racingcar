@@ -23,7 +23,7 @@ public class Car {
 
     private void validateCarNameLength(String carName) {
         if (carName.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 이름의 길이는 5글자 이상이 될 수 없습니다");
         }
     }
 
