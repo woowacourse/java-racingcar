@@ -12,7 +12,7 @@ public class CarsTest {
     @Test
     void nameDuplicatedTest() {
         List<String> carNames = List.of("lemon","lemon","a","nyang");
-        assertThatThrownBy(() -> Cars.from(carNames))
+        assertThatThrownBy(() -> RacingGame.from(carNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -20,7 +20,7 @@ public class CarsTest {
     @Test
     void carNameCountTest() {
         List<String> carNames = List.of("lemon");
-        assertThatThrownBy(() -> Cars.from(carNames))
+        assertThatThrownBy(() -> RacingGame.from(carNames))
                 .isInstanceOf( IllegalArgumentException.class);
     }
 }
