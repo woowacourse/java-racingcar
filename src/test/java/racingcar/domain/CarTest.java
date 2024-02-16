@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -24,7 +23,6 @@ class CarTest {
         //then
         assertEquals(car.getName(), name);
         assertEquals(car.getForward(), defaultForward);
-
     }
 
     @DisplayName("적절하지 않은 이름은 예외가 발생한다.")
@@ -36,18 +34,46 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("")
-    public void printStatusTest() {
+    @DisplayName("랜덤값이 4 이상일 경우, 전진에 성공한다.")
+    public void testCarMove() {
         //given
+        final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
+            @Override
+            public boolean isMovable() {
+                return true;
+            }
+        };
+
         String name = "choco";
-        int defaultForward = 0;
-        int movedForward = 1;
+        int movementIncrease = 1;
 
         //when
         Car car = new Car(name);
-        car.move();
+        int movement = car.getForward();
+        car.move(carMoveStrategy);
 
         //then
-        assertThat(car.getForward()).isBetween(defaultForward, movedForward);
+        assertEquals(car.getForward(), movement + movementIncrease);
+    }
+
+    @Test
+    @DisplayName("랜덤값이 4 미만일 경우, 전진에 성공한다.")
+    public void testCarNotMove() {
+        //given
+        final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
+            @Override
+            public boolean isMovable() {
+                return false;
+            }
+        };
+        String name = "choco";
+
+        //when
+        Car car = new Car(name);
+        int movement = car.getForward();
+        car.move(carMoveStrategy);
+
+        //then
+        assertEquals(car.getForward(), movement);
     }
 }
