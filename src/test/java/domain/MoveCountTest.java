@@ -17,7 +17,8 @@ class MoveCountTest {
     @ValueSource(ints = {0, -1, -2, -333})
     void testCreateMoveCountWithInvalidValue(int moveCount) {
         assertThatThrownBy(() -> MoveCount.from(moveCount))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이동 횟수는 1이상의 정수로 입력해주세요");
     }
 
     @DisplayName("자동차 이동 횟수가 양의 정수일 경우 도메인이 생성된다.")

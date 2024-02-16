@@ -18,7 +18,8 @@ class CarTest {
     @ValueSource(strings = {"123456", "1234567", "9999999999999"})
     void testCreateCarWithInvalidLengthName(String carName) {
         assertThatThrownBy(() -> Car.from(carName))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 이름의 길이는 5글자 이상이 될 수 없습니다");
     }
 
     @DisplayName("이름이 5자가 넘어가지 않는 자동차는 생성 검증에 성공한다.")
