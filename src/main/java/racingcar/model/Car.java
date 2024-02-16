@@ -2,17 +2,19 @@ package racingcar.model;
 
 public class Car {
     private final String name;
+    private final NumberGenerator numberGenerator;
+    private final int MIN_MOVING_STANDARD = 4;
+    private final int RANDOM_NUMBER_BOUNDARY = 10;
     private int position;
-    private NumberGenerator numberGenerator;
 
     public Car(String name, NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
         this.name = name;
     }
 
-    private boolean canMove(){
-        int random = numberGenerator.generateNumber(10);
-        return random >= 4;
+    private boolean canMove() {
+        int random = numberGenerator.generateNumber(RANDOM_NUMBER_BOUNDARY);
+        return random >= MIN_MOVING_STANDARD;
     }
 
     public void move() {
@@ -21,22 +23,11 @@ public class Car {
         }
     }
 
-    public int comparePosition(int currentMaxPosition){
-        return Math.max(currentMaxPosition, position);
-    }
-
-    public boolean checkIsWinner(int finalMaxPosition){
-        return position == finalMaxPosition;
-    }
-
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     public int getPosition() {
         return position;
     }
-
-
-
 }
