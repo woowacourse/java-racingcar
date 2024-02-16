@@ -9,7 +9,7 @@ public class NumberGenerator {
     private NumberGenerator() {
     }
 
-    public static Integer generateRandomNumber() {
+    public static int generateRandomNumber() {
         return random.nextInt(RANDOM_NUMBER_UPPER_BOUND);
     }
 }
