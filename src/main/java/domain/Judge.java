@@ -1,4 +1,4 @@
-package service;
+package domain;
 
 import domain.Car;
 import domain.Cars;
@@ -6,10 +6,10 @@ import domain.Cars;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JudgeService {
+public class Judge {
 
     public List<String> findWinners(Cars cars) {
-        List<Car> winners =  cars.getCars().stream()
+        List<Car> winners = cars.getCars().stream()
                 .sorted(Car::compareTo)
                 .takeWhile(car -> car.getForward() == cars.getMaxForward())
                 .toList();
