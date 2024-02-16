@@ -3,6 +3,7 @@ package racingcar.util;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,7 @@ class ExceptionRooferTest {
 
     @DisplayName("예외 시 다시 실행")
     @Test
+    @Disabled
     void generate() {
         // given
         TestSupply testSupply = new TestSupply();

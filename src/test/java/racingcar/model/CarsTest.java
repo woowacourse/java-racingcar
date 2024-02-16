@@ -98,4 +98,16 @@ class CarsTest {
         // then
         Assertions.assertThat(originCar.getPosition()).isNotEqualTo(unmodifyCar.getPosition());
     }
+
+    @Test
+    @DisplayName("자동차를 오름차순으로 정렬")
+    void sort() {
+        //given
+        Cars cars = Cars.from("a,b,c");
+        int[] canGo = new int[]{5,3,3};
+        final int[] i = {0};
+        cars.go(() -> canGo[i[0]++]);
+        cars.sort();
+        System.out.println(cars);
+    }
 }
