@@ -8,17 +8,14 @@ import java.io.IOException;
 
 public class RaceManager {
     private final InputView inputView;
-    private final CarFactory carFactory;
     private final Field field;
-    private final NumberGenerator numberGenerator;
     private final int numberOfAttempts;
 
     public RaceManager(InputView inputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
-        this.carFactory = repeatUntilGetValidCarNames();
+        CarFactory carFactory = repeatUntilGetValidCarNames();
         this.numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
         this.field = new Field(carFactory, numberGenerator);
-        this.numberGenerator = numberGenerator;
     }
 
     private CarFactory repeatUntilGetValidCarNames() {
