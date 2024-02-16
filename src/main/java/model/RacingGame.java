@@ -8,26 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Cars {
+public class RacingGame {
 
     private static final int MIN_CAR_NAME_COUNT = 2;
     private static final int MIN_POSITION = 0;
+    private static final String NAME_DELIMITER = " : ";
+    private static final String TRACE = "-";
     private static final String NEW_LINE = "\n";
 
     private List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    private RacingGame(List<Car> cars) {
         this.cars = cars;
     }
 
-    public static Cars from(List<String> names) {
+    public static RacingGame from(List<String> names) {
         validate(names);
 
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
             cars.add(Car.from(name));
         }
-        return new Cars(cars);
+        return new RacingGame(cars);
     }
 
     private static void validate(List<String> names) {
@@ -73,7 +75,7 @@ public class Cars {
     public String showAllCarTrace() {
         StringBuilder allTrace = new StringBuilder();
         for (Car car : cars) {
-            allTrace.append(car.showTrace()).append(NEW_LINE);
+            allTrace.append(car.showTrace(NAME_DELIMITER, TRACE)).append(NEW_LINE);
         }
         return allTrace.toString();
     }
