@@ -25,7 +25,7 @@ class GameTest {
   void validateDuplicate() {
     assertThatThrownBy(() -> new Game(of("포비", "포비")))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining(Exception.DUPLICATE.toString());
+        .hasMessageContaining(Exception.DUPLICATE.getMessage());
   }
 
   @Test

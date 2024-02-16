@@ -19,7 +19,7 @@ public class Game {
     int originCount = carsName.size();
     int distinctCount = (int) carsName.stream().distinct().count();
     if (originCount != distinctCount) {
-      throw new IllegalArgumentException(Exception.DUPLICATE.toString());
+      throw new IllegalArgumentException(Exception.DUPLICATE.getMessage());
     }
   }
 

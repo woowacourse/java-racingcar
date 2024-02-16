@@ -12,7 +12,7 @@ public class TrialCount {
 
   private void validatePositive(int number) {
     if (number <= 0) {
-      throw new IllegalArgumentException(Exception.POSITIVE.toString());
+      throw new IllegalArgumentException(Exception.POSITIVE.getMessage());
     }
   }
 

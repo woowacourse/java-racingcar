@@ -16,7 +16,7 @@ class TrialCountTest {
   void validatePositive(int number) {
     assertThatThrownBy(() -> new TrialCount(number))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining(Exception.POSITIVE.toString());
+        .hasMessageContaining(Exception.POSITIVE.getMessage());
   }
 
   @Test

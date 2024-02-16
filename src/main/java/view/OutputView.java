@@ -9,7 +9,7 @@ public class OutputView {
   private static final String DELIMITER = " : ";
 
   public void printResultComment() {
-    System.out.println(System.lineSeparator() + Information.RESULT_COMMENT);
+    System.out.println(System.lineSeparator() + Information.RESULT_COMMENT.getMessage());
   }
 
   public void printResult(List<Car> cars) {
@@ -21,7 +21,7 @@ public class OutputView {
 
   public void printWinner(List<Car> cars) {
     System.out.printf(
-            (Information.WINNER.toString()) + "%n",
+            (Information.WINNER.getMessage()) + "%n",
         String.join(", ", cars.stream().map(Car::getName).toList()));
   }
 }

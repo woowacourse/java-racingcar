@@ -20,7 +20,7 @@ public class InputView implements AutoCloseable {
   }
 
   public List<String> inputCarsName() throws IOException {
-    System.out.println(Information.INPUT_CAR_NAMES);
+    System.out.println(Information.INPUT_CAR_NAMES.getMessage());
     String input = reader.readLine();
     validateNotNullAndBlank(input);
     return Arrays.stream(input.split(DELIMITER)).map(String::trim).toList();
@@ -28,12 +28,12 @@ public class InputView implements AutoCloseable {
 
   private void validateNotNullAndBlank(String input) {
     if (input == null || input.isBlank()) {
-      throw new IllegalArgumentException(Exception.INPUT_NULL_BLANK.toString());
+      throw new IllegalArgumentException(Exception.INPUT_NULL_BLANK.getMessage());
     }
   }
 
   public int inputTrialCount() throws IOException {
-    System.out.println(Information.INPUT_TRIAL_COUNT);
+    System.out.println(Information.INPUT_TRIAL_COUNT.getMessage());
     String input = reader.readLine();
     validateNumeric(input);
     return Integer.parseInt(input);
@@ -41,7 +41,7 @@ public class InputView implements AutoCloseable {
 
   private void validateNumeric(String input) {
     if (!NUMERIC_PATTERN.matcher(input).matches()) {
-      throw new IllegalArgumentException(Exception.INPUT_NUMERIC.toString());
+      throw new IllegalArgumentException(Exception.INPUT_NUMERIC.getMessage());
     }
   }
 

@@ -19,13 +19,13 @@ public class Car {
 
   private void validateNullAndEmpty(String name) {
     if (Objects.isNull(name) || name.isBlank()) {
-      throw new IllegalArgumentException(Exception.CAR_NAME_NULL_BLANK.toString());
+      throw new IllegalArgumentException(Exception.CAR_NAME_NULL_BLANK.getMessage());
     }
   }
 
   private void validateNameLength(String name) {
     if (name.length() > MAX_NAME_LENGTH) {
-      throw new IllegalArgumentException(Exception.CAR_NAME_LENGTH.toString());
+      throw new IllegalArgumentException(Exception.CAR_NAME_LENGTH.getMessage());
     }
   }
 
