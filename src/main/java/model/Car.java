@@ -2,6 +2,7 @@ package model;
 
 public class Car implements Comparable<Car> {
     public static final int MOVE_THRESHOLD = 4;
+
     private final Name name;
     private int distance;
 
