@@ -10,8 +10,8 @@ public class Car {
     private static final String NAME_DELIMITER = " : ";
     private static final String TRACE = "-";
 
+    private final String name;
     private int position;
-    private String name;
 
     private Car(String name) {
         this.position = INITIAL_POSITION;
