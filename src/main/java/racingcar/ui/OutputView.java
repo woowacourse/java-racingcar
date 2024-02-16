@@ -23,7 +23,7 @@ public class OutputView {
     }
 
     public static void printCarResult(final Car car) {
-        System.out.printf(CAR_RESULT_FORMAT, car.getName(), getRepeatedHyphen(car.getForward()));
+        System.out.printf(CAR_RESULT_FORMAT, car.getName(), getRepeatedHyphen(car.getDistance()));
     }
 
     private static String getRepeatedHyphen(final int distance) {

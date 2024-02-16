@@ -86,9 +86,9 @@ class VehiclesTest {
 
         //then
         assertAll(
-                () -> assertEquals(cars.get(0).getForward(), initialDistance),
-                () -> assertEquals(cars.get(1).getForward(), initialDistance),
-                () -> assertEquals(cars.get(2).getForward(), initialDistance)
+                () -> assertEquals(cars.get(0).getDistance(), initialDistance),
+                () -> assertEquals(cars.get(1).getDistance(), initialDistance),
+                () -> assertEquals(cars.get(2).getDistance(), initialDistance)
         );
     }
 
@@ -113,6 +113,6 @@ class VehiclesTest {
         IntStream.range(0, iteratorCounts).forEach(i -> vehicles.move(carMoveStrategy, power));
 
         //then
-        assertEquals(vehicles.getCars().get(0).getForward(), distanceResult);
+        assertEquals(vehicles.getCars().get(0).getDistance(), distanceResult);
     }
 }

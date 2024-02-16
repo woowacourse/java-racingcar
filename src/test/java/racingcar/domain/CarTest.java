@@ -15,14 +15,14 @@ class CarTest {
     public void createCarTest() {
         //given
         String name = "choco";
-        int defaultForward = 0;
+        int initialDistance = 0;
 
         //when
         Car car = new Car(name);
 
         //then
         assertEquals(car.getName(), name);
-        assertEquals(car.getForward(), defaultForward);
+        assertEquals(car.getDistance(), initialDistance);
     }
 
 
@@ -51,11 +51,11 @@ class CarTest {
 
         //when
         Car car = new Car(name);
-        int movement = car.getForward();
+        int movement = car.getDistance();
         car.move(carMoveStrategy, power);
 
         //then
-        assertEquals(car.getForward(), movement + movementIncrease);
+        assertEquals(car.getDistance(), movement + movementIncrease);
     }
 
     @Test
@@ -73,10 +73,10 @@ class CarTest {
 
         //when
         Car car = new Car(name);
-        int movement = car.getForward();
+        int movement = car.getDistance();
         car.move(carMoveStrategy, power);
 
         //then
-        assertEquals(car.getForward(), movement);
+        assertEquals(car.getDistance(), movement);
     }
 }
