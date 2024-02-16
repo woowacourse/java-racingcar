@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Game {
+  private final static int POWER_THRESHOLD = 4;
 
   private final List<Car> cars;
 
@@ -34,8 +35,8 @@ public class Game {
     return new ArrayList<>(cars);
   }
 
-  private void applyStatus(int randomNumber, Car car) {
-    if (MoveStatus.decide(randomNumber).equals(MoveStatus.FORWARD)) {
+  private void applyStatus(int power, Car car) {
+    if (power > POWER_THRESHOLD) {
       car.forward();
       return;
     }
