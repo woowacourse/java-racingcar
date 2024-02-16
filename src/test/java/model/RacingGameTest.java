@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import support.MovableNumberGenerator;
 import util.NumberGenerator;
 
-class CarsTest {
+class RacingGameTest {
     private final NumberGenerator movableNumberGenerator = new MovableNumberGenerator();
 
     @Test
@@ -23,7 +23,7 @@ class CarsTest {
         List<Car> cars = List.of(carPobi, carCrong, carHonux);
 
         // when & then
-        assertDoesNotThrow(() -> new Cars(cars));
+        assertDoesNotThrow(() -> new RacingGame(cars));
     }
 
     @Test
@@ -35,7 +35,7 @@ class CarsTest {
         List<Car> cars = List.of(carPobi1, carPobi2, carHonux);
 
         // when & then
-        assertThatThrownBy(() -> new Cars(cars))
+        assertThatThrownBy(() -> new RacingGame(cars))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,11 +45,11 @@ class CarsTest {
         Car winner = 자동차("prin");
         Car loser1 = 자동차("mark");
         Car loser2 = 자동차("pobi");
-        Cars cars = 자동차들(winner, loser1, loser2);
+        RacingGame racingGame = 자동차들(winner, loser1, loser2);
         winner.moveForward(movableNumberGenerator);
 
         // when
-        List<String> winners = cars.findWinners();
+        List<String> winners = racingGame.findWinners();
 
         // then
         assertThat(winners).hasSize(1)
@@ -62,12 +62,12 @@ class CarsTest {
         Car loser = 자동차("prin");
         Car winner1 = 자동차("mark");
         Car winner2 = 자동차("pobi");
-        Cars cars = 자동차들(loser, winner1, winner2);
+        RacingGame racingGame = 자동차들(loser, winner1, winner2);
         winner1.moveForward(movableNumberGenerator);
         winner2.moveForward(movableNumberGenerator);
 
         // when
-        List<String> winners = cars.findWinners();
+        List<String> winners = racingGame.findWinners();
 
         // then
         assertThat(winners).hasSize(2)

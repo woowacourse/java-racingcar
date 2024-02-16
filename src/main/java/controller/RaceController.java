@@ -6,7 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.List;
 import model.Car;
-import model.Cars;
+import model.RacingGame;
 import model.Name;
 import model.TryCount;
 import ui.InputView;
@@ -25,24 +25,24 @@ public class RaceController {
     }
 
     public void start() {
-        Cars cars = createCars();
+        RacingGame racingGame = createCars();
         TryCount tryCount = createTryCount();
         outputView.printResultHeader();
         while (tryCount.hasTryCount()) {
-            cars.moveCars(numberGenerator);
-            outputView.printCarNameAndPosition(cars);
+            racingGame.moveCars(numberGenerator);
+            outputView.printCarNameAndPosition(racingGame);
             tryCount.decreaseTryCount();
         }
-        List<String> winners = cars.findWinners();
+        List<String> winners = racingGame.findWinners();
         outputView.printWinners(winners);
     }
 
-    private Cars createCars() {
+    private RacingGame createCars() {
         String[] carNames = inputView.inputCarNames();
         return Arrays.stream(carNames)
                 .map(Name::new)
                 .map(Car::new)
-                .collect(collectingAndThen(toList(), Cars::new));
+                .collect(collectingAndThen(toList(), RacingGame::new));
     }
 
     private TryCount createTryCount() {

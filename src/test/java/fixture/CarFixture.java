@@ -6,7 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.List;
 import java.util.stream.IntStream;
 import model.Car;
-import model.Cars;
+import model.RacingGame;
 import model.Name;
 
 public class CarFixture {
@@ -18,13 +18,13 @@ public class CarFixture {
         return new Car(new Name(name));
     }
 
-    public static Cars 자동차들(int count) {
+    public static RacingGame 자동차들(int count) {
         return IntStream.range(0, count)
                 .mapToObj(i -> 자동차("car" + i))
-                .collect(collectingAndThen(toList(), Cars::new));
+                .collect(collectingAndThen(toList(), RacingGame::new));
     }
 
-    public static Cars 자동차들(Car... cars) {
-        return new Cars(List.of(cars));
+    public static RacingGame 자동차들(Car... cars) {
+        return new RacingGame(List.of(cars));
     }
 }

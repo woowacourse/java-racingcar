@@ -3,7 +3,7 @@ package ui;
 import static enums.Delimiter.COMMA;
 
 import java.util.List;
-import model.Cars;
+import model.RacingGame;
 
 public class OutputView {
     public void printResultHeader() {
@@ -11,11 +11,9 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printCarNameAndPosition(Cars cars) {
-        cars.getCars()
-                .forEach(car ->
-                        System.out.printf("%s : %s%n", car.getName(), "-".repeat(car.getPosition()))
-                );
+    public void printCarNameAndPosition(RacingGame racingGame) {
+        racingGame.getCars()
+                .forEach(car -> System.out.printf("%s : %s%n", car.getName(), "-".repeat(car.getPosition())));
         System.out.println();
     }
 

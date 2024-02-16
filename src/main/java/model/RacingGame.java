@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import util.NumberGenerator;
 
-public class Cars {
+public class RacingGame {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public RacingGame(List<Car> cars) {
         validateDuplicateCarNames(cars);
         this.cars = cars;
     }
