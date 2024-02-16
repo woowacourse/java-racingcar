@@ -5,16 +5,15 @@ import view.validation.DigitValidator;
 import view.validation.SplitValidator;
 
 public class InputView {
-    private static final String COMMA = ",";
 
     public String readCarNames() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        SplitValidator.validate(input, COMMA);
+        SplitValidator.validate(input);
         return input;
     }
 
-    public int readTryCount() {
+    public int readRap() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         DigitValidator.validateIsDigit(input);
