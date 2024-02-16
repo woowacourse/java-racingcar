@@ -3,7 +3,7 @@ package racingcar.domain;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;
-import racingcar.service.RandomNumberGenerator;
+import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
     private static final int MIN_CARS_SIZE = 2;
