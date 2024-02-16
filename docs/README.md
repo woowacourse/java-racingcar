@@ -29,13 +29,23 @@
 
 ## step1 피드백
 - [x] 파일 맨 끝에 new line 추가 -> intelliJ 설정 완료
-- [ ] RacingCarController 클래스의 Car, Round -> 불변 or 없애기
-- [ ] import 와일드카드 수정
-- [ ] Car 객체 final 처리
-- [ ] toString 메소드 안에 너무 많은 로직이 담겨 있음.
-- [ ] Car 객체 안에서 출력 규칙을 알아야 할까?
-- [ ] getter외의 메소드에 get+메서드명을 사용하지 않기
-- [ ] Round 객체에 의미없는 상수(ex: ZERO = 0) 지우기
-- [ ] 에러메세지 상수와 변수 사이에 공백 추가
-- [ ] 에러메세지를 상수화 해야할까?
-- [ ] Car 클래스 moveForward 메소드의 randomNumber 파라미터이름 수정(처음 보는 사람은 왜 randomNumber가 들어오는지 이해못한다.)
+- [x] RacingCarController 클래스의 RacingGame(과거 Cars), Round -> 불변 or 없애기
+  - 분리한 메소드들의 코드 길이가 짧아서 분리하지 않고 run 메소드에 합침
+  - final을 쓰지 않고 run 메서드 안에서 RacingGame와 Round를 선언함.
+  - 컨트롤러 필드에 final을 사용하면서 정적팩토리 메서드를 사용할 수 있는 방법이 없을까?
+- [x] import 와일드카드 수정
+- [x] Car 객체 final 처리
+- [x] toString 메소드 안에 너무 많은 로직이 담겨 있음.
+- [x] Car 객체 안에서 출력 규칙을 알아야 할까? 
+  - Cars를 RacingGame으로 이름 바꾼뒤 단순히 Car 객체를 모아둔 것이 아닌 게임을 진행한다는 의미를 담음.
+  - 그리고 showTrace의 파라미터로 이름 delimiter, traceSymbol을 받고, 그 값을 RacingGame의 showAllTrace에서 넘겨주는 방식으로 수정
+- [x] getter외의 메소드에 get+메서드명을 사용하지 않기
+- [x] Round 객체에 의미없는 상수(ex: ZERO = 0) 지우기
+- [x] 에러메세지 상수와 변수 사이에 공백 추가
+- [x] 에러메세지를 상수화 해야할까?
+    - 할 필요 없다. 에러메세지는 굳이 enum으로 같이 관리할 필요 없이 바로 throw로 에러 메세지를 던지는게 나을 것 같다.
+    - 에러메세지에 자주 사용되는 ex) `[ERROR]` 문자열은 상수화 해야할까?
+    - 에러메세지는 여러 클래스에서 사용되는데 그러면 클래스마다 상수화하는 방식으로 `[ERROR]`를 표현할까,
+    - 아니면 에러메세지 `[ERROR] 에러내용`을 그대로 작성하는게 좋을까?
+    - 일단 OutputView에 public으로 `ERROR_PREFIX = "[ERROR] "`상수화 한 뒤 다른 클래스에서 가져다 쓰는 방식으로 수정.
+- [x] Car 클래스 moveForward 메소드의 randomNumber 파라미터이름 수정(처음 보는 사람은 왜 randomNumber가 들어오는지 이해못한다.)
