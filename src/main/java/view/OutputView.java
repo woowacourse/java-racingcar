@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    private OutputView() {
+    }
+
     public static final String POSITION_SHAPE = "-";
 
     public static void printResultTitle() {

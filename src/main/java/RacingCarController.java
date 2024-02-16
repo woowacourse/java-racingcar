@@ -9,6 +9,9 @@ import view.OutputView;
 
 public class RacingCarController {
 
+    private RacingCarController() {
+    }
+
     public static void run() {
         Cars cars = inputCars();
         TrialCount trialCount = inputTrialCount();
