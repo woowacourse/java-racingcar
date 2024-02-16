@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static util.Exceptions.DUPLICATED_NAME_EXCEPTION;
 
@@ -11,7 +10,7 @@ public class Cars {
 
     public Cars(List<String> names) {
         validateDuplicatedNames(names);
-        cars = convertNamesToCars(names);
+        cars = createCarsByNames(names);
     }
 
     private void validateDuplicatedNames(List<String> names) {
@@ -20,7 +19,7 @@ public class Cars {
         }
     }
 
-    private List<Car> convertNamesToCars(List<String> names) {
+    private List<Car> createCarsByNames(List<String> names) {
         List<Car> cars = new ArrayList<>();
 
         for (String name : names) {
