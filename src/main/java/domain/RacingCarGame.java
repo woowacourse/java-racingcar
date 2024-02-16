@@ -1,5 +1,7 @@
 package domain;
 
+import dto.Winners;
+
 public class RacingCarGame {
     private Cars cars;
     private final Count count;
@@ -17,5 +19,9 @@ public class RacingCarGame {
         for (int i = 0; i < count.getValue(); i++) {
             cars.move();
         }
+    }
+
+    public Winners getWinners() {
+        return cars.judge();
     }
 }

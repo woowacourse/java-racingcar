@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import utils.RandomNumberGenerator;
 
 public class Cars {
     private List<Car> cars;
@@ -46,7 +47,8 @@ public class Cars {
 
     public void move() {
         for (Car car : cars) {
-            car.move();
+            int number = RandomNumberGenerator.generate();
+            car.move(number);
         }
     }
 

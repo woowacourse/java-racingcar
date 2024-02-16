@@ -1,10 +1,9 @@
 package domain;
 
 import java.util.Optional;
-import utils.RandomNumberGenerator;
 
 public class Car {
-    private static final int MOVE_LOWER_BOUND = 4;
+    private static final int POWER_LOWER_BOUND = 4;
     private CarName carName;
     private int position;
 
@@ -13,9 +12,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void move() {
-        int randomNumber = RandomNumberGenerator.generate();
-        if (randomNumber >= MOVE_LOWER_BOUND) {
+    public void move(int power) {
+        if (power >= POWER_LOWER_BOUND) {
             position++;
         }
     }

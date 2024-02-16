@@ -38,6 +38,7 @@ public class InputView {
     public static int enterCount() {
         System.out.println(COUNT_REQUEST_MESSAGE);
         String rawCount = scanner.nextLine();
+        System.out.println();
         return validateCount(rawCount);
     }
 

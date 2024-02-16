@@ -15,6 +15,7 @@ public class GameController {
         RacingCarGame racingCarGame = new RacingCarGame(cars, count);
         racingCarGame.race();
 
+        // TODO : racingCarGame.getWinners() 가 아닌 cars.judge()를 해도 같지 않나? 고민해보기
         OutputView.printWinners(racingCarGame.getWinners());
     }
 
