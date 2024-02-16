@@ -34,7 +34,7 @@ public class RacingCarService {
         }
     }
 
-    public Cars getCars(String rawNames){
+    public Cars makeCars(String rawNames){
         List<String> names = List.of(rawNames.split(","));
 
         return new Cars(names);

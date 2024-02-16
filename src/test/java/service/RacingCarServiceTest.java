@@ -20,7 +20,7 @@ class RacingCarServiceTest {
     @DisplayName("Cars 생성 테스트")
     @Test
     void getCarsTest() {
-        assertThat(racingCarService.getCars("가,나,다").getCars()).hasSize(3);
+        assertThat(racingCarService.makeCars("가,나,다").getCars()).hasSize(3);
     }
 
     @DisplayName("반복 횟수 입력 예 처리 테스트")

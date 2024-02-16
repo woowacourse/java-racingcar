@@ -25,7 +25,7 @@ public class RacingCarController {
     }
 
     public void run() {
-        Cars cars = getCars();
+        Cars cars = makeCars();
         int count = getCount();
 
         outputView.printMovementTitle();
@@ -38,12 +38,12 @@ public class RacingCarController {
         printWinners(cars);
     }
 
-    private Cars getCars() {
+    private Cars makeCars() {
         String carsName = inputView.inputCarsName();
 
         validateIsNull(carsName);
 
-        return racingCarService.getCars(carsName);
+        return racingCarService.makeCars(carsName);
     }
 
     private int getCount() {
