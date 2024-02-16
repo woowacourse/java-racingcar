@@ -53,6 +53,7 @@ public class RacingGameController {
                     .map(carName -> Car.of(carName, 0))
                     .toList());
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
             return prepareCars();
         }
     }
@@ -62,6 +63,7 @@ public class RacingGameController {
             Integer count = StringParser.parseToInt(inputView.requestMoveCount());
             return MoveCount.from(count);
         } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
             return prepareMoveCount();
         }
     }
