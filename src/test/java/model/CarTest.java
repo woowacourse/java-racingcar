@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import model.intgenerator.IntGenerator;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class CarTest {
     IntGenerator intGenerator;
+
     @BeforeEach
     void setUp() {
         intGenerator = () -> 1;
@@ -18,8 +20,7 @@ public class CarTest {
 
     @Test
     void 자동차_이름으로_자동차를_생성한다() {
-        Car car = new Car("pobi", intGenerator);
-        assertThat(car.getClass()).isEqualTo(Car.class);
+        assertDoesNotThrow(() -> new Car("pobi", intGenerator));
     }
 
     @Test

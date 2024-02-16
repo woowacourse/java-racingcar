@@ -2,6 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,7 @@ import org.junit.jupiter.api.Test;
 public class CarsTest {
     @Test
     void 자동차_이름_리스트로_자동차_리스트를_생성한다() {
-        Cars cars = Cars.fromNames(List.of("pobi", "dora"));
-        assertThat(cars.getClass()).isEqualTo(Cars.class);
+        assertDoesNotThrow(() -> Cars.fromNames(List.of("pobi", "dora")));
     }
 
     @Test
