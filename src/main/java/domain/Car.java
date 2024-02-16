@@ -1,21 +1,20 @@
 package domain;
 
 public class Car implements Comparable<Car> {
+    private static final String NAME_CONVENTION = "^[a-zA-Z가-힣]{1,5}$";
     private static final int STANDARD = 4;
     private final String name;
     private int location = 0;
 
     public Car(String name) {
-        Validator.validateCarName(name);
+        validateCarName(name);
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getResult() {
-        return String.format(FORMAT, name, "-".repeat(location));
+    private void validateCarName(String name) {
+        if (!name.matches(NAME_CONVENTION)) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하의 영어, 한글만 가능합니다.");
+        }
     }
 
     public void move(int randomNumber) {
@@ -24,6 +23,9 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public String getName() {
+        return name;
+    }
 
     public int getLocation() {
         return location;
