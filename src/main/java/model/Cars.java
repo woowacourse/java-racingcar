@@ -48,7 +48,7 @@ public class Cars {
 
     public List<CarState> captureCarStates() {
         return cars.stream()
-                .map(car -> car.captureCarState())
+                .map(Car::captureCarState)
                 .toList();
     }
 
