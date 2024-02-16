@@ -19,7 +19,7 @@ public class CarName {
 
     private void validateLength(String carName) {
         if (carName.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 자동차 이름의 길이는 5를 넘을 수 없습니다.");
         }
     }
 

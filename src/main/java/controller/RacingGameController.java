@@ -21,10 +21,10 @@ public class RacingGameController {
     public void run() {
 
         Cars cars = prepareCars();
-
         MoveCount moveCount = prepareMoveCount();
 
         outputView.printResultPrefix();
+
         executeRace(cars, moveCount);
 
         findWinners(cars);
@@ -51,6 +51,7 @@ public class RacingGameController {
                     .map(carName -> Car.of(carName, 0))
                     .toList());
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return prepareCars();
         }
     }
@@ -60,6 +61,7 @@ public class RacingGameController {
             Integer count = StringParser.parseToInt(inputView.requestMoveCount());
             return MoveCount.from(count);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return prepareMoveCount();
         }
     }

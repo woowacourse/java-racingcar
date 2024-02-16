@@ -18,7 +18,7 @@ public class StringParser {
         try {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 형식의 입력값입니다.");
         }
     }
 }
