@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Car implements Comparable<Car> {
+    private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_-]");
     private static final int MAX_NAME_LENGTH = 5;
     private static final int CAR_MOVE_THRESHOLD = 4;
     private static final String CAR_POSITION_SYMBOL = "-";
@@ -32,9 +33,7 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateNameStyle(final String name) {
-        final String regex = "[^ㄱ-ㅎ가-힣a-zA-Z0-9_-]";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(name);
+        Matcher matcher = NAME_PATTERN.matcher(name);
 
         if (matcher.find()) {
             throw new IllegalArgumentException(INVALID_CAR_NAME.getMessage());
