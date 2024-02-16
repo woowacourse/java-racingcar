@@ -21,6 +21,21 @@ public class RacingController {
         this.outputView = outputView;
     }
 
+    public void start() {
+        final List<String> carNames = readCarNames();
+        final Cars cars = new Cars(carNames);
+        final int tryCount = readTryCount();
+
+        outputView.printResultMsg();
+        for(int i = 0 ; i < tryCount; i++) {
+            moveCars(cars);
+        }
+
+        final List<Car> winners = cars.determineWinner();
+        outputView.printWinners(winners);
+        inputView.closeScanner();
+    }
+
     private List<String> readCarNames() {
         try {
             String carNames = inputView.readCarNames();
@@ -49,20 +64,5 @@ public class RacingController {
     private void moveCars(final Cars cars) {
         cars.moveAllCars(new RandomNumberImpl());
         outputView.printCarPosition(cars);
-    }
-
-    public void start() {
-        final List<String> carNames = readCarNames();
-        final Cars cars = new Cars(carNames);
-        final int tryCount = readTryCount();
-
-        outputView.printResultMsg();
-        for(int i = 0 ; i < tryCount; i++) {
-            moveCars(cars);
-        }
-
-        final List<Car> winners = cars.determineWinner();
-        outputView.printWinners(winners);
-        inputView.closeScanner();
     }
 }
