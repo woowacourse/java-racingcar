@@ -12,14 +12,18 @@ public class OutputView {
         System.out.println("실행 결과");
         for (RoundResult roundResult : totalResult.getTotalResult()) {
             Map<String, Integer> result = roundResult.getResult();
-            for (String carName : result.keySet()) {
-                System.out.printf("%s : %s%n", carName, "-".repeat(result.get(carName)));
-            }
+            printRoundResult(result);
             System.out.println();
         }
     }
 
     public void printWinnerInfo(List<String> winners) {
         System.out.printf("최종 우승자: %s%n", String.join(", ", winners));
+    }
+
+    private void printRoundResult(Map<String, Integer> roundResult) {
+        for (String carName : roundResult.keySet()) {
+            System.out.printf("%s : %s%n", carName, "-".repeat(roundResult.get(carName)));
+        }
     }
 }
