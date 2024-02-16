@@ -19,3 +19,28 @@
 - [X] 차 위치 1 증가: Car.move
 - [X] 랜덤넘버에 따른 차들의 위치 증가: Cars.moveCars
 
+## 1차 리뷰 반영 사항
+
+### 명확한 의미를 담은 네이밍 사용
+
+Java Naming Conventions가이드를 참고하여 메서드 이름 수정
+
+#### model
+
+- [X] Car의 nameUnderFive 네임 변경
+- [X] Cars의 isValidInput 내 regex
+- [X] Cars의 moveCars 내 매직 넘버(4)
+- [X] Trycount untilZero 네임 변경
+
+#### view
+
+- [X] BufferedReader br 메서드 변경 (constant)
+
+### 메서드 분리
+
+- [ ] model/Trycount validateInput 메서드 분리
+
+### 테스트 코드와 프로덕션 코드 분리
+
+- [ ] model/Trycount getValue 접근제어자 변경
+

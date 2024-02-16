@@ -11,11 +11,13 @@ public class Car {
     }
 
     private void validate(String name) {
-        nameUnderFive(name);
+        validateCarNameLength(name);
     }
 
-    private static void nameUnderFive(String name) {
-        if (name.length() > 5) {
+    private void validateCarNameLength(String name) {
+        final int MAX_LENGTH = 5;
+
+        if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

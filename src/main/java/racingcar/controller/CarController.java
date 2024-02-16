@@ -18,7 +18,7 @@ public class CarController {
         tryCount = new TryCount(receivedCount);
 
         OutputView.printResultMessage();
-        while(tryCount.untilZero()){
+        while(tryCount.checkTryable()){
             cars.moveCars();
             OutputView.printCarStatus(cars);
             tryCount.consume();

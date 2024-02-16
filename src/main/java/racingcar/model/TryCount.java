@@ -27,7 +27,7 @@ public class TryCount {
         value--;
     }
 
-    public boolean untilZero() {
+    public boolean checkTryable() {
         return value > 0;
     }
 
