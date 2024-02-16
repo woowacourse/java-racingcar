@@ -10,7 +10,7 @@ import java.util.List;
 public class JudgeService {
 
     public List<String> findWinners(Cars cars) {
-        List<Car> winners =  cars.getCars().stream()
+        List<Car> winners = cars.getCars().stream()
                 .sorted(Comparator.comparing(Car::getForward).reversed())
                 .takeWhile(car -> car.getForward() == cars.getMaxForward())
                 .toList();
