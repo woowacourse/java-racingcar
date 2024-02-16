@@ -17,11 +17,10 @@ class CarsTest {
     @Test
     void 중복된_자동차가_존재하지_않으면_예외가_발생하지_않는다() {
         // given
-
-        Car car1 = 자동차("pobi");
-        Car car2 = 자동차("crong");
-        Car car3 = 자동차("honux");
-        List<Car> cars = List.of(car1, car2, car3);
+        Car carPobi = 자동차("pobi");
+        Car carCrong = 자동차("crong");
+        Car carHonux = 자동차("honux");
+        List<Car> cars = List.of(carPobi, carCrong, carHonux);
 
         // when & then
         assertDoesNotThrow(() -> new Cars(cars));
@@ -30,10 +29,10 @@ class CarsTest {
     @Test
     void 중복된_자동차가_존재하면_예외가_발생한다() {
         // given
-        Car car1 = 자동차("pobi");
-        Car car2 = 자동차("pobi");
-        Car car3 = 자동차("honux");
-        List<Car> cars = List.of(car1, car2, car3);
+        Car carPobi1 = 자동차("pobi");
+        Car carPobi2 = 자동차("pobi");
+        Car carHonux = 자동차("honux");
+        List<Car> cars = List.of(carPobi1, carPobi2, carHonux);
 
         // when & then
         assertThatThrownBy(() -> new Cars(cars))
@@ -43,35 +42,35 @@ class CarsTest {
     @Test
     void 단독_우승자를_찾는다() {
         // given
-        Car car1 = 자동차("prin");
-        Car car2 = 자동차("mark");
-        Car car3 = 자동차("pobi");
-        Cars cars = 자동차들(car1, car2, car3);
-        car1.moveForward(movableNumberGenerator);
+        Car winner = 자동차("prin");
+        Car loser1 = 자동차("mark");
+        Car loser2 = 자동차("pobi");
+        Cars cars = 자동차들(winner, loser1, loser2);
+        winner.moveForward(movableNumberGenerator);
 
         // when
         List<String> winners = cars.findWinners();
 
         // then
         assertThat(winners).hasSize(1)
-                .contains(car1.getName());
+                .contains(winner.getName());
     }
 
     @Test
     void 공동_우승자를_찾는다() {
         // given
-        Car car1 = 자동차("prin");
-        Car car2 = 자동차("mark");
-        Car car3 = 자동차("pobi");
-        Cars cars = 자동차들(car1, car2, car3);
-        car2.moveForward(movableNumberGenerator);
-        car3.moveForward(movableNumberGenerator);
+        Car loser = 자동차("prin");
+        Car winner1 = 자동차("mark");
+        Car winner2 = 자동차("pobi");
+        Cars cars = 자동차들(loser, winner1, winner2);
+        winner1.moveForward(movableNumberGenerator);
+        winner2.moveForward(movableNumberGenerator);
 
         // when
         List<String> winners = cars.findWinners();
 
         // then
         assertThat(winners).hasSize(2)
-                .contains(car2.getName(), car3.getName());
+                .contains(winner1.getName(), winner2.getName());
     }
 }

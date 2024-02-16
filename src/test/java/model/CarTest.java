@@ -3,11 +3,9 @@ package model;
 import static fixture.CarFixture.자동차;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import support.ImmovableNumberGenerator;
 import support.MovableNumberGenerator;
 import util.NumberGenerator;
 
@@ -33,8 +31,9 @@ class CarTest {
         Car car = 자동차();
 
         // when
-        IntStream.range(0, moveCount)
-                .forEach(i -> car.moveForward(movableNumberGenerator));
+        for (int i = 0; i < moveCount; i++) {
+            car.moveForward(movableNumberGenerator);
+        }
 
         // then
         assertThat(car.getPosition()).isEqualTo(moveCount);
@@ -43,20 +42,20 @@ class CarTest {
     @Test
     void 자동차_이름이_같으면_같은_자동차이다() {
         // given
-        Car car1 = 자동차("prin");
-        Car car2 = 자동차("prin");
+        Car carPrin1 = 자동차("prin");
+        Car carPrin2 = 자동차("prin");
 
         // when & then
-        assertThat(car1).isEqualTo(car2);
+        assertThat(carPrin1).isEqualTo(carPrin2);
     }
 
     @Test
     void 자동차_이름이_다르면_다른_자동차이다() {
         // given
-        Car car1 = 자동차("prin");
-        Car car2 = 자동차("mark");
+        Car carPrin = 자동차("prin");
+        Car carMark = 자동차("mark");
 
         // when & then
-        assertThat(car1).isNotEqualTo(car2);
+        assertThat(carPrin).isNotEqualTo(carMark);
     }
 }
