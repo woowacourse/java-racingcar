@@ -15,20 +15,11 @@ public class RacingGame {
         this.randomMovementGenerator = randomMovementGenerator;
     }
 
-    public static RacingGame fromCount(int count) {
-        return new RacingGame(Count.from(count), Cars.fromEmpty(),
-                new RandomMovementGenerator(new RandomNumberGenerator()));
-    }
-
-    public static RacingGame fromEmpty() {
-        return new RacingGame(Count.init(), Cars.fromEmpty(), new RandomMovementGenerator(new RandomNumberGenerator()));
-    }
-
     public static RacingGame of(Count count, Cars cars, MovementGenerator randomMovementGenerator) {
         return new RacingGame(count, cars, randomMovementGenerator);
     }
 
-    public GameResult getGameResult() {
+    public GameResult getGameResult() { // TODO: 게임 실행 메서드와 결과를 반환하는 매서드로 나누고 싶음
         List<TurnResult> gameResult = new ArrayList<>();
         int currentCount = 1;
 

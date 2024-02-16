@@ -9,12 +9,12 @@ public class Distance implements Comparable<Distance> {
         this.distance = distance;
     }
 
-    public static Distance init() {
-        return new Distance(0);
-    }
-
     public static Distance from(int distance) {
         return new Distance(distance);
+    }
+
+    public static Distance init() {
+        return new Distance(0);
     }
 
     public void increase() {
