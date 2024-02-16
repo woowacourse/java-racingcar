@@ -33,6 +33,10 @@ public class RacingCarController {
 
     private TryNumber readTryNumber() {
         String input = InputView.inputMoveCount();
-        return new TryNumber(Integer.parseInt(input));
+        try {
+            return new TryNumber(Integer.parseInt(input));
+        } catch(NumberFormatException numberFormatException) {
+            throw new NumberFormatException("시도횟수는 숫자만 입력가능합니다.");
+        }
     }
 }
