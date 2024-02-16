@@ -8,8 +8,7 @@ import view.View;
 
 import java.util.List;
 
-public class Controller {
-
+public class RaceController {
     private final View view = new View();
     private final Judge judge = new Judge();
 
