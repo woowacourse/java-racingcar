@@ -6,6 +6,7 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -13,6 +14,7 @@ dependencies {
     testImplementation platform('org.assertj:assertj-bom:3.25.1')
     testImplementation('org.junit.jupiter:junit-jupiter')
     testImplementation('org.assertj:assertj-core')
+    implementation 'com.github.woowacourse-projects:mission-utils:1.1.0'
 }
 
 java {
