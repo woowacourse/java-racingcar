@@ -1,14 +1,15 @@
 package racingcar.domain;
 
-import static racingcar.config.RacingCarConfig.MAX_CARS_SIZE;
-import static racingcar.config.RacingCarConfig.MAX_RANDOM_NUMBER;
-import static racingcar.config.RacingCarConfig.MIN_CARS_SIZE;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;
 import racingcar.service.RandomNumberGenerator;
 
 public class Cars {
+    private static final int MIN_CARS_SIZE = 2;
+    private static final int MAX_CARS_SIZE = 10;
+    private static final int MAX_RANDOM_NUMBER = 9;
+
     private final List<Car> cars;
 
     public Cars(final List<Car> cars) {
@@ -27,13 +28,13 @@ public class Cars {
     }
 
     private void validateSize(final List<Car> cars) {
-        if (cars.size() < MIN_CARS_SIZE.getValue() || cars.size() > MAX_CARS_SIZE.getValue()) {
+        if (cars.size() < MIN_CARS_SIZE || cars.size() > MAX_CARS_SIZE) {
             throw new IllegalArgumentException(INVALID_CARS_SIZE.getMessage());
         }
     }
 
     public void move() {
-        cars.forEach(car -> car.move(RandomNumberGenerator.generate(MAX_RANDOM_NUMBER.getValue())));
+        cars.forEach(car -> car.move(RandomNumberGenerator.generate(MAX_RANDOM_NUMBER)));
     }
 
     public List<String> result() {

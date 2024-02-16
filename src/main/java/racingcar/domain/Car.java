@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import static racingcar.config.RacingCarConfig.CAR_MOVE_THRESHOLD;
-import static racingcar.config.RacingCarConfig.MAX_NAME_LENGTH;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.Objects;
@@ -9,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Car implements Comparable<Car> {
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int CAR_MOVE_THRESHOLD = 4;
     private static final String CAR_POSITION_SYMBOL = "-";
 
     private final String name;
@@ -42,13 +42,13 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateNameLength(final String name) {
-        if (name.trim().length() > MAX_NAME_LENGTH.getValue()) {
+        if (name.trim().length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(INVALID_CAR_NAME_SIZE.getMessage());
         }
     }
 
     public void move(final int threshold) {
-        if (threshold >= CAR_MOVE_THRESHOLD.getValue()) {
+        if (threshold >= CAR_MOVE_THRESHOLD) {
             this.position++;
         }
     }
