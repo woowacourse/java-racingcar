@@ -2,7 +2,6 @@ package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,18 +14,17 @@ class TotalResultTest {
     @Test
     void gerWinner() {
         //given
-        List<RoundResult> roundResults = new ArrayList<>();
+        TotalResult totalResult = new TotalResult();
 
         for (int i = 0; i < 3; i++) {
             Map<CarName, Position> moveResult = new LinkedHashMap<>();
             moveResult.put(new CarName("a"), new Position(1));
             moveResult.put(new CarName("b"), new Position(2));
             moveResult.put(new CarName("c"), new Position(2 + i));
-            roundResults.add(new RoundResult(moveResult));
+            totalResult.addResult(new RoundResult(moveResult));
         }
 
         //when
-        TotalResult totalResult = new TotalResult(roundResults);
         List<String> winner = totalResult.getWinner();
 
         //then

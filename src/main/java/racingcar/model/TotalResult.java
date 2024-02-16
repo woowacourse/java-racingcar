@@ -1,17 +1,19 @@
 package racingcar.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TotalResult {
-    private final List<RoundResult> totalResult;
+    private final List<RoundResult> totalResult = new ArrayList<>();
+    private RoundResult lastResult;
 
-    public TotalResult(List<RoundResult> totalResult) {
-        this.totalResult = totalResult;
+    public void addResult(RoundResult roundResult) {
+        totalResult.add(roundResult);
+        lastResult = roundResult;
     }
 
     public List<String> getWinner() {
-        RoundResult roundResult = totalResult.get(totalResult.size() - 1);
-        return roundResult.selectWinners();
+        return lastResult.selectWinners();
     }
 
     public List<RoundResult> getTotalResult() {

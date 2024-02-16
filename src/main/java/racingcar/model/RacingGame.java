@@ -1,8 +1,5 @@
 package racingcar.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RacingGame {
 
     private static final int MINIMUM_TRY_COUNT = 1;
@@ -19,12 +16,12 @@ public class RacingGame {
     }
 
     public TotalResult run() {
-        List<RoundResult> gameResult = new ArrayList<>();
+        TotalResult totalResult = new TotalResult();
         for (int i = 0; i < tryCount; i++) {
             cars.makeCarMove(randomNumberGenerator);
-            gameResult.add(cars.getRoundResult());
+            totalResult.addResult(cars.getRoundResult());
         }
-        return new TotalResult(gameResult);
+        return totalResult;
     }
 
     private void validateTryCount(int tryCount) {
