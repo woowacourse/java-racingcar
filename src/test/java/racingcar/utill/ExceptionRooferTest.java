@@ -1,4 +1,4 @@
-package racingcar.util;
+package racingcar.utill;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +17,7 @@ class ExceptionRooferTest {
         TestConsumer testConsumer = new TestConsumer();
 
         // when
-        String result = ExceptionRoofer.generate(testSupply, testConsumer);
+        String result = ExceptionRoofer.retry(testSupply, testConsumer);
 
         // then
         assertThat(result).isEqualTo(String.valueOf(TestSupply.LIMIT));

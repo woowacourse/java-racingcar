@@ -5,14 +5,14 @@ public class Round {
     private int value;
 
     private Round(final int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException("[ERROR] 라운드가 음수일 수 없습니다.");
+        }
         this.value = value;
     }
 
     public static Round from(final String source) {
         final int value = parseInt(source);
-        if (value < 0) {
-            throw new IllegalArgumentException("[ERROR] 라운드가 음수일 수 없습니다.");
-        }
         return new Round(value);
     }
 

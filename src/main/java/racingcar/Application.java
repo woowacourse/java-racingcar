@@ -7,9 +7,7 @@ import racingcar.view.OutputView;
 public class Application {
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        GameController gameController = new GameController(inputView, outputView);
+        final GameController gameController = new GameController(new InputView(), new OutputView());
         gameController.run();
     }
 }

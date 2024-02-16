@@ -6,7 +6,7 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.RandomNumberGenerator;
 import racingcar.model.Round;
-import racingcar.util.ExceptionRoofer;
+import racingcar.utill.ExceptionRoofer;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -33,7 +33,7 @@ public class GameController {
     }
 
     private Cars getCars() {
-        return ExceptionRoofer.generate(this::supplyCars, outputView::printError);
+        return ExceptionRoofer.retry(this::supplyCars, outputView::printError);
     }
 
     private Cars supplyCars() {
@@ -42,7 +42,7 @@ public class GameController {
     }
 
     private Round getRound() {
-        return ExceptionRoofer.generate(this::supplyRound, outputView::printError);
+        return ExceptionRoofer.retry(this::supplyRound, outputView::printError);
     }
 
     private Round supplyRound() {

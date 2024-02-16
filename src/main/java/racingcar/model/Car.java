@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Car implements Comparable<Car> {
 
-    private static final int MIN_NUMBER = 4;
+    private static final int MIN_MOVABLE_NUMBER = 4;
     private static final int START_POSITION = 0;
 
     private final CarName name;
@@ -20,7 +20,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void go(final int number) {
-        if (number >= MIN_NUMBER) {
+        if (number >= MIN_MOVABLE_NUMBER) {
             position++;
         }
     }

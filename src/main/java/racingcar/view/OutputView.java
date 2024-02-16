@@ -15,8 +15,7 @@ public class OutputView {
     }
 
     public void printWinners(final List<String> winners) {
-        final String winnerJoining = String.join(", ", winners);
-        System.out.printf("%s가 최종 우승했습니다.", winnerJoining);
+        System.out.printf("%s가 최종 우승했습니다.", String.join(", ", winners));
     }
 
     public void printError(final String message) {
