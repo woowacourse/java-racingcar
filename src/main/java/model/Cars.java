@@ -1,7 +1,5 @@
 package model;
 
-import static util.ErrorMessage.ERROR_DUPLICATED_NAME;
-import static util.ErrorMessage.ERROR_NAME_COUNT;
 import static util.Util.generateRandomNumber;
 
 import java.util.ArrayList;
@@ -13,6 +11,9 @@ public class Cars {
     private static final int MIN_CAR_NAME_COUNT = 2;
     private static final int MIN_POSITION = 0;
     private static final String NEW_LINE = "\n";
+    private static final String PREFIX_ERROR = "[ERROR] ";
+    private static final String ERROR_DUPLICATED_NAME = "자동차의 이름은 중복될 수 없습니다.";
+    private static final String ERROR_NAME_COUNT = "자동차 이름은 2개 이상이어야 합니다.";
 
     private List<Car> cars;
 
@@ -34,13 +35,13 @@ public class Cars {
     private static void validateDuplicatedName(List<String> names) {
         long nameCount = names.stream().distinct().count();
         if (names.size() != nameCount) {
-            throw new IllegalArgumentException(ERROR_DUPLICATED_NAME.getMessage());
+            throw new IllegalArgumentException(PREFIX_ERROR + ERROR_DUPLICATED_NAME);
         }
     }
 
     private static void validateNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
-            throw new IllegalArgumentException(ERROR_NAME_COUNT.getMessage());
+            throw new IllegalArgumentException(PREFIX_ERROR + ERROR_NAME_COUNT);
         }
     }
 
