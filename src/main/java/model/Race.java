@@ -61,7 +61,7 @@ public class Race {
         Car winner = cars.get(0);
 
         return cars.stream()
-                .filter(car -> winner.showDistance().length() == car.showDistance().length())
+                .filter(car -> winner.getDistance() == car.getDistance())
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
