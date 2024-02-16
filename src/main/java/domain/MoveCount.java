@@ -13,15 +13,7 @@ public class MoveCount {
         return new MoveCount(moveCount);
     }
 
-    public void consume() {
-        moveCount--;
-    }
-
-    public boolean isCountZero() {
-        return 0 == moveCount;
-    }
-
-    public void validate(int moveCount) {
+    private void validate(int moveCount) {
         validateRange(moveCount);
     }
 
@@ -29,5 +21,13 @@ public class MoveCount {
         if (moveCount <= 0) {
             throw new IllegalArgumentException("[ERROR] 자동차의 전체 이동 횟수는 0이나 음수일 수 없습니다.");
         }
+    }
+
+    public void consume() {
+        moveCount--;
+    }
+
+    public boolean isCountZero() {
+        return 0 == moveCount;
     }
 }
