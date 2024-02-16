@@ -1,37 +1,34 @@
-import conversion.Converter;
 import domain.Car;
+import domain.RacingGame;
+import domain.Round;
 import java.util.List;
-import service.Service;
 import view.InputView;
-import view.IterativeReader;
 import view.OutputView;
 
 public class Main {
 
     public static void main(String[] args) {
-        List<Car> cars = IterativeReader.readUntilNoError(Main::findCars);
-        int round = IterativeReader.readUntilNoError(Main::findRound);
+        try {
+            // TODO: 아래 중복되는 부분을 메서드로 통합하기
+            OutputView.printCarNames();
+            String rawCarNames = InputView.read();
+            RacingGame racingGame = new RacingGame(rawCarNames); // TODO: 예외 발생 시 재입력받기 구현
 
-        OutputView.printRoundResult();
+            OutputView.printRound();
+            String rawRound = InputView.read();
+            Round round = new Round(rawRound);
 
-        for (int i = 0; i < round; i++) {
-            Service.playOneRound(cars);
-            OutputView.printScore(cars);
+            OutputView.printRoundResult();
+
+            for (int i = 0; i < round.getRound(); i++) {
+                racingGame.play();
+                OutputView.printScore(racingGame.getCars());
+            }
+
+            List<Car> winners = racingGame.findWinners();
+            OutputView.printCars(winners);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-
-        List<String> winnerNames = Service.getWinnerNames(cars);
-        OutputView.printWinners(winnerNames);
-    }
-
-    private static List<Car> findCars() {
-        OutputView.printCarNames();
-        String rawCarNames = InputView.read();
-        return Converter.toCars(rawCarNames);
-    }
-
-    private static int findRound() {
-        OutputView.printRound();
-        String rawRound = InputView.read();
-        return Converter.toRound(rawRound);
     }
 }
