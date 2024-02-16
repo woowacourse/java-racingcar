@@ -22,7 +22,7 @@ class CarTest {
     void carMove() {
         Car car = Car.fromEmpty();
         car.move();
-        assertThat(car.getDistance()).isEqualTo(Distance.from(1));
+        assertThat(car.getDistance()).isEqualTo(1);
     }
 
     @Test
@@ -32,7 +32,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("차 이름의 길이가 1 이상 5이하면 예외를 발생시킨다")
+    @DisplayName("차 이름의 길이가 5를 초과하면 예외를 발생시킨다")
     void invalidCarName() {
         assertThatIllegalArgumentException().isThrownBy(() -> Car.fromName("abcdefg"));
     }

@@ -21,6 +21,6 @@ class DistanceTest {
     void isSameDistance() {
         Distance distance = Distance.from(2);
         Distance otherDistance = Distance.from(2);
-        Assertions.assertThat(distance).isEqualTo(otherDistance);
+        Assertions.assertThat(distance.isSameDistance(otherDistance)).isTrue();
     }
 }

@@ -4,6 +4,7 @@ import domain.Car;
 import domain.Winners;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WinnersResponse {
     private final List<String> names;
@@ -13,11 +14,7 @@ public class WinnersResponse {
     }
 
     private List<String> convertToNames(Winners winners) {
-        List<String> names = new ArrayList<>();
-        for (Car winner : winners.winners()) {
-            names.add(winner.getName().getName());
-        }
-        return names;
+        return winners.winners().stream().map(Car::getName).collect(Collectors.toList());
     }
 
     public List<String> getNames() {

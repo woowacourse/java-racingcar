@@ -27,12 +27,12 @@ public class Car implements Comparable<Car> {
         distance.increase();
     }
 
-    public Distance getDistance() {
-        return distance;
+    public int getDistance() {
+        return distance.getDistance();
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getName();
     }
 
     public boolean isSameDistance(Car maxDistance) {

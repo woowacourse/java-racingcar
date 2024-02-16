@@ -7,8 +7,8 @@ public class CarStatus {
     private final int distance;
 
     public CarStatus(Car car) {
-        this.name = car.getName().getName();
-        this.distance = car.getDistance().getDistance();
+        this.name = car.getName();
+        this.distance = car.getDistance();
     }
 
     public static CarStatus of(Car car) {

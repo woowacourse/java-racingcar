@@ -10,13 +10,13 @@ class CountTest {
     @DisplayName("주어진 범위 내의 횟수 확인한다")
     void isValidRange() {
         Count count = Count.from(3);
-        Assertions.assertThat(count.isGreaterOrThan(2)).isTrue();
+        Assertions.assertThat(count.isGreaterOrEqualThan(2)).isTrue();
     }
 
     @Test
     @DisplayName("주어진 범위 내의 횟수가 아닌지 확인한다")
     void isInvalidRange() {
         Count count = Count.from(3);
-        Assertions.assertThat(count.isGreaterOrThan(4)).isFalse();
+        Assertions.assertThat(count.isGreaterOrEqualThan(4)).isFalse();
     }
 }

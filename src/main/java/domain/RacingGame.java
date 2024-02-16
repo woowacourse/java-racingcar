@@ -32,7 +32,7 @@ public class RacingGame {
         List<TurnResult> raceResult = new ArrayList<>();
         int currentCount = 1;
 
-        while (count.isGreaterOrThan(currentCount)) {
+        while (count.isGreaterOrEqualThan(currentCount)) {
             cars.move(randomMovementGenerator);
             raceResult.add(TurnResult.from(cars));
             currentCount++;

@@ -13,9 +13,13 @@ public class Count {
     }
 
     private void validate(int count) {
-        if (!(count >= MIN_COUNT && count <= MAX_COUNT)) {
-            throw new IllegalArgumentException("횟수는 1에서 100사이로 입력해주세요.");
+        if (isOutOfRange(count)) {
+            throw new IllegalArgumentException("입력된 횟수: " + count + ", 횟수는 1에서 100사이로 입력해주세요.");
         }
+    }
+
+    private static boolean isOutOfRange(int count) {
+        return count < MIN_COUNT || count > MAX_COUNT;
     }
 
     public static Count from(int count) {
@@ -26,7 +30,7 @@ public class Count {
         return new Count(1);
     }
 
-    public boolean isGreaterOrThan(int currentCount) {
+    public boolean isGreaterOrEqualThan(int currentCount) {
         return currentCount <= count;
     }
 

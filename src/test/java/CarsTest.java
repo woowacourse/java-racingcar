@@ -30,7 +30,8 @@ public class CarsTest {
         Car pobi = Car.of("포비", 1);
         Car kirby = Car.of("커비", 10);
         Car jonge = Car.of("종이", 10);
+
         Cars cars = Cars.from(List.of(pobi, kirby, jonge));
-        assertThat(cars.getMaxDistanceCars()).contains(kirby, jonge);
+        assertThat(cars.getWinners().winners()).contains(kirby, jonge);
     }
 }
