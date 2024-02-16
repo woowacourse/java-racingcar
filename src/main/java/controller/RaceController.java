@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.Count;
 import domain.Judge;
 import domain.Race;
 import view.View;
@@ -14,7 +15,7 @@ public class Controller {
 
     public void start() {
         List<Car> cars = view.readCars();
-        int count = view.readCount();
+        Count count = view.readCount();
 
         Race race = new Race(cars, count);
         view.printResultNotice();

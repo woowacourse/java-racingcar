@@ -33,20 +33,13 @@ public class View {
         }
     }
 
-    private static List<Car> makeCars(String[] carNames) {
-        return Arrays.stream(carNames)
-                .map(Car::new)
-                .collect(Collectors.toList());
-    }
-
-    public int readCount() {
+    public Count readCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         try {
             int count = Integer.parseInt(scanner.nextLine());
-            Validator.validateCount(count);
-            return count;
-        } catch (Exception e) {
-            System.out.println("다시 입력해주세요.");
+            return new Count(count);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return readCount();
         }
     }
