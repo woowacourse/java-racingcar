@@ -7,13 +7,13 @@ public class InputView {
     private static final String MESSAGE_PROMPT_TRY_COUNT = "시도할 회수는 몇회인가요?";
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String inputCarName() {
+    public String inputCarName() {
         System.out.println(MESSAGE_PROMPT_CAR_NAMES);
 
         return scanner.nextLine();
     }
 
-    public static String inputTryCount() {
+    public String inputTryCount() {
         System.out.println(MESSAGE_PROMPT_TRY_COUNT);
 
         return scanner.nextLine();
