@@ -8,7 +8,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.util.ConsoleReader;
 
-public class MainController {
+public class RacingCarController {
     public void run() {
         final Cars cars = getCars();
         final int tryCount = getTryCount();
