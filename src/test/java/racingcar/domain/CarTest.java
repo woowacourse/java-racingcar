@@ -25,8 +25,9 @@ class CarTest {
         assertEquals(car.getForward(), defaultForward);
     }
 
-    @DisplayName("적절하지 않은 이름은 예외가 발생한다.")
+
     @ParameterizedTest
+    @DisplayName("적절하지 않은 이름은 예외가 발생한다.")
     @ValueSource(strings = {"chocochip", "aaaaaaaaa"})
     public void testInvalidName(String name) {
         //given & when & then
@@ -39,18 +40,19 @@ class CarTest {
         //given
         final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
             @Override
-            public boolean isMovable() {
+            public boolean isMovable(int value) {
                 return true;
             }
         };
 
         String name = "choco";
         int movementIncrease = 1;
+        int power = 4;
 
         //when
         Car car = new Car(name);
         int movement = car.getForward();
-        car.move(carMoveStrategy);
+        car.move(carMoveStrategy, power);
 
         //then
         assertEquals(car.getForward(), movement + movementIncrease);
@@ -62,16 +64,17 @@ class CarTest {
         //given
         final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
             @Override
-            public boolean isMovable() {
+            public boolean isMovable(int value) {
                 return false;
             }
         };
         String name = "choco";
+        int power = 4;
 
         //when
         Car car = new Car(name);
         int movement = car.getForward();
-        car.move(carMoveStrategy);
+        car.move(carMoveStrategy, power);
 
         //then
         assertEquals(car.getForward(), movement);

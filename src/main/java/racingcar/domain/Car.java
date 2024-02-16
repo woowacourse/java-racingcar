@@ -22,8 +22,8 @@ public class Car {
         return name.length() > CAR_NAME_MAX_LENGTH;
     }
 
-    public void move(final CarMoveStrategy carMoveStrategy) {
-        if (carMoveStrategy.isMovable()) {
+    public void move(final CarMoveStrategy carMoveStrategy, final int value) {
+        if (carMoveStrategy.isMovable(value)) {
             forward++;
         }
     }

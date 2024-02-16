@@ -41,7 +41,7 @@ class VehiclesTest {
 
         List<Car> cars = vehicles.getCars();
         Car toAddCar = addVehicles.getCars().get(0);
-        
+
         //then
         assertThrows(UnsupportedOperationException.class, () -> cars.add(toAddCar));
     }
@@ -71,16 +71,17 @@ class VehiclesTest {
         String userInput = "choco, seyan, solar";
         Vehicles vehicles = Vehicles.from(userInput);
         int initialDistance = 0;
+        int power = 1;
 
         final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
             @Override
-            public boolean isMovable() {
+            public boolean isMovable(int value) {
                 return false;
             }
         };
 
         //when
-        vehicles.move(carMoveStrategy);
+        vehicles.move(carMoveStrategy, power);
         List<Car> cars = vehicles.getCars();
 
         //then
@@ -99,16 +100,17 @@ class VehiclesTest {
         Vehicles vehicles = Vehicles.from(userInput);
         int iteratorCounts = 3;
         int distanceResult = 3;
+        int power = 4;
 
         final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
             @Override
-            public boolean isMovable() {
+            public boolean isMovable(int value) {
                 return true;
             }
         };
 
         //when
-        IntStream.range(0, iteratorCounts).forEach(i -> vehicles.move(carMoveStrategy));
+        IntStream.range(0, iteratorCounts).forEach(i -> vehicles.move(carMoveStrategy, power));
 
         //then
         assertEquals(vehicles.getCars().get(0).getForward(), distanceResult);

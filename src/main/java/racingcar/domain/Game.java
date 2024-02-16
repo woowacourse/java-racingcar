@@ -2,16 +2,20 @@ package racingcar.domain;
 
 import java.util.stream.IntStream;
 import racingcar.ui.OutputView;
+import racingcar.util.RandomUtil;
 
 public class Game {
     private static final int NATURAL_NUMBER_BOUNDARY = 0;
+    private static final int RANDOM_MIN_LIMIT = 0;
+    private static final int RANDOM_MAX_LIMIT = 9;
     private final int tryCount;
     private final Vehicles vehicles;
+    RandomUtil randomUtil = RandomUtil.getInstance();
 
     private final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
         @Override
-        public boolean isMovable() {
-            return CarMoveStrategy.super.isMovable();
+        public boolean isMovable(final int value) {
+            return CarMoveStrategy.super.isMovable(value);
         }
     };
 
@@ -42,7 +46,7 @@ public class Game {
 
     public void proceed() {
         IntStream.range(0, tryCount).forEach(i -> {
-            vehicles.move(carMoveStrategy);
+            vehicles.move(carMoveStrategy, randomUtil.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT));
             OutputView.printVehicles(vehicles);
         });
     }

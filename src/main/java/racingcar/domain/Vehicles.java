@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Vehicles {
     private static final int MIN_DISTANCE = 0;
     private final List<Car> cars;
-
+    
     public static Vehicles from(final String userInput) {
         validate(userInput);
         return new Vehicles(Arrays.stream(userInput.split(COMMA))
@@ -45,8 +45,8 @@ public class Vehicles {
                 .collect(Collectors.toSet()).size();
     }
 
-    void move(CarMoveStrategy carMoveStrategy) {
-        cars.forEach(car -> car.move(carMoveStrategy));
+    void move(final CarMoveStrategy carMoveStrategy, final int value) {
+        cars.forEach(car -> car.move(carMoveStrategy, value));
     }
 
     List<Car> findFarthestCars() {
