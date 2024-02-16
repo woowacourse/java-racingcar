@@ -1,9 +1,9 @@
 package racingcar.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +22,7 @@ class CarsTest {
         List<Car> winner = cars.findWinner();
 
         // then
-        Assertions.assertThat(winner).hasSize(3);
+        assertThat(winner).hasSize(3);
     }
 
     @DisplayName("단독 우승자 확인")
@@ -31,11 +31,12 @@ class CarsTest {
         // given
         Cars cars = Cars.from("aa,bb,cc");
         cars.go(new TestNumberGenerator());
+
         // when
         List<Car> winner = cars.findWinner();
 
         // then
-        Assertions.assertThat(winner).hasSize(1).extracting("name").isEqualTo(List.of("cc"));
+        assertThat(winner).hasSize(1).extracting("name").isEqualTo(List.of("cc"));
     }
 
     @DisplayName("올바르지 않은 구분자")
@@ -45,8 +46,6 @@ class CarsTest {
         assertThatThrownBy(() -> Cars.from(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 
     static class TestNumberGenerator implements NumberGenerator {
 
@@ -60,9 +59,6 @@ class CarsTest {
     @DisplayName("자동차 이름이 중복시 예외 발생")
     @Test
     void duplicatedName() {
-        // given
-        // when
-        // then
         assertThatThrownBy(() -> Cars.from("aa,aa"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -77,7 +73,7 @@ class CarsTest {
         List<Car> unmodifiedCars = cars.getCars();
 
         // then
-        Assertions.assertThatThrownBy(() -> unmodifiedCars.add(Car.from("새로운차")))
+        assertThatThrownBy(() -> unmodifiedCars.add(Car.from("새로운차")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 
@@ -96,6 +92,6 @@ class CarsTest {
         Car originCar = originCars.get(0);
 
         // then
-        Assertions.assertThat(originCar.getPosition()).isNotEqualTo(unmodifyCar.getPosition());
+        assertThat(originCar.getPosition()).isNotEqualTo(unmodifyCar.getPosition());
     }
 }

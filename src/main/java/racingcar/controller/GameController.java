@@ -33,17 +33,21 @@ public class GameController {
     }
 
     private Cars getCars() {
-        return ExceptionRoofer.generate(() -> {
-            final String names = inputView.readCarNames();
-            return Cars.from(names);
-        }, outputView::printError);
+        return ExceptionRoofer.generate(this::supplyCars, outputView::printError);
+    }
+
+    private Cars supplyCars() {
+        final String names = inputView.readCarNames();
+        return Cars.from(names);
     }
 
     private Round getRound() {
-        return ExceptionRoofer.generate(() -> {
-            final String tryRound = inputView.readTryRound();
-            return Round.from(tryRound);
-        }, outputView::printError);
+        return ExceptionRoofer.generate(this::supplyRound, outputView::printError);
+    }
+
+    private Round supplyRound() {
+        final String tryRound = inputView.readTryRound();
+        return Round.from(tryRound);
     }
 
     private void play(final Round round, final Cars cars) {

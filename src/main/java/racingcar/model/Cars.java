@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final String SEPARATOR = ",";
+
     private final List<Car> cars;
 
     private Cars(final List<Car> cars) {
