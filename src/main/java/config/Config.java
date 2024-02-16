@@ -7,19 +7,29 @@ import view.OutputView;
 
 public class Config {
 
-    public RacingGameController racingGameController() {
-        return new RacingGameController(inputView(), outputView());
+    private final RacingGameController racingGameController;
+
+    public Config() {
+        racingGameController= this.createRacingGameController();
     }
 
-    public InputView inputView() {
+    public RacingGameController racingGameController() {
+        return this.racingGameController;
+    }
+
+    private RacingGameController createRacingGameController() {
+        return new RacingGameController(createInputView(), createOutputView());
+    }
+
+    private InputView createInputView() {
         return new InputView();
     }
 
-    public OutputView outputView() {
-        return new OutputView(messageResolver());
+    private OutputView createOutputView() {
+        return new OutputView(createMessageResolver());
     }
 
-    public MessageResolver messageResolver() {
+    private MessageResolver createMessageResolver() {
         return new MessageResolver();
     }
 }
