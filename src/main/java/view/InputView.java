@@ -1,6 +1,7 @@
 package view;
 
 import java.util.Scanner;
+import util.StringConvertor;
 import view.validation.DigitValidator;
 import view.validation.SplitValidator;
 
@@ -13,10 +14,10 @@ public class InputView {
         return input;
     }
 
-    public int readRap() {
+    public int readTryCount() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         DigitValidator.validateIsDigit(input);
-        return Integer.parseInt(input);
+        return StringConvertor.convertToInt(input);
     }
 }
