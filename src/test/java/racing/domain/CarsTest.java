@@ -20,4 +20,14 @@ class CarsTest {
     Assertions.assertThat(testCars)
         .isEqualTo(expectedCars);
   }
+
+  @Test
+  @DisplayName("제일 멀리 움직인 자동차를 제대로 추출하는지 확인")
+  void getMax() {
+    Cars cars = new Cars(List.of(new Car(0, "a"), new Car(1, "b"), new Car(1, "c")));
+    List<Car> realMax = cars.getMax();
+    List<Car> expectedMax = List.of(new Car(1, "b"), new Car(1, "c"));
+    Assertions.assertThat(realMax)
+        .containsExactlyElementsOf(expectedMax);
+  }
 }
