@@ -1,10 +1,12 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
 
+    @DisplayName("랜덤으로 주어지는 숫자에 따라 정상적으로 이동하는지 확인")
     @Test
     void moveAll() {
 
@@ -27,6 +29,7 @@ class CarsTest {
         assertThat(actual).isEqualTo(expectedLocations);
     }
 
+    @DisplayName("자동차들 중 가장 큰 위치를 확인")
     @Test
     void getMaxLocation() {
 
