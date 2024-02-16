@@ -5,6 +5,7 @@ import racingcar.domain.CarRacingGame;
 import racingcar.domain.NumberGenerator;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -46,21 +47,15 @@ public class MainController {
 
     private void showRoundResult(CarRacingGame carRacingGame) {
         List<Car> currentCarStatuses = carRacingGame.getCurrentCarStatuses();
-        List<CarDto> roundResultDto = toDto(currentCarStatuses);
+        List<CarDto> cars = new CarsDto(currentCarStatuses).getCars();
 
-        outputView.printRoundResult(roundResultDto);
+        outputView.printRoundResult(cars);
     }
 
     private void showWinners(List<Car> winners) {
-        List<CarDto> winnersDto = toDto(winners);
+        List<CarDto> winnersDto = new CarsDto(winners).getCars();
 
         outputView.printWinners(winnersDto);
-    }
-
-    private List<CarDto> toDto(List<Car> roundResult) {
-        return roundResult.stream()
-                .map(CarDto::new)
-                .toList();
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
