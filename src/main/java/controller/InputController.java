@@ -1,10 +1,9 @@
 package controller;
 
-import static utils.TryCountValidator.validateTryCountFormat;
-
 import java.util.List;
 import model.Race;
 import utils.InputStringParser;
+import utils.TryCountValidator;
 import view.InputView;
 
 public class InputController {
@@ -26,9 +25,9 @@ public class InputController {
 
     public int getTryCount() {
         try {
-            String invalidTryCount = inputView.inputTryCount();
-            validateTryCountFormat(invalidTryCount);
-            return Integer.parseInt(invalidTryCount);
+            String tryCount = inputView.inputTryCount();
+            TryCountValidator.validateTryCountFormat(tryCount);
+            return Integer.parseInt(tryCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getTryCount();
