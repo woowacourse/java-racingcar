@@ -1,7 +1,7 @@
 package model;
 
 public class Name {
-    private final String NAME_LENGTH_RANGE_ERROR_MESSAGE = "이름의 길이는 1~5글자 사이만 가능합니다.";
+    private static final String NAME_LENGTH_RANGE_ERROR_MESSAGE = "이름의 길이는 1~5글자 사이만 가능합니다.";
     private final String name;
 
     public Name(String name) {
