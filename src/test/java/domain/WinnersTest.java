@@ -13,11 +13,20 @@ class WinnersTest {
     @DisplayName("가장 많이 움직인 자동차가 최종 우승자가 된다.")
     @Test
     void winnerTest() {
-        Car kaki = Car.createOnStart("kaki", () -> 1);
-        Car nak = Car.createOnStart("nak", () -> 0);
-        kaki.move();
+        // given
+        Car kaki = Car.createOnStart("kaki");
+        Car nak = Car.createOnStart("nak");
 
-        Winners winners = Winners.from(Cars.from(List.of(kaki, nak)));
+        // when
+        kaki.move(1);
+
+        // then
+        RandomMovingCars randomMovingCars = RandomMovingCars.from(List.of(
+                new RandomMovingCar(kaki, () -> 0),
+                new RandomMovingCar(nak, () -> 0)
+        ));
+
+        Winners winners = Winners.from(randomMovingCars);
         assertThat(winners.getWinners())
                 .containsExactly("kaki");
     }

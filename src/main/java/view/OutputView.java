@@ -1,7 +1,8 @@
 package view;
 
+import domain.RandomMovingCar;
 import domain.car.Car;
-import domain.Cars;
+import domain.RandomMovingCars;
 import domain.Winners;
 import java.util.StringJoiner;
 
@@ -21,9 +22,9 @@ public class OutputView {
          System.out.println("\n실행 결과");
      }
 
-    public void printRacingProceed(Cars cars) {
+    public void printRacingProceed(RandomMovingCars randomMovingCars) {
         StringBuilder builder = new StringBuilder();
-        for (Car car : cars.getCars()) {
+        for (RandomMovingCar car : randomMovingCars.getCars()) {
             builder.append(String.format("%s : %s\n", car.getName(), MOVE_EXPRESS.repeat(car.getPosition())));
         }
         System.out.println(builder);

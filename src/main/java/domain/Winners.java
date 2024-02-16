@@ -11,23 +11,23 @@ public class Winners {
         this.winners = winners;
     }
 
-    public static Winners from(Cars cars) {
-        return new Winners(findWinners(cars).stream()
-                .map(Car::getName)
+    public static Winners from(RandomMovingCars randomMovingCars) {
+        return new Winners(findWinners(randomMovingCars).stream()
+                .map(RandomMovingCar::getName)
                 .toList());
     }
 
-    private static List<Car> findWinners(Cars cars) {
-        int maxPosition = getMaxPosition(cars);
-        return cars.getCars().stream()
+    private static List<RandomMovingCar> findWinners(RandomMovingCars randomMovingCars) {
+        int maxPosition = getMaxPosition(randomMovingCars);
+        return randomMovingCars.getCars().stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .toList();
 
     }
 
-    private static int getMaxPosition(Cars cars) {
-        return cars.getCars().stream()
-                .mapToInt(Car::getPosition)
+    private static int getMaxPosition(RandomMovingCars randomMovingCars) {
+        return randomMovingCars.getCars().stream()
+                .mapToInt(RandomMovingCar::getPosition)
                 .max()
                 .getAsInt();
     }

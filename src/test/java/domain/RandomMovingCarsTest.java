@@ -8,24 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.car.Car;
-import domain.car.DriveStrategy;
-import domain.car.RandomDriveStrategy;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class CarsTest {
+class RandomMovingCarsTest {
 
     @DisplayName("경주에 참가한 자동차들에 대한 예외 발생 테스트")
     @Nested
-    class CarsExceptionTest {
+    class RandomMovingCarsExceptionTest {
         @DisplayName("참가 자동차가 2대 미만 이라면 예외를 발생시킨다.")
         @Test
         void carsMinSizeExceptionTest() {
-            assertThatThrownBy(() -> Cars.from(createCars(List.of("pobi"))))
+            assertThatThrownBy(() -> RandomMovingCars.from(createRandomMovingCars(List.of("pobi"))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -36,26 +33,26 @@ class CarsTest {
             for (int i = 65; i < 86; i++) {
                 carNames.add("car" + (char) i);
             }
-            assertThatThrownBy(() -> Cars.from(createCars(carNames)))
+            assertThatThrownBy(() -> RandomMovingCars.from(createRandomMovingCars(carNames)))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("중복된 자동차 이름이 있으면 예외가 발생한다.")
         @Test
         void carsDuplicationExceptionTest() {
-            assertThatThrownBy(() -> Cars.from(createCars(List.of("pobi", "pobi", "jun"))))
+            assertThatThrownBy(() -> RandomMovingCars.from(createRandomMovingCars(List.of("pobi", "pobi", "jun"))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
 
     @DisplayName("경주에 참가한 자동차들에 대한 성공 테스트")
     @Nested
-    class CarsSuccessTest {
+    class RandomMovingCarsSuccessTest {
 
         @DisplayName("2대의 자동차가 참여하는 것은 예외가 발생하지않는다.")
         @Test
         void successTest1() {
-            assertThatCode(() -> Cars.from(createCars(List.of("pobi", "jun"))))
+            assertThatCode(() -> RandomMovingCars.from(createRandomMovingCars(List.of("pobi", "jun"))))
                     .doesNotThrowAnyException();
         }
 
@@ -66,34 +63,39 @@ class CarsTest {
             for (int i = 65; i < 85; i++) {
                 carNames.add("car" + (char) i);
             }
-            assertThatCode(() -> Cars.from(createCars(carNames)))
+            assertThatCode(() -> RandomMovingCars.from(createRandomMovingCars(carNames)))
                     .doesNotThrowAnyException();
         }
     }
 
-    private static List<Car> createCars(List<String> carNames) {
+    private static List<RandomMovingCar> createRandomMovingCars(List<String> carNames) {
         return carNames.stream()
-                .map(carName -> Car.createOnStart(carName, () -> 0))
+                .map(carName -> new RandomMovingCar(Car.createOnStart(carName), () -> 0))
                 .toList();
     }
 
     @DisplayName("경주에 참가한 자동차들의 움직임 테스트")
     @Nested
-    class CarsMoveTest {
+    class RandomMovingCarsMoveTest {
         @DisplayName("랜덤한 숫자가 0에서 3 사이의 숫자라면 자동차들은 움직이지 않는다.")
         @ParameterizedTest
         @ValueSource(ints = {0, 1, 2, 3})
         void carsStopTest(int number) {
-            DriveStrategy driveStrategy = new RandomDriveStrategy(() -> number);
-            Cars cars = Cars.from(List.of(
-                    Car.createOnStart("pobi", driveStrategy),
-                    Car.createOnStart("jun", driveStrategy)
+            // given
+            Car pobi = Car.createOnStart("pobi");
+            Car jun = Car.createOnStart("jun");
+
+            RandomMovingCars randomMovingCars = RandomMovingCars.from(List.of(
+                    new RandomMovingCar(pobi, () -> number),
+                    new RandomMovingCar(jun, () -> number)
             ));
 
-            cars.moveAll();
+            // when
+            randomMovingCars.moveAll();
 
-            List<Integer> carPositions = cars.getCars().stream()
-                    .map(Car::getPosition)
+            // then
+            List<Integer> carPositions = randomMovingCars.getCars().stream()
+                    .map(RandomMovingCar::getPosition)
                     .toList();
             assertThat(carPositions).containsExactly(0, 0);
         }
@@ -102,15 +104,21 @@ class CarsTest {
         @ParameterizedTest
         @ValueSource(ints = {4, 5, 6, 7, 8, 9})
         void carsMoveTest(int number) {
-            DriveStrategy driveStrategy = new RandomDriveStrategy(() -> number);
-            Cars cars = Cars.from(List.of(
-                    Car.createOnStart("pobi", driveStrategy),
-                    Car.createOnStart("jun", driveStrategy)
+            // given
+            Car pobi = Car.createOnStart("pobi");
+            Car jun = Car.createOnStart("jun");
+
+            RandomMovingCars randomMovingCars = RandomMovingCars.from(List.of(
+                    new RandomMovingCar(pobi, () -> number),
+                    new RandomMovingCar(jun, () -> number)
             ));
 
-            cars.moveAll();
-            List<Integer> carPositions = cars.getCars().stream()
-                    .map(Car::getPosition)
+            // when
+            randomMovingCars.moveAll();
+
+            // then
+            List<Integer> carPositions = randomMovingCars.getCars().stream()
+                    .map(RandomMovingCar::getPosition)
                     .toList();
             assertThat(carPositions).containsExactly(1, 1);
         }

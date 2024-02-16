@@ -13,10 +13,10 @@ class CarTest {
     @ValueSource(ints = {0, 10, 100, 101})
     void carStopTest(int distance) {
         // given
-        Car car = Car.createOnStart("pobi", () -> distance);
+        Car car = Car.createOnStart("pobi");
 
         // when
-        car.move();
+        car.move(distance);
 
         // then
         assertThat(car.getPosition()).isEqualTo(distance);

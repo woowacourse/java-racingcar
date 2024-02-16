@@ -6,44 +6,44 @@ import domain.car.CarPosition;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Cars {
+public class RandomMovingCars {
     private static final CarPosition INITIAL_POSITION = new CarPosition(0);
     private static final int MIN_CARS_SIZE = 2;
     private static final int MAX_CARS_SIZE = 20;
 
-    private final List<Car> cars;
+    private final List<RandomMovingCar> cars;
 
-    private Cars(List<Car> cars) {
+    private RandomMovingCars(List<RandomMovingCar> cars) {
         this.cars = cars;
     }
 
-    public static Cars from(List<Car> cars) {
+    public static RandomMovingCars from(List<RandomMovingCar> cars) {
         validate(cars);
-        return new Cars(cars);
+        return new RandomMovingCars(cars);
     }
 
-    private static void validate(List<Car> cars) {
+    private static void validate(List<RandomMovingCar> cars) {
         validateMinCarsSize(cars);
         validateMaxCarsSize(cars);
         validateDuplication(cars);
     }
 
 
-    private static void validateMinCarsSize(List<Car> cars) {
+    private static void validateMinCarsSize(List<RandomMovingCar> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
             throw new IllegalArgumentException("자동차는 2대 이상이 참가해야 합니다.");
         }
     }
 
-    private static void validateMaxCarsSize(List<Car> cars) {
+    private static void validateMaxCarsSize(List<RandomMovingCar> cars) {
         if (cars.size() > MAX_CARS_SIZE) {
             throw new IllegalArgumentException("참가 자동차는 20대를 넘을 수 없습니다.");
         }
     }
 
-    private static void validateDuplication(List<Car> cars) {
+    private static void validateDuplication(List<RandomMovingCar> cars) {
         Set<String> duplicatedName = cars.stream()
-                .map(Car::getName)
+                .map(RandomMovingCar::getName)
                 .collect(Collectors.toSet());
 
         if (duplicatedName.size() != cars.size()) {
@@ -52,10 +52,10 @@ public class Cars {
     }
 
     public void moveAll() {
-        cars.forEach(Car::move);
+        cars.forEach(RandomMovingCar::move);
     }
 
-    public List<Car> getCars() {
+    public List<RandomMovingCar> getCars() {
         return Collections.unmodifiableList(cars);
     }
 }

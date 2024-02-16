@@ -1,7 +1,7 @@
 package controller;
 
 import domain.Attempt;
-import domain.Cars;
+import domain.RandomMovingCars;
 import domain.Winners;
 import util.StringConvertor;
 import view.ExceptionRetryHandler;
@@ -18,16 +18,16 @@ public class RacingController {
     }
 
     public void run() {
-        Cars cars = ExceptionRetryHandler.retryUntilValid(this::receiveCarNames);
+        RandomMovingCars randomMovingCars = ExceptionRetryHandler.retryUntilValid(this::receiveCarNames);
         Attempt attempt = ExceptionRetryHandler.retryUntilValid(this::receiveTryCount);
-        racing(cars, attempt);
-        outputView.printWinners(Winners.from(cars));
+        racing(randomMovingCars, attempt);
+        outputView.printWinners(Winners.from(randomMovingCars));
     }
 
-    private Cars receiveCarNames() {
+    private RandomMovingCars receiveCarNames() {
         outputView.printCarNamesInputText();
         String carNames = inputView.readCarNames();
-        return Cars.from(StringConvertor.convertListSplitByComma(carNames));
+        return RandomMovingCars.from(StringConvertor.convertListSplitByComma(carNames));
     }
 
     private Attempt receiveTryCount() {
@@ -35,12 +35,12 @@ public class RacingController {
         return Attempt.from(inputView.readTryCount());
     }
 
-    private void racing(Cars cars, Attempt attempt) {
+    private void racing(RandomMovingCars randomMovingCars, Attempt attempt) {
         outputView.printRacingResult();
         int attemptCount = attempt.getCount();
         while (attemptCount != 0) {
-            cars.moveAll();
-            outputView.printRacingProceed(cars);
+            randomMovingCars.moveAll();
+            outputView.printRacingProceed(randomMovingCars);
             attemptCount--;
         }
     }

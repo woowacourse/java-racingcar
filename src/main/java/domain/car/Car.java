@@ -5,20 +5,18 @@ public class Car {
 
     private final CarName name;
     private final CarPosition position;
-    private final DriveStrategy driveStrategy;
 
-    private Car(CarName name, CarPosition position, DriveStrategy driveStrategy) {
+    private Car(CarName name, CarPosition position) {
         this.name = name;
         this.position = position;
-        this.driveStrategy = driveStrategy;
     }
 
-    public static Car createOnStart(String name, DriveStrategy driveStrategy) {
-        return new Car(new CarName(name), new CarPosition(START_POSITION), driveStrategy);
+    public static Car createOnStart(String name) {
+        return new Car(new CarName(name), new CarPosition(START_POSITION));
     }
 
-    public void move() {
-        position.move(driveStrategy.drive());
+    public void move(int distance) {
+        position.move(distance);
     }
 
     public String getName() {
