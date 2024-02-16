@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.view.validator.InputValidator;
+
 import static racingcar.view.OutputView.*;
 import static racingcar.view.UserMessage.*;
 
@@ -9,11 +10,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    Scanner sc = new Scanner(System.in);
-    final InputValidator inputValidator = new InputValidator();
+    private final InputValidator inputValidator = new InputValidator();
+    Scanner scanner = new Scanner(System.in);
+
     public List<String> getCarNames() {
         displayMessage(USER_CAR_NAME_INPUT_PROMPT);
-        String initialInput = sc.nextLine();
+        String initialInput = scanner.nextLine();
         inputValidator.validateIsBlank(initialInput);
 
         List<String> parseCarNames = parseCarName(initialInput);
@@ -21,16 +23,15 @@ public class InputView {
         return parseCarNames;
     }
 
-    private List<String> parseCarName (String initialInput) {
-        return Arrays.stream(Arrays.stream(initialInput.split(","))
+    private List<String> parseCarName(String initialInput) {
+        return Arrays.stream(initialInput.split(","))
                 .map(String::trim)
-                .toArray(String[]::new))
                 .toList();
     }
 
-    public int getTryNumber() {
+    public int getAttemptNumber() {
         displayMessage(USER_TRY_NUMBER_INPUT_PROMPT);
-        String tryNumber = sc.nextLine();
+        String tryNumber = scanner.nextLine();
         inputValidator.validateTryNumber(tryNumber);
 
         return Integer.parseInt(tryNumber);
