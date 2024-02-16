@@ -25,3 +25,17 @@
     - 우승자 목록 생성
     - 우승자 안내 문구 출력
         - 우승자가 여러명일 경우 쉼표(,)를 이용하여 구분
+
+
+## step1 피드백
+- [x] 파일 맨 끝에 new line 추가 -> intelliJ 설정 완료
+- [ ] RacingCarController 클래스의 Car, Round -> 불변 or 없애기
+- [ ] import 와일드카드 수정
+- [ ] Car 객체 final 처리
+- [ ] toString 메소드 안에 너무 많은 로직이 담겨 있음.
+- [ ] Car 객체 안에서 출력 규칙을 알아야 할까?
+- [ ] getter외의 메소드에 get+메서드명을 사용하지 않기
+- [ ] Round 객체에 의미없는 상수(ex: ZERO = 0) 지우기
+- [ ] 에러메세지 상수와 변수 사이에 공백 추가
+- [ ] 에러메세지를 상수화 해야할까?
+- [ ] Car 클래스 moveForward 메소드의 randomNumber 파라미터이름 수정(처음 보는 사람은 왜 randomNumber가 들어오는지 이해못한다.)
