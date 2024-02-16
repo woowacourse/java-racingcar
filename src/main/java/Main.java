@@ -1,5 +1,5 @@
 import controller.Race;
-import util.RandomNumberGenerator;
+import model.RandomNumberGenerator;
 
 public class Main {
     public static void main(String[] args) {

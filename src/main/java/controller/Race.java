@@ -9,7 +9,7 @@ import model.Car;
 import model.Cars;
 import model.Name;
 import model.TryCount;
-import util.NumberGenerator;
+import model.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
