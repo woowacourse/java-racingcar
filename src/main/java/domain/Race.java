@@ -1,33 +1,22 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-
-    private final int count;
     private final List<Car> cars;
+    private int count;
 
-    public Race(int count, List<Car> cars) {
-        this.count = count;
+    public Race(List<Car> cars, int count) {
         this.cars = cars;
+        this.count = count;
     }
 
-    public String play() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < count; i++) {
-            stringBuilder.append(getResults())
-                    .append(System.lineSeparator());
-        }
-        return stringBuilder.toString();
+    public boolean hasCount() {
+        return count > 0;
     }
 
-    private String getResults() {
-        List<String> results = new ArrayList<>();
-        cars.forEach(car -> {
-            car.move(RandomGenerator.getRandomNumber());
-            results.add(car.getResult());
-        });
-        return String.join("", results);
+    public void play() {
+        cars.forEach(car -> car.move(RandomGenerator.getRandomNumber()));
+        count--;
     }
 }

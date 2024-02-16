@@ -16,9 +16,12 @@ public class Controller {
         List<Car> cars = view.readCars();
         int count = view.readCount();
 
-        Race race = new Race(count, cars);
-        String playResult = race.play();
-        view.printRace(playResult);
+        Race race = new Race(cars, count);
+        view.printResultNotice();
+        while (race.hasCount()) {
+            race.play();
+            view.printRace(cars);
+        }
 
         String winners = judge.getWinners(cars);
         view.printWinners(winners);

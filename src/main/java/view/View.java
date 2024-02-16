@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class View {
-
+    private static final String FORMAT = "%s : %s";
     private final Scanner scanner = new Scanner(System.in);
 
     public List<Car> readCars() {
@@ -51,12 +51,16 @@ public class View {
         }
     }
 
-    public void printRace(String moveResult) {
-        System.out.println("\n" + "실행 결과");
-        System.out.print(moveResult);
+    public void printResultNotice() {
+        System.out.println("\n실행 결과");
     }
 
-    public void printWinners(String winners) {
-        System.out.println(winners);
+    public void printRace(List<Car> cars) {
+        for (Car car : cars) {
+            String location = "-".repeat(car.getLocation());
+            String result = String.format(FORMAT, car.getName(), location);
+            System.out.println(result);
+        }
+        System.out.println();
     }
 }
