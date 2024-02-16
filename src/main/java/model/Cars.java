@@ -19,11 +19,15 @@ public class Cars {
     }
 
     public List<Car> findWinners() {
-        int maxMovement = cars.stream().mapToInt(Car::getMovement).max()
-                .orElseThrow(() -> new NoSuchElementException("자동차의 최대 이동거리가 존재하지 않습니다."));
+        int maxMovement = getMaxMovement();
         return cars.stream()
                 .filter(car -> car.getMovement() == maxMovement)
                 .toList();
+    }
+
+    private int getMaxMovement() {
+        return cars.stream().mapToInt(Car::getMovement).max()
+                .orElseThrow(() -> new NoSuchElementException("자동차의 최대 이동거리가 존재하지 않습니다."));
     }
 
     public List<Car> getPresentCarsStatus() {
