@@ -39,7 +39,7 @@ class CarTest {
 
     @DisplayName("4보다 큰 숫자일 경우 전진, 작을 경우 전진하지 않는다.")
     @ParameterizedTest
-    @CsvSource(value = {"4,1", "3,0"})
+    @CsvSource(value = {"1,0", "2,0", "3,0", "4,1", "5,1", "9,1",})
     void carMovingTest(int given, int expected) {
         //given
         String name = "daon";
