@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -32,5 +33,16 @@ class GameTest {
 
         //when & then
         assertThrows(NumberFormatException.class, () -> Game.from(userTryCount, Vehicles.from(userCarNames)));
+    }
+
+    @Test
+    @DisplayName("게임의 진행은 오류 없이 진행된다.")
+    public void runProceed() {
+        //given
+        String userCarNames = "choco,seyan";
+        Game game = Game.from("5", Vehicles.from(userCarNames));
+
+        //when&then
+        assertThatCode(game::proceed).doesNotThrowAnyException();
     }
 }
