@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class CarTest {
 
     @Test
-    @DisplayName("정상적인 자동차 객체 생성")
+    @DisplayName("정상적인 Car 객체 생성")
     void createCar() {
         assertThatCode(() -> new Car("pobi")).doesNotThrowAnyException();
     }
@@ -34,18 +34,18 @@ class CarTest {
     @ParameterizedTest
     @DisplayName("랜덤값이 4이상이면 자동차 전진")
     @ValueSource(ints = {4, 9})
-    void moveForward(int randomNumber) {
+    void moveByMovableNumber(int value) {
         Car car = new Car("pobi");
-        car.moveByNumber(randomNumber);
+        car.moveByNumber(value);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @ParameterizedTest
     @DisplayName("랜덤값이 3이하면 자동차 멈춤")
     @ValueSource(ints = {0, 3})
-    void doesNotMoveForward(int randomNumber) {
+    void moveByImmovableNumber(int value) {
         Car car = new Car("pobi");
-        car.moveByNumber(randomNumber);
+        car.moveByNumber(value);
         assertThat(car.getPosition()).isEqualTo(0);
     }
 }
