@@ -1,23 +1,16 @@
-package domain;
+package racingcar.domain;
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import racingcar.domain.Accelerator;
-import racingcar.domain.Car;
-import racingcar.domain.CarAccelerator;
-import racingcar.domain.Cars;
-
 class CarsTest {
-    private static CarAccelerator accelerator;
     private static Accelerator testMoveForwardAccelerator;
 
     @BeforeAll
     static void init() {
-        accelerator = new CarAccelerator();
         testMoveForwardAccelerator = new TestMoveForwardAccelerator();
     }
 
@@ -88,6 +81,7 @@ class CarsTest {
     static class TestMoveForwardAccelerator implements Accelerator {
 
         static final int MOVE = 4;
+
         @Override
         public int push() {
             return MOVE;

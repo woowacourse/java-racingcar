@@ -1,4 +1,7 @@
-package domain;
+package racingcar.domain;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -6,11 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Accelerator;
-import racingcar.domain.Car;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
 
@@ -79,6 +77,7 @@ class CarTest {
     static class TestMoveForwardAccelerator implements Accelerator {
 
         static final int MOVE = 4;
+
         @Override
         public int push() {
             return MOVE;
@@ -88,6 +87,7 @@ class CarTest {
     static class TestStopAccelerator implements Accelerator {
 
         static final int MOVE = 3;
+
         @Override
         public int push() {
             return MOVE;
