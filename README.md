@@ -77,3 +77,4 @@ pobi, honux가 최종 우승했습니다.
 - [x] 의미 있는 상수 추가
 - [x] Cars 누락된 테스트 추가
 - [x] 구글 컨벤션 적용
+- [x] RetryHelper early return

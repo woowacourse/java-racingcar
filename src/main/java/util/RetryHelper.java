@@ -28,8 +28,8 @@ public final class RetryHelper {
       return supplier.get();
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
+      return null;
     }
-    return null;
   }
 }
 
