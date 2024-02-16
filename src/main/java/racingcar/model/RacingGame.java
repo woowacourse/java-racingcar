@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.List;
+
 public class RacingGame {
 
     private static final int MAX_MOVE_COUNT = 300;
@@ -28,8 +30,20 @@ public class RacingGame {
     }
 
     public Cars findWinners() {
-        int maxProgress = cars.stream().map(Car::getProgress).reduce(Integer::max).orElse(0);
+        int maxProgress = getMaxProgress();
+        return new Cars(filterWinningCars(maxProgress));
+    }
 
-        return new Cars(cars.stream().filter(car -> car.getProgress() == maxProgress).toList());
+    private int getMaxProgress() {
+        return cars.stream()
+                .map(Car::getProgress)
+                .reduce(Integer::max)
+                .orElse(0);
+    }
+
+    private List<Car> filterWinningCars(int maxProgress) {
+        return cars.stream()
+                .filter(car -> car.getProgress() == maxProgress)
+                .toList();
     }
 }
