@@ -37,7 +37,7 @@ public class RacingCarController {
 
     private RacingCars readRacingCars() {
         RacingCarFactory racingCarFactory = readRacingCarNames();
-        return new RacingCars(racingCarFactory);
+        return new RacingCars(racingCarFactory.create());
     }
 
     private RacingCarFactory readRacingCarNames() {

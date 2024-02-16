@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class RacingCars {
     private List<RacingCar> racingCars;
 
-    public RacingCars(RacingCarFactory racingCarFactory) {
-        this.racingCars = racingCarFactory.create();
+    public RacingCars(List<RacingCar> racingCars) {
+        this.racingCars = racingCars;
     }
 
     public List<RaceResult> tryRace(NumberGenerator numberGenerator) {
