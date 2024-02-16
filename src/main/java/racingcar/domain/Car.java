@@ -1,10 +1,10 @@
 package racingcar.domain;
 
 public class Car {
+    private static final int MIN_MOVABLE_POWER = 4;
+
     private final String name;
     private int position;
-
-    private static final int MIN_MOVABLE_POWER = 4;
 
     public Car(String name) {
         validate(name);
