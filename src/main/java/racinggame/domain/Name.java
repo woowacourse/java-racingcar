@@ -4,6 +4,8 @@ import java.util.Objects;
 
 class Name {
 
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     private Name(String name) {
@@ -24,7 +26,7 @@ class Name {
     }
 
     private static void checkNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format("자동차 이름은 최대 5자 이하만 가능합니다. 입력한 자동차 이름: %s", name));
         }
     }

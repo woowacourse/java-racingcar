@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Car {
 
+    private static final int DEFAULT_POSITION_VALUE = 0;
+    
     private final Name name;
     private Position position;
 
@@ -13,7 +15,7 @@ public class Car {
     }
 
     public static Car from(String name) {
-        return new Car(Name.from(name), Position.from(0));
+        return new Car(Name.from(name), Position.from(DEFAULT_POSITION_VALUE));
     }
 
     public static Car of(String name, int position) {
@@ -40,8 +42,12 @@ public class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return Objects.equals(name, car.name) && Objects.equals(position, car.position);
     }

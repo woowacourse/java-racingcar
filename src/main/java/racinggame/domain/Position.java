@@ -4,6 +4,9 @@ import java.util.Objects;
 
 class Position {
 
+    private static final int ZERO = 0;
+    private static final int INCREASE_AMOUNT = 1;
+
     private final int position;
 
     private Position(int position) {
@@ -17,13 +20,13 @@ class Position {
     }
 
     private static void checkIsNonNegative(int position) {
-        if (position < 0) {
+        if (position < ZERO) {
             throw new RuntimeException();
         }
     }
 
     public Position increase() {
-        return Position.from(position + 1);
+        return Position.from(position + INCREASE_AMOUNT);
     }
 
     public int getPosition() {
@@ -32,8 +35,12 @@ class Position {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Position position1 = (Position) o;
         return position == position1.position;
     }
