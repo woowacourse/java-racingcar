@@ -15,32 +15,43 @@ public class RacingManager {
 
   public static void raceStart() {
     Scanner scanner = new Scanner(System.in);
-    InputGuideOutputManager.printInputCarNames();
     List<String> carNames = getCarNames(scanner);
-    InputGuideOutputManager.printInputMaxRacingTurn();
     int maxTurn = getMaxTurn(scanner);
+
     Cars cars = makeCars(carNames);
     Racing racing = new Racing(maxTurn, cars);
-    List<RacingResult> racingResults = IntStream.range(0, maxTurn).mapToObj(value -> {
-      List<Integer> racingConditions = RandomGenerator.generate(carNames.size());
-      racing.nextTurn(racingConditions);
-      return RacingDTOMapper.from(racing);
-    }).toList();
+    List<RacingResult> racingResults = runningRace(carNames, maxTurn, racing);
+
     RacingResultOutputManager.printResult(racingResults);
     List<String> winnerNames = racing.getWinnerNames();
     RacingResultOutputManager.printWinner(winnerNames);
   }
 
+  private static List<RacingResult> runningRace(List<String> carNames, int maxTurn,
+      Racing racing) {
+    return IntStream.range(0, maxTurn).mapToObj(value -> {
+      List<Integer> racingConditions = RandomGenerator.generate(carNames.size());
+      racing.nextTurn(racingConditions);
+      return RacingDTOMapper.from(racing);
+    }).toList();
+  }
+
   private static List<String> getCarNames(Scanner scanner) {
     RetryHelper carNameInputManager = new RetryHelper(5);
     return carNameInputManager.retry(
-        () -> CarNameInputManager.getNameFromConsole(scanner));
+        () -> {
+          InputGuideOutputManager.printInputCarNames();
+          return CarNameInputManager.getNameFromConsole(scanner);
+        });
   }
 
   private static int getMaxTurn(Scanner scanner) {
     RetryHelper maxTurnInputManager = new RetryHelper(5);
     return maxTurnInputManager.retry(
-        () -> RacingMaxTurnInputManager.getMaxTurnFromConsole(scanner));
+        () -> {
+          InputGuideOutputManager.printInputMaxRacingTurn();
+          return RacingMaxTurnInputManager.getMaxTurnFromConsole(scanner);
+        });
   }
 
   private static Cars makeCars(List<String> carNames) {
