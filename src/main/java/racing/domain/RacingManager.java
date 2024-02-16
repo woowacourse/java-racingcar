@@ -1,6 +1,7 @@
 package racing.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 import racing.dto.RacingResult;
@@ -32,7 +33,8 @@ public class RacingManager {
     return IntStream.range(0, maxTurn).mapToObj(value -> {
       List<Integer> racingConditions = RandomGenerator.generate(carNames.size());
       racing.nextTurn(racingConditions);
-      return RacingDTOMapper.from(racing);
+      Map<String, Integer> carsStatus = racing.getCarsStatus();
+      return new RacingResult(carsStatus);
     }).toList();
   }
 
