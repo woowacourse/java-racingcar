@@ -13,15 +13,6 @@ public class Car implements Comparable<Car> {
         distance++;
     }
 
-    public String showDistance() {
-        StringBuilder distance = new StringBuilder();
-        for (int i = 0; i < this.distance; i++) {
-            distance.append("-");
-        }
-
-        return distance.toString();
-    }
-
     public String getName() {
         return name.getName();
     }
