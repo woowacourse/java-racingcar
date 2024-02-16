@@ -19,10 +19,7 @@ public class Application {
         InputView inputView = InputView.of(reader, printer);
         OutputView outputView = new OutputView(printer);
 
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        MovementGenerator movementGenerator = new RandomMovementGenerator(numberGenerator);
-
-        RacingGameController racingGameController = new RacingGameController(inputView, outputView, movementGenerator);
+        RacingGameController racingGameController = new RacingGameController(inputView, outputView);
         racingGameController.run();
     }
 }

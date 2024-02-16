@@ -4,6 +4,7 @@ import domain.Cars;
 import domain.Count;
 import domain.GameResult;
 import domain.MovementGenerator;
+import domain.NumberGenerator;
 import domain.RacingGame;
 import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
@@ -17,24 +18,29 @@ import view.OutputView;
 public class RacingGameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final MovementGenerator movementGenerator;
 
-    public RacingGameController(InputView inputView, OutputView outputView, MovementGenerator movementGenerator) {
+    public RacingGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.movementGenerator = movementGenerator;
     }
 
     public void run() {
         Cars cars = getCars();
         Count count = Count.from(retryUntilNoException(inputView::readCount));
-        RacingGame racingGame = RacingGame.of(count, cars, movementGenerator);
+
+        RacingGame racingGame = RacingGame.of(count, cars, createRandomMovementGenerator());
 
         outputView.showStatusMessage();
         play(racingGame);
 
         Winners winners = Winners.from(cars);
         outputView.showResult(new WinnersResponse(winners));
+    }
+
+    private static MovementGenerator createRandomMovementGenerator() {
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        MovementGenerator movementGenerator = new RandomMovementGenerator(numberGenerator);
+        return movementGenerator;
     }
 
     private Cars getCars() {
