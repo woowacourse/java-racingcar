@@ -6,7 +6,8 @@ import model.intgenerator.RandomIntGenerator;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int CONDITION = 4;
+    private static final int MAX_POWER = 9;
+    private static final int MIN_FORWARD_POSSIBLE_POWER = 4;
 
     private final String name;
     private final IntGenerator intGenerator;
@@ -34,8 +35,8 @@ public class Car {
     }
 
     public void tryForward() {
-        int number = intGenerator.pickNumber();
-        if (number >= CONDITION) {
+        int power = intGenerator.pickNumber(MAX_POWER);
+        if (power >= MIN_FORWARD_POSSIBLE_POWER) {
             forwardCount++;
         }
     }

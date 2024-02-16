@@ -12,9 +12,9 @@ public class RacingTest {
 
     @BeforeEach
     void setUp() {
-        Car car1 = new Car("pobi", () -> 3);
-        Car car2 = new Car("dora", () -> 4);
-        Car car3 = new Car("ella", () -> 5);
+        Car car1 = new Car("pobi", (power) -> 3);
+        Car car2 = new Car("dora", (power) -> 4);
+        Car car3 = new Car("ella", (power) -> 5);
         cars = new Cars(List.of(car1, car2, car3));
     }
 

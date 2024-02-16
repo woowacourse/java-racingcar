@@ -3,11 +3,9 @@ package model.intgenerator;
 import java.util.Random;
 
 public class RandomIntGenerator implements IntGenerator {
-    private static final int COUNT = 10;
-
     @Override
-    public int pickNumber() {
+    public int pickNumber(int maxNumber) {
         Random random = new Random();
-        return random.nextInt(COUNT);
+        return random.nextInt(maxNumber + 1);
     }
 }

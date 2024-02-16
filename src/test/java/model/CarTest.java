@@ -11,9 +11,10 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class CarTest {
     IntGenerator intGenerator;
+
     @BeforeEach
     void setUp() {
-        intGenerator = () -> 1;
+        intGenerator = (power) -> 1;
     }
 
     @Test
@@ -31,7 +32,7 @@ public class CarTest {
     @ParameterizedTest
     @CsvSource({"pobi, 4, 1", "pobi, 3, 0"})
     void 주어진_값이_4_이상인_경우_전진한다(String name, int number, int forwardCount) {
-        Car car = new Car(name, () -> number);
+        Car car = new Car(name, (power) -> number);
         car.tryForward();
         assertThat(car.captureCarState().forwardCount()).isEqualTo(forwardCount);
     }

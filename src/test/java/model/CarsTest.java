@@ -27,9 +27,9 @@ public class CarsTest {
 
     @Test
     void 주어진_값이_4_이상인_차들만_전진한다() {
-        Car car1 = new Car("dora", () -> 3);
-        Car car2 = new Car("ella", () -> 4);
-        Car car3 = new Car("lupy", () -> 5);
+        Car car1 = new Car("dora", (power) -> 3);
+        Car car2 = new Car("ella", (power) -> 4);
+        Car car3 = new Car("lupy", (power) -> 5);
         Cars cars = new Cars(List.of(car1, car2, car3));
 
         cars.tryForward();
