@@ -7,20 +7,21 @@ import java.util.List;
 import view.InputView;
 import view.OutputView;
 
-public class GameService {
-    public void startRacing() {
-        String carNames = InputView.getCarNames();
-        List<String> splitCarNames = InputView.getSplitCarNames(carNames);
-        List<Car> cars = generateCars(splitCarNames);
-
+public class RacingService {
+    public void proceedCarRacing() {
+        List<String> carNames = getCarNames();
+        List<Car> cars = generateCars(carNames);
         Cars racingCars = new Cars(cars);
-        String counts = InputView.getRacingRounds();
-        Integer roundCounts = InputView.getParsedRacingRounds(counts);
-        playRacingRound(racingCars, roundCounts);
 
-        int maxDistance = racingCars.getMaxDistance();
-        List<Car> winners = racingCars.getWinners(maxDistance);
-        OutputView.printWinners(winners);
+        Integer roundCounts = getRoundCounts();
+        startRacingRounds(racingCars, roundCounts);
+
+        checkRacingWinner(racingCars);
+    }
+
+    private List<String> getCarNames() {
+        String carNames = InputView.getCarNames();
+        return InputView.getSplitCarNames(carNames);
     }
 
     private List<Car> generateCars(final List<String> carNames) {
@@ -31,12 +32,23 @@ public class GameService {
         return cars;
     }
 
-    private void playRacingRound(final Cars racingCars, final int roundCounts) {
+    private Integer getRoundCounts() {
+        String counts = InputView.getRacingRounds();
+        return InputView.getParsedRacingRounds(counts);
+    }
+
+    private void startRacingRounds(final Cars racingCars, final int roundCounts) {
         List<Car> roundResult;
         OutputView.printResultNotice();
         for (int i = 0; i < roundCounts; i++) {
             roundResult = racingCars.startRounds();
             OutputView.printRoundsResult(roundResult);
         }
+    }
+
+    private void checkRacingWinner(Cars racingCars) {
+        int maxDistance = racingCars.getMaxDistance();
+        List<Car> winners = racingCars.getWinners(maxDistance);
+        OutputView.printWinners(winners);
     }
 }

@@ -1,15 +1,16 @@
 package domain;
 
-import static domain.ExceptionMessages.EMPTY_CAR_NAME_EXCEPTION;
-import static domain.ExceptionMessages.SPECIAL_CHARACTER_CAR_NAME_EXCEPTION;
-import static domain.ExceptionMessages.TOO_LONG_CAR_NAME_EXCEPTION;
-
+import exception.EmptyCarNameException;
+import exception.MaxCarNameLengthException;
+import exception.SpecialCharacterCarNameException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MOVE_FORWARD_LOWER_BOUND = 3;
+    private static final Pattern FIND_SPECIAL_CHARACTER_PATTERN = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
+
     private final String name;
     private int distance = 0;
 
@@ -18,16 +19,28 @@ public class Car {
         this.name = name;
     }
 
-    private void validateCarName(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_CAR_NAME_EXCEPTION.getMessage());
+    private void validateCarName(final String name) {
+        emptyNameValidation(name);
+        overMaxLengthValidation(name);
+        specialCharacterProhibitValidation(name);
+    }
+
+    private void emptyNameValidation(final String name) {
+        if (name == null || name.isBlank()) {
+            throw new EmptyCarNameException();
         }
+    }
+
+    private void overMaxLengthValidation(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(TOO_LONG_CAR_NAME_EXCEPTION.getMessage());
+            throw new MaxCarNameLengthException(name, MAX_NAME_LENGTH);
         }
-        Pattern pattern = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
-        if (pattern.matcher(name).find()) {
-            throw new IllegalArgumentException(SPECIAL_CHARACTER_CAR_NAME_EXCEPTION.getMessage());
+    }
+
+    private void specialCharacterProhibitValidation(final String name) {
+        if (FIND_SPECIAL_CHARACTER_PATTERN.matcher(name).find()) {
+            String invalidCharacter = FIND_SPECIAL_CHARACTER_PATTERN.matcher(name).group();
+            throw new SpecialCharacterCarNameException(name, invalidCharacter);
         }
     }
 
