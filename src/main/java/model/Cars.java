@@ -21,7 +21,8 @@ public class Cars {
     }
 
     public static Cars from(List<String> names) {
-        validate(names);
+        validateDuplicatedName(names);
+        validateNameCount(names);
 
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
@@ -30,19 +31,14 @@ public class Cars {
         return new Cars(cars);
     }
 
-    private static void validate(List<String> names) {
-        checkDuplicatedName(names);
-        checkNameCount(names);
-    }
-
-    private static void checkDuplicatedName(List<String> names) {
+    private static void validateDuplicatedName(List<String> names) {
         long nameCount = names.stream().distinct().count();
         if (names.size() != nameCount) {
             throw new IllegalArgumentException(ERROR_DUPLICATED_NAME.getMessage());
         }
     }
 
-    private static void checkNameCount(List<String> names) {
+    private static void validateNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
             throw new IllegalArgumentException(ERROR_NAME_COUNT.getMessage());
         }
