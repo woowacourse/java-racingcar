@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,15 @@ public class Race {
     private void validateMinimumNumberOfCars(List<String> invalidNames) {
         if (invalidNames.size() < 2) {
             throw new IllegalArgumentException(INVALID_NUMBER_OF_CARS_ERROR_MESSAGE);
+        }
+    }
+
+    public void start() {
+        for (Car car : cars) {
+            int randomNumber = new Random().nextInt(10);
+            if (randomNumber >= 4) {
+                car.move();
+            }
         }
     }
 
