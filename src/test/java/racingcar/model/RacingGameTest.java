@@ -20,7 +20,7 @@ public class RacingGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("자동차들이 전진한다.")
+    @DisplayName("자동차는 움직임 룰에 부합하면 1씩 전진한다.")
     @Test
     void goTest() {
         //given
@@ -40,7 +40,7 @@ public class RacingGameTest {
                 .isEqualTo(expected);
     }
 
-    @DisplayName("자동차들이 정지한다.")
+    @DisplayName("자동차는 룰의 조건에 따라 전진하지 않기도 한다.")
     @Test
     void stopTest() {
         //given
@@ -60,7 +60,7 @@ public class RacingGameTest {
                 .isEqualTo(expected);
     }
 
-    @DisplayName("우승자를 판별한다")
+    @DisplayName("가장 먼거리를 이동한 우승자를 판별한다")
     @Test
     void findWinnersTest() {
         //given
