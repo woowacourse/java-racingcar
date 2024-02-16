@@ -9,10 +9,17 @@ public class Cars {
     }
 
     public void moveAll(List<Integer> randomNumbers) {
+        validateSize(randomNumbers);
         for (int index = 0; index < randomNumbers.size(); index++) {
             Car car = carList.get(index);
             int randomNumber = randomNumbers.get(index);
             car.move(randomNumber);
+        }
+    }
+
+    private void validateSize(List<Integer> randomNumbers) {
+        if (randomNumbers.size() != getCount()) {
+            throw new IllegalArgumentException("[ERROR] 갯수 불일치");
         }
     }
 
