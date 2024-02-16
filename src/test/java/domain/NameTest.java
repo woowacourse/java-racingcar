@@ -19,7 +19,7 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {"abcdef", "가나다라마바사아자"})
         void carNameLengthExceptionTest(String name) {
-            assertThatThrownBy(() -> Name.from(name))
+            assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -27,14 +27,14 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {" ", ""})
         void carNameIsBlankTest(String name) {
-            assertThatThrownBy(() -> Name.from(name))
+            assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("자동차 이름에 null을 입력하면 예외가 발생한다.")
         @Test
         void carNameIsNullTest() {
-            assertThatThrownBy(() -> Name.from(null))
+            assertThatThrownBy(() -> new Name(null))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -42,7 +42,7 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {" pobi", "pobi "})
         void carNameStartsOrEndsWithBlank(String name) {
-            assertThatThrownBy(() -> Name.from(name))
+            assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -50,7 +50,7 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {"pobi1", "123", "..!", "ab."})
         void carNameIsEnglishOrKorean(String name) {
-            assertThatThrownBy(() -> Name.from(name))
+            assertThatThrownBy(() -> new Name(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -63,7 +63,7 @@ class NameTest {
         @ParameterizedTest
         @ValueSource(strings = {"a", "abcde"})
         void successTest(String name) {
-            assertThatCode(() -> Name.from(name))
+            assertThatCode(() -> new Name(name))
                     .doesNotThrowAnyException();
         }
     }

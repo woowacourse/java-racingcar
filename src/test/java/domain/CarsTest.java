@@ -21,7 +21,7 @@ class CarsTest {
     void init() {
         Car kaki = Car.from("kaki");
         Car naknak = Car.from("nak");
-        cars = Cars.from(List.of(kaki, naknak));
+        cars = new Cars(List.of(kaki, naknak));
     }
 
     @DisplayName("경주에 참가한 자동차들에 대한 예외 발생 테스트")
@@ -30,7 +30,7 @@ class CarsTest {
         @DisplayName("참가 자동차가 2대 미만 이라면 예외를 발생시킨다.")
         @Test
         void carsMinSizeExceptionTest() {
-            assertThatThrownBy(() -> Cars.from(List.of(Car.from("pobi"))))
+            assertThatThrownBy(() -> new Cars(List.of(Car.from("pobi"))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -41,14 +41,14 @@ class CarsTest {
             for (int i = 65; i < 86; i++) {
                 cars.add(Car.from("car" + (char) i));
             }
-            assertThatThrownBy(() -> Cars.from(cars))
+            assertThatThrownBy(() -> new Cars(cars))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("중복된 자동차 이름이 있으면 예외가 발생한다.")
         @Test
         void carsDuplicationExceptionTest() {
-            assertThatThrownBy(() -> Cars.from(List.of(Car.from("pobi"), Car.from("pobi"))))
+            assertThatThrownBy(() -> new Cars(List.of(Car.from("pobi"), Car.from("pobi"))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -60,7 +60,7 @@ class CarsTest {
         @DisplayName("2대의 자동차가 참여하는 것은 예외가 발생하지않는다.")
         @Test
         void successTest1() {
-            assertThatCode(() -> Cars.from(List.of(Car.from("pobi"), Car.from("jun"))))
+            assertThatCode(() -> new Cars(List.of(Car.from("pobi"), Car.from("jun"))))
                     .doesNotThrowAnyException();
         }
 
@@ -71,7 +71,7 @@ class CarsTest {
             for (int i = 65; i < 85; i++) {
                 cars.add(Car.from("car" + (char) i));
             }
-            assertThatCode(() -> Cars.from(cars))
+            assertThatCode(() -> new Cars(cars))
                     .doesNotThrowAnyException();
         }
     }

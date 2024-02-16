@@ -4,13 +4,9 @@ public class Rap {
     private static final int MIN_COUNT = 1;
     private int count;
 
-    private Rap(int count) {
-        this.count = count;
-    }
-
-    public static Rap from(int count) {
+    public Rap(int count) {
         validateMinAttemptCount(count);
-        return new Rap(count);
+        this.count = count;
     }
 
     private static void validateMinAttemptCount(int input) {

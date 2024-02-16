@@ -5,16 +5,11 @@ import java.util.regex.Pattern;
 public class Name {
     private static final int MAX_NAME_LENGTH = 5;
     private static final Pattern NAME_CONDITION = Pattern.compile("^[가-힣a-zA-Z]*$");
-
     private final String name;
 
-    private Name(String name) {
-        this.name = name;
-    }
-
-    public static Name from(String name) {
+    public Name(String name) {
         validate(name);
-        return new Name(name);
+        this.name = name;
     }
 
     private static void validate(String name) {

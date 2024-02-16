@@ -36,7 +36,7 @@ public class RacingController {
     private Cars createCars(String carNames) {
         String[] cars = StringConvertor.splitByDelimiter(carNames, StringConvertor.getDelimiter());
         CarFactory carFactory = CarFactory.from(cars);
-        return Cars.from(carFactory.getProducedCars());
+        return new Cars(carFactory.getProducedCars());
     }
 
     private int receiveTryCount() {
@@ -45,7 +45,7 @@ public class RacingController {
     }
 
     private Rap createRap(int tryCount) {
-        return Rap.from(tryCount);
+        return new Rap(tryCount);
     }
 
     private void racing(Cars cars, Rap rap) {

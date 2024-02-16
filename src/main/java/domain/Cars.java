@@ -10,13 +10,9 @@ public class Cars {
     private static final int MAX_CARS_SIZE = 20;
     private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
-        this.cars = cars;
-    }
-
-    public static Cars from(List<Car> cars) {
+    public Cars(List<Car> cars) {
         validate(cars);
-        return new Cars(cars);
+        this.cars = cars;
     }
 
     private static void validate(List<Car> cars) {

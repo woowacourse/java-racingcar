@@ -13,7 +13,7 @@ class WinnersTest {
     void winnerTest() {
         Car kaki = Car.from("kaki");
         Car nak = Car.from("nak");
-        Cars cars = Cars.from(List.of(kaki, nak));
+        Cars cars = new Cars(List.of(kaki, nak));
         nak.move(new FakeNumber(9));
         Winners winners = Winners.from(cars);
         assertThat(winners.getWinners())
