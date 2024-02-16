@@ -6,7 +6,7 @@ import racing.domain.Car;
 
 public class OutputView {
     private static final String RESULT = "\n실행 결과";
-    public static final String WINNERS = "%s가 최종 우승했습니다.";
+    private static final String WINNERS = "%s가 최종 우승했습니다.";
 
     public void printResult(List<String> result) {
         System.out.println(RESULT);
