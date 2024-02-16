@@ -16,8 +16,8 @@ public class RacingCarController {
         Cars cars = inputCars();
         TrialCount trialCount = inputTrialCount();
 
-        trialCount.repeat(() -> progressRacing(cars));
         OutputView.printResultTitle();
+        trialCount.repeat(() -> progressRacing(cars));
 
         List<Car> winners = cars.findWinner();
         OutputView.printWinners(winners);
