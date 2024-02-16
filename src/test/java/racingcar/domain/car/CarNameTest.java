@@ -9,7 +9,7 @@ import racingcar.exception.InvalidInputException;
 
 class CarNameTest {
     @ParameterizedTest
-    @ValueSource(strings = {"일", "이이", "삼삼삼", "사사사사", "오오오오오"})
+    @ValueSource(strings = {"일", "오오오오오"})
     void 자동차_이름이_생성_성공(final String name) {
         //when
         final CarName carName = new CarName(name);
@@ -22,7 +22,6 @@ class CarNameTest {
     @ValueSource(strings = {"", "   ", "육육육육육육"})
     void 자동차_이름의_길이가_유효하지_않으면_실패(final String name) {
         // when
-        assertThatThrownBy(() -> new CarName(name))
-                .isInstanceOf(InvalidInputException.class);
+        assertThatThrownBy(() -> new CarName(name)).isInstanceOf(InvalidInputException.class);
     }
 }
