@@ -29,6 +29,7 @@
 
 ## step1 피드백
 - [x] 파일 맨 끝에 new line 추가 -> intelliJ 설정 완료
+<<<<<<< HEAD
 - [x] RacingCarController 클래스의 RacingGame(과거 Cars), Round -> 불변 or 없애기
   - 분리한 메소드들의 코드 길이가 짧아서 분리하지 않고 run 메소드에 합침
   - final을 쓰지 않고 run 메서드 안에서 RacingGame와 Round를 선언함.
