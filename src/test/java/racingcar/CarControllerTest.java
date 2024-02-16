@@ -35,11 +35,11 @@ class CarControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a,b,c\n-1\n1", "a,b,c\n0\n1", "a,b,c\n101\n1", "a,b,c\n1000\n1"})
-    @DisplayName("예외가 발생하는 경우 메시지를 출력한 뒤 다시 입력받는다.")
+    @ValueSource(strings = {"-1", "0", "101", "1000"})
+    @DisplayName("횟수를 잘못 입력하는 경우 메시지를 출력한 뒤 다시 입력받는다.")
     void invalidInputRepeatTest(String input) {
         // given
-        InputView inputView = setupInputStream(input);
+        InputView inputView = setupInputStream("a,b,c\n" + input + "\n1\n");
         CarController controller = new CarController(inputView, outputView, () -> 9);
         // when
         controller.run();
