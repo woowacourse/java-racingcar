@@ -6,11 +6,11 @@ public class TryCount {
     private int tryCount;
 
     public TryCount(int tryCount) {
-        verifyTryCount(tryCount);
+        validateRange(tryCount);
         this.tryCount = tryCount;
     }
 
-    private void verifyTryCount(int tryCount) {
+    private void validateRange(int tryCount) {
         if (tryCount < MIN_TRY_COUNT || tryCount > MAX_TRY_COUNT) {
             throw new IllegalArgumentException(
                     String.format("시도 횟수는 %d 이상 %d 이하여야 합니다.", MIN_TRY_COUNT, MAX_TRY_COUNT));

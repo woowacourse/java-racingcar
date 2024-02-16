@@ -6,11 +6,11 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        verifyNameLength(name);
+        validateNameLength(name);
         this.name = name;
     }
 
-    private void verifyNameLength(String name) {
+    private void validateNameLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(
                     String.format("이름은 %d자 이상 %d자 이하여야 합니다.", MIN_NAME_LENGTH, MAX_NAME_LENGTH));

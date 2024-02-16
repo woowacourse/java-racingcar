@@ -7,11 +7,11 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
-        verifyDuplicateCarNames(cars);
+        validateDuplicateCarNames(cars);
         this.cars = cars;
     }
 
-    private void verifyDuplicateCarNames(List<Car> cars) {
+    private void validateDuplicateCarNames(List<Car> cars) {
         long distinctCount = cars.stream()
                 .map(Car::getName)
                 .distinct()
