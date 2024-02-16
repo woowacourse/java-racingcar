@@ -56,10 +56,6 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public CarStatus getCarStatus() {
         return new CarStatus(name, position);
     }

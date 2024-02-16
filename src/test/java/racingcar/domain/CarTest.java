@@ -67,7 +67,7 @@ class CarTest {
         void moveCar(final int threshold) {
             car.move(threshold);
 
-            assertThat(car.getPosition())
+            assertThat(car.getCarStatus().position())
                     .isEqualTo(1);
         }
 
@@ -77,7 +77,7 @@ class CarTest {
         void noMoveCar(final int threshold) {
             car.move(threshold);
 
-            assertThat(car.getPosition())
+            assertThat(car.getCarStatus().position())
                     .isEqualTo(0);
         }
     }
