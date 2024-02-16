@@ -6,6 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import racingcar.domain.Accelerator;
+import racingcar.domain.Car;
+import racingcar.domain.CarAccelerator;
+import racingcar.domain.Cars;
 
 class CarsTest {
     private static CarAccelerator accelerator;

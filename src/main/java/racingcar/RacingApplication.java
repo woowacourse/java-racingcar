@@ -1,6 +1,7 @@
-import domain.CarRacing;
-import io.InputView;
-import io.OutputView;
+package racingcar;
+
+import racingcar.io.InputView;
+import racingcar.io.OutputView;
 
 public class RacingApplication {
 

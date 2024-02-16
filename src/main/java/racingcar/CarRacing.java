@@ -1,7 +1,11 @@
-package domain;
+package racingcar;
 
-import io.InputView;
-import io.OutputView;
+import racingcar.domain.Car;
+import racingcar.domain.CarAccelerator;
+import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
+import racingcar.io.InputView;
+import racingcar.io.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;

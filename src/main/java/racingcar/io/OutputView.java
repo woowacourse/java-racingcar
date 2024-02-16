@@ -1,6 +1,6 @@
-package io;
+package racingcar.io;
 
-import domain.Car;
+import racingcar.domain.Car;
 
 import java.util.List;
 import java.util.StringJoiner;

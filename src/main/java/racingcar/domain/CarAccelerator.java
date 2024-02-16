@@ -1,6 +1,6 @@
-package domain;
+package racingcar.domain;
 
-import util.RandomNumberUtils;
+import racingcar.util.RandomNumberUtils;
 
 public class CarAccelerator implements Accelerator{
     public static final int MIN_ACCEL_POWER = 0;
