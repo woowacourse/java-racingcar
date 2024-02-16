@@ -33,7 +33,7 @@ class CarTest {
         Car car = new Car(carName);
 
         //then
-        assertThat(car).hasFieldOrPropertyWithValue("position", expectedPosition);
+        assertThat(car.getPosition()).isEqualTo(expectedPosition);
     }
 
     @DisplayName("4보다 큰 숫자일 경우 전진, 작을 경우 전진하지 않는다.")
