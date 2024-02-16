@@ -10,14 +10,23 @@ public class Car {
     private static final int BOUNDARY_RANDOM_MIN = 0;
     private static final int BOUNDARY_RANDOM_MAX = 9;
     private static final int DEFAULT_FORWARD = 0;
+    private static final RandomUtil randomUtil = new RandomNumber();
     private final String name;
     private int forward;
-    private static final RandomUtil randomUtil = new RandomNumber();
+
 
     Car(String name) {
         validate(name);
         this.name = name;
         forward = DEFAULT_FORWARD;
+    }
+
+    private static boolean isLongerThanMaxLength(String name) {
+        return name.length() > CAR_NAME_MAX_LENGTH;
+    }
+
+    private static boolean isBiggerThanBoundary() {
+        return randomUtil.generate(BOUNDARY_RANDOM_MIN, BOUNDARY_RANDOM_MAX) >= MOVE_BOUNDARY;
     }
 
     private void validate(String name) {
@@ -26,19 +35,11 @@ public class Car {
         }
     }
 
-    private static boolean isLongerThanMaxLength(String name) {
-        return name.length() > CAR_NAME_MAX_LENGTH;
-    }
-
     public void move() {
         if (isBiggerThanBoundary()) {
             forward++;
         }
         printStatus();
-    }
-
-    private static boolean isBiggerThanBoundary() {
-        return randomUtil.generate(BOUNDARY_RANDOM_MIN, BOUNDARY_RANDOM_MAX) >= MOVE_BOUNDARY;
     }
 
     private void printStatus() {
