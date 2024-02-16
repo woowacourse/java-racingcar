@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,14 +10,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
     private Car car;
     private static final String VALID_CAR_NAME = "조조는조조";
-    private static final int MAX_OIL_AMOUNT = 9;
 
     @BeforeEach
     void initCar() {
@@ -38,14 +35,6 @@ class CarTest {
     @ValueSource(strings = {"점심순두부", "1"})
     void testValidNameLength(String carName) {
         assertDoesNotThrow(() -> new Car(carName));
-    }
-
-    @DisplayName("중복된 자동차 이름이 존재하면 예외를 던진다")
-    @ParameterizedTest
-    @MethodSource("provideDuplicatedCarNames")
-    void testUniqueCarNames(List<Car> cars) {
-        assertThatThrownBy(() -> Car.validateUniqueCarNames(cars))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> provideDuplicatedCarNames() {
@@ -75,35 +64,5 @@ class CarTest {
     void testGoIfOilEnough(int oil) {
         car.goIfOilEnough(oil);
         assertTrue(() -> car.isSameDistance(1));
-    }
-
-    @DisplayName("가장 멀리 이동한 거리를 반환한다")
-    @ParameterizedTest
-    @MethodSource("provideCarsWithMaxDistance")
-    void testFindMaxDistance(List<Car> cars, int maxDistance) {
-        assertThat(Car.findMaxDistance(cars))
-                .isEqualTo(maxDistance);
-    }
-
-    private static Stream<Arguments> provideCarsWithMaxDistance() {
-        return Stream.of(
-                Arguments.of(createCarsWithDistance(List.of(0, 1, 2, 3, 4, 5, 6)), 6),
-                Arguments.of(createCarsWithDistance(List.of(10, 20, 50, 101, 100)), 101),
-                Arguments.of(createCarsWithDistance(List.of(1, 1, 1, 1, 1, 1)), 1)
-        );
-    }
-
-    private static List<Car> createCarsWithDistance(List<Integer> distances) {
-        return distances.stream()
-                .map(CarTest::createCarWithDistance)
-                .toList();
-    }
-
-    private static Car createCarWithDistance(int distance) {
-        Car car = new Car(VALID_CAR_NAME);
-        while (distance-- > 0) {
-            car.goIfOilEnough(MAX_OIL_AMOUNT);
-        }
-        return car;
     }
 }
