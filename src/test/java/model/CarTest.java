@@ -27,15 +27,11 @@ class CarTest {
   @Test
   @DisplayName("전진한 횟수를 알 수 있다.")
   void getForwardCount() {
-    Car car = movedCar();
-    assertThat(car.getForwardCount()).isEqualTo(2);
-  }
-
-  private Car movedCar() {
     Car car = new Car("pobi");
     car.forward();
     car.stop();
     car.forward();
-    return car;
+    assertThat(car.getForwardCount()).isEqualTo(2);
   }
+
 }
