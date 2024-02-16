@@ -15,4 +15,5 @@ class TryNumberTest {
         Assertions.assertThatThrownBy(() -> new TryNumber(notPositiveNumber))
                 .isInstanceOf(NotNumberPositiveException.class);
     }
+
 }

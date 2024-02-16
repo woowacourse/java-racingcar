@@ -1,30 +1,33 @@
 package domain;
 
-import dto.RaceResult;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    private final List<RacingCar> racingCars;
+    private List<RacingCar> racingCars;
 
-    public RacingCars(final List<RacingCar> racingCars) {
-        this.racingCars = racingCars;
+    public RacingCars(RacingCarFactory racingCarFactory) {
+        this.racingCars = racingCarFactory.create();
     }
 
-    public List<RacingCar> tryRace(final NumberGenerator numberGenerator) {
-        racingCars.forEach(racingCar -> racingCar.race(numberGenerator.generateNumber()));
-        return racingCars;
+    public List<RaceResult> tryRace(NumberGenerator numberGenerator) {
+        List<RaceResult> raceResults = new ArrayList<>();
+        for (RacingCar racingCar : racingCars) {
+            racingCar.race(numberGenerator.generateNumber());
+            raceResults.add(new RaceResult(racingCar.getName(), racingCar.getMoveNumber()));
+        }
+        return raceResults;
     }
 
-    public List<RacingCar> getWinners() {
+    public List<String> getWinners() {
         Collections.sort(racingCars);
         RacingCar winner = racingCars.get(0);
 
         return racingCars.stream()
-                .filter(racingCar -> racingCar.hasSameDistance(winner))
+                .filter(racingCar -> racingCar.isSameDistance(winner))
+                .map(RacingCar::getName)
                 .collect(Collectors.toList());
     }
 }

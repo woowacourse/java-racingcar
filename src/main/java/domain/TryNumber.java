@@ -4,8 +4,7 @@ import exception.NotNumberPositiveException;
 
 public class TryNumber {
     private int number;
-
-    public TryNumber(final int number) {
+    public TryNumber(int number) {
         validatePositiveMoveCount(number);
         this.number = number;
     }
@@ -18,7 +17,7 @@ public class TryNumber {
         number --;
     }
 
-    private void validatePositiveMoveCount(final int number) {
+    private void validatePositiveMoveCount(int number) {
         if (number <= 0) {
             throw new NotNumberPositiveException();
         }

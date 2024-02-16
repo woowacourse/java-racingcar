@@ -1,11 +1,10 @@
 package domain;
 
 public class RacingCar implements Comparable<RacingCar>{
-    private static final int MOVE_CONDITION = 4;
     private final String name;
     private int moveNumber = 0;
 
-    public RacingCar(final String name) {
+    public RacingCar(String name) {
         this.name = name;
     }
 
@@ -17,13 +16,13 @@ public class RacingCar implements Comparable<RacingCar>{
         return moveNumber;
     }
 
-    public void race(final int number) {
-        if (number >= MOVE_CONDITION) {
+    public void race(int number) {
+        if (number >= 4) {
             this.moveNumber++;
         }
     }
 
-    public boolean hasSameDistance(final RacingCar racingCar) {
+    public boolean isSameDistance(RacingCar racingCar) {
         return racingCar.moveNumber == this.moveNumber;
     }
 
