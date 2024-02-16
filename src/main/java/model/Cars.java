@@ -3,7 +3,6 @@ package model;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.OptionalInt;
 
 public class Cars {
     private final MovesGenerator movesGenerator;
@@ -32,9 +31,5 @@ public class Cars {
 
     public List<Car> getPresentCarsStatus() {
         return Collections.unmodifiableList(cars);
-    }
-
-    public int getCarsSize() {
-        return cars.size();
     }
 }
