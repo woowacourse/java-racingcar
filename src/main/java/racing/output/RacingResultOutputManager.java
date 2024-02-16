@@ -9,6 +9,7 @@ public class RacingResultOutputManager {
         System.out.println("실행 결과");
         for (RacingResult racingResult : racingResults) {
             printEachResult(racingResult);
+            System.out.println();
         }
     }
 
