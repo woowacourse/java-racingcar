@@ -5,10 +5,10 @@ import racinggame.domain.MoveCondition;
 
 public class RandomMoveCondition implements MoveCondition {
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     @Override
     public boolean isMovable() {
-        return random.nextInt(10) >= 4;
+        return RANDOM.nextInt(10) >= 4;
     }
 }
