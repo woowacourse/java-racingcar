@@ -5,6 +5,9 @@ import java.util.function.Supplier;
 
 public class ExceptionRoofer {
 
+    private ExceptionRoofer() {
+    }
+
     public static <T> T retry(final Supplier<T> supplier, final Consumer<String> consumer) {
         try {
             return supplier.get();
