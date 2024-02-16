@@ -2,6 +2,7 @@ package domain;
 
 public class CarName {
 
+    public static final String ERROR_OF_LENGTH = "[ERROR] 자동차 이름의 길이는 5를 넘을 수 없습니다.";
     public static final int LIMIT_LENGTH = 5;
 
     private final String carName;
@@ -21,7 +22,7 @@ public class CarName {
 
     private void validateLength(String carName) {
         if (carName.length() > LIMIT_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름의 길이는 5를 넘을 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_OF_LENGTH);
         }
     }
 
