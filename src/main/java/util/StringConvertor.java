@@ -10,6 +10,10 @@ public class StringConvertor {
         return value.split(delimiter);
     }
 
+    public static int convertToInt(String value) {
+        return Integer.parseInt(value);
+    }
+
     public static String getDelimiter() {
         return DELIMITER;
     }
