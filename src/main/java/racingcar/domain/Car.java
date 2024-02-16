@@ -3,6 +3,7 @@ package racingcar.domain;
 public class Car {
     private static final int CAR_NAME_MAX_LENGTH = 5;
     private static final int DEFAULT_FORWARD = 0;
+    private static final int MOVE_STEP = 1;
     private final String name;
     private int forward;
 
@@ -24,7 +25,7 @@ public class Car {
 
     public void move(final CarMoveStrategy carMoveStrategy, final int value) {
         if (carMoveStrategy.isMovable(value)) {
-            forward++;
+            forward += MOVE_STEP;
         }
     }
 
