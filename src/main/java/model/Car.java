@@ -19,24 +19,13 @@ public class Car {
     }
 
     public static Car from(String name) {
-        validate(name);
+        validateNameLength(name);
         return new Car(name);
     }
 
-    private static void validate(String name) {
-        checkBlankOrNull(name);
-        checkNameLength(name);
-    }
-
-    private static void checkNameLength(String name) {
-        if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
+    private static void validateNameLength(String name) {
+        if (name == null || name.length() > MAX_NAME_LENGTH || name.trim().isEmpty()) {
             throw new IllegalStateException(ERROR_NAME_LENGTH.getMessage());
-        }
-    }
-
-    private static void checkBlankOrNull(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalStateException(ERROR_IS_BLANK_OR_NULL.getMessage());
         }
     }
 
