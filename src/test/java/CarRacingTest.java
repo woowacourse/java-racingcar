@@ -6,9 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +35,7 @@ class CarRacingTest {
     @DisplayName("자동차 생성 성공 테스트")
     void createCarsSuccess() {
         // given
-        String carNames = "pobi,crong,honux";
+        List<String> carNames = List.of("pobi","crong","honux");
         // when
         List<Car> cars = carRacing.createCars(carNames, accelerator).getCars();
         // then
@@ -45,12 +48,20 @@ class CarRacingTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "pobi", "aabbcc,pobi"})
+    @MethodSource("lottoNumbersAndRank")
     @DisplayName("자동차 생성 실패 테스트")
-    void createCarsFail(String carNames) {
+    void createCarsFail(List<String> carNames) {
         assertThatThrownBy(() -> {
             carRacing.createCars(carNames, accelerator);
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    static Stream<Arguments> lottoNumbersAndRank() {
+        return Stream.of(
+                Arguments.arguments(List.of("")),
+                Arguments.arguments(List.of("pobi")),
+                Arguments.arguments(List.of("aabbcc", "pobi"))
+        );
     }
 
     @ParameterizedTest
@@ -76,7 +87,7 @@ class CarRacingTest {
     @DisplayName("우승자 판독 테스트")
     void decideWinners() {
         // given
-        String carNames = "pobi,crong,honux";
+        List<String> carNames = List.of("pobi","crong","honux");
         // when
         Cars cars = carRacing.createCars(carNames, accelerator);
         List<String> actualWinners = carRacing.getWinners(cars);
