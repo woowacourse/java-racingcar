@@ -16,10 +16,11 @@ public class RacingController {
         Cars racingCars = new Cars(cars);
         String roundCounts = InputView.getRacingRounds();
         String roundResults = racingCars.startRounds(roundCounts);
+        int maxDistance = racingCars.getMaxDistance();
 
         OutputView.printResultNotice();
         OutputView.printRoundResult(roundResults);
-        OutputView.printWinners(racingCars.getWinners());
+        OutputView.printWinners(racingCars.getWinners(maxDistance));
     }
 
     private List<Car> parseCarNames(String carNames) {

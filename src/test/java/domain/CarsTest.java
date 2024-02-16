@@ -49,7 +49,9 @@ class CarsTest {
     @DisplayName("최종 자동차 경주 우승자 정보를 반환해야 한다.")
     void isValidWinnerResult() {
         Cars cars = new Cars(CarsTest.cars);
-        assertEquals("pobi, gugu", cars.getWinners());
+        int maxDistance = cars.getMaxDistance();
+
+        assertEquals("pobi, gugu", cars.getWinners(maxDistance));
     }
 
     @Test

@@ -58,15 +58,14 @@ public class Cars {
                 .collect(Collectors.joining("\n"));
     }
 
-    // TODO [LTH]: 제곱 스트림 분리하기
-    public String getWinners() {
+    public String getWinners(int maxDistance) {
         return racingCars.stream()
-                .filter(car -> car.getDistance() == getMaxDistance())
+                .filter(car -> car.getDistance() == maxDistance)
                 .map(Car::getCarName)
                 .collect(Collectors.joining(", "));
     }
 
-    private int getMaxDistance() {
+    public int getMaxDistance() {
         return racingCars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
