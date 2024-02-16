@@ -12,7 +12,7 @@ public class RacingController {
         String carNames = InputView.getCarNames();
         List<Car> cars = parseCarNames(carNames);
 
-        RacingCars racingCars = createRacingCars(cars);
+        RacingCars racingCars = new RacingCars(cars);
         String roundCounts = InputView.getRacingRounds();
         String roundResults = racingCars.startRounds(roundCounts);
 
@@ -27,9 +27,5 @@ public class RacingController {
             cars.add(new Car(name));
         }
         return cars;
-    }
-
-    private RacingCars createRacingCars(List<Car> cars) {
-        return new RacingCars(cars);
     }
 }
