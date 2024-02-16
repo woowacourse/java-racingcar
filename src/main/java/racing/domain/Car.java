@@ -4,6 +4,7 @@ public class Car implements Comparable<Car> {
 
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_FORWARD_CONDITION = 4;
+    public static final String POSITION_MARKER = "-";
 
     private final String name;
     private int position;
@@ -36,7 +37,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public String toString() {
-        return name + " : " + "-".repeat(position);
+        return String.format("%s : %s", name, POSITION_MARKER.repeat(position));
     }
 
     @Override
