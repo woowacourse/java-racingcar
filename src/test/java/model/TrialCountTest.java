@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class TrialCountTest {
   @ParameterizedTest
   @ValueSource(ints = {-1, 0})
-  @DisplayName("숫자는 음수가 될 수 없다.")
+  @DisplayName("숫자가 양수가 아닐 시 예외가 발생한다.")
   void validatePositive(int number) {
     assertThatThrownBy(() -> new TrialCount(number))
         .isInstanceOf(IllegalArgumentException.class)
