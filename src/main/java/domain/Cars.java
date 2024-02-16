@@ -28,13 +28,13 @@ public class Cars {
 
     private static void validateMinCarsSize(List<Car> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
-            throw new IllegalArgumentException("자동차는 2대 이상이 참가해야 합니다.");
+            throw new IllegalArgumentException(String.format("자동차는 %d대 이상이 참가해야 합니다.", MIN_CARS_SIZE));
         }
     }
 
     private static void validateMaxCarsSize(List<Car> cars) {
         if (cars.size() > MAX_CARS_SIZE) {
-            throw new IllegalArgumentException("참가 자동차는 20대를 넘을 수 없습니다.");
+            throw new IllegalArgumentException(String.format("참가 자동차는 %d대를 넘을 수 없습니다.", MAX_CARS_SIZE));
         }
     }
 
