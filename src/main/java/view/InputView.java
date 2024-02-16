@@ -28,5 +28,4 @@ public class InputView {
         System.out.println(READ_ROUND);
         return bufferedReader.readLine();
     }
-
 }
