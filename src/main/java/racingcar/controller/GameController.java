@@ -21,8 +21,8 @@ public class GameController {
     }
 
     public void run() {
-        final Cars cars = getCars();
-        final Round round = getRound();
+        final Cars cars = ExceptionRoofer.retry(this::getCars, outputView::printError);
+        final Round round = ExceptionRoofer.retry(this::getRound, outputView::printError);
 
         play(round, cars);
 
@@ -33,19 +33,11 @@ public class GameController {
     }
 
     private Cars getCars() {
-        return ExceptionRoofer.retry(this::supplyCars, outputView::printError);
-    }
-
-    private Cars supplyCars() {
         final String names = inputView.readCarNames();
         return Cars.from(names);
     }
 
     private Round getRound() {
-        return ExceptionRoofer.retry(this::supplyRound, outputView::printError);
-    }
-
-    private Round supplyRound() {
         final String tryRound = inputView.readTryRound();
         return Round.from(tryRound);
     }
@@ -57,23 +49,21 @@ public class GameController {
             cars.go(generator);
             round.progress();
 
-            final List<CarDto> carDtos = createCarDtos(cars);
-
-            outputView.printCarsPosition(carDtos);
+            outputView.printCarsPosition(createCarDtos(cars));
         }
-    }
-
-    private List<String> findWinnersName(final Cars cars) {
-        return cars.findWinners()
-                .stream()
-                .map(Car::getName)
-                .toList();
     }
 
     private List<CarDto> createCarDtos(final Cars cars) {
         return cars.getCars()
                 .stream()
                 .map(CarDto::from)
+                .toList();
+    }
+
+    private List<String> findWinnersName(final Cars cars) {
+        return cars.findWinners()
+                .stream()
+                .map(Car::getName)
                 .toList();
     }
 

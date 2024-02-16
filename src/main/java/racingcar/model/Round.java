@@ -32,6 +32,7 @@ public class Round {
         if (!isContinue()) {
             throw new IllegalStateException("[ERROR] 진행할 라운드가 없습니다.");
         }
+
         value--;
     }
 }
