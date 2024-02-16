@@ -14,7 +14,7 @@ public class PowerStrategy {
         return new PowerStrategy();
     }
 
-    public boolean canMove() {
+    public boolean checkRandomNumberRange() {
         Integer randomNumber = powerGenerator.makeRandomNumber();
         return THRESHOLD <= randomNumber;
     }

@@ -27,9 +27,13 @@ public class Car {
     }
 
     public void tryMove() {
-        if (powerStrategy.canMove()) {
+        if (canMove()) {
             move();
         }
+    }
+
+    private boolean canMove() {
+        return powerStrategy.checkRandomNumberRange();
     }
 
     private void move() {
