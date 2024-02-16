@@ -23,7 +23,7 @@ public class Cars {
 
     public List<Car> determineWinner() {
         Car winnerCar = cars.stream()
-                .max(Comparator.comparing(Car::getCount))
+                .max(Comparator.comparing(Car::getMovement))
                 .get();
         return cars.stream()
                 .filter(car -> car.isAlsoWinner(winnerCar))

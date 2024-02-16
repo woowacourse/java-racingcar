@@ -20,7 +20,7 @@ class CarsTest {
         //then
         List<Car> movedCars = cars.getCars();
         assertThat(movedCars)
-                .extracting(Car::getCount)
+                .extracting(Car::getMovement)
                 .containsExactly(1, 1);
     }
 
@@ -36,7 +36,7 @@ class CarsTest {
         //then
         List<Car> movedCars = cars.getCars();
         assertThat(movedCars)
-                .extracting(Car::getCount)
+                .extracting(Car::getMovement)
                 .containsExactly(0, 0);
     }
 

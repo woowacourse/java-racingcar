@@ -13,7 +13,7 @@ public class OutputView {
     public void printCarPosition(final Cars cars) {
         for(Car car : cars.getCars()) {
             final String name = car.getName();
-            final String traces = makeTraces(car.getCount());
+            final String traces = makeTraces(car.getMovement());
             System.out.println(String.format(POSITION_FORM, name, traces));
         }
         System.out.println();

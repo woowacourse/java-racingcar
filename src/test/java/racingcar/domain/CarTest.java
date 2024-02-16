@@ -17,7 +17,7 @@ class CarTest {
         car.move(condition);
 
         //then
-        assertEquals(1, car.getCount());
+        assertEquals(1, car.getMovement());
     }
 
     @Test
@@ -31,7 +31,7 @@ class CarTest {
         car.move(condition);
 
         //then
-        assertEquals(0, car.getCount());
+        assertEquals(0, car.getMovement());
     }
 
     @Test

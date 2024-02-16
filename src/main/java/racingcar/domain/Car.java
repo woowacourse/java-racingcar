@@ -2,32 +2,32 @@ package racingcar.domain;
 
 public class Car {
     private final String name;
-    private int count;
+    private int movement;
 
     public Car(final String name) {
         this.name = name;
-        this.count = 0;
+        this.movement = 0;
     }
 
-    public void move(final int randomNumber) {
-        if (randomNumber > 3 ) {
-            this.count += 1;
+    public void move(final int condition) {
+        if (condition > 3 ) {
+            this.movement += 1;
         }
     }
 
     public boolean isSameCount(final int count) {
-        return this.count == count;
+        return this.movement == count;
     }
 
     public boolean isAlsoWinner(final Car car) {
-        return car.isSameCount(count);
+        return car.isSameCount(movement);
     }
 
     public String getName() {
         return name;
     }
 
-    public int getCount() {
-        return count;
+    public int getMovement() {
+        return movement;
     }
 }
