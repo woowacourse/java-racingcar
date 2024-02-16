@@ -12,7 +12,7 @@ public class CarLocation {
         }
     }
 
-    public void increaseLocation() {
+    public void increase() {
         location++;
     }
 
