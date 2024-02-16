@@ -13,12 +13,10 @@ public class RacingCarController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final MovesGenerator movesGenerator;
 
-    public RacingCarController(InputView inputView, OutputView outputView, MovesGenerator movesGenerator) {
+    public RacingCarController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.movesGenerator = movesGenerator;
     }
 
     public void run() {
@@ -40,8 +38,7 @@ public class RacingCarController {
     private void race(int tryNumber, Cars cars) {
         outputView.printResultHeader();
         for (int i = 0; i < tryNumber; i++) {
-            List<Boolean> moves = movesGenerator.generate(cars.getCarsSize());
-            cars.moveCars(moves);
+            cars.moveCars();
             List<CarDto> carDtos = cars.getPresentCarsStatus().stream().map(CarDto::new).toList();
             outputView.printTotalResult(carDtos);
         }

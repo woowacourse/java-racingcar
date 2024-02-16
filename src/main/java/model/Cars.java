@@ -4,16 +4,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class Cars {
+    private final MovesGenerator movesGenerator;
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
+        this.movesGenerator = new MovesGenerator();
         this.cars = cars;
     }
 
-    public void moveCars(List<Boolean> moves) {
-        for (int i = 0; i < moves.size(); i++) {
-            cars.get(i).move(moves.get(i));
-        }
+    public void moveCars() {
+        cars.forEach(car -> car.move(movesGenerator.doMove()));
     }
 
     public List<Car> findWinners() {
