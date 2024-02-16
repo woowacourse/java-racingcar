@@ -16,7 +16,7 @@ public class Round {
 
     private static void checkRoundInRange(int round) {
         if (round < 1 || round > 10) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException(String.format("라운드는 1회 이상 10회 이하만 가능합니다. 입력한 라운드 수: %d", round));
         }
     }
 

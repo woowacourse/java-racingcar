@@ -19,13 +19,13 @@ class Name {
 
     private static void checkNameIsEmpty(String name) {
         if (name.isEmpty()) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException("자동차 이름으로 공백을 입력할 수 없습니다.");
         }
     }
 
     private static void checkNameLength(String name) {
         if (name.length() > 5) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException(String.format("자동차 이름은 최대 5자 이하만 가능합니다. 입력한 자동차 이름: %s", name));
         }
     }
 
