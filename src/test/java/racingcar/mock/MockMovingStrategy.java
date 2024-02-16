@@ -2,7 +2,7 @@ package racingcar.mock;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.domain.car.move.MovingStrategy;
+import racingcar.domain.move.MovingStrategy;
 
 public class MockMovingStrategy implements MovingStrategy {
     private final List<Boolean> movableList;

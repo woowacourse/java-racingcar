@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.RaceParticipants;
 import racingcar.domain.car.Car;
-import racingcar.domain.car.move.MovingStrategy;
+import racingcar.domain.move.MovingStrategy;
 import racingcar.exception.InvalidInputException;
 import racingcar.mock.MockMovingStrategy;
 

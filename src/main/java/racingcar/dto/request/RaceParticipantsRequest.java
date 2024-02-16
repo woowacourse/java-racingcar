@@ -3,7 +3,7 @@ package racingcar.dto.request;
 import java.util.List;
 import racingcar.domain.RaceParticipants;
 import racingcar.domain.car.Car;
-import racingcar.domain.car.move.MovingStrategy;
+import racingcar.domain.move.MovingStrategy;
 import racingcar.view.utils.InputUtils;
 
 public record RaceParticipantsRequest(String input) {

@@ -1,10 +1,10 @@
 package racingcar.config;
 
 import racingcar.controller.RacingController;
-import racingcar.domain.car.move.DefaultMovingStrategy;
-import racingcar.domain.car.move.MovingStrategy;
 import racingcar.domain.generator.NumberGenerator;
 import racingcar.domain.generator.RandomNumberGenerator;
+import racingcar.domain.move.DefaultMovingStrategy;
+import racingcar.domain.move.MovingStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.console.ConsoleInputView;

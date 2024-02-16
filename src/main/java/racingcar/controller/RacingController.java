@@ -2,11 +2,12 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.domain.RaceParticipants;
+import racingcar.domain.RaceResults;
 import racingcar.domain.car.Car;
-import racingcar.domain.car.move.MovingStrategy;
+import racingcar.domain.move.MovingStrategy;
 import racingcar.dto.request.RaceCountRequest;
 import racingcar.dto.request.RaceParticipantsRequest;
-import racingcar.dto.response.RaceResultResponse;
+import racingcar.dto.response.RaceResultsResponse;
 import racingcar.dto.response.RaceWinnersResponse;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -28,8 +29,11 @@ public class RacingController implements Controller {
     public void run() {
         RaceParticipants raceParticipants = readRaceParticipants();
         final int raceCount = readRaceCount();
-        race(raceCount, raceParticipants);
-        printRaceWinners(raceParticipants);
+
+        RaceResults raceResults = race(raceCount, raceParticipants);
+
+        printRaceResults(raceResults.getRaceResults());
+        printRaceWinners(raceResults.getRaceWinners());
     }
 
     private RaceParticipants readRaceParticipants() {
@@ -46,18 +50,22 @@ public class RacingController implements Controller {
         });
     }
 
-    private void race(final int raceCount, final RaceParticipants raceParticipants) {
-        outputView.printRaceResultHeaderMessage();
+    private RaceResults race(final int raceCount, final RaceParticipants raceParticipants) {
+        RaceResults raceResults = new RaceResults();
+
         for (int i = 0; i < raceCount; i++) {
             raceParticipants.move();
-
-            final List<Car> raceResult = raceParticipants.getCars();
-            outputView.printRaceResult(RaceResultResponse.from(raceResult));
+            raceResults.recordResult(raceParticipants.getCars());
         }
+
+        return raceResults;
     }
 
-    private void printRaceWinners(final RaceParticipants raceParticipants) {
-        final List<Car> raceWinners = raceParticipants.getRaceWinners();
+    private void printRaceResults(final List<List<Car>> raceResults) {
+        outputView.printRaceResults(RaceResultsResponse.from(raceResults));
+    }
+
+    private void printRaceWinners(final List<Car> raceWinners) {
         outputView.printRaceWinners(RaceWinnersResponse.from(raceWinners));
     }
 }

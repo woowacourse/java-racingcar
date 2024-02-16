@@ -1,4 +1,4 @@
-package racingcar.domain.car.move;
+package racingcar.domain.move;
 
 import racingcar.domain.generator.NumberGenerator;
 

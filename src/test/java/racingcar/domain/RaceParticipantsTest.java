@@ -1,16 +1,15 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.car.Car;
-import racingcar.domain.car.move.MovingStrategy;
+import racingcar.domain.move.MovingStrategy;
 import racingcar.dto.request.RaceParticipantsRequest;
 import racingcar.exception.InvalidInputException;
 import racingcar.mock.MockMovingStrategy;
@@ -30,48 +29,30 @@ class RaceParticipantsTest {
         final RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
 
         //then
-        assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(mockMovingStrategy))
-                .isInstanceOf(InvalidInputException.class);
+        assertThatThrownBy(() -> raceParticipantsRequest.toRaceParticipants(mockMovingStrategy)).isInstanceOf(
+                InvalidInputException.class);
     }
 
-    @Nested
-    class 우승자를_가려낸다 {
-        @Test
-        void 우승자가_한_명인_경우() {
-            //given
-            final Car winner = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
-            final Car second = new Car("car2", new MockMovingStrategy(List.of(true, true, false)));
-            final Car third = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
+    @Test
+    void move메서드로_자동차들을_움직인다() {
+        //given
+        final Car move3times = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
+        final Car move2times = new Car("car2", new MockMovingStrategy(List.of(true, true, false)));
+        final Car move1times = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
 
-            final RaceParticipants raceParticipants = new RaceParticipants(List.of(winner, second, third));
-            for (int i = 0; i < 3; i++) {
-                raceParticipants.move();
-            }
+        final RaceParticipants raceParticipants = new RaceParticipants(List.of(move3times, move2times, move1times));
 
-            //when
-            final List<Car> raceWinners = raceParticipants.getRaceWinners();
-
-            //then
-            assertThat(raceWinners).hasSize(1).isEqualTo(List.of(winner));
+        //when
+        for (int i = 0; i < 3; i++) {
+            raceParticipants.move();
         }
 
-        @Test
-        void 우승자가_여러_명인_경우() {
-            //given
-            Car winner1 = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
-            Car winner2 = new Car("car2", new MockMovingStrategy(List.of(true, true, true)));
-            Car second = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
-
-            RaceParticipants raceParticipants = new RaceParticipants(List.of(winner1, winner2, second));
-            for (int i = 0; i < 3; i++) {
-                raceParticipants.move();
-            }
-
-            //when
-            List<Car> raceWinners = raceParticipants.getRaceWinners();
-
-            //then
-            assertThat(raceWinners).hasSize(2).isEqualTo(List.of(winner1, winner2));
-        }
+        //then
+        assertSoftly(softly -> {
+            final List<Car> cars = raceParticipants.getCars();
+            softly.assertThat(cars.get(0).getPosition()).isEqualTo(3);
+            softly.assertThat(cars.get(1).getPosition()).isEqualTo(2);
+            softly.assertThat(cars.get(2).getPosition()).isEqualTo(1);
+        });
     }
 }

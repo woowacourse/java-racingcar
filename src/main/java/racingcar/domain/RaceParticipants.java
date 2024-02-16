@@ -17,7 +17,7 @@ public class RaceParticipants {
     }
 
     private void validateDuplicateNames(final List<Car> cars) {
-        List<String> carNames = cars.stream().map(Car::getName).toList();
+        final List<String> carNames = cars.stream().map(Car::getName).toList();
         if (carNames.size() != new HashSet<>(carNames).size()) {
             throw new InvalidInputException(ErrorMessage.DUPLICATE_CAR_NAMES);
         }
@@ -25,17 +25,6 @@ public class RaceParticipants {
 
     public void move() {
         cars.forEach(Car::move);
-    }
-
-
-    public List<Car> getRaceWinners() {
-        Car winner = cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow();
-
-        return cars.stream()
-                .filter(car -> car.compareTo(winner) == 0)
-                .toList();
     }
 
     public List<Car> getCars() {
