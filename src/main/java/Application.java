@@ -8,7 +8,7 @@ public class Application {
     private static final NumberGenerator numberGenerator = new RandomGenerator();
 
     public static void main(String[] args) {
-        RaceManager fieldTest = new RaceManager(inputView, numberGenerator);
-        fieldTest.run();
+        RaceManager raceManager = new RaceManager(inputView, numberGenerator);
+        raceManager.run();
     }
 }
