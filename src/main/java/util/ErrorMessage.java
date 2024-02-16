@@ -8,6 +8,7 @@ public enum ErrorMessage {
     ERROR_ROUND_IS_NATURAL_NUMBER("시도 횟수는 자연수여야 합니다.");
 
     private static final String PREFIX_ERROR = "[ERROR] ";
+
     private String message;
 
     ErrorMessage(String message) {
