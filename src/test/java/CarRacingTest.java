@@ -73,20 +73,4 @@ class CarRacingTest {
         assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    @DisplayName("우승자 판독 테스트")
-    void decideWinners() {
-        // given
-        List<String> carNames = List.of("pobi", "crong", "honux");
-        // when
-        Cars cars = carRacing.createCars(carNames);
-        List<String> actualWinners = carRacing.getWinners(cars);
-        List<String> expectedWinners = List.of("pobi", "crong", "honux");
-        //then
-        assertAll(
-                () -> assertThat(actualWinners).hasSize(expectedWinners.size()),
-                () -> assertThat(actualWinners).containsExactlyElementsOf(expectedWinners)
-        );
-    }
 }

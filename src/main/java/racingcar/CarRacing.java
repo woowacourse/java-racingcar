@@ -3,6 +3,7 @@ package racingcar;
 import racingcar.domain.Car;
 import racingcar.domain.CarAccelerator;
 import racingcar.domain.Cars;
+import racingcar.domain.Referee;
 import racingcar.domain.TryCount;
 import racingcar.io.InputView;
 import racingcar.io.OutputView;
@@ -29,7 +30,7 @@ public class CarRacing {
     }
 
     private void printWinners(Cars cars) {
-        outputView.printWinners(getWinners(cars));
+        outputView.printWinners(Referee.getWinners(cars));
     }
 
     private void printMoveResult(TryCount tryCount, Cars cars) {
@@ -55,14 +56,5 @@ public class CarRacing {
             cars.tryMove();
             outputView.printCarsPosition(cars.getCars());
         }
-    }
-
-    public List<String> getWinners(Cars cars) {
-        int winnerPosition = cars.getWinnerPosition();
-
-        return cars.getCars().stream()
-                .filter(car -> car.getPosition() == winnerPosition)
-                .map(Car::getName)
-                .toList();
     }
 }
