@@ -1,10 +1,10 @@
-package racingcar.config;
+package racingcar.manager;
 
 import racingcar.controller.RacingController;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingConfig {
+public class RacingManager {
     private InputView inputView() {
         return new InputView();
     }

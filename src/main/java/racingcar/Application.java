@@ -1,10 +1,10 @@
 package racingcar;
 
-import racingcar.config.RacingConfig;
+import racingcar.manager.RacingManager;
 
 public class Application {
     public static void main(String[] args) {
-        RacingConfig config = new RacingConfig();
-        config.racingController().run();
+        RacingManager manager = new RacingManager();
+        manager.racingController().start();
     }
 }

@@ -51,7 +51,7 @@ public class RacingController {
         outputView.printCarPosition(cars);
     }
 
-    public void run() {
+    public void start() {
         final List<String> carNames = readCarNames();
         final Cars cars = new Cars(carNames);
         final int tryCount = readTryCount();
