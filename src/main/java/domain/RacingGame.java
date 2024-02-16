@@ -1,25 +1,21 @@
-package controller;
+package domain;
 
-import domain.Car;
-import domain.Cars;
-import domain.MoveCount;
 import java.util.List;
 import util.StringParser;
 import view.InputView;
 import view.OutputView;
 
-public class RacingGameController {
+public class RacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingGameController(InputView inputView, OutputView outputView) {
+    public RacingGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void run() {
-
         Cars cars = prepareCars();
         MoveCount moveCount = prepareMoveCount();
 
