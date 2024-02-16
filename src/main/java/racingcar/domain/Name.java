@@ -14,6 +14,7 @@ public class Name {
     }
 
     private void validateName(String value) {
+        validateNameNotNull(value);
         validateNameLength(value);
         validateNameNotBlank(value);
     }
@@ -26,6 +27,12 @@ public class Name {
 
     private void validateNameNotBlank(String value) {
         if (value.isBlank()) {
+            throw new InvalidNameLengthException();
+        }
+    }
+
+    private void validateNameNotNull(String value) {
+        if (value == null) {
             throw new InvalidNameLengthException();
         }
     }
