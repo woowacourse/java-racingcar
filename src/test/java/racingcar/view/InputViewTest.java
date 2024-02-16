@@ -2,10 +2,6 @@ package racingcar.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static racingcar.exception.ExceptionMessage.INVALID_TRY_COUNT;
-import static racingcar.exception.ExceptionMessage.NOT_NULL;
-import static racingcar.exception.ExceptionMessage.NOT_NULL_CAR_NAME;
-import static racingcar.exception.ExceptionMessage.ONLY_POSITIVE_NUMBER;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +30,7 @@ class InputViewTest {
         void getCarNamesByNullOrEmpty(String input) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> InputView.readCarNames(() -> input))
-                    .withMessage(NOT_NULL.getMessage());
+                    .withMessage("공백을 입력할 수 없습니다.");
         }
 
         @Test
@@ -42,7 +38,7 @@ class InputViewTest {
         void getCarNamesByEndsWithComma() {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> InputView.readCarNames(() -> "pobi,crong,honux,"))
-                    .withMessage(NOT_NULL_CAR_NAME.getMessage());
+                    .withMessage("자동차 이름에 공백을 입력할 수 없습니다.");
         }
     }
 
@@ -61,7 +57,7 @@ class InputViewTest {
         void getTryCountByNotNumber() {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> InputView.readTryCount(() -> "a"))
-                    .withMessage(ONLY_POSITIVE_NUMBER.getMessage());
+                    .withMessage("시도 횟수는 양의 정수를 입력해야 합니다.");
         }
 
         @Test
@@ -69,7 +65,7 @@ class InputViewTest {
         void getTryCountByNegativeInteger() {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> InputView.readTryCount(() -> "-1"))
-                    .withMessage(ONLY_POSITIVE_NUMBER.getMessage());
+                    .withMessage("시도 횟수는 양의 정수를 입력해야 합니다.");
         }
 
         @Test
@@ -77,7 +73,7 @@ class InputViewTest {
         void getTryCountByOverNumber() {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> InputView.readTryCount(() -> "1001"))
-                    .withMessage(INVALID_TRY_COUNT.getMessage());
+                    .withMessage("시도 횟수는 1,000 이하여야 합니다.");
         }
     }
 }

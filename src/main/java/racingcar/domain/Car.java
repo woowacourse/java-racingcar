@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import static racingcar.exception.ExceptionMessage.*;
-
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +26,7 @@ public class Car implements Comparable<Car> {
 
     private void validateNotNull(final String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
+            throw new IllegalArgumentException("자동차 이름에 공백을 입력할 수 없습니다.");
         }
     }
 
@@ -36,13 +34,13 @@ public class Car implements Comparable<Car> {
         Matcher matcher = NAME_PATTERN.matcher(name);
 
         if (matcher.find()) {
-            throw new IllegalArgumentException(INVALID_CAR_NAME.getMessage());
+            throw new IllegalArgumentException("올바르지 않은 자동차 이름입니다.");
         }
     }
 
     private void validateNameLength(final String name) {
         if (name.trim().length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(INVALID_CAR_NAME_SIZE.getMessage());
+            throw new IllegalArgumentException("자동차 이름의 길이가 5를 초과합니다");
         }
     }
 

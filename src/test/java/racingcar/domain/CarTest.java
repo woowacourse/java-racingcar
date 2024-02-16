@@ -3,7 +3,6 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static racingcar.exception.ExceptionMessage.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +31,7 @@ class CarTest {
         void createCarByNull(final String name) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Car(name))
-                    .withMessage(NOT_NULL_CAR_NAME.getMessage());
+                    .withMessage("자동차 이름에 공백을 입력할 수 없습니다.");
         }
 
         @ParameterizedTest
@@ -41,7 +40,7 @@ class CarTest {
         void createCarByInvalidCharacter(final String name) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Car(name))
-                    .withMessage(INVALID_CAR_NAME.getMessage());
+                    .withMessage("시도 횟수는 100 이하여야 합니다.");
         }
 
         @Test
@@ -49,7 +48,7 @@ class CarTest {
         void createCarByExcessLength() {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Car("ABCDEF"))
-                    .withMessage(INVALID_CAR_NAME_SIZE.getMessage());
+                    .withMessage("자동차 이름의 길이가 5를 초과합니다");
         }
     }
 
