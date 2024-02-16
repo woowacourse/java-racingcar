@@ -8,11 +8,11 @@ import model.Race;
 public class OutputView {
     private static final String OUTPUT_RESULT_MESSAGE = "\n실행 결과";
 
-    public static void showRaceResult() {
+    public void printRaceResult() {
         System.out.println(OUTPUT_RESULT_MESSAGE);
     }
 
-    public static void showRoundResult(Race race) {
+    public void printRoundResult(Race race) {
         StringBuilder roundResult = new StringBuilder();
 
         for (Car car : race.getCars()) {
@@ -25,7 +25,7 @@ public class OutputView {
         System.out.println(roundResult);
     }
 
-    public static void showWinners(Race race) {
+    public void printWinners(Race race) {
         List<String> winners = race.selectWinners();
         StringJoiner result = new StringJoiner(", ", "", "가 최종 우승했습니다.");
         for (String winner : winners) {
