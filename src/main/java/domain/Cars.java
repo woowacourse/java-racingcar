@@ -22,10 +22,6 @@ public class Cars {
         }
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     private List<Car> convertNamesToCars(List<String> names) {
         List<Car> cars = new ArrayList<>();
 
@@ -43,4 +39,9 @@ public class Cars {
                 .get(0)
                 .getForward();
     }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
+    }
+
 }
