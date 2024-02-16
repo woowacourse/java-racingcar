@@ -30,7 +30,7 @@ public class RacingCarController {
 
         outputView.printMovementTitle();
 
-        for (int i = count; i >= 0; i--) {
+        for (int i = 0; i < count; i++) {
             racingCarService.moveCars(cars);
             printMovement(cars);
         }
