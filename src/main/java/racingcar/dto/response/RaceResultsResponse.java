@@ -7,22 +7,22 @@ import java.util.Map;
 import racingcar.domain.car.Car;
 
 public record RaceResultsResponse(List<Map<String, Integer>> raceResults) {
-    public static RaceResultsResponse from(final List<List<Car>> raceResults) {
-        final List<Map<String, Integer>> raceResultResponse = new ArrayList<>();
+    public static RaceResultsResponse from(final List<Map<Car, Integer>> raceResults) {
+        final List<Map<String, Integer>> raceResultsResponse = new ArrayList<>();
 
-        for (final List<Car> cars : raceResults) {
-            final Map<String, Integer> raceResult = createRaceResult(cars);
-            raceResultResponse.add(raceResult);
+        for (final Map<Car, Integer> raceResult : raceResults) {
+            final Map<String, Integer> raceResultResponse = createRaceResultResponse(raceResult);
+            raceResultsResponse.add(raceResultResponse);
         }
 
-        return new RaceResultsResponse(raceResultResponse);
+        return new RaceResultsResponse(raceResultsResponse);
     }
 
-    private static Map<String, Integer> createRaceResult(List<Car> cars) {
-        final Map<String, Integer> raceResult = new LinkedHashMap<>();
-        for (final Car car : cars) {
-            raceResult.put(car.getName(), car.getPosition());
+    private static Map<String, Integer> createRaceResultResponse(Map<Car, Integer> raceResult) {
+        final Map<String, Integer> raceResultMap = new LinkedHashMap<>();
+        for (final Map.Entry<Car, Integer> entry : raceResult.entrySet()) {
+            raceResultMap.put(entry.getKey().getName(), entry.getValue());
         }
-        return raceResult;
+        return raceResultMap;
     }
 }

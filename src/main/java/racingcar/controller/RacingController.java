@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
+import java.util.Map;
 import racingcar.domain.RaceParticipants;
 import racingcar.domain.RaceResults;
 import racingcar.domain.car.Car;
@@ -61,7 +62,7 @@ public class RacingController implements Controller {
         return raceResults;
     }
 
-    private void printRaceResults(final List<List<Car>> raceResults) {
+    private void printRaceResults(final List<Map<Car, Integer>> raceResults) {
         outputView.printRaceResults(RaceResultsResponse.from(raceResults));
     }
 
