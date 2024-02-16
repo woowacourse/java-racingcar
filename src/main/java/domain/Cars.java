@@ -22,6 +22,7 @@ public class RacingCars {
     public String startRounds(String counts) {
         validateCounts(counts);
         int roundCounts = Integer.parseInt(counts);
+
         StringBuilder roundResult = new StringBuilder();
         for (int i = 0; i < roundCounts; i++) {
             racingCars.forEach(car -> car.moveForward(NumberGenerator.generateRandomNumber()));

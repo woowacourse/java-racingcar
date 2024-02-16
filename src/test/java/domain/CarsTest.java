@@ -16,10 +16,12 @@ class RacingCarsTest {
     @BeforeEach
     void createCars() {
         cars = new ArrayList<>();
+        
         Car pobiCar = new Car("pobi");
         pobiCar.moveForward(4);
 
         Car junCar = new Car("jun");
+
         Car guguCar = new Car("gugu");
         guguCar.moveForward(4);
 
