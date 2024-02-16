@@ -9,8 +9,8 @@ public class RacingCarTest {
     @DisplayName("랜덤값이 4이상이면 전진한다.")
     @Test
     void testMove() {
-        RacingCar racingCar = new RacingCar("pobi", () -> 4);
-        racingCar.race();
+        RacingCar racingCar = new RacingCar("pobi");
+        racingCar.race(4);
 
         Assertions.assertThat(racingCar.getMoveNumber()).isEqualTo(1);
     }
@@ -18,8 +18,8 @@ public class RacingCarTest {
     @DisplayName("랜덤값이 4보다 작으면 전진한다.")
     @Test
     void testNotMove() {
-        RacingCar racingCar = new RacingCar("pobi", () -> 3);
-        racingCar.race();
+        RacingCar racingCar = new RacingCar("pobi");
+        racingCar.race(3);
 
         Assertions.assertThat(racingCar.getMoveNumber()).isEqualTo(0);
     }

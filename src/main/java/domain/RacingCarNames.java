@@ -13,9 +13,9 @@ public class RacingCarNames {
         this.names = splitNames;
     }
 
-    public RacingCars createRacingCars(NumberGenerator numberGenerator) {
+    public RacingCars createRacingCars() {
         return new RacingCars(names.stream()
-                .map(name -> new RacingCar(name, numberGenerator))
+                .map(name -> new RacingCar(name))
                 .collect(Collectors.toList()));
     }
 

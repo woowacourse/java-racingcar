@@ -14,10 +14,13 @@ public class RacingCars {
     }
 
     public void tryRace() {
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+
         for (RacingCar racingCar : racingCars) {
-            racingCar.race();
+            racingCar.race(numberGenerator.generateNumber());
             printResult(racingCar);
         }
+
         System.out.println();
     }
 

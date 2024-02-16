@@ -7,12 +7,6 @@ import view.OutputView;
 import java.util.List;
 
 public class RacingCarController {
-    private NumberGenerator numberGenerator;
-
-    public RacingCarController(NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
-    }
-
     public void start() {
         RacingCars racingCars = readRacingCars();
         TryNumber tryNumber = readTryNumber();
@@ -29,7 +23,7 @@ public class RacingCarController {
 
     private RacingCars readRacingCars() {
         RacingCarNames racingCarNames = readRacingCarNames();
-        return racingCarNames.createRacingCars(numberGenerator);
+        return racingCarNames.createRacingCars();
     }
 
     private RacingCarNames readRacingCarNames() {
