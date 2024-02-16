@@ -7,11 +7,11 @@ import model.Race;
 public class OutputView {
     private static final String OUTPUT_RESULT_MESSAGE = "\n실행 결과";
 
-    public void showRaceResult() {
+    public void printRaceResult() {
         System.out.println(OUTPUT_RESULT_MESSAGE);
     }
 
-    public void showRoundResult(Race race) {
+    public void printRoundResult(Race race) {
         StringBuilder roundResult = new StringBuilder();
 
         for (Car car : race.getCars()) {
