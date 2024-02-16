@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.exception.InvalidNameLengthException;
 
 public class Name {
+
     private static final int MAX_LENGTH = 5;
 
     private final String value;
