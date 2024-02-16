@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 public class Cars {
 
     public static final String DUPLICATE_CAR_NAME_EXCEPTION = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
-    public static final String TRY_COUNT_NUMBER_FORMAT_EXCEPTION = "[ERROR] 시도 횟수는 숫자여야 합니다.";
-
     private final List<Car> racingCars;
 
     public Cars(List<Car> racingCars) {
@@ -31,28 +29,11 @@ public class Cars {
                 + distance.repeat(car.getDistance());
     }
 
-    private void validateCounts(String counts) {
-        try {
-            Integer.parseInt(counts);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(TRY_COUNT_NUMBER_FORMAT_EXCEPTION);
-        }
+    public void updateRaceRound() {
+        racingCars.forEach(car -> car.moveForward(NumberGenerator.generateRandomNumber()));
     }
 
-    // TODO [LTH]: 메서드 위치 적합성 따지기
-    public String startRounds(String counts) {
-        validateCounts(counts);
-        int roundCounts = Integer.parseInt(counts);
-        StringBuilder roundResult = new StringBuilder();
-        for (int i = 0; i < roundCounts; i++) {
-            racingCars.forEach(car -> car.moveForward(NumberGenerator.generateRandomNumber()));
-            roundResult.append(getRoundResult());
-            roundResult.append("\n\n");
-        }
-        return roundResult.toString();
-    }
-
-    private String getRoundResult() {
+    public String getRoundResult() {
         return racingCars.stream()
                 .map(Cars::generateResult)
                 .collect(Collectors.joining("\n"));

@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +33,17 @@ class CarsTest {
     @Test
     @DisplayName("시도 횟수는 숫자여야 한다.")
     void isRoundCountsNumber() {
-        Cars cars = new Cars(CarsTest.cars);
         String counts = "5번";
-        assertThrows(IllegalArgumentException.class, () -> cars.startRounds(counts));
+        assertThrows(IllegalArgumentException.class, () -> InputView.parseRoundCounts(counts));
     }
 
     @Test
     @DisplayName("각 라운드 별 결과를 반환해야 한다.")
     void isValidRoundResult() {
         Cars cars = new Cars(CarsTest.cars);
-        String roundResult = cars.startRounds("1");
+        cars.updateRaceRound();
+        String roundResult = cars.getRoundResult();
+
         assertThat(roundResult).contains("pobi : -");
     }
 

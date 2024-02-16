@@ -9,18 +9,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
+
+    private final StringBuilder roundResult = new StringBuilder();
+
+
     public void startRacing() {
         String carNames = InputView.getCarNames();
         List<Car> cars = parseCarNames(carNames);
-
         Cars racingCars = new Cars(cars);
-        String roundCounts = InputView.getRacingRounds();
-        String roundResults = racingCars.startRounds(roundCounts);
+
+        String rawRoundCounts = InputView.getRacingRounds();
+        int roundCount = InputView.parseRoundCounts(rawRoundCounts);
+
+        String roundResults = startRounds(roundCount, racingCars);
         int maxDistance = racingCars.getMaxDistance();
 
         OutputView.printResultNotice();
         OutputView.printRoundResult(roundResults);
         OutputView.printWinners(racingCars.getWinners(maxDistance));
+    }
+
+    private String startRounds(int roundCounts, Cars cars) {
+        for (int i = 0; i < roundCounts; i++) {
+            cars.updateRaceRound();
+            roundResult.append(cars.getRoundResult());
+            roundResult.append("\n\n");
+        }
+        return roundResult.toString();
     }
 
     private List<Car> parseCarNames(String carNames) {
