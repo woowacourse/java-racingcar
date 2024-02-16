@@ -49,12 +49,19 @@ public class RacingController {
     }
 
     private <T> T repeatUntilSuccess(Supplier<T> supplier) {
-        while (true) {
-            try {
-                return supplier.get();
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
+        T result;
+        do {
+            result = tryOperation(supplier);
+        } while (result == null);
+        return result;
+    }
+
+    private <T> T tryOperation(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return null;
         }
     }
 }
