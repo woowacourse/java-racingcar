@@ -21,13 +21,13 @@ class NameTest {
     @Test
     void checkNameNonEmpty() {
         assertThatThrownBy(() -> Name.from(""))
-            .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("이름의 길이 제한은 5자 이하이다.")
     @Test
     void checkNameLength() {
         assertThatThrownBy(() -> Name.from("abcdef"))
-            .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class);
     }
 }
