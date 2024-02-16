@@ -1,9 +1,9 @@
 package controller;
 
-import domain.Rap;
+import domain.CarFactory;
 import domain.Cars;
-import domain.NumberGenerator;
-import domain.RandomNumberGenerator;
+import domain.RandomNumber;
+import domain.Rap;
 import domain.Winners;
 import util.StringConvertor;
 import view.ExceptionRetryHandler;
@@ -11,6 +11,8 @@ import view.InputView;
 import view.OutputView;
 
 public class RacingController {
+    private static final int MIN_NUMBER_RANGE = 0;
+    private static final int MAX_NUMBER_RANGE = 9;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -20,28 +22,37 @@ public class RacingController {
     }
 
     public void run() {
-        Cars cars = ExceptionRetryHandler.retryUntilValid(this::receiveCarNames);
-        Rap rap = ExceptionRetryHandler.retryUntilValid(this::receiveTryCount);
+        Cars cars = createCars(receiveCarNames());
+        Rap rap = createRap(receiveTryCount());
         racing(cars, rap);
         outputView.printWinners(Winners.from(cars));
     }
 
-    private Cars receiveCarNames() {
+    private String receiveCarNames() {
         outputView.printCarNamesInputText();
-        String carNames = inputView.readCarNames();
-        return Cars.from(StringConvertor.convertListSplitByComma(carNames));
+        return ExceptionRetryHandler.retryUntilValid(inputView::readCarNames);
     }
 
-    private Rap receiveTryCount() {
+    private Cars createCars(String carNames) {
+        String[] cars = StringConvertor.splitByDelimiter(carNames, StringConvertor.getDelimiter());
+        CarFactory carFactory = CarFactory.from(cars);
+        return Cars.from(carFactory.getProducedCars());
+    }
+
+    private int receiveTryCount() {
         outputView.printTryCountInputText();
-        return Rap.from(inputView.readTryCount());
+        return ExceptionRetryHandler.retryUntilValid(inputView::readTryCount);
+    }
+
+    private Rap createRap(int tryCount) {
+        return Rap.from(tryCount);
     }
 
     private void racing(Cars cars, Rap rap) {
         outputView.printRacingResult();
-        NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         while (rap.isLeft()) {
-            cars.moveAll(randomNumberGenerator);
+            RandomNumber randomNumber = RandomNumber.of(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE);
+            cars.moveAll(randomNumber);
             outputView.printRacingProceed(cars);
             rap.round();
         }
