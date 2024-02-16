@@ -34,6 +34,7 @@ public class Cars {
         return cars.stream()
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(
+                        () -> new NoSuchElementException("가장 멀리 간 자동차의 위치를 구하는 것에 실패하였습니다\n 자동차 수: " + cars.size()));
     }
 }
