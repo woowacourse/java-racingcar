@@ -3,11 +3,10 @@ package domain;
 public class Car {
 
     private final CarName carName;
-    private Integer position;
-
+    private final Position position;
     private final PowerStrategy powerStrategy;
 
-    private Car(CarName carName, int position) {
+    private Car(CarName carName, Position position) {
         this.carName = carName;
         this.position = position;
         this.powerStrategy = PowerStrategy.from();
@@ -15,11 +14,12 @@ public class Car {
 
     public static Car of(String name, int position) {
         CarName carName = CarName.from(name);
-        return new Car(carName, position);
+        Position carPosition = Position.from(position);
+        return new Car(carName, carPosition);
     }
 
     public Integer getPosition() {
-        return this.position;
+        return this.position.getPosition();
     }
 
     public String getCarName() {
@@ -37,6 +37,6 @@ public class Car {
     }
 
     private void move() {
-        position++;
+        position.increase();
     }
 }
