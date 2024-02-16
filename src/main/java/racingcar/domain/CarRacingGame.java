@@ -25,7 +25,7 @@ public class CarRacingGame {
         round.decrease();
     }
 
-    public List<Car> getRoundResult() {
+    public List<Car> getCurrentCarStatuses() {
         return Collections.unmodifiableList(cars.getCars());
     }
 }

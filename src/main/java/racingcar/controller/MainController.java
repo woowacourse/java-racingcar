@@ -45,8 +45,8 @@ public class MainController {
     }
 
     private void showRoundResult(CarRacingGame carRacingGame) {
-        List<Car> roundResult = carRacingGame.getRoundResult();
-        List<CarDto> roundResultDto = toDto(roundResult);
+        List<Car> currentCarStatuses = carRacingGame.getCurrentCarStatuses();
+        List<CarDto> roundResultDto = toDto(currentCarStatuses);
 
         outputView.printRoundResult(roundResultDto);
     }

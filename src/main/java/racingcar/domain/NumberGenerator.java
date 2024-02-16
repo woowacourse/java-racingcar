@@ -1,8 +1,7 @@
 package racingcar.domain;
 
 @FunctionalInterface
-public interface
-NumberGenerator {
+public interface NumberGenerator {
 
     int generate();
 }

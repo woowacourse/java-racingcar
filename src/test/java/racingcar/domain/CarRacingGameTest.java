@@ -24,7 +24,7 @@ class CarRacingGameTest {
     void playRoundMoveTest(int randomNumber, int expected) {
         carRacingGame.playRound(() -> randomNumber);
 
-        List<Car> carList = carRacingGame.getRoundResult();
+        List<Car> carList = carRacingGame.getCurrentCarStatuses();
         carList.forEach(car -> assertThat(car.getPosition()).isEqualTo(expected));
     }
 
