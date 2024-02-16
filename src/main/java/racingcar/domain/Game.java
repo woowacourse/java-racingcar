@@ -8,6 +8,13 @@ public class Game {
     private final int tryCount;
     private final Vehicles vehicles;
 
+    private final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
+        @Override
+        public boolean isMovable() {
+            return CarMoveStrategy.super.isMovable();
+        }
+    };
+
     public static Game from(String userTryCount, Vehicles vehicles) throws NumberFormatException {
         int tryCount = parseUserInput(userTryCount);
         validNaturalNumber(tryCount);
@@ -34,9 +41,9 @@ public class Game {
     }
 
     public void proceed() {
-            vehicles.move();
-            OutputView.printNewLine();
         IntStream.range(0, tryCount).forEach(i -> {
+            vehicles.move(carMoveStrategy);
+            OutputView.printVehicles(vehicles);
         });
     }
 

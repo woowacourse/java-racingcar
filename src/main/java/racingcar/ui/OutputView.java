@@ -8,6 +8,8 @@ import static racingcar.ui.OutputCommand.RESULT_TITLE;
 import static racingcar.ui.OutputCommand.WINNERS_DELIMITER;
 import static racingcar.ui.OutputCommand.WINNER_FORMAT;
 
+import racingcar.domain.Car;
+import racingcar.domain.Vehicles;
 import racingcar.domain.Winner;
 
 public class OutputView {
@@ -15,8 +17,13 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + OutputCommand.INPUT_ERROR_MESSAGE);
     }
 
-    public static void printCarResult(String carName, int distance) {
-        System.out.printf(CAR_RESULT_FORMAT, carName, getRepeatedHyphen(distance));
+    public static void printVehicles(Vehicles vehicles) {
+        vehicles.getCars().forEach(OutputView::printCarResult);
+        printNewLine();
+    }
+
+    public static void printCarResult(Car car) {
+        System.out.printf(CAR_RESULT_FORMAT, car.getName(), getRepeatedHyphen(car.getForward()));
     }
 
     private static String getRepeatedHyphen(int distance) {

@@ -44,12 +44,16 @@ public class Vehicles {
                 .collect(Collectors.toSet()).size();
     }
 
-    void move() {
-        cars.forEach(Car::move);
+    void move(CarMoveStrategy carMoveStrategy) {
+        cars.forEach(car -> car.move(carMoveStrategy));
     }
 
     List<Car> getBiggestCars() {
         int biggestForward = cars.stream().mapToInt(Car::getForward).max().getAsInt();
         return cars.stream().filter(car -> car.getForward() == biggestForward).toList();
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
