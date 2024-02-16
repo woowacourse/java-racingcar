@@ -11,28 +11,28 @@ import java.util.List;
 public class GameManager {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView(outputView);
-    List<Car> cars = new ArrayList<>();
 
     public void run() {
+        List<Car> cars = new ArrayList<>();
         List<String> carNames = inputView.getCarName();
-        makeNewCars(carNames);
+        makeNewCars(cars, carNames);
         int tryCount = inputView.getTryCount();
         for (int i = 0; i < tryCount; i++) {
-            moveCars();
+            moveCars(cars);
             outputView.printTryResult(cars);
         }
         outputView.printWinners(cars);
     }
 
-    private void moveCars() {
-        for (Car car : cars) {
-            car.moveCar(new RandomCondition());
+    private void makeNewCars(List<Car> cars, List<String> carNames) {
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
         }
     }
 
-    private void makeNewCars(List<String> carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
+    private void moveCars(List<Car> cars) {
+        for (Car car : cars) {
+            car.moveCar(new RandomCondition());
         }
     }
 }
