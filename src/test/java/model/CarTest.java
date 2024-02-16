@@ -32,9 +32,9 @@ class CarTest {
 
     static Stream<Arguments> invalidCarName() {
         return Stream.of(
-                Arguments.of(" ","차 이름이 공백이다.", "빈 자동차 이름이 존재합니다."),
-                Arguments.of("","차 이름이 빈 문자열이다.", "빈 자동차 이름이 존재합니다."),
-                Arguments.of("명오배키켬미","차 이름이 5자를 초과한다.", "자동차 이름이 5자 초과입니다.")
+                Arguments.of(" ", "차 이름이 공백이다.", "빈 자동차 이름이 존재합니다."),
+                Arguments.of("", "차 이름이 빈 문자열이다.", "빈 자동차 이름이 존재합니다."),
+                Arguments.of("명오배키켬미", "차 이름이 5자를 초과한다.", "자동차 이름이 5자 초과입니다.")
         );
     }
 

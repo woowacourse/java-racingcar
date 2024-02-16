@@ -1,8 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MovesGenerator {
 
     private static final int MOVE_STANDARD = 4;

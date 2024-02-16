@@ -3,7 +3,6 @@ package controller;
 import java.util.List;
 import model.Car;
 import model.Cars;
-import model.MovesGenerator;
 import view.RetryOnException;
 import view.InputView;
 import view.OutputView;

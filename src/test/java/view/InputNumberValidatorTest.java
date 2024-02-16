@@ -12,9 +12,9 @@ class InputNumberValidatorTest {
 
     static Stream<Arguments> invalidTryNumber() {
         return Stream.of(
-                Arguments.of("배키","시도 횟수가 숫자가 아니다.", "시도 횟수가 숫자가 아닙니다."),
-                Arguments.of("-1","시도 횟수가 음수이다.", "시도 횟수가 양수가 아닙니다."),
-                Arguments.of(" ","시도 횟수가 빈 문자이다.", "시도 횟수가 숫자가 아닙니다.")
+                Arguments.of("배키", "시도 횟수가 숫자가 아니다.", "시도 횟수가 숫자가 아닙니다."),
+                Arguments.of("-1", "시도 횟수가 음수이다.", "시도 횟수가 양수가 아닙니다."),
+                Arguments.of(" ", "시도 횟수가 빈 문자이다.", "시도 횟수가 숫자가 아닙니다.")
         );
     }
 
