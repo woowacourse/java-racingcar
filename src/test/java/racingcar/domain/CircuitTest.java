@@ -50,6 +50,5 @@ class CircuitTest {
                 new CarStatus("car1", 2),
                 new CarStatus("car2", 2)
         );
-
     }
 }
