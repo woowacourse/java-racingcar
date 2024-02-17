@@ -28,4 +28,12 @@ public class Car {
             position++;
         }
     }
+
+    public boolean isMoved() {
+        return position > 0;
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
 }
