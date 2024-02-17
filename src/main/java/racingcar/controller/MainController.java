@@ -10,34 +10,30 @@ import racingcar.view.model.ConsoleReader;
 
 public class MainController {
     public void run() {
-        final Cars cars = getCars();
-        final int tryCount = getTryCount();
+        final Cars cars = createCars(InputView.readCarNames(new ConsoleReader()));
+        final int tryCount = promptUserForTryCount();
         proceedRounds(cars, tryCount);
         printResult(cars);
     }
 
-    private Cars getCars() {
+    private Cars createCars(final List<String> carNames) {
         try {
-            final List<Car> cars = createCars(InputView.readCarNames(new ConsoleReader()));
+            final List<Car> cars = carNames.stream()
+                    .map(Car::new)
+                    .toList();
             return new Cars(cars);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return getCars();
+            return createCars(carNames);
         }
     }
 
-    private List<Car> createCars(final List<String> carNames) {
-        return carNames.stream()
-                .map(Car::new)
-                .toList();
-    }
-
-    private int getTryCount() {
+    private int promptUserForTryCount() {
         try {
             return InputView.readTryCount(new ConsoleReader());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return getTryCount();
+            return promptUserForTryCount();
         }
     }
 
