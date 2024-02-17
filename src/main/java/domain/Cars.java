@@ -13,11 +13,10 @@ public class Cars {
     }
 
     public List<CarStatus> race() {
+        cars.forEach(Car::move);
         return cars.stream()
-                .peek(Car::move)
                 .map(Car::getStatus)
                 .toList();
-
     }
 
     public List<Car> getCars() {
