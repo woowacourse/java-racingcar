@@ -13,7 +13,7 @@ public class GameWinners {
 
     @Override
     public String toString() {
-        return  winners.stream()
+        return winners.stream()
                 .collect(Collectors.joining(WINNER_SEPERATOR));
     }
 }

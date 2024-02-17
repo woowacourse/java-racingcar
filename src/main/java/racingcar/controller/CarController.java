@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.Cars;
+import racingcar.model.GameResult;
 import racingcar.model.GameStatus;
 import racingcar.model.NumericGenerator;
 import racingcar.model.TryCount;
@@ -29,7 +30,9 @@ public class CarController {
             gameStatus.add(cars.getGameStatus());
             tryCount.consume();
         }
+    }
 
-        OutputView.printWinner(cars.calculateWinner());
+    public GameResult getGameResult() {
+        return new GameResult(gameStatus, cars.calculateWinner());
     }
 }
