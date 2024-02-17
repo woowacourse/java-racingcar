@@ -1,8 +1,8 @@
 package racingcar.controller;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import racingcar.domain.Car;
+import racingcar.domain.CarName;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.view.InputView;
@@ -29,7 +29,7 @@ public class RacingCarController {
 
     private List<Car> createCars(final List<String> carNames) {
         return carNames.stream()
-                .map(Car::new)
+                .map(carName -> new Car(new CarName(carName)))
                 .toList();
     }
 

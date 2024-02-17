@@ -16,7 +16,10 @@ class CarsTest {
     @Test
     @DisplayName("[Success] 자동차가 정상적으로 생성됨")
     void createCars() {
-        List<Car> cars = List.of(new Car("a"), new Car("b"));
+        List<Car> cars = List.of(
+                new Car(new CarName("a")),
+                new Car(new CarName("b"))
+        );
 
         assertThatCode(() -> new Cars(cars))
                 .doesNotThrowAnyException();
@@ -25,7 +28,10 @@ class CarsTest {
     @Test
     @DisplayName("[Exception] 중복된 자동차 이름이 있으면 예외를 던진다")
     void createCarsByDuplicateCarNames() {
-        List<Car> cars = List.of(new Car("123"), new Car("123"));
+        List<Car> cars = List.of(
+                new Car(new CarName("123")),
+                new Car(new CarName("123"))
+        );
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Cars(cars))
@@ -37,7 +43,7 @@ class CarsTest {
     @DisplayName("[Exception] 자동차 대수가 2대 미만이거나 10대 초과하면 예외를 던진다")
     void createCarsByInvalidSize(List<String> carNames) {
         List<Car> cars = carNames.stream()
-                .map(Car::new)
+                .map(carName -> new Car(new CarName(carName)))
                 .toList();
 
         assertThatIllegalArgumentException()
@@ -55,13 +61,13 @@ class CarsTest {
     @Test
     @DisplayName("[Success] 자동차 전진 횟수가 가장 많은 차들의 이름을 반환한다")
     void getWinners() {
-        Car car1 = new Car("car1");
+        Car car1 = new Car(new CarName("car1"));
         car1.move(4);
         car1.move(4);
-        Car car2 = new Car("car2");
+        Car car2 = new Car(new CarName("car2"));
         car2.move(4);
         car2.move(4);
-        Car car3 = new Car("car3");
+        Car car3 = new Car(new CarName("car3"));
         car3.move(1);
         car3.move(1);
 
