@@ -32,13 +32,13 @@ public class Cars {
     private static void validateDuplicatedName(List<String> names) {
         long nameCount = names.stream().distinct().count();
         if (names.size() != nameCount) {
-            throw new IllegalArgumentException("[ERROR] 자동차의 이름은 중복될 수 없습니다.");
+            throw new IllegalArgumentException("자동차의 이름은 중복될 수 없습니다.");
         }
     }
 
     private static void validateNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 2개 이상이어야 합니다.");
+            throw new IllegalArgumentException("자동차 이름은 2개 이상이어야 합니다.");
         }
     }
 
