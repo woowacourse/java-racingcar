@@ -11,30 +11,29 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GameManager {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
-    List<Car> cars = new ArrayList<>();
 
     public void run() {
         outputView.printCarNameInputMessage();
         List<String> carNames = inputView.getCarName();
-        makeNewCars(carNames);
+        List<Car> cars = makeNewCars(carNames);
         outputView.printTryCountInputMessage();
         int tryCount = inputView.getTryCount();
         for (int i = 0; i < tryCount; i++) {
-            moveCars();
+            moveCars(cars);
             outputView.printTryResult(cars);
         }
         outputView.printWinners(cars);
     }
 
-    private void moveCars() {
+    private void moveCars(List<Car> cars) {
         for (Car car : cars) {
             car.moveCar(ThreadLocalRandom.current().nextInt(10));
         }
     }
 
-    private void makeNewCars(List<String> carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+    private List<Car> makeNewCars(List<String> carNames) {
+        return carNames.stream()
+                .map(carName -> new Car(carName))
+                .toList();
     }
 }
