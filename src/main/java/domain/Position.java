@@ -5,8 +5,8 @@ public class Position {
 
     private Integer position;
 
-    public Position(Integer position) {
-        this.position = position;
+    public Position() {
+        this.position = INITIAL_POSITION;
     }
 
     public void move() {
