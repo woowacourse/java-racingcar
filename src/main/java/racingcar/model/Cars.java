@@ -15,7 +15,7 @@ public class Cars {
     public Cars(NumericGenerator generator, String input) {
         this.generator = generator;
 
-        isValidInput(input);
+        checkIfValidInput(input);
         List<String> carNames = parseWithComma(input);
 
         this.cars = carNames.stream()
@@ -23,7 +23,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void isValidInput(String input) {
+    public void checkIfValidInput(String input) {
         String regex = "^[^,]+(,[^,]+)*$";
 
         Pattern pattern = Pattern.compile(regex);
