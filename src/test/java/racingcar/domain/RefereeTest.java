@@ -19,7 +19,7 @@ class RefereeTest {
 
         car1.moveForward(new TestMoveForwardAccelerator());
 
-        Cars cars = new Cars(List.of(car1, car2, car3), new CarAccelerator());
+        Cars cars = new Cars(List.of(car1, car2, car3));
 
         // when
         List<String> actualWinners = Referee.getWinners(cars);
@@ -39,7 +39,7 @@ class RefereeTest {
         Car car2 = new Car("crong");
         Car car3 = new Car("honux");
 
-        Cars cars = new Cars(List.of(car1, car2, car3), new CarAccelerator());
+        Cars cars = new Cars(List.of(car1, car2, car3));
 
         // when
         List<String> actualWinners = Referee.getWinners(cars);

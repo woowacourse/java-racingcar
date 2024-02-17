@@ -5,12 +5,11 @@ import java.util.List;
 
 public class Cars {
     private final List<Car> cars;
-    private final Accelerator accelerator;
 
-    public Cars(List<Car> cars, Accelerator accelerator) {
+    public Cars(List<Car> cars) {
         validate(cars);
+
         this.cars = cars;
-        this.accelerator = accelerator;
     }
 
     private void validate(List<Car> cars) {
@@ -35,7 +34,7 @@ public class Cars {
         }
     }
 
-    public void tryMove() {
+    public void tryMove(Accelerator accelerator) {
         for (Car car : cars) {
             car.moveForward(accelerator);
         }

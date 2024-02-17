@@ -44,7 +44,7 @@ public class CarRacing {
             cars.add(new Car(carName));
         }
 
-        return new Cars(cars, new CarAccelerator());
+        return new Cars(cars);
     }
 
     private TryCount createTryCount(int amount) {
@@ -53,7 +53,7 @@ public class CarRacing {
 
     private void tryMove(TryCount tryCount, Cars cars) {
         for (int i = 0; i < tryCount.getValue(); i++) {
-            cars.tryMove();
+            cars.tryMove(new CarAccelerator());
             outputView.printCarsPosition(cars.getCars());
         }
     }
