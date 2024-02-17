@@ -23,14 +23,6 @@ public class RacingGame {
         makeCarsFrom(rawCarNames);
     }
 
-    private void makeCarsFrom(String rawCarNames) {
-        List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
-        validate(carNames);
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
-    }
-
     public List<Car> playOneRound() {
         for (Car car : cars) {
             if (moveStrategy.isMovable()) {
@@ -44,6 +36,14 @@ public class RacingGame {
         return cars.stream()
             .filter(car -> car.equals(Collections.max(cars)))
             .toList();
+    }
+
+    private void makeCarsFrom(String rawCarNames) {
+        List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
+        validate(carNames);
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
     }
 
     private void validate(List<String> names) {
