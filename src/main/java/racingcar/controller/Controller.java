@@ -18,7 +18,6 @@ public class Controller {
 
     public void run() {
         List<String> carNames = inputView.getCarNames();
-        InputValidator.validateAvailableCarNames(carNames);
         int tryNumber = inputView.getTryNumber();
         generateCarList(carNames);
         outputView.printResultHeaderPrompt();

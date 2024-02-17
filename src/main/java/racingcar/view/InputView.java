@@ -16,7 +16,7 @@ public class InputView {
         InputValidator.validateIsBlank(initialInput);
 
         List<String> parseCarNames = parseCarName(initialInput);
-        InputValidator.validateAvailableName(parseCarNames);
+        InputValidator.validateAvailableNames(parseCarNames);
         return parseCarNames;
     }
 

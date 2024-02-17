@@ -18,7 +18,9 @@ public class InputValidator {
     private static final int MIN_CAR_COUNT = 2;
     private static final int MIN_TRY_NUMBER = 1;
     
-    public static void validateAvailableName(List<String> names){
+    public static void validateAvailableNames(List<String> names){
+        validateIsMultipleCarNames(names);
+        validateIsDuplicate(names);
         for(String inputName :  names){
             hasSpaceInName(inputName);
             isAvailableLength(inputName);
@@ -42,21 +44,16 @@ public class InputValidator {
         }
     }
 
-    public static void validateAvailableCarNames(List<String> carNames){
-        validateIsMultipleCarNames(carNames);
-        validateIsDuplicate(carNames);
-    }
-
-    private static void validateIsMultipleCarNames(List<String> carNames) {
-        if (carNames.size() < MIN_CAR_COUNT) {
+    private static void validateIsMultipleCarNames(List<String> names) {
+        if (names.size() < MIN_CAR_COUNT) {
             throw new IllegalArgumentException(ERROR_WITH_ONLY_ONE_CAR);
         }
     }
 
-    private static void validateIsDuplicate(List<String> inputs) {
-        Set<String> nameSet = new HashSet<>(inputs);
+    private static void validateIsDuplicate(List<String> names) {
+        Set<String> nameSet = new HashSet<>(names);
 
-        if(nameSet.size() != inputs.size()) {
+        if(nameSet.size() != names.size()) {
             throw new IllegalArgumentException(ERROR_WITH_DUPLICATE_NAME);
         }
     }

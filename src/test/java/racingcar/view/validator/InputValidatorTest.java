@@ -12,37 +12,37 @@ class InputValidatorTest {
     @Test
     @DisplayName("이름 사이에 공백이 존재하는 자동차 이름 테스트")
     void validateNameWithSpace() {
-        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableName(Arrays.asList("ca r","car1")));
+        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableNames(Arrays.asList("ca r","car1")));
     }
 
     @Test
     @DisplayName("5자를 초과하는 자동차 이름 테스트")
     void validateLongName() {
-        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableName(Arrays.asList("longname", "car1")));
+        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableNames(Arrays.asList("longname", "car1")));
     }
 
     @Test
     @DisplayName("작명 규칙을 위반하지 않은 자동차 이름 테스트")
     void validateValidNames() {
-        assertDoesNotThrow(() -> InputValidator.validateAvailableName(Arrays.asList("car1", "car2")));
+        assertDoesNotThrow(() -> InputValidator.validateAvailableNames(Arrays.asList("car1", "car2")));
     }
 
     @Test
     @DisplayName("자동차가 한 대인지 테스트")
     void validateSingleName() {
-        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableCarNames(Arrays.asList("car")));
+        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableNames(Arrays.asList("car")));
     }
 
     @Test
     @DisplayName("중복되는 자동차 이름 테스트")
     void validateDuplicateNames() {
-        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableCarNames(Arrays.asList("car", "car")));
+        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableNames(Arrays.asList("car", "car")));
     }
 
     @Test
     @DisplayName("가능한 이름 목록 테스트")
     void validateAvailableCarNames() {
-        assertDoesNotThrow(() -> InputValidator.validateAvailableCarNames(Arrays.asList("car1", "car2")));
+        assertDoesNotThrow(() -> InputValidator.validateAvailableNames(Arrays.asList("car1", "car2")));
     }
 
     @Test
