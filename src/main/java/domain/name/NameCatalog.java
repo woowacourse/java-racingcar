@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class NameCatalog {
-    private List<Name> names;
+    private final List<Name> names;
 
     public NameCatalog(List<Name> carNames) {
         validate(carNames);
