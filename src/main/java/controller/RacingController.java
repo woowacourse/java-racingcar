@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import model.Cars;
 import model.Racing;
 import model.dto.CarState;
-import model.intgenerator.RandomIntGenerator;
+import model.powergenerator.RandomPowerGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -27,7 +27,7 @@ public class RacingController {
 
     public Cars prepareRandomPowerCars() {
         List<String> carNames = inputView.askCarNames();
-        return Cars.create(carNames, new RandomIntGenerator());
+        return Cars.create(carNames, new RandomPowerGenerator());
     }
 
     public Racing prepareRacing() {

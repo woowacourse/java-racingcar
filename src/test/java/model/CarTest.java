@@ -3,23 +3,23 @@ package model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import model.intgenerator.IntGenerator;
+import model.powergenerator.PowerGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class CarTest {
-    IntGenerator intGenerator;
+    PowerGenerator powerGenerator;
 
     @BeforeEach
     void setUp() {
-        intGenerator = (power) -> 1;
+        powerGenerator = (power) -> 1;
     }
 
     @Test
     void 자동차_이름이_공백을_포함한_5자_초과면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Car("pobibi", intGenerator))
+        assertThatThrownBy(() -> new Car("pobibi", powerGenerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

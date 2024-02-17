@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import model.dto.CarState;
-import model.intgenerator.IntGenerator;
+import model.powergenerator.PowerGenerator;
 
 public class Cars {
     private static final int MIN_CAR_NAMES_SIZE = 1;
@@ -16,10 +16,10 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars create(List<String> names, IntGenerator intGenerator) {
+    public static Cars create(List<String> names, PowerGenerator powerGenerator) {
         validate(names);
         List<Car> cars = names.stream()
-                .map(name -> new Car(name, intGenerator))
+                .map(name -> new Car(name, powerGenerator))
                 .toList();
         return new Cars(cars);
     }
