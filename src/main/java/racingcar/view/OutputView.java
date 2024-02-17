@@ -3,6 +3,7 @@ package racingcar.view;
 import racingcar.dto.CarDto;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final String NEWLINE = System.lineSeparator();
@@ -18,17 +19,17 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printRoundResult(List<CarDto> cars) {
-        cars.forEach(OutputView::printCarInformation);
+    public static void printRoundResult(Map<String, Integer> carInformation) {
+        carInformation.forEach(OutputView::printCarInformation);
         System.out.println();
     }
 
-    private static void printCarInformation(CarDto car) {
+    private static void printCarInformation(String name, int position) {
         StringBuilder informationBuilder = new StringBuilder();
 
-        informationBuilder.append(car.getName())
+        informationBuilder.append(name)
                 .append(COLON)
-                .append(POSITION_EXPRESSION_SYMBOL.repeat(car.getPosition()));
+                .append(POSITION_EXPRESSION_SYMBOL.repeat(position));
 
         System.out.println(informationBuilder);
     }

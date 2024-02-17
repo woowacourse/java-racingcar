@@ -12,17 +12,31 @@ public class CarRacingGame {
         this.round = new Round(inputRound);
     }
 
-    public List<Car> findWinners() {
-        return cars.findCarsAtMaxPosition();
+    public RaceResult race() {
+        RaceResult raceResult = new RaceResult();
+
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        while (isPlayable()) {
+            RoundResult roundResult = playRound(numberGenerator);
+            raceResult.record(roundResult);
+        }
+
+        return raceResult;
     }
 
-    public boolean isGameEnd() {
-        return round.isLast();
+    public boolean isPlayable() {
+        return !round.isLast();
     }
 
-    public void playRound(NumberGenerator numberGenerator) {
+    public RoundResult playRound(NumberGenerator numberGenerator) {
         cars.moveCars(numberGenerator);
         round.decrease();
+
+        return new RoundResult(cars.getCars());
+    }
+
+    public List<Car> findWinners() {
+        return cars.findCarsAtMaxPosition();
     }
 
     public List<Car> getRoundResult() {

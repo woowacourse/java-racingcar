@@ -2,8 +2,8 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.CarRacingGame;
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumberGenerator;
+import racingcar.domain.RaceResult;
+import racingcar.domain.RoundResult;
 import racingcar.dto.CarDto;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -15,8 +15,9 @@ public class MainController {
 
     public void run() {
         CarRacingGame carRacingGame = repeat(this::initializeCarRacingGame);
+        RaceResult raceResult = carRacingGame.race();
 
-        race(carRacingGame);
+        showRoundResults(raceResult.getRoundResults());
         showWinners(carRacingGame.findWinners());
     }
 
@@ -27,21 +28,12 @@ public class MainController {
         return new CarRacingGame(inputCarNames, inputRound);
     }
 
-    private void race(CarRacingGame carRacingGame) {
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-
+    private void showRoundResults(List<RoundResult> roundResults) {
         OutputView.printResultMessage();
-        while (!carRacingGame.isGameEnd()) {
-            carRacingGame.playRound(numberGenerator);
-            showRoundResult(carRacingGame);
-        }
-    }
 
-    private void showRoundResult(CarRacingGame carRacingGame) {
-        List<Car> roundResult = carRacingGame.getRoundResult();
-        List<CarDto> roundResultDto = toDto(roundResult);
-
-        OutputView.printRoundResult(roundResultDto);
+        roundResults.forEach(roundResult -> {
+            OutputView.printRoundResult(roundResult.getRoundResult());
+        });
     }
 
     private void showWinners(List<Car> winners) {

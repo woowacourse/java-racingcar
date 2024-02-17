@@ -31,9 +31,9 @@ class CarRacingGameTest {
     @Test
     @DisplayName("자동차 경주 게임 종료 여부를 판별할 수 있다.")
     void isGameEnd() {
-        assertThat(carRacingGame.isGameEnd()).isFalse();
+        assertThat(carRacingGame.isPlayable()).isTrue();
         carRacingGame.playRound(() -> 3);
-        assertThat(carRacingGame.isGameEnd()).isTrue();
+        assertThat(carRacingGame.isPlayable()).isFalse();
     }
 
     @Test
