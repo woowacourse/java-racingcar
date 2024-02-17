@@ -31,7 +31,7 @@ public class RaceManager {
             List<String> carNames = inputView.readCarNames();
             return new RacingCars(carNames);
         } catch (IOException | IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return repeatUntilGetValidCarNames();
         }
     }
@@ -40,6 +40,7 @@ public class RaceManager {
         try {
             return inputView.readNumberOfAttempts();
         } catch (IOException | IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
             return repeatUntilGetValidNumberOfAttempts();
         }
     }

@@ -27,7 +27,7 @@ public class InputView {
 
     private void validateCarNamesFormat(String names) {
         if (!Pattern.matches("^[A-z0-9,]+$", names)) {
-            throw new IllegalArgumentException("형식에 맞게 다시 입력하세요.");
+            throw new IllegalArgumentException("자동차 이름은 영문 혹은 숫자로만 입력해주세요.");
         }
     }
 
@@ -43,7 +43,7 @@ public class InputView {
             int numberOfAttempts = Integer.parseInt(text);
             validateRange(numberOfAttempts, 1, 10);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("1부터 10 이하의 숫자를 입력하세요. ");
         }
     }
 
