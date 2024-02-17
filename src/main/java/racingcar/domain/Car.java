@@ -27,7 +27,7 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateNotNull(final String name) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
         }
     }
