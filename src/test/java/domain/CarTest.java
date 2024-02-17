@@ -23,7 +23,7 @@ class CarTest {
         assertThat(distance).isEqualTo(1);
     }
 
-    @DisplayName("3이하의 난수가 뽑히면 전진하지 않는다..")
+    @DisplayName("3이하의 난수가 뽑히면 전진하지 않는다.")
     @Test
     void notForwardCar() throws Exception {
         // Given
