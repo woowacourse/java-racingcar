@@ -1,7 +1,7 @@
 package domain;
 
-import static constant.Numbers.MAX_CAR_LENGTH;
-import static constant.Numbers.MIN_CAR_LENGTH;
+import static constant.Numbers.MAX_CAR_AMOUNT;
+import static constant.Numbers.MIN_CAR_AMOUNT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,9 +55,9 @@ public class RacingGame {
     }
 
     private void validateCarAmount(List<String> names) {
-        if (names.isEmpty() || names.size() > MAX_CAR_LENGTH) {
+        if (names.isEmpty() || names.size() > MAX_CAR_AMOUNT) {
             throw new IllegalArgumentException(
-                "차는 " + MIN_CAR_LENGTH + " ~ " + MAX_CAR_LENGTH + "대만 입력 가능합니다.");
+                "차는 " + MIN_CAR_AMOUNT + " ~ " + MAX_CAR_AMOUNT + "대만 입력 가능합니다.");
         }
     }
 
