@@ -45,15 +45,16 @@ public class Cars {
         }
     }
 
-    public String calculateWinner() {
+    public GameWinners calculateWinner() {
         int maxPosition = cars.stream()
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .orElse(0);
-        return cars.stream()
+        return new GameWinners(cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .toList());
+                
     }
 
     @Override

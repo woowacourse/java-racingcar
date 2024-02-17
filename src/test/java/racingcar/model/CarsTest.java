@@ -81,8 +81,8 @@ public class CarsTest {
             Cars cars = new Cars("폭포,포케");
             NumericGenerator generator = new TestNumericGenerator(4, 3);
             cars.moveCars(generator);
-            String actual = cars.calculateWinner();
-            assertThat(actual).isEqualTo("폭포");
+            GameWinners actual = cars.calculateWinner();
+            assertThat(actual.toString()).isEqualTo("폭포");
         }
 
         @Test
@@ -91,8 +91,8 @@ public class CarsTest {
             Cars cars = new Cars("폭포,포케,무빈");
             NumericGenerator generator = new TestNumericGenerator(4, 4, 3);
             cars.moveCars(generator);
-            String actual = cars.calculateWinner();
-            assertThat(actual).isEqualTo("폭포, 포케");
+            GameWinners actual = cars.calculateWinner();
+            assertThat(actual.toString()).isEqualTo("폭포, 포케");
         }
     }
 }
