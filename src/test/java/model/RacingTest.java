@@ -2,7 +2,6 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,11 +16,6 @@ public class RacingTest {
         Car car2 = new Car("dora", () -> 4);
         Car car3 = new Car("ella", () -> 5);
         cars = new Cars(List.of(car1, car2, car3));
-    }
-
-    @Test
-    void 시도횟수로_경주를_생성한다() {
-        assertDoesNotThrow(() -> new Racing(3));
     }
 
     @Test

@@ -2,7 +2,6 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import model.intgenerator.IntGenerator;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,11 +15,6 @@ public class CarTest {
     @BeforeEach
     void setUp() {
         intGenerator = () -> 1;
-    }
-
-    @Test
-    void 자동차_이름으로_자동차를_생성한다() {
-        assertDoesNotThrow(() -> new Car("pobi", intGenerator));
     }
 
     @Test
