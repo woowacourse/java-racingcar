@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class NameCatalog {
+public class Names {
     private final List<Name> names;
 
-    public NameCatalog(List<Name> carNames) {
+    public Names(List<Name> carNames) {
         validate(carNames);
         this.names = carNames;
     }

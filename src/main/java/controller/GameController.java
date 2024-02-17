@@ -2,7 +2,7 @@ package controller;
 
 import domain.car.Car;
 import domain.car.Cars;
-import domain.name.NameCatalog;
+import domain.name.Names;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
 import domain.race.RaceResult;
@@ -33,8 +33,8 @@ public class GameController {
     }
 
     private Cars register() {
-        NameCatalog nameCatalog = inputView.inputCarNameCatalog();
-        return Cars.from(nameCatalog);
+        Names names = inputView.inputCarNameCatalog();
+        return Cars.from(names);
     }
 
     private void racing(final List<Car> cars, Integer raceCount) {

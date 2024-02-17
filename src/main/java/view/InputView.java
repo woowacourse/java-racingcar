@@ -1,6 +1,6 @@
 package view;
 
-import domain.name.NameCatalog;
+import domain.name.Names;
 import domain.name.Name;
 import domain.race.RaceCount;
 import util.Splitter;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class InputView {
     Scanner scanner = new Scanner(System.in);
 
-    public NameCatalog inputCarNameCatalog() {
+    public Names inputCarNameCatalog() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String originalValue = scanner.next();
         List<String> splitValue = Splitter.splitWithComma(originalValue);
@@ -22,7 +22,7 @@ public class InputView {
                 .map(Name::new)
                 .toList();
 
-        return new NameCatalog(names);
+        return new Names(names);
     }
 
     public RaceCount inputRaceCount() {
