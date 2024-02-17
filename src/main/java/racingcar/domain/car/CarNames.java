@@ -11,7 +11,7 @@ public class CarNames {
     private final List<CarName> carNames;
 
     private CarNames(final String input) {
-        final String[] separatedInput = separate(input, SEPARATOR);
+        final String[] separatedInput = separate(input);
 
         final List<CarName> carNames = Arrays.stream(separatedInput)
                 .map(CarName::new)
@@ -26,12 +26,12 @@ public class CarNames {
         return new CarNames(input);
     }
 
-    private String[] separate(final String input, final String separator) {
-        if (input.endsWith(separator)) {
+    private String[] separate(final String input) {
+        if (input.endsWith(SEPARATOR)) {
             throw new IllegalArgumentException("[ERROR] 구분자로 끝날 수 없습니다.");
         }
 
-        return input.split(separator);
+        return input.split(SEPARATOR);
     }
 
     private void validateDuplicateName(final List<CarName> carNames) {
