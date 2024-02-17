@@ -18,7 +18,7 @@ public class TryCountTest {
         @DisplayName("입력값이 문자이면 예외를 발생한다.")
         void testIsNotNumeric() {
             String given = "문자열";
-            
+
             assertThatThrownBy(() -> new TryCount(given))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -36,7 +36,7 @@ public class TryCountTest {
     @Nested
     class Feature {
         @Test
-        @DisplayName("trycount 소비")
+        @DisplayName("시도 횟수를 한 번 소비하면, 값이 1만큼 감소하는지 확인")
         void testConsume() {
             TryCount count = new TryCount("5");
             count.consume();
@@ -50,7 +50,7 @@ public class TryCountTest {
         @ParameterizedTest
         @CsvSource({"0,false",
                 "1,true"})
-        @DisplayName("1 이상인지 확인")
+        @DisplayName("시도 횟수 값이 0 이하인지 아닌지를 잘 구별하는지 확인")
         void testUntilZero(String given, boolean expected) {
             TryCount count = new TryCount(given);
 
