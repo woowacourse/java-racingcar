@@ -11,7 +11,7 @@ class CarsTest {
     @DisplayName("자동차 이름이 중복되면 예외가 발생한다.")
     @Test
     void nameDuplicatedTest() {
-        List<String> carNames = List.of("lemon","lemon","a","nyang");
+        List<String> carNames = List.of("lemon", "lemon", "a", "nyang");
         assertThatThrownBy(() -> Cars.from(carNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
