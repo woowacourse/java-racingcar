@@ -10,13 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
-    private static Accelerator testMoveForwardAccelerator;
-
-    @BeforeAll
-    static void init() {
-        testMoveForwardAccelerator = new TestMoveForwardAccelerator();
-    }
-
 
     @Test
     @DisplayName("입력받은 자동차의 개수가 2대 이상이면 객체 생성에 성공한다")
@@ -57,14 +50,16 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차를 한꺼번에 움직일 수 있다.")
+    @DisplayName("자동차를 한꺼번 움직일 수 있다.")
     void moveAllCars() {
         //given
         Car car1 = new Car("pobi");
         Car car2 = new Car("crong");
         List<Car> carInfos = List.of(car1, car2);
-        //when
         Cars cars = new Cars(carInfos);
+
+        Accelerator testMoveForwardAccelerator = new TestMoveForwardAccelerator();
+        //when
         cars.tryMove(testMoveForwardAccelerator);
         //then
 

@@ -12,15 +12,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
-    private static Accelerator testMoveForwardAccelerator;
-    private static Accelerator testStopAccelerator;
-
-    @BeforeAll
-    static void init() {
-        testMoveForwardAccelerator = new TestMoveForwardAccelerator();
-        testStopAccelerator = new TestStopAccelerator();
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"p", "po", "poo", "pooo", "poooo"})
     @DisplayName("자동차 이름의 길이가 1 이상 5 이하로 주어지면 자동차가 정상적으로 생성된다")
@@ -57,6 +48,7 @@ class CarTest {
     void moveCar() {
         //given
         Car car = new Car("pobi");
+        Accelerator testMoveForwardAccelerator = new TestMoveForwardAccelerator();
         //when
         car.moveForward(testMoveForwardAccelerator);
         //then
@@ -67,6 +59,7 @@ class CarTest {
     void doNotMoveCar() {
         //given
         Car car = new Car("pobi");
+        Accelerator testStopAccelerator = new TestStopAccelerator();
         //when
         car.moveForward(testStopAccelerator);
         //then
