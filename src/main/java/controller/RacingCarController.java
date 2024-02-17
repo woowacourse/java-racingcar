@@ -33,3 +33,4 @@ public class RacingCarController {
         outputView.writeWinners(racingGame.findWinnerNames());
     }
 }
+
