@@ -21,7 +21,7 @@ public class Car {
     }
 
     private String removeBlank(String name) {
-        return name.replaceAll(" ", "");
+        return name.replaceAll("\\s+", "");
     }
 
     public void incLocation() {
