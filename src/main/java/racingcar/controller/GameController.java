@@ -5,7 +5,7 @@ import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
 import racingcar.utils.NameParser;
-import racingcar.utils.Validator;
+import racingcar.utils.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -31,7 +31,7 @@ public class GameController {
         try {
             OutputView.printlnInputName();
             names = NameParser.parse(InputView.inputNames());
-            Validator.validateCarName(names);
+            InputValidator.validateCarName(names);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
             return false;
@@ -50,7 +50,7 @@ public class GameController {
         try {
             OutputView.printlnInputMoveCount();
             moveCount = InputView.inputMoveCount();
-            Validator.validateMoveCount(moveCount);
+            InputValidator.validateMoveCount(moveCount);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
             return false;

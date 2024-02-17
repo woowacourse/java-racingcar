@@ -2,7 +2,7 @@ package racingcar.utils;
 
 import java.util.List;
 
-public class Validator {
+public class InputValidator {
     public static void validateCarName(List<String> names) {
         validateDuplicateNames(names);
         for (String name : names) {
