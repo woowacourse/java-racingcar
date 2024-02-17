@@ -3,7 +3,6 @@ package view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
@@ -21,7 +20,7 @@ public class InputView {
 
     private List<String> splitNames(String names) {
         String[] splitNames = names.split(NAME_DELIMITER);
-        return Arrays.asList(splitNames);
+        return List.of(splitNames);
     }
 
     public String readRound() throws IOException {
