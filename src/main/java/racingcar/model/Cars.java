@@ -9,6 +9,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String REGEX_VALID_INPUT_CHECK = "^[^,]+(,[^,]+)*$";
+    private static final int MINIMUM_MOVE_NUMBER = 4;
+
     private List<Car> cars;
 
     public Cars(String input) {
@@ -21,7 +24,6 @@ public class Cars {
     }
 
     private void isValidInput(String input) {
-        final String REGEX_VALID_INPUT_CHECK = "^[^,]+(,[^,]+)*$";
         Pattern pattern = Pattern.compile(REGEX_VALID_INPUT_CHECK);
         Matcher matcher = pattern.matcher(input);
 
@@ -38,8 +40,6 @@ public class Cars {
     }
 
     public void moveCars(NumericGenerator generator) {
-        final int MINIMUM_MOVE_NUMBER = 4;
-
         for (Car car : cars) {
             if (generator.generate() >= MINIMUM_MOVE_NUMBER) {
                 car.move();

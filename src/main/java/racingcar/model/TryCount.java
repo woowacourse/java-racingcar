@@ -4,10 +4,10 @@ public class TryCount {
     private int value;
 
     public TryCount(String input) {
-        this.value = validatedInput(input);
+        this.value = validateInput(input);
     }
 
-    private int validatedInput(String input) {
+    private int validateInput(String input) {
         isNumericString(input);
 
         int number = Integer.parseInt(input);
