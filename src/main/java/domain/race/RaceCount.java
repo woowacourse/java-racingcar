@@ -8,7 +8,7 @@ public class RaceCount {
         this.value = value;
     }
 
-    private void validate(Integer value) {
+    private void validate(final Integer value) {
         if (value <= 0) {
             throw new IllegalArgumentException("횟수가 0보다 커야합니다.");
         }

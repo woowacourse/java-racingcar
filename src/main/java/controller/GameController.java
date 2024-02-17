@@ -37,7 +37,7 @@ public class GameController {
         return Cars.from(names);
     }
 
-    private void racing(final List<Car> cars, Integer raceCount) {
+    private void racing(final List<Car> cars,final Integer raceCount) {
         List<RaceProgress> raceProgresses = IntStream.range(0, raceCount)
                 .mapToObj(i -> {
                     race(cars);
