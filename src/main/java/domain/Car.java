@@ -8,6 +8,8 @@ public class Car {
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
     public static final int FORWARD_NUMBER = 4;
+    public static final int MIN_RANDOM_NUMBER = 0;
+    public static final int MAX_RANDOM_NUMBER = 9;
 
     private final NumberRangeGenerator numberRangeGenerator;
     private final String name;
@@ -37,7 +39,7 @@ public class Car {
             return;
         }
 
-        final int randomNumber = numberRangeGenerator.generateRandomNumberInRange(0, 9);
+        final int randomNumber = numberRangeGenerator.generateRandomNumberInRange(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
 
         if (randomNumber >= FORWARD_NUMBER) {
             distance++;
