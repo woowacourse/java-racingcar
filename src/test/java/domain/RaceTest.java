@@ -16,7 +16,7 @@ class RaceTest {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         List<Car> carList = List.of(carA, carB);
-        Race race = new Race(carList, new MoveStrategy());
+        Race race = new Race(carList);
         carB.move(true);
 
         // when
@@ -34,7 +34,7 @@ class RaceTest {
         Car carB = new Car("carB");
         Car carC = new Car("carC");
         List<Car> carList = List.of(carA, carB, carC);
-        Race race = new Race(carList, new MoveStrategy());
+        Race race = new Race(carList);
         carA.move(true);
         carB.move(true);
 

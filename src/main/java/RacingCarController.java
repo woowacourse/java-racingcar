@@ -25,7 +25,7 @@ public class RacingCarController {
                     .stream()
                     .map(Car::new)
                     .toList();
-            return new Race(cars, new MoveStrategy());
+            return new Race(cars);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return inputCars();

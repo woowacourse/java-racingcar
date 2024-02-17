@@ -11,11 +11,8 @@ class RandomMoveStrategyTest {
     @ParameterizedTest
     @CsvSource({"3, false", "4, true"})
     void moveRandomlyTest(int randomInt, boolean expected) {
-        // given
-        MoveStrategy randomMoveStrategy = new MoveStrategy();
-
         // when
-        boolean actual = randomMoveStrategy.isMove(randomInt);
+        boolean actual = MoveStrategy.isMove(randomInt);
 
         // then
         Assertions.assertThat(actual).isEqualTo(expected);

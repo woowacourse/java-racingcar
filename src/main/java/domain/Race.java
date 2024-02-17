@@ -6,18 +6,16 @@ import java.util.Random;
 public class Race {
 
     private final List<Car> cars;
-    private final MoveStrategy moveStrategy;
 
-    public Race(List<Car> cars, MoveStrategy moveStrategy) {
+    public Race(List<Car> cars) {
         this.cars = cars;
-        this.moveStrategy = moveStrategy;
     }
 
     public void move() {
         Random random = new Random();
         cars.forEach(car -> {
             int randomInt = random.nextInt(10);
-            car.move(moveStrategy.isMove(randomInt));
+            car.move(MoveStrategy.isMove(randomInt));
         });
     }
 
