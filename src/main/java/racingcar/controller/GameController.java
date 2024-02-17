@@ -1,9 +1,9 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.dto.CarDto;
-import racingcar.model.Car;
-import racingcar.model.Cars;
+import racingcar.model.CarNames;
+import racingcar.model.RacingGame;
+import racingcar.model.RoundResult;
 import racingcar.model.RandomNumberGenerator;
 import racingcar.model.Round;
 import racingcar.util.ExceptionHandler;
@@ -21,50 +21,25 @@ public class GameController {
     }
 
     public void run() {
-        final Cars cars = ExceptionHandler.retry(this::getCars, outputView::printError);
+        final CarNames carNames = ExceptionHandler.retry(this::getCarNames, outputView::printError);
         final Round round = ExceptionHandler.retry(this::getRound, outputView::printError);
 
-        play(round, cars);
+        final RacingGame racingGame = RacingGame.of(carNames, round);
+        final List<RoundResult> roundResults = racingGame.play(new RandomNumberGenerator());
 
-        outputView.printCarsPosition(createCarDtos(cars));
+        outputView.printRoundResults(roundResults);
 
-        final List<String> winnersName = findWinnersName(cars);
-        outputView.printWinners(winnersName);
+        outputView.printWinners(racingGame.getWinners());
     }
 
-    private Cars getCars() {
+    private CarNames getCarNames() {
         final String names = inputView.readCarNames();
-        return Cars.from(names);
+        return CarNames.from(names);
     }
 
     private Round getRound() {
         final String tryRound = inputView.readTryRound();
         return Round.from(tryRound);
-    }
-
-    private void play(final Round round, final Cars cars) {
-        final RandomNumberGenerator generator = new RandomNumberGenerator();
-
-        while (round.isContinue()) {
-            cars.go(generator);
-            round.progress();
-
-            outputView.printCarsPosition(createCarDtos(cars));
-        }
-    }
-
-    private List<CarDto> createCarDtos(final Cars cars) {
-        return cars.getCars()
-                .stream()
-                .map(CarDto::from)
-                .toList();
-    }
-
-    private List<String> findWinnersName(final Cars cars) {
-        return cars.findWinners()
-                .stream()
-                .map(Car::getName)
-                .toList();
     }
 
 }

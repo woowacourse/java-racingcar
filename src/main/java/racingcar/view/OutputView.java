@@ -1,17 +1,23 @@
 package racingcar.view;
 
 import java.util.List;
-import racingcar.dto.CarDto;
+import racingcar.model.CarResult;
+import racingcar.model.RoundResult;
 
 public class OutputView {
 
-    public void printCarsPosition(final List<CarDto> carDtos) {
-        carDtos.forEach(this::printCarPosition);
+    public void printRoundResults(final List<RoundResult> roundResults) {
+        roundResults.forEach(this::printRoundResult);
+    }
+
+    private void printRoundResult(final RoundResult roundResult) {
+        final List<CarResult> carResults = roundResult.getCarResult();
+        carResults.forEach(this::printCarResult);
         System.out.println();
     }
 
-    private void printCarPosition(final CarDto carDto) {
-        System.out.println(carDto.name() + " : " + "-".repeat(carDto.position()));
+    private void printCarResult(final CarResult carResult) {
+        System.out.printf("%s : %s", carResult.getCarName(), "-".repeat(carResult.getPosition()));
     }
 
     public void printWinners(final List<String> winners) {
