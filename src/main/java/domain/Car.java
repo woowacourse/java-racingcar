@@ -38,4 +38,12 @@ public class Car {
     public int getLocation() {
         return location;
     }
+
+    public boolean isBlank() {
+        return name.isBlank();
+    }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return location == maxPosition;
+    }
 }

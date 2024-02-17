@@ -52,12 +52,12 @@ public class Game {
 
     private void validateFalseName(List<Car> cars) {
         for (Car car : cars) {
-            validateBlankName(car.getCarName());
+            validateBlankName(car);
         }
     }
 
-    private void validateBlankName(String carName) {
-        if (carName.isEmpty()) {
+    private void validateBlankName(Car car) {
+        if (car.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 빈 이름은 사용할 수 없습니다.");
         }
     }
@@ -95,7 +95,7 @@ public class Game {
     }
 
     private String findWinner(Car car, int maxPosition) {
-        if (car.getLocation() == maxPosition) {
+        if (car.isMaxPosition(maxPosition)) {
             return car.getCarName();
         }
         return NONCANDIDATE_CAR.getCarName();
