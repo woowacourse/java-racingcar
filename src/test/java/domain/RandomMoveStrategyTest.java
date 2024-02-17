@@ -17,5 +17,4 @@ class RandomMoveStrategyTest {
         // then
         Assertions.assertThat(actual).isEqualTo(expected);
     }
-
 }
