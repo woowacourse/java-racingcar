@@ -24,26 +24,32 @@ public class CarGroupTest {
     @Test
     @DisplayName("우승자가 정상적으로 반환되는가")
     void get_winners_test() {
+        // given
         String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
         CarGroup carGroup = new CarGroup(carNames);
 
+        // when
         List<Car> cars = carGroup.getAllCars();
         Car winner = cars.get(0);
         winner.move(9);
 
+        // then
         assertThat(carGroup.getWinners()).containsExactly(winner);
     }
 
     @Test
     @DisplayName("우승자가 없는가")
     void no_winners_test() {
+        // given
         String[] carNames = new String[]{"mang", "weve", "pobi", "neo"};
         CarGroup carGroup = new CarGroup(carNames);
 
+        // when
         List<Car> cars = carGroup.getAllCars();
         Car winner = cars.get(0);
         winner.move(0);
 
+        // then
         assertThat(carGroup.getWinners()).isEmpty();
     }
 }

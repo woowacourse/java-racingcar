@@ -1,10 +1,10 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class AttemptsTest {
@@ -13,7 +13,7 @@ public class AttemptsTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 5, 10})
     void valid_attempts_number_test(int numberOfAttempts) {
-        Assertions.assertThatCode(() -> new Attempts(numberOfAttempts))
+        assertThatCode(() -> new Attempts(numberOfAttempts))
                 .doesNotThrowAnyException();
     }
 
