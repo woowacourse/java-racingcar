@@ -9,7 +9,7 @@ import utils.NumberGenerator;
 public class FieldTestTest {
     @Test
     void test() {
-        Field field = new Field(new CarFactory("pobi,weve"), new FixedNumberGenerator());
+        Field field = new Field(new CarGroup("pobi,weve"), new FixedNumberGenerator());
         field.race(2);
 
         String expected = "\n실행 결과\npobi : \nweve : \n\npobi : \nweve : -\n\nweve가 최종 우승했습니다.";
@@ -20,7 +20,7 @@ public class FieldTestTest {
 }
 
 class FixedNumberGenerator implements NumberGenerator {
-    private static List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    private static final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
     private static Integer index = 0;
 
     @Override

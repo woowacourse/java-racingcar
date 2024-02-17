@@ -5,18 +5,18 @@ import java.util.List;
 import utils.NumberGenerator;
 
 public class Field {
-    private final CarFactory carFactory;
+    private final CarGroup carGroup;
     private final StringBuilder record;
     private final NumberGenerator numberGenerator;
 
-    public Field(CarFactory carFactory, NumberGenerator numberGenerator) {
-        this.carFactory = carFactory;
+    public Field(CarGroup carGroup, NumberGenerator numberGenerator) {
+        this.carGroup = carGroup;
         this.record = new StringBuilder("\n실행 결과\n");
         this.numberGenerator = numberGenerator;
     }
 
     public void race(int numberOfAttempts) {
-        List<Car> cars = carFactory.getAllCars();
+        List<Car> cars = carGroup.getAllCars();
         for (int i = 0; i < numberOfAttempts; i++) {
             runSingleAttempt(cars);
             log(cars);
@@ -39,7 +39,7 @@ public class Field {
     }
 
     public String getResult() {
-        List<Car> winners = carFactory.getWinners();
+        List<Car> winners = carGroup.getWinners();
         List<String> winnerNames = new ArrayList<>();
         for (Car winner : winners) {
             winnerNames.add(winner.getName());

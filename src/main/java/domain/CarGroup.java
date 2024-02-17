@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarFactory {
+public class CarGroup {
     private final List<Car> cars;
 
-    public CarFactory(String carNames) {
+    public CarGroup(String carNames) {
         this.cars = generateCars(carNames);
     }
 
@@ -30,7 +30,7 @@ public class CarFactory {
 
     private int getMaxPosition() {
         return cars.stream()
-                .mapToInt(car -> car.getPosition())
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
     }

@@ -13,15 +13,15 @@ public class RaceManager {
 
     public RaceManager(InputView inputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
-        CarFactory carFactory = repeatUntilGetValidCarNames();
+        CarGroup carGroup = repeatUntilGetValidCarNames();
         this.numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
-        this.field = new Field(carFactory, numberGenerator);
+        this.field = new Field(carGroup, numberGenerator);
     }
 
-    private CarFactory repeatUntilGetValidCarNames() {
+    private CarGroup repeatUntilGetValidCarNames() {
         try {
             String carNames = inputView.readCarNames();
-            return new CarFactory(carNames);
+            return new CarGroup(carNames);
         } catch (IOException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return repeatUntilGetValidCarNames();
