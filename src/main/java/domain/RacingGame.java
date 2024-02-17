@@ -1,8 +1,5 @@
 package domain;
 
-import static constant.Numbers.MAX_CAR_AMOUNT;
-import static constant.Numbers.MIN_CAR_AMOUNT;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +11,9 @@ import movestrategy.RandomPowerMoveStrategy;
 import view.OutputView;
 
 public class RacingGame {
+
+    private static final int MIN_CAR_AMOUNT = 1;
+    private static final int MAX_CAR_AMOUNT = 100;
 
     private final List<Car> cars;
     private final MoveStrategy moveStrategy;
