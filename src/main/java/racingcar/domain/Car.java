@@ -17,12 +17,6 @@ public class Car {
         this.name = name;
     }
 
-    private void validateNameLength(String name) {
-        if (name.length() > 5 || name.isEmpty()) {
-            throw new IllegalArgumentException(INVALID_CAR_NAME_LENGTH);
-        }
-    }
-
     public static void validateUniqueCarNames(List<Car> cars) {
         int uniqueCarNamesCount = (int)cars.stream()
                 .map(car -> car.name)
@@ -31,6 +25,25 @@ public class Car {
 
         if (uniqueCarNamesCount != cars.size()) {
             throw new IllegalArgumentException(DUPLICATED_CAR_NAME);
+        }
+    }
+
+    public static int findMaxDistance(List<Car> cars) {
+        return cars.stream()
+                .mapToInt(car -> car.movedDistance)
+                .max()
+                .orElseThrow(IllegalStateException::new);
+    }
+
+    public static List<String> mapCarsToName(List<Car> cars) {
+        return cars.stream()
+                .map(car -> car.name)
+                .toList();
+    }
+
+    private void validateNameLength(String name) {
+        if (name.length() > 5 || name.isEmpty()) {
+            throw new IllegalArgumentException(INVALID_CAR_NAME_LENGTH);
         }
     }
 
@@ -46,18 +59,5 @@ public class Car {
 
     public boolean isSameDistance(int distance) {
         return distance == movedDistance;
-    }
-
-    public static int findMaxDistance(List<Car> cars) {
-        return cars.stream()
-                .mapToInt(car -> car.movedDistance)
-                .max()
-                .getAsInt();
-    }
-
-    public static List<String> mapCarsToName(List<Car> cars) {
-        return cars.stream()
-                .map(car -> car.name)
-                .toList();
     }
 }
