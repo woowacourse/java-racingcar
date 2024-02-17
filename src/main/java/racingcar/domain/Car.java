@@ -15,8 +15,8 @@ public class Car {
     }
 
     public void move() {
-        engine.tryToWork();
-        if (engine.isWorking()) {
+        boolean isEngineOn = engine.tryToWork();
+        if (isEngineOn) {
             position += SPEED;
         }
     }

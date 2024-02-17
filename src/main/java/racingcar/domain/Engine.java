@@ -9,18 +9,13 @@ public class Engine {
     private static final int MAX_RANGE = 9;
 
     private final NumberGenerator numberGenerator;
-    private boolean isWorking = false;
 
     public Engine(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
-    public void tryToWork() {
+    public boolean tryToWork() {
         int value = numberGenerator.generateNumberInRange(MIN_RANGE, MAX_RANGE);
-        isWorking = value >= MINIMUM_THRESHOLD;
-    }
-
-    public boolean isWorking() {
-        return isWorking;
+        return value >= MINIMUM_THRESHOLD;
     }
 }
