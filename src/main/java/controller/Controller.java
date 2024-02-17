@@ -23,20 +23,17 @@ public class Controller {
     public void run() {
         final Cars cars = initCars();
         final RacingCount racingCount = inputRacingCount();
-
+        
         final List<String> winners = racing(cars, racingCount);
-
         outputView.printWinners(winners);
     }
 
     private Cars initCars() {
         try {
             final List<String> carNames = inputView.inputCars();
-
             return CarFactory.generateCars(carNames);
         } catch (IllegalArgumentException e) {
             outputView.printInputCarNamesErrorMessage();
-
             return initCars();
         }
     }
@@ -46,7 +43,6 @@ public class Controller {
             return inputView.inputRacingCount();
         } catch (IllegalArgumentException e) {
             outputView.printInputRacingCountErrorMessage();
-
             return inputRacingCount();
         }
     }
@@ -57,13 +53,11 @@ public class Controller {
             final List<CarStatus> raceResult = cars.race();
             outputView.printRacingResult(raceResult);
         }
-
         return getWinners(cars);
     }
 
     private List<String> getWinners(final Cars cars) {
         final RacingRule racingRule = new RacingRule();
-
         return racingRule.getWinners(cars)
                 .stream()
                 .map(car -> car.getStatus().name())

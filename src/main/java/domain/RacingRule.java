@@ -6,7 +6,6 @@ public class RacingRule {
 
     public List<Car> getWinners(final Cars cars) {
         final int maxDistance = cars.getMaxDistance();
-
         return cars.getCars()
                 .stream()
                 .filter(car -> car.getStatus().distance() == maxDistance)

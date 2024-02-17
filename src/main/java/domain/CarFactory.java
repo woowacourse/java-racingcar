@@ -28,7 +28,6 @@ public class CarFactory {
 
     private static void validateDuplicatedCarNames(final List<String> carNames) {
         final int distinctSize = new HashSet<>(carNames).size();
-
         if (carNames.size() != distinctSize) {
             throw new IllegalArgumentException("중복된 자동차 이름을 허용하지 않습니다.");
         }
