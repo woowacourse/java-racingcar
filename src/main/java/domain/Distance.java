@@ -3,7 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Distance implements Comparable<Distance> {
-    private int distance;
+    private final int distance;
 
     private Distance(final int distance) {
         this.distance = distance;
@@ -17,8 +17,8 @@ public class Distance implements Comparable<Distance> {
         return new Distance(0);
     }
 
-    public void increase() {
-        this.distance++;
+    public Distance increase() {
+        return new Distance(this.distance + 1);
     }
 
     public boolean isSameDistance(Distance maxDistance) {

@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Count {
     public static final int MIN_COUNT = 1;
     public static final int MAX_COUNT = 100;
-    private int count;
+    private final int count;
 
     private Count(final int count) {
         validate(count);
@@ -30,8 +30,8 @@ public class Count {
         return count > 0;
     }
 
-    public void decrease() {
-        this.count--;
+    public Count decrease() {
+        return new Count(this.count - 1);
     }
 
     @Override

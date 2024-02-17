@@ -1,6 +1,7 @@
 package dto;
 
 import domain.Cars;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -22,10 +23,6 @@ public class CarsReponse {
                 .collect(Collectors.toList());
     }
 
-    public List<CarReponse> getCarsReponses() {
-        return carsReponses;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -41,5 +38,9 @@ public class CarsReponse {
     @Override
     public int hashCode() {
         return Objects.hash(carsReponses);
+    }
+
+    public List<CarReponse> getCarsReponses() {
+        return Collections.unmodifiableList(carsReponses);
     }
 }

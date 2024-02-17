@@ -1,7 +1,7 @@
 package domain;
 
 public class RacingGame {
-    private final Count countLeft;
+    private Count countLeft;
     private final MovementGenerator randomMovementGenerator;
 
     private RacingGame(final Count countLeft, final MovementGenerator randomMovementGenerator) {
@@ -19,6 +19,6 @@ public class RacingGame {
 
     public void playTurn(Cars cars) {
         cars.move(randomMovementGenerator);
-        this.countLeft.decrease();
+        this.countLeft = countLeft.decrease();
     }
 }

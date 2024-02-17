@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Car implements Comparable<Car> {
 
-    private final Distance distance;
+    private Distance distance;
     private final Name name;
 
     private Car(Name name, Distance distance) {
@@ -21,7 +21,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void move() {
-        distance.increase();
+        distance = distance.increase();
     }
 
     public boolean isSameDistance(Car maxDistance) {

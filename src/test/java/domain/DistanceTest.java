@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import domain.Distance;
@@ -12,11 +13,9 @@ class DistanceTest {
     @Test
     @DisplayName("거리가 증가하는지 확인한다")
     void increase() {
-        final Distance distance = Distance.init();
+        Distance distance = Distance.init();
 
-        distance.increase();
-
-        Assertions.assertThat(distance.getDistance()).isEqualTo(1);
+        assertThat(distance.increase()).isEqualTo(Distance.from(1));
     }
 
     @Test
@@ -26,6 +25,6 @@ class DistanceTest {
 
         Distance otherDistance = Distance.from(2);
 
-        Assertions.assertThat(distance).isEqualTo(otherDistance);
+        assertThat(distance).isEqualTo(otherDistance);
     }
 }
