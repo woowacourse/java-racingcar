@@ -8,14 +8,14 @@ public class Round {
     private final int round;
 
     public Round(String rawRound) {
-        this.round = makeRound(rawRound);
+        this.round = makeRoundFrom(rawRound);
     }
 
     public int getRound() {
         return round;
     }
 
-    private int makeRound(String rawRound) {
+    private int makeRoundFrom(String rawRound) {
         try {
             int round = Integer.parseInt(rawRound);
             validate(round);

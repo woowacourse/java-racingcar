@@ -17,7 +17,7 @@ public class RacingGame {
 
     public RacingGame(String rawCarNames) {
         cars = new ArrayList<>();
-        makeCars(rawCarNames);
+        makeCarsFrom(rawCarNames);
     }
 
     public void play(Round round) {
@@ -29,7 +29,7 @@ public class RacingGame {
         OutputView.printCars(findWinners());
     }
 
-    private void makeCars(String rawCarNames) {
+    private void makeCarsFrom(String rawCarNames) {
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
         validate(carNames);
         for (String carName : carNames) {
