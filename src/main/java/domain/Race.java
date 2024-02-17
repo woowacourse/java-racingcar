@@ -6,6 +6,7 @@ import java.util.Random;
 public class Race {
 
     private static final Random RANDOM = new Random();
+    private static final int MAX_RANDOM_INT = 10;
 
     private final List<Car> cars;
 
@@ -15,7 +16,7 @@ public class Race {
 
     public void move() {
         cars.forEach(car -> {
-            int randomInt = RANDOM.nextInt(10);
+            int randomInt = RANDOM.nextInt(MAX_RANDOM_INT);
             car.move(MoveStrategy.isMove(randomInt));
         });
     }
