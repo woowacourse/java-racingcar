@@ -2,7 +2,6 @@ package model;
 
 import model.dto.CarState;
 import model.intgenerator.IntGenerator;
-import model.intgenerator.RandomIntGenerator;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
@@ -18,10 +17,6 @@ public class Car {
         this.name = name;
         this.forwardCount = 0;
         this.intGenerator = intGenerator;
-    }
-
-    public static Car fromRandomGenerator(String name) {
-        return new Car(name, new RandomIntGenerator());
     }
 
     private static void validate(String name) {

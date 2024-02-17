@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 public class CarsTest {
     @Test
     void 중복된_자동차_이름이_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> Cars.fromNames(List.of("pobi", "pobi")))
+        assertThatThrownBy(() -> Cars.create(List.of("pobi", "pobi"), (power) -> 1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 자동차가_한_대_미만이면_예외가_발생한다() {
-        assertThatThrownBy(() -> Cars.fromNames(List.of()))
+        assertThatThrownBy(() -> Cars.create(List.of(), (power) -> 1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
