@@ -1,5 +1,7 @@
 package domain;
 
+import common.exception.model.ValidateException;
+
 public class TryCount {
     private int value;
 
@@ -14,7 +16,7 @@ public class TryCount {
 
     private void validate(int value) {
         if (value < MIN_TRY_COUNT || value > MAX_TRY_COUNT) {
-            throw new IllegalArgumentException(TRY_COUNT_RANGE_ERROR_MESSAGE);
+            throw new ValidateException(TRY_COUNT_RANGE_ERROR_MESSAGE);
         }
     }
 

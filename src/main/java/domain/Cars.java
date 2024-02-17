@@ -1,5 +1,7 @@
 package domain;
 
+import common.exception.model.ValidateException;
+
 import java.util.List;
 
 
@@ -29,13 +31,13 @@ public class Cars {
                 .count();
 
         if (actualCarAmount != distinctCarAmount) {
-            throw new IllegalArgumentException(CAR_NAME_DUPLICATION_ERROR_MESSAGE);
+            throw new ValidateException(CAR_NAME_DUPLICATION_ERROR_MESSAGE);
         }
     }
 
     private void validateCarSize(List<Car> cars) {
         if (cars.size() < MIN_CAR_SIZE || cars.size() > MAX_CAR_SIZE) {
-            throw new IllegalArgumentException(CARS_SIZE_RANGE_ERROR_MESSAGE);
+            throw new ValidateException(CARS_SIZE_RANGE_ERROR_MESSAGE);
         }
     }
 

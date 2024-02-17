@@ -1,3 +1,4 @@
+import common.exception.model.ValidateException;
 import domain.*;
 import io.InputView;
 import io.OutputView;
@@ -54,7 +55,7 @@ class CarRacingTest {
     void createCarsFail(List<String> carNames) {
         assertThatThrownBy(() -> {
             carRacing.createCars(carNames, accelerator);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(ValidateException.class);
     }
 
     static Stream<Arguments> createCarsFailTestArguments() {
@@ -81,7 +82,7 @@ class CarRacingTest {
     @DisplayName("시도 횟수 생성 실패 테스트")
     void createTryCountFail(int tryAmount) {
         assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(ValidateException.class)
                 .hasMessage(TryCount.TRY_COUNT_RANGE_ERROR_MESSAGE);
     }
 

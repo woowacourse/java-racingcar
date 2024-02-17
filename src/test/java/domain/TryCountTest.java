@@ -1,5 +1,6 @@
 package domain;
 
+import common.exception.model.ValidateException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +20,7 @@ class TryCountTest {
     @DisplayName("시도 횟수가 1 미만, 5 초과이면 객체 생성에 실패한다")
     void createTryCountFail(int value) {
         Assertions.assertThatThrownBy(() -> new TryCount(value))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(ValidateException.class)
                 .hasMessage(TryCount.TRY_COUNT_RANGE_ERROR_MESSAGE);
     }
 }

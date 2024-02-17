@@ -1,5 +1,7 @@
 package domain;
 
+import common.exception.model.ValidateException;
+
 public class Car {
     private String name;
 
@@ -26,13 +28,13 @@ public class Car {
 
     private void validateName(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException(CAR_NAME_DOES_NOT_EXIST_ERROR_MESSAGE);
+            throw new ValidateException(CAR_NAME_DOES_NOT_EXIST_ERROR_MESSAGE);
         }
     }
 
     private void validateNameLength(String name) {
         if (name.length() < MIN_CAR_NAME_LENGTH || name.length() > MAX_CAR_NAME_LENGTH) {
-            throw new IllegalArgumentException(CAR_NAME_LENGTH_ERROR_MESSAGE);
+            throw new ValidateException(CAR_NAME_LENGTH_ERROR_MESSAGE);
         }
     }
 

@@ -1,5 +1,6 @@
 package domain;
 
+import common.exception.model.ValidateException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -43,7 +44,7 @@ class CarsTest {
         //when
         //then
         Assertions.assertThatThrownBy(() -> new Cars(carInfos))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(ValidateException.class)
                 .hasMessage(Cars.CARS_SIZE_RANGE_ERROR_MESSAGE);
     }
 
@@ -57,7 +58,7 @@ class CarsTest {
         //when
         //then
         Assertions.assertThatThrownBy(() -> new Cars(carInfos))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(ValidateException.class)
                 .hasMessage(Cars.CAR_NAME_DUPLICATION_ERROR_MESSAGE);
     }
 
