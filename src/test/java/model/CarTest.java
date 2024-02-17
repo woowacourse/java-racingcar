@@ -23,7 +23,7 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(expectedPosition);
     }
 
-    @DisplayName("자동차 이름이 공백 포함 5자 이하가 아닌 경우 에러가 발생한다.")
+    @DisplayName("자동차 이름이 공백 포함 5자 이하가 아닌 경우 예외가 발생한다.")
     @Test
     void carNameLengthTest() {
         String wrongName = "abcdef";
@@ -32,7 +32,7 @@ public class CarTest {
                 .isInstanceOf(IllegalStateException.class);
     }
 
-    @DisplayName("자동차 이름이 공백(Blank)이거나 null인 경우 에러가 발생한다.")
+    @DisplayName("자동차 이름이 공백(Blank)이거나 null인 경우 예외가 발생한다.")
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = {"", "    "})
