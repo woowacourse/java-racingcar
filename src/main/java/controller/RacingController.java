@@ -12,6 +12,7 @@ import view.InputView;
 import view.OutputView;
 
 public class RacingController {
+    private static final int INITIAL_RETRY_COUNT = 0;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -29,7 +30,7 @@ public class RacingController {
 
     private String receiveCarNames() {
         outputView.printCarNamesInputText();
-        return ExceptionRetryHandler.retryUntilValid(inputView::readCarNames);
+        return ExceptionRetryHandler.retryUntilValid(inputView::readCarNames, INITIAL_RETRY_COUNT);
     }
 
     private Cars createCars(String carNames) {
@@ -40,7 +41,7 @@ public class RacingController {
 
     private int receiveTryCount() {
         outputView.printTryCountInputText();
-        return ExceptionRetryHandler.retryUntilValid(inputView::readTryCount);
+        return ExceptionRetryHandler.retryUntilValid(inputView::readTryCount, INITIAL_RETRY_COUNT);
     }
 
     private Rap createRap(int tryCount) {
