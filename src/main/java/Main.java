@@ -1,4 +1,4 @@
-import controller.GameController;
+import controller.RacingGame;
 import view.InputView;
 import view.OutputView;
 
@@ -8,8 +8,8 @@ public class Main {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        GameController gameController = new GameController(inputView, outputView);
+        RacingGame racingGame = new RacingGame(inputView, outputView);
 
-        gameController.play();
+        racingGame.play();
     }
 }

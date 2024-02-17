@@ -13,11 +13,11 @@ import view.OutputView;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class GameController {
+public class RacingGame {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public GameController(InputView inputView, OutputView outputView) {
+    public RacingGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
