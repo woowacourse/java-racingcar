@@ -1,11 +1,11 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.model.CarNames;
-import racingcar.model.RacingGame;
-import racingcar.model.RoundResult;
-import racingcar.model.RandomNumberGenerator;
-import racingcar.model.Round;
+import racingcar.domain.car.CarNames;
+import racingcar.domain.RacingGame;
+import racingcar.domain.result.RoundResult;
+import racingcar.domain.numbergenerator.RandomNumberGenerator;
+import racingcar.domain.Round;
 import racingcar.util.ExceptionHandler;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;

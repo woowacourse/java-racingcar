@@ -1,7 +1,9 @@
-package racingcar.model;
+package racingcar.domain.car;
 
 import java.util.Comparator;
 import java.util.List;
+import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.domain.result.RoundResult;
 
 public class Cars {
 

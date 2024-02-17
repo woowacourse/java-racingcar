@@ -1,10 +1,13 @@
-package racingcar.model;
+package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.car.CarNames;
+import racingcar.domain.car.Cars;
+import racingcar.domain.numbergenerator.NumberGenerator;
 
 class CarsTest {
 

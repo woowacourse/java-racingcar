@@ -1,7 +1,8 @@
-package racingcar.model;
+package racingcar.domain.result;
 
 import java.util.Collections;
 import java.util.List;
+import racingcar.domain.car.Car;
 
 public class RoundResult {
 

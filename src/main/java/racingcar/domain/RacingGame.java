@@ -1,7 +1,11 @@
-package racingcar.model;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.domain.car.CarNames;
+import racingcar.domain.car.Cars;
+import racingcar.domain.numbergenerator.NumberGenerator;
+import racingcar.domain.result.RoundResult;
 
 public class RacingGame {
 

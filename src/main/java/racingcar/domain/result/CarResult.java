@@ -1,4 +1,6 @@
-package racingcar.model;
+package racingcar.domain.result;
+
+import racingcar.domain.car.Car;
 
 public class CarResult {
 
