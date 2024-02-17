@@ -8,7 +8,8 @@ import java.util.Set;
 import view.OutputView;
 
 public class Service {
-    public final Car NONCANDIDATE_CAR = new Car("");
+    private final List<Car> cars = new ArrayList<>();
+    private final List<String> winners = new ArrayList<>();
 
     public Service() {
     }
@@ -18,20 +19,19 @@ public class Service {
     }
 
     public List<Car> setCars(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-        validateCar(cars);
+        validateCar();
         return cars;
     }
 
-    private void validateCar(List<Car> cars) {
-        validateCarAmount(cars);
-        validateDuplicateName(cars);
+    private void validateCar() {
+        validateCarAmount();
+        validateDuplicateName();
     }
 
-    private void validateDuplicateName(List<Car> cars) {
+    private void validateDuplicateName() {
         int duplication = 0;
         Set<String> validateCar = new HashSet<>();
         for (Car car : cars) {
@@ -48,54 +48,46 @@ public class Service {
         return validateCar.size();
     }
 
-    private void validateCarAmount(List<Car> cars) {
+    private void validateCarAmount() {
         if (cars.size() == 1) {
             throw new IllegalArgumentException("[ERROR] 경주할 자동차를 두 대 이상 입력해주세요.");
         }
     }
 
-    public void playGame(List<Car> cars, int attemptLimit) {
+    public void playGame(int attemptLimit) {
         OutputView.printHeadLine();
         int count = 0;
         while (count < attemptLimit) {
-            playRacing(cars);
+            playRacing();
             OutputView.printResult(cars);
             count++;
         }
     }
 
-    public List<String> getWinner(List<Car> cars, int maxPosition) {
-        List<String> winners = new ArrayList<>();
+    public List<String> getWinnerName() {
+        int max = -1;
         for (Car car : cars) {
-            winners.add(findWinner(car, maxPosition));
+            int location = car.getLocation();
+            max = updateWinner(max, location, car);
         }
+
         return winners;
     }
 
-    public int getMaxPosition(List<Car> cars) {
-        int max = -1;
-        for (Car car : cars) {
-            max = compareValue(car, max);
+    private int updateWinner(int max, int location, Car car) {
+        if (max == location) {
+            winners.add(car.getCarName());
+        }
+
+        if (max < location) {
+            max = location;
+            winners.clear();
+            winners.add(car.getCarName());
         }
         return max;
     }
 
-    private String findWinner(Car car, int maxPosition) {
-        if (car.getLocation() == maxPosition) {
-            return car.getCarName();
-        }
-        return NONCANDIDATE_CAR.getCarName();
-    }
-
-    private int compareValue(Car car, int max) {
-        if (max <= car.getLocation()) {
-            max = car.getLocation();
-        }
-        return max;
-    }
-
-
-    private void playRacing(List<Car> cars) {
+    private void playRacing() {
         for (Car car : cars) {
             goOrStop(car, randomNumberGenerator());
         }
@@ -110,5 +102,9 @@ public class Service {
         if (randomNumber >= 4) {
             car.incLocation();
         }
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

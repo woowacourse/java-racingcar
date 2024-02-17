@@ -2,11 +2,18 @@ package domain;
 
 import java.util.List;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ServiceTest {
-    Service service = new Service();
+    final Service service = new Service();
+
+    @BeforeEach
+    @Test
+    void setCars(){
+        service.getCars().clear();
+    }
 
     @DisplayName("쉼표 기준으로 자동차 이름을 분리한다")
     @Test
@@ -20,7 +27,7 @@ class ServiceTest {
     void setCarTest() {
         List<String> carName = List.of("ash", "lily", "ella");
         List<Car> cars = service.setCars(carName);
-        System.out.println(cars.get(0).getCarName());
+
         Assertions.assertThat(cars.get(0).getCarName()).isEqualTo("ash");
         Assertions.assertThat(cars.get(0).getLocation()).isEqualTo(0);
     }
@@ -41,48 +48,22 @@ class ServiceTest {
                 .hasMessageContaining("중복");
     }
 
-    @DisplayName("입력된 자동차 이름이 공백이면 예외가 발생한다")
-    @Test
-    void blankNameTest() {
-        Assertions.assertThatThrownBy(() -> service.setCars(List.of("Ash", "", "Lily")))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("빈 이름");
-    }
-
     @DisplayName("입력한 시도 횟수만큼 경주를 진행한다")
     @Test
     void playGameTest() {
-        Car ash = new Car("ash");
-        Car lily = new Car("lily");
+        service.setCars(List.of("ash", "lily"));
 
-        List<Car> cars = List.of(ash, lily);
-        Assertions.assertThatCode(() -> service.playGame(cars, 3))
+        Assertions.assertThatCode(() -> service.playGame(3))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("최종 우승자를 올바르게 결정한다")
     @Test
-    void getWinnerTest() {
-        Car ash = new Car("ash");
-        Car lily = new Car("lily");
+    void getWinnerNameTest() {
+        service.setCars(List.of("ash", "lily"));
+        List<Car> cars = service.getCars();
+        cars.get(0).incLocation();
 
-        List<Car> cars = List.of(ash, lily);
-
-        ash.incLocation();
-
-        Assertions.assertThat(service.getWinner(cars, 1)).isEqualTo(List.of("ash", ""));
-    }
-
-    @DisplayName("최장 이동 거리를 올바르게 구한다")
-    @Test
-    void getMaxPositionTest() {
-        Car ash = new Car("ash");
-        Car lily = new Car("lily");
-
-        List<Car> cars = List.of(ash, lily);
-
-        ash.incLocation();
-
-        Assertions.assertThat(service.getMaxPosition(cars)).isEqualTo(1);
+        Assertions.assertThat(service.getWinnerName()).isEqualTo(List.of("ash"));
     }
 }

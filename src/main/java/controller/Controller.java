@@ -16,10 +16,11 @@ public class Controller {
     }
 
     public void run() {
-        List<Car> cars = inputCarName();
+        inputCarName();
         int inputAttemptLimit = inputValue();
-        service.playGame(cars, inputAttemptLimit);
-        List<String> winners = service.getWinner(cars, service.getMaxPosition(cars));
+        service.playGame(inputAttemptLimit);
+        List<String> winners = service.getWinnerName();
+//        List<String> winners = service.getWinner(cars, service.getMaxPosition(cars));
         OutputView.printWinners(winners);
     }
 

@@ -12,4 +12,12 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("5자");
     }
+
+    @DisplayName("입력된 자동차 이름이 공백이면 예외가 발생한다")
+    @Test
+    void blankNameTest() {
+        Assertions.assertThatThrownBy(() -> new Car(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("빈 이름");
+    }
 }

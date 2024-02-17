@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ControllerTest {
-    Controller controller = new Controller(new Service());
+    final Controller controller = new Controller(new Service());
 
     @DisplayName("시도횟수가 1이상이 아닌 경우 예외가 발생한다")
     @Test
