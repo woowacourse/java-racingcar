@@ -3,6 +3,8 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.model.Car;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,10 +14,10 @@ public class CarTest {
 
     @Nested
     class ValidateInput {
-        @Test
+        @ParameterizedTest
+        @ValueSource(strings = {"이름이여섯자", "자동차이름일곱"})
         @DisplayName("이름이 5자 초과 시 예외 발생")
-        void testNameUnderFive() {
-            String given = "문자열이일곱자";
+        void testNameUnderFive(String given) {
             assertThatThrownBy(() -> new Car(given))
                     .isInstanceOf(IllegalArgumentException.class);
         }
