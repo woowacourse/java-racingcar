@@ -9,6 +9,7 @@ import view.InputView;
 import view.OutputView;
 
 public class Controller {
+    //Git Sync Test
     private final Game game;
 
     public Controller(Game game) {
