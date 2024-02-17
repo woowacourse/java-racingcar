@@ -11,20 +11,40 @@ public class Game {
     public final int MAX_NUM = 9;
     public final int THRESHOLD = 4;
     public final Car NONCANDIDATE_CAR = new Car("");
+
     public Game() {
     }
 
-    public List<String> separateCarName(String carNames) {
-        return List.of(carNames.split(","));
+    public int setAttemptLimit(String attemptLimit) {
+        return validateNumber(validateInputAttemptLimit(attemptLimit));
     }
 
-    public List<Car> setCars(List<String> carNames) {
+    private int validateInputAttemptLimit(String attemptLimit) {
+        try {
+            return Integer.parseInt(attemptLimit);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
+        }
+    }
+
+    private int validateNumber(int inputAttemptLimit) {
+        if (inputAttemptLimit <= 0) {
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 양수여야 합니다.");
+        }
+        return inputAttemptLimit;
+    }
+
+    public List<Car> setCars(String carNames) {
         List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
+        for (String carName : separateCarName(carNames)) {
             cars.add(new Car(carName));
         }
         validateCar(cars);
         return cars;
+    }
+
+    private List<String> separateCarName(String carNames) {
+        return List.of(carNames.split(","));
     }
 
     private void validateCar(List<Car> cars) {
@@ -68,15 +88,15 @@ public class Game {
         }
     }
 
-    public List<String> getWinner(List<Car> cars, int maxPosition) {
+    public List<String> getWinner(List<Car> cars) {
         List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            winners.add(findWinner(car, maxPosition));
+            winners.add(findWinner(car, getMaxPosition(cars)));
         }
         return winners;
     }
 
-    public int getMaxPosition(List<Car> cars) {
+    private int getMaxPosition(List<Car> cars) {
         int max = -1;
         for (Car car : cars) {
             max = compareValue(car, max);
@@ -97,7 +117,6 @@ public class Game {
         }
         return max;
     }
-
 
     public void playRacing(List<Car> cars) {
         for (Car car : cars) {
