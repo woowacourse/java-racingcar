@@ -31,7 +31,7 @@ public class RacingManager {
         List<RacingResult> racingResults = IntStream.range(0, maxTurn).mapToObj(value -> {
             List<Integer> racingConditions = RandomGenerator.generate(carNames.size());
             racing.nextTurn(racingConditions);
-            return RacingDTOMapper.from(racing);
+            return new RacingResult(racing.getCarsStatus());
         }).toList();
         RacingResultOutputManager.printResult(racingResults);
         return racing;
