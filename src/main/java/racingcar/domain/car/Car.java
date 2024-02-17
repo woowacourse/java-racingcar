@@ -1,8 +1,7 @@
 package racingcar.domain.car;
 
-import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME_LENGTH;
-
 import racingcar.dto.CarPerformance;
+import racingcar.exception.InvalidCarNameLengthException;
 
 public class Car {
 
@@ -27,7 +26,7 @@ public class Car {
 
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw INVALID_CAR_NAME_LENGTH.getException();
+            throw new InvalidCarNameLengthException();
         }
     }
 

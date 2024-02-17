@@ -1,9 +1,9 @@
 package racingcar.view;
 
-import static racingcar.constant.ViewMessage.OUTPUT_EXCEPTION_PREFIX;
-import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULTS_INTRO;
-import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULT_FORMAT;
-import static racingcar.constant.ViewMessage.OUTPUT_WINNERS;
+import static racingcar.view.ViewMessage.OUTPUT_EXCEPTION_PREFIX;
+import static racingcar.view.ViewMessage.OUTPUT_ROUND_RESULTS_INTRO;
+import static racingcar.view.ViewMessage.OUTPUT_ROUND_RESULT_FORMAT;
+import static racingcar.view.ViewMessage.OUTPUT_WINNERS;
 
 import java.util.List;
 import racingcar.dto.CarPerformance;

@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import static racingcar.constant.ViewMessage.*;
+import static racingcar.view.ViewMessage.*;
 
 import java.util.Arrays;
 import java.util.List;
