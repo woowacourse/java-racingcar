@@ -18,11 +18,9 @@ public class Cars {
     }
 
     public void moveCars() {
-        for (Car car : cars) {
-            if (generator.generate() >= 4) {
-                car.move();
-            }
-        }
+        cars.stream()
+                .filter(car -> generator.generate() >= 4)
+                .forEach(Car::move);
     }
 
     public String calculateWinner() {
