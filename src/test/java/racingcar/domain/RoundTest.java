@@ -32,7 +32,7 @@ class RoundTest {
         assertDoesNotThrow(() -> new Round(roundCount));
     }
 
-    @DisplayName("라운드가 양수이면 참을 반환한다")
+    @DisplayName("라운드 값이 양수이면 isRemain()이 참을 반환한다")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "4", "100"})
     void testIsRemain(String roundCount) {
