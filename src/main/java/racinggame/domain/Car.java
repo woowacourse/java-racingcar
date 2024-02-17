@@ -16,11 +16,11 @@ public class Car {
 
     Car(String name, int position) {
         this.name = new Name(name);
-        this.position = Position.from(position);
+        this.position = new Position(position);
     }
 
     public static Car createDefault(String name) {
-        return new Car(new Name(name), Position.from(INITIAL_POSITION));
+        return new Car(new Name(name), new Position(INITIAL_POSITION));
     }
 
     public boolean isSamePosition(int target) {

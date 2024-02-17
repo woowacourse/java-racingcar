@@ -8,24 +8,20 @@ class Position {
 
     private final int position;
 
-    private Position(int position) {
+    public Position(int position) {
+        checkIsNonNegative(position);
+
         this.position = position;
     }
 
-    public static Position from(int position) {
-        checkIsNonNegative(position);
-
-        return new Position(position);
-    }
-
-    private static void checkIsNonNegative(int position) {
+    private void checkIsNonNegative(int position) {
         if (position < 0) {
             throw new IllegalArgumentException();
         }
     }
 
     public Position increase() {
-        return Position.from(position + INCREASE_AMOUNT);
+        return new Position(position + INCREASE_AMOUNT);
     }
 
     public int getPosition() {
