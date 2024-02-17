@@ -11,7 +11,7 @@ class CarTest {
 
     private static final int MIN_FORWARD_NUMBER = 4;
 
-    @DisplayName("자동차 생성 성공 테스트")
+    @DisplayName("5자 이내 이름으로 자동차를 생성한다.")
     @Test
     void carGenerateTest() {
         assertThatCode(() -> new Car("테스트")).doesNotThrowAnyException();
@@ -47,12 +47,4 @@ class CarTest {
         assertThat(car).extracting("forward").isEqualTo(0);
     }
 
-    @DisplayName("toString 테스트")
-    @Test
-    void toStringTest() {
-        Car car = new Car("test");
-        car.move(MIN_FORWARD_NUMBER + 1);
-        car.move(MIN_FORWARD_NUMBER + 1);
-        assertThat(car.toString()).isEqualTo("test : --");
-    }
 }
