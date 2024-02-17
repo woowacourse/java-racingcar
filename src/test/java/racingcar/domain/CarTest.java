@@ -13,6 +13,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Map;
+
 class CarTest {
     @Test
     @DisplayName("[Success] 자동차가 정상적으로 생성됨")
@@ -78,6 +80,15 @@ class CarTest {
 
             assertThat(car.getPosition())
                     .isEqualTo(0);
+        }
+
+        @Test
+        @DisplayName("[Success] 자동차 결과를 '이름 : -'와 같은 형태로 반환한다.")
+        void getResult() {
+            car.move(4);
+
+            assertThat(car.result())
+                    .isEqualTo(Map.of("a", 1));
         }
     }
 }
