@@ -9,7 +9,7 @@ class CarMoveStrategyTest {
 
     @DisplayName("받은 숫자가 3 이하인 경우에는 이동하지 않고, 4 이상인 경우에는 이동한다")
     @ParameterizedTest
-    @CsvSource({"3, false", "4, true"})
+    @CsvSource({"0, false", "3, false", "4, true", "9, true"})
     void isMoveTest(final int digit, final boolean expected) {
         final CarMoveStrategy carMoveStrategy = new CarMoveStrategy(() -> digit);
 
