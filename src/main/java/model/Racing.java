@@ -13,7 +13,7 @@ public class Racing {
         this.tryCount = tryCount;
     }
 
-    private static void validateTryCount(int tryCount) {
+    private void validateTryCount(int tryCount) {
         if (tryCount < MIN_TRY_COUNT) {
             throw new IllegalArgumentException("시도 횟수는 1 이상이어야한다");
         }
@@ -28,7 +28,7 @@ public class Racing {
     }
 
     public boolean canTry() {
-       return tryCount > IMPOSSIBLE_TRY_COUNT;
+        return tryCount > IMPOSSIBLE_TRY_COUNT;
     }
 
     public List<String> determineWinner(Cars cars) {
