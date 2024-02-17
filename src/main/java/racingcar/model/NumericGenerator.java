@@ -1,4 +1,4 @@
-package racingcar.controller;
+package racingcar.model;
 
 public interface NumericGenerator {
     int generate();

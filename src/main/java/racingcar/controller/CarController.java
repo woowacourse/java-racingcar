@@ -1,8 +1,9 @@
 package racingcar.controller;
 
-import racingcar.controller.numericgenerator.RandomNumericGenerator;
 import racingcar.model.Cars;
+import racingcar.model.NumericGenerator;
 import racingcar.model.TryCount;
+import racingcar.model.numericgenerator.RandomNumericGenerator;
 import racingcar.view.OutputView;
 
 public class CarController {
