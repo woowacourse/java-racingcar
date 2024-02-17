@@ -1,9 +1,11 @@
 package controller;
 
+import domain.Car;
 import domain.Cars;
 import domain.Judge;
 import service.RacingCarService;
 import util.Exceptions;
+import util.RandomGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -36,8 +38,14 @@ public class CarRacingController {
 
     private void race(Cars cars, int rap) {
         for (int i = 0; i < rap; i++) {
-            racingCarService.moveCars(cars);
+            moveCars(cars);
             printMovement(cars);
+        }
+    }
+
+    private void moveCars(Cars cars) {
+        for (Car car : cars.getCars()) {
+            car.move(RandomGenerator.pickRandomNumber());
         }
     }
 

@@ -1,6 +1,5 @@
 package domain;
 
-import domain.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,7 +32,7 @@ class CarTest {
     @ParameterizedTest()
     void forwardTest(int addNumber) {
         Car car = new Car("test");
-        car.drive(MIN_FORWARD_NUMBER + addNumber);
+        car.move(MIN_FORWARD_NUMBER + addNumber);
         assertThat(car).extracting("forward").isEqualTo(1);
     }
 
@@ -42,7 +41,7 @@ class CarTest {
     @ParameterizedTest()
     void stopTest(int addNumber) {
         Car car = new Car("test");
-        car.drive(MIN_FORWARD_NUMBER - addNumber);
+        car.move(MIN_FORWARD_NUMBER - addNumber);
         assertThat(car).extracting("forward").isEqualTo(0);
     }
 
@@ -50,8 +49,8 @@ class CarTest {
     @Test
     void toStringTest() {
         Car car = new Car("test");
-        car.drive(MIN_FORWARD_NUMBER + 1);
-        car.drive(MIN_FORWARD_NUMBER + 1);
+        car.move(MIN_FORWARD_NUMBER + 1);
+        car.move(MIN_FORWARD_NUMBER + 1);
         assertThat(car.toString()).isEqualTo("test : --");
     }
 }

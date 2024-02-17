@@ -33,7 +33,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public void drive(int randomNumber) {
+    public void move(int randomNumber) {
         if (checkForward(randomNumber)) {
             forward += 1;
         }

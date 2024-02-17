@@ -35,6 +35,6 @@ public class RacingCarService {
 
     public void moveCars(Cars cars) {
         cars.getCars()
-            .forEach(car -> car.drive(RandomGenerator.pickRandomNumber()));
+            .forEach(car -> car.move(RandomGenerator.pickRandomNumber()));
     }
 }
