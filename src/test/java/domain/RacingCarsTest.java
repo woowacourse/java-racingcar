@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class RacingCarsTest {
 
     @Test
-    @DisplayName("자동차 이름이 정상적으로 생성되는가")
+    @DisplayName("자동차 이름이 영문,숫자로만 이루어지고 , 기준으로 입력됐을때(정상작동하는 경우)")
     void cars_generation_test() {
         List<String> carNames = List.of("mangc", "weve", "pobi", "neo");
 
@@ -21,7 +21,7 @@ public class RacingCarsTest {
     }
 
     @Test
-    @DisplayName("우승자가 정상적으로 반환되는가")
+    @DisplayName("Position이 가장 큰 Car 객체를 반환하는가")
     void get_winners_test() {
         List<String> carNames = List.of("mangc", "weve", "pobi", "neo");
         RacingCars racingCars = new RacingCars(carNames);
