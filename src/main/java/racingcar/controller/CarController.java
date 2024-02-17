@@ -6,7 +6,7 @@ import racingcar.model.GameStatus;
 import racingcar.model.NumericGenerator;
 import racingcar.model.TryCount;
 import racingcar.model.numericgenerator.RandomNumericGenerator;
-import racingcar.view.OutputView;
+
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,8 +23,6 @@ public class CarController {
     }
 
     public void startGame() {
-        OutputView.printResultMessage();
-
         while (tryCount.checkTryable()) {
             cars.moveCars(generator);
             gameStatus.add(cars.getGameStatus());
