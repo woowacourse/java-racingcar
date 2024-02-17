@@ -1,12 +1,12 @@
 package racingcar;
 
 import racingcar.domain.Car;
-import racingcar.domain.RandomGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameManager {
     OutputView outputView = new OutputView();
@@ -28,7 +28,7 @@ public class GameManager {
 
     private void moveCars() {
         for (Car car : cars) {
-            car.moveCar(RandomGenerator.getRandomNumberUnderTen());
+            car.moveCar(ThreadLocalRandom.current().nextInt(10));
         }
     }
 
