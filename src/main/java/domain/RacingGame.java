@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 import movestrategy.MoveStrategy;
 import movestrategy.RandomPowerMoveStrategy;
-import view.OutputView;
 
 public class RacingGame {
 
@@ -24,15 +23,6 @@ public class RacingGame {
         makeCarsFrom(rawCarNames);
     }
 
-    public void play(Round round) {
-        OutputView.printMessage("실행 결과");
-        for (int i = 0; i < round.getRound(); i++) {
-            playOneRound();
-            OutputView.printScore(cars);
-        }
-        OutputView.printCars(findWinners());
-    }
-
     private void makeCarsFrom(String rawCarNames) {
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
         validate(carNames);
@@ -41,15 +31,16 @@ public class RacingGame {
         }
     }
 
-    private void playOneRound() {
+    public List<Car> playOneRound() {
         for (Car car : cars) {
             if (moveStrategy.isMovable()) {
                 car.move();
             }
         }
+        return cars;
     }
 
-    private List<Car> findWinners() {
+    public List<Car> findWinners() {
         return cars.stream()
             .filter(car -> car.equals(Collections.max(cars)))
             .toList();
