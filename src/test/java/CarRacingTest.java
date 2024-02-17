@@ -50,12 +50,33 @@ class CarRacingTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"aabbcc,pobi", "pobi", ""})
-    @DisplayName("자동차 생성 실패 테스트")
-    void createCarsFail(String carNames) {
+    @ValueSource(strings = {"abc", "abc,pobi,crong,honux,zix,hox"})
+    @DisplayName("자동차의 수가 2 미만, 5 초과이면 생성에 실패한다")
+    void createCarsFailBySize(String carNames) {
         assertThatThrownBy(() -> {
             carRacing.createCars(carNames, accelerator);
-        }).isInstanceOf(ValidateException.class);
+        }).isInstanceOf(ValidateException.class)
+                .hasMessage(ExceptionMessage.CARS_SIZE_RANGE_ERROR_MESSAGE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"abcd,abcd"})
+    @DisplayName("자동차의 이름이 중복되면 생성에 실패한다")
+    void createCarsFailByDuplication(String carNames) {
+        assertThatThrownBy(() -> {
+            carRacing.createCars(carNames, accelerator);
+        }).isInstanceOf(ValidateException.class)
+                .hasMessage(ExceptionMessage.CAR_NAME_DUPLICATION_ERROR_MESSAGE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "abcdef"})
+    @DisplayName("자동차 이름의 길이가 1 미만 5 초과로 주어지면 자동차가 정상적으로 생성되지 않는다")
+    void createCarsFailCarNameLength(String carNames) {
+        assertThatThrownBy(() -> {
+            carRacing.createCars(carNames, accelerator);
+        }).isInstanceOf(ValidateException.class)
+                .hasMessage(ExceptionMessage.CAR_NAME_PATTERN_ERROR_MESSAGE);
     }
 
     @ParameterizedTest
@@ -72,10 +93,19 @@ class CarRacingTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-30"})
     @DisplayName("시도 횟수 생성 실패 테스트")
-    void createTryCountFail(String tryAmount) {
+    void createTryCountFailByRange(String tryAmount) {
         assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
                 .isInstanceOf(ValidateException.class)
                 .hasMessage(ExceptionMessage.TRY_COUNT_RANGE_ERROR_MESSAGE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"시도", "try", "", " "})
+    @DisplayName("시도 횟수 생성 실패 테스트")
+    void createTryCountFailByInputFormat(String tryAmount) {
+        assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
+                .isInstanceOf(ValidateException.class)
+                .hasMessage(ExceptionMessage.INT_FORMAT_ERROR_MESSAGE);
     }
 
     @Test
