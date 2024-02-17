@@ -10,6 +10,6 @@ public class Main {
 
         GameController gameController=new GameController(inputView,outputView);
 
-        gameController.play();
+        gameController.startGame();
     }
 }

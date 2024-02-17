@@ -9,6 +9,7 @@ import domain.race.RaceProgress;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -22,39 +23,39 @@ public class GameController {
         this.outputView = outputView;
     }
 
-    public void play() {
-        Cars cars = register();
+    public void startGame() {
+        Cars cars = registerCars();
 
         RaceCount raceCount = inputView.inputRaceCount();
 
-        racing(cars.getValue(), raceCount.getValue());
+        performRace(cars.getValue(), raceCount.getValue());
 
-        finish(cars);
+        announceWinners(cars);
     }
 
-    private Cars register() {
+    private Cars registerCars() {
         Names names = inputView.inputCarNameCatalog();
         return Cars.from(names);
     }
 
-    private void racing(final List<Car> cars, Integer raceCount) {
-        List<RaceProgress> raceProgresses = IntStream.range(0, raceCount)
-                                                     .mapToObj(i -> {
-                                                         race(cars);
-                                                         return RaceProgress.from(cars);
-                                                     })
-                                                     .toList();
+    private void performRace(final List<Car> cars, Integer raceCount) {
+        List<RaceProgress> raceProgresses = new ArrayList<>();
+        for (int i = 0; i < raceCount; i++) {
+            performEachRace(cars);
+            raceProgresses.add(RaceProgress.from(cars));
+        }
+
         outputView.printAllRaceProgress(raceProgresses);
     }
 
-    private void race(final List<Car> cars) {
+    private void performEachRace(final List<Car> cars) {
         cars.forEach(car -> {
             Integer power = createPower();
             car.race(power);
         });
     }
 
-    private void finish(Cars cars) {
+    private void announceWinners(Cars cars) {
         outputView.printRaceResult(cars);
     }
 
