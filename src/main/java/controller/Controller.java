@@ -53,7 +53,7 @@ public class Controller {
         try {
             return Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 1 이상의 정수여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 정수여야 합니다.");
         }
     }
 
