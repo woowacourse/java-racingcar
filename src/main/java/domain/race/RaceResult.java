@@ -22,7 +22,7 @@ public class RaceResult {
 
     private static List<Car> selectWinnerCars(List<Car> cars, Integer maxPosition) {
         return cars.stream()
-                .filter(car -> car.getPosition().equals(maxPosition))
+                .filter(car -> car.comparePosition(maxPosition))
                 .toList();
     }
 
