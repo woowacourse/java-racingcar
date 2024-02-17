@@ -23,7 +23,7 @@ public class CarsTest {
             }
         }
 
-정
+
         @Override
         public int generate() {
             int generatedNumber = numbers.get(position);
