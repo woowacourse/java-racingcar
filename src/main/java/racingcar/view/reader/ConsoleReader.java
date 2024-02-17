@@ -7,7 +7,7 @@ public class ConsoleReader implements Reader {
 
     private final Scanner scanner;
 
-    public ConsoleReader(InputStream in) {
+    public ConsoleReader(final InputStream in) {
         this.scanner = new Scanner(in);
     }
 

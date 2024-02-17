@@ -8,7 +8,6 @@ public class Car {
     private final Engine engine;
     private int position = 0;
 
-
     public Car(final String name, final Engine engine) {
         this.name = new Name(name);
         this.engine = engine;

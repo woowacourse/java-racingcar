@@ -13,7 +13,7 @@ public class InputView {
 
     private final Reader reader;
 
-    public InputView(Reader reader) {
+    public InputView(final Reader reader) {
         this.reader = reader;
     }
 
@@ -21,7 +21,9 @@ public class InputView {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = reader.readLine();
         String[] names = input.split(",");
-        return Arrays.stream(names).toList();
+        return Arrays.stream(names)
+                .map(String::trim)
+                .toList();
     }
 
     public int getTryNumber() {
@@ -34,7 +36,7 @@ public class InputView {
         return number;
     }
 
-    private int convertToInteger(String input) {
+    private int convertToInteger(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -42,7 +44,7 @@ public class InputView {
         }
     }
 
-    private void validateNumberInRange(int number) {
+    private void validateNumberInRange(final int number) {
         if (number < MIN_RACE_RANGE || number > MAX_RACE_RANGE) {
             throw new TryNumberOutOfRangeException();
         }

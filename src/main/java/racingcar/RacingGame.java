@@ -11,19 +11,21 @@ import racingcar.random.NumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class CarController {
+public class RacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public CarController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
+    public RacingGame(final InputView inputView,
+                      final OutputView outputView,
+                      final NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;
     }
 
-    public void run() {
+    public void play() {
         List<String> carNames = repeatUntilValid(inputView::getNames);
         int tryNumber = repeatUntilValid(inputView::getTryNumber);
 
@@ -35,13 +37,13 @@ public class CarController {
         reportWinners(circuit);
     }
 
-    private void reportWinners(Circuit circuit) {
+    private void reportWinners(final Circuit circuit) {
         List<CarStatus> raceResults = circuit.getRaceResults();
         List<CarStatus> winners = circuit.getWinners(raceResults);
         outputView.printWinners(winners);
     }
 
-    private void play(Circuit circuit, int tryNumber) {
+    private void play(final Circuit circuit, final int tryNumber) {
         outputView.printResultMessage();
         for (int tries = 0; tries < tryNumber; tries++) {
             circuit.startRace();
@@ -50,7 +52,7 @@ public class CarController {
         }
     }
 
-    private <T> T repeatUntilValid(Supplier<T> function) {
+    private <T> T repeatUntilValid(final Supplier<T> function) {
         try {
             return function.get();
         } catch (RacingCarException e) {

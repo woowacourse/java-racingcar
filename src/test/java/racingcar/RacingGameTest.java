@@ -16,7 +16,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.reader.ConsoleReader;
 
-class CarControllerTest {
+class RacingGameTest {
 
     OutputView outputView;
     ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -40,9 +40,9 @@ class CarControllerTest {
     void invalidInputRepeatTest(String input) {
         // given
         InputView inputView = setupInputStream("a,b,c\n" + input + "\n1\n");
-        CarController controller = new CarController(inputView, outputView, () -> 9);
+        RacingGame controller = new RacingGame(inputView, outputView, () -> 9);
         // when
-        controller.run();
+        controller.play();
         // then
         assertThat(out.toString())
                 .containsSubsequence("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).", "시도할 회수는 몇회인가요?", "[ERROR]",
@@ -55,9 +55,9 @@ class CarControllerTest {
         // given
         InputView inputView = setupInputStream("a,b,c\n3\n");
         OfInt iterator = IntStream.of(9, 9, 9, 9, 0, 9, 0, 0, 9).iterator();
-        CarController controller = new CarController(inputView, outputView, iterator::nextInt);
+        RacingGame controller = new RacingGame(inputView, outputView, iterator::nextInt);
         // when
-        controller.run();
+        controller.play();
         // then
         assertThat(out.toString())
                 .containsSubsequence(
