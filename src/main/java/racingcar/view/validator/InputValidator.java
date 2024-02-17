@@ -6,45 +6,45 @@ import java.util.Set;
 
 public class InputValidator {
     
-    public static void validateAvailableName(List<String> parsedInputs){
-        for(String inputName : parsedInputs){
+    public static void validateAvailableName(List<String> names){
+        for(String inputName :  names){
             hasSpaceInName(inputName);
             isAvailableLength(inputName);
         }
     }
 
-    public static void validateIsBlank(String initialInput) {
-        if(initialInput.isBlank()) {
+    public static void validateIsBlank(String input) {
+        if(input.isBlank()) {
             throw new IllegalArgumentException();
         }
     }
-    private static void hasSpaceInName(String inputName) {
-        if(inputName.contains(" ")) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private static void isAvailableLength(String inputName) {
-        if (inputName.length() > 5) {
+    private static void hasSpaceInName(String name) {
+        if(name.contains(" ")) {
             throw new IllegalArgumentException();
         }
     }
 
-    public static void validateAvailableCarNames(List<String> parsedCarNames){
-        validateIsMultipleCarNames(parsedCarNames);
-        validateIsDuplicate(parsedCarNames);
-    }
-
-    private static void validateIsMultipleCarNames(List<String> parsedInputs) {
-        if (parsedInputs.size() <= 1) {
+    private static void isAvailableLength(String name) {
+        if (name.length() > 5) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void validateIsDuplicate(List<String> parsedInputs) {
-        Set<String> nameSet = new HashSet<>(parsedInputs);
+    public static void validateAvailableCarNames(List<String> carNames){
+        validateIsMultipleCarNames(carNames);
+        validateIsDuplicate(carNames);
+    }
 
-        if(nameSet.size() != parsedInputs.size()) {
+    private static void validateIsMultipleCarNames(List<String> carNames) {
+        if (carNames.size() <= 1) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateIsDuplicate(List<String> inputs) {
+        Set<String> nameSet = new HashSet<>(inputs);
+
+        if(nameSet.size() != inputs.size()) {
             throw new IllegalArgumentException();
         }
     }
