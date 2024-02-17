@@ -28,18 +28,6 @@ public class RacingGame {
         OutputView.printCars(findWinners());
     }
 
-    private void playOneRound() {
-        for (Car car : cars) {
-            car.move();
-        }
-    }
-
-    public List<Car> findWinners() {
-        return cars.stream()
-            .filter(car -> car.equals(Collections.max(cars)))
-            .toList();
-    }
-
     private List<Car> makeCars(String rawCarNames) {
         List<Car> carList = new ArrayList<>();
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*")).toList();
@@ -48,6 +36,18 @@ public class RacingGame {
             carList.add(new Car(carName));
         }
         return carList;
+    }
+
+    private void playOneRound() {
+        for (Car car : cars) {
+            car.move();
+        }
+    }
+
+    private List<Car> findWinners() {
+        return cars.stream()
+            .filter(car -> car.equals(Collections.max(cars)))
+            .toList();
     }
 
     private void validate(List<String> names) {
