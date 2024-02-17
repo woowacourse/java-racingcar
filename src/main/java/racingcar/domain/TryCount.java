@@ -4,7 +4,7 @@ public class TryCount {
     private static final int MIN_TRY_COUNT = 1;
     private static final int MAX_TRY_COUNT = 1_000;
 
-    private final int tryCount;
+    private int tryCount;
 
     public TryCount(final int tryCount) {
         validateTryCountRange(tryCount);
@@ -20,5 +20,13 @@ public class TryCount {
                     String.format("시도 횟수는 %,d 이하여야 합니다.", MAX_TRY_COUNT)
             );
         }
+    }
+
+    public void tryOne() {
+        tryCount--;
+    }
+
+    public boolean isNotFinal() {
+        return tryCount != 0;
     }
 }

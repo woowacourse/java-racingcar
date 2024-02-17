@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.util.ConsoleReader;
@@ -11,7 +12,7 @@ import racingcar.util.ConsoleReader;
 public class RacingCarController {
     public void run() {
         final Cars cars = initCars();
-        final int tryCount = initTryCount();
+        final TryCount tryCount = initTryCount();
         proceedRounds(cars, tryCount);
         printResult(cars);
     }
@@ -32,19 +33,22 @@ public class RacingCarController {
                 .toList();
     }
 
-    private int initTryCount() {
+    private TryCount initTryCount() {
         try {
-            return InputView.readTryCount(new ConsoleReader());
+            final int tryCount = InputView.readTryCount(new ConsoleReader());
+            return new TryCount(tryCount);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return initTryCount();
         }
     }
 
-    private void proceedRounds(final Cars cars, final int tryCount) {
+    private void proceedRounds(final Cars cars, final TryCount tryCount) {
         OutputView.printResultSubject();
-        IntStream.rangeClosed(1, tryCount)
-                .forEach(i -> proceedOneRound(cars));
+        while (tryCount.isNotFinal()) {
+            tryCount.tryOne();
+            proceedOneRound(cars);
+        }
     }
 
     private void proceedOneRound(final Cars cars) {

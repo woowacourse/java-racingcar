@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class InputView {
-    private static final int MIN_TRY_COUNT = 0;
-    private static final int MAX_TRY_COUNT = 1_000;
     private static final String ASK_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String ASK_TRY_COUNT = "시도할 회수는 몇회인가요?";
     private static final String DELIMITER = ",";
@@ -47,24 +45,10 @@ public class InputView {
     }
 
     private static int parseTryCount(final String input) {
-        int tryCount;
         try {
-            tryCount = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("시도 횟수는 양의 정수를 입력해야 합니다.");
-        }
-        validateTryCountRange(tryCount);
-        return tryCount;
-    }
-
-    private static void validateTryCountRange(final int tryCount) {
-        if (tryCount <= MIN_TRY_COUNT) {
-            throw new IllegalArgumentException("시도 횟수는 양의 정수를 입력해야 합니다.");
-        }
-        if (tryCount > MAX_TRY_COUNT) {
-            throw new IllegalArgumentException(
-                    String.format("시도 횟수는 %,d 이하여야 합니다.", MAX_TRY_COUNT)
-            );
         }
     }
 }
