@@ -23,10 +23,13 @@ public class RacingCarController {
         awardWinners(cars, roundResults);
     }
 
-    private void awardWinners(Cars cars, List<RoundResult> roundResults) {
-        List<String> winners = cars.getWinnersName();
-        outputView.printRoundResults(roundResults);
-        outputView.printWinners(winners);
+    private Cars readCars() {
+        List<String> carNames = inputView.readCarNames();
+        return Cars.createCarsByName(carNames, new RandomOilGenerator());
+    }
+
+    private Round readRound() {
+        return new Round(inputView.readTryCount());
     }
 
     private List<RoundResult> simulateCarsInRound(Round round, Cars cars) {
@@ -39,16 +42,13 @@ public class RacingCarController {
         return roundResults;
     }
 
-    private Cars readCars() {
-        List<String> carNames = inputView.readCarNames();
-        return Cars.createCarsByName(carNames, new RandomOilGenerator());
+    private void awardWinners(Cars cars, List<RoundResult> roundResults) {
+        List<String> winners = cars.getWinnersName();
+        outputView.printRoundResults(roundResults);
+        outputView.printWinners(winners);
     }
 
-    private Round readRound() {
-        return new Round(inputView.readTryCount());
-    }
-
-    public <T> T retryOnException(Supplier<T> retryOperation) {
+    private <T> T retryOnException(Supplier<T> retryOperation) {
         try {
             return retryOperation.get();
         } catch (IllegalArgumentException e) {
