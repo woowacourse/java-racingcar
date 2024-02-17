@@ -57,6 +57,6 @@ public class Cars {
     private Car getHighestPositionCar() {
         return cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(NOT_NULL.getMessage()));
     }
 }
