@@ -15,7 +15,9 @@ class CarRacingGameTest {
 
     @BeforeEach
     void setUp() {
-        carRacingGame = new CarRacingGame("pobi,crong,honux", "1");
+        Cars cars = new Cars("pobi,crong,honux");
+        Round round = new Round("1");
+        carRacingGame = new CarRacingGame(cars, round);
     }
 
     @ParameterizedTest

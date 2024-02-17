@@ -7,9 +7,9 @@ public class CarRacingGame {
     private final Cars cars;
     private final Round round;
 
-    public CarRacingGame(String inputCars, String inputRound) {
-        this.cars = new Cars(inputCars);
-        this.round = new Round(inputRound);
+    public CarRacingGame(Cars cars, Round round) {
+        this.cars = cars;
+        this.round = round;
     }
 
     public List<Car> findWinners() {

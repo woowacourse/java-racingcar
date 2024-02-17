@@ -1,9 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.CarRacingGame;
-import racingcar.domain.NumberGenerator;
-import racingcar.domain.RandomNumberGenerator;
+import racingcar.domain.*;
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
 import racingcar.view.InputView;
@@ -22,17 +19,22 @@ public class MainController {
     }
 
     public void run() {
-        CarRacingGame carRacingGame = repeat(this::initializeCarRacingGame);
+        Cars cars = repeat(this::inputCarNames);
+        Round round = repeat(this::inputRound);
+        CarRacingGame carRacingGame = new CarRacingGame(cars, round);
 
         race(carRacingGame);
         showWinners(carRacingGame.findWinners());
     }
 
-    private CarRacingGame initializeCarRacingGame() {
+    private Cars inputCarNames() {
         String inputCarNames = inputView.inputCarNames();
-        String inputRound = inputView.inputRound();
+        return new Cars(inputCarNames);
+    }
 
-        return new CarRacingGame(inputCarNames, inputRound);
+    private Round inputRound() {
+        String inputRound = inputView.inputRound();
+        return new Round(inputRound);
     }
 
     private void race(CarRacingGame carRacingGame) {
