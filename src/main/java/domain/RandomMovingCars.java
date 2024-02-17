@@ -8,7 +8,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RandomMovingCars {
-    private static final CarPosition INITIAL_POSITION = new CarPosition(0);
     private static final int MIN_CARS_SIZE = 2;
     private static final int MAX_CARS_SIZE = 20;
 
@@ -52,6 +51,22 @@ public class RandomMovingCars {
         for (RandomMovingCar car : cars) {
             car.move();
         }
+    }
+
+    public List<String> findWinnerNames() {
+        int maxPosition = findMaxPosition();
+
+        return cars.stream()
+                .filter(car -> car.isSamePosition(maxPosition))
+                .map(RandomMovingCar::getName)
+                .toList();
+    }
+
+    private int findMaxPosition() {
+        return cars.stream()
+                .map(RandomMovingCar::getPosition)
+                .max(Integer::compareTo)
+                .orElse(0);
     }
 
     public List<RandomMovingCar> getCars() {

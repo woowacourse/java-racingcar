@@ -26,6 +26,10 @@ public class RandomMovingCar {
         }
     }
 
+    public boolean isSamePosition(int maxPosition) {
+        return car.getPosition() == maxPosition;
+    }
+
     // TODO: 스태틱 메소드 다른 처리 고민
     public static int generateRandomPower() {
         return (int) (Math.random() * (MAX_POWER - MIN_POWER + 1) + MIN_POWER);

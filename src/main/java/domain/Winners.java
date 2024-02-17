@@ -1,38 +1,22 @@
 package domain;
 
 import domain.car.Car;
+import domain.car.CarName;
 
 import java.util.List;
 
 public class Winners {
-    private final List<String> winners;
+    private final List<String> winnerNames;
 
     private Winners(List<String> winners) {
-        this.winners = winners;
+        this.winnerNames = winners;
     }
 
     public static Winners from(RandomMovingCars randomMovingCars) {
-        return new Winners(findWinners(randomMovingCars).stream()
-                .map(RandomMovingCar::getName)
-                .toList());
-    }
-
-    private static List<RandomMovingCar> findWinners(RandomMovingCars randomMovingCars) {
-        int maxPosition = getMaxPosition(randomMovingCars);
-        return randomMovingCars.getCars().stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .toList();
-
-    }
-
-    private static int getMaxPosition(RandomMovingCars randomMovingCars) {
-        return randomMovingCars.getCars().stream()
-                .mapToInt(RandomMovingCar::getPosition)
-                .max()
-                .getAsInt();
+        return new Winners(randomMovingCars.findWinnerNames());
     }
 
     public List<String> getWinners() {
-        return winners;
+        return winnerNames;
     }
 }
