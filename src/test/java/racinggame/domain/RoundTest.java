@@ -14,21 +14,21 @@ class RoundTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 10})
     void create(int source) {
-        assertThatCode(() -> Round.from(source))
+        assertThatCode(() -> new Round(source))
             .doesNotThrowAnyException();
     }
 
     @DisplayName("라운드의 수는 최소 1 이다.")
     @Test
     void checkRoundMinRange() {
-        assertThatThrownBy(() -> Round.from(0))
+        assertThatThrownBy(() -> new Round(0))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("라운드의 수는 최대 10 이다.")
     @Test
     void checkRoundMaxRange() {
-        assertThatThrownBy(() -> Round.from(11))
+        assertThatThrownBy(() -> new Round(11))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

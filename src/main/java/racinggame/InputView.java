@@ -25,7 +25,7 @@ class InputView {
     public static Round readRound() throws IOException {
         String inputRound = readLine("시도할 회수는 몇회인가요?");
 
-        return Round.from(Integer.parseInt(inputRound));
+        return new Round(Integer.parseInt(inputRound));
     }
 
     private static String readLine(String message) throws IOException {

@@ -7,19 +7,15 @@ public class Round {
     private static final int DECREASE_AMOUNT = 1;
     private static final int PLAYABLE_STANDARD = 0;
 
-    private final int round;
+    private int round;
 
-    private Round(int round) {
+    public Round(int round) {
+        checkRoundInRange(round);
+
         this.round = round;
     }
 
-    public static Round from(int round) {
-        checkRoundInRange(round);
-
-        return new Round(round);
-    }
-
-    private static void checkRoundInRange(int round) {
+    private void checkRoundInRange(int round) {
         if (round < MIN_ROUND_RANGE || round > MAX_ROUND_RANGE) {
             throw new IllegalArgumentException();
         }
@@ -29,7 +25,7 @@ public class Round {
         return round > PLAYABLE_STANDARD;
     }
 
-    public Round decrease() {
-        return new Round(round - DECREASE_AMOUNT);
+    public void decrease() {
+        round -= DECREASE_AMOUNT;
     }
 }

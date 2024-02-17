@@ -17,7 +17,7 @@ public class RacingGame {
         while (round.isPlayable()) {
             cars.moveAll();
             results.add(cars.buildRoundResult());
-            round = round.decrease();
+            round.decrease();
         }
     }
 
