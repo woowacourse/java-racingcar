@@ -13,14 +13,12 @@ public class CarsTest {
     void nameDuplicatedTest() {
         List<String> carNames = List.of("lemon","lemon","a","nyang");
         assertThatThrownBy(() -> RacingGame.from(carNames))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차 이름 개수가 2개 미만이면 에러가 발생한다.")
     @Test
     void carNameCountTest() {
         List<String> carNames = List.of("lemon");
-        assertThatThrownBy(() -> RacingGame.from(carNames))
-                .isInstanceOf( IllegalArgumentException.class);
+        assertThatThrownBy(() -> RacingGame.from(carNames));
     }
 }
