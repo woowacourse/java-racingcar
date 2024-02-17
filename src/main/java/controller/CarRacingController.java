@@ -4,7 +4,6 @@ import domain.Car;
 import domain.Cars;
 import domain.Judge;
 import domain.Rap;
-import service.RacingCarService;
 import util.Exceptions;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -16,14 +15,12 @@ public class CarRacingController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final RacingCarService racingCarService;
     private final Judge judge;
 
-    public CarRacingController(RacingCarService racingCarService, InputView inputView, OutputView outputView, Judge judge) {
-        this.racingCarService = racingCarService;
+    public CarRacingController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.judge = judge;
+        this.judge = new Judge();
     }
 
     public void run() {
@@ -50,7 +47,7 @@ public class CarRacingController {
     }
 
     private void printMovement(Cars cars) {
-        for(Car car : cars.getCars()){
+        for (Car car : cars.getCars()) {
             outputView.printMovement(car.getName(), car.getForward());
         }
         System.out.println();
