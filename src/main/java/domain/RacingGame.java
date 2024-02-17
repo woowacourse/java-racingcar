@@ -30,13 +30,11 @@ public class RacingGame {
     }
 
     private void makeCars(String rawCarNames) {
-//        List<Car> carList = new ArrayList<>();
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
         validate(carNames);
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-//        return carList;
     }
 
     private void playOneRound() {
