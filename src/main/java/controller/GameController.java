@@ -54,7 +54,7 @@ public class GameController {
     }
 
     private void finish(final List<Car> cars) {
-        RaceResult raceResult = RaceResult.of(cars);
+        RaceResult raceResult = RaceResult.from(cars);
         outputView.printRaceResult(raceResult);
     }
 }
