@@ -21,9 +21,9 @@ public class GameController {
     }
 
     private void readCarNames() throws IOException {
-        boolean shouldCarNameInput = true;
-        while (shouldCarNameInput) {
-            shouldCarNameInput = doReadCarNames();
+        boolean isValid = false;
+        while (!isValid) {
+            isValid = doReadCarNames();
         }
     }
 
@@ -40,9 +40,9 @@ public class GameController {
     }
 
     private void readMoveCount() throws IOException {
-        boolean shouldMoveCountInput = true;
-        while (shouldMoveCountInput) {
-            shouldMoveCountInput = doReadMoveCount();
+        boolean isValid = false;
+        while (!isValid) {
+            isValid = doReadMoveCount();
         }
     }
 
