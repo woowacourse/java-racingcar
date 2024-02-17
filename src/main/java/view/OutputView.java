@@ -1,6 +1,7 @@
 package view;
 
 import domain.car.Car;
+import domain.name.Name;
 import domain.race.RaceProgress;
 import domain.race.RaceResult;
 
@@ -22,7 +23,8 @@ public class OutputView {
         String racerList = raceResult
                 .getWinnerCars()
                 .stream()
-                .map(Car::toString)
+                .map(Car::getName)
+                .map(Name::getValue)
                 .collect(Collectors.joining(", "));
 
         System.out.println(racerList + "가 최종 우승했습니다.");
