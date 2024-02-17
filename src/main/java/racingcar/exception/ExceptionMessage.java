@@ -1,9 +1,9 @@
 package racingcar.exception;
 
-import static racingcar.config.RacingCarConfig.MAX_CARS_SIZE;
-import static racingcar.config.RacingCarConfig.MAX_NAME_LENGTH;
-import static racingcar.config.RacingCarConfig.MAX_TRY_COUNT;
-import static racingcar.config.RacingCarConfig.MIN_CARS_SIZE;
+import static racingcar.util.Constant.MAX_CARS_SIZE;
+import static racingcar.util.Constant.MAX_NAME_LENGTH;
+import static racingcar.util.Constant.MAX_TRY_COUNT;
+import static racingcar.util.Constant.MIN_CARS_SIZE;
 
 public enum ExceptionMessage {
     NOT_NULL("공백을 입력할 수 없습니다."),

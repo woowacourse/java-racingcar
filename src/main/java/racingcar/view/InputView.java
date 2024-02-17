@@ -1,7 +1,7 @@
 package racingcar.view;
 
-import static racingcar.config.RacingCarConfig.MAX_TRY_COUNT;
-import static racingcar.config.RacingCarConfig.MIN_TRY_COUNT;
+import static racingcar.util.Constant.MAX_TRY_COUNT;
+import static racingcar.util.Constant.MIN_TRY_COUNT;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;

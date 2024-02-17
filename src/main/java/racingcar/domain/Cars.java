@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import static racingcar.config.RacingCarConfig.MAX_CARS_SIZE;
-import static racingcar.config.RacingCarConfig.MAX_RANDOM_NUMBER;
-import static racingcar.config.RacingCarConfig.MIN_CARS_SIZE;
+import static racingcar.util.Constant.MAX_CARS_SIZE;
+import static racingcar.util.Constant.MAX_RANDOM_NUMBER;
+import static racingcar.util.Constant.MIN_CARS_SIZE;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;

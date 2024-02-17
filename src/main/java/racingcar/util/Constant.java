@@ -1,6 +1,6 @@
-package racingcar.config;
+package racingcar.util;
 
-public enum RacingCarConfig {
+public enum Constant {
     MAX_NAME_LENGTH(5),
     CAR_MOVE_THRESHOLD(4),
     MIN_CARS_SIZE(2),
@@ -11,7 +11,7 @@ public enum RacingCarConfig {
 
     private final int value;
 
-    RacingCarConfig(int value) {
+    Constant(int value) {
         this.value = value;
     }
 

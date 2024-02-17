@@ -1,7 +1,7 @@
 package racingcar.domain;
 
-import static racingcar.config.RacingCarConfig.CAR_MOVE_THRESHOLD;
-import static racingcar.config.RacingCarConfig.MAX_NAME_LENGTH;
+import static racingcar.util.Constant.CAR_MOVE_THRESHOLD;
+import static racingcar.util.Constant.MAX_NAME_LENGTH;
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.Objects;
