@@ -5,20 +5,17 @@ import racinggame.domain.RoundResult;
 
 class OutputView {
 
-    private OutputView() {
+    public void printResult(List<RoundResult> results) {
+        results.forEach(this::printEachResult);
     }
 
-    public static void printResult(List<RoundResult> results) {
-        results.forEach(OutputView::printEachResult);
-    }
-
-    private static void printEachResult(RoundResult result) {
+    private void printEachResult(RoundResult result) {
         result.carInfos().forEach(carInfo ->
             System.out.format("%s : %s%n", carInfo.name(), "-".repeat(carInfo.position())));
         System.out.println();
     }
 
-    public static void printWinner(List<String> results) {
+    public void printWinner(List<String> results) {
         System.out.format("%s가 최종 우승했습니다.", String.join(", ", results));
     }
 }
