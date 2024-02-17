@@ -1,14 +1,14 @@
 package racingcar.domain;
 
-import static racingcar.constant.ExceptionMessage.DUPLICATED_CAR_NAME;
-import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME_LENGTH;
-
 import java.util.List;
 import racingcar.dto.CarPerformance;
 
 public class Car {
 
     private static final int REQUIRED_OIL = 4;
+    private static final String INVALID_CAR_NAME_LENGTH = "이름은 1자 이상 5자 이내로 입력해 주세요.";
+    private static final String DUPLICATED_CAR_NAME = "중복된 자동차 이름이 존재합니다.";
+
     private final String name;
     private int movedDistance = 0;
 
@@ -19,7 +19,7 @@ public class Car {
 
     private void validateNameLength(String name) {
         if (name.length() > 5 || name.isEmpty()) {
-            throw INVALID_CAR_NAME_LENGTH.getException();
+            throw new IllegalArgumentException(INVALID_CAR_NAME_LENGTH);
         }
     }
 
@@ -30,7 +30,7 @@ public class Car {
                 .count();
 
         if (uniqueCarNamesCount != cars.size()) {
-            throw DUPLICATED_CAR_NAME.getException();
+            throw new IllegalArgumentException(DUPLICATED_CAR_NAME);
         }
     }
 
@@ -60,5 +60,4 @@ public class Car {
                 .map(car -> car.name)
                 .toList();
     }
-
 }
