@@ -15,7 +15,7 @@ public class RacingCount {
         }
     }
 
-    public int getCount() {
-        return count;
+    public boolean isCountEnd(int count) {
+        return this.count < count;
     }
 }

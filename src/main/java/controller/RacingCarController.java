@@ -55,7 +55,9 @@ public class RacingCarController {
 
     private List<String> racing(final Cars cars, final RacingCount racingCount) {
         outputView.printResultMessageTitle();
-        for (int i = 0; i < racingCount.getCount(); i++) {
+
+        int count = 1;
+        while (!racingCount.isCountEnd(count++)) {
             List<CarStatus> raceResult = cars.race();
             outputView.printRacingResult(raceResult);
         }
