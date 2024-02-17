@@ -1,24 +1,12 @@
 package view;
 
-import static constant.Messages.*;
-
 import domain.Car;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
 
-    public static void printCarNames() {
-        System.out.println(INPUT_CAR_NAMES);
-    }
-
-    public static void printRound() {
-        System.out.println(INPUT_ROUND);
-    }
-
-    public static void printRoundResult() {
-        System.out.println(GAME_RESULT);
-    }
+    public static final String WIN_THE_GAME = "가 최종 우승했습니다.";
 
     public static void printScore(List<Car> carList) {
         for (Car car : carList) {
