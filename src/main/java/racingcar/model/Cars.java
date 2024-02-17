@@ -38,4 +38,10 @@ public class Cars {
     public List<Car> getCars() {
         return cars;
     }
+
+    public List<Integer> getCarPositions() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
+    }
 }
