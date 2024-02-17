@@ -1,16 +1,15 @@
 package controller;
 
-import static utils.TryCountValidator.validateTryCountFormat;
-import static view.InputView.inputCarName;
-import static view.InputView.inputTryCount;
 
 import model.Race;
+import utils.validator.TryCountValidator;
+import view.InputView;
 
 public class InputController {
 
     public Race makeRace() {
         try {
-            String carNames = inputCarName();
+            String carNames = InputView.inputCarName();
             Race race = new Race(carNames);
 
             return race;
@@ -23,8 +22,8 @@ public class InputController {
 
     public int makeTryCount() {
         try {
-            String invalidTryCount = inputTryCount();
-            validateTryCountFormat(invalidTryCount);
+            String invalidTryCount = InputView.inputTryCount();
+            TryCountValidator.validateTryCountFormat(invalidTryCount);
 
             return Integer.parseInt(invalidTryCount);
         } catch (IllegalArgumentException e) {
