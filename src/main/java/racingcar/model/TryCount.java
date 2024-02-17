@@ -10,15 +10,15 @@ public class TryCount {
     public int validatedInput(String input) {
         try {
             int number = Integer.parseInt(input);
-            isOverZero(number);
+            checkIfOverZero(number);
             return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void isOverZero(int number) {
-        if(number < 0) {
+    private void checkIfOverZero(int number) {
+        if (number < 0) {
             throw new IllegalArgumentException();
         }
     }
