@@ -49,16 +49,16 @@ public class Cars {
         return getSamePositionCars(highestPositionCar);
     }
 
+    private Car getHighestPositionCar() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
     private List<String> getSamePositionCars(final Car highestPositionCar) {
         return cars.stream()
                 .filter(highestPositionCar::isSamePosition)
                 .map(Car::getName)
                 .toList();
-    }
-
-    private Car getHighestPositionCar() {
-        return cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow(IllegalArgumentException::new);
     }
 }
