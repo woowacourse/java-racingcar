@@ -3,8 +3,8 @@ package view;
 import domain.Car;
 import domain.CarGroup;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String CAR_POSITION_MARK = "-";
@@ -31,10 +31,9 @@ public class OutputView {
             return;
         }
 
-        List<String> winnerNames = new ArrayList<>();
-        for (Car car : winners) {
-            winnerNames.add(car.getName());
-        }
+        List<String> winnerNames = winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
 
         String result = String.join(", ", winnerNames).concat("가 최종 우승했습니다.");
         System.out.println(result);
