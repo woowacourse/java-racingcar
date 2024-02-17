@@ -18,7 +18,6 @@ public class RacingManager {
     public static void raceStart() {
         Scanner scanner = new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        InputGuideOutputManager.printInputCarNames();
         List<String> carNames = getCarNames(br);
         Racing racing = play(scanner, carNames);
         List<String> winnerNames = racing.getWinnerNames();
@@ -43,6 +42,7 @@ public class RacingManager {
         return carNameInputManager.retry(
                 () -> {
                     try {
+                        InputGuideOutputManager.printInputCarNames();
                         return CarNameInputManager.getNameFromConsole(br);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
