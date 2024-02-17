@@ -10,7 +10,6 @@ public class CarController {
     private TryCount tryCount;
     private NumericGenerator generator = new RandomNumericGenerator();
 
-    
     public CarController(Cars cars, TryCount tryCount) {
         this.cars = cars;
         this.tryCount = tryCount;
@@ -18,7 +17,8 @@ public class CarController {
 
     public void startGame() {
         OutputView.printResultMessage();
-        while(tryCount.checkTryable()){
+
+        while (tryCount.checkTryable()) {
             cars.moveCars(generator);
             OutputView.printCarStatus(cars);
             tryCount.consume();

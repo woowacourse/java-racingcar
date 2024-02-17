@@ -25,7 +25,6 @@ public class CarsTest {
             }
         }
 
-
         @Override
         public int generate() {
             int generatedNumber = numbers.get(position);
@@ -39,7 +38,7 @@ public class CarsTest {
     @Nested
     class ValidateInput {
         @ParameterizedTest
-        @ValueSource(strings = {",포케", "폭포,"})
+        @ValueSource(strings = { ",포케", "폭포," })
         @DisplayName("콤마가 맨 앞 또는 맨 뒤에 위치하면 에러 발생")
         void testNameUnderFive(String given) {
             assertThatThrownBy(() -> new Cars(given))

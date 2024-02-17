@@ -12,7 +12,7 @@ public class TryCount {
 
         int number = Integer.parseInt(input);
         isOverZero(number);
-        
+
         return number;
     }
 
@@ -25,7 +25,7 @@ public class TryCount {
     }
 
     private void isOverZero(int number) {
-        if(number < 0) {
+        if (number < 0) {
             throw new IllegalArgumentException();
         }
     }

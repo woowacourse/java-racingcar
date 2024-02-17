@@ -10,7 +10,7 @@ import racingcar.model.TryCount;
 
 public class InputView {
     private static final BufferedReader CONSOLE = new BufferedReader(new InputStreamReader(System.in));
-    
+
     public static Cars inputRacingCars() {
         return requestInput(
                 () -> OutputView.printRequestCarNamesMessage(),
@@ -23,11 +23,11 @@ public class InputView {
                 input -> new TryCount(input));
     }
 
-    private static <T> T requestInput(Runnable requestMessage, Function<String,T> creator) {
+    private static <T> T requestInput(Runnable requestMessage, Function<String, T> creator) {
         requestMessage.run();
         try {
             return creator.apply(CONSOLE.readLine());
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new IllegalArgumentException();
         }
     }

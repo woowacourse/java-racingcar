@@ -43,8 +43,8 @@ public class TryCountTest {
         }
 
         @ParameterizedTest
-        @CsvSource({"0,false",
-                    "1,true"})
+        @CsvSource({ "0,false",
+                "1,true" })
         @DisplayName("시도회수가 1 이상이면 시도가 가능하고, 0이면 시도를 할 수 없다.")
         void testUntilZero(String given, boolean expected) {
             TryCount count = new TryCount(given);
