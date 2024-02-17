@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Car;
-import racingcar.domain.Cars;
+import racingcar.domain.Racing;
 import racingcar.domain.RandomDigitSupplier;
 import racingcar.domain.RandomMoveStrategy;
 import racingcar.domain.TrialCount;
@@ -15,20 +15,20 @@ public class RacingCarController {
     }
 
     public static void run() {
-        Cars cars = inputCars();
+        Racing racing = inputCars();
         TrialCount trialCount = inputTrialCount();
 
         OutputView.printResultTitle();
-        trialCount.repeat(() -> progressRacing(cars));
+        trialCount.repeat(() -> progressRacing(racing));
 
-        List<Car> winners = cars.findWinner();
+        List<Car> winners = racing.findWinner();
         OutputView.printWinners(winners);
     }
 
-    private static Cars inputCars() {
+    private static Racing inputCars() {
         try {
             List<String> carNames = InputView.inputNames();
-            return Cars.of(carNames, new RandomMoveStrategy(new RandomDigitSupplier()));
+            return Racing.of(carNames, new RandomMoveStrategy(new RandomDigitSupplier()));
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return inputCars();
@@ -45,8 +45,8 @@ public class RacingCarController {
         }
     }
 
-    private static void progressRacing(Cars cars) {
-        cars.move();
-        OutputView.printProgress(cars.getCarList());
+    private static void progressRacing(Racing racing) {
+        racing.move();
+        OutputView.printProgress(racing.getCars());
     }
 }

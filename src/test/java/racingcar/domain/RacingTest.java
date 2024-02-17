@@ -7,17 +7,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class CarsTest {
+class RacingTest {
 
     @DisplayName("가장 멀리간 차가 우승자가 된다.")
     @Test
     void findSingleWinnerTest() {
         MockCar carA = new MockCar(1);
         MockCar carB = new MockCar(2);
-        List<Car> carList = List.of(carA, carB);
-        Cars cars = new Cars(carList, () -> true);
+        List<Car> cars = List.of(carA, carB);
+        Racing racing = new Racing(cars, () -> true);
 
-        List<Car> winners = cars.findWinner();
+        List<Car> winners = racing.findWinner();
 
         Assertions.assertThat(winners).containsExactlyInAnyOrder(carB);
     }
@@ -28,10 +28,10 @@ class CarsTest {
         MockCar carA = new MockCar(2);
         MockCar carB = new MockCar(2);
         MockCar carC = new MockCar(1);
-        List<Car> carList = List.of(carA, carB, carC);
-        Cars cars = new Cars(carList, () -> true);
+        List<Car> cars = List.of(carA, carB, carC);
+        Racing racing = new Racing(cars, () -> true);
 
-        List<Car> winners = cars.findWinner();
+        List<Car> winners = racing.findWinner();
 
         Assertions.assertThat(winners).containsExactlyInAnyOrder(carA, carB);
     }
@@ -41,10 +41,10 @@ class CarsTest {
     @CsvSource({"true, 1", "false, 0"})
     void moveTest(boolean isMove, int expectedPosition) {
         MockCar carA = new MockCar();
-        List<Car> carList = List.of(carA);
-        Cars cars = new Cars(carList, () -> isMove);
+        List<Car> cars = List.of(carA);
+        Racing racing = new Racing(cars, () -> isMove);
 
-        cars.move();
+        racing.move();
 
         Assertions.assertThat(carA.getPosition()).isEqualTo(expectedPosition);
     }

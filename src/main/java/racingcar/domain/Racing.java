@@ -2,38 +2,38 @@ package racingcar.domain;
 
 import java.util.List;
 
-public class Cars {
+public class Racing {
 
-    private final List<Car> carList;
+    private final List<Car> cars;
     private final MoveStrategy moveStrategy;
 
-    public Cars(List<Car> carList, MoveStrategy moveStrategy) {
-        this.carList = carList;
+    public Racing(List<Car> cars, MoveStrategy moveStrategy) {
+        this.cars = cars;
         this.moveStrategy = moveStrategy;
     }
 
-    public static Cars of(List<String> carNames, MoveStrategy moveStrategy) {
+    public static Racing of(List<String> carNames, MoveStrategy moveStrategy) {
         List<Car> carList = carNames.stream()
                 .map(Car::new)
                 .toList();
-        return new Cars(carList, moveStrategy);
+        return new Racing(carList, moveStrategy);
     }
 
     public void move() {
-        carList.forEach(car -> car.move(moveStrategy.isMove()));
+        cars.forEach(car -> car.move(moveStrategy.isMove()));
     }
 
     public List<Car> findWinner() {
-        int maxPosition = carList.stream()
+        int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
-        return carList.stream()
+        return cars.stream()
                 .filter(car -> car.isPositionedAt(maxPosition))
                 .toList();
     }
 
-    public List<Car> getCarList() {
-        return carList;
+    public List<Car> getCars() {
+        return cars;
     }
 }
