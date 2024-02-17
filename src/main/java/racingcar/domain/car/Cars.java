@@ -3,6 +3,7 @@ package racingcar.domain.car;
 import racingcar.domain.generator.OilGenerator;
 import racingcar.dto.CarPerformance;
 import racingcar.dto.RoundResult;
+import racingcar.exception.NoCarsToFindMaxDistanceException;
 
 import java.util.Collections;
 import java.util.List;
@@ -67,6 +68,6 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getMovedDistance)
                 .max()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(NoCarsToFindMaxDistanceException::new);
     }
 }
