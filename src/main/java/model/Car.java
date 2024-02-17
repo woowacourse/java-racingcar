@@ -5,6 +5,7 @@ public class Car implements Comparable<Car> {
     private static final int INITIAL_POSITION = 0;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int FORWARD_MIN_NUMBER = 4;
+    private static final int STEP = 1;
     private static final String NAME_DELIMITER = " : ";
     private static final String TRACE = "-";
 
@@ -29,7 +30,7 @@ public class Car implements Comparable<Car> {
 
     public void moveForward(int number) {
         if (number >= FORWARD_MIN_NUMBER) {
-            position++;
+            position += STEP;
         }
     }
 
