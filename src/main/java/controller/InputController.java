@@ -10,9 +10,8 @@ public class InputController {
     public Race makeRace() {
         try {
             String carNames = InputView.inputCarName();
-            Race race = new Race(carNames);
 
-            return race;
+            return new Race(carNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
