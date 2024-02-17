@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Set;
-
 public class Car {
     public String name;
     public int location;

@@ -35,7 +35,7 @@ public class Service {
     private void validateDuplicateName(List<Car> cars) {
         int duplication = 0;
         Set<String> validateCar = new HashSet<>();
-        for (Car car:cars) {
+        for (Car car : cars) {
             duplication = validateDuplication(car.getCarName(), validateCar);
         }
 

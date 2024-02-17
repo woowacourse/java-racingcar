@@ -1,6 +1,5 @@
 package domain;
 
-
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -57,7 +56,7 @@ class ServiceTest {
         Car lily = new Car("lily");
 
         List<Car> cars = List.of(ash, lily);
-        Assertions.assertThatCode(()->service.playGame(cars,3))
+        Assertions.assertThatCode(() -> service.playGame(cars, 3))
                 .doesNotThrowAnyException();
     }
 
