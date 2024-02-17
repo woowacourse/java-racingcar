@@ -23,7 +23,7 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("자동차가 움직일 수 있다.")
+    @DisplayName("자동차는 전진하거나 정지할 수 있다.")
     @ParameterizedTest
     @CsvSource({"true, 1", "false, 0"})
     void moveTest(boolean isMoved, int expected) {
