@@ -1,16 +1,16 @@
 package movestrategy;
 
-import static constant.Numbers.MOVE_BOUNDARY_NUMBER;
-import static constant.Numbers.RANDOM_NUMBER_RANGE;
-
 import java.util.Random;
 
 public class RandomPowerMoveStrategy implements MoveStrategy {
 
+    public static final int MAXIMUM_POWER = 10;
+    public static final int MINIMUM_POWER_TO_MOVE = 4;
+
     @Override
     public boolean isMovable() {
         Random random = new Random();
-        int power = random.nextInt(RANDOM_NUMBER_RANGE);
-        return power >= MOVE_BOUNDARY_NUMBER;
+        int power = random.nextInt(MAXIMUM_POWER);
+        return power >= MINIMUM_POWER_TO_MOVE;
     }
 }
