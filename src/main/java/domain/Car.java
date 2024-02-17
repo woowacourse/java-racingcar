@@ -49,7 +49,7 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return position == car.position && Objects.equals(name, car.name);
+        return Objects.equals(name, car.name);
     }
 
     @Override
