@@ -9,7 +9,7 @@ import utils.NumberGenerator;
 public class FieldTest {
     @Test
     void test() {
-        Field field = new Field(new CarFactory("pobi,weve"), new FixedNumberGenerator());
+        Field field = new Field(new RacingCars("pobi,weve"), new FixedNumberGenerator());
         field.race(2);
 
         String expected = "\n실행 결과\npobi : \nweve : \n\npobi : \nweve : -\n\nweve가 최종 우승했습니다.";

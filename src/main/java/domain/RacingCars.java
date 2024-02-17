@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarFactory {
+public class RacingCars {
     private final List<Car> cars;
 
-    public CarFactory(String carNames) {
+    public RacingCars(String carNames) {
         this.cars = generateCars(carNames);
     }
 
