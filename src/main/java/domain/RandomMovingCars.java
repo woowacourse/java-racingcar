@@ -27,13 +27,13 @@ public class RandomMovingCars {
 
     private static void validateMinCarsSize(List<RandomMovingCar> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
-            throw new IllegalArgumentException("자동차는 2대 이상이 참가해야 합니다.");
+            throw new IllegalArgumentException(String.format("경주에 참가하는 자동차는 %d 대 이상이어야 합니다.", MIN_CARS_SIZE));
         }
     }
 
     private static void validateMaxCarsSize(List<RandomMovingCar> cars) {
         if (cars.size() > MAX_CARS_SIZE) {
-            throw new IllegalArgumentException("참가 자동차는 20대를 넘을 수 없습니다.");
+            throw new IllegalArgumentException(String.format("경주에 참가하는 자동차는 %d 대 이하이어야 합니다.", MAX_CARS_SIZE));
         }
     }
 
@@ -43,7 +43,7 @@ public class RandomMovingCars {
                 .collect(Collectors.toSet());
 
         if (duplicatedName.size() != cars.size()) {
-            throw new IllegalArgumentException("중복된 자동차가 있을 수 없습니다.");
+            throw new IllegalArgumentException("경주에 중복된 이름의 자동차가 존재할 수 없습니다.");
         }
     }
 
