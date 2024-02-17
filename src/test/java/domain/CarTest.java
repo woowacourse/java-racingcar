@@ -33,7 +33,7 @@ class CarTest {
     void createCarFail(String carName) {
         assertThatThrownBy(() -> new Car(carName, accelerator))
                 .isInstanceOf(ValidateException.class)
-                .hasMessage(Car.CAR_NAME_LENGTH_ERROR_MESSAGE);
+                .hasMessage(CarName.CAR_NAME_LENGTH_ERROR_MESSAGE);
     }
 
     @Test
@@ -41,7 +41,7 @@ class CarTest {
     void createCarFailWhenInputNull() {
         assertThatThrownBy(() -> new Car(null, accelerator))
                 .isInstanceOf(ValidateException.class)
-                .hasMessage(Car.CAR_NAME_DOES_NOT_EXIST_ERROR_MESSAGE);
+                .hasMessage(CarName.CAR_NAME_DOES_NOT_EXIST_ERROR_MESSAGE);
     }
 
     @ParameterizedTest
@@ -50,7 +50,7 @@ class CarTest {
     void createCarFailWhenInputBlank(String carName) {
         assertThatThrownBy(() -> new Car(carName, accelerator))
                 .isInstanceOf(ValidateException.class)
-                .hasMessage(Car.CAR_NAME_DOES_NOT_EXIST_ERROR_MESSAGE);
+                .hasMessage(CarName.CAR_NAME_DOES_NOT_EXIST_ERROR_MESSAGE);
     }
 
     @ParameterizedTest
