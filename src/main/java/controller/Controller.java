@@ -1,25 +1,25 @@
 package controller;
 
 import domain.Car;
-import domain.Service;
-import java.util.InputMismatchException;
+import domain.Game;
+
 import java.util.List;
 import java.util.Scanner;
 import view.InputView;
 import view.OutputView;
 
 public class Controller {
-    private final Service service;
+    private final Game game;
 
-    public Controller(Service service) {
-        this.service = service;
+    public Controller(Game game) {
+        this.game = game;
     }
 
     public void run() {
         List<Car> cars = inputCarName();
         int inputAttemptLimit = inputValue();
-        service.playGame(cars, inputAttemptLimit);
-        List<String> winners = service.getWinner(cars, service.getMaxPosition(cars));
+        game.playGame(cars, inputAttemptLimit);
+        List<String> winners = game.getWinner(cars, game.getMaxPosition(cars));
         OutputView.printWinners(winners);
     }
 
@@ -27,7 +27,7 @@ public class Controller {
         try {
             InputView.requestCarName();
             Scanner scanner = new Scanner(System.in);
-            return service.setCars(service.separateCarName(scanner.nextLine()));
+            return game.setCars(game.separateCarName(scanner.nextLine()));
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return inputCarName();

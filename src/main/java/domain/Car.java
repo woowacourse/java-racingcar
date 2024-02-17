@@ -3,6 +3,7 @@ package domain;
 import java.util.Set;
 
 public class Car {
+    public final int MAX_BOUND = 5;
     public String name;
     public int location;
 
@@ -19,7 +20,7 @@ public class Car {
     }
 
     private boolean validateSize(String name) {
-        return name.length() <= 5;
+        return name.length() <= MAX_BOUND;
     }
 
     private String removeBlank(String name) {

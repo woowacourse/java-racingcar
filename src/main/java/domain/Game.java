@@ -7,10 +7,11 @@ import java.util.Random;
 import java.util.Set;
 import view.OutputView;
 
-public class Service {
+public class Game {
+    public final int MAX_NUM = 9;
+    public final int THRESHOLD = 4;
     public final Car NONCANDIDATE_CAR = new Car("");
-
-    public Service() {
+    public Game() {
     }
 
     public List<String> separateCarName(String carNames) {
@@ -116,11 +117,11 @@ public class Service {
 
     private int randomNumberGenerator() {
         Random random = new Random();
-        return random.nextInt(9);
+        return random.nextInt(MAX_NUM);
     }
 
     private void goOrStop(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= THRESHOLD) {
             car.incLocation();
         }
     }

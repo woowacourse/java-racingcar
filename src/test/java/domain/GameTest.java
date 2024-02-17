@@ -6,13 +6,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ServiceTest {
-    Service service = new Service();
+class GameTest {
+    Game game = new Game();
 
     @DisplayName("쉼표 기준으로 자동차 이름을 분리한다")
     @Test
     void splitTest() {
-        List<String> carName = service.separateCarName("릴리,애쉬,엘라");
+        List<String> carName = game.separateCarName("릴리,애쉬,엘라");
         Assertions.assertThat(carName).isEqualTo(List.of("릴리", "애쉬", "엘라"));
     }
 
@@ -20,7 +20,7 @@ class ServiceTest {
     @Test
     void setCarTest() {
         List<String> carName = List.of("ash", "lily", "ella");
-        List<Car> cars = service.setCars(carName);
+        List<Car> cars = game.setCars(carName);
         System.out.println(cars.get(0).getCarName());
         Assertions.assertThat(cars.get(0).getCarName()).isEqualTo("ash");
         Assertions.assertThat(cars.get(0).getLocation()).isEqualTo(0);
@@ -29,7 +29,7 @@ class ServiceTest {
     @DisplayName("입력된 자동차 이름이 한 개라면 예외가 발생한다")
     @Test
     void amountTest() {
-        Assertions.assertThatThrownBy(() -> service.setCars(List.of("Ash")))
+        Assertions.assertThatThrownBy(() -> game.setCars(List.of("Ash")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("두 대 이상");
     }
@@ -37,7 +37,7 @@ class ServiceTest {
     @DisplayName("입력된 자동차 이름 중에 중복되는 이름이 존재하면 예외가 발생한다")
     @Test
     void duplicationTest() {
-        Assertions.assertThatThrownBy(() -> service.setCars(List.of("Ash", "Ash", "Lily")))
+        Assertions.assertThatThrownBy(() -> game.setCars(List.of("Ash", "Ash", "Lily")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("중복");
     }
@@ -45,7 +45,7 @@ class ServiceTest {
     @DisplayName("입력된 자동차 이름이 공백이면 예외가 발생한다")
     @Test
     void blankNameTest() {
-        Assertions.assertThatThrownBy(() -> service.setCars(List.of("Ash", "", "Lily")))
+        Assertions.assertThatThrownBy(() -> game.setCars(List.of("Ash", "", "Lily")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("빈 이름");
     }
@@ -57,7 +57,7 @@ class ServiceTest {
         Car lily = new Car("lily");
 
         List<Car> cars = List.of(ash, lily);
-        Assertions.assertThatCode(()->service.playGame(cars,3))
+        Assertions.assertThatCode(()-> game.playGame(cars,3))
                 .doesNotThrowAnyException();
     }
 
@@ -71,7 +71,7 @@ class ServiceTest {
 
         ash.incLocation();
 
-        Assertions.assertThat(service.getWinner(cars, 1)).isEqualTo(List.of("ash", ""));
+        Assertions.assertThat(game.getWinner(cars, 1)).isEqualTo(List.of("ash", ""));
     }
 
     @DisplayName("최장 이동 거리를 올바르게 구한다")
@@ -84,6 +84,6 @@ class ServiceTest {
 
         ash.incLocation();
 
-        Assertions.assertThat(service.getMaxPosition(cars)).isEqualTo(1);
+        Assertions.assertThat(game.getMaxPosition(cars)).isEqualTo(1);
     }
 }
