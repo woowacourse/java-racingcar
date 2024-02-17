@@ -5,7 +5,7 @@ import dto.CarStatus;
 
 public class Car {
 
-    public static final int INITIAL_DISTANCE = 0;
+    private static final int INITIAL_DISTANCE = 0;
 
     private final RandomNumberGenerator randomNumberGenerator;
     private final String name;
