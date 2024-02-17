@@ -9,7 +9,7 @@ import java.util.List;
 class RacingRuleTest {
     @DisplayName("최대 전진거리의 자동차들을 반환한다.")
     @Test
-    void getWinners() throws Exception {
+    void getWinners() {
         // Given
         RacingRule racingRule = new RacingRule();
         Cars cars = new Cars(List.of

@@ -10,7 +10,7 @@ class CarFactoryTest {
 
     @DisplayName("1 이하 크기의 문자열 리스트가 입력되면 예외가 발생한다.")
     @Test
-    void initCarsThrowExceptionWhenListSizeLessThanOne() throws Exception {
+    void initCarsThrowExceptionWhenListSizeLessThanOne() {
         // Given
         List<String> invalidInput = List.of("test");
 
@@ -19,10 +19,10 @@ class CarFactoryTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름의 개수는 2이상이여야 합니다.");
     }
-    
+
     @DisplayName("중복된 이름이 있는 문자열 리스트가 입력되면 예외가 발생한다.")
     @Test
-    void initCarsThrowExceptionWhenDuplicatedCarNames() throws Exception {
+    void initCarsThrowExceptionWhenDuplicatedCarNames() {
         // Given
         List<String> invalidInput = List.of("test", "test");
 

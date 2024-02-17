@@ -10,7 +10,7 @@ class CarTest {
 
     @DisplayName("4이상의 난수가 뽑히면 전진한다.")
     @Test
-    void forwardCar() throws Exception {
+    void forwardCar() {
         // Given
         NumberRangeGenerator numberRangeGenerator = (start, end) -> 5;
         Car car = new Car(numberRangeGenerator, "test");
@@ -25,7 +25,7 @@ class CarTest {
 
     @DisplayName("3이하의 난수가 뽑히면 전진하지 않는다.")
     @Test
-    void notForwardCar() throws Exception {
+    void notForwardCar() {
         // Given
         NumberRangeGenerator numberRangeGenerator = (start, end) -> 2;
         Car car = new Car(numberRangeGenerator, "test");
@@ -40,7 +40,7 @@ class CarTest {
 
     @DisplayName("5보다 큰 길이의 이름을 입력하면 예외가 발생합니다.")
     @Test
-    void createCarThrowExceptionWhenInputInvalidName() throws Exception {
+    void createCarThrowExceptionWhenInputInvalidName() {
         // Given
         String soLongCarName = "chicken-boy";
 
@@ -52,7 +52,7 @@ class CarTest {
 
     @DisplayName("공백의 이름을 입력하면 예외가 발생합니다.")
     @Test
-    void createCarThrowExceptionWhenInputEmptyName() throws Exception {
+    void createCarThrowExceptionWhenInputEmptyName() {
         // Given
         String emptyName = "";
 

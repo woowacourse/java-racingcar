@@ -10,7 +10,7 @@ class RacingCountTest {
 
     @DisplayName("0이상의 정수가 입력되면 객체가 생성된다.")
     @Test
-    void createRacingCount() throws Exception {
+    void createRacingCount() {
         // Given
         int count = 2;
 
@@ -23,7 +23,7 @@ class RacingCountTest {
 
     @DisplayName("1미만의 정수가 입력되면 예외가 발생한다.")
     @Test
-    void createRacingCountThrowExceptionWithInvalidInput() throws Exception {
+    void createRacingCountThrowExceptionWithInvalidInput() {
         // Given
         int count = 0;
 

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarsTest {
     @DisplayName("자동차들의 최대 전진 거리를 구한다.")
     @Test
-    void getMaxDistance() throws Exception {
+    void getMaxDistance() {
         // Given
         Cars cars = new Cars(List.of
                 (new Car(null, "test1", 0),
