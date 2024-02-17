@@ -3,6 +3,7 @@ package domain.car;
 import domain.name.Name;
 
 public class Car {
+    private static final int INITIAL_POSITION=0;
     public static final Integer FORWARD_MAX_NUMBER = 10;
     private final Name name;
     private Integer position;
@@ -10,7 +11,7 @@ public class Car {
 
     public Car(Name name) {
         this.name = name;
-        this.position = 0;
+        this.position = INITIAL_POSITION;
     }
 
     public Name getName() {
