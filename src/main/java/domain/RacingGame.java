@@ -9,14 +9,18 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import movestrategy.MoveStrategy;
+import movestrategy.RandomPowerMoveStrategy;
 import view.OutputView;
 
 public class RacingGame {
 
     private final List<Car> cars;
+    private final MoveStrategy moveStrategy;
 
     public RacingGame(String rawCarNames) {
         cars = new ArrayList<>();
+        this.moveStrategy = new RandomPowerMoveStrategy();
         makeCarsFrom(rawCarNames);
     }
 
@@ -39,7 +43,9 @@ public class RacingGame {
 
     private void playOneRound() {
         for (Car car : cars) {
-            car.move();
+            if (moveStrategy.isMovable()) {
+                car.move();
+            }
         }
     }
 
