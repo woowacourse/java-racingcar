@@ -49,15 +49,15 @@ public class CarRacingController {
     }
 
     private void printMovement(Cars cars) {
-        List<String> movement = racingCarService.getMovement(cars);
-        outputView.printCarsMovement(movement);
+        for(Car car : cars.getCars()){
+            outputView.printMovement(car.getName(), car.getForward());
+        }
+        System.out.println();
     }
 
     private Cars createCars() {
         String rawNames = inputView.inputCarNames();
-
         validateIsNull(rawNames);
-
         List<String> names = List.of(rawNames.split(","));
 
         return new Cars(names);
@@ -65,7 +65,6 @@ public class CarRacingController {
 
     private int inputRap() {
         String rawRap = inputView.inputRap();
-
         validateIsNull(rawRap);
 
         return convertToInt(rawRap);

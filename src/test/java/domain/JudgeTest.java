@@ -1,4 +1,4 @@
-package service;
+package domain;
 
 import domain.Cars;
 import domain.Judge;

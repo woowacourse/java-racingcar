@@ -53,11 +53,6 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public String toString() {
-        return name + " : " + "-".repeat(forward);
-    }
-
-    @Override
     public int compareTo(Car c) {
         return Integer.compare(forward, c.forward);
     }
