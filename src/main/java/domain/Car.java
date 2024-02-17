@@ -3,6 +3,9 @@ package domain;
 import java.util.Objects;
 
 public class Car {
+    private static final int MINIMUM_CAR_NAME_LENGTH = 0;
+    private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
+    private static final int MINIMUM_DRIVING_POWER = 4;
     private final String name;
     private int position;
 
@@ -19,11 +22,11 @@ public class Car {
     }
 
     private boolean validateRange(String name) {
-        return name.length() > 0 && name.length() <= 5;
+        return name.length() > MINIMUM_CAR_NAME_LENGTH && name.length() <= MAXIMUM_CAR_NAME_LENGTH;
     }
 
-    public void execute(int number) {
-        if (number >= 4) {
+    public void execute(int power) {
+        if (power >= MINIMUM_DRIVING_POWER) {
             this.move();
         }
     }
