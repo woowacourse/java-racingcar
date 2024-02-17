@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import view.OutputView;
 
 public class RacingGame {
 
@@ -21,17 +22,17 @@ public class RacingGame {
         this.cars = makeCars(rawCarNames);
     }
 
-    // TODO: getter를 사용하지 않고 구현하는 방법 생각해보기.
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void play() {
-        for (Car car : cars) {
-            if (isMovable()) {
-                car.move();
+    public void play(Round round) {
+        System.out.println("실행 결과");
+        for (int i = 0; i < round.getRound(); i++) {
+            for (Car car : cars) {
+                if (isMovable()) {
+                    car.move();
+                }
             }
+            OutputView.printScore(cars);
         }
+        OutputView.printCars(findWinners());
     }
 
     public List<Car> findWinners() {
