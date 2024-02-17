@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.Random;
 
 public class Race {
 
@@ -13,7 +14,11 @@ public class Race {
     }
 
     public void move() {
-        cars.forEach(car -> car.move(moveStrategy.isMove()));
+        Random random = new Random();
+        cars.forEach(car -> {
+            int randomInt = random.nextInt(10);
+            car.move(moveStrategy.isMove(randomInt));
+        });
     }
 
     public List<Car> findWinner() {

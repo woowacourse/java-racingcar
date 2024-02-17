@@ -12,10 +12,10 @@ class RandomMoveStrategyTest {
     @CsvSource({"3, false", "4, true"})
     void moveRandomlyTest(int randomInt, boolean expected) {
         // given
-        MoveStrategy randomMoveStrategy = new RandomMoveStrategy(() -> randomInt);
+        MoveStrategy randomMoveStrategy = new MoveStrategy();
 
         // when
-        boolean actual = randomMoveStrategy.isMove();
+        boolean actual = randomMoveStrategy.isMove(randomInt);
 
         // then
         Assertions.assertThat(actual).isEqualTo(expected);

@@ -13,10 +13,11 @@ class RaceTest {
     @Test
     void findSingleWinnerTest() {
         // given
-        MockCar carA = new MockCar(1);
-        MockCar carB = new MockCar(2);
+        Car carA = new Car("carA");
+        Car carB = new Car("carB");
         List<Car> carList = List.of(carA, carB);
-        Race race = new Race(carList, () -> true);
+        Race race = new Race(carList, new MoveStrategy());
+        carB.move(true);
 
         // when
         List<Car> winners = race.findWinner();
@@ -29,32 +30,18 @@ class RaceTest {
     @Test
     void findMultipleWinnerTest() {
         // given
-        MockCar carA = new MockCar(2);
-        MockCar carB = new MockCar(2);
-        MockCar carC = new MockCar(1);
+        Car carA = new Car("carA");
+        Car carB = new Car("carB");
+        Car carC = new Car("carC");
         List<Car> carList = List.of(carA, carB, carC);
-        Race race = new Race(carList, () -> true);
+        Race race = new Race(carList, new MoveStrategy());
+        carA.move(true);
+        carB.move(true);
 
         // when
         List<Car> winners = race.findWinner();
 
         // then
         Assertions.assertThat(winners).containsExactlyInAnyOrder(carA, carB);
-    }
-
-    @DisplayName("전략에 따라 전진 유무가 결정된다.")
-    @ParameterizedTest
-    @CsvSource({"true, 1", "false, 0"})
-    void moveTest(boolean isMove, int expectedPosition) {
-        // given
-        MockCar carA = new MockCar();
-        List<Car> carList = List.of(carA);
-        Race race = new Race(carList, () -> isMove);
-
-        // when
-        race.move();
-
-        // then
-        Assertions.assertThat(carA.getPosition()).isEqualTo(expectedPosition);
     }
 }

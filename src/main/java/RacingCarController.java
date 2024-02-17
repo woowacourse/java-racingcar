@@ -1,7 +1,6 @@
 import domain.Car;
 import domain.Race;
-import domain.RandomDigitSupplier;
-import domain.RandomMoveStrategy;
+import domain.MoveStrategy;
 import domain.TrialCount;
 import java.util.List;
 import view.InputView;
@@ -26,7 +25,7 @@ public class RacingCarController {
                     .stream()
                     .map(Car::new)
                     .toList();
-            return new Race(cars, new RandomMoveStrategy(new RandomDigitSupplier()));
+            return new Race(cars, new MoveStrategy());
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return inputCars();
