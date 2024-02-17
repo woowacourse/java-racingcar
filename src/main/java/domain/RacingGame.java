@@ -25,14 +25,18 @@ public class RacingGame {
     public void play(Round round) {
         System.out.println("실행 결과");
         for (int i = 0; i < round.getRound(); i++) {
-            for (Car car : cars) {
-                if (isMovable()) {
-                    car.move();
-                }
-            }
+            playOneRound();
             OutputView.printScore(cars);
         }
         OutputView.printCars(findWinners());
+    }
+
+    private void playOneRound() {
+        for (Car car : cars) {
+            if (isMovable()) {
+                car.move();
+            }
+        }
     }
 
     public List<Car> findWinners() {
