@@ -15,8 +15,8 @@ public class RacingCarApplication {
         InputView inputView = new InputView(reader);
         OutputView outputView = new OutputView();
         NumberGenerator numberGenerator = new RacingCarNumberGenerator();
-        CarController controller = new CarController(inputView, outputView, numberGenerator);
-        controller.run();
+        RacingGame controller = new RacingGame(inputView, outputView, numberGenerator);
+        controller.play();
 
     }
 }

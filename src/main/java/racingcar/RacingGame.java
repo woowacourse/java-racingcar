@@ -11,19 +11,19 @@ import racingcar.random.NumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class CarController {
+public class RacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public CarController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
+    public RacingGame(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;
     }
 
-    public void run() {
+    public void play() {
         List<String> carNames = repeatUntilValid(inputView::getNames);
         int tryNumber = repeatUntilValid(inputView::getTryNumber);
 
