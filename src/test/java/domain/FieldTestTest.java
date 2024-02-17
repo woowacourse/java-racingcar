@@ -1,30 +1,46 @@
 package domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.NumberGenerator;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class FieldTestTest {
+
+    @DisplayName("자동차들을 정상적으로 이동시키는가")
     @Test
-    void test() {
-        String[] carNames = new String[]{"pobi", "weve"};
-        CarGroup carGroup = new CarGroup(carNames);
-        NumberGenerator numberGenerator = new FixedNumberGenerator();
+    void cars_movement_test() {
+        // given
+        final CarGroup carGroup = new CarGroup(new String[]{"pobi", "weve"});
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8);
+        NumberGenerator numberGenerator = new FixedNumberGenerator(numbers);
         Field field = new Field(numberGenerator);
-//        field.race(2);
 
-        String expected = "\n실행 결과\npobi : \nweve : \n\npobi : \nweve : -\n\nweve가 최종 우승했습니다.";
-        String result = field.getResult(carGroup);
+        // when
+        for (int i = 0; i < numbers.size() / 2; i++) {
+            field.moveCars(carGroup);
+        }
 
-        assertThat(result).isEqualTo(expected);
+        // then
+        List<Car> cars = carGroup.getAllCars();
+        Car pobiCar = cars.get(0);
+        Car weveCar = cars.get(1);
+
+        assertThat(pobiCar.getPosition()).isEqualTo(2);
+        assertThat(weveCar.getPosition()).isEqualTo(3);
     }
 }
 
 class FixedNumberGenerator implements NumberGenerator {
-    private static final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
-    private static Integer index = 0;
+    private final List<Integer> numbers;
+    private Integer index = 0;
+
+    FixedNumberGenerator(final List<Integer> numbers) {
+        this.numbers = numbers;
+    }
 
     @Override
     public int getNumber() {
