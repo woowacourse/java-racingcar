@@ -53,7 +53,7 @@ public class CarRacingController {
 
         List<String> names = List.of(rawNames.split(","));
 
-        return racingCarService.createCars(names);
+        return new Cars(names);
     }
 
     private int inputRap() {

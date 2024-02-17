@@ -23,9 +23,6 @@ public class RacingCarService {
         }
     }
 
-    public Cars createCars(List<String> names){
-        return new Cars(names);
-    }
 
     public List<String> getMovement(Cars cars) {
         List<String> movement = new ArrayList<>();
