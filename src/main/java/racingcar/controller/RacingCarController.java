@@ -10,19 +10,19 @@ import racingcar.util.ConsoleReader;
 
 public class RacingCarController {
     public void run() {
-        final Cars cars = getCars();
-        final int tryCount = getTryCount();
+        final Cars cars = initCars();
+        final int tryCount = initTryCount();
         proceedRounds(cars, tryCount);
         printResult(cars);
     }
 
-    private Cars getCars() {
+    private Cars initCars() {
         try {
             final List<Car> cars = createCars(InputView.readCarNames(new ConsoleReader()));
             return new Cars(cars);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return getCars();
+            return initCars();
         }
     }
 
@@ -32,12 +32,12 @@ public class RacingCarController {
                 .toList();
     }
 
-    private int getTryCount() {
+    private int initTryCount() {
         try {
             return InputView.readTryCount(new ConsoleReader());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return getTryCount();
+            return initTryCount();
         }
     }
 
