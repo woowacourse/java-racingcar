@@ -37,4 +37,11 @@ public class Cars {
     public Stream<Car> stream() {
         return cars.stream();
     }
+
+    public int getMaxProgress() {
+        return cars.stream()
+                .map(Car::getProgress)
+                .reduce(Integer::max)
+                .orElse(0);
+    }
 }

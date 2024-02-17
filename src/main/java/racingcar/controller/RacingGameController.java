@@ -3,23 +3,23 @@ package racingcar.controller;
 import java.util.function.Supplier;
 
 import racingcar.exception.ExceptionHandler;
-import racingcar.domain.model.CarMoveRule;
+import racingcar.domain.rules.CarMoveRule;
 import racingcar.domain.model.Cars;
-import racingcar.domain.model.DefaultCarMoveRule;
+import racingcar.domain.rules.DefaultCarMoveRule;
 import racingcar.domain.model.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class Controller {
+public class RacingGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final ExceptionHandler exceptionHandler;
 
-    public Controller(InputView inputView, OutputView outputView, ExceptionHandler exceptionHandler) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.exceptionHandler = exceptionHandler;
+    public RacingGameController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        this.exceptionHandler = new ExceptionHandler();
     }
 
     public void run() {
@@ -27,12 +27,13 @@ public class Controller {
         RacingGame racingGame = createRacingGame(cars);
         CarMoveRule carMoveRule = new DefaultCarMoveRule();
         outputView.printProgressGuide();
-        while (!racingGame.isGameOver()) {
+
+        while (racingGame.isRoundInProgress()) {
             racingGame.move(carMoveRule);
             outputView.printProgress(cars);
         }
-        Cars winners = racingGame.findWinners();
-        outputView.printWinners(winners);
+
+        outputView.printWinners(racingGame.findWinners());
     }
 
     private Cars createCars() {
