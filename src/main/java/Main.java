@@ -1,10 +1,7 @@
-import domain.Car;
 import domain.RacingGame;
 import domain.Round;
 import error.ErrorHandler;
-import java.util.List;
 import view.InputView;
-import view.OutputView;
 
 public class Main {
 
