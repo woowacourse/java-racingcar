@@ -9,14 +9,12 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-
     public void printResults(List<CarStatus> raceResults) {
         for (CarStatus carStatus : raceResults) {
             System.out.println(carStatus.name() + " : " + "-".repeat(carStatus.position()));
         }
         System.out.println();
     }
-
 
     public void printWinners(List<CarStatus> winners) {
         String joinedWinnerNames = String.join(", ", winners.stream()
