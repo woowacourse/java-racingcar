@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,12 +7,16 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
+    private static final int MOVE_CONDITION = 5;
+    private static final int STOP_CONDITION = 3;
+
+
     @Test
     @DisplayName("랜덤_숫자가_4_이상인_경우_전진")
     void moveCarTest() {
         Car car = new Car("capy");
         int initDistance = car.getDistance();
-        car.moveCar(5);
+        car.moveCar(MOVE_CONDITION);
         int movedDistance = car.getDistance();
 
         assertThat(movedDistance).isEqualTo(initDistance + 1);
@@ -24,7 +27,7 @@ class CarTest {
     void stopCarTest() {
         Car car = new Car("capy");
         int initDistance = car.getDistance();
-        car.moveCar(3);
+        car.moveCar(STOP_CONDITION);
         int movedDistance = car.getDistance();
 
         assertThat(movedDistance).isEqualTo(initDistance);
