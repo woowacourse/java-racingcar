@@ -8,20 +8,21 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racinggame.domain.condition.FixedMoveCondition;
 
 class RacingGameTest {
 
     @DisplayName("생성 테스트")
     @Test
     void create() {
-        assertThatCode(() -> RacingGame.of(createCars("아톰", "이상"), moveCondition()))
+        assertThatCode(() -> RacingGame.of(createCars("아톰", "이상"), new FixedMoveCondition()))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("라운드 수 만큼 경주를 진행할 수 있다.")
     @Test
     void race() {
-        RacingGame game = RacingGame.of(createCars("아톰", "이상"), moveCondition());
+        RacingGame game = RacingGame.of(createCars("아톰", "이상"), new FixedMoveCondition());
         List<RoundResult> results = game.race(Round.from(3));
 
         Assertions.assertThat(results).isEqualTo(List.of(
@@ -34,16 +35,12 @@ class RacingGameTest {
     @DisplayName("우승자를 선정한다.")
     @Test
     void findWinners() {
-        RacingGame game = RacingGame.of(createCars("아톰", "이상"), moveCondition());
+        RacingGame game = RacingGame.of(createCars("아톰", "이상"), new FixedMoveCondition());
 
         List<String> expected = game.findWinnerName();
 
         assertThat(expected).containsExactly("아톰", "이상");
         assertThat(expected.size()).isEqualTo(2);
-    }
-
-    private MoveCondition moveCondition() {
-        return () -> true;
     }
 
     private Cars createCars(String... names) {

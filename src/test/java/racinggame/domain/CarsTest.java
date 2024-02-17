@@ -4,6 +4,7 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racinggame.domain.condition.FixedMoveCondition;
 
 public class CarsTest {
 
@@ -33,7 +34,7 @@ public class CarsTest {
     @Test
     void moveAll() {
         Cars cars = Cars.of(List.of("아톰", "이상"));
-        Assertions.assertThatCode(() -> cars.moveAll(() -> true))
+        Assertions.assertThatCode(() -> cars.moveAll(new FixedMoveCondition()))
                 .doesNotThrowAnyException();
 
         Assertions.assertThat(cars.getCars()).isEqualTo(List.of(Car.of("아톰", 1), Car.of("이상", 1)));
