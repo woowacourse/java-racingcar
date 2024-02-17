@@ -1,25 +1,24 @@
 package racingcar.domain;
 
 public class Car {
-    private static final int INITIAL_POSITION = 0;
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final Name name;
-    private int position;
+    private final Position position;
 
     public Car(String name) {
         this.name = new Name(name);
-        this.position = INITIAL_POSITION;
+        this.position = new Position();
     }
 
     public void move(int number) {
         if (number >= MINIMUM_NUMBER_TO_MOVE) {
-            position++;
+            position.increase();
         }
     }
 
     public boolean isPositionEqualTo(int position) {
-        return this.position == position;
+        return this.position.isMatchPosition(position);
     }
 
     public String getName() {
@@ -27,6 +26,6 @@ public class Car {
     }
 
     public int getPosition() {
-        return position;
+        return position.getPosition();
     }
 }
