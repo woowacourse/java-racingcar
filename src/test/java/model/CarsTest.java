@@ -21,6 +21,6 @@ public class CarsTest {
     void carNameCountTest() {
         List<String> carNames = List.of("lemon");
         assertThatThrownBy(() -> Cars.from(carNames))
-                .isInstanceOf( IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
