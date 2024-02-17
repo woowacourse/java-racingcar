@@ -5,6 +5,8 @@ import java.util.List;
 
 public class RacingGame {
 
+    private static final int MIN_CARS_SIZE = 2;
+
     private final List<Car> cars;
     private final MoveCondition moveCondition;
     private final List<RoundResult> results = new ArrayList<>();
@@ -22,7 +24,7 @@ public class RacingGame {
     }
 
     private static void checkCarsSize(List<Car> cars) {
-        if (cars.size() < 2) {
+        if (cars.size() < MIN_CARS_SIZE) {
             throw new RuntimeException();
         }
     }

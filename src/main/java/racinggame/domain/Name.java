@@ -4,6 +4,8 @@ import java.util.Objects;
 
 class Name {
 
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     private Name(String name) {
@@ -24,7 +26,7 @@ class Name {
     }
 
     private static void checkNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new RuntimeException();
         }
     }

@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Car {
 
+    private static final int INITIAL_POSITION = 0;
+
     private final Name name;
     private Position position;
 
@@ -13,7 +15,7 @@ public class Car {
     }
 
     public static Car from(String name) {
-        return new Car(Name.from(name), Position.from(0));
+        return new Car(Name.from(name), Position.from(INITIAL_POSITION));
     }
 
     public static Car of(String name, int position) {
