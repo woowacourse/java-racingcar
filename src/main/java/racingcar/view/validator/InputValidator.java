@@ -5,6 +5,7 @@ import static racingcar.view.ErrorMessage.ERROR_WITH_DUPLICATE_NAME;
 import static racingcar.view.ErrorMessage.ERROR_WITH_INPUT_BLANK;
 import static racingcar.view.ErrorMessage.ERROR_WITH_NON_NUMERIC;
 import static racingcar.view.ErrorMessage.ERROR_WITH_ONLY_ONE_CAR;
+import static racingcar.view.ErrorMessage.ERROR_WITH_OUT_OF_INTEGER_RANGE;
 import static racingcar.view.ErrorMessage.ERROR_WITH_OVER_LENGTH;
 import static racingcar.view.ErrorMessage.ERROR_WITH_UNDER_MINIMUM;
 
@@ -61,17 +62,22 @@ public class InputValidator {
     }
 
     public static void validateTryNumber(String tryNumber) {
-        try {
-            validateIsNumeric(tryNumber);
-            validateIsOverMinimum(tryNumber);
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
-        }
+        validateIsNumeric(tryNumber);
+        validateIsInteger(tryNumber);
+        validateIsOverMinimum(tryNumber);
     }
 
     private static void validateIsNumeric(String tryNumber) {
         if(!tryNumber.matches("\\d+")) {
             throw new IllegalArgumentException(ERROR_WITH_NON_NUMERIC);
+        }
+    }
+
+    private static void validateIsInteger(String tryNumber) {
+        try {
+            Integer.parseInt(tryNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_WITH_OUT_OF_INTEGER_RANGE);
         }
     }
 
