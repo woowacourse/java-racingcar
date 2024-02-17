@@ -9,43 +9,41 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class RacingTest {
 
+    private final MockCar onePositionCar = new MockCar(1);
+    private final MockCar twoPositionCarA = new MockCar(2);
+    private final MockCar twoPositionCarB = new MockCar(2);
+
     @DisplayName("가장 멀리간 차가 우승자가 된다.")
     @Test
     void findSingleWinnerTest() {
-        final MockCar carA = new MockCar(1);
-        final MockCar carB = new MockCar(2);
-        final List<Car> cars = List.of(carA, carB);
+        final List<Car> cars = List.of(onePositionCar, twoPositionCarA);
         final Racing racing = new Racing(cars, () -> true);
 
         final List<Car> winners = racing.findWinner();
 
-        Assertions.assertThat(winners).containsExactlyInAnyOrder(carB);
+        Assertions.assertThat(winners).containsExactlyInAnyOrder(twoPositionCarA);
     }
 
     @DisplayName("우승자가 여려명이 될 수 있다.")
     @Test
     void findMultipleWinnerTest() {
-        final MockCar carA = new MockCar(2);
-        final MockCar carB = new MockCar(2);
-        final MockCar carC = new MockCar(1);
-        final List<Car> cars = List.of(carA, carB, carC);
+        final List<Car> cars = List.of(onePositionCar, twoPositionCarA, twoPositionCarB);
         final Racing racing = new Racing(cars, () -> true);
 
         final List<Car> winners = racing.findWinner();
 
-        Assertions.assertThat(winners).containsExactlyInAnyOrder(carA, carB);
+        Assertions.assertThat(winners).containsExactlyInAnyOrder(twoPositionCarA, twoPositionCarB);
     }
 
     @DisplayName("전략에 따라 전진 유무가 결정된다.")
     @ParameterizedTest
     @CsvSource({"true, 1", "false, 0"})
     void moveTest(final boolean isMove, final int expectedPosition) {
-        final MockCar carA = new MockCar();
-        final List<Car> cars = List.of(carA);
-        final Racing racing = new Racing(cars, () -> isMove);
+        final MockCar car = new MockCar();
+        final Racing racing = new Racing(List.of(car), () -> isMove);
 
         racing.move();
 
-        Assertions.assertThat(carA.getPosition()).isEqualTo(expectedPosition);
+        Assertions.assertThat(car.getPosition()).isEqualTo(expectedPosition);
     }
 }
