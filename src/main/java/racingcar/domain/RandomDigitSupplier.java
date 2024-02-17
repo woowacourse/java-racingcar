@@ -9,6 +9,6 @@ public class RandomDigitSupplier implements IntSupplier {
 
     @Override
     public int getAsInt() {
-        return Math.abs(RANDOM.nextInt() % 10);
+        return RANDOM.nextInt(10);
     }
 }
