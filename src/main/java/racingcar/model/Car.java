@@ -23,12 +23,12 @@ public class Car {
         }
     }
 
-    public int comparePosition(int currentMaxPosition){
-        return Math.max(currentMaxPosition, position);
+    public int comparePosition(int otherPosition){
+        return Math.max(otherPosition, position);
     }
 
-    public boolean checkIsWinner(int finalMaxPosition){
-        return position == finalMaxPosition;
+    public boolean matchesPosition(int otherPosition){
+        return position == otherPosition;
     }
 
     public String getName(){
