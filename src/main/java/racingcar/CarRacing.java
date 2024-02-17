@@ -38,7 +38,7 @@ public class CarRacing {
         tryMove(tryCount, cars);
     }
 
-    public Cars createCars(List<String> carNames) {
+    private Cars createCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
@@ -47,11 +47,11 @@ public class CarRacing {
         return new Cars(cars, new CarAccelerator());
     }
 
-    public TryCount createTryCount(int amount) {
+    private TryCount createTryCount(int amount) {
         return new TryCount(amount);
     }
 
-    public void tryMove(TryCount tryCount, Cars cars) {
+    private void tryMove(TryCount tryCount, Cars cars) {
         for (int i = 0; i < tryCount.getValue(); i++) {
             cars.tryMove();
             outputView.printCarsPosition(cars.getCars());
