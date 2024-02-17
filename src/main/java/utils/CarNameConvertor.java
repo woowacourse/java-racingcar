@@ -3,9 +3,9 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Convertor {
+public class CarNameConvertor {
 
-    public static List<String> convertStringToList(String input) {
+    public static List<String> splitCarNames(String input) {
         String[] names = input.split(",");
 
         return new ArrayList<>(List.of(names));
