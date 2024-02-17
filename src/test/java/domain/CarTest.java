@@ -59,7 +59,7 @@ class CarTest {
         String emptyName = "";
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> new Car(null, emptyName))
+        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), emptyName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
@@ -71,7 +71,7 @@ class CarTest {
             "'', 이름 길이는 1이상 5이하의 문자열만 가능합니다."
     })
     void createCarThrowExceptionForInvalidName(String inputName, String expectedMessage) {
-        Assertions.assertThatThrownBy(() -> new Car(null, inputName))
+        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), inputName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedMessage);
     }

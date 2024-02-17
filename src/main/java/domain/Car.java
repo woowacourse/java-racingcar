@@ -35,12 +35,7 @@ public class Car {
     }
 
     public void move() {
-        if (numberRangeGenerator == null) {
-            return;
-        }
-
         final int randomNumber = numberRangeGenerator.generateRandomNumberInRange(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
-
         if (randomNumber >= FORWARD_NUMBER) {
             distance++;
         }
