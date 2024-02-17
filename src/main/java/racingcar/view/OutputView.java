@@ -11,18 +11,26 @@ public class OutputView {
     private static final String MOVE_COUNT_INPUT_DESCRIPTION = "시도할 회수는 몇회인가요?";
 
     private static final String POSITION_METER = "-";
+    private static final String NEW_LINE = System.lineSeparator();
 
     public static void printResultDescription() {
         System.out.println();
         System.out.println(RESULT_DESCRIPTION);
     }
 
-    public static void printPosition(Map<String, Integer> carPositions) {
+    private static String createRoundResponseMessage(Map<String, Integer> roundResponse) {
         StringBuilder sb = new StringBuilder();
-        carPositions.forEach(
-                (name, position) -> sb.append(name).append(":").append(POSITION_METER.repeat(position)).append("\n")
+        roundResponse.forEach(
+                (name, position) -> sb.append(name).append(":").append(POSITION_METER.repeat(position)).append(NEW_LINE)
         );
-        System.out.println(sb);
+        sb.append(NEW_LINE);
+        return sb.toString();
+    }
+
+    public static void printPosition(List<Map<String, Integer>> raceResponse) {
+        StringBuilder sb = new StringBuilder();
+        raceResponse.forEach(r -> sb.append(createRoundResponseMessage(r)));
+        System.out.print(sb);
     }
 
     public static void printException(String message) {
