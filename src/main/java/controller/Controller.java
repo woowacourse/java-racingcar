@@ -9,6 +9,7 @@ import view.OutputView;
 
 public class Controller {
     private final Service service;
+    private final Scanner scanner = new Scanner(System.in);
 
     public Controller(Service service) {
         this.service = service;
@@ -25,7 +26,6 @@ public class Controller {
     private List<Car> inputCarName() {
         try {
             InputView.requestCarName();
-            Scanner scanner = new Scanner(System.in);
             return service.setCars(service.separateCarName(scanner.nextLine()));
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -35,7 +35,6 @@ public class Controller {
 
     private int inputValue() {
         InputView.requestAttemptLimit();
-        Scanner scanner = new Scanner(System.in);
         return validateNum(scanner.nextLine());
     }
 
