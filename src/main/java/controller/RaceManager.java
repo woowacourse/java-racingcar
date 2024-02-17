@@ -1,5 +1,7 @@
-package domain;
+package controller;
 
+import domain.Field;
+import domain.RacingCars;
 import java.io.IOException;
 import utils.NumberGenerator;
 import view.InputView;
@@ -7,23 +9,26 @@ import view.OutputView;
 
 public class RaceManager {
     private final InputView inputView;
-    private final CarFactory carFactory;
+
+    private final OutputView outputView;
+    private final RacingCars racingCars;
     private final Field field;
     private final NumberGenerator numberGenerator;
     private final int numberOfAttempts;
 
-    public RaceManager(InputView inputView, NumberGenerator numberGenerator) {
+    public RaceManager(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
-        this.carFactory = repeatUntilGetValidCarNames();
+        this.outputView = outputView;
+        this.racingCars = repeatUntilGetValidCarNames();
         this.numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
-        this.field = new Field(carFactory, numberGenerator);
+        this.field = new Field(racingCars, numberGenerator);
         this.numberGenerator = numberGenerator;
     }
 
-    private CarFactory repeatUntilGetValidCarNames() {
+    private RacingCars repeatUntilGetValidCarNames() {
         try {
             String carNames = inputView.readCarNames();
-            return new CarFactory(carNames);
+            return new RacingCars(carNames);
         } catch (IOException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return repeatUntilGetValidCarNames();
@@ -40,7 +45,7 @@ public class RaceManager {
 
     public void run() {
         field.race(numberOfAttempts);
-        String raceResult = field.getResult();
-        OutputView.printResult(raceResult);
+        outputView.printRacingResult(field.getRacingRecord());
+
     }
 }
