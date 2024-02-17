@@ -1,5 +1,7 @@
-package domain;
-
+import domain.Car;
+import domain.CarAccelerator;
+import domain.Cars;
+import domain.TryCount;
 import io.InputView;
 import io.OutputView;
 
@@ -19,21 +21,19 @@ public class CarRacing {
 
 
     public void start() {
-        Cars cars = readCars();
-        TryCount tryCount = createTryCount(inputView.readTryAmount());
+        try {
+            Cars cars = readCars();
+            TryCount tryCount = createTryCount(inputView.readTryAmount());
 
-        printMoveResult(tryCount, cars);
-        printWinners(cars);
+            printMoveResult(tryCount, cars);
+            printWinners(cars);
+        } catch (Exception exception) {
+            outputView.printErrorMessage(exception);
+        }
     }
 
     private Cars readCars() {
-        while(true) {
-            try {
-                return createCars(inputView.readCarNames(), new CarAccelerator());
-            }catch (IllegalArgumentException exception) {
-                continue;
-            }
-        }
+        return createCars(inputView.readCarNames(), new CarAccelerator());
     }
 
     private void printWinners(Cars cars) {

@@ -1,4 +1,3 @@
-import domain.CarRacing;
 import io.InputView;
 import io.OutputView;
 import io.validator.InputValidator;
