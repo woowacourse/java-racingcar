@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-public class CarsTest {
+class CarsTest {
 
     @DisplayName("자동차 이름이 중복되면 예외가 발생한다.")
     @Test

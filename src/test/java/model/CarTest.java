@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class CarTest {
+class CarTest {
 
     @DisplayName("랜덤 숫자가 4 이상일 때만 자동차가 전진한다.")
     @ParameterizedTest
