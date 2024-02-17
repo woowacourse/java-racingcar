@@ -43,16 +43,16 @@ class Cars {
             .toList();
     }
 
-    private int findMaxPosition() {
-        return cars.stream()
+    private Position findMaxPosition() {
+        return new Position(cars.stream()
             .map(Car::getPosition)
             .max(Integer::compareTo)
-            .orElseThrow();
+            .orElseThrow());
     }
 
-    private List<Car> findWinner(int winnerPosition) {
+    private List<Car> findWinner(Position winnerPosition) {
         return cars.stream()
-            .filter(car -> car.isSamePosition(winnerPosition))
+            .filter(car -> car.isSamePositionWith(winnerPosition))
             .toList();
     }
 

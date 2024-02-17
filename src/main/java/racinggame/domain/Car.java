@@ -19,8 +19,8 @@ public class Car {
         this.position = new Position(position);
     }
 
-    public boolean isSamePosition(int target) {
-        return position.getPosition() == target;
+    public boolean isSamePositionWith(Position other) {
+        return position.equals(other);
     }
 
     public void move(MoveCondition moveCondition) {
