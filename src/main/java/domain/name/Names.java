@@ -1,5 +1,6 @@
 package domain.name;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,16 +14,10 @@ public class Names {
     }
 
     private void validate(List<Name> names){
-        Integer size=names.size();
+        int size=names.size();
 
-        Set<String> nonDuplicate = names
-                .stream()
-                .map(Name::getValue)
-                .collect(Collectors.toSet());
-
-        Integer nonDuplicateSize= nonDuplicate.size();
-
-        if(size!=nonDuplicateSize){
+        Set<Name> nonDuplicate = new HashSet<>(names);
+        if(size!=nonDuplicate.size()){
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
     }
