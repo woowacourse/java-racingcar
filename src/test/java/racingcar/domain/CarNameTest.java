@@ -32,7 +32,7 @@ class CarNameTest {
     @DisplayName("[Exception] 자동차 이름의 길이가 5를 초과하면 예외를 던진다")
     void createCarByExcessLength() {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Car("ABCDEF"))
+                .isThrownBy(() -> new CarName("ABCDEF"))
                 .withMessage("자동차 이름의 길이가 5를 초과합니다");
     }
 }
