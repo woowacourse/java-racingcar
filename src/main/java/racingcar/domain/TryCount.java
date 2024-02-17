@@ -26,7 +26,7 @@ public class TryCount {
         tryCount--;
     }
 
-    public boolean isNotFinal() {
+    public boolean isNotFinish() {
         return tryCount != 0;
     }
 }
