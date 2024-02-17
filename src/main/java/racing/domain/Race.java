@@ -27,6 +27,6 @@ public class Race {
     }
 
     public List<Car> findWinners() {
-        return cars.findFurthestCars();
+        return cars.findWinners();
     }
 }
