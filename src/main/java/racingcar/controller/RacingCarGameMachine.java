@@ -9,7 +9,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.util.ConsoleReader;
 
-public class RacingCarController {
+public class RacingCarGameMachine {
     public void run() {
         final Cars cars = initCars();
         final TryCount tryCount = initTryCount();
