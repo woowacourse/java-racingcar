@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CarRacingGame {
@@ -12,16 +13,16 @@ public class CarRacingGame {
         this.round = new Round(inputRound);
     }
 
-    public RaceResult race() {
-        RaceResult raceResult = new RaceResult();
+    public List<RoundResult> race() {
+        List<RoundResult> roundResults = new LinkedList<>();
 
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         while (isPlayable()) {
             RoundResult roundResult = playRound(numberGenerator);
-            raceResult.record(roundResult);
+            roundResults.add(roundResult);
         }
 
-        return raceResult;
+        return roundResults;
     }
 
     public boolean isPlayable() {

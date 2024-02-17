@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.CarRacingGame;
-import racingcar.domain.RaceResult;
 import racingcar.domain.RoundResult;
 import racingcar.dto.CarDto;
 import racingcar.view.InputView;
@@ -15,9 +14,9 @@ public class MainController {
 
     public void run() {
         CarRacingGame carRacingGame = repeat(this::initializeCarRacingGame);
-        RaceResult raceResult = carRacingGame.race();
+        List<RoundResult> roundResults = carRacingGame.race();
 
-        showRoundResults(raceResult.getRoundResults());
+        showRoundResults(roundResults);
         showWinners(carRacingGame.findWinners());
     }
 
