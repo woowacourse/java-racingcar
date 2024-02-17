@@ -5,6 +5,8 @@ import java.util.Random;
 
 public class Race {
 
+    private static final Random RANDOM = new Random();
+
     private final List<Car> cars;
 
     public Race(List<Car> cars) {
@@ -12,9 +14,8 @@ public class Race {
     }
 
     public void move() {
-        Random random = new Random();
         cars.forEach(car -> {
-            int randomInt = random.nextInt(10);
+            int randomInt = RANDOM.nextInt(10);
             car.move(MoveStrategy.isMove(randomInt));
         });
     }
