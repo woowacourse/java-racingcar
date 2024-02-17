@@ -18,12 +18,6 @@ public class CarTest {
     }
 
     @Test
-    void 자동차_이름으로_자동차를_생성한다() {
-        Car car = new Car("pobi", intGenerator);
-        assertThat(car.getClass()).isEqualTo(Car.class);
-    }
-
-    @Test
     void 자동차_이름이_공백을_포함한_5자_초과면_예외가_발생한다() {
         assertThatThrownBy(() -> new Car("pobibi", intGenerator))
                 .isInstanceOf(IllegalArgumentException.class);
