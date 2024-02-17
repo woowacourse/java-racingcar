@@ -23,10 +23,11 @@ public class CarGroup {
         return raceResponse;
     }
 
-    public List<Car> findWinners() {
+    public List<String> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
                 .filter((car -> car.isMoved() && car.isSamePosition(maxPosition)))
+                .map(Car::getName)
                 .toList();
     }
 

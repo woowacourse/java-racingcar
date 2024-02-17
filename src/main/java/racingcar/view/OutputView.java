@@ -2,8 +2,6 @@ package racingcar.view;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
-import racingcar.model.Car;
 
 public class OutputView {
     private static final String WINNER_DESCRIPTION = "가 최종 우승했습니다.";
@@ -31,9 +29,8 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printWinnerList(List<Car> winnerGroup) {
-        List<String> names = winnerGroup.stream()
-                .map(Car::getName)
+    public static void printWinnerList(List<String> winners) {
+        List<String> names = winners.stream()
                 .toList();
 
         String winnerNames = String.join(", ", names);

@@ -74,7 +74,7 @@ public class GameController {
     }
 
     public void finish() {
-        List<Car> winners = carGroup.findWinners();
+        List<String> winners = carGroup.findWinners();
         if (winners.isEmpty()) {
             OutputView.printNoWinner();
             return;
