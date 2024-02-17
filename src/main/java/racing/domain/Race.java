@@ -2,28 +2,25 @@ package racing.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import racing.util.RandomNumberGenerator;
+import racing.util.RandomMoveStrategy;
 
 public class Race {
 
-    private static final int NUMBER_GENERATOR_BOUND = 10;
-    private static final int NUMBER_GENERATOR_START = 0;
-
     private final Cars cars;
     private final TryCount tryCount;
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final RandomMoveStrategy randomMoveStrategy;
 
     public Race(Cars cars, TryCount tryCount) {
         this.cars = cars;
         this.tryCount = tryCount;
-        this.randomNumberGenerator = new RandomNumberGenerator(NUMBER_GENERATOR_BOUND, NUMBER_GENERATOR_START);
+        this.randomMoveStrategy = new RandomMoveStrategy();
     }
 
     public List<Cars> proceed() {
         List<Cars> result = new ArrayList<>();
         while (tryCount.isRemain()) {
             tryCount.consume();
-            cars.moveAll(randomNumberGenerator);
+            cars.moveAll(randomMoveStrategy);
             result.add(cars);
         }
         return result;

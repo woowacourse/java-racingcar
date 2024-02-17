@@ -3,19 +3,14 @@ package racing.domain;
 public class Car implements Comparable<Car> {
 
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_FORWARD_CONDITION = 4;
 
     private final String name;
     private int position;
 
     public Car(String name) {
-        this(name, 0);
-    }
-
-    Car(String name, int position) {
         validate(name);
         this.name = name;
-        this.position = position;
+        this.position = 0;
     }
 
     private void validate(String name) {
@@ -28,10 +23,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public void moveByNumber(int value) {
-        if (value >= MIN_FORWARD_CONDITION) {
-            this.position++;
-        }
+    public void move() {
+        this.position++;
     }
 
     public boolean isSame(Car car) {
