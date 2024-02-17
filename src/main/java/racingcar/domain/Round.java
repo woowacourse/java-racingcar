@@ -3,7 +3,6 @@ package racingcar.domain;
 import java.util.regex.Pattern;
 
 public class Round {
-    private static final String INVALID_ROUND_EXCEPTION_MESSAGE = "시도할 횟수는 숫자가 아니거나, %d보다 작을 수 없습니다.";
     private static final String VALID_ROUND_REGEX = "[0-9]+";
     private static final int MINIMUM_ROUND = 0;
 
@@ -17,7 +16,7 @@ public class Round {
     private void validateRound(String inputRound) {
         if (!isValidRound(inputRound)) {
             throw new IllegalArgumentException(
-                    String.format(INVALID_ROUND_EXCEPTION_MESSAGE, MINIMUM_ROUND));
+                    String.format("시도할 횟수는 숫자가 아니거나, %d보다 작을 수 없습니다.", MINIMUM_ROUND));
         }
     }
 

@@ -5,9 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Cars {
-    private static final String INVALID_CARS_SIZE_EXCEPTION_MESSAGE = "게임에 참여하는 자동차의 수는 최소 %d대 이상이어야 합니다.";
-    private static final String DUPLICATE_CAR_NAMES_EXCEPTION_MESSAGE = "게임에 참여하는 자동차들의 이름은 중복될 수 없습니다.";
-    private static final String EMPTY_CARS_EXCEPTION_MESSAGE = "차량 리스트가 비어있습니다.";
     private static final String CAR_NAME_DELIMITER = ",";
     private static final int MINIMUM_CARS_SIZE = 1;
 
@@ -30,11 +27,11 @@ public class Cars {
     private void validateCars(List<Car> cars) {
         if (cars.size() < MINIMUM_CARS_SIZE) {
             throw new IllegalArgumentException(
-                    String.format(INVALID_CARS_SIZE_EXCEPTION_MESSAGE, MINIMUM_CARS_SIZE));
+                    String.format("게임에 참여하는 자동차의 수는 최소 %d대 이상이어야 합니다.", MINIMUM_CARS_SIZE));
         }
 
         if (hasDuplicateCarName(cars)) {
-            throw new IllegalArgumentException(DUPLICATE_CAR_NAMES_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException("게임에 참여하는 자동차들의 이름은 중복될 수 없습니다.");
         }
     }
 
@@ -58,7 +55,7 @@ public class Cars {
         return cars.stream()
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException(EMPTY_CARS_EXCEPTION_MESSAGE));
+                .orElseThrow(() -> new IllegalArgumentException("차량 리스트가 비어있습니다."));
     }
 
     private List<Car> findCarsByPosition(int maxPosition) {
