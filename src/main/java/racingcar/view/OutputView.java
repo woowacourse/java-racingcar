@@ -14,16 +14,16 @@ public class OutputView {
     private static final String ERROR_SUFFIX = "[ERROR]";
     private static final String ERROR_MESSAGE_FORMAT = "%s %s";
 
-    public void printResultMessage() {
+    public static void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void printRoundResult(List<CarDto> cars) {
-        cars.forEach(this::printCarInformation);
+    public static void printRoundResult(List<CarDto> cars) {
+        cars.forEach(OutputView::printCarInformation);
         System.out.println();
     }
 
-    private void printCarInformation(CarDto car) {
+    private static void printCarInformation(CarDto car) {
         StringBuilder informationBuilder = new StringBuilder();
 
         informationBuilder.append(car.getName())
@@ -33,7 +33,7 @@ public class OutputView {
         System.out.println(informationBuilder);
     }
 
-    public void printWinners(List<CarDto> winners) {
+    public static void printWinners(List<CarDto> winners) {
         List<String> winnerNames = findWinnerNames(winners);
         String names = String.join(WINNER_DELIMITER, winnerNames);
 
@@ -46,7 +46,7 @@ public class OutputView {
                 .toList();
     }
 
-    public void printErrorMessage(String errorMessage) {
+    public static void printErrorMessage(String errorMessage) {
         System.out.println(String.format(ERROR_MESSAGE_FORMAT, ERROR_SUFFIX, errorMessage));
     }
 }

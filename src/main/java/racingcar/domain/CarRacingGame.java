@@ -15,12 +15,12 @@ public class CarRacingGame {
         this.round = round;
     }
 
-    public void race(OutputView outputView) {
+    public void race() {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
 
         while (!isGameEnd()) {
             playRound(numberGenerator);
-            showRoundResult(outputView);
+            showRoundResult();
         }
     }
 
@@ -37,9 +37,9 @@ public class CarRacingGame {
         round.decrease();
     }
 
-    private void showRoundResult(OutputView outputView) {
+    private void showRoundResult() {
         List<CarDto> carsDto = new CarsDto(getCurrentCarStatuses()).getCars();
-        outputView.printRoundResult(carsDto);
+        OutputView.printRoundResult(carsDto);
     }
 
     public List<Car> getCurrentCarStatuses() {

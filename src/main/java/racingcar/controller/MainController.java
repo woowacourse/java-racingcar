@@ -10,46 +10,38 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class MainController {
-    private final InputView inputView;
-    private final OutputView outputView;
-
-    public MainController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-    }
-
     public void run() {
         Cars cars = repeat(this::inputCarNames);
         Round round = repeat(this::inputRound);
         CarRacingGame carRacingGame = new CarRacingGame(cars, round);
 
-        outputView.printResultMessage();
-        carRacingGame.race(outputView);
+        OutputView.printResultMessage();
+        carRacingGame.race();
 
         showWinners(carRacingGame.findWinners());
     }
 
     private Cars inputCarNames() {
-        String inputCarNames = inputView.inputCarNames();
+        String inputCarNames = InputView.inputCarNames();
         return new Cars(inputCarNames);
     }
 
     private Round inputRound() {
-        String inputRound = inputView.inputRound();
+        String inputRound = InputView.inputRound();
         return new Round(inputRound);
     }
 
     private void showWinners(List<Car> winners) {
         List<CarDto> winnersDto = new CarsDto(winners).getCars();
 
-        outputView.printWinners(winnersDto);
+        OutputView.printWinners(winnersDto);
     }
 
     private <T> T repeat(Supplier<T> inputReader) {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return repeat(inputReader);
         }
     }
