@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
-import racingcar.view.OutputView;
 
 import java.util.List;
 
@@ -15,12 +14,12 @@ public class CarRacingGame {
         this.round = round;
     }
 
-    public void race() {
+    public void race(PrintRequestListener<List<CarDto>> printRequestListener) {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
 
         while (!isGameEnd()) {
             playRound(numberGenerator);
-            showRoundResult();
+            printRequestListener.print(new CarsDto(findWinners()).getCars());
         }
     }
 
@@ -35,11 +34,6 @@ public class CarRacingGame {
     public void playRound(NumberGenerator numberGenerator) {
         cars.moveCars(numberGenerator);
         round.decrease();
-    }
-
-    private void showRoundResult() {
-        List<CarDto> carsDto = new CarsDto(getCurrentCarStatuses()).getCars();
-        OutputView.printRoundResult(carsDto);
     }
 
     public List<Car> getCurrentCarStatuses() {
