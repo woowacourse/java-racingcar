@@ -28,7 +28,6 @@ public class RacingController {
     }
 
     private RandomMovingCars receiveCarNames() {
-        outputView.printCarNamesInputText();
         List<String> carNames = inputView.readCarNames();
 
         return new RandomMovingCars(carNames.stream()
@@ -38,7 +37,6 @@ public class RacingController {
     }
 
     private Attempt receiveTryCount() {
-        outputView.printTryCountInputText();
         return Attempt.from(inputView.readTryCount());
     }
 
