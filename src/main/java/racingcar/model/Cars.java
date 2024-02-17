@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private NumericGenerator generator;
-    private List<Car> cars;
+    private final NumericGenerator generator;
+    private final List<Car> cars;
 
     public Cars(NumericGenerator generator, List<String> carNames) {
         this.generator = generator;

@@ -3,12 +3,12 @@ package racingcar.model;
 import racingcar.constants.Constants;
 
 public class Car {
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String name) {
         checkIfNameUnderFive(name);
-        
+
         this.name = name;
         this.position = 0;
     }
