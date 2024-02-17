@@ -14,30 +14,12 @@ public class Round {
     }
 
     public static Round from(String round) {
-        validate(round);
+        validateRound(round);
         return new Round(Integer.parseInt(round));
     }
 
-    private static void validate(String input) {
-        checkIsNull(input);
-        checkIsNumber(input);
-        checkIsZero(input);
-    }
-
-    private static void checkIsNull(String input) {
-        if (input == null) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수를 입력해 주십시오.");
-        }
-    }
-
-    private static void checkIsNumber(String input) {
-        if (!Pattern.matches(NATURAL_FORMAT_REGEX, input)) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 자연수여야 합니다.");
-        }
-    }
-
-    private static void checkIsZero(String input) {
-        if (input.equals(ZERO)) {
+    private static void validateRound(String round) {
+        if (round == null || !Pattern.matches(NATURAL_FORMAT_REGEX, round) || round.equals(ZERO)) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 자연수여야 합니다.");
         }
     }
