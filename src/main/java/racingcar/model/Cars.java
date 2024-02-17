@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import racingcar.constants.Constants;
 import racingcar.controller.NumericGenerator;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class Cars {
 
     public void moveCars() {
         cars.stream()
-                .filter(car -> generator.generate() >= 4)
+                .filter(car -> generator.generate() >= Constants.MOVE_LINE)
                 .forEach(Car::move);
     }
 
