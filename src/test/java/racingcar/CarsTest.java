@@ -66,9 +66,10 @@ public class CarsTest {
             Cars cars = new Cars(new TestNumericGenerator(4, 3), List.of("폭포", "포케"));
             cars.moveCars();
 
-            String actual = cars.calculateWinner();
+            List<String> actual = cars.calculateWinner();
+            List<String> expected = List.of("폭포");
 
-            assertThat(actual).isEqualTo("폭포");
+            assertThat(actual).isEqualTo(expected);
         }
 
         @Test
@@ -77,9 +78,10 @@ public class CarsTest {
             Cars cars = new Cars(new TestNumericGenerator(4, 4, 3), List.of("폭포", "포케", "무빈"));
             cars.moveCars();
 
-            String actual = cars.calculateWinner();
+            List<String> actual = cars.calculateWinner();
+            List<String> expected = List.of("폭포", "포케");
 
-            assertThat(actual).isEqualTo("폭포, 포케");
+            assertThat(actual).isEqualTo(expected);
         }
     }
 }
