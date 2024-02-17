@@ -1,4 +1,4 @@
-package utils;
+package utils.validator;
 
 public class TryCountValidator {
     private static final String INVALID_FORMAT_ERROR_MESSAGE = "시도 횟수는 양의 정수여야만 합니다.";
