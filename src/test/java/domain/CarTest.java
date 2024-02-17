@@ -34,4 +34,15 @@ class CarTest {
 
         assertEquals(car.getPosition(), pos + 1);
     }
+    @ParameterizedTest
+    @DisplayName("4 미만이면 위치는 변하지 않는다.")
+    @ValueSource(ints = {2, 3})
+    public void stayPositionWhenNumberIsUnderThan4(Integer value) {
+        Car car = new Car(new Name("kim"));
+        Integer pos = car.getPosition();
+
+        car.race(value);
+
+        assertEquals(car.getPosition(), pos);
+    }
 }
