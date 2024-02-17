@@ -1,4 +1,4 @@
-package service;
+package controller;
 
 import domain.Car;
 import domain.Cars;
@@ -7,7 +7,7 @@ import java.util.List;
 import view.InputView;
 import view.OutputView;
 
-public class RacingService {
+public class RacingGame {
     public void proceedCarRacing() {
         List<String> carNames = getCarNames();
         List<Car> cars = generateCars(carNames);
