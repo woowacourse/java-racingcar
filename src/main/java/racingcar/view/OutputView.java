@@ -9,8 +9,8 @@ public class OutputView {
     private static final String NO_WINNER_DESCRIPTION = "최대 이동 거리가 0이므로 우승한 자동차가 없습니다.";
     private static final String NAME_INPUT_DESCRIPTION = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
     private static final String MOVE_COUNT_INPUT_DESCRIPTION = "시도할 회수는 몇회인가요?";
-
     private static final String POSITION_METER = "-";
+    private static final String CAR_NAME_DELIMITER = ",";
     private static final String NEW_LINE = System.lineSeparator();
 
     public static void printResultDescription() {
@@ -38,10 +38,8 @@ public class OutputView {
     }
 
     public static void printWinnerList(List<String> winners) {
-        List<String> names = winners.stream()
-                .toList();
-
-        String winnerNames = String.join(", ", names);
+        List<String> names = winners.stream().toList();
+        String winnerNames = String.join(CAR_NAME_DELIMITER, names);
         System.out.println(winnerNames + WINNER_DESCRIPTION);
     }
 
