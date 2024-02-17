@@ -18,7 +18,7 @@ class InputView {
         List<String> carNames = Arrays.asList(inputNames.split(","));
 
         return carNames.stream()
-            .map(Car::createDefault)
+            .map(Car::new)
             .toList();
     }
 

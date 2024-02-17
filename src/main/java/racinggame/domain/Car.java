@@ -9,18 +9,14 @@ public class Car {
     private final Name name;
     private Position position;
 
-    private Car(Name name, Position position) {
-        this.name = name;
-        this.position = position;
+    public Car(String name) {
+        this.name = new Name(name);
+        this.position = new Position(INITIAL_POSITION);
     }
 
     Car(String name, int position) {
         this.name = new Name(name);
         this.position = new Position(position);
-    }
-
-    public static Car createDefault(String name) {
-        return new Car(new Name(name), new Position(INITIAL_POSITION));
     }
 
     public boolean isSamePosition(int target) {

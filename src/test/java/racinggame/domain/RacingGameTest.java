@@ -29,8 +29,8 @@ class RacingGameTest {
 
     private List<Car> createCars() {
         return List.of(
-            Car.createDefault("아톰"),
-            Car.createDefault("이상")
+            new Car("아톰"),
+            new Car("이상")
         );
     }
 

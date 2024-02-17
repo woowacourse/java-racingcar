@@ -12,7 +12,7 @@ class CarsTest {
     @DisplayName("경주에 참여하는 자동차의 수는 최소 2대이다.")
     @Test
     void checkCarsSize() {
-        assertThatThrownBy(() -> new Cars(List.of(Car.createDefault("이상")), moveCondition()))
+        assertThatThrownBy(() -> new Cars(List.of(new Car("이상")), moveCondition()))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -21,8 +21,8 @@ class CarsTest {
     void checkDistinct() {
         assertThatThrownBy(() -> new Cars(
             List.of(
-                Car.createDefault("이상"),
-                Car.createDefault("이상")), moveCondition()))
+                new Car("이상"),
+                new Car("이상")), moveCondition()))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -64,8 +64,8 @@ class CarsTest {
 
     private List<Car> createCars() {
         return List.of(
-            Car.createDefault("아톰"),
-            Car.createDefault("이상")
+            new Car("아톰"),
+            new Car("이상")
         );
     }
 
