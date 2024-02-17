@@ -17,10 +17,10 @@ public class RaceManager {
 
     public void run() {
         CarGroup carGroup = repeatUntilGetValidCarNames();
-        int numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
+        Attempts numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
 
         OutputView.printRaceResultHeader();
-        for (int i = 0; i < numberOfAttempts; i++) {
+        for (int i = 0; i < numberOfAttempts.numberOfAttempts(); i++) {
             field.moveCars(carGroup);
             OutputView.printCarsPosition(carGroup);
         }
@@ -38,9 +38,10 @@ public class RaceManager {
         }
     }
 
-    private int repeatUntilGetValidNumberOfAttempts() {
+    private Attempts repeatUntilGetValidNumberOfAttempts() {
         try {
-            return inputView.readNumberOfAttempts();
+            Integer numberOfAttempts = inputView.readNumberOfAttempts();
+            return new Attempts(numberOfAttempts);
         } catch (IOException | IllegalArgumentException e) {
             return repeatUntilGetValidNumberOfAttempts();
         }

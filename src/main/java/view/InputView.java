@@ -37,16 +37,9 @@ public class InputView {
 
     private void validateNumberOfAttempts(String text) {
         try {
-            int numberOfAttempts = Integer.parseInt(text);
-            validateRange(numberOfAttempts, 1, 10);
+            Integer.parseInt(text);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateRange(int target, int start, int end) {
-        if (target < start || target > end) {
-            throw new IllegalArgumentException("1부터 10 이하의 숫자를 입력하세요. ");
         }
     }
 
