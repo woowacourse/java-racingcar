@@ -16,7 +16,7 @@ public class CarsReponse {
         return new CarsReponse(convertToCarResponses(cars));
     }
 
-    private static List<CarReponse> convertToCarResponses(Cars cars) { // TODO: 메서드명 개선하기
+    private static List<CarReponse> convertToCarResponses(Cars cars) {
         return cars.getCars().stream()
                 .map(CarReponse::of)
                 .collect(Collectors.toList());

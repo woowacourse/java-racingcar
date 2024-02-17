@@ -20,9 +20,13 @@ public class Cars {
     }
 
     private void validate(List<Car> cars) {
-        if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
+        if (!isValidCount(cars)) {
             throw new IllegalArgumentException("정상적인 경주를 위해 자동차는 2대에서 50대 사이로 입력해주세요.");
         }
+    }
+
+    private boolean isValidCount(List<Car> cars) {
+        return cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT;
     }
 
     public void move(MovementGenerator randomMovementGenerator) {
@@ -31,10 +35,10 @@ public class Cars {
                 .forEach(Car::move);
     }
 
-    private static boolean checkMovable(MovementGenerator randomMovementGenerator) {
+    private boolean checkMovable(MovementGenerator randomMovementGenerator) {
         Movement movement = randomMovementGenerator.generate();
         return movement.isMovable();
-        }
+    }
 
     public List<Car> getMaxDistanceCars() {
         Car maxDistanceCar = getMaxDistanceCar(cars);
