@@ -60,7 +60,7 @@ Java Naming Conventions가이드를 참고하여 메서드 이름 수정
     - [ ] domain 패키지의 객체는 view에 의존하지 않도록 구현한다.
         - [ ] CarController내에 InputView, OutputView를 때어낸다.
             - [ ] CarController의 생성자를 Cars와 TryCount로 받도록 수정한다.
-                - [ ] NumericGenerator를 CarController에 구성하도록 변경한다.
+                - [X] CarController에 NumericGenerator를 구성하도록 변경한다.
                 - [X] Cars내 moveCars를 NumericGenerator를 받도록 변경한다.
         - [ ] Main인 Application.java 를 RacingMain.java 으로 변경한다.
             - [ ] Main 코드의 유명한 컨벤션이 있는지 여쭈어 보기

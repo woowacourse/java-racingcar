@@ -9,6 +9,7 @@ import racingcar.view.OutputView;
 public class CarController {
     private Cars cars;
     private TryCount tryCount;
+    private NumericGenerator generator = new RandomNumericGenerator();
 
     public void startGame() {
         String receivedCarNames = InputView.inputRacingCars();
@@ -19,7 +20,7 @@ public class CarController {
 
         OutputView.printResultMessage();
         while(tryCount.checkTryable()){
-            cars.moveCars(new RandomNumericGenerator());
+            cars.moveCars(generator);
             OutputView.printCarStatus(cars);
             tryCount.consume();
         }
