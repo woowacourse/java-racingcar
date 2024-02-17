@@ -2,20 +2,15 @@ package domain;
 
 public class Car {
 
-    private static final Integer CAR_INITIAL_POSITION = 0;
-    private final String carName;
-    private Integer position;
+    private final CarName carName;
+    private final Position position;
     private final PowerGenerator powerGenerator;
 
     private Car(String carName) {
-        validate(carName);
-        this.carName = carName;
-        this.position = CAR_INITIAL_POSITION;
-        this.powerGenerator = new PowerGenerator();
+        this(new CarName(carName), new Position());
     }
 
-    Car(String carName, int position) {
-        validate(carName);
+    Car(CarName carName, Position position) {
         this.carName = carName;
         this.position = position;
         this.powerGenerator = new PowerGenerator();
@@ -25,31 +20,17 @@ public class Car {
         return new Car(name);
     }
 
-    private void validate(String carName) {
-        validateCarNameLength(carName);
-    }
-
-    private void validateCarNameLength(String carName) {
-        if (carName.length() > 5) {
-            throw new IllegalArgumentException("[ERROR] 이름의 길이는 5글자 이상이 될 수 없습니다");
+    public void tryMove() {
+        if (powerGenerator.generate().isSufficientPower()) {
+            position.move();
         }
-    }
-
-    public Integer getPosition() {
-        return this.position;
     }
 
     public String getCarName() {
-        return this.carName;
+        return carName.getCarName();
     }
 
-    public void tryMove() {
-        if (powerGenerator.generate().isSufficientPower()) {
-            move();
-        }
-    }
-
-    private void move() {
-        position++;
+    public Integer getPosition() {
+        return position.getPosition();
     }
 }

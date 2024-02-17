@@ -13,11 +13,11 @@ class CarsTest {
     @Test
     void testChooseWinnerCarByPosition() {
 
-        Car winner = new Car("car4", 4);
+        Car winner = new Car(new CarName("car1"), new Position(4));
         Cars cars = Cars.from(
-                List.of(new Car("car4", 1),
-                        new Car("car4", 2),
-                        new Car("car4", 3),
+                List.of(new Car(new CarName("car2"), new Position(1)),
+                        new Car(new CarName("car3"), new Position(2)),
+                        new Car(new CarName("car4"), new Position(3)),
                         winner));
 
         List<Car> winners = cars.chooseWinners();
