@@ -11,8 +11,8 @@ import java.util.function.Supplier;
 
 public class MainController {
     public void run() {
-        Cars cars = repeat(this::inputCarNames);
-        Round round = repeat(this::inputRound);
+        Cars cars = repeat(this::getInputAndCreateCars);
+        Round round = repeat(this::getInputAndCreateRound);
         CarRacingGame carRacingGame = new CarRacingGame(cars, round);
 
         OutputView.printResultMessage();
@@ -21,12 +21,12 @@ public class MainController {
         showWinners(carRacingGame.findWinners());
     }
 
-    private Cars inputCarNames() {
+    private Cars getInputAndCreateCars() {
         String inputCarNames = InputView.inputCarNames();
         return new Cars(inputCarNames);
     }
 
-    private Round inputRound() {
+    private Round getInputAndCreateRound() {
         String inputRound = InputView.inputRound();
         return new Round(inputRound);
     }
