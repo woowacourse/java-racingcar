@@ -5,17 +5,16 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.RandomNumberGenerator;
 import racingcar.model.Round;
-import racingcar.util.ExceptionRoofer;
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
 
-    private final InputView inputView;
+    private final InputController inputController;
     private final OutputView outputView;
 
-    public GameController(final InputView inputView, final OutputView outputView) {
-        this.inputView = inputView;
+    public GameController(final InputController inputController,
+                          final OutputView outputView) {
+        this.inputController = inputController;
         this.outputView = outputView;
     }
 
@@ -32,17 +31,11 @@ public class GameController {
     }
 
     private Cars getCars() {
-        return ExceptionRoofer.generate(() -> {
-            final String names = inputView.readCarNames();
-            return Cars.from(names);
-        }, outputView::printError);
+        return inputController.getCars();
     }
 
     private Round getRound() {
-        return ExceptionRoofer.generate(() -> {
-            final String tryRound = inputView.readTryRound();
-            return Round.from(tryRound);
-        }, outputView::printError);
+        return inputController.getRound();
     }
 
     private void play(final Round round, final Cars cars) {
