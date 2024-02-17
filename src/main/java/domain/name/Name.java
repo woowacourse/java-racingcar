@@ -3,8 +3,8 @@ package domain.name;
 import java.util.Objects;
 
 public class Name {
-    private String value;
     private static final Integer LENGTH_LIMIT = 5;
+    private String value;
 
     public Name(String value) {
         validate(value);

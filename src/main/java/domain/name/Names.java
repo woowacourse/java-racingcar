@@ -1,16 +1,16 @@
 package domain.name;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Names {
-    private List<Name> names;
+    private final List<Name> value;
 
     public Names(List<Name> carNames) {
         validate(carNames);
-        this.names = carNames;
+        this.value = carNames;
     }
 
     private void validate(List<Name> names) {
@@ -23,6 +23,6 @@ public class Names {
     }
 
     public List<Name> getNames() {
-        return names;
+        return Collections.unmodifiableList(value);
     }
 }
