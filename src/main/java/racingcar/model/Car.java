@@ -18,11 +18,6 @@ public class Car {
         return position;
     }
 
-    @Override
-    public String toString() {
-        return this.name + " : " + "-".repeat(this.position);
-    }
-
     public int move(int randomNumber) {
         if (randomNumber >= MOVE_THRESHOLD) {
             position++;
