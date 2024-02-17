@@ -68,9 +68,6 @@ public class RacingCarController {
     private List<String> getWinners(final Cars cars) {
         RacingRule racingRule = new RacingRule();
 
-        return racingRule.getWinners(cars)
-                .stream()
-                .map(car -> car.getStatus().name())
-                .toList();
+        return cars.findWinnerNames(racingRule);
     }
 }

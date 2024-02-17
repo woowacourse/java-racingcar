@@ -48,4 +48,12 @@ public class Car {
     public CarStatus getStatus() {
         return new CarStatus(name, distance);
     }
+
+    public boolean isDistanceEqual(int distance) {
+        return this.distance == distance;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

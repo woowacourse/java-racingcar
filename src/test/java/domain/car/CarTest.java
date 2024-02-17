@@ -91,4 +91,32 @@ class CarTest {
         // Then
         assertThat(distance).isEqualTo(0);
     }
+
+    @DisplayName("자동차가 가지고 있는 거리와 입력된 거리가 같으면 true를 반환한다.")
+    @Test
+    void isDistanceEqualReturnTrue() throws Exception {
+        // Given
+        Car car = new Car((start, end) -> 0, "test", 5);
+        int equalDistance = 5;
+
+        // When
+        boolean isEqual = car.isDistanceEqual(equalDistance);
+
+        // Then
+        assertThat(isEqual).isTrue();
+    }
+
+    @DisplayName("자동차가 가지고 있는 거리와 입력된 거리가 다르면 false를 반환한다.")
+    @Test
+    void isDistanceEqualReturnFalse() throws Exception {
+        // Given
+        Car car = new Car((start, end) -> 0, "test", 5);
+        int notequalDistance = 4;
+
+        // When
+        boolean isEqual = car.isDistanceEqual(notequalDistance);
+
+        // Then
+        assertThat(isEqual).isFalse();
+    }
 }

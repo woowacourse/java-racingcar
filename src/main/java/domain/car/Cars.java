@@ -1,5 +1,6 @@
 package domain.car;
 
+import domain.racing.RacingRule;
 import dto.CarStatus;
 
 import java.util.List;
@@ -19,14 +20,10 @@ public class Cars {
                 .toList();
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public int getMaxDistance() {
-        return cars.stream()
-                .mapToInt(car -> car.getStatus().distance())
-                .max()
-                .orElseGet(() -> 0);
+    public List<String> findWinnerNames(RacingRule rule) {
+        return rule.findWinnerCars(cars)
+                .stream()
+                .map(Car::getName)
+                .toList();
     }
 }
