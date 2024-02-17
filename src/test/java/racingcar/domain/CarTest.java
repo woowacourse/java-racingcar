@@ -40,7 +40,7 @@ class CarTest {
         void createCarByInvalidCharacter(final String name) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Car(name))
-                    .withMessage("시도 횟수는 100 이하여야 합니다.");
+                    .withMessage("올바르지 않은 자동차 이름입니다.");
         }
 
         @Test
