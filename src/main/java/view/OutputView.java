@@ -19,7 +19,7 @@ public class OutputView {
     }
 
     public void writeWinners(List<String> names) {
-        String winners = names.stream().collect(Collectors.joining(WINNER_DELIMITER));
+        String winners = String.join(WINNER_DELIMITER, names);
         System.out.println(winners + WRITE_WINNERS);
     }
 }
