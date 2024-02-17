@@ -12,7 +12,6 @@ public class Main {
         try {
             // TODO: 아래 중복되는 부분을 메서드로 통합하기
             // TODO: 메인 메서드 15줄 이내로 변경
-            // TODO: 예외 발생 시 재입력받기 구현
             RacingGame racingGame = ErrorHandler.executeErrorOccurable(InputView::readCarNames);
             Round round = ErrorHandler.executeErrorOccurable(InputView::readRound);
 
