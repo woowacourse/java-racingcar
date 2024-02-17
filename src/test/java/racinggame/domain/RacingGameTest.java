@@ -30,14 +30,14 @@ class RacingGameTest {
     @DisplayName("경주에 참여하는 자동차의 수는 최소 2대이다.")
     @Test
     void checkCarsSize() {
-        assertThatThrownBy(() -> RacingGame.of(List.of(Car.from("이상")), moveCondition()))
+        assertThatThrownBy(() -> RacingGame.of(List.of(Car.createDefault("이상")), moveCondition()))
             .isInstanceOf(RuntimeException.class);
     }
 
     @DisplayName("중복을 확인한다.")
     @Test
     void checkDistinct() {
-        assertThatThrownBy(() -> RacingGame.of(List.of(Car.from("이상"), Car.from("이상")), moveCondition()))
+        assertThatThrownBy(() -> RacingGame.of(List.of(Car.createDefault("이상"), Car.createDefault("이상")), moveCondition()))
             .isInstanceOf(RuntimeException.class);
     }
 
@@ -77,22 +77,22 @@ class RacingGameTest {
 
     private List<Car> createCars() {
         return List.of(
-            Car.from("아톰"),
-            Car.from("이상")
+            Car.createDefault("아톰"),
+            Car.createDefault("이상")
         );
     }
 
     private List<Car> createMovedCars(int position) {
         return List.of(
-            Car.of("아톰", position),
-            Car.of("이상", position)
+            new Car("아톰", position),
+            new Car("이상", position)
         );
     }
 
     private List<Car> createMovedCars(int position1, int position2) {
         return List.of(
-            Car.of("아톰", position1),
-            Car.of("이상", position2)
+            new Car("아톰", position1),
+            new Car("이상", position2)
         );
     }
 

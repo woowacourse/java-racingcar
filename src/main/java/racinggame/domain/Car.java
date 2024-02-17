@@ -14,12 +14,13 @@ public class Car {
         this.position = position;
     }
 
-    public static Car from(String name) {
-        return new Car(Name.from(name), Position.from(INITIAL_POSITION));
+    Car(String name, int position) {
+        this.name = Name.from(name);
+        this.position = Position.from(position);
     }
 
-    public static Car of(String name, int position) {
-        return new Car(Name.from(name), Position.from(position));
+    public static Car createDefault(String name) {
+        return new Car(Name.from(name), Position.from(INITIAL_POSITION));
     }
 
     public boolean isSamePosition(int target) {
