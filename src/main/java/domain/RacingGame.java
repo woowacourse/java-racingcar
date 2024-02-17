@@ -16,7 +16,8 @@ public class RacingGame {
     private final List<Car> cars;
 
     public RacingGame(String rawCarNames) {
-        this.cars = makeCars(rawCarNames);
+        cars = new ArrayList<>();
+        makeCars(rawCarNames);
     }
 
     public void play(Round round) {
@@ -28,14 +29,14 @@ public class RacingGame {
         OutputView.printCars(findWinners());
     }
 
-    private List<Car> makeCars(String rawCarNames) {
-        List<Car> carList = new ArrayList<>();
-        List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*")).toList();
+    private void makeCars(String rawCarNames) {
+//        List<Car> carList = new ArrayList<>();
+        List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
         validate(carNames);
         for (String carName : carNames) {
-            carList.add(new Car(carName));
+            cars.add(new Car(carName));
         }
-        return carList;
+//        return carList;
     }
 
     private void playOneRound() {
@@ -56,7 +57,7 @@ public class RacingGame {
     }
 
     private void validateCarAmount(List<String> names) {
-        if (names.size() < MIN_CAR_LENGTH || names.size() > MAX_CAR_LENGTH) {
+        if (names.isEmpty() || names.size() > MAX_CAR_LENGTH) {
             throw new IllegalArgumentException(
                 "차는 " + MIN_CAR_LENGTH + " ~ " + MAX_CAR_LENGTH + "대만 입력 가능합니다.");
         }
@@ -65,7 +66,7 @@ public class RacingGame {
     private void validateNameDuplication(List<String> names) {
         Set<String> nonDuplicatedNames = new HashSet<>(names);
         if (nonDuplicatedNames.size() != names.size()) {
-            throw new IllegalArgumentException("중복된 자동차 이름이 있습니다.");
+            throw new IllegalArgumentException("중복되거나 비어 있는 자동차 이름이 있습니다.");
         }
     }
 }
