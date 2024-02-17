@@ -1,50 +1,49 @@
 package domain.car;
 
-import domain.racing.RacingRule;
-import dto.CarStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
 
-    @DisplayName("레이스를 진행하고 자동차들의 상태를 반환한다.")
+    @DisplayName("유효한 문자열 리스트가 입력되면 Cars 객체를 생성한다.")
     @Test
-    void race() throws Exception {
+    void generateCars() throws Exception {
         // Given
-        Cars cars = new Cars(initCars());
+        List<String> carNames = List.of("car1", "car2", "car3");
 
         // When
-        List<CarStatus> race = cars.race();
-        int carADistanceAfterRace = race.get(0).distance();
+        Cars cars = Cars.of(carNames);
 
         // Then
-        assertThat(carADistanceAfterRace).isEqualTo(2);
+        assertThat(cars).isNotNull();
     }
 
-    @DisplayName("우승한 자동차 이름 목록을 반환한다.")
+    @DisplayName("2미만 크기의 문자열 리스트가 입력되면 예외가 발생한다.")
     @Test
-    void findWinnerNames() throws Exception {
+    void initCarsThrowExceptionWhenListSizeLessThanOne() throws Exception {
         // Given
-        RacingRule racingRule = new RacingRule();
-        Cars cars = new Cars(initCars());
+        List<String> invalidInput = List.of("test");
 
-        // When
-        List<String> winnerNames = cars.findWinnerNames(racingRule);
-
-        // Then
-        assertThat(winnerNames).contains("carA");
+        // When & Then
+        assertThatThrownBy(() -> Cars.of(invalidInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("자동차 이름의 개수는 2이상이여야 합니다.");
     }
 
-    private List<Car> initCars() {
-        return List.of(
-                new Car((s, e) -> 7, "carA", 1),
-                new Car((s, e) -> 0, "carA", 0),
-                new Car((s, e) -> 0, "carA", 0),
-                new Car((s, e) -> 0, "carA", 0)
-        );
+    @DisplayName("중복된 이름이 있는 문자열 리스트가 입력되면 예외가 발생한다.")
+    @Test
+    void initCarsThrowExceptionWhenDuplicatedCarNames() throws Exception {
+        // Given
+        List<String> invalidInput = List.of("test", "test");
+
+        // When & Then
+        assertThatThrownBy(() -> Cars.of(invalidInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 자동차 이름을 허용하지 않습니다.");
     }
 }

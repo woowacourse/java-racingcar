@@ -1,6 +1,5 @@
 package controller;
 
-import domain.car.CarFactory;
 import domain.car.Cars;
 import domain.racing.RacingCount;
 import domain.racing.RacingRule;
@@ -33,7 +32,7 @@ public class RacingCarController {
         try {
             List<String> carNames = inputView.inputCarNames();
 
-            return CarFactory.generateCars(carNames);
+            return Cars.of(carNames);
         } catch (RuntimeException e) {
             outputView.printInputCarNamesErrorMessage();
 
