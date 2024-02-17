@@ -21,9 +21,8 @@ public class InputView {
     }
 
     private List<String> parseCarName (String initialInput) {
-        return Arrays.stream(Arrays.stream(initialInput.split(","))
+        return Arrays.stream(initialInput.split(","))
                 .map(String::trim)
-                .toArray(String[]::new))
                 .toList();
     }
 
