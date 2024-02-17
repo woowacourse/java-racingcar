@@ -2,11 +2,11 @@ package domain;
 
 import util.Exceptions;
 
-public class Lap {
+public class Round {
 
     private final int count;
 
-    public Lap(int count) {
+    public Round(int count) {
         validateInvalidCount(count);
         this.count = count;
     }
