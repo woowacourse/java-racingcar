@@ -12,14 +12,14 @@ public class CarController {
 
     public void startGame() {
         String receivedCarNames = InputView.inputRacingCars();
-        cars = new Cars(new RandomNumericGenerator(), receivedCarNames);
+        cars = new Cars(receivedCarNames);
 
         String receivedCount = InputView.inputTryCount();
         tryCount = new TryCount(receivedCount);
 
         OutputView.printResultMessage();
         while(tryCount.checkTryable()){
-            cars.moveCars();
+            cars.moveCars(new RandomNumericGenerator());
             OutputView.printCarStatus(cars);
             tryCount.consume();
         }

@@ -9,12 +9,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private NumericGenerator generator;
     private List<Car> cars;
 
-    public Cars(NumericGenerator generator, String input) {
-        this.generator = generator;
-
+    public Cars(String input) {
         isValidInput(input);
         List<String> carNames = parseWithComma(input);
 
@@ -40,7 +37,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void moveCars() {
+    public void moveCars(NumericGenerator generator) {
         final int MINIMUM_MOVE_NUMBER = 4;
 
         for (Car car : cars) {
