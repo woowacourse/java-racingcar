@@ -4,9 +4,9 @@ import domain.name.Name;
 
 public class Car {
     private static final int INITIAL_POSITION=0;
-    public static final Integer FORWARD_MAX_NUMBER = 10;
+    public static final int FORWARD_MAX_NUMBER = 10;
     private final Name name;
-    private Integer position;
+    private int position;
     private static final Integer FORWARD_THRESHOLD = 4;
 
     public Car(Name name) {
