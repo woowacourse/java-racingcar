@@ -24,9 +24,4 @@ public class Car  {
             this.position++;
         }
     }
-
-    @Override
-    public String toString() {
-        return name.getValue();
-    }
 }

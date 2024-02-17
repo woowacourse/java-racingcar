@@ -17,11 +17,8 @@ public class RaceProgress {
                 .toList()
         );
     }
-    @Override
-    public String toString() {
-        return raceCarInfos
-                .stream()
-                .map(RaceCarInfo::toString)
-                .collect(Collectors.joining("\n","","\n"));
+
+    public List<RaceCarInfo> getRaceCarInfo() {
+        return raceCarInfos;
     }
 }

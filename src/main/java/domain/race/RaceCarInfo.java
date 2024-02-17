@@ -5,7 +5,7 @@ import domain.car.Car;
 
 public class RaceCarInfo {
     private final Name name;
-    private final Integer position;
+    private final int position;
 
     private RaceCarInfo(Name name,Integer position){
         this.name = name;
@@ -17,8 +17,11 @@ public class RaceCarInfo {
         return new RaceCarInfo(car.getName(),car.getPosition());
     }
 
-    @Override
-    public String toString() {
-        return name.getValue() + " : " + "-".repeat(position);
+    public int getPosition() {
+        return position;
+    }
+
+    public Name getName() {
+        return name;
     }
 }
