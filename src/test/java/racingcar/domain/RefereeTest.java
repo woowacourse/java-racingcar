@@ -20,9 +20,9 @@ class RefereeTest {
         car1.moveForward(new TestMoveForwardAccelerator());
 
         Cars cars = new Cars(List.of(car1, car2, car3));
-
+        Referee referee = new Referee(cars.getCarsPosition());
         // when
-        List<String> actualWinners = Referee.getWinners(cars);
+        List<String> actualWinners = referee.getWinners();
         List<String> expectedWinners = List.of("pobi");
         //then
         assertAll(
@@ -40,14 +40,14 @@ class RefereeTest {
         Car car3 = new Car("honux");
 
         Cars cars = new Cars(List.of(car1, car2, car3));
-
+        Referee referee = new Referee(cars.getCarsPosition());
         // when
-        List<String> actualWinners = Referee.getWinners(cars);
+        List<String> actualWinners = referee.getWinners();
         List<String> expectedWinners = List.of("pobi", "crong", "honux");
         //then
         assertAll(
                 () -> assertThat(actualWinners).hasSize(expectedWinners.size()),
-                () -> assertThat(actualWinners).containsExactlyElementsOf(expectedWinners)
+                () -> assertThat(actualWinners).containsExactlyInAnyOrderElementsOf(expectedWinners)
         );
     }
 

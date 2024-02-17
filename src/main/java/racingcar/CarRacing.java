@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.ArrayList;
+import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.CarAccelerator;
 import racingcar.domain.Cars;
@@ -7,9 +9,6 @@ import racingcar.domain.Referee;
 import racingcar.domain.TryCount;
 import racingcar.io.InputView;
 import racingcar.io.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class CarRacing {
@@ -30,7 +29,8 @@ public class CarRacing {
     }
 
     private void printWinners(Cars cars) {
-        outputView.printWinners(Referee.getWinners(cars));
+        Referee referee = new Referee(cars.getCarsPosition());
+        outputView.printWinners(referee.getWinners());
     }
 
     private void printMoveResult(TryCount tryCount, Cars cars) {

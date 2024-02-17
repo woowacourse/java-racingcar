@@ -1,9 +1,8 @@
 package racingcar.io;
 
-import racingcar.domain.Car;
-
 import java.util.List;
 import java.util.StringJoiner;
+import racingcar.domain.Car;
 
 
 public class OutputView {
@@ -18,7 +17,7 @@ public class OutputView {
     public void printCarsPosition(final List<Car> cars) {
         for (Car car : cars) {
             String positionBar = createPositionBar(car.getPosition());
-            System.out.println(String.format(CAR_POSITION_MESSAGE, car.getName(), positionBar));
+            System.out.printf((CAR_POSITION_MESSAGE) + "%n", car.getName(), positionBar);
         }
         System.out.println();
     }
@@ -37,6 +36,6 @@ public class OutputView {
             winnerJoiner.add(winner);
         }
 
-        System.out.println(String.format("%s가 최종 우승했습니다.", winnerJoiner));
+        System.out.printf("%s가 최종 우승했습니다.%n", winnerJoiner);
     }
 }

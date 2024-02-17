@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -24,7 +27,7 @@ class CarsTest {
         List<Car> carInfos = List.of(car1, car2);
         //when
         //then
-        Assertions.assertThatCode(() -> new Cars(carInfos))
+        assertThatCode(() -> new Cars(carInfos))
                 .doesNotThrowAnyException();
     }
 
@@ -36,7 +39,7 @@ class CarsTest {
         List<Car> carInfos = List.of(car);
         //when
         //then
-        Assertions.assertThatThrownBy(() -> new Cars(carInfos))
+        assertThatThrownBy(() -> new Cars(carInfos))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -49,33 +52,27 @@ class CarsTest {
         List<Car> carInfos = List.of(car1, car2);
         //when
         //then
-        Assertions.assertThatThrownBy(() -> new Cars(carInfos))
+        assertThatThrownBy(() -> new Cars(carInfos))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("자동차들 중 가장 많이 이동한 차량의 Position을 반환한다")
-    void getCarsMaxPosition() {
+    @DisplayName("자동차를 한꺼번에 움직일 수 있다.")
+    void moveAllCars() {
         //given
         Car car1 = new Car("pobi");
         Car car2 = new Car("crong");
-        Car car3 = new Car("honux");
-
-        List<Car> carInfos = List.of(car1, car2, car3);
-        Cars cars = new Cars(carInfos);
-
+        List<Car> carInfos = List.of(car1, car2);
         //when
-        car1.moveForward(testMoveForwardAccelerator);
-        car1.moveForward(testMoveForwardAccelerator);
-        car1.moveForward(testMoveForwardAccelerator);
-
-        car2.moveForward(testMoveForwardAccelerator);
-        car2.moveForward(testMoveForwardAccelerator);
-
-        car3.moveForward(testMoveForwardAccelerator);
-
+        Cars cars = new Cars(carInfos);
+        cars.tryMove(testMoveForwardAccelerator);
         //then
-        Assertions.assertThat(cars.getWinnerPosition()).isEqualTo(3);
+
+        //assertAll 쓰기
+        assertAll(
+                () -> assertThat(cars.getCarsPosition().get("pobi")).isEqualTo(1),
+                () -> assertThat(cars.getCarsPosition().get("crong")).isEqualTo(1)
+        );
     }
 
     static class TestMoveForwardAccelerator implements Accelerator {

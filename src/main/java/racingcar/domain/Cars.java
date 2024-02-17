@@ -1,6 +1,8 @@
 package racingcar.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Cars {
@@ -44,12 +46,13 @@ public class Cars {
         return cars;
     }
 
-    public int getWinnerPosition() {
-        int maxPosition = Integer.MIN_VALUE;
+    public Map<String, Integer> getCarsPosition() {
+        Map<String, Integer> carsPosition = new HashMap<>();
+
         for (Car car : cars) {
-            maxPosition = Math.max(car.getPosition(), maxPosition);
+            carsPosition.put(car.getName(), car.getPosition());
         }
 
-        return maxPosition;
+        return carsPosition;
     }
 }
