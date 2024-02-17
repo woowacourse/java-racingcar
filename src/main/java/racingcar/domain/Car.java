@@ -2,6 +2,8 @@ package racingcar.domain;
 
 public class Car {
 
+    private static final int ZERO = 0;
+    private static final int MINIMUM_MOVEMENT_CONDITION = 4;
     private String name;
     private int distance;
 
@@ -18,12 +20,11 @@ public class Car {
         return distance;
     }
 
-    // 0 ~ 9 까지의 랜덤한 수를 생성해 4이상일 경우 전진, 4미만일 경우 정지한다.
-    public void moveCar(int randomNumber) {
-        if (distance < 0) {
+    public void moveCar(int number) {
+        if (distance < ZERO) {
             throw new IllegalArgumentException("이동 거리는 음수가 될 수 없습니다.");
         }
-        if (randomNumber >= 4) {
+        if (number >= MINIMUM_MOVEMENT_CONDITION) {
             distance++;
         }
     }

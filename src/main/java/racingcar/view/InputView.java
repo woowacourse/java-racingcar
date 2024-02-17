@@ -10,6 +10,7 @@ public class InputView {
     private final static String MESSAGE_NO_SPACE = "중복된 자동차 이름은 사용할 수 없습니다.";
     private final static String MESSAGE_ONLY_NUMBER = "시도할 회수는 숫자여야만 가능합니다.";
     private final static String MESSAGE_ONLY_NATURAL_NUMBER = "시도할 회수는 자연수를 입력해 주세요.";
+    private final static int MAXIMUM_NAME_LENGTH = 5;
     private final Scanner scanner = new Scanner(System.in);
 
 
@@ -66,7 +67,7 @@ public class InputView {
     }
 
     private void validateLengthOfCarName(String carName) {
-        if (carName.isEmpty() || carName.length() > 5) {
+        if (carName.isEmpty() || carName.length() > MAXIMUM_NAME_LENGTH) {
             throw new IllegalArgumentException(MESSAGE_LENGTH_OF_CAR_NAME);
         }
     }

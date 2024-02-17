@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameManager {
+
+    private static final int MAX_RANDOM_NUMBER = 9;
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
 
@@ -27,7 +29,7 @@ public class GameManager {
 
     private void moveCars(List<Car> cars) {
         for (Car car : cars) {
-            car.moveCar(ThreadLocalRandom.current().nextInt(10));
+            car.moveCar(ThreadLocalRandom.current().nextInt(MAX_RANDOM_NUMBER + 1));
         }
     }
 
