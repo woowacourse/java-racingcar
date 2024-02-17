@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class CarTest {
 
     @Test
-    @DisplayName("정상적인 Car 객체 생성")
+    @DisplayName("자동차 이름이 올바르면 Car 객체 생성")
     void createCar() {
         assertThatCode(() -> new Car("pobi")).doesNotThrowAnyException();
     }
@@ -66,5 +66,22 @@ class CarTest {
         car1.move();
         int expected = car1.compareTo(car2);
         assertThat(expected).isEqualTo(-1);
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 같으면 같은 자동차이다")
+    void equals() {
+        String name = "pobi";
+        Car car1 = new Car(name);
+        Car car2 = new Car(name);
+        assertThat(car1).isEqualTo(car2);
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 다르면 다른 자동차이다")
+    void notEquals() {
+        Car car1 = new Car("pobi");
+        Car car2 = new Car("crong");
+        assertThat(car1).isNotEqualTo(car2);
     }
 }
