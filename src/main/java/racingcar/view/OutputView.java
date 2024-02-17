@@ -7,8 +7,6 @@ public class OutputView {
     private static final String WINNER_DESCRIPTION = "가 최종 우승했습니다.";
     private static final String RESULT_DESCRIPTION = "실행 결과";
     private static final String NO_WINNER_DESCRIPTION = "최대 이동 거리가 0이므로 우승한 자동차가 없습니다.";
-    private static final String NAME_INPUT_DESCRIPTION = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).";
-    private static final String MOVE_COUNT_INPUT_DESCRIPTION = "시도할 회수는 몇회인가요?";
     private static final String POSITION_METER = "-";
     private static final String CAR_NAME_DELIMITER = ",";
     private static final String NEW_LINE = System.lineSeparator();
@@ -45,13 +43,5 @@ public class OutputView {
 
     public static void printNoWinner() {
         System.out.println(NO_WINNER_DESCRIPTION);
-    }
-
-    public static void printlnInputName() {
-        System.out.println(NAME_INPUT_DESCRIPTION);
-    }
-
-    public static void printlnInputMoveCount() {
-        System.out.println(MOVE_COUNT_INPUT_DESCRIPTION);
     }
 }

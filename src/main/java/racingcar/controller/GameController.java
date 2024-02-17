@@ -29,7 +29,6 @@ public class GameController {
     }
 
     private List<String> readCarNames() throws IOException {
-        OutputView.printlnInputName();
         return NameParser.parse(InputView.inputNames());
     }
 
@@ -54,7 +53,6 @@ public class GameController {
     }
 
     private int readMoveCount() throws IOException {
-        OutputView.printlnInputMoveCount();
         return InputView.inputMoveCount();
     }
 
