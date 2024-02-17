@@ -3,6 +3,8 @@ package racingcar.view;
 import racingcar.model.Car;
 import racingcar.model.Cars;
 
+import java.util.List;
+
 public class OutputView {
     public static void printRequestCarNamesMessage() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
@@ -25,7 +27,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinner(String winners) {
-        System.out.println(winners + "가 최종 우승했습니다.");
+    public static void printWinners(List<String> winners) {
+        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
     }
 }

@@ -22,6 +22,6 @@ public class CarController {
             tryCount.consume();
         }
 
-        OutputView.printWinner(cars.calculateWinner());
+        OutputView.printWinners(cars.calculateWinner());
     }
 }

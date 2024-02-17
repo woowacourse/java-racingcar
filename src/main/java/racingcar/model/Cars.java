@@ -24,7 +24,7 @@ public class Cars {
                 .forEach(Car::move);
     }
 
-    public String calculateWinner() {
+    public List<String> calculateWinner() {
         int maxPosition = cars.stream()
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
@@ -32,7 +32,7 @@ public class Cars {
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
