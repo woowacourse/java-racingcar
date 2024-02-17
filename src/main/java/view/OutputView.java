@@ -12,7 +12,7 @@ public class OutputView {
         System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
     }
 
-    public void printMovement(List<String> movement) {
+    public void printCarsMovement(List<String> movement) {
         System.out.println(String.join("\n", movement));
         System.out.println();
     }

@@ -1,4 +1,4 @@
-import controller.RacingCarController;
+import controller.CarRacingController;
 import domain.Judge;
 import service.RacingCarService;
 import view.InputView;
@@ -12,9 +12,9 @@ public class Application {
         RacingCarService racingCarService = new RacingCarService();
         Judge judge = new Judge();
 
-        RacingCarController racingCarController = new RacingCarController(racingCarService, inputView, outputView, judge);
+        CarRacingController carRacingController = new CarRacingController(racingCarService, inputView, outputView, judge);
 
-        racingCarController.run();
+        carRacingController.run();
     }
 
 }

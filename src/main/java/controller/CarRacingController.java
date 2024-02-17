@@ -9,14 +9,14 @@ import view.OutputView;
 
 import java.util.List;
 
-public class RacingCarController {
+public class CarRacingController {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final RacingCarService racingCarService;
     private final Judge judge;
 
-    public RacingCarController(RacingCarService racingCarService, InputView inputView, OutputView outputView, Judge judge) {
+    public CarRacingController(RacingCarService racingCarService, InputView inputView, OutputView outputView, Judge judge) {
         this.racingCarService = racingCarService;
         this.inputView = inputView;
         this.outputView = outputView;
@@ -29,12 +29,21 @@ public class RacingCarController {
 
         outputView.printMovementTitle();
 
-        for (int i = count; i >= 0; i--) {
+        race(cars, count);
+
+        printWinners(cars);
+    }
+
+    private void race(Cars cars, int count) {
+        for (int i = 0; i < count; i++) {
             racingCarService.moveCars(cars);
             printMovement(cars);
         }
+    }
 
-        printWinners(cars);
+    private void printMovement(Cars cars) {
+        List<String> movement = racingCarService.getMovement(cars);
+        outputView.printCarsMovement(movement);
     }
 
     private Cars getCars() {
@@ -57,11 +66,6 @@ public class RacingCarController {
         if (input == null) {
             throw new IllegalArgumentException(Exceptions.NULL_EXCEPTION.getMessage());
         }
-    }
-
-    private void printMovement(Cars cars) {
-        List<String> movement = racingCarService.getMovement(cars);
-        outputView.printMovement(movement);
     }
 
     private void printWinners(Cars cars) {
