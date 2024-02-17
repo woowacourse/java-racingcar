@@ -12,8 +12,8 @@ class CarTest {
     @Test
     void forwardCar() throws Exception {
         // Given
-        RandomNumberGenerator randomNumberGenerator = (start, end) -> 5;
-        Car car = new Car(randomNumberGenerator, "test");
+        NumberRangeGenerator numberRangeGenerator = (start, end) -> 5;
+        Car car = new Car(numberRangeGenerator, "test");
 
         // When
         car.move();
@@ -27,8 +27,8 @@ class CarTest {
     @Test
     void notForwardCar() throws Exception {
         // Given
-        RandomNumberGenerator randomNumberGenerator = (start, end) -> 2;
-        Car car = new Car(randomNumberGenerator, "test");
+        NumberRangeGenerator numberRangeGenerator = (start, end) -> 2;
+        Car car = new Car(numberRangeGenerator, "test");
 
         // When
         car.move();

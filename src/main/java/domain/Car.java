@@ -9,20 +9,20 @@ public class Car {
     public static final int MAX_NAME_LENGTH = 5;
     public static final int FORWARD_NUMBER = 4;
 
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final NumberRangeGenerator numberRangeGenerator;
     private final String name;
 
     private int distance;
 
-    public Car(final RandomNumberGenerator randomNumberGenerator, final String name, final int distance) {
+    public Car(final NumberRangeGenerator numberRangeGenerator, final String name, final int distance) {
         validateCarName(name);
-        this.randomNumberGenerator = randomNumberGenerator;
+        this.numberRangeGenerator = numberRangeGenerator;
         this.name = name;
         this.distance = distance;
     }
 
-    public Car(final RandomNumberGenerator randomNumberGenerator, final String name) {
-        this(randomNumberGenerator, name, INITIAL_DISTANCE);
+    public Car(final NumberRangeGenerator numberRangeGenerator, final String name) {
+        this(numberRangeGenerator, name, INITIAL_DISTANCE);
     }
 
     private void validateCarName(final String name) {
@@ -33,11 +33,11 @@ public class Car {
     }
 
     public void move() {
-        if (randomNumberGenerator == null) {
+        if (numberRangeGenerator == null) {
             return;
         }
 
-        final int randomNumber = randomNumberGenerator.generateRandomNumberInRange(0, 9);
+        final int randomNumber = numberRangeGenerator.generateRandomNumberInRange(0, 9);
 
         if (randomNumber >= FORWARD_NUMBER) {
             distance++;

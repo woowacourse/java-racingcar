@@ -7,14 +7,14 @@ public class CarFactory {
 
     public static final int MIN_CAR_NAMES_COUNT = 2;
     
-    private static final RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
+    private static final NumberRangeGenerator NUMBER_RANGE_GENERATOR = new RandomNumberRangeGenerator();
 
     public static Cars generateCars(final List<String> carNames) {
         validateCarNamesCount(carNames);
         validateDuplicatedCarNames(carNames);
 
         final List<Car> cars = carNames.stream()
-                .map(name -> new Car(randomNumberGenerator, name))
+                .map(name -> new Car(NUMBER_RANGE_GENERATOR, name))
                 .toList();
 
         return new Cars(cars);
