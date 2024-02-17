@@ -1,38 +1,27 @@
 package domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class CarTest {
 
-    @Test
-    @DisplayName("1글자 글자 이름은 정상인가")
-    void car_created_by_1_name_test() {
-        assertThatCode(() -> new Car("A"))
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "ABCDE"})
+    @DisplayName("정상적인 자동차 이름 경계값 테스트")
+    void valid_car_name_test(String carName) {
+        assertThatCode(() -> new Car(carName))
                 .doesNotThrowAnyException();
     }
 
-    @Test
-    @DisplayName("5글자 글자 이름은 정상인가")
-    void car_created_by_5_name_test() {
-        assertThatCode(() -> new Car("ABCDE"))
-                .doesNotThrowAnyException();
-    }
-
-    @Test
-    @DisplayName("이름이 5글자 초과면 예외가 발생하는가")
-    void car_created_by_more_than_5_name_test() {
+    @ParameterizedTest
+    @ValueSource(strings = {"", "ABCDEF"})
+    @DisplayName("비정상적인 자동차 이름 경계값 테스트")
+    void invalid_car_name_test(String carName) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Car("ABCDEF"));
-    }
-
-    @Test
-    @DisplayName("이름이 1글자 미만이면 예외가 발생하는가")
-    void car_created_by_less_than_1_name_test() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Car(""));
+                .isThrownBy(() -> new Car(carName));
     }
 }
