@@ -12,26 +12,28 @@ import racingcar.view.OutputView;
 
 public class GameController {
     private final CarGroup carGroup = new CarGroup();
-    private List<String> names;
     private int moveCount;
 
     public void init() throws IOException {
-        readCarNames();
-        readMoveCount();
+        List<String> names;
+
+        do {
+            names = readCarNames();
+        } while (!isNameValid(names));
         initCars(names);
+
+        do {
+            moveCount = readMoveCount();
+        } while (!isMoveCountValid(moveCount));
     }
 
-    private void readCarNames() throws IOException {
-        boolean isValid = false;
-        while (!isValid) {
-            isValid = doReadCarNames();
-        }
+    private List<String> readCarNames() throws IOException {
+        OutputView.printlnInputName();
+        return NameParser.parse(InputView.inputNames());
     }
 
-    private boolean doReadCarNames() throws IOException {
+    private boolean isNameValid(List<String> names) {
         try {
-            OutputView.printlnInputName();
-            names = NameParser.parse(InputView.inputNames());
             InputValidator.validateCarName(names);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
@@ -40,23 +42,19 @@ public class GameController {
         return true;
     }
 
-    private void readMoveCount() throws IOException {
-        boolean isValid = false;
-        while (!isValid) {
-            isValid = doReadMoveCount();
-        }
-    }
-
-    private boolean doReadMoveCount() throws IOException {
+    private boolean isMoveCountValid(int moveCount) {
         try {
-            OutputView.printlnInputMoveCount();
-            moveCount = InputView.inputMoveCount();
             InputValidator.validateMoveCount(moveCount);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
             return false;
         }
         return true;
+    }
+
+    private int readMoveCount() throws IOException {
+        OutputView.printlnInputMoveCount();
+        return InputView.inputMoveCount();
     }
 
     private void initCars(List<String> carNames) {
