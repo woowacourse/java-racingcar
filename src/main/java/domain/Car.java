@@ -20,10 +20,6 @@ public class Car implements Comparable<Car> {
         return new Car(Name.from(name), Distance.init());
     }
 
-//    public static Car fromEmpty() { // TODO: 테스트를 위한 부생성자가 발생시킬 수 있는 부작용이 있을까? 없다면 가능하지 않을까?
-//        return new Car(Name.empty(), Distance.init());
-//    }
-
     public void move() {
         distance.increase();
     }

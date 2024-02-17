@@ -1,13 +1,9 @@
 package domain;
 
-import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import dto.CarNameRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Cars {
     public static final int MIN_CAR_COUNT = 2;
@@ -31,9 +27,14 @@ public class Cars {
 
     public void move(MovementGenerator randomMovementGenerator) {
         cars.stream()
-                .filter(car -> randomMovementGenerator.generate().equals(Movement.MOVE)) // TODO: .이 많고 긴걸보니 어색한 부분 존재
+                .filter(car -> checkMovable(randomMovementGenerator))
                 .forEach(Car::move);
     }
+
+    private static boolean checkMovable(MovementGenerator randomMovementGenerator) {
+        Movement movement = randomMovementGenerator.generate();
+        return movement.isMovable();
+        }
 
     public List<Car> getMaxDistanceCars() {
         Car maxDistanceCar = getMaxDistanceCar(cars);
