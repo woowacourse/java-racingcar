@@ -10,14 +10,13 @@ import java.util.Scanner;
 
 public class InputView {
     private final Scanner scanner = new Scanner(System.in);
-    private final InputValidator inputValidator = new InputValidator();
     public List<String> getCarNames() {
         displayMessage(USER_CAR_NAME_INPUT_PROMPT);
         String initialInput = scanner.nextLine();
-        inputValidator.validateIsBlank(initialInput);
+        InputValidator.validateIsBlank(initialInput);
 
         List<String> parseCarNames = parseCarName(initialInput);
-        inputValidator.validateAvailableName(parseCarNames);
+        InputValidator.validateAvailableName(parseCarNames);
         return parseCarNames;
     }
 
@@ -31,7 +30,7 @@ public class InputView {
     public int getTryNumber() {
         displayMessage(USER_TRY_NUMBER_INPUT_PROMPT);
         String tryNumber = scanner.nextLine();
-        inputValidator.validateTryNumber(tryNumber);
+        InputValidator.validateTryNumber(tryNumber);
 
         return Integer.parseInt(tryNumber);
     }

@@ -6,42 +6,42 @@ import java.util.Set;
 
 public class InputValidator {
     
-    public void validateAvailableName(List<String> parsedInputs){
+    public static void validateAvailableName(List<String> parsedInputs){
         for(String inputName : parsedInputs){
             hasSpaceInName(inputName);
             isAvailableLength(inputName);
         }
     }
 
-    public void validateIsBlank(String initialInput) {
+    public static void validateIsBlank(String initialInput) {
         if(initialInput.isBlank()) {
             throw new IllegalArgumentException();
         }
     }
-    private void hasSpaceInName(String inputName) {
+    private static void hasSpaceInName(String inputName) {
         if(inputName.contains(" ")) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void isAvailableLength(String inputName) {
+    private static void isAvailableLength(String inputName) {
         if (inputName.length() > 5) {
             throw new IllegalArgumentException();
         }
     }
 
-    public void validateAvailableCarNames(List<String> parsedCarNames){
+    public static void validateAvailableCarNames(List<String> parsedCarNames){
         validateIsMultipleCarNames(parsedCarNames);
         validateIsDuplicate(parsedCarNames);
     }
 
-    private void validateIsMultipleCarNames(List<String> parsedInputs) {
+    private static void validateIsMultipleCarNames(List<String> parsedInputs) {
         if (parsedInputs.size() <= 1) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateIsDuplicate(List<String> parsedInputs) {
+    private static void validateIsDuplicate(List<String> parsedInputs) {
         Set<String> nameSet = new HashSet<>(parsedInputs);
 
         if(nameSet.size() != parsedInputs.size()) {
@@ -49,7 +49,7 @@ public class InputValidator {
         }
     }
 
-    public void validateTryNumber(String tryNumber) {
+    public static void validateTryNumber(String tryNumber) {
         try {
             validateIsNumeric(tryNumber);
             validateIsPositive(tryNumber);
@@ -58,13 +58,13 @@ public class InputValidator {
         }
     }
 
-    private void validateIsNumeric(String tryNumber) {
+    private static void validateIsNumeric(String tryNumber) {
         if(!tryNumber.matches("\\d+")) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateIsPositive(String tryNumber) {
+    private static void validateIsPositive(String tryNumber) {
         if(Integer.parseInt(tryNumber) <= 0) {
             throw new IllegalArgumentException();
         }

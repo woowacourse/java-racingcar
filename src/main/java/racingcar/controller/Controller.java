@@ -13,13 +13,12 @@ import java.util.List;
 public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final InputValidator inputValidator = new InputValidator();
     private List<Car> cars;
     private final Referee referee = new Referee();
 
     public void run() {
         List<String> carNames = inputView.getCarNames();
-        inputValidator.validateAvailableCarNames(carNames);
+        InputValidator.validateAvailableCarNames(carNames);
         int tryNumber = inputView.getTryNumber();
         generateCarList(carNames);
         outputView.printResultHeaderPrompt();
