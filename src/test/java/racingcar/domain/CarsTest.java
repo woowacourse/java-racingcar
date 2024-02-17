@@ -42,7 +42,7 @@ class CarsTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Cars(cars))
-                .withMessage("자동차 대수는 2대 이상 100대 이하여야 합니다.");
+                .withMessage("자동차 대수는 2대 이상 10대 이하여야 합니다.");
     }
 
     private static Stream<Arguments> InputCarNames() {
