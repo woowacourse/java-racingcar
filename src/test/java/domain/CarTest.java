@@ -35,7 +35,7 @@ class CarTest {
         int distance = car.getDistance();
 
         // Then
-        assertThat(distance).isEqualTo(0);
+        assertThat(distance).isZero();
     }
 
     @DisplayName("5보다 큰 길이의 이름을 입력하면 예외가 발생합니다.")
