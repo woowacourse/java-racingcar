@@ -12,13 +12,6 @@ public class Cars {
         this.moveStrategy = moveStrategy;
     }
 
-    public static Cars of(List<String> carNames, MoveStrategy moveStrategy) {
-        List<Car> carList = carNames.stream()
-                .map(Car::new)
-                .toList();
-        return new Cars(carList, moveStrategy);
-    }
-
     public void move() {
         carList.forEach(car -> car.move(moveStrategy.isMove()));
     }

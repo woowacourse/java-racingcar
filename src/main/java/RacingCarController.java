@@ -22,8 +22,11 @@ public class RacingCarController {
 
     private static Cars inputCars() {
         try {
-            List<String> carNames = InputView.inputNames();
-            return Cars.of(carNames, new RandomMoveStrategy(new RandomDigitSupplier()));
+            List<Car> cars = InputView.inputNames()
+                    .stream()
+                    .map(Car::new)
+                    .toList();
+            return new Cars(cars, new RandomMoveStrategy(new RandomDigitSupplier()));
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return inputCars();
