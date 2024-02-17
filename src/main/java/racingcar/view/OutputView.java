@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import racingcar.model.Car;
 import racingcar.model.Cars;
 
 public class OutputView {
@@ -15,8 +16,12 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printCarStatus(Cars cars) {
-        System.out.println(cars);
+    public static void printCar(Car car) {
+        System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+    }
+
+    public static void printCars(Cars cars) {
+        cars.getCars().forEach(OutputView::printCar);
         System.out.println();
     }
 

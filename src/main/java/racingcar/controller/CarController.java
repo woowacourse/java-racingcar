@@ -18,7 +18,7 @@ public class CarController {
         OutputView.printResultMessage();
         while (tryCount.untilEndLine()) {
             cars.moveCars();
-            OutputView.printCarStatus(cars);
+            OutputView.printCars(cars);
             tryCount.consume();
         }
 
