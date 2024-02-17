@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.constants.Constants;
+
 public class TryCount {
     private int value;
 
@@ -10,15 +12,15 @@ public class TryCount {
     public int validatedInput(String input) {
         try {
             int number = Integer.parseInt(input);
-            checkIfOverZero(number);
+            checkIfUnderEndLine(number);
             return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void checkIfOverZero(int number) {
-        if (number < 0) {
+    private void checkIfUnderEndLine(int number) {
+        if (number < Constants.END_LINE) {
             throw new IllegalArgumentException();
         }
     }
@@ -27,8 +29,8 @@ public class TryCount {
         value--;
     }
 
-    public boolean untilZero() {
-        return value > 0;
+    public boolean untilEndLine() {
+        return value > Constants.END_LINE;
     }
 
     public int getValue() {

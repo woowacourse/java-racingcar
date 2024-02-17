@@ -50,11 +50,11 @@ public class TryCountTest {
         @ParameterizedTest
         @CsvSource({"0,false",
                 "1,true"})
-        @DisplayName("시도 횟수 값이 0 이하인지 아닌지를 잘 구별하는지 확인")
+        @DisplayName("시도 횟수 값이 게임엔드라인(0) 이하인지 아닌지를 잘 구별하는지 확인")
         void testUntilZero(String given, boolean expected) {
             TryCount count = new TryCount(given);
 
-            boolean actual = count.untilZero();
+            boolean actual = count.untilEndLine();
 
             assertThat(actual).isEqualTo(expected);
         }
