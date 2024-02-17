@@ -13,14 +13,14 @@ public class CarGroup {
         cars.add(car);
     }
 
-    public Map<String, Integer> race() {
-        Map<String, Integer> raceResponse = new HashMap<>();
+    public Map<String, Integer> playRound() {
+        Map<String, Integer> roundResponse = new HashMap<>();
         for (Car car : cars) {
             int nextPosition = car.move(RandomNumberGenerator.generate());
-            raceResponse.put(car.getName(), nextPosition);
+            roundResponse.put(car.getName(), nextPosition);
         }
 
-        return raceResponse;
+        return roundResponse;
     }
 
     public List<String> findWinners() {
