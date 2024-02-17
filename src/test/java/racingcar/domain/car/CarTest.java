@@ -11,10 +11,10 @@ class CarTest {
     @Test
     void 자동차_생성_성공() {
         // given
-        String name = "car";
+        final String name = "car";
 
         // when
-        Car car = new Car(name, new MockMovingStrategy());
+        final Car car = new Car(name, new MockMovingStrategy());
 
         // then
         assertThat(car.getName()).isEqualTo(name);

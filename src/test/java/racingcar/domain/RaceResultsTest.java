@@ -38,7 +38,7 @@ class RaceResultsTest {
         assertSoftly(softly -> {
             softly.assertThat(raceResults.getRaceResults()).hasSize(3);
 
-            List<Map<Car, Integer>> raceResultResponse = raceResults.getRaceResults();
+            final List<Map<Car, Integer>> raceResultResponse = raceResults.getRaceResults();
 
             softly.assertThat(raceResultResponse.get(0)).containsEntry(move3times, 1);
             softly.assertThat(raceResultResponse.get(0)).containsEntry(move2times, 1);

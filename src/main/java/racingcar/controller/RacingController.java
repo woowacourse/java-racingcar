@@ -29,10 +29,10 @@ public class RacingController implements Controller {
 
     @Override
     public void run() {
-        RaceParticipants raceParticipants = readRaceParticipants();
+        final RaceParticipants raceParticipants = readRaceParticipants();
         final int raceCount = readRaceCount();
 
-        RaceResults raceResults = race(raceCount, raceParticipants);
+        final RaceResults raceResults = race(raceCount, raceParticipants);
 
         printRaceResults(raceResults.getRaceResults());
         printRaceWinners(raceResults.getRaceWinners());
@@ -53,7 +53,7 @@ public class RacingController implements Controller {
     }
 
     private RaceResults race(final int raceCount, final RaceParticipants raceParticipants) {
-        RaceResults raceResults = new RaceResults();
+        final RaceResults raceResults = new RaceResults();
 
         for (int i = 0; i < raceCount; i++) {
             raceParticipants.move();

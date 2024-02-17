@@ -9,7 +9,7 @@ public record RaceCountRequest(String input) {
     public static final int MIN_RACE_COUNT = 1;
 
     public int toInt() {
-        int count = InputUtils.parseToInt(input);
+        final int count = InputUtils.parseToInt(input);
         validateRaceCountRange(count);
         return count;
     }

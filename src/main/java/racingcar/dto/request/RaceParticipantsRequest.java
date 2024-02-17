@@ -8,7 +8,7 @@ import racingcar.view.utils.InputUtils;
 
 public record RaceParticipantsRequest(String input) {
     public RaceParticipants toRaceParticipants(final MovingStrategy movingStrategy) {
-        List<Car> cars = InputUtils.splitByComma(input).stream()
+        final List<Car> cars = InputUtils.splitByComma(input).stream()
                 .map(carName -> new Car(carName, movingStrategy))
                 .toList();
 

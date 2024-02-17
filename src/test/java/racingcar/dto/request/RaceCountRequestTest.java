@@ -26,7 +26,7 @@ class RaceCountRequestTest {
     @ValueSource(strings = {"  ", "0", "-1", "101", "1000", "!@#"})
     void toInt를_이용해서_int로_변환_실패(String input) {
         //when & then
-        RaceCountRequest raceCountRequest = new RaceCountRequest(input);
+        final RaceCountRequest raceCountRequest = new RaceCountRequest(input);
         assertThatThrownBy(raceCountRequest::toInt)
                 .isInstanceOf(InvalidInputException.class);
     }
