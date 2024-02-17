@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    private static final String INFO_SEPARATOR = " : ";
+    private static final String POSITION_INDICATOR = "-";
+
     private void newLine() {
         System.out.println();
     }
@@ -36,10 +39,11 @@ public class OutputView {
         return new StringBuilder()
                 .append(raceCarInfo.getName()
                                    .getValue())
-                .append(" : ")
-                .append("-".repeat(raceCarInfo.getPosition()))
+                .append(INFO_SEPARATOR)
+                .append(POSITION_INDICATOR.repeat(raceCarInfo.getPosition()))
                 .toString();
     }
+
     public void printRaceResult(Cars cars) {
         String racerList = cars.getMaxPositionCars()
                                .stream()
