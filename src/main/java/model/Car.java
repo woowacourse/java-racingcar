@@ -8,12 +8,12 @@ public class Car {
     private static final String NAME_DELIMITER = " : ";
     private static final String TRACE = "-";
 
-    private int position;
     private String name;
+    private int position;
 
     private Car(String name) {
-        this.position = INITIAL_POSITION;
         this.name = name;
+        this.position = INITIAL_POSITION;
     }
 
     public static Car from(String name) {
@@ -33,12 +33,12 @@ public class Car {
         }
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
