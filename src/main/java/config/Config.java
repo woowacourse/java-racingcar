@@ -10,7 +10,7 @@ public class Config {
     private final RacingGameController racingGameController;
 
     public Config() {
-        racingGameController= this.createRacingGameController();
+        racingGameController = this.createRacingGameController();
     }
 
     public RacingGameController racingGameController() {
