@@ -2,7 +2,7 @@ package controller;
 
 import domain.car.Car;
 import domain.car.Cars;
-import domain.car.constant.CarConstant;
+import constant.CarConstant;
 import domain.name.Names;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
@@ -12,7 +12,6 @@ import view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class GameController {
     private final InputView inputView;

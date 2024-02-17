@@ -13,11 +13,11 @@ public class Names {
         this.names = carNames;
     }
 
-    private void validate(List<Name> names){
-        int size=names.size();
+    private void validate(List<Name> names) {
+        int size = names.size();
 
         Set<Name> nonDuplicate = new HashSet<>(names);
-        if(size!=nonDuplicate.size()){
+        if (size != nonDuplicate.size()) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
     }

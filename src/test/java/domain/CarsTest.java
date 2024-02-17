@@ -30,14 +30,17 @@ public class CarsTest {
     public void createRaceResult() {
         Name pond = new Name("pond");
         Name poby = new Name("poby");
-        Names names = new Names(List.of(pond,poby));
+        Names names = new Names(List.of(pond, poby));
         Cars cars = Cars.from(names);
 
-        cars.getValue().get(0).race(5);
+        cars.getValue()
+            .get(0)
+            .race(5);
         List<Car> winnerCars = cars.getMaxPositionCars();
 
-        assertEquals(winnerCars.size(),1);
-        assertEquals(winnerCars.get(0).getName(),pond);
+        assertEquals(winnerCars.size(), 1);
+        assertEquals(winnerCars.get(0)
+                               .getName(), pond);
 
     }
 }

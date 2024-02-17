@@ -12,7 +12,7 @@ class NameTest {
 
     @Test
     @DisplayName("문자열을 통해 이름을 생성한다")
-    public void createName(){
+    public void createName() {
 
         //Given
         String value = "pond";
@@ -21,24 +21,28 @@ class NameTest {
         Name name = new Name(value);
 
         //Then
-        assertInstanceOf(Name.class,name);
+        assertInstanceOf(Name.class, name);
     }
+
     @ParameterizedTest
     @DisplayName("공백 이름은 에러를 발생시킨다")
-    @ValueSource(strings = {""," "})
-    public void throwExceptionWhenValueIsBlank(String value){
-        assertThrows(IllegalArgumentException.class,()->{
+    @ValueSource(strings = {"", " "})
+    public void throwExceptionWhenValueIsBlank(String value) {
+        assertThrows(IllegalArgumentException.class, () -> {
             new Name(value);
         });
     }
+
     @Test
     @DisplayName("다섯 글자 이상의 이름은 에러를 발생시킨다.")
-    public void throwExceptionWhenValueIsExceed5(){
+    public void throwExceptionWhenValueIsExceed5() {
         String value = "joyson";
 
-        assertThrows(IllegalArgumentException.class,()-> {
+        assertThrows(IllegalArgumentException.class, () -> {
                     new Name(value);
                 }
         );
-    };
+    }
+
+    ;
 }

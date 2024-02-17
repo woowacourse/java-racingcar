@@ -13,7 +13,7 @@ class NamesTest {
 
     @Test
     @DisplayName("이름들을 통해 이름 명단을 만든다")
-    void createCarCatalog(){
+    void createCarCatalog() {
         List<Name> carNameCatalog = List.of(new Name("poby"), new Name("pond"));
 
         Names catalog = new Names(carNameCatalog);
@@ -21,12 +21,13 @@ class NamesTest {
         assertInstanceOf(Names.class, catalog);
 
     }
+
     @Test
     @DisplayName("중복된 이름이 있으면 예외를 발생한다")
-    void throwExceptionWhenNameIsDuplicate(){
-        List<Name> duplicateCarNameCatalog = List.of(new Name("pond"),new Name("pond"));
+    void throwExceptionWhenNameIsDuplicate() {
+        List<Name> duplicateCarNameCatalog = List.of(new Name("pond"), new Name("pond"));
 
-        assertThrows(IllegalArgumentException.class, ()->{
+        assertThrows(IllegalArgumentException.class, () -> {
             new Names(duplicateCarNameCatalog);
         });
     }

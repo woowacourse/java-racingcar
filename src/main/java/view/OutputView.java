@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 public class OutputView {
     private static final String INFO_SEPARATOR = " : ";
     private static final String POSITION_INDICATOR = "-";
+    
+    private static final String COMMA_DELIMITER =", ";
 
     private void newLine() {
         System.out.println();
@@ -49,7 +51,7 @@ public class OutputView {
                                .stream()
                                .map(Car::getName)
                                .map(Name::getValue)
-                               .collect(Collectors.joining(", "));
+                               .collect(Collectors.joining(COMMA_DELIMITER));
 
         System.out.println(racerList + "가 최종 우승했습니다.");
     }
