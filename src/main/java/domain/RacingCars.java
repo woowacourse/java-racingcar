@@ -1,20 +1,18 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingCars {
     private final List<Car> cars;
 
-    public RacingCars(String carNames) {
+    public RacingCars(List<String> carNames) {
         this.cars = generateCars(carNames);
     }
 
-    private List<Car> generateCars(String carNames) {
-        return Arrays.stream(carNames.split(","))
+    private List<Car> generateCars(List<String> carNames) {
+        return carNames.stream()
                 .map(Car::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Car> getAllCars() {

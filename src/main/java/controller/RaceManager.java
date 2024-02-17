@@ -3,6 +3,7 @@ package controller;
 import domain.Field;
 import domain.RacingCars;
 import java.io.IOException;
+import java.util.List;
 import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -27,7 +28,7 @@ public class RaceManager {
 
     private RacingCars repeatUntilGetValidCarNames() {
         try {
-            String carNames = inputView.readCarNames();
+            List<String> carNames = inputView.readCarNames();
             return new RacingCars(carNames);
         } catch (IOException | IllegalArgumentException e) {
             System.out.println(e.getMessage());

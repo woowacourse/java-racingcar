@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class InputView {
     private final BufferedReader reader;
@@ -14,11 +17,12 @@ public class InputView {
     }
 
 
-    public String readCarNames() throws IOException {
+    public List<String> readCarNames() throws IOException {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         final String inputData = removeBlank(reader.readLine());
         validateCarNamesFormat(inputData);
-        return inputData;
+        return Arrays.stream(inputData.split(","))
+                .collect(Collectors.toList());
     }
 
     private void validateCarNamesFormat(String names) {

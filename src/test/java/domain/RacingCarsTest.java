@@ -11,7 +11,7 @@ public class RacingCarsTest {
     @Test
     @DisplayName("자동차 이름이 정상적으로 생성되는가")
     void cars_generation_test() {
-        String carNames = "mangc,weve,pobi,neo";
+        List<String> carNames = List.of("mangc", "weve", "pobi", "neo");
 
         RacingCars racingCars = new RacingCars(carNames);
         List<Car> expected = List.of(new Car("mangc"), new Car("weve"), new Car("pobi"),
@@ -23,7 +23,7 @@ public class RacingCarsTest {
     @Test
     @DisplayName("우승자가 정상적으로 반환되는가")
     void get_winners_test() {
-        String carNames = "mangc,weve,pobi,neo";
+        List<String> carNames = List.of("mangc", "weve", "pobi", "neo");
         RacingCars racingCars = new RacingCars(carNames);
 
         List<Car> cars = racingCars.getAllCars();
