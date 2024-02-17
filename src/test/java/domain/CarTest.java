@@ -25,7 +25,7 @@ class CarTest {
     @ParameterizedTest
     @DisplayName("4 이상이면 위치를 한 칸 전진한다.")
     @ValueSource(ints={4,5})
-    public void forwardPositionWhenNumberIsGreaterThan4(Integer value){
+    public void forwardPosition(int value){
         Car car = new Car(new Name("kim"));
         Integer pos=car.getPosition();
 
@@ -33,4 +33,16 @@ class CarTest {
 
         assertEquals(car.getPosition(),pos+1);
     }
+    @ParameterizedTest
+    @DisplayName("4 미만이면 위치를 전진하지 않는다")
+    @ValueSource(ints={0,3})
+    public void notForwardPosition(int value){
+        Car car = new Car(new Name("스티치"));
+        int pos = car.getPosition();
+
+        car.race(value);
+
+        assertEquals(car.getPosition(),pos);
+    }
+
 }
