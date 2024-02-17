@@ -1,4 +1,6 @@
-## 구현할 기능 목록
+# 1단계 - 자동차 경주 구현
+
+### 구현할 기능 목록
 
 - [X] 경주할 자동차 이름 입력받기: InputView.inputRacingCars
 - [X] 자동차 이름 목록 콤마를 기준으로 분리: Cars.parseWithComma
@@ -48,30 +50,27 @@ Java Naming Conventions가이드를 참고하여 메서드 이름 수정
     - [X] test에 racingcar.model 패키지 생성
     - [X] CarsTest, CarTest 패키지 이동
 
-
-
 ---
 
-## 2단계 - 자동차 경주 리팩터링
+# 2단계 - 자동차 경주 리팩터링
 
-### 리펙터링 요구사항
+## 리펙터링 요구사항
 
 - [X] 핵심 비지니스 로직을 가지는 객체를 domain 패키지에 구현한다.
-- [X] CarController내에 InputView, OutputView를 분리한다.
-    - [X] InputView를 분리한다.
-    - [X] CarController의 생성자를 Cars와 TryCount로 받도록 수정한다.
-        - [X] CarController에 NumericGenerator를 구성하도록 변경한다.
-        - [X] Cars내 moveCars를 NumericGenerator를 받도록 변경한다.
-    - [X] 게임 결과 반환
-        - [X] 우승자들을 관리하는 객체 생성
-        - [X] 자동차들의 상태값을 받는 객체 생성
+    - [X] CarController내에 InputView, OutputView를 분리한다.
+        - [X] InputView를 분리한다.
+        - [X] CarController의 생성자를 Cars와 TryCount로 받도록 수정한다.
+            - [X] CarController에 NumericGenerator를 구성하도록 변경한다.
+            - [X] Cars내 moveCars를 NumericGenerator를 받도록 변경한다.
+        - [X] CarController 내에서 게임 결과를 반환하도록 변경
+            - [X] 우승자들을 관리하는 객체 생성
+            - [X] 자동차들의 상태값을 받는 객체 생성
 
 - [X] UI 관련한 객체를 view 패키지에 구현한다.
     - [X] view 패키지의 객체가 domain 패키지 객체에 의존 가능하도록 구현한다.
         - [X] inputView가 domain 패키지 객체에 의존하도록 구현
             - [X] Cars를 반환
             - [X] TryCount를 반환
-
 
 - [X] 테스트 가능한 부분과 테스트하기 힘든 부분을 분리한다.
     - [X] 테스트 가능한 부분에 대해서만 단위 테스트를 진행한다.
