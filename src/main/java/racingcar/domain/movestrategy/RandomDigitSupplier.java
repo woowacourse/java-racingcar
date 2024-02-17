@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.movestrategy;
 
 import java.util.Random;
 import java.util.function.IntSupplier;

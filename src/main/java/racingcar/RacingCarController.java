@@ -3,8 +3,8 @@ package racingcar;
 import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.Racing;
-import racingcar.domain.RandomDigitSupplier;
-import racingcar.domain.RandomMoveStrategy;
+import racingcar.domain.movestrategy.RandomDigitSupplier;
+import racingcar.domain.movestrategy.CarMoveStrategy;
 import racingcar.domain.TrialCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -28,7 +28,7 @@ public class RacingCarController {
     private static Racing inputCars() {
         try {
             final List<String> carNames = InputView.inputNames();
-            return Racing.of(carNames, new RandomMoveStrategy(new RandomDigitSupplier()));
+            return Racing.of(carNames, new CarMoveStrategy(new RandomDigitSupplier()));
         } catch (final IllegalArgumentException exception) {
             OutputView.printException(exception);
             return inputCars();
