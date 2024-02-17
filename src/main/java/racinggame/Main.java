@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         List<Car> cars = InputView.readNames();
         Round round = InputView.readRound();
-        RacingGame game = RacingGame.of(cars, new RandomMoveCondition());
+        RacingGame game = new RacingGame(cars, new RandomMoveCondition());
 
         game.race(round);
 

@@ -8,13 +8,9 @@ public class RacingGame {
     private final Cars cars;
     private final List<RoundResult> results;
 
-    private RacingGame(Cars cars) {
-        this.cars = cars;
+    public RacingGame(List<Car> cars, MoveCondition moveCondition) {
+        this.cars = new Cars(cars, moveCondition);
         this.results = new ArrayList<>();
-    }
-
-    public static RacingGame of(List<Car> cars, MoveCondition moveCondition) {
-        return new RacingGame(new Cars(cars, moveCondition));
     }
 
     public void race(Round round) {

@@ -12,14 +12,14 @@ class RacingGameTest {
     @DisplayName("생성 테스트")
     @Test
     void create() {
-        assertThatCode(() -> RacingGame.of(createCars(), moveCondition()))
+        assertThatCode(() -> new RacingGame(createCars(), moveCondition()))
             .doesNotThrowAnyException();
     }
 
     @DisplayName("라운드 수 만큼 경주를 진행할 수 있다.")
     @Test
     void race() {
-        RacingGame game = RacingGame.of(createCars(), moveCondition());
+        RacingGame game = new RacingGame(createCars(), moveCondition());
 
         game.race(Round.from(3));
 
