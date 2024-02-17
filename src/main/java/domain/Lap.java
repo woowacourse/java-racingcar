@@ -2,11 +2,11 @@ package domain;
 
 import util.Exceptions;
 
-public class Rap {
+public class Lap {
 
     private final int count;
 
-    public Rap(int count) {
+    public Lap(int count) {
         validateInvalidCount(count);
         this.count = count;
     }

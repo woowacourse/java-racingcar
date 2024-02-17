@@ -3,7 +3,7 @@ package controller;
 import domain.Car;
 import domain.Cars;
 import domain.Judge;
-import domain.Rap;
+import domain.Lap;
 import util.Exceptions;
 import util.RandomNumberGenerator;
 import view.InputView;
@@ -25,16 +25,16 @@ public class CarRacingGame {
 
     public void play() {
         Cars cars = createCars();
-        Rap rap = createRap();
+        Lap lap = createRap();
 
         outputView.printResultMessage();
-        race(cars, rap);
+        race(cars, lap);
 
         printWinners(cars);
     }
 
-    private void race(Cars cars, Rap rap) {
-        for (int i = 0; i < rap.getCount(); i++) {
+    private void race(Cars cars, Lap lap) {
+        for (int i = 0; i < lap.getCount(); i++) {
             moveCars(cars);
             printMovement(cars);
         }
@@ -61,12 +61,12 @@ public class CarRacingGame {
         return new Cars(names);
     }
 
-    private Rap createRap() {
+    private Lap createRap() {
         String rawRap = inputView.inputRap();
         validateIsNull(rawRap);
         int rap = convertToInt(rawRap);
 
-        return new Rap(rap);
+        return new Lap(rap);
     }
 
     private void validateIsNull(String input) {
