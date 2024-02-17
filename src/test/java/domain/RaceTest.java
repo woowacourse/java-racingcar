@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class CarsTest {
+class RaceTest {
 
     @DisplayName("가장 멀리간 차가 우승자가 된다.")
     @Test
@@ -16,10 +16,10 @@ class CarsTest {
         MockCar carA = new MockCar(1);
         MockCar carB = new MockCar(2);
         List<Car> carList = List.of(carA, carB);
-        Cars cars = new Cars(carList, () -> true);
+        Race race = new Race(carList, () -> true);
 
         // when
-        List<Car> winners = cars.findWinner();
+        List<Car> winners = race.findWinner();
 
         // then
         Assertions.assertThat(winners).containsExactlyInAnyOrder(carB);
@@ -33,10 +33,10 @@ class CarsTest {
         MockCar carB = new MockCar(2);
         MockCar carC = new MockCar(1);
         List<Car> carList = List.of(carA, carB, carC);
-        Cars cars = new Cars(carList, () -> true);
+        Race race = new Race(carList, () -> true);
 
         // when
-        List<Car> winners = cars.findWinner();
+        List<Car> winners = race.findWinner();
 
         // then
         Assertions.assertThat(winners).containsExactlyInAnyOrder(carA, carB);
@@ -49,10 +49,10 @@ class CarsTest {
         // given
         MockCar carA = new MockCar();
         List<Car> carList = List.of(carA);
-        Cars cars = new Cars(carList, () -> isMove);
+        Race race = new Race(carList, () -> isMove);
 
         // when
-        cars.move();
+        race.move();
 
         // then
         Assertions.assertThat(carA.getPosition()).isEqualTo(expectedPosition);

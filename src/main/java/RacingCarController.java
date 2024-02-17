@@ -1,5 +1,5 @@
 import domain.Car;
-import domain.Cars;
+import domain.Race;
 import domain.RandomDigitSupplier;
 import domain.RandomMoveStrategy;
 import domain.TrialCount;
@@ -10,7 +10,7 @@ import view.OutputView;
 public class RacingCarController {
 
     public static void run() {
-        Cars cars = inputCars();
+        Race cars = inputCars();
         TrialCount trialCount = inputTrialCount();
 
         OutputView.printResultTitle();
@@ -20,13 +20,13 @@ public class RacingCarController {
         OutputView.printWinners(winners);
     }
 
-    private static Cars inputCars() {
+    private static Race inputCars() {
         try {
             List<Car> cars = InputView.inputNames()
                     .stream()
                     .map(Car::new)
                     .toList();
-            return new Cars(cars, new RandomMoveStrategy(new RandomDigitSupplier()));
+            return new Race(cars, new RandomMoveStrategy(new RandomDigitSupplier()));
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return inputCars();
@@ -43,8 +43,8 @@ public class RacingCarController {
         }
     }
 
-    private static void progressRacing(Cars cars) {
+    private static void progressRacing(Race cars) {
         cars.move();
-        OutputView.printProgress(cars.getCarList());
+        OutputView.printProgress(cars.getCars());
     }
 }
