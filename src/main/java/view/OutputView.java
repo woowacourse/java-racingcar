@@ -3,6 +3,9 @@ package view;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
     public static final String ERROR_PREFIX = "[ERROR] ";
     private static final String WINNER_DELIMITER = ", ";

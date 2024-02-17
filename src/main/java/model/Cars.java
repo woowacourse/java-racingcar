@@ -4,6 +4,7 @@ import static util.Util.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private List<Car> cars;
@@ -25,6 +26,23 @@ public class Cars {
             car.moveForward(generateRandomNumber());
         }
     }
+
+    public List<String> findWinnerNames() {
+        int maxPosition = getMaxPosition();
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+    }
+
 
     @Override
     public String toString() {
