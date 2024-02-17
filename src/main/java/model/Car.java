@@ -8,7 +8,7 @@ public class Car {
     private static final String NAME_DELIMITER = " : ";
     private static final String TRACE = "-";
 
-    private String name;
+    private final String name;
     private int position;
 
     private Car(String name) {

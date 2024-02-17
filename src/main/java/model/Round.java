@@ -7,7 +7,7 @@ public class Round {
     private static final String NATURAL_FORMAT_REGEX = "^[\\d]*$";
     private static final String ZERO = "0";
 
-    private int round;
+    private final int round;
 
     private Round(int round) {
         this.round = round;

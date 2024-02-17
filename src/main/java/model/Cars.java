@@ -12,7 +12,7 @@ public class Cars {
     private static final int MIN_POSITION = 0;
     private static final String NEW_LINE = "\n";
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     private Cars(List<Car> cars) {
         this.cars = cars;
