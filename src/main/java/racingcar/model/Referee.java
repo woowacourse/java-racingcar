@@ -1,29 +1,25 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Referee {
-
-    private int maxPosition = 0;
-    private List<String> winners = new ArrayList<>();
-    
     public List<String> generateWinners(List<Car> carList){
-        
+        int maxPosition = 0;
+
         for(Car car : carList){
             maxPosition = car.comparePosition(maxPosition);
         }
 
-        for(Car car : carList){
-            addWinners(car);
-        }
-        return winners;
+        return findWinners(carList, maxPosition);
     }
 
-    private void addWinners(Car car) {
-        if(car.checkIsWinner(maxPosition)){
-            winners.add(car.getName());
-        }
+    private List<String> findWinners(List<Car> carList, int maxPosition) {
+        return carList.stream()
+                .filter(car -> car.matchesPosition(maxPosition))
+                .map(Car::getName)
+                .toList();
     }
 
 }
