@@ -16,7 +16,7 @@ public class InputView {
         return scanner.nextLine().trim();
     }
 
-    public String inputCount() {
+    public String inputRap() {
         System.out.println("시도할 회수는 몇회인가요?");
 
         return scanner.nextLine().trim();

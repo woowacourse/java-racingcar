@@ -10,20 +10,11 @@ import java.util.List;
 public class RacingCarService {
 
     public int getCount(String rawCount) {
-        validateNumberFormat(rawCount);
 
         int count = Integer.parseInt(rawCount);
         validateInvalidNumber(count);
 
         return count;
-    }
-
-    private void validateNumberFormat(String rawCount) {
-        try {
-            Integer.parseInt(rawCount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Exceptions.NUMBER_FORMAT_EXCEPTION.getMessage());
-        }
     }
 
     private void validateInvalidNumber(int count) {

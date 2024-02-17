@@ -25,17 +25,17 @@ public class CarRacingController {
 
     public void run() {
         Cars cars = createCars();
-        int raps = getCount();
+        int rap = inputRap();
 
         outputView.printResultMessage();
 
-        race(cars, raps);
+        race(cars, rap);
 
         printWinners(cars);
     }
 
-    private void race(Cars cars, int raps) {
-        for (int i = 0; i < raps; i++) {
+    private void race(Cars cars, int rap) {
+        for (int i = 0; i < rap; i++) {
             racingCarService.moveCars(cars);
             printMovement(cars);
         }
@@ -56,17 +56,30 @@ public class CarRacingController {
         return racingCarService.createCars(names);
     }
 
-    private int getCount() {
-        String count = inputView.inputCount();
+    private int inputRap() {
+        String rawRap = inputView.inputRap();
 
-        validateIsNull(count);
+        validateIsNull(rawRap);
 
-        return racingCarService.getCount(count);
+        return convertToInt(rawRap);
     }
 
     private void validateIsNull(String input) {
         if (input == null) {
             throw new IllegalArgumentException(Exceptions.NULL_EXCEPTION.getMessage());
+        }
+    }
+
+    private int convertToInt(String rawRap) {
+        validateNumberFormat(rawRap);
+        return Integer.parseInt(rawRap);
+    }
+
+    private void validateNumberFormat(String rawRap) {
+        try {
+            Integer.parseInt(rawRap);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Exceptions.NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 
