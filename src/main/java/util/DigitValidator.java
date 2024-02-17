@@ -1,4 +1,4 @@
-package view.validation;
+package util;
 
 import java.util.regex.Pattern;
 
