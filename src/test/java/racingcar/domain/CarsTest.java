@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.domain.generator.RandomOilGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ class CarsTest {
             cars.add(car);
         }
 
-        return new Cars(cars);
+        return new Cars(cars, new RandomOilGenerator());
     }
 
     private static Car createCarWithDistance(int distance, String name) {

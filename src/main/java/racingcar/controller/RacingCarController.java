@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import racingcar.domain.Cars;
+import racingcar.domain.generator.RandomOilGenerator;
 import racingcar.domain.Round;
 import racingcar.dto.RoundResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingCarController {
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
@@ -39,7 +41,7 @@ public class RacingCarController {
 
     private Cars readCars() {
         List<String> carNames = inputView.readCarNames();
-        return Cars.createCarsByName(carNames);
+        return Cars.createCarsByName(carNames, new RandomOilGenerator());
     }
 
     private Round readRound() {
