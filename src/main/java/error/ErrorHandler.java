@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public class ErrorHandler {
 
-    public static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public static <T> T executeErrorOccurable(Supplier<T> supplier) {
         while (true) {

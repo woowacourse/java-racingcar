@@ -6,7 +6,7 @@ import java.util.List;
 
 public class OutputView {
 
-    public static final String WIN_THE_GAME = "가 최종 우승했습니다.";
+    private static final String WIN_THE_GAME = "가 최종 우승했습니다.";
 
     public static void printScore(List<Car> cars) {
         for (Car car : cars) {
