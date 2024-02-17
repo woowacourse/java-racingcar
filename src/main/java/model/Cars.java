@@ -55,7 +55,7 @@ public class Cars {
 
     public List<String> findAllNameByForwardCount(int targetForwardCount) {
         return cars.stream()
-                .filter(car -> car.hasForwardCount(targetForwardCount))
+                .filter(car -> car.isSameForwardCount(targetForwardCount))
                 .map(Car::getName)
                 .toList();
     }

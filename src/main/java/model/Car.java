@@ -53,7 +53,7 @@ public class Car {
         return this.forwardCount;
     }
 
-    public boolean hasForwardCount(int targetForwardCount) {
+    public boolean isSameForwardCount(int targetForwardCount) {
         return this.forwardCount == targetForwardCount;
     }
 }
