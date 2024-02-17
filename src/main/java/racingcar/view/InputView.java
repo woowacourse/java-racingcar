@@ -32,7 +32,7 @@ public class InputView {
         }
     }
 
-    private static void checkIfValidInput(String input) {
+    public static void checkIfValidInput(String input) {
         String regex = "^[^,]+(,[^,]+)*$";
 
         Pattern pattern = Pattern.compile(regex);
@@ -43,7 +43,7 @@ public class InputView {
         }
     }
 
-    private static List<String> parseWithComma(String input) {
+    public static List<String> parseWithComma(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .filter(str -> !str.isEmpty())
