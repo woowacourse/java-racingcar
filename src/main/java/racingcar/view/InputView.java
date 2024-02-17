@@ -11,15 +11,9 @@ public class InputView {
     private final static String MESSAGE_ONLY_NUMBER = "시도할 회수는 숫자여야만 가능합니다.";
     private final static String MESSAGE_ONLY_NATURAL_NUMBER = "시도할 회수는 자연수를 입력해 주세요.";
     private final Scanner scanner = new Scanner(System.in);
-    private final OutputView outputView;
 
-
-    public InputView(OutputView outputView) {
-        this.outputView = outputView;
-    }
 
     public List<String> getCarName() {
-        outputView.printCarNameInputMessage();
         String input = scanner.nextLine();
         List<String> splitCarNames;
         try {
@@ -35,7 +29,6 @@ public class InputView {
     }
 
     public int getTryCount() {
-        outputView.printTryCountInputMessage();
         String input = scanner.nextLine();
         int tryCount;
         try {

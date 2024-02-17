@@ -9,12 +9,14 @@ import java.util.List;
 
 public class GameManager {
     OutputView outputView = new OutputView();
-    InputView inputView = new InputView(outputView);
+    InputView inputView = new InputView();
     List<Car> cars = new ArrayList<>();
 
     public void run() {
+        outputView.printCarNameInputMessage();
         List<String> carNames = inputView.getCarName();
         makeNewCars(carNames);
+        outputView.printTryCountInputMessage();
         int tryCount = inputView.getTryCount();
         for (int i = 0; i < tryCount; i++) {
             moveCars();
