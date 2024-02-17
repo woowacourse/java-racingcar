@@ -1,12 +1,13 @@
 package racing.input;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class RacingMaxTurnInputManager {
 
-    public static int getMaxTurnFromConsole(Scanner scanner) {
-        String input = scanner.next();
-        return getMaxTurn(input);
+    public static int getMaxTurnFromConsole(BufferedReader br) throws IOException {
+        String input = br.readLine();
+        return getMaxTurn(input.strip());
     }
 
     static int getMaxTurn(String input) {

@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.IntStream;
 import racing.dto.RacingResult;
 import racing.input.CarNameInputManager;
@@ -16,16 +15,15 @@ import util.RetryHelper;
 
 public class RacingManager {
     public static void raceStart() {
-        Scanner scanner = new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         List<String> carNames = getCarNames(br);
-        Racing racing = play(scanner, carNames);
+        Racing racing = play(br, carNames);
         List<String> winnerNames = racing.getWinnerNames();
         RacingResultOutputManager.printWinner(winnerNames);
     }
 
-    private static Racing play(Scanner scanner, List<String> carNames) {
-        int maxTurn = getMaxTurn(scanner);
+    private static Racing play(BufferedReader br, List<String> carNames) {
+        int maxTurn = getMaxTurn(br);
         Cars cars = makeCars(carNames);
         Racing racing = new Racing(maxTurn, cars);
         List<RacingResult> racingResults = IntStream.range(0, maxTurn).mapToObj(value -> {
@@ -50,12 +48,16 @@ public class RacingManager {
                 });
     }
 
-    private static int getMaxTurn(Scanner scanner) {
+    private static int getMaxTurn(BufferedReader br) {
         RetryHelper maxTurnInputManager = new RetryHelper(5);
         return maxTurnInputManager.retry(
                 () -> {
                     InputGuideOutputManager.printInputMaxRacingTurn();
-                    return RacingMaxTurnInputManager.getMaxTurnFromConsole(scanner);
+                    try {
+                        return RacingMaxTurnInputManager.getMaxTurnFromConsole(br);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
     }
 
