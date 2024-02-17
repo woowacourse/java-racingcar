@@ -21,7 +21,7 @@ class CarTest {
         Car car = new Car("apple");
 
         int beforeDistance = car.getDistance();
-        car.moveCar();
+        car.moveCar(RandomGenerator.getRandomNumberUnderTen());
         int afterDistance = car.getDistance();
 
         Assertions.assertThat(afterDistance).isEqualTo(beforeDistance + 1);
@@ -34,7 +34,7 @@ class CarTest {
         Car car = new Car("apple");
 
         int beforeDistance = car.getDistance();
-        car.moveCar();
+        car.moveCar(RandomGenerator.getRandomNumberUnderTen());
         int afterDistance = car.getDistance();
 
         Assertions.assertThat(afterDistance).isEqualTo(beforeDistance);

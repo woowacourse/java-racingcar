@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.domain.Car;
+import racingcar.domain.RandomGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -27,7 +28,7 @@ public class GameManager {
 
     private void moveCars() {
         for (Car car : cars) {
-            car.moveCar();
+            car.moveCar(RandomGenerator.getRandomNumberUnderTen());
         }
     }
 
