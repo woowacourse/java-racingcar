@@ -2,7 +2,8 @@ package controller;
 
 import domain.CarFactory;
 import domain.Cars;
-import domain.RandomNumber;
+import domain.NumberGenerator;
+import domain.RandomNumberGenerator;
 import domain.Rap;
 import domain.Winners;
 import util.StringConvertor;
@@ -11,8 +12,6 @@ import view.InputView;
 import view.OutputView;
 
 public class RacingController {
-    private static final int MIN_NUMBER_RANGE = 0;
-    private static final int MAX_NUMBER_RANGE = 9;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -50,9 +49,9 @@ public class RacingController {
 
     private void racing(Cars cars, Rap rap) {
         outputView.printRacingResult();
+        NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         while (rap.isLeft()) {
-            RandomNumber randomNumber = RandomNumber.of(MIN_NUMBER_RANGE, MAX_NUMBER_RANGE);
-            cars.moveAll(randomNumber);
+            cars.moveAll(randomNumberGenerator);
             outputView.printRacingProceed(cars);
             rap.round();
         }

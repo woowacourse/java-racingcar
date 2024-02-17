@@ -14,8 +14,8 @@ public class Car {
         return new Car(new Name(name), 0);
     }
 
-    public void move(Number number) {
-        if (number.get() >= MOVE_BOUND_NUMBER) {
+    public void move(int power) {
+        if (power >= MOVE_BOUND_NUMBER) {
             position++;
         }
     }

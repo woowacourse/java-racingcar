@@ -43,8 +43,8 @@ public class Cars {
         }
     }
 
-    public void moveAll(Number number) {
-        cars.forEach(car -> car.move(number));
+    public void moveAll(NumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
     public List<Car> getCars() {

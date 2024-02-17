@@ -83,7 +83,7 @@ class CarsTest {
         @ParameterizedTest
         @ValueSource(ints = {0, 1, 2, 3})
         void carsStopTest(int number) {
-            cars.moveAll(new FakeNumber(number));
+            cars.moveAll(new FakeNumberGenerator(number));
             List<Integer> carPositions = cars.getCars().stream()
                     .map(Car::getPosition)
                     .toList();
@@ -94,7 +94,7 @@ class CarsTest {
         @ParameterizedTest
         @ValueSource(ints = {4, 5, 6, 7, 8, 9})
         void carsMoveTest(int number) {
-            cars.moveAll(new FakeNumber(number));
+            cars.moveAll(new FakeNumberGenerator(number));
             List<Integer> carPositions = cars.getCars().stream()
                     .map(Car::getPosition)
                     .toList();
