@@ -40,7 +40,9 @@ public class Car implements Comparable<Car> {
 
     private void validateNameLength(final String name) {
         if (name.trim().length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름의 길이가 5를 초과합니다");
+            throw new IllegalArgumentException(
+                    String.format("자동차 이름의 길이가 %d를 초과합니다", MAX_NAME_LENGTH)
+            );
         }
     }
 

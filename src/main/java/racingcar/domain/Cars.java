@@ -28,7 +28,9 @@ public class Cars {
 
     private void validateSize(final List<Car> cars) {
         if (cars.size() < MIN_CARS_SIZE || cars.size() > MAX_CARS_SIZE) {
-            throw new IllegalArgumentException("자동차 대수는 2대 이상 10대 이하여야 합니다.");
+            throw new IllegalArgumentException(
+                    String.format("자동차 대수는 %d대 이상 %d대 이하여야 합니다.", MIN_CARS_SIZE, MAX_CARS_SIZE)
+            );
         }
     }
 
