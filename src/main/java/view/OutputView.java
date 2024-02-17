@@ -2,6 +2,7 @@ package view;
 
 import domain.car.Car;
 import domain.name.Name;
+import domain.race.RaceCarInfo;
 import domain.race.RaceProgress;
 import domain.race.RaceResult;
 
@@ -16,7 +17,19 @@ public class OutputView {
     public void printRaceProgresses(List<RaceProgress> raceProgresses) {
         newLine();
         System.out.println("실행 결과");
-        raceProgresses.stream().forEach(System.out::println);
+        for(RaceProgress raceProgress:raceProgresses){
+            List<RaceCarInfo> result=raceProgress.getRaceCarInfos();
+            printRaceProgressPerRound(result);
+            newLine();
+        }
+    }
+
+    private void printRaceProgressPerRound(List<RaceCarInfo> result) {
+        for(RaceCarInfo raceCarInfo: result){
+            String name = raceCarInfo.getName().getValue();
+            int position=raceCarInfo.getPosition();
+            System.out.println(name+" : " + "-".repeat(position));
+        }
     }
 
     public void printRaceResult(RaceResult raceResult) {

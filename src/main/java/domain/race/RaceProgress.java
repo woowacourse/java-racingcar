@@ -2,6 +2,7 @@ package domain.race;
 
 import domain.car.Car;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,10 +20,8 @@ public class RaceProgress {
         );
     }
 
-    @Override
-    public String toString() {
-        return raceCarInfos.stream()
-                .map(RaceCarInfo::toString)
-                .collect(Collectors.joining("\n", "", "\n"));
+    public List<RaceCarInfo> getRaceCarInfos() {
+        return Collections.unmodifiableList(raceCarInfos);
     }
+
 }

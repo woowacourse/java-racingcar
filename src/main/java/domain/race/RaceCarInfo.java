@@ -17,8 +17,12 @@ public class RaceCarInfo {
         return new RaceCarInfo(car.getName(), car.getPosition());
     }
 
-    @Override
-    public String toString() {
-        return name.getValue() + " : " + "-".repeat(position);
+    public Name getName() {
+        return name;
     }
+
+    public Integer getPosition() {
+        return position;
+    }
+
 }

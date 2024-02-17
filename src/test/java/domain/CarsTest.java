@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CarsTest {
     @Test
-    @DisplayName("자동차 이름 목록을 통해 자동차 목록을 포함한 일급 컬렉션를 만든다.")
+    @DisplayName("자동차 이름 목록을 통해 자동차 목록을 포함한 일급 컬렉션을 만든다.")
     void createCars() {
         List<Name> names = List.of(new Name("pond"), new Name("poby"));
         Names nameCatalog = new Names(names);
