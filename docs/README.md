@@ -56,7 +56,7 @@ Java Naming Conventions가이드를 참고하여 메서드 이름 수정
 
 ### 리펙터링 요구사항
 
-- [ ] 핵심 비지니스 로직을 가지는 객체를 domain 패키지에 구현한다.
+- [X] 핵심 비지니스 로직을 가지는 객체를 domain 패키지에 구현한다.
 - [X] CarController내에 InputView, OutputView를 분리한다.
     - [X] InputView를 분리한다.
     - [X] CarController의 생성자를 Cars와 TryCount로 받도록 수정한다.

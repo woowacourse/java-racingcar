@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 public class GameStatus {
     private final String status;

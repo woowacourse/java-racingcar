@@ -1,14 +1,9 @@
-package racingcar.controller;
-
-import racingcar.model.Cars;
-import racingcar.model.GameResult;
-import racingcar.model.GameStatus;
-import racingcar.model.NumericGenerator;
-import racingcar.model.TryCount;
-import racingcar.model.numericgenerator.RandomNumericGenerator;
-
+package racingcar.domain;
 
 import java.util.List;
+
+import racingcar.domain.numericgenerator.RandomNumericGenerator;
+
 import java.util.ArrayList;
 
 public class CarController {

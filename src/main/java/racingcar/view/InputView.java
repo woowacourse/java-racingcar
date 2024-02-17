@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.function.Function;
 
-import racingcar.model.Cars;
-import racingcar.model.TryCount;
+import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
 
 public class InputView {
     private static final BufferedReader CONSOLE = new BufferedReader(new InputStreamReader(System.in));
