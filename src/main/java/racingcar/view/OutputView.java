@@ -1,6 +1,5 @@
 package racingcar.view;
 
-import racingcar.domain.RoundResult;
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
 
