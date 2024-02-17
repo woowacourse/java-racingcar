@@ -2,7 +2,7 @@ package domain;
 
 public class RacingCount {
 
-    public static final int MIN_ROUND_COUNT = 1;
+    private static final int MIN_ROUND_COUNT = 1;
 
     private final int count;
 

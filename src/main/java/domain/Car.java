@@ -4,12 +4,12 @@ import dto.CarStatus;
 
 public class Car {
 
-    public static final int INITIAL_DISTANCE = 0;
-    public static final int MIN_NAME_LENGTH = 1;
-    public static final int MAX_NAME_LENGTH = 5;
-    public static final int FORWARD_NUMBER = 4;
-    public static final int MIN_RANDOM_NUMBER = 0;
-    public static final int MAX_RANDOM_NUMBER = 9;
+    private static final int INITIAL_DISTANCE = 0;
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int FORWARD_NUMBER = 4;
+    private static final int MIN_RANDOM_NUMBER = 0;
+    private static final int MAX_RANDOM_NUMBER = 9;
 
     private final NumberRangeGenerator numberRangeGenerator;
     private final String name;
