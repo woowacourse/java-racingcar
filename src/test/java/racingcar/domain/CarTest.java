@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
+
 class CarTest {
 
     @Test
@@ -14,7 +16,7 @@ class CarTest {
         car.moveCar(5);
         int movedDistance = car.getDistance();
 
-        Assertions.assertThat(movedDistance).isEqualTo(initDistance + 1);
+        assertThat(movedDistance).isEqualTo(initDistance + 1);
     }
 
     @Test
@@ -25,6 +27,20 @@ class CarTest {
         car.moveCar(3);
         int movedDistance = car.getDistance();
 
-        Assertions.assertThat(movedDistance).isEqualTo(initDistance);
+        assertThat(movedDistance).isEqualTo(initDistance);
+    }
+
+    @Test
+    @DisplayName("자동차_이름이_5자_이하인_경우_통과")
+    void validCarName() {
+        assertThatCode(() -> new Car("capy"))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("자동차_이름이_5자_초과인_경우_에러_발생")
+    void invalidCarName() {
+        assertThatThrownBy(() -> new Car("capyeeee"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
