@@ -1,25 +1,29 @@
 package domain;
 
+import dto.CarDto;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import utils.DtoMapper;
 import utils.NumberGenerator;
 
 public class Field {
-    private final CarFactory carFactory;
-    private final StringBuilder record;
+    private final RacingCars racingCars;
     private final NumberGenerator numberGenerator;
+    private final HashMap<Integer, List<CarDto>> record;
 
-    public Field(CarFactory carFactory, NumberGenerator numberGenerator) {
-        this.carFactory = carFactory;
-        this.record = new StringBuilder("\n실행 결과\n");
+    public Field(RacingCars racingCars, NumberGenerator numberGenerator) {
+        this.racingCars = racingCars;
         this.numberGenerator = numberGenerator;
+        this.record = new LinkedHashMap<>();
     }
 
     public void race(int numberOfAttempts) {
-        List<Car> cars = carFactory.getAllCars();
-        for (int i = 0; i < numberOfAttempts; i++) {
+        List<Car> cars = racingCars.getAllCars();
+        for (int attempt = 1; attempt <= numberOfAttempts; attempt++) {
             runSingleAttempt(cars);
-            log(cars);
+            recordAttempt(attempt, cars);
         }
     }
 
@@ -30,21 +34,15 @@ public class Field {
         }
     }
 
-    private void log(List<Car> cars) {
+    private void recordAttempt(int attempt, List<Car> cars) {
+        List<CarDto> carDtos = new ArrayList<>();
         for (Car car : cars) {
-            record.append(car.toString());
-            record.append("\n");
+            carDtos.add(DtoMapper.convert(car));
         }
-        record.append("\n");
+        record.put(attempt, carDtos);
     }
 
-    public String getResult() {
-        List<Car> winners = carFactory.getWinners();
-        List<String> winnerNames = new ArrayList<>();
-        for (Car winner : winners) {
-            winnerNames.add(winner.getName());
-        }
-        String winnerResult = String.join(", ", winnerNames).concat("가 최종 우승했습니다.");
-        return record.append(winnerResult).toString();
+    public HashMap<Integer, List<CarDto>> getRacingRecord() {
+        return record;
     }
 }
