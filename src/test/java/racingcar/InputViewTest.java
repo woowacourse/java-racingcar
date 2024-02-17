@@ -28,6 +28,7 @@ public class InputViewTest {
         @DisplayName("콤마를 기준으로 문자열 분리")
         void testParseWithComma() {
             String given = "차1, 차2";
+            
             List<String> actual = List.of("차1", "차2");
             List<String> expected = InputView.parseWithComma(given);
 

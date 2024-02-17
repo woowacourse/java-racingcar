@@ -41,7 +41,9 @@ public class CarsTest {
         void testMoveCarsMove() {
             Cars cars = new Cars(new TestNumericGenerator(4), List.of("차", "2개"));
             cars.moveCars();
+
             String actual = cars.toString();
+
             assertThat(actual).isEqualTo("차 : -\n2개 : -");
         }
 
@@ -50,7 +52,9 @@ public class CarsTest {
         void testMoveCarsStop() {
             Cars cars = new Cars(new TestNumericGenerator(3), List.of("차", "2개"));
             cars.moveCars();
+
             String actual = cars.toString();
+
             assertThat(actual).isEqualTo("차 : \n2개 : ");
         }
 
@@ -59,7 +63,9 @@ public class CarsTest {
         void testCalculatorWinner() {
             Cars cars = new Cars(new TestNumericGenerator(4, 3), List.of("폭포", "포케"));
             cars.moveCars();
+
             String actual = cars.calculateWinner();
+
             assertThat(actual).isEqualTo("폭포");
         }
 
@@ -68,7 +74,9 @@ public class CarsTest {
         void testCalculatorMultiWinner() {
             Cars cars = new Cars(new TestNumericGenerator(4, 4, 3), List.of("폭포", "포케", "무빈"));
             cars.moveCars();
+
             String actual = cars.calculateWinner();
+            
             assertThat(actual).isEqualTo("폭포, 포케");
         }
     }

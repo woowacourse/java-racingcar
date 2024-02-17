@@ -18,6 +18,7 @@ public class TryCountTest {
         @DisplayName("입력값이 문자이면 예외를 발생한다.")
         void testIsNotNumeric() {
             String given = "문자열";
+            
             assertThatThrownBy(() -> new TryCount(given))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -26,6 +27,7 @@ public class TryCountTest {
         @DisplayName("입력값이 음수이면 예외를 발생한다.")
         void testIsMinusValue() {
             String given = "-1";
+
             assertThatThrownBy(() -> new TryCount(given))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -38,8 +40,10 @@ public class TryCountTest {
         void testConsume() {
             TryCount count = new TryCount("5");
             count.consume();
+
             int actualValue = count.getValue();
             int expectedValue = 4;
+
             assertThat(actualValue).isEqualTo(expectedValue);
         }
 
@@ -49,7 +53,9 @@ public class TryCountTest {
         @DisplayName("1 이상인지 확인")
         void testUntilZero(String given, boolean expected) {
             TryCount count = new TryCount(given);
+
             boolean actual = count.untilZero();
+
             assertThat(actual).isEqualTo(expected);
         }
     }

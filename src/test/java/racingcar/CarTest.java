@@ -30,8 +30,10 @@ public class CarTest {
         void testMove() {
             Car car = new Car("차");
             car.move();
+
             int actual = car.getPosition();
             int expected = 1;
+            
             assertThat(actual).isEqualTo(expected);
         }
     }
