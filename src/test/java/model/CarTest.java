@@ -26,7 +26,6 @@ public class CarTest {
     @Test
     void carNameLengthTest() {
         String wrongName = "abcdef";
-
         assertThatThrownBy(() -> Car.from(wrongName))
                 .isInstanceOf(IllegalStateException.class);
     }
