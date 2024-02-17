@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Car;
 import domain.CarFactory;
 import domain.Cars;
 import domain.RacingCount;
@@ -23,7 +24,7 @@ public class Controller {
     public void run() {
         final Cars cars = initCars();
         final RacingCount racingCount = inputRacingCount();
-        
+
         final List<String> winners = racing(cars, racingCount);
         outputView.printWinners(winners);
     }
@@ -60,7 +61,7 @@ public class Controller {
         final RacingRule racingRule = new RacingRule();
         return racingRule.getWinners(cars)
                 .stream()
-                .map(car -> car.getStatus().name())
+                .map(Car::getName)
                 .toList();
     }
 }

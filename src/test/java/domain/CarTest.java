@@ -17,7 +17,7 @@ class CarTest {
 
         // When
         car.move();
-        int distance = car.getStatus().distance();
+        int distance = car.getDistance();
 
         // Then
         assertThat(distance).isEqualTo(1);
@@ -32,7 +32,7 @@ class CarTest {
 
         // When
         car.move();
-        int distance = car.getStatus().distance();
+        int distance = car.getDistance();
 
         // Then
         assertThat(distance).isEqualTo(0);

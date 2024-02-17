@@ -47,4 +47,12 @@ public class Car {
     public CarStatus getStatus() {
         return new CarStatus(name, distance);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
 }

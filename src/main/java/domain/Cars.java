@@ -26,7 +26,7 @@ public class Cars {
 
     public int getMaxDistance() {
         return cars.stream()
-                .mapToInt(car -> car.getStatus().distance())
+                .mapToInt(Car::getDistance)
                 .max()
                 .orElseGet(() -> 0);
     }

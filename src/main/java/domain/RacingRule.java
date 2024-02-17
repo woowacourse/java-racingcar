@@ -8,7 +8,7 @@ public class RacingRule {
         final int maxDistance = cars.getMaxDistance();
         return cars.getCars()
                 .stream()
-                .filter(car -> car.getStatus().distance() == maxDistance)
+                .filter(car -> car.getDistance() == maxDistance)
                 .toList();
     }
 }
