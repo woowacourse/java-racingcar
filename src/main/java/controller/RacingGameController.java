@@ -21,28 +21,13 @@ public class RacingGameController {
     }
 
     public void run() {
-
         Cars cars = prepareCars();
-
         MoveCount moveCount = prepareMoveCount();
 
         outputView.printResultPrefix();
         executeRace(cars, moveCount);
 
         findWinners(cars);
-    }
-
-    private void findWinners(Cars cars) {
-        List<Car> winners = cars.chooseWinners();
-        outputView.printWinner(winners);
-    }
-
-    private void executeRace(Cars cars, MoveCount moveCount) {
-        while (!moveCount.isCountZero()) {
-            cars.tryMoveAll();
-            moveCount.consume();
-            outputView.printRaceResult(cars.getCars());
-        }
     }
 
     private Cars prepareCars() {
@@ -66,5 +51,18 @@ public class RacingGameController {
             outputView.printErrorMessage(e.getMessage());
             return prepareMoveCount();
         }
+    }
+
+    private void executeRace(Cars cars, MoveCount moveCount) {
+        while (!moveCount.isCountZero()) {
+            cars.tryMoveAll();
+            moveCount.consume();
+            outputView.printRaceResult(cars.getCars());
+        }
+    }
+
+    private void findWinners(Cars cars) {
+        List<Car> winners = cars.chooseWinners();
+        outputView.printWinner(winners);
     }
 }
