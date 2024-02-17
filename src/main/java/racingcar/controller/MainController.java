@@ -23,7 +23,9 @@ public class MainController {
         Round round = repeat(this::inputRound);
         CarRacingGame carRacingGame = new CarRacingGame(cars, round);
 
-        race(carRacingGame);
+        outputView.printResultMessage();
+        carRacingGame.race(outputView);
+
         showWinners(carRacingGame.findWinners());
     }
 
@@ -35,23 +37,6 @@ public class MainController {
     private Round inputRound() {
         String inputRound = inputView.inputRound();
         return new Round(inputRound);
-    }
-
-    private void race(CarRacingGame carRacingGame) {
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-
-        outputView.printResultMessage();
-        while (!carRacingGame.isGameEnd()) {
-            carRacingGame.playRound(numberGenerator);
-            showRoundResult(carRacingGame);
-        }
-    }
-
-    private void showRoundResult(CarRacingGame carRacingGame) {
-        List<Car> currentCarStatuses = carRacingGame.getCurrentCarStatuses();
-        List<CarDto> cars = new CarsDto(currentCarStatuses).getCars();
-
-        outputView.printRoundResult(cars);
     }
 
     private void showWinners(List<Car> winners) {

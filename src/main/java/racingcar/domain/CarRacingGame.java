@@ -1,6 +1,9 @@
 package racingcar.domain;
 
-import java.util.Collections;
+import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
+import racingcar.view.OutputView;
+
 import java.util.List;
 
 public class CarRacingGame {
@@ -12,12 +15,21 @@ public class CarRacingGame {
         this.round = round;
     }
 
-    public List<Car> findWinners() {
-        return cars.findCarsAtMaxPosition();
+    public void race(OutputView outputView) {
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+
+        while (!isGameEnd()) {
+            playRound(numberGenerator);
+            showRoundResult(outputView);
+        }
     }
 
     public boolean isGameEnd() {
         return round.isLast();
+    }
+
+    public List<Car> findWinners() {
+        return cars.findCarsAtMaxPosition();
     }
 
     public void playRound(NumberGenerator numberGenerator) {
@@ -25,7 +37,12 @@ public class CarRacingGame {
         round.decrease();
     }
 
+    private void showRoundResult(OutputView outputView) {
+        List<CarDto> carsDto = new CarsDto(getCurrentCarStatuses()).getCars();
+        outputView.printRoundResult(carsDto);
+    }
+
     public List<Car> getCurrentCarStatuses() {
-        return Collections.unmodifiableList(cars.getCars());
+        return cars.getCars();
     }
 }
