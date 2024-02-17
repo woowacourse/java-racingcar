@@ -24,4 +24,8 @@ class OutputView {
     public static void printWinner(List<String> results) {
         System.out.format("%s가 최종 우승했습니다.", String.join(DELIMITER, results));
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
