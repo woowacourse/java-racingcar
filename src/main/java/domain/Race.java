@@ -17,11 +17,12 @@ public class Race {
     }
 
     public List<Car> findWinner() {
-        int maxPosition = cars.stream().mapToInt(Car::getPosition)
+        int maxPosition = cars.stream()
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(maxPosition))
                 .toList();
     }
 
