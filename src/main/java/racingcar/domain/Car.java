@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Car implements Comparable<Car> {
-    private static final String CAR_POSITION_SYMBOL = "-";
 
     private final String name;
     private int position = 0;
