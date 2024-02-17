@@ -17,7 +17,7 @@ public class Car {
         this.intGenerator = intGenerator;
     }
 
-    public static Car fromRandomGenerator(String name) {
+    public static Car fromName(String name) {
         return new Car(name, new RandomIntGenerator());
     }
 
