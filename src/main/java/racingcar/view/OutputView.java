@@ -5,11 +5,9 @@ import racingcar.domain.CarStatus;
 
 public class OutputView {
 
-
     public void printResultMessage() {
         System.out.println("실행 결과");
     }
-
 
     public void printResults(List<CarStatus> raceResults) {
         for (CarStatus carStatus : raceResults) {
@@ -17,7 +15,6 @@ public class OutputView {
         }
         System.out.println();
     }
-
 
     public void printWinners(List<CarStatus> winners) {
         String joinedWinnerNames = String.join(", ", winners.stream()
