@@ -10,7 +10,6 @@ import view.OutputView;
 
 public class RaceManager {
     private final InputView inputView;
-
     private final OutputView outputView;
     private final RacingCars racingCars;
     private final Field field;
