@@ -15,11 +15,11 @@ public class CarsTest {
     @Test
     @DisplayName("최대 거리인 자동차들를 구한다")
     void getMaxDistance() {
-        Car pobi = Car.of("포비", 1);
-        Car kirby = Car.of("커비", 10);
-        Car jonge = Car.of("종이", 10);
+        final Car pobi = Car.of("포비", 1);
+        final Car kirby = Car.of("커비", 10);
+        final Car jonge = Car.of("종이", 10);
+        final Cars cars = Cars.from(List.of(pobi, kirby, jonge));
 
-        Cars cars = Cars.from(List.of(pobi, kirby, jonge));
         assertThat(cars.getMaxDistanceCars()).containsExactly(kirby, jonge);
     }
 }

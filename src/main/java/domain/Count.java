@@ -7,17 +7,13 @@ public class Count {
     public static final int MAX_COUNT = 100;
     private int count;
 
-    private Count(int count) {
+    private Count(final int count) {
         validate(count);
         this.count = count;
     }
 
     public static Count from(int count) {
         return new Count(count);
-    }
-
-    public static Count init() {
-        return new Count(1);
     }
 
     private void validate(int count) {

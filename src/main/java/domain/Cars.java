@@ -14,7 +14,7 @@ public class Cars {
     public static final int MAX_CAR_COUNT = 50;
     private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    private Cars(final List<Car> cars) {
         validate(cars);
         this.cars = cars;
     }

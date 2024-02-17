@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Distance implements Comparable<Distance> {
     private int distance;
 
-    private Distance(int distance) {
+    private Distance(final int distance) {
         this.distance = distance;
     }
 

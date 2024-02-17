@@ -4,7 +4,7 @@ public class RacingGame {
     private final Count countLeft;
     private final MovementGenerator randomMovementGenerator;
 
-    private RacingGame(Count countLeft, MovementGenerator randomMovementGenerator) {
+    private RacingGame(final Count countLeft, final MovementGenerator randomMovementGenerator) {
         this.countLeft = countLeft;
         this.randomMovementGenerator = randomMovementGenerator;
     }

@@ -15,15 +15,17 @@ public class RandomMovementGeneratorTest {
     @Test
     @DisplayName("랜덤 숫자가 4이상이면 전진을 반환한다.")
     void move_true() {
-        NumberGenerator numberGenerator = () -> 4;
-        MovementGenerator movementGenerator = new RandomMovementGenerator(numberGenerator);
+        final NumberGenerator numberGenerator = () -> 4;
+        final MovementGenerator movementGenerator = new RandomMovementGenerator(numberGenerator);
+
         assertThat(movementGenerator.generate()).isEqualTo(Movement.MOVE);
     }
     @Test
     @DisplayName("랜덤 숫자가 4미만이면 전진을 반환한다.")
     void move_false() {
-        NumberGenerator numberGenerator = () -> 3;
-        MovementGenerator movementGenerator = new RandomMovementGenerator(numberGenerator);
+        final NumberGenerator numberGenerator = () -> 3;
+        final MovementGenerator movementGenerator = new RandomMovementGenerator(numberGenerator);
+
         assertThat(movementGenerator.generate()).isEqualTo(Movement.STAY);
     }
 }

@@ -26,8 +26,10 @@ class CarTest {
     @Test
     @DisplayName("차를 움직이면 거리가 늘어난다.")
     void move() {
-        Car car = Car.of("pobi", 2);
+        final Car car = Car.of("pobi", 2);
+
         car.move();
+
         assertThat(car.getDistance()).isEqualTo(Distance.from(3));
     }
 }
