@@ -9,13 +9,23 @@ import java.io.IOException;
 public class RaceManager {
     private final InputView inputView;
     private final Field field;
-    private final int numberOfAttempts;
 
     public RaceManager(InputView inputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
+        this.field = new Field(numberGenerator);
+    }
+
+    public void run() {
         CarGroup carGroup = repeatUntilGetValidCarNames();
-        this.numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
-        this.field = new Field(carGroup, numberGenerator);
+        int numberOfAttempts = repeatUntilGetValidNumberOfAttempts();
+
+        OutputView.printRaceResultHeader();
+        for (int i = 0; i < numberOfAttempts; i++) {
+            field.moveCars(carGroup);
+            OutputView.printCarsPosition(carGroup);
+        }
+
+        OutputView.printResult(carGroup);
     }
 
     private CarGroup repeatUntilGetValidCarNames() {
@@ -34,11 +44,5 @@ public class RaceManager {
         } catch (IOException | IllegalArgumentException e) {
             return repeatUntilGetValidNumberOfAttempts();
         }
-    }
-
-    public void run() {
-        field.race(numberOfAttempts);
-        String raceResult = field.getResult();
-        OutputView.printResult(raceResult);
     }
 }

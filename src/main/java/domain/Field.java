@@ -6,44 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Field {
-    private final CarGroup carGroup;
-    private final StringBuilder record;
     private final NumberGenerator numberGenerator;
 
-    public Field(CarGroup carGroup, NumberGenerator numberGenerator) {
-        this.carGroup = carGroup;
-        this.record = new StringBuilder("\n실행 결과\n");
+    public Field(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
-    public void race(int numberOfAttempts) {
+    public void moveCars(CarGroup carGroup) {
         List<Car> cars = carGroup.getAllCars();
-        for (int i = 0; i < numberOfAttempts; i++) {
-            runSingleAttempt(cars);
-            log(cars);
-        }
-    }
-
-    private void runSingleAttempt(List<Car> cars) {
         for (Car car : cars) {
             int randomNumber = numberGenerator.getNumber();
             car.move(randomNumber);
         }
     }
 
-    private void log(List<Car> cars) {
-        for (Car car : cars) {
-            record.append(car.toString());
-            record.append("\n");
-        }
-        record.append("\n");
-    }
-
-    public String getResult() {
+    public String getResult(CarGroup carGroup) {
+        StringBuilder result = new StringBuilder();
         List<Car> winners = carGroup.getWinners();
 
         if (winners.size() == 0) {
-            return record.append("우승자가 없습니다.").toString();
+            return result.append("우승자가 없습니다.").toString();
         }
 
         List<String> winnerNames = new ArrayList<>();
@@ -51,6 +33,6 @@ public class Field {
             winnerNames.add(winner.getName());
         }
         String winnerResult = String.join(", ", winnerNames).concat("가 최종 우승했습니다.");
-        return record.append(winnerResult).toString();
+        return result.append(winnerResult).toString();
     }
 }
