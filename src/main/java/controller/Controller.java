@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Car;
-import domain.CarFactory;
 import domain.Cars;
 import domain.RacingCount;
 import domain.RacingRule;
@@ -32,7 +31,7 @@ public class Controller {
     private Cars initCars() {
         try {
             final List<String> carNames = inputView.inputCars();
-            return CarFactory.generateCars(carNames);
+            return Cars.generateCars(carNames);
         } catch (IllegalArgumentException e) {
             outputView.printInputCarNamesErrorMessage();
             return initCars();

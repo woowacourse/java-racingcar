@@ -15,7 +15,7 @@ class CarFactoryTest {
         List<String> invalidInput = List.of("test");
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> CarFactory.generateCars(invalidInput))
+        Assertions.assertThatThrownBy(() -> Cars.generateCars(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름의 개수는 2이상이여야 합니다.");
     }
@@ -27,7 +27,7 @@ class CarFactoryTest {
         List<String> invalidInput = List.of("test", "test");
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> CarFactory.generateCars(invalidInput))
+        Assertions.assertThatThrownBy(() -> Cars.generateCars(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 자동차 이름을 허용하지 않습니다.");
     }
