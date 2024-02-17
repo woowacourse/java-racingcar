@@ -1,7 +1,7 @@
 package domain;
 
 import domain.name.Name;
-import domain.name.NameCatalog;
+import domain.name.Names;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,16 +9,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NameCatalogTest {
+class NamesTest {
 
     @Test
     @DisplayName("이름들을 통해 이름 명단을 만든다")
     void createCarCatalog(){
         List<Name> carNameCatalog = List.of(new Name("poby"), new Name("pond"));
 
-        NameCatalog catalog = new NameCatalog(carNameCatalog);
+        Names catalog = new Names(carNameCatalog);
 
-        assertInstanceOf(NameCatalog.class, catalog);
+        assertInstanceOf(Names.class, catalog);
 
     }
     @Test
@@ -27,7 +27,7 @@ class NameCatalogTest {
         List<Name> duplicateCarNameCatalog = List.of(new Name("pond"),new Name("pond"));
 
         assertThrows(IllegalArgumentException.class, ()->{
-            new NameCatalog(duplicateCarNameCatalog);
+            new Names(duplicateCarNameCatalog);
         });
     }
 
