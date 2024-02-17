@@ -1,3 +1,5 @@
+package racingcar;
+
 public class RacingCarApplication {
 
     private RacingCarApplication() {

@@ -1,4 +1,4 @@
-package domain;
+package racingcar.domain;
 
 import java.util.List;
 import org.assertj.core.api.Assertions;

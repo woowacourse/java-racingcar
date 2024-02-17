@@ -1,11 +1,13 @@
-import domain.Car;
-import domain.Cars;
-import domain.RandomDigitSupplier;
-import domain.RandomMoveStrategy;
-import domain.TrialCount;
+package racingcar;
+
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
+import racingcar.domain.RandomDigitSupplier;
+import racingcar.domain.RandomMoveStrategy;
+import racingcar.domain.TrialCount;
 import java.util.List;
-import view.InputView;
-import view.OutputView;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingCarController {
 

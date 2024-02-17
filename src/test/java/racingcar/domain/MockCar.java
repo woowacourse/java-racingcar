@@ -1,4 +1,6 @@
-package domain;
+package racingcar.domain;
+
+import racingcar.domain.Car;
 
 public class MockCar extends Car {
 
