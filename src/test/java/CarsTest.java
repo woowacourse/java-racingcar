@@ -15,7 +15,7 @@ public class CarsTest {
 
     @BeforeEach
     void setup() {
-        pobi = Car.of("포비", 1);
+        pobi  = Car.of("포비", 1);
         kirby = Car.of("커비", 10);
         jonge = Car.of("종이", 10);
     }
