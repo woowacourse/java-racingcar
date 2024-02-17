@@ -1,7 +1,5 @@
 package view;
 
-import domain.racing.RacingCount;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -19,11 +17,10 @@ public class InputView {
                 .toList();
     }
 
-    public RacingCount inputRacingCount() {
+    public int inputRacingCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        int input = parseNumber(sc.nextLine());
 
-        return new RacingCount(input);
+        return parseNumber(sc.nextLine());
     }
 
     private int parseNumber(final String input) {

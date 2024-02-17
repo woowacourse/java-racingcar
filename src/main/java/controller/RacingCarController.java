@@ -43,7 +43,9 @@ public class RacingCarController {
 
     private RacingCount inputRacingCount() {
         try {
-            return inputView.inputRacingCount();
+            int inputRacingCount = inputView.inputRacingCount();
+
+            return new RacingCount(inputRacingCount);
         } catch (RuntimeException e) {
             outputView.printInputRacingCountErrorMessage();
 
