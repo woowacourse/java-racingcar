@@ -20,9 +20,7 @@ public class OutputView {
     }
 
     public void printRaceResult(RaceResult raceResult) {
-        String racerList = raceResult
-                .getWinnerCars()
-                .stream()
+        String racerList = raceResult.getWinnerCars().stream()
                 .map(Car::getName)
                 .map(Name::getValue)
                 .collect(Collectors.joining(", "));

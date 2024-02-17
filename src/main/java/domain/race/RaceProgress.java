@@ -13,8 +13,7 @@ public class RaceProgress {
     }
 
     public static RaceProgress from(final List<Car> cars) {
-        return new RaceProgress(cars
-                .stream()
+        return new RaceProgress(cars.stream()
                 .map(RaceCarInfo::from)
                 .toList()
         );
@@ -22,8 +21,7 @@ public class RaceProgress {
 
     @Override
     public String toString() {
-        return raceCarInfos
-                .stream()
+        return raceCarInfos.stream()
                 .map(RaceCarInfo::toString)
                 .collect(Collectors.joining("\n", "", "\n"));
     }

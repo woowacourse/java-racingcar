@@ -15,8 +15,7 @@ public class Names {
     private void validate(List<Name> names) {
         int size = names.size();
 
-        Set<String> nonDuplicate = names
-                .stream()
+        Set<String> nonDuplicate = names.stream()
                 .map(Name::getValue)
                 .collect(Collectors.toSet());
 

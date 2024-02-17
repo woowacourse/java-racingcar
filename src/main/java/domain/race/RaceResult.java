@@ -14,16 +14,14 @@ public class RaceResult {
     }
 
     private static Integer getMaxPosition(List<Car> cars) {
-        return cars.
-                stream()
+        return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
     }
 
     private static List<Car> selectWinnerCars(List<Car> cars, Integer maxPosition) {
-        return cars
-                .stream()
+        return cars.stream()
                 .filter(car -> car.getPosition().equals(maxPosition))
                 .toList();
     }

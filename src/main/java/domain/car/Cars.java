@@ -13,8 +13,7 @@ public class Cars {
     }
 
     public static Cars from(Names names) {
-        List<Car> cars = names.getNames()
-                .stream()
+        List<Car> cars = names.getNames().stream()
                 .map(Car::new)
                 .toList();
 

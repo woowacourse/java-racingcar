@@ -17,8 +17,7 @@ public class InputView {
         List<String> splitValue = Splitter.splitWithComma(originalValue);
 
 
-        List<Name> names = splitValue
-                .stream()
+        List<Name> names = splitValue.stream()
                 .map(Name::new)
                 .toList();
 
