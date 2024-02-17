@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RefereeTest {
 
-    Car car1;
-    Car car2;
-    Car car3;
+    private Car car1;
+    private Car car2;
+    private Car car3;
 
 
     static class FixNumberGenerator implements NumberGenerator {

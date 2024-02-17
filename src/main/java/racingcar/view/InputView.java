@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    Scanner scanner = new Scanner(System.in);
-    final InputValidator inputValidator = new InputValidator();
+    private final Scanner scanner = new Scanner(System.in);
+    private final InputValidator inputValidator = new InputValidator();
     public List<String> getCarNames() {
         displayMessage(USER_CAR_NAME_INPUT_PROMPT);
         String initialInput = scanner.nextLine();
