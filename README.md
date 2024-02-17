@@ -59,3 +59,23 @@
 - [X] 거리를 나타내는 용어를 통일한다.
 - [X] 랜덤에 대한 테스트를 추가한다.
 - [X] 확장성을 고려해 `forward` 증가량을 상수화한다.
+
+## 리펙터링 요구사항
+
+- [ ] UI 관련한 객체를 `view` 패키지에 구현한다.
+- [ ] MVC 패턴으로 리팩터링 후의 main 메소드 예시는 다음과 같을 수 있도록 한다.
+
+```java  
+public class RacingMain {
+    public static void main(final String... args) {
+        final var carNames = InputView.getCarNames();
+        final var tryCount = InputView.getTryCount();
+        final var racingGame = new RacingGame(carNames, tryCount);
+        racingGame.race();
+        ResultView.printWinners(racingGame.getWinners());
+    }
+}  
+```  
+
+- [ ] 불필요한 상수화 제거한다.
+- [ ] `Vehicles`의 클래스명을 `Cars`로 변경한다.
