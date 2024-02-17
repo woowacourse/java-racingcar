@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 public class InputValidator {
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_CAR_COUNT = 2;
+    private static final int MIN_TRY_NUMBER = 1;
     
     public static void validateAvailableName(List<String> names){
         for(String inputName :  names){
@@ -25,7 +28,7 @@ public class InputValidator {
     }
 
     private static void isAvailableLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
@@ -36,7 +39,7 @@ public class InputValidator {
     }
 
     private static void validateIsMultipleCarNames(List<String> carNames) {
-        if (carNames.size() <= 1) {
+        if (carNames.size() < MIN_CAR_COUNT) {
             throw new IllegalArgumentException();
         }
     }
@@ -52,7 +55,7 @@ public class InputValidator {
     public static void validateTryNumber(String tryNumber) {
         try {
             validateIsNumeric(tryNumber);
-            validateIsPositive(tryNumber);
+            validateIsOverMinimum(tryNumber);
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }
@@ -64,8 +67,8 @@ public class InputValidator {
         }
     }
 
-    private static void validateIsPositive(String tryNumber) {
-        if(Integer.parseInt(tryNumber) <= 0) {
+    private static void validateIsOverMinimum(String tryNumber) {
+        if(Integer.parseInt(tryNumber) < MIN_TRY_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

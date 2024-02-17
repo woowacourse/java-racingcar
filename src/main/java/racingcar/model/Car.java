@@ -1,6 +1,8 @@
 package racingcar.model;
 
 public class Car {
+    private final int BOUND = 10;
+
     private final String name;
     private int position;
     private final NumberGenerator numberGenerator;
@@ -11,7 +13,7 @@ public class Car {
     }
 
     private boolean canMove(){
-        int random = numberGenerator.generateNumber(10);
+        int random = numberGenerator.generateNumber(BOUND);
         return random >= 4;
     }
 
