@@ -3,7 +3,6 @@ package racingcar.controller;
 import racingcar.controller.numericgenerator.RandomNumericGenerator;
 import racingcar.model.Cars;
 import racingcar.model.TryCount;
-import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class CarController {
@@ -11,13 +10,13 @@ public class CarController {
     private TryCount tryCount;
     private NumericGenerator generator = new RandomNumericGenerator();
 
+    
+    public CarController(Cars cars, TryCount tryCount) {
+        this.cars = cars;
+        this.tryCount = tryCount;
+    }
+
     public void startGame() {
-        String receivedCarNames = InputView.inputRacingCars();
-        cars = new Cars(receivedCarNames);
-
-        String receivedCount = InputView.inputTryCount();
-        tryCount = new TryCount(receivedCount);
-
         OutputView.printResultMessage();
         while(tryCount.checkTryable()){
             cars.moveCars(generator);

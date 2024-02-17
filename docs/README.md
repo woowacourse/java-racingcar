@@ -58,8 +58,9 @@ Java Naming Conventions가이드를 참고하여 메서드 이름 수정
 
 - [ ] 핵심 비지니스 로직을 가지는 객체를 domain 패키지에 구현한다.
     - [ ] domain 패키지의 객체는 view에 의존하지 않도록 구현한다.
-        - [ ] CarController내에 InputView, OutputView를 때어낸다.
-            - [ ] CarController의 생성자를 Cars와 TryCount로 받도록 수정한다.
+        - [ ] CarController내에 InputView, OutputView를 분리한다.
+            - [X] InputView를 분리한다.
+            - [X] CarController의 생성자를 Cars와 TryCount로 받도록 수정한다.
                 - [X] CarController에 NumericGenerator를 구성하도록 변경한다.
                 - [X] Cars내 moveCars를 NumericGenerator를 받도록 변경한다.
         - [ ] Main인 Application.java 를 RacingMain.java 으로 변경한다.
@@ -67,7 +68,11 @@ Java Naming Conventions가이드를 참고하여 메서드 이름 수정
         
 
 - [ ] UI 관련한 객체를 view 패키지에 구현한다.
-    - [ ] view 패키지의 객체가 domain 패키지 객체에 의존 할 수 있도록 구현한다.
+    - [ ] view 패키지의 객체가 domain 패키지 객체에 의존 가능하도록 구현한다.
+        - [X] inputView가 domain 패키지 객체에 의존하도록 구현
+            - [X] Cars를 반환
+            - [X] TryCount를 반환
+
 
 - [ ] 테스트 가능한 부분과 테스트하기 힘든 부분을 분리한다.
     - [ ] 테스트 가능한 부분에 대해서만 단위 테스트를 진행한다.
