@@ -2,7 +2,7 @@ package service;
 
 import domain.Cars;
 import util.Exceptions;
-import util.RandomGenerator;
+import util.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +35,6 @@ public class RacingCarService {
 
     public void moveCars(Cars cars) {
         cars.getCars()
-            .forEach(car -> car.move(RandomGenerator.pickRandomNumber()));
+            .forEach(car -> car.move(RandomNumberGenerator.generate()));
     }
 }

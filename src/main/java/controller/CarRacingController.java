@@ -5,7 +5,7 @@ import domain.Cars;
 import domain.Judge;
 import service.RacingCarService;
 import util.Exceptions;
-import util.RandomGenerator;
+import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -30,7 +30,6 @@ public class CarRacingController {
         int rap = inputRap();
 
         outputView.printResultMessage();
-
         race(cars, rap);
 
         printWinners(cars);
@@ -45,7 +44,7 @@ public class CarRacingController {
 
     private void moveCars(Cars cars) {
         for (Car car : cars.getCars()) {
-            car.move(RandomGenerator.pickRandomNumber());
+            car.move(RandomNumberGenerator.generate());
         }
     }
 
