@@ -19,13 +19,13 @@ class Cars {
 
     private void checkCarsSize(List<Car> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("최소 %d대의 자동차를 입력해주세요.", MIN_CARS_SIZE));
         }
     }
 
     private void checkCarsDuplicated(List<Car> cars) {
         if (getUniqueSize(cars) != cars.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("중복된 이름의 자동차가 포함되어 있습니다.");
         }
     }
 

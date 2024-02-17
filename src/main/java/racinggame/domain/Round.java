@@ -17,7 +17,10 @@ public class Round {
 
     private void checkRoundInRange(int round) {
         if (round < MIN_ROUND_RANGE || round > MAX_ROUND_RANGE) {
-            throw new IllegalArgumentException();
+            String overRangeMessage =
+                String.format("라운드는 %d에서 %d 사이의 수를 입력해주세요.", MIN_ROUND_RANGE, MAX_ROUND_RANGE);
+
+            throw new IllegalArgumentException(overRangeMessage);
         }
     }
 

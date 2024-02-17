@@ -17,13 +17,13 @@ class Name {
 
     private void checkNameIsEmpty(String name) {
         if (name.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차의 이름은 최소 1글자입니다.");
         }
     }
 
     private void checkNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("자동차의 이름은 %d자 이하만 가능합니다.", MAX_NAME_LENGTH));
         }
     }
 

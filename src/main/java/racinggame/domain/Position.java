@@ -16,7 +16,7 @@ class Position {
 
     private void checkIsNonNegative(int position) {
         if (position < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차의 위치는 음수가 될 수 없습니다.");
         }
     }
 
