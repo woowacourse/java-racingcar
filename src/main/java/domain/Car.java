@@ -3,8 +3,7 @@ package domain;
 import common.exception.model.ValidateException;
 
 public class Car {
-    private String name;
-
+    private final String name;
     private int position;
     private final CarAccelerator accelerator;
 

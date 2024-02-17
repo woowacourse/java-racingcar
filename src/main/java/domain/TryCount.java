@@ -3,7 +3,7 @@ package domain;
 import common.exception.model.ValidateException;
 
 public class TryCount {
-    private int value;
+    private final int value;
 
     private static final int MIN_TRY_COUNT = 1;
     private static final int MAX_TRY_COUNT = 5;
