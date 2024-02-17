@@ -39,8 +39,7 @@ public class RacingGameController {
 
     private static MovementGenerator createRandomMovementGenerator() {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
-        MovementGenerator movementGenerator = new RandomMovementGenerator(numberGenerator);
-        return movementGenerator;
+        return new RandomMovementGenerator(numberGenerator);
     }
 
     private Cars getCars() {

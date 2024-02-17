@@ -12,7 +12,9 @@ class CountTest {
     @DisplayName("남은 횟수를 감소 시킨다.")
     void decrease() {
         Count countLeft = Count.from(2);
+
         countLeft.decrease();
+
         assertThat(countLeft).isEqualTo(Count.from(1));
     }
 
@@ -20,6 +22,7 @@ class CountTest {
     @DisplayName("횟수가 남은 경우를 확인한다.")
     void isExits_true() {
         Count count = Count.from(1);
+
         assertThat(count.isExits()).isTrue();
     }
 
@@ -27,7 +30,9 @@ class CountTest {
     @DisplayName("횟수가 남지 않은 경우를 확인한다.")
     void isExits_false() {
         Count count = Count.from(1);
+
         count.decrease();
+
         assertThat(count.isExits()).isFalse();
     }
 }
