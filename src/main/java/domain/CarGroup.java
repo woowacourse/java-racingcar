@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 public class CarGroup {
     private final List<Car> cars;
 
-    public CarGroup(String carNames) {
+    public CarGroup(String[] carNames) {
         this.cars = generateCars(carNames);
     }
 
-    private List<Car> generateCars(String carNames) {
-        return Arrays.stream(carNames.split(","))
+    private List<Car> generateCars(String[] carNames) {
+        return Arrays.stream(carNames)
                 .map(Car::new)
                 .collect(Collectors.toList());
     }

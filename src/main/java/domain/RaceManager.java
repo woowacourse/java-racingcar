@@ -30,7 +30,7 @@ public class RaceManager {
 
     private CarGroup repeatUntilGetValidCarNames() {
         try {
-            String carNames = inputView.readCarNames();
+            String[] carNames = inputView.readCarNames();
             return new CarGroup(carNames);
         } catch (IOException | IllegalArgumentException e) {
             System.out.println(e.getMessage());

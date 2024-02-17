@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
 public class InputView {
+    private static final String CAR_NAME_DELIMITER = ",";
     private final BufferedReader reader;
 
     public InputView(InputStream inputStream) {
@@ -14,11 +15,11 @@ public class InputView {
     }
 
 
-    public String readCarNames() throws IOException {
+    public String[] readCarNames() throws IOException {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         final String inputData = removeBlank(reader.readLine());
         validateCarNamesFormat(inputData);
-        return inputData;
+        return inputData.split(CAR_NAME_DELIMITER);
     }
 
     private void validateCarNamesFormat(String names) {
