@@ -11,7 +11,7 @@ public class InputView {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = sc.nextLine();
         if (isFinishWithDelimiter(input)) {
-            throw new IllegalArgumentException("잘못된 이름입니다.");
+            throw new IllegalArgumentException("마지막 이름이 존재하지 않습니다.");
         }
         return Arrays.stream(input.split(","))
                 .toList();

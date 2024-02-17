@@ -1,5 +1,6 @@
 public class Car {
     private static final int MOVE_THRESHOLD = 4;
+
     private final CarName name;
     private int location;
     private final NumberGenerator numberGenerator;
