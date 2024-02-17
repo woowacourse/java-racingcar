@@ -21,7 +21,7 @@ public class RacingGame {
     }
 
     public void play(Round round) {
-        System.out.println("실행 결과");
+        OutputView.printMessage("실행 결과");
         for (int i = 0; i < round.getRound(); i++) {
             playOneRound();
             OutputView.printScore(cars);

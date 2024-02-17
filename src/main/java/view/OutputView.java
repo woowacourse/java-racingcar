@@ -22,4 +22,8 @@ public class OutputView {
         }
         System.out.println(String.join(", ", carNames) + WIN_THE_GAME);
     }
+
+    public static void printMessage(String message) {
+        System.out.println(message);
+    }
 }
