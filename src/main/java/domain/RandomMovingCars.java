@@ -1,6 +1,7 @@
 package domain;
 
 import domain.car.Car;
+import domain.car.CarName;
 import domain.car.CarPosition;
 
 import java.util.*;
@@ -48,7 +49,9 @@ public class RandomMovingCars {
     }
 
     public void moveAll() {
-        cars.forEach(RandomMovingCar::move);
+        for (RandomMovingCar car : cars) {
+            car.move();
+        }
     }
 
     public List<RandomMovingCar> getCars() {
