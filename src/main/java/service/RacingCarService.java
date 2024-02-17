@@ -17,11 +17,7 @@ public class RacingCarService {
         return count;
     }
 
-    private void validateInvalidNumber(int count) {
-        if (count <= 0) {
-            throw new IllegalArgumentException(Exceptions.NUMBER_RANGE_EXCEPTION.getMessage());
-        }
-    }
+    
 
 
     public List<String> getMovement(Cars cars) {
