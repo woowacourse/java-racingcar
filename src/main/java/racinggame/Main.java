@@ -13,9 +13,7 @@ public class Main {
         Round round = InputView.readRound();
         RacingGame game = RacingGame.of(cars, new RandomMoveCondition());
 
-        game.race(round);
-
-        OutputView.printResult(game.getResult());
+        OutputView.printResult(game.race(round));
         OutputView.printWinner(game.findWinnerName());
     }
 }

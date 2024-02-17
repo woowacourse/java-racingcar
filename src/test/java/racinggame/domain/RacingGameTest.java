@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.Arrays;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +22,13 @@ class RacingGameTest {
     @Test
     void race() {
         RacingGame game = RacingGame.of(createCars("아톰", "이상"), moveCondition());
+        List<RoundResult> results = game.race(Round.from(3));
 
-        game.race(Round.from(3));
-
-        assertThat(game.getCars()).isEqualTo(List.of(Car.of("아톰", 3), Car.of("이상", 3)));
+        Assertions.assertThat(results).isEqualTo(List.of(
+                new RoundResult(List.of(new CarInfo("아톰", 1), new CarInfo("이상", 1))),
+                new RoundResult(List.of(new CarInfo("아톰", 2), new CarInfo("이상", 2))),
+                new RoundResult(List.of(new CarInfo("아톰", 3), new CarInfo("이상", 3)))
+        ));
     }
 
     @DisplayName("우승자를 선정한다.")

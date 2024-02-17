@@ -7,7 +7,6 @@ public class RacingGame {
 
     private final Cars cars;
     private final MoveCondition moveCondition;
-    private final List<RoundResult> results = new ArrayList<>();
 
     private RacingGame(Cars cars, MoveCondition moveCondition) {
         this.cars = cars;
@@ -19,19 +18,14 @@ public class RacingGame {
         return new RacingGame(cars, moveCondition);
     }
 
-    public void race(Round round) {
+    public List<RoundResult> race(Round round) {
+        List<RoundResult> results = new ArrayList<>();
         while (round.isPlayable()) {
             cars.moveAll(moveCondition);
             results.add(cars.buildRoundResult());
             round = round.decrease();
         }
-    }
-
-    public List<Car> getCars() {
-        return cars.getCars();
-    }
-
-    public List<RoundResult> getResult() {
+        
         return results;
     }
 
