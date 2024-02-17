@@ -3,6 +3,7 @@ package view;
 import domain.RacingGame;
 import domain.Round;
 import java.util.Scanner;
+import movestrategy.RandomPowerMoveStrategy;
 
 public class InputView {
 
@@ -11,7 +12,7 @@ public class InputView {
 
     public RacingGame readCarNames() {
         System.out.println(INPUT_CAR_NAMES);
-        return new RacingGame(read());
+        return new RacingGame(read(), new RandomPowerMoveStrategy());
     }
 
     public Round readRound() {

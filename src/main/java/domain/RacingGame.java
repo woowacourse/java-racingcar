@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import movestrategy.MoveStrategy;
-import movestrategy.RandomPowerMoveStrategy;
 
 public class RacingGame {
 
@@ -17,9 +16,9 @@ public class RacingGame {
     private final List<Car> cars;
     private final MoveStrategy moveStrategy;
 
-    public RacingGame(String rawCarNames) {
+    public RacingGame(String rawCarNames, MoveStrategy moveStrategy) {
         cars = new ArrayList<>();
-        this.moveStrategy = new RandomPowerMoveStrategy();
+        this.moveStrategy = moveStrategy;
         makeCarsFrom(rawCarNames);
     }
 

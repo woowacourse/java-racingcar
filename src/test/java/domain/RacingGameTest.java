@@ -2,19 +2,23 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import movestrategy.MoveStrategy;
+import movestrategy.RandomPowerMoveStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RacingGameTest {
 
+    private final MoveStrategy moveStrategy = new RandomPowerMoveStrategy();
+
     @Test
     @DisplayName("자동차 이름 정상 입력")
     void carNames_ok() {
         Assertions.assertAll(
-            () -> new RacingGame("a"),
-            () -> new RacingGame("a,bb,cCc,dDdD,eeeee"),
-            () -> new RacingGame("a  , bb  , cCc ,    dDdD ,eeeee")
+            () -> new RacingGame("a", moveStrategy),
+            () -> new RacingGame("a,bb,cCc,dDdD,eeeee", moveStrategy),
+            () -> new RacingGame("a  , bb  , cCc ,    dDdD ,eeeee", moveStrategy)
         );
     }
 
@@ -32,13 +36,13 @@ class RacingGameTest {
                 + "sss  ,ttt  ,uuu  ,vvv  ,www  ,xxx  ,yyy  ,zzz  ,aaaa ,bbbb ,"
                 + "cccc ,dddd ,eeee ,ffff ,gggg ,hhhh ,iiii ,jjjj ,kkkk ,llll ,"
                 + "mmmm ,nnnn ,oooo ,pppp ,qqqq ,rrrr ,ssss ,tttt ,uuuu ,vvvv"
-        );
+            , moveStrategy);
     }
 
     @Test
     @DisplayName("자동차 이름 예외 입력: 자동차 이름에 중복이 있어서는 안 된다.")
     void carNames_exception_noDuplication() {
-        assertThatThrownBy(() -> new RacingGame("aa,aa,bb"))
+        assertThatThrownBy(() -> new RacingGame("aa,aa,bb", moveStrategy))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -46,9 +50,9 @@ class RacingGameTest {
     @DisplayName("자동차 이름 예외 입력: 입력이 비어 있으면 안 된다.")
     void carNames_exception_noEmptyInput() {
         Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new RacingGame(""))
+            () -> assertThatThrownBy(() -> new RacingGame("", moveStrategy))
                 .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame(" "))
+            () -> assertThatThrownBy(() -> new RacingGame(" ", moveStrategy))
                 .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -56,7 +60,7 @@ class RacingGameTest {
     @Test
     @DisplayName("자동차 이름 예외 입력: 쉼표만 입력하면 안 된다.")
     void carNames_exception_onlyComma() {
-        assertThatThrownBy(() -> new RacingGame(",,"))
+        assertThatThrownBy(() -> new RacingGame(",,", moveStrategy))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -64,15 +68,15 @@ class RacingGameTest {
     @DisplayName("자동차 이름 예외 입력: 이름은 하나의 쉼표로 구분되어야 한다.")
     void carNames_exception_delimiterViolation() {
         Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new RacingGame("a,b.c"))
+            () -> assertThatThrownBy(() -> new RacingGame("a,b.c", moveStrategy))
                 .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame("a,b,c,,d"))
+            () -> assertThatThrownBy(() -> new RacingGame("a,b,c,,d", moveStrategy))
                 .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame("a,,b,c,d"))
+            () -> assertThatThrownBy(() -> new RacingGame("a,,b,c,d", moveStrategy))
                 .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame(",,,a,b"))
+            () -> assertThatThrownBy(() -> new RacingGame(",,,a,b", moveStrategy))
                 .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame("a,b,,,"))
+            () -> assertThatThrownBy(() -> new RacingGame("a,b,,,", moveStrategy))
                 .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -92,6 +96,6 @@ class RacingGameTest {
                 + "cccc ,dddd ,eeee ,ffff ,gggg ,hhhh ,iiii ,jjjj ,kkkk ,llll ,"
                 + "mmmm ,nnnn ,oooo ,pppp ,qqqq ,rrrr ,ssss ,tttt ,uuuu ,vvvv ,"
                 + "aaaaa"
-        )).isInstanceOf(IllegalArgumentException.class);
+            , moveStrategy)).isInstanceOf(IllegalArgumentException.class);
     }
 }
