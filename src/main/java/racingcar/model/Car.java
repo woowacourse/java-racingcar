@@ -7,16 +7,13 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        validate(name);
+        checkIfNameUnderFive(name);
+        
         this.name = name;
         this.position = 0;
     }
 
-    private void validate(String name) {
-        nameUnderFive(name);
-    }
-
-    private static void nameUnderFive(String name) {
+    private void checkIfNameUnderFive(String name) {
         if (name.length() > Constants.MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
