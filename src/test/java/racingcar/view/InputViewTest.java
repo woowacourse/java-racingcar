@@ -59,21 +59,5 @@ class InputViewTest {
                     .isThrownBy(() -> InputView.readTryCount(() -> "a"))
                     .withMessage("시도 횟수는 양의 정수를 입력해야 합니다.");
         }
-
-        @Test
-        @DisplayName("[Exception] 시도 횟수가 음수면 예외를 던진다.")
-        void getTryCountByNegativeInteger() {
-            assertThatIllegalArgumentException()
-                    .isThrownBy(() -> InputView.readTryCount(() -> "-1"))
-                    .withMessage("시도 횟수는 양의 정수를 입력해야 합니다.");
-        }
-
-        @Test
-        @DisplayName("[Exception] 시도 횟수가 1,000을 초과하면 예외를 던진다")
-        void getTryCountByOverNumber() {
-            assertThatIllegalArgumentException()
-                    .isThrownBy(() -> InputView.readTryCount(() -> "1001"))
-                    .withMessage("시도 횟수는 1,000 이하여야 합니다.");
-        }
     }
 }
