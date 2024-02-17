@@ -15,13 +15,13 @@ public class Round {
     }
 
     private void validateRound(String inputRound) {
-        if (!isValidRound(inputRound)) {
+        if (!isZeroOrPositiveNumber(inputRound)) {
             throw new IllegalArgumentException(
                     String.format(INVALID_ROUND_EXCEPTION_MESSAGE, MINIMUM_ROUND));
         }
     }
 
-    private boolean isValidRound(String inputRound) {
+    private boolean isZeroOrPositiveNumber(String inputRound) {
         return Pattern.matches(VALID_ROUND_REGEX, inputRound);
     }
 
