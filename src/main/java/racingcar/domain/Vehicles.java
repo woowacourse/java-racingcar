@@ -5,10 +5,14 @@ import static racingcar.ui.OutputCommand.COMMA;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.util.RandomUtil;
 
 public class Vehicles {
     private static final int MIN_DISTANCE = 0;
+    private static final int RANDOM_MIN_LIMIT = 0;
+    private static final int RANDOM_MAX_LIMIT = 9;
     private final List<Car> cars;
+    RandomUtil randomUtil = RandomUtil.getInstance();
 
     public static Vehicles from(final String userInput) {
         validate(userInput);
@@ -45,8 +49,8 @@ public class Vehicles {
                 .collect(Collectors.toSet()).size();
     }
 
-    void move(final CarMoveStrategy carMoveStrategy, final int value) {
-        cars.forEach(car -> car.move(carMoveStrategy, value));
+    void move(final CarMoveStrategy carMoveStrategy) {
+        cars.forEach(car -> car.move(carMoveStrategy, randomUtil.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT)));
     }
 
     List<Car> findFarthestCars() {

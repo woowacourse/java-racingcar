@@ -71,7 +71,6 @@ class VehiclesTest {
         String userInput = "choco, seyan, solar";
         Vehicles vehicles = Vehicles.from(userInput);
         int initialDistance = 0;
-        int power = 1;
 
         final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
             @Override
@@ -81,7 +80,7 @@ class VehiclesTest {
         };
 
         //when
-        vehicles.move(carMoveStrategy, power);
+        vehicles.move(carMoveStrategy);
         List<Car> cars = vehicles.getCars();
 
         //then
@@ -100,7 +99,6 @@ class VehiclesTest {
         Vehicles vehicles = Vehicles.from(userInput);
         int iteratorCounts = 3;
         int distanceResult = 3;
-        int power = 4;
 
         final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
             @Override
@@ -110,7 +108,7 @@ class VehiclesTest {
         };
 
         //when
-        IntStream.range(0, iteratorCounts).forEach(i -> vehicles.move(carMoveStrategy, power));
+        IntStream.range(0, iteratorCounts).forEach(i -> vehicles.move(carMoveStrategy));
 
         //then
         assertEquals(vehicles.getCars().get(0).getDistance(), distanceResult);
