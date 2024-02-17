@@ -4,7 +4,7 @@ import java.util.List;
 import model.dto.CarState;
 
 public class OutputView {
-    private static String formatCapturedCarStates(List<CarState> carStates) {
+    private String formatCapturedCarStates(List<CarState> carStates) {
         StringBuilder stringBuilder = new StringBuilder();
         for (CarState carState : carStates) {
             stringBuilder.append(carState.name());
@@ -15,7 +15,7 @@ public class OutputView {
         return stringBuilder.toString();
     }
 
-    private static String formatWinners(List<String> winners) {
+    private String formatWinners(List<String> winners) {
         return String.join(", ", winners);
     }
 

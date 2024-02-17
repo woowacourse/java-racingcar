@@ -10,11 +10,11 @@ public class InputView {
         this.scanner = new Scanner(System.in);
     }
 
-    private static List<String> parseCarNames(String input) {
+    private List<String> parseCarNames(String input) {
         return List.of(input.split(","));
     }
 
-    private static int parseTryCount(String input) {
+    private int parseTryCount(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

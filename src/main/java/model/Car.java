@@ -21,11 +21,11 @@ public class Car {
         return new Car(name, new RandomIntGenerator());
     }
 
-    private static void validate(String name) {
+    private void validate(String name) {
         validateNameLength(name);
     }
 
-    private static void validateNameLength(String name) {
+    private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 공백 포함 5자 이하여야 한다.");
         }
