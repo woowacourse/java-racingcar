@@ -11,8 +11,8 @@ class NameTest {
     @DisplayName("생성 테스트")
     @Test
     void create() {
-        Name name = Name.from("abcde");
-        Name other = Name.from("abcde");
+        Name name = new Name("abcde");
+        Name other = new Name("abcde");
 
         assertThat(name).isEqualTo(other);
     }
@@ -20,14 +20,14 @@ class NameTest {
     @DisplayName("이름은 공백이 될 수 없다.")
     @Test
     void checkNameNonEmpty() {
-        assertThatThrownBy(() -> Name.from(""))
+        assertThatThrownBy(() -> new Name(""))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("이름의 길이 제한은 5자 이하이다.")
     @Test
     void checkNameLength() {
-        assertThatThrownBy(() -> Name.from("abcdef"))
+        assertThatThrownBy(() -> new Name("abcdef"))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

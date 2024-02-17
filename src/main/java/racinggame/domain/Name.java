@@ -8,24 +8,20 @@ class Name {
 
     private final String name;
 
-    private Name(String name) {
-        this.name = name;
-    }
-
-    public static Name from(String name) {
+    public Name(String name) {
         checkNameIsEmpty(name);
         checkNameLength(name);
 
-        return new Name(name);
+        this.name = name;
     }
 
-    private static void checkNameIsEmpty(String name) {
+    private void checkNameIsEmpty(String name) {
         if (name.isEmpty()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void checkNameLength(String name) {
+    private void checkNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
