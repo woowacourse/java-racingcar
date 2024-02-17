@@ -13,23 +13,18 @@ public class OutputView {
     private void newLine() {
         System.out.println();
     }
-
-    public void printRaceProgresses(List<RaceProgress> raceProgresses) {
+    public void printResultMessage(){
         newLine();
         System.out.println("실행 결과");
-        for(RaceProgress raceProgress:raceProgresses){
-            List<RaceCarInfo> result=raceProgress.getRaceCarInfos();
-            printRaceProgressPerRound(result);
-            newLine();
-        }
     }
 
-    private void printRaceProgressPerRound(List<RaceCarInfo> result) {
+    public void printRaceProgressPerRound(List<RaceCarInfo> result) {
         for(RaceCarInfo raceCarInfo: result){
             String name = raceCarInfo.getName().getValue();
             int position=raceCarInfo.getPosition();
             System.out.println(name+" : " + "-".repeat(position));
         }
+        newLine();
     }
 
     public void printRaceResult(RaceResult raceResult) {
@@ -38,6 +33,6 @@ public class OutputView {
                 .map(Name::getValue)
                 .collect(Collectors.joining(", "));
 
-        System.out.println(racerList + "가 최종 우승했습니다.");
+        System.out.print(racerList + "가 최종 우승했습니다.");
     }
 }

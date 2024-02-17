@@ -3,6 +3,7 @@ package controller;
 import domain.car.Car;
 import domain.car.Cars;
 import domain.name.Names;
+import domain.race.RaceCarInfo;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
 import domain.race.RaceResult;
@@ -38,13 +39,16 @@ public class RacingGame {
     }
 
     private void racing(final List<Car> cars,final Integer raceCount) {
-        List<RaceProgress> raceProgresses = IntStream.range(0, raceCount)
-                .mapToObj(i -> {
-                    race(cars);
-                    return RaceProgress.from(cars);
-                })
-                .toList();
-        outputView.printRaceProgresses(raceProgresses);
+        outputView.printResultMessage();
+        for(int i=0;i<raceCount;i++){
+            racePerRound(cars);
+        }
+    }
+
+    private void racePerRound(List<Car> cars) {
+        race(cars);
+        RaceProgress result = RaceProgress.from(cars);
+        outputView.printRaceProgressPerRound(result.getRaceCarInfos());
     }
 
     private void race(final List<Car> cars) {
