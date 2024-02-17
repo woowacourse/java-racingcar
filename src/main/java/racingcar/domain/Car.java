@@ -12,13 +12,9 @@ public class Car {
     }
 
     public void move(int randomNumber) {
-        if (isMovable(randomNumber)) {
+        if (randomNumber >= MINIMUM_NUMBER_TO_MOVE) {
             position++;
         }
-    }
-
-    private boolean isMovable(int randomNumber) {
-        return randomNumber >= MINIMUM_NUMBER_TO_MOVE;
     }
 
     public boolean isPositionEqualTo(int position) {
