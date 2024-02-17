@@ -1,4 +1,4 @@
-import controller.CarRacingController;
+import controller.CarRacingGame;
 import view.InputView;
 import view.OutputView;
 
@@ -8,9 +8,9 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        CarRacingController carRacingController = new CarRacingController(inputView, outputView);
+        CarRacingGame carRacingGame = new CarRacingGame(inputView, outputView);
 
-        carRacingController.run();
+        carRacingGame.play();
     }
 
 }

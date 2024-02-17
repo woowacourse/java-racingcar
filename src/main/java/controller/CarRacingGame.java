@@ -11,19 +11,19 @@ import view.OutputView;
 
 import java.util.List;
 
-public class CarRacingController {
+public class CarRacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final Judge judge;
 
-    public CarRacingController(InputView inputView, OutputView outputView) {
+    public CarRacingGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.judge = new Judge();
     }
 
-    public void run() {
+    public void play() {
         Cars cars = createCars();
         Rap rap = createRap();
 
