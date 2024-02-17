@@ -1,9 +1,9 @@
 package racingcar;
 
-import racingcar.controller.RacingcarController;
+import racingcar.controller.RacingCarController;
 
 public class Application {
 	public static void main(String[] args) {
-		new RacingcarController().run();
+		new RacingCarController().run();
 	}
 }

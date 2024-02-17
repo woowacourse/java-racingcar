@@ -9,7 +9,7 @@ import racingcar.dto.RoundResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingcarController {
+public class RacingCarController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
