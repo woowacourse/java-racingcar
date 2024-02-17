@@ -4,8 +4,6 @@ import java.util.Objects;
 
 public class Car {
 
-    private static final int DEFAULT_POSITION_VALUE = 0;
-
     private final Name name;
     private Position position;
 
@@ -15,7 +13,7 @@ public class Car {
     }
 
     public static Car createDefaultPositionCar(String name) {
-        return new Car(Name.from(name), Position.from(DEFAULT_POSITION_VALUE));
+        return new Car(Name.from(name), Position.DEFAULT_POSITION);
     }
 
     public static Car of(String name, int position) {

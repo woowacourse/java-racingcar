@@ -6,6 +6,7 @@ class Position {
 
     private static final int ZERO = 0;
     private static final int INCREASE_AMOUNT = 1;
+    static final Position DEFAULT_POSITION = new Position(ZERO);
 
     private final int position;
 
