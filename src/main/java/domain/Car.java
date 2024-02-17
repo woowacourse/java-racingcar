@@ -2,6 +2,9 @@ package domain;
 
 public class Car implements Comparable<Car> {
 
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
     private int score;
 
@@ -38,8 +41,9 @@ public class Car implements Comparable<Car> {
     }
 
     private void validate(String name) {
-        if (!name.matches("^[a-zA-Z]{1,5}$")) {
-            throw new IllegalArgumentException("1~5자의 알파벳만 입력 가능합니다.");
+        if (!name.matches("^[a-zA-Z]{" + MIN_NAME_LENGTH + "," + MAX_NAME_LENGTH + "}$")) {
+            throw new IllegalArgumentException(
+                MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "자의 알파벳만 입력 가능합니다.");
         }
     }
 }
