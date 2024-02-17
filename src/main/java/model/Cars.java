@@ -3,13 +3,13 @@ package model;
 import static util.Util.generateRandomNumber;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
 
     private static final int MIN_CAR_NAME_COUNT = 2;
-    private static final int MIN_POSITION = 0;
     private static final String NEW_LINE = "\n";
 
     private final List<Car> cars;
@@ -49,20 +49,12 @@ public class Cars {
     }
 
     public List<String> findWinnerNames() {
-        int maxPosition = getMaxPosition();
+        int maxPosition = Collections.max(cars).getPosition();
 
         return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
-    }
-
-    private int getMaxPosition() {
-        int maxPosition = MIN_POSITION;
-        for (Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-        return maxPosition;
     }
 
     @Override
