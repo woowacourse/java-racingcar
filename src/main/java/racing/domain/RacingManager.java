@@ -1,5 +1,8 @@
 package racing.domain;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
@@ -14,9 +17,9 @@ import util.RetryHelper;
 public class RacingManager {
     public static void raceStart() {
         Scanner scanner = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         InputGuideOutputManager.printInputCarNames();
-        List<String> carNames = getCarNames(scanner);
-        //InputGuideOutputManager.printInputMaxRacingTurn();
+        List<String> carNames = getCarNames(br);
         Racing racing = play(scanner, carNames);
         List<String> winnerNames = racing.getWinnerNames();
         RacingResultOutputManager.printWinner(winnerNames);
@@ -35,10 +38,16 @@ public class RacingManager {
         return racing;
     }
 
-    private static List<String> getCarNames(Scanner scanner) {
+    private static List<String> getCarNames(BufferedReader br) {
         RetryHelper carNameInputManager = new RetryHelper(5);
         return carNameInputManager.retry(
-                () -> CarNameInputManager.getNameFromConsole(scanner));
+                () -> {
+                    try {
+                        return CarNameInputManager.getNameFromConsole(br);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
     }
 
     private static int getMaxTurn(Scanner scanner) {
