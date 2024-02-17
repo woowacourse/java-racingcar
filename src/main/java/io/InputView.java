@@ -1,35 +1,22 @@
 package io;
 
-import io.validator.InputValidator;
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class InputView {
-    InputValidator validator;
+    private static final String CAR_NAMES_REGEX = "[가-힣a-zA-Z]{2,5}(,[가-힣a-zA-Z]{2,5})*";
+    public static final Pattern CAR_NAMES_PATTERN = Pattern.compile(CAR_NAMES_REGEX);
+    public static final String CAR_NAMES_DELIMITER = ",";
+
     Scanner sc = new Scanner(System.in);
 
-    private static final String CAR_NAMES_DELIMITER = ",";
-
-    public InputView(InputValidator validator) {
-        this.validator = validator;
-    }
-
-
-    public List<String> readCarNames() {
+    public String readCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String carNames = sc.nextLine();
-        validator.validateCarNamesFormat(carNames);
-
-        return Arrays.asList(carNames.split(CAR_NAMES_DELIMITER));
+        return sc.nextLine();
     }
 
-    public int readTryAmount() {
+    public String readTryAmount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        String text = sc.nextLine();
-        validator.validateIntFormat(text);
-
-        return Integer.parseInt(text);
+        return sc.nextLine();
     }
 }

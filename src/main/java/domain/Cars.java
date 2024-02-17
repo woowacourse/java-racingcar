@@ -1,17 +1,18 @@
 package domain;
 
+import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidateException;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 
 public class Cars {
     private List<Car> cars;
 
-    private static final int MIN_CAR_SIZE = 2;
-    private static final int MAX_CAR_SIZE = 5;
-    public static final String CARS_SIZE_RANGE_ERROR_MESSAGE = String.format("자동차 수는 %d 이상, %d 이하여야 합니다", MIN_CAR_SIZE, MAX_CAR_SIZE);
-    public static final String CAR_NAME_DUPLICATION_ERROR_MESSAGE = "자동차 이름은 중복이 불가능합니다.";
+    public static final int MIN_CAR_SIZE = 2;
+    public static final int MAX_CAR_SIZE = 5;
 
     public Cars(List<Car> cars) {
         validate(cars);
@@ -31,13 +32,13 @@ public class Cars {
                 .count();
 
         if (actualCarAmount != distinctCarAmount) {
-            throw new ValidateException(CAR_NAME_DUPLICATION_ERROR_MESSAGE);
+            throw new ValidateException(ExceptionMessage.CAR_NAME_DUPLICATION_ERROR_MESSAGE);
         }
     }
 
     private void validateCarSize(List<Car> cars) {
         if (cars.size() < MIN_CAR_SIZE || cars.size() > MAX_CAR_SIZE) {
-            throw new ValidateException(CARS_SIZE_RANGE_ERROR_MESSAGE);
+            throw new ValidateException(ExceptionMessage.CARS_SIZE_RANGE_ERROR_MESSAGE);
         }
     }
 

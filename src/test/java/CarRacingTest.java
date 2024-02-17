@@ -1,8 +1,8 @@
+import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidateException;
 import domain.*;
 import io.InputView;
 import io.OutputView;
-import io.validator.InputValidator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,14 +30,14 @@ class CarRacingTest {
 
     @BeforeEach
     void init() {
-        this.carRacing = new CarRacing(new InputView(new InputValidator()), new OutputView());
+        this.carRacing = new CarRacing(new InputView(), new OutputView());
     }
 
     @Test
     @DisplayName("자동차 생성 성공 테스트")
     void createCarsSuccess() {
         // given
-        List<String> carNames = List.of("pobi","crong","honux");
+        String carNames = "pobi,crong,honux";
         // when
         List<Car> cars = carRacing.createCars(carNames, accelerator).getCars();
         // then
@@ -50,47 +50,39 @@ class CarRacingTest {
     }
 
     @ParameterizedTest
-    @MethodSource("createCarsFailTestArguments")
+    @ValueSource(strings = {"aabbcc,pobi", "pobi", ""})
     @DisplayName("자동차 생성 실패 테스트")
-    void createCarsFail(List<String> carNames) {
+    void createCarsFail(String carNames) {
         assertThatThrownBy(() -> {
             carRacing.createCars(carNames, accelerator);
         }).isInstanceOf(ValidateException.class);
     }
 
-    static Stream<Arguments> createCarsFailTestArguments() {
-        return Stream.of(
-                Arguments.arguments(List.of("")),
-                Arguments.arguments(List.of("pobi")),
-                Arguments.arguments(List.of("aabbcc", "pobi"))
-        );
-    }
-
     @ParameterizedTest
-    @ValueSource(ints = {1,5})
+    @ValueSource(strings = {"1", "5"})
     @DisplayName("시도 횟수 생성 성공 테스트")
-    void createTryCountSuccess(int tryAmount) {
+    void createTryCountSuccess(String tryAmount) {
         //when
         TryCount tryCount = carRacing.createTryCount(tryAmount);
 
         //then
-        assertThat(tryCount.getValue()).isEqualTo(tryAmount);
+        assertThat(tryCount.getValue()).isEqualTo(Integer.parseInt(tryAmount));
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, -1, -30})
+    @ValueSource(strings = {"0", "-1", "-30"})
     @DisplayName("시도 횟수 생성 실패 테스트")
-    void createTryCountFail(int tryAmount) {
+    void createTryCountFail(String tryAmount) {
         assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
                 .isInstanceOf(ValidateException.class)
-                .hasMessage(TryCount.TRY_COUNT_RANGE_ERROR_MESSAGE);
+                .hasMessage(ExceptionMessage.TRY_COUNT_RANGE_ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("우승자 판독 테스트")
     void decideWinners() {
         // given
-        List<String> carNames = List.of("pobi","crong","honux");
+        String carNames = "pobi,crong,honux";
         // when
         Cars cars = carRacing.createCars(carNames, accelerator);
         List<String> actualWinners = carRacing.getWinners(cars);

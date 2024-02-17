@@ -1,3 +1,5 @@
+import common.exception.message.ExceptionMessage;
+import common.exception.model.ValidateException;
 import domain.Car;
 import domain.CarAccelerator;
 import domain.Cars;
@@ -5,7 +7,7 @@ import domain.TryCount;
 import io.InputView;
 import io.OutputView;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -13,12 +15,10 @@ public class CarRacing {
     private final InputView inputView;
     private final OutputView outputView;
 
-
     public CarRacing(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
-
 
     public void start() {
         try {
@@ -45,17 +45,33 @@ public class CarRacing {
         tryMove(tryCount, cars);
     }
 
-    public Cars createCars(List<String> carNames, CarAccelerator accelerator) {
-        List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName, accelerator));
-        }
+    public Cars createCars(String input, CarAccelerator accelerator) {
+        validateCarNamesInput(input);
 
+        List<String> carNames = Arrays.asList(input.split(InputView.CAR_NAMES_DELIMITER));
+        List<Car> cars = carNames.stream()
+                .map(carName -> new Car(carName, accelerator))
+                .toList();
         return new Cars(cars);
     }
 
-    public TryCount createTryCount(int amount) {
-        return new TryCount(amount);
+    private void validateCarNamesInput(String carNames) {
+        if (!InputView.CAR_NAMES_PATTERN.matcher(carNames).matches()) {
+            throw new ValidateException(ExceptionMessage.CAR_NAME_PATTERN_ERROR_MESSAGE);
+        }
+    }
+
+    public TryCount createTryCount(String input) {
+        validateTryCountInput(input);
+        return new TryCount(Integer.parseInt(input));
+    }
+
+    private void validateTryCountInput(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw new ValidateException(ExceptionMessage.INT_FORMAT_ERROR_MESSAGE);
+        }
     }
 
     public void tryMove(TryCount tryCount, Cars cars) {

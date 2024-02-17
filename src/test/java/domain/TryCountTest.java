@@ -1,5 +1,6 @@
 package domain;
 
+import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidateException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +22,6 @@ class TryCountTest {
     void createTryCountFail(int value) {
         Assertions.assertThatThrownBy(() -> new TryCount(value))
                 .isInstanceOf(ValidateException.class)
-                .hasMessage(TryCount.TRY_COUNT_RANGE_ERROR_MESSAGE);
+                .hasMessage(ExceptionMessage.TRY_COUNT_RANGE_ERROR_MESSAGE);
     }
 }
