@@ -57,10 +57,9 @@ public class Cars {
                 
     }
 
-    @Override
-    public String toString() {
-        return cars.stream()
+    public GameStatus getGameStatus() {
+        return new GameStatus(cars.stream()
                 .map(Car::toString)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining("\n")));
     }
 }

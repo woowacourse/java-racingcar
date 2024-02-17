@@ -51,8 +51,8 @@ public class CarsTest {
         @DisplayName("차를 2개 추가")
         void testSplit() {
             Cars cars = new Cars("차,2개");
-            String actual = cars.toString();
-            assertThat(actual).contains("차", "2개");
+            GameStatus actual = cars.getGameStatus();
+            assertThat(actual.toString()).contains("차", "2개");
         }
 
         @Test
@@ -61,8 +61,8 @@ public class CarsTest {
             Cars cars = new Cars("차,2개");
             NumericGenerator generator = new TestNumericGenerator(4);
             cars.moveCars(generator);
-            String actual = cars.toString();
-            assertThat(actual).isEqualTo("차 : -\n2개 : -");
+            GameStatus actual = cars.getGameStatus();
+            assertThat(actual.toString()).isEqualTo("차 : -\n2개 : -");
         }
 
         @Test
@@ -71,8 +71,8 @@ public class CarsTest {
             Cars cars = new Cars("차,2개");
             NumericGenerator generator = new TestNumericGenerator(3);
             cars.moveCars(generator);
-            String actual = cars.toString();
-            assertThat(actual).isEqualTo("차 : \n2개 : ");
+            GameStatus actual = cars.getGameStatus();
+            assertThat(actual.toString()).isEqualTo("차 : \n2개 : ");
         }
 
         @Test

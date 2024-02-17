@@ -65,7 +65,7 @@ Java Naming Conventions가이드를 참고하여 메서드 이름 수정
         - [X] Cars내 moveCars를 NumericGenerator를 받도록 변경한다.
     - [ ] 게임 결과 반환
         - [X] 우승자들을 관리하는 객체 생성
-        - [ ] 자동차들의 상태값을 받는 객체 생성
+        - [X] 자동차들의 상태값을 받는 객체 생성
 
 - [X] UI 관련한 객체를 view 패키지에 구현한다.
     - [X] view 패키지의 객체가 domain 패키지 객체에 의존 가능하도록 구현한다.
