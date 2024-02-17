@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static util.Constants.MIN_FORWARD_NUMBER;
 
 class JudgeTest {
+
+    private static final int MIN_FORWARD_NUMBER = 4;
 
     private Judge judge;
 

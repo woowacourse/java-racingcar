@@ -6,9 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
-import static util.Constants.MIN_FORWARD_NUMBER;
 
 class CarTest {
+
+    private static final int MIN_FORWARD_NUMBER = 4;
+
     @DisplayName("자동차 생성 성공 테스트")
     @Test
     void carGenerateTest() {
