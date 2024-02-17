@@ -3,6 +3,8 @@ package domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -60,5 +62,17 @@ class CarTest {
         Assertions.assertThatThrownBy(() -> new Car(null, emptyName))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
+    }
+
+    @DisplayName("잘못된 이름을 입력하면 예외가 발생합니다.")
+    @ParameterizedTest
+    @CsvSource({
+            "chicken-boy, 이름 길이는 1이상 5이하의 문자열만 가능합니다.",
+            "'', 이름 길이는 1이상 5이하의 문자열만 가능합니다."
+    })
+    void createCarThrowExceptionForInvalidName(String inputName, String expectedMessage) {
+        Assertions.assertThatThrownBy(() -> new Car(null, inputName))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(expectedMessage);
     }
 }
