@@ -11,8 +11,8 @@ public class Car {
         this.name = new Name(name);
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= MINIMUM_NUMBER_TO_MOVE) {
+    public void move(int number) {
+        if (number >= MINIMUM_NUMBER_TO_MOVE) {
             position++;
         }
     }
