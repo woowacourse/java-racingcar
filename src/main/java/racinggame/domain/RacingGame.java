@@ -25,13 +25,13 @@ public class RacingGame {
 
     private static void checkCarsSize(List<Car> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 
     private static void checkCarsDuplicated(List<Car> cars) {
         if (getUniqueSize(cars) != cars.size()) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 

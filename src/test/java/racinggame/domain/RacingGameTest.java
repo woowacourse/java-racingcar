@@ -31,14 +31,14 @@ class RacingGameTest {
     @Test
     void checkCarsSize() {
         assertThatThrownBy(() -> RacingGame.of(List.of(Car.createDefault("이상")), moveCondition()))
-            .isInstanceOf(RuntimeException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("중복을 확인한다.")
     @Test
     void checkDistinct() {
         assertThatThrownBy(() -> RacingGame.of(List.of(Car.createDefault("이상"), Car.createDefault("이상")), moveCondition()))
-            .isInstanceOf(RuntimeException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("라운드 수 만큼 경주를 진행할 수 있다.")

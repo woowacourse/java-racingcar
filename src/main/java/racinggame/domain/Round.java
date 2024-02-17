@@ -21,7 +21,7 @@ public class Round {
 
     private static void checkRoundInRange(int round) {
         if (round < MIN_ROUND_RANGE || round > MAX_ROUND_RANGE) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 

@@ -21,13 +21,13 @@ class Name {
 
     private static void checkNameIsEmpty(String name) {
         if (name.isEmpty()) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 
     private static void checkNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 

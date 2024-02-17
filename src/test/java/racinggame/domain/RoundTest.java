@@ -22,13 +22,13 @@ class RoundTest {
     @Test
     void checkRoundMinRange() {
         assertThatThrownBy(() -> Round.from(0))
-            .isInstanceOf(RuntimeException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("라운드의 수는 최대 10 이다.")
     @Test
     void checkRoundMaxRange() {
         assertThatThrownBy(() -> Round.from(11))
-            .isInstanceOf(RuntimeException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -37,7 +37,7 @@ class PositionTest {
     @Test
     void createNonNegative() {
         assertThatCode(() -> Position.from(-1))
-            .isInstanceOf(RuntimeException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("자동차 위치가 양수라면 에러가 반환되지 않는다.")

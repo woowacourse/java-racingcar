@@ -20,7 +20,7 @@ class Position {
 
     private static void checkIsNonNegative(int position) {
         if (position < 0) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 
