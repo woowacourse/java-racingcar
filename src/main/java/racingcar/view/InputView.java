@@ -35,6 +35,7 @@ public class InputView {
         try {
             tryCount = Integer.parseInt(input);
             validateNaturalNumber(tryCount);
+            return tryCount;
         } catch (NumberFormatException e) {
             System.out.println(MESSAGE_ONLY_NUMBER);
             return getTryCount();
@@ -42,7 +43,6 @@ public class InputView {
             System.out.println(e.getMessage());
             return getTryCount();
         }
-        return tryCount;
     }
 
     private void validateNaturalNumber(int tryCount) {
