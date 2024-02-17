@@ -23,6 +23,11 @@ public class MockCar extends Car {
     }
 
     @Override
+    public boolean isPositionedAt(int position) {
+        return this.position == position;
+    }
+
+    @Override
     public String getName() {
         return "name";
     }
