@@ -9,6 +9,7 @@ public class OutputView {
     private static final String WRITE_RESULT = "\n실행 결과";
     private static final String WRITE_WINNERS = "가 최종 우승했습니다.";
 
+
     public void writeResultMessage() {
         System.out.println(WRITE_RESULT);
     }

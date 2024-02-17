@@ -16,7 +16,6 @@ public class InputView {
     public List<String> readCarNames() throws IOException {
         System.out.println(String.format(READ_CAR_NAMES, NAME_DELIMITER));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-
         return splitNames(bufferedReader.readLine());
     }
 
