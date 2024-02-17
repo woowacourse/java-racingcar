@@ -4,8 +4,8 @@ import java.util.regex.Pattern;
 
 public class Round {
 
-    private static final String NATURAL_FORMAT_REGEX = "^[\\d]*$";
-    private static final String ZERO = "0";
+    public static final Pattern NATURAL_NUMBER_FORMAT_REGEX = Pattern.compile("^[\\d]*$");
+    private static final String NOT_EXISTS_ROUND = "0";
 
     private final int round;
 
@@ -19,8 +19,8 @@ public class Round {
     }
 
     private static void validateRound(String round) {
-        if (round == null || !Pattern.matches(NATURAL_FORMAT_REGEX, round) || round.equals(ZERO)) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 자연수여야 합니다.");
+        if (round == null || !NATURAL_NUMBER_FORMAT_REGEX.matcher(round).matches() || round.equals(NOT_EXISTS_ROUND)) {
+            throw new IllegalArgumentException("시도 횟수는 자연수여야 합니다.");
         }
     }
 
