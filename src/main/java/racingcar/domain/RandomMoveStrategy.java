@@ -8,7 +8,7 @@ public class RandomMoveStrategy implements MoveStrategy {
 
     private final IntSupplier supplier;
 
-    public RandomMoveStrategy(IntSupplier supplier) {
+    public RandomMoveStrategy(final IntSupplier supplier) {
         this.supplier = supplier;
     }
 

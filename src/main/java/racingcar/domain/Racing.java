@@ -7,13 +7,13 @@ public class Racing {
     private final List<Car> cars;
     private final MoveStrategy moveStrategy;
 
-    public Racing(List<Car> cars, MoveStrategy moveStrategy) {
+    public Racing(final List<Car> cars, final MoveStrategy moveStrategy) {
         this.cars = cars;
         this.moveStrategy = moveStrategy;
     }
 
-    public static Racing of(List<String> carNames, MoveStrategy moveStrategy) {
-        List<Car> carList = carNames.stream()
+    public static Racing of(final List<String> carNames, final MoveStrategy moveStrategy) {
+        final List<Car> carList = carNames.stream()
                 .map(Car::new)
                 .toList();
         return new Racing(carList, moveStrategy);
@@ -24,7 +24,7 @@ public class Racing {
     }
 
     public List<Car> findWinner() {
-        int maxPosition = cars.stream()
+        final int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);

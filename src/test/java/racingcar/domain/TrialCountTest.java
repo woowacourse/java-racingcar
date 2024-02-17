@@ -5,14 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.domain.TrialCount;
 
 class TrialCountTest {
 
     @DisplayName("시도 횟수가 0 이하인 경우, 예외를 발생시킨다")
     @ParameterizedTest
     @CsvSource({"0", "-1"})
-    void creationFailTest(int amount) {
+    void creationFailTest(final int amount) {
         Assertions.assertThatThrownBy(() -> new TrialCount(amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -20,7 +19,7 @@ class TrialCountTest {
     @DisplayName("시도 횟수가 1 이상인 경우, 정상적으로 객체를 생성한다")
     @ParameterizedTest
     @CsvSource({"1", "2"})
-    void creationSuccessTest(int amount) {
+    void creationSuccessTest(final int amount) {
         Assertions.assertThatCode(() -> new TrialCount(amount))
                 .doesNotThrowAnyException();
     }
@@ -28,9 +27,9 @@ class TrialCountTest {
     @DisplayName("특정 횟수 만큼 반복 동작한다.")
     @Test
     void repeatTest() {
-        int expected = 4;
-        TrialCount trialCount = new TrialCount(expected);
-        CountForRepeatTest count = new CountForRepeatTest();
+        final int expected = 4;
+        final TrialCount trialCount = new TrialCount(expected);
+        final CountForRepeatTest count = new CountForRepeatTest();
 
         trialCount.repeat(count::addCount);
 
@@ -38,6 +37,7 @@ class TrialCountTest {
     }
 
     static class CountForRepeatTest {
+
         private int amount;
 
         public void addCount() {

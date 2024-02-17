@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.domain.Car;
-
 public class MockCar extends Car {
 
     private int position = 0;
@@ -10,20 +8,20 @@ public class MockCar extends Car {
         super("name");
     }
 
-    public MockCar(int position) {
+    public MockCar(final int position) {
         super("name");
         this.position = position;
     }
 
     @Override
-    public void move(boolean isMove) {
+    public void move(final boolean isMove) {
         if (isMove) {
             position++;
         }
     }
 
     @Override
-    public boolean isPositionedAt(int position) {
+    public boolean isPositionedAt(final int position) {
         return this.position == position;
     }
 
