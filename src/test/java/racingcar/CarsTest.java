@@ -59,7 +59,7 @@ public class CarsTest {
         }
 
         @Test
-        @DisplayName("폭포가 4 포케가 3이 나오면 우승자는 폭포여야 함")
+        @DisplayName("제일 높은 값을 갖는 객체가 하나인 경우, 해당 객체를 제대로 리턴하는지 확인")
         void testCalculatorWinner() {
             Cars cars = new Cars(new TestNumericGenerator(4, 3), List.of("폭포", "포케"));
             cars.moveCars();
@@ -70,13 +70,13 @@ public class CarsTest {
         }
 
         @Test
-        @DisplayName("폭포가 4 포케가 4, 무빈이 3이 나오면 우승자는 폭포와 포케여야 함")
+        @DisplayName("제일 높은 값을 갖는 객체가 둘인 경우, 두 객체를 모두 제대로 리턴하는지 확인")
         void testCalculatorMultiWinner() {
             Cars cars = new Cars(new TestNumericGenerator(4, 4, 3), List.of("폭포", "포케", "무빈"));
             cars.moveCars();
 
             String actual = cars.calculateWinner();
-            
+
             assertThat(actual).isEqualTo("폭포, 포케");
         }
     }
