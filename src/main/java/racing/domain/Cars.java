@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import racing.util.NumberGenerator;
+import racing.util.RandomNumberGenerator;
 
 public class Cars {
 
@@ -17,7 +17,8 @@ public class Cars {
         this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
-    Cars(List<String> carNames, List<Integer> positions) {
+    Cars(String rawNames, List<Integer> positions) {
+        List<String> carNames = parseNames(rawNames);
         validate(carNames);
         this.cars = IntStream.range(0, carNames.size())
                 .mapToObj(i -> new Car(carNames.get(i), positions.get(i)))
@@ -39,8 +40,8 @@ public class Cars {
         }
     }
 
-    public void moveAll(NumberGenerator numberGenerator) {
-        cars.forEach(car -> car.moveByNumber(numberGenerator.generate()));
+    public void moveAll(RandomNumberGenerator randomNumberGenerator) {
+        cars.forEach(car -> car.moveByNumber(randomNumberGenerator.generate()));
     }
 
     public List<Car> findFurthestCars() {
@@ -48,10 +49,7 @@ public class Cars {
         return cars.stream().filter((car) -> car.isSame(cars.get(0))).toList();
     }
 
-    @Override
-    public String toString() {
-        return cars.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining("\n", "", "\n"));
+    public List<Car> getCars() {
+        return cars;
     }
 }
