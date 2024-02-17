@@ -45,6 +45,7 @@ public class RacingGame {
 
     private static void checkNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "자동차 이름은 2개 이상이어야 합니다.");
         }
     }
 
