@@ -52,4 +52,14 @@ class RoundTest {
         // then
         assertThat(round).extracting("value").isEqualTo(1);
     }
+
+    @DisplayName("라운드가 0이면 예외이다.")
+    @Test
+    void zeroProgress() {// given
+        Round round = Round.from("0");
+
+        assertThatThrownBy(round::progress)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("[ERROR] 진행할 라운드가 없습니다.");
+    }
 }

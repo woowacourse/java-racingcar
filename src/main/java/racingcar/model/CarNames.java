@@ -10,25 +10,28 @@ public class CarNames {
 
     private final List<CarName> carNames;
 
-    private CarNames(final List<CarName> carNames) {
+    private CarNames(final String input) {
+        final String[] separatedInput = separate(input, SEPARATOR);
+
+        final List<CarName> carNames = Arrays.stream(separatedInput)
+                .map(CarName::new)
+                .toList();
+
         validateDuplicateName(carNames);
+
         this.carNames = carNames;
     }
 
     public static CarNames from(final String input) {
-        validateSeparator(input);
-
-        final List<CarName> carNames = Arrays.stream(input.split(SEPARATOR))
-                .map(CarName::new)
-                .toList();
-
-        return new CarNames(carNames);
+        return new CarNames(input);
     }
 
-    private static void validateSeparator(final String carsName) {
-        if (carsName.endsWith(SEPARATOR)) {
+    private String[] separate(final String input, final String separator) {
+        if (input.endsWith(separator)) {
             throw new IllegalArgumentException("[ERROR] 구분자로 끝날 수 없습니다.");
         }
+
+        return input.split(separator);
     }
 
     private void validateDuplicateName(final List<CarName> carNames) {

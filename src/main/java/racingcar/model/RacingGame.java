@@ -24,7 +24,7 @@ public class RacingGame {
             cars.go(numberGenerator);
             round.progress();
 
-            final RoundResult roundResult = cars.getRacingGameResult();
+            final RoundResult roundResult = cars.getRoundResult();
             roundResults.add(roundResult);
         }
 
@@ -34,6 +34,4 @@ public class RacingGame {
     public List<String> getWinners() {
         return cars.findWinners();
     }
-
-
 }

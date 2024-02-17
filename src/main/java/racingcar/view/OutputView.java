@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     private void printCarResult(final CarResult carResult) {
-        System.out.printf("%s : %s", carResult.getCarName(), "-".repeat(carResult.getPosition()));
+        System.out.printf("%s : %s%n", carResult.getCarName(), "-".repeat(carResult.getPosition()));
     }
 
     public void printWinners(final List<String> winners) {

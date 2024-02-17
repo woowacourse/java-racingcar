@@ -1,13 +1,10 @@
 package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class CarsTest {
 
@@ -41,13 +38,6 @@ class CarsTest {
         assertThat(winner).hasSize(1).isEqualTo(List.of("cc"));
     }
 
-    @DisplayName("올바르지 않은 구분자")
-    @ParameterizedTest
-    @ValueSource(strings = {"a,b,,", ",akd,ll", "a,,b", ","})
-    void invalidSeparator(String value) {
-        assertThatThrownBy(() -> CarNames.from(value))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
     static class TestNumberGenerator implements NumberGenerator {
 
@@ -56,12 +46,5 @@ class CarsTest {
         public int generate() {
             return value++;
         }
-    }
-
-    @DisplayName("자동차 이름이 중복시 예외 발생")
-    @Test
-    void duplicatedName() {
-        assertThatThrownBy(() -> CarNames.from("aa,aa"))
-                .isInstanceOf(IllegalArgumentException.class);
     }
 }

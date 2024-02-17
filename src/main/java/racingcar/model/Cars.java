@@ -15,6 +15,7 @@ public class Cars {
         final List<Car> cars = carNames.getCarNames().stream()
                 .map(Car::new)
                 .toList();
+
         return new Cars(cars);
     }
 
@@ -37,11 +38,7 @@ public class Cars {
                 .orElseThrow(() -> new IllegalStateException("[ERROR] 우승자를 찾을 수 없습니다."));
     }
 
-    public RoundResult getRacingGameResult() {
-        final List<CarResult> carResults = cars.stream()
-                .map(CarResult::from)
-                .toList();
-
-        return new RoundResult(carResults);
+    public RoundResult getRoundResult() {
+        return RoundResult.from(cars);
     }
 }
