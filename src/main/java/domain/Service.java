@@ -29,7 +29,6 @@ public class Service {
     private void validateCar(List<Car> cars) {
         validateCarAmount(cars);
         validateDuplicateName(cars);
-        validateFalseName(cars);
     }
 
     private void validateDuplicateName(List<Car> cars) {
@@ -47,18 +46,6 @@ public class Service {
     private int validateDuplication(String carName, Set<String> validateCar) {
         validateCar.add(carName);
         return validateCar.size();
-    }
-
-    private void validateFalseName(List<Car> cars) {
-        for (Car car : cars) {
-            validateBlankName(car.getCarName());
-        }
-    }
-
-    private void validateBlankName(String carName) {
-        if (carName.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 빈 이름은 사용할 수 없습니다.");
-        }
     }
 
     private void validateCarAmount(List<Car> cars) {

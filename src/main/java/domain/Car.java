@@ -11,13 +11,20 @@ public class Car {
     }
 
     private void validator(String name) {
-        if (!validateSize(name)) {
+        validateSize(name);
+        validateBlankName(name);
+    }
+
+    private void validateSize(String name) {
+        if (!(name.length() <= 5)) {
             throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다");
         }
     }
 
-    private boolean validateSize(String name) {
-        return name.length() <= 5;
+    private void validateBlankName(String name) {
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 빈 이름은 사용할 수 없습니다.");
+        }
     }
 
     private String removeBlank(String name) {
