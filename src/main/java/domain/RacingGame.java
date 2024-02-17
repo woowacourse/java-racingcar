@@ -55,14 +55,14 @@ public class RacingGame {
         validateNameDuplication(names);
     }
 
-    private static void validateCarAmount(List<String> names) {
+    private void validateCarAmount(List<String> names) {
         if (names.size() < MIN_CAR_LENGTH || names.size() > MAX_CAR_LENGTH) {
             throw new IllegalArgumentException(
                 "차는 " + MIN_CAR_LENGTH + " ~ " + MAX_CAR_LENGTH + "대만 입력 가능합니다.");
         }
     }
 
-    private static void validateNameDuplication(List<String> names) {
+    private void validateNameDuplication(List<String> names) {
         Set<String> nonDuplicatedNames = new HashSet<>(names);
         if (nonDuplicatedNames.size() != names.size()) {
             throw new IllegalArgumentException("중복된 자동차 이름이 있습니다.");
