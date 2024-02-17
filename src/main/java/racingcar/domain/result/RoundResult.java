@@ -1,16 +1,9 @@
 package racingcar.domain.result;
 
-import java.util.Collections;
 import java.util.List;
 import racingcar.domain.car.Car;
 
-public class RoundResult {
-
-    private final List<CarResult> carResults;
-
-    private RoundResult(final List<CarResult> carResults) {
-        this.carResults = carResults;
-    }
+public record RoundResult(List<CarResult> carResults) {
 
     public static RoundResult from(final List<Car> cars) {
         final List<CarResult> carResults = cars.stream()
@@ -18,9 +11,5 @@ public class RoundResult {
                 .toList();
 
         return new RoundResult(carResults);
-    }
-
-    public List<CarResult> getCarResult() {
-        return Collections.unmodifiableList(carResults);
     }
 }

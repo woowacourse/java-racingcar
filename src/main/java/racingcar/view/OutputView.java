@@ -11,13 +11,13 @@ public class OutputView {
     }
 
     private void printRoundResult(final RoundResult roundResult) {
-        final List<CarResult> carResults = roundResult.getCarResult();
+        final List<CarResult> carResults = roundResult.carResults();
         carResults.forEach(this::printCarResult);
         System.out.println();
     }
 
     private void printCarResult(final CarResult carResult) {
-        System.out.printf("%s : %s%n", carResult.getCarName(), "-".repeat(carResult.getPosition()));
+        System.out.printf("%s : %s%n", carResult.name(), "-".repeat(carResult.position()));
     }
 
     public void printWinners(final List<String> winners) {
