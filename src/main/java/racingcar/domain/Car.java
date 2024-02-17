@@ -5,10 +5,11 @@ public class Car {
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final Name name;
-    private int position = INITIAL_POSITION;
+    private int position;
 
     public Car(String name) {
         this.name = new Name(name);
+        this.position = INITIAL_POSITION;
     }
 
     public void move(int number) {
