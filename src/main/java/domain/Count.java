@@ -14,7 +14,7 @@ public class Count {
 
     private void validate(int count) {
         if (isOutOfRange(count)) {
-            throw new IllegalArgumentException("입력된 횟수: " + count + ", 횟수는 1에서 100사이로 입력해주세요.");
+            throw new IllegalArgumentException(String.format("%d를 입력하셨습니다, 횟수는 1에서 100사이로 입력해주세요.", count));
         }
     }
 
@@ -24,10 +24,6 @@ public class Count {
 
     public static Count from(int count) {
         return new Count(count);
-    }
-
-    public static Count init() {
-        return new Count(1);
     }
 
     public boolean isGreaterOrEqualThan(int currentCount) {

@@ -1,12 +1,16 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public record Winners(List<Car> winners) {
+public class Winners {
+    private final List<Car> winners;
 
+    public Winners(List<Car> winners) {
+        this.winners = winners;
+    }
+
+    public List<String> toNames() {
+        return winners.stream().map(Car::getName).collect(Collectors.toList());
+    }
 }
-
-// 일급 컬렉션화하려고 이 클래스를 만든거지
-// 근데 인자로 List<Car> winners가 들어가
-// 레코드를 쓰면 인자의 값에 접근을 할 수가 있잖아
-// 그럴거면 왜 씀?

@@ -14,10 +14,6 @@ public class Car implements Comparable<Car> {
         return new Car(Name.from(name), Distance.init());
     }
 
-    public static Car fromEmpty() {
-        return new Car(Name.empty(), Distance.init());
-    }
-
     public static Car of(String name, int distance) {
         return new Car(Name.from(name), Distance.from(distance));
     }

@@ -1,20 +1,20 @@
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 
 import domain.RandomMovementGenerator;
-import domain.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class RandomMovementGeneratorTest {
-    @Test
-    @DisplayName("랜덤 이동 생성")
-    void create() {
+    @ParameterizedTest()
+    @CsvSource(value = {"0,false", "3,false", "4,true", "9,true"})
+    @DisplayName("전진 혹은 정지가 잘 생성 되는지 확인한다.")
+    void create(int power, boolean expected) {
         //given
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        RandomMovementGenerator randomMovementGenerator = new RandomMovementGenerator(randomNumberGenerator);
+        RandomMovementGenerator randomMovementGenerator = new RandomMovementGenerator((minNumber, maxNumber) -> power);
         //when
+        boolean isMove = randomMovementGenerator.generate();
         //then
-//        assertThat( >= 4).isEqualTo(randomMovementGenerator.generate());
+        assertThat(isMove).isEqualTo(expected);
     }
 }

@@ -1,13 +1,12 @@
 package view;
 
+import domain.Winners;
 import dto.CarStatus;
 import dto.TurnResult;
-import dto.WinnersResponse;
 import java.util.List;
 
 public class OutputView {
-    public void showResult(WinnersResponse rawWinners) {
-        List<String> winners = rawWinners.getNames();
+    public void showResult(List<String> winners) {
         String result = String.join(",", winners);
         System.out.println(result + "가 최종 우승했습니다.");
     }
