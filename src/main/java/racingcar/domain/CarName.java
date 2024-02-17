@@ -3,15 +3,13 @@ package racingcar.domain;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CarName {
+public record CarName(String name) {
     private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_-]");
     private static final int MAX_NAME_LENGTH = 5;
 
-    private final String name;
-
     public CarName(String name) {
         validate(name);
-        this.name = name;
+        this.name = name.trim();
     }
 
     private void validate(final String name) {
