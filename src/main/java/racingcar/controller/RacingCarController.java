@@ -3,8 +3,8 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import racingcar.config.RacingCarConfig;
 import racingcar.domain.car.Cars;
-import racingcar.domain.generator.RandomOilGenerator;
 import racingcar.domain.Round;
 import racingcar.dto.RoundResult;
 import racingcar.view.InputView;
@@ -25,7 +25,7 @@ public class RacingCarController {
 
     private Cars readCars() {
         List<String> carNames = inputView.readCarNames();
-        return Cars.createCarsByName(carNames, new RandomOilGenerator());
+        return Cars.createCarsByName(carNames, RacingCarConfig.oilGenerator());
     }
 
     private Round readRound() {
