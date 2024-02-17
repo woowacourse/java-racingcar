@@ -19,7 +19,7 @@ public class OutputView {
     }
 
     private void printRoundResult(RoundResult roundResult) {
-        for (CarPerformance carPerformance : roundResult.getCarPerformances()) {
+        for (CarPerformance carPerformance : roundResult.carPerformances()) {
             String carName = carPerformance.carName();
             int distance = carPerformance.distance();
             String movements = MOVEMENT_FORMAT.repeat(distance);
