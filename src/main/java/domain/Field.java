@@ -1,7 +1,6 @@
 package domain;
 
 import dto.CarDto;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -35,11 +34,7 @@ public class Field {
     }
 
     private void recordAttempt(int attempt, List<Car> cars) {
-        List<CarDto> carDtos = new ArrayList<>();
-        for (Car car : cars) {
-            carDtos.add(DtoMapper.convert(car));
-        }
-        record.put(attempt, carDtos);
+        record.put(attempt, DtoMapper.convert(cars));
     }
 
     public HashMap<Integer, List<CarDto>> getRacingRecord() {
