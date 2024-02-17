@@ -17,7 +17,9 @@ public class RacingGame {
     private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public RacingGame(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
+    public RacingGame(final InputView inputView,
+                      final OutputView outputView,
+                      final NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;
@@ -35,13 +37,13 @@ public class RacingGame {
         reportWinners(circuit);
     }
 
-    private void reportWinners(Circuit circuit) {
+    private void reportWinners(final Circuit circuit) {
         List<CarStatus> raceResults = circuit.getRaceResults();
         List<CarStatus> winners = circuit.getWinners(raceResults);
         outputView.printWinners(winners);
     }
 
-    private void play(Circuit circuit, int tryNumber) {
+    private void play(final Circuit circuit, final int tryNumber) {
         outputView.printResultMessage();
         for (int tries = 0; tries < tryNumber; tries++) {
             circuit.startRace();
@@ -50,7 +52,7 @@ public class RacingGame {
         }
     }
 
-    private <T> T repeatUntilValid(Supplier<T> function) {
+    private <T> T repeatUntilValid(final Supplier<T> function) {
         try {
             return function.get();
         } catch (RacingCarException e) {

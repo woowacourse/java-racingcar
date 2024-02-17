@@ -7,11 +7,11 @@ public class CarFactory {
 
     private final NumberGenerator numberGenerator;
 
-    public CarFactory(NumberGenerator numberGenerator) {
+    public CarFactory(final NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Car> createCars(List<String> carNames) {
+    public List<Car> createCars(final List<String> carNames) {
         return carNames.stream()
                 .map(name -> new Car(name, new Engine(numberGenerator)))
                 .toList();

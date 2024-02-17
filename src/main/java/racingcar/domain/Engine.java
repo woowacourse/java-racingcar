@@ -9,7 +9,7 @@ public class Engine {
     private final NumberGenerator numberGenerator;
     private boolean isWorking = false;
 
-    public Engine(NumberGenerator numberGenerator) {
+    public Engine(final NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 

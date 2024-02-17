@@ -13,7 +13,7 @@ public class InputView {
 
     private final Reader reader;
 
-    public InputView(Reader reader) {
+    public InputView(final Reader reader) {
         this.reader = reader;
     }
 
@@ -36,7 +36,7 @@ public class InputView {
         return number;
     }
 
-    private int convertToInteger(String input) {
+    private int convertToInteger(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -44,7 +44,7 @@ public class InputView {
         }
     }
 
-    private void validateNumberInRange(int number) {
+    private void validateNumberInRange(final int number) {
         if (number < MIN_RACE_RANGE || number > MAX_RACE_RANGE) {
             throw new TryNumberOutOfRangeException();
         }

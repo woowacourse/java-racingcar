@@ -8,30 +8,30 @@ public class Name {
 
     private final String value;
 
-    public Name(String value) {
+    public Name(final String value) {
         validateName(value);
         this.value = value;
     }
 
-    private void validateName(String value) {
+    private void validateName(final String value) {
         validateNameNotNull(value);
         validateNameLength(value);
         validateNameNotBlank(value);
     }
 
-    private void validateNameLength(String value) {
+    private void validateNameLength(final String value) {
         if (value.length() > MAX_NAME_LENGTH) {
             throw new InvalidNameLengthException();
         }
     }
 
-    private void validateNameNotBlank(String value) {
+    private void validateNameNotBlank(final String value) {
         if (value.isBlank()) {
             throw new InvalidNameLengthException();
         }
     }
 
-    private void validateNameNotNull(String value) {
+    private void validateNameNotNull(final String value) {
         if (value == null) {
             throw new InvalidNameLengthException();
         }
