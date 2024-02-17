@@ -42,7 +42,11 @@ public class Car {
         return name;
     }
 
+<<<<<<< HEAD
     public String showTrace(String nameDelimiter, String traceSymbol) {
+=======
+    public String showTrace() {
+>>>>>>> 9533b25 (refactor: 이동 경로 출력 메소드를 toString 오버라이드 -> showTrace 로 수정)
         StringBuilder trace = new StringBuilder();
         trace.append(name).append(NAME_DELIMITER);
         for (int i = 0; i < position; i++) {
