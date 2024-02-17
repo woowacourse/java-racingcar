@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class TryCountTest {
 
     @Test
-    @DisplayName("정상적으로 TryCount를 생성합니다.")
+    @DisplayName("시도 횟수가 올바르면 TryCount 객체 생성")
     void createTryCount() {
         assertThatCode(() -> new TryCount(5)).doesNotThrowAnyException();
     }
