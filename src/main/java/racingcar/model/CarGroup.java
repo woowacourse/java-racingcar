@@ -1,7 +1,9 @@
 package racingcar.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import racingcar.utils.RandomNumberGenerator;
 
 public class CarGroup {
@@ -11,10 +13,14 @@ public class CarGroup {
         cars.add(car);
     }
 
-    public void race() {
+    public Map<String, Integer> race() {
+        Map<String, Integer> raceResponse = new HashMap<>();
         for (Car car : cars) {
-            car.move(RandomNumberGenerator.generate());
+            int nextPosition = car.move(RandomNumberGenerator.generate());
+            raceResponse.put(car.getName(), nextPosition);
         }
+
+        return raceResponse;
     }
 
     public List<Car> findWinners() {
@@ -29,16 +35,5 @@ public class CarGroup {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Car car : cars) {
-            sb.append(car.toString());
-            sb.append("\n");
-        }
-
-        return sb.toString();
     }
 }

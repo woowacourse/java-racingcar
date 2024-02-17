@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
 import racingcar.utils.NameParser;
@@ -67,8 +68,8 @@ public class GameController {
     public void play() {
         OutputView.printResultDescription();
         for (int i = 0; i < moveCount; i++) {
-            carGroup.race();
-            OutputView.printPosition(carGroup);
+            Map<String, Integer> raceResponse = carGroup.race();
+            OutputView.printPosition(raceResponse);
         }
     }
 
