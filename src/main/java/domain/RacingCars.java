@@ -19,7 +19,7 @@ public class RacingCars {
         return cars;
     }
 
-    public List<Car> getWinners() {
+    public List<Car> getMaxPositionCars() {
         int maxPosition = getMaxPosition();
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))

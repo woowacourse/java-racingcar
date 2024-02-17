@@ -30,6 +30,6 @@ public class RacingCarsTest {
         Car winner = cars.get(0);
         winner.execute(9);
 
-        assertThat(racingCars.getWinners()).containsExactly(winner);
+        assertThat(racingCars.getMaxPositionCars()).containsExactly(winner);
     }
 }

@@ -42,6 +42,6 @@ public class Field {
     }
 
     public List<CarDto> getWinners() {
-        return DtoMapper.convert(racingCars.getWinners());
+        return DtoMapper.convert(racingCars.getMaxPositionCars());
     }
 }
