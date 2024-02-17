@@ -1,5 +1,6 @@
-package racingcar.domain.model;
+package racingcar.domain.rules;
 
+import racingcar.domain.rules.CarMoveRule;
 import racingcar.utils.Random;
 
 public class DefaultCarMoveRule implements CarMoveRule {
