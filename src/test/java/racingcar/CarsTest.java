@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
     static class TestNumericGenerator implements NumericGenerator {
-        private List<Integer> numbers = new ArrayList<>();
+        private final List<Integer> numbers = new ArrayList<>();
         private int position = 0;
 
         public TestNumericGenerator(int arg, int... args) {
@@ -23,7 +23,7 @@ public class CarsTest {
             }
         }
 
-
+정
         @Override
         public int generate() {
             int generatedNumber = numbers.get(position);
