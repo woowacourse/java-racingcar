@@ -3,6 +3,7 @@ package racingcar.domain;
 public class Car {
 
     private static final int MAX_NAME_LENGTH = 5;
+    private static final int START_POSITION = 0;
 
     private final String name;
     private int position;
@@ -10,7 +11,7 @@ public class Car {
     public Car(final String name) {
         validate(name);
         this.name = name;
-        this.position = 0;
+        this.position = START_POSITION;
     }
 
     private void validate(final String name) {
