@@ -9,6 +9,22 @@ import org.junit.jupiter.api.Test;
 class GameTest {
     Game game = new Game();
 
+    @DisplayName("입력된 시도 횟수가 정수인 숫자 형태가 아니라면 예외가 발생한다")
+    @Test
+    void attemptLimitFormatTest() {
+        Assertions.assertThatThrownBy(() -> game.setAttemptLimit("r"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정수");
+    }
+
+    @DisplayName("입력된 시도 횟수가 양수가 아니라면 예외가 발생한다")
+    @Test
+    void attemptLimitRangeTest() {
+        Assertions.assertThatThrownBy(() -> game.setAttemptLimit("-1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("양수");
+    }
+
     @DisplayName("자동차 객체 리스트가 올바르게 생성된다")
     @Test
     void setCarTest() {
