@@ -10,7 +10,7 @@ import racinggame.domain.condition.RandomMoveCondition;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        List<Car> cars = InputView.readNames();
+        List<Car> cars = InputView.readCars();
         Round round = InputView.readRound();
         RacingGame game = new RacingGame(cars, new RandomMoveCondition());
 
