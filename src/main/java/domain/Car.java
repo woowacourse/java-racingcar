@@ -1,14 +1,19 @@
 package domain;
 
+import movestrategy.MoveStrategy;
+import movestrategy.RandomPowerMoveStrategy;
+
 public class Car implements Comparable<Car> {
 
     private final String name;
     private int score;
+    private final MoveStrategy moveStrategy;
 
     public Car(String name) {
         validate(name);
         this.name = name;
         this.score = 0;
+        this.moveStrategy = new RandomPowerMoveStrategy();
     }
 
     public String getName() {
@@ -20,7 +25,9 @@ public class Car implements Comparable<Car> {
     }
 
     public void move() {
-        this.score++;
+        if (moveStrategy.isMovable()) {
+            this.score++;
+        }
     }
 
     @Override

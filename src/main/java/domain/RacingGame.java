@@ -2,15 +2,12 @@ package domain;
 
 import static constant.Numbers.MAX_CAR_LENGTH;
 import static constant.Numbers.MIN_CAR_LENGTH;
-import static constant.Numbers.MOVE_BOUNDARY_NUMBER;
-import static constant.Numbers.RANDOM_NUMBER_RANGE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 import view.OutputView;
 
@@ -33,9 +30,7 @@ public class RacingGame {
 
     private void playOneRound() {
         for (Car car : cars) {
-            if (isMovable()) {
-                car.move();
-            }
+            car.move();
         }
     }
 
@@ -43,12 +38,6 @@ public class RacingGame {
         return cars.stream()
             .filter(car -> car.equals(Collections.max(cars)))
             .toList();
-    }
-
-    private static boolean isMovable() {
-        Random random = new Random();
-        int power = random.nextInt(RANDOM_NUMBER_RANGE);
-        return power >= MOVE_BOUNDARY_NUMBER;
     }
 
     private List<Car> makeCars(String rawCarNames) {
