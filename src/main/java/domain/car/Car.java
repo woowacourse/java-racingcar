@@ -25,4 +25,8 @@ public class Car {
             this.position++;
         }
     }
+
+    public boolean isAtPosition(int position) {
+        return this.position == position;
+    }
 }

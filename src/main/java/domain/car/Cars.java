@@ -38,8 +38,7 @@ public class Cars {
     private List<Car> selectCarsWithPosition(Integer position) {
         return
                 value.stream()
-                     .filter(car -> car.getPosition()
-                                       .equals(position))
+                     .filter(car -> car.isAtPosition(position))
                      .toList();
     }
 
