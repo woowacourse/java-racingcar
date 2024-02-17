@@ -9,12 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CarsTest {
-    Cars cars;
-
-    @BeforeEach
-    void setup() {
-        cars = new Cars(List.of("pobi", "atto"), new Random());
-    }
 
     @Test
     @DisplayName("객체가 정상적으로 생성된다.")

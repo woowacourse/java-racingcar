@@ -37,18 +37,28 @@ class CarTest {
         assertThat(car.getLocation()).isEqualTo(expectedLocation);
     }
 
-    @ParameterizedTest(name = "{0}을 이름으로 사용하면 예외가 발생한다.")
-    @ValueSource(strings = {"", " ", "zangsu"})
-    void illegalNameExceptionTest(String name) {
+    @ParameterizedTest(name = "공백을 이름으로 사용하면 예외가 발생한다.")
+    @ValueSource(strings = {"", " "})
+    void blankNameExceptionTest(String name) {
         assertThatThrownBy(() -> new Car(name, new Random()))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름이 공백입니다.");
+    }
+
+    @Test
+    @DisplayName("이름의 길이가 5자를 초과하면 예외가 발생한다.")
+    void longNameExceptionTest() {
+        assertThatThrownBy(() -> new Car("zangsu", new Random()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름은 5자 이하여야 합니다.");
     }
 
     @Test
     @DisplayName("null을 이름으로 사용하면 예외가 발생한다.")
     void nullNameExceptionTest() {
         assertThatThrownBy(() -> new Car(null, new Random()))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이름이 입력되지 않았습니다.");
     }
 
     @ParameterizedTest(name = "{0}이면 전진하지 않는다.")
