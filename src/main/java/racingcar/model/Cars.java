@@ -1,7 +1,7 @@
 package racingcar.model;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import racingcar.message.ErrorMessage;
@@ -43,24 +43,23 @@ public class Cars {
         cars.forEach(car -> car.go(generator.generate()));
     }
 
-    public List<Car> findWinner() {
-        cars.sort(Car::compareTo);
-        Collections.reverse(cars);
-        Car winner = cars.get(0);
+    public List<Car> findWinners() {
+        Car winner = findWinner();
         return cars.stream()
                 .filter(car -> car.isSamePosition(winner))
                 .toList();
+    }
+
+    public Car findWinner() {
+        return cars.stream()
+                .max(Comparator.naturalOrder())
+                .orElseThrow();
     }
 
     public List<Car> getCars() {
         return cars.stream()
                 .map(Car::copy)
                 .toList();
-    }
-
-    //TODO: 이 메서드 어떻게 테스트 하지?
-    public void sort() {
-        cars.sort(Car::compareTo);
     }
 
     @Override
