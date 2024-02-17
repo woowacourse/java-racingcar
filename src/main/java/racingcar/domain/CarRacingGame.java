@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.dto.CarDto;
 import racingcar.dto.CarsDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarRacingGame {
@@ -14,13 +15,16 @@ public class CarRacingGame {
         this.round = round;
     }
 
-    public void race(PrintRequestListener<List<CarDto>> printRequestListener) {
+    public List<CarsDto> race() {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
+        List<CarsDto> carStatusesPerRound = new ArrayList<>();
 
         while (!isGameEnd()) {
-            playRound(numberGenerator);
-            printRequestListener.print(new CarsDto(findWinners()).getCars());
+            CarsDto currentCarStatuses = playRound(numberGenerator);
+            carStatusesPerRound.add(currentCarStatuses);
         }
+
+        return carStatusesPerRound;
     }
 
     public boolean isGameEnd() {
@@ -31,9 +35,10 @@ public class CarRacingGame {
         return cars.findCarsAtMaxPosition();
     }
 
-    public void playRound(NumberGenerator numberGenerator) {
+    public CarsDto playRound(NumberGenerator numberGenerator) {
         cars.moveCars(numberGenerator);
         round.decrease();
+        return new CarsDto(cars.getCars());
     }
 
     public List<Car> getCurrentCarStatuses() {

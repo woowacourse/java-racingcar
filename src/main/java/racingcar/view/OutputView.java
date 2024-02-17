@@ -1,6 +1,8 @@
 package racingcar.view;
 
+import racingcar.domain.RoundResult;
 import racingcar.dto.CarDto;
+import racingcar.dto.CarsDto;
 
 import java.util.List;
 
@@ -16,6 +18,10 @@ public class OutputView {
 
     public static void printResultMessage() {
         System.out.println(RESULT_MESSAGE);
+    }
+
+    public static void printRaceResult(List<CarsDto> raceResult) {
+        raceResult.forEach(carsDto -> printRoundResult(carsDto.getCars()));
     }
 
     public static void printRoundResult(List<CarDto> cars) {

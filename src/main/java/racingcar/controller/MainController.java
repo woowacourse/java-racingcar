@@ -16,7 +16,8 @@ public class MainController {
         CarRacingGame carRacingGame = new CarRacingGame(cars, round);
 
         OutputView.printResultMessage();
-        carRacingGame.race(OutputView::printRoundResult);
+        List<CarsDto> raceResult = carRacingGame.race();
+        OutputView.printRaceResult(raceResult);
 
         showWinners(carRacingGame.findWinners());
     }
