@@ -15,18 +15,19 @@ public class Car implements Comparable<Car> {
     private int position = 0;
 
     public Car(final String name) {
-        validateName(name);
-        this.name = name.trim();
+        validateNotNull(name);
+        String trimmedName = name.trim();
+        validateName(trimmedName);
+        this.name = trimmedName;
     }
 
     private void validateName(final String name) {
-        validateNotNull(name);
         validateNameStyle(name);
         validateNameLength(name);
     }
 
     private void validateNotNull(final String name) {
-        if (name == null || name.trim().isEmpty()) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
         }
     }
@@ -42,7 +43,7 @@ public class Car implements Comparable<Car> {
     }
 
     private void validateNameLength(final String name) {
-        if (name.trim().length() > MAX_NAME_LENGTH.getValue()) {
+        if (name.length() > MAX_NAME_LENGTH.getValue()) {
             throw new IllegalArgumentException(INVALID_CAR_NAME_SIZE.getMessage());
         }
     }
