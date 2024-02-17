@@ -46,6 +46,6 @@ public class RaceManager {
     public void run() {
         field.race(numberOfAttempts);
         outputView.printRacingResult(field.getRacingRecord());
-
+        outputView.printRacingWinners(field.getWinners());
     }
 }

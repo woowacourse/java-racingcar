@@ -40,4 +40,8 @@ public class Field {
     public HashMap<Integer, List<CarDto>> getRacingRecord() {
         return record;
     }
+
+    public List<CarDto> getWinners() {
+        return DtoMapper.convert(racingCars.getWinners());
+    }
 }

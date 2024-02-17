@@ -13,7 +13,7 @@ public class OutputView {
             result.append(makeResultPerAttempt(entry));
             result.append("\n");
         }
-        System.out.println(result);
+        System.out.print(result);
     }
 
     private String makeResultPerAttempt(List<CarDto> carDtos) {
@@ -24,8 +24,14 @@ public class OutputView {
         return raceResult.toString();
     }
 
-    public void printRacingWinners(List<CarDto> carDtos) {
-
+    public void printRacingWinners(List<CarDto> winners) {
+        StringBuilder winnersResult = new StringBuilder();
+        List<String> winnersName = winners.stream()
+                .map(winner -> winner.name())
+                .toList();
+        winnersResult.append(String.join(", ", winnersName));
+        winnersResult.append("가 최종 우승했습니다.");
+        System.out.print(winnersResult.toString());
     }
 
     public void printErrorMessage(String message) {
