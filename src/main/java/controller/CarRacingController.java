@@ -24,18 +24,18 @@ public class CarRacingController {
     }
 
     public void run() {
-        Cars cars = getCars();
-        int count = getCount();
+        Cars cars = createCars();
+        int raps = getCount();
 
-        outputView.printMovementTitle();
+        outputView.printResultMessage();
 
-        race(cars, count);
+        race(cars, raps);
 
         printWinners(cars);
     }
 
-    private void race(Cars cars, int count) {
-        for (int i = 0; i < count; i++) {
+    private void race(Cars cars, int raps) {
+        for (int i = 0; i < raps; i++) {
             racingCarService.moveCars(cars);
             printMovement(cars);
         }
@@ -46,12 +46,14 @@ public class CarRacingController {
         outputView.printCarsMovement(movement);
     }
 
-    private Cars getCars() {
-        String carsName = inputView.inputCarsName();
+    private Cars createCars() {
+        String rawNames = inputView.inputCarNames();
 
-        validateIsNull(carsName);
+        validateIsNull(rawNames);
 
-        return racingCarService.getCars(carsName);
+        List<String> names = List.of(rawNames.split(","));
+
+        return racingCarService.createCars(names);
     }
 
     private int getCount() {
