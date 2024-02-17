@@ -48,9 +48,7 @@ public class GameController {
     }
 
     private void race(final List<Car> cars) {
-        cars.forEach(car -> {
-            car.race(NumberGenerator.generate(Car.FORWARD_MAX_NUMBER));
-        });
+        cars.forEach(car -> car.race(NumberGenerator.generate(Car.FORWARD_MAX_NUMBER)));
     }
 
     private void finish(final List<Car> cars) {
