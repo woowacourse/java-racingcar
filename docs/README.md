@@ -7,14 +7,22 @@
 - 위치 Position
 - 자동차경주게임 RacingGame
 
+## 도메인 개념 관계 설명
+
+아래는 `mermaid`라는 다이어그램을 만드는 언어를 이용해 도메인에 등장하는 개념들의 관계를 표현합니다.
+인텔리제이의 `mermaid` 플러그인을 설치하면, 도형을 확인할 수 있습니다.
+
+- `-->` 는 의존하는 방향을 의미합니다.
+- ex) `Car --> Name`는 자동차(Car)는 이름(Name)을 가지거나, 알고 있어야 한다는 것을 의미합니다.
+
 ```mermaid
 graph TD
-  Car --> Name
-  Car --> Position
-  RacingGame --> Round
-  RacingGame --> MoveCondition
-  RacingGame --> Cars
-  Cars --> Car
+    Car --> Name
+    Car --> Position
+    RacingGame --> Round
+    RacingGame --> MoveCondition
+    RacingGame --> Cars
+    Cars --> Car
 ```
 
 ## 기능 목록
