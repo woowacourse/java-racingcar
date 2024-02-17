@@ -1,6 +1,8 @@
 package racingcar.view;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 public class OutputView {
     private static final String RESULT_SUBJECT = "실행 결과";
@@ -15,8 +17,15 @@ public class OutputView {
         System.out.println(RESULT_SUBJECT);
     }
 
-    public static void printResult(final List<String> result) {
-        result.forEach(System.out::println);
+    public static void printResult(final Map<String, Integer> result) {
+        result.forEach(OutputView::printCarPosition);
+        System.out.println();
+    }
+
+    private static void printCarPosition(String name, int position) {
+        System.out.print(name + " : ");
+        IntStream.range(0, position)
+                .forEach(i -> System.out.print('-'));
         System.out.println();
     }
 

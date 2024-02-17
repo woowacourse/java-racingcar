@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import static racingcar.exception.ExceptionMessage.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -70,5 +71,18 @@ class CarsTest {
 
         Assertions.assertThat(cars.getWinners())
                 .isEqualTo(List.of("car1", "car2"));
+    }
+
+    @Test
+    @DisplayName("[Success] Car에서 받은 name과 position들을 Map으로 반환한다")
+    void getResults() {
+        Cars cars = new Cars(List.of(
+                new Car("car1"),
+                new Car("car2"),
+                new Car("car3")
+        ));
+
+        Assertions.assertThat(cars.result())
+                .isEqualTo(Map.of("car1", 0, "car2", 0, "car3", 0));
     }
 }

@@ -4,6 +4,7 @@ import static racingcar.util.Constant.CAR_MOVE_THRESHOLD;
 import static racingcar.util.Constant.MAX_NAME_LENGTH;
 import static racingcar.exception.ExceptionMessage.*;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,8 +63,8 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public String result() {
-        return name + " : " + CAR_POSITION_SYMBOL.repeat(position);
+    public Map<String, Integer> result() {
+        return Map.of(name, position);
     }
 
     public int compareTo(Car other) {

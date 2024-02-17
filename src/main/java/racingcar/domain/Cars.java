@@ -5,7 +5,11 @@ import static racingcar.util.Constant.MAX_RANDOM_NUMBER;
 import static racingcar.util.Constant.MIN_CARS_SIZE;
 import static racingcar.exception.ExceptionMessage.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import racingcar.service.RandomNumberGenerator;
 
 public class Cars {
@@ -36,10 +40,13 @@ public class Cars {
         cars.forEach(car -> car.move(RandomNumberGenerator.generate(MAX_RANDOM_NUMBER.getValue())));
     }
 
-    public List<String> result() {
+    public Map<String, Integer> result() {
         return cars.stream()
                 .map(Car::result)
-                .toList();
+                .map(result -> result.entrySet().iterator().next())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey, Map.Entry::getValue,
+                        (a, b) -> a, LinkedHashMap::new));
     }
 
     public List<String> getWinners() {
