@@ -6,8 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
@@ -31,21 +29,42 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @DisplayName("랜덤값이 4이상이면 자동차 전진")
-    @ValueSource(ints = {4, 9})
-    void moveByMovableNumber(int value) {
+    @Test
+    @DisplayName("자동차는 전진할 수 있다")
+    void move() {
         Car car = new Car("pobi");
-        car.moveByNumber(value);
+        car.move();
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
-    @ParameterizedTest
-    @DisplayName("랜덤값이 3이하면 자동차 멈춤")
-    @ValueSource(ints = {0, 3})
-    void moveByImmovableNumber(int value) {
-        Car car = new Car("pobi");
-        car.moveByNumber(value);
-        assertThat(car.getPosition()).isEqualTo(0);
+    @Test
+    @DisplayName("자동차 간 전진 거리가 같음을 판단할 수 있다")
+    void isSame() {
+        Car car1 = new Car("pobi");
+        Car car2 = new Car("crong");
+        car1.move();
+        car2.move();
+        boolean expected = car1.isSame(car2);
+        assertThat(expected).isTrue();
+    }
+
+    @Test
+    @DisplayName("자동차 간 전진 거리를 같지 않음을 판단할 수 있다")
+    void isNotSame() {
+        Car car1 = new Car("pobi");
+        Car car2 = new Car("crong");
+        car1.move();
+        boolean expected = car1.isSame(car2);
+        assertThat(expected).isFalse();
+    }
+
+    @Test
+    @DisplayName("자동차 간 전진 거리를 비교할 수 있다")
+    void compareTo() {
+        Car car1 = new Car("pobi");
+        Car car2 = new Car("crong");
+        car1.move();
+        int expected = car1.compareTo(car2);
+        assertThat(expected).isEqualTo(-1);
     }
 }
