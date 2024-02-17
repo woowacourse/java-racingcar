@@ -1,8 +1,8 @@
 package racing.domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import racing.util.MovableStrategy;
 
@@ -10,23 +10,20 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(String rawNames) {
-        List<String> carNames = parseNames(rawNames);
-        validate(carNames);
-        this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
+    public Cars(List<Car> cars) {
+        validate(cars);
+        this.cars = cars;
     }
 
-    private List<String> parseNames(String names) {
-        return Arrays.stream(names.split(",")).map(String::trim).toList();
+    private void validate(List<Car> cars) {
+        validateDuplicate(cars);
     }
 
-    private void validate(List<String> cars) {
-        validateDuplicateName(cars);
-    }
-
-    private void validateDuplicateName(List<String> cars) {
-        int count = (int) cars.stream().distinct().count();
-        if (count != cars.size()) {
+    private void validateDuplicate(List<Car> cars) {
+        Map<String, Long> nameCounts = cars.stream()
+                .collect(Collectors.groupingBy(Car::getName, Collectors.counting()));
+        boolean hasDuplicates = nameCounts.values().stream().anyMatch(count -> count > 1);
+        if (hasDuplicates) {
             throw new IllegalArgumentException("자동차 이름이 중복되었습니다.");
         }
     }
@@ -37,9 +34,17 @@ public class Cars {
                 .forEach(Car::move);
     }
 
-    public List<Car> findFurthestCars() {
+    public List<Car> findWinners() {
+        reverseSort();
+        return findCarsWithSamePosition(cars.get(0));
+    }
+
+    public void reverseSort() {
         Collections.sort(cars);
-        return cars.stream().filter((car) -> car.isSame(cars.get(0))).toList();
+    }
+
+    public List<Car> findCarsWithSamePosition(Car target) {
+        return cars.stream().filter((car) -> car.isSame(target)).toList();
     }
 
     public List<Car> getCars() {
