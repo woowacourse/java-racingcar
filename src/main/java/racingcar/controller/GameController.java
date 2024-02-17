@@ -5,26 +5,27 @@ import java.util.List;
 import java.util.Map;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
+import racingcar.model.RacingGame;
 import racingcar.utils.NameParser;
 import racingcar.utils.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-    private final CarGroup carGroup = new CarGroup();
-    private int moveCount;
+    private RacingGame racingGame;
 
     public void init() throws IOException {
         List<String> names;
+        int moveCount;
 
         do {
             names = readCarNames();
         } while (!isNameValid(names));
-        initCars(names);
-
         do {
             moveCount = readMoveCount();
         } while (!isMoveCountValid(moveCount));
+
+        racingGame = new RacingGame(createCarGroup(names), moveCount);
     }
 
     private List<String> readCarNames() throws IOException {
@@ -57,22 +58,23 @@ public class GameController {
         return InputView.inputMoveCount();
     }
 
-    private void initCars(List<String> carNames) {
+    private CarGroup createCarGroup(List<String> carNames) {
+        CarGroup carGroup = new CarGroup();
+
         for (String name : carNames) {
             carGroup.add(new Car(name));
         }
+        return carGroup;
     }
 
     public void play() {
         OutputView.printResultDescription();
-        for (int i = 0; i < moveCount; i++) {
-            Map<String, Integer> raceResponse = carGroup.race();
-            OutputView.printPosition(raceResponse);
-        }
+        List<Map<String, Integer>> raceResponse = racingGame.race();
+        OutputView.printPosition(raceResponse);
     }
 
     public void finish() {
-        List<String> winners = carGroup.findWinners();
+        List<String> winners = racingGame.findWinners();
         if (winners.isEmpty()) {
             OutputView.printNoWinner();
             return;
