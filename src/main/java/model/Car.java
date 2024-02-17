@@ -7,8 +7,6 @@ public class Car {
     private static final int FORWARD_MIN_NUMBER = 4;
     private static final String NAME_DELIMITER = " : ";
     private static final String TRACE = "-";
-    private static final String PREFIX_ERROR = "[ERROR] ";
-    private static final String ERROR_NAME_LENGTH = "자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.";
 
     private int position;
     private String name;
@@ -25,7 +23,7 @@ public class Car {
 
     private static void validateNameLength(String name) {
         if (name == null || name.length() > MAX_NAME_LENGTH || name.trim().isEmpty()) {
-            throw new IllegalStateException(PREFIX_ERROR + ERROR_NAME_LENGTH);
+            throw new IllegalStateException("자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
         }
     }
 

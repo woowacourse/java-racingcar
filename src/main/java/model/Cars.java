@@ -11,9 +11,6 @@ public class Cars {
     private static final int MIN_CAR_NAME_COUNT = 2;
     private static final int MIN_POSITION = 0;
     private static final String NEW_LINE = "\n";
-    private static final String PREFIX_ERROR = "[ERROR] ";
-    private static final String ERROR_DUPLICATED_NAME = "자동차의 이름은 중복될 수 없습니다.";
-    private static final String ERROR_NAME_COUNT = "자동차 이름은 2개 이상이어야 합니다.";
 
     private List<Car> cars;
 
@@ -35,13 +32,13 @@ public class Cars {
     private static void validateDuplicatedName(List<String> names) {
         long nameCount = names.stream().distinct().count();
         if (names.size() != nameCount) {
-            throw new IllegalArgumentException(PREFIX_ERROR + ERROR_DUPLICATED_NAME);
+            throw new IllegalArgumentException("[ERROR] 자동차의 이름은 중복될 수 없습니다.");
         }
     }
 
     private static void validateNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
-            throw new IllegalArgumentException(PREFIX_ERROR + ERROR_NAME_COUNT);
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 2개 이상이어야 합니다.");
         }
     }
 
