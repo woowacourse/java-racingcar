@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarTest {
     @Test
     @DisplayName("이름을 받아 자동차를 생성한다")
-    void createCar(){
+    void createCar() {
 
         //Given
         Name name = new Name("kim");
@@ -22,15 +22,16 @@ class CarTest {
         //Then
         assertInstanceOf(Car.class, car);
     }
+
     @ParameterizedTest
     @DisplayName("4 이상이면 위치를 한 칸 전진한다.")
-    @ValueSource(ints={4,5})
-    public void forwardPositionWhenNumberIsGreaterThan4(Integer value){
+    @ValueSource(ints = {4, 5})
+    public void forwardPositionWhenNumberIsGreaterThan4(Integer value) {
         Car car = new Car(new Name("kim"));
-        Integer pos=car.getPosition();
+        Integer pos = car.getPosition();
 
         car.race(value);
 
-        assertEquals(car.getPosition(),pos+1);
+        assertEquals(car.getPosition(), pos + 1);
     }
 }

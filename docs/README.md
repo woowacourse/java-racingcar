@@ -14,7 +14,7 @@
 
 ### NameCatalog
 
--[x] 이름이 중복이면 'IllegalArgumentException' 을 발생한다. 
+-[x] 이름이 중복이면 'IllegalArgumentException' 을 발생한다.
 
 ### Car
 

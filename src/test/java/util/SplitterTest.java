@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SplitterTest {
     @Test
     @DisplayName("문자열을 콤마(,) 를 통해 구분한다")
-    void splitWithComma(){
+    void splitWithComma() {
         String originalString = "pond,crong,joyson";
 
         List<String> splitResult = Splitter.splitWithComma(originalString);
 
-        assertEquals(splitResult.size(),3);
+        assertEquals(splitResult.size(), 3);
     }
 }

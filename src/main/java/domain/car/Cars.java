@@ -13,7 +13,6 @@ public class Cars {
     }
 
     public static Cars from(NameCatalog nameCatalog) {
-
         List<Car> cars = nameCatalog.getNames()
                 .stream()
                 .map(Car::new)

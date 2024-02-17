@@ -13,15 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RaceResultTest {
     @Test
     @DisplayName("자동차들중 가장 많이 간 우승 자동차들을 모은 경기결과를 만든다.")
-    public void createRaceResult(){
+    public void createRaceResult() {
         Car car = new Car(new Name("poby"));
         car.race(9);
         Car car1 = new Car(new Name("pond"));
-        List<Car>cars = List.of(car,car1);
+        List<Car> cars = List.of(car, car1);
 
         RaceResult raceResult = RaceResult.of(cars);
 
         Car winnerCar = raceResult.getWinnerCars().get(0);
-        assertEquals(winnerCar,car);
+        assertEquals(winnerCar, car);
     }
 }
