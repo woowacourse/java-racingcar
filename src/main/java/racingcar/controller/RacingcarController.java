@@ -11,6 +11,7 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingcarController {
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final RacingcarService racingcarService = new RacingcarService();
@@ -23,10 +24,13 @@ public class RacingcarController {
         awardWinners(cars, roundResults);
     }
 
-    private void awardWinners(List<Car> cars, List<RoundResult> roundResults) {
-        List<String> winners = racingcarService.pickOutWinners(cars);
-        outputView.printRoundResults(roundResults);
-        outputView.printWinners(winners);
+    private List<Car> readCars() {
+        List<String> carNames = inputView.readCarNames();
+        return racingcarService.createCars(carNames);
+    }
+
+    private Round readRound() {
+        return new Round(inputView.readTryCount());
     }
 
     private List<RoundResult> simulateCarsInRound(Round round, List<Car> cars) {
@@ -39,13 +43,10 @@ public class RacingcarController {
         return roundResults;
     }
 
-    private List<Car> readCars() {
-        List<String> carNames = inputView.readCarNames();
-        return racingcarService.createCars(carNames);
-    }
-
-    private Round readRound() {
-        return new Round(inputView.readTryCount());
+    private void awardWinners(List<Car> cars, List<RoundResult> roundResults) {
+        List<String> winners = racingcarService.pickOutWinners(cars);
+        outputView.printRoundResults(roundResults);
+        outputView.printWinners(winners);
     }
 
     public <T> T retryOnException(Supplier<T> retryOperation) {
