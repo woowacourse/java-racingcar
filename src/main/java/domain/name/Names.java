@@ -13,14 +13,14 @@ public class Names {
     }
 
     private void validate(List<Name> names) {
-        Integer size = names.size();
+        int size = names.size();
 
         Set<String> nonDuplicate = names
                 .stream()
                 .map(Name::getValue)
                 .collect(Collectors.toSet());
 
-        Integer nonDuplicateSize = nonDuplicate.size();
+        int nonDuplicateSize = nonDuplicate.size();
 
         if (size != nonDuplicateSize) {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
