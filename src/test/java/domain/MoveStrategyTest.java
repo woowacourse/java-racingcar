@@ -5,11 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class RandomMoveStrategyTest {
+class MoveStrategyTest {
 
     @DisplayName("임의의 숫자가 3 이하인 경우에는 이동하지 않고, 4 이상인 경우에는 이동한다")
     @ParameterizedTest
-    @CsvSource({"3, false", "4, true"})
+    @CsvSource({"3, false", "4, true", "10, true", "0, false"})
     void moveRandomlyTest(int randomInt, boolean expected) {
         // when
         boolean actual = MoveStrategy.isMove(randomInt);

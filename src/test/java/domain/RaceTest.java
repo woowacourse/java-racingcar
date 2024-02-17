@@ -17,9 +17,9 @@ class RaceTest {
         Car carB = new Car("carB");
         List<Car> carList = List.of(carA, carB);
         Race race = new Race(carList);
-        carB.move(true);
 
         // when
+        carB.move(true);
         List<Car> winners = race.findWinner();
 
         // then
@@ -35,10 +35,10 @@ class RaceTest {
         Car carC = new Car("carC");
         List<Car> carList = List.of(carA, carB, carC);
         Race race = new Race(carList);
-        carA.move(true);
-        carB.move(true);
 
         // when
+        carA.move(true);
+        carB.move(true);
         List<Car> winners = race.findWinner();
 
         // then
