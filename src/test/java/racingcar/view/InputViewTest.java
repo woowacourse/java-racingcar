@@ -13,11 +13,12 @@ import racingcar.exception.TryNumberOutOfRangeException;
 
 class InputViewTest {
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"aru,polla,hogi", "aru, polla, hogi", "aru, polla,  hogi  "})
     @DisplayName("이름을 입력받고, 쉼표를 기준으로 올바르게 나눈다.")
-    void nameSplitTest() {
+    void nameSplitTest(String input) {
         // given
-        InputView view = new InputView(() -> "aru,polla,hogi");
+        InputView view = new InputView(() -> input);
         // when
         List<String> names = view.getNames();
         // then
