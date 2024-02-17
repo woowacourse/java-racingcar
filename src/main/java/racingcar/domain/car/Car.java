@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import static racingcar.constant.ExceptionMessage.INVALID_CAR_NAME_LENGTH;
 

@@ -3,7 +3,7 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import racingcar.domain.Cars;
+import racingcar.domain.car.Cars;
 import racingcar.domain.generator.RandomOilGenerator;
 import racingcar.domain.Round;
 import racingcar.dto.RoundResult;

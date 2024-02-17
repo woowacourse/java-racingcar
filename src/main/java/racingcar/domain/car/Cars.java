@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import racingcar.domain.generator.OilGenerator;
 import racingcar.dto.CarPerformance;
