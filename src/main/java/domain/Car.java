@@ -44,6 +44,10 @@ public class Car {
         }
     }
 
+    public boolean isAtDistance(int distance) {
+        return this.distance == distance;
+    }
+
     public CarStatus getStatus() {
         return new CarStatus(name, distance);
     }
