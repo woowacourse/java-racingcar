@@ -8,6 +8,7 @@ import racingcar.view.reader.ConsoleReader;
 import racingcar.view.reader.Reader;
 
 public class RacingCarApplication {
+
     public static void main(String[] args) {
 
         Reader reader = new ConsoleReader(System.in);
