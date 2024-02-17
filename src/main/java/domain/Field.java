@@ -1,8 +1,9 @@
 package domain;
 
+import utils.NumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
-import utils.NumberGenerator;
 
 public class Field {
     private final CarGroup carGroup;
@@ -40,6 +41,11 @@ public class Field {
 
     public String getResult() {
         List<Car> winners = carGroup.getWinners();
+
+        if (winners.size() == 0) {
+            return record.append("우승자가 없습니다.").toString();
+        }
+
         List<String> winnerNames = new ArrayList<>();
         for (Car winner : winners) {
             winnerNames.add(winner.getName());

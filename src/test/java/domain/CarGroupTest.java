@@ -32,4 +32,17 @@ public class CarGroupTest {
 
         assertThat(carGroup.getWinners()).containsExactly(winner);
     }
+
+    @Test
+    @DisplayName("우승자가 없는가")
+    void no_winners_test() {
+        String carNames = "mang,weve,pobi,neo";
+        CarGroup carGroup = new CarGroup(carNames);
+
+        List<Car> cars = carGroup.getAllCars();
+        Car winner = cars.get(0);
+        winner.move(0);
+
+        assertThat(carGroup.getWinners()).isEmpty();
+    }
 }

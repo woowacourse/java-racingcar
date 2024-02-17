@@ -23,6 +23,11 @@ public class CarGroup {
 
     public List<Car> getWinners() {
         int maxPosition = getMaxPosition();
+
+        if (maxPosition == 0) {
+            return List.of();
+        }
+
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .toList();
