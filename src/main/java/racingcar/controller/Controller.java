@@ -3,10 +3,10 @@ package racingcar.controller;
 import java.util.function.Supplier;
 
 import racingcar.exception.ExceptionHandler;
-import racingcar.model.CarMoveRule;
-import racingcar.model.Cars;
-import racingcar.model.DefaultCarMoveRule;
-import racingcar.model.RacingGame;
+import racingcar.domain.model.CarMoveRule;
+import racingcar.domain.model.Cars;
+import racingcar.domain.model.DefaultCarMoveRule;
+import racingcar.domain.model.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

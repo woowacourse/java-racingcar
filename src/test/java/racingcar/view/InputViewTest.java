@@ -8,8 +8,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
+import racingcar.domain.model.Car;
+import racingcar.domain.model.Cars;
 import racingcar.utils.Console;
 
 class InputViewTest {

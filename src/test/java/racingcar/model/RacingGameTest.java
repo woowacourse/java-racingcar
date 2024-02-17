@@ -5,6 +5,10 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.model.Car;
+import racingcar.domain.model.CarMoveRule;
+import racingcar.domain.model.Cars;
+import racingcar.domain.model.RacingGame;
 
 public class RacingGameTest {
 

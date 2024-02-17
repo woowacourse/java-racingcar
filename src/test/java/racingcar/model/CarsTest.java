@@ -7,6 +7,8 @@ import java.util.stream.IntStream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.model.Car;
+import racingcar.domain.model.Cars;
 
 public class CarsTest {
 
