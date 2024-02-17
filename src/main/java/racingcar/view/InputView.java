@@ -3,29 +3,30 @@ package racingcar.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.function.Function;
 
 import racingcar.model.Cars;
 import racingcar.model.TryCount;
 
-// TODO: 메서드의 구조가 동일함. 분리하는 방법 고민 필요
 public class InputView {
     private static final BufferedReader CONSOLE = new BufferedReader(new InputStreamReader(System.in));
-
+    
     public static Cars inputRacingCars() {
-        OutputView.printRequestCarNamesMessage();
-        try {
-            var carNames = CONSOLE.readLine();
-            return new Cars(carNames);
-        } catch(IOException e) {
-            throw new IllegalArgumentException();
-        }
+        return requestInput(
+                () -> OutputView.printRequestCarNamesMessage(),
+                input -> new Cars(input));
     }
 
     public static TryCount inputTryCount() {
-        OutputView.printRequestTryCountMessage();
+        return requestInput(
+                () -> OutputView.printRequestTryCountMessage(),
+                input -> new TryCount(input));
+    }
+
+    private static <T> T requestInput(Runnable requestMessage, Function<String,T> creator) {
+        requestMessage.run();
         try {
-            var tryCount = CONSOLE.readLine();
-            return new TryCount(tryCount);
+            return creator.apply(CONSOLE.readLine());
         } catch(IOException e) {
             throw new IllegalArgumentException();
         }
