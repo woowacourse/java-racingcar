@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.exception.InvalidRoundFormatException;
+import racingcar.exception.InvalidRoundRangeException;
 
 class RoundTest {
 
@@ -14,7 +16,7 @@ class RoundTest {
     @ValueSource(strings = {"조조는바보", "감자는멋져", "초코12", "sdfsd", " ", ""})
     void testRoundCountIsNotInteger(String roundCount) {
         assertThatThrownBy(() -> new Round(roundCount))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(InvalidRoundFormatException.class);
     }
 
     @DisplayName("라운드 값이 1보다 작으면 예외를 던진다")
@@ -22,7 +24,7 @@ class RoundTest {
     @ValueSource(strings = {"0", "-1", "-2", "-3"})
     void testInvalidRoundCountRange(String roundCount) {
         assertThatThrownBy(() -> new Round(roundCount))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(InvalidRoundRangeException.class);
     }
 
     @DisplayName("라운드 값이 1이상 정수이면 예외를 던지지 않는다")

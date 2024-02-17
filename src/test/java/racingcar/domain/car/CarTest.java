@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.exception.InvalidCarNameLengthException;
 
 class CarTest {
 
@@ -27,7 +28,7 @@ class CarTest {
     @ValueSource(strings = {"점심은순두부", "1234567", ""})
     void testInvalidNameLength(String carName) {
         assertThatThrownBy(() -> new Car(carName))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(InvalidCarNameLengthException.class);
     }
 
     @DisplayName("이름이 1자 이상 5자 이내이면 예외를 던지지 않는다")
