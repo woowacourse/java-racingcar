@@ -3,16 +3,13 @@ package racing.domain;
 public class Car implements Comparable<Car> {
 
     private static final int MAX_NAME_LENGTH = 5;
-    public static final int MIN_FORWARD_CONDITION = 4;
-    public static final String POSITION_MARKER = "-";
+    private static final int MIN_FORWARD_CONDITION = 4;
 
     private final String name;
     private int position;
 
     public Car(String name) {
-        validate(name);
-        this.name = name;
-        this.position = 0;
+        this(name, 0);
     }
 
     Car(String name, int position) {
@@ -39,11 +36,6 @@ public class Car implements Comparable<Car> {
 
     public boolean isSame(Car car) {
         return this.position == car.position;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s : %s", name, POSITION_MARKER.repeat(position));
     }
 
     @Override
