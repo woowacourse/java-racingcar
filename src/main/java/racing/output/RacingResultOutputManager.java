@@ -6,6 +6,7 @@ import racing.dto.RacingResult;
 
 public class RacingResultOutputManager {
     public static void printResult(List<RacingResult> racingResults) {
+        System.out.println();
         System.out.println("실행 결과");
         for (RacingResult racingResult : racingResults) {
             printEachResult(racingResult);
