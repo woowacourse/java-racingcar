@@ -10,6 +10,8 @@ public class OutputView {
     private static final String CAR_POSITION_MESSAGE = "%s : %s";
     private static final String CAR_POSITION_BAR = "-";
     private static final String WINNER_DELIMITER = ", ";
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+    private static final String ERROR_MESSAGE_FORMAT = "%s %s";
 
     public void printMoveResultMessage() {
         System.out.println("\n실행 결과");
@@ -38,5 +40,9 @@ public class OutputView {
         }
 
         System.out.println(String.format("%s가 최종 우승했습니다.", winnerJoiner));
+    }
+
+    public void printErrorMessage(Exception exception) {
+        System.out.println(String.format(ERROR_MESSAGE_FORMAT, ERROR_MESSAGE_PREFIX, exception.getMessage()));
     }
 }

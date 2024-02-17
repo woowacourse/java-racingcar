@@ -66,7 +66,7 @@ class CarRacingTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {2, 5, 10, 30, 40})
+    @ValueSource(ints = {1,5})
     @DisplayName("시도 횟수 생성 성공 테스트")
     void createTryCountSuccess(int tryAmount) {
         //when
@@ -81,7 +81,8 @@ class CarRacingTest {
     @DisplayName("시도 횟수 생성 실패 테스트")
     void createTryCountFail(int tryAmount) {
         assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(TryCount.TRY_COUNT_RANGE_ERROR_MESSAGE);
     }
 
     @Test

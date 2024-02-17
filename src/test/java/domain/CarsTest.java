@@ -43,7 +43,8 @@ class CarsTest {
         //when
         //then
         Assertions.assertThatThrownBy(() -> new Cars(carInfos))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Cars.CARS_SIZE_RANGE_ERROR_MESSAGE);
     }
 
     @Test
@@ -56,7 +57,8 @@ class CarsTest {
         //when
         //then
         Assertions.assertThatThrownBy(() -> new Cars(carInfos))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Cars.CAR_NAME_DUPLICATION_ERROR_MESSAGE);
     }
 
     @Test

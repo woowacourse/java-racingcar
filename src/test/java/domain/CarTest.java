@@ -27,18 +27,20 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "pooobi"})
+    @ValueSource(strings = {"pooobi"})
     @DisplayName("자동차 이름의 길이가 1 미만 5 초과로 주어지면 자동차가 정상적으로 생성되지 않는다")
     void createCarFail(String carName) {
         assertThatThrownBy(() -> new Car(carName, accelerator))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Car.CAR_NAME_LENGTH_ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("자동차 이름이 null로 주어지면 자동차가 정상적으로 생성되지 않는다")
     void createCarFailWhenInputNull() {
         assertThatThrownBy(() -> new Car(null, accelerator))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Car.CAR_NAME_DOES_NOT_EXIST_ERROR_MESSAGE);
     }
 
     @ParameterizedTest
@@ -46,7 +48,8 @@ class CarTest {
     @DisplayName("자동차 이름이 blank로 주어지면 자동차가 정상적으로 생성되지 않는다")
     void createCarFailWhenInputBlank(String carName) {
         assertThatThrownBy(() -> new Car(carName, accelerator))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Car.CAR_NAME_DOES_NOT_EXIST_ERROR_MESSAGE);
     }
 
     @ParameterizedTest

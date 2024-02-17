@@ -11,7 +11,7 @@ public class InputValidator {
         try {
             Integer.parseInt(text);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("입력 값이 정수형태가 아닙니다.");
         }
     }
 
@@ -19,6 +19,6 @@ public class InputValidator {
         if(CAR_NAMES_PATTERN.matcher(carNames).matches()) {
             return;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("자동차 이름은 \"이름,이름,...\" 형태로 입력해야 합니다.");
     }
 }
