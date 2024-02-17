@@ -50,17 +50,6 @@ class GameTest {
                 .hasMessageContaining("빈 이름");
     }
 
-    @DisplayName("입력한 시도 횟수만큼 경주를 진행한다")
-    @Test
-    void playGameTest() {
-        Car ash = new Car("ash");
-        Car lily = new Car("lily");
-
-        List<Car> cars = List.of(ash, lily);
-        Assertions.assertThatCode(()-> game.playGame(cars,3))
-                .doesNotThrowAnyException();
-    }
-
     @DisplayName("최종 우승자를 올바르게 결정한다")
     @Test
     void getWinnerTest() {

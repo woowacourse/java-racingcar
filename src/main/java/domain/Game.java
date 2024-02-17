@@ -68,16 +68,6 @@ public class Game {
         }
     }
 
-    public void playGame(List<Car> cars, int attemptLimit) {
-        OutputView.printHeadLine();
-        int count = 0;
-        while (count < attemptLimit) {
-            playRacing(cars);
-            OutputView.printResult(cars);
-            count++;
-        }
-    }
-
     public List<String> getWinner(List<Car> cars, int maxPosition) {
         List<String> winners = new ArrayList<>();
         for (Car car : cars) {
@@ -109,7 +99,7 @@ public class Game {
     }
 
 
-    private void playRacing(List<Car> cars) {
+    public void playRacing(List<Car> cars) {
         for (Car car : cars) {
             goOrStop(car, randomNumberGenerator());
         }

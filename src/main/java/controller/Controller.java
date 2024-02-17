@@ -19,9 +19,18 @@ public class Controller {
     public void run() {
         List<Car> cars = inputCarName();
         int inputAttemptLimit = inputValue();
-        game.playGame(cars, inputAttemptLimit);
+        playGame(cars, inputAttemptLimit);
         List<String> winners = game.getWinner(cars, game.getMaxPosition(cars));
         OutputView.printWinners(winners);
+    }
+
+    private void playGame(List<Car> cars, int attemptLimit) {
+        OutputView.printHeadLine();
+        while (attemptLimit!=0) {
+            game.playRacing(cars);
+            OutputView.printResult(cars);
+            attemptLimit--;
+        }
     }
 
     private List<Car> inputCarName() {
