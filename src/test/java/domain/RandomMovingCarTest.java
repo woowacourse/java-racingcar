@@ -12,7 +12,7 @@ public class RandomMovingCarTest {
     @DisplayName("랜덤한 숫자가 0에서 3 사이의 숫자라면 자동차는 움직이지 않는다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
-    void randomDriveStrategyStopTest(int number) {
+    void stopTest(int number) {
         // given
         Car car = Car.createOnStart("car");
         RandomMovingCar randomMovingCar = new RandomMovingCar(car, () -> number);
@@ -28,7 +28,7 @@ public class RandomMovingCarTest {
     @DisplayName("랜덤한 숫자가 4에서 9 사이의 숫자라면 자동차는 1만큼 전진한다.")
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void randomDriveStrategyMoveTest(int number) {
+    void moveTest(int number) {
         // given
         Car car = Car.createOnStart("car");
         RandomMovingCar randomMovingCar = new RandomMovingCar(car, () -> number);

@@ -34,7 +34,7 @@ class CarNameTest {
         @DisplayName("자동차 이름 앞 뒤에 공백이 존재하면 예외가 발생한다.")
         @ParameterizedTest
         @ValueSource(strings = {" pobi", "pobi "})
-        void carNameStartsOrEndsWithBlank(String name) {
+        void carNameStartsOrEndsWithBlankTest(String name) {
             assertThatThrownBy(() -> new CarName(name))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -47,7 +47,7 @@ class CarNameTest {
         @DisplayName("자동차 이름이 1~5자 사이라면 예외가 발생하지 않는다.")
         @ParameterizedTest
         @ValueSource(strings = {"a", "abcde"})
-        void successTest(String name) {
+        void validNameTest(String name) {
             assertThatCode(() -> new CarName(name))
                     .doesNotThrowAnyException();
         }

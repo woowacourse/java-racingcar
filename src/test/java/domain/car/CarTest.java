@@ -11,7 +11,7 @@ class CarTest {
     @DisplayName("주어진 거리만큼 자동차를 움직일 수 있다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 10, 100, 101})
-    void carStopTest(int distance) {
+    void carMoveTest(int distance) {
         // given
         Car car = Car.createOnStart("pobi");
 

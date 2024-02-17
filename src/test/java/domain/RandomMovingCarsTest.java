@@ -39,7 +39,7 @@ class RandomMovingCarsTest {
 
         @DisplayName("중복된 자동차 이름이 있으면 예외가 발생한다.")
         @Test
-        void carsDuplicationExceptionTest() {
+        void carNamesDuplicationExceptionTest() {
             assertThatThrownBy(() -> new RandomMovingCars(createRandomMovingCars(List.of("pobi", "pobi", "jun"))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
@@ -51,14 +51,14 @@ class RandomMovingCarsTest {
 
         @DisplayName("2대의 자동차가 참여하는 것은 예외가 발생하지않는다.")
         @Test
-        void successTest1() {
+        void CarsMinSizeSuccessTest() {
             assertThatCode(() -> new RandomMovingCars(createRandomMovingCars(List.of("pobi", "jun"))))
                     .doesNotThrowAnyException();
         }
 
         @DisplayName("20대의 자동차까지는 참가를 허용한다.")
         @Test
-        void successTest2() {
+        void CarsMaxSizeSuccessTest() {
             List<String> carNames = new ArrayList<>();
             for (int i = 65; i < 85; i++) {
                 carNames.add("car" + (char) i);
@@ -74,7 +74,7 @@ class RandomMovingCarsTest {
                 .toList();
     }
 
-    @DisplayName("경주에 참가한 자동차들의 움직임 테스트")
+    @DisplayName("랜덤 값에 따른 자동차들의 움직임 테스트")
     @Nested
     class RandomMovingCarsMoveTest {
         @DisplayName("랜덤한 숫자가 0에서 3 사이의 숫자라면 자동차들은 움직이지 않는다.")
