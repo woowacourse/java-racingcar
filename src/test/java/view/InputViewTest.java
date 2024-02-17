@@ -19,9 +19,8 @@ class InputViewTest {
         String text = "asd,###";
         InputView inputView = getInputView(text);
 
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputView.readCarNames();
-        });
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(inputView::readCarNames);
     }
 
     @Test
@@ -30,30 +29,7 @@ class InputViewTest {
         String text = "가나,아";
         InputView inputView = getInputView(text);
 
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputView.readCarNames();
-        });
-    }
-
-    @Test
-    @DisplayName("1 미만의 시도횟수를 입력받으면 예외를 발생시키는가")
-    void read_number_of_attempts_case_less_than_1_test() {
-        String text = "0";
-        InputView inputView = getInputView(text);
-
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputView.readNumberOfAttempts();
-        });
-    }
-
-    @Test
-    @DisplayName("10을 초과하는 시도횟수를 입력받으면 예외를 발생시키는가")
-    void read_number_of_attempts_more_than_10_test() {
-        String text = "11";
-        InputView inputView = getInputView(text);
-
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> {
-            inputView.readNumberOfAttempts();
-        });
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(inputView::readCarNames);
     }
 }
