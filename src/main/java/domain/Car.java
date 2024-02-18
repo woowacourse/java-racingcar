@@ -39,8 +39,7 @@ public class Car {
 
     private void specialCharacterProhibitValidation(final String name) {
         if (FIND_SPECIAL_CHARACTER_PATTERN.matcher(name).find()) {
-            String invalidCharacter = FIND_SPECIAL_CHARACTER_PATTERN.matcher(name).group();
-            throw new SpecialCharacterCarNameException(name, invalidCharacter);
+            throw new SpecialCharacterCarNameException(name);
         }
     }
 
