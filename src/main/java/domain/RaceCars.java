@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class RaceCars {
@@ -27,11 +28,27 @@ public class RaceCars {
         }
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public Car getCar(int index) {
+        return cars.get(index);
+    }
+
+    public int getCarCount() {
+        return cars.size();
     }
 
     public void play() {
-        cars.forEach(car -> car.move(RandomGenerator.getRandomNumber()));
+        for (Car car : cars) {
+            car.move(RandomGenerator.getRandomNumber());
+        }
+    }
+
+    public void sortCarsDes() {
+        cars.sort(Collections.reverseOrder());
+    }
+
+    public List<Car> getWinners(int maxLocation) {
+        return cars.stream()
+                .filter(car -> car.getLastLocation() == maxLocation)
+                .toList();
     }
 }
