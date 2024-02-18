@@ -31,7 +31,7 @@ class CarsTest {
         assertThat(actual).isEqualTo(expectedLocations);
     }
 
-    @DisplayName("자동차 중 가장 큰 위치를 반환한다")
+    @DisplayName("자동차 중 가장 큰 위치를 가지는 자동차 이름을 반환한다")
     @Test
     void getMaxLocation() {
 
@@ -43,6 +43,6 @@ class CarsTest {
         );
         Cars cars = new Cars(carList);
 
-        assertThat(cars.getMaxLocation()).isEqualTo(7);
+        assertThat(cars.getMaxLocationCarNames()).isEqualTo(List.of("d"));
     }
 }

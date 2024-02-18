@@ -18,7 +18,14 @@ public class Cars {
         }
     }
 
-    public int getMaxLocation() {
+    public List<String> getMaxLocationCarNames() {
+        return carList.stream()
+                .filter(car -> car.getCarLocation() == getMaxLocation())
+                .map(Car::getCarName)
+                .toList();
+    }
+
+    private int getMaxLocation() {
         return carList.stream()
                 .mapToInt(Car::getCarLocation)
                 .max()

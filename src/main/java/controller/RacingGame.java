@@ -26,7 +26,7 @@ public class RacingGame {
 
         Cars cars = loadCars(names);
         race(trialCount, cars);
-        outputView.printWinners(cars);
+        outputView.printWinners(cars.getMaxLocationCarNames());
     }
 
 

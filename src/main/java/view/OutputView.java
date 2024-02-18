@@ -1,10 +1,11 @@
 package view;
 
-import java.util.stream.Collectors;
-import model.Car;
+import java.util.List;
 import model.Cars;
 
 public class OutputView {
+
+    private static final String DELIMITER = ", ";
 
     public void printResultPrefix() {
         System.out.println();
@@ -18,11 +19,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinners(Cars cars) {
-        String winners = cars.getCarList().stream()
-                .filter(car -> car.getCarLocation() == cars.getMaxLocation())
-                .map(Car::getCarName)
-                .collect(Collectors.joining(", ")) + "가 최종 우승했습니다.";
-        System.out.println(winners);
+    public void printWinners(List<String> winnerNames) {
+        System.out.println(String.join(DELIMITER, winnerNames) + "가 최종 우승했습니다.");
     }
 }
