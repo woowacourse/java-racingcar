@@ -19,8 +19,7 @@ public class Controller {
 
     public void run() {
         inputCarName();
-        int inputAttemptLimit = inputValue();
-        service.playGame(inputAttemptLimit);
+        service.playGame(inputAttemptLimit());
         List<String> winners = service.getWinnerName();
         outputView.printWinners(winners);
     }
@@ -35,20 +34,15 @@ public class Controller {
         }
     }
 
-    private int inputValue() {
-        String inputAttemptLimit = inputView.requestAttemptLimit();
-        return validateNum(inputAttemptLimit);
-    }
-
-    private int validateNum(String inputValue) {
+    private int inputAttemptLimit() {
         try {
-
-            int inputAttemptLimit = validateInputAttemptLimit(inputValue);
-            validateNumber(inputAttemptLimit);
-            return inputAttemptLimit;
+            String inputAttemptLimit = inputView.requestAttemptLimit();
+            int attemptLimit = validateInputAttemptLimit(inputAttemptLimit);
+            validateNumber(attemptLimit);
+            return attemptLimit;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return inputValue();
+            return inputAttemptLimit();
         }
     }
 
