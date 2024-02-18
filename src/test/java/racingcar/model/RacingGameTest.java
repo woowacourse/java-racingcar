@@ -16,7 +16,7 @@ class RacingGameTest {
     @ValueSource(strings = {"0", "-1", "-10000"})
     void exceptionCreateRacingGame(int numberOfRaces) {
         //given
-        List<Car> cars = List.of(new Car("a"));
+        Cars cars = new Cars(List.of(new Car("a")));
 
         //when, then
         assertThatThrownBy(() -> new RacingGame(cars, numberOfRaces))
@@ -29,7 +29,7 @@ class RacingGameTest {
     void confirmNumberOfRacesOfRacingGame() {
         //given
         int numberOfRaces = 3;
-        List<Car> cars = List.of(new Car("a"));
+        Cars cars = new Cars(List.of(new Car("a")));
         RacingGame racingGame = new RacingGame(cars, numberOfRaces);
 
         //when
@@ -45,7 +45,7 @@ class RacingGameTest {
         //given
         int numberOfRaces = 3;
         List<Car> cars = List.of(new Car("a"), new Car("b"));
-        RacingGame racingGame = new RacingGame(cars, numberOfRaces);
+        RacingGame racingGame = new RacingGame(new Cars(cars), numberOfRaces);
 
         //when
         List<RaceResult> raceResults = racingGame.startRace();
@@ -59,33 +59,31 @@ class RacingGameTest {
     @Test
     void confirmSelectWinner() {
         //given
-        Car car1 = new Car("a", 1);
+        Car car1 = new Car("a", 2);
         Car car2 = new Car("b", 0);
 
-        List<Car> cars = List.of(car1, car2);
+        Cars cars = new Cars(List.of(car1, car2));
         RacingGame racingGame = new RacingGame(cars, 1);
 
         //when
+        racingGame.startRace();
         List<Car> winner = racingGame.selectWinner();
 
         //then
         assertThat(winner).containsExactly(car1);
     }
 
-    @DisplayName("우승자는 하나가 아닐 수 있다.")
+    @DisplayName("경주를 실행하지 않으면 우승자를 선정할 수 없다.")
     @Test
-    void confirmSelectWinners() {
+    void exceptionSelectWinnerWithoutRace() {
         //given
-        Car car1 = new Car("a", 1);
-        Car car2 = new Car("b", 1);
+        int numberOfRaces = 1;
+        Cars cars = new Cars(List.of(new Car("a")));
+        RacingGame racingGame = new RacingGame(cars, numberOfRaces);
 
-        List<Car> cars = List.of(car1, car2);
-        RacingGame racingGame = new RacingGame(cars, 1);
-
-        //when
-        List<Car> winner = racingGame.selectWinner();
-
-        //then
-        assertThat(winner).containsExactly(car1, car2);
+        //when, then
+        assertThatThrownBy(racingGame::selectWinner)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 경주가 실행되지 않았을때는 우승자를 선정할 수 없습니다.");
     }
 }
