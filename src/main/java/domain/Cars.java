@@ -33,6 +33,20 @@ public class Cars {
         return cars;
     }
 
+    public void moveCars() {
+        cars.forEach(car -> car.drive(RandomNumberGenerator.generate()));
+    }
+
+    public List<String> getCurrentStatus() {
+        List<String> currentStatus = new ArrayList<>();
+
+        cars.forEach(car -> {
+            currentStatus.add(car.getName() + " : " + "-".repeat(car.getForward()));
+        });
+
+        return currentStatus;
+    }
+
     public List<String> findWinners() {
         final int maxForward = getMaxForward();
 
@@ -56,20 +70,6 @@ public class Cars {
         winners.forEach(winner -> winnerNames.add(winner.getName()));
 
         return winnerNames;
-    }
-
-    public void moveCars() {
-        cars.forEach(car -> car.drive(RandomNumberGenerator.generate()));
-    }
-
-    public List<String> getCurrentStatus() {
-        List<String> currentStatus = new ArrayList<>();
-
-        cars.forEach(car -> {
-            currentStatus.add(car.getName() + " : " + "-".repeat(car.getForward()));
-        });
-
-        return currentStatus;
     }
 
     public List<Car> getCars() {
