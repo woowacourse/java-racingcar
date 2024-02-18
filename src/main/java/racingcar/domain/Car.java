@@ -1,16 +1,21 @@
 package racingcar.domain;
 
 public class Car {
+    private static final int INITIAL_POSITION = 0;
     private static final int MAXIMUM_LENGTH_OF_NAME = 5;
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
 
     private final String name;
     private final Position position;
 
-    public Car(String name) {
+    Car(String name, int position) {
         validateName(name);
         this.name = name;
-        this.position = new Position();
+        this.position = new Position(position);
+    }
+
+    public Car(String name) {
+        this(name, INITIAL_POSITION);
     }
 
     private void validateName(final String name) {
