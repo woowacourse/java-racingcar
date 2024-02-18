@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.view.InputView;
@@ -24,18 +23,12 @@ public class RacingCarGameMachine {
 
     private Cars initCars() {
         try {
-            final List<Car> cars = createCars(InputView.readCarNames(reader));
-            return new Cars(cars);
+            final List<String> cars = InputView.readCarNames(reader);
+            return Cars.of(cars);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return initCars();
         }
-    }
-
-    private List<Car> createCars(final List<String> carNames) {
-        return carNames.stream()
-                .map(Car::from)
-                .toList();
     }
 
     private TryCount initTryCount() {

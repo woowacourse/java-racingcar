@@ -11,10 +11,17 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(final List<Car> cars) {
+    private Cars(final List<Car> cars) {
         validateNotDuplicate(cars);
         validateSize(cars);
         this.cars = cars;
+    }
+
+    public static Cars of(final List<String> carNames) {
+        List<Car> cars = carNames.stream()
+                .map(Car::from)
+                .toList();
+        return new Cars(cars);
     }
 
     private void validateNotDuplicate(final List<Car> cars) {
