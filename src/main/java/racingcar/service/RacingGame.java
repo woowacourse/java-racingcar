@@ -7,7 +7,7 @@ import racingcar.domain.Cars;
 import racingcar.dto.RoundResult;
 import racingcar.util.RandomNumberGenerator;
 
-public class RacingGameService {
+public class RacingGame {
 
     private static final int MIN_NUMBER_OF_POWER = 0;
     private static final int MAX_NUMBER_OF_POWER = 9;
@@ -33,7 +33,7 @@ public class RacingGameService {
 
     private List<Integer> prepareNumbersOfPower(int registeredCarsSize) {
         List<Integer> numbersOfPowers = new ArrayList<>();
-        for (int i=0; i<registeredCarsSize; i++) {
+        for (int i = 0; i < registeredCarsSize; i++) {
             numbersOfPowers.add(decideNumberOfPower());
         }
         return numbersOfPowers;
