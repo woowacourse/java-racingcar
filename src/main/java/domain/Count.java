@@ -5,11 +5,15 @@ import exception.RacingCarGameException;
 
 public class Count {
     private static final int COUNT_LOWER_BOUND = 1;
-    private int value;
+    private final int value;
 
     public Count(int value) {
         validatePositive(value);
         this.value = value;
+    }
+
+    public static Count from(int value) {
+        return new Count(value);
     }
 
     private void validatePositive(int count) {
