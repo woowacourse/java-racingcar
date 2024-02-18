@@ -24,19 +24,20 @@ public class OutputView {
         for (ResultByRoundDto roundResult : racingResult) {
             addRoundResultByFormat(roundResult.getResultByRound());
         }
-//        racingResult.forEach(roundResult -> addRoundResultByFormat(roundResult));
-//        racingResult.stream()
-//                .forEach(this::addRoundResultByFormat);
 
         System.out.println(String.join(LINE_SEPARATOR, racingRecord));
     }
 
     private void addRoundResultByFormat(List<CarInfoDto> cars) {
         StringBuilder roundBuilder = new StringBuilder();
-        for (CarInfoDto carInfo : cars) {
-            String carInfoFormat = makeCarInfoByFormat(carInfo.name(), makeTraceByFormat(carInfo.position()));
-            roundBuilder.append(carInfoFormat).append(LINE_SEPARATOR);
-        }
+
+        cars.stream()
+            .map(carInfo -> makeCarInfoByFormat(
+                                carInfo.name(),
+                                makeTraceByFormat(carInfo.position()))
+                                + LINE_SEPARATOR)
+            .forEach(roundBuilder::append);
+
         racingRecord.add(roundBuilder.toString());
     }
 
