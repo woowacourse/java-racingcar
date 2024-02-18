@@ -77,5 +77,5 @@ public class RacingMain {
 }  
 ```  
 
-- [ ] 불필요한 상수화 제거한다.
+- [X] 불필요한 상수화 제거한다.
 - [ ] `Vehicles`의 클래스명을 `Cars`로 변경한다.
