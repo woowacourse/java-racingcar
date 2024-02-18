@@ -3,10 +3,9 @@ package racingcar.domain;
 public class TryCount {
     private final int tryCount;
 
-    public static TryCount from(final String userTryCount) {
-        int tryCount = parseUserInput(userTryCount);
-        validate(tryCount);
-        return new TryCount(tryCount);
+    public static TryCount from(final int userTryCount) {
+        validate(userTryCount);
+        return new TryCount(userTryCount);
     }
 
     private TryCount(int tryCount) {
@@ -21,10 +20,6 @@ public class TryCount {
 
     private static boolean isSmallerThanZero(final int number) {
         return number <= 0;
-    }
-
-    private static int parseUserInput(final String userTryCount) {
-        return Integer.parseInt(userTryCount);
     }
 
     public int getTryCount() {

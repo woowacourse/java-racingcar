@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,9 +12,9 @@ class WinnersTest {
     @DisplayName("생성에 성공한다.")
     public void createTest() {
         //given
-        String userInput = "choco, seyan";
         String winner1 = "choco";
         String winner2 = "seyan";
+        List<String> userInput = List.of(winner1, winner2);
 
         //when
         Cars cars = Cars.from(userInput);

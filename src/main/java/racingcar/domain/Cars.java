@@ -1,10 +1,6 @@
 package racingcar.domain;
 
-import static racingcar.view.OutputCommand.COMMA;
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import racingcar.util.RandomUtil;
 
 public class Cars {
@@ -14,10 +10,9 @@ public class Cars {
     private final List<Car> cars;
     RandomUtil randomUtil = RandomUtil.getInstance();
 
-    public static Cars from(final String userInput) {
-        validate(userInput);
-        return new Cars(Arrays.stream(userInput.split(COMMA))
-                .map(String::trim)
+    public static Cars from(final List<String> carNames) {
+        validate(carNames);
+        return new Cars(carNames.stream()
                 .map(Car::new)
                 .toList()
         );
@@ -27,26 +22,25 @@ public class Cars {
         this.cars = cars;
     }
 
-    private static void validate(final String userInput) {
-        validateBlank(userInput);
-        validateNonDuplicated(userInput);
+    private static void validate(final List<String> carNames) {
+        validateBlank(carNames);
+        validateNonDuplicated(carNames);
     }
 
-    private static void validateBlank(final String userInput) {
-        if (userInput.isBlank()) {
+    private static void validateBlank(final List<String> carNames) {
+        if (carNames.stream().anyMatch(String::isBlank)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void validateNonDuplicated(final String userInput) {
-        if (hasDuplicateName(userInput)) {
+    private static void validateNonDuplicated(final List<String> carNames) {
+        if (hasDuplicateName(carNames)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static boolean hasDuplicateName(final String userInput) {
-        return userInput.split(COMMA).length != Arrays.stream(userInput.split(COMMA))
-                .collect(Collectors.toSet()).size();
+    private static boolean hasDuplicateName(final List<String> carNames) {
+        return carNames.size() != carNames.stream().distinct().count();
     }
 
     void move(final CarMoveStrategy carMoveStrategy) {

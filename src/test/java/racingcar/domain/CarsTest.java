@@ -17,11 +17,11 @@ class CarsTest {
     @DisplayName("생성에 성공한다.")
     public void createCarsTest() {
         //given
-        String userInput = "choco";
         String name = "choco";
+        List<String> carName = List.of(name);
 
         //when
-        Cars cars = Cars.from(userInput);
+        Cars cars = Cars.from(carName);
         List<Car> carList = cars.getCars();
 
         //then
@@ -32,8 +32,8 @@ class CarsTest {
     @DisplayName("생성된 자동차들 중 변경 시, 예외가 발생한다.")
     public void changeListCarTest() {
         //given
-        String userInput = "choco";
-        String addInput = "seyan";
+        List<String> userInput = List.of("choco");
+        List<String> addInput = List.of("seyan");
 
         //when
         Cars cars = Cars.from(userInput);
@@ -50,7 +50,7 @@ class CarsTest {
     @DisplayName("중복된 자동차 이름이 있을 경우 예외가 발생한다.")
     public void verifyNonDuplicateCarNames() {
         //given
-        String userInput = "choco,seyan,choco";
+        List<String> userInput = List.of("choco", "seyan", "choco");
 
         //when & then
         assertThrows(IllegalArgumentException.class, () -> Cars.from(userInput));
@@ -60,16 +60,18 @@ class CarsTest {
     @ValueSource(strings = {"", " ", "    "})
     @DisplayName("사용자 입력이 빈칸이면, 예외가 발생한다.")
     public void verifyBlankUserInput(String userInput) {
-        //given&when & then
-        assertThrows(IllegalArgumentException.class, () -> Cars.from(userInput));
+        //given
+        List<String> carName = List.of(userInput);
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> Cars.from(carName));
     }
 
     @Test
     @DisplayName("모든 랜덤값이 4보다 작으면, 움직이지 않는다.")
     public void carsNotMoveTest() {
         //given
-        String userInput = "choco, seyan, solar";
-        Cars cars = Cars.from(userInput);
+        List<String> carNames = List.of("choco", "seyan", "solar");
+        Cars cars = Cars.from(carNames);
         int initialDistance = 0;
 
         final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
@@ -95,8 +97,8 @@ class CarsTest {
     @DisplayName("모든 랜덤값이 4보다 큰 경우, move 횟수만큼 움직인다.")
     public void carsMoveTestIterator() {
         //given
-        String userInput = "choco, seyan, solar";
-        Cars cars = Cars.from(userInput);
+        List<String> carNames = List.of("choco", "seyan", "solar");
+        Cars cars = Cars.from(carNames);
         int iteratorCounts = 3;
         int distanceResult = 3;
 
