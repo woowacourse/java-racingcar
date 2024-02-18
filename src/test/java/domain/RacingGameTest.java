@@ -6,23 +6,48 @@ import utils.PowerGenerator;
 
 import java.util.List;
 
+import static java.util.stream.IntStream.range;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("레이싱 게임 테스트")
 public class RacingGameTest {
 
-    @DisplayName("레이스가 정상적으로 진행되는가")
+    @DisplayName("자동차를 한 번 정상적으로 움직이는가")
     @Test
-    void is_race_proceed_correctly_test() {
+    void move_cars_once_correctly_test() {
         // given
         final CarGroup carGroup = new CarGroup(new String[]{"pobi", "weve"});
-        final Attempts attempts = new Attempts(4);
-        final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8);
-        final PowerGenerator powerGenerator = new FixedPowerGenerator(numbers);
+        final List<Integer> powers = List.of(3, 4);
+        final PowerGenerator powerGenerator = new FixedPowerGenerator(powers);
+        final RacingGame racingGame = new RacingGame(carGroup, powerGenerator);
 
         // when
-        final RacingGame racingGame = new RacingGame(carGroup, attempts, powerGenerator);
-        racingGame.race();
+        racingGame.moveCars();
+
+        // then
+        List<Car> cars = carGroup.getAllCars();
+        Car pobiCar = cars.get(0);
+        Car weveCar = cars.get(1);
+
+        assertThat(pobiCar.getPosition()).isEqualTo(0);
+        assertThat(weveCar.getPosition()).isEqualTo(1);
+        assertThat(carGroup.getWinners()).containsExactly(weveCar);
+    }
+
+    @DisplayName("자동차를 여러 번 정상적으로 움직이는가")
+    @Test
+    void move_cars_multiply_times_correctly_test() {
+        // given
+        final CarGroup carGroup = new CarGroup(new String[]{"pobi", "weve"});
+        final List<Integer> powers = List.of(1, 2, 3, 4, 5, 6, 7, 8);
+        final PowerGenerator powerGenerator = new FixedPowerGenerator(powers);
+        final RacingGame racingGame = new RacingGame(carGroup, powerGenerator);
+
+        // when
+        int numberOfAttempts = powers.size() / 2;
+        range(0, numberOfAttempts).forEach(x ->
+                racingGame.moveCars()
+        );
 
         // then
         List<Car> cars = carGroup.getAllCars();
