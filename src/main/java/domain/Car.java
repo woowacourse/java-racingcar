@@ -1,6 +1,6 @@
 package domain;
 
-public class Car {
+public class Car implements Comparable<Car>{
 
     private final String name;
     private int score;
@@ -22,4 +22,9 @@ public class Car {
         this.score++;
     }
 
+
+    @Override
+    public int compareTo(Car o) {
+        return Integer.compare(o.score, this.score);
+    }
 }
