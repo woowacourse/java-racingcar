@@ -4,7 +4,7 @@ import domain.Car;
 
 import java.util.List;
 
-public class Service {
+public class RacingGame {
     // TODO getter를 사용하지 않고 비교방식을 생각해보기
     // TODO 예외에 메시지를 담기
 
@@ -17,12 +17,10 @@ public class Service {
                 .max()
                 .orElseThrow(RuntimeException::new);
 
-        List<String> winnerNames = cars.stream()
+        return cars.stream()
                 .filter(car -> car.getScore() == maxScore)
                 .map(Car::getName)
                 .toList();
-
-        return winnerNames;
     }
 
     public static void playOneRound(List<Car> cars) {
