@@ -43,8 +43,12 @@ class CarsTest {
     @Test
     @DisplayName("가장 멀리 이동한 자동차들을 찾을 수 있다.")
     void findCarsAtMaxPosition() {
+        cars = new Cars(
+                List.of(new Car("pobi", 3), new Car("crong", 1), new Car("honux", 3))
+        );
         List<Car> carsAtMaxPosition = cars.findCarsAtMaxPosition();
 
-        assertThat(carsAtMaxPosition.size()).isEqualTo(3);
+        assertThat(carsAtMaxPosition).extracting("name")
+                .containsExactly("pobi", "honux");
     }
 }
