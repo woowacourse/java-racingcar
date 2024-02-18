@@ -2,20 +2,18 @@ package domain;
 
 public class PowerStrategy {
 
-    private static final Integer THRESHOLD = 4;
-
-    private final PowerGenerator powerGenerator;
+    private final PowerManager powerManager;
 
     private PowerStrategy() {
-        this.powerGenerator = new PowerGenerator();
+        this.powerManager = new PowerManager();
     }
 
     public static PowerStrategy from() {
         return new PowerStrategy();
     }
 
-    public boolean checkRandomNumberRange() {
-        Integer randomNumber = powerGenerator.makeRandomNumber();
-        return THRESHOLD <= randomNumber;
+    public boolean checkPowerRange() {
+        Integer randomNumber = powerManager.generatePower();
+        return powerManager.isSufficientPower(randomNumber);
     }
 }
