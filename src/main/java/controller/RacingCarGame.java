@@ -26,10 +26,10 @@ public class RacingCarGame {
 
         for (int i = 0; i < count; i++) {
             cars.moveCars();
-            printMovement(cars);
+            outputView.printMovement(cars.getCurrentStatus());
         }
 
-        printWinners(cars);
+        outputView.printWinners(cars.findWinners());
     }
 
     private Cars makeCars() {
@@ -70,15 +70,6 @@ public class RacingCarGame {
         if (count <= 0) {
             throw new IllegalArgumentException(Exceptions.NUMBER_RANGE_EXCEPTION.getMessage());
         }
-    }
-
-    private void printMovement(Cars cars) {
-        outputView.printMovement(cars.getCurrentStatus());
-    }
-
-    private void printWinners(Cars cars) {
-        List<String> winners = cars.findWinners();
-        outputView.printWinners(winners);
     }
 
 }
