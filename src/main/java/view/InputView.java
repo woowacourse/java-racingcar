@@ -1,5 +1,6 @@
 package view;
 
+import exception.InputException;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Supplier;
@@ -9,14 +10,13 @@ public class InputView {
 
     private static final Pattern NAME_REGEX = Pattern.compile("(.+)((,)(.+))*");
     private static final Pattern TRIAL_REGEX = Pattern.compile("[0-9]+");
-    private static final String ERROR_MESSAGE = "[ERROR] 입력 형식이 올바르지 않습니다.";
     private final Scanner scanner = new Scanner(System.in);
 
     public <T> T retryInputOnException(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE);
+            System.out.println(e.getMessage());
             return retryInputOnException(supplier);
         }
     }
@@ -30,10 +30,10 @@ public class InputView {
 
     private void validateCarNames(String names) {
         if (isInvalidFormat(names, NAME_REGEX)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE);
+            throw new IllegalArgumentException(InputException.INVALID_FORMAT.getExceptionMessage());
         }
         if (hasInvalidNameLength(names.split(","))) {
-            throw new IllegalArgumentException(ERROR_MESSAGE);
+            throw new IllegalArgumentException(InputException.INVALID_LENGTH.getExceptionMessage());
         }
     }
 
@@ -52,7 +52,7 @@ public class InputView {
 
     private void validateTrialCount(String trialCount) {
         if (isInvalidFormat(trialCount, TRIAL_REGEX)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE);
+            throw new IllegalArgumentException(InputException.NOT_INTEGER.getExceptionMessage());
         }
     }
 

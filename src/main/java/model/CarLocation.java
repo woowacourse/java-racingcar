@@ -1,5 +1,7 @@
 package model;
 
+import exception.CarLocationException;
+
 public class CarLocation {
     private int location;
 
@@ -10,7 +12,7 @@ public class CarLocation {
 
     private void validate(int location) {
         if (location < 0) {
-            throw new IllegalArgumentException("[ERROR] 위치에는 음수가 입력될 수 없습니다.");
+            throw new IllegalArgumentException(CarLocationException.NOT_NEGATIVE.getExceptionMessage());
         }
     }
 
