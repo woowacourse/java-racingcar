@@ -27,12 +27,16 @@ public class CarController {
         List<String> carNames = repeatUntilValid(inputView::getNames);
         int tryNumber = repeatUntilValid(inputView::getTryNumber);
 
-        CarFactory carFactory = new CarFactory(numberGenerator);
-        List<Car> cars = carFactory.createCars(carNames);
+        List<Car> cars = readyCars(carNames);
         Circuit circuit = new Circuit(cars);
 
         play(circuit, tryNumber);
         reportWinners(circuit);
+    }
+
+    private List<Car> readyCars(List<String> carNames) {
+        CarFactory carFactory = new CarFactory(numberGenerator);
+        return carFactory.createCars(carNames);
     }
 
     private void reportWinners(Circuit circuit) {
@@ -43,11 +47,16 @@ public class CarController {
 
     private void play(Circuit circuit, int tryNumber) {
         outputView.printResultMessage();
+
         for (int tries = 0; tries < tryNumber; tries++) {
             circuit.startRace();
-            List<CarStatus> raceResults = circuit.getRaceResults();
-            outputView.printResults(raceResults);
+            showRaceResult(circuit);
         }
+    }
+
+    private void showRaceResult(Circuit circuit) {
+        List<CarStatus> raceResults = circuit.getRaceResults();
+        outputView.printResults(raceResults);
     }
 
     private <T> T repeatUntilValid(Supplier<T> function) {
