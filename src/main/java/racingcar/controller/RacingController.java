@@ -7,6 +7,7 @@ import racingcar.model.Cars;
 import racingcar.model.RacingGame;
 import racingcar.model.RandomNumberGenerator;
 import racingcar.model.TotalResult;
+import racingcar.model.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -41,7 +42,7 @@ public class RacingController {
 
     private RacingGame createRacingGame(Cars cars) {
         int tryCount = inputView.readTryCount();
-        return new RacingGame(tryCount, cars, new RandomNumberGenerator());
+        return new RacingGame(new TryCount(tryCount), cars, new RandomNumberGenerator());
     }
 
     private void printResult(TotalResult totalResult) {
