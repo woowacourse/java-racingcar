@@ -1,8 +1,8 @@
 package racingcar.model;
 
-import racingcar.constants.Constants;
-
 public class Car {
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+
     private final String name;
     private int position;
 
@@ -14,7 +14,7 @@ public class Car {
     }
 
     private void checkIfNameUnderFive(String name) {
-        if (name.length() > Constants.MAX_CAR_NAME_LENGTH) {
+        if (name.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

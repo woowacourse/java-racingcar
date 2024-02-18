@@ -1,8 +1,8 @@
 package racingcar.model;
 
-import racingcar.constants.Constants;
-
 public class TryCount {
+    private static final int END_LINE = 0;
+
     private int value;
 
     public TryCount(String input) {
@@ -20,7 +20,7 @@ public class TryCount {
     }
 
     private void checkIfUnderEndLine(int number) {
-        if (number < Constants.END_LINE) {
+        if (number < END_LINE) {
             throw new IllegalArgumentException();
         }
     }
@@ -30,7 +30,7 @@ public class TryCount {
     }
 
     public boolean untilEndLine() {
-        return value > Constants.END_LINE;
+        return value > END_LINE;
     }
 
     public int getValue() {

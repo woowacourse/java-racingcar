@@ -1,12 +1,13 @@
 package racingcar.model;
 
-import racingcar.constants.Constants;
 import racingcar.controller.NumericGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final int MOVE_LINE = 4;
+
     private final NumericGenerator generator;
     private final List<Car> cars;
 
@@ -20,7 +21,7 @@ public class Cars {
 
     public void moveCars() {
         cars.stream()
-                .filter(car -> generator.generate() >= Constants.MOVE_LINE)
+                .filter(car -> generator.generate() >= MOVE_LINE)
                 .forEach(Car::move);
     }
 
