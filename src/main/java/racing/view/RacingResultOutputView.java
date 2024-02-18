@@ -14,7 +14,7 @@ public class RacingResultOutputView {
   }
 
   private static void printEachResult(RacingResult racingResult) {
-    Map<String, Integer> carsStatus = racingResult.getCarsStatus();
+    Map<String, Integer> carsStatus = racingResult.carsStatus();
     carsStatus.keySet().forEach(carName -> System.out.printf("%s : %s\n", carName,
         "-".repeat(carsStatus.get(carName))));
   }

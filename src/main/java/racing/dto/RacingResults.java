@@ -29,7 +29,7 @@ public class RacingResults {
 
   public List<String> getWinnerNames() {
     RacingResult finalResult = racingResults.get(racingResults.size() - 1);
-    Map<String, Integer> finalCarsStatus = finalResult.getCarsStatus();
+    Map<String, Integer> finalCarsStatus = finalResult.carsStatus();
     int maxDistance = getMaxDistance(finalCarsStatus);
     return getWinners(finalCarsStatus, maxDistance);
   }
