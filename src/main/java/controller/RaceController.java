@@ -3,46 +3,46 @@ package controller;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import application.RaceService;
 import java.util.Arrays;
 import java.util.List;
 import model.Car;
-import model.Cars;
 import model.Name;
+import model.RacingGame;
 import model.TryCount;
 import ui.InputView;
 import ui.OutputView;
+import util.NumberGenerator;
 
 public class RaceController {
+    private final NumberGenerator numberGenerator;
     private final InputView inputView;
     private final OutputView outputView;
-    private final RaceService raceService;
 
-    public RaceController(InputView inputView, OutputView outputView, RaceService raceService) {
+    public RaceController(NumberGenerator numberGenerator, InputView inputView, OutputView outputView) {
+        this.numberGenerator = numberGenerator;
         this.inputView = inputView;
         this.outputView = outputView;
-        this.raceService = raceService;
     }
 
     public void start() {
-        Cars cars = createCars();
+        RacingGame racingGame = createCars();
         TryCount tryCount = createTryCount();
         outputView.printResultHeader();
         while (tryCount.hasTryCount()) {
-            raceService.moveCars(cars);
-            outputView.printCarNameAndPosition(cars);
+            racingGame.moveCars(numberGenerator);
+            outputView.printCarNameAndPosition(racingGame);
             tryCount.decreaseTryCount();
         }
-        List<String> winners = raceService.findWinners(cars);
+        List<String> winners = racingGame.findWinners();
         outputView.printWinners(winners);
     }
 
-    private Cars createCars() {
+    private RacingGame createCars() {
         String[] carNames = inputView.inputCarNames();
         return Arrays.stream(carNames)
                 .map(Name::new)
                 .map(Car::new)
-                .collect(collectingAndThen(toList(), Cars::new));
+                .collect(collectingAndThen(toList(), RacingGame::new));
     }
 
     private TryCount createTryCount() {

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
-class TryCountValidatorTest {
-    private final TryCountValidator tryCountValidator = new TryCountValidator();
+class InputIntegerValidatorTest {
+    private final InputValidator inputIntegerValidator = new InputIntegerValidator();
 
     @Test
     void 숫자가_아닐_경우_예외가_발생한다() {
@@ -14,7 +14,7 @@ class TryCountValidatorTest {
         String input = "a";
 
         // when & then
-        assertThatThrownBy(() -> tryCountValidator.validate(input))
+        assertThatThrownBy(() -> inputIntegerValidator.validate(input))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,6 +24,6 @@ class TryCountValidatorTest {
         String input = "1";
 
         // when & then
-        assertDoesNotThrow(() -> tryCountValidator.validate(input));
+        assertDoesNotThrow(() -> inputIntegerValidator.validate(input));
     }
 }

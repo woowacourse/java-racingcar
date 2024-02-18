@@ -3,17 +3,18 @@ package model;
 public class Name {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public Name(String name) {
-        verifyNameLength(name);
+        validateNameLength(name);
         this.name = name;
     }
 
-    private void verifyNameLength(String name) {
+    private void validateNameLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(
-                    String.format("이름은 %d자 이상 %d자 이하여야 합니다.", MIN_NAME_LENGTH, MAX_NAME_LENGTH));
+                    String.format("잘못된 이름: %s - %d자 이상 %d자 이하여야 합니다.", name, MIN_NAME_LENGTH, MAX_NAME_LENGTH));
         }
     }
 
