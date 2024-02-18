@@ -11,8 +11,10 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars from(List<Car> cars) {
-        return new Cars(cars);
+    public static Cars from(List<String> carNames) {
+        return new Cars(carNames.stream()
+                .map(Car::from)
+                .toList());
     }
 
     public List<Car> getCars() {
@@ -35,6 +37,7 @@ public class Cars {
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .orElseThrow(
-                        () -> new NoSuchElementException("[INTERNAL ERROR] 가장 먼 자동차 위치 구하기 실패\n 자동차 수: " + cars.size()));
+                        () -> new NoSuchElementException(
+                                "[INTERNAL ERROR] 가장 먼 자동차 위치 구하기 실패\n 자동차 수: " + cars.size()));
     }
 }

@@ -34,9 +34,7 @@ public class RacingGameController {
         try {
             String name = inputView.requestCarName();
             List<String> carNames = StringParser.split(name, CAR_NAMES_DELIMITER);
-            return Cars.from(carNames.stream()
-                    .map(Car::from)
-                    .toList());
+            return Cars.from(carNames);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return prepareCars();
