@@ -9,10 +9,14 @@ import view.OutputView;
 
 public class Controller {
     private final Service service;
+    private final OutputView outputView;
+    private final InputView inputView;
     private final Scanner scanner = new Scanner(System.in);
 
-    public Controller(Service service) {
+    public Controller(Service service, OutputView outputView, InputView inputView) {
         this.service = service;
+        this.outputView = outputView;
+        this.inputView = inputView;
     }
 
     public void run() {
@@ -20,21 +24,21 @@ public class Controller {
         int inputAttemptLimit = inputValue();
         service.playGame(inputAttemptLimit);
         List<String> winners = service.getWinnerName();
-        OutputView.printWinners(winners);
+        outputView.printWinners(winners);
     }
 
     private List<Car> inputCarName() {
         try {
-            InputView.requestCarName();
+            inputView.requestCarName();
             return service.setCars(service.separateCarName(scanner.nextLine()));
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return inputCarName();
         }
     }
 
     private int inputValue() {
-        InputView.requestAttemptLimit();
+        inputView.requestAttemptLimit();
         return validateNum(scanner.nextLine());
     }
 
@@ -44,7 +48,7 @@ public class Controller {
             validateNumber(inputAttemptLimit);
             return inputAttemptLimit;
         } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             return inputValue();
         }
     }

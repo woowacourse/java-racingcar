@@ -1,11 +1,13 @@
 package view;
 
 import domain.Car;
-import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
-    public static void printErrorMessage(String errorMessage) {
+    public OutputView() {
+    }
+
+    public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 
@@ -21,7 +23,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinners(List<String> winners) {
+    public void printWinners(List<String> winners) {
         for (String name : winners) {
             System.out.print(name);
             printComma(winners, name);
