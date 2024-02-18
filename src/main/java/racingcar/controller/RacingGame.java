@@ -10,21 +10,22 @@ import racingcar.view.model.ConsoleReader;
 
 public class RacingGame {
     public void run() {
-        final Cars cars = createCars(InputView.readCarNames(new ConsoleReader()));
+        final Cars cars = createCars();
         final int tryCount = promptUserForTryCount();
         proceedRounds(cars, tryCount);
         printResult(cars);
     }
 
-    private Cars createCars(final List<String> carNames) {
+    private Cars createCars() {
         try {
+            final List<String> carNames = InputView.readCarNames(new ConsoleReader());
             final List<Car> cars = carNames.stream()
                     .map(Car::new)
                     .toList();
             return new Cars(cars);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return createCars(carNames);
+            return createCars();
         }
     }
 
