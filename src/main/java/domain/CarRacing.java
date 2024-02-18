@@ -1,9 +1,9 @@
+package domain;
+
 import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidateException;
-import domain.Car;
-import domain.CarAccelerator;
-import domain.Cars;
-import domain.TryCount;
+import domain.accelerator.Accelerator;
+import domain.accelerator.strategy.RandomMoveAccelerator;
 import view.InputView;
 import view.OutputView;
 
@@ -33,7 +33,7 @@ public class CarRacing {
     }
 
     private Cars readCars() {
-        return createCars(inputView.readCarNames(), new CarAccelerator());
+        return createCars(inputView.readCarNames(), new RandomMoveAccelerator());
     }
 
     private void printWinners(Cars cars) {
@@ -45,7 +45,7 @@ public class CarRacing {
         tryMove(tryCount, cars);
     }
 
-    public Cars createCars(String input, CarAccelerator accelerator) {
+    public Cars createCars(String input, Accelerator accelerator) {
         validateCarNamesInput(input);
 
         List<String> carNames = Arrays.asList(input.split(InputView.CAR_NAMES_DELIMITER));
