@@ -55,7 +55,7 @@ class CarControllerTest {
         // given
         InputView inputView = setupInputStream("a,b,c\n3\n");
         OfInt iterator = IntStream.of(9, 9, 9, 9, 0, 9, 0, 0, 9).iterator();
-        CarController controller = new CarController(inputView, outputView, () -> iterator.nextInt());
+        CarController controller = new CarController(inputView, outputView, iterator::nextInt);
         // when
         controller.run();
         // then
