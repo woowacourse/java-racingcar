@@ -17,19 +17,15 @@ public class Cars {
                 .toList());
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public void tryMoveAll() {
+        cars.forEach(Car::tryMove);
     }
-
+    
     public List<Car> chooseWinners() {
         int maxPosition = getFurthestPosition();
         return cars.stream()
                 .filter(car -> car.getPosition().equals(maxPosition))
                 .toList();
-    }
-
-    public void tryMoveAll() {
-        cars.forEach(Car::tryMove);
     }
 
     private Integer getFurthestPosition() {
@@ -39,5 +35,9 @@ public class Cars {
                 .orElseThrow(
                         () -> new NoSuchElementException(
                                 "[INTERNAL ERROR] 가장 먼 자동차 위치 구하기 실패\n 자동차 수: " + cars.size()));
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
