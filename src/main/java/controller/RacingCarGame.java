@@ -26,7 +26,7 @@ public class RacingCarGame {
 
         for (int i = 0; i < count; i++) {
             cars.moveCars();
-            outputView.printMovement(cars.getCurrentStatus());
+            outputView.printCurrentStatus(cars.getCurrentStatus());
         }
 
         outputView.printWinners(cars.findWinners());
