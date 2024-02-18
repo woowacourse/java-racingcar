@@ -48,6 +48,9 @@ public class Car {
         return Objects.equals(name, car.name);
     }
 
+    public boolean isSameMovement(int movement) {
+        return this.movement == movement;
+    }
 
     private void validateName(String carName) {
         validateNameLength(carName);
