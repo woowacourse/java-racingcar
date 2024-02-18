@@ -1,6 +1,6 @@
 package racingcar.config;
 
-import racingcar.controller.RacingController;
+import racingcar.controller.RacingManager;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -13,7 +13,7 @@ public class RacingConfig {
         return new OutputView();
     }
 
-    public RacingController racingController() {
-        return new RacingController(inputView(), outputView());
+    public RacingManager racingController() {
+        return new RacingManager(inputView(), outputView());
     }
 }
