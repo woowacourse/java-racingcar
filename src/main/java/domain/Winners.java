@@ -1,12 +1,14 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Winners {
     private final List<String> winnerNames;
 
     private Winners(List<String> winners) {
-        this.winnerNames = winners;
+        this.winnerNames = new ArrayList<>(winners);
     }
 
     public static Winners from(RandomMovingCars randomMovingCars) {
@@ -14,6 +16,6 @@ public class Winners {
     }
 
     public List<String> getWinners() {
-        return winnerNames;
+        return Collections.unmodifiableList(winnerNames);
     }
 }
