@@ -41,6 +41,13 @@ public class Cars {
         if (isDuplicatedName(names)) {
             throw RacingCarGameException.from(ErrorMessage.DUPLICATED_NAME_ERROR);
         }
+        if (isEmptyNames(names)) {
+            throw RacingCarGameException.from(ErrorMessage.INVALID_NAME_ERROR);
+        }
+    }
+
+    private static boolean isEmptyNames(List<String> names) {
+        return names.isEmpty();
     }
 
     private static boolean isDuplicatedName(List<String> names) {
