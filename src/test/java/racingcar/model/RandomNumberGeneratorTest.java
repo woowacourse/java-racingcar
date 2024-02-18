@@ -1,6 +1,7 @@
 package racingcar.model;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 
@@ -13,6 +14,6 @@ class RandomNumberGeneratorTest {
 
         int value = generator.generate();
 
-        Assertions.assertThat(value).isBetween(0, 9);
+        assertThat(value).isBetween(0, 9);
     }
 }

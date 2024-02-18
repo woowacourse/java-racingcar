@@ -1,9 +1,9 @@
 package racingcar.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ class CarsTest {
 
         List<Car> winner = cars.findWinners();
 
-        Assertions.assertThat(winner).hasSize(3);
+        assertThat(winner).hasSize(3);
     }
 
     @DisplayName("단독 우승자 확인")
@@ -30,7 +30,7 @@ class CarsTest {
 
         List<Car> winner = cars.findWinners();
 
-        Assertions.assertThat(winner).hasSize(1).extracting("name").isEqualTo(List.of("cc"));
+        assertThat(winner).hasSize(1).extracting("name").isEqualTo(List.of("cc"));
     }
 
     @DisplayName("올바르지 않은 구분자")
@@ -66,7 +66,7 @@ class CarsTest {
 
         List<Car> unmodifiedCars = cars.getCars();
 
-        Assertions.assertThatThrownBy(() -> unmodifiedCars.add(Car.from("새로운차")))
+        assertThatThrownBy(() -> unmodifiedCars.add(Car.from("새로운차")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 
@@ -85,6 +85,6 @@ class CarsTest {
         Car originCar = originCars.get(0);
 
         // then
-        Assertions.assertThat(originCar.getPosition()).isNotEqualTo(unmodifyCar.getPosition());
+        assertThat(originCar.getPosition()).isNotEqualTo(unmodifyCar.getPosition());
     }
 }

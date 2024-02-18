@@ -1,6 +1,7 @@
 package racingcar.model;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +16,7 @@ class CarTest {
 
         car.go(number);
 
-        Assertions.assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("4미만시 전진할 수 없다.")
@@ -26,6 +27,6 @@ class CarTest {
 
         car.go(number);
 
-        Assertions.assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }
