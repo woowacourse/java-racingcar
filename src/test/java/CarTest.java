@@ -13,7 +13,7 @@ class CarTest {
     void carMove() {
         Car car = Car.fromName(" ");
         car.move();
-        assertThat(car.getDistance()).isEqualTo(1);
+        assertThat(car.getDistance().getValue()).isEqualTo(1);
     }
 
     @Test

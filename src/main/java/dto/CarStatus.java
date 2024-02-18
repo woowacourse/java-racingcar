@@ -2,13 +2,13 @@ package dto;
 
 import domain.Car;
 
-public class CarStatus {
+public class CarStatus implements Comparable<CarStatus>{
     private final String name;
     private final int distance;
 
     public CarStatus(Car car) {
         this.name = car.getName();
-        this.distance = car.getDistance();
+        this.distance = car.getDistance().getValue();
     }
 
     public static CarStatus of(Car car) {
@@ -21,5 +21,11 @@ public class CarStatus {
 
     public int getDistance() {
         return distance;
+    }
+
+
+    @Override
+    public int compareTo(CarStatus other) {
+        return this.distance - other.distance;
     }
 }
