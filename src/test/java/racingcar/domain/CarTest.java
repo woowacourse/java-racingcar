@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class CarTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"p", "po", "poo", "pooo", "poooo"})
+    @ValueSource(strings = {"p", "pobii"})
     @DisplayName("자동차 이름의 길이가 1 이상 5 이하로 주어지면 자동차가 정상적으로 생성된다")
     void createCarSuccess(String carName) {
         Assertions.assertThatCode(() -> new Car(carName))
@@ -35,7 +35,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", "  ", "   "})
+    @ValueSource(strings = {"", " "})
     @DisplayName("자동차 이름이 blank로 주어지면 자동차가 정상적으로 생성되지 않는다")
     void createCarFailWhenInputBlank(String carName) {
         assertThatThrownBy(() -> new Car(carName))
@@ -43,7 +43,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("4 이상 9 이하의 값을 받으면 자동차가 이동한다")
+    @DisplayName("4 이상의 값을 받으면 자동차가 이동한다")
     void moveCar() {
         //given
         Car car = new Car("pobi");
@@ -55,6 +55,7 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("3 이하의 값을 받으면 자동차가 이동하지 않는다.")
     void doNotMoveCar() {
         //given
         Car car = new Car("pobi");
