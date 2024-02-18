@@ -28,6 +28,6 @@ public class RacingCar implements Comparable<RacingCar>{
 
     @Override
     public int compareTo(RacingCar o) {
-        return o.moveNumber - this.moveNumber;
+        return this.moveNumber - o.moveNumber;
     }
 }
