@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -62,8 +60,6 @@ class CarsTest {
         //when
         cars.tryMove(testMoveForwardAccelerator);
         //then
-
-        //assertAll 쓰기
         assertAll(
                 () -> assertThat(cars.getCarsPosition().get("pobi")).isEqualTo(1),
                 () -> assertThat(cars.getCarsPosition().get("crong")).isEqualTo(1)
@@ -71,7 +67,6 @@ class CarsTest {
     }
 
     static class TestMoveForwardAccelerator implements Accelerator {
-
         static final int MOVE = 4;
 
         @Override

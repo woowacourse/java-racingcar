@@ -52,7 +52,6 @@ class RefereeTest {
     }
 
     static class TestMoveForwardAccelerator implements Accelerator {
-
         static final int MOVE = 4;
 
         @Override
