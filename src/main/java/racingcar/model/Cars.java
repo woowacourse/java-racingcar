@@ -19,10 +19,13 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void move() {
+    public List<Integer> move() {
         cars.stream()
                 .filter(car -> generator.generate() >= MOVE_LINE)
                 .forEach(Car::move);
+        return cars.stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
     }
 
     public List<String> calculateWinner() {

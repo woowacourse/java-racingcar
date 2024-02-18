@@ -19,8 +19,7 @@ public class GameController {
 
         int totalAttempts = tryCount.getValue();
         for(int attempt = 0; attempt < totalAttempts; attempt++) {
-            cars.move();
-            gameResult.addResult(cars.getCarPositions());
+            gameResult.addResult(cars.move());
         }
 
         OutputView.printGameResults(gameResult.getCarNames(), gameResult.getGameResult());
