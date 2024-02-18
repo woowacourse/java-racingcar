@@ -22,7 +22,6 @@ public class OutputView {
     }
 
     public static void printWinners(List<String> winners) {
-        winners.removeAll(Arrays.asList("", null));
         for (String name : winners) {
             System.out.print(name);
             printComma(winners, name);
