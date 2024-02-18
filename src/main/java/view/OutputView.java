@@ -24,10 +24,14 @@ public class OutputView implements AutoCloseable {
 
     public void printResult(List<Car> cars) throws IOException {
         for (Car car : cars) {
-            writer.write(car.getName() + DELIMITER + MoveStatus.join("", car.getStatuses()));
+            writer.write(car.getName() + DELIMITER + concatenateMoveStatuses(car.getStatuses()));
             writer.newLine();
         }
         writer.newLine();
+    }
+
+    private String concatenateMoveStatuses(List<MoveStatus> moveStatuses) {
+        return String.join("", moveStatuses.stream().map(MoveStatus::getOutput).toList());
     }
 
     public void printWinner(List<Car> cars) throws IOException {
