@@ -1,10 +1,11 @@
 package view;
 
+import util.DigitValidator;
+import util.SplitValidator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import util.DigitValidator;
-import util.SplitValidator;
 
 public class InputView {
     private static final String CAR_NAMES_DELIMITER = ",";

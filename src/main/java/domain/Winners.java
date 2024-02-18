@@ -1,8 +1,5 @@
 package domain;
 
-import domain.car.Car;
-import domain.car.CarName;
-
 import java.util.List;
 
 public class Winners {

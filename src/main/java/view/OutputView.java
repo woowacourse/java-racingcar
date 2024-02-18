@@ -1,18 +1,18 @@
 package view;
 
 import domain.RandomMovingCar;
-import domain.car.Car;
 import domain.RandomMovingCars;
 import domain.Winners;
+
 import java.util.StringJoiner;
 
 public class OutputView {
     private static final String MOVE_EXPRESS = "-";
     private static final String WINNER_NAMES_DELIMITER = ", ";
 
-     public void printRacingResult() {
-         System.out.println("\n실행 결과");
-     }
+    public void printRacingResult() {
+        System.out.println("\n실행 결과");
+    }
 
     public void printRacingProceed(RandomMovingCars randomMovingCars) {
         StringBuilder builder = new StringBuilder();
