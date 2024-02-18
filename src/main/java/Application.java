@@ -1,8 +1,13 @@
 import controller.RaceController;
+import view.InputView;
+import view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        new RaceController().startRace();
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+
+        new RaceController(inputView, outputView).startRace();
     }
 }
