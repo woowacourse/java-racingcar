@@ -2,7 +2,7 @@ package racinggame;
 
 import java.io.IOException;
 import racinggame.domain.RacingGame;
-import racinggame.domain.condition.RandomMoveCondition;
+import racinggame.domain.RandomMoveCondition;
 import racinggame.view.InputView;
 import racinggame.view.OutputView;
 
