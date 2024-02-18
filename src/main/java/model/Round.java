@@ -38,7 +38,7 @@ public class Round {
     }
 
     private static void checkIsZero(String input) {
-        if (input.equals(0)) {
+        if (input.equals("0")) {
             throw new IllegalArgumentException(ERROR_PREFIX + "시도 횟수를 입력해 주세요.");
         }
     }
