@@ -1,5 +1,6 @@
 import domain.Cars;
 import domain.Count;
+import domain.RacingCarGame;
 import view.InputView;
 import view.OutputView;
 
@@ -8,17 +9,10 @@ import java.util.function.Supplier;
 public class CarRacingMain {
     public static void main(String[] args) {
         Cars cars = retry(() -> Cars.from(InputView.enterCarNames()));
-        Count count = retry(() -> new Count(InputView.enterCount()));
+        Count count = retry(() -> Count.from(InputView.enterCount()));
 
-        OutputView.printNewLine();
-
-        OutputView.printResultMessage();
-        for (int i = 0; i < count.getValue(); i++) {
-            cars.move();
-            OutputView.printResult(cars);
-        }
-
-        OutputView.printWinners(cars.judge());
+        RacingCarGame racingCarGame = new RacingCarGame(cars, count);
+        
     }
 
     private static <T> T retry(Supplier<T> supplier) {
