@@ -58,9 +58,9 @@ class GameTest {
                 .hasMessageContaining("빈 이름");
     }
 
-    @DisplayName("최종 우승자를 올바르게 결정한다")
+    @DisplayName("최종 우승자가 한 명이다")
     @Test
-    void getWinnerTest() {
+    void getOneWinnerTest() {
         Car ash = new Car("ash");
         Car lily = new Car("lily");
 
@@ -69,5 +69,21 @@ class GameTest {
         ash.incLocation();
 
         Assertions.assertThat(game.getWinner(cars)).isEqualTo(List.of("ash", ""));
+    }
+
+    @DisplayName("최종 우승자가 두 명 이상이다")
+    @Test
+    void getTwoWinnerTest() {
+        Car ash = new Car("ash");
+        Car lily = new Car("lily");
+        Car ella = new Car("ella");
+
+        List<Car> cars = List.of(ash, lily, ella);
+
+        ash.incLocation();
+        lily.incLocation();
+        ella.incLocation();
+
+        Assertions.assertThat(game.getWinner(cars)).isEqualTo(List.of("ash", "lily","ella"));
     }
 }
