@@ -1,23 +1,21 @@
 package domain.car;
 
-import domain.numbergenerator.NumberGenerator;
+import domain.car.moveStrategy.MoveStrategy;
 
 public class Car {
-    private static final int MOVE_THRESHOLD = 4;
 
     private final CarName name;
     private int location;
-    private final NumberGenerator numberGenerator;
+    private final MoveStrategy moveStrategy;
 
-    public Car(String name, NumberGenerator numberGenerator) {
+    public Car(String name, MoveStrategy moveStrategy) {
         this.name = new CarName(name);
-        this.numberGenerator = numberGenerator;
+        this.moveStrategy = moveStrategy;
         location = 0;
     }
 
     public void tryMove() {
-        int number = numberGenerator.generate();
-        if (number >= MOVE_THRESHOLD) {
+        if (moveStrategy.canGo()) {
             location += 1;
         }
     }

@@ -1,15 +1,15 @@
 package domain.car;
 
-import domain.numbergenerator.NumberGenerator;
+import domain.car.moveStrategy.MoveStrategy;
 import java.util.List;
 
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> carNames, NumberGenerator numberGenerator) {
+    public Cars(List<String> carNames, MoveStrategy moveStrategy) {
         validateNames(carNames);
         this.cars = carNames.stream()
-                .map(name -> new Car(name, numberGenerator))
+                .map(name -> new Car(name, moveStrategy))
                 .toList();
     }
 
