@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class RandomNumberGeneratorForward implements RandomNumberGenerator {
+public class ForwardMovementDecider implements MovementDecider {
     public int generate() {
         return 7;
     }

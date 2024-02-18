@@ -2,8 +2,8 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.RandomNumberGenerator;
-import racingcar.domain.RandomNumberGeneratorImpl;
+import racingcar.domain.MovementDecider;
+import racingcar.domain.RandomMovementDecider;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -23,9 +23,9 @@ public class RacingController {
         final int tryCount = readTryCount();
 
         outputView.printResultMsg();
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
+        MovementDecider movementDecider = new RandomMovementDecider();
         for(int i = 0 ; i < tryCount; i++) {
-            moveCars(cars, randomNumberGenerator);
+            moveCars(cars, movementDecider);
         }
 
         final List<Car> winners = cars.determineWinner();
@@ -52,8 +52,8 @@ public class RacingController {
         }
     }
 
-    private void moveCars(final Cars cars, final RandomNumberGenerator randomNumberGenerator) {
-        cars.moveAll(randomNumberGenerator);
+    private void moveCars(final Cars cars, final MovementDecider movementDecider) {
+        cars.moveAll(movementDecider);
         outputView.printCarPosition(cars);
     }
 }

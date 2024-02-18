@@ -13,9 +13,9 @@ public class Cars {
         this.cars = names.stream().map(Car::new).toList();
     }
 
-    public void moveAll(final RandomNumberGenerator randomNumberGenerator) {
+    public void moveAll(final MovementDecider movementDecider) {
         for(Car car: cars) {
-            final int condition = randomNumberGenerator.generate();
+            final int condition = movementDecider.generate();
             car.move(condition);
         }
     }

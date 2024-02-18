@@ -1,5 +1,5 @@
 package racingcar.domain;
 
-public interface RandomNumberGenerator {
+public interface MovementDecider {
     int generate();
 }
