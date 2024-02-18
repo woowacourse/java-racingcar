@@ -3,9 +3,12 @@ package racingcar.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarsTest {
     @Test
@@ -38,6 +41,16 @@ class CarsTest {
         assertThat(movedCars)
                 .extracting(Car::getCount)
                 .containsExactly(0, 0);
+    }
+
+    @Test
+    @DisplayName("빈 Cars 리스트가 입력된 경우 테스트")
+    void newCarsTest() {
+        List<String> carNames = Collections.emptyList();
+        final Cars cars = new Cars(carNames);
+
+        assertThatThrownBy(cars::determineWinner)
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
