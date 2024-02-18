@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,12 +11,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
+    private Car car;
+
+    @BeforeEach
+    void setUp() {
+        car = new Car("pobi");
+    }
 
     @Test
     @DisplayName("자동차는 이름을 가진다.")
     void createCar() {
-        Car car = new Car("pobi");
-
         assertThat(car).extracting("name")
                 .isEqualTo("pobi");
     }
@@ -32,10 +37,19 @@ class CarTest {
     @CsvSource(value = {"4, 1", "3, 0"})
     @DisplayName("random 값이 4 이상일 경우 자동차는 이동하고, random 값이 4 미만인 경우 자동차는 이동하지 않는다.")
     void moveTest(int randomNumber, int expected) {
-        Car car = new Car("pobi");
         car.move(randomNumber);
 
         int actual = car.getPosition();
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1, true", "2, false"})
+    @DisplayName("입력된 위치와 자동차의 위치가 일치하는지 판별할 수 있다.")
+    void isPositionEqualTo(int position, boolean expected) {
+        Car car = new Car("pobi", 1);
+        boolean actual = car.isPositionEqualTo(position);
+
         assertThat(actual).isEqualTo(expected);
     }
 }
