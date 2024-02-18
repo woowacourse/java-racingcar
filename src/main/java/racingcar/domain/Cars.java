@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import racingcar.service.RandomNumberGenerator;
+import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
     private final int MAX_CARS_SIZE = 10;
