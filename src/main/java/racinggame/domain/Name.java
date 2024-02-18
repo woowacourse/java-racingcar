@@ -27,7 +27,8 @@ class Name {
 
     private static void checkNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(String.format("자동차 이름은 최대 5자 이하만 가능합니다. 입력한 자동차 이름: %s", name));
+            throw new IllegalArgumentException(
+                    String.format("자동차 이름은 최대 %d자 이하만 가능합니다. 입력한 자동차 이름: %s", MAX_NAME_LENGTH, name));
         }
     }
 
