@@ -25,8 +25,7 @@ public class InputView {
                 .toList();
     }
 
-
-    public int readTryRound() {
+    public int readRound() {
         System.out.println("시도할 횟수는 몇회인가요?");
         return parseInt(scanner.nextLine());
     }

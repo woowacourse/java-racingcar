@@ -15,7 +15,7 @@ public class Cars {
 
         this.cars = carNames.stream()
                 .map(Car::new)
-                .toList();;
+                .toList();
     }
 
     public static Cars from(final List<CarName> carNames) {

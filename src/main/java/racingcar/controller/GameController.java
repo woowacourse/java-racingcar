@@ -49,7 +49,7 @@ public class GameController {
     }
 
     private Round getRound() {
-        final int tryRound = inputView.readTryRound();
+        final int tryRound = inputView.readRound();
         return new Round(tryRound);
     }
 
