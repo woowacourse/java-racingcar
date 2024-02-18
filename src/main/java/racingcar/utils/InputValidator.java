@@ -3,6 +3,9 @@ package racingcar.utils;
 import java.util.List;
 
 public class InputValidator {
+    private InputValidator() {
+    }
+
     public static void validateCarName(List<String> names) {
         validateDuplicateNames(names);
         for (String name : names) {

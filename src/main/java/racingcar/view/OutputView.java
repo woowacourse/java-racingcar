@@ -11,6 +11,10 @@ public class OutputView {
     private static final String CAR_NAME_DELIMITER = ",";
     private static final String NEW_LINE = System.lineSeparator();
 
+    // 인스턴스화 방지
+    private OutputView() {
+    }
+
     public static void printResultDescription() {
         System.out.println();
         System.out.println(RESULT_DESCRIPTION);

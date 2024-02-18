@@ -10,6 +10,10 @@ public class InputView {
 
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+    // 인스턴스화 방지
+    private InputView() {
+    }
+
     public static String inputNames() throws IOException {
         System.out.println(NAME_INPUT_DESCRIPTION);
         return br.readLine();
