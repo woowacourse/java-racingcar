@@ -23,8 +23,7 @@ public class RacingCars {
     }
 
     public List<String> getWinners() {
-        Collections.sort(racingCars);
-        RacingCar winner = racingCars.get(0);
+        RacingCar winner = Collections.max(racingCars);
 
         return racingCars.stream()
                 .filter(racingCar -> racingCar.hasSameDistance(winner))
