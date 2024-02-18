@@ -5,7 +5,6 @@ import racingcar.model.Round;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-// TODO: 전체적인 구조와 이름 고민해보기
 public class InputController {
 
     private final InputView inputView;
