@@ -1,4 +1,4 @@
-package common;
+package message;
 
 public enum Exception {
     INPUT_NULL_BLANK("입력은 없거나 null일 수 없습니다."),

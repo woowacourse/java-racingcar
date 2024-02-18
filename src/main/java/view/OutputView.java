@@ -1,6 +1,6 @@
 package view;
 
-import common.PrintMessage;
+import message.PrintMessage;
 import model.Car;
 import model.MoveStatus;
 

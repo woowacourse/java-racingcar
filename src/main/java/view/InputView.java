@@ -1,7 +1,7 @@
 package view;
 
-import common.Exception;
-import common.PrintMessage;
+import message.Exception;
+import message.PrintMessage;
 
 import java.io.BufferedReader;
 import java.io.IOException;

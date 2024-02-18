@@ -1,6 +1,6 @@
 package model;
 
-import common.Exception;
+import message.Exception;
 
 import java.util.ArrayList;
 import java.util.Collections;
