@@ -1,14 +1,18 @@
 package domain;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Car implements Comparable<Car> {
-    private static final String NAME_CONVENTION = "^[a-zA-Z가-힣]{1,5}$";
-    private static final int STANDARD = 4;
+    private static final String NAME_CONVENTION = "^[a-zA-Zㄱ-ㅎ가-힣]{1,5}$";
+    private static final int MOVE_STANDARD = 4;
     private final String name;
-    private int location = 0;
+    private final List<Integer> location;
 
     public Car(String name) {
         validateCarName(name);
         this.name = name;
+        location = new LinkedList<>(List.of(0));
     }
 
     private void validateCarName(String name) {
@@ -18,21 +22,30 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(int randomNumber) {
-        if (randomNumber >= STANDARD) {
-            location++;
+        int lastLocation = getLastLocation();
+        if (randomNumber >= MOVE_STANDARD) {
+            lastLocation++;
         }
+        location.add(lastLocation);
     }
 
     public String getName() {
         return name;
     }
 
-    public int getLocation() {
-        return location;
+    public int getLocation(int round) {
+        return location.get(round);
+    }
+
+    public int getLastLocation() {
+        if (location.size() > 0) {
+            return location.get(location.size() - 1);
+        }
+        return 0;
     }
 
     @Override
     public int compareTo(Car car) {
-        return this.location - car.getLocation();
+        return this.getLastLocation() - car.getLastLocation();
     }
 }
