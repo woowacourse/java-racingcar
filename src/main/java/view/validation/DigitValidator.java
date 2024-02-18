@@ -8,7 +8,7 @@ public class DigitValidator {
     private DigitValidator() {
     }
 
-    public static void validateIsDigit(String input) {
+    public static void validateIsDigit(final String input) {
         if (!IS_DIGIT.matcher(input).matches()) {
             throw new IllegalArgumentException("시도 횟수는 숫자이어야 합니다.");
         }

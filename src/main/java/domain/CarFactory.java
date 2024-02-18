@@ -6,11 +6,11 @@ import java.util.List;
 public class CarFactory {
     private final List<Car> producedCars;
 
-    private CarFactory(List<Car> producedCars) {
+    private CarFactory(final List<Car> producedCars) {
         this.producedCars = producedCars;
     }
 
-    public static CarFactory from(String[] cars) {
+    public static CarFactory from(final String[] cars) {
         List<Car> producedCars = Arrays.stream(cars)
                 .map(Car::from)
                 .toList();

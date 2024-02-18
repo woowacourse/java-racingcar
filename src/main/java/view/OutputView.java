@@ -21,7 +21,7 @@ public class OutputView {
          System.out.println("\n실행 결과");
      }
 
-    public void printRacingProceed(Cars cars) {
+    public void printRacingProceed(final Cars cars) {
         StringBuilder builder = new StringBuilder();
         for (Car car : cars.getCars()) {
             builder.append(String.format("%s : %s\n", car.getName(), MOVE_EXPRESS.repeat(car.getPosition())));
@@ -29,7 +29,7 @@ public class OutputView {
         System.out.println(builder);
     }
 
-    public void printWinners(Winners winners) {
+    public void printWinners(final Winners winners) {
         StringJoiner stringJoiner = new StringJoiner(COMMA);
         winners.getWinners().forEach(stringJoiner::add);
         System.out.printf("%s가 최종 우승했습니다.", stringJoiner);
