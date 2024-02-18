@@ -17,9 +17,9 @@ public class CarRacingGame {
     private final OutputView outputView;
     private final Judge judge;
 
-    public CarRacingGame(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public CarRacingGame() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
         this.judge = new Judge();
     }
 
