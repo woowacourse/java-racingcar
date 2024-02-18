@@ -1,7 +1,5 @@
 package domain;
 
-import static domain.car.CarDistance.INITIAL_DISTANCE;
-
 import domain.car.CarDistance;
 import domain.car.CarName;
 import dto.CarStatus;
@@ -16,14 +14,22 @@ public class Car {
     private final CarName name;
     private CarDistance distance;
 
-    public Car(final NumberRangeGenerator numberRangeGenerator, final CarName name, final CarDistance distance) {
+    private Car(final NumberRangeGenerator numberRangeGenerator, final CarName name, final CarDistance distance) {
         this.numberRangeGenerator = numberRangeGenerator;
         this.name = name;
         this.distance = distance;
     }
 
-    public Car(final NumberRangeGenerator numberRangeGenerator, final CarName name) {
-        this(numberRangeGenerator, name, CarDistance.getInitialDistance());
+    public static Car createCar(final String name) {
+        return new Car(new RandomNumberRangeGenerator(), new CarName(name), CarDistance.getInitialDistance());
+    }
+
+    static Car createCar(final String name, final NumberRangeGenerator numberRangeGenerator) {
+        return new Car(numberRangeGenerator, new CarName(name), CarDistance.getInitialDistance());
+    }
+
+    static Car createCar(final String name, final NumberRangeGenerator numberRangeGenerator, final int distance) {
+        return new Car(numberRangeGenerator, new CarName(name), new CarDistance(distance));
     }
 
     public void move() {

@@ -22,7 +22,7 @@ public class Cars {
         validateDuplicatedCarNames(carNames);
 
         final List<Car> cars = carNames.stream()
-                .map(name -> new Car(new RandomNumberRangeGenerator(), new CarName(name)))
+                .map(name -> Car.createCar(name, new RandomNumberRangeGenerator()))
                 .toList();
 
         return new Cars(cars);

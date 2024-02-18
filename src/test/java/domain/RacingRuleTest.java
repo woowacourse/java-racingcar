@@ -15,9 +15,9 @@ class RacingRuleTest {
         // Given
         RacingRule racingRule = new RacingRule();
         Cars cars = new Cars(List.of(
-                new Car(new RandomNumberRangeGenerator(), new CarName("test1"), new CarDistance(0)),
-                new Car(new RandomNumberRangeGenerator(), new CarName("test2"), new CarDistance(3)),
-                new Car(new RandomNumberRangeGenerator(), new CarName("test3"), new CarDistance(3))));
+                Car.createCar("test1", new RandomNumberRangeGenerator(), 0),
+                Car.createCar("test2", new RandomNumberRangeGenerator(), 3),
+                Car.createCar("test3", new RandomNumberRangeGenerator(), 3)));
 
         // When
         List<Car> winners = racingRule.getWinners(cars);

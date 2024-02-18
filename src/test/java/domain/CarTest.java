@@ -16,7 +16,7 @@ class CarTest {
     void forwardCar() {
         // Given
         NumberRangeGenerator numberRangeGenerator = (start, end) -> 5;
-        Car car = new Car(numberRangeGenerator, new CarName("test"));
+        Car car = Car.createCar("test", numberRangeGenerator);
 
         // When
         car.move();
@@ -31,7 +31,7 @@ class CarTest {
     void notForwardCar() {
         // Given
         NumberRangeGenerator numberRangeGenerator = (start, end) -> 2;
-        Car car = new Car(numberRangeGenerator, new CarName("test"));
+        Car car = Car.createCar("test", numberRangeGenerator);
 
         // When
         car.move();
@@ -48,7 +48,7 @@ class CarTest {
         String soLongCarName = "chicken-boy";
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> new Car(null, new CarName(soLongCarName)))
+        Assertions.assertThatThrownBy(() -> Car.createCar(soLongCarName, new RandomNumberRangeGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
@@ -60,7 +60,7 @@ class CarTest {
         String emptyName = "";
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), new CarName(emptyName)))
+        Assertions.assertThatThrownBy(() -> Car.createCar(emptyName, new RandomNumberRangeGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
@@ -72,7 +72,7 @@ class CarTest {
             "'', 이름 길이는 1이상 5이하의 문자열만 가능합니다."
     })
     void createCarThrowExceptionForInvalidName(String inputName, String expectedMessage) {
-        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), new CarName(inputName)))
+        Assertions.assertThatThrownBy(() -> Car.createCar(inputName, new RandomNumberRangeGenerator()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedMessage);
     }
