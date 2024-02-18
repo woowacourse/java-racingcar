@@ -20,7 +20,8 @@ class CarTest {
         //given, when, then
         assertThatThrownBy(() -> new Car(given))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차 이름이 1-5자 사이의 길이로 입력되지 않았습니다.");
+                .hasMessageContaining("자동차 이름이 1-5")
+                .hasMessageContaining("자 사이의 길이로 입력되지 않았습니다.");
     }
 
     @DisplayName("자동차를 생성하면 위치 초기값은 0이다.")
