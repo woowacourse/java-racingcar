@@ -2,7 +2,7 @@ package controller;
 
 import domain.Car;
 import domain.Cars;
-import domain.RandomNumberGenerator;
+import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
