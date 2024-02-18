@@ -14,18 +14,11 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    // TODO : 대쉬 반복 ..잘해보기
     public static void printResult(List<Car> cars) {
         for (Car car : cars) {
-            System.out.println(car.getCarName() + " : " + repeatDash(car.getLocation()));
+            System.out.println(String.join(" : ", car.getCarName(), "-".repeat(car.getLocation())));
         }
         System.out.println();
-    }
-
-    private static StringBuilder repeatDash(int repeatCount) {
-        StringBuilder dash = new StringBuilder();
-        dash.append("-".repeat(Math.max(0, repeatCount)));
-        return dash;
     }
 
     public static void printWinners(List<String> winners) {
