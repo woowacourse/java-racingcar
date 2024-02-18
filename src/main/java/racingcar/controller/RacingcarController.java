@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
 import racingcar.dto.RoundResult;
-import racingcar.service.RacingcarService;
+import racingcar.service.RacingGameService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -14,7 +14,7 @@ public class RacingcarController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final RacingcarService racingcarService = new RacingcarService();
+    private final RacingGameService racingcarService = new RacingGameService();
 
     public void run() {
         Cars cars = retryOnException(this::readCars);
@@ -26,7 +26,7 @@ public class RacingcarController {
 
     private Cars readCars() {
         List<String> carNames = inputView.readCarNames();
-        return racingcarService.createCars(carNames);
+        return racingcarService.registerCars(carNames);
     }
 
     private Round readRound() {
