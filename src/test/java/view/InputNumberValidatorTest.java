@@ -19,7 +19,7 @@ class InputNumberValidatorTest {
     }
 
     @ParameterizedTest(name = "{1}")
-    @DisplayName("시도 횟수 예외 발생")
+    @DisplayName("시도 횟수 입력 시 아래 경우에 예외가 발생한다")
     @MethodSource("invalidTryNumber")
     public void invalidTryNumberThrowException(String tryNumber, String reason, String errorMessage) {
         assertThatThrownBy(() -> InputNumberValidator.validatePositiveNumber(tryNumber))

@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 class CarTest {
 
     static Stream<Arguments> moves() {
-
         return Stream.of(
                 Arguments.of(true, 1, "true면 전진한다."),
                 Arguments.of(false, 0, "false면 전진하지 않는다.")
@@ -20,7 +19,7 @@ class CarTest {
     }
 
     @ParameterizedTest(name = "{2}")
-    @DisplayName("true면 전진한다.")
+    @DisplayName("true면 전진하고, false면 전진하지 않는다.")
     @MethodSource("moves")
     void move(boolean doMove, int expected, String title) {
         Car car = new Car("배키");
@@ -39,7 +38,7 @@ class CarTest {
     }
 
     @ParameterizedTest(name = "{1}")
-    @DisplayName("자동차 이름 예외 발생")
+    @DisplayName("자동차 이름 입력 시 아래 경우에 예외가 발생한다")
     @MethodSource("invalidCarName")
     public void invalidCarNameThrowException(String carName, String reason, String errorMessage) {
         assertThatThrownBy(() -> new Car(carName))
