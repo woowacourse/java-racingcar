@@ -16,6 +16,7 @@ public class GameController {
         RacingCarGame racingCarGame = new RacingCarGame(cars, count);
         RaceResult raceResult = racingCarGame.race();
 
+        OutputView.printRaceResult(raceResult);
         OutputView.printWinners(racingCarGame.getWinners());
     }
 

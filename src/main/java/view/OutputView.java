@@ -4,6 +4,9 @@ import static view.ViewMessages.*;
 
 import domain.Car;
 import domain.Cars;
+import dto.CarStatus;
+import dto.CarsStatus;
+import dto.RaceResult;
 import dto.Winners;
 
 public class OutputView {
@@ -15,19 +18,27 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResultMessage() {
+    public static void printRaceResult(RaceResult raceResult) {
+        printNewLine();
         System.out.println(RESULT_MESSAGE);
+        for(CarsStatus carsStatus : raceResult.results()) {
+            printCarsStatus(carsStatus);
+        }
     }
 
-    public static void printResult(Cars cars) {
-        for (Car car : cars.getCars()) {
-            String.format(
-                    RESULT_FORMAT,
-                    car.getName(),
-                    POSITION_SYMBOL.repeat(car.getPosition())
-            );
+    private static void printCarsStatus(CarsStatus carsStatus) {
+        for(CarStatus carStatus : carsStatus.status()) {
+            System.out.println(getStatusFormat(carStatus));
         }
         printNewLine();
+    }
+
+    private static String getStatusFormat(CarStatus carStatus) {
+        return String.format(
+                RESULT_FORMAT,
+                carStatus.name(),
+                POSITION_SYMBOL.repeat(carStatus.position())
+        );
     }
 
     public static void printWinners(Winners winners) {
