@@ -1,0 +1,19 @@
+package domain;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import domain.CarLocation;
+
+class CarLocationTest {
+
+    @DisplayName("생성자에서 음수값 입력에 대한 예외 발생 확인")
+    @Test
+    void constructor() {
+        assertThatThrownBy(() -> new CarLocation(-1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+}
