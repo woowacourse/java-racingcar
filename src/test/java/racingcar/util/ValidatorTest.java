@@ -8,6 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
     @Test
+    @DisplayName("빈 문자열이 자동차 이름 문자열로 입력된다면 예외가 발생한다.")
+    public void validateEmptyCarNamesTest() {
+        //given
+        String carNames = "";
+
+        //when & then
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> Validator.validateEmptyCarNames(carNames),
+                "자동차 이름 목록을 입력해주세요.");
+    }
+
+    @Test
     @DisplayName("자동차 이름이 1자 이상 5자 이하가 아니면 예외가 발생한다.")
     void validateCarNamesFormatTest() {
         //given
