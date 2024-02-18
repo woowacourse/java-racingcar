@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
+    //TODO 테스트코드와 내용을 유추할 수 있도록 리팩터링
 
     @Test
     @DisplayName("차 이름 테스트: 정상 입력")

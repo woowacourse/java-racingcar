@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
+    //TODO Validator 확장성 고민해보기
+    /* 검증에 대한 로직이 많아지면 Validaotr 클래스는 무엇으로 정의할까*/
+    /* 로직을 기능을 넘어 객체가 갖는 책임으로 분리해보기*/
 
     private static final String NAME_RULE = "^[a-zA-Z]{1,5}$";
 

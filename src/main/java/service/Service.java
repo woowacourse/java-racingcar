@@ -7,6 +7,8 @@ import domain.Car;
 import java.util.List;
 
 public class Service {
+    // TODO getter를 사용하지 않고 비교방식을 생각해보기
+    // TODO 예외에 메시지를 담기
     
     public static List<String> getWinnerNames(List<Car> cars) {
         int maxScore = cars.stream()
