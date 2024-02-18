@@ -4,8 +4,8 @@ import domain.Car;
 import domain.CarAccelerator;
 import domain.Cars;
 import domain.TryCount;
-import io.InputView;
-import io.OutputView;
+import view.InputView;
+import view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
