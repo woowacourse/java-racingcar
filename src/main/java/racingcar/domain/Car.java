@@ -11,7 +11,7 @@ public class Car implements Comparable<Car> {
 
     private Car(final CarName name) {
         this.name = name;
-        this.position = new Position(0);
+        this.position = Position.ZERO;
     }
 
     public static Car from(final String name) {
