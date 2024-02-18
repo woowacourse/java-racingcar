@@ -23,7 +23,8 @@ public class CarName {
         }
 
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("이름이 너무 깁니다. 이름은 5자 이하로 입력해 주세요.");
+            throw new IllegalArgumentException(
+                    String.format("이름이 너무 깁니다. 이름은 %d자 이하로 입력해 주세요.", MAX_NAME_LENGTH));
         }
     }
 
