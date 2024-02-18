@@ -13,20 +13,20 @@ public class Count {
     }
 
     private void validate(int count) {
-        if (!(count >= MIN_COUNT && count <= MAX_COUNT)) {
-            throw new IllegalArgumentException("횟수는 1에서 100사이로 입력해주세요.");
+        if (isOutOfRange(count)) {
+            throw new IllegalArgumentException(String.format("%d를 입력하셨습니다, 횟수는 1에서 100사이로 입력해주세요.", count));
         }
+    }
+
+    private static boolean isOutOfRange(int count) {
+        return count < MIN_COUNT || count > MAX_COUNT;
     }
 
     public static Count from(int count) {
         return new Count(count);
     }
 
-    public static Count init() {
-        return new Count(1);
-    }
-
-    public boolean isGreaterOrThan(int currentCount) {
+    public boolean isGreaterOrEqualThan(int currentCount) {
         return currentCount <= count;
     }
 

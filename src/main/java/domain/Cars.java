@@ -1,68 +1,50 @@
 package domain;
 
-import dto.CarNameRequest;
+import dto.CarStatus;
+import dto.TurnResult;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     public static final int MIN_CAR_COUNT = 2;
     public static final int MAX_CAR_COUNT = 50;
     private final List<Car> cars;
 
+
     public Cars(List<Car> cars) {
         validate(cars);
         this.cars = cars;
     }
 
-    public static Cars from(List<Car> cars) {
-        return new Cars(cars);
+    public static Cars from(List<String> cars) {
+        return new Cars(cars.stream().map(Car::fromName).collect(Collectors.toList()));
     }
+
 
     private void validate(List<Car> cars) {
         if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
-            throw new IllegalArgumentException("자동차는 2대에서 50대 사이로 입력해주세요.");
+            throw new IllegalArgumentException("경주할 수 있는 자동차는 2대에서 50대 사이입니다");
         }
     }
 
-    public static Cars fromEmpty() {
-        return new Cars(List.of(Car.fromEmpty(), Car.fromEmpty()));
-    }
-
-    public static Cars fromDto(CarNameRequest carsNameRequest) {
-        List<Car> carsTmp = new ArrayList<>();
-        for (String carName : carsNameRequest.list()) {
-            carsTmp.add(Car.fromName(carName));
+    public List<TurnResult> move(RandomMovementGenerator randomMovementGenerator, Count count) {
+        List<TurnResult> turnResults = new ArrayList<>();
+        int counter = 1;
+        while (count.isGreaterOrEqualThan(counter)) {
+            cars.forEach(car -> moveCar(randomMovementGenerator, car));
+            turnResults.add(new TurnResult(cars.stream()
+                    .map(CarStatus::new)
+                    .collect(Collectors.toList())));
+            counter++;
         }
-        return new Cars(carsTmp);
+        return turnResults;
     }
 
-    public void move(RandomMovementGenerator randomMovementGenerator) {
-        for (Car car : cars) {
-            moveCar(randomMovementGenerator, car);
-        }
-    }
 
-    private static void moveCar(RandomMovementGenerator randomMovementGenerator, Car car) {
+    private void moveCar(RandomMovementGenerator randomMovementGenerator, Car car) {
         if (randomMovementGenerator.generate()) {
             car.move();
-        }
-    }
-
-    public List<Car> getMaxDistanceCars() {
-        List<Car> maxDistanceCars = new ArrayList<>();
-        Car maxDistanceCar = cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException("최댓값 계산에 오류가 발생했습니다."));
-
-        for (Car car : cars) {
-            addWinners(car, maxDistanceCar, maxDistanceCars);
-        }
-        return maxDistanceCars;
-    }
-
-    private static void addWinners(Car car, Car maxDistanceCar, List<Car> winners) {
-        if (car.isSameDistance(maxDistanceCar)) {
-            winners.add(car);
         }
     }
 
@@ -70,7 +52,4 @@ public class Cars {
         return cars;
     }
 
-    public void add(Car car) {
-
-    }
 }
