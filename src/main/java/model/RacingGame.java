@@ -5,79 +5,69 @@ import static view.OutputView.ERROR_PREFIX;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RacingGame {
 
     private static final int MIN_CAR_NAME_COUNT = 2;
     private static final int MIN_POSITION = 0;
-    private static final String RACING_FORMAT = "%s : %s";
-    private static final String TRACE_SYMBOL = "-";
+    private static final String NATURAL_FORMAT_REGEX = "^[\\d]*$";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
 
-    private final List<Car> cars;
+    private final Cars cars;
+    private final int round;
+    private final List<RacingResultByRoundDto> raceRecord;
 
-    private RacingGame(final List<Car> cars) {
+    private RacingGame(final Cars cars, final int round) {
         this.cars = cars;
+        this.round = round;
+        this.raceRecord = new ArrayList<>();
     }
 
-    public static RacingGame from(final List<String> names) {
-        validate(names);
+    public static RacingGame from(final Cars cars, final String round) {
+        validateRound(round);
 
-        List<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(Car.from(name));
-        }
-        return new RacingGame(cars);
+        return new RacingGame(cars, Integer.parseInt(round));
     }
 
-    private static void validate(List<String> names) {
-        checkDuplicatedName(names);
-        checkNameCount(names);
+    private static void validateRound(String round) {
+        checkIsNull(round);
+        checkIsNaturalNumber(round);
+        checkIsZero(round);
     }
 
-    private static void checkDuplicatedName(List<String> names) {
-        long nameCount = names.stream().distinct().count();
-        if (names.size() != nameCount) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "자동차의 이름은 중복될 수 없습니다.");
+    private static void checkIsNull(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "시도 횟수를 입력해 주십시오.");
         }
     }
 
-    private static void checkNameCount(List<String> names) {
-        if (names.size() < MIN_CAR_NAME_COUNT) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "자동차 이름은 2개 이상이어야 합니다.");
+    private static void checkIsNaturalNumber(String input) {
+        if (!Pattern.matches(NATURAL_FORMAT_REGEX, input)) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "시도 횟수는 자연수여야 합니다.");
         }
     }
 
-    public void moveCars() {
-        for (Car car : cars) {
-            car.moveForward(generateRandomNumber());
+    private static void checkIsZero(String input) {
+        if (input.equals("0")) {
+            throw new IllegalArgumentException(ERROR_PREFIX + "시도 횟수를 입력해 주세요.");
         }
+    }
+
+    public void race() {
+        for (int i = 0; i < this.round; i++) {
+            cars.moveCars();
+            raceRecord.add(new RacingResultByRoundDto(cars.getCars()));
+        }
+    }
+
+    public List<RacingResultByRoundDto> getAllRacingRecord() {
+        return this.raceRecord;
     }
 
     public List<String> findWinnerNames() {
-        int maxPosition = calculateMaxPosition();
-
-        return cars.stream()
-                .filter(car -> car.showPositionTraceByFormat(TRACE_SYMBOL).length() == maxPosition)
-                .map(Car::getName)
-                .collect(Collectors.toList());
+        return cars.findMaxPositionCarName();
     }
 
-    private int calculateMaxPosition() {
-        return cars.stream()
-                .mapToInt(car -> car.showPositionTraceByFormat(TRACE_SYMBOL).length())
-                .max()
-                .orElse(MIN_POSITION);
-    }
-
-    public List<String> showAllCarTrace() {
-        List<String> allTrace = new ArrayList<>();
-        for (Car car : cars) {
-            String racingFormat = String.format(RACING_FORMAT,
-                    car.getName(),
-                    car.showPositionTraceByFormat(TRACE_SYMBOL));
-            allTrace.add(racingFormat);
-        }
-        return allTrace;
-    }
 }
