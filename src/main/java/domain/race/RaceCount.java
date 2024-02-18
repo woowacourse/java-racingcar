@@ -1,9 +1,9 @@
 package domain.race;
 
 public class RaceCount {
-    private final Integer value;
+    private final int value;
 
-    public RaceCount(final Integer value) {
+    public RaceCount(final int value) {
         validate(value);
         this.value = value;
     }
@@ -14,7 +14,7 @@ public class RaceCount {
         }
     }
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 }

@@ -49,7 +49,7 @@ public class GameController {
 
     private void performEachRace(final List<Car> cars) {
         cars.forEach(car -> {
-            Integer power = createPower();
+            int power = createPower();
             car.race(power);
         });
     }
@@ -58,7 +58,7 @@ public class GameController {
         outputView.printRaceResult(cars);
     }
 
-    private Integer createPower() {
+    private int createPower() {
         return new Random().nextInt(CarConstant.MAXIMUM_POWER);
     }
 }
