@@ -1,6 +1,7 @@
 package racinggame.domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 class Cars {
 
@@ -44,7 +45,7 @@ class Cars {
     private Car findFirstWinner() {
         return cars.stream()
             .max(Car::compareTo)
-            .orElseThrow();
+            .orElseThrow(() -> new NoSuchElementException("우승자가 존재하지 않습니다."));
     }
 
     private List<Car> findWinners(Car winner) {
