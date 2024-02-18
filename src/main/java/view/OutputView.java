@@ -29,9 +29,13 @@ public class OutputView {
     }
 
     //print string "," with stream
-    public static void printWinners(List<String> winners) {
-        winners.removeAll(Arrays.asList("", null));
-        System.out.print(String.join(", ", winners));
+    public static void printWinners(List<Car> winners) {
+        List<String> result = winners.stream()
+                .filter(Car::getResult)
+                .map(Car::getCarName)
+                .toList();
+
+        System.out.print(String.join(", ", result));
         System.out.println("가 최종 우승했습니다.");
     }
 }

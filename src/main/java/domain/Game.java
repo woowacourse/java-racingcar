@@ -5,12 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Game {
     public final int MAX_NUM = 9;
     public final int THRESHOLD = 4;
-    public final Car NONCANDIDATE_CAR = new Car("");
-
     public Game() {
     }
 
@@ -49,7 +48,6 @@ public class Game {
     private void validateCar(List<Car> cars) {
         validateCarAmount(cars);
         validateDuplicateName(cars);
-        validateFalseName(cars);
     }
 
     private void validateDuplicateName(List<Car> cars) {
@@ -69,30 +67,16 @@ public class Game {
         return validateCar.size();
     }
 
-    private void validateFalseName(List<Car> cars) {
-        for (Car car : cars) {
-            validateBlankName(car);
-        }
-    }
-
-    private void validateBlankName(Car car) {
-        if (car.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 빈 이름은 사용할 수 없습니다.");
-        }
-    }
-
     private void validateCarAmount(List<Car> cars) {
         if (cars.size() == 1) {
             throw new IllegalArgumentException("[ERROR] 경주할 자동차를 두 대 이상 입력해주세요.");
         }
     }
 
-    public List<String> getWinner(List<Car> cars) {
-        List<String> winners = new ArrayList<>();
+    public void getWinner(List<Car> cars) {
         for (Car car : cars) {
-            winners.add(findWinner(car, getMaxPosition(cars)));
+            findWinner(car, getMaxPosition(cars));
         }
-        return winners;
     }
 
     private int getMaxPosition(List<Car> cars) {
@@ -103,11 +87,10 @@ public class Game {
         return max;
     }
 
-    private String findWinner(Car car, int maxPosition) {
+    private void findWinner(Car car, int maxPosition) {
         if (car.isSamePosition(maxPosition)) {
-            return car.getCarName();
+            car.setWinner();
         }
-        return NONCANDIDATE_CAR.getCarName();
     }
 
     private int compareValue(Car car, int max) {

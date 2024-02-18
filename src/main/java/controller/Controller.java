@@ -16,10 +16,9 @@ public class Controller {
         final var attemptLimit = InputView.requestAttemptLimit(game);
 
         playGame(cars, attemptLimit);
+        game.getWinner(cars);
 
-        final var winners = game.getWinner(cars);
-
-        OutputView.printWinners(winners);
+        OutputView.printWinners(cars);
     }
 
     private void playGame(List<Car> cars, int attemptLimit) {

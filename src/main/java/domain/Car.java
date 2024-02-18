@@ -2,8 +2,9 @@ package domain;
 
 public class Car {
     public final int MAX_BOUND = 5;
-    public String name;
+    public final String name;
     public int location;
+    public boolean isWinner = false;
 
     public Car(String name) {
         validateCarName(name);
@@ -12,13 +13,20 @@ public class Car {
     }
 
     private void validateCarName(String name) {
-        if (!validateSize(name)) {
+        validateSize(name);
+        validateBlankName(name);
+    }
+
+    private void validateSize(String name) {
+        if (name.length() > MAX_BOUND) {
             throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다");
         }
     }
 
-    private boolean validateSize(String name) {
-        return name.length() <= MAX_BOUND;
+    private void validateBlankName(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 이름은 공백일 수 없습니다");
+        }
     }
 
     private String removeSpace(String name) {
@@ -37,11 +45,15 @@ public class Car {
         return location;
     }
 
-    public boolean isBlank() {
-        return name.isBlank();
-    }
-
     public boolean isSamePosition(int maxPosition) {
         return location == maxPosition;
+    }
+
+    public void setWinner() {
+        isWinner = true;
+    }
+
+    public boolean getResult() {
+        return isWinner;
     }
 }
