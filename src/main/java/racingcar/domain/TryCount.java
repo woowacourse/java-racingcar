@@ -7,6 +7,14 @@ public class TryCount {
         this.value = validateInput(input);
     }
 
+    public void consume() {
+        value--;
+    }
+
+    public boolean checkTryable() {
+        return value > 0;
+    }
+
     private int validateInput(String input) {
         isNumericString(input);
 
@@ -28,17 +36,5 @@ public class TryCount {
         if (number < 0) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public void consume() {
-        value--;
-    }
-
-    public boolean checkTryable() {
-        return value > 0;
-    }
-
-    int getValue() {
-        return value;
     }
 }
