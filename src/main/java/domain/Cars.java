@@ -1,9 +1,12 @@
 package domain;
 
 import util.Exceptions;
-import util.RandomGenerator;
+import util.RandomNumberGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 public class Cars {
 
@@ -56,7 +59,7 @@ public class Cars {
     }
 
     public void moveCars() {
-        cars.forEach(car -> car.drive(RandomGenerator.pickRandomNumber()));
+        cars.forEach(car -> car.drive(RandomNumberGenerator.generate()));
     }
 
     public List<String> getCurrentStatus() {
