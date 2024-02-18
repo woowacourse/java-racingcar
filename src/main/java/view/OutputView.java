@@ -24,7 +24,10 @@ public class OutputView {
 
     public void printWinners(Winners winners) {
         StringJoiner stringJoiner = new StringJoiner(WINNER_NAMES_DELIMITER);
-        winners.getWinners().forEach(stringJoiner::add);
+        for (String winner : winners.getWinners()) {
+            stringJoiner.add(winner);
+        }
+
         System.out.printf("%s가 최종 우승했습니다.", stringJoiner);
     }
 }
