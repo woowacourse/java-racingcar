@@ -14,12 +14,15 @@ public class OutputView {
     private static final String MOVEMENT_FORMAT = "-";
     private static final String SEPARATOR = ", ";
 
-    public void printRoundResults(List<Cars> roundResult) {
-        System.out.println(OUTPUT_ROUND_RESULTS_INTRO.getMessage());
-        roundResult.forEach(this::printRoundResult);
+    private OutputView() {
     }
 
-    private void printRoundResult(Cars roundResult) {
+    public static void printRoundResults(List<Cars> roundResult) {
+        System.out.println(OUTPUT_ROUND_RESULTS_INTRO.getMessage());
+        roundResult.forEach(OutputView::printRoundResult);
+    }
+
+    private static void printRoundResult(Cars roundResult) {
         for (Car carPerformance : roundResult.values()) {
             String carName = carPerformance.getName();
             int distance = carPerformance.getMovedDistance();
@@ -30,12 +33,12 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinners(List<String> winners) {
+    public static void printWinners(List<String> winners) {
         String winnerNames = String.join(SEPARATOR, winners);
         System.out.printf(OUTPUT_WINNERS.getMessage(), winnerNames);
     }
 
-    public void printError(IllegalArgumentException e) {
+    public static void printError(IllegalArgumentException e) {
         System.out.println(OUTPUT_EXCEPTION_PREFIX.getMessage() + e.getMessage());
     }
 }
