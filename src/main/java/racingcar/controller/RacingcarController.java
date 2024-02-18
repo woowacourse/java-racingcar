@@ -1,59 +1,53 @@
 package racingcar.controller;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
 import java.util.function.Supplier;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
-import racingcar.service.RacingGame;
+import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingcarController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final RacingGame racingGame = new RacingGame();
-
     public void run() {
+        RacingGame racingGame = initGame();
+        List<Cars> roundResults = racingGame.simulateCarsInRound();
+        List<String> winners = racingGame.pickOutWinners();
+        printGameResult(roundResults, winners);
+    }
+
+    private RacingGame initGame() {
         Cars cars = retryOnException(this::readCars);
         Round round = retryOnException(this::readRound);
-
-        List<Cars> roundResults = simulateCarsInRound(round, cars);
-        awardWinners(cars, roundResults);
+        return new RacingGame(cars, round);
     }
 
     private Cars readCars() {
-        List<String> carNames = inputView.readCarNames();
-        return racingGame.registerCars(carNames);
+        List<String> carNames = InputView.readCarNames();
+        return carNames.stream()
+                .map(Car::new)
+                .collect(collectingAndThen(toList(), Cars::new));
     }
 
     private Round readRound() {
-        return new Round(inputView.readTryCount());
+        return new Round(InputView.readTryCount());
     }
 
-    private List<Cars> simulateCarsInRound(Round round, Cars cars) {
-        List<Cars> roundResults = new ArrayList<>();
-
-        while (round.isRemain()) {
-            Cars carPerformance = racingGame.processRound(cars);
-            roundResults.add(carPerformance);
-            round.decreaseCount();
-        }
-        return roundResults;
+    private void printGameResult(List<Cars> roundResults, List<String> winners) {
+        OutputView.printRoundResults(roundResults);
+        OutputView.printWinners(winners);
     }
 
-    private void awardWinners(Cars cars, List<Cars> roundResults) {
-        List<String> winners = racingGame.pickOutWinners(cars);
-        outputView.printRoundResults(roundResults);
-        outputView.printWinners(winners);
-    }
-
-    public <T> T retryOnException(Supplier<T> retryOperation) {
+    private <T> T retryOnException(Supplier<T> retryOperation) {
         try {
             return retryOperation.get();
         } catch (IllegalArgumentException e) {
-            outputView.printError(e);
+            OutputView.printError(e);
             return retryOnException(retryOperation);
         }
     }
