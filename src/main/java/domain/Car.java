@@ -2,8 +2,6 @@ package domain;
 
 import dto.CarState;
 
-import java.util.Optional;
-
 public class Car {
     private static final int MOVE_LOWER_BOUND = 4;
     private final CarName carName;
@@ -19,13 +17,6 @@ public class Car {
             position++;
         }
         return new CarState(carName.getValue(), position);
-    }
-
-    public Optional<String> getNameIfMax(int max) {
-        if (position == max) {
-            return Optional.of(carName.getValue());
-        }
-        return Optional.empty();
     }
 
     public String getName() {

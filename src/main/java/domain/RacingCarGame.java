@@ -3,8 +3,8 @@ package domain;
 import dto.RacingResult;
 import dto.RacingStatus;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class RacingCarGame {
     private final Cars cars;
@@ -16,11 +16,9 @@ public class RacingCarGame {
     }
 
     public RacingResult start() {
-        List<RacingStatus> racingStatuses = new ArrayList<>();
-        for (int i = 0; i < count.getValue(); i++) {
-            RacingStatus racingStatus = cars.race();
-            racingStatuses.add(racingStatus);
-        }
+        List<RacingStatus> racingStatuses = IntStream.range(0, count.getValue())
+                .mapToObj(i -> cars.race())
+                .toList();
         return new RacingResult(racingStatuses, cars.getWinners());
     }
 }

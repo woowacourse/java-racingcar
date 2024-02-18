@@ -5,10 +5,8 @@ import dto.RacingStatus;
 import exception.ErrorMessage;
 import exception.RacingCarGameException;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class Cars {
     private final List<Car> cars;
@@ -61,31 +59,19 @@ public class Cars {
     }
 
     public RacingStatus race() {
-        List<CarState> carStates = new ArrayList<>();
-        for (Car car : cars) {
-            CarState carState = car.move(randomPowerGenerator.generate());
-            carStates.add(carState);
-        }
+        List<CarState> carStates = cars.stream().map(car -> car.move(randomPowerGenerator.generate())).toList();
         return new RacingStatus(carStates);
     }
 
     public List<String> getWinners() {
-        List<String> winners = new ArrayList<>();
-        int max = findMaxPosition();
-        for (Car car : cars) {
-            Optional<String> maxCarName = car.getNameIfMax(max);
-            if (maxCarName.isPresent()) {
-                winners.add(maxCarName.get());
-            }
-        }
-        return winners;
+        return cars.stream().filter(car -> car.getPosition() == findMaxPosition()).map(Car::getName).toList();
     }
 
     private int findMaxPosition() {
         return cars.stream()
-                .mapToInt(car -> car.getPosition())
+                .mapToInt(Car::getPosition)
                 .max()
-                .orElseThrow(() -> new IllegalStateException());
+                .orElseThrow(IllegalStateException::new);
     }
 
     public List<Car> getCars() {
