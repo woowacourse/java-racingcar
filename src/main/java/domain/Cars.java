@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String DASH = "-";
     private final List<Car> racingCars;
 
     public Cars(List<Car> racingCars) {
@@ -21,10 +22,7 @@ public class Cars {
     }
 
     private static String generateResult(Car car) {
-        String distance = "-";
-        return car.getCarName()
-                + " : "
-                + distance.repeat(car.getDistance());
+        return String.join(" : ", car.getCarName(), DASH.repeat(car.getDistance()));
     }
 
     public void updateRaceRound() {
