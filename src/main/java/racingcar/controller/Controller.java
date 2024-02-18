@@ -15,11 +15,8 @@ public class Controller {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        List<String> carNames = inputView.getCarNames();
+        List<Car> cars = generateCarList(inputView.getCarNames());
         int tryNumber = inputView.getTryNumber();
-
-        List<Car> cars = generateCarList(carNames);
-
         printResult(tryNumber, cars);
     }
 
