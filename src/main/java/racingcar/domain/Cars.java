@@ -10,16 +10,16 @@ public class Cars {
     private final List<Car> cars;
     RandomUtil randomUtil = RandomUtil.getInstance();
 
+    private Cars(final List<Car> cars) {
+        this.cars = cars;
+    }
+
     public static Cars from(final List<String> carNames) {
         validate(carNames);
         return new Cars(carNames.stream()
                 .map(Car::new)
                 .toList()
         );
-    }
-
-    private Cars(final List<Car> cars) {
-        this.cars = cars;
     }
 
     private static void validate(final List<String> carNames) {

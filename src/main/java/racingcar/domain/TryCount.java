@@ -3,13 +3,13 @@ package racingcar.domain;
 public class TryCount {
     private final int tryCount;
 
+    private TryCount(int tryCount) {
+        this.tryCount = tryCount;
+    }
+
     public static TryCount from(final int userTryCount) {
         validate(userTryCount);
         return new TryCount(userTryCount);
-    }
-
-    private TryCount(int tryCount) {
-        this.tryCount = tryCount;
     }
 
     private static void validate(final int tryCount) {
