@@ -9,12 +9,12 @@ public class OutputView {
     private static final String STEP = "-";
     private static final String DELIMITER = ",";
 
-    public void printResultHeader() {
+    public static void printResultHeader() {
         System.out.println();
         System.out.println("실행 결과");
     }
 
-    public void printTotalResult(List<Car> carDtos) {
+    public static void printTotalResult(List<Car> carDtos) {
         carDtos.forEach(OutputView::printMovement);
         System.out.println();
     }
@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println(String.format(RESULT_FORMAT, carDto.getCarName(), STEP.repeat(carDto.getMovement())));
     }
 
-    public void printWinner(List<String> winners) {
+    public static void printWinner(List<String> winners) {
         System.out.print(String.join(DELIMITER, winners) + "가 최종 우승했습니다.");
     }
 }

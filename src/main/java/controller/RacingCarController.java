@@ -9,11 +9,9 @@ import view.OutputView;
 import view.RetryOnException;
 
 public class RacingCarController {
-    private final OutputView outputView;
     private final MovesGenerator generator;
 
-    public RacingCarController(OutputView outputView) {
-        this.outputView = outputView;
+    public RacingCarController() {
         this.generator = new MovesGenerator();
     }
 
@@ -23,7 +21,7 @@ public class RacingCarController {
         race(tryNumber, cars);
         List<Car> winners = cars.findWinners();
         List<String> winnerNames = winners.stream().map(Car::getCarName).toList();
-        outputView.printWinner(winnerNames);
+        OutputView.printWinner(winnerNames);
     }
 
     private List<Car> createCars() {
@@ -34,10 +32,10 @@ public class RacingCarController {
     }
 
     private void race(int tryNumber, Cars cars) {
-        outputView.printResultHeader();
+        OutputView.printResultHeader();
         for (int i = 0; i < tryNumber; i++) {
             cars.moveCars();
-            outputView.printTotalResult(cars.getCars());
+            OutputView.printTotalResult(cars.getCars());
         }
     }
 }
