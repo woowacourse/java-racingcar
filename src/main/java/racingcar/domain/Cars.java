@@ -29,7 +29,7 @@ public class Cars {
                 .max(Comparator.comparing(Car::getMovement))
                 .get();
         return cars.stream()
-                .filter(car -> car.isAlsoWinner(winnerCar))
+                .filter(car -> car.isSameMovement(winnerCar))
                 .toList();
     }
 }
