@@ -2,6 +2,7 @@ package config;
 
 import controller.RacingGameController;
 import service.RaceGameService;
+import view.InputMapper;
 import view.InputView;
 import view.MessageResolver;
 import view.OutputView;
@@ -23,7 +24,11 @@ public class Config {
     }
 
     private InputView createInputView() {
-        return new InputView();
+        return new InputView(inputMapper());
+    }
+
+    private InputMapper inputMapper() {
+        return new InputMapper();
     }
 
     private OutputView createOutputView() {

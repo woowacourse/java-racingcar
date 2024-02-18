@@ -1,5 +1,7 @@
 package view;
 
+import domain.Cars;
+import domain.MoveCount;
 import java.util.Scanner;
 
 public class InputView {
@@ -8,14 +10,19 @@ public class InputView {
     private static final String REQUEST_MOVE_COUNT = "시도할 회수는 몇회인가요?";
 
     private final Scanner scanner = new Scanner(System.in);
+    private final InputMapper inputMapper;
 
-    public String requestCarName() {
-        System.out.println(REQUEST_CAR_NAME);
-        return scanner.nextLine();
+    public InputView(InputMapper inputMapper) {
+        this.inputMapper = inputMapper;
     }
 
-    public String requestMoveCount() {
+    public Cars requestCars() {
+        System.out.println(REQUEST_CAR_NAME);
+        return inputMapper.mapToCars(scanner.nextLine());
+    }
+
+    public MoveCount requestMoveCount() {
         System.out.println(REQUEST_MOVE_COUNT);
-        return scanner.nextLine();
+        return inputMapper.mapToMoveCount(scanner.nextLine());
     }
 }
