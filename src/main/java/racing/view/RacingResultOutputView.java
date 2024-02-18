@@ -1,16 +1,16 @@
-package racing.output;
+package racing.view;
 
 import java.util.List;
 import java.util.Map;
 import racing.dto.RacingResult;
+import racing.dto.RacingResults;
 
-public class RacingResultOutputManager {
+public class RacingResultOutputView {
 
-  public static void printResult(List<RacingResult> racingResults) {
+  public static void printResult(RacingResults racingResults) {
     System.out.println("실행 결과");
-    for (RacingResult racingResult : racingResults) {
-      printEachResult(racingResult);
-    }
+    racingResults.stream().forEach(RacingResultOutputView::printEachResult);
+    printWinner(racingResults);
   }
 
   private static void printEachResult(RacingResult racingResult) {
@@ -19,7 +19,8 @@ public class RacingResultOutputManager {
         "-".repeat(carsStatus.get(carName))));
   }
 
-  public static void printWinner(List<String> winnerNames) {
+  private static void printWinner(RacingResults racingResults) {
+    List<String> winnerNames = racingResults.getWinnerNames();
     String collectedWinnerName = String.join(", ", winnerNames);
     System.out.printf("%s가 최종 우승했습니다.", collectedWinnerName);
   }

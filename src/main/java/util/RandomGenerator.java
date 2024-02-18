@@ -3,10 +3,11 @@ package util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import racing.domain.NumberGenerator;
 
-public class RandomGenerator {
+public class RandomGenerator implements NumberGenerator {
 
-  public static List<Integer> generate(int length) {
+  public List<Integer> generate(int length) {
     List<Integer> result = new ArrayList<>(length);
     Random random = new Random();
     for (int index = 0; index < length; index++) {

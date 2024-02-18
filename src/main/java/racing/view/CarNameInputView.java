@@ -1,11 +1,11 @@
-package racing.input;
+package racing.view;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import racing.domain.CarNameValidator;
 
-public class CarNameInputManager {
+public class CarNameInputView {
 
   private static final String SEPARATOR = ",";
 

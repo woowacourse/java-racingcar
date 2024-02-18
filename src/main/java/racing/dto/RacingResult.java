@@ -14,4 +14,24 @@ public class RacingResult {
   public Map<String, Integer> getCarsStatus() {
     return carsStatus;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    RacingResult other = (RacingResult) o;
+    boolean containsAll = other.carsStatus.entrySet().containsAll(carsStatus.entrySet());
+    boolean isSameSize = other.carsStatus.size() == carsStatus.size();
+    return containsAll && isSameSize;
+  }
+
+  @Override
+  public int hashCode() {
+    return carsStatus.hashCode();
+  }
 }

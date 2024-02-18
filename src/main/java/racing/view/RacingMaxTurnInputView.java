@@ -1,8 +1,8 @@
-package racing.input;
+package racing.view;
 
 import java.util.Scanner;
 
-public class RacingMaxTurnInputManager {
+public class RacingMaxTurnInputView {
 
   public static int getMaxTurnFromConsole(Scanner scanner) {
     String input = scanner.next();
