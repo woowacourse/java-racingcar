@@ -1,7 +1,6 @@
 package racinggame;
 
 import java.io.IOException;
-import racinggame.domain.MoveCondition;
 import racinggame.domain.RandomMoveCondition;
 import racinggame.view.InputView;
 import racinggame.view.OutputView;
@@ -11,9 +10,9 @@ class Main {
     public static void main(String[] args) throws IOException {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        MoveCondition moveCondition = new RandomMoveCondition();
-        Controller controller = new Controller(inputView, outputView);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Controller controller = new Controller(inputView, outputView, objectMapper);
 
-        controller.run(moveCondition);
+        controller.run(new RandomMoveCondition());
     }
 }

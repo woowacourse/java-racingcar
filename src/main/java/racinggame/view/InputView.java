@@ -3,30 +3,22 @@ package racinggame.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.List;
-import racinggame.domain.Car;
-import racinggame.domain.Round;
+import java.util.Objects;
 
 public class InputView {
 
-    public List<Car> readCars() throws IOException {
-        String inputNames = readLine("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-
-        return Arrays.stream(inputNames.split(","))
-            .map(Car::new)
-            .toList();
+    public String readCars() throws IOException {
+        return readLine("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
 
-    public Round readRound() throws IOException {
-        String inputRound = readLine("시도할 회수는 몇회인가요?");
-
-        return new Round(Integer.parseInt(inputRound));
+    public String readRound() throws IOException {
+        return readLine("시도할 회수는 몇회인가요?");
     }
 
     private String readLine(String message) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println(message);
-        return br.readLine().trim();
+
+        return Objects.requireNonNull(br.readLine()).trim();
     }
 }
