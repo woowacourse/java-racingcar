@@ -103,9 +103,9 @@ pobi, honux가 최종 우승했습니다.
 
 ## 컴포넌트 별 리팩토링 고려사항
 + Controller
-- [ ] UI layer와 Service layer로 분리
-- [ ] Controller는 입력에 따른 적절한 비즈니스 로직 호출 후 결과 반환
-- [ ] Service는 핵심 도메인 로직 담당
+- [x] UI layer와 Service layer로 분리
+- [x] Controller는 입력에 따른 적절한 비즈니스 로직 호출 후 결과 반환
+- [x] Service는 핵심 도메인 로직 담당
 + View
 - [ ] View는 오직 Controller와 의존관계를 가지도록 한다.
 + Model

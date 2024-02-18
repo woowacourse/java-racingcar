@@ -1,6 +1,8 @@
-package racingcar.domain.model;
+package racingcar.domain.service;
 
 import java.util.List;
+import racingcar.domain.model.Car;
+import racingcar.domain.model.Cars;
 import racingcar.domain.rules.CarMoveRule;
 
 public class RacingGame {

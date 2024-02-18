@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.model.Car;
 import racingcar.domain.rules.CarMoveRule;
 import racingcar.domain.model.Cars;
-import racingcar.domain.model.RacingGame;
+import racingcar.domain.service.RacingGame;
 
 public class RacingGameTest {
 

@@ -6,7 +6,7 @@ import racingcar.exception.ExceptionHandler;
 import racingcar.domain.rules.CarMoveRule;
 import racingcar.domain.model.Cars;
 import racingcar.domain.rules.DefaultCarMoveRule;
-import racingcar.domain.model.RacingGame;
+import racingcar.domain.service.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

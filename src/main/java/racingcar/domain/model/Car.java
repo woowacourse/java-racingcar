@@ -34,7 +34,7 @@ public class Car implements Comparable<Car> {
     }
 
 
-    boolean isEqualToProgress(int compareProgress){
+    public boolean isEqualToProgress(int compareProgress){
         return this.progress == compareProgress;
     }
     @Override
