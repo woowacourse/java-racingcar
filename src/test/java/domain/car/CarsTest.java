@@ -1,7 +1,11 @@
+package domain.car;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.numbergenerator.ConstantNumberGenerator;
+import domain.numbergenerator.RandomNumberGenerator;
 import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

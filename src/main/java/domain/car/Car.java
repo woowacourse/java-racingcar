@@ -1,3 +1,7 @@
+package domain.car;
+
+import domain.numbergenerator.NumberGenerator;
+
 public class Car {
     private static final int MOVE_THRESHOLD = 4;
 

@@ -1,3 +1,5 @@
+package domain.numbergenerator;
+
 public class ConstantNumberGenerator implements NumberGenerator {
     private final int generatedValue;
 

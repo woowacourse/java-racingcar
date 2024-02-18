@@ -1,3 +1,8 @@
+import domain.car.Cars;
+import domain.numbergenerator.RandomNumberGenerator;
+import view.InputView;
+import view.OutputView;
+
 public class RacingGame {
     public static void main(String[] args) {
         try {

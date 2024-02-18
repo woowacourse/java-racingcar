@@ -1,5 +1,6 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
+package domain.car;
+
+import domain.numbergenerator.NumberGenerator;
 import java.util.List;
 
 public class Cars {

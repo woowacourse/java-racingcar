@@ -1,3 +1,6 @@
+package view;
+
+import domain.car.Car;
 import java.util.List;
 
 public class OutputView {
