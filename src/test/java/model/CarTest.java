@@ -25,10 +25,10 @@ class CarTest {
   }
 
   @Test
-  @DisplayName("경주 현황을 기록할 수 있다.")
+  @DisplayName("경주 현황을 알 수 있다.")
   void getStatues() {
     Car car = createAndMovedCar();
-    assertThat(car.getStatuses())
+    assertThat(car.getStatuses(3))
             .containsExactly(MoveStatus.FORWARD, MoveStatus.STOP, MoveStatus.FORWARD);
   }
 
