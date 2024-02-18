@@ -16,11 +16,8 @@ public class InputView {
 	}
 
 	private void validateCarNames(String names) {
-		final String VALID_CAR_NAMES_REGEX = "(.+)((,)(.+))*";
+		final String VALID_CAR_NAMES_REGEX = "([^,]{1,5}(,?))+";
 		if (isInvalidFormat(names, VALID_CAR_NAMES_REGEX)) {
-			throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT.getMessage());
-		}
-		if (hasInvalidNameLength(names.split(","))) {
 			throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT.getMessage());
 		}
 	}
@@ -39,8 +36,8 @@ public class InputView {
 	}
 
 	private void validateTrialCount(String trialCount) {
-		final String COUNT_FORMAT = "[0-9]+";
-		if (isInvalidFormat(trialCount, COUNT_FORMAT)) {
+		final String VALID_TRIAL_COUNT_REGEX = "[0-9]+";
+		if (isInvalidFormat(trialCount, VALID_TRIAL_COUNT_REGEX)) {
 			throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT.getMessage());
 		}
 	}
@@ -48,5 +45,4 @@ public class InputView {
 	private boolean isInvalidFormat(String input, String regex) {
 		return !input.matches(regex);
 	}
-
 }
