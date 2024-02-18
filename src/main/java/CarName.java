@@ -13,7 +13,7 @@ public class CarName {
             throw new IllegalArgumentException("공백을 이름으로 사용할 수 없습니다.");
         }
 
-        if (name.strip().length() > MAX_NAME_LENGTH) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름이 너무 깁니다. 이름은 5자 이하로 입력해 주세요.");
         }
     }
