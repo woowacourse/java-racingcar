@@ -27,7 +27,7 @@ public class Cars {
         cars.sort(Collections.reverseOrder());
         int furthestLocation = cars.get(WINNER).getLocation();
         return cars.stream()
-                .filter(car -> car.isWinner(furthestLocation))
+                .filter(car -> car.isSameLocation(furthestLocation))
                 .toList();
     }
 

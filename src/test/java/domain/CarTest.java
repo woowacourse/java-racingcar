@@ -46,7 +46,7 @@ class CarTest {
 
         int furthestLocation = 3;
 
-        assertThat(car.isWinner(furthestLocation)).isTrue();
+        assertThat(car.isSameLocation(furthestLocation)).isTrue();
     }
 
     @Nested

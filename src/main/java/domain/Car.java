@@ -32,7 +32,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public boolean isWinner(int furthestLocation) {
+    public boolean isSameLocation(int furthestLocation) {
         return location == furthestLocation;
     }
 
