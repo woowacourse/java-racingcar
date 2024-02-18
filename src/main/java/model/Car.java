@@ -29,15 +29,15 @@ public class Car {
 
     public void moveForward(int power) {
         if (power >= FORWARD_MIN_NUMBER) {
-            position++;
+            this.position++;
         }
     }
 
-    public String showPositionTraceByFormat(String symbol) {
-        return symbol.repeat(position).trim();
+    public int getPosition() {
+        return this.position;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 }
