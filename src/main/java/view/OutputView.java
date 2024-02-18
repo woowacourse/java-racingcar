@@ -1,26 +1,44 @@
 package view;
 
 import common.Information;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.List;
 import model.Car;
 import model.MoveStatus;
 
-public class OutputView {
+public class OutputView implements AutoCloseable {
   private static final String DELIMITER = " : ";
+  private final BufferedWriter writer;
 
-  public void printResultComment() {
-    System.out.println(System.lineSeparator() + Information.RESULT_COMMENT.getMessage());
+  public OutputView() {
+    this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
   }
 
-  public void printResult(List<Car> cars) {
+  public void printResultComment() throws IOException {
+    writer.write(System.lineSeparator() + Information.RESULT_COMMENT.getMessage());
+    writer.newLine();
+  }
+
+  public void printResult(List<Car> cars) throws IOException {
     for (Car car : cars) {
-      System.out.println(car.getName() + DELIMITER + MoveStatus.join("", car.getStatuses()));
+      writer.write(car.getName() + DELIMITER + MoveStatus.join("", car.getStatuses()));
+      writer.newLine();
     }
-    System.out.println();
+    writer.newLine();
   }
 
-  public void printWinner(List<Car> cars) {
+  public void printWinner(List<Car> cars) throws IOException {
     String winnersName = String.join(", ", cars.stream().map(Car::getName).toList());
-    System.out.printf((Information.WINNER.getMessage()) + "%n", winnersName);
+    String composeWinnerMessage = String.format((Information.WINNER.getMessage()), winnersName);
+    writer.write(composeWinnerMessage);
+    writer.newLine();
+  }
+
+  @Override
+  public void close() throws Exception {
+    writer.flush();
+    writer.close();
   }
 }
