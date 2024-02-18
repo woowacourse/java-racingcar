@@ -2,7 +2,7 @@ package controller;
 
 import domain.Car;
 import domain.Cars;
-import domain.Judge;
+import domain.Winners;
 import domain.Round;
 import util.Exceptions;
 import util.RandomNumberGenerator;
@@ -15,12 +15,10 @@ public class CarRacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final Judge judge;
 
     public CarRacingGame() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.judge = new Judge();
     }
 
     public void play() {
@@ -78,7 +76,7 @@ public class CarRacingGame {
     }
 
     private void printWinners(Cars cars) {
-        List<String> winners = judge.findWinners(cars);
+        List<String> winners = Winners.findWinners(cars).getWinners();
         outputView.printWinners(winners);
     }
 
