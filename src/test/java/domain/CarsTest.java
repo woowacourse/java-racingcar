@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class CarsTest {
 
-    static Stream<Arguments> cars() {
+    static Stream<Arguments> movementsAndWinnerNames() {
         return Stream.of(
                 Arguments.of(new int[]{1, 1}, List.of("명오", "배키"),
                         "공동 우승자가 존재하는 경우 공동 우승자 모두를 반환한다."),
@@ -21,7 +21,7 @@ class CarsTest {
     }
 
     @ParameterizedTest(name = "{2}")
-    @MethodSource("cars")
+    @MethodSource("movementsAndWinnerNames")
     @DisplayName("가장 많이 움직인 차의 이름을 반환한다")
     void findWinnersTest(int[] movement, List<String> expected, String reason) {
         Car myungOh = new Car("명오", movement[0]);
