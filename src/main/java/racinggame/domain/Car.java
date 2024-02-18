@@ -24,7 +24,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public boolean isSamePositionWith(Car other) {
+    public boolean isRival(Car other) {
         return position.equals(other.position);
     }
 

@@ -49,7 +49,7 @@ class Cars {
 
     private List<String> findWinnersName(Car winner) {
         return cars.stream()
-            .filter(car -> car.isSamePositionWith(winner))
+            .filter(car -> car.isRival(winner))
             .map(Car::getName)
             .toList();
     }
