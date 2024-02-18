@@ -32,7 +32,7 @@ public class InputView {
     }
 
     private static void validateNotEmpty(String input) throws IllegalArgumentException {
-        if (input == null || input.trim().isEmpty()) {
+        if (input == null || input.trim().isBlank()) {
             throw new IllegalArgumentException(NOT_NULL.getMessage());
         }
     }
@@ -44,7 +44,16 @@ public class InputView {
     }
 
     private static List<String> splitByComma(String input) {
-        return Arrays.stream(input.split(DELIMITER)).toList();
+        return Arrays.stream(input.split(DELIMITER))
+                .peek(InputView::validateNotEmptyName)
+                .map(String::trim)
+                .toList();
+    }
+
+    private static void validateNotEmptyName(String input) throws IllegalArgumentException {
+        if (input == null || input.trim().isBlank()) {
+            throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
+        }
     }
 
     private static int parseTryCount(final String input) {

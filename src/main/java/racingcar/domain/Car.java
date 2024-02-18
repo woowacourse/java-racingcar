@@ -15,21 +15,13 @@ public class Car implements Comparable<Car> {
     private int position = 0;
 
     public Car(final String name) {
-        validateNotNull(name);
-        String trimmedName = name.trim();
-        validateName(trimmedName);
-        this.name = trimmedName;
+        this.name = name.trim();
+        validateName(this.name);
     }
 
     private void validateName(final String name) {
         validateNameStyle(name);
         validateNameLength(name);
-    }
-
-    private void validateNotNull(final String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
-        }
     }
 
     private void validateNameStyle(final String name) {

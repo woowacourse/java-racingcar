@@ -27,6 +27,13 @@ class InputViewTest {
                     .isEqualTo(List.of("pobi", "crong", "honux"));
         }
 
+        @Test
+        @DisplayName("[Success] 자동차 이름을 입력하면 공백이 제거된 이름이 리스트로 반환한다.")
+        void parseToListByTrim() {
+            assertThat(InputView.readCarNames(() -> "pobi  ,   crong,  honux "))
+                    .isEqualTo(List.of("pobi", "crong", "honux"));
+        }
+
         @ParameterizedTest
         @NullAndEmptySource
         @ValueSource(strings = {" ", "  ", "\t", "\n"})
@@ -42,6 +49,14 @@ class InputViewTest {
         void getCarNamesByEndsWithComma() {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> InputView.readCarNames(() -> "pobi,crong,honux,"))
+                    .withMessage(NOT_NULL_CAR_NAME.getMessage());
+        }
+
+        @Test
+        @DisplayName("[Exception] 쉼표로 구분된 자동차 이름이 공백이나 null이면 예외를 던진다.")
+        void getCarNameByNullOrEmpty() {
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> InputView.readCarNames(() -> "pobi, ,honux"))
                     .withMessage(NOT_NULL_CAR_NAME.getMessage());
         }
     }
