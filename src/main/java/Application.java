@@ -1,8 +1,8 @@
-import service.RacingService;
+import controller.RacingGame;
 
 public class Application {
     public static void main(String[] args) {
-        RacingService racingService = new RacingService();
-        racingService.proceedCarRacing();
+        RacingGame racingGame = new RacingGame();
+        racingGame.proceedCarRacing();
     }
 }

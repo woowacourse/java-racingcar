@@ -31,6 +31,10 @@ public class InputView {
         List<String> duplicatedNames = splitNames.stream()
                 .filter(name -> !distinctNames.add(name))
                 .toList();
+        checkIsDuplicatedNamesNotEmpty(duplicatedNames);
+    }
+
+    private static void checkIsDuplicatedNamesNotEmpty(List<String> duplicatedNames) {
         if (!duplicatedNames.isEmpty()) {
             throw new DuplicateCarNameException(duplicatedNames);
         }
