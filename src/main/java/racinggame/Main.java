@@ -6,7 +6,7 @@ import racinggame.domain.RandomMoveCondition;
 import racinggame.view.InputView;
 import racinggame.view.OutputView;
 
-public class Main {
+class Main {
 
     public static void main(String[] args) throws IOException {
         InputView inputView = new InputView();
