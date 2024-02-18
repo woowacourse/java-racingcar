@@ -25,12 +25,26 @@ class CarTest {
   }
 
   @Test
+  @DisplayName("경주 현황을 기록할 수 있다.")
+  void getStatues() {
+    Car car = createAndMovedCar();
+    assertThat(car.getStatuses())
+            .containsExactly(MoveStatus.FORWARD, MoveStatus.STOP, MoveStatus.FORWARD);
+  }
+
+  @Test
   @DisplayName("전진한 횟수를 알 수 있다.")
   void getForwardCount() {
+    Car car = createAndMovedCar();
+    assertThat(car.getForwardCount()).isEqualTo(2);
+  }
+
+  private Car createAndMovedCar() {
     Car car = new Car("pobi");
     car.forward();
     car.stop();
     car.forward();
-    assertThat(car.getForwardCount()).isEqualTo(2);
+
+    return car;
   }
 }
