@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Cars;
-import service.RacingCarService;
 import util.Exceptions;
 import view.InputView;
 import view.OutputView;
@@ -13,10 +12,8 @@ public class RacingCarGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final RacingCarService racingCarService;
 
-    public RacingCarGame(RacingCarService racingCarService, InputView inputView, OutputView outputView) {
-        this.racingCarService = racingCarService;
+    public RacingCarGame(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -28,7 +25,7 @@ public class RacingCarGame {
         outputView.printMovementTitle();
 
         for (int i = 0; i < count; i++) {
-            racingCarService.moveCars(cars);
+            cars.moveCars();
             printMovement(cars);
         }
 
@@ -76,8 +73,7 @@ public class RacingCarGame {
     }
 
     private void printMovement(Cars cars) {
-        List<String> movement = racingCarService.getCurrentStatus(cars);
-        outputView.printMovement(movement);
+        outputView.printMovement(cars.getCurrentStatus());
     }
 
     private void printWinners(Cars cars) {

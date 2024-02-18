@@ -1,6 +1,7 @@
 package domain;
 
 import util.Exceptions;
+import util.RandomGenerator;
 
 import java.util.*;
 
@@ -51,6 +52,20 @@ public class Cars {
                 .max(Comparator.comparing(Car::getForward))
                 .orElseThrow()
                 .getForward();
+    }
+
+    public void moveCars() {
+        cars.forEach(car -> car.drive(RandomGenerator.pickRandomNumber()));
+    }
+
+    public List<String> getCurrentStatus() {
+        List<String> currentStatus = new ArrayList<>();
+
+        cars.forEach(car -> {
+            currentStatus.add(car.getName() + " : " + "-".repeat(car.getForward()));
+        });
+
+        return currentStatus;
     }
 
     public List<Car> getCars() {
