@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("자동차 이름 테스트")
 class CarNameTest {
-    
+
     @DisplayName("이름이 5자가 넘어가면 생성에 검증에 실패한다")
     @ParameterizedTest
     @ValueSource(strings = {"123456", "1234567", "9999999999999"})
