@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.mock.AlwaysMoveGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,13 +29,5 @@ public class CarsTest {
         final Cars cars = Cars.from(List.of(pobi, kirby, jonge));
 
         assertThat(cars.getMaxDistanceCars()).containsExactly(kirby, jonge);
-    }
-
-    static class AlwaysMoveGenerator implements MovementGenerator {
-
-        @Override
-        public Movement generate() {
-            return Movement.MOVE;
-        }
     }
 }

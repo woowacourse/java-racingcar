@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.mock.AlwaysMoveGenerator;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,13 +45,5 @@ class RacingGameTest {
         racingGame.playTurn(cars);
 
         assertThat(cars.getCars()).contains(Car.of("pobi", 2), Car.of("kirby", 2));
-    }
-
-    static class AlwaysMoveGenerator implements MovementGenerator {
-
-        @Override
-        public Movement generate() {
-            return Movement.MOVE;
-        }
     }
 }
