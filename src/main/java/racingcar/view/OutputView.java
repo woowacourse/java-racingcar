@@ -23,11 +23,7 @@ public class OutputView {
     }
 
     private String createPositionBar(int position) {
-        StringBuilder positionBar = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            positionBar.append(CAR_POSITION_BAR);
-        }
-        return positionBar.toString();
+        return CAR_POSITION_BAR.repeat(position);
     }
 
     public void printWinners(List<String> winners) {
