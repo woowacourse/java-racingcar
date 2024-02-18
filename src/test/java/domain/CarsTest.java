@@ -28,12 +28,6 @@ class CarsTest {
 		));
 	}
 
-	@DisplayName("가장 많이 이동한 차량의 위치 확인")
-	@Test
-	void getLargestLocation() {
-		assertThat(cars.getLargestLocation()).isEqualTo(2);
-	}
-
 	@DisplayName("각 차량의 현재 위치 반환 확인")
 	@Test
 	void getCurrentLocations() {

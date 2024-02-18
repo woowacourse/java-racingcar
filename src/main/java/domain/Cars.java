@@ -22,17 +22,17 @@ public class Cars {
 		return locations;
 	}
 
-	public int getLargestLocation() {
-		return cars.stream()
-			.mapToInt(Car::getCarLocation)
-			.max()
-			.getAsInt();
-	}
-
 	public List<String> getLargestLocationCarsName() {
 		return cars.stream()
 			.filter(car -> car.getCarLocation() == getLargestLocation())
 			.map(Car::getCarName)
 			.toList();
+	}
+
+	private int getLargestLocation() {
+		return cars.stream()
+			.mapToInt(Car::getCarLocation)
+			.max()
+			.getAsInt();
 	}
 }
