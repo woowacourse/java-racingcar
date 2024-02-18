@@ -38,6 +38,6 @@
   - Model 데이터를 받을 때는 동적인 부분에 대해서만 받아야 한다.
   - Model 데이터를 받을 때는 controller에서 받아야 한다.
 
-### controller
-- 데이터와 로직의 처리 역할을 한다.
-- domain과 view에 의존할 수 있다.
+### Controller
+- [x] 데이터와 로직의 처리 역할을 한다.
+- [x] domain과 view에 의존할 수 있다.

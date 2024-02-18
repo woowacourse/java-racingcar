@@ -1,11 +1,9 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.generator.RandomNumberGenerator;
 import racingcar.model.Car;
-import racingcar.model.Cars;
+import racingcar.model.RaceResult;
 import racingcar.model.RacingGame;
-import racingcar.model.TotalResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -20,30 +18,34 @@ public class RacingController {
     }
 
     public void run() {
-        Cars cars = createCars();
+        List<Car> cars = createCars();
         RacingGame racingGame = createRacingGame(cars);
 
         inputView.finishReadingInput();
 
-        TotalResult totalResult = racingGame.run();
-        printResult(totalResult);
+        runGame(racingGame);
+        showWinner(racingGame);
     }
 
-    private Cars createCars() {
+    private List<Car> createCars() {
         List<String> carNames = inputView.readCarNames();
-        List<Car> cars = carNames.stream()
+        return carNames.stream()
                 .map(Car::new)
                 .toList();
-        return new Cars(cars, new RandomNumberGenerator());
     }
 
-    private RacingGame createRacingGame(Cars cars) {
-        int tryCount = inputView.readTryCount();
-        return new RacingGame(tryCount, cars);
+    private RacingGame createRacingGame(List<Car> cars) {
+        int numberOfRaces = inputView.readNumberOfRaces();
+        return new RacingGame(cars, numberOfRaces);
     }
 
-    private void printResult(TotalResult totalResult) {
-        outputView.printResult(totalResult);
-        outputView.printWinnerInfo(totalResult.getWinner());
+    private void runGame(RacingGame racingGame) {
+        List<RaceResult> raceResults = racingGame.startRace();
+        outputView.printRaceResult(raceResults);
+    }
+
+    private void showWinner(RacingGame racingGame) {
+        List<Car> winners = racingGame.selectWinner();
+        outputView.printWinnerInfo(winners);
     }
 }
