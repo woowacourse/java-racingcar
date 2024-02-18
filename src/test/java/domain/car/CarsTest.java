@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.car.moveStrategy.MoveStrategy;
-import domain.car.moveStrategy.NumberMoveStrategy;
+import domain.moveStrategy.MoveStrategy;
+import domain.moveStrategy.NumberMoveStrategy;
 import domain.numbergenerator.RandomNumberGenerator;
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package domain.car.moveStrategy;
+package domain.moveStrategy;
 
 import domain.numbergenerator.NumberGenerator;
 

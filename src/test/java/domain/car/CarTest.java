@@ -3,7 +3,7 @@ package domain.car;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import domain.car.moveStrategy.NumberMoveStrategy;
+import domain.moveStrategy.NumberMoveStrategy;
 import domain.numbergenerator.RandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +18,6 @@ class CarTest {
     void setup() {
         car = new Car("pobi", DEFAULT_STRATEGY);
     }
-
 
     @Test
     @DisplayName("객체가 정상적으로 생성된다.")

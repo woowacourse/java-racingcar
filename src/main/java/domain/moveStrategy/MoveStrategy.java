@@ -1,4 +1,4 @@
-package domain.car.moveStrategy;
+package domain.moveStrategy;
 
 public interface MoveStrategy {
     boolean canGo();

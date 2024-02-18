@@ -1,5 +1,5 @@
 import domain.car.Cars;
-import domain.car.moveStrategy.NumberMoveStrategy;
+import domain.moveStrategy.NumberMoveStrategy;
 import domain.numbergenerator.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;

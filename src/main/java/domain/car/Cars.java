@@ -1,6 +1,6 @@
 package domain.car;
 
-import domain.car.moveStrategy.MoveStrategy;
+import domain.moveStrategy.MoveStrategy;
 import java.util.List;
 
 public class Cars {
