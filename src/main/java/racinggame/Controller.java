@@ -1,6 +1,5 @@
 package racinggame;
 
-import java.io.IOException;
 import java.util.List;
 import racinggame.domain.Car;
 import racinggame.domain.MoveCondition;
@@ -21,7 +20,7 @@ class Controller {
         this.objectMapper = objectMapper;
     }
 
-    public void run(MoveCondition moveCondition) throws IOException {
+    public void run(MoveCondition moveCondition) {
         List<Car> cars = objectMapper.mapToCars(inputView.readCars());
         Round round = objectMapper.mapToRound(inputView.readRound());
         RacingGame game = new RacingGame(cars, moveCondition);
