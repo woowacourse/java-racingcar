@@ -14,8 +14,8 @@ public class RandomMovingCars {
     private final List<RandomMovingCar> cars;
 
     public RandomMovingCars(List<RandomMovingCar> cars) {
-        validate(cars);
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
+        validate(this.cars);
     }
 
     private static void validate(List<RandomMovingCar> cars) {
