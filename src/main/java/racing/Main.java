@@ -1,6 +1,6 @@
 package racing;
 
-import racing.domain.RacingManager;
+import racing.controller.RacingManager;
 
 public class Main {
     public static void main(String[] args) {

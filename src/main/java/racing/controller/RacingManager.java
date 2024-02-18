@@ -1,10 +1,14 @@
-package racing.domain;
+package racing.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.IntStream;
+
+import racing.domain.Car;
+import racing.domain.Cars;
+import racing.domain.Racing;
 import racing.dto.RacingResult;
 import racing.input.CarNameInputManager;
 import racing.input.RacingMaxTurnInputManager;

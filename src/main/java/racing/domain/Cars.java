@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-class Cars {
+public class Cars {
     static final int CAR_MOVE_THRESHOLD = 4;
     private final List<Car> cars;
 
-    Cars(List<Car> cars) {
+    public Cars(List<Car> cars) {
         this.cars = Collections.unmodifiableList(cars);
     }
 

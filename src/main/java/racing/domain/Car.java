@@ -2,12 +2,12 @@ package racing.domain;
 
 import java.util.regex.Pattern;
 
-class Car implements Comparable<Car> {
+public class Car implements Comparable<Car> {
 
     private final String name;
     private int distance;
 
-    Car(int distance, String name) {
+    public Car(int distance, String name) {
         validateName(name);
         this.distance = distance;
         this.name = name;
