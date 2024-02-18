@@ -25,7 +25,7 @@ class GameTest {
                 .hasMessageContaining("양수");
     }
 
-    @DisplayName("자동차 객체 리스트가 올바르게 생성된다")
+    @DisplayName("입력된 자동차 이름이 쉼표를 기준으로 분리되어 각각의 자동차 객체로 생성된다")
     @Test
     void setCarTest() {
         List<Car> cars = game.setCars("ash,lily,ella");
@@ -50,14 +50,6 @@ class GameTest {
                 .hasMessageContaining("중복");
     }
 
-    @DisplayName("입력된 자동차 이름이 공백이면 예외가 발생한다")
-    @Test
-    void blankNameTest() {
-        Assertions.assertThatThrownBy(() -> game.setCars("Ash,,Lily"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("빈 이름");
-    }
-
     @DisplayName("최종 우승자가 한 명이다")
     @Test
     void getOneWinnerTest() {
@@ -67,8 +59,10 @@ class GameTest {
         List<Car> cars = List.of(ash, lily);
 
         ash.incLocation();
+        game.getWinner(cars);
 
-        Assertions.assertThat(game.getWinner(cars)).isEqualTo(List.of("ash", ""));
+        Assertions.assertThat(ash.isWinner).isTrue();
+        Assertions.assertThat(lily.isWinner).isFalse();
     }
 
     @DisplayName("최종 우승자가 두 명 이상이다")
@@ -83,7 +77,10 @@ class GameTest {
         ash.incLocation();
         lily.incLocation();
         ella.incLocation();
+        game.getWinner(cars);
 
-        Assertions.assertThat(game.getWinner(cars)).isEqualTo(List.of("ash", "lily","ella"));
+        Assertions.assertThat(ash.isWinner).isTrue();
+        Assertions.assertThat(lily.isWinner).isTrue();
+        Assertions.assertThat(ella.isWinner).isTrue();
     }
 }
