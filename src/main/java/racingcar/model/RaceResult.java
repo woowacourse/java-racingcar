@@ -4,13 +4,13 @@ import java.util.Map;
 
 public class RaceResult {
 
-    private final Map<String, Integer> result;
+    private final Map<Car, Integer> result;
 
-    public RaceResult(Map<String, Integer> result) {
+    public RaceResult(Map<Car, Integer> result) {
         this.result = result;
     }
 
-    public Map<String, Integer> getResult() {
+    public Map<Car, Integer> getResult() {
         return result;
     }
 }
