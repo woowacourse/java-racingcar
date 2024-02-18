@@ -25,9 +25,7 @@ class Controller {
         Round round = objectMapper.mapToRound(inputView.readRound());
         RacingGame game = new RacingGame(cars, moveCondition);
 
-        game.race(round);
-
-        outputView.printResult(game.getResult());
+        outputView.printResult(game.race(round));
         outputView.printWinner(game.findWinnersName());
     }
 }
