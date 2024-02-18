@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.stream.IntStream;
-import racingcar.ui.OutputView;
+import racingcar.view.OutputView;
 
 public class Game {
     private static final int NATURAL_NUMBER_BOUNDARY = 0;

@@ -1,12 +1,12 @@
-package racingcar.ui;
+package racingcar.view;
 
 
-import static racingcar.ui.OutputCommand.CAR_RESULT_FORMAT;
-import static racingcar.ui.OutputCommand.ERROR_PREFIX;
-import static racingcar.ui.OutputCommand.HYPHEN;
-import static racingcar.ui.OutputCommand.RESULT_TITLE;
-import static racingcar.ui.OutputCommand.WINNERS_DELIMITER;
-import static racingcar.ui.OutputCommand.WINNER_FORMAT;
+import static racingcar.view.OutputCommand.CAR_RESULT_FORMAT;
+import static racingcar.view.OutputCommand.ERROR_PREFIX;
+import static racingcar.view.OutputCommand.HYPHEN;
+import static racingcar.view.OutputCommand.RESULT_TITLE;
+import static racingcar.view.OutputCommand.WINNERS_DELIMITER;
+import static racingcar.view.OutputCommand.WINNER_FORMAT;
 
 import racingcar.domain.Car;
 import racingcar.domain.Vehicles;

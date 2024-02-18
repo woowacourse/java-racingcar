@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static racingcar.ui.OutputCommand.COMMA;
+import static racingcar.view.OutputCommand.COMMA;
 
 import java.util.Arrays;
 import java.util.List;
