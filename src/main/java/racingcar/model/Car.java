@@ -13,11 +13,6 @@ public class Car {
         this.position = new Position(DEFAULT_POSITION);
     }
 
-    Car(CarName carName, Position position) {
-        this.carName = carName;
-        this.position = position;
-    }
-
     public Position move(int number) {
         if (number >= MINIMUM_STEP_FORWARD_STANDARD) {
             position = position.move();
