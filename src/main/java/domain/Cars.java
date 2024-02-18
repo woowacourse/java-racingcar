@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> carList;
@@ -28,7 +27,7 @@ public class Cars {
         }
     }
 
-    public int getMaxLocation() {
+    public int getLargestLocation() {
         return carList.stream()
                 .mapToInt(Car::getCarLocation)
                 .max()
@@ -48,7 +47,7 @@ public class Cars {
 
     public List<String> getLargestLocationCarsName() {
         return carList.stream()
-            .filter(car -> car.getCarLocation() == getMaxLocation())
+            .filter(car -> car.getCarLocation() == getLargestLocation())
             .map(Car::getCarName)
             .toList();
     }
