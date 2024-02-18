@@ -3,8 +3,8 @@ package racing.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import racing.domain.Car;
 import racing.domain.Cars;
@@ -35,11 +35,11 @@ public class RacingManager {
         int maxTurn = getMaxTurn(br);
         Cars cars = makeCars(carNames);
         Racing racing = new Racing(maxTurn, cars);
-        List<RacingResult> racingResults = IntStream.range(0, maxTurn).mapToObj(value -> {
+        List<RacingResult> racingResults = new ArrayList<>();
+        for (int turn = 0; turn < maxTurn; turn++) {
             List<Integer> racingConditions = RandomGenerator.generate(carNames.size());
-            racing.nextTurn(racingConditions);
-            return new RacingResult(racing.getCarsStatus());
-        }).toList();
+            racingResults.add(new RacingResult(racing.nextTurn(racingConditions)));
+        }
         RacingResultOutputManager.printResult(racingResults);
         return racing;
     }

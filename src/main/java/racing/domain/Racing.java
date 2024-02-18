@@ -13,14 +13,11 @@ public class Racing {
         this.cars = cars;
     }
 
-    public void nextTurn(List<Integer> racingConditions) {
+    public Map<String, Integer> nextTurn(List<Integer> racingConditions) {
         if (nowTurn <= maxTurn) {
             nowTurn += 1;
             cars.move(racingConditions);
         }
-    }
-
-    public Map<String, Integer> getCarsStatus() {
         return cars.getCarsStatus();
     }
 
