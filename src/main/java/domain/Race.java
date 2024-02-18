@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -32,6 +33,6 @@ public class Race {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 }
