@@ -3,8 +3,6 @@ package view;
 import domain.Car;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class OutputView {
     public static void printErrorMessage(String errorMessage) {
