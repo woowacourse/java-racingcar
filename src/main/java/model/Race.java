@@ -5,34 +5,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import utils.RandomNumberGenerator;
 
 public class Race {
 
-    private final List<Car> cars;
+    private final Cars cars;
 
-    public Race(List<String> carNames) {
-        cars = new ArrayList<>();
+    public Race(Cars cars) {
+        this.cars = cars;
+    }
 
-        for (String name : carNames) {
-            cars.add(new Car(new Name(name)));
+    public void startRound() {
+        for (Car car : cars.getCars()) {
+            executeRandomMove(car, Power.generatePower());
         }
     }
 
-
-    public void oneGame() {
-        for (Car car : cars) {
-            executeRandomMove(car, RandomNumberGenerator.generateRandomNumber());
-        }
-    }
-
-    private void executeRandomMove(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
+    private void executeRandomMove(Car car, int power) {
+        if (power >= 4) {
             car.move();
         }
     }
 
     public List<String> selectWinners() {
+        List<Car> cars = this.cars.getCars();
         Collections.sort(cars);
         Car winner = cars.get(0);
 
@@ -42,14 +37,10 @@ public class Race {
                 .collect(Collectors.toList());
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public List<String> getCarsName() {
         List<String> carNames = new ArrayList<>();
 
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             carNames.add(car.getName());
         }
 
@@ -59,7 +50,7 @@ public class Race {
     public List<String> getDistances() {
         List<String> carDistances = new ArrayList<>();
 
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             carDistances.add(car.showDistance());
         }
 
