@@ -67,7 +67,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("모든 랜덤값이 4보다 작으면, 움직이지 않는다.")
+    @DisplayName("움직이지 못할 경우, 거리가 변하지 않는다.")
     public void carsNotMoveTest() {
         //given
         List<String> carNames = List.of("choco", "seyan", "solar");
@@ -94,7 +94,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("모든 랜덤값이 4보다 큰 경우, move 횟수만큼 움직인다.")
+    @DisplayName("움직울 경우, move 횟수만큼 거리가 변한다.")
     public void carsMoveTestIterator() {
         //given
         List<String> carNames = List.of("choco", "seyan", "solar");
