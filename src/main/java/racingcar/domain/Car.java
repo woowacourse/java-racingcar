@@ -15,8 +15,8 @@ public class Car implements Comparable<Car> {
     private int position = 0;
 
     public Car(final String name) {
-        this.name = name.trim();
-        validateName(this.name);
+        validateName(name);
+        this.name = name;
     }
 
     private void validateName(final String name) {
