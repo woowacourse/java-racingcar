@@ -4,7 +4,7 @@ public class Car {
 
     private final CarName carName;
     private final Position position;
-    private final PowerGenerator powerGenerator;
+    private final RandomPowerGenerator randomPowerGenerator;
 
     private Car(CarName carName) {
         this(carName, new Position());
@@ -13,7 +13,7 @@ public class Car {
     private Car(CarName carName, Position position) {
         this.carName = carName;
         this.position = position;
-        this.powerGenerator = new PowerGenerator();
+        this.randomPowerGenerator = new RandomPowerGenerator();
     }
 
     public static Car from(String name) {
@@ -25,7 +25,7 @@ public class Car {
     }
 
     public void tryMove() {
-        if (powerGenerator.generate().isSufficientPower()) {
+        if (randomPowerGenerator.generate().isSufficientPower()) {
             position.move();
         }
     }

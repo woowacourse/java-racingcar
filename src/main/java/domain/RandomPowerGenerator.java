@@ -1,6 +1,6 @@
 package domain;
 
-public class PowerGenerator {
+public class RandomPowerGenerator {
 
     private static final Integer MIN = 0;
     private static final Integer MAX = 9;
