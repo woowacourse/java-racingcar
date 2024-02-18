@@ -7,7 +7,6 @@ import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.MethodSource;
 import racing.dto.RacingResult;
 import racing.dto.RacingResults;
 
@@ -33,7 +32,6 @@ class RacingGameTest {
 
   @Test
   @DisplayName("우승자 테스트")
-  @MethodSource("getWinnerNamesParameters")
   void getWinnerNames() {
     //given
     List<String> carNames = List.of("testA", "testB", "testC");
