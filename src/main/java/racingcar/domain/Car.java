@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 public class Car {
-    private final int BOUND = 10;
+    private static final int BOUND = 10;
 
     private final String name;
     private int position;
