@@ -25,9 +25,6 @@ public class Car {
     }
 
     public void moveCar() {
-        if (distance < ZERO) {
-            throw new IllegalArgumentException("이동 거리는 음수가 될 수 없습니다.");
-        }
         distance++;
     }
 }
