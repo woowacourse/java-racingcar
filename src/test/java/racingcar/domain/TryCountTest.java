@@ -48,14 +48,14 @@ public class TryCountTest {
         @DisplayName("설정한 시도회수 만큼 반복문이 동작한다.")
         void testConsume(Integer givenCount) {
             TryCount count = new TryCount(givenCount.toString());
-            int iterationCount = 0;
+            int repeatCount = 0;
 
             while (count.checkTryable()) {
-                iterationCount++;
+                repeatCount++;
                 count.consume();
             }
 
-            assertThat(iterationCount).isEqualTo(givenCount);
+            assertThat(repeatCount).isEqualTo(givenCount);
         }
     }
 
