@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class CarsTest {
     @Nested
     @DisplayName("자동차 생성 테스트")
-    class CarGenerateTest {
+    class CarGenerationTest {
         @DisplayName("자동차들이 성공적으로 생성된다.")
         @Test
         void success() {
