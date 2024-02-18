@@ -1,34 +1,21 @@
 package racingcar.view;
 
 import racingcar.domain.Car;
-
-import java.util.List;
+import racingcar.domain.Cars;
 
 public class OutputView {
 
-    private static final String MESSAGE_NOT_EXIST_CAR = "생성된 자동차가 없습니다.";
 
-    public void printTryResult(List<Car> cars) {
+    public void printTryResult(Cars cars) {
         System.out.println();
         System.out.println("실행 결과");
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             System.out.println(car.getName() + " : " + "-".repeat(car.getDistance()));
         }
     }
 
-    public void printWinners(List<Car> cars) {
-        int longestDistance = cars.stream()
-                .mapToInt(Car::getDistance)
-                .max()
-                .orElseThrow(() -> new IllegalArgumentException(MESSAGE_NOT_EXIST_CAR));
-
-        String winnerNames = String.join(", ",
-                cars.stream()
-                        .filter(car -> car.getDistance() == longestDistance)
-                        .map(Car::getName)
-                        .toList()
-        );
-
+    public void printWinners(Cars cars) {
+        String winnerNames = String.join(", ", cars.findWinners(cars.calculateLongestDistance()));
         System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
 
