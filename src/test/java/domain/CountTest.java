@@ -37,7 +37,7 @@ class CountTest {
     void isRemain() {
         Count count = new Count(1);
 
-        assertThat(count.isRemain()).isTrue();
+        assertThat(count.hasRemain()).isTrue();
     }
 
     @Test
@@ -47,6 +47,6 @@ class CountTest {
 
         count.down();
 
-        assertThat(count.isRemain()).isFalse();
+        assertThat(count.hasRemain()).isFalse();
     }
 }
