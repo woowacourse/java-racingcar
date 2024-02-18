@@ -1,15 +1,16 @@
 package racingcar.util;
 
+import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
     private static final Random RANDOM = new Random();
 
-    private RandomNumberGenerator() {
-        // 인스턴스 생성 방지용
-    }
-
-    public static int generate(final int max) {
-        return RANDOM.nextInt(max + 1); // bound 미만의 숫자를 return하기 때문에 +1
+    @Override
+    public List<Integer> generate(final int max, final int total) {
+        return IntStream.rangeClosed(1, total)
+                .mapToObj(i -> RANDOM.nextInt(max + 1)) // bound 미만의 숫자를 return하기 때문에 +1
+                .toList();
     }
 }

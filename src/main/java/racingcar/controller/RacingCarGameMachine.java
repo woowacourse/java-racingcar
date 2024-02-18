@@ -3,6 +3,7 @@ package racingcar.controller;
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
+import racingcar.util.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.util.ConsoleReader;
@@ -47,7 +48,7 @@ public class RacingCarGameMachine {
     }
 
     private void proceedOneRound(final Cars cars) {
-        cars.move();
+        cars.move(new RandomNumberGenerator());
         OutputView.printResult(cars.result());
     }
 

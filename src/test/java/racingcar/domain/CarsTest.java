@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.util.TestNumberGenerator;
 
 class CarsTest {
     @Test
@@ -47,5 +49,14 @@ class CarsTest {
         );
     }
 
-    // TODO: getWinners 테스트 코드 추가
+    @Test
+    @DisplayName("[Success] 가장 많이 전진한 자동차를 우승자로 반환")
+    void getWinners() {
+        Cars cars = Cars.of(List.of("car1", "car2", "car3", "car4"));
+        cars.move(new TestNumberGenerator());
+        cars.move(new TestNumberGenerator());
+
+        assertThat(cars.getWinners())
+                .containsExactly("car1", "car2");
+    }
 }

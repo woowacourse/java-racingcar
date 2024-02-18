@@ -1,8 +1,9 @@
 package racingcar.domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import racingcar.dto.CarStatus;
-import racingcar.util.RandomNumberGenerator;
+import racingcar.util.NumberGenerator;
 
 public class Cars {
     private static final int MIN_CARS_SIZE = 2;
@@ -41,8 +42,10 @@ public class Cars {
         }
     }
 
-    public void move() {
-        cars.forEach(car -> car.move(RandomNumberGenerator.generate(MAX_RANDOM_NUMBER)));
+    public void move(NumberGenerator generator) {
+        List<Integer> numbers = generator.generate(MAX_RANDOM_NUMBER, cars.size());
+        IntStream.range(0, cars.size())
+                        .forEach(i -> cars.get(i).move(numbers.get(i)));
     }
 
     public List<CarStatus> result() {
