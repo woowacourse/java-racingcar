@@ -36,13 +36,9 @@ public class RacingCarController {
     }
 
     private RacingCars readRacingCars() {
-        RacingCarFactory racingCarFactory = readRacingCarNames();
-        return new RacingCars(racingCarFactory.create());
-    }
-
-    private RacingCarFactory readRacingCarNames() {
         String carNames = InputView.inputCarNames();
-        return new RacingCarFactory(carNames);
+        RacingCarFactory racingCarFactory = new RacingCarFactory(carNames);
+        return new RacingCars(racingCarFactory.create());
     }
 
     private TryNumber readTryNumber() {
