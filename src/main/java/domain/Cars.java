@@ -1,7 +1,6 @@
 package domain;
 
 import domain.car.CarDistance;
-import domain.car.CarName;
 import dto.CarStatus;
 
 import java.util.HashSet;
@@ -48,8 +47,10 @@ public class Cars {
                 .toList();
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Car> findCarsAtDistance(CarDistance distance) {
+        return cars.stream()
+                .filter(car -> car.isAtDistance(distance))
+                .toList();
     }
 
     public CarDistance getMaxDistance() {
