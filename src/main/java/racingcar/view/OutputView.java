@@ -4,6 +4,7 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class OutputView {
     public static void printRequestCarNamesMessage() {
@@ -14,20 +15,20 @@ public class OutputView {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
-    public static void printResultMessage() {
-        System.out.println("\n실행 결과");
-    }
-
-    public static void printCar(Car car) {
-        System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
-    }
-
-    public static void printCars(Cars cars) {
-        cars.getCars().forEach(OutputView::printCar);
-        System.out.println();
-    }
-
     public static void printWinners(List<String> winners) {
         System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+    }
+
+    public static void printGameResults(List<String> carNames, List<List<Integer>> gameResults) {
+        System.out.println("\n실행 결과");
+        gameResults.forEach(gameResult -> {
+            IntStream.range(0, gameResult.size())
+                    .forEach(idx -> {
+                        String name = carNames.get(idx);
+                        int position = gameResult.get(idx);
+                        System.out.println(name + " : " + "-".repeat(position));
+                    });
+            System.out.println();
+        });
     }
 }

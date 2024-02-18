@@ -19,7 +19,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void moveCars() {
+    public void move() {
         cars.stream()
                 .filter(car -> generator.generate() >= MOVE_LINE)
                 .forEach(Car::move);
@@ -36,8 +36,10 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<String> getNames() {
+        return cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getCarPositions() {
