@@ -1,5 +1,5 @@
 package utils;
 
-public interface NumberGenerator {
+public interface PowerGenerator {
     int getNumber();
 }
