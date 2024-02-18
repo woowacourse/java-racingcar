@@ -21,7 +21,7 @@ public class Round {
 
     private static void validate(String input) {
         checkIsNull(input);
-        checkIsNumber(input);
+        checkIsNaturalNumber(input);
         checkIsZero(input);
     }
 
@@ -31,7 +31,7 @@ public class Round {
         }
     }
 
-    private static void checkIsNumber(String input) {
+    private static void checkIsNaturalNumber(String input) {
         if (!Pattern.matches(NATURAL_FORMAT_REGEX, input)) {
             throw new IllegalArgumentException(ERROR_PREFIX + "시도 횟수는 자연수여야 합니다.");
         }
