@@ -1,8 +1,10 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static racingcar.domain.TryCount.MAX_TRY_COUNT;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,5 +27,17 @@ class TryCountTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new TryCount(1001))
                 .withMessage(String.format("시도 횟수는 %,d 이하여야 합니다.", MAX_TRY_COUNT));
+    }
+
+    @Test
+    @DisplayName("[Success] 주어진 횟수만큼 전달 받은 Runnable을 실행함")
+    void execute() {
+        final TryCount tryCount = new TryCount(5);
+        AtomicInteger tryResult = new AtomicInteger(0);
+
+        tryCount.execute(() -> tryResult.addAndGet(1));
+
+        assertThat(tryResult.get())
+                .isEqualTo(5);
     }
 }
