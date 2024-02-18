@@ -11,9 +11,16 @@ public class CarName {
     }
 
     private void validate(String carName) {
+        validateNonNull(carName);
         validateLength(carName);
     }
 
+    private void validateNonNull(String carName) {
+        if (carName == null) {
+            throw new IllegalArgumentException("[ERROR] 이름은 null일 수 없습니다");
+        }
+    }
+    
     private void validateLength(String carName) {
         if (carName.length() < MIN_LENGTH || carName.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
