@@ -27,6 +27,6 @@ public class ResultView {
     private void printCarProgress(Car car) {
         String name = car.getName();
         String progress = "-".repeat(car.getProgress());
-        System.out.printf("%s : %s%n%n", name, progress);
+        System.out.printf("%s : %s%n", name, progress);
     }
 }
