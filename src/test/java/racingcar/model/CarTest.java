@@ -3,6 +3,7 @@ package racingcar.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.model.Car;
@@ -37,5 +38,17 @@ class CarTest {
     void blankCarNameTest() {
         String name = " ";
         assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("특정 정수를 바탕으로 현재 전진 정도를 비교한다.")
+    void isEqualToProgressTest() {
+        Car noMoveCar = new Car("car1");
+        Car moveCar = new Car("car2");
+
+        moveCar.move();
+
+        Assertions.assertThat(noMoveCar.isEqualToProgress(0)).isTrue();
+        Assertions.assertThat(moveCar.isEqualToProgress(1)).isTrue();
     }
 }

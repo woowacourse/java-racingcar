@@ -36,4 +36,21 @@ public class CarsTest {
         //when & then
         Assertions.assertThatThrownBy(() -> new Cars(carList)).isInstanceOf(IllegalArgumentException.class);
     }
+
+
+    @Test
+    @DisplayName("자동차들 중 가장 긴 거리를 이동한 값을 구한다.")
+    void getMaxProgressTest() {
+        //given
+        List<Car> originCars = List.of(new Car("car1"), new Car("car2"), new Car("car3"));
+        //when
+        originCars.get(1).move();
+        originCars.get(1).move();
+        originCars.get(0).move();
+
+        Cars cars = new Cars(originCars);
+        //then
+
+        Assertions.assertThat(cars.getMaxProgress()).isEqualTo(2);
+     }
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import racingcar.domain.model.Car;
 import racingcar.domain.rules.CarMoveRule;
 import racingcar.domain.model.Cars;
+import racingcar.domain.rules.DefaultCarMoveRule;
 import racingcar.domain.service.RacingGame;
 
 public class RacingGameTest {
@@ -86,4 +87,20 @@ public class RacingGameTest {
         Assertions.assertThatThrownBy(() -> new RacingGame(cars, moveCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("Cars 중 가장 긴 거리를 이동한 차들로만 새로운 List를 반환한다.")
+    void filterWinningCars() throws Exception{
+        //given
+        List<Car> originCar = List.of(new Car("car1"), new Car("car2"), new Car("car3"));
+        //when
+        originCar.get(0).move();
+        originCar.get(1).move();
+
+        Cars cars = new Cars(originCar);
+        RacingGame racingGame = new RacingGame(cars, 1);
+        //then
+        Assertions.assertThat(racingGame.findWinners().stream().map(Car::getName))
+                .isEqualTo(List.of("car1", "car2"));
+     }
 }
