@@ -87,7 +87,7 @@ public class RacingMain {
     - [ ] [오라클의 문서](https://www.oracle.com/java/technologies/javase/codeconventions-fileorganization.html)를 참고한다.
 - [X] Winner 클래스명도 복수형을 명시한다.
 - [ ] 인스턴스로 생성하지 않아도 된다는 의미를 부여하기 위해 private 기본 생성자를 생성한다.
-- [ ] Command 상수들은 변경의 여지가 없는 값들이니 불변으로 변경한다.
+- [X] Command 상수들은 변경의 여지가 없는 값들이니 불변으로 변경한다.
 - [ ] `RandomUtil`의 주석을 삭제한다.
 - [ ] 실제로 `Vehicles.from`에서 예외 상황을 고려해, `Game.from`만을 테스트할 수 있게 리팩토링한다.
 - [ ] 사용자의 입력을 파싱하는 것은 도메인 로직이라고 보기 어려우므로 `view` 레이어에 위임한다.
