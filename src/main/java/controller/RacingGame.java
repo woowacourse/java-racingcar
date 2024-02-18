@@ -45,7 +45,7 @@ public class RacingGame {
         }
     }
 
-    private void printWinners(Cars cars) {
+    private void printWinners(final Cars cars) {
         int maxDistance = cars.getMaxDistance();
         OutputView.printResultNotice();
         OutputView.printWinners(cars.getWinners(maxDistance));

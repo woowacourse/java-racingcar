@@ -11,7 +11,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printRoundResult(List<Car> cars) {
+    public static void printRoundResult(final List<Car> cars) {
         for (Car car : cars) {
             System.out.println(generateResult(car));
         }

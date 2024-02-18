@@ -21,7 +21,7 @@ public class Cars {
         }
     }
 
-    public List<Car> updateRaceRound(NumberGenerator numberGenerator) {
+    public List<Car> updateRaceRound(final NumberGenerator numberGenerator) {
         racingCars.forEach(car -> car.moveForward(numberGenerator.generateNumber()));
         return racingCars;
     }
