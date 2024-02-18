@@ -14,7 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.dto.CarStatus;
-import racingcar.util.TestNumberGenerator;
+import racingcar.util.TestRefuelGenerator;
 
 class CarsTest {
     @Test
@@ -56,7 +56,7 @@ class CarsTest {
     @DisplayName("[Success] NumberGenerator에서 생성된 숫자를 순서대로 전달하여 자동차가 전진할 수 있게 한다")
     void move() {
         Cars cars = Cars.of(List.of("car1", "car2", "car3", "car4"));
-        cars.move(new TestNumberGenerator()); // 4, 4, 3, 3
+        cars.move(new TestRefuelGenerator()); // 4, 4, 3, 3
         List<Integer> result = cars.result().value()
                 .stream()
                 .map(CarStatus::position)
@@ -70,8 +70,8 @@ class CarsTest {
     @DisplayName("[Success] 가장 많이 전진한 자동차를 우승자로 반환")
     void getWinners() {
         Cars cars = Cars.of(List.of("car1", "car2", "car3", "car4"));
-        cars.move(new TestNumberGenerator()); // 4, 4, 3, 3
-        cars.move(new TestNumberGenerator());
+        cars.move(new TestRefuelGenerator()); // 4, 4, 3, 3
+        cars.move(new TestRefuelGenerator());
 
         assertThat(cars.getWinners())
                 .containsExactly("car1", "car2");

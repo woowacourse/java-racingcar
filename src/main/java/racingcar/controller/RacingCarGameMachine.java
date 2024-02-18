@@ -5,7 +5,7 @@ import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.dto.RoundResult;
 import racingcar.domain.TryCount;
-import racingcar.util.RandomNumberGenerator;
+import racingcar.util.RandomRefuelGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.util.ConsoleReader;
@@ -51,7 +51,7 @@ public class RacingCarGameMachine {
     }
 
     private void proceedOneRound(final Cars cars) {
-        cars.move(new RandomNumberGenerator());
+        cars.move(new RandomRefuelGenerator());
         results.add(cars.result());
     }
 

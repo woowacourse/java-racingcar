@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import racingcar.dto.RoundResult;
-import racingcar.util.NumberGenerator;
+import racingcar.util.RefuelGenerator;
 
 public class Cars {
     static final int MIN_CARS_SIZE = 2;
@@ -43,7 +43,7 @@ public class Cars {
         }
     }
 
-    public void move(NumberGenerator generator) {
+    public void move(RefuelGenerator generator) {
         List<Integer> numbers = generator.generate(MAX_RANDOM_NUMBER, cars.size());
         IntStream.range(0, cars.size())
                         .forEach(i -> cars.get(i).move(numbers.get(i)));

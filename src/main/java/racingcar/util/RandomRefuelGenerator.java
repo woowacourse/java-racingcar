@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class RandomNumberGenerator implements NumberGenerator {
+public class RandomRefuelGenerator implements RefuelGenerator {
     private static final Random RANDOM = new Random();
 
     @Override
