@@ -49,8 +49,8 @@ public class GameController {
     }
 
     private Round getRound() {
-        final String tryRound = inputView.readTryRound();
-        return Round.from(tryRound);
+        final int tryRound = inputView.readTryRound();
+        return new Round(tryRound);
     }
 
 }

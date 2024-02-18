@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class InputView {
 
     private static final String SEPARATOR = ",";
-
     private static final Scanner scanner = new Scanner(System.in);
 
     public List<String> readCarNames() {
@@ -27,8 +26,17 @@ public class InputView {
     }
 
 
-    public String readTryRound() {
+    public int readTryRound() {
         System.out.println("시도할 횟수는 몇회인가요?");
-        return scanner.nextLine();
+        return parseInt(scanner.nextLine());
     }
+
+    private int parseInt(final String source) {
+        try {
+            return Integer.parseInt(source);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] 숫자로 변환할 수 없습니다.");
+        }
+    }
+
 }

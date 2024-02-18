@@ -16,7 +16,7 @@ class RacingGameTest {
     void play() {
         // given
         final List<CarName> carNames = List.of(new CarName("a"), new CarName("b"), new CarName("c"));
-        final RacingGame racingGame = RacingGame.of(carNames, Round.from("3"));
+        final RacingGame racingGame = RacingGame.of(carNames, new Round(3));
 
         // when
         final List<RoundResult> roundResults = racingGame.play(() -> 5);
