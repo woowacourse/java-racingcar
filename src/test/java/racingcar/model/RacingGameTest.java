@@ -8,42 +8,84 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.generator.MovingStub;
 
 class RacingGameTest {
 
     @DisplayName("이동 횟수가 1 미만 숫자인 경우 예외를 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-10000"})
-    void exceptionInvalidCountInput(int given) {
+    void exceptionCreateRacingGame(int numberOfRaces) {
         //given
-        Cars cars = createCars();
+        List<Car> cars = List.of(new Car("a"));
 
-        //then
-        assertThatThrownBy(() -> new RacingGame(given, cars))
-                .isInstanceOf(IllegalArgumentException.class);
+        //when, then
+        assertThatThrownBy(() -> new RacingGame(cars, numberOfRaces))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 경주 횟수는 최소 1회 이상 입력해주세요.");
     }
 
     @DisplayName("게임 횟수 만큼 게임을 실행한다.")
     @Test
-    void runGameByCount() {
+    void confirmNumberOfRacesOfRacingGame() {
         //given
-        int count = 3;
-        Cars cars = createCars();
-        RacingGame racingGame = new RacingGame(count, cars);
+        int numberOfRaces = 3;
+        List<Car> cars = List.of(new Car("a"));
+        RacingGame racingGame = new RacingGame(cars, numberOfRaces);
 
         //when
-        TotalResult totalResult = racingGame.run();
+        List<RaceResult> raceResults = racingGame.startRace();
 
         //then
-        assertThat(totalResult.getTotalResult()).hasSize(count);
+        assertThat(raceResults).hasSize(numberOfRaces);
     }
 
-    private static Cars createCars() {
-        List<String> carNames = List.of("a", "b", "c");
-        List<Car> carList = carNames.stream()
-                .map(Car::new)
-                .toList();
-        return new Cars(carList, new MovingStub(List.of(4, 4, 3)));
+    @DisplayName("경주의 결과는 등록된 모든 자동차들에게 받는다.")
+    @Test
+    void confirmRacingResultsOfRacingGame() {
+        //given
+        int numberOfRaces = 3;
+        List<Car> cars = List.of(new Car("a"), new Car("b"));
+        RacingGame racingGame = new RacingGame(cars, numberOfRaces);
+
+        //when
+        List<RaceResult> raceResults = racingGame.startRace();
+        int numberOfCars = cars.size();
+
+        //then
+        assertThat(raceResults).allMatch(result -> result.getResult().size() == numberOfCars);
+    }
+
+    @DisplayName("가장 멀리 전진한 자동차를 우승자로 선정한다.")
+    @Test
+    void confirmSelectWinner() {
+        //given
+        Car car1 = new Car("a", 1);
+        Car car2 = new Car("b", 0);
+
+        List<Car> cars = List.of(car1, car2);
+        RacingGame racingGame = new RacingGame(cars, 1);
+
+        //when
+        List<Car> winner = racingGame.selectWinner();
+
+        //then
+        assertThat(winner).containsExactly(car1);
+    }
+
+    @DisplayName("우승자는 하나가 아닐 수 있다.")
+    @Test
+    void confirmSelectWinners() {
+        //given
+        Car car1 = new Car("a", 1);
+        Car car2 = new Car("b", 1);
+
+        List<Car> cars = List.of(car1, car2);
+        RacingGame racingGame = new RacingGame(cars, 1);
+
+        //when
+        List<Car> winner = racingGame.selectWinner();
+
+        //then
+        assertThat(winner).containsExactly(car1, car2);
     }
 }
