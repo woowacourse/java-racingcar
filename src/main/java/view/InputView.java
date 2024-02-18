@@ -16,15 +16,10 @@ public class InputView {
 	}
 
 	private void validateCarNames(String names) {
-		final String VALID_CAR_NAMES_REGEX = "([^,]{1,5}(,?))+";
+		final String VALID_CAR_NAMES_REGEX = "([^,]{1,5})((,)([^,]{1,5}))*";
 		if (isInvalidFormat(names, VALID_CAR_NAMES_REGEX)) {
 			throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT.getMessage());
 		}
-	}
-
-	private boolean hasInvalidNameLength(String[] names) {
-		return Arrays.stream(names)
-			.anyMatch(name -> name.isBlank() || name.length() > 5);
 	}
 
 	public int receiveTrialCount() {
