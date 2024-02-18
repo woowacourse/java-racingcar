@@ -7,30 +7,15 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
-    private static final int MOVE_CONDITION = 5;
-    private static final int STOP_CONDITION = 3;
-
-
     @Test
-    @DisplayName("랜덤_숫자가_4_이상인_경우_전진")
+    @DisplayName("자동차가_전진하면_거리가_1이_증가")
     void moveCarTest() {
         Car car = new Car("capy");
         int initDistance = car.getDistance();
-        car.moveCar(MOVE_CONDITION);
+        car.moveCar();
         int movedDistance = car.getDistance();
 
         assertThat(movedDistance).isEqualTo(initDistance + 1);
-    }
-
-    @Test
-    @DisplayName("랜덤_숫자가_3_이하인_경우_정지")
-    void stopCarTest() {
-        Car car = new Car("capy");
-        int initDistance = car.getDistance();
-        car.moveCar(STOP_CONDITION);
-        int movedDistance = car.getDistance();
-
-        assertThat(movedDistance).isEqualTo(initDistance);
     }
 
     @Test

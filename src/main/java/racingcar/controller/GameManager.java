@@ -4,13 +4,14 @@ import racingcar.domain.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameManager {
 
     private static final int MAX_RANDOM_NUMBER = 9;
+    private static final int MINIMUM_MOVEMENT_CONDITION = 4;
+
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
 
@@ -29,7 +30,14 @@ public class GameManager {
 
     private void moveCars(List<Car> cars) {
         for (Car car : cars) {
-            car.moveCar(ThreadLocalRandom.current().nextInt(MAX_RANDOM_NUMBER + 1));
+            moveCar(car);
+        }
+    }
+
+    private void moveCar(Car car) {
+        int randomNumber = ThreadLocalRandom.current().nextInt(MAX_RANDOM_NUMBER + 1);
+        if (randomNumber >= MINIMUM_MOVEMENT_CONDITION) {
+            car.moveCar();
         }
     }
 
