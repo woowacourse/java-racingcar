@@ -7,8 +7,7 @@ public class Car {
     private static final int INITIAL_POSITION = 0;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int FORWARD_MIN_NUMBER = 4;
-    private static final String NAME_DELIMITER = " : ";
-    private static final String TRACE_SYMBOL = "-";
+
     private final String name;
     private int position;
 
@@ -34,20 +33,16 @@ public class Car {
         }
     }
 
-    public int getPosition() {
-        return position;
+    public String showPositionTraceByFormat(String symbol) {
+        StringBuilder trace = new StringBuilder();
+        for (int i = 0; i < position; i++) {
+            trace.append(symbol);
+        }
+
+        return trace.toString();
     }
 
     public String getName() {
         return name;
-    }
-
-    public String showTrace(String nameDelimiter, String traceSymbol) {
-        StringBuilder trace = new StringBuilder();
-        trace.append(name).append(NAME_DELIMITER);
-        for (int i = 0; i < position; i++) {
-            trace.append(TRACE_SYMBOL);
-        }
-        return trace.toString();
     }
 }

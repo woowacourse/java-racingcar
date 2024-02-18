@@ -11,11 +11,10 @@ public class RacingGame {
 
     private static final int MIN_CAR_NAME_COUNT = 2;
     private static final int MIN_POSITION = 0;
-    private static final String NAME_DELIMITER = " : ";
-    private static final String TRACE = "-";
-    private static final String NEW_LINE = "\n";
+    private static final String RACING_FORMAT = "%s : %s";
+    private static final String TRACE_SYMBOL = "-";
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     private RacingGame(List<Car> cars) {
         this.cars = cars;
@@ -59,23 +58,26 @@ public class RacingGame {
         int maxPosition = calculateMaxPosition();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.showPositionTraceByFormat(TRACE_SYMBOL).length() == maxPosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
     private int calculateMaxPosition() {
         return cars.stream()
-                .mapToInt(Car::getPosition)
+                .mapToInt(car -> car.showPositionTraceByFormat(TRACE_SYMBOL).length())
                 .max()
                 .orElse(MIN_POSITION);
     }
 
-    public String showAllCarTrace() {
-        StringBuilder allTrace = new StringBuilder();
+    public List<String> showAllCarTrace() {
+        List<String> allTrace = new ArrayList<>();
         for (Car car : cars) {
-            allTrace.append(car.showTrace(NAME_DELIMITER, TRACE)).append(NEW_LINE);
+            String racingFormat = String.format(RACING_FORMAT,
+                    car.getName(),
+                    car.showPositionTraceByFormat(TRACE_SYMBOL));
+            allTrace.add(racingFormat);
         }
-        return allTrace.toString();
+        return allTrace;
     }
 }
