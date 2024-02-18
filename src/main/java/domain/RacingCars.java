@@ -1,5 +1,7 @@
 package domain;
 
+import dto.RaceResult;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,22 +14,17 @@ public class RacingCars {
         this.racingCars = racingCars;
     }
 
-    public List<RaceResult> tryRace(final NumberGenerator numberGenerator) {
-        List<RaceResult> raceResults = new ArrayList<>();
-        for (RacingCar racingCar : racingCars) {
-            racingCar.race(numberGenerator.generateNumber());
-            raceResults.add(new RaceResult(racingCar.getName(), racingCar.getMoveNumber()));
-        }
-        return raceResults;
+    public List<RacingCar> tryRace(final NumberGenerator numberGenerator) {
+        racingCars.forEach(racingCar -> racingCar.race(numberGenerator.generateNumber()));
+        return racingCars;
     }
 
-    public List<String> getWinners() {
+    public List<RacingCar> getWinners() {
         Collections.sort(racingCars);
         RacingCar winner = racingCars.get(0);
 
         return racingCars.stream()
-                .filter(racingCar -> racingCar.isSameDistance(winner))
-                .map(RacingCar::getName)
+                .filter(racingCar -> racingCar.hasSameDistance(winner))
                 .collect(Collectors.toList());
     }
 }

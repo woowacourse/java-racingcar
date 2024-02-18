@@ -1,11 +1,14 @@
 package domain;
 
+import dto.RaceResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.tuple;
 
 class RacingCarsTest {
 
@@ -14,9 +17,13 @@ class RacingCarsTest {
     void tryRace() {
         RacingCars racingCars = new RacingCars(List.of(new RacingCar("zeze"), new RacingCar("bito")));
 
-        List<RaceResult> raceResults = racingCars.tryRace(() -> 4);
+        List<RacingCar> triedRace = racingCars.tryRace(() -> 4);
 
-        raceResults.forEach(raceResult -> Assertions.assertThat(raceResult.moveCount()).isEqualTo(1));
+        Assertions.assertThat(triedRace).extracting("name", "moveNumber")
+                .contains(
+                        tuple("zeze", 1),
+                        tuple("bito", 1)
+                );
     }
 
     @Test
@@ -30,7 +37,9 @@ class RacingCarsTest {
 
         RacingCars racingCars = new RacingCars(new ArrayList(List.of(winnerCar, car)));
 
-        Assertions.assertThat(racingCars.getWinners()).containsOnly(winnerCar.getName());
+        Assertions.assertThat(racingCars.getWinners())
+                        .extracting("name")
+                        .containsExactly("zeze");
     }
 
     @Test
@@ -44,6 +53,8 @@ class RacingCarsTest {
 
         RacingCars racingCars = new RacingCars(new ArrayList(List.of(winnerCar1, winnerCar2)));
 
-        Assertions.assertThat(racingCars.getWinners()).containsAll(List.of(winnerCar1.getName(), winnerCar2.getName()));
+        Assertions.assertThat(racingCars.getWinners())
+                .extracting("name")
+                .containsExactlyInAnyOrder("bito","zeze");
     }
 }

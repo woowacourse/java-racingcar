@@ -23,7 +23,7 @@ public class RacingCar implements Comparable<RacingCar>{
         }
     }
 
-    public boolean isSameDistance(final RacingCar racingCar) {
+    public boolean hasSameDistance(final RacingCar racingCar) {
         return racingCar.moveNumber == this.moveNumber;
     }
 

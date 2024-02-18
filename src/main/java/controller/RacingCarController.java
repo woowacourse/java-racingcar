@@ -3,6 +3,8 @@ package controller;
 import domain.*;
 import domain.RacingCars;
 import domain.TryNumber;
+import dto.RaceResult;
+import dto.RacingCarNames;
 import view.InputView;
 import view.OutputView;
 
@@ -10,11 +12,11 @@ import java.util.List;
 
 public class RacingCarController {
     private final NumberGenerator numberGenerator;
-    private final RacingCarFactory racingCarFactory;
+    private final RacingCarMapper racingCarMapper;
 
-    public RacingCarController(final NumberGenerator numberGenerator, final RacingCarFactory racingCarFactory) {
+    public RacingCarController(final NumberGenerator numberGenerator, final RacingCarMapper racingCarMapper) {
         this.numberGenerator = numberGenerator;
-        this.racingCarFactory = racingCarFactory;
+        this.racingCarMapper = racingCarMapper;
     }
 
     public void start() {
@@ -27,18 +29,18 @@ public class RacingCarController {
             tryNumber.decrease();
         } while(tryNumber.isTryable());
 
-        List<String> winners = racingCars.getWinners();
-        OutputView.printWinners(winners);
+        List<RacingCar> winners = racingCars.getWinners();
+        OutputView.printWinners(racingCarMapper.mapToWinners(winners));
     }
 
     private void tryRace(final RacingCars racingCars) {
-        List<RaceResult> results = racingCars.tryRace(numberGenerator);
-        printResult(results);
+        List<RacingCar> triedRace = racingCars.tryRace(numberGenerator);
+        printResult(racingCarMapper.mapToResults(triedRace));
     }
 
     private RacingCars readRacingCars() {
         RacingCarNames carNames = new RacingCarNames(InputView.inputCarNames());
-        return new RacingCars(racingCarFactory.createBy(carNames));
+        return new RacingCars(racingCarMapper.mapToRacingCars(carNames));
     }
 
     private TryNumber readTryNumber() {
