@@ -40,7 +40,7 @@ public class Controller {
 
     private RacingCount inputRacingCount() {
         try {
-            return inputView.inputRacingCount();
+            return new RacingCount(inputView.inputRacingCount());
         } catch (IllegalArgumentException e) {
             outputView.printInputRacingCountErrorMessage();
             return inputRacingCount();
