@@ -2,7 +2,6 @@ package domain;
 
 import dto.CarState;
 import dto.RacingStatus;
-import dto.Winners;
 import exception.ErrorMessage;
 import exception.RacingCarGameException;
 
@@ -13,15 +12,23 @@ import java.util.Optional;
 
 public class Cars {
     private final List<Car> cars;
+    private final RandomPowerGenerator randomPowerGenerator;
 
-    public Cars(List<Car> cars) {
+    public Cars(List<Car> cars, RandomPowerGenerator randomPowerGenerator) {
         this.cars = cars;
+        this.randomPowerGenerator = randomPowerGenerator;
     }
 
     public static Cars from(List<String> carNames) {
         validateUniqueName(carNames);
         List<Car> cars = convertToCarList(carNames);
-        return new Cars(cars);
+        return new Cars(cars, new RandomPowerGenerator());
+    }
+
+    public static Cars from(List<String> carNames, RandomPowerGenerator randomPowerGenerator) {
+        validateUniqueName(carNames);
+        List<Car> cars = convertToCarList(carNames);
+        return new Cars(cars, randomPowerGenerator);
     }
 
     private static List<Car> convertToCarList(List<String> carNames) {
@@ -46,16 +53,16 @@ public class Cars {
                 .count();
     }
 
-    public RacingStatus race(int randomPower) {
+    public RacingStatus race() {
         List<CarState> carStates = new ArrayList<>();
         for (Car car : cars) {
-            CarState carState = car.move(randomPower);
+            CarState carState = car.move(randomPowerGenerator.generate());
             carStates.add(carState);
         }
         return new RacingStatus(carStates);
     }
 
-    public Winners judge() {
+    public List<String> getWinners() {
         List<String> winners = new ArrayList<>();
         int max = findMaxPosition();
         for (Car car : cars) {
@@ -64,7 +71,7 @@ public class Cars {
                 winners.add(maxCarName.get());
             }
         }
-        return new Winners(winners);
+        return winners;
     }
 
     private int findMaxPosition() {
