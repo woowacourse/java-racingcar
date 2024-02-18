@@ -25,12 +25,6 @@ public class Cars {
         return new Cars(cars);
     }
 
-    private static List<Car> convertToCarList(List<String> carNames) {
-        return carNames.stream()
-                .map(name -> new Car(new CarName(name)))
-                .toList();
-    }
-
     private static void validateUniqueName(List<String> names) {
         if(isDuplicatedName(names)) {
             throw RacingCarGameException.from(ErrorMessage.DUPLICATED_NAME_ERROR);
@@ -45,6 +39,12 @@ public class Cars {
         return (int) names.stream()
                 .distinct()
                 .count();
+    }
+
+    private static List<Car> convertToCarList(List<String> carNames) {
+        return carNames.stream()
+                .map(name -> new Car(new CarName(name)))
+                .toList();
     }
 
     public CarsStatus move() {
@@ -73,9 +73,5 @@ public class Cars {
                 .mapToInt(car -> car.getPosition())
                 .max()
                 .orElseThrow(() -> new IllegalStateException());
-    }
-
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
     }
 }
