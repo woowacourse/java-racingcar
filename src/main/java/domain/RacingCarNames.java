@@ -6,11 +6,10 @@ import java.util.stream.Collectors;
 public class RacingCarNames {
     private List<String> names;
 
-    public RacingCarNames(String names) {
-        List<String> splitNames = splitCarNames(names);
-        validateDuplication(splitNames);
-        validateNamesLength(splitNames);
-        this.names = splitNames;
+    public RacingCarNames(List<String> names) {
+        validateDuplication(names);
+        validateNamesLength(names);
+        this.names = names;
     }
 
     public RacingCars createRacingCars() {
@@ -27,12 +26,8 @@ public class RacingCarNames {
 
     private void validateNameLength(String name) {
         if (name.isBlank() || name.length() > 5) {
-            throw new IllegalArgumentException("이름은 5글자 이하만 가능합니다.");
+            throw new IllegalArgumentException("이름은 1글자 이상 5글자 이하만 가능합니다.");
         }
-    }
-
-    private List<String> splitCarNames(String input) {
-        return List.of(input.split(","));
     }
 
     private void validateDuplication(List<String> racingCarNames) {

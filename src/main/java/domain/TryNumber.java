@@ -19,7 +19,7 @@ public class TryNumber {
 
     private void validatePositiveMoveCount(int number) {
         if (number <= 0) {
-            throw new NotNumberPositiveException();
+            throw new NotNumberPositiveException("시도 횟수는 양수인 정수만 가능합니다.");
         }
     }
 }

@@ -4,11 +4,14 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+import java.util.List;
+
 class RacingCarNamesTest {
     @DisplayName("레이싱카 이름이 5글자 이하인지 확인한다.")
     @Test
     public void testCarNameLength() {
-        String carNameOverThan5Length = "racingcar";
+        List<String> carNameOverThan5Length = Collections.singletonList("racingcar");
 
         Assertions.assertThatThrownBy(() -> new RacingCarNames(carNameOverThan5Length))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -18,7 +21,7 @@ class RacingCarNamesTest {
     @DisplayName("레이싱카 이름이 중복되는 지 확인한다.")
     @Test
     public void testCarNameDuplication() {
-        String duplicatedNames = "rac,rac,bito";
+        List<String> duplicatedNames = Collections.singletonList("rac,rac,bito");
 
         Assertions.assertThatThrownBy(() -> new RacingCarNames(duplicatedNames))
                 .isInstanceOf(IllegalArgumentException.class)

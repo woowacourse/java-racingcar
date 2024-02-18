@@ -31,12 +31,12 @@ public class RacingCarController {
     }
 
     private RacingCarNames readRacingCarNames() {
-        String carNames = InputView.inputCarNames();
+        List<String> carNames = InputView.inputCarNames();
         return new RacingCarNames(carNames);
     }
 
     private TryNumber readTryNumber() {
-        String input = InputView.inputMoveCount();
-        return new TryNumber(Integer.parseInt(input));
+        int input = InputView.inputMoveCount();
+        return new TryNumber(input);
     }
 }
