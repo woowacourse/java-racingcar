@@ -6,18 +6,22 @@ public class Car {
     private final Position position;
     private final PowerGenerator powerGenerator;
 
-    private Car(String carName) {
-        this(new CarName(carName), new Position());
+    private Car(CarName carName) {
+        this(carName, new Position());
     }
 
-    Car(CarName carName, Position position) {
+    private Car(CarName carName, Position position) {
         this.carName = carName;
         this.position = position;
         this.powerGenerator = new PowerGenerator();
     }
 
     public static Car from(String name) {
-        return new Car(name);
+        return new Car(new CarName(name));
+    }
+
+    static Car of(String name, Integer position) {
+        return new Car(new CarName(name), new Position(position));
     }
 
     public void tryMove() {
