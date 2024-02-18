@@ -1,7 +1,6 @@
 package view;
 
-import domain.Car;
-import java.util.List;
+import dto.GameResultDto;
 
 public class OutputView {
 
@@ -17,12 +16,8 @@ public class OutputView {
         System.out.println(RACE_RESULT_PREFIX);
     }
 
-    public void printRaceResult(List<Car> cars) {
-        System.out.println(messageResolver.resolveMoveResultMessage(cars));
-    }
-
-    public void printWinner(List<Car> winners) {
-        System.out.println(messageResolver.resolveWinnerMessage(winners));
+    public void printRaceResult(GameResultDto gameResultDto) {
+        System.out.println(messageResolver.resolveGameResultMessage(gameResultDto));
     }
 
     public void printErrorMessage(String errorMessage) {
