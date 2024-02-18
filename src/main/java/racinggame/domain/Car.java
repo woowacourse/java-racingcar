@@ -2,7 +2,7 @@ package racinggame.domain;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private static final int INITIAL_POSITION = 0;
 
@@ -19,14 +19,14 @@ public class Car {
         this.position = new Position(position);
     }
 
-    public boolean isSamePositionWith(Position other) {
-        return position.equals(other);
-    }
-
     public void move(MoveCondition moveCondition) {
         if (moveCondition.isMovable()) {
             position = position.increase();
         }
+    }
+
+    public boolean isSamePositionWith(Car other) {
+        return position.equals(other.position);
     }
 
     public String getName() {
@@ -35,6 +35,11 @@ public class Car {
 
     public int getPosition() {
         return position.getPosition();
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return position.getPosition() - other.getPosition();
     }
 
     @Override

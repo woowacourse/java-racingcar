@@ -21,8 +21,8 @@ public class RacingGame {
         }
     }
 
-    public List<String> findWinnerName() {
-        return cars.findWinnerName();
+    public List<String> findWinnersName() {
+        return cars.findWinnersName();
     }
 
     public List<RoundResult> getResult() {

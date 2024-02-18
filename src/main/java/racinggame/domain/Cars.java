@@ -37,22 +37,20 @@ class Cars {
         cars.forEach(car -> car.move(moveCondition));
     }
 
-    public List<String> findWinnerName() {
-        return findWinner(findMaxPosition()).stream()
-            .map(Car::getName)
-            .toList();
+    public List<String> findWinnersName() {
+        return findWinnersName(findFirstWinner());
     }
 
-    private Position findMaxPosition() {
-        return new Position(cars.stream()
-            .map(Car::getPosition)
-            .max(Integer::compareTo)
-            .orElseThrow());
-    }
-
-    private List<Car> findWinner(Position winnerPosition) {
+    private Car findFirstWinner() {
         return cars.stream()
-            .filter(car -> car.isSamePositionWith(winnerPosition))
+            .max(Car::compareTo)
+            .orElseThrow();
+    }
+
+    private List<String> findWinnersName(Car winner) {
+        return cars.stream()
+            .filter(car -> car.isSamePositionWith(winner))
+            .map(Car::getName)
             .toList();
     }
 

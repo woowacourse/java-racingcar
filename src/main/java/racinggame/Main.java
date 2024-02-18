@@ -14,6 +14,6 @@ public class Main {
         game.race(inputView.readRound());
 
         outputView.printResult(game.getResult());
-        outputView.printWinner(game.findWinnerName());
+        outputView.printWinner(game.findWinnersName());
     }
 }

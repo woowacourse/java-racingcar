@@ -22,7 +22,7 @@ class CarTest {
 
         car.move(() -> true);
 
-        assertThat(car.isSamePositionWith(new Position(1))).isTrue();
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("전진 조건을 만족하지 않으면 전진하지 않는다.")
@@ -32,6 +32,6 @@ class CarTest {
 
         car.move(() -> false);
 
-        assertThat(car.isSamePositionWith(new Position(0))).isTrue();
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 }
