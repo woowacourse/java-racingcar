@@ -6,8 +6,6 @@ public class Car implements Comparable<Car> {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int FORWARD_MIN_NUMBER = 4;
     private static final int STEP = 1;
-    private static final String NAME_DELIMITER = " : ";
-    private static final String TRACE = "-";
 
     private final String name;
     private int position;
@@ -45,15 +43,5 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car car) {
         return Integer.compare(this.position, car.position);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder trace = new StringBuilder();
-        trace.append(name).append(NAME_DELIMITER);
-        for (int i = 0; i < position; i++) {
-            trace.append(TRACE);
-        }
-        return trace.toString();
     }
 }

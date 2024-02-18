@@ -56,12 +56,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public String toString() {
-        StringBuilder allTrace = new StringBuilder();
-        for (Car car : cars) {
-            allTrace.append(car).append(System.lineSeparator());
-        }
-        return allTrace.toString();
+    public List<Car> getCars() {
+        return cars;
     }
 }
