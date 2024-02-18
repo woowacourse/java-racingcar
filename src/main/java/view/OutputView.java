@@ -9,8 +9,8 @@ public class OutputView {
 
     private final MessageResolver messageResolver;
 
-    public OutputView(MessageResolver messageResolver) {
-        this.messageResolver = messageResolver;
+    public OutputView() {
+        this.messageResolver = new MessageResolver();
     }
 
     public void printResultPrefix() {
