@@ -1,7 +1,7 @@
 package racingcar;
 
-import racingcar.io.InputView;
-import racingcar.io.OutputView;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingApplication {
 

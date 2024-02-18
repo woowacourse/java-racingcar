@@ -1,4 +1,4 @@
-package racingcar.io.validator;
+package racingcar.view.validator;
 
 public class InputValidator {
 

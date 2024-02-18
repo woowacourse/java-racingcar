@@ -7,8 +7,8 @@ import racingcar.domain.CarAccelerator;
 import racingcar.domain.Cars;
 import racingcar.domain.Referee;
 import racingcar.domain.TryCount;
-import racingcar.io.InputView;
-import racingcar.io.OutputView;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 
 public class CarRacing {
