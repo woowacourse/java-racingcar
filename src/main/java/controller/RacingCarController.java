@@ -22,8 +22,8 @@ public class RacingCarController {
         Cars cars = RetryOnException.retryInputOnIllegalArgumentException(() -> new Cars(createCars()));
         int tryNumber = RetryOnException.retryInputOnIllegalArgumentException(inputView::inputTryNumber);
         race(tryNumber, cars);
-        List<Car> winners = cars.findWinners();
-        List<String> winnerNames = winners.stream().map(Car::getCarName).toList();
+        List<String> winnerNames = cars.findWinnerNames();
+        ;
         outputView.printWinner(winnerNames);
     }
 

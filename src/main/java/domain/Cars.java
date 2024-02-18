@@ -17,10 +17,11 @@ public class Cars {
         cars.forEach(car -> car.move(movesGenerator.doMove()));
     }
 
-    public List<Car> findWinners() {
+    public List<String> findWinnerNames() {
         int maxMovement = getMaxMovement();
         return cars.stream()
                 .filter(car -> car.getMovement() == maxMovement)
+                .map(Car::getCarName)
                 .toList();
     }
 
