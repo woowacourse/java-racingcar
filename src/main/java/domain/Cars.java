@@ -44,7 +44,7 @@ public class Cars {
     public List<CarStatus> race() {
         cars.forEach(Car::move);
         return cars.stream()
-                .map(Car::getStatus)
+                .map(car -> new CarStatus(car.getName(), car.getDistance()))
                 .toList();
     }
 

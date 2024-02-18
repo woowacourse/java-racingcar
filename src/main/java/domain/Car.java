@@ -43,10 +43,6 @@ public class Car {
         return distance.equals(this.distance);
     }
 
-    public CarStatus getStatus() {
-        return new CarStatus(getName(), getDistance());
-    }
-
     public String getName() {
         return name.name();
     }
