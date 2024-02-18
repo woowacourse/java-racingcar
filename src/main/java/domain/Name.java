@@ -12,10 +12,6 @@ public class Name {
         this.name = name;
     }
 
-    public static Name empty() {
-        return new Name(" ");
-    }
-
     public static Name from(String name) {
         return new Name(name);
     }

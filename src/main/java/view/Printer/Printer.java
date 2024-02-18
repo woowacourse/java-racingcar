@@ -1,9 +1,16 @@
 package view.Printer;
 
-public interface Printer {
-    void printLine(String message);
+public class Printer {
+    public void printLine(String message) {
+        System.out.println(message);
+    }
 
-    void printLine(String format, String... args);
+    public void printLine(String format, String... args) {
+        System.out.printf(format, args);
+        printEmptyLine();
+    }
 
-    void printEmptyLine();
+    public void printEmptyLine() {
+        System.out.println();
+    }
 }
