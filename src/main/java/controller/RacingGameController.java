@@ -4,6 +4,7 @@ import domain.Cars;
 import domain.MoveCount;
 import dto.GameResultDto;
 import service.RaceGameService;
+import util.Repeater;
 import view.InputView;
 import view.OutputView;
 
@@ -22,8 +23,8 @@ public class RacingGameController {
     }
 
     public void run() {
-        Cars cars = inputView.requestCars();
-        MoveCount moveCount = inputView.requestMoveCount();
+        Cars cars = Repeater.repeatUntilNoException(inputView::requestCars);
+        MoveCount moveCount = Repeater.repeatUntilNoException(inputView::requestMoveCount);
         GameResultDto gameResultDto = raceGameService.runRaceGame(cars, moveCount);
         outputView.printRaceResult(gameResultDto);
     }
