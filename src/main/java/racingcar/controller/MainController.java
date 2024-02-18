@@ -13,7 +13,7 @@ public class MainController {
 
     public void run() {
         CarRacingGame carRacingGame = initializeCarRacingGame();
-        List<RoundResult> roundResults = carRacingGame.race();
+        List<RoundResult> roundResults = carRacingGame.race(new RandomNumberGenerator());
 
         showRoundResults(roundResults);
         showWinners(carRacingGame.findWinners());

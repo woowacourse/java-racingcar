@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,10 +12,9 @@ public class CarRacingGame {
         this.round = round;
     }
 
-    public List<RoundResult> race() {
+    public List<RoundResult> race(NumberGenerator numberGenerator) {
         List<RoundResult> roundResults = new LinkedList<>();
 
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
         while (isPlayable()) {
             RoundResult roundResult = playRound(numberGenerator);
             roundResults.add(roundResult);
@@ -25,11 +23,11 @@ public class CarRacingGame {
         return roundResults;
     }
 
-    public boolean isPlayable() {
+    private boolean isPlayable() {
         return !round.isLast();
     }
 
-    public RoundResult playRound(NumberGenerator numberGenerator) {
+    private RoundResult playRound(NumberGenerator numberGenerator) {
         cars.moveCars(numberGenerator);
         round.decrease();
 
@@ -45,9 +43,5 @@ public class CarRacingGame {
         return cars.stream()
                 .map(Car::getName)
                 .toList();
-    }
-
-    public List<Car> getRoundResult() {
-        return Collections.unmodifiableList(cars.getCars());
     }
 }
