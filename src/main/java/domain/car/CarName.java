@@ -4,14 +4,21 @@ public class CarName {
     private static final int MAX_NAME_LENGTH = 5;
     private final String name;
 
-    public CarName(String name) {
-        name = name.strip();
-        validateName(name);
-        this.name = name;
+    public CarName(String carName) {
+        validateNonNull(carName);
+        carName = carName.strip();
+        validateName(carName);
+        this.name = carName;
+    }
+
+    private void validateNonNull(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("null 을 이름으로 사용할 수 없습니다.");
+        }
     }
 
     private static void validateName(String name) {
-        if (name == null || name.isBlank()) {
+        if (name.isBlank()) {
             throw new IllegalArgumentException("공백을 이름으로 사용할 수 없습니다.");
         }
 

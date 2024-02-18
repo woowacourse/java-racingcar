@@ -6,23 +6,27 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> names, NumberGenerator numberGenerator) {
-        if (names.isEmpty()) {
-            throw new IllegalArgumentException("이름이 입력되지 않았습니다.");
-        }
-        if (isDuplicated(names)) {
-            throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
-        }
-        this.cars = names.stream()
+    public Cars(List<String> carNames, NumberGenerator numberGenerator) {
+        validateNames(carNames);
+        this.cars = carNames.stream()
                 .map(name -> new Car(name, numberGenerator))
                 .toList();
     }
 
-    private static boolean isDuplicated(List<String> names) {
-        int distinctSize = (int) names.stream()
+    private static void validateNames(List<String> carNames) {
+        if (carNames.isEmpty()) {
+            throw new IllegalArgumentException("이름이 입력되지 않았습니다.");
+        }
+        if (isDuplicated(carNames)) {
+            throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
+        }
+    }
+
+    private static boolean isDuplicated(List<String> carNames) {
+        int distinctSize = (int) carNames.stream()
                 .distinct()
                 .count();
-        return distinctSize != names.size();
+        return distinctSize != carNames.size();
     }
 
     public Cars(List<Car> cars) {
