@@ -2,10 +2,10 @@ package controller;
 
 import domain.car.Car;
 import domain.car.Cars;
-import constant.CarConstant;
 import domain.name.Names;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
+import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -17,9 +17,13 @@ public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public GameController(InputView inputView, OutputView outputView) {
+    private final RandomNumberGenerator randomNumberGenerator;
+
+    public GameController(InputView inputView, OutputView outputView, RandomNumberGenerator randomNumberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.randomNumberGenerator = randomNumberGenerator;
+
     }
 
     public void startGame() {
@@ -59,6 +63,6 @@ public class GameController {
     }
 
     private int createPower() {
-        return new Random().nextInt(CarConstant.MAXIMUM_POWER);
+        return randomNumberGenerator.generate();
     }
 }
