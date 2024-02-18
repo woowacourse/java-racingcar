@@ -5,30 +5,30 @@ import java.util.Random;
 
 public class Race {
 
-    private static final Random RANDOM = new Random();
-    private static final int MAX_RANDOM_INT = 10;
-
     private final List<Car> cars;
+    private final MoveStrategy moveStrategy;
 
-    public Race(List<Car> cars) {
+    public Race(List<Car> cars, MoveStrategy moveStrategy) {
         this.cars = cars;
+        this.moveStrategy = moveStrategy;
     }
 
     public void move() {
-        cars.forEach(car -> {
-            int randomInt = RANDOM.nextInt(MAX_RANDOM_INT);
-            car.move(MoveStrategy.isMove(randomInt));
-        });
+        cars.forEach(car -> car.move(moveStrategy.isMove()));
     }
 
     public List<Car> findWinner() {
-        int maxPosition = cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
+        int maxPosition = getMaxPosition();
         return cars.stream()
                 .filter(car -> car.isSamePosition(maxPosition))
                 .toList();
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
     public List<Car> getCars() {
