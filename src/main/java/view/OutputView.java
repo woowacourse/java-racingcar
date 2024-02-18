@@ -1,14 +1,13 @@
 package view;
 
+import domain.RaceResult;
 import dto.CarStatus;
 import dto.TurnResult;
-import dto.WinnersResponse;
 import java.util.List;
 
 public class OutputView {
-    public void showResult(WinnersResponse rawWinners) {
-        List<String> winners = rawWinners.getNames();
-        String result = String.join(",", winners);
+    public void showResult(List<String> turnResults) {
+        String result = String.join(",", turnResults);
         System.out.println(result + "가 최종 우승했습니다.");
     }
 
@@ -16,8 +15,8 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void showStatus(List<TurnResult> result) {
-        for (TurnResult turnResult : result) {
+    public void showStatus(RaceResult result) {
+        for (TurnResult turnResult : result.getResult()) {
             showResult(turnResult);
         }
     }
