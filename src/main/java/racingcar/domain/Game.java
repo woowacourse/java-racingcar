@@ -14,11 +14,7 @@ public class Game {
         }
     };
 
-    public static Game from(final TryCount tryCount, final Cars cars) throws NumberFormatException {
-        return new Game(tryCount, cars);
-    }
-
-    private Game(final TryCount tryCount, final Cars cars) {
+    public Game(final TryCount tryCount, final Cars cars) {
         this.tryCount = tryCount;
         this.cars = cars;
     }

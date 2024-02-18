@@ -11,10 +11,14 @@ public class RacingCarGame {
     public void start() {
         Cars cars = requestUntilValidated(() -> Cars.from(InputView.readCarNames()));
         TryCount tryCount = requestUntilValidated(() -> TryCount.from(InputView.readTryCount()));
-        Game game = Game.from(tryCount, cars);
+        Game game = createGame(cars, tryCount);
         printResultLine();
         game.proceed();
         OutputView.printWinner(game.getWinner());
+    }
+
+    private static Game createGame(Cars cars, TryCount tryCount) {
+        return new Game(tryCount, cars);
     }
 
     private static void printResultLine() {
