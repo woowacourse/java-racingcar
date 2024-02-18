@@ -9,21 +9,21 @@ import view.OutputView;
 import java.util.List;
 
 
-public class RacingCarController {
+public class RacingCarGame {
 
     private final InputView inputView;
     private final OutputView outputView;
     private final RacingCarService racingCarService;
 
-    public RacingCarController(RacingCarService racingCarService, InputView inputView, OutputView outputView) {
+    public RacingCarGame(RacingCarService racingCarService, InputView inputView, OutputView outputView) {
         this.racingCarService = racingCarService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void run() {
+    public void start() {
         Cars cars = makeCars();
-        int count = getCount();
+        int count = makeCount();
 
         outputView.printMovementTitle();
 
@@ -40,20 +40,38 @@ public class RacingCarController {
 
         validateIsNull(carsName);
 
-        return racingCarService.makeCars(carsName);
-    }
-
-    private int getCount() {
-        String count = inputView.inputCount();
-
-        validateIsNull(count);
-
-        return racingCarService.getCount(count);
+        return new Cars(List.of(carsName.split(",")));
     }
 
     private void validateIsNull(String input) {
         if (input == null) {
             throw new IllegalArgumentException(Exceptions.NULL_EXCEPTION.getMessage());
+        }
+    }
+
+    private int makeCount() {
+        String count = inputView.inputCount();
+
+        validateIsNull(count);
+        validateNumberFormat(count);
+
+        int convertedCount = Integer.parseInt(count);
+        validateInvalidNumber(convertedCount);
+
+        return convertedCount;
+    }
+
+    private void validateNumberFormat(String rawCount) {
+        try {
+            Integer.parseInt(rawCount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Exceptions.NUMBER_FORMAT_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validateInvalidNumber(int count) {
+        if (count <= 0) {
+            throw new IllegalArgumentException(Exceptions.NUMBER_RANGE_EXCEPTION.getMessage());
         }
     }
 
