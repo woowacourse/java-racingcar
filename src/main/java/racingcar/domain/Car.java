@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 public class Car {
     private final int BOUND = 10;

@@ -1,10 +1,10 @@
 package racingcar.controller;
 
-import racingcar.model.RandomNumberGenerator;
+import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.model.Car;
-import racingcar.model.Referee;
+import racingcar.domain.Car;
+import racingcar.domain.Referee;
 
 import java.util.ArrayList;
 import java.util.List;
