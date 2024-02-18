@@ -8,10 +8,12 @@ import java.util.Set;
 import view.OutputView;
 
 public class Service {
-    private final List<Car> cars = new ArrayList<>();
-    private final List<String> winners = new ArrayList<>();
+    private final List<Car> cars;
+    private final List<String> winners;
 
     public Service() {
+        this.cars = new ArrayList<>();
+        this.winners = new ArrayList<>();
     }
 
     public List<String> separateCarName(String carNames) {
