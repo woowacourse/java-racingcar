@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class RacingGameTest {
 
-    @DisplayName("이동 횟수가 1 미만 숫자인 경우 예외를 발생한다.")
+    @DisplayName("경주 횟수가 1 미만 숫자인 경우 예외를 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-10000"})
     void exceptionCreateRacingGame(int numberOfRaces) {

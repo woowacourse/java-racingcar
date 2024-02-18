@@ -18,8 +18,8 @@ public class OutputView {
 
     public void printWinnerInfo(List<Car> winners) {
         List<String> winnerNames = winners.stream()
-                        .map(Car::getName)
-                                .toList();
+                .map(Car::getName)
+                .toList();
 
         System.out.printf("최종 우승자: %s%n", String.join(", ", winnerNames));
     }
