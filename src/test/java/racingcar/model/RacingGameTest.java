@@ -42,7 +42,7 @@ public class RacingGameTest {
         Assertions.assertThat(cars.stream().map(Car::getProgress).toList()).isEqualTo(expected);
     }
 
-    @DisplayName("자동차는 룰의 조건에 따라 전진하지 않기도 한다.")
+    @DisplayName("자동차는 룰에 따라 전진하지 않기도 한다.")
     @Test
     void stopTest() {
         //given
@@ -89,7 +89,7 @@ public class RacingGameTest {
     }
 
     @Test
-    @DisplayName("Cars 중 가장 긴 거리를 이동한 차들로만 새로운 List를 반환한다.")
+    @DisplayName("Cars 중 가장 긴 거리를 이동한 차들을 반환한다.")
     void filterWinningCars() throws Exception{
         //given
         List<Car> originCar = List.of(new Car("car1"), new Car("car2"), new Car("car3"));

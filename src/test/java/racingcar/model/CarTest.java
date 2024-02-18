@@ -11,6 +11,7 @@ import racingcar.domain.model.Car;
 class CarTest {
 
     @Test
+    @DisplayName("자동차는 이동할때 1씩 전진한다.")
     void moveTest() {
         Car car = new Car("자동차1");
 
