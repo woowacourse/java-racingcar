@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -47,7 +46,15 @@ public class Cars {
         cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+    public int getCarPositionOf(int index) {
+        return cars.get(index).getPosition();
+    }
+
+    public String getCarNameOf(int index) {
+        return cars.get(index).getName();
+    }
+
+    public int getSize() {
+        return cars.size();
     }
 }

@@ -1,12 +1,11 @@
 package controller;
 
-import domain.Car;
 import domain.CarFactory;
 import domain.Cars;
 import domain.NumberGenerator;
 import domain.RandomNumberGenerator;
 import domain.Rap;
-import domain.Winners;
+import domain.Winner;
 import util.StringConvertor;
 import view.ExceptionRetryHandler;
 import view.InputView;
@@ -26,7 +25,7 @@ public class RacingController {
         Cars cars = createCars(receiveCarNames());
         Rap rap = createRap(receiveTryCount());
         racing(cars, rap);
-        outputView.printWinners(Winners.from(cars));
+        outputView.printWinner(Winner.from(cars));
     }
 
     private String receiveCarNames() {

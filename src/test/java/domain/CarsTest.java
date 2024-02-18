@@ -84,9 +84,7 @@ class CarsTest {
         @ValueSource(ints = {0, 1, 2, 3})
         void carsStopTest(int number) {
             cars.moveAll(new FakeNumberGenerator(number));
-            List<Integer> carPositions = cars.getCars().stream()
-                    .map(Car::getPosition)
-                    .toList();
+            List<Integer> carPositions = createCarPositionsFrom(cars);
             assertThat(carPositions).containsExactly(0, 0);
         }
 
@@ -95,10 +93,16 @@ class CarsTest {
         @ValueSource(ints = {4, 5, 6, 7, 8, 9})
         void carsMoveTest(int number) {
             cars.moveAll(new FakeNumberGenerator(number));
-            List<Integer> carPositions = cars.getCars().stream()
-                    .map(Car::getPosition)
-                    .toList();
+            List<Integer> carPositions = createCarPositionsFrom(cars);
             assertThat(carPositions).containsExactly(1, 1);
+        }
+
+        private List<Integer> createCarPositionsFrom(Cars cars) {
+            List<Integer> carPositions = new ArrayList<>();
+            for (int i = 0; i < cars.getSize(); i++) {
+                carPositions.add(cars.getCarPositionOf(i));
+            }
+            return carPositions;
         }
     }
 }
