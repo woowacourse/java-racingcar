@@ -1,7 +1,5 @@
 package racingcar.view;
 
-import racingcar.dto.CarDto;
-
 import java.util.List;
 import java.util.Map;
 
@@ -34,17 +32,9 @@ public class OutputView {
         System.out.println(informationBuilder);
     }
 
-    public static void printWinners(List<CarDto> winners) {
-        List<String> winnerNames = findWinnerNames(winners);
-        String names = String.join(WINNER_DELIMITER, winnerNames);
-
+    public static void printWinners(List<String> winners) {
+        String names = String.join(WINNER_DELIMITER, winners);
         System.out.println(names.concat(WINNERS_MESSAGE));
-    }
-
-    private static List<String> findWinnerNames(List<CarDto> winners) {
-        return winners.stream()
-                .map(CarDto::getName)
-                .toList();
     }
 
     public static void printErrorMessage(String errorMessage) {

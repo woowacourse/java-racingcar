@@ -42,7 +42,7 @@ class CarRacingGameTest {
     @Test
     @DisplayName("우승자를 구할 수 있다.")
     void findWinners() {
-        List<Car> winners = carRacingGame.findWinners();
+        List<String> winners = carRacingGame.findWinners();
         assertThat(winners.size()).isEqualTo(3);
     }
 }

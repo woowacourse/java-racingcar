@@ -1,7 +1,6 @@
 package racingcar.controller;
 
 import racingcar.domain.*;
-import racingcar.dto.CarDto;
 import racingcar.utils.Converter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -49,16 +48,8 @@ public class MainController {
         });
     }
 
-    private void showWinners(List<Car> winners) {
-        List<CarDto> winnersDto = toDto(winners);
-
-        OutputView.printWinners(winnersDto);
-    }
-
-    private List<CarDto> toDto(List<Car> roundResult) {
-        return roundResult.stream()
-                .map(CarDto::new)
-                .toList();
+    private void showWinners(List<String> winners) {
+        OutputView.printWinners(winners);
     }
 
     private <T> T repeatTemplate(Supplier<T> inputReader) {

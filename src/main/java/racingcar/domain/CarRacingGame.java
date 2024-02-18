@@ -36,8 +36,15 @@ public class CarRacingGame {
         return new RoundResult(cars.getCars());
     }
 
-    public List<Car> findWinners() {
-        return cars.findCarsAtMaxPosition();
+    public List<String> findWinners() {
+        List<Car> carsAtMaxPosition = cars.findCarsAtMaxPosition();
+        return findWinnerNamesBy(carsAtMaxPosition);
+    }
+
+    private List<String> findWinnerNamesBy(List<Car> cars) {
+        return cars.stream()
+                .map(Car::getName)
+                .toList();
     }
 
     public List<Car> getRoundResult() {
