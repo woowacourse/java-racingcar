@@ -16,7 +16,6 @@ public class Car implements Comparable<Car> {
     }
 
     public Car(String name, int location) {
-        validateCarName(name);
         this.name = name;
         this.location = location;
     }
