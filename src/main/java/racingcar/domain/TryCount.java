@@ -1,10 +1,12 @@
 package racingcar.domain;
 
+import java.util.stream.IntStream;
+
 public class TryCount {
     private static final int MIN_TRY_COUNT = 1;
     private static final int MAX_TRY_COUNT = 1_000;
 
-    private int tryCount;
+    private final int tryCount;
 
     public TryCount(final int tryCount) {
         validateTryCountRange(tryCount);
@@ -22,11 +24,8 @@ public class TryCount {
         }
     }
 
-    public void tryOne() {
-        tryCount--;
-    }
-
-    public boolean isNotFinish() {
-        return tryCount != 0;
+    public void execute(Runnable action) {
+        IntStream.rangeClosed(1, tryCount)
+                .forEach(i -> action.run());
     }
 }

@@ -51,10 +51,7 @@ public class RacingCarGameMachine {
 
     private void proceedRounds(final Cars cars, final TryCount tryCount) {
         OutputView.printResultSubject();
-        while (tryCount.isNotFinish()) {
-            tryCount.tryOne();
-            proceedOneRound(cars);
-        }
+        tryCount.execute(() -> proceedOneRound(cars));
     }
 
     private void proceedOneRound(final Cars cars) {
