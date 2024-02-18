@@ -1,58 +1,38 @@
 package domain;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Cars {
-    private final List<Car> carList;
+	private final List<Car> cars;
 
-    public Cars(List<Car> carList) {
-        this.carList = carList;
-    }
+	public Cars(List<Car> cars) {
+		this.cars = cars;
+	}
 
-    public void moveAll(List<Integer> randomNumbers) {
-        validateSize(randomNumbers);
-        for (int index = 0; index < randomNumbers.size(); index++) {
-            Car car = carList.get(index);
-            int randomNumber = randomNumbers.get(index);
-            car.move(randomNumber);
-        }
-    }
+	public void moveAll() {
+		cars.forEach(Car::move);
+	}
 
-    private void validateSize(List<Integer> randomNumbers) {
-        if (randomNumbers.size() != getCount()) {
-            throw new IllegalArgumentException("[ERROR] 갯수 불일치");
-        }
-    }
+	public Map<String, Integer> getCurrentLocations() {
+		Map<String, Integer> locations = new LinkedHashMap<>();
 
-    public int getLargestLocation() {
-        return carList.stream()
-                .mapToInt(Car::getCarLocation)
-                .max()
-                .getAsInt();
-    }
+		cars.forEach(car -> locations.put(car.getCarName(), car.getCarLocation()));
+		return locations;
+	}
 
-    public List<Car> getCarList() {
-        return Collections.unmodifiableList(carList);
-    }
+	public int getLargestLocation() {
+		return cars.stream()
+			.mapToInt(Car::getCarLocation)
+			.max()
+			.getAsInt();
+	}
 
-    public Map<String, Integer> getCurrentLocations() {
-        Map<String, Integer> locations = new LinkedHashMap<>();
-
-        carList.forEach(car -> locations.put(car.getCarName(), car.getCarLocation()));
-        return locations;
-    }
-
-    public List<String> getLargestLocationCarsName() {
-        return carList.stream()
-            .filter(car -> car.getCarLocation() == getLargestLocation())
-            .map(Car::getCarName)
-            .toList();
-    }
-
-    public int getCount() {
-        return carList.size();
-    }
+	public List<String> getLargestLocationCarsName() {
+		return cars.stream()
+			.filter(car -> car.getCarLocation() == getLargestLocation())
+			.map(Car::getCarName)
+			.toList();
+	}
 }
