@@ -26,6 +26,9 @@ class CarsTest {
         Car baeky = new Car("배키", movement[1]);
         Cars cars = new Cars(List.of(myungOh, baeky));
         List<Car> result = cars.findWinners();
+        System.out.println(result);
+        System.out.println(expected);
+
 
         assertThat(result).isEqualTo(expected);
     }
