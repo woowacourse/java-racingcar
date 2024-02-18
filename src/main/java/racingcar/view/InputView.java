@@ -17,12 +17,12 @@ public class InputView {
         return input;
     }
 
-    public static String inputRound() {
+    public static int inputRound() {
         System.out.println(INPUT_ROUND_MESSAGE);
         String input = scanner.nextLine();
 
         validateRound(input);
-        return input;
+        return Integer.parseInt(input);
     }
 
     private static void validateInput(String input) {

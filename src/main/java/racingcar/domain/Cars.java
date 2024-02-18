@@ -1,27 +1,16 @@
 package racingcar.domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class Cars {
-    private static final String CAR_NAME_DELIMITER = ",";
     private static final int MINIMUM_CARS_SIZE = 1;
 
     private final List<Car> cars;
 
-    public Cars(String inputCarNames) {
-        List<Car> cars = mapCar(inputCarNames);
+    public Cars(List<Car> cars) {
         validateCars(cars);
-
         this.cars = cars;
-    }
-
-    private List<Car> mapCar(String inputCarNames) {
-        return Arrays.stream(inputCarNames.split(CAR_NAME_DELIMITER))
-                .map(String::trim)
-                .map(Car::new)
-                .toList();
     }
 
     private void validateCars(List<Car> cars) {

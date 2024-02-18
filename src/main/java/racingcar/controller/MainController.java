@@ -1,14 +1,14 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.CarRacingGame;
-import racingcar.domain.RoundResult;
+import racingcar.domain.*;
 import racingcar.dto.CarDto;
+import racingcar.utils.Converter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class MainController {
 
@@ -22,9 +22,15 @@ public class MainController {
 
     private CarRacingGame initializeCarRacingGame() {
         String inputCarNames = InputView.inputCarNames();
-        String inputRound = InputView.inputRound();
+        List<String> carNames = Converter.convert(inputCarNames);
+        Cars cars = carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Cars::new));
 
-        return new CarRacingGame(inputCarNames, inputRound);
+        int inputRound = InputView.inputRound();
+        Round round = new Round(inputRound);
+
+        return new CarRacingGame(cars, round);
     }
 
     private void showRoundResults(List<RoundResult> roundResults) {

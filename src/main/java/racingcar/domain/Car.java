@@ -14,7 +14,7 @@ public class Car {
     }
 
     private void validateName(final String name) {
-        if (name.isBlank() || name.length() > 5) {
+        if (name.isBlank() || name.length() > MAXIMUM_LENGTH_OF_NAME) {
             throw new IllegalArgumentException(
                     String.format("자동차의 이름은 공백이거나 %d자를 초과할 수 없습니다.", MAXIMUM_LENGTH_OF_NAME));
         }

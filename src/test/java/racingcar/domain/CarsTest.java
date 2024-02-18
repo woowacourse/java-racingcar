@@ -5,8 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,14 +17,17 @@ class CarsTest {
 
     @BeforeEach
     void setUp() {
-        cars = new Cars("pobi,crong,honux");
+        cars = new Cars(
+                List.of(new Car("pobi"), new Car("crong"), new Car("honux"))
+        );
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"", "pobi,pobi"})
+    @Test
     @DisplayName("자동차의 수가 1보다 작거나, 중복되는 이름을 가지면 예외가 발생한다.")
-    void duplicateCarNamesTest(String input) {
-        assertThrows(IllegalArgumentException.class, () -> new Cars(input));
+    void invalidCarNamesTest() {
+        assertThrows(IllegalArgumentException.class, () -> new Cars(Collections.emptyList()));
+        assertThrows(IllegalArgumentException.class, () ->
+                new Cars(List.of(new Car("pobi"), new Car("pobi"))));
     }
 
     @ParameterizedTest
