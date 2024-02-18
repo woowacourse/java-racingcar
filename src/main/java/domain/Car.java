@@ -3,6 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Car {
+    public static final int MINIMUM_LENGTH = 5;
     public String name;
     public int location;
 
@@ -15,7 +16,7 @@ public class Car {
     private void validator(String name) {
         Objects.requireNonNull(name, ErrorMessage.NULL_NAME.getMessage());
 
-        if (name.length() > 5) {
+        if (name.length() > MINIMUM_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.LENGTH_EXCEEDED.getMessage());
         }
 

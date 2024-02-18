@@ -8,6 +8,7 @@ import view.InputView;
 import view.OutputView;
 
 public class Controller {
+    public static final int MINIMUM_ATTEMPT_LIMIT = 1;
     private final Service service;
     private final OutputView outputView;
     private final InputView inputView;
@@ -21,8 +22,7 @@ public class Controller {
     public void run() {
         inputCarName();
         service.playGame(inputAttemptLimit());
-        List<String> winners = service.getWinnerName();
-        outputView.printWinners(winners);
+        outputView.printWinners(service.getWinnerName());
     }
 
     private List<Car> inputCarName() {
@@ -30,7 +30,7 @@ public class Controller {
             String inputCarName = inputView.requestCarName();
             return service.setCars(service.separateCarName(inputCarName));
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            System.out.println(e.getMessage());
             return inputCarName();
         }
     }
@@ -42,7 +42,7 @@ public class Controller {
             validateNumber(attemptLimit);
             return attemptLimit;
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            System.out.println(e.getMessage());
             return inputAttemptLimit();
         }
     }
@@ -56,7 +56,7 @@ public class Controller {
     }
 
     public void validateNumber(int inputAttemptLimit) {
-        if (inputAttemptLimit <= 0) {
+        if (inputAttemptLimit < MINIMUM_ATTEMPT_LIMIT) {
             throw new IllegalArgumentException(ErrorMessage.POSITIVE_NUMBER_REQUIRED.getMessage());
         }
     }

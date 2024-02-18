@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import view.OutputView;
 
 public class Service {
+    public static final int MOVE_NUMBER = 4;
     private final List<Car> cars;
 
     public Service() {
@@ -23,13 +24,9 @@ public class Service {
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
-        validateCar();
-        return cars;
-    }
-
-    private void validateCar() {
         validateCarAmount();
         validateDuplicateName();
+        return cars;
     }
 
     private void validateCarAmount() {
@@ -42,17 +39,13 @@ public class Service {
         int duplication = 0;
         Set<String> validateCar = new HashSet<>();
         for (Car car : cars) {
-            duplication = validateDuplication(car.getCarName(), validateCar);
+            validateCar.add(car.getCarName());
+            duplication = validateCar.size();
         }
 
         if (cars.size() != duplication) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NAME.getMessage());
         }
-    }
-
-    private int validateDuplication(String carName, Set<String> validateCar) {
-        validateCar.add(carName);
-        return validateCar.size();
     }
 
     public void playGame(int attemptLimit) {
@@ -63,18 +56,6 @@ public class Service {
             OutputView.printResult(cars);
             count++;
         }
-    }
-
-    public List<String> getWinnerName() {
-        int max = cars.stream()
-                .mapToInt(Car::getLocation)
-                .max()
-                .orElse(-1);
-
-        return cars.stream()
-                .filter(car -> car.getLocation() == max)
-                .map(Car::getCarName)
-                .collect(Collectors.toList());
     }
 
     private void playRacing() {
@@ -89,9 +70,21 @@ public class Service {
     }
 
     private void goOrStop(Car car, int randomNumber) {
-        if (randomNumber >= 4) {
+        if (randomNumber >= MOVE_NUMBER) {
             car.incLocation();
         }
+    }
+
+    public List<String> getWinnerName() {
+        int max = cars.stream()
+                .mapToInt(Car::getLocation)
+                .max()
+                .orElse(-1);
+
+        return cars.stream()
+                .filter(car -> car.getLocation() == max)
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {

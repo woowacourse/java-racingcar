@@ -7,10 +7,6 @@ public class OutputView {
     public OutputView() {
     }
 
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
     public static void printHeadLine() {
         System.out.println();
         System.out.println("실행 결과");
@@ -31,7 +27,7 @@ public class OutputView {
         System.out.println("가 최종 우승했습니다.");
     }
 
-    private static void printComma(List<String> winners, String name) {
+    private void printComma(List<String> winners, String name) {
         if (winners.indexOf(name) != winners.size() - 1) {
             System.out.print(", ");
         }
