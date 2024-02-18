@@ -2,7 +2,6 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import racingcar.message.ErrorMessage;
@@ -59,7 +58,7 @@ public class Cars {
 
     public Car findWinner() {
         return cars.stream()
-                .max(Comparator.naturalOrder())
+                .reduce((car, car2) -> car.isWin(car2) ? car : car2)
                 .orElseThrow();
     }
 

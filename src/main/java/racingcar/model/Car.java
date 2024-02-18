@@ -2,7 +2,7 @@ package racingcar.model;
 
 import java.util.Objects;
 
-public class Car implements Comparable<Car> {
+public class Car {
 
     private static final int MIN_NUMBER = 4;
     private static final int START_POSITION = 0;
@@ -23,6 +23,10 @@ public class Car implements Comparable<Car> {
         if (generator.generate() >= MIN_NUMBER) {
             position++;
         }
+    }
+
+    public boolean isWin(Car river) {
+        return position > river.position;
     }
 
     public Car copy() {
@@ -55,11 +59,6 @@ public class Car implements Comparable<Car> {
     @Override
     public int hashCode() {
         return Objects.hash(getName());
-    }
-
-    @Override
-    public int compareTo(Car target) {
-        return Integer.compare(this.position, target.position);
     }
 
     @Override
