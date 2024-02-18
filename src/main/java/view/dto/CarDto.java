@@ -1,6 +1,6 @@
 package view.dto;
 
-import model.Car;
+import domain.Car;
 
 public class CarDto {
 

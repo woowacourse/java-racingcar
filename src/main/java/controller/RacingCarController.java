@@ -1,11 +1,11 @@
 package controller;
 
+import domain.Car;
+import domain.Cars;
 import java.util.List;
-import model.Car;
-import model.Cars;
-import view.RetryOnException;
 import view.InputView;
 import view.OutputView;
+import view.RetryOnException;
 import view.dto.CarDto;
 
 public class RacingCarController {
