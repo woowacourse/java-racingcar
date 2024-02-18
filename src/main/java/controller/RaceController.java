@@ -8,7 +8,7 @@ import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class RaceManager {
+public class RaceController {
     private final InputView inputView;
     private final OutputView outputView;
     private final RacingCars racingCars;
@@ -16,7 +16,7 @@ public class RaceManager {
     private final NumberGenerator numberGenerator;
     private final int numberOfAttempts;
 
-    public RaceManager(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
+    public RaceController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.racingCars = repeatUntilGetValidCarNames();
