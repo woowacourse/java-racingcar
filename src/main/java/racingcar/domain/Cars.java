@@ -41,7 +41,7 @@ public record Cars(List<Car> cars) {
         return cars.stream()
                 .mapToInt(Car::getMovedDistance)
                 .max()
-                .orElseThrow(IllegalStateException::new);
+                .orElse(0);
     }
 
     @Override
