@@ -14,6 +14,7 @@ public class OutputView {
     public void writeResultMessage() {
         System.out.println(LINE_SEPARATOR + RACING_RESULT_ANNOUNCE);
     }
+
     public void writeRoundResult(List<String> racingResult) {
         String allResult = String.join(LINE_SEPARATOR, racingResult);
         System.out.println(allResult + LINE_SEPARATOR);
