@@ -1,6 +1,6 @@
 package model;
 
-import common.Exception;
+import response.Exception;
 
 public class TrialCount {
   private int number;
