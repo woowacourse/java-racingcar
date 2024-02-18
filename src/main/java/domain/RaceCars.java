@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class RaceCars {
+    private static final int MIN_CAR_AMOUNT = 1;
     private final List<Car> cars;
     private final NumberGenerator numberGenerator;
 
@@ -15,7 +16,7 @@ public class RaceCars {
     }
 
     private void validateCarsSize(List<Car> cars) {
-        if (cars.size() <= 1) {
+        if (cars.size() <= MIN_CAR_AMOUNT) {
             throw new IllegalArgumentException("이름을 2개 이상 입력하세요.");
         }
     }
