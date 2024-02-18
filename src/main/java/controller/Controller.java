@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Car;
+import domain.ErrorMessage;
 import domain.Service;
 import java.util.List;
 import view.InputView;
@@ -50,13 +51,13 @@ public class Controller {
         try {
             return Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 정수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INTEGER_REQUIRED.getMessage());
         }
     }
 
     public void validateNumber(int inputAttemptLimit) {
         if (inputAttemptLimit <= 0) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 양수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.POSITIVE_NUMBER_REQUIRED.getMessage());
         }
     }
 }

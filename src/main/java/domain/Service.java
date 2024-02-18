@@ -32,6 +32,12 @@ public class Service {
         validateDuplicateName();
     }
 
+    private void validateCarAmount() {
+        if (cars.size() == 1) {
+            throw new IllegalArgumentException(ErrorMessage.MULTIPLE_CARS_REQUIRED.getMessage());
+        }
+    }
+
     private void validateDuplicateName() {
         int duplication = 0;
         Set<String> validateCar = new HashSet<>();
@@ -40,19 +46,13 @@ public class Service {
         }
 
         if (cars.size() != duplication) {
-            throw new IllegalArgumentException("[ERROR] 중복된 이름이 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NAME.getMessage());
         }
     }
 
     private int validateDuplication(String carName, Set<String> validateCar) {
         validateCar.add(carName);
         return validateCar.size();
-    }
-
-    private void validateCarAmount() {
-        if (cars.size() == 1) {
-            throw new IllegalArgumentException("[ERROR] 경주할 자동차를 두 대 이상 입력해주세요.");
-        }
     }
 
     public void playGame(int attemptLimit) {
