@@ -1,11 +1,11 @@
 package view;
 
-import java.util.stream.Collectors;
-
-import domain.Car;
-import domain.Cars;
+import java.util.List;
+import java.util.Map;
 
 public class OutputView {
+
+	private static final String CAR_LOCATION_FORMAT = "%s : %s\n";
 
 	public void printResultPrefix() {
 		System.out.println();
@@ -13,19 +13,16 @@ public class OutputView {
 	}
 
 
-	public void printCurrentRace(Cars cars) {
-		cars.getCarList().forEach(car -> {
-			System.out.printf("%s : %s\n", car.getCarName(), "-".repeat(car.getCarLocation()));
+	public void printCurrentLocations(Map<String, Integer> carLocations) {
+		carLocations.forEach((name, location) -> {
+			String locationToDisplay = "-".repeat(location);
+			System.out.printf(CAR_LOCATION_FORMAT, name, locationToDisplay);
 		});
 		System.out.println();
 	}
 
-	public void printWinners(Cars cars) {
-		String winners = cars.getCarList().stream()
-			.filter(car -> car.getCarLocation() == cars.getMaxLocation())
-			.map(Car::getCarName)
-			.collect(Collectors.joining(", ")) + "가 최종 우승했습니다.";
-		;
-		System.out.println(winners);
+	public void printWinners(List<String> winnersName) {
+		String suffix = "가 최종 우승했습니다.";
+		System.out.println(String.join(", ", winnersName) + suffix);
 	}
 }

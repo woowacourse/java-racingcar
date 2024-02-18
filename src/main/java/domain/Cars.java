@@ -1,7 +1,10 @@
 package domain;
 
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> carList;
@@ -34,6 +37,20 @@ public class Cars {
 
     public List<Car> getCarList() {
         return Collections.unmodifiableList(carList);
+    }
+
+    public Map<String, Integer> getCurrentLocations() {
+        Map<String, Integer> locations = new LinkedHashMap<>();
+
+        carList.forEach(car -> locations.put(car.getCarName(), car.getCarLocation()));
+        return locations;
+    }
+
+    public List<String> getLargestLocationCarsName() {
+        return carList.stream()
+            .filter(car -> car.getCarLocation() == getMaxLocation())
+            .map(Car::getCarName)
+            .toList();
     }
 
     public int getCount() {
