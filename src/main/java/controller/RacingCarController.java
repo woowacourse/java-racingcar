@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+import model.Car;
+import model.Cars;
 import model.Game;
 import model.TrialCount;
 import view.InputView;
@@ -16,13 +19,18 @@ public class RacingCarController {
   }
 
   public void run() throws IOException {
-    Game game = new Game(inputView.inputCarsName());
+    Game game = new Game();
+    Cars cars = new Cars(convertToCar(inputView.inputCarsName()));
     TrialCount trialCount = new TrialCount(inputView.inputTrialCount());
     outputView.printResultComment();
     while (trialCount.isRest()) {
-      outputView.printResult(game.proceed());
+      outputView.printResult(game.proceed(cars));
       trialCount.reduce();
     }
-    outputView.printWinner(game.findWinners());
+    outputView.printWinner(game.winners(cars));
+  }
+
+  private List<Car> convertToCar(List<String> carNames) {
+    return carNames.stream().map(Car::new).toList();
   }
 }
