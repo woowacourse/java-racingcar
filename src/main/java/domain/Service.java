@@ -5,15 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 import view.OutputView;
 
 public class Service {
     private final List<Car> cars;
-    private final List<String> winners;
 
     public Service() {
         this.cars = new ArrayList<>();
-        this.winners = new ArrayList<>();
     }
 
     public List<String> separateCarName(String carNames) {
@@ -67,26 +66,15 @@ public class Service {
     }
 
     public List<String> getWinnerName() {
-        int max = -1;
-        for (Car car : cars) {
-            int location = car.getLocation();
-            max = updateWinner(max, location, car);
-        }
+        int max = cars.stream()
+                .mapToInt(Car::getLocation)
+                .max()
+                .orElse(-1);
 
-        return winners;
-    }
-
-    private int updateWinner(int max, int location, Car car) {
-        if (max == location) {
-            winners.add(car.getCarName());
-        }
-
-        if (max < location) {
-            max = location;
-            winners.clear();
-            winners.add(car.getCarName());
-        }
-        return max;
+        return cars.stream()
+                .filter(car -> car.getLocation() == max)
+                .map(Car::getCarName)
+                .collect(Collectors.toList());
     }
 
     private void playRacing() {
