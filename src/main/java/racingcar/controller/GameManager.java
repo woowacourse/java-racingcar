@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Car;
+import racingcar.util.RandomGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -35,8 +36,7 @@ public class GameManager {
     }
 
     private void moveCar(Car car) {
-        int randomNumber = ThreadLocalRandom.current().nextInt(MAX_RANDOM_NUMBER + 1);
-        if (randomNumber >= MINIMUM_MOVEMENT_CONDITION) {
+        if (RandomGenerator.generateRandomNumber(MAX_RANDOM_NUMBER + 1) >= MINIMUM_MOVEMENT_CONDITION) {
             car.moveCar();
         }
     }
