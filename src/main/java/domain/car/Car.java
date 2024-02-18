@@ -3,11 +3,11 @@ package domain.car;
 import domain.name.Name;
 
 public class Car {
-    private static final int INITIAL_POSITION=0;
+    private static final int INITIAL_POSITION = 0;
     public static final int FORWARD_MAX_NUMBER = 10;
+    private static final int FORWARD_THRESHOLD = 4;
     private final Name name;
     private int position;
-    private static final int FORWARD_THRESHOLD = 4;
 
     public Car(Name name) {
         this.name = name;
@@ -28,8 +28,8 @@ public class Car {
         }
     }
 
-    public boolean comparePosition(int position){
-        if(this.position==position){
+    public boolean comparePosition(int position) {
+        if (this.position == position) {
             return true;
         }
         return false;
