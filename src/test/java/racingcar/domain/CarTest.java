@@ -46,8 +46,8 @@ class CarTest {
     @DisplayName("4 이상의 값을 받으면 자동차가 이동한다")
     void moveCar() {
         //given
-        Car car = new Car("pobi");
-        Accelerator testMoveForwardAccelerator = new TestMoveForwardAccelerator();
+        final Car car = new Car("pobi");
+        final Accelerator testMoveForwardAccelerator = new TestMoveForwardAccelerator();
         //when
         car.moveForward(testMoveForwardAccelerator);
         //then
@@ -58,8 +58,8 @@ class CarTest {
     @DisplayName("3 이하의 값을 받으면 자동차가 이동하지 않는다.")
     void doNotMoveCar() {
         //given
-        Car car = new Car("pobi");
-        Accelerator testStopAccelerator = new TestStopAccelerator();
+        final Car car = new Car("pobi");
+        final Accelerator testStopAccelerator = new TestStopAccelerator();
         //when
         car.moveForward(testStopAccelerator);
         //then

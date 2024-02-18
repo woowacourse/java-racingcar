@@ -8,26 +8,26 @@ import java.util.Map;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public Cars(final List<Car> cars) {
         validate(cars);
 
         this.cars = cars;
     }
 
-    private void validate(List<Car> cars) {
+    private void validate(final List<Car> cars) {
         validateCarSize(cars);
         validateCarNameDuplication(cars);
     }
 
-    private void validateCarSize(List<Car> cars) {
+    private void validateCarSize(final List<Car> cars) {
         if (cars.size() <= 1) {
             throw new IllegalArgumentException("자동차 경주를 위해선 2대 이상의 자동차가 필요합니다.");
         }
     }
 
-    private void validateCarNameDuplication(List<Car> cars) {
-        int actualCarAmount = cars.size();
-        long distinctCarAmount = cars.stream()
+    private void validateCarNameDuplication(final List<Car> cars) {
+        final int actualCarAmount = cars.size();
+        final long distinctCarAmount = cars.stream()
                 .map(Car::getName)
                 .distinct()
                 .count();
@@ -36,7 +36,7 @@ public class Cars {
         }
     }
 
-    public void tryMove(Accelerator accelerator) {
+    public void tryMove(final Accelerator accelerator) {
         for (Car car : cars) {
             car.moveForward(accelerator);
         }
@@ -47,7 +47,7 @@ public class Cars {
     }
 
     public Map<String, Integer> getCarsPosition() {
-        Map<String, Integer> carsPosition = new HashMap<>();
+        final Map<String, Integer> carsPosition = new HashMap<>();
 
         for (Car car : cars) {
             carsPosition.put(car.getName(), car.getPosition());

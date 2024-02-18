@@ -13,9 +13,9 @@ class CarsTest {
     @DisplayName("입력받은 자동차의 개수가 2대 이상이면 객체 생성에 성공한다")
     void createCarsSuccess() {
         //given
-        Car car1 = new Car("pobi");
-        Car car2 = new Car("crong");
-        List<Car> carInfos = List.of(car1, car2);
+        final Car car1 = new Car("pobi");
+        final Car car2 = new Car("crong");
+        final List<Car> carInfos = List.of(car1, car2);
         //when
         //then
         assertThatCode(() -> new Cars(carInfos))
@@ -26,8 +26,8 @@ class CarsTest {
     @DisplayName("입력받은 자동차의 개수가 1대 이하이면 객체 생성에 실패한다")
     void createCarsFail() {
         //given
-        Car car = new Car("pobi");
-        List<Car> carInfos = List.of(car);
+        final Car car = new Car("pobi");
+        final List<Car> carInfos = List.of(car);
         //when
         //then
         assertThatThrownBy(() -> new Cars(carInfos))
@@ -38,9 +38,9 @@ class CarsTest {
     @DisplayName("입력받은 자동차의 이름에 중복이 있으면 객체 생성에 실패한다")
     void createCarsFailWhenNameDuplicated() {
         //given
-        Car car1 = new Car("pobi");
-        Car car2 = new Car("pobi");
-        List<Car> carInfos = List.of(car1, car2);
+        final Car car1 = new Car("pobi");
+        final Car car2 = new Car("pobi");
+        final List<Car> carInfos = List.of(car1, car2);
         //when
         //then
         assertThatThrownBy(() -> new Cars(carInfos))
@@ -51,12 +51,12 @@ class CarsTest {
     @DisplayName("자동차를 한꺼번 움직일 수 있다.")
     void moveAllCars() {
         //given
-        Car car1 = new Car("pobi");
-        Car car2 = new Car("crong");
-        List<Car> carInfos = List.of(car1, car2);
-        Cars cars = new Cars(carInfos);
+        final Car car1 = new Car("pobi");
+        final Car car2 = new Car("crong");
+        final List<Car> carInfos = List.of(car1, car2);
+        final Cars cars = new Cars(carInfos);
 
-        Accelerator testMoveForwardAccelerator = new TestMoveForwardAccelerator();
+        final Accelerator testMoveForwardAccelerator = new TestMoveForwardAccelerator();
         //when
         cars.tryMove(testMoveForwardAccelerator);
         //then

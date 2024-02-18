@@ -15,21 +15,21 @@ public class CarRacing {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public CarRacing(InputView inputView, OutputView outputView) {
+    public CarRacing(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void start() {
-        Cars cars = createCars(inputView.readCarNames());
-        TryCount tryCount = createTryCount(inputView.readTryAmount());
+        final Cars cars = createCars(inputView.readCarNames());
+        final TryCount tryCount = createTryCount(inputView.readTryAmount());
 
         printMoveResult(tryCount, cars);
         printWinners(cars);
     }
 
-    private Cars createCars(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
+    private Cars createCars(final List<String> carNames) {
+        final List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
@@ -37,24 +37,24 @@ public class CarRacing {
         return new Cars(cars);
     }
 
-    private TryCount createTryCount(int amount) {
+    private TryCount createTryCount(final int amount) {
         return new TryCount(amount);
     }
 
-    private void printMoveResult(TryCount tryCount, Cars cars) {
+    private void printMoveResult(final TryCount tryCount, final Cars cars) {
         outputView.printMoveResultMessage();
         tryMove(tryCount, cars);
     }
 
-    private void tryMove(TryCount tryCount, Cars cars) {
+    private void tryMove(final TryCount tryCount, final Cars cars) {
         for (int i = 0; i < tryCount.getValue(); i++) {
             cars.tryMove(new CarAccelerator());
             outputView.printCarsPosition(cars.getCars());
         }
     }
 
-    private void printWinners(Cars cars) {
-        Referee referee = new Referee(cars.getCarsPosition());
+    private void printWinners(final Cars cars) {
+        final Referee referee = new Referee(cars.getCarsPosition());
         outputView.printWinners(referee.getWinners());
     }
 }

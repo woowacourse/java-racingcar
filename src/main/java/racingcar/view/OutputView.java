@@ -22,12 +22,12 @@ public class OutputView {
         System.out.println();
     }
 
-    private String createPositionBar(int position) {
+    private String createPositionBar(final int position) {
         return CAR_POSITION_BAR.repeat(position);
     }
 
-    public void printWinners(List<String> winners) {
-        StringJoiner winnerJoiner = new StringJoiner(WINNER_DELIMITER);
+    public void printWinners(final List<String> winners) {
+        final StringJoiner winnerJoiner = new StringJoiner(WINNER_DELIMITER);
         for (String winner : winners) {
             winnerJoiner.add(winner);
         }

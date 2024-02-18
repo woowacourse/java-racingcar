@@ -7,14 +7,14 @@ import java.util.OptionalInt;
 
 public class Referee {
 
-    Map<String, Integer> carsPosition;
+    private final Map<String, Integer> carsPosition;
 
     public Referee(Map<String, Integer> carsPosition) {
         this.carsPosition = carsPosition;
     }
 
     public List<String> getWinners() {
-        int winnerPosition = getWinnerPosition();
+        final int winnerPosition = getWinnerPosition();
 
         return carsPosition.entrySet().stream()
                 .filter(entry -> entry.getValue() == winnerPosition)
@@ -23,7 +23,7 @@ public class Referee {
     }
 
     private int getWinnerPosition() {
-        OptionalInt winnerPosition = carsPosition.values().stream()
+        final OptionalInt winnerPosition = carsPosition.values().stream()
                 .mapToInt(position -> position)
                 .max();
 
