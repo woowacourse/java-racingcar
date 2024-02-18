@@ -20,9 +20,7 @@ public class CarsTest {
 
         Cars cars = Cars.from(nameCatalog);
 
-        assertInstanceOf(Cars.class, cars);
         cars.getValue().forEach(car -> assertInstanceOf(Car.class, car));
-
     }
 
 }
