@@ -37,8 +37,8 @@ class Cars {
         cars.forEach(car -> car.move(moveCondition));
     }
 
-    public List<String> findWinnersName() {
-        return findWinnersName(findFirstWinner());
+    public List<Car> findWinners() {
+        return findWinners(findFirstWinner());
     }
 
     private Car findFirstWinner() {
@@ -47,10 +47,9 @@ class Cars {
             .orElseThrow();
     }
 
-    private List<String> findWinnersName(Car winner) {
+    private List<Car> findWinners(Car winner) {
         return cars.stream()
             .filter(car -> car.isRival(winner))
-            .map(Car::getName)
             .toList();
     }
 

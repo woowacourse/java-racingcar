@@ -23,7 +23,7 @@ public class RacingGame {
         return results;
     }
 
-    public List<String> findWinnersName() {
-        return cars.findWinnersName();
+    public List<Car> award() {
+        return cars.findWinners();
     }
 }

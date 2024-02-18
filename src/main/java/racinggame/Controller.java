@@ -26,6 +26,6 @@ class Controller {
         RacingGame game = new RacingGame(cars, moveCondition);
 
         outputView.printResult(game.race(round));
-        outputView.printWinner(game.findWinnersName());
+        outputView.printWinner(game.award());
     }
 }
