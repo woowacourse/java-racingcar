@@ -1,5 +1,8 @@
 package racingcar.controller;
 
+import java.util.Objects;
+import java.util.Optional;
+import racingcar.message.ErrorMessage;
 import racingcar.model.Cars;
 import racingcar.model.Round;
 import racingcar.view.InputView;
@@ -16,38 +19,38 @@ public class InputController {
     }
 
     public Cars getCars() {
-        Cars cars = null;
-        while (cars == null) {
+        Optional<Cars> cars = Optional.empty();
+        while (Objects.equals(cars, Optional.empty())) {
             cars = readCars();
         }
-        return cars;
+        return cars.orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_INPUT.get()));
     }
 
-    private Cars readCars() {
+    private Optional<Cars> readCars() {
         try {
             String carNames = inputView.readCarNames();
-            return Cars.from(carNames);
+            return Optional.of(Cars.from(carNames));
         } catch (IllegalArgumentException exception) {
             outputView.printError(exception.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 
     public Round getRound() {
-        Round round = null;
-        while (round == null) {
+        Optional<Round> round = Optional.empty();
+        while (Objects.equals(round, Optional.empty())) {
             round = readRound();
         }
-        return round;
+        return round.orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_INPUT.get()));
     }
 
-    private Round readRound() {
+    private Optional<Round> readRound() {
         try {
             String tryRound = inputView.readTryRound();
-            return Round.from(tryRound);
+            return Optional.of(Round.from(tryRound));
         } catch (IllegalArgumentException exception) {
             outputView.printError(exception.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 }
