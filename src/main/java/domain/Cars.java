@@ -1,5 +1,7 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
+package domain;
+
+import utils.NumberGenerator;
+
 import java.util.List;
 
 public class Cars {
@@ -31,18 +33,17 @@ public class Cars {
         }
     }
 
-    public List<String> getWinnersName() {
-        List<String> winnersName = new ArrayList<>();
-        int maxLocation = getMaxLocation();
+    public List<String> findWinnersName() {
+        int maxLocation = findMaxLocation();
         return cars.stream()
                 .filter(car -> car.getLocation() == maxLocation)
                 .map(Car::getName)
                 .toList();
     }
 
-    private int getMaxLocation() {
+    private int findMaxLocation() {
         return cars.stream()
-                .mapToInt(car -> car.getLocation())
+                .mapToInt(Car::getLocation)
                 .max()
                 .orElse(0);
     }

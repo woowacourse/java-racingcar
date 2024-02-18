@@ -4,9 +4,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Collections;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
+
+import domain.Car;
+import domain.Cars;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.Random;
 
 class CarsTest {
 
@@ -43,7 +46,7 @@ class CarsTest {
             cars.tryMove();
         }
 
-        assertThat(cars.getWinnersName())
+        assertThat(cars.findWinnersName())
                 .containsAll(List.of("atto", "siso"));
     }
 }

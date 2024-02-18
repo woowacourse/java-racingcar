@@ -1,3 +1,10 @@
+package controller;
+
+import domain.Cars;
+import utils.Random;
+import view.InputView;
+import view.OutputView;
+
 public class RacingGame {
     public static void main(String[] args) {
         try {
@@ -15,7 +22,7 @@ public class RacingGame {
             cars.tryMove();
             OutputView.showRoundResult(cars.getRoundResult());
         }
-        OutputView.showWinners(cars.getWinnersName());
+        OutputView.showWinners(cars.findWinnersName());
     }
 
     private static Cars createCars() {

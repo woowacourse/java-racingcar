@@ -1,3 +1,5 @@
+import utils.NumberGenerator;
+
 public class Constant implements NumberGenerator {
     private final int generatedValue;
 
