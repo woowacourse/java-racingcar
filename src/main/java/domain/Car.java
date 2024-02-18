@@ -20,8 +20,8 @@ public class Car {
         return new CarStatus(carName.getName(), position);
     }
 
-    public Optional<String> getNameIfMax(int max) {
-        if(position == max) {
+    public Optional<String> getNameIfSamePosition(int target) {
+        if(position == target) {
             return Optional.of(carName.getName());
         }
         return Optional.empty();

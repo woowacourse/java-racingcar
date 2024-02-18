@@ -7,7 +7,6 @@ import exception.ErrorMessage;
 import exception.RacingCarGameException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import utils.RandomNumberGenerator;
@@ -60,7 +59,7 @@ public class Cars {
         List<String> winners = new ArrayList<>();
         int max = findMaxPosition();
         for(Car car : cars)  {
-            Optional<String> maxCarName =  car.getNameIfMax(max);
+            Optional<String> maxCarName =  car.getNameIfSamePosition(max);
             if(maxCarName.isPresent()) {
                 winners.add(maxCarName.get());
             }
