@@ -1,12 +1,14 @@
 package racingcar.dto;
 
+import racingcar.domain.Car;
+
 public class CarPerformance {
     private final String carName;
     private final int distance;
 
-    public CarPerformance(String carName, int distance) {
-        this.carName = carName;
-        this.distance = distance;
+    public CarPerformance(Car car) {
+        carName = car.getName();
+        distance = car.getMovedDistance();
     }
 
     public String getCarName() {

@@ -1,13 +1,16 @@
 package racingcar.dto;
 
-import java.util.Collections;
 import java.util.List;
+import racingcar.domain.Cars;
 
 public class RoundResult {
     private final List<CarPerformance> carPerformances;
 
-    public RoundResult(List<CarPerformance> carPerformances) {
-        this.carPerformances = Collections.unmodifiableList(carPerformances);
+    public RoundResult(Cars cars) {
+        this.carPerformances = cars.cars()
+                .stream()
+                .map(CarPerformance::new)
+                .toList();
     }
 
     public List<CarPerformance> getCarPerformances() {
