@@ -25,9 +25,11 @@ public class OutputView {
     }
 
     private void printResult(RaceResult raceResult) {
-        Map<String, Integer> result = raceResult.getResult();
-        for (String carName : result.keySet()) {
-            System.out.printf("%s : %s%n", carName, "-".repeat(result.get(carName)));
+        Map<Car, Integer> result = raceResult.getResult();
+        for (Car car : result.keySet()) {
+            String carName = car.getName();
+            int position = result.get(car);
+            System.out.printf("%s : %s%n", carName, "-".repeat(position));
         }
     }
 }
