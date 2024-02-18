@@ -13,10 +13,6 @@ public class RacingGame {
     }
 
     public TotalResult run() {
-        TotalResult totalResult = new TotalResult();
-        for (int i = 0; i < tryCount.getCount(); i++) {
-            totalResult.addResult(cars.makeCarsMove(randomNumberGenerator));
-        }
-        return totalResult;
+        return cars.getTotalResult(tryCount, randomNumberGenerator);
     }
 }

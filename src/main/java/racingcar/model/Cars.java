@@ -15,15 +15,13 @@ public class Cars {
         this.cars = cars;
     }
 
-    public RoundResult makeCarsMove(RandomNumberGenerator generator) {
-        Map<CarName, Position> carStatus = new LinkedHashMap<>();
-        for (Car car : cars) {
-            car.move(generator.generate());
-            carStatus.put(car.getCarName(), car.getPosition());
+    public TotalResult getTotalResult(TryCount tryCount, RandomNumberGenerator generator) {
+        TotalResult totalResult = new TotalResult();
+        for (int i = 0; i < tryCount.getCount(); i++) {
+            totalResult.addResult(makeCarsMove(generator));
         }
-        return new RoundResult(carStatus);
+        return totalResult;
     }
-
 
     private void validateCarNames(List<Car> cars) {
         Set<CarName> distinctNames = cars.stream()
@@ -33,5 +31,14 @@ public class Cars {
             String message = "자동차 이름은 중복될 수 없습니다.";
             throw new IllegalArgumentException(message);
         }
+    }
+
+    private RoundResult makeCarsMove(RandomNumberGenerator generator) {
+        Map<CarName, Position> carStatus = new LinkedHashMap<>();
+        for (Car car : cars) {
+            car.move(generator.generate());
+            carStatus.put(car.getCarName(), car.getPosition());
+        }
+        return new RoundResult(carStatus);
     }
 }
