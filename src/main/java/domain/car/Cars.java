@@ -43,7 +43,8 @@ public class Cars {
         int maxLocation = getMaxLocation();
         return cars.stream()
                 .filter(car -> car.isLocatedAt(maxLocation))
-                .map(Car::getName)
+                .map(Car::createResult)
+                .map(CarRoundResult::name)
                 .toList();
     }
 

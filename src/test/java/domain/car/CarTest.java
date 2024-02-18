@@ -30,7 +30,7 @@ class CarTest {
     @DisplayName("초기 이름이 정상적으로 설정된다.")
     void checkInitNameTest() {
         String expectedName = "pobi";
-        assertThat(car.getName()).isEqualTo(expectedName);
+        assertThat(car.createResult().name()).isEqualTo(expectedName);
     }
 
     @Test
