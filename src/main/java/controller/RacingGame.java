@@ -2,6 +2,8 @@ package controller;
 
 import domain.Car;
 import domain.Cars;
+import domain.NumberGenerator;
+import domain.RandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import view.InputView;
@@ -11,12 +13,13 @@ public class RacingGame {
     public void proceedCarRacing() {
         List<String> carNames = getCarNames();
         List<Car> cars = generateCars(carNames);
-        Cars racingCars = new Cars(cars);
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        Cars racingCars = new Cars(cars, numberGenerator);
 
         Integer roundCounts = getRoundCounts();
         startRacingRounds(racingCars, roundCounts);
 
-        checkRacingWinner(racingCars);
+        announceRacingWinner(racingCars);
     }
 
     private List<String> getCarNames() {
@@ -46,7 +49,7 @@ public class RacingGame {
         }
     }
 
-    private void checkRacingWinner(Cars racingCars) {
+    private void announceRacingWinner(Cars racingCars) {
         int maxDistance = racingCars.getMaxDistance();
         List<Car> winners = racingCars.getWinners(maxDistance);
         OutputView.printWinners(winners);
