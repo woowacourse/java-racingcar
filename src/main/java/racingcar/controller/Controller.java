@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import java.sql.Ref;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -14,13 +15,27 @@ public class Controller {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        Referee referee = new Referee();
-
         List<String> carNames = inputView.getCarNames();
         int tryNumber = inputView.getTryNumber();
 
         List<Car> cars = generateCarList(carNames);
 
+        printResult(tryNumber, cars);
+    }
+
+    private List<Car> generateCarList(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+
+        for(String carName : carNames){
+            Car car = new Car(carName, new RandomNumberGenerator());
+            cars.add(car);
+        }
+
+        return cars;
+    }
+
+    private void printResult(int tryNumber, List<Car> cars) {
+        Referee referee = new Referee();
         outputView.printResultHeaderPrompt();
 
         while(tryNumber-- > 0){
@@ -37,16 +52,5 @@ public class Controller {
         }
 
         OutputView.parseLine();
-    }
-
-    private List<Car> generateCarList(List<String> carNames) {
-        List<Car> cars = new ArrayList<>();
-
-        for(String carName : carNames){
-            Car car = new Car(carName, new RandomNumberGenerator());
-            cars.add(car);
-        }
-
-        return cars;
     }
 }
