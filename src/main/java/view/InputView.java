@@ -1,13 +1,13 @@
 package view;
 
-import common.Exception;
-import common.Information;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import response.Exception;
+import response.OutputMessage;
 
 public class InputView implements AutoCloseable {
   private static final String DELIMITER = ",";
@@ -20,7 +20,7 @@ public class InputView implements AutoCloseable {
   }
 
   public List<String> inputCarsName() throws IOException {
-    System.out.println(Information.INPUT_CAR_NAMES.getMessage());
+    System.out.println(OutputMessage.INPUT_CAR_NAMES.getMessage());
     String input = reader.readLine();
     validateNotNullAndBlank(input);
     return Arrays.stream(input.split(DELIMITER)).map(String::trim).toList();
@@ -33,7 +33,7 @@ public class InputView implements AutoCloseable {
   }
 
   public int inputTrialCount() throws IOException {
-    System.out.println(Information.INPUT_TRIAL_COUNT.getMessage());
+    System.out.println(OutputMessage.INPUT_TRIAL_COUNT.getMessage());
     String input = reader.readLine();
     validateNumeric(input);
     return Integer.parseInt(input);
