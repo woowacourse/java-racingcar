@@ -1,20 +1,24 @@
 package controller;
 
+import java.util.List;
 import model.Race;
+import utils.InputStringParser;
+import utils.TryCountValidator;
+import view.InputView;
 import view.OutputView;
 
 public class RaceController {
-    private final InputController inputController;
+    private final InputView inputView;
     private final OutputView outputView;
 
     public RaceController() {
-        this.inputController = new InputController();
+        this.inputView = new InputView();
         this.outputView = new OutputView();
     }
 
     public void startRace() {
-        Race race = inputController.getRace();
-        int tryCount = inputController.getTryCount();
+        Race race = getRace();
+        int tryCount = getTryCount();
 
         outputView.printResultMessage();
         proceedRound(race, tryCount);
@@ -25,6 +29,27 @@ public class RaceController {
         for (int round = 0; round < tryCount; round++) {
             race.start();
             outputView.printRoundResult(race);
+        }
+    }
+
+    private Race getRace() {
+        try {
+            List<String> carNames = InputStringParser.parseInputToList(inputView.inputCarName());
+            return new Race(carNames);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getRace();
+        }
+    }
+
+    private int getTryCount() {
+        try {
+            String tryCount = inputView.inputTryCount();
+            TryCountValidator.validateTryCountFormat(tryCount);
+            return Integer.parseInt(tryCount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getTryCount();
         }
     }
 }
