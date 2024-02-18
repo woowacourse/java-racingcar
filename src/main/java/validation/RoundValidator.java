@@ -1,9 +1,8 @@
 package validation;
 
-import static constant.Numbers.MAX_ROUND;
-import static constant.Numbers.MIN_ROUND;
-
 public class RoundValidator {
+    private static final int MIN_ROUND = 1;
+    private static final int MAX_ROUND = 100;
 
     public static void validateRound(int round) {
         if (round < MIN_ROUND || round > MAX_ROUND) {
