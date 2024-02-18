@@ -30,7 +30,7 @@ public class Cars {
     }
 
     public int getMaxForward() {
-        return cars.stream().max(Car::compareTo).get().getForward();
+        return cars.stream().mapToInt(Car::getForward).max().orElseThrow();
     }
 
     public List<Car> getCars() {

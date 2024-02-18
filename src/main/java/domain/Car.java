@@ -2,7 +2,7 @@ package domain;
 
 import util.Exceptions;
 
-public class Car implements Comparable<Car> {
+public class Car {
 
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_FORWARD_NUMBER = 4;
@@ -50,11 +50,6 @@ public class Car implements Comparable<Car> {
 
     public int getForward() {
         return forward;
-    }
-
-    @Override
-    public int compareTo(Car c) {
-        return Integer.compare(forward, c.forward);
     }
 
 }
