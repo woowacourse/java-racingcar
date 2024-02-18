@@ -1,42 +1,29 @@
 package domain;
 
+import domain.strategy.MovingStrategy;
+
 public class Car {
+	private final CarName carName;
+	private final CarLocation carLocation;
+	private final MovingStrategy movingStrategy;
 
-    private static final int MIN_NUMBER_FOR_MOVE = 4;
-    private final CarName carName;
-    private final CarLocation carLocation;
+	public Car(String name, int location, MovingStrategy movingStrategy) {
+		this.carName = new CarName(name);
+		this.carLocation = new CarLocation(location);
+		this.movingStrategy = movingStrategy;
+	}
 
+	public void move() {
+		if (movingStrategy.canMove()) {
+			carLocation.increase();
+		}
+	}
 
-    private Car(CarName carName, CarLocation carLocation) {
-        this.carName = carName;
-        this.carLocation = carLocation;
-    }
+	public String getCarName() {
+		return carName.getName();
+	}
 
-    public static Car from(String name, int location) {
-        return new Car(
-                new CarName(name),
-                new CarLocation(location)
-        );
-    }
-
-    public static Car from(String name) {
-        return new Car(
-                new CarName(name),
-                new CarLocation(0)
-        );
-    }
-
-    public void move(int randomNumber) {
-        if (randomNumber >= MIN_NUMBER_FOR_MOVE) {
-            carLocation.increase();
-        }
-    }
-
-    public String getCarName() {
-        return carName.getName();
-    }
-
-    public int getCarLocation() {
-        return carLocation.getLocation();
-    }
+	public int getCarLocation() {
+		return carLocation.getLocation();
+	}
 }
