@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class RacingGame {
+public class CarRacingGame {
 
     private static final int MIN_MOVE_COUNT = 1;
     private static final int MAX_MOVE_COUNT = 300;
@@ -8,7 +8,7 @@ public class RacingGame {
     private final Cars cars;
     private int moveCount;
 
-    public RacingGame(Cars cars, int moveCount) {
+    public CarRacingGame(Cars cars, int moveCount) {
         validate(moveCount);
         this.cars = cars;
         this.moveCount = moveCount;

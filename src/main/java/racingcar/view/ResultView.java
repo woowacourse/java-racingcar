@@ -5,7 +5,7 @@ import java.util.StringJoiner;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 
-public class OutputView {
+public class ResultView {
 
     public void printProgressGuide() {
         System.out.println("\n실행 결과");
