@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class RacingGameTest {
+public class CarRacingGameTest {
 
     @DisplayName("시도 횟수가 음수일 경우 예외를 발생한다.")
     @Test
@@ -18,7 +18,7 @@ public class RacingGameTest {
         Cars cars = new Cars(List.of(new Car("자동차1")));
 
         // when & then
-        Assertions.assertThatThrownBy(() -> new RacingGame(cars, moveCount))
+        Assertions.assertThatThrownBy(() -> new CarRacingGame(cars, moveCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -27,13 +27,13 @@ public class RacingGameTest {
     void goTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars, 1);
+        CarRacingGame carRacingGame = new CarRacingGame(cars, 1);
 
         List<Integer> expected = List.of(1, 1);
 
         //when
         CarMoveRule rule = () -> true;
-        racingGame.moveCars(rule);
+        carRacingGame.proceed(rule);
 
         //then
         Assertions.assertThat(cars.stream()
@@ -47,13 +47,13 @@ public class RacingGameTest {
     void stopTest() {
         //given
         Cars cars = new Cars(List.of(new Car("car1"), new Car("car2")));
-        RacingGame racingGame = new RacingGame(cars, 1);
+        CarRacingGame carRacingGame = new CarRacingGame(cars, 1);
 
         List<Integer> expected = List.of(0, 0);
 
         //when
         CarMoveRule rule = () -> false;
-        racingGame.moveCars(rule);
+        carRacingGame.proceed(rule);
 
         //then
         Assertions.assertThat(cars.stream()
@@ -72,10 +72,10 @@ public class RacingGameTest {
         //when
         winner.move();
         Cars cars = new Cars(List.of(winner, loser));
-        RacingGame racingGame = new RacingGame(cars, 1);
+        CarRacingGame carRacingGame = new CarRacingGame(cars, 1);
 
         //then
-        Cars actual = racingGame.findWinners();
+        Cars actual = carRacingGame.findWinners();
         Assertions.assertThat(actual.stream()
                         .findFirst()
                         .orElseThrow())
@@ -91,7 +91,7 @@ public class RacingGameTest {
         int moveCount = 0;
 
         //when & then
-        Assertions.assertThatThrownBy(() -> new RacingGame(cars, moveCount))
+        Assertions.assertThatThrownBy(() -> new CarRacingGame(cars, moveCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

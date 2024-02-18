@@ -2,10 +2,10 @@ package racingcar.view;
 
 import java.util.StringJoiner;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
-public class OutputView {
+public class ResultView {
 
     public void printProgressGuide() {
         System.out.println("\n실행 결과");
@@ -27,6 +27,6 @@ public class OutputView {
     private void printCarProgress(Car car) {
         String name = car.getName();
         String progress = "-".repeat(car.getProgress());
-        System.out.printf("%s : %s%n%n", name, progress);
+        System.out.printf("%s : %s%n", name, progress);
     }
 }

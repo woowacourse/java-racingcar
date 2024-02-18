@@ -3,8 +3,8 @@ package racingcar.view;
 import java.util.Arrays;
 import java.util.List;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 import racingcar.utils.Console;
 
 public class InputView {

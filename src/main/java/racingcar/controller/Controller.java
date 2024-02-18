@@ -2,48 +2,47 @@ package racingcar.controller;
 
 import java.util.function.Supplier;
 
+import racingcar.domain.CarMoveRule;
+import racingcar.domain.CarRacingGame;
+import racingcar.domain.Cars;
+import racingcar.domain.DefaultCarMoveRule;
 import racingcar.exception.ExceptionHandler;
-import racingcar.model.CarMoveRule;
-import racingcar.model.Cars;
-import racingcar.model.DefaultCarMoveRule;
-import racingcar.model.RacingGame;
 import racingcar.view.InputView;
-import racingcar.view.OutputView;
+import racingcar.view.ResultView;
 
 public class Controller {
 
     private final InputView inputView;
-    private final OutputView outputView;
+    private final ResultView resultView;
     private final ExceptionHandler exceptionHandler;
 
-    public Controller(InputView inputView, OutputView outputView, ExceptionHandler exceptionHandler) {
+    public Controller(InputView inputView, ResultView resultView, ExceptionHandler exceptionHandler) {
         this.inputView = inputView;
-        this.outputView = outputView;
+        this.resultView = resultView;
         this.exceptionHandler = exceptionHandler;
     }
 
     public void run() {
         Cars cars = createCars();
-        RacingGame racingGame = createRacingGame(cars);
+        CarRacingGame carRacingGame = createRacingGame(cars);
         CarMoveRule carMoveRule = new DefaultCarMoveRule();
-        outputView.printProgressGuide();
-        while (!racingGame.isGameOver()) {
-            racingGame.decreaseMoveCount();
-            racingGame.moveCars(carMoveRule);
-            outputView.printProgress(cars);
+        resultView.printProgressGuide();
+        while (!carRacingGame.isGameOver()) {
+            carRacingGame.proceed(carMoveRule);
+            resultView.printProgress(cars);
         }
-        Cars winners = racingGame.findWinners();
-        outputView.printWinners(winners);
+        Cars winners = carRacingGame.findWinners();
+        resultView.printWinners(winners);
     }
 
     private Cars createCars() {
         return runWithExceptionHandler(inputView::askCarNames);
     }
 
-    private RacingGame createRacingGame(Cars cars) {
+    private CarRacingGame createRacingGame(Cars cars) {
         return runWithExceptionHandler(() -> {
             int moveCount = inputView.askMoveCount();
-            return new RacingGame(cars, moveCount);
+            return new CarRacingGame(cars, moveCount);
         });
     }
 

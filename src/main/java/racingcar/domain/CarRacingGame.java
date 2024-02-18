@@ -1,6 +1,6 @@
-package racingcar.model;
+package racingcar.domain;
 
-public class RacingGame {
+public class CarRacingGame {
 
     private static final int MIN_MOVE_COUNT = 1;
     private static final int MAX_MOVE_COUNT = 300;
@@ -8,7 +8,7 @@ public class RacingGame {
     private final Cars cars;
     private int moveCount;
 
-    public RacingGame(Cars cars, int moveCount) {
+    public CarRacingGame(Cars cars, int moveCount) {
         validate(moveCount);
         this.cars = cars;
         this.moveCount = moveCount;
@@ -22,18 +22,26 @@ public class RacingGame {
         }
     }
 
-    public void decreaseMoveCount() {
+    public void proceed(CarMoveRule carMoveRule) {
+        decreaseMoveCount();
+        moveCars(carMoveRule);
+    }
+
+    private void decreaseMoveCount() {
+        if (moveCount < MIN_MOVE_COUNT) {
+            throw new IllegalArgumentException("시도 횟수를 모두 사용했습니다.");
+        }
         moveCount--;
+    }
+
+    private void moveCars(CarMoveRule carMoveRule) {
+        cars.stream()
+                .filter(car -> carMoveRule.isGo())
+                .forEach(Car::move);
     }
 
     public boolean isGameOver() {
         return moveCount < MIN_MOVE_COUNT;
-    }
-
-    public void moveCars(CarMoveRule carMoveRule) {
-        cars.stream()
-                .filter(car -> carMoveRule.isGo())
-                .forEach(Car::move);
     }
 
     public Cars findWinners() {

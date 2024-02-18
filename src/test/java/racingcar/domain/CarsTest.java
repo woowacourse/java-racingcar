@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +27,11 @@ public class CarsTest {
 
     @DisplayName("자동차 대수는 1~40을 벗어날 경우 예외를 발생시킨다.")
     @Test
-    void validateTest(){
+    void validateTest() {
         //given
         List<Car> carList = new ArrayList<>();
         IntStream.rangeClosed(0, 50)
-                .forEach(index -> carList.add(new Car("car"+ index)));
+                .forEach(index -> carList.add(new Car("car" + index)));
 
         //when & then
         Assertions.assertThatThrownBy(() -> new Cars(carList))
