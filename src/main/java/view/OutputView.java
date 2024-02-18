@@ -1,7 +1,7 @@
 package view;
 
 import java.util.List;
-import view.dto.CarDto;
+import model.Car;
 
 public class OutputView {
 
@@ -14,12 +14,12 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printTotalResult(List<CarDto> carDtos) {
+    public void printTotalResult(List<Car> carDtos) {
         carDtos.forEach(OutputView::printMovement);
         System.out.println();
     }
 
-    private static void printMovement(CarDto carDto) {
+    private static void printMovement(Car carDto) {
         System.out.println(String.format(RESULT_FORMAT, carDto.getCarName(), STEP.repeat(carDto.getMovement())));
     }
 

@@ -6,7 +6,6 @@ import model.Cars;
 import view.InputView;
 import view.OutputView;
 import view.RetryOnException;
-import view.dto.CarDto;
 
 public class RacingCarController {
     private final OutputView outputView;
@@ -35,8 +34,7 @@ public class RacingCarController {
         outputView.printResultHeader();
         for (int i = 0; i < tryNumber; i++) {
             cars.moveCars();
-            List<CarDto> carDtos = cars.getPresentCarsStatus().stream().map(CarDto::new).toList();
-            outputView.printTotalResult(carDtos);
+            outputView.printTotalResult(cars.getPresentCarsStatus());
         }
     }
 }
