@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static util.Util.generateRandomNumber;
-import static view.OutputView.ERROR_PREFIX;
 
 public class Cars {
 
@@ -37,13 +36,13 @@ public class Cars {
     private static void checkDuplicatedName(List<String> names) {
         long nameCount = names.stream().distinct().count();
         if (names.size() != nameCount) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "자동차의 이름은 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 자동차의 이름은 중복될 수 없습니다.");
         }
     }
 
     private static void checkNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "자동차 이름은 2개 이상이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 2개 이상이어야 합니다.");
         }
     }
 

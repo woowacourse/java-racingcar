@@ -1,7 +1,6 @@
 package model;
 
 import static util.Util.generateRandomNumber;
-import static view.OutputView.ERROR_PREFIX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,19 +38,19 @@ public class RacingGame {
 
     private static void checkIsNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "시도 횟수를 입력해 주십시오.");
+            throw new IllegalArgumentException("[ERROR] 시도 횟수를 입력해 주십시오.");
         }
     }
 
     private static void checkIsNaturalNumber(String input) {
         if (!Pattern.matches(NATURAL_FORMAT_REGEX, input)) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "시도 횟수는 자연수여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 자연수여야 합니다.");
         }
     }
 
     private static void checkIsZero(String input) {
         if (input.equals("0")) {
-            throw new IllegalArgumentException(ERROR_PREFIX + "시도 횟수를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 시도 횟수를 입력해 주세요.");
         }
     }
 
