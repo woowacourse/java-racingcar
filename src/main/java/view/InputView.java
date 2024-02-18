@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -9,9 +10,10 @@ public class InputView {
     private InputView() {
     }
 
-    public static String getCarNames() {
+    public static List<String> getCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        return SCANNER.nextLine();
+        String carNames = SCANNER.nextLine();
+        return parseCarNames(carNames);
     }
 
     public static String getRacingRounds() {
@@ -30,5 +32,9 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 합니다.");
         }
+    }
+
+    private static List<String> parseCarNames(final String carNames) {
+        return List.of(carNames.split(","));
     }
 }

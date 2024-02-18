@@ -14,24 +14,28 @@ public class RacingGame {
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public void startRacing() {
-        // TODO [LTH]: 메서드 분리하기
+        Cars racingCars = makeCars();
 
-        // 경주할 자동차 이름 입력
-        String carNames = InputView.getCarNames();
-        List<Car> cars = parseCarNames(carNames);
-        Cars racingCars = new Cars(cars);
+        int roundCount = makeRoundCounts();
 
-        // 시도할 횟수 입력
-        String rawRoundCounts = InputView.getRacingRounds();
-        int roundCount = InputView.parseRoundCounts(rawRoundCounts);
-
-        //  라운드별 결과 출력
         startRounds(roundCount, racingCars);
 
-        // 최종 우승자 출력
-        int maxDistance = racingCars.getMaxDistance();
-        OutputView.printResultNotice();
-        OutputView.printWinners(racingCars.getWinners(maxDistance));
+        printWinners(racingCars);
+    }
+
+    private Cars makeCars() {
+        List<String> carNames = InputView.getCarNames();
+
+        List<Car> racingCars = new ArrayList<>();
+        for (String carName : carNames) {
+            racingCars.add(new Car(carName));
+        }
+        return new Cars(racingCars);
+    }
+
+    private int makeRoundCounts() {
+        String rawRoundCounts = InputView.getRacingRounds();
+        return InputView.parseRoundCounts(rawRoundCounts);
     }
 
     private void startRounds(final int roundCounts, final Cars cars) {
@@ -41,11 +45,9 @@ public class RacingGame {
         }
     }
 
-    private List<Car> parseCarNames(final String carNames) {
-        List<Car> cars = new ArrayList<>();
-        for (String name : carNames.split(",")) {
-            cars.add(new Car(name));
-        }
-        return cars;
+    private void printWinners(Cars cars) {
+        int maxDistance = cars.getMaxDistance();
+        OutputView.printResultNotice();
+        OutputView.printWinners(cars.getWinners(maxDistance));
     }
 }
