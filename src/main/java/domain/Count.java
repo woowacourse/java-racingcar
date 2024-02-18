@@ -1,11 +1,13 @@
 package domain;
 
 public class Count {
-    private int count;
+    private final int count;
+    private int remain;
 
     public Count(int count) {
         validateCount(count);
         this.count = count;
+        this.remain = count;
     }
 
     private void validateCount(int count) {
@@ -14,11 +16,15 @@ public class Count {
         }
     }
 
-    public boolean isRemain() {
-        return count > 0;
+    public int getCount() {
+        return count;
+    }
+
+    public boolean hasRemain() {
+        return remain > 0;
     }
 
     public void down() {
-        count--;
+        remain--;
     }
 }
