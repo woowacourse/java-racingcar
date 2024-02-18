@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import domain.Car;
 import java.util.ArrayList;
 import java.util.List;
+
+import domain.RacingGame;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +30,6 @@ class ServiceTest {
         cars.add(carC);
 
         // then
-        assertEquals(new ArrayList<>(List.of("carB", "carC")), Car.RacingGame.getWinnerNames(cars));
+        assertEquals(new ArrayList<>(List.of("carB", "carC")), RacingGame.getWinnerNames(cars));
     }
 }
