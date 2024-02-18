@@ -3,6 +3,7 @@ package view;
 import domain.Car;
 import domain.Count;
 import domain.RaceCars;
+import domain.RacingGame;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,38 +21,35 @@ public class View {
     }
 
     private RaceCars getCars(String carNames) {
-        try {
-            String[] names = carNames.split(",");
-            List<Car> cars = Arrays.stream(names)
-                    .map(Car::new)
-                    .collect(Collectors.toList());
-            return new RaceCars(cars);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readCars();
-        }
+        String[] names = carNames.split(",");
+        List<Car> cars = Arrays.stream(names)
+                .map(Car::new)
+                .collect(Collectors.toList());
+        return new RaceCars(cars);
     }
 
     public Count readCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        try {
-            int count = Integer.parseInt(scanner.nextLine());
-            return new Count(count);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readCount();
-        }
+        int count = Integer.parseInt(scanner.nextLine());
+        return new Count(count);
     }
 
     public void printResultNotice() {
         System.out.println("\n실행 결과");
     }
 
-    public void printRace(RaceCars raceCars) {
-        List<Car> cars = raceCars.getCars();
-        for (Car car : cars) {
-            String location = "-".repeat(car.getLocation());
-            String result = String.format(FORMAT, car.getName(), location);
+    public void printRace(RacingGame racingGame) {
+        Count count = racingGame.getCount();
+        for (int round = 1; round <= count.getCount(); round++) {
+            printLocation(racingGame.getRaceCars(), round);
+        }
+    }
+
+    private void printLocation(RaceCars raceCars, int round) {
+        for (int i = 0; i < raceCars.getCarCount(); i++) {
+            Car car = raceCars.getCar(i);
+            int location = car.getLocation(round);
+            String result = String.format(FORMAT, car.getName(), "-".repeat(location));
             System.out.println(result);
         }
         System.out.println();
