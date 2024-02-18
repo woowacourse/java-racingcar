@@ -4,6 +4,7 @@ import java.util.List;
 import racingcar.domain.Cars;
 
 public class RoundResult {
+
     private final List<CarPerformance> carPerformances;
 
     public RoundResult(Cars cars) {

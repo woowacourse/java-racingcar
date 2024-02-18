@@ -3,6 +3,7 @@ package racingcar.dto;
 import racingcar.domain.Car;
 
 public class CarPerformance {
+
     private final String carName;
     private final int distance;
 

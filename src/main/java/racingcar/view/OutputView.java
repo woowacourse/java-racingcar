@@ -10,6 +10,7 @@ import racingcar.dto.CarPerformance;
 import racingcar.dto.RoundResult;
 
 public class OutputView {
+
     private static final String MOVEMENT_FORMAT = "-";
     private static final String SEPARATOR = ", ";
 
