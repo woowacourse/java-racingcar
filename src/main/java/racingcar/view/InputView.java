@@ -7,13 +7,15 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private static final String NAME_DELIMITER = ",";
+
     private InputView() {
     }
 
     public static List<String> inputNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        System.out.printf("경주할 자동차 이름을 입력하세요(이름은 쉼표(%s)를 기준으로 구분).%n", NAME_DELIMITER);
         final String input = new Scanner(System.in).nextLine();
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(NAME_DELIMITER))
                 .toList();
     }
 
