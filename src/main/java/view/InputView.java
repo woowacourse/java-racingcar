@@ -7,22 +7,25 @@ import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
 public class InputView {
+    // 정책 변경 가능성 있는 상수 분리
     private static final String CAR_NAME_DELIMITER = ",";
+
     private final BufferedReader reader;
 
     public InputView(InputStream inputStream) {
         this.reader = new BufferedReader(new InputStreamReader(inputStream));
     }
 
-
     public String[] readCarNames() throws IOException {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        final String inputData = removeBlank(reader.readLine());
-        validateCarNamesFormat(inputData);
-        return inputData.split(CAR_NAME_DELIMITER);
+        final String userInput = removeBlank(reader.readLine());
+
+        validateCarNamesFormat(userInput);
+
+        return userInput.split(CAR_NAME_DELIMITER);
     }
 
-    private void validateCarNamesFormat(String names) {
+    private void validateCarNamesFormat(final String names) {
         if (!Pattern.matches("^[A-z0-9,]+$", names)) {
             throw new IllegalArgumentException("형식에 맞게 다시 입력하세요.");
         }
@@ -30,16 +33,18 @@ public class InputView {
 
     public Integer readNumberOfAttempts() throws IOException {
         System.out.println("시도할 회수는 몇회인가요?");
-        final String inputData = removeBlank(reader.readLine());
-        validateNumberOfAttempts(inputData);
-        return Integer.parseInt(inputData);
+        final String userInput = removeBlank(reader.readLine());
+
+        validateNumberOfAttempts(userInput);
+
+        return Integer.parseInt(userInput);
     }
 
-    private void validateNumberOfAttempts(String text) {
+    private void validateNumberOfAttempts(final String text) {
         try {
             Integer.parseInt(text);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("1부터 10 이하의 숫자를 입력하세요.");
         }
     }
 
