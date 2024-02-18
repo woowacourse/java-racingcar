@@ -28,7 +28,10 @@
     * 가장 멀리 전진한 자동차의 정보를 제공한다.
     * 최종 우승자 정보를 제공한다.
 * NumberGenerator
-    * 0부터 9사이의 난수를 발생시키는 역할을 담당한다.
+    * 숫자를 생성하는 메소드를 가진 인터페이스다.
+* RandomNumberGenerator
+    * `NumberGenerator`를 구현한 클래스다.
+    * 0 이상 9 이하의 숫자를 랜덤하게 생성한다.
 
 ### Exception
 
