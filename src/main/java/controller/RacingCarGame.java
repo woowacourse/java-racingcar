@@ -19,8 +19,8 @@ public class RacingCarGame {
     }
 
     public void start() {
-        Cars cars = makeCars();
-        int count = makeCount();
+        Cars cars = createCars();
+        int count = createCount();
 
         outputView.printMovementTitle();
 
@@ -32,7 +32,7 @@ public class RacingCarGame {
         outputView.printWinners(cars.findWinners());
     }
 
-    private Cars makeCars() {
+    private Cars createCars() {
         String carsName = inputView.inputCarsName();
 
         validateIsNull(carsName);
@@ -46,7 +46,7 @@ public class RacingCarGame {
         }
     }
 
-    private int makeCount() {
+    private int createCount() {
         String count = inputView.inputCount();
 
         validateIsNull(count);
