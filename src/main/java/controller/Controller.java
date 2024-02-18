@@ -24,8 +24,8 @@ public class Controller {
         final Cars cars = initCars();
         final RacingCount racingCount = inputRacingCount();
 
-        final List<String> winners = racing(cars, racingCount);
-        outputView.printWinners(winners);
+        playRacing(cars, racingCount);
+        outputView.printWinners(getWinners(cars));
     }
 
     private Cars initCars() {
@@ -47,13 +47,14 @@ public class Controller {
         }
     }
 
-    private List<String> racing(final Cars cars, final RacingCount racingCount) {
+    private void playRacing(final Cars cars, final RacingCount racingCount) {
         outputView.printResultMessageTitle();
-        for (int i = 0; i < racingCount.getCount(); i++) {
-            final List<CarStatus> raceResult = cars.race();
-            outputView.printRacingResult(raceResult);
+        int playedCount = 0;
+        while (racingCount.isFinish(playedCount)) {
+            List<CarStatus> carStatuses = cars.race();
+            outputView.printRacingResult(carStatuses);
+            playedCount++;
         }
-        return getWinners(cars);
     }
 
     private List<String> getWinners(final Cars cars) {
