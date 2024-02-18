@@ -5,6 +5,7 @@ import domain.Car;
 import java.util.List;
 
 import domain.RacingGame;
+import domain.RandomMoveStrategy;
 import view.InputView;
 import view.IterativeReader;
 import view.OutputView;
@@ -18,7 +19,7 @@ public class Controller {
         OutputView.printRoundResult();
 
         for (int i = 0; i < round; i++) {
-            RacingGame.playOneRound(cars);
+            RacingGame.playOneRound(cars, new RandomMoveStrategy());
             OutputView.printScore(cars);
         }
 
