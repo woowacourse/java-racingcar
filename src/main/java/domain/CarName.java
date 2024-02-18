@@ -1,8 +1,5 @@
 package domain;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 import constants.ErrorMessages;
 
 public class CarName {

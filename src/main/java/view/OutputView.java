@@ -12,7 +12,6 @@ public class OutputView {
 		System.out.println("실행 결과");
 	}
 
-
 	public void printCurrentLocations(Map<String, Integer> carLocations) {
 		carLocations.forEach((name, location) -> {
 			String locationToDisplay = "-".repeat(location);
