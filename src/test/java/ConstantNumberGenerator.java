@@ -1,7 +1,7 @@
-public class Constant implements NumberGenerator {
+public class ConstantNumberGenerator implements NumberGenerator {
     private final int generatedValue;
 
-    public Constant(int generatedValue) {
+    public ConstantNumberGenerator(int generatedValue) {
         this.generatedValue = generatedValue;
     }
 

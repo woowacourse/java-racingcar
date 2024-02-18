@@ -14,13 +14,14 @@ class CarTest {
 
     @BeforeEach
     void setup() {
-        car = new Car("pobi", new Random());
+        car = new Car("pobi", new RandomNumberGenerator());
     }
+
 
     @Test
     @DisplayName("객체가 정상적으로 생성된다.")
     void createObjectTest() {
-        assertThatCode(() -> new Car("pobi", new Random())).doesNotThrowAnyException();
+        assertThatCode(() -> new Car("pobi", new RandomNumberGenerator())).doesNotThrowAnyException();
     }
 
     @Test
@@ -37,24 +38,10 @@ class CarTest {
         assertThat(car.getLocation()).isEqualTo(expectedLocation);
     }
 
-    @ParameterizedTest(name = "{0}을 이름으로 사용하면 예외가 발생한다.")
-    @ValueSource(strings = {"", " ", "zangsu"})
-    void illegalNameExceptionTest(String name) {
-        assertThatThrownBy(() -> new Car(name, new Random()))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("null을 이름으로 사용하면 예외가 발생한다.")
-    void nullNameExceptionTest() {
-        assertThatThrownBy(() -> new Car(null, new Random()))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @ParameterizedTest(name = "{0}이면 전진하지 않는다.")
     @ValueSource(ints = {0, 1, 2, 3})
     void dontMoveTest(int generatedValue) {
-        NumberGenerator generator = new Constant(generatedValue);
+        NumberGenerator generator = new ConstantNumberGenerator(generatedValue);
         Car car = new Car("atto", generator);
         int prevLocation = car.getLocation();
         car.tryMove();
@@ -64,7 +51,7 @@ class CarTest {
     @ParameterizedTest(name = "{0}이면 전진한다.")
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void doMoveTest(int generatedValue) {
-        NumberGenerator generator = new Constant(generatedValue);
+        NumberGenerator generator = new ConstantNumberGenerator(generatedValue);
         Car car = new Car("atto", generator);
         int prevLocation = car.getLocation();
         car.tryMove();

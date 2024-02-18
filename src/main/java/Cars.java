@@ -9,12 +9,19 @@ public class Cars {
         if (names.isEmpty()) {
             throw new IllegalArgumentException("이름이 입력되지 않았습니다.");
         }
-        if (names.stream().distinct().count() != names.size()) {
+        if (isDuplicated(names)) {
             throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
         }
         this.cars = names.stream()
                 .map(name -> new Car(name, numberGenerator))
                 .toList();
+    }
+
+    private static boolean isDuplicated(List<String> names) {
+        int distinctSize = (int) names.stream()
+                .distinct()
+                .count();
+        return distinctSize != names.size();
     }
 
     public Cars(List<Car> cars) {

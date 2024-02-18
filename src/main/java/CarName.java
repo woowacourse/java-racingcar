@@ -3,10 +3,19 @@ public class CarName {
     private final String name;
 
     public CarName(String name) {
-        if (name == null || name.isBlank() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("잘못된 이름입니다.");
-        }
+        validateName(name);
         this.name = name;
+    }
+
+    private static void validateName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("공백을 이름으로 사용할 수 없습니다.");
+        }
+
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름이 너무 깁니다. 이름은 5자 이하로 입력해 주세요.");
+        }
+
     }
 
     public String getName() {
