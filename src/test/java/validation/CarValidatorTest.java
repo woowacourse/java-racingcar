@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CarValidatorTest {
-    //TODO 테스트코드와 내용을 유추할 수 있도록 리팩터링
 
     @Test
     @DisplayName("차 이름 테스트: 정상 입력")
@@ -43,22 +42,23 @@ class CarValidatorTest {
     }
 
     @Test
-    @DisplayName("차 이름 테스트: 예외 입력(2) - 차가 100대 넘는 경우")
-    void validateCarNames_invalidInputs_tooManyCars() {
+    @DisplayName("차 대수 테스트: 예외 범위의 차량 대수가 입력")
+    void validateCarNums_invalidInputs() {
         // given
-        List<String> nameTooManyCars = new ArrayList<>();
+        List<String> invalidCarNums = new ArrayList<>();
 
+        //100대가 넘는 차량 대수 생성
         // 테스트 케이스 생성 - [ "A", "AA", "AAA", ... ]
         for (int i = 65; i <= 90; i++) {
             String alphabet = Character.toString((char) i);
             for (int j = 1; j <= 5; j++) {
-                nameTooManyCars.add(alphabet.repeat(j));
+                invalidCarNums.add(alphabet.repeat(j));
             }
         }
 
         // when - then
         assertThrows(IllegalArgumentException.class,
-                () -> CarValidator.validateCarNames(nameTooManyCars));
+                () -> CarValidator.validateCarNames(invalidCarNums));
     }
 
 

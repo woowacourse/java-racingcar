@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RoundValidatorTest {
     @Test
-    @DisplayName("라운드 테스트 : 정상입력")
+    @DisplayName("라운드 테스트 : 정상 범위의 시도 횟수를 입력할 때")
     void validateRound_validateInputs() {
         // given
         int[] validateInputs = {1, 2, 50, 99, 100};
@@ -20,7 +20,7 @@ public class RoundValidatorTest {
     }
 
     @Test
-    @DisplayName("라운드 테스트 : 예외입력")
+    @DisplayName("라운드 테스트 : 예외 범위의 시도 횟수를 입력할 때")
     void validateRound_invalidateInputs() {
         // given
         int[] invalidateInputs = {0, -1, 101, 102};
