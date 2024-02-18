@@ -5,7 +5,7 @@ public class OutputCommand {
     public static String ASK_TRY_COUNT = "시도할 회수는 몇회인가요?";
     public static String INPUT_ERROR_MESSAGE = "입력 중 오류가 발생했습니다.";
     public static String RESULT_TITLE = "실행 결과";
-    public static String WINNER_FORMAT = "%s가 최종 우승했습니다." + System.lineSeparator();
+    public static String WINNERS_PRINT_FORMAT = "%s가 최종 우승했습니다." + System.lineSeparator();
     public static String WINNERS_DELIMITER = ", ";
     public static String HYPHEN = "-";
     public static String COMMA = ",";

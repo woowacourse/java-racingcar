@@ -27,7 +27,7 @@ public class Game {
         });
     }
 
-    public Winner getWinner() {
-        return Winner.from(cars.findFarthestCars());
+    public Winners getWinner() {
+        return Winners.from(cars.findFarthestCars());
     }
 }

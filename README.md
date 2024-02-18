@@ -85,7 +85,7 @@ public class RacingMain {
 
 - [ ] 각각의 클래스에서 인스턴스 변수, 메소드, 생성자 등의 순서에 일관된 순서를 적용한다.
     - [ ] [오라클의 문서](https://www.oracle.com/java/technologies/javase/codeconventions-fileorganization.html)를 참고한다.
-- [ ] Winner 클래스명도 복수형을 명시한다.
+- [X] Winner 클래스명도 복수형을 명시한다.
 - [ ] 인스턴스로 생성하지 않아도 된다는 의미를 부여하기 위해 private 기본 생성자를 생성한다.
 - [ ] Command 상수들은 변경의 여지가 없는 값들이니 불변으로 변경한다.
 - [ ] `RandomUtil`의 주석을 삭제한다.
