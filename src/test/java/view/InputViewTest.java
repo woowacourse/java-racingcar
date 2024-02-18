@@ -1,12 +1,21 @@
 package view;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import exception.DuplicateCarNameException;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputViewTest {
+    @Test
+    @DisplayName("자동차 이름은 쉼표를 기준으로 나눠진다.")
+    void isSplitCarNames() {
+        String names = "pobi,gugu,wedge";
+        assertEquals(List.of("pobi", "gugu", "wedge"), InputView.getSplitCarNames(names));
+    }
+
     @Test
     @DisplayName("자동차 이름은 중복될 수 없다.")
     void isDuplicatedCarName() {
