@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.function.Supplier;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.RandomNumberOfPower;
 import racingcar.domain.Round;
 import racingcar.domain.RacingGame;
+import racingcar.dto.RoundResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -16,7 +18,7 @@ public class RacingcarController {
 
     public void run() {
         RacingGame racingGame = initGame();
-        List<Cars> roundResults = racingGame.simulateCarsInRound();
+        List<RoundResult> roundResults = racingGame.simulateCarsInRound();
         List<String> winners = racingGame.pickOutWinners();
         printGameResult(roundResults, winners);
     }
@@ -24,7 +26,7 @@ public class RacingcarController {
     private RacingGame initGame() {
         Cars cars = retryOnException(this::readCars);
         Round round = retryOnException(this::readRound);
-        return new RacingGame(cars, round);
+        return new RacingGame(cars, round, new RandomNumberOfPower());
     }
 
     private Cars readCars() {
@@ -38,7 +40,7 @@ public class RacingcarController {
         return new Round(InputView.readTryCount());
     }
 
-    private void printGameResult(List<Cars> roundResults, List<String> winners) {
+    private void printGameResult(List<RoundResult> roundResults, List<String> winners) {
         OutputView.printRoundResults(roundResults);
         OutputView.printWinners(winners);
     }
