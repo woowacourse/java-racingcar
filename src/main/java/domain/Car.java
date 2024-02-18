@@ -5,7 +5,7 @@ import util.Exceptions;
 public class Car {
 
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_FORWARD_NUMBER = 4;
+    private static final int MIN_POWER = 4;
 
     private final String name;
     private int forward;
@@ -34,14 +34,14 @@ public class Car {
         }
     }
 
-    public void move(int randomNumber) {
-        if (checkForward(randomNumber)) {
+    public void move(int power) {
+        if (canMove(power)) {
             forward += 1;
         }
     }
 
-    private boolean checkForward(int randomNumber) {
-        return randomNumber >= MIN_FORWARD_NUMBER;
+    private boolean canMove(int power) {
+        return power >= MIN_POWER;
     }
 
     public String getName() {
