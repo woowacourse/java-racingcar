@@ -2,7 +2,7 @@ package racingcar.view;
 
 import racingcar.view.validator.InputValidator;
 import static racingcar.view.OutputView.*;
-import static racingcar.view.UserMessage.*;
+import static racingcar.message.UserMessage.*;
 
 import java.util.Arrays;
 import java.util.List;

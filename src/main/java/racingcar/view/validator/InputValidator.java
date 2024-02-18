@@ -1,13 +1,13 @@
 package racingcar.view.validator;
 
-import static racingcar.view.ErrorMessage.ERROR_WITH_CONTAIN_BLANK;
-import static racingcar.view.ErrorMessage.ERROR_WITH_DUPLICATE_NAME;
-import static racingcar.view.ErrorMessage.ERROR_WITH_INPUT_BLANK;
-import static racingcar.view.ErrorMessage.ERROR_WITH_NON_NUMERIC;
-import static racingcar.view.ErrorMessage.ERROR_WITH_ONLY_ONE_CAR;
-import static racingcar.view.ErrorMessage.ERROR_WITH_OUT_OF_INTEGER_RANGE;
-import static racingcar.view.ErrorMessage.ERROR_WITH_OVER_LENGTH;
-import static racingcar.view.ErrorMessage.ERROR_WITH_UNDER_MINIMUM;
+import static racingcar.message.ErrorMessage.ERROR_WITH_CONTAIN_BLANK;
+import static racingcar.message.ErrorMessage.ERROR_WITH_DUPLICATE_NAME;
+import static racingcar.message.ErrorMessage.ERROR_WITH_INPUT_BLANK;
+import static racingcar.message.ErrorMessage.ERROR_WITH_NON_NUMERIC;
+import static racingcar.message.ErrorMessage.ERROR_WITH_ONLY_ONE_CAR;
+import static racingcar.message.ErrorMessage.ERROR_WITH_OUT_OF_INTEGER_RANGE;
+import static racingcar.message.ErrorMessage.ERROR_WITH_OVER_LENGTH;
+import static racingcar.message.ErrorMessage.ERROR_WITH_UNDER_MINIMUM;
 
 import java.util.HashSet;
 import java.util.List;
