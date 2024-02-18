@@ -1,5 +1,7 @@
 package domain;
 
+import domain.car.CarDistance;
+import domain.car.CarName;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,15 +15,15 @@ class CarsTest {
     @Test
     void getMaxDistance() {
         // Given
-        Cars cars = new Cars(List.of
-                (new Car(new RandomNumberRangeGenerator(), "test1", 0),
-                        new Car(new RandomNumberRangeGenerator(), "test2", 3),
-                        new Car(new RandomNumberRangeGenerator(), "test3", 3)));
+        Cars cars = new Cars(List.of(
+                new Car(new RandomNumberRangeGenerator(), new CarName("test1"), new CarDistance(0)),
+                new Car(new RandomNumberRangeGenerator(), new CarName("test2"), new CarDistance(3)),
+                new Car(new RandomNumberRangeGenerator(), new CarName("test3"), new CarDistance(3))));
 
         // When
-        int maxDistance = cars.getMaxDistance();
+        CarDistance maxDistance = cars.getMaxDistance();
 
         // Then
-        Assertions.assertThat(maxDistance).isEqualTo(3);
+        Assertions.assertThat(maxDistance).isEqualTo(new CarDistance(3));
     }
 }

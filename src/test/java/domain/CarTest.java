@@ -1,5 +1,6 @@
 package domain;
 
+import domain.car.CarName;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ class CarTest {
     void forwardCar() {
         // Given
         NumberRangeGenerator numberRangeGenerator = (start, end) -> 5;
-        Car car = new Car(numberRangeGenerator, "test");
+        Car car = new Car(numberRangeGenerator, new CarName("test"));
 
         // When
         car.move();
@@ -30,7 +31,7 @@ class CarTest {
     void notForwardCar() {
         // Given
         NumberRangeGenerator numberRangeGenerator = (start, end) -> 2;
-        Car car = new Car(numberRangeGenerator, "test");
+        Car car = new Car(numberRangeGenerator, new CarName("test"));
 
         // When
         car.move();
@@ -47,7 +48,7 @@ class CarTest {
         String soLongCarName = "chicken-boy";
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> new Car(null, soLongCarName))
+        Assertions.assertThatThrownBy(() -> new Car(null, new CarName(soLongCarName)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
@@ -59,7 +60,7 @@ class CarTest {
         String emptyName = "";
 
         // When & Then
-        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), emptyName))
+        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), new CarName(emptyName)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름 길이는 1이상 5이하의 문자열만 가능합니다.");
     }
@@ -71,7 +72,7 @@ class CarTest {
             "'', 이름 길이는 1이상 5이하의 문자열만 가능합니다."
     })
     void createCarThrowExceptionForInvalidName(String inputName, String expectedMessage) {
-        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), inputName))
+        Assertions.assertThatThrownBy(() -> new Car(new RandomNumberRangeGenerator(), new CarName(inputName)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedMessage);
     }

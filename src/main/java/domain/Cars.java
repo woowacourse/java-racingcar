@@ -1,5 +1,7 @@
 package domain;
 
+import domain.car.CarDistance;
+import domain.car.CarName;
 import dto.CarStatus;
 
 import java.util.HashSet;
@@ -20,7 +22,7 @@ public class Cars {
         validateDuplicatedCarNames(carNames);
 
         final List<Car> cars = carNames.stream()
-                .map(name -> new Car(new RandomNumberRangeGenerator(), name))
+                .map(name -> new Car(new RandomNumberRangeGenerator(), new CarName(name)))
                 .toList();
 
         return new Cars(cars);
@@ -50,10 +52,11 @@ public class Cars {
         return cars;
     }
 
-    public int getMaxDistance() {
-        return cars.stream()
+    public CarDistance getMaxDistance() {
+        int maxDistance = cars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
-                .orElseGet(() -> 0);
+                .orElseGet(() -> CarDistance.getInitialDistance().distance());
+        return new CarDistance(maxDistance);
     }
 }
