@@ -7,7 +7,7 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> names, NumberGenerator numberGenerator) {
+    public Cars(List<String> names) {
         if (names.isEmpty()) {
             throw new IllegalArgumentException("이름이 입력되지 않았습니다.");
         }
@@ -15,7 +15,7 @@ public class Cars {
             throw new IllegalArgumentException("중복된 이름을 사용할 수 없습니다.");
         }
         this.cars = names.stream()
-                .map(name -> new Car(name, numberGenerator))
+                .map(Car::new)
                 .toList();
     }
 
@@ -23,13 +23,9 @@ public class Cars {
         return names.stream().distinct().count() != names.size();
     }
 
-    public Cars(List<Car> cars) {
-        this.cars = cars;
-    }
-
-    public void tryMove() {
+    public void tryMove(NumberGenerator numberGenerator) {
         for (Car car : cars) {
-            car.tryMove();
+            car.tryMove(numberGenerator.generate());
         }
     }
 
@@ -50,5 +46,11 @@ public class Cars {
 
     public List<Car> getRoundResult() {
         return cars;
+    }
+
+    public void tryMove(List<NumberGenerator> numberGenerator) {
+        for (int turn = 0; turn < cars.size(); turn++) {
+            cars.get(turn).tryMove(numberGenerator.get(turn).generate());
+        }
     }
 }

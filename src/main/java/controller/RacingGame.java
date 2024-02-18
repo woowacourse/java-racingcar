@@ -19,7 +19,7 @@ public class RacingGame {
         int count = initCount();
         OutputView.showRoundStart();
         for (int round = 1; round <= count; round++) {
-            cars.tryMove();
+            cars.tryMove(new Random());
             OutputView.showRoundResult(cars.getRoundResult());
         }
         OutputView.showWinners(cars.findWinnersName());
@@ -27,7 +27,7 @@ public class RacingGame {
 
     private static Cars createCars() {
         try {
-            return new Cars(InputView.readCarNames(), new Random());
+            return new Cars(InputView.readCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createCars();

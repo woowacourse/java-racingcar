@@ -17,13 +17,13 @@ class CarTest {
 
     @BeforeEach
     void setup() {
-        car = new Car("pobi", new Random());
+        car = new Car("pobi");
     }
 
     @Test
     @DisplayName("객체가 정상적으로 생성된다.")
     void createObjectTest() {
-        assertThatCode(() -> new Car("pobi", new Random())).doesNotThrowAnyException();
+        assertThatCode(() -> new Car("pobi")).doesNotThrowAnyException();
     }
 
     @Test
@@ -43,7 +43,7 @@ class CarTest {
     @ParameterizedTest(name = "공백을 이름으로 사용하면 예외가 발생한다.")
     @ValueSource(strings = {"", " "})
     void blankNameExceptionTest(String name) {
-        assertThatThrownBy(() -> new Car(name, new Random()))
+        assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름이 공백입니다.");
     }
@@ -51,7 +51,7 @@ class CarTest {
     @Test
     @DisplayName("이름의 길이가 5자를 초과하면 예외가 발생한다.")
     void longNameExceptionTest() {
-        assertThatThrownBy(() -> new Car("zangsu", new Random()))
+        assertThatThrownBy(() -> new Car("zangsu"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 5자 이하여야 합니다.");
     }
@@ -59,28 +59,26 @@ class CarTest {
     @Test
     @DisplayName("null을 이름으로 사용하면 예외가 발생한다.")
     void nullNameExceptionTest() {
-        assertThatThrownBy(() -> new Car(null, new Random()))
+        assertThatThrownBy(() -> new Car(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름이 입력되지 않았습니다.");
     }
 
     @ParameterizedTest(name = "{0}이면 전진하지 않는다.")
     @ValueSource(ints = {0, 1, 2, 3})
-    void dontMoveTest(int generatedValue) {
-        NumberGenerator generator = new Constant(generatedValue);
-        Car car = new Car("atto", generator);
+    void dontMoveTest(int moveValue) {
+        Car car = new Car("atto");
         int prevLocation = car.getLocation();
-        car.tryMove();
+        car.tryMove(moveValue);
         assertThat(car.getLocation()).isEqualTo(prevLocation);
     }
 
     @ParameterizedTest(name = "{0}이면 전진한다.")
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void doMoveTest(int generatedValue) {
-        NumberGenerator generator = new Constant(generatedValue);
-        Car car = new Car("atto", generator);
+    void doMoveTest(int moveValue) {
+        Car car = new Car("atto");
         int prevLocation = car.getLocation();
-        car.tryMove();
+        car.tryMove(moveValue);
         assertThat(car.getLocation()).isEqualTo(prevLocation + 1);
     }
 }
