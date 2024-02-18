@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.domain.car.CarNames;
+import racingcar.domain.car.CarName;
 import racingcar.domain.car.Cars;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.result.RoundResult;
@@ -17,7 +17,7 @@ public class RacingGame {
         this.round = round;
     }
 
-    public static RacingGame of(final CarNames carNames, final Round round) {
+    public static RacingGame of(final List<CarName> carNames, final Round round) {
         return new RacingGame(Cars.from(carNames), round);
     }
 

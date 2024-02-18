@@ -1,11 +1,11 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.domain.car.CarNames;
 import racingcar.domain.RacingGame;
-import racingcar.domain.result.RoundResult;
-import racingcar.domain.numbergenerator.RandomNumberGenerator;
 import racingcar.domain.Round;
+import racingcar.domain.car.CarName;
+import racingcar.domain.numbergenerator.RandomNumberGenerator;
+import racingcar.domain.result.RoundResult;
 import racingcar.util.ExceptionHandler;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -21,8 +21,8 @@ public class GameController {
     }
 
     public void run() {
-        final CarNames carNames = ExceptionHandler.retry(this::getCarNames, outputView::printError);
-        final Round round = ExceptionHandler.retry(this::getRound, outputView::printError);
+        final List<CarName> carNames = createCarNames();
+        final Round round = createRound();
 
         final RacingGame racingGame = RacingGame.of(carNames, round);
         final List<RoundResult> roundResults = racingGame.play(new RandomNumberGenerator());
@@ -32,9 +32,20 @@ public class GameController {
         outputView.printWinners(racingGame.getWinners());
     }
 
-    private CarNames getCarNames() {
-        final String names = inputView.readCarNames();
-        return CarNames.from(names);
+    private List<CarName> createCarNames() {
+        return ExceptionHandler.retry(this::getCarNames, outputView::printError);
+    }
+
+    private List<CarName> getCarNames() {
+        final List<String> carNames = inputView.readCarNames();
+
+        return carNames.stream()
+                .map(CarName::new)
+                .toList();
+    }
+
+    private Round createRound() {
+        return ExceptionHandler.retry(this::getRound, outputView::printError);
     }
 
     private Round getRound() {

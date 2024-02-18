@@ -2,6 +2,7 @@ package racingcar.domain.car;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import racingcar.domain.numbergenerator.NumberGenerator;
 import racingcar.domain.result.RoundResult;
 
@@ -9,16 +10,22 @@ public class Cars {
 
     private final List<Car> cars;
 
-    private Cars(final List<Car> cars) {
-        this.cars = cars;
+    private Cars(final List<CarName> carNames) {
+        validateDuplicateName(carNames);
+
+        this.cars = carNames.stream()
+                .map(Car::new)
+                .toList();;
     }
 
-    public static Cars from(final CarNames carNames) {
-        final List<Car> cars = carNames.getCarNames().stream()
-                .map(Car::new)
-                .toList();
+    public static Cars from(final List<CarName> carNames) {
+        return new Cars(carNames);
+    }
 
-        return new Cars(cars);
+    private void validateDuplicateName(final List<CarName> carNames) {
+        if (carNames.size() != Set.copyOf(carNames).size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 이름이 존재합니다.");
+        }
     }
 
     public void go(final NumberGenerator generator) {
