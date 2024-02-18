@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -26,10 +25,10 @@ public class RoundResult {
     }
 
     private int getMaxPosition() {
-        List<Integer> positions = result.values()
+        return result.values()
                 .stream()
-                .map(Position::getPosition)
-                .toList();
-        return Collections.max(positions);
+                .mapToInt(Position::getPosition)
+                .max()
+                .orElse(0);
     }
 }
