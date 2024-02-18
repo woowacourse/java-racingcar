@@ -3,8 +3,8 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.List;
 import racingcar.domain.Cars;
+import racingcar.dto.RoundResult;
 import racingcar.domain.TryCount;
-import racingcar.dto.CarStatus;
 import racingcar.util.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -12,7 +12,7 @@ import racingcar.util.ConsoleReader;
 
 public class RacingCarGameMachine {
     private final ConsoleReader reader;
-    private final List<List<CarStatus>> results = new ArrayList<>();
+    private final List<RoundResult> results = new ArrayList<>();
 
     public RacingCarGameMachine(ConsoleReader reader) {
         this.reader = reader;

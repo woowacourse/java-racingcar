@@ -1,8 +1,9 @@
 package racingcar.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import racingcar.dto.CarStatus;
+import racingcar.dto.RoundResult;
 import racingcar.util.NumberGenerator;
 
 public class Cars {
@@ -48,10 +49,10 @@ public class Cars {
                         .forEach(i -> cars.get(i).move(numbers.get(i)));
     }
 
-    public List<CarStatus> result() {
+    public RoundResult result() {
         return cars.stream()
                 .map(Car::getCarStatus)
-                .toList();
+                .collect(Collectors.collectingAndThen(Collectors.toList(), RoundResult::new));
     }
 
     public List<String> getWinners() {

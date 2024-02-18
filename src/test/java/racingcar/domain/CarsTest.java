@@ -57,7 +57,8 @@ class CarsTest {
     void move() {
         Cars cars = Cars.of(List.of("car1", "car2", "car3", "car4"));
         cars.move(new TestNumberGenerator()); // 4, 4, 3, 3
-        List<Integer> result = cars.result().stream()
+        List<Integer> result = cars.result().value()
+                .stream()
                 .map(CarStatus::position)
                 .toList();
 
