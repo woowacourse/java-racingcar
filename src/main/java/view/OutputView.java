@@ -1,7 +1,7 @@
 package view;
 
-import model.Car;
-import model.RacingResultByRoundDto;
+import model.CarInfoDto;
+import model.ResultByRoundDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,20 +18,23 @@ public class OutputView {
 
     private final List<String> racingRecord = new ArrayList<>();
 
-    public void writeRacingResult(List<RacingResultByRoundDto> racingResult) {
+    public void writeRacingResult(List<ResultByRoundDto> racingResult) {
         System.out.println(LINE_SEPARATOR + RACING_RESULT_ANNOUNCE);
 
-        for (RacingResultByRoundDto roundResult : racingResult) {
-            addRoundResultByFormat(roundResult);
+        for (ResultByRoundDto roundResult : racingResult) {
+            addRoundResultByFormat(roundResult.getResultByRound());
         }
+//        racingResult.forEach(roundResult -> addRoundResultByFormat(roundResult));
+//        racingResult.stream()
+//                .forEach(this::addRoundResultByFormat);
 
         System.out.println(String.join(LINE_SEPARATOR, racingRecord));
     }
 
-    private void addRoundResultByFormat(RacingResultByRoundDto cars) {
+    private void addRoundResultByFormat(List<CarInfoDto> cars) {
         StringBuilder roundBuilder = new StringBuilder();
-        for (Car carInfo : cars.getRacingResultByRound()) {
-            String carInfoFormat = makeCarInfoByFormat(carInfo.getName(), makeTraceByFormat(carInfo.getPosition()));
+        for (CarInfoDto carInfo : cars) {
+            String carInfoFormat = makeCarInfoByFormat(carInfo.name(), makeTraceByFormat(carInfo.position()));
             roundBuilder.append(carInfoFormat).append(LINE_SEPARATOR);
         }
         racingRecord.add(roundBuilder.toString());

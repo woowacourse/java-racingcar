@@ -20,6 +20,10 @@ public class Cars {
     public static Cars from(final List<String> names) {
         validateNames(names);
 
+//        List<Car> cars = names.stream()
+//                .map(Car::from)
+//                .collect(Collectors.toList());
+
         List<Car> cars = new ArrayList<>();
         for (String name : names) {
             cars.add(Car.from(name));
@@ -50,6 +54,7 @@ public class Cars {
         for (Car car : this.cars) {
             car.moveForward(generateRandomNumber());
         }
+//        this.cars.forEach(car -> car.moveForward(generateRandomNumber()));
     }
 
     public List<String> findMaxPositionCarName() {

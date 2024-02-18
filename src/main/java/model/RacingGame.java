@@ -10,7 +10,7 @@ public class RacingGame {
 
     private final Cars cars;
     private final int round;
-    private final List<RacingResultByRoundDto> raceRecord;
+    private final List<ResultByRoundDto> raceRecord;
 
     private RacingGame(final Cars cars, final int round) {
         this.cars = cars;
@@ -51,11 +51,11 @@ public class RacingGame {
     public void race() {
         for (int i = 0; i < this.round; i++) {
             cars.moveCars();
-            raceRecord.add(new RacingResultByRoundDto(cars.getCars()));
+            raceRecord.add(ResultByRoundDto.from(cars.getCars()));
         }
     }
 
-    public List<RacingResultByRoundDto> getAllRacingRecord() {
+    public List<ResultByRoundDto> getAllRacingRecord() {
         return this.raceRecord;
     }
 
