@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class Cars {
     public static final int MIN_CAR_COUNT = 2;
     public static final int MAX_CAR_COUNT = 50;
-    private final List<Car> cars;
 
+    private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         validate(cars);
@@ -40,7 +40,6 @@ public class Cars {
         }
         return turnResults;
     }
-
 
     private void moveCar(RandomMovementGenerator randomMovementGenerator, Car car) {
         if (randomMovementGenerator.generate()) {
