@@ -1,26 +1,35 @@
 package view;
 
-import common.Information;
-import java.util.List;
 import model.Car;
-import model.MoveStatus;
+import model.Cars;
+import response.OutputMessage;
 
 public class OutputView {
   private static final String DELIMITER = " : ";
+  private static final String FORWARD = "-";
 
   public void printResultComment() {
-    System.out.println(System.lineSeparator() + Information.RESULT_COMMENT.getMessage());
+    System.out.println(System.lineSeparator() + OutputMessage.RESULT_COMMENT.getMessage());
   }
 
-  public void printResult(List<Car> cars) {
-    for (Car car : cars) {
-      System.out.println(car.getName() + DELIMITER + MoveStatus.join("", car.getStatuses()));
+  public void printResult(Cars cars) {
+    for (Car car : cars.participants()) {
+      String carStatues = convertToOutput(car.countOfForward());
+      System.out.println(car.getName() + DELIMITER + carStatues);
     }
     System.out.println();
   }
 
-  public void printWinner(List<Car> cars) {
-    String winnersName = String.join(", ", cars.stream().map(Car::getName).toList());
-    System.out.printf((Information.WINNER.getMessage()) + "%n", winnersName);
+  private String convertToOutput(int count) {
+    String statues = "";
+    for (int i = 0; i < count; i++) {
+      statues += FORWARD;
+    }
+    return statues;
+  }
+
+  public void printWinner(Cars cars) {
+    String winnersName = String.join(", ", cars.participantsNames());
+    System.out.printf((OutputMessage.WINNER.getMessage()) + "%n", winnersName);
   }
 }
