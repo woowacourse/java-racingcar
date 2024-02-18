@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 class Cars {
 
   static final int CAR_MOVE_THRESHOLD = 4;
+
   private final List<Car> cars;
 
   Cars(List<Car> cars) {

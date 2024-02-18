@@ -23,20 +23,18 @@ public class Main {
   }
 
   private static List<String> getCarNames(Scanner scanner) {
-    RetryHelper carNameInputManager = new RetryHelper(5);
-    return carNameInputManager.retry(
-        () -> {
-          InputGuideOutputView.printInputCarNames();
-          return CarNameInputView.getName(scanner::next);
-        });
+    RetryHelper retryHelper = new RetryHelper(5);
+    return retryHelper.retry(() -> {
+      InputGuideOutputView.printInputCarNames();
+      return CarNameInputView.getName(scanner::next);
+    });
   }
 
   private static int getMaxTurn(Scanner scanner) {
-    RetryHelper maxTurnInputManager = new RetryHelper(5);
-    return maxTurnInputManager.retry(
-        () -> {
-          InputGuideOutputView.printInputMaxRacingTurn();
-          return RacingMaxTurnInputView.getMaxTurn(scanner::next);
-        });
+    RetryHelper retryHelper = new RetryHelper(5);
+    return retryHelper.retry(() -> {
+      InputGuideOutputView.printInputMaxRacingTurn();
+      return RacingMaxTurnInputView.getMaxTurn(scanner::next);
+    });
   }
 }
