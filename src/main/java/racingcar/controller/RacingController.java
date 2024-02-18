@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.model.RaceResult;
 import racingcar.model.RacingGame;
 import racingcar.view.InputView;
@@ -18,34 +19,37 @@ public class RacingController {
     }
 
     public void run() {
-        List<Car> cars = createCars();
-        RacingGame racingGame = createRacingGame(cars);
+        List<String> carNames = inputView.readCarNames();
+        Cars cars = createCars(carNames);
+
+        int numberOfRaces = inputView.readNumberOfRaces();
+        RacingGame racingGame = createRacingGame(cars, numberOfRaces);
 
         inputView.finishReadingInput();
 
-        runGame(racingGame);
-        showWinner(racingGame);
+        List<RaceResult> raceResults = runGame(racingGame);
+        outputView.printRaceResult(raceResults);
+
+        List<Car> winners = showWinner(racingGame);
+        outputView.printWinnerInfo(winners);
     }
 
-    private List<Car> createCars() {
-        List<String> carNames = inputView.readCarNames();
-        return carNames.stream()
+    private Cars createCars(List<String> carNames) {
+        List<Car> cars = carNames.stream()
                 .map(Car::new)
                 .toList();
+        return new Cars(cars);
     }
 
-    private RacingGame createRacingGame(List<Car> cars) {
-        int numberOfRaces = inputView.readNumberOfRaces();
+    private RacingGame createRacingGame(Cars cars, int numberOfRaces) {
         return new RacingGame(cars, numberOfRaces);
     }
 
-    private void runGame(RacingGame racingGame) {
-        List<RaceResult> raceResults = racingGame.startRace();
-        outputView.printRaceResult(raceResults);
+    private List<RaceResult> runGame(RacingGame racingGame) {
+        return racingGame.startRace();
     }
 
-    private void showWinner(RacingGame racingGame) {
-        List<Car> winners = racingGame.selectWinner();
-        outputView.printWinnerInfo(winners);
+    private List<Car> showWinner(RacingGame racingGame) {
+        return racingGame.selectWinner();
     }
 }
