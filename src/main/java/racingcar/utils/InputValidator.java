@@ -3,6 +3,9 @@ package racingcar.utils;
 import java.util.List;
 
 public class InputValidator {
+    private static final int NAME_LENGTH_LIMIT = 5;
+    private static final String NAME_REGEX_PATTERN = "^[a-zA-Z]*$";
+
     private InputValidator() {
     }
 
@@ -15,7 +18,7 @@ public class InputValidator {
     }
 
     private static void validateNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.");
         }
     }
@@ -31,7 +34,7 @@ public class InputValidator {
     }
 
     private static void validateNameCharacters(String name) {
-        if (!name.matches("^[a-zA-Z]*$")) {
+        if (!name.matches(NAME_REGEX_PATTERN)) {
             throw new IllegalArgumentException("자동차의 이름은 영어로만 이루어져야 합니다.");
         }
     }
