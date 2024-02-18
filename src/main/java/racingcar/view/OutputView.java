@@ -29,8 +29,10 @@ public class OutputView {
     }
 
     private void convertResultText(CarName carName, Map<CarName, Position> result) {
-        String name = carName.getName();
-        int position = result.get(carName).getPosition();
-        System.out.printf("%s : %s%n", name, "-".repeat(position));
+        Position position = result.get(carName);
+        String positionText = "-".repeat(position.getPosition());
+
+        // ex) Daon: -----
+        System.out.printf("%s : %s%n", carName.getName(), positionText);
     }
 }
