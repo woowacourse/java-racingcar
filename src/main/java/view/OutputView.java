@@ -1,6 +1,6 @@
 package view;
 
-import common.Information;
+import common.PrintMessage;
 import model.Car;
 import model.MoveStatus;
 
@@ -18,7 +18,7 @@ public class OutputView implements AutoCloseable {
     }
 
     public void printResultComment() throws IOException {
-        writer.write(System.lineSeparator() + Information.RESULT_COMMENT.getMessage());
+        writer.write(System.lineSeparator() + PrintMessage.RESULT_COMMENT.getMessage());
         writer.newLine();
     }
 
@@ -32,7 +32,7 @@ public class OutputView implements AutoCloseable {
 
     public void printWinner(List<Car> cars) throws IOException {
         String winnersName = String.join(", ", cars.stream().map(Car::getName).toList());
-        String composeWinnerMessage = String.format((Information.WINNER.getMessage()), winnersName);
+        String composeWinnerMessage = String.format((PrintMessage.WINNER.getMessage()), winnersName);
         writer.write(composeWinnerMessage);
         writer.newLine();
     }

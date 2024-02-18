@@ -1,7 +1,7 @@
 package view;
 
 import common.Exception;
-import common.Information;
+import common.PrintMessage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class InputView implements AutoCloseable {
     }
 
     public List<String> inputCarsName() throws IOException {
-        System.out.println(Information.INPUT_CAR_NAMES.getMessage());
+        System.out.println(PrintMessage.INPUT_CAR_NAMES.getMessage());
         String input = reader.readLine();
         validateNotNullAndBlank(input);
         return Arrays.stream(input.split(DELIMITER)).map(String::trim).toList();
@@ -34,7 +34,7 @@ public class InputView implements AutoCloseable {
     }
 
     public int inputTrialCount() throws IOException {
-        System.out.println(Information.INPUT_TRIAL_COUNT.getMessage());
+        System.out.println(PrintMessage.INPUT_TRIAL_COUNT.getMessage());
         String input = reader.readLine();
         validateNumeric(input);
         return Integer.parseInt(input);
