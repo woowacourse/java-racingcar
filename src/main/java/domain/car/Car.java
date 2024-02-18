@@ -20,6 +20,10 @@ public class Car {
         }
     }
 
+    public CarRoundResult createResult(){
+        return new CarRoundResult(this.name.getName(), this.location);
+    }
+
     public int getLocation() {
         return location;
     }

@@ -54,7 +54,9 @@ public class Cars {
                 .orElse(0);
     }
 
-    public List<Car> getRoundResult() {
-        return cars;
+    public List<CarRoundResult> getRoundResult() {
+        return cars.stream()
+                .map(Car::createResult)
+                .toList();
     }
 }
