@@ -8,4 +8,6 @@ public class Splitter {
         return Arrays.stream(originalString.split(",")).toList();
     }
 
+    private Splitter() {
+    }
 }
