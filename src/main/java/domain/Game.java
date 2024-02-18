@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import view.OutputView;
 
 public class Game {
     public final int MAX_NUM = 9;
@@ -105,7 +104,7 @@ public class Game {
     }
 
     private String findWinner(Car car, int maxPosition) {
-        if (car.isMaxPosition(maxPosition)) {
+        if (car.isSamePosition(maxPosition)) {
             return car.getCarName();
         }
         return NONCANDIDATE_CAR.getCarName();

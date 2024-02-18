@@ -41,7 +41,7 @@ public class Car {
         return name.isBlank();
     }
 
-    public boolean isMaxPosition(int maxPosition) {
+    public boolean isSamePosition(int maxPosition) {
         return location == maxPosition;
     }
 }
