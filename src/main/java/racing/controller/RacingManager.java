@@ -18,7 +18,7 @@ import util.RandomGenerator;
 import util.RetryHelper;
 
 public class RacingManager {
-    public static void raceStart() {
+    public void raceStart() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         List<String> carNames = getCarNames(br);
         Racing racing = play(br, carNames);
@@ -26,7 +26,7 @@ public class RacingManager {
         RacingResultOutputManager.printWinner(winnerNames);
     }
 
-    private static Racing play(BufferedReader br, List<String> carNames) {
+    private Racing play(BufferedReader br, List<String> carNames) {
         int maxTurn = getMaxTurn(br);
         Cars cars = makeCars(carNames);
         Racing racing = new Racing(maxTurn, cars);
@@ -39,7 +39,7 @@ public class RacingManager {
         return racing;
     }
 
-    private static List<String> getCarNames(BufferedReader br) {
+    private List<String> getCarNames(BufferedReader br) {
         RetryHelper carNameInputManager = new RetryHelper(5);
         return carNameInputManager.retry(
                 () -> {
