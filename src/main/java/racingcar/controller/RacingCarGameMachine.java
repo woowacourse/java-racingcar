@@ -10,6 +10,12 @@ import racingcar.view.OutputView;
 import racingcar.util.ConsoleReader;
 
 public class RacingCarGameMachine {
+    private final ConsoleReader reader;
+
+    public RacingCarGameMachine(ConsoleReader reader) {
+        this.reader = reader;
+    }
+
     public void run() {
         final Cars cars = initCars();
         final TryCount tryCount = initTryCount();
@@ -19,7 +25,7 @@ public class RacingCarGameMachine {
 
     private Cars initCars() {
         try {
-            final List<Car> cars = createCars(InputView.readCarNames(new ConsoleReader()));
+            final List<Car> cars = createCars(InputView.readCarNames(reader));
             return new Cars(cars);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -35,7 +41,7 @@ public class RacingCarGameMachine {
 
     private TryCount initTryCount() {
         try {
-            final int tryCount = InputView.readTryCount(new ConsoleReader());
+            final int tryCount = InputView.readTryCount(reader);
             return new TryCount(tryCount);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
