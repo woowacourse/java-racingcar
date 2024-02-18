@@ -41,8 +41,7 @@ public class RacingController {
     }
 
     private RacingGame createRacingGame(Cars cars) {
-        int tryCount = inputView.readTryCount();
-        return new RacingGame(new TryCount(tryCount), cars, new RandomNumberGenerator());
+        return new RacingGame(new TryCount(inputView.readTryCount()), cars, new RandomNumberGenerator());
     }
 
     private void printResult(TotalResult totalResult) {
