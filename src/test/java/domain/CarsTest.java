@@ -26,6 +26,18 @@ class CarsTest {
         assertThatThrownBy(() -> new Cars(names)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("현재 상태값 반환 테스트")
+    @Test
+    void getCurrentStatusTest() {
+        Cars cars = new Cars(List.of("가", "나", "다"));
+
+        cars.getCars().get(0).drive(MIN_FORWARD_NUMBER);
+        cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
+        cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
+
+        assertThat(cars.getCurrentStatus()).containsAll(List.of("가 : -", "나 : --", "다 : "));
+    }
+
     @DisplayName("우승자 1명 테스트")
     @Test
     void findWinnerTest() {
@@ -33,7 +45,7 @@ class CarsTest {
 
         cars.getCars().get(0).drive(MIN_FORWARD_NUMBER);
         cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
-        cars.getCars().get(1).drive(MIN_FORWARD_NUMBER); // "나"가 우승자
+        cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
 
         assertThat(cars.findWinners()).containsAll(List.of("나"));
     }
