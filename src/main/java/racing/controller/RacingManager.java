@@ -19,11 +19,16 @@ import util.RetryHelper;
 
 public class RacingManager {
     public void raceStart() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        List<String> carNames = getCarNames(br);
-        Racing racing = play(br, carNames);
-        List<String> winnerNames = racing.getWinnerNames();
-        RacingResultOutputManager.printWinner(winnerNames);
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            List<String> carNames = getCarNames(br);
+            Racing racing = play(br, carNames);
+            List<String> winnerNames = racing.getWinnerNames();
+            RacingResultOutputManager.printWinner(winnerNames);
+            br.close();
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
     }
 
     private Racing play(BufferedReader br, List<String> carNames) {
