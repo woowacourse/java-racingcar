@@ -1,6 +1,5 @@
-package domain;
+package domain.car;
 
-import domain.car.CarDistance;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

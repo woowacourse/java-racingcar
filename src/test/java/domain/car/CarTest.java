@@ -1,4 +1,4 @@
-package domain;
+package domain.car;
 
 import domain.power.Power;
 import org.assertj.core.api.Assertions;

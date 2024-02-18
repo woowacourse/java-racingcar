@@ -1,7 +1,5 @@
-package domain;
+package domain.car;
 
-import domain.car.CarDistance;
-import domain.car.CarName;
 import domain.power.Power;
 
 public class Car {

@@ -1,8 +1,7 @@
-package domain;
+package domain.car;
 
 import static domain.power.PowerGenerator.POWER_GENERATOR;
 
-import domain.car.CarDistance;
 import dto.CarStatus;
 
 import java.util.HashSet;

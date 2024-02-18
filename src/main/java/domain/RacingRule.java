@@ -1,6 +1,8 @@
 package domain;
 
+import domain.car.Car;
 import domain.car.CarDistance;
+import domain.car.Cars;
 import java.util.List;
 
 public class RacingRule {

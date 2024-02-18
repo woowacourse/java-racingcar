@@ -1,7 +1,7 @@
 package controller;
 
-import domain.Car;
-import domain.Cars;
+import domain.car.Car;
+import domain.car.Cars;
 import domain.RacingCount;
 import domain.RacingRule;
 import dto.CarStatus;
