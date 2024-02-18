@@ -46,7 +46,7 @@ public class RacingController {
         while (attemptCount.remainCount()) {
             attemptCount.attempt();
             randomMovingCars.moveAll();
-            outputView.printRacingProceed(randomMovingCars);
+            outputView.printRacingResult(randomMovingCars);
         }
     }
 }
