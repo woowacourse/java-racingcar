@@ -2,7 +2,6 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.domain.Car;
-import racingcar.domain.CarName;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
 import racingcar.view.InputView;
@@ -35,7 +34,7 @@ public class RacingCarGameMachine {
 
     private List<Car> createCars(final List<String> carNames) {
         return carNames.stream()
-                .map(carName -> new Car(new CarName(carName)))
+                .map(Car::from)
                 .toList();
     }
 

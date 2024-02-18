@@ -9,8 +9,12 @@ public class Car implements Comparable<Car> {
     private final CarName name;
     private int position = 0;
 
-    public Car(final CarName name) {
+    private Car(final CarName name) {
         this.name = name;
+    }
+
+    public static Car from(final String name) {
+        return new Car(new CarName(name));
     }
 
     public void move(final int threshold) {

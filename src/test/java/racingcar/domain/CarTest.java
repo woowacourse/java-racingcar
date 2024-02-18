@@ -14,7 +14,7 @@ class CarTest {
     @ValueSource(strings = {"car", "CAR", "_car", "-car", "자동차", "ㅈㄷㅊ"})
     @DisplayName("[Success] 자동차가 정상적으로 생성됨")
     void createCars() {
-        assertThatCode(() -> new Car(new CarName("car")))
+        assertThatCode(() -> Car.from("Car"))
                 .doesNotThrowAnyException();
     }
 
@@ -25,7 +25,7 @@ class CarTest {
 
         @BeforeEach
         void BeforeEach() {
-            car = new Car(new CarName("a"));
+            car = Car.from("car");
         }
 
         @ParameterizedTest
