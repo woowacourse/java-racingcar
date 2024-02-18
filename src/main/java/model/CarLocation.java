@@ -1,3 +1,5 @@
+package model;
+
 public class CarLocation {
     private int location;
 

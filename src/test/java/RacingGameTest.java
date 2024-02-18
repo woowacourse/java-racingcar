@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
+import controller.RacingGame;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;

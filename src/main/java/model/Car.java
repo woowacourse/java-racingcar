@@ -1,3 +1,5 @@
+package model;
+
 public class Car {
 
     private static final int MIN_NUMBER_FOR_MOVE = 4;

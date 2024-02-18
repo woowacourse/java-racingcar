@@ -1,5 +1,6 @@
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import model.CarLocation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

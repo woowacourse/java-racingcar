@@ -1,3 +1,5 @@
+package model;
+
 public class CarName {
     private final String name;
 
