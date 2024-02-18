@@ -1,5 +1,7 @@
 package view;
 
+import util.Exceptions;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -16,9 +18,13 @@ public class InputView {
         return scanner.nextLine().trim();
     }
 
-    public String inputRap() {
+    public int inputRound() {
         System.out.println("시도할 회수는 몇회인가요?");
-
-        return scanner.nextLine().trim();
+        String rawRound = scanner.nextLine().trim();
+        try {
+            return Integer.parseInt(rawRound);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Exceptions.NUMBER_FORMAT_EXCEPTION.getMessage());
+        }
     }
 }

@@ -65,31 +65,16 @@ public class CarRacingGame {
         return new Cars(names);
     }
 
-    private Round createRound() {
-        String rawRap = inputView.inputRap();
-        validateIsNull(rawRap);
-        int rap = convertToInt(rawRap);
-
-        return new Round(rap);
-    }
-
     private void validateIsNull(String input) {
         if (input == null) {
             throw new IllegalArgumentException(Exceptions.NULL_EXCEPTION.getMessage());
         }
     }
 
-    private int convertToInt(String rawRap) {
-        validateNumberFormat(rawRap);
-        return Integer.parseInt(rawRap);
-    }
+    private Round createRound() {
+        int round = inputView.inputRound();
 
-    private void validateNumberFormat(String rawRap) {
-        try {
-            Integer.parseInt(rawRap);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Exceptions.NUMBER_FORMAT_EXCEPTION.getMessage());
-        }
+        return new Round(round);
     }
 
     private void printWinners(Cars cars) {
