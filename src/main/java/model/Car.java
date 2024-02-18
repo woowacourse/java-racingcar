@@ -1,20 +1,20 @@
 package model;
 
-import model.intgenerator.IntGenerator;
+import model.powergenerator.PowerGenerator;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int FORWARD_THRESHOLD = 4;
+    private static final int MIN_POWER_FOR_FORWARD = 4;
 
     private final String name;
-    private final IntGenerator intGenerator;
+    private final PowerGenerator powerGenerator;
     private int forwardCount;
 
-    public Car(String name, IntGenerator intGenerator) {
+    public Car(String name, PowerGenerator powerGenerator) {
         validate(name);
         this.name = name;
         this.forwardCount = 0;
-        this.intGenerator = intGenerator;
+        this.powerGenerator = powerGenerator;
     }
 
     private void validate(String name) {
@@ -28,8 +28,8 @@ public class Car {
     }
 
     public void tryForward() {
-        int number = intGenerator.pickNumber();
-        if (number >= FORWARD_THRESHOLD) {
+        int power = powerGenerator.generatePower();
+        if (power >= MIN_POWER_FOR_FORWARD) {
             forwardCount++;
         }
     }
