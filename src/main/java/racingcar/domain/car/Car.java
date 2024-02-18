@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain.car;
 
 import java.util.Objects;
 
@@ -10,13 +10,9 @@ public class Car implements Comparable<Car> {
     private final CarName name;
     private int position;
 
-    private Car(final CarName name, final int position) {
+    public Car(final CarName name) {
         this.name = name;
-        this.position = position;
-    }
-
-    public static Car from(final String name) {
-        return new Car(new CarName(name), START_POSITION);
+        this.position = START_POSITION;
     }
 
     public void go(final int number) {
@@ -27,10 +23,6 @@ public class Car implements Comparable<Car> {
 
     public boolean isSamePosition(final Car other) {
         return position == other.position;
-    }
-
-    public Car copy() {
-        return new Car(name, position);
     }
 
     public String getName() {

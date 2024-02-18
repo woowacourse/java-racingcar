@@ -1,4 +1,6 @@
-package racingcar.model;
+package racingcar.domain.car;
+
+import java.util.Objects;
 
 public class CarName {
 
@@ -26,4 +28,19 @@ public class CarName {
     }
 
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof final CarName carName)) {
+            return false;
+        }
+        return Objects.equals(getName(), carName.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
 }
