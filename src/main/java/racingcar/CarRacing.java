@@ -28,16 +28,6 @@ public class CarRacing {
         printWinners(cars);
     }
 
-    private void printWinners(Cars cars) {
-        Referee referee = new Referee(cars.getCarsPosition());
-        outputView.printWinners(referee.getWinners());
-    }
-
-    private void printMoveResult(TryCount tryCount, Cars cars) {
-        outputView.printMoveResultMessage();
-        tryMove(tryCount, cars);
-    }
-
     private Cars createCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
@@ -51,10 +41,20 @@ public class CarRacing {
         return new TryCount(amount);
     }
 
+    private void printMoveResult(TryCount tryCount, Cars cars) {
+        outputView.printMoveResultMessage();
+        tryMove(tryCount, cars);
+    }
+
     private void tryMove(TryCount tryCount, Cars cars) {
         for (int i = 0; i < tryCount.getValue(); i++) {
             cars.tryMove(new CarAccelerator());
             outputView.printCarsPosition(cars.getCars());
         }
+    }
+
+    private void printWinners(Cars cars) {
+        Referee referee = new Referee(cars.getCarsPosition());
+        outputView.printWinners(referee.getWinners());
     }
 }
