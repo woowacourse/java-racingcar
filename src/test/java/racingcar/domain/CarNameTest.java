@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static racingcar.domain.CarName.MAX_NAME_LENGTH;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,6 @@ class CarNameTest {
     void createCarByExcessLength() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new CarName("ABCDEF"))
-                .withMessage("자동차 이름의 길이가 5를 초과합니다");
+                .withMessage(String.format("자동차 이름의 길이가 %d를 초과합니다", MAX_NAME_LENGTH));
     }
 }

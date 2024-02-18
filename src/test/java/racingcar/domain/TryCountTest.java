@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static racingcar.domain.TryCount.MAX_TRY_COUNT;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,6 @@ class TryCountTest {
     void createTryCountByOver1000() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new TryCount(1001))
-                .withMessage("시도 횟수는 1,000 이하여야 합니다.");
+                .withMessage(String.format("시도 횟수는 %,d 이하여야 합니다.", MAX_TRY_COUNT));
     }
 }

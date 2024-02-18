@@ -3,6 +3,8 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static racingcar.domain.Cars.MAX_CARS_SIZE;
+import static racingcar.domain.Cars.MIN_CARS_SIZE;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -39,7 +41,7 @@ class CarsTest {
     void createCarsByInvalidSize(List<String> carNames) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Cars.of(carNames))
-                .withMessage("자동차 대수는 2대 이상 10대 이하여야 합니다.");
+                .withMessage(String.format("자동차 대수는 %d대 이상 %d대 이하여야 합니다.", MIN_CARS_SIZE, MAX_CARS_SIZE));
     }
 
     private static Stream<Arguments> InputCarNames() {

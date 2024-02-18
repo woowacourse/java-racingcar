@@ -6,9 +6,9 @@ import racingcar.dto.CarStatus;
 import racingcar.util.NumberGenerator;
 
 public class Cars {
-    private static final int MIN_CARS_SIZE = 2;
-    private static final int MAX_CARS_SIZE = 10;
-    private static final int MAX_RANDOM_NUMBER = 9;
+    static final int MIN_CARS_SIZE = 2;
+    static final int MAX_CARS_SIZE = 10;
+    static final int MAX_RANDOM_NUMBER = 9;
 
     private final List<Car> cars;
 

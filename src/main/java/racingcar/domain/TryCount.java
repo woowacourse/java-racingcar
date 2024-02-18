@@ -3,8 +3,8 @@ package racingcar.domain;
 import java.util.stream.IntStream;
 
 public class TryCount {
+    static final int MAX_TRY_COUNT = 1_000;
     private static final int MIN_TRY_COUNT = 1;
-    private static final int MAX_TRY_COUNT = 1_000;
 
     private final int tryCount;
 

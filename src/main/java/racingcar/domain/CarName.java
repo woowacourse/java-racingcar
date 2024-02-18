@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public record CarName(String name) {
     private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_-]");
-    private static final int MAX_NAME_LENGTH = 5;
+    static final int MAX_NAME_LENGTH = 5;
 
     public CarName(String name) {
         validate(name);
