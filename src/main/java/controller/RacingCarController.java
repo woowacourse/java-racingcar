@@ -9,14 +9,10 @@ import view.OutputView;
 import view.RetryOnException;
 
 public class RacingCarController {
-    private final MovesGenerator generator;
-
-    public RacingCarController() {
-        this.generator = new MovesGenerator();
-    }
 
     public void run() {
-        Cars cars = RetryOnException.retryInputOnIllegalArgumentException(() -> new Cars(createCars(), generator));
+        Cars cars = RetryOnException
+                .retryInputOnIllegalArgumentException(() -> new Cars(createCars(), new MovesGenerator()));
         int tryNumber = RetryOnException.retryInputOnIllegalArgumentException(InputView::inputTryNumber);
         race(tryNumber, cars);
         List<Car> winners = cars.findWinners();
