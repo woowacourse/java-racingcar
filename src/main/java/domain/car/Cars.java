@@ -10,17 +10,19 @@ import java.util.List;
 public class Cars {
 
     private final List<Car> cars;
+    private final RacingRule racingRule;
 
-    private Cars(List<Car> cars) {
+    private Cars(List<Car> cars, RacingRule racingRule) {
         this.cars = cars;
+        this.racingRule = racingRule;
     }
 
-    public static Cars of(List<String> carNames) {
+    public static Cars of(List<String> carNames, RacingRule racingRule) {
         validateCarNamesCount(carNames);
         validateDuplicatedCarNames(carNames);
         List<Car> cars = initCars(carNames);
 
-        return new Cars(cars);
+        return new Cars(cars, racingRule);
     }
 
     private static void validateCarNamesCount(List<String> carNames) {
@@ -50,8 +52,8 @@ public class Cars {
                 .toList();
     }
 
-    public List<String> findWinnerNames(RacingRule rule) {
-        return rule.findWinnerCars(cars)
+    public List<String> findWinnerNames() {
+        return racingRule.findWinnerCars(cars)
                 .stream()
                 .map(Car::getName)
                 .toList();

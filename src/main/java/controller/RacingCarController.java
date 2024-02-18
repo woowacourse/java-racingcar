@@ -31,8 +31,9 @@ public class RacingCarController {
     private Cars initCars() {
         try {
             List<String> carNames = inputView.inputCarNames();
+            RacingRule racingRule = new RacingRule();
 
-            return Cars.of(carNames);
+            return Cars.of(carNames, racingRule);
         } catch (RuntimeException e) {
             outputView.printInputCarNamesErrorMessage();
 
@@ -61,12 +62,6 @@ public class RacingCarController {
             outputView.printRacingResult(raceResult);
         }
 
-        return getWinners(cars);
-    }
-
-    private List<String> getWinners(final Cars cars) {
-        RacingRule racingRule = new RacingRule();
-
-        return cars.findWinnerNames(racingRule);
+        return cars.findWinnerNames();
     }
 }
