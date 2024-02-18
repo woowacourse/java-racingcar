@@ -29,7 +29,7 @@ public class Cars {
                 .orElseThrow(() -> new NoSuchElementException("자동차의 최대 이동거리가 존재하지 않습니다."));
     }
 
-    public List<Car> getPresentCarsStatus() {
+    public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
 }

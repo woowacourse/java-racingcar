@@ -34,7 +34,7 @@ public class RacingCarController {
         outputView.printResultHeader();
         for (int i = 0; i < tryNumber; i++) {
             cars.moveCars();
-            outputView.printTotalResult(cars.getPresentCarsStatus());
+            outputView.printTotalResult(cars.getCars());
         }
     }
 }
