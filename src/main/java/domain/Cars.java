@@ -22,7 +22,7 @@ public class Cars {
 		return locations;
 	}
 
-	public List<String> getLargestLocationCarsName() {
+	public List<String> getLargestLocationCarNames() {
 		return cars.stream()
 			.filter(car -> car.getCarLocation() == getLargestLocation())
 			.map(Car::getCarName)

@@ -46,6 +46,6 @@ class CarsTest {
 	void getLargestLocationCarsName() {
 		List<String> expected = List.of("c", "e");
 
-		assertThat(cars.getLargestLocationCarsName()).isEqualTo(expected);
+		assertThat(cars.getLargestLocationCarNames()).isEqualTo(expected);
 	}
 }

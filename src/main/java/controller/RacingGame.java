@@ -31,7 +31,7 @@ public class RacingGame {
 
 		Cars cars = loadCars(names);
 		race(trialCount, cars);
-		outputView.printWinners(cars.getLargestLocationCarsName());
+		outputView.printWinners(cars.getLargestLocationCarNames());
 	}
 
 	private <T> T retryInputOnException(Supplier<T> supplier) {
