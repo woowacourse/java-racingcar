@@ -37,7 +37,7 @@ class CarTest {
     @DisplayName("초기 위치가 0으로 설정된다.")
     void checkInitLocationTest() {
         int expectedLocation = 0;
-        assertThat(car.getLocation()).isEqualTo(expectedLocation);
+        assertThat(car.createResult().location()).isEqualTo(expectedLocation);
     }
 
     /*@ParameterizedTest(name = "{0}이면 전진하지 않는다.")

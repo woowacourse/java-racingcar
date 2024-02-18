@@ -13,7 +13,7 @@ public class OutputView {
 
     public static void showRoundResult(List<CarRoundResult> roundResult) {
         for (CarRoundResult car : roundResult) {
-            showCarLocation(car.name(), car.distance());
+            showCarLocation(car.name(), car.location());
         }
         System.out.println();
     }

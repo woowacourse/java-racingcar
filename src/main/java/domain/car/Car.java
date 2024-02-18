@@ -24,11 +24,11 @@ public class Car {
         return new CarRoundResult(this.name.getName(), this.location);
     }
 
-    public int getLocation() {
-        return location;
-    }
-
     public String getName() {
         return name.getName();
+    }
+
+    public boolean isLocatedAt(int location) {
+        return this.location == location;
     }
 }

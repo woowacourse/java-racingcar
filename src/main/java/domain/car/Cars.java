@@ -42,14 +42,15 @@ public class Cars {
     public List<String> getWinnersName() {
         int maxLocation = getMaxLocation();
         return cars.stream()
-                .filter(car -> car.getLocation() == maxLocation)
+                .filter(car -> car.isLocatedAt(maxLocation))
                 .map(Car::getName)
                 .toList();
     }
 
     private int getMaxLocation() {
         return cars.stream()
-                .mapToInt(Car::getLocation)
+                .map(Car::createResult)
+                .mapToInt(CarRoundResult::location)
                 .max()
                 .orElse(0);
     }
