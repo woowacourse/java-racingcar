@@ -15,9 +15,6 @@ class RoundTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "a", "-1"})
     void invalidInput(String value) {
-        // given
-        // when
-        // then
         assertThatThrownBy(() -> Round.from(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -26,34 +23,26 @@ class RoundTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "5", "100"})
     void isContinueTrue(String source) {
-        // given
-        // when
         Round round = Round.from(source);
-        // then
+
         assertThat(round.isContinue()).isTrue();
     }
 
     @DisplayName("라운드 종료 확인")
     @Test
     void isContinueFalse() {
-        // given
-        // when
         Round round = Round.from("0");
 
-        // then
         assertThat(round.isContinue()).isFalse();
     }
 
     @DisplayName("라운드 실행시 값이 1 감소한다.")
     @Test
     void progress() {
-        // given
         Round round = Round.from("2");
 
-        // when
         round.progress();
 
-        // then
         assertThat(round).extracting("value").isEqualTo(1);
     }
 }

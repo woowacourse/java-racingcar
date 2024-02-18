@@ -14,27 +14,22 @@ class CarsTest {
     @DisplayName("공동 우승자 확인")
     @Test
     void findWinners() {
-        // given
         Cars cars = Cars.from("aa,bb,cc");
         cars.go(() -> 5);
 
-        // when
         List<Car> winner = cars.findWinners();
 
-        // then
         Assertions.assertThat(winner).hasSize(3);
     }
 
     @DisplayName("단독 우승자 확인")
     @Test
     void findWinner() {
-        // given
         Cars cars = Cars.from("aa,bb,cc");
         cars.go(new TestNumberGenerator());
-        // when
+
         List<Car> winner = cars.findWinners();
 
-        // then
         Assertions.assertThat(winner).hasSize(1).extracting("name").isEqualTo(List.of("cc"));
     }
 
@@ -60,9 +55,6 @@ class CarsTest {
     @DisplayName("자동차 이름이 중복시 예외 발생")
     @Test
     void duplicatedName() {
-        // given
-        // when
-        // then
         assertThatThrownBy(() -> Cars.from("aa,aa"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -70,13 +62,10 @@ class CarsTest {
     @DisplayName("getter로 가져온 List는 수정이 불가")
     @Test
     void add() {
-        // given
         Cars cars = Cars.from("a,b,c");
 
-        // when
         List<Car> unmodifiedCars = cars.getCars();
 
-        // then
         Assertions.assertThatThrownBy(() -> unmodifiedCars.add(Car.from("새로운차")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }

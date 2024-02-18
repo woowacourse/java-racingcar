@@ -57,7 +57,6 @@ public class Car implements Comparable<Car> {
         return Objects.hash(getName());
     }
 
-    //TODO: 공동 우승자는 입력한 순서대로
     @Override
     public int compareTo(Car target) {
         return Integer.compare(this.position, target.position);

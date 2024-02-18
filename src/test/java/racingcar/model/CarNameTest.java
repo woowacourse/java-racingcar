@@ -12,11 +12,8 @@ class CarNameTest {
     @ParameterizedTest
     @ValueSource(strings = {" hhhhh ", "abcd ", "  abcde"})
     void invalidLength(String name) {
-        // given
-        // when
         CarName carName = new CarName(name);
 
-        // then
         Assertions.assertThat(carName.getName()).isEqualTo(name.trim());
     }
 
@@ -33,6 +30,7 @@ class CarNameTest {
     @ValueSource(strings = {"정상길이", "이름"})
     void createCar(String name) {
         CarName carName = new CarName(name);
+
         Assertions.assertThat(carName.getName()).isEqualTo(name);
     }
 }
