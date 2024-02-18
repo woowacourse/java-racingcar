@@ -7,10 +7,11 @@ public class Car implements Comparable<Car> {
     private static final int CAR_MOVE_THRESHOLD = 4;
 
     private final CarName name;
-    private int position = 0;
+    private Position position;
 
     private Car(final CarName name) {
         this.name = name;
+        this.position = new Position(0);
     }
 
     public static Car from(final String name) {
@@ -19,7 +20,7 @@ public class Car implements Comparable<Car> {
 
     public void move(final int threshold) {
         if (threshold >= CAR_MOVE_THRESHOLD) {
-            this.position++;
+            position = position.increasePosition();
         }
     }
 
@@ -28,15 +29,15 @@ public class Car implements Comparable<Car> {
     }
 
     public CarStatus getCarStatus() {
-        return new CarStatus(name.name(), position);
+        return new CarStatus(name.name(), position.position());
     }
 
     public int compareTo(Car other) {
-        return this.position - other.position;
+        return this.position.position() - other.position.position();
     }
 
     public boolean isSamePosition(Car other) {
-        return this.position == other.position;
+        return this.position.position() == other.position.position();
     }
 
     @Override
