@@ -13,14 +13,7 @@ public class RandomUtil {
     public static RandomUtil getInstance() {
         return instance;
     }
-
-    /**
-     * minLimit와 maxLimit을 포함하여 랜담값을 뽑는 함수
-     *
-     * @param minLimit
-     * @param maxLimit
-     * @return int
-     */
+    
     public int generate(final int minLimit, final int maxLimit) {
         validate(minLimit, maxLimit);
         return random.nextInt(maxLimit - minLimit) + minLimit;
