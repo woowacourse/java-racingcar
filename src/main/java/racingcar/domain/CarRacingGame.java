@@ -22,18 +22,23 @@ public class CarRacingGame {
         }
     }
 
-    public void decreaseMoveCount() {
+    public void proceed(CarMoveRule carMoveRule) {
+        decreaseMoveCount();
+        moveCars(carMoveRule);
+    }
+
+    private void decreaseMoveCount() {
         moveCount--;
+    }
+
+    private void moveCars(CarMoveRule carMoveRule) {
+        cars.stream()
+                .filter(car -> carMoveRule.isGo())
+                .forEach(Car::move);
     }
 
     public boolean isGameOver() {
         return moveCount < MIN_MOVE_COUNT;
-    }
-
-    public void moveCars(CarMoveRule carMoveRule) {
-        cars.stream()
-                .filter(car -> carMoveRule.isGo())
-                .forEach(Car::move);
     }
 
     public Cars findWinners() {

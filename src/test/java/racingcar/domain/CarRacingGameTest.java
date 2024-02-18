@@ -33,7 +33,7 @@ public class CarRacingGameTest {
 
         //when
         CarMoveRule rule = () -> true;
-        carRacingGame.moveCars(rule);
+        carRacingGame.proceed(rule);
 
         //then
         Assertions.assertThat(cars.stream()
@@ -53,7 +53,7 @@ public class CarRacingGameTest {
 
         //when
         CarMoveRule rule = () -> false;
-        carRacingGame.moveCars(rule);
+        carRacingGame.proceed(rule);
 
         //then
         Assertions.assertThat(cars.stream()

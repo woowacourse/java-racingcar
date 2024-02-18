@@ -28,8 +28,7 @@ public class Controller {
         CarMoveRule carMoveRule = new DefaultCarMoveRule();
         resultView.printProgressGuide();
         while (!carRacingGame.isGameOver()) {
-            carRacingGame.decreaseMoveCount();
-            carRacingGame.moveCars(carMoveRule);
+            carRacingGame.proceed(carMoveRule);
             resultView.printProgress(cars);
         }
         Cars winners = carRacingGame.findWinners();
