@@ -20,7 +20,7 @@ class CarsTest {
         );
         Cars cars = new Cars(carList);
 
-        List<Integer> randomNumbers = List.of(0, 3, 6, 9);
+        List<Integer> randomNumbers = List.of(0, 3, 4, 9);
         cars.moveAll(randomNumbers);
 
         List<Integer> expectedLocations = List.of(0, 0, 1, 1);
