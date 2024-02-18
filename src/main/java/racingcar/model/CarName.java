@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import java.util.Objects;
 import racingcar.message.ErrorMessage;
 
 public class CarName {
@@ -30,5 +31,21 @@ public class CarName {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof CarName target)) {
+            return false;
+        }
+        return Objects.equals(name, target.name);
     }
 }
