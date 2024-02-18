@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MOVE_FORWARD_LOWER_BOUND = 3;
-    private static final Pattern findSpecialCharacter = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
+    private static final Pattern FIND_SPECIAL_CHARACTER = Pattern.compile("[ !@#$%^&*().?\":{}|<>]");
 
     private final String name;
     private int distance = 0;
@@ -23,7 +23,7 @@ public class Car {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름이 너무 깁니다.");
         }
-        if (findSpecialCharacter.matcher(name).find()) {
+        if (FIND_SPECIAL_CHARACTER.matcher(name).find()) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름에는 특수문자가 들어갈 수 없습니다.");
         }
     }

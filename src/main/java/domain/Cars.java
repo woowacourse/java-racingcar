@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
     private static final String DASH = "-";
+
     private final List<Car> racingCars;
 
     public Cars(List<Car> racingCars) {
