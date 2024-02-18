@@ -9,7 +9,7 @@ public class Car {
     private final Name name;
     private int position;
 
-    public Car(Name name) {
+    public Car(final Name name) {
         this.name = name;
         this.position = INITIAL_POSITION;
     }
@@ -18,17 +18,17 @@ public class Car {
         return name;
     }
 
-    public Integer getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void race(Integer power) {
+    public void race(final int power) {
         if (power >= FORWARD_THRESHOLD) {
             this.position++;
         }
     }
 
-    public boolean comparePosition(int position) {
+    public boolean comparePosition(final int position) {
         return this.position == position;
     }
 
