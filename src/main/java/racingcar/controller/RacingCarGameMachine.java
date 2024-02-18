@@ -1,8 +1,10 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.domain.TryCount;
+import racingcar.dto.CarStatus;
 import racingcar.util.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -10,6 +12,7 @@ import racingcar.util.ConsoleReader;
 
 public class RacingCarGameMachine {
     private final ConsoleReader reader;
+    private final List<List<CarStatus>> results = new ArrayList<>();
 
     public RacingCarGameMachine(ConsoleReader reader) {
         this.reader = reader;
@@ -49,10 +52,11 @@ public class RacingCarGameMachine {
 
     private void proceedOneRound(final Cars cars) {
         cars.move(new RandomNumberGenerator());
-        OutputView.printResult(cars.result());
+        results.add(cars.result());
     }
 
     private void printResult(final Cars cars) {
+        OutputView.printResults(results);
         OutputView.printWinners(cars.getWinners());
     }
 }

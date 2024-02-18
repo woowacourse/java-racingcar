@@ -19,8 +19,12 @@ public class OutputView {
         System.out.println(RESULT_SUBJECT);
     }
 
-    public static void printResult(final List<CarStatus> carStatuses) {
-        carStatuses.stream()
+    public static void printResults(final List<List<CarStatus>> results) {
+        results.forEach(OutputView::printResult);
+    }
+
+    private static void printResult(final List<CarStatus> result) {
+        result.stream()
                 .map(OutputView::makeCarStatusResult)
                 .forEach(System.out::println);
         System.out.println();
