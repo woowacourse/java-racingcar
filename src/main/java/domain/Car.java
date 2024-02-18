@@ -7,7 +7,7 @@ public class Car {
 
     public Car(String name) {
         validateCarName(name);
-        this.name = removeBlank(name);
+        this.name = removeSpace(name);
         location = 0;
     }
 
@@ -21,7 +21,7 @@ public class Car {
         return name.length() <= MAX_BOUND;
     }
 
-    private String removeBlank(String name) {
+    private String removeSpace(String name) {
         return name.replaceAll(" ", "");
     }
 
