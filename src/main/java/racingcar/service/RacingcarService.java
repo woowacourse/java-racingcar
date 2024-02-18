@@ -7,12 +7,12 @@ import racingcar.domain.Cars;
 import racingcar.dto.RoundResult;
 import racingcar.util.RandomNumberGenerator;
 
-public class RacingGameService {
+public class RacingcarService {
 
     private static final int MIN_NUMBER_OF_POWER = 0;
     private static final int MAX_NUMBER_OF_POWER = 9;
 
-    public Cars registerCars(List<String> carNames) {
+    public Cars createCars(List<String> carNames) {
         List<Car> cars = carNames.stream()
                 .map(Car::new)
                 .toList();
