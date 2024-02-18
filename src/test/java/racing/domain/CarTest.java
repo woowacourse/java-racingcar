@@ -13,8 +13,8 @@ class CarTest {
   void go() {
     Car test = new Car(0, "test");
     test.go();
-    Assertions.assertThat(test)
-        .isEqualTo(new Car(ONCE_MOVE_DISTANCE, "test"));
+    Assertions.assertThat(test.getDistance())
+        .isEqualTo(ONCE_MOVE_DISTANCE);
   }
 
   @Test
@@ -22,8 +22,8 @@ class CarTest {
   void stop() {
     Car test = new Car(0, "test");
     test.stop();
-    Assertions.assertThat(test)
-        .isEqualTo(new Car(0, "test"));
+    Assertions.assertThat(test.getDistance())
+        .isEqualTo(0);
   }
 
   @Test
