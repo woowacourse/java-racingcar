@@ -18,7 +18,7 @@ public class StringParser {
         try {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자 값이 아닙니다.");
         }
     }
 }
