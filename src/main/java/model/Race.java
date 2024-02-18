@@ -56,4 +56,8 @@ public class Race {
 
         return carDistances;
     }
+
+    public List<Car> getCars() {
+        return cars.getCars();
+    }
 }
