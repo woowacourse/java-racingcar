@@ -8,7 +8,7 @@ public class RoundResult {
     private final List<CarPerformance> carPerformances;
 
     public RoundResult(Cars cars) {
-        this.carPerformances = cars.cars()
+        this.carPerformances = cars.values()
                 .stream()
                 .map(CarPerformance::new)
                 .toList();

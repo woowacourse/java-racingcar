@@ -1,5 +1,8 @@
 package racingcar.service;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.List;
 import racingcar.domain.Car;
@@ -13,14 +16,13 @@ public class RacingGame {
     private static final int MAX_NUMBER_OF_POWER = 9;
 
     public Cars registerCars(List<String> carNames) {
-        List<Car> cars = carNames.stream()
+        return carNames.stream()
                 .map(Car::new)
-                .toList();
-        return new Cars(cars);
+                .collect(collectingAndThen(toList(), Cars::new));
     }
 
     public RoundResult processRound(Cars cars) {
-        int registeredCarsSize = cars.cars().size();
+        int registeredCarsSize = cars.valuesSize();
         List<Integer> numbersOfPower = prepareNumbersOfPower(registeredCarsSize);
         cars.raceWithNumbersOfPower(numbersOfPower);
         return new RoundResult(cars);
