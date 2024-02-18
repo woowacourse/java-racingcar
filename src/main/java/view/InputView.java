@@ -2,22 +2,11 @@ package view;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.function.Supplier;
 
 import constants.ErrorMessages;
 
 public class InputView {
 	private final Scanner scanner = new Scanner(System.in);
-
-	private <T> T retryInputOnException(Supplier<T> supplier) {
-		try {
-			return supplier.get();
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return retryInputOnException(supplier);
-		}
-	}
-
 
 	public String receiveNames() {
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
