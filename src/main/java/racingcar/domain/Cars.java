@@ -42,11 +42,11 @@ public class Cars {
 
     public Map<String, Integer> result() {
         return cars.stream()
-                .map(Car::result)
-                .map(result -> result.entrySet().iterator().next())
                 .collect(Collectors.toMap(
-                        Map.Entry::getKey, Map.Entry::getValue,
-                        (a, b) -> a, LinkedHashMap::new));
+                        Car::getName,
+                        Car::getPosition,
+                        (a, b) -> a,
+                        LinkedHashMap::new));
     }
 
     public List<String> getWinners() {

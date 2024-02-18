@@ -52,10 +52,6 @@ public class Car implements Comparable<Car> {
         return position;
     }
 
-    public Map<String, Integer> result() {
-        return Map.of(name, position);
-    }
-
     public int compareTo(Car other) {
         return this.position - other.position;
     }

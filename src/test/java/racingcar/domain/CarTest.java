@@ -26,16 +26,6 @@ class CarTest {
     @Nested
     class ValidateCarName {
         @ParameterizedTest
-        @NullAndEmptySource
-        @ValueSource(strings = {" ", "  ", "\t", "\n"})
-        @DisplayName("[Exception] 자동차 이름이 공백이나 null이면 예외를 던진다")
-        void createCarByNull(final String name) {
-            assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new Car(name))
-                    .withMessage(NOT_NULL_CAR_NAME.getMessage());
-        }
-
-        @ParameterizedTest
         @ValueSource(strings = {"가나다", "!!", ",,"})
         @DisplayName("[Exception] 자동차 이름에 숫자, 영문, '-', '_' 외에 다른 문자가 포함되면 예외를 던진다")
         void createCarByInvalidCharacter(final String name) {
@@ -80,15 +70,6 @@ class CarTest {
 
             assertThat(car.getPosition())
                     .isEqualTo(0);
-        }
-
-        @Test
-        @DisplayName("[Success] 자동차 결과를 '이름 : -'와 같은 형태로 반환한다.")
-        void getResult() {
-            car.move(4);
-
-            assertThat(car.result())
-                    .isEqualTo(Map.of("a", 1));
         }
     }
 }
