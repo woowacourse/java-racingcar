@@ -43,15 +43,28 @@ class ValidatorTest {
         //when & then
         assertThrows(
                 IllegalArgumentException.class,
-                () -> Validator.validateInteger(tryCount),
+                () -> Validator.validateTryCount(tryCount),
                 "시도 회수는 정수여야 합니다.");
     }
 
     @Test
     @DisplayName("입력된 시도 횟수가 양의 정수가 아니면 예외가 발생한다.")
-    void validateTryCountTest() {
+    void validatePositiveIntegerTest() {
         //given
-        int tryCount = -2;
+        String tryCount = "-2";
+
+        //when & then
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> Validator.validateTryCount(tryCount),
+                "시도할 회수는 양의 정수여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("입력된 시도 횟수가 양의 정수가 아니면 예외가 발생한다.")
+    void validateMaxTryCountTest() {
+        //given
+        String tryCount = "51";
 
         //when & then
         assertThrows(
