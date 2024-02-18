@@ -12,7 +12,7 @@ class Car implements Comparable<Car> {
     this.distance = distance;
     this.name = name;
   }
-  
+
   void go() {
     distance += ONCE_MOVE_DISTANCE;
   }
@@ -23,10 +23,6 @@ class Car implements Comparable<Car> {
   @Override
   public int compareTo(Car o) {
     return o.distance - distance;
-  }
-
-  boolean hasSameDistance(Car other) {
-    return distance == other.distance;
   }
 
   String getName() {

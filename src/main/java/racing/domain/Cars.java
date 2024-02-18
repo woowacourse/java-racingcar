@@ -41,6 +41,6 @@ class Cars {
         .sorted()
         .findFirst()
         .orElseThrow();
-    return cars.stream().filter(car -> car.hasSameDistance(maxCar)).toList();
+    return cars.stream().filter(car -> car.getDistance() == maxCar.getDistance()).toList();
   }
 }

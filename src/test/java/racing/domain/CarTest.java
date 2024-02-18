@@ -25,13 +25,4 @@ class CarTest {
     Assertions.assertThat(test.getDistance())
         .isEqualTo(0);
   }
-
-  @Test
-  @DisplayName("같은 거리 확인 테스트")
-  void hasSameDistance() {
-    Car car = new Car(1, "a");
-    Car otherCar = new Car(1, "b");
-    Assertions.assertThat(car.hasSameDistance(otherCar))
-        .isTrue();
-  }
 }
