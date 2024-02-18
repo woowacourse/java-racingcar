@@ -12,11 +12,11 @@ class CarTest {
     @DisplayName("전진하는 경우")
     @Test
     void goPassable() {
-        Car car = Car.from("a");
+        Car a = Car.from("a");
 
-        car.go(new AlwaysMoveNumberGenerator());
+        a.go(new AlwaysMoveNumberGenerator());
 
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(a.getPosition()).isEqualTo(1);
     }
 
     @DisplayName("전진하지 않는 경우")
@@ -27,5 +27,25 @@ class CarTest {
         car.go(new NoMoveNumberGenerator());
 
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("시작은 서로 같은 위치에서 시작")
+    void isSamePosition() {
+        Car a = Car.from("a");
+        Car b = Car.from("b");
+
+        assertThat(a.isSamePosition(b)).isTrue();
+    }
+
+    @Test
+    @DisplayName("서로 다른 위치인 경우")
+    void isNotSamePosition() {
+        Car a = Car.from("a");
+        Car b = Car.from("b");
+
+        b.go(new AlwaysMoveNumberGenerator());
+
+        assertThat(a.isSamePosition(b)).isFalse();
     }
 }
