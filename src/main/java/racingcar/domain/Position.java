@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-public record Position(int position) {
+public record Position(int value) {
 
     public Position increasePosition() {
-        return new Position(position + 1);
+        return new Position(value + 1);
     }
 }

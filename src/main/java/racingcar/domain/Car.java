@@ -25,19 +25,19 @@ public class Car implements Comparable<Car> {
     }
 
     public String getName() {
-        return name.name();
+        return name.value();
     }
 
     public CarStatus getCarStatus() {
-        return new CarStatus(name.name(), position.position());
+        return new CarStatus(name.value(), position.value());
     }
 
     public int compareTo(Car other) {
-        return this.position.position() - other.position.position();
+        return this.position.value() - other.position.value();
     }
 
     public boolean isSamePosition(Car other) {
-        return this.position.position() == other.position.position();
+        return this.position.value() == other.position.value();
     }
 
     @Override

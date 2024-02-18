@@ -12,7 +12,7 @@ class PositionTest {
     void increasePosition() {
         final Position position = new Position(0);
 
-        assertThat(position.increasePosition().position())
+        assertThat(position.increasePosition().value())
                 .isEqualTo(1);
     }
 }
