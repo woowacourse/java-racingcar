@@ -35,17 +35,16 @@ public class Cars {
     }
 
     public List<String> getWinnersName() {
-        List<String> winnersName = new ArrayList<>();
         int maxLocation = getMaxLocation();
-        cars.stream()
+        return cars.stream()
                 .filter(car -> car.getLocation() == maxLocation)
-                .forEach(car -> winnersName.add(car.getName()));
-        return winnersName;
+                .map(Car::getName)
+                .toList();
     }
 
     private int getMaxLocation() {
         return cars.stream()
-                .mapToInt(car -> car.getLocation())
+                .mapToInt(Car::getLocation)
                 .max()
                 .orElse(0);
     }
