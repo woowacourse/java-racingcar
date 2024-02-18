@@ -15,17 +15,15 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void makeCarMove(RandomNumberGenerator generator) {
-        cars.forEach(car -> car.move(generator.generate()));
-    }
-
-    public RoundResult getRoundResult() {
+    public RoundResult makeCarsMove(RandomNumberGenerator generator) {
         Map<CarName, Position> carStatus = new LinkedHashMap<>();
         for (Car car : cars) {
+            car.move(generator.generate());
             carStatus.put(car.getCarName(), car.getPosition());
         }
         return new RoundResult(carStatus);
     }
+
 
     private void validateCarNames(List<Car> cars) {
         Set<CarName> distinctNames = cars.stream()

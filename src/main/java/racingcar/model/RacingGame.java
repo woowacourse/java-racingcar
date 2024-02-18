@@ -15,8 +15,7 @@ public class RacingGame {
     public TotalResult run() {
         TotalResult totalResult = new TotalResult();
         for (int i = 0; i < tryCount.getCount(); i++) {
-            cars.makeCarMove(randomNumberGenerator);
-            totalResult.addResult(cars.getRoundResult());
+            totalResult.addResult(cars.makeCarsMove(randomNumberGenerator));
         }
         return totalResult;
     }
