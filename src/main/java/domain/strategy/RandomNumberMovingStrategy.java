@@ -1,7 +1,7 @@
 package domain.strategy;
 
 import constants.ErrorMessages;
-import utils.Randoms;
+import utils.RandomNumberGenerator;
 
 public class RandomNumberMovingStrategy implements MovingStrategy {
 
@@ -11,7 +11,7 @@ public class RandomNumberMovingStrategy implements MovingStrategy {
 
 	@Override
 	public boolean canMove() {
-		int randomNumber = Randoms.getRandomNumber(MAX_RANDOM_NUMBER_RANGE);
+		int randomNumber = RandomNumberGenerator.generateNumberUpTo(MAX_RANDOM_NUMBER_RANGE);
 		return isGraterThanMovingNumber(randomNumber);
 	}
 
