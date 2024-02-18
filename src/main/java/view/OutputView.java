@@ -8,7 +8,7 @@ public class OutputView {
     private static final String WINNER_NAME_DELIMITER = ", ";
 
     public void writeResultMessage() {
-        System.out.println("\n실행 결과");
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
     public void writeRoundResult(Cars cars) {

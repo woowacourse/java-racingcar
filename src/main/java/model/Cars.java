@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final int MIN_CAR_NAME_COUNT = 2;
-    private static final String NEW_LINE = "\n";
 
     private final List<Car> cars;
 
@@ -61,7 +60,7 @@ public class Cars {
     public String toString() {
         StringBuilder allTrace = new StringBuilder();
         for (Car car : cars) {
-            allTrace.append(car).append(NEW_LINE);
+            allTrace.append(car).append(System.lineSeparator());
         }
         return allTrace.toString();
     }
