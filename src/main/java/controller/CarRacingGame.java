@@ -25,7 +25,7 @@ public class CarRacingGame {
 
     public void play() {
         Cars cars = createCars();
-        Round round = createRap();
+        Round round = createRound();
 
         outputView.printResultMessage();
         race(cars, round);
@@ -61,7 +61,7 @@ public class CarRacingGame {
         return new Cars(names);
     }
 
-    private Round createRap() {
+    private Round createRound() {
         String rawRap = inputView.inputRap();
         validateIsNull(rawRap);
         int rap = convertToInt(rawRap);
