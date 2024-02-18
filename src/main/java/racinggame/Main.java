@@ -1,7 +1,7 @@
 package racinggame;
 
 import java.io.IOException;
-import racinggame.domain.RacingGame;
+import racinggame.domain.MoveCondition;
 import racinggame.domain.RandomMoveCondition;
 import racinggame.view.InputView;
 import racinggame.view.OutputView;
@@ -11,11 +11,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        RacingGame game = new RacingGame(inputView.readCars(), new RandomMoveCondition());
+        MoveCondition moveCondition = new RandomMoveCondition();
+        Controller controller = new Controller(inputView, outputView);
 
-        game.race(inputView.readRound());
-
-        outputView.printResult(game.getResult());
-        outputView.printWinner(game.findWinnersName());
+        controller.run(moveCondition);
     }
 }
