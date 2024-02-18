@@ -1,15 +1,17 @@
 package racingcar.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import static racingcar.TestUtil.setInput;
 
 import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 import racingcar.utils.Console;
 
 class InputViewTest {
@@ -46,5 +48,5 @@ class InputViewTest {
         int moveCount = inputView.askMoveCount();
         //then
         assertThat(moveCount).isEqualTo(5);
-     }
+    }
 }
