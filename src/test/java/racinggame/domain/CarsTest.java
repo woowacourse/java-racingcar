@@ -35,7 +35,6 @@ class CarsTest {
         List<String> result = cars.findWinnersName();
 
         assertThat(result).containsExactly("이상");
-        assertThat(result.size()).isEqualTo(1);
     }
 
     @DisplayName("공동 우승자를 선정한다.")
@@ -46,7 +45,6 @@ class CarsTest {
         List<String> result = cars.findWinnersName();
 
         assertThat(result).containsExactly("아톰", "이상");
-        assertThat(result.size()).isEqualTo(2);
     }
 
     @DisplayName("모든 자동차를 움직일 수 있다.")
