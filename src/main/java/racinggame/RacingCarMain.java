@@ -1,20 +1,17 @@
 package racinggame;
 
-import java.io.IOException;
 import java.util.function.Supplier;
-import racinggame.domain.Cars;
 import racinggame.domain.RacingGame;
-import racinggame.domain.Round;
 import racinggame.domain.condition.RandomMoveCondition;
+import racinggame.view.InputView;
+import racinggame.view.OutputView;
 
-public class Main {
+public class RacingCarMain {
 
-    public static void main(String[] args) throws IOException {
-        Cars cars = repeat(InputView::readCars);
-        Round round = repeat(InputView::readRound);
-        RacingGame game = RacingGame.of(cars, new RandomMoveCondition());
-
-        OutputView.printResult(game.race(round));
+    public static void main(String[] args) {
+        RacingGame game = RacingGame.of(repeat(InputView::readCars), new RandomMoveCondition());
+        
+        OutputView.printResult(game.race(repeat(InputView::readRound)));
         OutputView.printWinner(game.findWinnerName());
     }
 

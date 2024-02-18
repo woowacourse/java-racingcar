@@ -1,4 +1,4 @@
-package racinggame;
+package racinggame.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.Objects;
 import racinggame.domain.Cars;
 import racinggame.domain.Round;
 
-class InputView {
+public class InputView {
 
     private static final String DELIMITER = ",";
 

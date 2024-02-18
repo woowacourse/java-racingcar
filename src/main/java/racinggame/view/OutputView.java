@@ -1,9 +1,9 @@
-package racinggame;
+package racinggame.view;
 
 import java.util.List;
 import racinggame.domain.RoundResult;
 
-class OutputView {
+public class OutputView {
 
     private static final String PROGRESS_SYMBOL = "-";
     private static final String DELIMITER = ", ";
@@ -12,6 +12,8 @@ class OutputView {
     }
 
     public static void printResult(List<RoundResult> results) {
+        System.out.println();
+        System.out.println("실행 결과");
         results.forEach(OutputView::printEachResult);
     }
 
