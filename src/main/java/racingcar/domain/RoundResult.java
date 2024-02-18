@@ -8,18 +8,14 @@ import java.util.Map;
 public class RoundResult {
     private final Map<String, Integer> roundResult;
 
-    public RoundResult(List<Car> cars) {
-        this.roundResult = recordRoundResult(cars);
+    public RoundResult() {
+        this.roundResult = new LinkedHashMap<>();
     }
 
-    private Map<String, Integer> recordRoundResult(List<Car> cars) {
-        Map<String, Integer> result = new LinkedHashMap<>();
-
+    public void recordRoundResult(List<Car> cars) {
         for (Car car : cars) {
-            result.put(car.getName(), car.getPosition());
+            roundResult.put(car.getName(), car.getPosition());
         }
-
-        return result;
     }
 
     public Map<String, Integer> getRoundResult() {

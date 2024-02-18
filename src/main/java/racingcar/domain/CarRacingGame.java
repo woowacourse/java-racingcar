@@ -28,10 +28,13 @@ public class CarRacingGame {
     }
 
     private RoundResult playRound(NumberGenerator numberGenerator) {
+        RoundResult roundResult = new RoundResult();
+
         cars.moveCars(numberGenerator);
         round.decrease();
 
-        return new RoundResult(cars.getCars());
+        roundResult.recordRoundResult(cars.getCars());
+        return roundResult;
     }
 
     public List<String> findWinners() {
