@@ -4,8 +4,6 @@ import domain.name.Name;
 
 public class Car {
     private static final int INITIAL_POSITION = 0;
-    public static final int FORWARD_MAX_NUMBER = 10;
-    private static final int FORWARD_THRESHOLD = 4;
     private final Name name;
     private int position;
 
@@ -22,8 +20,8 @@ public class Car {
         return position;
     }
 
-    public void race(final int power) {
-        if (power >= FORWARD_THRESHOLD) {
+    public void race(final MovableStrategy engine) {
+        if (engine.isMove()) {
             this.position++;
         }
     }

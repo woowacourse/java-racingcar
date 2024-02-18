@@ -2,6 +2,7 @@ package controller;
 
 import domain.car.Car;
 import domain.car.Cars;
+import domain.car.Engine;
 import domain.name.Names;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
@@ -49,7 +50,7 @@ public class RacingGame {
     }
 
     private void race(final List<Car> cars) {
-        cars.forEach(car -> car.race(NumberGenerator.generate(Car.FORWARD_MAX_NUMBER)));
+        cars.forEach(car -> car.race(new Engine()));
     }
 
     private void finish(final List<Car> cars) {
