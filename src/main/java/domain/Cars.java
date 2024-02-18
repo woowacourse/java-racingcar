@@ -1,5 +1,7 @@
 package domain;
 
+import dto.CarStatus;
+import dto.CarsStatus;
 import dto.Winners;
 import exception.ErrorMessage;
 import exception.RacingCarGameException;
@@ -45,11 +47,13 @@ public class Cars {
                 .count();
     }
 
-    public void move() {
+    public CarsStatus move() {
+        List<CarStatus> carStatuses = new ArrayList<>();
         for (Car car : cars) {
             int number = RandomNumberGenerator.generate();
-            car.move(number);
+            carStatuses.add(car.move(number));
         }
+        return new CarsStatus(carStatuses);
     }
 
     public Winners judge() {

@@ -1,6 +1,10 @@
 package domain;
 
+import dto.CarsStatus;
+import dto.RaceResult;
 import dto.Winners;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RacingCarGame {
     private Cars cars;
@@ -14,11 +18,12 @@ public class RacingCarGame {
     /**
      * Move cars for $count times
      */
-    public void race() {
-        // TODO : for문을 다르게 쓸 수 없을까?
+    public RaceResult race() {
+        List<CarsStatus> results = new ArrayList<>();
         for (int i = 0; i < count.getValue(); i++) {
-            cars.move();
+            results.add(cars.move());
         }
+        return new RaceResult(results);
     }
 
     public Winners getWinners() {

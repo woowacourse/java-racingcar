@@ -3,6 +3,7 @@ package controller;
 import domain.Cars;
 import domain.Count;
 import domain.RacingCarGame;
+import dto.RaceResult;
 import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
@@ -13,9 +14,8 @@ public class GameController {
         Count count = retry(() -> new Count(InputView.enterCount()));
 
         RacingCarGame racingCarGame = new RacingCarGame(cars, count);
-        racingCarGame.race();
+        RaceResult raceResult = racingCarGame.race();
 
-        // TODO : racingCarGame.getWinners() 가 아닌 cars.judge()를 해도 같지 않나? 고민해보기
         OutputView.printWinners(racingCarGame.getWinners());
     }
 

@@ -1,5 +1,6 @@
 package domain;
 
+import dto.CarStatus;
 import java.util.Optional;
 
 public class Car {
@@ -12,10 +13,11 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(int power) {
+    public CarStatus move(int power) {
         if (power >= POWER_LOWER_BOUND) {
             position++;
         }
+        return new CarStatus(carName.getName(), position);
     }
 
     public Optional<String> getNameIfMax(int max) {
