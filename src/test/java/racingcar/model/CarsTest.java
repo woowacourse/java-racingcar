@@ -20,6 +20,7 @@ class CarsTest {
         //given
         List<String> names = List.of("a", "a", "c");
         List<Car> cars = names.stream()
+                .map(CarName::new)
                 .map(Car::new)
                 .toList();
 
@@ -35,8 +36,8 @@ class CarsTest {
     void getRoundResult(CarName carName, Position position) {
         //given
         List<Car> givenCars = List.of(
-                new Car(carName.getName(), position.getPosition()),
-                new Car("ted", 2)
+                new Car(carName, position),
+                new Car(new CarName("daon"), new Position(2))
         );
         Cars cars = new Cars(givenCars);
 
@@ -51,7 +52,7 @@ class CarsTest {
 
     static Stream<Arguments> carNameAndPosition() {
         return Stream.of(
-                Arguments.arguments(new CarName("daon"), new Position(1)),
+                Arguments.arguments(new CarName("ted"), new Position(1)),
                 Arguments.arguments(new CarName("ikjo"), new Position(5)),
                 Arguments.arguments(new CarName("lilly"), new Position(3))
         );

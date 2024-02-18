@@ -22,14 +22,14 @@ public class Cars {
     public RoundResult getRoundResult() {
         Map<CarName, Position> carStatus = new LinkedHashMap<>();
         for (Car car : cars) {
-            carStatus.put(new CarName(car.getName()), new Position(car.getPosition()));
+            carStatus.put(car.getCarName(), car.getPosition());
         }
         return new RoundResult(carStatus);
     }
 
     private void validateCarNames(List<Car> cars) {
-        Set<String> distinctNames = cars.stream()
-                .map(Car::getName)
+        Set<CarName> distinctNames = cars.stream()
+                .map(Car::getCarName)
                 .collect(Collectors.toUnmodifiableSet());
         if (distinctNames.size() != cars.size()) {
             String message = "자동차 이름은 중복될 수 없습니다.";
