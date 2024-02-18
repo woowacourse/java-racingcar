@@ -12,18 +12,12 @@ public class RacingCarGame {
         Cars cars = requestUntilValidated(() -> Cars.from(InputView.readCarNames()));
         TryCount tryCount = requestUntilValidated(() -> TryCount.from(InputView.readTryCount()));
         Game game = createGame(cars, tryCount);
-        printResultLine();
         game.proceed();
         OutputView.printWinner(game.getWinner());
     }
 
-    private static Game createGame(Cars cars, TryCount tryCount) {
+    private static Game createGame(final Cars cars, final TryCount tryCount) {
         return new Game(tryCount, cars);
-    }
-
-    private static void printResultLine() {
-        OutputView.printNewLine();
-        OutputView.printResultTitle();
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {

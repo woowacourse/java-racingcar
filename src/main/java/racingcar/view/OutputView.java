@@ -31,10 +31,11 @@ public class OutputView {
     }
 
     public static void printResultTitle() {
+        printNewLine();
         System.out.println(RESULT_TITLE);
     }
 
-    public static void printNewLine() {
+    private static void printNewLine() {
         System.out.print(System.lineSeparator());
     }
 
