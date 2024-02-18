@@ -16,11 +16,11 @@ public class RacingGame {
 
     private final List<Car> cars;
 
-    private RacingGame(List<Car> cars) {
+    private RacingGame(final List<Car> cars) {
         this.cars = cars;
     }
 
-    public static RacingGame from(List<String> names) {
+    public static RacingGame from(final List<String> names) {
         validate(names);
 
         List<Car> cars = new ArrayList<>();

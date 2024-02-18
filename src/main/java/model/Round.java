@@ -8,13 +8,13 @@ public class Round {
 
     private static final String NATURAL_FORMAT_REGEX = "^[\\d]*$";
 
-    private int round;
+    private final int round;
 
-    private Round(int round) {
+    private Round(final int round) {
         this.round = round;
     }
 
-    public static Round from(String round) {
+    public static Round from(final String round) {
         validate(round);
         return new Round(Integer.parseInt(round));
     }

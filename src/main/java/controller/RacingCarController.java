@@ -18,10 +18,10 @@ public class RacingCarController {
     }
 
     public void run() throws IOException {
-        List<String> names = inputView.readCarNames();
-        RacingGame racingGame = RacingGame.from(names);
+        final List<String> names = inputView.readCarNames();
+        final RacingGame racingGame = RacingGame.from(names);
 
-        Round round = Round.from(inputView.readRound());
+        final Round round = Round.from(inputView.readRound());
 
         outputView.writeResultMessage();
         for (int i = 0; i < round.getRound(); i++) {

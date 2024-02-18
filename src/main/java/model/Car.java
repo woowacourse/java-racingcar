@@ -11,12 +11,12 @@ public class Car {
     private final String name;
     private int position;
 
-    private Car(String name) {
+    private Car(final String name) {
         this.position = INITIAL_POSITION;
         this.name = name;
     }
 
-    public static Car from(String name) {
+    public static Car from(final String name) {
         validateNameLength(name);
         return new Car(name);
     }
