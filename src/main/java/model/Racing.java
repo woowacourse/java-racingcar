@@ -5,6 +5,7 @@ import java.util.List;
 public class Racing {
     private static final int MIN_TRY_COUNT = 1;
     private static final int IMPOSSIBLE_TRY_COUNT = 0;
+
     private int tryCount;
 
     public Racing(int tryCount) {
