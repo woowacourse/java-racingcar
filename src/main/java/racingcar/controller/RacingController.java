@@ -4,8 +4,6 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.RandomNumberGenerator;
 import racingcar.domain.RandomNumberGeneratorImpl;
-import racingcar.util.Parser;
-import racingcar.util.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,8 +19,7 @@ public class RacingController {
     }
 
     public void start() {
-        final List<String> carNames = readCarNames();
-        final Cars cars = new Cars(carNames);
+        final Cars cars = createCars();
         final int tryCount = readTryCount();
 
         outputView.printResultMsg();
@@ -36,25 +33,19 @@ public class RacingController {
         inputView.closeScanner();
     }
 
-    private List<String> readCarNames() {
+    private Cars createCars() {
         try {
-            String carNames = inputView.readCarNames();
-            Validator.validateNullName(carNames);
-            List<String> parsedCarNames = Parser.parseCarNames(carNames);
-            Validator.validateCarNames(parsedCarNames);
-            return parsedCarNames;
+            List<String> carNames = inputView.readCarNames();
+            return new Cars(carNames);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMsg(e.getMessage());
-            return readCarNames();
+            return createCars();
         }
     }
 
     private int readTryCount() {
         try {
-            String tryCount = inputView.readTryCount();
-            int parsedTryCount = Validator.validateInteger(tryCount);
-            Validator.validateTryCount(parsedTryCount);
-            return parsedTryCount;
+            return inputView.readTryCount();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMsg(e.getMessage());
             return readTryCount();

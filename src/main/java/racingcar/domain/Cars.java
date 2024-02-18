@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.util.Validator;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -7,6 +9,7 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(final List<String> names) {
+        Validator.validateCarNames(names);
         this.cars = names.stream().map(Car::new).toList();
     }
 

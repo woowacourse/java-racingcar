@@ -1,5 +1,9 @@
 package racingcar.view;
 
+import racingcar.util.Parser;
+import racingcar.util.Validator;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -8,14 +12,22 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public String readCarNames() {
+    public List<String> readCarNames() {
         System.out.println(CAR_NAMES_INPUT_MSG);
-        return scanner.nextLine();
+
+        String carNames = scanner.nextLine();
+        Validator.validateNullName(carNames);
+        return Parser.parseCarNames(carNames);
     }
 
-    public String readTryCount() {
+    public int readTryCount() {
         System.out.println(TRY_COUNT_INPUT_MSG);
-        return scanner.nextLine();
+
+        String tryCount = scanner.nextLine();
+        int parsedTryCount = Validator.validateInteger(tryCount);
+        Validator.validateTryCount(parsedTryCount);
+
+        return parsedTryCount;
     }
 
     public void closeScanner() {
