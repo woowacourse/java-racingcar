@@ -25,7 +25,11 @@ public class Car {
     }
 
     public void tryMove() {
-        if (randomPowerGenerator.generate().isSufficientPower()) {
+        moveByPower(randomPowerGenerator.generate());
+    }
+
+    void moveByPower(Power power) {
+        if (power.isSufficientPower()) {
             position.move();
         }
     }
