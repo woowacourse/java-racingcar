@@ -2,6 +2,8 @@ package domain;
 
 public class MoveCount {
 
+    private static final Integer MIN_MOVE_COUNT = 1;
+
     private Integer moveCount;
 
     private MoveCount(Integer moveCount) {
@@ -18,7 +20,7 @@ public class MoveCount {
     }
 
     private void validateRange(int moveCount) {
-        if (moveCount <= 0) {
+        if (moveCount < MIN_MOVE_COUNT) {
             throw new IllegalArgumentException("[ERROR] 이동 횟수는 1이상의 정수로 입력해주세요");
         }
     }
