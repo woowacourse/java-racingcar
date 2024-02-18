@@ -1,19 +1,13 @@
 package validation;
 
-import static constant.Numbers.MAX_CAR_LENGTH;
-import static constant.Numbers.MAX_ROUND;
-import static constant.Numbers.MIN_CAR_LENGTH;
-import static constant.Numbers.MIN_ROUND;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Validator {
-    //TODO Validator 확장성 고민해보기
-    /* 검증에 대한 로직이 많아지면 Validaotr 클래스는 무엇으로 정의할까*/
-    /* 로직을 기능을 넘어 객체가 갖는 책임으로 분리해보기*/
+import static constant.Numbers.MAX_CAR_LENGTH;
+import static constant.Numbers.MIN_CAR_LENGTH;
 
+public class CarValidator {
     private static final String NAME_RULE = "^[a-zA-Z]{1,5}$";
 
     public static void validateCarNames(List<String> names) {
@@ -24,11 +18,6 @@ public class Validator {
         validateCarAmount(names);
     }
 
-    public static void validateRound(int round) {
-        if (round < MIN_ROUND || round > MAX_ROUND) {
-            throw new IllegalArgumentException("1-100로 시도 횟수를 적어주세요.");
-        }
-    }
 
     private static void validateNameRules(String name) {
         if (!name.matches(NAME_RULE)) {

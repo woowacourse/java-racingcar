@@ -4,7 +4,8 @@ import domain.Car;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import validation.Validator;
+import validation.CarValidator;
+import validation.RoundValidator;
 
 public class Converter {
 
@@ -12,7 +13,7 @@ public class Converter {
         List<Car> cars = new ArrayList<>();
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*")).toList();
 
-        Validator.validateCarNames(carNames);
+        CarValidator.validateCarNames(carNames);
 
         for (String carName : carNames) {
             cars.add(new Car(carName));
@@ -29,7 +30,7 @@ public class Converter {
             throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
 
-        Validator.validateRound(round);
+        RoundValidator.validateRound(round);
         return round;
     }
 }
