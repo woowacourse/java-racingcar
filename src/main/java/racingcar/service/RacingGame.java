@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.dto.RoundResult;
 import racingcar.util.RandomNumberGenerator;
 
 public class RacingGame {
@@ -21,11 +20,11 @@ public class RacingGame {
                 .collect(collectingAndThen(toList(), Cars::new));
     }
 
-    public RoundResult processRound(Cars cars) {
+    public Cars processRound(Cars cars) {
         int registeredCarsSize = cars.valuesSize();
         List<Integer> numbersOfPower = prepareNumbersOfPower(registeredCarsSize);
         cars.raceWithNumbersOfPower(numbersOfPower);
-        return new RoundResult(cars);
+        return new Cars(cars.values());
     }
 
     public List<String> pickOutWinners(Cars cars) {

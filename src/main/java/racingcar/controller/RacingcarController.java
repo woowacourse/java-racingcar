@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.function.Supplier;
 import racingcar.domain.Cars;
 import racingcar.domain.Round;
-import racingcar.dto.RoundResult;
 import racingcar.service.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -20,7 +19,7 @@ public class RacingcarController {
         Cars cars = retryOnException(this::readCars);
         Round round = retryOnException(this::readRound);
 
-        List<RoundResult> roundResults = simulateCarsInRound(round, cars);
+        List<Cars> roundResults = simulateCarsInRound(round, cars);
         awardWinners(cars, roundResults);
     }
 
@@ -33,17 +32,18 @@ public class RacingcarController {
         return new Round(inputView.readTryCount());
     }
 
-    private List<RoundResult> simulateCarsInRound(Round round, Cars cars) {
-        List<RoundResult> roundResults = new ArrayList<>();
+    private List<Cars> simulateCarsInRound(Round round, Cars cars) {
+        List<Cars> roundResults = new ArrayList<>();
+
         while (round.isRemain()) {
-            RoundResult roundResult = racingGame.processRound(cars);
-            roundResults.add(roundResult);
+            Cars carPerformance = racingGame.processRound(cars);
+            roundResults.add(carPerformance);
             round.decreaseCount();
         }
         return roundResults;
     }
 
-    private void awardWinners(Cars cars, List<RoundResult> roundResults) {
+    private void awardWinners(Cars cars, List<Cars> roundResults) {
         List<String> winners = racingGame.pickOutWinners(cars);
         outputView.printRoundResults(roundResults);
         outputView.printWinners(winners);

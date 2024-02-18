@@ -6,23 +6,23 @@ import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULT_FORMAT;
 import static racingcar.constant.ViewMessage.OUTPUT_WINNERS;
 
 import java.util.List;
-import racingcar.dto.CarPerformance;
-import racingcar.dto.RoundResult;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 public class OutputView {
 
     private static final String MOVEMENT_FORMAT = "-";
     private static final String SEPARATOR = ", ";
 
-    public void printRoundResults(List<RoundResult> roundResults) {
+    public void printRoundResults(List<Cars> roundResult) {
         System.out.println(OUTPUT_ROUND_RESULTS_INTRO.getMessage());
-        roundResults.forEach(this::printRoundResult);
+        roundResult.forEach(this::printRoundResult);
     }
 
-    private void printRoundResult(RoundResult roundResult) {
-        for (CarPerformance carPerformance : roundResult.getCarPerformances()) {
-            String carName = carPerformance.getCarName();
-            int distance = carPerformance.getDistance();
+    private void printRoundResult(Cars roundResult) {
+        for (Car carPerformance : roundResult.values()) {
+            String carName = carPerformance.getName();
+            int distance = carPerformance.getMovedDistance();
             String movements = MOVEMENT_FORMAT.repeat(distance);
 
             System.out.printf(OUTPUT_ROUND_RESULT_FORMAT.getMessage(), carName, movements);
