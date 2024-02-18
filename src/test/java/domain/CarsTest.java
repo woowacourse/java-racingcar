@@ -21,8 +21,8 @@ class CarsTest {
     }
 
     @ParameterizedTest(name = "{2}")
-    @MethodSource("movementsAndWinnerNames")
     @DisplayName("가장 많이 움직인 차의 이름을 반환한다")
+    @MethodSource("movementsAndWinnerNames")
     void findWinnersTest(int[] movement, List<String> expected, String reason) {
         Car myungOh = new Car("명오", movement[0]);
         Car baeky = new Car("배키", movement[1]);

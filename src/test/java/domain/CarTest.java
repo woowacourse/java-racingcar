@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
@@ -46,4 +48,11 @@ class CarTest {
                 .hasMessage(errorMessage);
     }
 
+    @ParameterizedTest()
+    @DisplayName("유효한 자동차 이름 입력 시 예외가 발생하지 않는다.")
+    @ValueSource(strings = {"명오", "가나다라마", "myung"})
+    public void validCarNameDoesNotThrowException(String carName) {
+        assertThatCode(() -> new Car(carName))
+                .doesNotThrowAnyException();
+    }
 }
