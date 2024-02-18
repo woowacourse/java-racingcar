@@ -22,7 +22,7 @@ class Position {
 
     private static void checkIsNonNegative(int position) {
         if (position < ZERO) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException(String.format("자동차의 위치는 양수만 가능합니다. 입력한 값: %s", position));
         }
     }
 
