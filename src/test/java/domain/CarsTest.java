@@ -2,68 +2,56 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import domain.Car;
-import domain.Cars;
+import domain.strategy.MovingStrategy;
+import domain.strategy.RandomNumberMovingStrategy;
 
 class CarsTest {
+	Cars cars;
 
-    @DisplayName("모든 차량의 정상 이동 확인")
-    @Test
-    void moveAll() {
+	@BeforeEach
+	void setUP() {
+		MovingStrategy movingStrategy = new RandomNumberMovingStrategy();
+		cars = new Cars(List.of(
+			new Car("a", 0, movingStrategy),
+			new Car("b", 1, movingStrategy),
+			new Car("c", 2, movingStrategy),
+			new Car("d", 1, movingStrategy),
+			new Car("e", 2, movingStrategy)
+		));
+	}
 
-        List<Car> carList = List.of(
-                Car.from("a", 0),
-                Car.from("b", 0),
-                Car.from("c", 0),
-                Car.from("d", 0)
-        );
-        Cars cars = new Cars(carList);
+	@DisplayName("가장 많이 이동한 차량의 위치 확인")
+	@Test
+	void getLargestLocation() {
+		assertThat(cars.getLargestLocation()).isEqualTo(2);
+	}
 
-        List<Integer> randomNumbers = List.of(0, 3, 6, 9);
-        cars.moveAll(randomNumbers);
+	@DisplayName("각 차량의 현재 위치 반환 확인")
+	@Test
+	void getCurrentLocations() {
+		Map<String, Integer> expected = new LinkedHashMap<>();
+		expected.put("a", 0);
+		expected.put("b", 1);
+		expected.put("c", 2);
+		expected.put("d", 1);
+		expected.put("e", 2);
 
-        List<Integer> expectedLocations = List.of(0, 0, 1, 1);
-        List<Integer> actual = cars.getCarList().stream()
-                .map(Car::getCarLocation)
-                .toList();
+		assertThat(cars.getCurrentLocations()).isEqualTo(expected);
+	}
 
-        assertThat(actual).isEqualTo(expectedLocations);
-    }
+	@DisplayName("가장 많이 이동한 차량 이름 반환 확인")
+	@Test
+	void getLargestLocationCarsName() {
+		List<String> expected = List.of("c", "e");
 
-    @DisplayName("입력된 숫자 리스트의 갯수와 차량 갯수가 다를때 예외 처리 확인")
-    @Test
-    void moveAll_WithInvalidCount() {
-        List<Car> carList = List.of(
-            Car.from("a", 0),
-            Car.from("b", 0),
-            Car.from("c", 0),
-            Car.from("d", 0)
-        );
-        Cars cars = new Cars(carList);
-
-        List<Integer> randomNumbers = List.of(0, 3, 4, 5, 9);
-        assertThatThrownBy(() -> cars.moveAll(randomNumbers))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("[ERROR]");
-    }
-
-    @DisplayName("가장 많이 이동한 차량의 위치 확인")
-    @Test
-    void getMaxLocation() {
-
-        List<Car> carList = List.of(
-                Car.from("a", 1),
-                Car.from("b", 3),
-                Car.from("c", 5),
-                Car.from("d", 7)
-        );
-        Cars cars = new Cars(carList);
-
-        assertThat(cars.getMaxLocation()).isEqualTo(7);
-    }
+		assertThat(cars.getLargestLocationCarsName()).isEqualTo(expected);
+	}
 }
