@@ -1,19 +1,17 @@
 package domain;
 
-import java.util.Set;
-
 public class Car {
     public final int MAX_BOUND = 5;
     public String name;
     public int location;
 
     public Car(String name) {
-        validator(name);
+        validateCarName(name);
         this.name = removeBlank(name);
         location = 0;
     }
 
-    private void validator(String name) {
+    private void validateCarName(String name) {
         if (!validateSize(name)) {
             throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다");
         }
