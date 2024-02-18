@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.dto.CarStatus;
 import racingcar.util.TestNumberGenerator;
 
 class CarsTest {
@@ -49,6 +50,19 @@ class CarsTest {
                 Arguments.arguments(List.of("1")),
                 Arguments.arguments(List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"))
         );
+    }
+
+    @Test
+    @DisplayName("[Success] NumberGenerator에서 생성된 숫자를 순서대로 전달하여 자동차가 전진할 수 있게 한다")
+    void move() {
+        Cars cars = Cars.of(List.of("car1", "car2", "car3", "car4"));
+        cars.move(new TestNumberGenerator()); // 4, 4, 3, 3
+        List<Integer> result = cars.result().stream()
+                .map(CarStatus::position)
+                .toList();
+
+        assertThat(result)
+                .isEqualTo(List.of(1, 1, 0, 0));
     }
 
     @Test
