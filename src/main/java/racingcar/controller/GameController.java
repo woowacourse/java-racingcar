@@ -20,13 +20,13 @@ public class GameController {
     }
 
     private void readCarNames() {
-        boolean nameInput = false;
-        while (!nameInput) {
-            nameInput = getCarNames();
+        boolean isValid = false;
+        while (!isValid) {
+            isValid = inputCarNames();
         }
     }
 
-    private boolean getCarNames() {
+    private boolean inputCarNames() {
         try {
             OutputView.printlnInputName();
             names = NameParser.parse(InputView.inputNames());
@@ -39,13 +39,13 @@ public class GameController {
     }
 
     private void readMoveCount() {
-        boolean moveCountInput = false;
-        while (!moveCountInput) {
-            moveCountInput = getMoveCount();
+        boolean isValid = false;
+        while (!isValid) {
+            isValid = inputMoveCount();
         }
     }
 
-    private boolean getMoveCount() {
+    private boolean inputMoveCount() {
         try {
             OutputView.printlnInputMoveCount();
             moveCount = InputView.inputMoveCount();
