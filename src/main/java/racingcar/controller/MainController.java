@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class MainController {
 
     public void run() {
-        CarRacingGame carRacingGame = repeat(this::initializeCarRacingGame);
+        CarRacingGame carRacingGame = initializeCarRacingGame();
         List<RoundResult> roundResults = carRacingGame.race();
 
         showRoundResults(roundResults);
@@ -21,16 +21,24 @@ public class MainController {
     }
 
     private CarRacingGame initializeCarRacingGame() {
-        String inputCarNames = InputView.inputCarNames();
-        List<String> carNames = Converter.convert(inputCarNames);
-        Cars cars = carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Cars::new));
-
-        int inputRound = InputView.inputRound();
-        Round round = new Round(inputRound);
+        Cars cars = repeatTemplate(this::initializeCars);
+        Round round = repeatTemplate(this::initializeRound);
 
         return new CarRacingGame(cars, round);
+    }
+
+    private Cars initializeCars() {
+        String inputCarNames = InputView.inputCarNames();
+        List<String> carNames = Converter.convert(inputCarNames);
+
+        return carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Cars::new));
+    }
+
+    private Round initializeRound() {
+        int inputRound = InputView.inputRound();
+        return new Round(inputRound);
     }
 
     private void showRoundResults(List<RoundResult> roundResults) {
@@ -53,12 +61,12 @@ public class MainController {
                 .toList();
     }
 
-    private <T> T repeat(Supplier<T> inputReader) {
+    private <T> T repeatTemplate(Supplier<T> inputReader) {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return repeat(inputReader);
+            return repeatTemplate(inputReader);
         }
     }
 }
