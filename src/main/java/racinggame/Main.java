@@ -3,6 +3,8 @@ package racinggame;
 import java.io.IOException;
 import racinggame.domain.RacingGame;
 import racinggame.domain.condition.RandomMoveCondition;
+import racinggame.view.InputView;
+import racinggame.view.OutputView;
 
 public class Main {
 

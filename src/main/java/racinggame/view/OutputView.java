@@ -1,9 +1,9 @@
-package racinggame;
+package racinggame.view;
 
 import java.util.List;
 import racinggame.domain.RoundResult;
 
-class OutputView {
+public class OutputView {
 
     public void printResult(List<RoundResult> results) {
         results.forEach(this::printEachResult);
