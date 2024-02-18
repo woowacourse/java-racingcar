@@ -55,20 +55,19 @@ class CarsTest {
     @Test
     @DisplayName("시도 횟수는 숫자여야 한다.")
     void isRoundCountsNumber() {
-        String counts = "5번";
+        final String counts = "5번";
         assertThrows(IllegalArgumentException.class, () -> InputView.parseRoundCounts(counts));
     }
 
-    // TODO [LTH]: 인터페이스 리팩토링 후 테스트코드 작성
-//    @Test
-//    @DisplayName("각 라운드 별 결과를 반환해야 한다.")
-//    void isValidRoundResult() {
-//        Cars cars = new Cars(CarsTest.racingCars);
-//        List<Car> updateRaceRound = cars.updateRaceRound();
-//
-//
-//        assertThat(roundResult).contains("pobi : -");
-//    }
+    @Test
+    @DisplayName("각 라운드 별 결과를 반환해야 한다.")
+    void isValidRoundResult() {
+        Cars cars = new Cars(CarsTest.racingCars);
+        MovableNumberGenerator movableNumberGenerator = new MovableNumberGenerator();
+
+        cars.updateRaceRound(movableNumberGenerator);
+        assertEquals(2, cars.getMaxDistance());
+    }
 
     @Test
     @DisplayName("최종 자동차 경주 우승자 정보를 반환해야 한다.")

@@ -19,9 +19,8 @@ public class Cars {
         }
     }
 
-    // TODO [LTH]: 인터페이스 사용해 리팩토링
-    public List<Car> updateRaceRound() {
-        racingCars.forEach(car -> car.moveForward(NumberGenerator.generateRandomNumber()));
+    public List<Car> updateRaceRound(NumberGenerator numberGenerator) {
+        racingCars.forEach(car -> car.moveForward(numberGenerator.generateNumber()));
         return racingCars;
     }
 

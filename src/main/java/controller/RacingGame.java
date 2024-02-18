@@ -2,6 +2,7 @@ package controller;
 
 import domain.Car;
 import domain.Cars;
+import domain.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
+
+    private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public void startRacing() {
         // TODO [LTH]: 메서드 분리하기
@@ -33,7 +36,7 @@ public class RacingGame {
 
     private void startRounds(final int roundCounts, final Cars cars) {
         for (int i = 0; i < roundCounts; i++) {
-            List<Car> updateRaceRound = cars.updateRaceRound();
+            List<Car> updateRaceRound = cars.updateRaceRound(randomNumberGenerator);
             OutputView.printRoundResult(updateRaceRound);
         }
     }
