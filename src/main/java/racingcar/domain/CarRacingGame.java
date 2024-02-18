@@ -28,6 +28,9 @@ public class CarRacingGame {
     }
 
     private void decreaseMoveCount() {
+        if (moveCount < MIN_MOVE_COUNT) {
+            throw new IllegalArgumentException("시도 횟수를 모두 사용했습니다.");
+        }
         moveCount--;
     }
 
