@@ -45,9 +45,7 @@ public class RacingGameTest {
 
         // when
         int numberOfAttempts = powers.size() / 2;
-        range(0, numberOfAttempts).forEach(x ->
-                racingGame.moveCars()
-        );
+        range(0, numberOfAttempts).forEach(ignore -> racingGame.moveCars());
 
         // then
         List<Car> cars = carGroup.getAllCars();
