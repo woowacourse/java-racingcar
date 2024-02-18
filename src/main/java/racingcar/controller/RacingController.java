@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.model.Car;
 import racingcar.model.CarName;
 import racingcar.model.Cars;
@@ -33,11 +34,10 @@ public class RacingController {
 
     private Cars createCars() {
         List<String> carNames = inputView.readCarNames();
-        List<Car> cars = carNames.stream()
+        return carNames.stream()
                 .map(CarName::new)
                 .map(Car::new)
-                .toList();
-        return new Cars(cars);
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Cars::new));
     }
 
     private RacingGame createRacingGame(Cars cars) {
