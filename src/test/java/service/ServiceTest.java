@@ -28,6 +28,6 @@ class ServiceTest {
         cars.add(carC);
 
         // then
-        assertEquals(new ArrayList<>(List.of("carB", "carC")), RacingGame.getWinnerNames(cars));
+        assertEquals(new ArrayList<>(List.of("carB", "carC")), Car.RacingGame.getWinnerNames(cars));
     }
 }
