@@ -28,6 +28,6 @@ public class CarTest {
     void 주어진_값이_4_이상인_경우_전진한다(String name, int number, int forwardCount) {
         Car car = new Car(name, (power) -> number);
         car.tryForward();
-        assertThat(car.captureCarState().forwardCount()).isEqualTo(forwardCount);
+        assertThat(car.getForwardCount()).isEqualTo(forwardCount);
     }
 }

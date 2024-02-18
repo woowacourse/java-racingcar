@@ -1,6 +1,5 @@
 package model;
 
-import model.dto.CarState;
 import model.powergenerator.PowerGenerator;
 
 public class Car {
@@ -34,10 +33,6 @@ public class Car {
         if (power >= MIN_FORWARD_POSSIBLE_POWER) {
             forwardCount++;
         }
-    }
-
-    public CarState captureCarState() {
-        return CarState.create(this);
     }
 
     public String getName() {
