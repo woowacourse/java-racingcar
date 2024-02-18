@@ -24,17 +24,17 @@ public class RacingController {
         end(racing, cars);
     }
 
-    public Cars prepareCars() {
+    private Cars prepareCars() {
         List<String> carNames = inputView.askCarNames();
         return Cars.fromNames(carNames);
     }
 
-    public Racing prepareRacing() {
+    private Racing prepareRacing() {
         int tryCount = inputView.askTryCount();
         return new Racing(tryCount);
     }
 
-    public void play(Racing racing, Cars cars) {
+    private void play(Racing racing, Cars cars) {
         outputView.printPlayResult();
         while (racing.canTry()) {
             racing.doTry(cars);
@@ -43,7 +43,7 @@ public class RacingController {
         }
     }
 
-    public void end(Racing racing, Cars cars) {
+    private void end(Racing racing, Cars cars) {
         List<String> winners = racing.determineWinner(cars);
         outputView.printFinalResult(winners);
     }
