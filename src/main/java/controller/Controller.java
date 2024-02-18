@@ -3,7 +3,6 @@ package controller;
 import domain.Car;
 import domain.Service;
 import java.util.List;
-import java.util.Scanner;
 import view.InputView;
 import view.OutputView;
 
@@ -11,7 +10,6 @@ public class Controller {
     private final Service service;
     private final OutputView outputView;
     private final InputView inputView;
-    private final Scanner scanner = new Scanner(System.in);
 
     public Controller(Service service, OutputView outputView, InputView inputView) {
         this.service = service;
@@ -29,8 +27,8 @@ public class Controller {
 
     private List<Car> inputCarName() {
         try {
-            inputView.requestCarName();
-            return service.setCars(service.separateCarName(scanner.nextLine()));
+            String inputCarName = inputView.requestCarName();
+            return service.setCars(service.separateCarName(inputCarName));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputCarName();
@@ -38,12 +36,13 @@ public class Controller {
     }
 
     private int inputValue() {
-        inputView.requestAttemptLimit();
-        return validateNum(scanner.nextLine());
+        String inputAttemptLimit = inputView.requestAttemptLimit();
+        return validateNum(inputAttemptLimit);
     }
 
     private int validateNum(String inputValue) {
         try {
+
             int inputAttemptLimit = validateInputAttemptLimit(inputValue);
             validateNumber(inputAttemptLimit);
             return inputAttemptLimit;
