@@ -26,19 +26,6 @@ class CarsTest {
         assertThatThrownBy(() -> new Cars(names)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("가장 큰 forward 찾기 테스트")
-    @Test
-    void getMaxForwardTest() {
-        List<String> names = List.of("가", "나", "다");
-        Cars cars = new Cars(names);
-
-        cars.getCars().get(0).drive(MIN_FORWARD_NUMBER);
-        cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
-        cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
-
-        assertThat(cars.getMaxForward()).isEqualTo(2);
-    }
-
     @DisplayName("우승자 1명 테스트")
     @Test
     void findWinnerTest() {
