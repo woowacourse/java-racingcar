@@ -22,18 +22,18 @@ public class CarGroup {
     }
 
     public List<Car> getWinners() {
-        final int maxPosition = getMaxPosition();
+        final int positionMax = getPositionMax();
 
-        if (maxPosition == 0) {
+        if (positionMax == 0) {
             return List.of();
         }
 
         return cars.stream()
-                .filter(car -> car.isPositionedAt(maxPosition))
+                .filter(car -> car.isPositionedAt(positionMax))
                 .toList();
     }
 
-    private int getMaxPosition() {
+    private int getPositionMax() {
         return cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()

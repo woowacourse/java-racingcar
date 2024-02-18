@@ -25,7 +25,7 @@ public class RaceController {
         final RacingGame racingGame = new RacingGame(carGroup, new RandomPowerGenerator());
         int numberOfAttempts = attempts.numberOfAttempts();
 
-        range(0, numberOfAttempts).forEach(i -> {
+        range(0, numberOfAttempts).forEach(ignore -> {
             racingGame.moveCars();
             OutputView.printCarsPosition(carGroup);
         });
