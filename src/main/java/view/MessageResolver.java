@@ -13,16 +13,8 @@ public class MessageResolver {
 
     public String resolveMoveResultMessage(List<Car> cars) {
         return cars.stream()
-                .map(car -> car.getCarName() + DELIMITER_FOR_MOVE_RESULT + resolveCarPositionMessage(car.getPosition()))
+                .map(car -> car.getCarName() + DELIMITER_FOR_MOVE_RESULT + MOVE_STATEMENT.repeat(car.getPosition()))
                 .collect(Collectors.joining("\n")) + "\n";
-    }
-
-    private String resolveCarPositionMessage(Integer carPosition) {
-        String message = "";
-        for (int i = 0; i < carPosition; i++) {
-            message += MOVE_STATEMENT;
-        }
-        return message;
     }
 
     public String resolveWinnerMessage(List<Car> winners) {
