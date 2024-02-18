@@ -21,9 +21,8 @@ class RacingGameTest {
     void race() {
         RacingGame game = new RacingGame(createCars(), moveCondition());
 
-        game.race(new Round(3));
+        List<RoundResult> result = game.race(new Round(3));
 
-        List<RoundResult> result = game.getResult();
         assertThat(result.size()).isEqualTo(3);
     }
 

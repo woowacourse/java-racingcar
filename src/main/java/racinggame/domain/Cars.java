@@ -1,6 +1,7 @@
 package racinggame.domain;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 class Cars {
 
@@ -37,22 +38,19 @@ class Cars {
         cars.forEach(car -> car.move(moveCondition));
     }
 
-    public List<String> findWinnerName() {
-        return findWinner(findMaxPosition()).stream()
-            .map(Car::getName)
-            .toList();
+    public List<Car> findWinners() {
+        return findWinners(findFirstWinner());
     }
 
-    private Position findMaxPosition() {
-        return new Position(cars.stream()
-            .map(Car::getPosition)
-            .max(Integer::compareTo)
-            .orElseThrow());
-    }
-
-    private List<Car> findWinner(Position winnerPosition) {
+    private Car findFirstWinner() {
         return cars.stream()
-            .filter(car -> car.isSamePositionWith(winnerPosition))
+            .max(Car::compareTo)
+            .orElseThrow(() -> new NoSuchElementException("우승자가 존재하지 않습니다."));
+    }
+
+    private List<Car> findWinners(Car winner) {
+        return cars.stream()
+            .filter(car -> car.isRival(winner))
             .toList();
     }
 

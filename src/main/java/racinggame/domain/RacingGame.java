@@ -6,26 +6,24 @@ import java.util.List;
 public class RacingGame {
 
     private final Cars cars;
-    private final List<RoundResult> results;
 
     public RacingGame(List<Car> cars, MoveCondition moveCondition) {
         this.cars = new Cars(cars, moveCondition);
-        this.results = new ArrayList<>();
     }
 
-    public void race(Round round) {
+    public List<RoundResult> race(Round round) {
+        List<RoundResult> results = new ArrayList<>();
+
         while (round.isPlayable()) {
             cars.moveAll();
             results.add(cars.buildRoundResult());
             round.decrease();
         }
-    }
 
-    public List<String> findWinnerName() {
-        return cars.findWinnerName();
-    }
-
-    public List<RoundResult> getResult() {
         return results;
+    }
+
+    public List<Car> award() {
+        return cars.findWinners();
     }
 }

@@ -32,10 +32,9 @@ class CarsTest {
         List<Car> movedCars = createMovedCars(1, 2);
         Cars cars = new Cars(movedCars, moveCondition());
 
-        List<String> result = cars.findWinnerName();
+        List<Car> result = cars.findWinners();
 
-        assertThat(result).containsExactly("이상");
-        assertThat(result.size()).isEqualTo(1);
+        assertThat(result).containsExactly(new Car("이상", 2));
     }
 
     @DisplayName("공동 우승자를 선정한다.")
@@ -43,10 +42,9 @@ class CarsTest {
     void findWinners() {
         Cars cars = new Cars(createCars(), moveCondition());
 
-        List<String> result = cars.findWinnerName();
+        List<Car> result = cars.findWinners();
 
-        assertThat(result).containsExactly("아톰", "이상");
-        assertThat(result.size()).isEqualTo(2);
+        assertThat(result).containsExactly(new Car("아톰", 0), new Car("이상", 0));
     }
 
     @DisplayName("모든 자동차를 움직일 수 있다.")

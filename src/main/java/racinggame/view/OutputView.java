@@ -1,9 +1,10 @@
-package racinggame;
+package racinggame.view;
 
 import java.util.List;
+import racinggame.domain.Car;
 import racinggame.domain.RoundResult;
 
-class OutputView {
+public class OutputView {
 
     public void printResult(List<RoundResult> results) {
         results.forEach(this::printEachResult);
@@ -15,7 +16,11 @@ class OutputView {
         System.out.println();
     }
 
-    public void printWinner(List<String> results) {
-        System.out.format("%s가 최종 우승했습니다.", String.join(", ", results));
+    public void printWinner(List<Car> winners) {
+        List<String> winnersName = winners.stream()
+            .map(Car::getName)
+            .toList();
+
+        System.out.format("%s가 최종 우승했습니다.", String.join(", ", winnersName));
     }
 }
