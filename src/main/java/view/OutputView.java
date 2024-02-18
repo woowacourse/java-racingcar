@@ -25,6 +25,14 @@ public class OutputView {
     }
 
     public void printRacingWinners(List<CarDto> winners) {
+        if (isExistWinner(winners)) {
+            printWinners(winners);
+        } else if (!isExistWinner(winners)) {
+            printNoWinner();
+        }
+    }
+
+    private void printWinners(List<CarDto> winners) {
         StringBuilder winnersResult = new StringBuilder();
         List<String> winnersName = winners.stream()
                 .map(winner -> winner.name())
@@ -34,9 +42,15 @@ public class OutputView {
         System.out.print(winnersResult.toString());
     }
 
+    private void printNoWinner() {
+        System.out.println("우승자가 존재하지 않습니다.");
+    }
+
+    private boolean isExistWinner(List<CarDto> winners) {
+        return winners.get(0).position() != 0;
+    }
+
     public void printErrorMessage(String message) {
         System.out.println("[ERROR] : " + message);
     }
-
-
 }
