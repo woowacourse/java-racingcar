@@ -1,8 +1,7 @@
 package model;
 
-import common.Exception;
-
 import java.util.Objects;
+import response.Exception;
 
 public class CarName {
     private static final int MAX_NAME_LENGTH = 5;
