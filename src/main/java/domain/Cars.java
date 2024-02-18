@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
@@ -29,7 +29,7 @@ public class Cars {
     }
 
     private static void validateUniqueName(List<String> names) {
-        if(isDuplicatedName(names)) {
+        if (isDuplicatedName(names)) {
             throw RacingCarGameException.from(ErrorMessage.DUPLICATED_NAME_ERROR);
         }
     }
@@ -44,18 +44,18 @@ public class Cars {
                 .count();
     }
 
-    public void move() {
+    public void move(int randomPower) {
         for (Car car : cars) {
-            car.move();
+            car.move(randomPower);
         }
     }
 
     public Winners judge() {
         List<String> winners = new ArrayList<>();
         int max = findMaxPosition();
-        for(Car car : cars)  {
-            Optional<String> maxCarName =  car.getNameIfMax(max);
-            if(maxCarName.isPresent()) {
+        for (Car car : cars) {
+            Optional<String> maxCarName = car.getNameIfMax(max);
+            if (maxCarName.isPresent()) {
                 winners.add(maxCarName.get());
             }
         }

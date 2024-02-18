@@ -1,6 +1,7 @@
 import domain.Cars;
 import domain.Count;
 import domain.RacingCarGame;
+import domain.RandomPowerGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -11,8 +12,8 @@ public class CarRacingMain {
         Cars cars = retry(() -> Cars.from(InputView.enterCarNames()));
         Count count = retry(() -> Count.from(InputView.enterCount()));
 
-        RacingCarGame racingCarGame = new RacingCarGame(cars, count);
-        
+        RacingCarGame racingCarGame = new RacingCarGame(cars, count, new RandomPowerGenerator());
+
     }
 
     private static <T> T retry(Supplier<T> supplier) {
