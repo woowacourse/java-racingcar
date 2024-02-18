@@ -9,7 +9,7 @@ class RoundTest {
 
     @DisplayName("0 이하의 값을 입력하면 예외가 발생한다.")
     @Test
-    void invalidRapCount() {
+    void invalidRoundCount() {
         assertThatThrownBy(() -> new Round(0)).isInstanceOf(IllegalArgumentException.class);
     }
 

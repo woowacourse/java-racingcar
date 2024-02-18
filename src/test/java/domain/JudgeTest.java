@@ -19,7 +19,7 @@ class JudgeTest {
         judge = new Judge();
     }
 
-    @DisplayName("우승자 1명 테스트")
+    @DisplayName("우승자가 1명이다.")
     @Test
     void findWinnerTest() {
         Cars cars = new Cars(List.of("가", "나", "다"));
@@ -31,7 +31,7 @@ class JudgeTest {
         assertThat(judge.findWinners(cars)).containsAll(List.of("나"));
     }
 
-    @DisplayName("우승자 여러명 테스트")
+    @DisplayName("여러명의 우승자가 존재할 수 있다.")
     @Test
     void findWinnersTest() {
         Cars cars = new Cars(List.of("가", "나", "다"));
@@ -45,7 +45,7 @@ class JudgeTest {
         assertThat(judge.findWinners(cars)).containsAll(List.of("가", "다"));
     }
 
-    @DisplayName("모두가 우승자 테스트")
+    @DisplayName("모두가 우승자가 될 수 있다.")
     @Test
     void findWinnersAllTest() {
         Cars cars = new Cars(List.of("가", "나", "다"));

@@ -11,7 +11,7 @@ class CarsTest {
 
     private static final int MIN_FORWARD_NUMBER = 4;
 
-    @DisplayName("Cars 생성 성공 테스트")
+    @DisplayName("주어진 이름 목록으로 자동차 목록을 생성한다.")
     @Test
     void generateCarsTest() {
         List<String> names = List.of("가", "나", "다");
@@ -19,7 +19,7 @@ class CarsTest {
         assertThatCode(() -> new Cars(names)).doesNotThrowAnyException();
     }
 
-    @DisplayName("Cars 이름 중복 테스트")
+    @DisplayName("중복된 이름이 존재하면 예외를 던진다.")
     @Test
     void duplicatedCarsNameTest() {
         List<String> names = List.of("가", "가", "다");
@@ -27,7 +27,7 @@ class CarsTest {
         assertThatThrownBy(() -> new Cars(names)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("가장 큰 forward 찾기 테스트")
+    @DisplayName("최대 전진 횟수를 반환한다.")
     @Test
     void getMaxForwardTest() {
         List<String> names = List.of("가", "나", "다");
