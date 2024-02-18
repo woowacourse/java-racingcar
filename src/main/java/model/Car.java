@@ -34,12 +34,7 @@ public class Car {
     }
 
     public String showPositionTraceByFormat(String symbol) {
-        StringBuilder trace = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            trace.append(symbol);
-        }
-
-        return trace.toString();
+        return symbol.repeat(position).trim();
     }
 
     public String getName() {
