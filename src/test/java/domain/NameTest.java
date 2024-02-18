@@ -38,11 +38,6 @@ class NameTest {
     public void throwExceptionWhenValueIsExceed5() {
         String value = "joyson";
 
-        assertThrows(IllegalArgumentException.class, () -> {
-                    new Name(value);
-                }
-        );
+        assertThrows(IllegalArgumentException.class, () -> new Name(value));
     }
-
-    ;
 }
