@@ -3,7 +3,6 @@ package view;
 import java.util.Scanner;
 
 public class InputView {
-    public static final String TRY_COUNT_NUMBER_FORMAT_EXCEPTION = "[ERROR] 시도 횟수는 숫자여야 합니다.";
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -29,7 +28,7 @@ public class InputView {
         try {
             Integer.parseInt(counts);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(TRY_COUNT_NUMBER_FORMAT_EXCEPTION);
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 합니다.");
         }
     }
 }

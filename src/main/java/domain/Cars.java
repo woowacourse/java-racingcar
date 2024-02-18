@@ -6,8 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cars {
-
-    public static final String DUPLICATE_CAR_NAME_EXCEPTION = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
     private final List<Car> racingCars;
 
     public Cars(List<Car> racingCars) {
@@ -18,7 +16,7 @@ public class Cars {
     private static void validateCars(List<Car> racingCars) {
         Set<Car> distinctCars = new HashSet<>(racingCars);
         if (racingCars.size() != distinctCars.size()) {
-            throw new IllegalArgumentException(DUPLICATE_CAR_NAME_EXCEPTION);
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복될 수 없습니다.");
         }
     }
 
