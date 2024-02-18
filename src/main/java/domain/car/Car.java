@@ -19,6 +19,10 @@ public class Car {
         position.move(distance);
     }
 
+    public boolean isSamePosition(int maxPosition) {
+        return position.getPosition() == maxPosition;
+    }
+
     public String getName() {
         return name.getName();
     }
