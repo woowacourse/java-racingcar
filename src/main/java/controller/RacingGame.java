@@ -14,8 +14,10 @@ public class RacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final Randoms randoms;
 
     public RacingGame() {
+        this.randoms = new Randoms();
         this.inputView = new InputView();
         this.outputView = new OutputView();
     }
@@ -48,7 +50,7 @@ public class RacingGame {
     }
 
     protected List<Integer> createRandomNumber(int carCount) {
-        return Randoms.getRandomNumbers(carCount, MAX_RANDOM_NUMBER_RANGE);
+        return randoms.generate(carCount, MAX_RANDOM_NUMBER_RANGE);
     }
 
 
