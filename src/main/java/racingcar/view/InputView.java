@@ -13,10 +13,12 @@ public class InputView {
     public List<String> getCarNames() {
         displayMessage(USER_CAR_NAME_INPUT_PROMPT);
         String initialInput = scanner.nextLine();
+
         InputValidator.validateIsBlank(initialInput);
 
         List<String> parseCarNames = parseCarName(initialInput);
         InputValidator.validateAvailableNames(parseCarNames);
+
         return parseCarNames;
     }
 
