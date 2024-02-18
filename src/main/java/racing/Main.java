@@ -1,7 +1,9 @@
 package racing;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Scanner;
 import racing.domain.RacingGame;
 import racing.dto.RacingResults;
 import racing.view.CarNameInputView;
@@ -14,27 +16,35 @@ import util.RetryHelper;
 public class Main {
 
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    List<String> carNames = getCarNames(scanner);
-    int maxTurn = getMaxTurn(scanner);
+    List<String> carNames = getCarNames();
+    int maxTurn = getMaxTurn();
     RacingGame racingGame = new RacingGame(carNames, maxTurn);
     RacingResults racingResults = racingGame.run(new RandomGenerator());
     RacingResultOutputView.printResult(racingResults);
   }
 
-  private static List<String> getCarNames(Scanner scanner) {
+  private static List<String> getCarNames() {
     RetryHelper retryHelper = new RetryHelper(5);
     return retryHelper.retry(() -> {
       InputGuideOutputView.printInputCarNames();
-      return CarNameInputView.getName(scanner::next);
+      return CarNameInputView.getName(Main::readFromConsole);
     });
   }
 
-  private static int getMaxTurn(Scanner scanner) {
+  private static int getMaxTurn() {
     RetryHelper retryHelper = new RetryHelper(5);
     return retryHelper.retry(() -> {
       InputGuideOutputView.printInputMaxRacingTurn();
-      return RacingMaxTurnInputView.getMaxTurn(scanner::next);
+      return RacingMaxTurnInputView.getMaxTurn(Main::readFromConsole);
     });
+  }
+
+  private static String readFromConsole() {
+    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      return bufferedReader.readLine();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
