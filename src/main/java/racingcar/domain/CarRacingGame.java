@@ -15,11 +15,11 @@ public class CarRacingGame {
     }
 
     public List<CarsDto> race() {
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        List<CarsDto> carStatusesPerRound = new ArrayList<>();
+        final NumberGenerator numberGenerator = new RandomNumberGenerator();
+        final List<CarsDto> carStatusesPerRound = new ArrayList<>();
 
         while (!isGameEnd()) {
-            CarsDto currentCarStatuses = playRound(numberGenerator);
+            final CarsDto currentCarStatuses = playRound(numberGenerator);
             carStatusesPerRound.add(currentCarStatuses);
         }
 
