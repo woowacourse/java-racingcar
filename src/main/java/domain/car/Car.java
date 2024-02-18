@@ -3,9 +3,10 @@ package domain.car;
 import domain.name.Name;
 
 public class Car {
+    private static final Integer FORWARD_POWER_THRESHOLD = 4;
+
     private final Name name;
     private int position;
-    private static final Integer FORWARD_POWER_THRESHOLD = 4;
 
     public Car(Name name) {
         this.name = name;
