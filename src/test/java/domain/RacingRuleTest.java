@@ -1,7 +1,5 @@
 package domain;
 
-import domain.car.CarDistance;
-import domain.car.CarName;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,9 +13,9 @@ class RacingRuleTest {
         // Given
         RacingRule racingRule = new RacingRule();
         Cars cars = new Cars(List.of(
-                Car.createCar("test1", new RandomNumberRangeGenerator(), 0),
-                Car.createCar("test2", new RandomNumberRangeGenerator(), 3),
-                Car.createCar("test3", new RandomNumberRangeGenerator(), 3)));
+                Car.createCar("test1", 0),
+                Car.createCar("test2", 3),
+                Car.createCar("test3", 3)));
 
         // When
         List<Car> winners = racingRule.getWinners(cars);

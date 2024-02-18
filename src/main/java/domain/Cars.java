@@ -1,5 +1,7 @@
 package domain;
 
+import static domain.power.PowerGenerator.POWER_GENERATOR;
+
 import domain.car.CarDistance;
 import dto.CarStatus;
 
@@ -21,7 +23,7 @@ public class Cars {
         validateDuplicatedCarNames(carNames);
 
         final List<Car> cars = carNames.stream()
-                .map(name -> Car.createCar(name, new RandomNumberRangeGenerator()))
+                .map(Car::createCar)
                 .toList();
 
         return new Cars(cars);
@@ -41,7 +43,7 @@ public class Cars {
     }
 
     public List<CarStatus> race() {
-        cars.forEach(Car::move);
+        cars.forEach(car -> car.move(POWER_GENERATOR.generateRandomPower()));
         return cars.stream()
                 .map(car -> new CarStatus(car.getName(), car.getDistance()))
                 .toList();

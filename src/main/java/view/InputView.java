@@ -1,7 +1,5 @@
 package view;
 
-import domain.RacingCount;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
