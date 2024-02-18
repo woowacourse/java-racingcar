@@ -1,16 +1,11 @@
 package racing.view;
 
-import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class RacingMaxTurnInputView {
 
-  public static int getMaxTurnFromConsole(Scanner scanner) {
-    String input = scanner.next();
-    return getMaxTurn(input);
-  }
-
-  static int getMaxTurn(String input) {
-    int parsedNumber = getNumberAsInteger(input);
+  public static int getMaxTurn(Supplier<String> inputSupplier) {
+    int parsedNumber = getNumberAsInteger(inputSupplier.get());
     validateNumberSize(parsedNumber);
     return parsedNumber;
   }

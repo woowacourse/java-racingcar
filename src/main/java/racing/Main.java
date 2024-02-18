@@ -27,7 +27,7 @@ public class Main {
     return carNameInputManager.retry(
         () -> {
           InputGuideOutputView.printInputCarNames();
-          return CarNameInputView.getNameFromConsole(scanner);
+          return CarNameInputView.getName(scanner::next);
         });
   }
 
@@ -36,7 +36,7 @@ public class Main {
     return maxTurnInputManager.retry(
         () -> {
           InputGuideOutputView.printInputMaxRacingTurn();
-          return RacingMaxTurnInputView.getMaxTurnFromConsole(scanner);
+          return RacingMaxTurnInputView.getMaxTurn(scanner::next);
         });
   }
 }
