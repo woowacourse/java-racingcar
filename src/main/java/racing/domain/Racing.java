@@ -24,11 +24,4 @@ class Racing {
   Map<String, Integer> getCarsStatus() {
     return cars.getCarsStatus();
   }
-
-  List<String> getWinnerNames() {
-    List<Car> maxCars = cars.getMax();
-    return maxCars.stream()
-        .map(Car::getName)
-        .toList();
-  }
 }
