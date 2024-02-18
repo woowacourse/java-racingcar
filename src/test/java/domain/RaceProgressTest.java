@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RaceProgressTest {
     @Test
-    @DisplayName("자동차 목록 포함한 일급객체를 통해 자동차 결과를 포함한 일급객체를 만든다.")
+    @DisplayName("Cars 일급컬렉션을 통해 자동차 결과를 포함한 일급컬렉션을 만든다.")
     void createRaceProgress() {
         List<Name> names = List.of(new Name("pond"), new Name("poby"));
         Names nameCatalog = new Names(names);
