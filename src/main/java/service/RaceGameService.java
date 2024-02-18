@@ -16,6 +16,7 @@ public class RaceGameService {
         while (!moveCount.isCountZero()) {
             RoundResultDto roundResultDto = executeRound(cars);
             roundResults.add(roundResultDto);
+            moveCount.consume();
         }
         List<CarDto> winners = selectWinner(cars);
 

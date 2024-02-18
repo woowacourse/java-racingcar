@@ -1,6 +1,7 @@
 package config;
 
 import controller.RacingGameController;
+import service.RaceGameService;
 import view.InputView;
 import view.MessageResolver;
 import view.OutputView;
@@ -18,7 +19,7 @@ public class Config {
     }
 
     private RacingGameController createRacingGameController() {
-        return new RacingGameController(createInputView(), createOutputView());
+        return new RacingGameController(createInputView(), createOutputView(), raceGameService());
     }
 
     private InputView createInputView() {
@@ -31,5 +32,9 @@ public class Config {
 
     private MessageResolver createMessageResolver() {
         return new MessageResolver();
+    }
+
+    private RaceGameService raceGameService() {
+        return new RaceGameService();
     }
 }

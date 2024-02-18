@@ -1,9 +1,10 @@
 package controller;
 
-import domain.Car;
 import domain.Cars;
 import domain.MoveCount;
+import dto.GameResultDto;
 import java.util.List;
+import service.RaceGameService;
 import util.StringParser;
 import view.InputView;
 import view.OutputView;
@@ -14,20 +15,19 @@ public class RacingGameController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final RaceGameService raceGameService;
 
-    public RacingGameController(InputView inputView, OutputView outputView) {
+    public RacingGameController(InputView inputView, OutputView outputView, RaceGameService raceGameService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.raceGameService = raceGameService;
     }
 
     public void run() {
         Cars cars = prepareCars();
         MoveCount moveCount = prepareMoveCount();
-
-        outputView.printResultPrefix();
-        executeRace(cars, moveCount);
-
-        findWinners(cars);
+        GameResultDto gameResultDto = raceGameService.runRaceGame(cars, moveCount);
+        outputView.printRaceResult(gameResultDto);
     }
 
     private Cars prepareCars() {
@@ -49,18 +49,5 @@ public class RacingGameController {
             outputView.printErrorMessage(e.getMessage());
             return prepareMoveCount();
         }
-    }
-
-    private void executeRace(Cars cars, MoveCount moveCount) {
-        while (!moveCount.isCountZero()) {
-            cars.tryMoveAll();
-            moveCount.consume();
-            outputView.printRaceResult(cars.getCars());
-        }
-    }
-
-    private void findWinners(Cars cars) {
-        List<Car> winners = cars.chooseWinners();
-        outputView.printWinner(winners);
     }
 }
