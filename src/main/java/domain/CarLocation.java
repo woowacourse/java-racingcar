@@ -1,6 +1,10 @@
 package domain;
 
+import constants.ErrorMessages;
+
 public class CarLocation {
+    private static final int MINIMUM_LOCATION_VALUE = 0;
+
     private int location;
 
     public CarLocation(int location) {
@@ -9,8 +13,8 @@ public class CarLocation {
     }
 
     private void validate(int location) {
-        if (location < 0) {
-            throw new IllegalArgumentException("[ERROR] 위치에는 음수가 입력될 수 없습니다.");
+        if (location < MINIMUM_LOCATION_VALUE) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_CAR_LOCATION.getMessage());
         }
     }
 
