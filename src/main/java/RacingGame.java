@@ -1,5 +1,5 @@
 import domain.car.Cars;
-import domain.moveStrategy.NumberMoveStrategy;
+import domain.moveStrategy.GeneratedNumberMoveStrategy;
 import domain.numbergenerator.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
@@ -27,7 +27,7 @@ public class RacingGame {
     private static Cars createCars() {
         try {
             return new Cars(InputView.readCarNames(),
-                    new NumberMoveStrategy(new RandomNumberGenerator()));
+                    new GeneratedNumberMoveStrategy(new RandomNumberGenerator()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createCars();

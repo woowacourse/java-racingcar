@@ -3,7 +3,7 @@ package domain.car;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import domain.moveStrategy.NumberMoveStrategy;
+import domain.moveStrategy.GeneratedNumberMoveStrategy;
 import domain.numbergenerator.RandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class CarTest {
 
-    public static final NumberMoveStrategy DEFAULT_STRATEGY = new NumberMoveStrategy(new RandomNumberGenerator());
+    public static final GeneratedNumberMoveStrategy DEFAULT_STRATEGY = new GeneratedNumberMoveStrategy(new RandomNumberGenerator());
     Car car;
 
     @BeforeEach

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.moveStrategy.MoveStrategy;
-import domain.moveStrategy.NumberMoveStrategy;
+import domain.moveStrategy.GeneratedNumberMoveStrategy;
 import domain.numbergenerator.RandomNumberGenerator;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 class CarsTest {
 
-    public static final NumberMoveStrategy DEFAULT_STRATEGY = new NumberMoveStrategy(new RandomNumberGenerator());
+    public static final GeneratedNumberMoveStrategy DEFAULT_STRATEGY = new GeneratedNumberMoveStrategy(new RandomNumberGenerator());
 
     @Test
     @DisplayName("객체가 정상적으로 생성된다.")
