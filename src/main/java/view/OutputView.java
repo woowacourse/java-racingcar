@@ -9,6 +9,9 @@ public class OutputView {
     private static final String STEP = "-";
     private static final String DELIMITER = ",";
 
+    private OutputView() {
+    }
+
     public static void printResultHeader() {
         System.out.println();
         System.out.println("실행 결과");
