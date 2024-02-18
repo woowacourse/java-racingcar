@@ -20,7 +20,8 @@ public class Cars {
     public static Cars from(List<String> carNames) {
         validateUniqueName(carNames);
         List<Car> cars = convertToCarList(carNames);
-        return new Cars(cars, new RandomPowerGenerator());
+        RandomPowerGenerator randomPowerGenerator = new RandomPowerGenerator();
+        return new Cars(cars, randomPowerGenerator);
     }
 
     public static Cars from(List<String> carNames, RandomPowerGenerator randomPowerGenerator) {
@@ -31,7 +32,8 @@ public class Cars {
 
     private static List<Car> convertToCarList(List<String> carNames) {
         return carNames.stream()
-                .map(name -> new Car(new CarName(name)))
+                .map(CarName::new)
+                .map(Car::new)
                 .toList();
     }
 
