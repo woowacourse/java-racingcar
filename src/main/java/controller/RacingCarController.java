@@ -23,7 +23,6 @@ public class RacingCarController {
         int tryNumber = RetryOnException.retryInputOnIllegalArgumentException(inputView::inputTryNumber);
         race(tryNumber, cars);
         List<String> winnerNames = cars.findWinnerNames();
-        ;
         outputView.printWinner(winnerNames);
     }
 

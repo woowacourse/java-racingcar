@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -31,6 +30,6 @@ public class Cars {
     }
 
     public List<Car> getPresentCarsStatus() {
-        return Collections.unmodifiableList(cars);
+        return List.copyOf(cars);
     }
 }
