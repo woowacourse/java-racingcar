@@ -1,6 +1,5 @@
 package domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +11,6 @@ class JudgeTest {
 
     private static final int MIN_FORWARD_NUMBER = 4;
 
-    private Judge judge;
-
-    @BeforeEach
-    void setUp() {
-        judge = new Judge();
-    }
-
     @DisplayName("우승자가 1명이다.")
     @Test
     void findWinnerTest() {
@@ -26,9 +18,9 @@ class JudgeTest {
 
         cars.getCars().get(0).move(MIN_FORWARD_NUMBER);
         cars.getCars().get(1).move(MIN_FORWARD_NUMBER);
-        cars.getCars().get(1).move(MIN_FORWARD_NUMBER); // "나"가 우승자
+        cars.getCars().get(1).move(MIN_FORWARD_NUMBER);
 
-        assertThat(judge.findWinners(cars)).containsAll(List.of("나"));
+        assertThat(Judge.findWinners(cars)).containsAll(List.of("나"));
     }
 
     @DisplayName("여러명의 우승자가 존재할 수 있다.")
@@ -42,7 +34,7 @@ class JudgeTest {
         cars.getCars().get(2).move(MIN_FORWARD_NUMBER);
         cars.getCars().get(2).move(MIN_FORWARD_NUMBER);
 
-        assertThat(judge.findWinners(cars)).containsAll(List.of("가", "다"));
+        assertThat(Judge.findWinners(cars)).containsAll(List.of("가", "다"));
     }
 
     @DisplayName("모두가 우승자가 될 수 있다.")
@@ -57,7 +49,7 @@ class JudgeTest {
         cars.getCars().get(2).move(MIN_FORWARD_NUMBER);
         cars.getCars().get(2).move(MIN_FORWARD_NUMBER);
 
-        assertThat(judge.findWinners(cars)).containsAll(List.of("가", "나", "다"));
+        assertThat(Judge.findWinners(cars)).containsAll(List.of("가", "나", "다"));
     }
 
 }
