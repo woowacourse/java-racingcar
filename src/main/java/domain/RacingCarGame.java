@@ -1,9 +1,13 @@
 package domain;
 
+import dto.RacingStatus;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class RacingCarGame {
     private final Cars cars;
     private final Count count;
-
     private final RandomPowerGenerator randomPowerGenerator;
 
     public RacingCarGame(Cars cars, Count count, RandomPowerGenerator randomPowerGenerator) {
@@ -12,9 +16,12 @@ public class RacingCarGame {
         this.randomPowerGenerator = randomPowerGenerator;
     }
 
-    public void race() {
+    public void start() {
+        List<RacingStatus> racingStatuses = new ArrayList<>();
         for (int i = 0; i < count.getValue(); i++) {
-            cars.move(randomPowerGenerator.generate());
+            int randomPower = randomPowerGenerator.generate();
+            RacingStatus racingStatus = cars.race(randomPower);
+            racingStatuses.add(racingStatus);
         }
     }
 }

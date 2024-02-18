@@ -1,5 +1,7 @@
 package domain;
 
+import dto.CarState;
+import dto.RacingStatus;
 import dto.Winners;
 import exception.ErrorMessage;
 import exception.RacingCarGameException;
@@ -44,10 +46,13 @@ public class Cars {
                 .count();
     }
 
-    public void move(int randomPower) {
+    public RacingStatus race(int randomPower) {
+        List<CarState> carStates = new ArrayList<>();
         for (Car car : cars) {
-            car.move(randomPower);
+            CarState carState = car.move(randomPower);
+            carStates.add(carState);
         }
+        return new RacingStatus(carStates);
     }
 
     public Winners judge() {

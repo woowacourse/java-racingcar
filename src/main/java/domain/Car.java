@@ -1,5 +1,7 @@
 package domain;
 
+import dto.CarState;
+
 import java.util.Optional;
 
 public class Car {
@@ -12,21 +14,22 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(int power) {
+    public CarState move(int power) {
         if (power >= MOVE_LOWER_BOUND) {
             position++;
         }
+        return new CarState(carName.getValue(), position);
     }
 
     public Optional<String> getNameIfMax(int max) {
         if (position == max) {
-            return Optional.of(carName.getName());
+            return Optional.of(carName.getValue());
         }
         return Optional.empty();
     }
 
     public String getName() {
-        return carName.getName();
+        return carName.getValue();
     }
 
     public int getPosition() {
