@@ -1,3 +1,4 @@
+
 package controller;
 
 import java.io.IOException;
@@ -19,18 +20,19 @@ public class RacingCarController {
   }
 
   public void run() throws IOException {
-    Game game = new Game();
-    Cars cars = new Cars(convertToCar(inputView.inputCarsName()));
-    TrialCount trialCount = new TrialCount(inputView.inputTrialCount());
+    Game game =
+            new Game(
+                    new Cars(convertToCar(inputView.inputCarsName())),
+                    new TrialCount(inputView.inputTrialCount()));
     outputView.printResultComment();
-    while (trialCount.isRest()) {
-      outputView.printResult(game.proceed(cars));
-      trialCount.reduce();
+    while (game.over()) {
+      outputView.printResult(game.play());
     }
-    outputView.printWinner(game.winners(cars));
+    outputView.printWinner(game.winners());
   }
 
   private List<Car> convertToCar(List<String> carNames) {
     return carNames.stream().map(Car::new).toList();
   }
 }
+
