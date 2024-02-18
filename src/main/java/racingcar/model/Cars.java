@@ -1,5 +1,6 @@
 package racingcar.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -11,6 +12,12 @@ public class Cars {
     private static final String SEPARATOR = ",";
 
     private final List<Car> cars;
+
+    public Cars(final Car... car) {
+        final List<Car> value = new ArrayList<>(Arrays.asList(car));
+        validateDuplicateName(value);
+        this.cars = value;
+    }
 
     private Cars(final List<Car> cars) {
         validateDuplicateName(cars);
@@ -40,7 +47,7 @@ public class Cars {
     }
 
     public void go(final NumberGenerator generator) {
-        cars.forEach(car -> car.go(generator.generate()));
+        cars.forEach(car -> car.go(generator));
     }
 
     public List<Car> findWinners() {

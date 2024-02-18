@@ -25,12 +25,19 @@ class CarsTest {
     @DisplayName("단독 우승자 확인")
     @Test
     void findWinner() {
-        Cars cars = Cars.from("aa,bb,cc");
-        cars.go(new TestNumberGenerator());
+        Car winner = Car.from("a");
+        Car loser1 = Car.from("b");
+        Car loser2 = Car.from("c");
 
-        List<Car> winner = cars.findWinners();
+        winner.go(new AlwaysMoveNumberGenerator());
+        loser1.go(new NoMoveNumberGenerator());
+        loser2.go(new NoMoveNumberGenerator());
 
-        assertThat(winner).hasSize(1).extracting("name").isEqualTo(List.of("cc"));
+        Cars cars = new Cars(winner, loser1, loser2);
+
+        List<Car> winners = cars.findWinners();
+
+        assertThat(winners).hasSize(1).extracting("name").isEqualTo(List.of("a"));
     }
 
     @DisplayName("올바르지 않은 구분자")
@@ -42,13 +49,17 @@ class CarsTest {
     }
 
 
-    static class TestNumberGenerator implements NumberGenerator {
-
-        private static int value = 2;
-
+    static class AlwaysMoveNumberGenerator implements NumberGenerator {
         @Override
         public int generate() {
-            return value++;
+            return 4;
+        }
+    }
+
+    static class NoMoveNumberGenerator implements NumberGenerator {
+        @Override
+        public int generate() {
+            return 0;
         }
     }
 
@@ -78,7 +89,7 @@ class CarsTest {
         Cars cars = Cars.from("a,b,c");
         List<Car> unmodifiedCars = cars.getCars();
         Car unmodifyCar = unmodifiedCars.get(0);
-        unmodifyCar.go(4);
+        unmodifyCar.go(new AlwaysMoveNumberGenerator());
 
         // when
         List<Car> originCars = cars.getCars();

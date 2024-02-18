@@ -19,8 +19,8 @@ public class Car implements Comparable<Car> {
         return new Car(new CarName(name), START_POSITION);
     }
 
-    public void go(final int number) {
-        if (number >= MIN_NUMBER) {
+    public void go(final NumberGenerator generator) {
+        if (generator.generate() >= MIN_NUMBER) {
             position++;
         }
     }
