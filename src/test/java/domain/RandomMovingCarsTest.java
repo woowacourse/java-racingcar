@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import domain.car.Car;
@@ -15,25 +14,26 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RandomMovingCarsTest {
+    private static final List<String> carNames = List.of(
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+            "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
 
     @DisplayName("경주에 참가한 자동차들에 대한 예외 발생 테스트")
     @Nested
-    class RandomMovingCarsExceptionTest {
+    class CarsExceptionTest {
         @DisplayName("참가 자동차가 2대 미만 이라면 예외를 발생시킨다.")
-        @Test
-        void carsMinSizeExceptionTest() {
-            assertThatThrownBy(() -> new RandomMovingCars(createRandomMovingCars(List.of("pobi"))))
+        @ParameterizedTest
+        @ValueSource(ints = {0, 1})
+        void carsMinCountExceptionTest(int carsCount) {
+            assertThatThrownBy(() -> new RandomMovingCars(createRandomMovingCars(getCarNamesByCount(carsCount))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @DisplayName("참가 자동차가 20대를 초과한다면 예외를 발생시킨다.")
-        @Test
-        void carsMaxSizeExceptionTest() {
-            List<String> carNames = new ArrayList<>();
-            for (int i = 65; i < 86; i++) {
-                carNames.add("car" + (char) i);
-            }
-            assertThatThrownBy(() -> new RandomMovingCars(createRandomMovingCars(carNames)))
+        @ParameterizedTest
+        @ValueSource(ints = {21, 22, 23, 24, 25})
+        void carsMaxCountExceptionTest(int carsCount) {
+            assertThatThrownBy(() -> new RandomMovingCars(createRandomMovingCars(getCarNamesByCount(carsCount))))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -47,23 +47,13 @@ class RandomMovingCarsTest {
 
     @DisplayName("경주에 참가한 자동차들에 대한 성공 테스트")
     @Nested
-    class RandomMovingCarsSuccessTest {
+    class CarsSuccessTest {
 
-        @DisplayName("2대의 자동차가 참여하는 것은 예외가 발생하지않는다.")
-        @Test
-        void CarsMinSizeSuccessTest() {
-            assertThatCode(() -> new RandomMovingCars(createRandomMovingCars(List.of("pobi", "jun"))))
-                    .doesNotThrowAnyException();
-        }
-
-        @DisplayName("20대의 자동차까지는 참가를 허용한다.")
-        @Test
-        void CarsMaxSizeSuccessTest() {
-            List<String> carNames = new ArrayList<>();
-            for (int i = 65; i < 85; i++) {
-                carNames.add("car" + (char) i);
-            }
-            assertThatCode(() -> new RandomMovingCars(createRandomMovingCars(carNames)))
+        @DisplayName("2에서 20대의 자동차가 참여하면 예외가 발생하지않는다.")
+        @ParameterizedTest
+        @ValueSource(ints = {2, 3, 19, 20})
+        void validCarsCountSuccessTest(int carsCount) {
+            assertThatCode(() -> new RandomMovingCars(createRandomMovingCars(getCarNamesByCount(carsCount))))
                     .doesNotThrowAnyException();
         }
     }
@@ -72,6 +62,10 @@ class RandomMovingCarsTest {
         return carNames.stream()
                 .map(carName -> new RandomMovingCar(Car.createOnStart(carName), () -> 0))
                 .toList();
+    }
+
+    private List<String> getCarNamesByCount(int count) {
+        return carNames.subList(0, count);
     }
 
     @DisplayName("랜덤 값에 따른 자동차들의 움직임 테스트")
