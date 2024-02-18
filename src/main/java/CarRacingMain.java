@@ -13,6 +13,7 @@ public class CarRacingMain {
         Count count = retry(() -> Count.from(InputView.enterCount()));
 
         RacingCarGame racingCarGame = new RacingCarGame(cars, count);
+
         RacingResult racingResult = racingCarGame.start();
         OutputView.printResult(racingResult);
     }

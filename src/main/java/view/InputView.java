@@ -3,14 +3,14 @@ package view;
 import exception.ErrorMessage;
 import exception.RacingCarGameException;
 
-import static view.ViewMessages.*;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static view.ViewMessages.*;
+
 public class InputView {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static List<String> enterCarNames() {
         System.out.println(CAR_NAMES_REQUEST_MESSAGE);
@@ -18,10 +18,10 @@ public class InputView {
         return validateCarNames(rawCarNames);
     }
 
-    private static List<String> validateCarNames(String rawCarNames){
+    private static List<String> validateCarNames(String rawCarNames) {
         validateBlankInput(rawCarNames);
         List<String> carNames = split(rawCarNames);
-        return carNames.stream().map(name -> name.trim()).toList();
+        return carNames.stream().map(String::trim).toList();
     }
 
     private static List<String> split(String rawCarNames) {
@@ -31,7 +31,7 @@ public class InputView {
 
     private static void validateBlankInput(String carNames) {
         if (carNames == null || carNames.isEmpty()) {
-           throw RacingCarGameException.from(ErrorMessage.BLANK_INPUT_ERROR);
+            throw RacingCarGameException.from(ErrorMessage.BLANK_INPUT_ERROR);
         }
     }
 

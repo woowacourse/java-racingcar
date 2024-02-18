@@ -5,6 +5,7 @@ import exception.RacingCarGameException;
 
 public class CarName {
     private static final int NAME_LENGTH_UPPER_BOUND = 5;
+
     private final String value;
 
     public CarName(String name) {

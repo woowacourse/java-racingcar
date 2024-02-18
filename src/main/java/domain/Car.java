@@ -4,6 +4,7 @@ import dto.CarState;
 
 public class Car {
     private static final int MOVE_LOWER_BOUND = 4;
+
     private final CarName carName;
     private int position;
 

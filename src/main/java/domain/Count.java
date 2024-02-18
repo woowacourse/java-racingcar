@@ -5,6 +5,7 @@ import exception.RacingCarGameException;
 
 public class Count {
     private static final int COUNT_LOWER_BOUND = 1;
+
     private final int value;
 
     public Count(int value) {
