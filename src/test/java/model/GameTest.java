@@ -14,6 +14,7 @@ class GameTest {
     Car pobi = new Car("pobi");
     Car left = new Car("left");
     pobi.move(4);
-    assertThat(new Game().winners(new Cars(of(pobi, left)))).isEqualTo(new Cars(of(pobi)));
+    assertThat(new Game(new Cars(of(pobi, left)), new TrialCount(1)).winners())
+        .isEqualTo(new Cars(of(pobi)));
   }
 }

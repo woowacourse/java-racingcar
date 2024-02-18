@@ -1,15 +1,29 @@
+
 package model;
 
 import java.util.Collections;
 
 public class Game {
+  private final Cars cars;
+  private final TrialCount trialCount;
 
-  public Cars proceed(Cars cars) {
-    return cars.applyMoving();
+  public Game(Cars cars, TrialCount trialCount) {
+    this.cars = cars;
+    this.trialCount = trialCount;
   }
 
-  public Cars winners(Cars cars) {
+  public Cars play() {
+    trialCount.reduce();
+    cars.moveAll();
+    return cars;
+  }
+
+  public Cars winners() {
     int maxCount = Collections.max(cars.countOfForward());
     return cars.findSameCountOfForward(maxCount);
+  }
+
+  public boolean over() {
+    return !trialCount.isRest();
   }
 }
