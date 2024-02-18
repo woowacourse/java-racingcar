@@ -24,13 +24,17 @@ public class CarRacingGame {
     }
 
     public void play() {
-        Cars cars = createCars();
-        Round round = createRound();
+        try {
+            Cars cars = createCars();
+            Round round = createRound();
 
-        outputView.printResultMessage();
-        race(cars, round);
+            outputView.printResultMessage();
+            race(cars, round);
 
-        printWinners(cars);
+            printWinners(cars);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void race(Cars cars, Round round) {
