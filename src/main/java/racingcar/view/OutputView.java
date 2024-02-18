@@ -5,13 +5,16 @@ import racingcar.domain.Cars;
 
 public class OutputView {
 
-
-    public void printTryResult(Cars cars) {
+    public void printTryResultMenu() {
         System.out.println();
         System.out.println("실행 결과");
+    }
+
+    public void printTryResult(Cars cars) {
         for (Car car : cars.getCars()) {
             System.out.println(car.getName() + " : " + "-".repeat(car.getDistance()));
         }
+        System.out.println();
     }
 
     public void printWinners(Cars cars) {

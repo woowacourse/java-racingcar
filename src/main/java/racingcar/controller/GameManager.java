@@ -22,6 +22,7 @@ public class GameManager {
         Cars cars = makeNewCars(carNames);
         outputView.printTryCountInputMessage();
         int tryCount = inputView.getTryCount();
+        outputView.printTryResultMenu();
         for (int i = 0; i < tryCount; i++) {
             moveCars(cars);
             outputView.printTryResult(cars);
