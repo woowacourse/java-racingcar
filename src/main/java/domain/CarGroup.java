@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 public class CarGroup {
     private final List<Car> cars;
 
-    public CarGroup(String[] carNames) {
-        this.cars = generateCars(carNames);
+    public CarGroup(final String[] carNames) {
+        this.cars = makeCars(carNames);
     }
 
-    private List<Car> generateCars(String[] carNames) {
+    private List<Car> makeCars(final String[] carNames) {
         return Arrays.stream(carNames)
                 .map(Car::new)
                 .collect(Collectors.toList());
@@ -22,14 +22,14 @@ public class CarGroup {
     }
 
     public List<Car> getWinners() {
-        int maxPosition = getMaxPosition();
+        final int maxPosition = getMaxPosition();
 
         if (maxPosition == 0) {
             return List.of();
         }
 
         return cars.stream()
-                .filter(car -> car.isSamePosition(maxPosition))
+                .filter(car -> car.isPositionedAt(maxPosition))
                 .toList();
     }
 
