@@ -1,9 +1,6 @@
 package view;
 
-import domain.Car;
-import domain.Count;
-import domain.RaceCars;
-import domain.RacingGame;
+import domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +22,7 @@ public class View {
         List<Car> cars = Arrays.stream(names)
                 .map(Car::new)
                 .collect(Collectors.toList());
-        return new RaceCars(cars);
+        return new RaceCars(cars, new RandomNumberGenerator());
     }
 
     public Count readCount() {

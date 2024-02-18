@@ -5,11 +5,13 @@ import java.util.List;
 
 public class RaceCars {
     private final List<Car> cars;
+    private final NumberGenerator numberGenerator;
 
-    public RaceCars(List<Car> cars) {
+    public RaceCars(List<Car> cars, NumberGenerator numberGenerator) {
         validateCarsSize(cars);
         validateCarsDuplication(cars);
         this.cars = cars;
+        this.numberGenerator = numberGenerator;
     }
 
     private void validateCarsSize(List<Car> cars) {
@@ -38,7 +40,7 @@ public class RaceCars {
 
     public void play() {
         for (Car car : cars) {
-            car.move(RandomGenerator.getRandomNumber());
+            car.move(numberGenerator.getRandom());
         }
     }
 
