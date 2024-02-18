@@ -3,6 +3,8 @@ package view;
 import java.util.List;
 
 public class OutputView {
+    private OutputView() {}
+
     public static void printRacingStartMessage() {
         System.out.println("실행 결과");
     }
