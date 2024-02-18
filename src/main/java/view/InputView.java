@@ -19,12 +19,12 @@ public class InputView {
         return SCANNER.nextLine();
     }
 
-    public static int parseRoundCounts(String roundCounts) {
+    public static int parseRoundCounts(final String roundCounts) {
         validateCounts(roundCounts);
         return Integer.parseInt(roundCounts);
     }
 
-    private static void validateCounts(String counts) {
+    private static void validateCounts(final String counts) {
         try {
             Integer.parseInt(counts);
         } catch (NumberFormatException e) {

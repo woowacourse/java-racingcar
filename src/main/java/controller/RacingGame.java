@@ -29,7 +29,7 @@ public class RacingGame {
         OutputView.printWinners(racingCars.getWinners(maxDistance));
     }
 
-    private String startRounds(int roundCounts, Cars cars) {
+    private String startRounds(final int roundCounts, final Cars cars) {
         for (int i = 0; i < roundCounts; i++) {
             cars.updateRaceRound();
             roundResult.append(cars.getRoundResult());
@@ -38,7 +38,7 @@ public class RacingGame {
         return roundResult.toString();
     }
 
-    private List<Car> parseCarNames(String carNames) {
+    private List<Car> parseCarNames(final String carNames) {
         List<Car> cars = new ArrayList<>();
         for (String name : carNames.split(",")) {
             cars.add(new Car(name));

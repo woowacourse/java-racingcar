@@ -10,19 +10,19 @@ public class Cars {
 
     private final List<Car> racingCars;
 
-    public Cars(List<Car> racingCars) {
+    public Cars(final List<Car> racingCars) {
         validateCars(racingCars);
         this.racingCars = racingCars;
     }
 
-    private static void validateCars(List<Car> racingCars) {
+    private static void validateCars(final List<Car> racingCars) {
         Set<Car> distinctCars = new HashSet<>(racingCars);
         if (racingCars.size() != distinctCars.size()) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 중복될 수 없습니다.");
         }
     }
 
-    private static String generateResult(Car car) {
+    private static String generateResult(final Car car) {
         return String.join(" : ", car.getCarName(), DASH.repeat(car.getDistance()));
     }
 
@@ -36,7 +36,8 @@ public class Cars {
                 .collect(Collectors.joining("\n"));
     }
 
-    public String getWinners(int maxDistance) {
+    // TODO [LTH]: 연산 수 줄이기
+    public String getWinners(final int maxDistance) {
         return racingCars.stream()
                 .filter(car -> car.getDistance() == maxDistance)
                 .map(Car::getCarName)
