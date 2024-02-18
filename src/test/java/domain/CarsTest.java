@@ -1,12 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 
-import domain.Car;
-import domain.Cars;
-import domain.RandomMovementGenerator;
-import domain.RandomNumberGenerator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +11,7 @@ public class CarsTest {
     @DisplayName("자동차들이 움직였는지 확인한다.")
     void getMaxDistanceDetail() {
         final Cars cars = Cars.from(List.of(Car.of("포비", 1), Car.of("커비", 2)));
-        MovementGenerator movementGenerator = () -> Movement.MOVE;
+        MovementGenerator movementGenerator = new AlwaysMoveGenerator();
 
         cars.move(movementGenerator);
         cars.move(movementGenerator);
@@ -33,5 +28,13 @@ public class CarsTest {
         final Cars cars = Cars.from(List.of(pobi, kirby, jonge));
 
         assertThat(cars.getMaxDistanceCars()).containsExactly(kirby, jonge);
+    }
+
+    static class AlwaysMoveGenerator implements MovementGenerator {
+
+        @Override
+        public Movement generate() {
+            return Movement.MOVE;
+        }
     }
 }

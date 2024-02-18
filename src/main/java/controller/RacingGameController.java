@@ -37,14 +37,14 @@ public class RacingGameController {
         outputView.showWinners(new WinnersResponse(winners));
     }
 
-    private static MovementGenerator createRandomMovementGenerator() {
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        return new RandomMovementGenerator(numberGenerator);
-    }
-
     private Cars getCars() {
         CarNameRequest carsNameRequest = retryUntilNoException(inputView::readCars);
         return retryUntilNoException(carsNameRequest::toCars);
+    }
+
+    private static MovementGenerator createRandomMovementGenerator() {
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        return new RandomMovementGenerator(numberGenerator);
     }
 
     public void play(RacingGame racingGame, Cars cars) {

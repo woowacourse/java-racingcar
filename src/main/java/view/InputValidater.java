@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Objects;
+
 public class InputValidater {
 
     public static final String DELIMITER = ",";
@@ -30,7 +32,7 @@ public class InputValidater {
     }
 
     private void validateBlank(String input) {
-        if (input.isBlank()) {
+        if (Objects.isNull(input) || input.isBlank())  {
             throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
         }
     }
