@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Car implements Comparable<Car> {
 
     private static final int MAX_NAME_LENGTH = 5;
-
     private final String name;
     private int progress;
 
@@ -34,9 +33,10 @@ public class Car implements Comparable<Car> {
     }
 
 
-    public boolean isEqualToProgress(int compareProgress){
+    public boolean isEqualToProgress(int compareProgress) {
         return this.progress == compareProgress;
     }
+
     @Override
     public int compareTo(Car other) {
         return Integer.compare(this.progress, other.progress);

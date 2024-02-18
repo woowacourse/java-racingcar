@@ -23,7 +23,7 @@ public class RacingGame {
         }
     }
 
-    public boolean isRoundInProgress(){
+    public boolean isRoundInProgress() {
         decreaseMoveCount();
         return !isGameOver();
     }
