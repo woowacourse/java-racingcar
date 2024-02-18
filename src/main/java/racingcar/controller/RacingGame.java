@@ -6,7 +6,7 @@ import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.view.model.ConsoleReader;
+import racingcar.util.ConsoleReader;
 
 public class RacingGame {
     public void run() {

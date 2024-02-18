@@ -1,4 +1,4 @@
-package racingcar.view.model;
+package racingcar.util;
 
 import java.util.Scanner;
 import java.util.function.Supplier;
