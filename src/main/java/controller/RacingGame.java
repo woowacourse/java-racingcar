@@ -3,7 +3,6 @@ package controller;
 import domain.car.Car;
 import domain.car.Cars;
 import domain.name.Names;
-import domain.race.RaceCarInfo;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
 import domain.race.RaceResult;
@@ -12,7 +11,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class RacingGame {
     private final InputView inputView;
@@ -38,9 +36,9 @@ public class RacingGame {
         return Cars.from(names);
     }
 
-    private void racing(final List<Car> cars,final Integer raceCount) {
+    private void racing(final List<Car> cars, final Integer raceCount) {
         outputView.printResultMessage();
-        for(int i=0;i<raceCount;i++){
+        for (int i = 0; i < raceCount; i++) {
             racePerRound(cars);
         }
     }
@@ -56,7 +54,7 @@ public class RacingGame {
     }
 
     private void finish(final List<Car> cars) {
-        RaceResult raceResult = RaceResult.from(cars);
+        RaceResult raceResult = RaceResult.findWinner(cars);
         outputView.printRaceResult(raceResult);
     }
 }

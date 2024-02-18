@@ -19,7 +19,7 @@ public class RaceResultTest {
         Car car1 = new Car(new Name("pond"));
         List<Car> cars = List.of(car, car1);
 
-        RaceResult raceResult = RaceResult.from(cars);
+        RaceResult raceResult = RaceResult.findWinner(cars);
 
         Car winnerCar = raceResult.getWinnerCars().get(0);
         assertEquals(winnerCar, car);
