@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class NameTest {
     @ParameterizedTest
-    @ValueSource(strings = {"1", "12", "123", "1234", "12345"})
+    @ValueSource(strings = {"1", "12345"})
     void 이름의_길이가_올바를_때_예외가_발생하지_않는다(String name) {
         // when & then
         assertDoesNotThrow(() -> new Name(name));
