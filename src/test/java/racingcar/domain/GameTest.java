@@ -20,7 +20,7 @@ class GameTest {
         String userTryCount = "5";
 
         //when&then
-        assertDoesNotThrow(() -> Game.from(userTryCount, Vehicles.from(userCarNames)));
+        assertDoesNotThrow(() -> Game.from(userTryCount, Cars.from(userCarNames)));
     }
 
     @ParameterizedTest
@@ -32,7 +32,7 @@ class GameTest {
         String userCarNames = "choco,seyan";
 
         //when & then
-        assertThrows(NumberFormatException.class, () -> Game.from(userTryCount, Vehicles.from(userCarNames)));
+        assertThrows(NumberFormatException.class, () -> Game.from(userTryCount, Cars.from(userCarNames)));
     }
 
     @Test
@@ -40,7 +40,7 @@ class GameTest {
     public void runProceed() {
         //given
         String userCarNames = "choco,seyan";
-        Game game = Game.from("5", Vehicles.from(userCarNames));
+        Game game = Game.from("5", Cars.from(userCarNames));
 
         //when&then
         assertThatCode(game::proceed).doesNotThrowAnyException();

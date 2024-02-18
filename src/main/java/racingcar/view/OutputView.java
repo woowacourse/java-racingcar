@@ -9,7 +9,7 @@ import static racingcar.view.OutputCommand.WINNERS_DELIMITER;
 import static racingcar.view.OutputCommand.WINNER_FORMAT;
 
 import racingcar.domain.Car;
-import racingcar.domain.Vehicles;
+import racingcar.domain.Cars;
 import racingcar.domain.Winner;
 
 public class OutputView {
@@ -17,8 +17,8 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + OutputCommand.INPUT_ERROR_MESSAGE);
     }
 
-    public static void printVehicles(final Vehicles vehicles) {
-        vehicles.getCars().forEach(OutputView::printCarResult);
+    public static void printCars(final Cars cars) {
+        cars.getCars().forEach(OutputView::printCarResult);
         printNewLine();
     }
 

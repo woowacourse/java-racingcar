@@ -5,7 +5,7 @@ import racingcar.view.OutputView;
 
 public class Game {
     private final int tryCount;
-    private final Vehicles vehicles;
+    private final Cars cars;
 
     private final CarMoveStrategy carMoveStrategy = new CarMoveStrategy() {
         @Override
@@ -14,10 +14,10 @@ public class Game {
         }
     };
 
-    public static Game from(final String userTryCount, final Vehicles vehicles) throws NumberFormatException {
+    public static Game from(final String userTryCount, final Cars cars) throws NumberFormatException {
         int tryCount = parseUserInput(userTryCount);
         validNaturalNumber(tryCount);
-        return new Game(tryCount, vehicles);
+        return new Game(tryCount, cars);
     }
 
     private static void validNaturalNumber(final int tryCount) {
@@ -34,19 +34,19 @@ public class Game {
         return Integer.parseInt(userTryCount);
     }
 
-    private Game(final int tryCount, final Vehicles vehicles) {
+    private Game(final int tryCount, final Cars cars) {
         this.tryCount = tryCount;
-        this.vehicles = vehicles;
+        this.cars = cars;
     }
 
     public void proceed() {
         IntStream.range(0, tryCount).forEach(i -> {
-            vehicles.move(carMoveStrategy);
-            OutputView.printVehicles(vehicles);
+            cars.move(carMoveStrategy);
+            OutputView.printCars(cars);
         });
     }
 
     public Winner getWinner() {
-        return Winner.from(vehicles.findFarthestCars());
+        return Winner.from(cars.findFarthestCars());
     }
 }

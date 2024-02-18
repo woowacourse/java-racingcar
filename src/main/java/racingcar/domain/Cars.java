@@ -7,23 +7,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.util.RandomUtil;
 
-public class Vehicles {
+public class Cars {
     private static final int MIN_DISTANCE = 0;
     private static final int RANDOM_MIN_LIMIT = 0;
     private static final int RANDOM_MAX_LIMIT = 9;
     private final List<Car> cars;
     RandomUtil randomUtil = RandomUtil.getInstance();
 
-    public static Vehicles from(final String userInput) {
+    public static Cars from(final String userInput) {
         validate(userInput);
-        return new Vehicles(Arrays.stream(userInput.split(COMMA))
+        return new Cars(Arrays.stream(userInput.split(COMMA))
                 .map(String::trim)
                 .map(Car::new)
                 .toList()
         );
     }
 
-    private Vehicles(final List<Car> cars) {
+    private Cars(final List<Car> cars) {
         this.cars = cars;
     }
 
