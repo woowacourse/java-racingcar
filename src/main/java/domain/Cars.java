@@ -3,11 +3,8 @@ package domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Cars {
-    private static final String DASH = "-";
-
     private final List<Car> racingCars;
 
     public Cars(final List<Car> racingCars) {
@@ -22,26 +19,17 @@ public class Cars {
         }
     }
 
-    private static String generateResult(final Car car) {
-        return String.join(" : ", car.getCarName(), DASH.repeat(car.getDistance()));
-    }
-
-    public void updateRaceRound() {
+    // TODO [LTH]: 인터페이스 사용해 리팩토링
+    public List<Car> updateRaceRound() {
         racingCars.forEach(car -> car.moveForward(NumberGenerator.generateRandomNumber()));
-    }
-
-    public String getRoundResult() {
-        return racingCars.stream()
-                .map(Cars::generateResult)
-                .collect(Collectors.joining("\n"));
+        return racingCars;
     }
 
     // TODO [LTH]: 연산 수 줄이기
-    public String getWinners(final int maxDistance) {
+    public List<Car> getWinners(final int maxDistance) {
         return racingCars.stream()
                 .filter(car -> car.getDistance() == maxDistance)
-                .map(Car::getCarName)
-                .collect(Collectors.joining(", "));
+                .toList();
     }
 
     public int getMaxDistance() {

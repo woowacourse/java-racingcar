@@ -10,32 +10,32 @@ import java.util.List;
 
 public class RacingGame {
 
-    private final StringBuilder roundResult = new StringBuilder();
-
-
     public void startRacing() {
+        // TODO [LTH]: 메서드 분리하기
+
+        // 경주할 자동차 이름 입력
         String carNames = InputView.getCarNames();
         List<Car> cars = parseCarNames(carNames);
         Cars racingCars = new Cars(cars);
 
+        // 시도할 횟수 입력
         String rawRoundCounts = InputView.getRacingRounds();
         int roundCount = InputView.parseRoundCounts(rawRoundCounts);
 
-        String roundResults = startRounds(roundCount, racingCars);
-        int maxDistance = racingCars.getMaxDistance();
+        //  라운드별 결과 출력
+        startRounds(roundCount, racingCars);
 
+        // 최종 우승자 출력
+        int maxDistance = racingCars.getMaxDistance();
         OutputView.printResultNotice();
-        OutputView.printRoundResult(roundResults);
         OutputView.printWinners(racingCars.getWinners(maxDistance));
     }
 
-    private String startRounds(final int roundCounts, final Cars cars) {
+    private void startRounds(final int roundCounts, final Cars cars) {
         for (int i = 0; i < roundCounts; i++) {
-            cars.updateRaceRound();
-            roundResult.append(cars.getRoundResult());
-            roundResult.append("\n\n");
+            List<Car> updateRaceRound = cars.updateRaceRound();
+            OutputView.printRoundResult(updateRaceRound);
         }
-        return roundResult.toString();
     }
 
     private List<Car> parseCarNames(final String carNames) {
