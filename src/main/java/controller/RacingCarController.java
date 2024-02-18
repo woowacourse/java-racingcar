@@ -3,24 +3,21 @@ package controller;
 import java.util.List;
 import model.Car;
 import model.Cars;
-import view.RetryOnException;
 import view.InputView;
 import view.OutputView;
+import view.RetryOnException;
 import view.dto.CarDto;
 
 public class RacingCarController {
-
-    private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingCarController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
+    public RacingCarController(OutputView outputView) {
         this.outputView = outputView;
     }
 
     public void run() {
         Cars cars = RetryOnException.retryInputOnIllegalArgumentException(() -> new Cars(createCars()));
-        int tryNumber = RetryOnException.retryInputOnIllegalArgumentException(inputView::inputTryNumber);
+        int tryNumber = RetryOnException.retryInputOnIllegalArgumentException(InputView::inputTryNumber);
         race(tryNumber, cars);
         List<Car> winners = cars.findWinners();
         List<String> winnerNames = winners.stream().map(Car::getCarName).toList();
@@ -28,7 +25,7 @@ public class RacingCarController {
     }
 
     private List<Car> createCars() {
-        List<String> carNames = inputView.inputCarNames();
+        List<String> carNames = InputView.inputCarNames();
         return carNames.stream()
                 .map(Car::new)
                 .toList();
