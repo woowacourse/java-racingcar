@@ -4,24 +4,18 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RacingCarFactoryTest {
-    @DisplayName("레이싱카 이름이 5글자 이하인지 확인한다.")
+import java.util.List;
+
+public class RacingCarFactoryTest {
     @Test
-    public void testCarNameLength() {
-        String carNameOverThan5Length = "racingcar";
+    @DisplayName("레이싱카 이름들로 레이싱카 객체를 생성한다.")
+    void createBy() {
+        RacingCarFactory racingCarFactory = new RacingCarFactory();
+        RacingCarNames racingCarNames = new RacingCarNames("zeze,bito");
 
-        Assertions.assertThatThrownBy(() -> new RacingCarFactory(carNameOverThan5Length))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이름은 5글자 이하만 가능합니다.");
-    }
+        List<RacingCar> racingCars = racingCarFactory.createBy(racingCarNames);
 
-    @DisplayName("레이싱카 이름이 중복되는 지 확인한다.")
-    @Test
-    public void testCarNameDuplication() {
-        String duplicatedNames = "rac,rac,bito";
-
-        Assertions.assertThatThrownBy(() -> new RacingCarFactory(duplicatedNames))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("중복된 이름이 존재합니다.");
+        Assertions.assertThat(racingCars).hasSize(2);
+        Assertions.assertThat(racingCars).extracting("name").contains("zeze", "bito");
     }
 }

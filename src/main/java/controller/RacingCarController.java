@@ -1,7 +1,6 @@
 package controller;
 
 import domain.*;
-import domain.RacingCarFactory;
 import domain.RacingCars;
 import domain.TryNumber;
 import view.InputView;
@@ -11,9 +10,11 @@ import java.util.List;
 
 public class RacingCarController {
     private NumberGenerator numberGenerator;
+    private RacingCarFactory racingCarFactory;
 
-    public RacingCarController(NumberGenerator numberGenerator) {
+    public RacingCarController(NumberGenerator numberGenerator, RacingCarFactory racingCarFactory) {
         this.numberGenerator = numberGenerator;
+        this.racingCarFactory = racingCarFactory;
     }
 
     public void start() {
@@ -36,9 +37,8 @@ public class RacingCarController {
     }
 
     private RacingCars readRacingCars() {
-        String carNames = InputView.inputCarNames();
-        RacingCarFactory racingCarFactory = new RacingCarFactory(carNames);
-        return new RacingCars(racingCarFactory.create());
+        RacingCarNames carNames = new RacingCarNames(InputView.inputCarNames());
+        return new RacingCars(racingCarFactory.createBy(carNames));
     }
 
     private TryNumber readTryNumber() {
