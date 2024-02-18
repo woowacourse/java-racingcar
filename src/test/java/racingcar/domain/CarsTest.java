@@ -69,7 +69,7 @@ class CarsTest {
     @DisplayName("[Success] 가장 많이 전진한 자동차를 우승자로 반환")
     void getWinners() {
         Cars cars = Cars.of(List.of("car1", "car2", "car3", "car4"));
-        cars.move(new TestNumberGenerator());
+        cars.move(new TestNumberGenerator()); // 4, 4, 3, 3
         cars.move(new TestNumberGenerator());
 
         assertThat(cars.getWinners())
