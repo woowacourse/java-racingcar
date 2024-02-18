@@ -3,11 +3,9 @@ package controller;
 import domain.Car;
 import domain.Cars;
 import domain.Count;
-import domain.Judge;
 import view.InputView;
 import view.OutputView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +13,6 @@ public class CarRaceStarter {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final Judge judge = new Judge();
 
     public void start() {
         Cars cars = makeCars();
@@ -23,15 +20,13 @@ public class CarRaceStarter {
 
         raceStart(cars, count);
 
-        List<Car> winners = judge.getWinners(cars);
+        List<Car> winners = cars.getWinners();
         outputView.printWinners(winners);
     }
 
     private Cars makeCars() {
         try {
-            outputView.printInputCarNamesMessage();
-            List<String> carNames = getCarNames();
-            return collectCars(carNames);
+            return collectCars(inputView.getCarNames());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -44,18 +39,11 @@ public class CarRaceStarter {
                 .collect(Collectors.toList()));
     }
 
-    private List<String> getCarNames() {
-        String userInput = inputView.getUserInput();
-        return Arrays.stream(userInput.split(",")).toList();
-    }
-
     private Count makeCount() {
         try {
-            outputView.printInputCountMessage();
-            int count = Integer.parseInt(inputView.getUserInput());
-            return new Count(count);
+            return new Count(inputView.getCount());
         } catch (IllegalArgumentException e) {
-            System.out.println("1~100 사이로 입력해주세요.");
+            System.out.println(e.getMessage());
         }
         return makeCount();
     }

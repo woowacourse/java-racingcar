@@ -14,12 +14,12 @@ public class Count {
 
     private void validateCount(int count) {
         if (count <= MIN_COUNT || count > MAX_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessages.COUNT_RANGE);
         }
     }
 
     public boolean hasCount() {
-        return count > 0;
+        return count > MIN_COUNT;
     }
 
     public void minusOneCount() {

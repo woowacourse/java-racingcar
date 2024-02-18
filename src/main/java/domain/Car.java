@@ -3,6 +3,7 @@ package domain;
 public class Car implements Comparable<Car> {
 
     private static final int MIN_MOVE_NUMBER = 4;
+    private static final int START_LOCATION = 0;
     private static final String REGEX = "^[a-zA-Z가-힣]{1,5}$";
 
     private final String name;
@@ -11,12 +12,18 @@ public class Car implements Comparable<Car> {
     public Car(String name) {
         validateCarName(name);
         this.name = name;
-        this.location = 0;
+        this.location = START_LOCATION;
+    }
+
+    public Car(String name, int location) {
+        validateCarName(name);
+        this.name = name;
+        this.location = location;
     }
 
     private void validateCarName(String name) {
         if (!name.matches(REGEX)) {
-            throw new IllegalArgumentException("이름은 알파벳 소문자와 대문자, 한글로 1~5 글자로 가능합니다");
+            throw new IllegalArgumentException(ExceptionMessages.CAR_NAME_FORMAT);
         }
     }
 
@@ -24,6 +31,10 @@ public class Car implements Comparable<Car> {
         if (randomNumber >= MIN_MOVE_NUMBER) {
             location++;
         }
+    }
+
+    public boolean isWinner(int furthestLocation) {
+        return location == furthestLocation;
     }
 
     public String getName() {

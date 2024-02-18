@@ -33,42 +33,15 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("우승자의 위치를 숫자로 반환한다.")
-    void getWinnerLocation() {
-        //given
-        Car one = new Car("one");
-        Car two = new Car("two");
-        Car three = new Car("three");
-        Cars cars = new Cars(Arrays.asList(one, two, three));
-
-        //when
-        three.move(4);
-        three.move(4);
-        three.move(4);
-
-        //then
-        assertThat(cars.getWinnerLocation()).isEqualTo(3);
-    }
-
-    @Test
     @DisplayName("우승자들을 리스트에 넣어 반환한다.")
     void getWinners() {
         //given
-        Car one = new Car("one");
-        Car two = new Car("two");
-        Car three = new Car("three");
+        Car one = new Car("one", 5);
+        Car two = new Car("two", 0);
+        Car three = new Car("three", 5);
         Cars cars = new Cars(Arrays.asList(one, two, three));
 
-        //when
-        one.move(4);
-        one.move(4);
-        one.move(4);
-        three.move(4);
-        three.move(4);
-        three.move(4);
-
-        //then
-        assertThat(cars.getWinners(cars.getWinnerLocation()).get(0)).isEqualTo(one);
-        assertThat(cars.getWinners(cars.getWinnerLocation()).get(1)).isEqualTo(three);
+        //when, then
+        assertThat(cars.getWinners()).contains(one, three);
     }
 }
