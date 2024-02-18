@@ -6,6 +6,7 @@ import java.util.Map;
 public class OutputView {
 
 	private static final String CAR_LOCATION_FORMAT = "%s : %s\n";
+	private static final String WINNER_NAMES_DELIMITER = ", ";
 
 	public void printResultPrefix() {
 		System.out.println();
@@ -20,8 +21,8 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public void printWinners(List<String> winnersName) {
+	public void printWinners(List<String> winnerNames) {
 		String suffix = "가 최종 우승했습니다.";
-		System.out.println(String.join(", ", winnersName) + suffix);
+		System.out.println(String.join(WINNER_NAMES_DELIMITER, winnerNames) + suffix);
 	}
 }
