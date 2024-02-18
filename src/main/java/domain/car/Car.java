@@ -29,10 +29,7 @@ public class Car {
     }
 
     public boolean comparePosition(int position) {
-        if (this.position == position) {
-            return true;
-        }
-        return false;
+        return this.position == position;
     }
 
 }
