@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Car {
     public String name;
     public int location;
@@ -11,6 +13,8 @@ public class Car {
     }
 
     private void validator(String name) {
+        Objects.requireNonNull(name, "[ERROR] 이름은 null일 수 없습니다");
+
         if (name.length() > 5) {
             throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다");
         }
