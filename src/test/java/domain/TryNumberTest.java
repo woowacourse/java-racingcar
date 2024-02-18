@@ -17,4 +17,19 @@ class TryNumberTest {
                 .isInstanceOf(NotNumberPositiveException.class);
     }
 
+    @DisplayName("시도횟수가 양수일 시 게임 진행 여부를 정확히 판별하는 지 테스트")
+    @Test
+    public void testTryGame() {
+        TryNumber tryNumber = new TryNumber(4);
+        Assertions.assertThat(tryNumber.isTryable()).isTrue();
+    }
+
+    @DisplayName("시도횟수가 음수일 시 게임 진행 여부를 정확히 판별하는 지 테스트")
+    @Test
+    public void testNotTryGame() {
+        TryNumber tryNumber = new TryNumber(1);
+        tryNumber.decrease();
+        Assertions.assertThat(tryNumber.isTryable()).isFalse();
+    }
+
 }
