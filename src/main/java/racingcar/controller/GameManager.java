@@ -43,7 +43,7 @@ public class GameManager {
 
     private List<Car> makeNewCars(List<String> carNames) {
         return carNames.stream()
-                .map(carName -> new Car(carName))
+                .map(Car::new)
                 .toList();
     }
 }
