@@ -10,10 +10,12 @@ public class MessageResolver {
 
     private static final String WINNER_MESSAGE_POSTFIX = "가 최종 우승했습니다.";
     private static final String NAME_POSITION_SEPARATOR = " : ";
+    private static final String RACE_RESULT_PREFIX = "\n실행 결과";
 
     public String resolveGameResultMessage(GameResultDto gameResultDto) {
-        return resolveRoundResultsMessage(gameResultDto.getRoundResults()) + resolveWinnerMessage(
-                gameResultDto.getWinners());
+        String roundResultsMessage = resolveRoundResultsMessage(gameResultDto.getRoundResults());
+        String winnersMessage = resolveWinnerMessage(gameResultDto.getWinners());
+        return RACE_RESULT_PREFIX + roundResultsMessage + winnersMessage;
     }
 
     private String resolveRoundResultsMessage(List<RoundResultDto> roundResults) {
