@@ -35,15 +35,15 @@ public class Car {
         }
     }
 
+    public boolean isSameForwardCount(int targetForwardCount) {
+        return this.forwardCount == targetForwardCount;
+    }
+
     public String getName() {
         return this.name;
     }
 
     public int getForwardCount() {
         return this.forwardCount;
-    }
-
-    public boolean isSameForwardCount(int targetForwardCount) {
-        return this.forwardCount == targetForwardCount;
     }
 }
