@@ -13,6 +13,9 @@ import racingcar.domain.Cars;
 import racingcar.domain.Winners;
 
 public class OutputView {
+    private OutputView() {
+    }
+
     public static void printInputErrorMessage() {
         System.out.println(ERROR_PREFIX + OutputCommand.INPUT_ERROR_MESSAGE);
     }

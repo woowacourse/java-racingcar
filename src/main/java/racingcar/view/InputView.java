@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InputView {
+    private InputView() {
+    }
+
     public static String readCarNames() {
         System.out.println(OutputCommand.ASK_CAR_NAMES);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
