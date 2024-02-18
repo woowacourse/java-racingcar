@@ -1,9 +1,9 @@
 package racingcar.model;
 
-public class TryCount {
+public final class TryCount {
     private static final int END_LINE = 0;
 
-    private int value;
+    private final int value;
 
     public TryCount(String input) {
         this.value = validatedInput(input);
@@ -23,14 +23,6 @@ public class TryCount {
         if (number < END_LINE) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public void consume() {
-        value--;
-    }
-
-    public boolean untilEndLine() {
-        return value > END_LINE;
     }
 
     public int getValue() {

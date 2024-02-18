@@ -16,10 +16,10 @@ public class CarController {
         TryCount tryCount = new TryCount(receivedCount);
 
         OutputView.printResultMessage();
-        while (tryCount.untilEndLine()) {
+        int totalAttempts = tryCount.getValue();
+        for(int attempt = 0; attempt < totalAttempts; attempt++) {
             cars.moveCars();
             OutputView.printCars(cars);
-            tryCount.consume();
         }
 
         OutputView.printWinners(cars.calculateWinner());
