@@ -15,10 +15,12 @@ public class CarRacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final Judge judge;
 
     public CarRacingGame() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.judge = new Judge();
     }
 
     public void play() {
@@ -91,7 +93,7 @@ public class CarRacingGame {
     }
 
     private void printWinners(Cars cars) {
-        List<String> winners = Judge.findWinners(cars);
+        List<String> winners = judge.findWinners(cars);
         outputView.printWinners(winners);
     }
 
