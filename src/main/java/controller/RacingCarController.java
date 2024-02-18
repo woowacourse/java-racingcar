@@ -1,6 +1,5 @@
 package controller;
 
-import model.Car;
 import model.Cars;
 import model.RacingGame;
 import view.InputView;

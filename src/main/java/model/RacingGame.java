@@ -1,18 +1,12 @@
 package model;
 
-import static util.Util.generateRandomNumber;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class RacingGame {
 
-    private static final int MIN_CAR_NAME_COUNT = 2;
-    private static final int MIN_POSITION = 0;
     private static final String NATURAL_FORMAT_REGEX = "^[\\d]*$";
-    private static final String LINE_SEPARATOR = System.lineSeparator();
 
     private final Cars cars;
     private final int round;
@@ -68,5 +62,4 @@ public class RacingGame {
     public List<String> findWinnerNames() {
         return cars.findMaxPositionCarName();
     }
-
 }
