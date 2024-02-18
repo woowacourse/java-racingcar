@@ -10,7 +10,7 @@ public class Cars {
 
     public Cars(List<String> names) {
         validateDuplicatedNames(names);
-        cars = createCarsByNames(names);
+        cars = createCars(names);
     }
 
     private void validateDuplicatedNames(List<String> names) {
@@ -19,7 +19,7 @@ public class Cars {
         }
     }
 
-    private List<Car> createCarsByNames(List<String> names) {
+    private List<Car> createCars(List<String> names) {
         List<Car> cars = new ArrayList<>();
 
         for (String name : names) {
