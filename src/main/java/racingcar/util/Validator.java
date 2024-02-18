@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
-    public static void validateNullName(final String carNames) {
-        if(carNames == null) {
-            throw new IllegalArgumentException("자동차 이름 목록은 null일 수 없습니다.");
+    private static final int MAX_TRY_COUNT = 50;
+
+    public static void validateEmptyCarNames(final String carNames) {
+        if(carNames.isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름 목록을 입력해주세요.");
         }
     }
 
@@ -30,17 +32,19 @@ public class Validator {
         }
     }
 
-    public static int validateInteger(final String tryCount) {
+    public static int validateTryCount(final String tryCount) {
+        int validTryCount;
         try {
-            return Integer.parseInt(tryCount);
+            validTryCount = Integer.parseInt(tryCount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("시도 회수는 정수여야 합니다.");
         }
-    }
-
-    public static void validateTryCount(final int tryCount) {
-        if (tryCount < 1) {
+        if (validTryCount < 1) {
             throw new IllegalArgumentException("시도할 회수는 양의 정수여야 합니다.");
         }
+        if (validTryCount > MAX_TRY_COUNT) {
+            throw new IllegalArgumentException("시도할 회수가 너무 많습니다. 다시 입력해주세요.");
+        }
+        return validTryCount;
     }
 }
