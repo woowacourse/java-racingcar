@@ -1,6 +1,7 @@
 package domain;
 
 public class RacingCar implements Comparable<RacingCar>{
+    private static final int MOVE_CONDITION = 4;
     private final String name;
     private int moveNumber = 0;
 
@@ -17,7 +18,7 @@ public class RacingCar implements Comparable<RacingCar>{
     }
 
     public void race(int number) {
-        if (number >= 4) {
+        if (number >= MOVE_CONDITION) {
             this.moveNumber++;
         }
     }

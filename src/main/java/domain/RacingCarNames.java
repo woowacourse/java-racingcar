@@ -3,6 +3,8 @@ package domain;
 import java.util.List;
 
 public class RacingCarNames {
+    private static final int NAME_LENGTH = 5;
+    private static final String DELIMITER = ",";
     private final List<String> names;
 
     public RacingCarNames(String names) {
@@ -23,13 +25,13 @@ public class RacingCarNames {
     }
 
     private void validateNameLength(String name) {
-        if (name.isBlank() || name.length() > 5) {
+        if (name.isBlank() || name.length() > NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 5글자 이하만 가능합니다.");
         }
     }
 
     private List<String> splitCarNames(String input) {
-        return List.of(input.split(","));
+        return List.of(input.split(DELIMITER));
     }
 
     private void validateDuplication(List<String> racingCarNames) {
