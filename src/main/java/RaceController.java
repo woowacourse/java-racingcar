@@ -21,9 +21,9 @@ public class RaceController {
         OutputView.printResult(carGroup);
     }
 
-    private static void race(CarGroup carGroup, Attempts attempts) {
+    private static void race(final CarGroup carGroup, final Attempts attempts) {
         final RacingGame racingGame = new RacingGame(carGroup, new RandomPowerGenerator());
-        int numberOfAttempts = attempts.numberOfAttempts();
+        final int numberOfAttempts = attempts.numberOfAttempts();
 
         range(0, numberOfAttempts).forEach(ignore -> {
             racingGame.moveCars();
@@ -33,7 +33,7 @@ public class RaceController {
 
     private static CarGroup repeatUntilGetValidCarNames() {
         try {
-            String[] carNames = inputView.readCarNames();
+            final String[] carNames = inputView.readCarNames();
             return new CarGroup(carNames);
         } catch (IOException | IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
@@ -43,7 +43,7 @@ public class RaceController {
 
     private static Attempts repeatUntilGetValidAttempts() {
         try {
-            Integer numberOfAttempts = inputView.readNumberOfAttempts();
+            final Integer numberOfAttempts = inputView.readNumberOfAttempts();
             return new Attempts(numberOfAttempts);
         } catch (IOException | IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);

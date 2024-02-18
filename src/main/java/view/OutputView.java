@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printCarsPosition(CarGroup carGroup) {
+    public static void printCarsPosition(final CarGroup carGroup) {
         final List<Car> cars = carGroup.getAllCars();
 
         cars.forEach(car -> {
@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResult(CarGroup carGroup) {
+    public static void printResult(final CarGroup carGroup) {
         final List<Car> winners = carGroup.getWinners();
 
         if (winners.size() == 0) {

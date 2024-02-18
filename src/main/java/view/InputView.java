@@ -12,7 +12,7 @@ public class InputView {
 
     private final BufferedReader reader;
 
-    public InputView(InputStream inputStream) {
+    public InputView(final InputStream inputStream) {
         this.reader = new BufferedReader(new InputStreamReader(inputStream));
     }
 
@@ -48,7 +48,7 @@ public class InputView {
         }
     }
 
-    private String removeBlank(String text) {
+    private String removeBlank(final String text) {
         if (text == null) {
             return null;
         }

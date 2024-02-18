@@ -12,8 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("레이싱 게임 테스트")
 public class RacingGameTest {
 
-    @DisplayName("자동차를 한 번 정상적으로 움직이는가")
     @Test
+    @DisplayName("자동차를 한 번 정상적으로 움직이는가")
     void move_cars_once_correctly_test() {
         // given
         final CarGroup carGroup = new CarGroup(new String[]{"pobi", "weve"});
@@ -34,8 +34,8 @@ public class RacingGameTest {
         assertThat(carGroup.getWinners()).containsExactly(weveCar);
     }
 
-    @DisplayName("자동차를 여러 번 정상적으로 움직이는가")
     @Test
+    @DisplayName("자동차를 여러 번 정상적으로 움직이는가")
     void move_cars_multiply_times_correctly_test() {
         // given
         final CarGroup carGroup = new CarGroup(new String[]{"pobi", "weve"});
