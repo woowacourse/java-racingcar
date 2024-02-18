@@ -18,8 +18,8 @@ public class Car implements Comparable<Car> {
         return new Car(new CarName(name));
     }
 
-    public void move(final int threshold) {
-        if (threshold >= CAR_MOVE_THRESHOLD) {
+    public void move(final int number) {
+        if (number >= CAR_MOVE_THRESHOLD) {
             position = position.increasePosition();
         }
     }
