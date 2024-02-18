@@ -27,7 +27,7 @@ public class InputView {
 
     private void validateCarNamesFormat(final String names) {
         if (!Pattern.matches("^[A-z0-9,]+$", names)) {
-            throw new IllegalArgumentException("형식에 맞게 다시 입력하세요.");
+            throw new IllegalArgumentException("형식에 맞게 다시 입력하세요.\n");
         }
     }
 
@@ -44,11 +44,14 @@ public class InputView {
         try {
             Integer.parseInt(text);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("1부터 10 이하의 숫자를 입력하세요.");
+            throw new IllegalArgumentException("1부터 10 이하의 숫자를 입력하세요.\n");
         }
     }
 
     private String removeBlank(String text) {
+        if (text == null) {
+            return null;
+        }
         return text.replaceAll(" ", "");
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("레이싱 자동차들 동작 테스트")
 public class CarGroupTest {
 
     @Test
