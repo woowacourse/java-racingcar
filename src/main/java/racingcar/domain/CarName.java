@@ -6,12 +6,12 @@ public class CarName {
 
     private final String name;
 
-    public CarName(String name) {
+    public CarName(final String name) {
         validateName(name);
         this.name = name;
     }
 
-    private void validateName(String name) {
+    private void validateName(final String name) {
         if (name.isBlank() || name.length() > MAXIMUM_LENGTH_OF_NAME) {
             throw new IllegalArgumentException(
                     String.format(NAME_EXCEPTION_MESSAGE, MAXIMUM_LENGTH_OF_NAME));

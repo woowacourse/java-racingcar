@@ -5,9 +5,9 @@ import racingcar.domain.Car;
 import java.util.List;
 
 public class CarsDto {
-    List<CarDto> cars;
+    private final List<CarDto> cars;
 
-    public CarsDto(List<Car> cars) {
+    public CarsDto(final List<Car> cars) {
         this.cars = cars.stream()
                 .map(CarDto::new)
                 .toList();

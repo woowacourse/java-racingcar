@@ -15,8 +15,8 @@ class CarRacingGameTest {
 
     @BeforeEach
     void setUp() {
-        Cars cars = new Cars("pobi,crong,honux");
-        Round round = new Round("1");
+        final Cars cars = new Cars("pobi,crong,honux");
+        final Round round = new Round("1");
         carRacingGame = new CarRacingGame(cars, round);
     }
 
@@ -26,7 +26,7 @@ class CarRacingGameTest {
     void playRoundMoveTest(int randomNumber, int expected) {
         carRacingGame.playRound(() -> randomNumber);
 
-        List<Car> carList = carRacingGame.getCurrentCarStatuses();
+        final List<Car> carList = carRacingGame.getCurrentCarStatuses();
         carList.forEach(car -> assertThat(car.getPosition()).isEqualTo(expected));
     }
 
@@ -41,7 +41,7 @@ class CarRacingGameTest {
     @Test
     @DisplayName("우승자를 구할 수 있다.")
     void findWinners() {
-        List<Car> winners = carRacingGame.findWinners();
+        final List<Car> winners = carRacingGame.findWinners();
         assertThat(winners.size()).isEqualTo(3);
     }
 }

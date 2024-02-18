@@ -9,7 +9,7 @@ public class CarRacingGame {
     private final Cars cars;
     private final Round round;
 
-    public CarRacingGame(Cars cars, Round round) {
+    public CarRacingGame(final Cars cars, final Round round) {
         this.cars = cars;
         this.round = round;
     }
@@ -34,7 +34,7 @@ public class CarRacingGame {
         return cars.findCarsAtMaxPosition();
     }
 
-    public CarsDto playRound(NumberGenerator numberGenerator) {
+    public CarsDto playRound(final NumberGenerator numberGenerator) {
         cars.moveCars(numberGenerator);
         round.decrease();
         return new CarsDto(cars.getCars());

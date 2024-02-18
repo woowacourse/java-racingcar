@@ -12,8 +12,8 @@ class RandomNumberGeneratorTest {
     @Test
     @DisplayName("숫자를 랜덤으로 생성한다.")
     void generateTest() {
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-        int result = randomNumberGenerator.generate();
+        final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        final int result = randomNumberGenerator.generate();
 
         assertThat(result).isBetween(0, 9);
     }

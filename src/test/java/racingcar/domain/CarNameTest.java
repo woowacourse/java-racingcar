@@ -20,7 +20,7 @@ class CarNameTest {
     @Test
     @DisplayName("이름을 생성할 수 있다.")
     void validNameTest() {
-        String input = "pobi";
+        final String input = "pobi";
         Assertions.assertDoesNotThrow(() -> new CarName(input));
     }
 }

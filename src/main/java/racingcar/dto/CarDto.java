@@ -6,7 +6,7 @@ public class CarDto {
     private final String name;
     private final int position;
 
-    public CarDto(Car car) {
+    public CarDto(final Car car) {
         this.name = car.getName();
         this.position = car.getPosition();
     }
