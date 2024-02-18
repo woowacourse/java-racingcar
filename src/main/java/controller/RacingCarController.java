@@ -9,10 +9,10 @@ import view.OutputView;
 import java.util.List;
 
 public class RacingCarController {
-    private NumberGenerator numberGenerator;
-    private RacingCarFactory racingCarFactory;
+    private final NumberGenerator numberGenerator;
+    private final RacingCarFactory racingCarFactory;
 
-    public RacingCarController(NumberGenerator numberGenerator, RacingCarFactory racingCarFactory) {
+    public RacingCarController(final NumberGenerator numberGenerator, final RacingCarFactory racingCarFactory) {
         this.numberGenerator = numberGenerator;
         this.racingCarFactory = racingCarFactory;
     }
@@ -31,7 +31,7 @@ public class RacingCarController {
         OutputView.printWinners(winners);
     }
 
-    private void tryRace(RacingCars racingCars) {
+    private void tryRace(final RacingCars racingCars) {
         List<RaceResult> results = racingCars.tryRace(numberGenerator);
         printResult(results);
     }

@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingCars {
-    private List<RacingCar> racingCars;
+    private final List<RacingCar> racingCars;
 
-    public RacingCars(List<RacingCar> racingCars) {
+    public RacingCars(final List<RacingCar> racingCars) {
         this.racingCars = racingCars;
     }
 
-    public List<RaceResult> tryRace(NumberGenerator numberGenerator) {
+    public List<RaceResult> tryRace(final NumberGenerator numberGenerator) {
         List<RaceResult> raceResults = new ArrayList<>();
         for (RacingCar racingCar : racingCars) {
             racingCar.race(numberGenerator.generateNumber());

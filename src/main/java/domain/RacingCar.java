@@ -5,7 +5,7 @@ public class RacingCar implements Comparable<RacingCar>{
     private final String name;
     private int moveNumber = 0;
 
-    public RacingCar(String name) {
+    public RacingCar(final String name) {
         this.name = name;
     }
 
@@ -17,13 +17,13 @@ public class RacingCar implements Comparable<RacingCar>{
         return moveNumber;
     }
 
-    public void race(int number) {
+    public void race(final int number) {
         if (number >= MOVE_CONDITION) {
             this.moveNumber++;
         }
     }
 
-    public boolean isSameDistance(RacingCar racingCar) {
+    public boolean isSameDistance(final RacingCar racingCar) {
         return racingCar.moveNumber == this.moveNumber;
     }
 
