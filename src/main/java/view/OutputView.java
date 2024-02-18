@@ -1,44 +1,45 @@
 package view;
 
 import common.Information;
+import model.Car;
+import model.MoveStatus;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.List;
-import model.Car;
-import model.MoveStatus;
 
 public class OutputView implements AutoCloseable {
-  private static final String DELIMITER = " : ";
-  private final BufferedWriter writer;
+    private static final String DELIMITER = " : ";
+    private final BufferedWriter writer;
 
-  public OutputView() {
-    this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
-  }
-
-  public void printResultComment() throws IOException {
-    writer.write(System.lineSeparator() + Information.RESULT_COMMENT.getMessage());
-    writer.newLine();
-  }
-
-  public void printResult(List<Car> cars) throws IOException {
-    for (Car car : cars) {
-      writer.write(car.getName() + DELIMITER + MoveStatus.join("", car.getStatuses()));
-      writer.newLine();
+    public OutputView() {
+        this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
     }
-    writer.newLine();
-  }
 
-  public void printWinner(List<Car> cars) throws IOException {
-    String winnersName = String.join(", ", cars.stream().map(Car::getName).toList());
-    String composeWinnerMessage = String.format((Information.WINNER.getMessage()), winnersName);
-    writer.write(composeWinnerMessage);
-    writer.newLine();
-  }
+    public void printResultComment() throws IOException {
+        writer.write(System.lineSeparator() + Information.RESULT_COMMENT.getMessage());
+        writer.newLine();
+    }
 
-  @Override
-  public void close() throws Exception {
-    writer.flush();
-    writer.close();
-  }
+    public void printResult(List<Car> cars) throws IOException {
+        for (Car car : cars) {
+            writer.write(car.getName() + DELIMITER + MoveStatus.join("", car.getStatuses()));
+            writer.newLine();
+        }
+        writer.newLine();
+    }
+
+    public void printWinner(List<Car> cars) throws IOException {
+        String winnersName = String.join(", ", cars.stream().map(Car::getName).toList());
+        String composeWinnerMessage = String.format((Information.WINNER.getMessage()), winnersName);
+        writer.write(composeWinnerMessage);
+        writer.newLine();
+    }
+
+    @Override
+    public void close() throws Exception {
+        writer.flush();
+        writer.close();
+    }
 }
