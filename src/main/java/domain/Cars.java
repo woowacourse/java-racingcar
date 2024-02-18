@@ -12,7 +12,7 @@ public class Cars {
     private final List<Car> cars;
     private final RandomPowerGenerator randomPowerGenerator;
 
-    public Cars(List<Car> cars, RandomPowerGenerator randomPowerGenerator) {
+    private Cars(List<Car> cars, RandomPowerGenerator randomPowerGenerator) {
         this.cars = cars;
         this.randomPowerGenerator = randomPowerGenerator;
     }
