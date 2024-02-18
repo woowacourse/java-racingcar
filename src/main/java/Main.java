@@ -9,7 +9,6 @@ public class Main {
         OutputView outputView = new OutputView();
 
         RacingGame racingGame = new RacingGame(inputView, outputView);
-
         racingGame.play();
     }
 }

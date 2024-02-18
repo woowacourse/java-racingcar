@@ -22,8 +22,8 @@ public class Car {
         return position;
     }
 
-    public void race(Integer number) {
-        if (number >= FORWARD_THRESHOLD) {
+    public void race(Integer power) {
+        if (power >= FORWARD_THRESHOLD) {
             this.position++;
         }
     }

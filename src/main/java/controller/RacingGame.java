@@ -23,7 +23,6 @@ public class RacingGame {
 
     public void play() {
         Cars cars = register();
-
         RaceCount raceCount = inputView.inputRaceCount();
 
         racing(cars.getValue(), raceCount.getValue());
