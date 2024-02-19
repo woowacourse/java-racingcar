@@ -30,7 +30,7 @@ public class RacingController {
 
         final List<Car> winners = cars.determineWinner();
         outputView.printWinners(winners);
-        inputView.closeScanner();
+        inputView.closeResource();
     }
 
     private Cars createCars() {

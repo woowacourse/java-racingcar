@@ -1,16 +1,18 @@
 package racingcar.manager;
 
 import racingcar.controller.RacingController;
+import racingcar.view.ConsoleInputView;
+import racingcar.view.ConsoleOutputView;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class RacingManager {
     private InputView createInputView() {
-        return new InputView();
+        return new ConsoleInputView();
     }
 
     private OutputView createOutputView() {
-        return new OutputView();
+        return new ConsoleOutputView();
     }
 
     public RacingController createRacingController() {
