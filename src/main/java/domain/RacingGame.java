@@ -18,17 +18,9 @@ public class RacingGame {
         }
     }
 
-    public Count getCount() {
-        return count;
-    }
-
     public List<Car> judgeWinners() {
         raceCars.sortCarsDes();
         int maxLocation = raceCars.getCar(0).getLastLocation();
         return raceCars.getWinners(maxLocation);
-    }
-
-    public RaceCars getRaceCars() {
-        return raceCars;
     }
 }

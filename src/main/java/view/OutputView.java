@@ -3,9 +3,9 @@ package view;
 import domain.Car;
 import domain.Count;
 import domain.RaceCars;
-import domain.RacingGame;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -15,21 +15,20 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public void printRace(RacingGame racingGame) {
-        Count count = racingGame.getCount();
+    public void printRace(RaceCars raceCars, Count count) {
         for (int round = 1; round <= count.getCount(); round++) {
-            printLocation(racingGame.getRaceCars(), round);
+            Consumer<Car> printLocation = getLocation(round);
+            raceCars.run(printLocation);
+            System.out.println();
         }
     }
 
-    private void printLocation(RaceCars raceCars, int round) {
-        for (int i = 0; i < raceCars.getCarCount(); i++) {
-            Car car = raceCars.getCar(i);
+    private Consumer<Car> getLocation(int round) {
+        return car -> {
             int location = car.getLocation(round);
             String result = String.format(FORMAT, car.getName(), "-".repeat(location));
             System.out.println(result);
-        }
-        System.out.println();
+        };
     }
 
     public void printWinners(List<Car> winners) {

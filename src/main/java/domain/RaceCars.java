@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class RaceCars {
     private static final int MIN_CAR_AMOUNT = 1;
@@ -35,10 +36,6 @@ public class RaceCars {
         return cars.get(index);
     }
 
-    public int getCarCount() {
-        return cars.size();
-    }
-
     public void play() {
         for (Car car : cars) {
             car.move(numberGenerator.getRandom());
@@ -53,5 +50,9 @@ public class RaceCars {
         return cars.stream()
                 .filter(car -> car.getLastLocation() == maxLocation)
                 .toList();
+    }
+
+    public void run(Consumer<Car> consumer) {
+        cars.forEach(consumer);
     }
 }

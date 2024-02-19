@@ -20,7 +20,7 @@ public class RacingMain {
 
         final OutputView outputView = new OutputView();
         outputView.printResultNotice();
-        outputView.printRace(racingGame);
+        outputView.printRace(raceCars, count);
 
         final List<Car> winners = racingGame.judgeWinners();
         outputView.printWinners(winners);
