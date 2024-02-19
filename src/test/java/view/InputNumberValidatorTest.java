@@ -1,5 +1,6 @@
 package view;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
@@ -7,8 +8,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class InputNumberValidatorTest {
+
+    @DisplayName("시도 횟수가 0이상의 정수라면 예외가 발생하지 않는다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1"})
+    public void validTryNumber(String tryNumber) {
+        assertThatCode(() -> InputNumberValidator.validatePositiveNumber(tryNumber)).doesNotThrowAnyException();
+    }
 
     static Stream<Arguments> invalidTryNumber() {
         return Stream.of(

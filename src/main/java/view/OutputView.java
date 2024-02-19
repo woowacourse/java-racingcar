@@ -1,7 +1,7 @@
 package view;
 
 import java.util.List;
-import view.dto.CarDto;
+import model.Car;
 
 public class OutputView {
 
@@ -9,21 +9,24 @@ public class OutputView {
     private static final String STEP = "-";
     private static final String DELIMITER = ",";
 
-    public void printResultHeader() {
+    private OutputView() {
+    }
+
+    public static void printResultHeader() {
         System.out.println();
         System.out.println("실행 결과");
     }
 
-    public void printTotalResult(List<CarDto> carDtos) {
+    public static void printTotalResult(List<Car> carDtos) {
         carDtos.forEach(OutputView::printMovement);
         System.out.println();
     }
 
-    private static void printMovement(CarDto carDto) {
+    private static void printMovement(Car carDto) {
         System.out.println(String.format(RESULT_FORMAT, carDto.getCarName(), STEP.repeat(carDto.getMovement())));
     }
 
-    public void printWinner(List<String> winners) {
+    public static void printWinner(List<String> winners) {
         System.out.print(String.join(DELIMITER, winners) + "가 최종 우승했습니다.");
     }
 }

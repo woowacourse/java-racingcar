@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Objects;
-
 public class Car {
 
     private static final String CAR_NAME_TOO_LONG = "자동차 이름이 5자 초과입니다.";
@@ -15,39 +13,6 @@ public class Car {
         this.name = name;
         this.movement = 0;
     }
-
-    Car(String name, int movement) {
-        validateName(name);
-        this.name = name;
-        this.movement = movement;
-    }
-
-    public void move(boolean move) {
-        if (move) {
-            this.movement++;
-        }
-    }
-
-    public String getCarName() {
-        return name;
-    }
-
-    public int getMovement() {
-        return movement;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Car car = (Car) o;
-        return Objects.equals(name, car.name);
-    }
-
 
     private void validateName(String carName) {
         validateNameLength(carName);
@@ -65,4 +30,23 @@ public class Car {
             throw new IllegalArgumentException(CAR_NAME_IS_BLANK);
         }
     }
+
+    public void move(boolean move) {
+        if (move) {
+            this.movement++;
+        }
+    }
+
+    public boolean isSameMovement(int movement) {
+        return this.movement == movement;
+    }
+
+    public String getCarName() {
+        return name;
+    }
+
+    public int getMovement() {
+        return movement;
+    }
+
 }
