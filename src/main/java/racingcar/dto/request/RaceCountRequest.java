@@ -1,6 +1,7 @@
 package racingcar.dto.request;
 
 import racingcar.exception.ErrorMessage;
+import racingcar.exception.ErrorMessageDetail;
 import racingcar.exception.InvalidInputException;
 
 public record RaceCountRequest(String input) {
@@ -23,8 +24,8 @@ public record RaceCountRequest(String input) {
 
     private void validateRaceCountRange(final int count) {
         if (count > MAX_RACE_COUNT || MIN_RACE_COUNT > count) {
-            String errorDetail = String.format("시도 횟수는 %d에서 %d 사이여야 합니다.", MIN_RACE_COUNT, MAX_RACE_COUNT);
-            throw new InvalidInputException(ErrorMessage.INVALID_RACE_COUNT_RANGE, errorDetail);
+            String errorDetail = String.format(ErrorMessageDetail.RACE_COUNT_RANGE, MIN_RACE_COUNT, MAX_RACE_COUNT);
+            throw new InvalidInputException(ErrorMessage.INVALID_CAR_NAME_LENGTH, errorDetail);
         }
     }
 }

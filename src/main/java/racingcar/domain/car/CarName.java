@@ -1,6 +1,7 @@
 package racingcar.domain.car;
 
 import racingcar.exception.ErrorMessage;
+import racingcar.exception.ErrorMessageDetail;
 import racingcar.exception.InvalidInputException;
 
 public class CarName {
@@ -16,7 +17,7 @@ public class CarName {
 
     private void validateNameLength(final String name) {
         if (name.isBlank() || MIN_NAME_LENGTH > name.length() || name.length() > MAX_NAME_LENGTH) {
-            String errorDetail = String.format("자동차 이름의 길이는 %d글자에서 %d글자 사이여야 합니다.", MIN_NAME_LENGTH, MAX_NAME_LENGTH);
+            String errorDetail = String.format(ErrorMessageDetail.CAR_NAME_RAGE, MIN_NAME_LENGTH, MAX_NAME_LENGTH);
             throw new InvalidInputException(ErrorMessage.INVALID_CAR_NAME_LENGTH, errorDetail);
         }
     }
