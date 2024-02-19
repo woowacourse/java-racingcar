@@ -14,10 +14,8 @@ public class GameManager {
     InputView inputView = new InputView();
 
     public void run() {
-        outputView.printCarNameInputMessage();
         List<String> carNames = inputView.getCarName();
         Cars cars = makeNewCars(carNames);
-        outputView.printTryCountInputMessage();
         int tryCount = inputView.getTryCount();
         outputView.printTryResultMenu();
         for (int i = 0; i < tryCount; i++) {
