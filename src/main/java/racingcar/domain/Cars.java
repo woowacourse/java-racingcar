@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Cars {
@@ -13,21 +12,21 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(String inputCarNames) {
+    public Cars(final String inputCarNames) {
         List<Car> cars = mapCar(inputCarNames);
         validateCars(cars);
 
         this.cars = cars;
     }
 
-    private List<Car> mapCar(String inputCarNames) {
+    private List<Car> mapCar(final String inputCarNames) {
         return Arrays.stream(inputCarNames.split(CAR_NAME_DELIMITER))
                 .map(String::trim)
                 .map(Car::new)
                 .toList();
     }
 
-    private void validateCars(List<Car> cars) {
+    private void validateCars(final List<Car> cars) {
         if (cars.size() < MINIMUM_CARS_SIZE) {
             throw new IllegalArgumentException(
                     String.format(INVALID_CARS_SIZE_EXCEPTION_MESSAGE, MINIMUM_CARS_SIZE));
@@ -38,19 +37,19 @@ public class Cars {
         }
     }
 
-    private boolean hasDuplicateCarName(List<Car> cars) {
+    private boolean hasDuplicateCarName(final List<Car> cars) {
         return cars.size() != cars.stream()
                 .map(Car::getName)
                 .distinct()
                 .count();
     }
 
-    public void moveCars(NumberGenerator numberGenerator) {
+    public void moveCars(final NumberGenerator numberGenerator) {
         cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
     public List<Car> findCarsAtMaxPosition() {
-        int maxPosition = findMaxPosition();
+        final int maxPosition = findMaxPosition();
         return findCarsByPosition(maxPosition);
     }
 
@@ -61,13 +60,13 @@ public class Cars {
                 .orElseThrow(() -> new IllegalArgumentException(EMPTY_CARS_EXCEPTION_MESSAGE));
     }
 
-    private List<Car> findCarsByPosition(int maxPosition) {
+    private List<Car> findCarsByPosition(final int maxPosition) {
         return cars.stream()
                 .filter(car -> car.isPositionEqualTo(maxPosition))
                 .toList();
     }
 
     public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+        return cars;
     }
 }

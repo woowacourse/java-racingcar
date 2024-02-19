@@ -2,26 +2,26 @@ package racingcar.domain;
 
 public class Car {
     private static final int INITIAL_POSITION = 0;
-    private static final int MINIMUM_NUMBER_TO_MOVE = 4;
+    private static final int MINIMUM_POWER_TO_MOVE = 4;
 
-    private final Name name;
+    private final CarName name;
     private int position = INITIAL_POSITION;
 
-    public Car(String name) {
-        this.name = new Name(name);
+    public Car(final String name) {
+        this.name = new CarName(name);
     }
 
-    public void move(int randomNumber) {
-        if (isMovable(randomNumber)) {
+    public void move(final int drivePower) {
+        if (isMovable(drivePower)) {
             position++;
         }
     }
 
-    private boolean isMovable(int randomNumber) {
-        return randomNumber >= MINIMUM_NUMBER_TO_MOVE;
+    private boolean isMovable(final int drivePower) {
+        return drivePower >= MINIMUM_POWER_TO_MOVE;
     }
 
-    public boolean isPositionEqualTo(int position) {
+    public boolean isPositionEqualTo(final int position) {
         return this.position == position;
     }
 

@@ -9,19 +9,19 @@ public class Round {
 
     private int remainingRound;
 
-    public Round(String inputRound) {
+    public Round(final String inputRound) {
         validateRound(inputRound);
         this.remainingRound = Integer.parseInt(inputRound);
     }
 
-    private void validateRound(String inputRound) {
+    private void validateRound(final String inputRound) {
         if (!isZeroOrPositiveNumber(inputRound)) {
             throw new IllegalArgumentException(
                     String.format(INVALID_ROUND_EXCEPTION_MESSAGE, MINIMUM_ROUND));
         }
     }
 
-    private boolean isZeroOrPositiveNumber(String inputRound) {
+    private boolean isZeroOrPositiveNumber(final String inputRound) {
         return Pattern.matches(VALID_ROUND_REGEX, inputRound);
     }
 

@@ -23,14 +23,14 @@ class CarsTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "pobi,pobi"})
     @DisplayName("자동차의 수가 1보다 작거나, 중복되는 이름을 가지면 예외가 발생한다.")
-    void duplicateCarNamesTest(String input) {
+    void duplicateCarNamesTest(final String input) {
         assertThrows(IllegalArgumentException.class, () -> new Cars(input));
     }
 
     @ParameterizedTest
     @CsvSource(value = {"4, 1", "3, 0"})
     @DisplayName("random 값이 4 이상일 경우 자동차들을 이동시키고, random 값이 4 미만인 경우 자동차들을 이동시키지 않는다.")
-    void moveTest(int randomNumber, int expected) {
+    void moveTest(final int randomNumber, final int expected) {
         cars.moveCars(() -> randomNumber);
 
         List<Car> carList = cars.getCars();

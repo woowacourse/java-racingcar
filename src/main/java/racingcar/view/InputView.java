@@ -15,9 +15,9 @@ public class InputView {
         return inputTemplate(INPUT_ROUND_MESSAGE);
     }
 
-    private static String inputTemplate(String inputMessage) {
+    private static String inputTemplate(final String inputMessage) {
         System.out.println(inputMessage);
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
 
         InputValidator.validate(input);
         return input;

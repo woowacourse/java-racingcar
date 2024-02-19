@@ -8,19 +8,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class NameTest {
+class CarNameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "banana"})
     @DisplayName("이름이 공백이거나 5글자를 초과하면 예외가 발생한다.")
     void invalidName(String input) {
-        assertThrows(IllegalArgumentException.class, () -> new Name(input));
+        assertThrows(IllegalArgumentException.class, () -> new CarName(input));
     }
 
     @Test
     @DisplayName("이름을 생성할 수 있다.")
     void validNameTest() {
-        String input = "pobi";
-        Assertions.assertDoesNotThrow(() -> new Name(input));
+        final String input = "pobi";
+        Assertions.assertDoesNotThrow(() -> new CarName(input));
     }
 }

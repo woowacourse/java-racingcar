@@ -11,7 +11,7 @@ class RoundTest {
     @ParameterizedTest
     @ValueSource(strings = {"!", "-1", "abc"})
     @DisplayName("숫자가 아니거나, 음수인 경우 예외가 발생한다.")
-    void invalidRoundTest(String input) {
+    void invalidRoundTest(final String input) {
         assertThrows(IllegalArgumentException.class, () -> new Round(input));
     }
 }
