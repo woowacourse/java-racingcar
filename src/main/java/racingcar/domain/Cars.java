@@ -15,7 +15,7 @@ public class Cars {
 
     public void moveAll(final MovementDecider movementDecider) {
         for(Car car: cars) {
-            final int condition = movementDecider.generate();
+            final int condition = movementDecider.generateCondition();
             car.move(condition);
         }
     }
