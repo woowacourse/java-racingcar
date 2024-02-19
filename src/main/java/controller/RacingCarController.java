@@ -19,15 +19,14 @@ public class RacingCarController {
   }
 
   public void run() throws IOException {
-    Game game = new Game();
     Cars cars = new Cars(convertToCar(inputView.inputCarsName()));
     TrialCount trialCount = new TrialCount(inputView.inputTrialCount());
+    Game game = new Game(cars, trialCount);
     outputView.printResultComment();
-    while (trialCount.isRest()) {
-      outputView.printResult(game.proceed(cars));
-      trialCount.reduce();
+    while (!game.over()) {
+      outputView.printResult(game.play());
     }
-    outputView.printWinner(game.winners(cars));
+    outputView.printWinner(game.winners());
   }
 
   private List<Car> convertToCar(List<String> carNames) {

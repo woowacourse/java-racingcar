@@ -1,3 +1,4 @@
+
 package model;
 
 import java.util.ArrayList;
@@ -17,17 +18,18 @@ public class Cars {
 
   private void validateNotDuplicate(List<Car> carsName) {
     int originCount = carsName.size();
-    int distinctCount = (int) carsName.stream().distinct().count();
+    int distinctCount = (int) carsName.stream()
+            .distinct()
+            .count();
     if (originCount != distinctCount) {
       throw new IllegalArgumentException(Exception.DUPLICATE.getMessage());
     }
   }
 
-  public Cars applyMoving() {
-    for (Car car : cars) {
+  public void moveAll(){
+    for (final Car car : cars) {
       car.move(new Random().nextInt(10));
     }
-    return new Cars(cars);
   }
 
   public List<Car> participants() {
@@ -35,15 +37,21 @@ public class Cars {
   }
 
   public List<String> participantsNames() {
-    return new ArrayList<>(cars.stream().map(Car::getName).toList());
+    return new ArrayList<>(cars.stream()
+            .map(Car::getName)
+            .toList());
   }
 
   public List<Integer> countOfForward() {
-    return cars.stream().map(Car::countOfForward).toList();
+    return cars.stream()
+            .map(Car::countOfForward)
+            .toList();
   }
 
   public Cars findSameCountOfForward(int count) {
-    return new Cars(cars.stream().filter(car -> car.countOfForward() == count).toList());
+    return new Cars(cars.stream()
+            .filter(car -> car.countOfForward() == count)
+            .toList());
   }
 
   @Override

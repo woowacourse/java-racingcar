@@ -23,8 +23,9 @@ public class Car {
   }
 
   public int countOfForward() {
-    return (int)
-        movingHistory.stream().filter(carStatus -> carStatus.equals(MoveStatus.FORWARD)).count();
+    return (int) movingHistory.stream()
+            .filter(carStatus -> carStatus.equals(MoveStatus.FORWARD))
+            .count();
   }
 
   public String getName() {
