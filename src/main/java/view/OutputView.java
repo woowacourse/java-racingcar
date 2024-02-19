@@ -25,7 +25,7 @@ public class OutputView {
 
     private Consumer<Car> getLocation(int round) {
         return car -> {
-            int location = car.getLocation(round);
+            int location = car.getRoundLocation(round);
             String result = String.format(FORMAT, car.getName(), "-".repeat(location));
             System.out.println(result);
         };

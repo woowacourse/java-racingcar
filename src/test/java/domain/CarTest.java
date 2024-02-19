@@ -58,6 +58,6 @@ class CarTest {
     void getLocation() {
         car.move(4);
 
-        assertThat(car.getLocation(1)).isEqualTo(1);
+        assertThat(car.getRoundLocation(1)).isEqualTo(1);
     }
 }

@@ -33,7 +33,7 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    public int getLocation(int round) {
+    public int getRoundLocation(int round) {
         if (round >= 0) {
             return location.get(round);
         }

@@ -85,7 +85,7 @@ class RaceCarsTest {
 
             Car car = raceCars.getCar(0);
 
-            assertThat(car.getLocation(1)).isEqualTo(1);
+            assertThat(car.getRoundLocation(1)).isEqualTo(1);
         }
 
         @ParameterizedTest
@@ -103,7 +103,7 @@ class RaceCarsTest {
 
             Car car = raceCars.getCar(0);
 
-            assertThat(car.getLocation(1)).isEqualTo(0);
+            assertThat(car.getRoundLocation(1)).isEqualTo(0);
         }
     }
 
