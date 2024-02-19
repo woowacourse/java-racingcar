@@ -19,7 +19,7 @@ public class RacingGame {
     public RacingGame(String rawCarNames, MoveStrategy moveStrategy) {
         this.cars = new ArrayList<>();
         this.moveStrategy = moveStrategy;
-        makeCarsFrom(rawCarNames);
+        validate(rawCarNames);
     }
 
     public List<Car> playOneRound() {
@@ -37,24 +37,21 @@ public class RacingGame {
             .toList();
     }
 
-    private void makeCarsFrom(String rawCarNames) {
-        validateNull(rawCarNames);
+    private void validate(String rawCarNames) {
+        validateEmptyOrBlank(rawCarNames);
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
-        validate(carNames);
+        validateCarAmount(carNames);
+        validateNameDuplication(carNames);
+
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
     }
 
-    private void validateNull(String rawCarNames) {
-        if (rawCarNames == null) {
-            throw new IllegalArgumentException("null 값을 입력할 수 없습니다.");
+    private void validateEmptyOrBlank(String rawCarNames) {
+        if (rawCarNames == null || rawCarNames.isBlank()) {
+            throw new IllegalArgumentException("null 값이나 빈 문자열을 입력할 수 없습니다.");
         }
-    }
-
-    private void validate(List<String> names) {
-        validateCarAmount(names);
-        validateNameDuplication(names);
     }
 
     private void validateCarAmount(List<String> names) {
