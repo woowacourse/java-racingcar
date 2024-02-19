@@ -34,7 +34,10 @@ public class Car implements Comparable<Car> {
     }
 
     public int getLocation(int round) {
-        return location.get(round);
+        if (round >= 0) {
+            return location.get(round);
+        }
+        throw new IllegalArgumentException("유효하지 않은 라운드입니다.");
     }
 
     public int getLastLocation() {
