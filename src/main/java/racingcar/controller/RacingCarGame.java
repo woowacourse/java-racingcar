@@ -13,7 +13,7 @@ public class RacingCarGame {
         TryCount tryCount = requestUntilValidated(() -> TryCount.from(InputView.readTryCount()));
         Game game = createGame(cars, tryCount);
         game.proceed();
-        OutputView.printWinners(game.getWinner());
+        OutputView.printWinners(game.getWinners());
     }
 
     private static Game createGame(final Cars cars, final TryCount tryCount) {
