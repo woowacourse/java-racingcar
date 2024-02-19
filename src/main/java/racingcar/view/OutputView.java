@@ -1,7 +1,5 @@
 package racingcar.view;
 
-import racingcar.dto.CarDto;
-
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +22,15 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printWinners(List<String> winners) {
+        String names = String.join(WINNER_DELIMITER, winners);
+        System.out.println(names.concat(WINNERS_MESSAGE));
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(String.format(ERROR_MESSAGE_FORMAT, ERROR_SUFFIX, errorMessage));
+    }
+
     private static void printCarInformation(String name, int position) {
         StringBuilder informationBuilder = new StringBuilder();
 
@@ -32,22 +39,5 @@ public class OutputView {
                 .append(POSITION_EXPRESSION_SYMBOL.repeat(position));
 
         System.out.println(informationBuilder);
-    }
-
-    public static void printWinners(List<CarDto> winners) {
-        List<String> winnerNames = findWinnerNames(winners);
-        String names = String.join(WINNER_DELIMITER, winnerNames);
-
-        System.out.println(names.concat(WINNERS_MESSAGE));
-    }
-
-    private static List<String> findWinnerNames(List<CarDto> winners) {
-        return winners.stream()
-                .map(CarDto::getName)
-                .toList();
-    }
-
-    public static void printErrorMessage(String errorMessage) {
-        System.out.println(String.format(ERROR_MESSAGE_FORMAT, ERROR_SUFFIX, errorMessage));
     }
 }

@@ -5,8 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,14 +18,17 @@ class CarsTest {
 
     @BeforeEach
     void setUp() {
-        cars = new Cars("pobi,crong,honux");
+        cars = new Cars(
+                List.of(new Car("pobi"), new Car("crong"), new Car("honux"))
+        );
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"", "pobi,pobi"})
+    @Test
     @DisplayName("자동차의 수가 1보다 작거나, 중복되는 이름을 가지면 예외가 발생한다.")
-    void duplicateCarNamesTest(String input) {
-        assertThrows(IllegalArgumentException.class, () -> new Cars(input));
+    void invalidCarNamesTest() {
+        assertThrows(IllegalArgumentException.class, () -> new Cars(Collections.emptyList()));
+        assertThrows(IllegalArgumentException.class, () ->
+                new Cars(List.of(new Car("pobi"), new Car("pobi"))));
     }
 
     @ParameterizedTest
@@ -40,8 +44,12 @@ class CarsTest {
     @Test
     @DisplayName("가장 멀리 이동한 자동차들을 찾을 수 있다.")
     void findCarsAtMaxPosition() {
+        cars = new Cars(
+                Arrays.asList(new Car("pobi", 3), new Car("crong", 1), new Car("honux", 3))
+        );
         List<Car> carsAtMaxPosition = cars.findCarsAtMaxPosition();
 
-        assertThat(carsAtMaxPosition.size()).isEqualTo(3);
+        assertThat(carsAtMaxPosition).extracting("name")
+                .containsExactly("pobi", "honux");
     }
 }

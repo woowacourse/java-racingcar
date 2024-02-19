@@ -1,30 +1,45 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
-import racingcar.domain.CarRacingGame;
-import racingcar.domain.RoundResult;
-import racingcar.dto.CarDto;
+import racingcar.domain.*;
+import racingcar.utils.CarNameConverter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class MainController {
+    private static final int UPPER_BOUND = 10;
 
     public void run() {
-        CarRacingGame carRacingGame = repeat(this::initializeCarRacingGame);
-        List<RoundResult> roundResults = carRacingGame.race();
+        CarRacingGame carRacingGame = initializeCarRacingGame();
+        List<RoundResult> roundResults = carRacingGame.race(() -> new Random().nextInt(UPPER_BOUND));
 
         showRoundResults(roundResults);
         showWinners(carRacingGame.findWinners());
     }
 
     private CarRacingGame initializeCarRacingGame() {
-        String inputCarNames = InputView.inputCarNames();
-        String inputRound = InputView.inputRound();
+        Cars cars = repeatTemplate(this::initializeCars);
+        Round round = repeatTemplate(this::initializeRound);
 
-        return new CarRacingGame(inputCarNames, inputRound);
+        return new CarRacingGame(cars, round);
+    }
+
+    private Cars initializeCars() {
+        String inputCarNames = InputView.inputCarNames();
+        List<String> carNames = CarNameConverter.convertToCarNames(inputCarNames);
+
+        return carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Cars::new));
+    }
+
+    private Round initializeRound() {
+        int inputRound = InputView.inputRound();
+        return new Round(inputRound);
     }
 
     private void showRoundResults(List<RoundResult> roundResults) {
@@ -35,24 +50,16 @@ public class MainController {
         });
     }
 
-    private void showWinners(List<Car> winners) {
-        List<CarDto> winnersDto = toDto(winners);
-
-        OutputView.printWinners(winnersDto);
+    private void showWinners(List<String> winners) {
+        OutputView.printWinners(winners);
     }
 
-    private List<CarDto> toDto(List<Car> roundResult) {
-        return roundResult.stream()
-                .map(CarDto::new)
-                .toList();
-    }
-
-    private <T> T repeat(Supplier<T> inputReader) {
+    private <T> T repeatTemplate(Supplier<T> inputReader) {
         try {
             return inputReader.get();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return repeat(inputReader);
+            return repeatTemplate(inputReader);
         }
     }
 }

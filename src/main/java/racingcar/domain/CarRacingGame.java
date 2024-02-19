@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,16 +7,15 @@ public class CarRacingGame {
     private final Cars cars;
     private final Round round;
 
-    public CarRacingGame(String inputCars, String inputRound) {
-        this.cars = new Cars(inputCars);
-        this.round = new Round(inputRound);
+    public CarRacingGame(Cars cars, Round round) {
+        this.cars = cars;
+        this.round = round;
     }
 
-    public List<RoundResult> race() {
+    public List<RoundResult> race(NumberGenerator numberGenerator) {
         List<RoundResult> roundResults = new LinkedList<>();
 
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
-        while (isPlayable()) {
+        while (round.isPlayable()) {
             RoundResult roundResult = playRound(numberGenerator);
             roundResults.add(roundResult);
         }
@@ -25,22 +23,24 @@ public class CarRacingGame {
         return roundResults;
     }
 
-    public boolean isPlayable() {
-        return !round.isLast();
+    public List<String> findWinners() {
+        List<Car> carsAtMaxPosition = cars.findCarsAtMaxPosition();
+        return findWinnerNamesBy(carsAtMaxPosition);
     }
 
-    public RoundResult playRound(NumberGenerator numberGenerator) {
+    private RoundResult playRound(NumberGenerator numberGenerator) {
+        RoundResult roundResult = new RoundResult();
+
         cars.moveCars(numberGenerator);
         round.decrease();
 
-        return new RoundResult(cars.getCars());
+        roundResult.recordRoundResult(cars.getCars());
+        return roundResult;
     }
 
-    public List<Car> findWinners() {
-        return cars.findCarsAtMaxPosition();
-    }
-
-    public List<Car> getRoundResult() {
-        return Collections.unmodifiableList(cars.getCars());
+    private List<String> findWinnerNamesBy(List<Car> cars) {
+        return cars.stream()
+                .map(Car::getName)
+                .toList();
     }
 }

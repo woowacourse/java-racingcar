@@ -1,12 +1,10 @@
 package racingcar.domain;
 
-public class Position {
-    private static final int INITIAL_POSITION = 0;
-
+public class Position implements Comparable<Position> {
     private int position;
 
-    public Position() {
-        this.position = INITIAL_POSITION;
+    public Position(int position) {
+        this.position = position;
     }
 
     public void increase() {
@@ -19,5 +17,10 @@ public class Position {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public int compareTo(Position other) {
+        return position - other.position;
     }
 }
