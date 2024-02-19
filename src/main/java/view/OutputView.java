@@ -45,7 +45,9 @@ public class OutputView implements AutoCloseable {
     }
 
     private String concatenateMoveStatuses(List<MoveStatus> moveStatuses) {
-        return String.join("", moveStatuses.stream().map(MoveStatus::getOutput).toList());
+        long forwardStatusCount = moveStatuses.stream().filter(status -> status.equals(MoveStatus.FORWARD)).count();
+        String forwardString = "-";
+        return forwardString.repeat((int) forwardStatusCount);
     }
 
     public void printWinner(List<Car> cars) {
