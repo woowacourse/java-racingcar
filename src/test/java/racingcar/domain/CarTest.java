@@ -1,7 +1,9 @@
 package racingcar.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -78,5 +80,18 @@ class CarTest {
 
         //then
         assertEquals(car.getDistance(), movement);
+    }
+
+    @Test
+    @DisplayName("현재 위치에 있는지 확인하는 메서드를 검증한다.")
+    public void testIsDistance() {
+        //given
+        Car car = new Car("choco");
+        int initialDistance = 0;
+        int distance = 10;
+
+        //when&then
+        assertTrue(car.isDistance(initialDistance));
+        assertFalse(car.isDistance(distance));
     }
 }

@@ -59,7 +59,7 @@ public class Cars {
                 .orElse(MIN_DISTANCE);
 
         return cars.stream()
-                .filter(car -> car.getDistance() == farthestDistance)
+                .filter(car -> car.isDistance(farthestDistance))
                 .toList();
     }
 
