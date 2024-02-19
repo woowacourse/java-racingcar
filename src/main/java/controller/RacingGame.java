@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import model.Car;
 import model.Cars;
-import utils.Randoms;
+import utils.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -14,12 +14,12 @@ public class RacingGame {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final Randoms randoms;
+    private final NumberGenerator numberGenerator;
 
-    public RacingGame() {
-        this.randoms = new Randoms();
+    public RacingGame(NumberGenerator numberGenerator) {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.numberGenerator = numberGenerator;
     }
 
     public void run() {
@@ -49,8 +49,8 @@ public class RacingGame {
         }
     }
 
-    protected List<Integer> createRandomNumber(int carCount) {
-        return randoms.generate(carCount, MAX_RANDOM_NUMBER_RANGE);
+    private List<Integer> createRandomNumber(int carCount) {
+        return numberGenerator.generate(carCount, MAX_RANDOM_NUMBER_RANGE);
     }
 
 
