@@ -5,7 +5,7 @@ import java.util.function.IntSupplier;
 
 public class CarMoveStrategy{
 
-    public static final int MAX_MOVABLE_DIGIT = 4;
+    private static final int MAX_MOVABLE_DIGIT = 4;
 
     private final IntSupplier supplier;
 
