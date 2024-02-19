@@ -23,6 +23,10 @@ public class Car {
         }
     }
 
+    public boolean isFurthestPosition(int maxPosition){
+        return position == maxPosition;
+    }
+
     public String getName() {
         return name;
     }

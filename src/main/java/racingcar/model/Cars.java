@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.List;
@@ -32,7 +31,7 @@ public class Cars {
         int farthestDistance = getFarthestDistance();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == farthestDistance)
+                .filter(car -> car.isFurthestPosition(farthestDistance))
                 .collect(Collectors.toList());
     }
 
