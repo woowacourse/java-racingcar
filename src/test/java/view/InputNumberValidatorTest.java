@@ -16,7 +16,7 @@ class InputNumberValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "1"})
     public void validTryNumber(String tryNumber) {
-        assertThatCode(() -> InputNumberValidator.validatePositiveNumber(tryNumber));
+        assertThatCode(() -> InputNumberValidator.validatePositiveNumber(tryNumber)).doesNotThrowAnyException();
     }
 
     static Stream<Arguments> invalidTryNumber() {
