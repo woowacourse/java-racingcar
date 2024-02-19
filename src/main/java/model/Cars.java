@@ -42,7 +42,9 @@ public class Cars {
 
     private static void checkNameCount(List<String> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 자동차 이름은 2개 이상이어야 합니다.");
+            throw new IllegalArgumentException(
+                    String.format("[ERROR] 자동차 이름은 %d개 이상이어야 합니다.",
+                            MIN_CAR_NAME_COUNT));
         }
     }
 

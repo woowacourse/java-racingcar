@@ -3,6 +3,7 @@ package model;
 public class Car {
 
     private static final int INITIAL_POSITION = 0;
+    private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
     private static final int FORWARD_MIN_NUMBER = 4;
 
@@ -21,7 +22,9 @@ public class Car {
 
     private static void validateNameLength(String name) {
         if (name == null || name.trim().isEmpty() || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalStateException("[ERROR] 자동차 이름은 한 글자 이상 다섯 글자 이하여야 합니다.");
+            throw new IllegalStateException(
+                    String.format("[ERROR] 자동차 이름은 %d 글자 이상 %d 글자 이하여야 합니다.",
+                            MIN_NAME_LENGTH, MAX_NAME_LENGTH));
         }
     }
 
