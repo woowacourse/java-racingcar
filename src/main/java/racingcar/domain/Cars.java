@@ -49,7 +49,7 @@ public class Cars {
     }
 
     public List<Car> findCarsAtMaxPosition() {
-        int maxPosition = findMaxPosition();
+        final int maxPosition = findMaxPosition();
         return findCarsByPosition(maxPosition);
     }
 
