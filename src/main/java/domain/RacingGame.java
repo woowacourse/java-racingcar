@@ -23,17 +23,17 @@ public class RacingGame {
     }
 
     public List<Car> playOneRound() {
-        for (Car car : cars) {
+        for (Car car : this.cars) {
             if (moveStrategy.isMovable()) {
                 car.move();
             }
         }
-        return cars;
+        return this.cars;
     }
 
     public List<Car> findWinners() {
-        return cars.stream()
-            .filter(car -> car.equals(Collections.max(cars)))
+        return this.cars.stream()
+            .filter(car -> car.equals(Collections.max(this.cars)))
             .toList();
     }
 
@@ -44,7 +44,7 @@ public class RacingGame {
         validateNameDuplication(carNames);
 
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            this.cars.add(new Car(carName));
         }
     }
 
