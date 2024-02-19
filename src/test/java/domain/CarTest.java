@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
-import static util.Constants.MIN_FORWARD_NUMBER;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
+
+    private final int MIN_FORWARD_NUMBER = 4;
 
     @DisplayName("자동차 이름 5자 초과 예외 테스트")
     @ValueSource(strings = {"123456", "1234567"})

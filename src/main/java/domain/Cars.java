@@ -1,10 +1,12 @@
 package domain;
 
-import util.Exceptions;
+import util.RandomNumberGenerator;
 
 import java.util.*;
 
 public class Cars {
+
+    private final String DUPLICATED_NAME_EXCEPTION = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
 
     private final List<Car> cars;
 
@@ -15,7 +17,7 @@ public class Cars {
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != Set.copyOf(names).size()) {
-            throw new IllegalArgumentException(Exceptions.DUPLICATED_NAME_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(DUPLICATED_NAME_EXCEPTION);
         }
     }
 
@@ -29,13 +31,35 @@ public class Cars {
         return cars;
     }
 
+    public void moveCars() {
+        cars.forEach(car -> car.drive(RandomNumberGenerator.generate()));
+    }
+
+    public Map<String, Integer> getCurrentStatus() {
+        Map<String, Integer> currentStatus = new HashMap<>();
+
+        cars.forEach(car -> {
+            currentStatus.put(car.getName(), car.getForward());
+        });
+
+        return currentStatus;
+    }
+
     public List<String> findWinners() {
+        final int maxForward = getMaxForward();
+
         List<Car> winners = cars.stream()
-                .sorted(Comparator.comparing(Car::getForward).reversed())
-                .takeWhile(car -> car.getForward() == getMaxForward())
+                .filter(car -> car.getForward() == maxForward)
                 .toList();
 
         return getWinnerNames(winners);
+    }
+
+    private int getMaxForward() {
+        return cars.stream()
+                .mapToInt(Car::getForward)
+                .max()
+                .orElseThrow();
     }
 
     private List<String> getWinnerNames(List<Car> winners) {
@@ -44,13 +68,6 @@ public class Cars {
         winners.forEach(winner -> winnerNames.add(winner.getName()));
 
         return winnerNames;
-    }
-
-    public int getMaxForward() {
-        return cars.stream()
-                .max(Comparator.comparing(Car::getForward))
-                .orElseThrow()
-                .getForward();
     }
 
     public List<Car> getCars() {

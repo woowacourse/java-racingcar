@@ -1,5 +1,4 @@
-import controller.RacingCarController;
-import service.RacingCarService;
+import controller.RacingCarGame;
 import view.InputView;
 import view.OutputView;
 
@@ -8,11 +7,10 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        RacingCarService racingCarService = new RacingCarService();
 
-        RacingCarController racingCarController = new RacingCarController(racingCarService, inputView, outputView);
+        RacingCarGame racingCarGame = new RacingCarGame(inputView, outputView);
 
-        racingCarController.run();
+        racingCarGame.start();
     }
 
 }

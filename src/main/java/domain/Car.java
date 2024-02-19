@@ -1,45 +1,42 @@
 package domain;
 
-import util.Constants;
-import util.Exceptions;
-
-import static util.Constants.MIN_FORWARD_NUMBER;
-
 public class Car {
+
+    private final int MAX_NAME_LENGTH = 5;
+    private final int MIN_FORWARD_NUMBER = 4;
+    private final String MAX_NAME_EXCEPTION = "[ERROR] 이름은 5글자를 초과할 수 없습니다.";
+    private final String NAME_FORMAT_EXCEPTION = "[ERROR] 이름에 공백을 포함할 수 없습니다.";
+
     private final String name;
     private int forward;
 
     public Car(String name) {
-        validate(name);
+        validateCarNameLength(name);
+        validateNameFormat(name);
 
         this.name = name;
         this.forward = 0;
     }
 
-    private void validate(String name){
-        validateCarNameLength(name);
-        validateNameFormat(name);
-    }
-
     private void validateCarNameLength(String name) {
-        if (name.length() > Constants.MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(Exceptions.MAX_NAME_EXCEPTION.getMessage());
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(MAX_NAME_EXCEPTION);
         }
     }
 
     private void validateNameFormat(String name) {
-        if(name.contains(" ")) {
-            throw new IllegalArgumentException(Exceptions.NAME_FORMAT_EXCEPTION.getMessage());
+        if (name.contains(" ")) {
+            throw new IllegalArgumentException(NAME_FORMAT_EXCEPTION);
         }
     }
 
     public void drive(int randomNumber) {
-        if (checkForward(randomNumber)) {
+        if (checkCanDrive(randomNumber)) {
             forward += 1;
         }
     }
 
-    private boolean checkForward(int randomNumber) {
+    private boolean checkCanDrive(int randomNumber) {
         return randomNumber >= MIN_FORWARD_NUMBER;
     }
 
