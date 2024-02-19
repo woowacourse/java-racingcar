@@ -1,5 +1,6 @@
 package controller;
 
+import model.Car;
 import model.Game;
 import model.TrialCount;
 import view.InputView;
@@ -15,7 +16,7 @@ public class RacingCarController {
     }
 
     public void run() {
-        Game game = new Game(inputView.inputCarsName());
+        Game game = new Game(Car.convertToCar(inputView.inputCarsName()));
         TrialCount trialCount = new TrialCount(inputView.inputTrialCount());
         outputView.printResultComment();
         while (trialCount.isRest()) {
