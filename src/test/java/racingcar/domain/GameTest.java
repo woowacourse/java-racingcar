@@ -1,7 +1,8 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -21,15 +22,39 @@ class GameTest {
     }
 
     @Test
-    @DisplayName("진행은 오류 없이 진행된다.")
-    public void runProceed() {
+    @DisplayName("자동차 이름이 하나일 경우, 그 차가 우승한다.")
+    public void testGameOneWinner() {
         //given
-        List<String> userCarNames = List.of("choco", "seyan");
+        String userCarName = "choco";
+        List<String> userCarNames = List.of(userCarName);
         int userTryCount = 5;
 
+        //when
         Game game = new Game(TryCount.from(userTryCount), Cars.from(userCarNames));
+        game.proceed();
+        Winners winners = game.getWinners();
 
-        //when&then
-        assertThatCode(game::proceed).doesNotThrowAnyException();
+        //then
+        assertEquals(winners.getWinners().size(), 1);
+        assertEquals(winners.getWinners().get(0), userCarName);
+    }
+
+    @Test
+    @DisplayName("여러 자동차 이름 중, 우승자를 반환한다.")
+    public void testGameWinners() {
+        //given
+        String userCarName1 = "choco";
+        String userCarName2 = "seyan";
+        String userCarName3 = "clova";
+        List<String> userCarNames = List.of(userCarName1, userCarName2, userCarName3);
+        int userTryCount = 5;
+
+        //when
+        Game game = new Game(TryCount.from(userTryCount), Cars.from(userCarNames));
+        game.proceed();
+        Winners winners = game.getWinners();
+
+        //then
+        assertThat(winners.getWinners()).containsAnyOf(userCarName1, userCarName2, userCarName3);
     }
 }
