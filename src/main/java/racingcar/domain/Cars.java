@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
-public class Vehicles {
+public class Cars {
     private static final String CAR_NAMES_DELIMITER = ",";
-    private final List<Car> cars;
+    private final List<Car> values;
 
-    private Vehicles(List<Car> cars) {
-        this.cars = cars;
+    private Cars(List<Car> values) {
+        this.values = values;
     }
 
-    public static Vehicles from(String carNames) {
+    public static Cars from(String carNames) {
         validate(carNames);
-        return new Vehicles(Arrays.stream(carNames.split(CAR_NAMES_DELIMITER))
+        return new Cars(Arrays.stream(carNames.split(CAR_NAMES_DELIMITER))
                 .map(String::trim)
                 .map(Car::new)
                 .collect(Collectors.toList())
@@ -45,17 +45,17 @@ public class Vehicles {
     }
 
     void move(BiConsumer<String, Integer> doEachCarAfterMove) {
-        cars.forEach(car -> {
+        values.forEach(car -> {
             car.move();
             doEachCarAfterMove.accept(car.getName(), car.getForward());
         });
     }
 
     List<Car> getBiggestCars() {
-        int biggestForward = cars.stream()
+        int biggestForward = values.stream()
                 .mapToInt(Car::getForward)
                 .max()
                 .getAsInt();
-        return cars.stream().filter(car -> car.getForward() == biggestForward).toList();
+        return values.stream().filter(car -> car.getForward() == biggestForward).toList();
     }
 }

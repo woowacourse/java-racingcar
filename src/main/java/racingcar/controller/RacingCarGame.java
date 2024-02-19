@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Game;
-import racingcar.domain.Vehicles;
+import racingcar.domain.Cars;
 import racingcar.ui.InputView;
 import racingcar.ui.OutputView;
 
@@ -18,8 +18,8 @@ public class RacingCarGame {
     }
 
     private Game createGame() {
-        Vehicles vehicles = requestUntilValidated(() -> Vehicles.from(InputView.readCarNames()));
-        return requestUntilValidated(() -> Game.from(InputView.readTryCount(), vehicles));
+        Cars cars = requestUntilValidated(() -> Cars.from(InputView.readCarNames()));
+        return requestUntilValidated(() -> Game.from(InputView.readTryCount(), cars));
     }
 
     private <T> T requestUntilValidated(Supplier<T> supplier) {

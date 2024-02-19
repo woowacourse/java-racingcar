@@ -8,17 +8,17 @@ import java.util.stream.IntStream;
 public class Game {
     private static final int NATURAL_NUMBER_BOUNDARY = 0;
     private final int tryCount;
-    private final Vehicles vehicles;
+    private final Cars cars;
 
-    private Game(int tryCount, Vehicles vehicles) {
+    private Game(int tryCount, Cars cars) {
         this.tryCount = tryCount;
-        this.vehicles = vehicles;
+        this.cars = cars;
     }
 
-    public static Game from(String rawTryCount, Vehicles vehicles) throws NumberFormatException {
+    public static Game from(String rawTryCount, Cars cars) throws NumberFormatException {
         int tryCount = parseUserInput(rawTryCount);
         validNaturalNumber(tryCount);
-        return new Game(tryCount, vehicles);
+        return new Game(tryCount, cars);
     }
 
     private static void validNaturalNumber(int tryCount) {
@@ -37,12 +37,12 @@ public class Game {
 
     public void proceed(BiConsumer<String, Integer> doEachCarAfterMove) {
         IntStream.range(0, tryCount).forEach((i) -> {
-            vehicles.move(doEachCarAfterMove);
+            cars.move(doEachCarAfterMove);
             OutputView.printNewLine();
         });
     }
 
     public Winner getWinner() {
-        return Winner.from(vehicles.getBiggestCars());
+        return Winner.from(cars.getBiggestCars());
     }
 }
