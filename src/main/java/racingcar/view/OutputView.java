@@ -1,6 +1,7 @@
 package racingcar.view;
 
-import racingcar.model.Cars;
+import racingcar.domain.GameResult;
+import racingcar.domain.GameWinner;
 
 public class OutputView {
     public static void printRequestCarNamesMessage() {
@@ -11,16 +12,9 @@ public class OutputView {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
-    public static void printResultMessage() {
-        System.out.println("\n실행 결과");
-    }
-
-    public static void printCarStatus(Cars cars) {
-        System.out.println(cars);
-        System.out.println();
-    }
-
-    public static void printWinner(String winners) {
-        System.out.println(winners + "가 최종 우승했습니다.");
+    public static void printGameResult(GameResult result, GameWinner winner) {
+        System.out.println("\n" + "실행 결과");
+        System.out.println(result.getGameResult() + "\n");
+        System.out.println("%s가 최종 우승했습니다.".formatted(winner.getWinner()));
     }
 }

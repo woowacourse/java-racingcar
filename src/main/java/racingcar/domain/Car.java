@@ -1,6 +1,10 @@
-package racingcar.model;
+package racingcar.domain;
+
+import racingcar.domain.gamestatus.CarStatus;
 
 public class Car {
+    private static final int MAX_LENGTH = 5;
+
     private String name;
     private int position;
 
@@ -15,8 +19,6 @@ public class Car {
     }
 
     private void validateCarNameLength(String name) {
-        final int MAX_LENGTH = 5;
-
         if (name.length() > MAX_LENGTH) {
             throw new IllegalArgumentException();
         }
@@ -34,8 +36,7 @@ public class Car {
         return position;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s : %s", name, "-".repeat(position));
+    public CarStatus getStatus() {
+        return new CarStatus(name, position);
     }
 }

@@ -3,24 +3,31 @@ package racingcar.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.function.Function;
+
+import racingcar.domain.Cars;
+import racingcar.domain.TryCount;
 
 public class InputView {
     private static final BufferedReader CONSOLE = new BufferedReader(new InputStreamReader(System.in));
 
-    public static String inputRacingCars() {
-        OutputView.printRequestCarNamesMessage();
-        try {
-            return CONSOLE.readLine();
-        } catch(IOException e) {
-            throw new IllegalArgumentException();
-        }
+    public static Cars inputRacingCars() {
+        return requestInput(
+                OutputView::printRequestCarNamesMessage,
+                input -> new Cars(input));
     }
 
-    public static String inputTryCount() {
-        OutputView.printRequestTryCountMessage();
+    public static TryCount inputTryCount() {
+        return requestInput(
+                OutputView::printRequestTryCountMessage,
+                input -> new TryCount(input));
+    }
+
+    private static <T> T requestInput(Runnable requestMessage, Function<String, T> creator) {
+        requestMessage.run();
         try {
-            return CONSOLE.readLine();
-        } catch(IOException e) {
+            return creator.apply(CONSOLE.readLine());
+        } catch (IOException e) {
             throw new IllegalArgumentException();
         }
     }

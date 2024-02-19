@@ -1,6 +1,4 @@
-package racingcar.model;
-
-import racingcar.controller.NumericGenerator;
+package racingcar.domain;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,13 +6,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import racingcar.domain.gamestatus.RacingGameStatus;
+import racingcar.domain.gamewinner.RacingGameWinners;
+
 public class Cars {
-    private NumericGenerator generator;
+    private static final String REGEX_VALID_INPUT_CHECK = "^[^,]+(,[^,]+)*$";
+    private static final int MINIMUM_MOVE_NUMBER = 4;
+
     private List<Car> cars;
 
-    public Cars(NumericGenerator generator, String input) {
-        this.generator = generator;
-
+    public Cars(String input) {
         isValidInput(input);
         List<String> carNames = parseWithComma(input);
 
@@ -24,7 +25,6 @@ public class Cars {
     }
 
     private void isValidInput(String input) {
-        final String REGEX_VALID_INPUT_CHECK = "^[^,]+(,[^,]+)*$";
         Pattern pattern = Pattern.compile(REGEX_VALID_INPUT_CHECK);
         Matcher matcher = pattern.matcher(input);
 
@@ -40,9 +40,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void moveCars() {
-        final int MINIMUM_MOVE_NUMBER = 4;
-
+    public void moveCars(NumericGenerator generator) {
         for (Car car : cars) {
             if (generator.generate() >= MINIMUM_MOVE_NUMBER) {
                 car.move();
@@ -50,21 +48,22 @@ public class Cars {
         }
     }
 
-    public String calculateWinner() {
+    public GameWinner calculateWinner() {
         int maxPosition = cars.stream()
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .orElse(0);
-        return cars.stream()
+
+        return new RacingGameWinners(cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
-                .collect(Collectors.joining(", "));
+                .toList());
+
     }
 
-    @Override
-    public String toString() {
-        return cars.stream()
-                .map(Car::toString)
-                .collect(Collectors.joining("\n"));
+    public GameStatus getGameStatus() {
+        return new RacingGameStatus(cars.stream()
+                .map(Car::getStatus)
+                .toList());
     }
 }

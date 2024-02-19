@@ -1,18 +1,26 @@
-package racingcar.model;
+package racingcar.domain;
 
 public class TryCount {
     private int value;
 
     public TryCount(String input) {
-        this.value = validatedInput(input);
+        this.value = validateInput(input);
     }
 
-    private int validatedInput(String input) {
+    public void consume() {
+        value--;
+    }
+
+    public boolean checkTryable() {
+        return value > 0;
+    }
+
+    private int validateInput(String input) {
         isNumericString(input);
 
         int number = Integer.parseInt(input);
         isOverZero(number);
-        
+
         return number;
     }
 
@@ -25,20 +33,8 @@ public class TryCount {
     }
 
     private void isOverZero(int number) {
-        if(number < 0) {
+        if (number < 0) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public void consume() {
-        value--;
-    }
-
-    public boolean checkTryable() {
-        return value > 0;
-    }
-
-    int getValue() {
-        return value;
     }
 }

@@ -1,12 +1,12 @@
-package racingcar.controller.numericgenerator;
-
-import racingcar.controller.NumericGenerator;
+package racingcar.domain.numericgenerator;
 
 import java.util.Random;
 
-public class RandomNumericGenerator implements NumericGenerator {
+import racingcar.domain.NumericGenerator;
 
-    public Random random = new Random();
+public class RandomNumericGenerator implements NumericGenerator {
+    private final Random random = new Random();
+
     @Override
     public int generate() {
         return random.nextInt(10);

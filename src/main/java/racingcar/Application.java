@@ -1,10 +1,15 @@
 package racingcar;
 
-import racingcar.controller.CarController;
+import racingcar.domain.RacingGame;
+import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        var controller = new CarController();
-        controller.startGame();
+        final var cars = InputView.inputRacingCars();
+        final var tryCount = InputView.inputTryCount();
+        final var racingGame = new RacingGame(cars, tryCount);
+        racingGame.startGame();
+        OutputView.printGameResult(racingGame.getGameResult(), racingGame.getGameWinner());
     }
 }
