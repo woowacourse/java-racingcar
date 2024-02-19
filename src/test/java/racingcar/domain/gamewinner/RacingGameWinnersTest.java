@@ -18,7 +18,7 @@ public class RacingGameWinnersTest {
         void testMultipleWinner(){
             RacingGameWinners givenWinners = new RacingGameWinners(List.of("포케","폭포"));
             
-            String winner = givenWinners.showWinner();
+            String winner = givenWinners.getWinner();
             assertThat(winner).contains(WINNER_DELIMITER);
         }
 
@@ -27,7 +27,7 @@ public class RacingGameWinnersTest {
         void testSingleWinner(){
             RacingGameWinners givenWinners = new RacingGameWinners(List.of("포케"));
             
-            String winner = givenWinners.showWinner();
+            String winner = givenWinners.getWinner();
             assertThat(winner).doesNotContain(WINNER_DELIMITER);
         }
     }

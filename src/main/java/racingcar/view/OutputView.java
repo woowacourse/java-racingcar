@@ -15,6 +15,6 @@ public class OutputView {
     public static void printGameResult(GameResult result, GameWinner winner) {
         System.out.println("\n" + "실행 결과");
         System.out.println(result.getGameResult() + "\n");
-        System.out.println("%s가 최종 우승했습니다.".formatted(winner.showWinner()));
+        System.out.println("%s가 최종 우승했습니다.".formatted(winner.getWinner()));
     }
 }

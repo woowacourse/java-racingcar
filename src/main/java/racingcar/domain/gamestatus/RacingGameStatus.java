@@ -14,9 +14,9 @@ public class RacingGameStatus implements GameStatus {
     }
 
     @Override
-    public String showStatus() {
+    public String getStatus() {
         return carStatus.stream()
-                .map(CarStatus::showStatus)
+                .map(CarStatus::getStatus)
                 .collect(Collectors.joining(CARS_STATUS_DELEMITER));
     }
 

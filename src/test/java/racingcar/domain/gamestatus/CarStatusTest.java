@@ -15,7 +15,7 @@ public class CarStatusTest {
         void testshowCarStatus(){
             var givenCarStatus = new CarStatus("포케", 5);
             
-            var status = givenCarStatus.showStatus();
+            var status = givenCarStatus.getStatus();
             
             assertThat(status).isEqualTo("포케 : -----");
         }

@@ -15,7 +15,7 @@ public class CarStatus implements GameStatus {
     }
 
     @Override
-    public String showStatus() {
+    public String getStatus() {
         return CARS_STATUS_FORMAT.formatted(
                 carName,
                 CARS_POSITION_CHARACTER.repeat(carPosition));

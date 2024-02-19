@@ -15,7 +15,7 @@ public class RacingGameWinners implements GameWinner {
     }
 
     @Override
-    public String showWinner() {
+    public String getWinner() {
         return winnerNames.stream()
                 .collect(Collectors.joining(WINNER_DELIMITER));
     }

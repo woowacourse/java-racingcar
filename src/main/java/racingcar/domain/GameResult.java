@@ -14,7 +14,7 @@ public class GameResult {
 
     public String getGameResult() {
         return gameStatusBucket.stream()
-                .map(GameStatus::showStatus)
+                .map(GameStatus::getStatus)
                 .collect(Collectors.joining(GAME_STATUS_SEPERATOR));
     }
 }
