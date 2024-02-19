@@ -6,6 +6,7 @@ public class RacingApplication {
 
     public static void main(String[] args) {
         final var carRacing = new CarRacing(new InputView(), new OutputView());
+
         final var cars = carRacing.start();
         carRacing.announceWinners(cars);
     }
