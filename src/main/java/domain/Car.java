@@ -33,7 +33,7 @@ public class Car {
     }
 
     private boolean canMove() {
-        return powerStrategy.checkPowerRange();
+        return powerStrategy.canMove();
     }
 
     private void move() {

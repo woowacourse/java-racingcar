@@ -12,7 +12,7 @@ public class PowerStrategy {
         return new PowerStrategy();
     }
 
-    public boolean checkPowerRange() {
+    public boolean canMove() {
         Integer randomNumber = powerManager.generatePower();
         return powerManager.isSufficientPower(randomNumber);
     }
