@@ -19,6 +19,7 @@ public class RaceController {
         Cars cars = new Cars(carNames);
         Race race = new Race(cars, attemptNumber);
         race.runRace();
+        race.printWinners();
     }
 
 }

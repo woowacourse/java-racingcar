@@ -17,16 +17,16 @@ public class Race {
         for (int i = 0; i < tryNumber; i++) {
             runEachRaceAndPrintResult();
         }
-        printWinners();
     }
 
     private void runEachRaceAndPrintResult() {
         cars.moveAllCars();
-        cars.getCars().forEach(car -> outputView.printResult(car.getName(), car.getPosition()));
+        cars.getCars()
+                .forEach(car -> outputView.printResult(car.getName(), car.getPosition()));
         OutputView.parseLine();
     }
 
-    private void printWinners() {
+    public void printWinners() {
         Referee referee = new Referee();
         outputView.printWinners(referee.determineWinnerNames(cars));
     }
