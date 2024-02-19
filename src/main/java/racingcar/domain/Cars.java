@@ -48,8 +48,8 @@ public class Cars {
                 .count();
     }
 
-    void move(final CarMoveStrategy carMovement, final RandomUtils randomUtil) {
-        cars.forEach(car -> car.move(carMovement, randomUtil.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT)));
+    void move(final CarMoveStrategy carMoveStrategy, final RandomUtils randomUtil) {
+        cars.forEach(car -> car.move(carMoveStrategy, randomUtil.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT)));
     }
 
     List<Car> findFarthestCars() {
