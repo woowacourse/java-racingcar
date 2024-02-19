@@ -5,30 +5,43 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import racinggame.domain.Cars;
+import racinggame.domain.Name;
 import racinggame.domain.Round;
 
 public class InputView {
 
     private static final String DELIMITER = ",";
+    private static final int MIN_ROUND = 1;
 
     private InputView() {
     }
 
-    public static Cars readCars() {
+    public static List<Name> readNames() {
         String inputNames = readLine("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        List<String> carNames = Arrays.stream(inputNames.split(DELIMITER))
+        List<Name> names = Arrays.stream(inputNames.split(DELIMITER))
                 .map(String::trim)
+                .map(Name::from)
                 .toList();
 
-        return Cars.of(Objects.requireNonNull(carNames));
+        checkCarNameSize(names);
+
+        return names;
+    }
+
+    private static void checkCarNameSize(List<Name> names) {
+        if (names.size() < 2) {
+            throw new IllegalArgumentException("자동차 이름은 최소 2대 이상 입력해야 합니다.");
+        }
     }
 
     public static Round readRound() {
         String inputRound = readLine("시도할 회수는 몇회인가요?");
 
-        return Round.from(Integer.parseInt(inputRound));
+        try {
+            return Round.from(Integer.parseInt(inputRound));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(String.format("시도할 회수는 %d 이상의 양수만 가능합니다", MIN_ROUND));
+        }
     }
 
     private static String readLine(String message) {

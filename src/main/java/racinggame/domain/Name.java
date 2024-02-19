@@ -2,7 +2,7 @@ package racinggame.domain;
 
 import java.util.Objects;
 
-class Name {
+public class Name {
 
     private static final int MAX_NAME_LENGTH = 5;
 
