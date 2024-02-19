@@ -1,7 +1,6 @@
 import domain.Car;
 import domain.CarMoveStrategy;
 import domain.Race;
-import domain.MoveStrategy;
 import domain.RandomMoveStrategy;
 import domain.TrialCount;
 import java.util.List;

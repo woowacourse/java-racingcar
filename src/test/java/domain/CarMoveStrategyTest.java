@@ -2,22 +2,20 @@ package domain;
 
 import java.util.Random;
 import java.util.function.IntSupplier;
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class MoveStrategyTest {
+class CarMoveStrategyTest {
 
     @DisplayName("임의의 숫자가 3 이하인 경우에는 이동하지 않고, 4 이상인 경우에는 이동한다")
     @ParameterizedTest
     @MethodSource("moveRandomlyTestProvider")
     void moveRandomlyTest(IntSupplier supplier, boolean expected) {
-        MoveStrategy moveStrategy = new CarMoveStrategy(supplier);
+        CarMoveStrategy moveStrategy = new CarMoveStrategy(supplier);
 
         // when
         boolean actual = moveStrategy.isMove();

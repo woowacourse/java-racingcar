@@ -2,14 +2,13 @@ package domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Race {
 
     private final List<Car> cars;
-    private final MoveStrategy moveStrategy;
+    private final CarMoveStrategy moveStrategy;
 
-    public Race(List<Car> cars, MoveStrategy moveStrategy) {
+    public Race(List<Car> cars, CarMoveStrategy moveStrategy) {
         this.cars = cars;
         this.moveStrategy = moveStrategy;
     }
