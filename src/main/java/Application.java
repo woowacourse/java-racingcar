@@ -5,7 +5,8 @@ import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        RacingCarController controller = new RacingCarController(new RacingCarGame(), new OutputView(), new InputView());
+        RacingCarController controller =
+                new RacingCarController(new RacingCarGame(), new OutputView(), new InputView());
         controller.run();
     }
 }
