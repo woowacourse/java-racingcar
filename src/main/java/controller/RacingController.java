@@ -6,6 +6,7 @@ import model.Cars;
 import model.Racing;
 import model.dto.CarState;
 import model.dto.Winner;
+import model.powergenerator.RandomPowerGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -27,7 +28,7 @@ public class RacingController {
 
     private Cars prepareCars() {
         List<String> carNames = inputView.askCarNames();
-        return Cars.fromNames(carNames);
+        return new Cars(carNames, new RandomPowerGenerator());
     }
 
     private Racing prepareRacing() {

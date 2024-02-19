@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import model.dto.CarState;
 import model.dto.Winner;
-import model.powergenerator.RandomPowerGenerator;
+import model.powergenerator.PowerGenerator;
 
 public class Cars {
     private static final int MIN_CAR_NAMES_SIZE = 1;
@@ -17,26 +17,26 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars fromNames(List<String> names) {
+    public Cars(List<String> names, PowerGenerator powerGenerator) {
         validate(names);
         List<Car> cars = names.stream()
-                .map(name -> new Car(name, new RandomPowerGenerator()))
+                .map(name -> new Car(name, powerGenerator))
                 .toList();
-        return new Cars(cars);
+        this.cars = cars;
     }
 
-    private static void validate(List<String> names) {
+    private void validate(List<String> names) {
         validateNamesSize(names);
         validateDuplicateName(names);
     }
 
-    private static void validateNamesSize(List<String> names) {
+    private void validateNamesSize(List<String> names) {
         if (names.size() < MIN_CAR_NAMES_SIZE) {
             throw new IllegalArgumentException("자동차는 한 대 이상어야아 한다");
         }
     }
 
-    private static void validateDuplicateName(List<String> names) {
+    private void validateDuplicateName(List<String> names) {
         Set<String> nonDuplicateNames = new HashSet<>(names);
         if (nonDuplicateNames.size() != names.size()) {
             throw new IllegalArgumentException("자동차 이름은 중복될 수 없다");
