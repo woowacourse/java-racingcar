@@ -49,8 +49,8 @@ public class CarsTest {
         originCars.get(0).move();
 
         Cars cars = new Cars(originCars);
+        
         //then
-
         Assertions.assertThat(cars.getMaxProgress()).isEqualTo(2);
      }
 }

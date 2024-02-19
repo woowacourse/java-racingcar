@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Car implements Comparable<Car> {
 
     private static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
     private int progress;
 

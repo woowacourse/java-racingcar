@@ -8,6 +8,7 @@ import racingcar.domain.rules.CarMoveRule;
 public class RacingGame {
 
     private static final int MAX_MOVE_COUNT = 300;
+
     private final Cars cars;
     private int moveCount;
 
@@ -30,6 +31,7 @@ public class RacingGame {
     private boolean isGameOver() {
         return moveCount <= 0;
     }
+
     private void decreaseMoveCount() {
         this.moveCount--;
     }
