@@ -50,7 +50,7 @@ public class CarRacingGame {
 
     private void printMovement(Cars cars) {
         for (Car car : cars.getCars()) {
-            outputView.printMovement(car.getName(), car.getForward());
+            outputView.printMovement(car.getName(), car.getPosition());
         }
         System.out.println();
     }
@@ -76,8 +76,8 @@ public class CarRacingGame {
     }
 
     private void printWinners(Cars cars) {
-        List<String> winners = Winners.findWinners(cars).getWinners();
-        outputView.printWinners(winners);
+        Winners winners = Winners.findWinners(cars);
+        outputView.printWinners(winners.getWinners());
     }
 
 }
