@@ -24,7 +24,7 @@ class TryCountTest {
         // when & then
         assertThatThrownBy(() -> new TryCount(tryCount))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("시도 횟수는 ", " 이상 ", " 이하여야 합니다");
+                .hasMessage("시도 횟수는 " + TryCount.MIN_TRY_COUNT + " 이상 " + TryCount.MAX_TRY_COUNT + " 이하여야 합니다.");
     }
 
     @Test

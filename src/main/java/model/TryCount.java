@@ -1,9 +1,10 @@
 package model;
 
 public class TryCount {
-    private static final int MIN_TRY_COUNT = 1;
-    private static final int MAX_TRY_COUNT = 120;
+
     private int tryCount;
+    public static final int MIN_TRY_COUNT = 1;
+    public static final int MAX_TRY_COUNT = 120;
 
     public TryCount(int tryCount) {
         verifyTryCount(tryCount);

@@ -21,6 +21,7 @@ class NameTest {
         // when & then
         assertThatThrownBy(() -> new Name(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이름은", "자 이상", "자 이하여야 합니다.");
+                .hasMessage("이름은 " + Name.MIN_NAME_LENGTH + "자 이상 "
+                        + Name.MAX_NAME_LENGTH + "자 이하여야 합니다.");
     }
 }

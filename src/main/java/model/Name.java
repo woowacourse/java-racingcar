@@ -2,9 +2,9 @@ package model;
 
 public class Name {
 
-    private static final int MIN_NAME_LENGTH = 1;
-    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
+    public static final int MIN_NAME_LENGTH = 1;
+    public static final int MAX_NAME_LENGTH = 5;
 
     public Name(String name) {
         verifyNameLength(name);
