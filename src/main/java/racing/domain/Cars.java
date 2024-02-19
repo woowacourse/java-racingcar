@@ -6,6 +6,8 @@ import racing.util.MovableStrategy;
 
 public class Cars {
 
+    private static final String DUPLICATE_CAR_NAME = "자동차 이름이 중복되었습니다.";
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -20,7 +22,7 @@ public class Cars {
     private void validateDuplicate(List<Car> cars) {
         int count = (int) cars.stream().distinct().count();
         if (count != cars.size()) {
-            throw new IllegalArgumentException("자동차 이름이 중복되었습니다.");
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME);
         }
     }
 

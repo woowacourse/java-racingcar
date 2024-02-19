@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Car implements Comparable<Car> {
 
+    private static final String CAR_NAME_LENGTH_EXCEEDED = "자동차 이름 길이가 초과되었습니다.";
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
@@ -16,12 +17,12 @@ public class Car implements Comparable<Car> {
     }
 
     private void validate(String name) {
-        validateSize(name);
+        validateLength(name);
     }
 
-    private void validateSize(String name) {
+    private void validateLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw new IllegalArgumentException("자동차 이름 길이가 초과되었습니다.");
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEEDED);
         }
     }
 

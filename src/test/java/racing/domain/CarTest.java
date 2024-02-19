@@ -17,7 +17,7 @@ class CarTest {
 
     @Test
     @DisplayName("자동차 이름이 5자 초과이면 예외")
-    void createCarWithOverSize() {
+    void createCarWithExceededLength() {
         assertThatThrownBy(() -> new Car("pobipobi"))
                 .isInstanceOf(IllegalArgumentException.class);
     }

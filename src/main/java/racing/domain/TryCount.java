@@ -2,6 +2,8 @@ package racing.domain;
 
 public class TryCount {
 
+    private static final String INVALID_ATTEMPT_COUNT = "시도가 0 이하입니다.";
+
     private int tryCount;
 
     public TryCount(int tryCount) {
@@ -11,7 +13,7 @@ public class TryCount {
 
     private void validate(int tryCount) {
         if (tryCount <= 0) {
-            throw new IllegalArgumentException("시도가 0 이하입니다.");
+            throw new IllegalArgumentException(INVALID_ATTEMPT_COUNT);
         }
     }
 
