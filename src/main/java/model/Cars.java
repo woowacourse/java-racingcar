@@ -19,8 +19,9 @@ public class Cars {
     }
 
     public List<String> getMaxLocationCarNames() {
+        int maxLocation = getMaxLocation();
         return carList.stream()
-                .filter(car -> car.getCarLocation() == getMaxLocation())
+                .filter(car -> car.getCarLocation() == maxLocation)
                 .map(Car::getCarName)
                 .toList();
     }
