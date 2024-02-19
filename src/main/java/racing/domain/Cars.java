@@ -40,7 +40,7 @@ public class Cars {
     }
 
     public List<Car> findCarsWithSamePosition(Car target) {
-        return cars.stream().filter((car) -> car.isSame(target)).toList();
+        return cars.stream().filter(car -> car.isSame(target)).toList();
     }
 
     public List<Car> getCars() {
