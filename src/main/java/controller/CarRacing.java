@@ -24,8 +24,8 @@ public class CarRacing {
     }
 
     public Cars start() {
-        Cars cars = createCars(inputView.readCarNames(), new RandomMoveAccelerator());
-        TryCount tryCount = createTryCount(inputView.readTryAmount());
+        Cars cars = createCars(new RandomMoveAccelerator());
+        TryCount tryCount = createTryCount();
 
         printMoveResult(tryCount, cars);
         return cars;
@@ -40,14 +40,21 @@ public class CarRacing {
         tryMove(tryCount, cars);
     }
 
-    private Cars createCars(String input, Accelerator accelerator) {
-        validateCarNamesInput(input);
+    private Cars createCars(Accelerator accelerator) {
+        try {
+            String input = inputView.readCarNames();
+            validateCarNamesInput(input);
 
-        List<String> carNames = Arrays.asList(input.split(InputView.CAR_NAMES_DELIMITER));
-        List<Car> cars = carNames.stream()
-                .map(carName -> new Car(carName, accelerator))
-                .toList();
-        return new Cars(cars);
+            List<String> carNames = Arrays.asList(input.split(InputView.CAR_NAMES_DELIMITER));
+            List<Car> cars = carNames.stream()
+                    .map(carName -> new Car(carName, accelerator))
+                    .toList();
+
+            return new Cars(cars);
+        } catch (ValidateException exception) {
+            outputView.printErrorMessage(exception);
+            return createCars(accelerator);
+        }
     }
 
     private void validateCarNamesInput(String carNames) {
@@ -56,9 +63,16 @@ public class CarRacing {
         }
     }
 
-    private TryCount createTryCount(String input) {
-        validateTryCountInput(input);
-        return new TryCount(Integer.parseInt(input));
+    private TryCount createTryCount() {
+        try {
+            String input = inputView.readTryAmount();
+            validateTryCountInput(input);
+
+            return new TryCount(Integer.parseInt(input));
+        } catch (ValidateException exception) {
+            outputView.printErrorMessage(exception);
+            return createTryCount();
+        }
     }
 
     private void validateTryCountInput(String input) {
