@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.io.IOException;
@@ -20,10 +19,9 @@ public class RacingCarController {
   }
 
   public void run() throws IOException {
-    Game game =
-            new Game(
-                    new Cars(convertToCar(inputView.inputCarsName())),
-                    new TrialCount(inputView.inputTrialCount()));
+    Cars cars = new Cars(convertToCar(inputView.inputCarsName()));
+    TrialCount trialCount = new TrialCount(inputView.inputTrialCount());
+    Game game = new Game(cars, trialCount);
     outputView.printResultComment();
     while (!game.over()) {
       outputView.printResult(game.play());
@@ -35,4 +33,3 @@ public class RacingCarController {
     return carNames.stream().map(Car::new).toList();
   }
 }
-
