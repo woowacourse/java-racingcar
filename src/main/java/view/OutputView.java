@@ -2,8 +2,6 @@ package view;
 
 import static view.ViewMessages.*;
 
-import domain.Car;
-import domain.Cars;
 import dto.CarStatus;
 import dto.CarsStatus;
 import dto.RaceResult;
@@ -19,7 +17,6 @@ public class OutputView {
     }
 
     public static void printRaceResult(RaceResult raceResult) {
-        printNewLine();
         System.out.println(RESULT_MESSAGE);
         for(CarsStatus carsStatus : raceResult.results()) {
             printCarsStatus(carsStatus);
