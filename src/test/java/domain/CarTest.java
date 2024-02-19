@@ -6,52 +6,46 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "ABCde"})
     @DisplayName("이름 정상 입력: 자동차의 이름 정상 입력")
-    void carName_ok() {
-        Assertions.assertAll(
-            () -> new Car("a"),
-            () -> new Car("aBcDe")
-        );
+    void carName_ok(String carName) {
+        new Car(carName);
     }
 
-    @Test
+    @ParameterizedTest
+    @EmptySource
+    @NullSource
+    @ValueSource(strings = {" "})
     @DisplayName("이름 예외 입력: 자동차의 이름은 공백일 수 없다.")
-    void carName_exception_noBlank_noEmpty() {
-        Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new Car(""))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new Car(" "))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
+    void carName_exception_noBlank_noEmpty(String name) {
+        assertThatThrownBy(() -> new Car(name))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"abcdef", ""})
     @DisplayName("이름 예외 입력: 자동차의 이름은 1~5자만 허용된다.")
-    void carName_exception_cantViolateLengthRegulations() {
-        Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new Car(""))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new Car("abcdef"))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
+    void carName_exception_cantViolateLengthRegulations(String name) {
+        assertThatThrownBy(() -> new Car(name))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"a123", "A!"})
     @DisplayName("이름 예외 입력: 자동차의 이름은 알파벳만 가능하다.")
-    void carName_exception_() {
-        Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new Car("a123"))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new Car("A!"))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
+    void carName_exception_cantIncludeNonAlphabets(String name) {
+        assertThatThrownBy(() -> new Car(name))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

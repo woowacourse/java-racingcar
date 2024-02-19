@@ -4,22 +4,22 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import movestrategy.MoveStrategy;
 import movestrategy.RandomPowerMoveStrategy;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RacingGameTest {
 
     private final MoveStrategy moveStrategy = new RandomPowerMoveStrategy();
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "a,bb,cCc,dDdD,eeeee", "  a  , bb  , cCc ,    dDdD ,eeeee  "})
     @DisplayName("자동차 이름 정상 입력")
-    void carNames_ok() {
-        Assertions.assertAll(
-            () -> new RacingGame("a", moveStrategy),
-            () -> new RacingGame("a,bb,cCc,dDdD,eeeee", moveStrategy),
-            () -> new RacingGame("a  , bb  , cCc ,    dDdD ,eeeee", moveStrategy)
-        );
+    void carNames_ok(String rawCarNames) {
+        new RacingGame(rawCarNames, moveStrategy);
     }
 
     @Test
@@ -46,15 +46,14 @@ class RacingGameTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("자동차 이름 예외 입력: 입력이 비어 있으면 안 된다.")
-    void carNames_exception_noEmptyInput() {
-        Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new RacingGame("", moveStrategy))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame(" ", moveStrategy))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
+    @ParameterizedTest
+    @NullSource
+    @EmptySource
+    @ValueSource(strings = " ")
+    @DisplayName("자동차 이름 예외 입력: 입력이 비어 있거나 null이면 안 된다.")
+    void carNames_exception_noEmptyInput(String rawCarNames) {
+        assertThatThrownBy(() -> new RacingGame(rawCarNames, moveStrategy))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -64,21 +63,12 @@ class RacingGameTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"a,b.c", "a,b,c,,d", ",,a,b", "a,b,,"})
     @DisplayName("자동차 이름 예외 입력: 이름은 하나의 쉼표로 구분되어야 한다.")
-    void carNames_exception_delimiterViolation() {
-        Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new RacingGame("a,b.c", moveStrategy))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame("a,b,c,,d", moveStrategy))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame("a,,b,c,d", moveStrategy))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame(",,,a,b", moveStrategy))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new RacingGame("a,b,,,", moveStrategy))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
+    void carNames_exception_delimiterViolation(String rawCarNames) {
+        assertThatThrownBy(() -> new RacingGame(rawCarNames, moveStrategy))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
