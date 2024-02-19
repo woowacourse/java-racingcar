@@ -1,7 +1,8 @@
 package racingcar.dto.response;
 
-import java.util.List;
 import racingcar.domain.car.Car;
+
+import java.util.List;
 
 public record RaceWinnersResponse(List<String> raceWinners) {
     public static RaceWinnersResponse from(final List<Car> raceWinners) {

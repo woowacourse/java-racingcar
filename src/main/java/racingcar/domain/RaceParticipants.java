@@ -1,12 +1,13 @@
 package racingcar.domain;
 
+import racingcar.domain.car.Car;
+import racingcar.exception.ErrorMessage;
+import racingcar.exception.InvalidInputException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import racingcar.domain.car.Car;
-import racingcar.exception.ErrorMessage;
-import racingcar.exception.InvalidInputException;
 
 public class RaceParticipants {
     private final List<Car> cars;

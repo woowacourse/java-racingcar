@@ -1,9 +1,5 @@
 package racingcar.dto.request;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +9,11 @@ import racingcar.domain.car.Car;
 import racingcar.domain.car.move.MovingStrategy;
 import racingcar.exception.InvalidInputException;
 import racingcar.mock.MockMovingStrategy;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RaceParticipantsRequestTest {
     private MovingStrategy mockMovingStrategy;
