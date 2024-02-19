@@ -23,7 +23,8 @@ public record RaceCountRequest(String input) {
 
     private void validateRaceCountRange(final int count) {
         if (count > MAX_RACE_COUNT || MIN_RACE_COUNT > count) {
-            throw new InvalidInputException(ErrorMessage.INVALID_RACE_COUNT_RANGE);
+            String errorDetail = String.format("시도 횟수는 %d에서 %d 사이여야 합니다.", MIN_RACE_COUNT, MAX_RACE_COUNT);
+            throw new InvalidInputException(ErrorMessage.INVALID_RACE_COUNT_RANGE, errorDetail);
         }
     }
 }

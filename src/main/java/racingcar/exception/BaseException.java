@@ -6,4 +6,8 @@ public class BaseException extends IllegalArgumentException {
     public BaseException(final String message) {
         super(String.format("%s %s", PREFIX, message));
     }
+
+    public BaseException(final String message, final String details) {
+        super(String.format("%s %s : %s", PREFIX, message, details));
+    }
 }
