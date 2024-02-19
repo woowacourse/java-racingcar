@@ -12,21 +12,8 @@ public class Game {
 
     private final List<Car> cars;
 
-    public Game(List<String> carsName) {
-        validateNotDuplicate(carsName);
-        this.cars = convertToCar(carsName);
-    }
-
-    private void validateNotDuplicate(List<String> carsName) {
-        int originCount = carsName.size();
-        int distinctCount = (int) carsName.stream().distinct().count();
-        if (originCount != distinctCount) {
-            throw new IllegalArgumentException(Exception.DUPLICATE.getMessage());
-        }
-    }
-
-    private List<Car> convertToCar(List<String> carsName) {
-        return carsName.stream().map(Car::new).toList();
+    public Game(List<Car> cars) {
+       this.cars = cars;
     }
 
     public List<Car> proceed() {
@@ -45,11 +32,6 @@ public class Game {
     }
 
     public List<Car> findWinners() {
-        int winnersScore = Collections.max(cars.stream().map(Car::getForwardCount).toList());
-        return cars.stream().filter(car -> car.getForwardCount() == winnersScore).toList();
-    }
-
-    List<Car> findWinners(List<Car> cars) {
         int winnersScore = Collections.max(cars.stream().map(Car::getForwardCount).toList());
         return cars.stream().filter(car -> car.getForwardCount() == winnersScore).toList();
     }

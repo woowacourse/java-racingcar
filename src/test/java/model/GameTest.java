@@ -22,28 +22,20 @@ class GameTest {
     }
 
     @Test
-    @DisplayName("자동차들이 중복된 이름을 가질 시 예외가 발생한다.")
-    void validateDuplicate() {
-        assertThatThrownBy(() -> new Game(of("포비", "포비")))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(Exception.DUPLICATE.getMessage());
-    }
-
-    @Test
     @DisplayName("우승자를 알아 낼 수 있다.")
     void findWinner() {
-        Game game = new Game(of(pobi.getName(), left.getName()));
+        Game game = new Game(List.of(pobi, left));
         pobi.forward();
         left.stop();
-        assertThat(game.findWinners(List.of(pobi, left))).isEqualTo(List.of(pobi));
+        assertThat(game.findWinners()).isEqualTo(List.of(pobi));
     }
 
     @Test
     @DisplayName("공동 우승자를 알아 낼 수 있다")
     void findWinners() {
-        Game game = new Game(of(pobi.getName(), left.getName()));
+        Game game = new Game(List.of(pobi, left));
         pobi.forward();
         left.forward();
-        assertThat(game.findWinners(List.of(pobi, left))).isEqualTo(List.of(pobi, left));
+        assertThat(game.findWinners()).isEqualTo(List.of(pobi, left));
     }
 }
