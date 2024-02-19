@@ -1,15 +1,11 @@
 package racingcar.controller;
 
 import racingcar.controller.numericgenerator.RandomNumericGenerator;
-import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.model.GameResult;
 import racingcar.model.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameController {
 
