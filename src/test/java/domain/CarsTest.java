@@ -32,11 +32,12 @@ class CarsTest {
     void getMaxForwardTest() {
         List<String> names = List.of("가", "나", "다");
         Cars cars = new Cars(names);
+        int expectedMaxForward = 2;
 
         cars.getCars().get(0).move(MIN_FORWARD_NUMBER);
         cars.getCars().get(1).move(MIN_FORWARD_NUMBER);
         cars.getCars().get(1).move(MIN_FORWARD_NUMBER);
 
-        assertThat(cars.getMaxForward()).isEqualTo(2);
+        assertThat(cars.getMaxForward()).isEqualTo(expectedMaxForward);
     }
 }
