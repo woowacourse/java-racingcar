@@ -17,33 +17,55 @@ public class OutputView implements AutoCloseable {
         this.writer = new BufferedWriter(new OutputStreamWriter(System.out));
     }
 
-    public void printResultComment() throws IOException {
-        writer.write(System.lineSeparator() + PrintMessage.RESULT_COMMENT.getMessage());
-        writer.newLine();
+    public void printResultComment() {
+        try {
+            writer.write(System.lineSeparator() + PrintMessage.RESULT_COMMENT.getMessage());
+            writer.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void printResult(List<Car> cars) throws IOException {
-        for (Car car : cars) {
+    public void printResult(List<Car> cars) {
+        cars.forEach(this::printCarRacingResult);
+        try {
+            writer.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void printCarRacingResult(Car car) {
+        try {
             writer.write(car.getName() + DELIMITER + concatenateMoveStatuses(car.getStatuses()));
             writer.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        writer.newLine();
     }
 
     private String concatenateMoveStatuses(List<MoveStatus> moveStatuses) {
         return String.join("", moveStatuses.stream().map(MoveStatus::getOutput).toList());
     }
 
-    public void printWinner(List<Car> cars) throws IOException {
+    public void printWinner(List<Car> cars) {
         String winnersName = String.join(", ", cars.stream().map(Car::getName).toList());
         String winnersPrintMessage = String.format((PrintMessage.WINNER.getMessage()), winnersName);
-        writer.write(winnersPrintMessage);
-        writer.newLine();
+        try {
+            writer.write(winnersPrintMessage);
+            writer.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public void close() throws Exception {
-        writer.flush();
-        writer.close();
+    public void close() {
+        try {
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
