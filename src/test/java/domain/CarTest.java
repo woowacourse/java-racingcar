@@ -13,7 +13,8 @@ class CarTest {
     @DisplayName("제한 길이 이내의 이름으로 자동차를 생성한다.")
     @Test
     void carGenerateTest() {
-        assertThatCode(() -> new Car(VALID_LENGTH_NAME)).doesNotThrowAnyException();
+        Car car = new Car(VALID_LENGTH_NAME);
+        assertThat(car.getName()).isEqualTo(VALID_LENGTH_NAME);
     }
 
     @DisplayName("이름이 제한된 길이를 초과하여 예외를 던진다.")
