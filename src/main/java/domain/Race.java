@@ -2,19 +2,26 @@ package domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.IntSupplier;
 
 public class Race {
 
-    private final List<Car> cars;
-    private final CarMove carMove;
+    private static final int MAX_MOVABLE_DIGIT = 4;
 
-    public Race(List<Car> cars, CarMove carMove) {
+    private final List<Car> cars;
+    private final IntSupplier supplier;
+
+    public Race(List<Car> cars, IntSupplier supplier) {
         this.cars = cars;
-        this.carMove = carMove;
+        this.supplier = supplier;
     }
 
     public void move() {
-        cars.forEach(car -> car.move(carMove.isMove()));
+        cars.forEach(car -> car.move(isMove()));
+    }
+
+    private boolean isMove() {
+        return supplier.getAsInt() >= MAX_MOVABLE_DIGIT;
     }
 
     public List<Car> findWinner() {

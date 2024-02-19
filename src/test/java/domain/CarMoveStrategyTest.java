@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.List;
 import java.util.Random;
 import java.util.function.IntSupplier;
 import java.util.stream.Stream;
@@ -14,11 +15,13 @@ class CarMoveStrategyTest {
     @DisplayName("임의의 숫자가 3 이하인 경우에는 이동하지 않고, 4 이상인 경우에는 이동한다")
     @ParameterizedTest
     @MethodSource("moveRandomlyTestProvider")
-    void moveRandomlyTest(IntSupplier supplier, boolean expected) {
-        CarMove moveStrategy = new CarMove(supplier);
+    void moveRandomlyTest(IntSupplier supplier, int expected) {
+        Car carA = new Car("carA");
+        Race race = new Race(List.of(carA), supplier);
 
         // when
-        boolean actual = moveStrategy.isMove();
+        race.move();
+        int actual = carA.getPosition();
 
         // then
         Assertions.assertThat(actual).isEqualTo(expected);
@@ -26,8 +29,8 @@ class CarMoveStrategyTest {
 
     static Stream<Arguments> moveRandomlyTestProvider() {
         return Stream.of(
-                Arguments.of(new CarMovableSupplier(), true),
-                Arguments.of(new CarNotMovableSupplier(), false)
+                Arguments.of(new CarMovableSupplier(), 1),
+                Arguments.of(new CarNotMovableSupplier(), 0)
         );
     }
 
