@@ -7,12 +7,12 @@ public class Car implements Comparable<Car> {
     private static final String NAME_CONVENTION = "^[a-zA-Zㄱ-ㅎ가-힣]{1,5}$";
     private static final int MOVE_STANDARD = 4;
     private final String name;
-    private final List<Integer> location;
+    private final List<Location> roundHistory;
 
     public Car(String name) {
         validateCarName(name);
         this.name = name;
-        location = new LinkedList<>(List.of(0));
+        roundHistory = new LinkedList<>(List.of(new Location(0)));
     }
 
     private void validateCarName(String name) {
@@ -26,7 +26,7 @@ public class Car implements Comparable<Car> {
         if (randomNumber >= MOVE_STANDARD) {
             lastLocation++;
         }
-        location.add(lastLocation);
+        roundHistory.add(new Location(lastLocation));
     }
 
     public String getName() {
@@ -35,14 +35,14 @@ public class Car implements Comparable<Car> {
 
     public int getRoundLocation(int round) {
         if (round >= 0) {
-            return location.get(round);
+            return roundHistory.get(round).getLocation();
         }
         throw new IllegalArgumentException("유효하지 않은 라운드입니다.");
     }
 
     public int getLastLocation() {
-        if (location.size() > 0) {
-            return location.get(location.size() - 1);
+        if (roundHistory.size() > 0) {
+            return roundHistory.get(roundHistory.size() - 1).getLocation();
         }
         return 0;
     }
