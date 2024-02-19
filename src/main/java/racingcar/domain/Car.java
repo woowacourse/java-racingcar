@@ -23,8 +23,8 @@ public class Car {
         return name.length() > CAR_NAME_MAX_LENGTH;
     }
 
-    public void move(final CarMoveStrategy carMoveStrategy, final int value) {
-        if (carMoveStrategy.isMovable(value)) {
+    public void move(final CarMoveStrategy carMovement, final int value) {
+        if (carMovement.isMovable(value)) {
             distance += MOVE_STEP;
         }
     }

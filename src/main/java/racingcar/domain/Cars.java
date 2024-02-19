@@ -49,8 +49,8 @@ public class Cars {
                 .count();
     }
 
-    void move(final CarMoveStrategy carMoveStrategy) {
-        cars.forEach(car -> car.move(carMoveStrategy, randomUtil.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT)));
+    void move(final CarMoveStrategy carMovement) {
+        cars.forEach(car -> car.move(carMovement, randomUtil.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT)));
     }
 
     List<Car> findFarthestCars() {
@@ -58,7 +58,7 @@ public class Cars {
                 .mapToInt(Car::getDistance)
                 .max()
                 .orElse(MIN_DISTANCE);
-        
+
         return cars.stream()
                 .filter(car -> car.getDistance() == farthestDistance)
                 .toList();
