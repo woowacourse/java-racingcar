@@ -42,4 +42,8 @@ public class Distance implements Comparable<Distance> {
     public int hashCode() {
         return Objects.hash(distance);
     }
+
+    public Distance increase() {
+        return new Distance(getValue() + 1);
+    }
 }

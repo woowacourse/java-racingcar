@@ -20,7 +20,7 @@ public class Car implements Comparable<Car> {
 
 
     public void move() {
-        this.distance = new Distance(distance.getValue() + 1);
+        this.distance = this.distance.increase();
     }
 
     public Distance getDistance() {
