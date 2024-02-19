@@ -42,8 +42,8 @@ public class CarsTest {
             Cars cars = new Cars(new TestNumericGenerator(4), List.of("차1", "차2"));
             cars.move();
 
-            List<Integer> actual = List.of(1, 1);
-            List<Integer> expected = cars.getCarPositions();
+            List<Integer> actual = cars.getCarPositions();
+            List<Integer> expected = List.of(1, 1);
 
             assertThat(actual).isEqualTo(expected);
         }
@@ -54,8 +54,8 @@ public class CarsTest {
             Cars cars = new Cars(new TestNumericGenerator(3), List.of("차1", "차2"));
             cars.move();
 
-            List<Integer> actual = List.of(0, 0);
-            List<Integer> expected = cars.getCarPositions();
+            List<Integer> actual = cars.getCarPositions();
+            List<Integer> expected = List.of(0, 0);
 
             assertThat(actual).isEqualTo(expected);
         }
