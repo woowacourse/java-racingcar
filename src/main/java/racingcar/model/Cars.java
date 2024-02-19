@@ -2,7 +2,6 @@ package racingcar.model;
 
 import racingcar.controller.NumericGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,12 +17,17 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public List<Car> move() {
+    public void move() {
         cars.forEach(car -> car.move(generator.generate()));
-        return new ArrayList<>(cars);
     }
 
-    public List<Integer> getCarPositions() {
+    public List<String> getNames() {
+        return cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<Integer> getPositions() {
         return cars.stream()
                 .map(Car::getPosition)
                 .collect(Collectors.toList());

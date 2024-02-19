@@ -16,10 +16,11 @@ public class GameController {
 
         int totalAttempts = tryCount.getValue();
         for(int attempt = 0; attempt < totalAttempts; attempt++) {
-            gameResult.addResult(cars.move());
+            cars.move();
+            gameResult.addResult(cars.getPositions());
         }
 
-        OutputView.printGameResults(gameResult.getGameResult());
-        OutputView.printWinners(gameResult.getWinners());
+        OutputView.printGameResults(cars.getNames(), gameResult.getGameResult());
+        OutputView.printWinners(gameResult.getWinners(cars.getNames()));
     }
 }
