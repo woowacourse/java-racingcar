@@ -33,8 +33,7 @@ class RacingTest {
     @MethodSource("nextTurnParameters")
     void nextTurn(int racingCondition, int expectedDistance) {
         Racing racing = new Racing(1, new Cars(List.of(new Car(0, "a"))));
-        racing.nextTurn(List.of(racingCondition));
-        Map<String, Integer> carsStatus = racing.getCarsStatus();
+        Map<String, Integer> carsStatus = racing.nextTurn(List.of(racingCondition));
         Assertions.assertThat(carsStatus.get("a"))
                 .isEqualTo(expectedDistance);
     }
@@ -55,9 +54,7 @@ class RacingTest {
         Racing racing = new Racing(1, new Cars(List.of(new Car(0, "a"))));
         racing.nextTurn(List.of(CAR_MOVE_THRESHOLD));
         racing.nextTurn(List.of(CAR_MOVE_THRESHOLD));
-        racing.nextTurn(List.of(CAR_MOVE_THRESHOLD));
-
-        Map<String, Integer> carsStatus = racing.getCarsStatus();
+        Map<String, Integer> carsStatus = racing.nextTurn(List.of(CAR_MOVE_THRESHOLD));
         Assertions.assertThat(carsStatus.get("a"))
                 .isEqualTo(1);
     }

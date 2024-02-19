@@ -1,10 +1,14 @@
-package racing.domain;
+package racing.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+
+import racing.domain.Car;
+import racing.domain.Cars;
+import racing.domain.Racing;
 import racing.dto.RacingResult;
 import racing.input.CarNameInputManager;
 import racing.input.RacingMaxTurnInputManager;
@@ -14,28 +18,33 @@ import util.RandomGenerator;
 import util.RetryHelper;
 
 public class RacingManager {
-    public static void raceStart() {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        List<String> carNames = getCarNames(br);
-        Racing racing = play(br, carNames);
-        List<String> winnerNames = racing.getWinnerNames();
-        RacingResultOutputManager.printWinner(winnerNames);
+    public void raceStart() {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            List<String> carNames = getCarNames(br);
+            Racing racing = play(br, carNames);
+            List<String> winnerNames = racing.getWinnerNames();
+            RacingResultOutputManager.printWinner(winnerNames);
+            br.close();
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
     }
 
-    private static Racing play(BufferedReader br, List<String> carNames) {
+    private Racing play(BufferedReader br, List<String> carNames) {
         int maxTurn = getMaxTurn(br);
         Cars cars = makeCars(carNames);
         Racing racing = new Racing(maxTurn, cars);
-        List<RacingResult> racingResults = IntStream.range(0, maxTurn).mapToObj(value -> {
+        List<RacingResult> racingResults = new ArrayList<>();
+        for (int turn = 0; turn < maxTurn; turn++) {
             List<Integer> racingConditions = RandomGenerator.generate(carNames.size());
-            racing.nextTurn(racingConditions);
-            return new RacingResult(racing.getCarsStatus());
-        }).toList();
+            racingResults.add(new RacingResult(racing.nextTurn(racingConditions)));
+        }
         RacingResultOutputManager.printResult(racingResults);
         return racing;
     }
 
-    private static List<String> getCarNames(BufferedReader br) {
+    private List<String> getCarNames(BufferedReader br) {
         RetryHelper carNameInputManager = new RetryHelper(5);
         return carNameInputManager.retry(
                 () -> {
