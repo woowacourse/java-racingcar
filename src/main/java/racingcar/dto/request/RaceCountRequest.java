@@ -2,16 +2,23 @@ package racingcar.dto.request;
 
 import racingcar.exception.ErrorMessage;
 import racingcar.exception.InvalidInputException;
-import racingcar.view.utils.InputUtils;
 
 public record RaceCountRequest(String input) {
     private static final int MAX_RACE_COUNT = 100;
     private static final int MIN_RACE_COUNT = 1;
 
     public int toInt() {
-        int count = InputUtils.parseToInt(input);
+        final int count = validateInt();
         validateRaceCountRange(count);
         return count;
+    }
+
+    private int validateInt() {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException(ErrorMessage.INPUT_NOT_A_NUMBER);
+        }
     }
 
     private void validateRaceCountRange(final int count) {
