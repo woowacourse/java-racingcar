@@ -15,14 +15,14 @@ class CarsTest {
     @BeforeAll
     static void init() {
         Car car1 = new Car("car1");
-        car1.moveCar();
+        car1.move();
         Car car2 = new Car("car2");
-        car2.moveCar();
-        car2.moveCar();
+        car2.move();
+        car2.move();
         Car car3 = new Car("car3");
-        car3.moveCar();
-        car3.moveCar();
-        car3.moveCar();
+        car3.move();
+        car3.move();
+        car3.move();
         cars = new Cars(List.of(car1, car2, car3));
     }
 
@@ -37,6 +37,4 @@ class CarsTest {
     void findWinners() {
         assertThat(cars.findWinners(3).get(0)).isEqualTo("car3");
     }
-
-
 }
