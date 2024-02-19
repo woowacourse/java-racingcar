@@ -59,29 +59,5 @@ public class CarsTest {
 
             assertThat(actual).isEqualTo(expected);
         }
-
-        @Test
-        @DisplayName("제일 높은 값을 갖는 객체가 하나인 경우, 해당 객체를 제대로 리턴하는지 확인")
-        void testCalculatorWinner() {
-            Cars cars = new Cars(new TestNumericGenerator(4, 3), List.of("폭포", "포케"));
-            cars.move();
-
-            List<String> actual = cars.calculateWinner();
-            List<String> expected = List.of("폭포");
-
-            assertThat(actual).isEqualTo(expected);
-        }
-
-        @Test
-        @DisplayName("제일 높은 값을 갖는 객체가 둘인 경우, 두 객체를 모두 제대로 리턴하는지 확인")
-        void testCalculatorMultiWinner() {
-            Cars cars = new Cars(new TestNumericGenerator(4, 4, 3), List.of("폭포", "포케", "무빈"));
-            cars.move();
-
-            List<String> actual = cars.calculateWinner();
-            List<String> expected = List.of("폭포", "포케");
-
-            assertThat(actual).isEqualTo(expected);
-        }
     }
 }

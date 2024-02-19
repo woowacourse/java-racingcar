@@ -2,6 +2,7 @@ package racingcar.view;
 
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.GameResult;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -19,22 +20,21 @@ public class OutputView {
         System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
     }
 
-    private static String makeCarInfo(String name, int position) {
-        return name + " : " + "-".repeat(position);
+    private static String makeCarInfo(Car car) {
+        return car.getName() + " : " + "-".repeat(car.getPosition());
     }
 
-    private static void printOneGameResult(List<String> carNames, List<Integer> gameResult) {
-        IntStream.range(0, gameResult.size())
-                .forEach(idx -> {
-                    String carInfo = makeCarInfo(carNames.get(idx), gameResult.get(idx));
-                    System.out.println(carInfo);
-                });
+    private static void printRoundResult(List<Car> roundResult) {
+        roundResult.forEach(car -> {
+            String carInfo = makeCarInfo(car);
+            System.out.println(carInfo);
+        });
     }
 
-    public static void printGameResults(List<String> carNames, List<List<Integer>> gameResults) {
+    public static void printGameResults(List<List<Car>> gameResult) {
         System.out.println("\n실행 결과");
-        gameResults.forEach(gameResult -> {
-            printOneGameResult(carNames, gameResult);
+        gameResult.forEach(roundResult -> {
+            printRoundResult(roundResult);
             System.out.println();
         });
     }

@@ -2,24 +2,34 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameResult {
-    private final List<String> carNames;
-    private final List<List<Integer>> gameResult = new ArrayList<>();
+    private final List<List<Car>> gameResult = new ArrayList<>();
 
-    public GameResult(List<String> carNames) {
-        this.carNames = carNames;
-    }
-
-    public void addResult(List<Integer> subResult) {
+    public void addResult(List<Car> subResult) {
         gameResult.add(new ArrayList<>(subResult));
     }
 
-    public List<String> getCarNames() {
-        return carNames;
+    private List<Car> getFinalResult() {
+        return gameResult.get(gameResult.size() - 1);
     }
 
-    public List<List<Integer>> getGameResult() {
+    private int getMaxPosition() {
+        return getFinalResult().stream()
+                .map(Car::getPosition)
+                .max(Integer::compareTo)
+                .orElse(0);
+    }
+
+    public List<String> getWinners() {
+        return getFinalResult().stream()
+                .filter(car -> car.getPosition() == getMaxPosition())
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    public List<List<Car>> getGameResult() {
         return gameResult;
     }
 }
