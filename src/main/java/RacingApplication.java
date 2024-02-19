@@ -1,4 +1,4 @@
-import domain.CarRacing;
+import controller.CarRacing;
 import view.InputView;
 import view.OutputView;
 

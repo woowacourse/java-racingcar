@@ -1,7 +1,10 @@
-package domain;
+package controller;
 
 import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidateException;
+import domain.Car;
+import domain.Cars;
+import domain.TryCount;
 import domain.accelerator.Accelerator;
 import domain.accelerator.strategy.RandomMoveAccelerator;
 import view.InputView;
@@ -26,7 +29,7 @@ public class CarRacing {
             TryCount tryCount = createTryCount(inputView.readTryAmount());
 
             printMoveResult(tryCount, cars);
-            printWinners(cars);
+            announceWinners(cars);
         } catch (Exception exception) {
             outputView.printErrorMessage(exception);
         }
@@ -36,7 +39,7 @@ public class CarRacing {
         return createCars(inputView.readCarNames(), new RandomMoveAccelerator());
     }
 
-    private void printWinners(Cars cars) {
+    public void announceWinners(Cars cars) {
         outputView.printWinners(getWinners(cars));
     }
 
@@ -45,7 +48,7 @@ public class CarRacing {
         tryMove(tryCount, cars);
     }
 
-    public Cars createCars(String input, Accelerator accelerator) {
+    private Cars createCars(String input, Accelerator accelerator) {
         validateCarNamesInput(input);
 
         List<String> carNames = Arrays.asList(input.split(InputView.CAR_NAMES_DELIMITER));
@@ -61,7 +64,7 @@ public class CarRacing {
         }
     }
 
-    public TryCount createTryCount(String input) {
+    private TryCount createTryCount(String input) {
         validateTryCountInput(input);
         return new TryCount(Integer.parseInt(input));
     }
@@ -74,14 +77,14 @@ public class CarRacing {
         }
     }
 
-    public void tryMove(TryCount tryCount, Cars cars) {
+    private void tryMove(TryCount tryCount, Cars cars) {
         for (int i = 0; i < tryCount.getValue(); i++) {
             cars.tryMove();
             outputView.printCarsPosition(cars.getCars());
         }
     }
 
-    public List<String> getWinners(Cars cars) {
+    private List<String> getWinners(Cars cars) {
         int winnerPosition = cars.getWinnerPosition();
 
         return cars.getCars().stream()
