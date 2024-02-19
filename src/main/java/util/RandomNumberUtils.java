@@ -2,7 +2,6 @@ package util;
 
 import java.util.Random;
 
-
 public class RandomNumberUtils {
     private static final Random random = new Random();
 

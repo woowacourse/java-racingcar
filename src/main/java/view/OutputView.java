@@ -1,4 +1,4 @@
-package io;
+package view;
 
 import domain.Car;
 
@@ -10,8 +10,7 @@ public class OutputView {
     private static final String CAR_POSITION_MESSAGE = "%s : %s";
     private static final String CAR_POSITION_BAR = "-";
     private static final String WINNER_DELIMITER = ", ";
-    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
-    private static final String ERROR_MESSAGE_FORMAT = "%s %s";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
 
     public void printMoveResultMessage() {
         System.out.println("\n실행 결과");
@@ -43,6 +42,6 @@ public class OutputView {
     }
 
     public void printErrorMessage(Exception exception) {
-        System.out.println(String.format(ERROR_MESSAGE_FORMAT, ERROR_MESSAGE_PREFIX, exception.getMessage()));
+        System.out.println(String.format(ERROR_MESSAGE_FORMAT, exception.getMessage()));
     }
 }

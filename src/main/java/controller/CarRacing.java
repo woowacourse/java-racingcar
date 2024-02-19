@@ -1,11 +1,14 @@
+package controller;
+
 import common.exception.message.ExceptionMessage;
 import common.exception.model.ValidateException;
 import domain.Car;
-import domain.CarAccelerator;
 import domain.Cars;
 import domain.TryCount;
-import io.InputView;
-import io.OutputView;
+import domain.accelerator.Accelerator;
+import domain.accelerator.strategy.RandomMoveAccelerator;
+import view.InputView;
+import view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,23 +23,15 @@ public class CarRacing {
         this.outputView = outputView;
     }
 
-    public void start() {
-        try {
-            Cars cars = readCars();
-            TryCount tryCount = createTryCount(inputView.readTryAmount());
+    public Cars start() {
+        Cars cars = createCars(new RandomMoveAccelerator());
+        TryCount tryCount = createTryCount();
 
-            printMoveResult(tryCount, cars);
-            printWinners(cars);
-        } catch (Exception exception) {
-            outputView.printErrorMessage(exception);
-        }
+        printMoveResult(tryCount, cars);
+        return cars;
     }
 
-    private Cars readCars() {
-        return createCars(inputView.readCarNames(), new CarAccelerator());
-    }
-
-    private void printWinners(Cars cars) {
+    public void announceWinners(Cars cars) {
         outputView.printWinners(getWinners(cars));
     }
 
@@ -45,14 +40,21 @@ public class CarRacing {
         tryMove(tryCount, cars);
     }
 
-    public Cars createCars(String input, CarAccelerator accelerator) {
-        validateCarNamesInput(input);
+    private Cars createCars(Accelerator accelerator) {
+        try {
+            String input = inputView.readCarNames();
+            validateCarNamesInput(input);
 
-        List<String> carNames = Arrays.asList(input.split(InputView.CAR_NAMES_DELIMITER));
-        List<Car> cars = carNames.stream()
-                .map(carName -> new Car(carName, accelerator))
-                .toList();
-        return new Cars(cars);
+            List<String> carNames = Arrays.asList(input.split(InputView.CAR_NAMES_DELIMITER));
+            List<Car> cars = carNames.stream()
+                    .map(carName -> new Car(carName, accelerator))
+                    .toList();
+
+            return new Cars(cars);
+        } catch (ValidateException exception) {
+            outputView.printErrorMessage(exception);
+            return createCars(accelerator);
+        }
     }
 
     private void validateCarNamesInput(String carNames) {
@@ -61,9 +63,16 @@ public class CarRacing {
         }
     }
 
-    public TryCount createTryCount(String input) {
-        validateTryCountInput(input);
-        return new TryCount(Integer.parseInt(input));
+    private TryCount createTryCount() {
+        try {
+            String input = inputView.readTryAmount();
+            validateTryCountInput(input);
+
+            return new TryCount(Integer.parseInt(input));
+        } catch (ValidateException exception) {
+            outputView.printErrorMessage(exception);
+            return createTryCount();
+        }
     }
 
     private void validateTryCountInput(String input) {
@@ -74,14 +83,14 @@ public class CarRacing {
         }
     }
 
-    public void tryMove(TryCount tryCount, Cars cars) {
+    private void tryMove(TryCount tryCount, Cars cars) {
         for (int i = 0; i < tryCount.getValue(); i++) {
             cars.tryMove();
             outputView.printCarsPosition(cars.getCars());
         }
     }
 
-    public List<String> getWinners(Cars cars) {
+    private List<String> getWinners(Cars cars) {
         int winnerPosition = cars.getWinnerPosition();
 
         return cars.getCars().stream()

@@ -1,25 +1,24 @@
 package domain;
 
+import domain.accelerator.Accelerator;
+
 public class Car {
     private final CarName name;
     private int position;
-    private final CarAccelerator accelerator;
+    private final Accelerator accelerator;
 
-    private static final int MIN_MOVABLE_POWER = 4;
-
-    public Car(String name, CarAccelerator accelerator) {
+    public Car(String name, Accelerator accelerator) {
         this.name = new CarName(name);
         this.position = 0;
         this.accelerator = accelerator;
     }
 
-
     public void pushAccelerator() {
         moveForward(accelerator.push());
     }
 
-    public void moveForward(int power) {
-        if (power >= MIN_MOVABLE_POWER) {
+    private void moveForward(int power) {
+        if (power >= Accelerator.MIN_MOVABLE_POWER) {
             position++;
         }
     }

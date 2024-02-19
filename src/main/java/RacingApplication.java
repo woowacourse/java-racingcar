@@ -1,10 +1,13 @@
-import io.InputView;
-import io.OutputView;
+import controller.CarRacing;
+import view.InputView;
+import view.OutputView;
 
 public class RacingApplication {
 
     public static void main(String[] args) {
-        CarRacing carRacing = new CarRacing(new InputView(), new OutputView());
-        carRacing.start();
+        final var carRacing = new CarRacing(new InputView(), new OutputView());
+
+        final var cars = carRacing.start();
+        carRacing.announceWinners(cars);
     }
 }
