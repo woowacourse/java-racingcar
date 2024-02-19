@@ -1,76 +1,54 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
-import racingcar.utils.NameParser;
-import racingcar.utils.Validator;
+import racingcar.model.MoveHistory;
+import racingcar.utils.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-    private final CarGroup carGroup = new CarGroup();
-    private List<String> names;
-    private int moveCount;
+    public void run() {
+        List<String> names = readCarNames();
+        int moveCount = readMoveCount();
+        CarGroup carGroup = initCars(names);
 
-    public void init() {
-        readCarNames();
-        readMoveCount();
-        initCars(names);
+        List<MoveHistory> moveHistories = play(carGroup, moveCount);
+        finish(moveHistories, carGroup);
     }
 
-    private void readCarNames() {
-        boolean isValid = false;
-        while (!isValid) {
-            isValid = inputCarNames();
-        }
+    private List<String> readCarNames() {
+        OutputView.printlnInputName();
+        return InputView.inputNames();
     }
 
-    private boolean inputCarNames() {
-        try {
-            OutputView.printlnInputName();
-            names = NameParser.parse(InputView.inputNames());
-            Validator.validateCarName(names);
-        } catch (IllegalArgumentException e) {
-            OutputView.printException(e.getMessage());
-            return false;
-        }
-        return true;
+    private int readMoveCount() {
+        OutputView.printlnInputMoveCount();
+        return InputView.inputMoveCount();
     }
 
-    private void readMoveCount() {
-        boolean isValid = false;
-        while (!isValid) {
-            isValid = inputMoveCount();
-        }
+    private CarGroup initCars(List<String> carNames) {
+        List<Car> cars = carNames.stream()
+                .map(Car::new)
+                .toList();
+        return new CarGroup(cars);
     }
 
-    private boolean inputMoveCount() {
-        try {
-            OutputView.printlnInputMoveCount();
-            moveCount = InputView.inputMoveCount();
-            Validator.validateMoveCount(moveCount);
-        } catch (IllegalArgumentException e) {
-            OutputView.printException(e.getMessage());
-        }
-        return true;
-    }
-
-    private void initCars(List<String> carNames) {
-        for (String name : carNames) {
-            carGroup.add(new Car(name));
-        }
-    }
-
-    public void play() {
-        OutputView.printResultDescription();
+    private List<MoveHistory> play(CarGroup carGroup, int moveCount) {
+        List<MoveHistory> moveHistories = new ArrayList<>();
         for (int i = 0; i < moveCount; i++) {
-            carGroup.race();
-            OutputView.printPosition(carGroup);
+            MoveHistory moveHistory = carGroup.race(RandomNumberGenerator.generate(carGroup.getCarsSize()));
+            moveHistories.add(moveHistory);
         }
+        return moveHistories;
     }
 
-    public void finish() {
+    private void finish(List<MoveHistory> moveHistories, CarGroup carGroup) {
+        OutputView.printResultDescription();
+        OutputView.printMoveHistories(moveHistories);
+
         List<Car> winners = carGroup.findWinners();
         if (winners.isEmpty()) {
             OutputView.printNoWinner();
