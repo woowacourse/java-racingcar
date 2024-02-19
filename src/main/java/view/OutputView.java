@@ -22,15 +22,9 @@ public class OutputView implements AutoCloseable {
         writer.newLine();
     }
 
-    public void printAllRacingResult(List<Car> cars, int racingCount) throws IOException {
-        for (int wantRacingCount = 1; wantRacingCount <= racingCount; wantRacingCount++) {
-            printResult(cars, wantRacingCount);
-        }
-    }
-
-    private void printResult(List<Car> cars, int wantRacingCount) throws IOException {
+    public void printResult(List<Car> cars) throws IOException {
         for (Car car : cars) {
-            writer.write(car.getName() + DELIMITER + concatenateMoveStatuses(car.getStatuses(wantRacingCount)));
+            writer.write(car.getName() + DELIMITER + concatenateMoveStatuses(car.getStatuses()));
             writer.newLine();
         }
         writer.newLine();
