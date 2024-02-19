@@ -1,36 +1,21 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Winners {
-    private final List<String> winners;
+    private final List<String> winnerNames;
 
     private Winners(List<String> winners) {
-        this.winners = winners;
+        this.winnerNames = new ArrayList<>(winners);
     }
 
-    public static Winners from(Cars cars) {
-        return new Winners(findWinners(cars).stream()
-                .map(Car::getName)
-                .toList());
-    }
-
-    private static List<Car> findWinners(Cars cars) {
-        int maxPosition = getMaxPosition(cars);
-        return cars.getCars().stream()
-                .filter(car -> car.getPosition() == maxPosition)
-                .toList();
-
-    }
-
-    private static int getMaxPosition(Cars cars) {
-        return cars.getCars().stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .getAsInt();
+    public static Winners from(RandomMovingCars randomMovingCars) {
+        return new Winners(randomMovingCars.findWinnerNames());
     }
 
     public List<String> getWinners() {
-        return winners;
+        return Collections.unmodifiableList(winnerNames);
     }
 }
