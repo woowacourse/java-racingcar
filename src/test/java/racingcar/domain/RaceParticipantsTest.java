@@ -1,10 +1,5 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,17 +10,20 @@ import racingcar.dto.request.RaceParticipantsRequest;
 import racingcar.exception.InvalidInputException;
 import racingcar.mock.MockMovingStrategy;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 class RaceParticipantsTest {
     private MovingStrategy mockMovingStrategy;
 
-    @BeforeEach
-    void setUp() {
-        mockMovingStrategy = new MockMovingStrategy();
-    }
-
     @ParameterizedTest
-    @ValueSource(strings = {"a,b,b", "a,b,c,b", "a,b,c,b,c"})
+    @ValueSource(strings = {"a,a", "a,b,b"})
     void 중복된_자동차_이름이_있을_경우_실패(String name) {
+        //given
+        mockMovingStrategy = new MockMovingStrategy();
+
         //when
         final RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
 
