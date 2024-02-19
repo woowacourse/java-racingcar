@@ -6,6 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import racingcar.domain.gamewinner.RacingGameWinners;
+
 public class Cars {
     private static final String REGEX_VALID_INPUT_CHECK = "^[^,]+(,[^,]+)*$";
     private static final int MINIMUM_MOVE_NUMBER = 4;
@@ -45,12 +47,12 @@ public class Cars {
         }
     }
 
-    public GameWinners calculateWinner() {
+    public GameWinner calculateWinner() {
         int maxPosition = cars.stream()
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .orElse(0);
-        return new GameWinners(cars.stream()
+        return new RacingGameWinners(cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .toList());

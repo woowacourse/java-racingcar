@@ -103,3 +103,28 @@ public class RacingMain {
 ## 2단계 리뷰 반영 사항
 
 - [X] CarController를 RacingGame으로 변경
+
+- [X] java 기본 자료형, Collection을 사용하지 않고 굳이 domain 객체를 준 이유?
+
+```
+기본 자료형만 사용할 경우 : 구현된 내용을 사용하기 때문에 유연하게 표현할 수 있는 것이 한정되어 있다. 그러나, 빠르게 구현 가능하다.
+
+domain 객체를 사용할 경우 : 추상화가 가능하여 유연하게 확장할 수 있음. game 상태 값에 대한 요구사항이 변경될 경우, 쉽게 변경 가능하다.
+
+결론 : 쉽게 변경이 가능하도록 GameResult, GameStatus, GameWinner값을 추상화 하기
+```
+
+
+- [X] GameWinner 추상화 하기
+    - [X] GameWinners를 GameWinner로 명칭 변경
+    - [X] `showWinner()`로 단독, 단일 우승에 대해 알지 못하도록 캡슐화 하기
+        - [X] RacingGameWinners를 구현하여 공동우승이 있다는 의도 전달하기
+            - [X] 단독 우승일 경우 구분자로 구분하지 않기
+            - [X] 공동 우승일 경우 구분자로 구분하기
+
+- [ ] GameStatus 추상화 하기
+    - [ ] `showStatus()`로 캡슐화 하기
+
+- [ ] GameResult를 record로 변경
+    - [ ] 데이터를 전달할 목적으로만 사용하도록 의도 전달하기
+    - [ ] 

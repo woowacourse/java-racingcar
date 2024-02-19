@@ -4,9 +4,9 @@ import java.util.List;
 
 public class GameResult{
     private final List<GameStatus> status;
-    private final GameWinners winners;
+    private final GameWinner winners;
 
-    public GameResult(List<GameStatus> status, GameWinners winners) {
+    public GameResult(List<GameStatus> status, GameWinner winners) {
         this.status = status;
         this.winners = winners;
     }
@@ -15,7 +15,7 @@ public class GameResult{
         return status;
     }
     
-    public GameWinners getWinners() {
+    public GameWinner getWinners() {
         return winners;
     }
     

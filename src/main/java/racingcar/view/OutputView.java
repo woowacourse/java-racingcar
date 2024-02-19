@@ -20,6 +20,8 @@ public class OutputView {
     public static void printGameResult(GameResult result) {
         System.out.println("\n실행 결과");
         result.getGameStatus().stream().forEach(gameStatus -> System.out.println(gameStatus + "\n"));
-        System.out.println("%s가 최종 우승했습니다.".formatted(result.getWinners()));
+
+        // TODO: 디미터의 원칙 위반! 리펙터링 필요
+        System.out.println("%s가 최종 우승했습니다.".formatted(result.getWinners().showWinner()));
     }
 }
