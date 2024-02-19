@@ -1,24 +1,24 @@
 package view;
 
-import model.Cars;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
-    private static final String WINNER_DELIMITER = ", ";
-    private static final String WRITE_RESULT = "\n실행 결과";
-    private static final String WRITE_WINNERS = "가 최종 우승했습니다.";
+    private static final String WINNER_NAME_DELIMITER = ", ";
+    private static final String NAME_DELIMITER = " : ";
+    private static final String TRACE = "-";
 
-    public void writeResultMessage() {
-        System.out.println(WRITE_RESULT);
-    }
-    public void writeRoundResult(Cars cars) {
-        System.out.println(cars);
+    public void printResultMessage() {
+        System.out.println(System.lineSeparator() + "실행 결과");
     }
 
-    public void writeWinners(List<String> names) {
-        String winners = names.stream().collect(Collectors.joining(WINNER_DELIMITER));
-        System.out.println(winners + WRITE_WINNERS);
+    public void printRoundResult(String name, int position) {
+        System.out.println(String.format("%s %s %s",
+                name, NAME_DELIMITER, TRACE.repeat(position)));
+    }
+
+    public void printWinners(List<String> names) {
+        String winners = String.join(WINNER_NAME_DELIMITER, names);
+        System.out.println(winners + "가 최종 우승했습니다.");
     }
 }
