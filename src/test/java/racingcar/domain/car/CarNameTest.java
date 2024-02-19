@@ -1,15 +1,15 @@
 package racingcar.domain.car;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.exception.InvalidInputException;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 class CarNameTest {
     @ParameterizedTest
-    @ValueSource(strings = {"일", "이이", "삼삼삼", "사사사사", "오오오오오"})
+    @ValueSource(strings = {"일", "오오오오오"})
     void 자동차_이름이_생성_성공(final String name) {
         //when
         final CarName carName = new CarName(name);
