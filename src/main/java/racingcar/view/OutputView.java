@@ -1,5 +1,8 @@
 package racingcar.view;
 
+import racingcar.model.GameResult;
+import racingcar.model.RoundResult;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -20,18 +23,21 @@ public class OutputView {
         return name + " : " + "-".repeat(position);
     }
 
-    private static void printRoundResult(List<String> carNames, List<Integer> roundResult) {
-        IntStream.range(0, carNames.size())
+    private static void printRoundResult(RoundResult roundResult) {
+        List<String> names = roundResult.getNames();
+        List<Integer> positions = roundResult.getPositions();
+
+        IntStream.range(0, names.size())
                 .forEach(idx -> {
-                    String s = makeCarInfo(carNames.get(idx), roundResult.get(idx));
+                    String s = makeCarInfo(names.get(idx), positions.get(idx));
                     System.out.println(s);
                 });
     }
 
-    public static void printGameResults(List<String> carNames, List<List<Integer>> gameResult) {
+    public static void printGameResults(GameResult gameResult) {
         System.out.println("\n실행 결과");
-        gameResult.forEach(roundResult -> {
-            printRoundResult(carNames, roundResult);
+        gameResult.getGameResult().forEach(roundResult -> {
+            printRoundResult(roundResult);
             System.out.println();
         });
     }

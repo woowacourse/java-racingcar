@@ -4,34 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameResult {
-    private final List<List<Integer>> gameResult = new ArrayList<>();
+    private final List<RoundResult> gameResult = new ArrayList<>();
 
-    public void addResult(List<Integer> roundResult) {
+    public void addResult(RoundResult roundResult) {
         gameResult.add(roundResult);
     }
 
-    private List<Integer> getFinalResult() {
+    private RoundResult getFinalResult() {
         return gameResult.get(gameResult.size() - 1);
     }
 
-    private int getMaxPosition() {
-        return getFinalResult().stream()
-                .max(Integer::compareTo)
-                .orElse(0);
+    public List<String> getWinners() {
+        return getFinalResult().calculateWinners();
     }
 
-    public List<String> getWinners(List<String> carNames) {
-        List<String> winners = new ArrayList<>();
-        List<Integer> finalResult = getFinalResult();
-        for(int i = 0; i < finalResult.size(); i++) {
-            if (finalResult.get(i) == getMaxPosition()) {
-                winners.add(carNames.get(i));
-            }
-        }
-        return winners;
-    }
-
-    public List<List<Integer>> getGameResult() {
+    public List<RoundResult> getGameResult() {
         return gameResult;
     }
 }

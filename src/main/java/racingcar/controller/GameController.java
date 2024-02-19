@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.controller.numericgenerator.RandomNumericGenerator;
 import racingcar.model.Cars;
 import racingcar.model.GameResult;
+import racingcar.model.RoundResult;
 import racingcar.model.TryCount;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -17,10 +18,10 @@ public class GameController {
         int totalAttempts = tryCount.getValue();
         for(int attempt = 0; attempt < totalAttempts; attempt++) {
             cars.move();
-            gameResult.addResult(cars.getPositions());
+            gameResult.addResult(new RoundResult(cars.getNames(), cars.getPositions()));
         }
 
-        OutputView.printGameResults(cars.getNames(), gameResult.getGameResult());
-        OutputView.printWinners(gameResult.getWinners(cars.getNames()));
+        OutputView.printGameResults(gameResult);
+        OutputView.printWinners(gameResult.getWinners());
     }
 }
