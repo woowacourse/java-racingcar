@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class RandomMovingCarsTest {
-    private static final List<String> carNames = List.of(
+    private static final List<String> CAR_NAMES = List.of(
             "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
             "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
 
@@ -63,7 +63,7 @@ class RandomMovingCarsTest {
     }
 
     private List<String> getCarNamesByCount(int count) {
-        return carNames.subList(0, count);
+        return CAR_NAMES.subList(0, count);
     }
 
     @DisplayName("랜덤 값에 따른 자동차들의 움직임 테스트")
