@@ -17,7 +17,7 @@ public class RandomMovementGenerator implements MovementGenerator {
         return Movement.STAY;
     }
 
-    public boolean isMovable(NumberGenerator randomNumberGenerator) {
+    private boolean isMovable(NumberGenerator randomNumberGenerator) {
         return randomNumberGenerator.generate() >= MOVABLE_CRITERION;
     }
 }

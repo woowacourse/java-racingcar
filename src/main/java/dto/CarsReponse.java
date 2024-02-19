@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class CarsReponse {
     private final List<CarReponse> carsReponses;
 
-    public CarsReponse(final List<CarReponse> carsReponses) {
-        this.carsReponses = carsReponses;
+    public CarsReponse(final List<CarReponse> carsResponses) {
+        this.carsReponses = carsResponses;
     }
 
     public static CarsReponse from(Cars cars) {
