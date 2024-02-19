@@ -1,11 +1,10 @@
 package racingcar.controller;
 
 import java.util.List;
-import racingcar.generator.RandomNumberGenerator;
 import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.RaceResult;
 import racingcar.model.RacingGame;
-import racingcar.model.TotalResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -20,30 +19,37 @@ public class RacingController {
     }
 
     public void run() {
-        Cars cars = createCars();
-        RacingGame racingGame = createRacingGame(cars);
+        List<String> carNames = inputView.readCarNames();
+        Cars cars = createCars(carNames);
+
+        int numberOfRaces = inputView.readNumberOfRaces();
+        RacingGame racingGame = createRacingGame(cars, numberOfRaces);
 
         inputView.finishReadingInput();
 
-        TotalResult totalResult = racingGame.run();
-        printResult(totalResult);
+        List<RaceResult> raceResults = runGame(racingGame);
+        outputView.printRaceResult(raceResults);
+
+        List<Car> winners = showWinner(racingGame);
+        outputView.printWinnerInfo(winners);
     }
 
-    private Cars createCars() {
-        List<String> carNames = inputView.readCarNames();
+    private Cars createCars(List<String> carNames) {
         List<Car> cars = carNames.stream()
                 .map(Car::new)
                 .toList();
-        return new Cars(cars, new RandomNumberGenerator());
+        return new Cars(cars);
     }
 
-    private RacingGame createRacingGame(Cars cars) {
-        int tryCount = inputView.readTryCount();
-        return new RacingGame(tryCount, cars);
+    private RacingGame createRacingGame(Cars cars, int numberOfRaces) {
+        return new RacingGame(cars, numberOfRaces);
     }
 
-    private void printResult(TotalResult totalResult) {
-        outputView.printResult(totalResult);
-        outputView.printWinnerInfo(totalResult.getWinner());
+    private List<RaceResult> runGame(RacingGame racingGame) {
+        return racingGame.startRace();
+    }
+
+    private List<Car> showWinner(RacingGame racingGame) {
+        return racingGame.selectWinner();
     }
 }

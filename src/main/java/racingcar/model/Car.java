@@ -15,11 +15,15 @@ public class Car {
         this.position = DEFAULT_POSITION;
     }
 
-    public int move(int randomNumber) {
+    Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
+    public void move(int randomNumber) {
         if (randomNumber >= MINIMUM_STEP_FORWARD_STANDARD) {
             position++;
         }
-        return position;
     }
 
     public String getName() {
@@ -32,7 +36,7 @@ public class Car {
 
     private void validateName(String name) {
         if (isNameEmpty(name) || name.length() > MAXIMUM_CAR_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 1~5자로 입력해주세요.");
         }
     }
 

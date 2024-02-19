@@ -5,36 +5,46 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.generator.NumberGenerator;
 
 public class Cars {
 
     private final List<Car> cars;
-    private final NumberGenerator generator;
 
-    public Cars(List<Car> cars, NumberGenerator generator) {
-        validateCarNames(cars);
+    public Cars(List<Car> cars) {
+        validateDuplicate(cars);
         this.cars = cars;
-        this.generator = generator;
     }
 
-    public RoundResult makeCarsMove() {
-        Map<String, Integer> carStatus = new LinkedHashMap<>();
+    public RaceResult tryMoveAll() {
+        Map<Car, Integer> result = new LinkedHashMap<>();
         for (Car car : cars) {
-            car.move(generator.generate());
-            String carName = car.getName();
-            int position = car.getPosition();
-            carStatus.put(carName, position);
+            car.move(RandomNumberGenerator.generate());
+            result.put(car, car.getPosition());
         }
-        return new RoundResult(carStatus);
+
+        return new RaceResult(result);
     }
 
-    private void validateCarNames(List<Car> cars) {
+    public int getMaxPosition() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .max(Integer::compareTo)
+                .orElse(0);
+    }
+
+    public List<Car> getCarsByPosition(int position) {
+        return cars.stream()
+                .filter(car -> car.getPosition() == position)
+                .toList();
+    }
+
+    private void validateDuplicate(List<Car> cars) {
         Set<String> distinctNames = cars.stream()
                 .map(Car::getName)
-                .collect(Collectors.toUnmodifiableSet());
+                .collect(Collectors.toSet());
+
         if (distinctNames.size() != cars.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 자동차 이름이 있습니다.");
         }
     }
 }
