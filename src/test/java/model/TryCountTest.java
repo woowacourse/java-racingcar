@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class TryCountTest {
+
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 10, 50, 100, 120})
     void 시도_횟수가_올바를_때_예외가_발생하지_않는다(int tryCount) {
