@@ -1,14 +1,10 @@
 package racingcar.domain;
 
-import racingcar.util.RandomGenerator;
-
 import java.util.List;
 
 public class Cars {
 
     private static final String MESSAGE_NOT_EXIST_CAR = "생성된 자동차가 없습니다.";
-    private static final int MAX_RANDOM_NUMBER = 9;
-    private static final int MINIMUM_MOVEMENT_CONDITION = 4;
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -41,13 +37,7 @@ public class Cars {
 
     public void moveCars() {
         for (Car car : cars) {
-            moveCar(car);
-        }
-    }
-
-    private void moveCar(Car car) {
-        if (RandomGenerator.generateRandomNumber(MAX_RANDOM_NUMBER + 1) >= MINIMUM_MOVEMENT_CONDITION) {
-            car.moveCar();
+            car.moveRandomly(RandomMoveCondition.getInstance());
         }
     }
 }

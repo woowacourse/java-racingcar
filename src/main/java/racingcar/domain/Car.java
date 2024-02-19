@@ -24,7 +24,13 @@ public class Car {
         return distance;
     }
 
-    public void moveCar() {
+    public void move() {
         distance++;
+    }
+
+    public void moveRandomly(MoveCondition moveCondition) {
+        if (moveCondition.isMovable()) {
+            this.move();
+        }
     }
 }
