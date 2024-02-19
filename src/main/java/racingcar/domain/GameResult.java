@@ -11,12 +11,10 @@ public class GameResult {
     public void addGameStatus(GameStatus status) {
         gameStatusBucket.add(status);
     }
-    
+
     public String getGameResult() {
         return gameStatusBucket.stream()
                 .map(GameStatus::showStatus)
                 .collect(Collectors.joining(GAME_STATUS_SEPERATOR));
     }
-    
 }
-

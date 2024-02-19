@@ -9,7 +9,8 @@ public class RacingGameWinners implements GameWinner {
     private static final String WINNER_DELIMITER = ", ";
 
     private final List<String> winnerNames;
-    public RacingGameWinners(List<String> carNames){
+
+    public RacingGameWinners(List<String> carNames) {
         winnerNames = carNames;
     }
 

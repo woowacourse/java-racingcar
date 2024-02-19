@@ -58,12 +58,12 @@ public class Cars {
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .toList());
-                
+
     }
 
     public GameStatus getGameStatus() {
         return new RacingGameStatus(cars.stream()
-                    .map(Car::getStatus)
-                    .toList());
+                .map(Car::getStatus)
+                .toList());
     }
 }
