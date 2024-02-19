@@ -3,8 +3,8 @@ package racingcar.model;
 public class Car {
     private final String name;
     private final NumberGenerator numberGenerator;
-    private final int MIN_MOVING_STANDARD = 4;
-    private final int RANDOM_NUMBER_BOUNDARY = 10;
+    private static final int MIN_MOVING_STANDARD = 4;
+    private static final int RANDOM_NUMBER_BOUNDARY = 10;
     private int position;
 
     public Car(String name, NumberGenerator numberGenerator) {
