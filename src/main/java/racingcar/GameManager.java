@@ -17,7 +17,7 @@ public class GameManager {
         List<Car> cars = getCars();
         int tryCount = inputView.getTryCount();
 
-        System.out.println("실행 결과");
+        outputView.printResultMessage();
         for (int i = 0; i < tryCount; i++) {
             moveCars(cars);
             outputView.printTryResult(cars);
@@ -33,7 +33,7 @@ public class GameManager {
             cars = makeNewCars(inputView.getCarName());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            cars = makeNewCars(inputView.getCarName());
+            cars = getCars();
         }
         return cars;
     }
