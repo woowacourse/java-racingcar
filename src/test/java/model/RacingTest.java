@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import model.dto.Winner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,8 +39,8 @@ public class RacingTest {
     void 우승자는_한명_이상일_수_있다() {
         Racing racing = new Racing(1);
         racing.doTry(cars);
-        List<String> winnerNames = racing.determineWinner(cars);
+        List<Winner> winners = racing.determineWinner(cars);
 
-        assertThat(winnerNames.size()).isEqualTo(2);
+        assertThat(winners.size()).isEqualTo(2);
     }
 }

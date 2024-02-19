@@ -4,18 +4,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import model.powergenerator.RandomPowerGenerator;
 import org.junit.jupiter.api.Test;
 
 public class CarsTest {
     @Test
     void 중복된_자동차_이름이_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> Cars.fromNames(List.of("pobi", "pobi")))
+        assertThatThrownBy(() -> new Cars(List.of("pobi", "pobi"), new RandomPowerGenerator()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 자동차가_한_대_미만이면_예외가_발생한다() {
-        assertThatThrownBy(() -> Cars.fromNames(List.of()))
+        assertThatThrownBy(() -> new Cars(List.of(), new RandomPowerGenerator()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

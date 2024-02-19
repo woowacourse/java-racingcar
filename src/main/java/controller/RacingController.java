@@ -5,6 +5,8 @@ import java.util.function.Supplier;
 import model.Cars;
 import model.Racing;
 import model.dto.CarState;
+import model.dto.Winner;
+import model.powergenerator.RandomPowerGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -24,17 +26,17 @@ public class RacingController {
         end(racing, cars);
     }
 
-    public Cars prepareCars() {
+    private Cars prepareCars() {
         List<String> carNames = inputView.askCarNames();
-        return Cars.fromNames(carNames);
+        return new Cars(carNames, new RandomPowerGenerator());
     }
 
-    public Racing prepareRacing() {
+    private Racing prepareRacing() {
         int tryCount = inputView.askTryCount();
         return new Racing(tryCount);
     }
 
-    public void play(Racing racing, Cars cars) {
+    private void play(Racing racing, Cars cars) {
         outputView.printPlayResult();
         while (racing.canTry()) {
             racing.doTry(cars);
@@ -43,8 +45,8 @@ public class RacingController {
         }
     }
 
-    public void end(Racing racing, Cars cars) {
-        List<String> winners = racing.determineWinner(cars);
+    private void end(Racing racing, Cars cars) {
+        List<Winner> winners = racing.determineWinner(cars);
         outputView.printFinalResult(winners);
     }
 
