@@ -18,7 +18,7 @@ public class Game {
 
     public void proceed() {
         OutputView.printResultTitle();
-        IntStream.range(0, tryCount.getTryCount()).forEach(i -> {
+        IntStream.range(0, tryCount.tryCount()).forEach(i -> {
             cars.move(carMoveStrategy, randomUtil);
             OutputView.printCars(cars);
         });

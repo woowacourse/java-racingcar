@@ -23,9 +23,9 @@ class TryCountTest {
 
         //then
         assertAll(
-                () -> assertEquals(tryCount1.getTryCount(), userTryCount1),
-                () -> assertEquals(tryCount2.getTryCount(), userTryCount2),
-                () -> assertEquals(tryCount3.getTryCount(), userTryCount3)
+                () -> assertEquals(tryCount1.tryCount(), userTryCount1),
+                () -> assertEquals(tryCount2.tryCount(), userTryCount2),
+                () -> assertEquals(tryCount3.tryCount(), userTryCount3)
         );
     }
 }

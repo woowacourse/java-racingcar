@@ -1,11 +1,6 @@
 package racingcar.domain;
 
-public class TryCount {
-    private final int tryCount;
-
-    private TryCount(int tryCount) {
-        this.tryCount = tryCount;
-    }
+public record TryCount(int tryCount) {
 
     public static TryCount from(final int userTryCount) {
         validate(userTryCount);
@@ -20,9 +15,5 @@ public class TryCount {
 
     private static boolean isSmallerThanZero(final int number) {
         return number <= 0;
-    }
-
-    public int getTryCount() {
-        return tryCount;
     }
 }

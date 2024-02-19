@@ -99,6 +99,6 @@ public class RacingMain {
 - [X] `랜덤값이 4보다 작으면 움직이지 않는 것`을 테스트할 수 있도록 설계를 변경한다.
 - [X] `getter`을 사용해 값을 가져와서 비교하는 것보다 `Car`이 지금 위치에 있는지 물어보는 별도 메소드를 구현한다.
 - [X] `CarMoveStrategy`니까 이전의 `carMoveStrategy` 변수명으로 변경한다.
-- [ ] `record` 클래스를 활용하면 조금 더 값 객체스럽게 사용할 수 있게 한다.
+- [X] `record` 클래스를 활용하면 조금 더 값 객체스럽게 사용할 수 있게 한다.
 - [ ] `@FunctionalInterface`를 사용하여 익명 함수 대신 람다식으로 줄여서 사용할 수 있게 한다.
 - [ ] `RandomNumber`의 네이밍을 `class RandomNumberGenerator implements NumberGenerator`로 변경한다.
