@@ -61,9 +61,9 @@ class RaceParticipantsTest {
             Car car3 = new Car("car3", new MockMovingStrategy(List.of(true, false, false)));
 
             RaceParticipants raceParticipants = new RaceParticipants(List.of(car1, car2, car3));
-            for (int i = 0; i < 3; i++) {
-                raceParticipants.move();
-            }
+            raceParticipants.move();
+            raceParticipants.move();
+            raceParticipants.move();
 
             //when
             List<Car> raceWinners = raceParticipants.getRaceWinners();

@@ -1,11 +1,12 @@
 package racingcar.domain.car;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.SoftAssertions.assertSoftly;
-
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingcar.mock.MockMovingStrategy;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 class CarTest {
     @Test
@@ -28,9 +29,11 @@ class CarTest {
         final Car car = new Car("car", new MockMovingStrategy(movableList));
 
         // when
-        for (int i = 0; i < movableList.size(); i++) {
-            car.move();
-        }
+        car.move();
+        car.move();
+        car.move();
+        car.move();
+        car.move();
 
         // then
         assertThat(car.getPosition()).isEqualTo(3);
@@ -43,10 +46,10 @@ class CarTest {
         final Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, false)));
 
         // when
-        for (int i = 0; i < 2; i++) {
-            car1.move();
-            car2.move();
-        }
+        car1.move();
+        car2.move();
+        car1.move();
+        car2.move();
 
         // then
         assertSoftly(softly -> {
