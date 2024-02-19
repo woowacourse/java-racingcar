@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +15,7 @@ class CarRacingGameTest {
     @BeforeEach
     void setUp() {
         Cars cars = new Cars(
-                List.of(
+                Arrays.asList(
                         new Car("pobi", 3),
                         new Car("crong", 1),
                         new Car("honux", 3)

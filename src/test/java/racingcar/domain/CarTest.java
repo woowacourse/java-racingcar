@@ -42,14 +42,4 @@ class CarTest {
         int actual = car.getPosition();
         assertThat(actual).isEqualTo(expected);
     }
-
-    @ParameterizedTest
-    @CsvSource(value = {"1, true", "2, false"})
-    @DisplayName("입력된 위치와 자동차의 위치가 일치하는지 판별할 수 있다.")
-    void isPositionEqualTo(int position, boolean expected) {
-        Car car = new Car("pobi", 1);
-        boolean actual = car.isPositionEqualTo(position);
-
-        assertThat(actual).isEqualTo(expected);
-    }
 }

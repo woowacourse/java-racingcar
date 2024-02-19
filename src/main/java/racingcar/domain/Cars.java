@@ -1,10 +1,12 @@
 package racingcar.domain;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Cars {
     private static final int MINIMUM_CARS_SIZE = 1;
+    private static final int MAXIMUM_POSITION_CAR_INDEX = 0;
 
     private final List<Car> cars;
 
@@ -36,20 +38,15 @@ public class Cars {
     }
 
     public List<Car> findCarsAtMaxPosition() {
-        int maxPosition = findMaxPosition();
-        return findCarsByPosition(maxPosition);
+        cars.sort(Comparator.reverseOrder());
+        Car maxPositionCar = cars.get(MAXIMUM_POSITION_CAR_INDEX);
+
+        return findCarsBy(maxPositionCar);
     }
 
-    private int findMaxPosition() {
+    private List<Car> findCarsBy(Car standardCar) {
         return cars.stream()
-                .map(Car::getPosition)
-                .max(Integer::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException("차량 리스트가 비어있습니다."));
-    }
-
-    private List<Car> findCarsByPosition(int maxPosition) {
-        return cars.stream()
-                .filter(car -> car.isPositionEqualTo(maxPosition))
+                .filter(car -> car.isSamePosition(standardCar))
                 .toList();
     }
 

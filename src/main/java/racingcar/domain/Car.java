@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int INITIAL_POSITION = 0;
     private static final int MAXIMUM_LENGTH_OF_NAME = 5;
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
@@ -31,8 +31,8 @@ public class Car {
         }
     }
 
-    public boolean isPositionEqualTo(int position) {
-        return this.position.isMatchPosition(position);
+    public boolean isSamePosition(Car car) {
+        return this.position.isMatchPosition(car.getPosition());
     }
 
     public String getName() {
@@ -41,5 +41,10 @@ public class Car {
 
     public int getPosition() {
         return position.getPosition();
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return position.compareTo(other.position);
     }
 }
