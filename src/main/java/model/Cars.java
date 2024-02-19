@@ -22,7 +22,7 @@ public class Cars {
 
         List<Car> cars = names.stream()
                 .map(Car::from)
-                .collect(Collectors.toList());
+                .toList();
 
         return new Cars(cars);
     }
