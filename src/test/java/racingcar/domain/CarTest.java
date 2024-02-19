@@ -5,13 +5,16 @@ import org.junit.jupiter.api.Test;
 import racingcar.testCondition.FalseCondition;
 import racingcar.testCondition.TrueCondition;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
     @Test
     @DisplayName("이름이_5자_이상인_자동차는_생성할_수_없다")
     void carNameLengthTest() {
+        assertThatCode(() -> {
+            Car car = new Car("12345");
+        }).doesNotThrowAnyException();
+
         assertThatThrownBy(() -> {
             Car car = new Car("123456");
         }).isInstanceOf(IllegalArgumentException.class)
@@ -21,6 +24,10 @@ class CarTest {
     @Test
     @DisplayName("이름에_공백을_포함할_수_없다")
     void carNameNoSpaceTest() {
+        assertThatCode(() -> {
+            Car car = new Car("1234");
+        }).doesNotThrowAnyException();
+
         assertThatThrownBy(() -> {
             Car car = new Car("12 34");
         }).isInstanceOf(IllegalArgumentException.class)
