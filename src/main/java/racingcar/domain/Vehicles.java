@@ -49,7 +49,10 @@ public class Vehicles {
     }
 
     List<Car> getBiggestCars() {
-        int biggestForward = cars.stream().mapToInt(Car::getForward).max().getAsInt();
+        int biggestForward = cars.stream()
+                .mapToInt(Car::getForward)
+                .max()
+                .getAsInt();
         return cars.stream().filter(car -> car.getForward() == biggestForward).toList();
     }
 }
