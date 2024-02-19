@@ -10,9 +10,11 @@ public class Winners {
     }
 
     public static Winners from(final List<Car> cars) {
-        return new Winners(cars.stream().map(Car::getName).toList());
+        return new Winners(cars.stream()
+                .map(Car::getName)
+                .toList());
     }
-    
+
     public List<String> getWinners() {
         return winners;
     }

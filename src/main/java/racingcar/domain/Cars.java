@@ -40,7 +40,13 @@ public class Cars {
     }
 
     private static boolean hasDuplicateName(final List<String> carNames) {
-        return carNames.size() != carNames.stream().distinct().count();
+        return carNames.size() != getDistinctNamesCount(carNames);
+    }
+
+    private static long getDistinctNamesCount(final List<String> carNames) {
+        return carNames.stream()
+                .distinct()
+                .count();
     }
 
     void move(final CarMoveStrategy carMoveStrategy) {
@@ -48,8 +54,14 @@ public class Cars {
     }
 
     List<Car> findFarthestCars() {
-        int farthestDistance = cars.stream().mapToInt(Car::getDistance).max().orElse(MIN_DISTANCE);
-        return cars.stream().filter(car -> car.getDistance() == farthestDistance).toList();
+        int farthestDistance = cars.stream()
+                .mapToInt(Car::getDistance)
+                .max()
+                .orElse(MIN_DISTANCE);
+        
+        return cars.stream()
+                .filter(car -> car.getDistance() == farthestDistance)
+                .toList();
     }
 
     public List<Car> getCars() {

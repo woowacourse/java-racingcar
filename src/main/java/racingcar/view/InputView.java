@@ -16,7 +16,9 @@ public class InputView {
         System.out.println(OutputCommand.ASK_CAR_NAMES);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            return Arrays.stream(bufferedReader.readLine().split(COMMA)).map(String::trim).toList();
+            return Arrays.stream(bufferedReader.readLine().split(COMMA))
+                    .map(String::trim)
+                    .toList();
         } catch (IOException e) {
             throw new IllegalArgumentException();
         }
