@@ -17,7 +17,7 @@ public class RacingGame {
     private final MoveStrategy moveStrategy;
 
     public RacingGame(String rawCarNames, MoveStrategy moveStrategy) {
-        cars = new ArrayList<>();
+        this.cars = new ArrayList<>();
         this.moveStrategy = moveStrategy;
         makeCarsFrom(rawCarNames);
     }
