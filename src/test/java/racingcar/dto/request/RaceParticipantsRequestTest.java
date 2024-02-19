@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.RaceParticipants;
-import racingcar.domain.car.Car;
 import racingcar.domain.car.move.MovingStrategy;
 import racingcar.exception.InvalidInputException;
 import racingcar.mock.MockMovingStrategy;
@@ -32,12 +31,10 @@ class RaceParticipantsRequestTest {
         //when
         final RaceParticipants raceParticipants = new RaceParticipantsRequest(inputNames)
                 .toRaceParticipants(mockMovingStrategy);
-        final List<String> expectedCarNames = raceParticipants.getCars().stream()
-                .map(Car::getName)
-                .toList();
+        final List<String> expectedCarNames = raceParticipants.getRaceWinnerNames();
 
         //then
-        assertThat(carNames).isEqualTo(expectedCarNames);
+        assertThat(carNames).containsExactlyElementsOf(expectedCarNames);
     }
 
     @ParameterizedTest

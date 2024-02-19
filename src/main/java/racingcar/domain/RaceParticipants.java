@@ -4,10 +4,7 @@ import racingcar.domain.car.Car;
 import racingcar.exception.ErrorMessage;
 import racingcar.exception.InvalidInputException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class RaceParticipants {
     private final List<Car> cars;
@@ -29,17 +26,22 @@ public class RaceParticipants {
     }
 
 
-    public List<Car> getRaceWinners() {
+    public List<String> getRaceWinnerNames() {
         Car winner = cars.stream()
                 .max(Car::compareTo)
                 .orElseThrow();
 
         return cars.stream()
                 .filter(car -> car.compareTo(winner) == 0)
+                .map(Car::getName)
                 .toList();
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+    public Map<String, Integer> getCarNamesAndPosition() {
+        Map<String, Integer> result = new LinkedHashMap<>();
+        for (Car car : cars) {
+            result.put(car.getName(), car.getPosition());
+        }
+        return result;
     }
 }

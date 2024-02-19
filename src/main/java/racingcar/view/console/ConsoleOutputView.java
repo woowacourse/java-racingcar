@@ -1,9 +1,8 @@
 package racingcar.view.console;
 
-import racingcar.dto.response.RaceResultResponse;
-import racingcar.dto.response.RaceWinnersResponse;
 import racingcar.view.OutputView;
 
+import java.util.List;
 import java.util.Map;
 
 public class ConsoleOutputView implements OutputView {
@@ -14,9 +13,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printRaceResult(final RaceResultResponse raceResultResponse) {
-        Map<String, Integer> raceResult = raceResultResponse.raceResult();
-
+    public void printRaceResult(final Map<String, Integer> raceResult) {
         raceResult.forEach((carName, position) -> {
             String currentPosition = "-".repeat(position);
             System.out.printf("%s : %s%n", carName, currentPosition);
@@ -25,9 +22,8 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printRaceWinners(final RaceWinnersResponse raceWinnersResponse) {
-        String raceWinners = String.join(", ", raceWinnersResponse.raceWinners());
-
-        System.out.printf("%s가 최종 우승했습니다.", raceWinners);
+    public void printRaceWinners(final List<String> raceWinners) {
+        String raceWinnerNames = String.join(", ", raceWinners);
+        System.out.printf("%s가 최종 우승했습니다.", raceWinnerNames);
     }
 }

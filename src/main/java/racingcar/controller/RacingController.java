@@ -1,16 +1,14 @@
 package racingcar.controller;
 
 import racingcar.domain.RaceParticipants;
-import racingcar.domain.car.Car;
 import racingcar.domain.car.move.MovingStrategy;
 import racingcar.dto.request.RaceCountRequest;
 import racingcar.dto.request.RaceParticipantsRequest;
-import racingcar.dto.response.RaceResultResponse;
-import racingcar.dto.response.RaceWinnersResponse;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class RacingController implements Controller {
@@ -52,14 +50,14 @@ public class RacingController implements Controller {
         for (int i = 0; i < raceCount; i++) {
             raceParticipants.move();
 
-            final List<Car> raceResult = raceParticipants.getCars();
-            outputView.printRaceResult(RaceResultResponse.from(raceResult));
+            final Map<String, Integer> raceResult = raceParticipants.getCarNamesAndPosition();
+            outputView.printRaceResult(raceResult);
         }
     }
 
     private void printRaceWinners(final RaceParticipants raceParticipants) {
-        final List<Car> raceWinners = raceParticipants.getRaceWinners();
-        outputView.printRaceWinners(RaceWinnersResponse.from(raceWinners));
+        final List<String> raceWinnerNames = raceParticipants.getRaceWinnerNames();
+        outputView.printRaceWinners(raceWinnerNames);
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {

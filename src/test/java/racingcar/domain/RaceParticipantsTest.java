@@ -47,10 +47,10 @@ class RaceParticipantsTest {
             }
 
             //when
-            final List<Car> raceWinners = raceParticipants.getRaceWinners();
+            final List<String> raceWinners = raceParticipants.getRaceWinnerNames();
 
             //then
-            assertThat(raceWinners).hasSize(1).isEqualTo(List.of(car1));
+            assertThat(raceWinners).containsExactly(car1.getName());
         }
 
         @Test
@@ -66,10 +66,10 @@ class RaceParticipantsTest {
             raceParticipants.move();
 
             //when
-            List<Car> raceWinners = raceParticipants.getRaceWinners();
+            final List<String> raceWinners = raceParticipants.getRaceWinnerNames();
 
             //then
-            assertThat(raceWinners).hasSize(2).isEqualTo(List.of(car1, car2));
+            assertThat(raceWinners).containsExactlyElementsOf(List.of(car1.getName(), car2.getName()));
         }
     }
 }

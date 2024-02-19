@@ -1,12 +1,12 @@
 package racingcar.view;
 
-import racingcar.dto.response.RaceResultResponse;
-import racingcar.dto.response.RaceWinnersResponse;
+import java.util.List;
+import java.util.Map;
 
 public interface OutputView {
     void printRaceResultHeaderMessage();
 
-    void printRaceResult(RaceResultResponse raceResultResponse);
+    void printRaceResult(final Map<String, Integer> raceResult);
 
-    void printRaceWinners(RaceWinnersResponse raceWinnersResponse);
+    void printRaceWinners(final List<String> raceResult);
 }
