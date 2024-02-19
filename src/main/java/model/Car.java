@@ -38,8 +38,8 @@ public class Car {
         statuses.add(MoveStatus.STOP);
     }
 
-    public List<MoveStatus> getStatuses(int wantRacingCount) {
-        return new ArrayList<>(statuses.subList(0, wantRacingCount));
+    public List<MoveStatus> getStatuses() {
+        return new ArrayList<>(statuses);
     }
 
     public String getName() {
