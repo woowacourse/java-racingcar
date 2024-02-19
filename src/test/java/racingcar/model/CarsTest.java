@@ -3,7 +3,6 @@ package racingcar.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,10 +17,10 @@ class CarsTest {
         Cars cars = new Cars(List.of(car1, car2));
 
         //when
-        Map<Car, Integer> result = cars.tryMoveAll();
+        RaceResult result = cars.tryMoveAll();
 
         //then
-        assertThat(result).hasSize(2);
+        assertThat(result.getResult()).hasSize(2);
     }
 
     @DisplayName("등록된 자동차들의 위치 중 가장 높은 값을 반환한다.")

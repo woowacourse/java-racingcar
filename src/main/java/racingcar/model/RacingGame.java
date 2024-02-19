@@ -2,7 +2,6 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class RacingGame {
 
@@ -21,8 +20,8 @@ public class RacingGame {
 
     public List<RaceResult> startRace() {
         for (int i = 0; i < numberOfRaces; i++) {
-            Map<Car, Integer> raceResult = cars.tryMoveAll();
-            raceResults.add(new RaceResult(raceResult));
+            RaceResult result = cars.tryMoveAll();
+            raceResults.add(result);
         }
         return raceResults;
     }

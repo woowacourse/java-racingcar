@@ -15,14 +15,14 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Map<Car, Integer> tryMoveAll() {
+    public RaceResult tryMoveAll() {
         Map<Car, Integer> result = new LinkedHashMap<>();
         for (Car car : cars) {
             car.move(RandomNumberGenerator.generate());
             result.put(car, car.getPosition());
         }
 
-        return result;
+        return new RaceResult(result);
     }
 
     public int getMaxPosition() {
