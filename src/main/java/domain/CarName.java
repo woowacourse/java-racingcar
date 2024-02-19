@@ -1,3 +1,5 @@
+package domain;
+
 import javax.swing.plaf.PanelUI;
 
 public class CarName {
