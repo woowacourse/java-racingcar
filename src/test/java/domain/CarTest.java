@@ -25,21 +25,25 @@ class CarTest {
         assertInstanceOf(Car.class, car);
     }
 
+    @Test
     @DisplayName("4 이상이면 위치를 한 칸 전진한다.")
     public void forwardPositionWhenNumberIsGreaterThan4() {
         Car car = new Car(new Name("kim"));
 
+        int position = car.getPosition();
         car.race(new MovableEngine());
 
-        assertEquals(car.getPosition(), car.getPosition() + 1);
+        assertEquals(position + 1, car.getPosition());
     }
 
+    @Test
     @DisplayName("4 미만이면 위치는 변하지 않는다.")
     public void stayPositionWhenNumberIsUnderThan4() {
         Car car = new Car(new Name("kim"));
 
+        int position = car.getPosition();
         car.race(new StuckEngine());
 
-        assertEquals(car.getPosition(), car.getPosition());
+        assertEquals(car.getPosition(), position);
     }
 }
