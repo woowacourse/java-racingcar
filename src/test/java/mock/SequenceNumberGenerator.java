@@ -5,8 +5,12 @@ import util.NumberGenerator;
 import java.util.List;
 
 public class SequenceNumberGenerator implements NumberGenerator {
-    List<Integer> mockingList = List.of(4, 7, 9, 3, 1, 6, 6, 7, 8);
+    List<Integer> mockingList;
     Integer index = 0;
+
+    public SequenceNumberGenerator(final List<Integer> mockingList) {
+        this.mockingList = mockingList;
+    }
 
     @Override
     public int generate() {
