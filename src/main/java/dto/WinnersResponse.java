@@ -3,6 +3,7 @@ package dto;
 import domain.Car;
 import domain.Winners;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WinnersResponse {
@@ -21,6 +22,6 @@ public class WinnersResponse {
     }
 
     public List<String> getNames() {
-        return names;
+        return Collections.unmodifiableList(names);
     }
 }

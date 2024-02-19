@@ -1,10 +1,11 @@
 package domain;
 
 public class RandomMovementGenerator implements MovementGenerator {
-    public static final int MOVABLE_CRITERION = 4;
+    private static final int MOVABLE_CRITERION = 4;
+
     private final NumberGenerator randomNumberGenerator;
 
-    public RandomMovementGenerator(NumberGenerator randomNumberGenerator) {
+    public RandomMovementGenerator(final NumberGenerator randomNumberGenerator) {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
@@ -16,7 +17,7 @@ public class RandomMovementGenerator implements MovementGenerator {
         return Movement.STAY;
     }
 
-    public boolean isMovable(NumberGenerator randomNumberGenerator) {
+    private boolean isMovable(NumberGenerator randomNumberGenerator) {
         return randomNumberGenerator.generate() >= MOVABLE_CRITERION;
     }
 }

@@ -7,7 +7,7 @@ public class CarReponse {
     private final String name;
     private final int distance;
 
-    public CarReponse(Car car) {
+    public CarReponse(final Car car) {
         this.name = car.getName().getName();
         this.distance = car.getDistance().getDistance();
     }

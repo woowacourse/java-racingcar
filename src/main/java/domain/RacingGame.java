@@ -1,11 +1,11 @@
 package domain;
 
 public class RacingGame {
-    private final Count countLeft;
+    private Count count;
     private final MovementGenerator randomMovementGenerator;
 
-    private RacingGame(Count countLeft, MovementGenerator randomMovementGenerator) {
-        this.countLeft = countLeft;
+    private RacingGame(final Count count, final MovementGenerator randomMovementGenerator) {
+        this.count = count;
         this.randomMovementGenerator = randomMovementGenerator;
     }
 
@@ -14,11 +14,11 @@ public class RacingGame {
     }
 
     public boolean canRun() {
-        return countLeft.isExits();
+        return count.isExits();
     }
 
     public void playTurn(Cars cars) {
         cars.move(randomMovementGenerator);
-        this.countLeft.decrease();
+        this.count = count.increase();
     }
 }

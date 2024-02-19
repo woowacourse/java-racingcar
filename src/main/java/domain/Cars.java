@@ -1,20 +1,16 @@
 package domain;
 
-import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-import dto.CarNameRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class Cars {
     public static final int MIN_CAR_COUNT = 2;
     public static final int MAX_CAR_COUNT = 50;
     private final List<Car> cars;
 
-    private Cars(List<Car> cars) {
+    private Cars(final List<Car> cars) {
         validate(cars);
         this.cars = cars;
     }
@@ -24,15 +20,24 @@ public class Cars {
     }
 
     private void validate(List<Car> cars) {
-        if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
+        if (!isValidCount(cars)) {
             throw new IllegalArgumentException("정상적인 경주를 위해 자동차는 2대에서 50대 사이로 입력해주세요.");
         }
     }
 
+    private boolean isValidCount(List<Car> cars) {
+        return cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT;
+    }
+
     public void move(MovementGenerator randomMovementGenerator) {
         cars.stream()
-                .filter(car -> randomMovementGenerator.generate().equals(Movement.MOVE)) // TODO: .이 많고 긴걸보니 어색한 부분 존재
+                .filter(car -> checkMovable(randomMovementGenerator))
                 .forEach(Car::move);
+    }
+
+    private boolean checkMovable(MovementGenerator randomMovementGenerator) {
+        Movement movement = randomMovementGenerator.generate();
+        return movement.isMovable();
     }
 
     public List<Car> getMaxDistanceCars() {

@@ -1,20 +1,14 @@
 import controller.RacingGameController;
-import domain.MovementGenerator;
-import domain.NumberGenerator;
-import domain.RandomMovementGenerator;
-import domain.RandomNumberGenerator;
-import view.Printer.ConsolePrinter;
-import view.Reader.ConsoleReader;
+import view.Printer.Printer;
 import view.InputView;
 import view.OutputView;
-import view.Printer.Printer;
 import view.Reader.Reader;
 
 public class Application {
 
     public static void main(String[] args) {
-        Reader reader = new ConsoleReader();
-        Printer printer = new ConsolePrinter();
+        Reader reader = new Reader();
+        Printer printer = new Printer();
 
         InputView inputView = InputView.of(reader, printer);
         OutputView outputView = new OutputView(printer);

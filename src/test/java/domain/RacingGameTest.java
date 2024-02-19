@@ -2,14 +2,24 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.mock.AlwaysMoveGenerator;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RacingGameTest {
+    private Cars cars;
+
+    @BeforeEach
+    void setUp() {
+        cars = Cars.from(List.of(Car.fromName("pobi"), Car.fromName("kirby")));
+    }
+
     @Test
+    @DisplayName("횟수가 남아있으면 게임을 진행할 수 있다.")
     void canRun() {
-        RacingGame racingGame = RacingGame.of(Count.from(3), new RandomMovementGenerator(new RandomNumberGenerator()));
-        Cars cars = Cars.from(List.of(Car.fromName("pobi"), Car.fromName("kirby")));
+        final RacingGame racingGame = RacingGame.of(Count.from(3), new AlwaysMoveGenerator());
 
         racingGame.playTurn(cars);
         racingGame.playTurn(cars);
@@ -17,9 +27,9 @@ class RacingGameTest {
         assertThat(racingGame.canRun()).isTrue();
     }
     @Test
+    @DisplayName("횟수가 남아있지 않으면 게임을 진행할 수 없다.")
     void canNotRun() {
-        RacingGame racingGame = RacingGame.of(Count.from(1), new RandomMovementGenerator(new RandomNumberGenerator()));
-        Cars cars = Cars.from(List.of(Car.fromName("pobi"), Car.fromName("kirby")));
+        final RacingGame racingGame = RacingGame.of(Count.from(1), new AlwaysMoveGenerator());
 
         racingGame.playTurn(cars);
 
@@ -27,10 +37,9 @@ class RacingGameTest {
     }
 
     @Test
+    @DisplayName("게임을 진행하면 이동할 수 있는 경우라면 차들이 움직인다.")
     void playTurn() {
-        MovementGenerator movementGenerator = () -> Movement.MOVE;
-        RacingGame racingGame = RacingGame.of(Count.from(2), movementGenerator);
-        Cars cars = Cars.from(List.of(Car.fromName("pobi"), Car.fromName("kirby")));
+        final RacingGame racingGame = RacingGame.of(Count.from(2), new AlwaysMoveGenerator());
 
         racingGame.playTurn(cars);
         racingGame.playTurn(cars);
