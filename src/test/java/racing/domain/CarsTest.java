@@ -46,44 +46,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("자동차 전진 거리에 따라 내림차순 정렬할 수 있다")
-    void reserveSort() {
-        Car car1 = new Car("pobi");
-        Car car2 = new Car("crong");
-        Car car3 = new Car("honux");
-        car2.move();
-        car3.move();
-        car3.move();
-        Cars cars = new Cars(new ArrayList<>(List.of(car1, car2, car3)));
-
-        cars.reverseSort();
-
-        assertThat(cars.getCars())
-                .extracting(Car::getName)
-                .containsExactly(car3.getName(), car2.getName(), car1.getName());
-    }
-
-    @Test
-    @DisplayName("전진 거리가 같은 자동차를 모두 찾을 수 있다")
-    void findCarsWithSamePosition() {
-        Car car1 = new Car("pobi");
-        Car car2 = new Car("crong");
-        Car car3 = new Car("honux");
-        car2.move();
-        car2.move();
-        car3.move();
-        car3.move();
-        Cars cars = new Cars(new ArrayList<>(List.of(car1, car2, car3)));
-
-        List<Car> carsWithSamePosition = cars.findCarsWithSamePosition(car2);
-
-        assertThat(carsWithSamePosition)
-                .extracting(Car::getName)
-                .containsExactly(car2.getName(), car3.getName());
-    }
-
-    @Test
-    @DisplayName("우승자를 찾을 수 있다")
+    @DisplayName("최대 전진 거리를 가진 모든 자동차를 우승자로 찾을 수 있다")
     void findWinners() {
         Car car1 = new Car("pobi");
         Car car2 = new Car("crong");

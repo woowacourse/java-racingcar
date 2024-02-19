@@ -31,16 +31,8 @@ public class Cars {
     }
 
     public List<Car> findWinners() {
-        reverseSort();
-        return findCarsWithSamePosition(cars.get(0));
-    }
-
-    public void reverseSort() {
         Collections.sort(cars);
-    }
-
-    public List<Car> findCarsWithSamePosition(Car target) {
-        return cars.stream().filter(car -> car.isSame(target)).toList();
+        return cars.stream().filter(car -> car.isSame(cars.get(0))).toList();
     }
 
     public List<Car> getCars() {
