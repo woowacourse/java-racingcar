@@ -7,7 +7,7 @@ public class Car {
     private final Name name;
     private int position;
 
-    public Car(final Name name) {
+    public Car(Name name) {
         this.name = name;
         this.position = INITIAL_POSITION;
     }
