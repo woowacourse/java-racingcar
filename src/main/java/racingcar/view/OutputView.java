@@ -1,7 +1,6 @@
 package racingcar.view;
 
-import racingcar.dto.CarDto;
-import racingcar.dto.CarsDto;
+import racingcar.domain.Car;
 
 import java.util.List;
 
@@ -19,16 +18,12 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printRaceResult(final List<CarsDto> raceResult) {
-        raceResult.forEach(carsDto -> printRoundResult(carsDto.getCars()));
-    }
-
-    public static void printRoundResult(final List<CarDto> cars) {
+    public static void printRoundResult(final List<Car> cars) {
         cars.forEach(OutputView::printCarInformation);
         System.out.println();
     }
 
-    private static void printCarInformation(final CarDto car) {
+    private static void printCarInformation(final Car car) {
         final StringBuilder informationBuilder = new StringBuilder();
 
         informationBuilder.append(car.getName())
@@ -38,16 +33,16 @@ public class OutputView {
         System.out.println(informationBuilder);
     }
 
-    public static void printWinners(final List<CarDto> winners) {
+    public static void printWinners(final List<Car> winners) {
         final List<String> winnerNames = findWinnerNames(winners);
         final String names = String.join(WINNER_DELIMITER, winnerNames);
 
         System.out.println(names.concat(WINNERS_MESSAGE));
     }
 
-    private static List<String> findWinnerNames(final List<CarDto> winners) {
+    private static List<String> findWinnerNames(final List<Car> winners) {
         return winners.stream()
-                .map(CarDto::getName)
+                .map(Car::getName)
                 .toList();
     }
 
