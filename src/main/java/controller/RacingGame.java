@@ -2,17 +2,15 @@ package controller;
 
 import domain.car.Car;
 import domain.car.Cars;
+import domain.car.Engine;
 import domain.name.Names;
-import domain.race.RaceCarInfo;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
 import domain.race.RaceResult;
-import util.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class RacingGame {
     private final InputView inputView;
@@ -25,7 +23,6 @@ public class RacingGame {
 
     public void play() {
         Cars cars = register();
-
         RaceCount raceCount = inputView.inputRaceCount();
 
         racing(cars.getValue(), raceCount.getValue());
@@ -38,9 +35,9 @@ public class RacingGame {
         return Cars.from(names);
     }
 
-    private void racing(final List<Car> cars,final Integer raceCount) {
+    private void racing(final List<Car> cars, final Integer raceCount) {
         outputView.printResultMessage();
-        for(int i=0;i<raceCount;i++){
+        for (int i = 0; i < raceCount; i++) {
             racePerRound(cars);
         }
     }
@@ -52,11 +49,11 @@ public class RacingGame {
     }
 
     private void race(final List<Car> cars) {
-        cars.forEach(car -> car.race(NumberGenerator.generate(Car.FORWARD_MAX_NUMBER)));
+        cars.forEach(car -> car.race(new Engine()));
     }
 
     private void finish(final List<Car> cars) {
-        RaceResult raceResult = RaceResult.from(cars);
+        RaceResult raceResult = RaceResult.findWinner(cars);
         outputView.printRaceResult(raceResult);
     }
 }

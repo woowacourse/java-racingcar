@@ -3,11 +3,9 @@ package domain.car;
 import domain.name.Name;
 
 public class Car {
-    private static final int INITIAL_POSITION=0;
-    public static final int FORWARD_MAX_NUMBER = 10;
+    private static final int INITIAL_POSITION = 0;
     private final Name name;
     private int position;
-    private static final int FORWARD_THRESHOLD = 4;
 
     public Car(Name name) {
         this.name = name;
@@ -18,21 +16,18 @@ public class Car {
         return name;
     }
 
-    public Integer getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void race(Integer number) {
-        if (number >= FORWARD_THRESHOLD) {
+    public void race(final MovableStrategy engine) {
+        if (engine.isMove()) {
             this.position++;
         }
     }
 
-    public boolean comparePosition(int position){
-        if(this.position==position){
-            return true;
-        }
-        return false;
+    public boolean comparePosition(final int position) {
+        return this.position == position;
     }
 
 }

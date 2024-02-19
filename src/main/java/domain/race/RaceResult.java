@@ -7,7 +7,7 @@ import java.util.List;
 public class RaceResult {
     private final List<Car> winnerCars;
 
-    public static RaceResult from(List<Car> cars) {
+    public static RaceResult findWinner(List<Car> cars) {
         Integer maxPosition = getMaxPosition(cars);
         List<Car> winnerCars = selectWinnerCars(cars, maxPosition);
         return new RaceResult(winnerCars);

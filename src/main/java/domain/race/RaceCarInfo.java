@@ -12,7 +12,6 @@ public class RaceCarInfo {
         this.position = position;
     }
 
-
     public static RaceCarInfo from(Car car) {
         return new RaceCarInfo(car.getName(), car.getPosition());
     }

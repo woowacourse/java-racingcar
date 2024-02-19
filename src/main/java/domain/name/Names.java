@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 public class Names {
     private final List<Name> names;
 
-    public Names(List<Name> carNames) {
-        validate(carNames);
-        this.names = carNames;
+    public Names(List<Name> names) {
+        validate(names);
+        this.names = names;
     }
 
     private void validate(List<Name> names) {

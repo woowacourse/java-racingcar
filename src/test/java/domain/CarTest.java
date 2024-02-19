@@ -1,6 +1,8 @@
 package domain;
 
 import domain.car.Car;
+import domain.car.MovableEngine;
+import domain.car.StuckEngine;
 import domain.name.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,26 +25,25 @@ class CarTest {
         assertInstanceOf(Car.class, car);
     }
 
-    @ParameterizedTest
+    @Test
     @DisplayName("4 이상이면 위치를 한 칸 전진한다.")
-    @ValueSource(ints = {4, 5})
-    public void forwardPositionWhenNumberIsGreaterThan4(Integer value) {
+    public void forwardPositionWhenNumberIsGreaterThan4() {
         Car car = new Car(new Name("kim"));
-        Integer pos = car.getPosition();
 
-        car.race(value);
+        int position = car.getPosition();
+        car.race(new MovableEngine());
 
-        assertEquals(car.getPosition(), pos + 1);
+        assertEquals(position + 1, car.getPosition());
     }
-    @ParameterizedTest
+
+    @Test
     @DisplayName("4 미만이면 위치는 변하지 않는다.")
-    @ValueSource(ints = {2, 3})
-    public void stayPositionWhenNumberIsUnderThan4(Integer value) {
+    public void stayPositionWhenNumberIsUnderThan4() {
         Car car = new Car(new Name("kim"));
-        Integer pos = car.getPosition();
 
-        car.race(value);
+        int position = car.getPosition();
+        car.race(new StuckEngine());
 
-        assertEquals(car.getPosition(), pos);
+        assertEquals(car.getPosition(), position);
     }
 }
