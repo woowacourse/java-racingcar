@@ -26,7 +26,7 @@ public class Cars {
                 .max(Comparator.comparing(Car::getCount))
                 .get();
         return cars.stream()
-                .filter(car -> car.isAlsoWinner(winnerCar))
+                .filter(car -> car.isSameCount(winnerCar))
                 .toList();
     }
 }
