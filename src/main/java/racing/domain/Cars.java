@@ -11,12 +11,8 @@ public class Cars {
 
     public Cars(String rawNames) {
         List<String> carNames = parseNames(rawNames);
-        validate(carNames);
+        validateDuplicateName(carNames);
         this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
-    }
-
-    private void validate(List<String> cars) {
-        validateDuplicateName(cars);
     }
 
     private static void validateDuplicateName(List<String> cars) {
