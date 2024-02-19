@@ -16,7 +16,7 @@ class RaceTest {
         Car carA = new Car("carA");
         Car carB = new Car("carB");
         List<Car> carList = List.of(carA, carB);
-        Race race = new Race(carList);
+        Race race = new Race(carList, new CarMoveStrategy(new RandomMoveStrategy()));
 
         // when
         carB.move(true);
@@ -34,7 +34,7 @@ class RaceTest {
         Car carB = new Car("carB");
         Car carC = new Car("carC");
         List<Car> carList = List.of(carA, carB, carC);
-        Race race = new Race(carList);
+        Race race = new Race(carList, new CarMoveStrategy(new RandomMoveStrategy()));
 
         // when
         carA.move(true);
