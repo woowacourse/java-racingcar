@@ -19,6 +19,6 @@ public class RacingGame {
 
     public void playTurn(Cars cars) {
         cars.move(randomMovementGenerator);
-        count.increase();
+        this.count = count.increase();
     }
 }

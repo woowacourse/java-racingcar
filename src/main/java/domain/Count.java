@@ -5,12 +5,12 @@ import java.util.Objects;
 public class Count {
     public static final int MIN_COUNT = 1;
     public static final int MAX_COUNT = 100;
-    private final int maxCount;
+    private final int inputCount;
     private int currentCount;
 
-    private Count(final int maxCount, int currentCount) {
-        validate(maxCount);
-        this.maxCount = maxCount;
+    private Count(final int inputCount, final int currentCount) {
+        validate(inputCount);
+        this.inputCount = inputCount;
         this.currentCount = currentCount;
     }
 
@@ -29,11 +29,11 @@ public class Count {
     }
 
     public boolean isExits() {
-        return maxCount >= currentCount;
+        return inputCount >= currentCount;
     }
 
-    public void increase() {
-        currentCount++;
+    public Count increase() {
+        return new Count(this.inputCount, currentCount + 1);
     }
 
     @Override
@@ -45,11 +45,11 @@ public class Count {
             return false;
         }
         Count count = (Count) o;
-        return maxCount == count.maxCount && currentCount == count.currentCount;
+        return inputCount == count.inputCount && currentCount == count.currentCount;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxCount, currentCount);
+        return Objects.hash(inputCount, currentCount);
     }
 }
