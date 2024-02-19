@@ -14,9 +14,10 @@ public class OutputView {
         System.out.printf(String.format(WINNERS, winnerNames));
     }
 
-    public void printResult(){
+    public void printResult() {
         System.out.println(RESULT);
     }
+
     public void printOngoingResult(List<Car> rawResult) {
         String result = rawResult.stream()
                 .map(Object::toString)
