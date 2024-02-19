@@ -13,11 +13,6 @@ public class OutputView {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
-    public static void printCarStatus(Cars cars) {
-        System.out.println(cars);
-        System.out.println();
-    }
-
     public static void printGameResult(GameResult result, GameWinner winner) {
         System.out.println("\n실행 결과");
         result.getGameResult();
