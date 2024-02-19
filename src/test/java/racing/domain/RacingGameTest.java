@@ -26,8 +26,8 @@ class RacingGameTest {
     RacingResults expected = new RacingResults(List.of(
         new RacingResult(Map.of("testA", 1, "testB", 0, "testC", 1))));
     //then
-    Assertions.assertThat(racingResults.isSameResult(expected))
-        .isTrue();
+    Assertions.assertThat(racingResults.toList())
+        .containsExactlyElementsOf(expected.toList());
   }
 
   @Test

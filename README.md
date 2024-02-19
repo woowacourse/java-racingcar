@@ -88,3 +88,4 @@ pobi, honux가 최종 우승했습니다.
 - [ ] Car의 stop 메서드 제거
 - [ ] RaceController.readFromConsole 메서드 위치 뷰로 변경
 - [ ] 입출력 검증을 뷰에서 분리
+- [x] 테스트에서만 사용하는 비즈니스 코드 삭제

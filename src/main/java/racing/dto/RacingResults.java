@@ -2,7 +2,6 @@ package racing.dto;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -38,11 +37,5 @@ public class RacingResults {
 
   public List<RacingResult> toList() {
     return racingResults;
-  }
-
-  public boolean isSameResult(RacingResults other) {
-    boolean containsAll = new HashSet<>(other.racingResults).containsAll(racingResults);
-    boolean isSameSize = other.racingResults.size() == racingResults.size();
-    return isSameSize && containsAll;
   }
 }
