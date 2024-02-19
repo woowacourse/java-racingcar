@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.*;
-import racingcar.utils.Converter;
+import racingcar.utils.CarNameConverter;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -28,7 +28,7 @@ public class MainController {
 
     private Cars initializeCars() {
         String inputCarNames = InputView.inputCarNames();
-        List<String> carNames = Converter.convert(inputCarNames);
+        List<String> carNames = CarNameConverter.convertToCarNames(inputCarNames);
 
         return carNames.stream()
                 .map(Car::new)
