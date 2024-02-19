@@ -3,7 +3,7 @@ package racingcar.view;
 import java.util.List;
 import java.util.Scanner;
 
-import static racingcar.message.ErrorMessage.*;
+import static racingcar.message.ErrorMessage.MESSAGE_ONLY_NUMBER;
 import static racingcar.validator.Validator.*;
 
 public class InputView {

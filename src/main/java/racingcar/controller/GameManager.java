@@ -1,14 +1,12 @@
 package racingcar.controller;
 
-import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.util.RandomGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
 
-import static racingcar.domain.Cars.*;
+import static racingcar.domain.Cars.makeNewCars;
 
 public class GameManager {
 

@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import racingcar.util.RandomGenerator;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Cars {
