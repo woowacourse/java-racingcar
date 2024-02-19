@@ -1,9 +1,8 @@
-package util;
+package racing.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import racing.domain.NumberGenerator;
 
 public class RandomGenerator implements NumberGenerator {
 

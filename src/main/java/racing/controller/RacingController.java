@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import racing.domain.RacingGame;
+import racing.domain.RandomGenerator;
 import racing.dto.RacingResults;
 import racing.view.CarNameInputView;
 import racing.view.InputGuideOutputView;
 import racing.view.RacingMaxTurnInputView;
 import racing.view.RacingResultOutputView;
-import util.RandomGenerator;
 import util.RetryHelper;
 
 public class RacingController {
