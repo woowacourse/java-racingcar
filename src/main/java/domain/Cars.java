@@ -23,7 +23,7 @@ public class Cars {
 
 
     private void validate(List<Car> cars) {
-        if (!(cars.size() >= MIN_CAR_COUNT && cars.size() <= MAX_CAR_COUNT)) {
+        if (cars.size() < MIN_CAR_COUNT || cars.size() > MAX_CAR_COUNT) {
             throw new IllegalArgumentException("경주할 수 있는 자동차는 2대에서 50대 사이입니다");
         }
     }
@@ -32,23 +32,26 @@ public class Cars {
         List<TurnResult> turnResults = new ArrayList<>();
         int counter = 1;
         while (count.isGreaterOrEqualThan(counter)) {
-            cars.forEach(car -> moveCar(randomMovementGenerator, car));
             turnResults.add(new TurnResult(cars.stream()
-                    .map(CarStatus::new)
+                    .map(car -> moveCar(randomMovementGenerator, car))
                     .collect(Collectors.toList())));
             counter++;
         }
         return turnResults;
     }
 
-    private void moveCar(RandomMovementGenerator randomMovementGenerator, Car car) {
+    private CarStatus moveCar(RandomMovementGenerator randomMovementGenerator, Car car) {
         if (randomMovementGenerator.generate()) {
             car.move();
         }
+        return CarStatus.of(car);
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Car> getCar() {
+        return this.cars;
     }
 
+    public List<CarStatus> toDto() {
+        return cars.stream().map(CarStatus::of).collect(Collectors.toList());
+    }
 }
