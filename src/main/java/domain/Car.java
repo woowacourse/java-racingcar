@@ -2,19 +2,19 @@ package domain;
 
 import util.Exceptions;
 
-public class Car implements Comparable<Car> {
+public class Car {
 
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_FORWARD_NUMBER = 4;
+    private static final int MIN_POWER = 4;
 
     private final String name;
-    private int forward;
+    private int position;
 
     public Car(String name) {
         validate(name);
 
         this.name = name;
-        this.forward = 0;
+        this.position = 0;
     }
 
     private void validate(String name) {
@@ -34,27 +34,22 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public void move(int randomNumber) {
-        if (checkForward(randomNumber)) {
-            forward += 1;
+    public void move(int power) {
+        if (canMove(power)) {
+            position += 1;
         }
     }
 
-    private boolean checkForward(int randomNumber) {
-        return randomNumber >= MIN_FORWARD_NUMBER;
+    private boolean canMove(int power) {
+        return power >= MIN_POWER;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getForward() {
-        return forward;
-    }
-
-    @Override
-    public int compareTo(Car c) {
-        return Integer.compare(forward, c.forward);
+    public int getPosition() {
+        return position;
     }
 
 }

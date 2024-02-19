@@ -7,38 +7,42 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
 
-    @DisplayName("5자 이내 이름으로 자동차를 생성한다.")
+    private static String VALID_LENGTH_NAME = "자동차";
+    private static String INVALID_LENGTH_NAME = "너무긴자동차";
+
+    @DisplayName("제한 길이 이내의 이름으로 자동차를 생성한다.")
     @Test
     void carGenerateTest() {
-        assertThatCode(() -> new Car("테스트")).doesNotThrowAnyException();
+        Car car = new Car(VALID_LENGTH_NAME);
+        assertThat(car.getName()).isEqualTo(VALID_LENGTH_NAME);
     }
 
-    @DisplayName("자동차 이름 5자 초과 예외 테스트")
+    @DisplayName("이름이 제한된 길이를 초과하여 예외를 던진다.")
     @Test
     void validateCarNameLengthTest() {
-        assertThatThrownBy(() -> new Car("실패하는테스트")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Car(INVALID_LENGTH_NAME)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("자동차 이름 공백 포함 예외 테스트")
+    @DisplayName("이름에 공백을 포함하면 예외를 던진다.")
     @Test
     void validateCarNameBlankTest() {
         assertThatThrownBy(() -> new Car("실패하는 테스트")).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("자동차 전진 테스트")
+    @DisplayName("자동차가 전진한다.")
     @Test
     void forwardTest() {
         Car car = new Car("test");
         car.move(4);
-        assertThat(car).extracting("forward").isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
-    @DisplayName("자동차 멈춤 테스트")
+    @DisplayName("자동차가 멈춘다.")
     @Test
     void stopTest() {
         Car car = new Car("test");
         car.move(3);
-        assertThat(car).extracting("forward").isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
 }

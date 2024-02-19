@@ -10,7 +10,10 @@ public class Cars {
 
     public Cars(List<String> names) {
         validateDuplicatedNames(names);
-        cars = createCarsByNames(names);
+        cars = new ArrayList<>();
+        for (String name : names) {
+            cars.add(new Car(name));
+        }
     }
 
     private void validateDuplicatedNames(List<String> names) {
@@ -19,18 +22,8 @@ public class Cars {
         }
     }
 
-    private List<Car> createCarsByNames(List<String> names) {
-        List<Car> cars = new ArrayList<>();
-
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
-
-        return cars;
-    }
-
-    public int getMaxForward() {
-        return cars.stream().max(Car::compareTo).get().getForward();
+    public int getMaxPosition() {
+        return cars.stream().mapToInt(Car::getPosition).max().orElseThrow();
     }
 
     public List<Car> getCars() {
