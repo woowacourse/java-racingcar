@@ -15,6 +15,9 @@ public class Car implements Comparable<Car> {
     }
 
     private void validate(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("이름은 null일 수 없습니다.");
+        }
         if (!name.matches("^[a-zA-Z]{" + MIN_NAME_LENGTH + "," + MAX_NAME_LENGTH + "}$")) {
             throw new IllegalArgumentException(
                 MIN_NAME_LENGTH + "~" + MAX_NAME_LENGTH + "자의 알파벳만 입력 가능합니다.");
