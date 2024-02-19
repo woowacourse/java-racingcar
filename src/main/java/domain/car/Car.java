@@ -20,14 +20,14 @@ public class Car {
     }
 
     public boolean isSamePosition(int maxPosition) {
-        return position.getPosition() == maxPosition;
+        return position.getValue() == maxPosition;
     }
 
     public String getName() {
-        return name.getName();
+        return name.getValue();
     }
 
     public int getPosition() {
-        return position.getPosition();
+        return position.getValue();
     }
 }

@@ -1,19 +1,17 @@
 package domain.car;
 
-import java.util.Objects;
-
 public final class CarPosition {
-    private int position;
+    private int value;
 
-    public CarPosition(int position) {
-        this.position = position;
+    public CarPosition(int value) {
+        this.value = value;
     }
 
     public void move(int distance) {
-        this.position += distance;
+        this.value += distance;
     }
 
-    public int getPosition() {
-        return position;
+    public int getValue() {
+        return value;
     }
 }
