@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static util.Constants.MIN_FORWARD_NUMBER;
 
 class CarsTest {
+
+    private final int MIN_FORWARD_NUMBER = 4;
 
     @DisplayName("Cars 생성 성공 테스트")
     @Test

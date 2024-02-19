@@ -1,7 +1,6 @@
 package controller;
 
 import domain.Cars;
-import util.Exceptions;
 import view.InputView;
 import view.OutputView;
 
@@ -9,6 +8,11 @@ import java.util.List;
 
 
 public class RacingCarGame {
+
+    private final String NULL_EXCEPTION = "[ERROR] 입력 값은 null일 수 없습니다.";
+    private final String NUMBER_FORMAT_EXCEPTION = "[ERROR] 숫자가 아닌 값은 입력할 수 없습니다.";
+    private final String NUMBER_RANGE_EXCEPTION = "[ERROR] 0 이하 숫자는 입력할 수 없습니다.";
+
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -42,7 +46,7 @@ public class RacingCarGame {
 
     private void validateIsNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException(Exceptions.NULL_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(NULL_EXCEPTION);
         }
     }
 
@@ -62,13 +66,13 @@ public class RacingCarGame {
         try {
             Integer.parseInt(rawCount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Exceptions.NUMBER_FORMAT_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION);
         }
     }
 
     private void validateInvalidNumber(int count) {
         if (count <= 0) {
-            throw new IllegalArgumentException(Exceptions.NUMBER_RANGE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(NUMBER_RANGE_EXCEPTION);
         }
     }
 

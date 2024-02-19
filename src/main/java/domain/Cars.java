@@ -1,6 +1,5 @@
 package domain;
 
-import util.Exceptions;
 import util.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -9,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Cars {
+
+    private final String DUPLICATED_NAME_EXCEPTION = "[ERROR] 자동차 이름은 중복될 수 없습니다.";
 
     private final List<Car> cars;
 
@@ -19,7 +20,7 @@ public class Cars {
 
     private void validateDuplicatedNames(List<String> names) {
         if (names.size() != Set.copyOf(names).size()) {
-            throw new IllegalArgumentException(Exceptions.DUPLICATED_NAME_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(DUPLICATED_NAME_EXCEPTION);
         }
     }
 

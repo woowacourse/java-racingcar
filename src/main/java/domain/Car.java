@@ -1,9 +1,11 @@
 package domain;
 
-import util.Constants;
-import util.Exceptions;
-
 public class Car {
+
+    private final int MAX_NAME_LENGTH = 5;
+    private final int MIN_FORWARD_NUMBER = 4;
+    private final String MAX_NAME_EXCEPTION = "[ERROR] 이름은 5글자를 초과할 수 없습니다.";
+    private final String NAME_FORMAT_EXCEPTION = "[ERROR] 이름에 공백을 포함할 수 없습니다.";
 
     private final String name;
     private int forward;
@@ -17,14 +19,14 @@ public class Car {
     }
 
     private void validateCarNameLength(String name) {
-        if (name.length() > Constants.MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(Exceptions.MAX_NAME_EXCEPTION.getMessage());
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(MAX_NAME_EXCEPTION);
         }
     }
 
     private void validateNameFormat(String name) {
         if (name.contains(" ")) {
-            throw new IllegalArgumentException(Exceptions.NAME_FORMAT_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(NAME_FORMAT_EXCEPTION);
         }
     }
 
@@ -35,7 +37,7 @@ public class Car {
     }
 
     private boolean checkCanDrive(int randomNumber) {
-        return randomNumber >= Constants.MIN_FORWARD_NUMBER;
+        return randomNumber >= MIN_FORWARD_NUMBER;
     }
 
     public String getName() {
