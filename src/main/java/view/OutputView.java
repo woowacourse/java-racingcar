@@ -1,10 +1,12 @@
 package view;
 
-import static view.ViewMessages.*;
+import dto.CarState;
+import dto.RacingResult;
+import dto.RacingStatus;
 
-import domain.Car;
-import domain.Cars;
-import dto.Winners;
+import java.util.List;
+
+import static view.ViewMessages.*;
 
 public class OutputView {
     public static void printError(String errorMessage) {
@@ -19,18 +21,30 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printResult(Cars cars) {
-        for (Car car : cars.getCars()) {
-            String.format(
-                    RESULT_FORMAT,
-                    car.getName(),
-                    POSITION_SYMBOL.repeat(car.getPosition())
-            );
-        }
-        printNewLine();
+    public static void printResult(RacingResult racingResult) {
+        printResultMessage();
+        printRacingStatuses(racingResult);
+        printWinners(racingResult.winners());
     }
 
-    public static void printWinners(Winners winners) {
-        System.out.println(String.join(WINNER_SEPARATOR, winners.winners()) + WINNER_MESSAGE);
+    private static void printRacingStatuses(RacingResult racingResult) {
+        for (RacingStatus racingStatus : racingResult.racingStatuses()) {
+            for (CarState carState : racingStatus.carStates()) {
+                System.out.println(formatCarState(carState));
+            }
+            printNewLine();
+        }
+    }
+
+    private static String formatCarState(CarState carState) {
+        return String.format(
+                RESULT_FORMAT,
+                carState.carName(),
+                POSITION_SYMBOL.repeat(carState.position())
+        );
+    }
+
+    public static void printWinners(List<String> winners) {
+        System.out.println(String.join(WINNER_SEPARATOR, winners) + WINNER_MESSAGE);
     }
 }

@@ -1,8 +1,10 @@
 package dto;
 
+
 import java.util.List;
 
-public record Winners(
+public record RacingResult(
+        List<RacingStatus> racingStatuses,
         List<String> winners
 ) {
 }

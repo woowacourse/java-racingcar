@@ -1,37 +1,53 @@
 package domain;
 
-import dto.Winners;
+import dto.CarState;
+import dto.RacingStatus;
 import exception.ErrorMessage;
 import exception.RacingCarGameException;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
+    private final RandomPowerGenerator randomPowerGenerator;
 
-    public Cars(List<Car> cars) {
+    private Cars(List<Car> cars, RandomPowerGenerator randomPowerGenerator) {
         this.cars = cars;
+        this.randomPowerGenerator = randomPowerGenerator;
     }
 
     public static Cars from(List<String> carNames) {
         validateUniqueName(carNames);
         List<Car> cars = convertToCarList(carNames);
-        return new Cars(cars);
+        RandomPowerGenerator randomPowerGenerator = new RandomPowerGenerator();
+        return new Cars(cars, randomPowerGenerator);
+    }
+
+    public static Cars from(List<String> carNames, RandomPowerGenerator randomPowerGenerator) {
+        validateUniqueName(carNames);
+        List<Car> cars = convertToCarList(carNames);
+        return new Cars(cars, randomPowerGenerator);
     }
 
     private static List<Car> convertToCarList(List<String> carNames) {
         return carNames.stream()
-                .map(name -> new Car(new CarName(name)))
+                .map(CarName::new)
+                .map(Car::new)
                 .toList();
     }
 
     private static void validateUniqueName(List<String> names) {
-        if(isDuplicatedName(names)) {
+        if (isDuplicatedName(names)) {
             throw RacingCarGameException.from(ErrorMessage.DUPLICATED_NAME_ERROR);
         }
+        if (isEmptyNames(names)) {
+            throw RacingCarGameException.from(ErrorMessage.INVALID_NAME_ERROR);
+        }
+    }
+
+    private static boolean isEmptyNames(List<String> names) {
+        return names.isEmpty();
     }
 
     private static boolean isDuplicatedName(List<String> names) {
@@ -44,29 +60,20 @@ public class Cars {
                 .count();
     }
 
-    public void move() {
-        for (Car car : cars) {
-            car.move();
-        }
+    public RacingStatus race() {
+        List<CarState> carStates = cars.stream().map(car -> car.move(randomPowerGenerator.generate())).toList();
+        return new RacingStatus(carStates);
     }
 
-    public Winners judge() {
-        List<String> winners = new ArrayList<>();
-        int max = findMaxPosition();
-        for(Car car : cars)  {
-            Optional<String> maxCarName =  car.getNameIfMax(max);
-            if(maxCarName.isPresent()) {
-                winners.add(maxCarName.get());
-            }
-        }
-        return new Winners(winners);
+    public List<String> getWinners() {
+        return cars.stream().filter(car -> car.getPosition() == findMaxPosition()).map(Car::getName).toList();
     }
 
     private int findMaxPosition() {
         return cars.stream()
-                .mapToInt(car -> car.getPosition())
+                .mapToInt(Car::getPosition)
                 .max()
-                .orElseThrow(() -> new IllegalStateException());
+                .orElseThrow(IllegalStateException::new);
     }
 
     public List<Car> getCars() {
