@@ -29,10 +29,11 @@ public class Game {
         return carsName.stream().map(Car::new).toList();
     }
 
-    public void proceed() {
+    public List<Car> proceed() {
         for (Car car : cars) {
             applyStatus(new Random().nextInt(10), car);
         }
+        return new ArrayList<>(cars);
     }
 
     private void applyStatus(int power, Car car) {
@@ -51,9 +52,5 @@ public class Game {
     List<Car> findWinners(List<Car> cars) {
         int winnersScore = Collections.max(cars.stream().map(Car::getForwardCount).toList());
         return cars.stream().filter(car -> car.getForwardCount() == winnersScore).toList();
-    }
-
-    public List<Car> getCars() {
-        return new ArrayList<>(cars);
     }
 }
