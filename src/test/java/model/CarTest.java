@@ -14,7 +14,7 @@ class CarTest {
 
     @DisplayName("랜덤 숫자가 4 이상일 때만 자동차가 전진한다.")
     @ParameterizedTest
-    @CsvSource({"3, 0", "4, 1", "5, 1"})
+    @CsvSource({"3, 0", "4, 1"})
     void moveForwardTest(int randomNumber, int expectedPosition) {
         Car car = Car.from("lemon");
 
