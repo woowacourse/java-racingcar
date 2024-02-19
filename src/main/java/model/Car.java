@@ -16,12 +16,6 @@ public class Car {
         this.movement = 0;
     }
 
-    Car(String name, int movement) {
-        validateName(name);
-        this.name = name;
-        this.movement = movement;
-    }
-
     private void validateName(String carName) {
         validateNameLength(carName);
         validateNameExists(carName);

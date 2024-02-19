@@ -11,11 +11,13 @@ class CarsTest {
     @Test
     @DisplayName("공동 우승자가 존재하는 경우 공동 우승자 모두를 반환한다.")
     void findWinnersTest() {
-        Car myungOh = new Car("명오", 1);
-        Car baeky = new Car("배키", 1);
+        Car myungOh = new Car("명오");
+        Car baeky = new Car("배키");
         Cars cars = new Cars(List.of(myungOh, baeky));
         List<Car> result = cars.findWinners();
         List<Car> expected = List.of(myungOh, baeky);
+        myungOh.move(true);
+        baeky.move(true);
 
         assertThat(result).isEqualTo(expected);
     }
@@ -23,11 +25,13 @@ class CarsTest {
     @Test
     @DisplayName("1명의 우승자가 존재하는 경우 우승자를 반환한다.")
     void findWinnerTest() {
-        Car myungOh = new Car("명오", 1);
-        Car baeky = new Car("배키", 0);
+        Car myungOh = new Car("명오");
+        Car baeky = new Car("배키");
         Cars cars = new Cars(List.of(myungOh, baeky));
         List<Car> result = cars.findWinners();
         List<Car> expected = List.of(myungOh);
+        myungOh.move(true);
+        baeky.move(false);
 
         assertThat(result).isEqualTo(expected);
     }
