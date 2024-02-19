@@ -55,11 +55,12 @@ public class RacingGame {
         }
     }
 
+    public List<String> findWinnerNames() {
+        return cars.findMaxPositionCarName();
+    }
+
     public List<ResultByRoundDto> getAllRacingRecord() {
         return this.raceRecord;
     }
 
-    public List<String> findWinnerNames() {
-        return cars.findMaxPositionCarName();
-    }
 }
