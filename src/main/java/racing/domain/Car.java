@@ -3,6 +3,7 @@ package racing.domain;
 public class Car implements Comparable<Car> {
     public static final int MAX_NAME_LENGTH = 5;
     public static final int MINIMUM_FORWARD_NUMBER = 4;
+
     private final String name;
     private int position;
 
