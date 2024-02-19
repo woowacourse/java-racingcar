@@ -6,7 +6,7 @@ public class ErrorHandler {
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    public <T> T executeErrorOccurable(Supplier<T> supplier) {
+    public <T> T readUntilNoExceptionOccurs(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();
