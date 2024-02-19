@@ -18,7 +18,7 @@ public class Cars {
     private static void validateDuplicateName(List<String> carNames) {
         int count = (int) carNames.stream().distinct().count();
         if (count != carNames.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[Error] 이름이 중복되었습니다.");
         }
     }
 

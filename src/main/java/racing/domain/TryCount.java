@@ -10,7 +10,7 @@ public class TryCount {
 
     private void validate(int tryCount) {
         if (tryCount <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[Error] 횟수는 한번 이상이어야 합니다.");
         }
     }
 

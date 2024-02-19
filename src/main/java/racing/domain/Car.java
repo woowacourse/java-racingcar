@@ -19,7 +19,7 @@ public class Car implements Comparable<Car> {
 
     private void validateSize(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[Error] 이름은 5글자 이하여야 합니다.");
         }
     }
 
