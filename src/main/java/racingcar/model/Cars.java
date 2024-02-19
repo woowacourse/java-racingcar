@@ -27,19 +27,10 @@ public class Cars {
         return Collections.unmodifiableList(cars);
     }
 
-    public List<Car> determineWinners() {
-        int farthestDistance = getFarthestDistance();
-
+    public List<Car> determineWinners(int farthestPosition) {
         return cars.stream()
-                .filter(car -> car.isFurthestPosition(farthestDistance))
+                .filter(car -> car.isFurthestPosition(farthestPosition))
                 .collect(Collectors.toList());
-    }
-
-    private int getFarthestDistance() {
-        return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
     }
 
 }
