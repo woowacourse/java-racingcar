@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
@@ -24,12 +23,20 @@ class CarTest {
 
     @ParameterizedTest
     @EmptySource
-    @NullSource
     @ValueSource(strings = {" "})
     @DisplayName("이름 예외 입력: 자동차의 이름은 공백일 수 없다.")
     void carName_exception_noBlank_noEmpty(String name) {
         assertThatThrownBy(() -> new Car(name))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자의 알파벳만 입력 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("이름 예외 입력: 자동차의 이름은 null일 수 없다.")
+    void carName_exception_notNull() {
+        assertThatThrownBy(() -> new Car(null))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("이름은 null일 수 없습니다.");
     }
 
     @ParameterizedTest
@@ -37,7 +44,8 @@ class CarTest {
     @DisplayName("이름 예외 입력: 자동차의 이름은 1~5자만 허용된다.")
     void carName_exception_cantViolateLengthRegulations(String name) {
         assertThatThrownBy(() -> new Car(name))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자의 알파벳만 입력 가능합니다.");
     }
 
     @ParameterizedTest
@@ -45,7 +53,8 @@ class CarTest {
     @DisplayName("이름 예외 입력: 자동차의 이름은 알파벳만 가능하다.")
     void carName_exception_cantIncludeNonAlphabets(String name) {
         assertThatThrownBy(() -> new Car(name))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("자의 알파벳만 입력 가능합니다.");
     }
 
     @Test

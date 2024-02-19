@@ -36,7 +36,8 @@ class RacingGameTest {
     @DisplayName("자동차 이름 예외 입력: 자동차 이름에 중복이 있어서는 안 된다.")
     void carNames_exception_noDuplication() {
         assertThatThrownBy(() -> new RacingGame("aa,aa,bb", moveStrategy))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("중복되거나 비어 있는 자동차 이름이 있습니다.");
     }
 
     @ParameterizedTest
@@ -46,7 +47,8 @@ class RacingGameTest {
     @DisplayName("자동차 이름 예외 입력: 입력이 비어 있거나 null이면 안 된다.")
     void carNames_exception_noEmptyInput(String rawCarNames) {
         assertThatThrownBy(() -> new RacingGame(rawCarNames, moveStrategy))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("null 값이나 빈 문자열을 입력할 수 없습니다.");
     }
 
     @Test
