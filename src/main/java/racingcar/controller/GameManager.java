@@ -10,9 +10,6 @@ import static racingcar.domain.Cars.makeNewCars;
 
 public class GameManager {
 
-    private static final int MAX_RANDOM_NUMBER = 9;
-    private static final int MINIMUM_MOVEMENT_CONDITION = 4;
-
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
 
