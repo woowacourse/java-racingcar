@@ -17,8 +17,8 @@ public class Round {
         }
     }
 
-    public boolean isLast() {
-        return remainingRound == MINIMUM_ROUND;
+    public boolean isPlayable() {
+        return remainingRound > MINIMUM_ROUND;
     }
 
     public void decrease() {

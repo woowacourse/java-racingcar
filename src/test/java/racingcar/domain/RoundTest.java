@@ -16,12 +16,12 @@ class RoundTest {
     }
 
     @Test
-    @DisplayName("라운드를 줄일 수 있다.")
+    @DisplayName("진행할 라운드가 더 남아있는지 여부를 알 수 있다.")
     void decrease() {
         Round round = new Round(1);
-        assertThat(round.isLast()).isFalse();
+        assertThat(round.isPlayable()).isTrue();
 
         round.decrease();
-        assertThat(round.isLast()).isTrue();
+        assertThat(round.isPlayable()).isFalse();
     }
 }

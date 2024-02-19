@@ -15,16 +15,12 @@ public class CarRacingGame {
     public List<RoundResult> race(NumberGenerator numberGenerator) {
         List<RoundResult> roundResults = new LinkedList<>();
 
-        while (isPlayable()) {
+        while (round.isPlayable()) {
             RoundResult roundResult = playRound(numberGenerator);
             roundResults.add(roundResult);
         }
 
         return roundResults;
-    }
-
-    private boolean isPlayable() {
-        return !round.isLast();
     }
 
     private RoundResult playRound(NumberGenerator numberGenerator) {
