@@ -22,8 +22,8 @@ public class Cars {
         }
     }
 
-    public int getMaxForward() {
-        return cars.stream().mapToInt(Car::getForward).max().orElseThrow();
+    public int getMaxPosition() {
+        return cars.stream().mapToInt(Car::getPosition).max().orElseThrow();
     }
 
     public List<Car> getCars() {

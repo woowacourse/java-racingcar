@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarsTest {
 
-    private static final int MIN_FORWARD_NUMBER = 4;
+    private static final int MIN_POWER = 4;
 
     @DisplayName("주어진 이름 목록으로 자동차 목록을 생성한다.")
     @Test
@@ -32,12 +32,12 @@ class CarsTest {
     void getMaxForwardTest() {
         List<String> names = List.of("가", "나", "다");
         Cars cars = new Cars(names);
-        int expectedMaxForward = 2;
+        int expectedMaxPosition = 2;
 
-        cars.getCars().get(0).move(MIN_FORWARD_NUMBER);
-        cars.getCars().get(1).move(MIN_FORWARD_NUMBER);
-        cars.getCars().get(1).move(MIN_FORWARD_NUMBER);
+        cars.getCars().get(0).move(MIN_POWER);
+        cars.getCars().get(1).move(MIN_POWER);
+        cars.getCars().get(1).move(MIN_POWER);
 
-        assertThat(cars.getMaxForward()).isEqualTo(expectedMaxForward);
+        assertThat(cars.getMaxPosition()).isEqualTo(expectedMaxPosition);
     }
 }

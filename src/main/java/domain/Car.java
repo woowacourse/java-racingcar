@@ -8,13 +8,13 @@ public class Car {
     private static final int MIN_POWER = 4;
 
     private final String name;
-    private int forward;
+    private int position;
 
     public Car(String name) {
         validate(name);
 
         this.name = name;
-        this.forward = 0;
+        this.position = 0;
     }
 
     private void validate(String name) {
@@ -36,7 +36,7 @@ public class Car {
 
     public void move(int power) {
         if (canMove(power)) {
-            forward += 1;
+            position += 1;
         }
     }
 
@@ -48,8 +48,8 @@ public class Car {
         return name;
     }
 
-    public int getForward() {
-        return forward;
+    public int getPosition() {
+        return position;
     }
 
 }

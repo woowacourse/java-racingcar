@@ -12,7 +12,7 @@ public class Winners {
 
     public static Winners findWinners(Cars cars) {
         List<String> winners = cars.getCars().stream()
-                .filter(car -> car.getForward() == cars.getMaxForward())
+                .filter(car -> car.getPosition() == cars.getMaxPosition())
                 .map(Car::getName)
                 .toList();
 
