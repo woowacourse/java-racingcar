@@ -13,7 +13,7 @@ public class RacingCarGame {
         Game game = createGame();
         OutputView.printNewLine();
         OutputView.printResultTitle();
-        game.proceed();
+        game.proceed(OutputView::printCarResult);
         OutputView.printWinner(game.getWinner());
     }
 

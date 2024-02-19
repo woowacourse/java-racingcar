@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.ui.OutputView;
 
+import java.util.function.BiConsumer;
 import java.util.stream.IntStream;
 
 public class Game {
@@ -34,9 +35,9 @@ public class Game {
         return Integer.parseInt(userTryCount);
     }
 
-    public void proceed() {
+    public void proceed(BiConsumer<String, Integer> doEachCarAfterMove) {
         IntStream.range(0, tryCount).forEach((i) -> {
-            vehicles.move();
+            vehicles.move(doEachCarAfterMove);
             OutputView.printNewLine();
         });
     }

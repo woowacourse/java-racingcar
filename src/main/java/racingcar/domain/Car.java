@@ -4,6 +4,10 @@ import racingcar.ui.OutputView;
 import racingcar.util.RandomNumber;
 import racingcar.util.RandomUtil;
 
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
 public class Car {
     private static final int CAR_NAME_MAX_LENGTH = 5;
     private static final int MOVE_BOUNDARY = 4;
@@ -39,11 +43,6 @@ public class Car {
         if (isBiggerThanBoundary()) {
             forward++;
         }
-        printStatus();
-    }
-
-    private void printStatus() {
-        OutputView.printCarResult(name, forward);
     }
 
     public String getName() {

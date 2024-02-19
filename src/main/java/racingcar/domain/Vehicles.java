@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 public class Vehicles {
@@ -43,8 +44,11 @@ public class Vehicles {
                 .collect(Collectors.toSet()).size();
     }
 
-    void move() {
-        cars.forEach(Car::move);
+    void move(BiConsumer<String, Integer> doEachCarAfterMove) {
+        cars.forEach(car -> {
+            car.move();
+            doEachCarAfterMove.accept(car.getName(), car.getForward());
+        });
     }
 
     List<Car> getBiggestCars() {
