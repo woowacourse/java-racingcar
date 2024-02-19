@@ -33,9 +33,9 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = {4, 9})
     @DisplayName("랜덤값이 4이상이면 자동차를 전진합니다")
-    void moveForward(int randomNumber) {
+    void moveByNumber(int number) {
         Car car = new Car("pobi");
-        car.moveByNumber(randomNumber);
+        car.moveByNumber(number);
         String[] split = car.toString().split(" : ");
         int position = split[1].length();
         assertEquals(1, position);
