@@ -20,6 +20,8 @@ public record RaceParticipantsRequest(String input) {
         if (input == null) {
             return List.of();
         }
-        return Arrays.stream(input.split(",", -1)).toList();
+        return Arrays.stream(input.split(",", -1))
+                .map(String::trim)
+                .toList();
     }
 }
