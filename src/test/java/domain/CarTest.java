@@ -44,12 +44,20 @@ class CarTest {
     @DisplayName("4 이상이면 이동, 미만이면 이동하지 않는다.")
     void move(int randomNumber, int expect) {
         car.move(randomNumber);
-        assertThat(car.getLocation()).isEqualTo(expect);
+        assertThat(car.getLastLocation()).isEqualTo(expect);
     }
 
     @Test
-    @DisplayName("자동차의 위치를 가져온다.")
+    @DisplayName("자동차의 마지막 위치를 가져온다.")
+    void getLastLocation() {
+        assertThat(car.getLastLocation()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("라운드별 자동차의 위치를 가져온다.")
     void getLocation() {
-        assertThat(car.getLocation()).isEqualTo(0);
+        car.move(4);
+
+        assertThat(car.getRoundLocation(1)).isEqualTo(1);
     }
 }
