@@ -3,7 +3,7 @@ package model;
 import static util.Util.generateRandomNumber;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,10 +48,14 @@ public class Cars {
     }
 
     public List<String> findWinnerNames() {
-        int maxPosition = Collections.max(cars).getPosition();
+        Comparator<Car> carPositionComparator
+                = (car1, car2) -> car2.getPosition() - car1.getPosition();
 
+        cars.sort(carPositionComparator);
+
+        Car maxPositionCar = cars.get(0);
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.getPosition() == maxPositionCar.getPosition())
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

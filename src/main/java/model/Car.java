@@ -1,6 +1,6 @@
 package model;
 
-public class Car implements Comparable<Car> {
+public class Car {
 
     private static final int INITIAL_POSITION = 0;
     private static final int MAX_NAME_LENGTH = 5;
@@ -38,10 +38,5 @@ public class Car implements Comparable<Car> {
 
     public int getPosition() {
         return position;
-    }
-
-    @Override
-    public int compareTo(Car car) {
-        return Integer.compare(this.position, car.position);
     }
 }
