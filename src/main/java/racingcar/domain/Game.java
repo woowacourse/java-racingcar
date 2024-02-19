@@ -1,15 +1,21 @@
 package racingcar.domain;
 
-import java.util.stream.IntStream;
 import racingcar.ui.OutputView;
+
+import java.util.stream.IntStream;
 
 public class Game {
     private static final int NATURAL_NUMBER_BOUNDARY = 0;
     private final int tryCount;
     private final Vehicles vehicles;
 
-    public static Game from(String userTryCount, Vehicles vehicles) throws NumberFormatException {
-        int tryCount = parseUserInput(userTryCount);
+    private Game(int tryCount, Vehicles vehicles) {
+        this.tryCount = tryCount;
+        this.vehicles = vehicles;
+    }
+
+    public static Game from(String rawTryCount, Vehicles vehicles) throws NumberFormatException {
+        int tryCount = parseUserInput(rawTryCount);
         validNaturalNumber(tryCount);
         return new Game(tryCount, vehicles);
     }
@@ -26,11 +32,6 @@ public class Game {
 
     private static int parseUserInput(String userTryCount) {
         return Integer.parseInt(userTryCount);
-    }
-
-    private Game(int tryCount, Vehicles vehicles) {
-        this.tryCount = tryCount;
-        this.vehicles = vehicles;
     }
 
     public void proceed() {
