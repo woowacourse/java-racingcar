@@ -14,25 +14,25 @@ public class Cars {
         this.cars = cars;
     }
 
-    private static void validate(final List<Car> cars) {
+    private void validate(final List<Car> cars) {
         validateMinCarsSize(cars);
         validateMaxCarsSize(cars);
         validateDuplication(cars);
     }
 
-    private static void validateMinCarsSize(final List<Car> cars) {
+    private void validateMinCarsSize(final List<Car> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
             throw new IllegalArgumentException(String.format("자동차는 %d대 이상이 참가해야 합니다.", MIN_CARS_SIZE));
         }
     }
 
-    private static void validateMaxCarsSize(final List<Car> cars) {
+    private void validateMaxCarsSize(final List<Car> cars) {
         if (cars.size() > MAX_CARS_SIZE) {
             throw new IllegalArgumentException(String.format("참가 자동차는 %d대를 넘을 수 없습니다.", MAX_CARS_SIZE));
         }
     }
 
-    private static void validateDuplication(final List<Car> cars) {
+    private void validateDuplication(final List<Car> cars) {
         Set<String> duplicatedName = cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.toSet());

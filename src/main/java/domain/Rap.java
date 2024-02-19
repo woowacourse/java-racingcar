@@ -9,7 +9,7 @@ public class Rap {
         this.count = count;
     }
 
-    private static void validateMinAttemptCount(final int input) {
+    private void validateMinAttemptCount(final int input) {
         if (input < MIN_COUNT) {
             throw new IllegalArgumentException(String.format("시도 횟수는 %d이상이어야 합니다.", MIN_COUNT));
         }
