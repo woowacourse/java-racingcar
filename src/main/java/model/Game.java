@@ -1,7 +1,5 @@
 package model;
 
-import message.Exception;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +11,7 @@ public class Game {
     private final List<Car> cars;
 
     public Game(List<Car> cars) {
-       this.cars = cars;
+        this.cars = cars;
     }
 
     public List<Car> proceed() {
