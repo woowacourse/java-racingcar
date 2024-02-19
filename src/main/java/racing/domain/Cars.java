@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import racing.util.RandomGenerator;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(String rawNames) {
         List<String> carNames = parseNames(rawNames);
