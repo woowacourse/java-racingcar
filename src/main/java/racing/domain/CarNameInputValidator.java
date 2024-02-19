@@ -1,20 +1,15 @@
-package racing.input;
+package racing.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
-import racing.domain.CarNameValidator;
+import java.util.function.Supplier;
 
-public class CarNameInputManager {
+public class CarNameInputValidator {
 
   private static final String SEPARATOR = ",";
 
-  public static List<String> getNameFromConsole(Scanner scanner) {
-    String input = scanner.next();
-    return getName(input);
-  }
-
-  static List<String> getName(String input) {
+  public static List<String> getName(Supplier<String> inputSupplier) {
+    String input = inputSupplier.get();
     validateSeparator(input);
     validateEachName(input);
     return Arrays.stream(input.split(SEPARATOR)).toList();

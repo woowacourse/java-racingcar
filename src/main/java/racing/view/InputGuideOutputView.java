@@ -1,8 +1,8 @@
-package racing.output;
+package racing.view;
 
 import static java.lang.System.out;
 
-public class InputGuideOutputManager {
+public class InputGuideOutputView {
 
   public static void printInputCarNames() {
     out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
