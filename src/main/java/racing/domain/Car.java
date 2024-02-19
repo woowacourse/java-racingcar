@@ -17,9 +17,6 @@ class Car implements Comparable<Car> {
     position += ONCE_MOVE_DISTANCE;
   }
 
-  void stop() {
-  }
-
   @Override
   public int compareTo(Car o) {
     return o.position - position;

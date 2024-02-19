@@ -16,13 +16,4 @@ class CarTest {
     Assertions.assertThat(test.getPosition())
         .isEqualTo(ONCE_MOVE_DISTANCE);
   }
-
-  @Test
-  @DisplayName("정지시 이동 거리가 증가하지 않는지 확인")
-  void stop() {
-    Car test = new Car(0, "test");
-    test.stop();
-    Assertions.assertThat(test.getPosition())
-        .isEqualTo(0);
-  }
 }

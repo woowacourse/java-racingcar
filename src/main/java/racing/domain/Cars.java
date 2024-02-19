@@ -28,7 +28,6 @@ class Cars {
       car.go();
       return;
     }
-    car.stop();
   }
 
   Map<String, Integer> getCarsStatus() {
