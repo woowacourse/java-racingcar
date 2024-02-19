@@ -21,7 +21,7 @@ public class RacingCarGame {
     public RaceResult race() {
         List<CarsStatus> results = new ArrayList<>();
         for (int i = 0; i < count.getValue(); i++) {
-            results.add(cars.move());
+            results.add(cars.move(new RandomNumberGenerator()));
         }
         return new RaceResult(results);
     }

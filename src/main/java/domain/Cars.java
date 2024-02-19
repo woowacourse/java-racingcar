@@ -9,7 +9,6 @@ import exception.RacingCarGameException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import utils.RandomNumberGenerator;
 
 public class Cars {
     private List<Car> cars;
@@ -46,10 +45,10 @@ public class Cars {
                 .toList();
     }
 
-    public CarsStatus move() {
+    public CarsStatus move(NumberGenerator generator) {
         List<CarStatus> carStatuses = new ArrayList<>();
         for (Car car : cars) {
-            int number = RandomNumberGenerator.generate();
+            int number = generator.generate();
             carStatuses.add(car.move(number));
         }
         return new CarsStatus(carStatuses);
