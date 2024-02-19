@@ -20,9 +20,14 @@ public class InputView implements AutoCloseable {
         this.reader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public List<String> inputCarsName() throws IOException {
+    public List<String> inputCarsName() {
         System.out.println(PrintMessage.INPUT_CAR_NAMES.getMessage());
-        String input = reader.readLine();
+        String input;
+        try {
+            input = reader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         validateNotNullAndBlank(input);
         return Arrays.stream(input.split(DELIMITER)).map(String::trim).toList();
     }
@@ -33,9 +38,14 @@ public class InputView implements AutoCloseable {
         }
     }
 
-    public int inputTrialCount() throws IOException {
+    public int inputTrialCount() {
         System.out.println(PrintMessage.INPUT_TRIAL_COUNT.getMessage());
-        String input = reader.readLine();
+        String input;
+        try {
+            input = reader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         validateNumeric(input);
         return Integer.parseInt(input);
     }
@@ -47,7 +57,11 @@ public class InputView implements AutoCloseable {
     }
 
     @Override
-    public void close() throws java.lang.Exception {
-        reader.close();
+    public void close() {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
