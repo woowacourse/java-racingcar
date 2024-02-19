@@ -15,9 +15,18 @@ public class Controller {
     private final OutputView outputView = new OutputView();
 
     public void run() {
+        Referee referee = new Referee();
+
         List<Car> cars = generateCarList(inputView.getCarNames());
         int tryNumber = inputView.getTryNumber();
-        printResult(tryNumber, cars);
+
+        outputView.printResultHeaderPrompt();
+
+        while(tryNumber-- > 0){
+            moveCars(cars);
+        }
+
+        outputView.printWinners(referee.generateWinners(cars));
     }
 
     private List<Car> generateCarList(List<String> carNames) {
@@ -32,14 +41,7 @@ public class Controller {
     }
 
     private void printResult(int tryNumber, List<Car> cars) {
-        Referee referee = new Referee();
-        outputView.printResultHeaderPrompt();
 
-        while(tryNumber-- > 0){
-            moveCars(cars);
-        }
-
-        outputView.printWinners(referee.generateWinners(cars));
     }
 
     private void moveCars(List<Car> cars) {
