@@ -1,25 +1,47 @@
 package racingcar.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import racingcar.utils.RandomNumberGenerator;
+import java.util.Map;
 
 public class CarGroup {
-    private final List<Car> cars = new ArrayList<>();
+    private final List<Car> cars;
 
-    public void add(Car car) {
-        cars.add(car);
+    public CarGroup(List<Car> cars) {
+        validateDuplicateNames(cars);
+        this.cars = cars;
     }
 
-    public void race() {
-        cars.forEach(car -> car.move(RandomNumberGenerator.generate()));
+    public int getCarsSize() {
+        return cars.size();
+    }
 
+    private static void validateDuplicateNames(List<Car> cars) {
+        int distinctNamesCount = (int) cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count();
+
+        if (distinctNamesCount != cars.size()) {
+            throw new IllegalArgumentException("자동차의 이름은 중복될 수 없습니다.");
+        }
+    }
+
+    public MoveHistory race(List<Integer> randomNumbers) {
+        Map<String, Integer> nameAndPosition = new HashMap<>();
+        for (int i = 0; i < cars.size(); i++) {
+            Car car = cars.get(i);
+            car.move(randomNumbers.get(i));
+            nameAndPosition.put(car.getName(), car.getPosition());
+        }
+
+        return new MoveHistory(nameAndPosition);
     }
 
     public List<Car> findWinners() {
         int maxPosition = findMaxPosition();
         return cars.stream()
-                .filter((car -> car.getPosition() > 0 && car.getPosition() == maxPosition))
+                .filter((car -> car.isWinner(maxPosition)))
                 .toList();
     }
 
@@ -28,16 +50,5 @@ public class CarGroup {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(0);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Car car : cars) {
-            sb.append(car.toString());
-            sb.append("\n");
-        }
-
-        return sb.toString();
     }
 }
