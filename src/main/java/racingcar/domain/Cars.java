@@ -3,12 +3,12 @@ package racingcar.domain;
 import java.util.Collections;
 import java.util.List;
 
-public record Cars(List<Car> cars) {
+public record Cars(List<Car> values) {
 
     private static final String DUPLICATED_CAR_NAME = "중복된 자동차 이름이 존재합니다.";
 
     public Cars {
-        validateUniqueCarNames(cars);
+        validateUniqueCarNames(values);
     }
 
     private void validateUniqueCarNames(List<Car> cars) {
@@ -22,30 +22,43 @@ public record Cars(List<Car> cars) {
         }
     }
 
-    public void raceWithNumbersOfPower(List<Integer> numbersOfPower) {
-        for (int i = 0; i < cars.size(); i++) {
-            Car car = cars.get(i);
+    public Cars raceWithNumbersOfPower(List<Integer> numbersOfPower) {
+        for (int i = 0; i < values.size(); i++) {
+            Car car = values.get(i);
             int numberOfPower = numbersOfPower.get(i);
             car.goIfNumberOfPowerEnough(numberOfPower);
         }
+        return createRoundResult();
+    }
+
+    private Cars createRoundResult() {
+        return new Cars(
+                values.stream()
+                        .map(Car::createCarPerformance)
+                        .toList()
+        );
     }
 
     public List<String> findCarNamesWithSameDistance(int distance) {
-        return cars.stream()
+        return values.stream()
                 .filter(car -> car.isSameDistance(distance))
                 .map(Car::getName)
                 .toList();
     }
 
     public int findMaxDistance() {
-        return cars.stream()
+        return values.stream()
                 .mapToInt(Car::getMovedDistance)
                 .max()
-                .orElseThrow(IllegalStateException::new);
+                .orElse(0);
+    }
+
+    public int valuesSize() {
+        return values.size();
     }
 
     @Override
-    public List<Car> cars() {
-        return Collections.unmodifiableList(cars);
+    public List<Car> values() {
+        return Collections.unmodifiableList(values);
     }
 }
