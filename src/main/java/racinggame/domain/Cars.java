@@ -13,8 +13,8 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars of(List<String> carNames) {
-        List<Car> cars = carNames.stream()
+    public static Cars of(List<Name> names) {
+        List<Car> cars = names.stream()
                 .map(Car::createDefaultPositionCar)
                 .toList();
         checkCarsSize(cars);

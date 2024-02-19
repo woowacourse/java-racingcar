@@ -12,8 +12,8 @@ public class Car {
         this.position = position;
     }
 
-    public static Car createDefaultPositionCar(String name) {
-        return new Car(Name.from(name), Position.DEFAULT_POSITION);
+    public static Car createDefaultPositionCar(Name name) {
+        return new Car(name, Position.DEFAULT_POSITION);
     }
 
     public static Car of(String name, int position) {

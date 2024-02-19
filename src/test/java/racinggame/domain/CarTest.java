@@ -11,14 +11,14 @@ class CarTest {
     @DisplayName("생성 테스트")
     @Test
     void create() {
-        assertThatCode(() -> Car.createDefaultPositionCar("이상"))
+        assertThatCode(() -> Car.createDefaultPositionCar(Name.from("이상")))
                 .doesNotThrowAnyException();
     }
 
     @DisplayName("자동차가 전진할 수 있다.")
     @Test
     void move() {
-        Car car = Car.createDefaultPositionCar("아톰");
+        Car car = Car.createDefaultPositionCar(Name.from("아톰"));
 
         car.move(() -> true);
 
@@ -28,7 +28,7 @@ class CarTest {
     @DisplayName("전진 조건을 만족하지 않으면 전진하지 않는다.")
     @Test
     void noMove() {
-        Car car = Car.createDefaultPositionCar("아톰");
+        Car car = Car.createDefaultPositionCar(Name.from("아톰"));
 
         car.move(() -> false);
 
