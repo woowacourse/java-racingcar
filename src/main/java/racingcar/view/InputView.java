@@ -13,13 +13,13 @@ public class InputView {
 
     public static Cars inputRacingCars() {
         return requestInput(
-                () -> OutputView.printRequestCarNamesMessage(),
+                OutputView::printRequestCarNamesMessage,
                 input -> new Cars(input));
     }
 
     public static TryCount inputTryCount() {
         return requestInput(
-                () -> OutputView.printRequestTryCountMessage(),
+                OutputView::printRequestTryCountMessage,
                 input -> new TryCount(input));
     }
 
