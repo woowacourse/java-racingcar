@@ -31,12 +31,11 @@ public class OutputView {
     private void addRoundResultByFormat(List<CarDto> cars) {
         StringBuilder roundBuilder = new StringBuilder();
 
-        cars.stream()
-            .map(carInfo -> makeCarInfoByFormat(
-                                carInfo.name(),
-                                makeTraceByFormat(carInfo.position()))
-                                + LINE_SEPARATOR)
-            .forEach(roundBuilder::append);
+        for (CarDto carDto : cars) {
+            roundBuilder.append(makeCarInfoByFormat(carDto.name(),
+                    makeTraceByFormat(carDto.position())))
+                    .append(LINE_SEPARATOR);
+        }
 
         racingRecord.add(roundBuilder.toString());
     }
