@@ -10,7 +10,7 @@ public class Winners {
         this.winners = winners;
     }
 
-    public static Winners findWinners(Cars cars) {
+    public static Winners createWinners(Cars cars) {
         List<String> winners = cars.getCars().stream()
                 .filter(car -> car.getPosition() == cars.getMaxPosition())
                 .map(Car::getName)

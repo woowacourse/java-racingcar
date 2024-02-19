@@ -22,7 +22,7 @@ class WinnersTest {
         cars.getCars().get(1).move(MIN_POWER);
 
 
-        assertThat(Winners.findWinners(cars).getWinners()).containsAll(List.of(expectedWinner));
+        assertThat(Winners.createWinners(cars).getWinners()).containsAll(List.of(expectedWinner));
     }
 
     @DisplayName("여러명의 우승자가 존재할 수 있다.")
@@ -37,7 +37,7 @@ class WinnersTest {
         cars.getCars().get(2).move(MIN_POWER);
         cars.getCars().get(2).move(MIN_POWER);
 
-        assertThat(Winners.findWinners(cars).getWinners()).containsAll(expectedWinners);
+        assertThat(Winners.createWinners(cars).getWinners()).containsAll(expectedWinners);
     }
 
     @DisplayName("모두가 우승자가 될 수 있다.")
@@ -53,7 +53,7 @@ class WinnersTest {
         cars.getCars().get(2).move(MIN_POWER);
         cars.getCars().get(2).move(MIN_POWER);
 
-        assertThat(Winners.findWinners(cars).getWinners()).containsAll(expectedWinners);
+        assertThat(Winners.createWinners(cars).getWinners()).containsAll(expectedWinners);
     }
 
 }
