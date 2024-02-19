@@ -22,24 +22,6 @@ public class Car {
         this.movement = movement;
     }
 
-    public void move(boolean move) {
-        if (move) {
-            this.movement++;
-        }
-    }
-
-    public String getCarName() {
-        return name;
-    }
-
-    public int getMovement() {
-        return movement;
-    }
-
-    public boolean isSameMovement(int movement) {
-        return this.movement == movement;
-    }
-
     private void validateName(String carName) {
         validateNameLength(carName);
         validateNameExists(carName);
@@ -56,4 +38,23 @@ public class Car {
             throw new IllegalArgumentException(CAR_NAME_IS_BLANK);
         }
     }
+
+    public void move(boolean move) {
+        if (move) {
+            this.movement++;
+        }
+    }
+
+    public boolean isSameMovement(int movement) {
+        return this.movement == movement;
+    }
+
+    public String getCarName() {
+        return name;
+    }
+
+    public int getMovement() {
+        return movement;
+    }
+
 }

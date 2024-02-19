@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
 public class Cars {
 
     private static final String NOT_FIND_MAX_DISTANCE = "자동차의 최대 이동거리가 존재하지 않습니다.";
-
     private final MovesGenerator movesGenerator;
     private final List<Car> cars;
 
