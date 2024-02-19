@@ -1,13 +1,9 @@
 package controller;
 
-import model.Car;
 import model.Game;
 import model.TrialCount;
 import view.InputView;
 import view.OutputView;
-
-import java.io.IOException;
-import java.util.List;
 
 public class RacingCarController {
     private final InputView inputView;
@@ -18,7 +14,7 @@ public class RacingCarController {
         this.outputView = outputView;
     }
 
-    public void run() throws IOException {
+    public void run() {
         Game game = new Game(inputView.inputCarsName());
         TrialCount trialCount = new TrialCount(inputView.inputTrialCount());
         outputView.printResultComment();
