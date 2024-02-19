@@ -2,6 +2,10 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 import movestrategy.MoveStrategy;
 import movestrategy.RandomPowerMoveStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -25,18 +29,8 @@ class RacingGameTest {
     @Test
     @DisplayName("자동차 이름 정상 입력: 경계값 입력 - 자동차 100대")
     void carNames_ok_boundaryTest_hundredCases() {
-        new RacingGame(
-            "a    ,b    ,c    ,d    ,e    ,f    ,g    ,h    ,i    ,j    ,"
-                + "k    ,l    ,m    ,n    ,o    ,p    ,q    ,r    ,s    ,t    ,"
-                + "u    ,v    ,w    ,x    ,y    ,z    ,aa   ,bb   ,cc   ,dd   ,"
-                + "ee   ,ff   ,gg   ,hh   ,ii   ,jj   ,kk   ,ll   ,mm   ,nn   ,"
-                + "oo   ,pp   ,qq   ,rr   ,ss   ,tt   ,uu   ,vv   ,ww   ,xx   ,"
-                + "yy   ,zz   ,aaa  ,bbb  ,ccc  ,ddd  ,eee  ,fff  ,ggg  ,hhh  ,"
-                + "iii  ,jjj  ,kkk  ,lll  ,mmm  ,nnn  ,ooo  ,ppp  ,qqq  ,rrr  ,"
-                + "sss  ,ttt  ,uuu  ,vvv  ,www  ,xxx  ,yyy  ,zzz  ,aaaa ,bbbb ,"
-                + "cccc ,dddd ,eeee ,ffff ,gggg ,hhhh ,iiii ,jjjj ,kkkk ,llll ,"
-                + "mmmm ,nnnn ,oooo ,pppp ,qqqq ,rrrr ,ssss ,tttt ,uuuu ,vvvv"
-            , moveStrategy);
+        String testCase = makeCarNamesTestCase(100);
+        new RacingGame(testCase, moveStrategy);
     }
 
     @Test
@@ -74,18 +68,24 @@ class RacingGameTest {
     @Test
     @DisplayName("자동차 이름 예외 입력(5): 1~100개의 이름만 입력 가능하다.")
     void carNames_exception_rangeViolation() {
-        assertThatThrownBy(() -> new RacingGame(
-            "a    ,b    ,c    ,d    ,e    ,f    ,g    ,h    ,i    ,j    ,"
-                + "k    ,l    ,m    ,n    ,o    ,p    ,q    ,r    ,s    ,t    ,"
-                + "u    ,v    ,w    ,x    ,y    ,z    ,aa   ,bb   ,cc   ,dd   ,"
-                + "ee   ,ff   ,gg   ,hh   ,ii   ,jj   ,kk   ,ll   ,mm   ,nn   ,"
-                + "oo   ,pp   ,qq   ,rr   ,ss   ,tt   ,uu   ,vv   ,ww   ,xx   ,"
-                + "yy   ,zz   ,aaa  ,bbb  ,ccc  ,ddd  ,eee  ,fff  ,ggg  ,hhh  ,"
-                + "iii  ,jjj  ,kkk  ,lll  ,mmm  ,nnn  ,ooo  ,ppp  ,qqq  ,rrr  ,"
-                + "sss  ,ttt  ,uuu  ,vvv  ,www  ,xxx  ,yyy  ,zzz  ,aaaa ,bbbb ,"
-                + "cccc ,dddd ,eeee ,ffff ,gggg ,hhhh ,iiii ,jjjj ,kkkk ,llll ,"
-                + "mmmm ,nnnn ,oooo ,pppp ,qqqq ,rrrr ,ssss ,tttt ,uuuu ,vvvv ,"
-                + "aaaaa"
-            , moveStrategy)).isInstanceOf(IllegalArgumentException.class);
+        String testCase = makeCarNamesTestCase(101);
+        assertThatThrownBy(() -> new RacingGame(testCase, moveStrategy))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    String makeCarNamesTestCase(int testCaseAmount) {
+        List<String> carNames = new ArrayList<>();
+        Random random = new Random();
+        while (carNames.size() < testCaseAmount) {
+            StringBuilder randomName = new StringBuilder();
+            for (int i = 0; i < 5; i++) {
+                char randomChar = (char) ('a' + random.nextInt(26));
+                randomName.append(randomChar);
+            }
+            if (!carNames.contains(randomName.toString())) {
+                carNames.add(randomName.toString());
+            }
+        }
+        return String.join(",", carNames);
     }
 }
