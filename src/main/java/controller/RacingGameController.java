@@ -25,13 +25,20 @@ public class RacingGameController {
     }
 
     public void run() {
-        String carNames = inputView.requestCarNames();
-        String count = inputView.requestMoveCount();
-
-        Cars cars = Repeater.repeatUntilNoException(() -> inputMapper.mapToCars(carNames));
-        MoveCount moveCount = Repeater.repeatUntilNoException(() -> inputMapper.mapToMoveCount(count));
+        Cars cars = Repeater.repeatUntilNoException(this::prepareCars);
+        MoveCount moveCount = Repeater.repeatUntilNoException(this::prepareMoveCount);
 
         GameResultDto gameResultDto = raceGameService.runRaceGame(cars, moveCount);
         outputView.printRaceResult(gameResultDto);
+    }
+
+    private Cars prepareCars() {
+        String carNames = inputView.requestCarNames();
+        return inputMapper.mapToCars(carNames);
+    }
+
+    private MoveCount prepareMoveCount() {
+        String count = inputView.requestMoveCount();
+        return inputMapper.mapToMoveCount(count);
     }
 }
