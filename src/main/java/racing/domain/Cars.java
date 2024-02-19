@@ -39,6 +39,6 @@ public class Cars {
 
     public List<Car> findFurthestCars() {
         Collections.sort(cars);
-        return cars.stream().filter((car) -> car.isSame(cars.get(0))).toList();
+        return cars.stream().filter((car) -> car.isSamePosition(cars.get(0))).toList();
     }
 }
