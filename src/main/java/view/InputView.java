@@ -15,7 +15,8 @@ public class InputView {
         String carNames = scanner.nextLine();
         validateStartsOrEndsWithDelimiter(carNames);
 
-        return Arrays.stream(carNames.split(CAR_NAMES_DELIMITER)).toList();
+        return Arrays.stream(carNames.split(CAR_NAMES_DELIMITER))
+                .toList();
     }
 
     private void validateStartsOrEndsWithDelimiter(String input) {
