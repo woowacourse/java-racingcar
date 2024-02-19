@@ -26,23 +26,9 @@ public class GameManager {
         int tryCount = inputView.getTryCount();
         outputView.printTryResultMenu();
         for (int i = 0; i < tryCount; i++) {
-            moveCars(cars);
+            cars.moveCars();
             outputView.printTryResult(cars);
         }
         outputView.printWinners(cars);
     }
-
-    private void moveCars(Cars cars) {
-        for (Car car : cars.getCars()) {
-            moveCar(car);
-        }
-    }
-
-    private void moveCar(Car car) {
-        if (RandomGenerator.generateRandomNumber(MAX_RANDOM_NUMBER + 1) >= MINIMUM_MOVEMENT_CONDITION) {
-            car.moveCar();
-        }
-    }
-
-
 }
