@@ -29,13 +29,13 @@ public class Car implements Comparable<Car> {
         this.position++;
     }
 
-    public boolean isSame(Car car) {
-        return this.position == car.position;
+    public boolean isSame(Car other) {
+        return this.position == other.position;
     }
 
     @Override
-    public int compareTo(Car otherCar) {
-        return otherCar.position - this.position;
+    public int compareTo(Car other) {
+        return other.position - this.position;
     }
 
     @Override
@@ -46,8 +46,8 @@ public class Car implements Comparable<Car> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Car car = (Car) o;
-        return Objects.equals(name, car.name);
+        Car other = (Car) o;
+        return Objects.equals(this.name, other.name);
     }
 
     public String getName() {
