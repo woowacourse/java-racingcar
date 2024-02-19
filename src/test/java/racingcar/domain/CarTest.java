@@ -36,7 +36,7 @@ class CarTest {
 
     @Test
     @DisplayName("주어진 자동차의 전진 회수가 같은지 확인한다.")
-    void isAlsoWinnerTest() {
+    void isSameMovementTest() {
         //given
         Car car1 = new Car("mason");
         Car car2 = new Car("pobi");
