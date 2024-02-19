@@ -21,8 +21,7 @@ class CarTest {
     @Test
     @DisplayName("자동차는 이름을 가진다.")
     void createCar() {
-        assertThat(car).extracting("name")
-                .isEqualTo("pobi");
+        assertThat(car.getName()).isEqualTo("pobi");
     }
 
     @ParameterizedTest

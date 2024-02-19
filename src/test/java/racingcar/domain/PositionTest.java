@@ -21,8 +21,7 @@ class PositionTest {
     void increase() {
         position.increase();
 
-        assertThat(position).extracting("position")
-                .isEqualTo(2);
+        assertThat(position.getPosition()).isEqualTo(2);
     }
 
     @ParameterizedTest
