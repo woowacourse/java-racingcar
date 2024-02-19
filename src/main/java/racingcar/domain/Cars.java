@@ -22,12 +22,21 @@ public record Cars(List<Car> values) {
         }
     }
 
-    public void raceWithNumbersOfPower(List<Integer> numbersOfPower) {
+    public Cars raceWithNumbersOfPower(List<Integer> numbersOfPower) {
         for (int i = 0; i < values.size(); i++) {
             Car car = values.get(i);
             int numberOfPower = numbersOfPower.get(i);
             car.goIfNumberOfPowerEnough(numberOfPower);
         }
+        return createRoundResult();
+    }
+
+    private Cars createRoundResult() {
+        return new Cars(
+                values.stream()
+                        .map(Car::createCarPerformance)
+                        .toList()
+        );
     }
 
     public List<String> findCarNamesWithSameDistance(int distance) {

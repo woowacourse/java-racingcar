@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import racingcar.dto.RoundResult;
 
 public class RacingGame {
 
@@ -16,13 +15,13 @@ public class RacingGame {
         this.numberOfPower = numberOfPower;
     }
 
-    public List<RoundResult> simulateCarsInRound() {
-        List<RoundResult> roundResults = new ArrayList<>();
+    public List<Cars> simulateCarsInRound() {
+        List<Cars> roundResults = new ArrayList<>();
         while (round.isRemain()) {
             int registeredCarsSize = cars.valuesSize();
             List<Integer> numbersOfPower = numberOfPower.generateNumbersOfPower(registeredCarsSize);
-            cars.raceWithNumbersOfPower(numbersOfPower);
-            roundResults.add(new RoundResult(cars));
+            Cars roundResult = cars.raceWithNumbersOfPower(numbersOfPower);
+            roundResults.add(roundResult);
             round.decreaseCount();
         }
         return roundResults;

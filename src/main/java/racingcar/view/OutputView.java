@@ -6,8 +6,8 @@ import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULT_FORMAT;
 import static racingcar.constant.ViewMessage.OUTPUT_WINNERS;
 
 import java.util.List;
-import racingcar.dto.CarPerformance;
-import racingcar.dto.RoundResult;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 public class OutputView {
 
@@ -17,15 +17,15 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printRoundResults(List<RoundResult> roundResult) {
+    public static void printRoundResults(List<Cars> roundResult) {
         System.out.println(OUTPUT_ROUND_RESULTS_INTRO.getMessage());
         roundResult.forEach(OutputView::printRoundResult);
     }
 
-    private static void printRoundResult(RoundResult roundResult) {
-        for (CarPerformance carPerformance : roundResult.getCarPerformances()) {
-            String carName = carPerformance.getCarName();
-            int distance = carPerformance.getDistance();
+    private static void printRoundResult(Cars roundResult) {
+        for (Car carPerformance : roundResult.values()) {
+            String carName = carPerformance.getName();
+            int distance = carPerformance.getMovedDistance();
             String movements = MOVEMENT_FORMAT.repeat(distance);
 
             System.out.printf(OUTPUT_ROUND_RESULT_FORMAT.getMessage(), carName, movements);

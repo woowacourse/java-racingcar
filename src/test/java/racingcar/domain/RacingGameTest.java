@@ -11,7 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import racingcar.dto.RoundResult;
 
 class RacingGameTest {
 
@@ -22,15 +21,15 @@ class RacingGameTest {
     @MethodSource("provideCarsAndRound")
     void testSimulateCarsInRound(Cars cars, int round) {
         RacingGame racingGame = new RacingGame(cars, new Round(String.valueOf(round)), new CustomNumberOfPower());
-        List<RoundResult> roundResults = racingGame.simulateCarsInRound();
+        List<Cars> roundResults = racingGame.simulateCarsInRound();
 
         for (int i = 0; i < roundResults.size(); i++) {
             int expectedDistance = i + 1;
-            RoundResult roundResult = roundResults.get(i);
+            Cars roundResult = roundResults.get(i);
             assertTrue(
-                    roundResult.getCarPerformances()
+                    roundResult.values()
                     .stream()
-                    .allMatch(carPerformance -> carPerformance.getDistance() == expectedDistance)
+                    .allMatch(carPerformance -> carPerformance.getMovedDistance() == expectedDistance)
             );
         }
     }
