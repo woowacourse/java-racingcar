@@ -1,7 +1,10 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import view.OutputView;
@@ -54,14 +57,13 @@ public class RacingCarGame {
     }
 
     public List<String> getWinnerName() {
-        int max = cars.getCars().stream()
-                .mapToInt(Car::getLocation)
-                .max()
-                .orElse(-1);
-
         return cars.getCars().stream()
-                .filter(car -> car.getLocation() == max)
-                .map(Car::getCarName)
-                .collect(Collectors.toList());
+                .collect(Collectors.groupingBy(Car::getLocation))
+                .entrySet().stream()
+                .max(Comparator.comparingInt(Map.Entry::getKey))
+                .map(entry -> entry.getValue().stream()
+                        .map(Car::getCarName)
+                        .collect(Collectors.toList()))
+                .orElse(Collections.emptyList());
     }
 }
