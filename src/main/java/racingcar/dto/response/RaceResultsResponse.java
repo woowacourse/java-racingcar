@@ -23,6 +23,6 @@ public record RaceResultsResponse(List<Map<String, Integer>> raceResults) {
         for (final Map.Entry<Car, Integer> entry : raceResult.entrySet()) {
             raceResultMap.put(entry.getKey().getName(), entry.getValue());
         }
-        return raceResultMap;
+        return new LinkedHashMap<>(raceResultMap);
     }
 }
