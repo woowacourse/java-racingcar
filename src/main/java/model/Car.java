@@ -38,6 +38,19 @@ public class Car {
         statuses.add(MoveStatus.STOP);
     }
 
+    private static void validateNotDuplicate(List<String> carsName) {
+        int originCount = carsName.size();
+        int distinctCount = (int) carsName.stream().distinct().count();
+        if (originCount != distinctCount) {
+            throw new IllegalArgumentException(Exception.DUPLICATE.getMessage());
+        }
+    }
+
+    public static List<Car> convertToCar(List<String> carsName) {
+        validateNotDuplicate(carsName);
+        return carsName.stream().map(Car::new).toList();
+    }
+
     public List<MoveStatus> getStatuses() {
         return new ArrayList<>(statuses);
     }

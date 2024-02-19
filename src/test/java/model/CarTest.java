@@ -1,10 +1,13 @@
 package model;
 
+import message.Exception;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -33,6 +36,14 @@ class CarTest {
     void validateNameLength() {
         String name = "abcdefg";
         assertThatThrownBy(() -> new Car(name)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차들이 중복된 이름을 가질 시 예외가 발생한다.")
+    void validateDuplicate() {
+        assertThatThrownBy(() -> Car.convertToCar(List.of("aaa","aaa")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Exception.DUPLICATE.getMessage());
     }
 
     @Test
