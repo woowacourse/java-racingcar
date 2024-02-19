@@ -2,20 +2,16 @@ package racingcar.util;
 
 import java.util.Random;
 
-public class RandomNumber implements RandomUtils {
-    private static final RandomNumber instance = new RandomNumber();
+public class RandomNumberGenerator implements NumberGenerator<Integer> {
+    private static final RandomNumberGenerator generator = new RandomNumberGenerator();
     private final Random random;
 
-    private RandomNumber() {
+    private RandomNumberGenerator() {
         this.random = new Random();
     }
-
-    public static RandomNumber getInstance() {
-        return instance;
-    }
-
+    
     @Override
-    public int generate(final int minLimit, final int maxLimit) {
+    public Integer generate(final Integer minLimit, final Integer maxLimit) {
         validate(minLimit, maxLimit);
         return random.nextInt(maxLimit - minLimit) + minLimit;
     }
@@ -24,5 +20,9 @@ public class RandomNumber implements RandomUtils {
         if (minLimit > maxLimit) {
             throw new IllegalStateException();
         }
+    }
+
+    public static RandomNumberGenerator getGenerator() {
+        return generator;
     }
 }

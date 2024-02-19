@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.util.RandomUtils;
+import racingcar.util.NumberGenerator;
 
 @DisplayName("자동차들")
 class CarsTest {
@@ -82,15 +82,10 @@ class CarsTest {
             }
         };
 
-        final RandomUtils randomUtil = new RandomUtils() {
-            @Override
-            public int generate(int minLimit, int maxLimit) {
-                return 1;
-            }
-        };
+        NumberGenerator<Integer> numberGenerator = (a, b) -> 1;
 
         //when
-        cars.move(carMoveStrategy, randomUtil);
+        cars.move(carMoveStrategy, numberGenerator);
         List<Car> carList = cars.getCars();
 
         //then
@@ -117,15 +112,10 @@ class CarsTest {
             }
         };
 
-        final RandomUtils randomUtil = new RandomUtils() {
-            @Override
-            public int generate(int minLimit, int maxLimit) {
-                return 5;
-            }
-        };
+        NumberGenerator<Integer> numberGenerator = (a, b) -> 5;
 
         //when
-        IntStream.range(0, iteratorCounts).forEach(i -> cars.move(carMoveStrategy, randomUtil));
+        IntStream.range(0, iteratorCounts).forEach(i -> cars.move(carMoveStrategy, numberGenerator));
 
         //then
         assertEquals(cars.getCars().get(0).getDistance(), distanceResult);

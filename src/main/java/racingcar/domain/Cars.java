@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
-import racingcar.util.RandomUtils;
+import racingcar.util.NumberGenerator;
 
 public class Cars {
     private static final int MIN_DISTANCE = 0;
@@ -48,8 +48,8 @@ public class Cars {
                 .count();
     }
 
-    void move(final CarMoveStrategy carMoveStrategy, final RandomUtils randomUtil) {
-        cars.forEach(car -> car.move(carMoveStrategy, randomUtil.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT)));
+    void move(final CarMoveStrategy carMoveStrategy, final NumberGenerator<Integer> numberGenerator) {
+        cars.forEach(car -> car.move(carMoveStrategy, numberGenerator.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT)));
     }
 
     List<Car> findFarthestCars() {

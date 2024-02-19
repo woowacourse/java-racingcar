@@ -101,4 +101,4 @@ public class RacingMain {
 - [X] `CarMoveStrategy`니까 이전의 `carMoveStrategy` 변수명으로 변경한다.
 - [X] `record` 클래스를 활용하면 조금 더 값 객체스럽게 사용할 수 있게 한다.
 - [ ] `@FunctionalInterface`를 사용하여 익명 함수 대신 람다식으로 줄여서 사용할 수 있게 한다.
-- [ ] `RandomNumber`의 네이밍을 `class RandomNumberGenerator implements NumberGenerator`로 변경한다.
+- [X] `RandomNumber`의 네이밍을 `class RandomNumberGenerator implements NumberGenerator`로 변경한다.
