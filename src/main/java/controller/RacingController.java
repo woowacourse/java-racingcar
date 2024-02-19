@@ -23,7 +23,7 @@ public class RacingController {
     public void run() {
         RandomMovingCars randomMovingCars = ExceptionRetryHandler.handle(this::receiveCarNames);
         AttemptCount attemptCount = ExceptionRetryHandler.handle(this::receiveTryCount);
-        racing(randomMovingCars, attemptCount);
+        race(randomMovingCars, attemptCount);
         outputView.printWinners(Winners.from(randomMovingCars));
     }
 
@@ -40,11 +40,11 @@ public class RacingController {
         return new AttemptCount(inputView.readTryCount());
     }
 
-    private void racing(RandomMovingCars randomMovingCars, AttemptCount attemptCount) {
+    private void race(RandomMovingCars randomMovingCars, AttemptCount attemptCount) {
         outputView.printRacingResult();
 
-        while (attemptCount.remainCount()) {
-            attemptCount.attempt();
+        while (attemptCount.isRemain()) {
+            attemptCount.reduce();
             randomMovingCars.moveAll();
             outputView.printRacingResult(randomMovingCars);
         }

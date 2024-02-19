@@ -15,11 +15,11 @@ public class AttemptCount {
         }
     }
 
-    public void attempt() {
+    public void reduce() {
         count--;
     }
 
-    public boolean remainCount() {
+    public boolean isRemain() {
         return count > 0;
     }
 }
