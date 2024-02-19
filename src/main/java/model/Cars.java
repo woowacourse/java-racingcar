@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import model.dto.CarState;
+import model.dto.Winner;
 import model.powergenerator.RandomPowerGenerator;
 
 public class Cars {
@@ -54,10 +55,10 @@ public class Cars {
                 .toList();
     }
 
-    public List<String> findAllNameByForwardCount(int targetForwardCount) {
+    public List<Winner> findAllNameByForwardCount(int targetForwardCount) {
         return cars.stream()
                 .filter(car -> car.hasForwardCount(targetForwardCount))
-                .map(Car::getName)
+                .map(Winner::new)
                 .toList();
     }
 

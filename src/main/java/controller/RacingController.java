@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import model.Cars;
 import model.Racing;
 import model.dto.CarState;
+import model.dto.Winner;
 import view.InputView;
 import view.OutputView;
 
@@ -44,7 +45,7 @@ public class RacingController {
     }
 
     private void end(Racing racing, Cars cars) {
-        List<String> winners = racing.determineWinner(cars);
+        List<Winner> winners = racing.determineWinner(cars);
         outputView.printFinalResult(winners);
     }
 

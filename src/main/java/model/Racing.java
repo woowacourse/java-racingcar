@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import model.dto.Winner;
 
 public class Racing {
     private static final int MIN_TRY_COUNT = 1;
@@ -31,7 +32,7 @@ public class Racing {
         return tryCount > IMPOSSIBLE_TRY_COUNT;
     }
 
-    public List<String> determineWinner(Cars cars) {
+    public List<Winner> determineWinner(Cars cars) {
         int maxForwardCount = cars.calculateMaxForwardCount();
         return cars.findAllNameByForwardCount(maxForwardCount);
     }
