@@ -29,6 +29,10 @@ public class Car {
         }
     }
 
+    public boolean isDistance(final int distance) {
+        return this.distance == distance;
+    }
+
     public String getName() {
         return name;
     }

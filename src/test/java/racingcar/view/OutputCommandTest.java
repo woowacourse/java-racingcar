@@ -1,4 +1,4 @@
-package racingcar.ui;
+package racingcar.view;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +16,7 @@ class OutputCommandTest {
         String requestTryCount = "시도할 회수는 몇회인가요?";
         String inputErrorMessage = "입력 중 오류가 발생했습니다.";
         String resultTile = "실행 결과";
-        String winnerDelimiter = ", ";
+        String winnersDelimiter = ", ";
         String errorPrefix = "[ERROR] ";
 
         //when & then
@@ -25,7 +25,7 @@ class OutputCommandTest {
                 () -> assertEquals(requestTryCount, OutputCommand.ASK_TRY_COUNT),
                 () -> assertEquals(errorPrefix, OutputCommand.ERROR_PREFIX),
                 () -> assertEquals(resultTile, OutputCommand.RESULT_TITLE),
-                () -> assertEquals(winnerDelimiter, OutputCommand.WINNERS_DELIMITER),
+                () -> assertEquals(winnersDelimiter, OutputCommand.WINNERS_DELIMITER),
                 () -> assertEquals(inputErrorMessage, OutputCommand.INPUT_ERROR_MESSAGE)
         );
     }
