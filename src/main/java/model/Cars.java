@@ -50,7 +50,7 @@ public class Cars {
 
     public List<CarState> captureCarStates() {
         return cars.stream()
-                .map(Car::captureCarState)
+                .map(CarState::create)
                 .toList();
     }
 

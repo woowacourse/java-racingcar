@@ -1,6 +1,5 @@
 package model;
 
-import model.dto.CarState;
 import model.powergenerator.PowerGenerator;
 
 public class Car {
@@ -36,8 +35,8 @@ public class Car {
         }
     }
 
-    public CarState captureCarState() {
-        return CarState.create(this);
+    public boolean isSameForwardCount(int targetForwardCount) {
+        return this.forwardCount == targetForwardCount;
     }
 
     public String getName() {
@@ -46,9 +45,5 @@ public class Car {
 
     public int getForwardCount() {
         return this.forwardCount;
-    }
-
-    public boolean isSameForwardCount(int targetForwardCount) {
-        return this.forwardCount == targetForwardCount;
     }
 }
