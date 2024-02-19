@@ -5,10 +5,11 @@ import java.util.function.IntSupplier;
 
 public class RandomDigitSupplier implements IntSupplier {
 
-    private static final Random RANDOM = new Random();
+    private static final int MAX_RANDOM_INT = 10;
+    private static final Random random = new Random();
 
     @Override
     public int getAsInt() {
-        return Math.abs(RANDOM.nextInt() % 10);
+        return random.nextInt(MAX_RANDOM_INT);
     }
 }

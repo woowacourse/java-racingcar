@@ -2,8 +2,8 @@ package domain;
 
 public class Car {
 
-    public static final int DEFAULT_POSITION = 0;
-    public static final int MAX_NAME_LENGTH = 5;
+    private static final int DEFAULT_POSITION = 0;
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
     private int position;
@@ -27,6 +27,10 @@ public class Car {
         if (isMove) {
             position++;
         }
+    }
+
+    public boolean isSamePosition(int position) {
+        return this.position == position;
     }
 
     public String getName() {

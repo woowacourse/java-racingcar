@@ -2,6 +2,8 @@ package domain;
 
 public class TrialCount {
 
+    private static final int MIN_TRIAL_COUNT = 1;
+
     private final int amount;
 
     public TrialCount(int amount) {
@@ -10,7 +12,7 @@ public class TrialCount {
     }
 
     private void validate(int amount) {
-        if (amount < 1) {
+        if (amount < MIN_TRIAL_COUNT) {
             throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다. : " + amount);
         }
     }
