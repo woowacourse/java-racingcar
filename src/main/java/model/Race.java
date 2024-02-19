@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Race {
     private static final String NOT_ENOUGH_CARS_ERROR_MESSAGE = "레이스에 참여하는 자동차는 최소 2대 이상이어야 합니다.";
@@ -55,9 +54,9 @@ public class Race {
         Car winner = cars.get(0);
 
         return cars.stream()
-                .filter(car -> winner.getDistance() == car.getDistance())
+                .filter(car -> car.isDistanceAt(winner.getDistance()))
                 .map(Car::getName)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Car> getCars() {
