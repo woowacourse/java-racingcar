@@ -37,11 +37,7 @@ public class InputView {
     public static Round readRound() {
         String inputRound = readLine("시도할 회수는 몇회인가요?");
 
-        try {
-            return Round.from(Integer.parseInt(inputRound));
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.format("시도할 회수는 %d 이상의 양수만 가능합니다", MIN_ROUND));
-        }
+        return Round.from(Integer.parseInt(inputRound));
     }
 
     private static String readLine(String message) {
