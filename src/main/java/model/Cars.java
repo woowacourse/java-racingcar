@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,6 +69,6 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return this.cars;
+        return Collections.unmodifiableList(this.cars);
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,6 @@ public class ResultByRoundDto {
     }
 
     public List<CarInfoDto> getResultByRound() {
-        return resultByRound;
+        return Collections.unmodifiableList(this.resultByRound);
     }
 }

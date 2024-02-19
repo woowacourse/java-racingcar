@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -60,7 +61,7 @@ public class RacingGame {
     }
 
     public List<ResultByRoundDto> getAllRacingRecord() {
-        return this.raceRecord;
+        return Collections.unmodifiableList(this.raceRecord);
     }
 
 }
