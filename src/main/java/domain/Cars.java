@@ -26,7 +26,6 @@ public class Cars {
         return racingCars;
     }
 
-    // TODO [LTH]: 연산 수 줄이기
     public List<Car> getWinners(final int maxDistance) {
         return racingCars.stream()
                 .filter(car -> car.getDistance() == maxDistance)
@@ -37,6 +36,6 @@ public class Cars {
         return racingCars.stream()
                 .mapToInt(Car::getDistance)
                 .max()
-                .orElseThrow();
+                .orElse(0);
     }
 }
