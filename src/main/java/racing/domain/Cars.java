@@ -2,8 +2,6 @@ package racing.domain;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import racing.util.MovableStrategy;
 
 public class Cars {
@@ -20,10 +18,8 @@ public class Cars {
     }
 
     private void validateDuplicate(List<Car> cars) {
-        Map<String, Long> nameCounts = cars.stream()
-                .collect(Collectors.groupingBy(Car::getName, Collectors.counting()));
-        boolean hasDuplicates = nameCounts.values().stream().anyMatch(count -> count > 1);
-        if (hasDuplicates) {
+        int count = (int) cars.stream().distinct().count();
+        if (count != cars.size()) {
             throw new IllegalArgumentException("자동차 이름이 중복되었습니다.");
         }
     }

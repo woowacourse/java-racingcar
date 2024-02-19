@@ -50,6 +50,11 @@ public class Car implements Comparable<Car> {
         return Objects.equals(this.name, other.name);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
     public String getName() {
         return name;
     }
