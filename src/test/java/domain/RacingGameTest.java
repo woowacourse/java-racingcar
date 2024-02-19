@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 import movestrategy.MoveStrategy;
 import movestrategy.RandomPowerMoveStrategy;
 import org.junit.jupiter.api.DisplayName;
