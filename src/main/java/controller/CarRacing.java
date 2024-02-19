@@ -23,20 +23,12 @@ public class CarRacing {
         this.outputView = outputView;
     }
 
-    public void start() {
-        try {
-            Cars cars = readCars();
-            TryCount tryCount = createTryCount(inputView.readTryAmount());
+    public Cars start() {
+        Cars cars = createCars(inputView.readCarNames(), new RandomMoveAccelerator());
+        TryCount tryCount = createTryCount(inputView.readTryAmount());
 
-            printMoveResult(tryCount, cars);
-            announceWinners(cars);
-        } catch (Exception exception) {
-            outputView.printErrorMessage(exception);
-        }
-    }
-
-    private Cars readCars() {
-        return createCars(inputView.readCarNames(), new RandomMoveAccelerator());
+        printMoveResult(tryCount, cars);
+        return cars;
     }
 
     public void announceWinners(Cars cars) {
