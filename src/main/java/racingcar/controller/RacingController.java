@@ -1,6 +1,5 @@
 package racingcar.controller;
 
-import java.util.List;
 import racingcar.domain.RaceParticipants;
 import racingcar.domain.car.Car;
 import racingcar.domain.car.move.MovingStrategy;
@@ -10,7 +9,9 @@ import racingcar.dto.response.RaceResultResponse;
 import racingcar.dto.response.RaceWinnersResponse;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.view.utils.InputUtils;
+
+import java.util.List;
+import java.util.function.Supplier;
 
 public class RacingController implements Controller {
     private final InputView inputView;
@@ -33,14 +34,14 @@ public class RacingController implements Controller {
     }
 
     private RaceParticipants readRaceParticipants() {
-        return InputUtils.retryOnException(() -> {
+        return retryOnException(() -> {
             final RaceParticipantsRequest dto = inputView.readRaceParticipants();
             return dto.toRaceParticipants(movingStrategy);
         });
     }
 
     private int readRaceCount() {
-        return InputUtils.retryOnException(() -> {
+        return retryOnException(() -> {
             final RaceCountRequest dto = inputView.readRaceCount();
             return dto.toInt();
         });
@@ -59,5 +60,15 @@ public class RacingController implements Controller {
     private void printRaceWinners(final RaceParticipants raceParticipants) {
         final List<Car> raceWinners = raceParticipants.getRaceWinners();
         outputView.printRaceWinners(RaceWinnersResponse.from(raceWinners));
+    }
+
+    private <T> T retryOnException(final Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
