@@ -36,7 +36,21 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("멈춘 상태를 출력한다.")
+    void printNotForwardStatusTest() {
+        //given
+        String name = "choco";
+        int defaultForward = 0;
+
+        //when
+        Car car = new Car(name);
+
+        //then
+        assertThat(car.getForward()).isEqualTo(defaultForward);
+    }
+
+    @Test
+    @DisplayName("전진한 상태를 출력한다.")
     public void printStatusTest() {
         //given
         String name = "choco";
