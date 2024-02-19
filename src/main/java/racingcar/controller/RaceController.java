@@ -16,12 +16,9 @@ public class RaceController {
         inputValidator.validateAvailableCarNames(carNames);
         int attemptNumber = inputView.getAttemptNumber();
 
-        Cars cars = new Cars(generateCarListByCarNames(carNames));
+        Cars cars = new Cars(carNames);
         Race race = new Race(cars, attemptNumber);
         race.runRace();
     }
 
-    private List<Car> generateCarListByCarNames(List<String> carNames) {
-        return carNames.stream().map(carName -> new Car(carName, new RandomNumberGenerator())).collect(Collectors.toList());
-    }
 }

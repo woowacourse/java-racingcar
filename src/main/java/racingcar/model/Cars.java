@@ -9,8 +9,15 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
-        this.cars = new ArrayList<>(cars);
+    public Cars(List<String> carNames) {
+
+        this.cars = generateCarListByCarNames(carNames);
+    }
+
+    private List<Car> generateCarListByCarNames(List<String> carNames) {
+        return carNames.stream()
+                .map(carName -> new Car(carName, new RandomNumberGenerator()))
+                .collect(Collectors.toList());
     }
 
     public void moveAllCars() {
