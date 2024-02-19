@@ -3,13 +3,15 @@ package racingcar.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import racingcar.domain.Cars;
+import racingcar.config.RacingCarConfig;
+import racingcar.domain.car.Cars;
 import racingcar.domain.Round;
 import racingcar.dto.RoundResult;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingcarController {
+public class RacingCarController {
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
@@ -21,10 +23,13 @@ public class RacingcarController {
         awardWinners(cars, roundResults);
     }
 
-    private void awardWinners(Cars cars, List<RoundResult> roundResults) {
-        List<String> winners = cars.getWinnersName();
-        outputView.printRoundResults(roundResults);
-        outputView.printWinners(winners);
+    private Cars readCars() {
+        List<String> carNames = inputView.readCarNames();
+        return Cars.createCarsByName(carNames, RacingCarConfig.oilGenerator());
+    }
+
+    private Round readRound() {
+        return new Round(inputView.readTryCount());
     }
 
     private List<RoundResult> simulateCarsInRound(Round round, Cars cars) {
@@ -37,16 +42,13 @@ public class RacingcarController {
         return roundResults;
     }
 
-    private Cars readCars() {
-        List<String> carNames = inputView.readCarNames();
-        return Cars.createCarsByName(carNames);
+    private void awardWinners(Cars cars, List<RoundResult> roundResults) {
+        List<String> winners = cars.getWinnersName();
+        outputView.printRoundResults(roundResults);
+        outputView.printWinners(winners);
     }
 
-    private Round readRound() {
-        return new Round(inputView.readTryCount());
-    }
-
-    public <T> T retryOnException(Supplier<T> retryOperation) {
+    private <T> T retryOnException(Supplier<T> retryOperation) {
         try {
             return retryOperation.get();
         } catch (IllegalArgumentException e) {

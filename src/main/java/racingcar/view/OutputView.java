@@ -1,15 +1,16 @@
 package racingcar.view;
 
-import static racingcar.constant.ViewMessage.OUTPUT_EXCEPTION_PREFIX;
-import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULTS_INTRO;
-import static racingcar.constant.ViewMessage.OUTPUT_ROUND_RESULT_FORMAT;
-import static racingcar.constant.ViewMessage.OUTPUT_WINNERS;
+import static racingcar.view.ViewMessage.OUTPUT_EXCEPTION_PREFIX;
+import static racingcar.view.ViewMessage.OUTPUT_ROUND_RESULTS_INTRO;
+import static racingcar.view.ViewMessage.OUTPUT_ROUND_RESULT_FORMAT;
+import static racingcar.view.ViewMessage.OUTPUT_WINNERS;
 
 import java.util.List;
 import racingcar.dto.CarPerformance;
 import racingcar.dto.RoundResult;
 
 public class OutputView {
+
     private static final String MOVEMENT_FORMAT = "-";
     private static final String SEPARATOR = ", ";
 
@@ -19,7 +20,7 @@ public class OutputView {
     }
 
     private void printRoundResult(RoundResult roundResult) {
-        for (CarPerformance carPerformance : roundResult.getCarPerformances()) {
+        for (CarPerformance carPerformance : roundResult.carPerformances()) {
             String carName = carPerformance.carName();
             int distance = carPerformance.distance();
             String movements = MOVEMENT_FORMAT.repeat(distance);

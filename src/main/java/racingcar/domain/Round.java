@@ -1,7 +1,7 @@
 package racingcar.domain;
 
-import static racingcar.constant.ExceptionMessage.INVALID_ROUND_FORMAT;
-import static racingcar.constant.ExceptionMessage.INVALID_ROUND_RANGE;
+import racingcar.exception.InvalidRoundFormatException;
+import racingcar.exception.InvalidRoundRangeException;
 
 public class Round {
 
@@ -16,7 +16,7 @@ public class Round {
 
     private void validateCountRange() {
         if (count < MIN_ROUND_COUNT) {
-            throw INVALID_ROUND_RANGE.getException();
+            throw new InvalidRoundRangeException();
         }
     }
 
@@ -24,7 +24,7 @@ public class Round {
         try {
             return Integer.parseInt(count);
         } catch(NumberFormatException e) {
-            throw INVALID_ROUND_FORMAT.getException();
+            throw new InvalidRoundFormatException();
         }
     }
 

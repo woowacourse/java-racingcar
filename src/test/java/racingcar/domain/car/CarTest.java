@@ -1,16 +1,14 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.exception.InvalidCarNameLengthException;
 
 class CarTest {
 
@@ -27,7 +25,7 @@ class CarTest {
     @ValueSource(strings = {"점심은순두부", "1234567", ""})
     void testInvalidNameLength(String carName) {
         assertThatThrownBy(() -> new Car(carName))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(InvalidCarNameLengthException.class);
     }
 
     @DisplayName("이름이 1자 이상 5자 이내이면 예외를 던지지 않는다")
@@ -35,19 +33,6 @@ class CarTest {
     @ValueSource(strings = {"점심순두부", "1"})
     void testValidNameLength(String carName) {
         assertDoesNotThrow(() -> new Car(carName));
-    }
-
-    private static Stream<Arguments> provideDuplicatedCarNames() {
-        return Stream.of(
-                Arguments.of(createCarsWithName(List.of("조조네조", "감쟈감쟈", "조조네조"))),
-                Arguments.of(createCarsWithName(List.of("123", "123", "1 2 3")))
-        );
-    }
-
-    private static List<Car> createCarsWithName(List<String> carNames) {
-        return carNames.stream()
-                .map(Car::new)
-                .toList();
     }
 
     @DisplayName("오일이 4 미만이면 이동하지 않는다")

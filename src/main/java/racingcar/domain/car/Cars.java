@@ -1,28 +1,31 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
+import racingcar.domain.generator.OilGenerator;
 import racingcar.dto.CarPerformance;
 import racingcar.dto.RoundResult;
+import racingcar.exception.DuplicatedCarNameException;
+import racingcar.exception.NoCarsToFindMaxDistanceException;
 
 import java.util.Collections;
 import java.util.List;
 
-import static racingcar.constant.ExceptionMessage.DUPLICATED_CAR_NAME;
-
 public class Cars {
 
     private final List<Car> cars;
+    private final OilGenerator oilGenerator;
 
-    public Cars(List<Car> cars) {
+    public Cars(List<Car> cars, OilGenerator oilGenerator) {
         validateUniqueCarNames(cars);
         this.cars = Collections.unmodifiableList(cars);
+        this.oilGenerator = oilGenerator;
     }
 
-    public static Cars createCarsByName(List<String> carNames) {
+    public static Cars createCarsByName(List<String> carNames, OilGenerator oilGenerator) {
         List<Car> cars = carNames.stream()
                 .map(Car::new)
                 .toList();
 
-        return new Cars(cars);
+        return new Cars(cars, oilGenerator);
     }
 
     public RoundResult moveCars() {
@@ -49,12 +52,12 @@ public class Cars {
                 .count();
 
         if (uniqueCarNamesCount != cars.size()) {
-            throw DUPLICATED_CAR_NAME.getException();
+            throw new DuplicatedCarNameException();
         }
     }
 
     private CarPerformance moveCar(Car car) {
-        int oil = RandomOilGenerator.generate();
+        int oil = oilGenerator.generateValidOil();
         car.goIfOilEnough(oil);
 
         return car.getCurrentPerformance();
@@ -64,6 +67,6 @@ public class Cars {
         return cars.stream()
                 .mapToInt(Car::getMovedDistance)
                 .max()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(NoCarsToFindMaxDistanceException::new);
     }
 }
