@@ -3,30 +3,29 @@ package controller;
 import model.Car;
 import model.Game;
 import model.TrialCount;
+import view.InputView;
+import view.OutputView;
 
+import java.io.IOException;
 import java.util.List;
 
 public class RacingCarController {
-    private final Game game;
-    private final TrialCount trialCount;
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    public RacingCarController(List<String> carsName, int trialCount) {
-        this.game = new Game(carsName);
-        this.trialCount = new TrialCount(trialCount);
+    public RacingCarController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
-    public void run() {
+    public void run() throws IOException {
+        Game game = new Game(inputView.inputCarsName());
+        TrialCount trialCount = new TrialCount(inputView.inputTrialCount());
+        outputView.printResultComment();
         while (trialCount.isRest()) {
-            game.proceed();
+            outputView.printResult(game.proceed());
             trialCount.reduce();
         }
-    }
-
-    public List<Car> getRacingCars() {
-        return game.getCars();
-    }
-
-    public List<Car> findWinners() {
-        return game.findWinners();
+        outputView.printWinner(game.findWinners());
     }
 }
