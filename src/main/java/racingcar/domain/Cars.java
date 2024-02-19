@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import racingcar.domain.gamestatus.RacingGameStatus;
 import racingcar.domain.gamewinner.RacingGameWinners;
 
 public class Cars {
@@ -52,6 +53,7 @@ public class Cars {
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .orElse(0);
+
         return new RacingGameWinners(cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
@@ -60,8 +62,8 @@ public class Cars {
     }
 
     public GameStatus getGameStatus() {
-        return new GameStatus(cars.stream()
-                .map(Car::toString)
-                .collect(Collectors.joining("\n")));
+        return new RacingGameStatus(cars.stream()
+                    .map(Car::getStatus)
+                    .toList());
     }
 }

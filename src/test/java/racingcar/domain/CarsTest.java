@@ -52,7 +52,7 @@ public class CarsTest {
         void testSplit() {
             Cars cars = new Cars("차,2개");
             GameStatus actual = cars.getGameStatus();
-            assertThat(actual.toString()).contains("차", "2개");
+            assertThat(actual.showStatus()).contains("차", "2개");
         }
 
         @Test
@@ -62,7 +62,7 @@ public class CarsTest {
             NumericGenerator generator = new TestNumericGenerator(4);
             cars.moveCars(generator);
             GameStatus actual = cars.getGameStatus();
-            assertThat(actual.toString()).isEqualTo("차 : -\n2개 : -");
+            assertThat(actual.showStatus()).isEqualTo("차 : -\n2개 : -");
         }
 
         @Test
@@ -72,7 +72,7 @@ public class CarsTest {
             NumericGenerator generator = new TestNumericGenerator(3);
             cars.moveCars(generator);
             GameStatus actual = cars.getGameStatus();
-            assertThat(actual.toString()).isEqualTo("차 : \n2개 : ");
+            assertThat(actual.showStatus()).isEqualTo("차 : \n2개 : ");
         }
 
         @Test
@@ -82,7 +82,7 @@ public class CarsTest {
             NumericGenerator generator = new TestNumericGenerator(4, 3);
             cars.moveCars(generator);
             GameWinner actual = cars.calculateWinner();
-            assertThat(actual.toString()).isEqualTo("폭포");
+            assertThat(actual.showWinner()).isEqualTo("폭포");
         }
 
         @Test
@@ -92,7 +92,7 @@ public class CarsTest {
             NumericGenerator generator = new TestNumericGenerator(4, 4, 3);
             cars.moveCars(generator);
             GameWinner actual = cars.calculateWinner();
-            assertThat(actual.toString()).isEqualTo("폭포, 포케");
+            assertThat(actual.showWinner()).isEqualTo("폭포, 포케");
         }
     }
 }

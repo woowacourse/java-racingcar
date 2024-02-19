@@ -10,6 +10,6 @@ public class Application {
         final var tryCount = InputView.inputTryCount();
         final var racingGame = new RacingGame(cars, tryCount);
         racingGame.startGame();
-        OutputView.printGameResult(racingGame.getGameResult());
+        OutputView.printGameResult(racingGame.getGameResult(), racingGame.getGameWinner());
     }
 }

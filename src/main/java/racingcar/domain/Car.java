@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.gamestatus.CarStatus;
+
 public class Car {
     private static final int MAX_LENGTH = 5;
 
@@ -34,8 +36,7 @@ public class Car {
         return position;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s : %s", name, "-".repeat(position));
+    public CarStatus getStatus() {
+        return new CarStatus(name, position);
     }
 }

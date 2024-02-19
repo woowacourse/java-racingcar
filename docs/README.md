@@ -122,9 +122,11 @@ domain 객체를 사용할 경우 : 추상화가 가능하여 유연하게 확�
             - [X] 단독 우승일 경우 구분자로 구분하지 않기
             - [X] 공동 우승일 경우 구분자로 구분하기
 
-- [ ] GameStatus 추상화 하기
-    - [ ] `showStatus()`로 캡슐화 하기
+- [X] GameStatus 추상화 하기
+    - [X] `showStatus()`로 캡슐화 하기
+        - [X] 한 자동차의 상태를 받기 위해 CarStatus 생성
+        - [X] 차들의 status를 받도록 RacingGameStatus 생성
 
-- [ ] GameResult를 record로 변경
-    - [ ] 데이터를 전달할 목적으로만 사용하도록 의도 전달하기
-    - [ ] 
+- [X] GameResult 추상화 하기
+    - [X] GameResult는 여러개의 Status를 받을 수 있다.
+    - [X] 역할이 변경됨에 따라 Winner를 분리하기.

@@ -1,22 +1,21 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class GameResult{
-    private final List<GameStatus> status;
-    private final GameWinner winners;
+public class GameResult {
+    private static final String GAME_STATUS_SEPERATOR = "\n";
+    private final List<GameStatus> gameStatusBucket = new ArrayList<>();
 
-    public GameResult(List<GameStatus> status, GameWinner winners) {
-        this.status = status;
-        this.winners = winners;
-    }
-
-    public List<GameStatus> getGameStatus() {
-        return status;
+    public void addGameStatus(GameStatus status) {
+        gameStatusBucket.add(status);
     }
     
-    public GameWinner getWinners() {
-        return winners;
+    public String getGameResult() {
+        return gameStatusBucket.stream()
+                .map(GameStatus::showStatus)
+                .collect(Collectors.joining(GAME_STATUS_SEPERATOR));
     }
     
 }

@@ -2,6 +2,7 @@ package racingcar.view;
 
 import racingcar.domain.Cars;
 import racingcar.domain.GameResult;
+import racingcar.domain.GameWinner;
 
 public class OutputView {
     public static void printRequestCarNamesMessage() {
@@ -17,11 +18,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printGameResult(GameResult result) {
+    public static void printGameResult(GameResult result, GameWinner winner) {
         System.out.println("\n실행 결과");
-        result.getGameStatus().stream().forEach(gameStatus -> System.out.println(gameStatus + "\n"));
-
-        // TODO: 디미터의 원칙 위반! 리펙터링 필요
-        System.out.println("%s가 최종 우승했습니다.".formatted(result.getWinners().showWinner()));
+        result.getGameResult();
+        System.out.println("%s가 최종 우승했습니다.".formatted(winner.showWinner()));
     }
 }
