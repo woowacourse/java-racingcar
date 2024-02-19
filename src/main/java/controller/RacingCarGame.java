@@ -4,7 +4,9 @@ import domain.Cars;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class RacingCarGame {
@@ -30,7 +32,7 @@ public class RacingCarGame {
 
         for (int i = 0; i < count; i++) {
             cars.moveCars();
-            outputView.printCurrentStatus(cars.getCurrentStatus());
+            printCurrentStatus(cars);
         }
 
         outputView.printWinners(cars.findWinners());
@@ -74,6 +76,21 @@ public class RacingCarGame {
         if (count <= 0) {
             throw new IllegalArgumentException(NUMBER_RANGE_EXCEPTION);
         }
+    }
+
+    private void printCurrentStatus(Cars cars) {
+        Map<String, Integer> currentStatus = cars.getCurrentStatus();
+        outputView.printCurrentStatus(makeCurrentStatusResult(currentStatus));
+    }
+
+    private List<String> makeCurrentStatusResult(Map<String, Integer> currentStatus) {
+        List<String> result = new ArrayList<>();
+
+        for (String name : currentStatus.keySet()) {
+            result.add(name + " : " + "-".repeat(currentStatus.get(name)));
+        }
+
+        return result;
     }
 
 }

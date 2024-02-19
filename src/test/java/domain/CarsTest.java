@@ -3,7 +3,9 @@ package domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -36,7 +38,12 @@ class CarsTest {
         cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
         cars.getCars().get(1).drive(MIN_FORWARD_NUMBER);
 
-        assertThat(cars.getCurrentStatus()).containsAll(List.of("가 : -", "나 : --", "다 : "));
+        Map<String, Integer> result = new HashMap<>();
+        result.put("가", 1);
+        result.put("나", 2);
+        result.put("다", 0);
+
+        assertThat(cars.getCurrentStatus()).containsAllEntriesOf(result);
     }
 
     @DisplayName("우승자 1명 테스트")

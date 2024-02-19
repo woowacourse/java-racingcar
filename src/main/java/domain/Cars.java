@@ -2,10 +2,7 @@ package domain;
 
 import util.RandomNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Cars {
 
@@ -38,11 +35,11 @@ public class Cars {
         cars.forEach(car -> car.drive(RandomNumberGenerator.generate()));
     }
 
-    public List<String> getCurrentStatus() {
-        List<String> currentStatus = new ArrayList<>();
+    public Map<String, Integer> getCurrentStatus() {
+        Map<String, Integer> currentStatus = new HashMap<>();
 
         cars.forEach(car -> {
-            currentStatus.add(car.getName() + " : " + "-".repeat(car.getForward()));
+            currentStatus.put(car.getName(), car.getForward());
         });
 
         return currentStatus;
