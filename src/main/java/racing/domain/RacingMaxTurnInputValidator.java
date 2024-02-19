@@ -1,8 +1,8 @@
-package racing.view;
+package racing.domain;
 
 import java.util.function.Supplier;
 
-public class RacingMaxTurnInputView {
+public class RacingMaxTurnInputValidator {
 
   public static int getMaxTurn(Supplier<String> inputSupplier) {
     int parsedNumber = getNumberAsInteger(inputSupplier.get());

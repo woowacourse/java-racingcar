@@ -86,6 +86,6 @@ pobi, honux가 최종 우승했습니다.
 - [x] Car의 distance 대신 positon 으로 필드명 변경
 - [x] RandomGenerator 클래스 위치 변경
 - [x] Car의 stop 메서드 제거
-- [ ] RaceController.readFromConsole 메서드 위치 뷰로 변경
-- [ ] 입출력 검증을 뷰에서 분리
+- [x] RaceController.readFromConsole 메서드 위치 뷰로 변경
+- [x] 입출력 검증을 뷰에서 분리
 - [x] 테스트에서만 사용하는 비즈니스 코드 삭제

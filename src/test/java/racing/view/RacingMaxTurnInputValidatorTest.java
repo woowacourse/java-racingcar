@@ -4,14 +4,15 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racing.domain.RacingMaxTurnInputValidator;
 
-class RacingMaxTurnInputViewTest {
+class RacingMaxTurnInputValidatorTest {
 
   @ParameterizedTest
   @ValueSource(strings = {"1", "100"})
   @DisplayName("정상 동작 테스트")
   void getMaxTurn(String input) {
-    int maxTurn = RacingMaxTurnInputView.getMaxTurn(() -> input);
+    int maxTurn = RacingMaxTurnInputValidator.getMaxTurn(() -> input);
     Assertions.assertThat(String.valueOf(maxTurn))
         .isEqualTo(input);
   }
@@ -20,7 +21,7 @@ class RacingMaxTurnInputViewTest {
   @ValueSource(strings = {"1a", "!", "b", " 100"})
   @DisplayName("숫자 아닌 경우 확인")
   void getMaxTurnFailByNotNumber(String input) {
-    Assertions.assertThatThrownBy(() -> RacingMaxTurnInputView.getMaxTurn(() -> input))
+    Assertions.assertThatThrownBy(() -> RacingMaxTurnInputValidator.getMaxTurn(() -> input))
         .isInstanceOf(RuntimeException.class)
         .hasMessage("총 이동 횟수는 1 이상 100이하의 정수만 가능합니다.");
   }
@@ -29,7 +30,7 @@ class RacingMaxTurnInputViewTest {
   @ValueSource(strings = {"101", "0", "-1"})
   @DisplayName("허용된 숫자 범위를 벗어난 경우")
   void getMaxTurnFailByOutOfRange(String input) {
-    Assertions.assertThatThrownBy(() -> RacingMaxTurnInputView.getMaxTurn(() -> input))
+    Assertions.assertThatThrownBy(() -> RacingMaxTurnInputValidator.getMaxTurn(() -> input))
         .isInstanceOf(RuntimeException.class)
         .hasMessage("총 이동 횟수는 1 이상 100이하의 정수만 가능합니다.");
   }
