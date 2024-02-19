@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static final int MOVE_LINE = 4;
-
     private final NumericGenerator generator;
     private final List<Car> cars;
 
@@ -21,12 +19,7 @@ public class Cars {
     }
 
     public List<Car> move() {
-        cars.forEach(car -> {
-            if (generator.generate() >= MOVE_LINE) {
-                car.move();
-            }
-        });
-
+        cars.forEach(car -> car.move(generator.generate()));
         return new ArrayList<>(cars);
     }
 
