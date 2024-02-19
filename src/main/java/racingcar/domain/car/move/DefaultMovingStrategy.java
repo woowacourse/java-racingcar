@@ -1,6 +1,6 @@
 package racingcar.domain.car.move;
 
-import racingcar.domain.generator.NumberGenerator;
+import racingcar.domain.car.move.generator.NumberGenerator;
 
 public class DefaultMovingStrategy implements MovingStrategy {
     private static final int MOVING_THRESHOLD = 4;

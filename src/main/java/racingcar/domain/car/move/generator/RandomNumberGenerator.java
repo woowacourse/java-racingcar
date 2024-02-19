@@ -1,4 +1,4 @@
-package racingcar.domain.generator;
+package racingcar.domain.car.move.generator;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
