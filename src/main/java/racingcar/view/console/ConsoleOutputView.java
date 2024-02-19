@@ -1,9 +1,10 @@
 package racingcar.view.console;
 
-import java.util.Map;
 import racingcar.dto.response.RaceResultResponse;
 import racingcar.dto.response.RaceWinnersResponse;
 import racingcar.view.OutputView;
+
+import java.util.Map;
 
 public class ConsoleOutputView implements OutputView {
     @Override
@@ -14,12 +15,11 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printRaceResult(final RaceResultResponse raceResultResponse) {
-        String raceResultFormat = "%s : %s%n";
         Map<String, Integer> raceResult = raceResultResponse.raceResult();
 
         raceResult.forEach((carName, position) -> {
             String currentPosition = "-".repeat(position);
-            System.out.printf(raceResultFormat, carName, currentPosition);
+            System.out.printf("%s : %s%n", carName, currentPosition);
         });
         System.out.println();
     }
