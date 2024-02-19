@@ -3,8 +3,8 @@ package view;
 import domain.Car;
 import domain.RacingGame;
 import domain.Round;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -27,10 +27,9 @@ public class OutputView {
     }
 
     private void printCars(List<Car> cars) {
-        List<String> carNames = new ArrayList<>();
-        for (Car car : cars) {
-            carNames.add(car.getName());
-        }
-        System.out.println(String.join(", ", carNames) + WIN_THE_GAME);
+        String result = cars.stream()
+            .map(Car::getName)
+            .collect(Collectors.joining(", "));
+        System.out.println(result + WIN_THE_GAME);
     }
 }
