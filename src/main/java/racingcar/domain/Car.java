@@ -30,7 +30,7 @@ public class Car {
     }
 
     private void validate(String name) {
-        if (isLongerThanMaxLength(name)) {
+        if (name != null || isLongerThanMaxLength(name)) {
             throw new IllegalArgumentException();
         }
     }
