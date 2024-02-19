@@ -7,13 +7,13 @@ import java.util.List;
 import view.InputView;
 import view.OutputView;
 
-public class Controller {
+public class RacingCarController {
     public static final int MINIMUM_ATTEMPT_LIMIT = 1;
     private final Service service;
     private final OutputView outputView;
     private final InputView inputView;
 
-    public Controller(Service service, OutputView outputView, InputView inputView) {
+    public RacingCarController(Service service, OutputView outputView, InputView inputView) {
         this.service = service;
         this.outputView = outputView;
         this.inputView = inputView;
