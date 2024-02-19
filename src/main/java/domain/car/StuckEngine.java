@@ -5,6 +5,6 @@ public class StuckEngine implements MovableStrategy {
 
     @Override
     public boolean isMove() {
-        return power >= FORWARD_THRESHOLD;
+        return false;
     }
 }
