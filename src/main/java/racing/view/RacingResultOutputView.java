@@ -9,7 +9,7 @@ public class RacingResultOutputView {
 
   public static void printResult(RacingResults racingResults) {
     System.out.println("실행 결과");
-    racingResults.stream().forEach(RacingResultOutputView::printEachResult);
+    racingResults.toList().forEach(RacingResultOutputView::printEachResult);
     printWinner(racingResults);
   }
 
