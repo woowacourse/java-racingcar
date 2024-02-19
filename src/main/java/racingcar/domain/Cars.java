@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.util.Validator;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -7,12 +9,13 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(final List<String> names) {
+        Validator.validateCarNames(names);
         this.cars = names.stream().map(Car::new).toList();
     }
 
-    public void moveAll(final RandomNumberGenerator randomNumberGenerator) {
+    public void moveAll(final MovementDecider movementDecider) {
         for(Car car: cars) {
-            final int condition = randomNumberGenerator.generate();
+            final int condition = movementDecider.generateCondition();
             car.move(condition);
         }
     }
@@ -26,7 +29,7 @@ public class Cars {
                 .max(Comparator.comparing(Car::getMovement))
                 .get();
         return cars.stream()
-                .filter(car -> car.isAlsoWinner(winnerCar))
+                .filter(car -> car.isSameMovement(winnerCar))
                 .toList();
     }
 }

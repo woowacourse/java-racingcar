@@ -17,12 +17,8 @@ public class Car {
         }
     }
 
-    public boolean isSameCount(final int count) {
-        return this.movement == count;
-    }
-
-    public boolean isAlsoWinner(final Car car) {
-        return car.isSameCount(movement);
+    public boolean isSameMovement(final Car car) {
+        return car.movement == this.movement;
     }
 
     public String getName() {

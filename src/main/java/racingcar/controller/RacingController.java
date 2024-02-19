@@ -2,10 +2,8 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.RandomNumberGenerator;
-import racingcar.domain.RandomNumberGeneratorImpl;
-import racingcar.util.Parser;
-import racingcar.util.Validator;
+import racingcar.domain.MovementDecider;
+import racingcar.domain.RandomMovementDecider;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,48 +19,41 @@ public class RacingController {
     }
 
     public void start() {
-        final List<String> carNames = readCarNames();
-        final Cars cars = new Cars(carNames);
+        final Cars cars = createCars();
         final int tryCount = readTryCount();
 
         outputView.printResultMsg();
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGeneratorImpl();
+        MovementDecider movementDecider = new RandomMovementDecider();
         for(int i = 0 ; i < tryCount; i++) {
-            moveCars(cars, randomNumberGenerator);
+            moveCars(cars, movementDecider);
         }
 
         final List<Car> winners = cars.determineWinner();
         outputView.printWinners(winners);
-        inputView.closeScanner();
+        inputView.closeResource();
     }
 
-    private List<String> readCarNames() {
+    private Cars createCars() {
         try {
-            String carNames = inputView.readCarNames();
-            Validator.validateNullName(carNames);
-            List<String> parsedCarNames = Parser.parseCarNames(carNames);
-            Validator.validateCarNames(parsedCarNames);
-            return parsedCarNames;
+            List<String> carNames = inputView.readCarNames();
+            return new Cars(carNames);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMsg(e.getMessage());
-            return readCarNames();
+            return createCars();
         }
     }
 
     private int readTryCount() {
         try {
-            String tryCount = inputView.readTryCount();
-            int parsedTryCount = Validator.validateInteger(tryCount);
-            Validator.validateTryCount(parsedTryCount);
-            return parsedTryCount;
+            return inputView.readTryCount();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMsg(e.getMessage());
             return readTryCount();
         }
     }
 
-    private void moveCars(final Cars cars, final RandomNumberGenerator randomNumberGenerator) {
-        cars.moveAll(randomNumberGenerator);
+    private void moveCars(final Cars cars, final MovementDecider movementDecider) {
+        cars.moveAll(movementDecider);
         outputView.printCarPosition(cars);
     }
 }
