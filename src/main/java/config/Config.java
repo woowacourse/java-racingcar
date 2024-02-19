@@ -20,7 +20,7 @@ public class Config {
     }
 
     private RacingGameController createRacingGameController() {
-        return new RacingGameController(createInputView(), createOutputView(), raceGameService());
+        return new RacingGameController(createInputView(), createOutputView(), raceGameService(), inputMapper());
     }
 
     private InputView createInputView() {
@@ -42,4 +42,5 @@ public class Config {
     private RaceGameService raceGameService() {
         return new RaceGameService();
     }
+
 }

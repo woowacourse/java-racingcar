@@ -1,7 +1,5 @@
 package view;
 
-import domain.Cars;
-import domain.MoveCount;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,13 +14,13 @@ public class InputView {
         this.inputMapper = inputMapper;
     }
 
-    public Cars requestCars() {
+    public String requestCarNames() {
         System.out.println(REQUEST_CAR_NAME);
-        return inputMapper.mapToCars(scanner.nextLine());
+        return scanner.nextLine();
     }
 
-    public MoveCount requestMoveCount() {
+    public String requestMoveCount() {
         System.out.println(REQUEST_MOVE_COUNT);
-        return inputMapper.mapToMoveCount(scanner.nextLine());
+        return scanner.nextLine();
     }
 }
