@@ -13,16 +13,14 @@ public class Controller {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final Parser parser;
 
-    public Controller(InputView inputView, OutputView outputView, Parser parser) {
+    public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.parser = parser;
     }
 
     public void startGame() {
-        List<String> names = parser.parse(inputView.readNames());
+        List<String> names = inputView.readNames();
         Cars cars = new Cars(names.stream().map(Car::new).collect(Collectors.toList()));
         TryCount tryCount = new TryCount(inputView.readTryCount());
 

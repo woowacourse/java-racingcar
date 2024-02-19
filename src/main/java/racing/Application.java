@@ -1,14 +1,13 @@
 package racing;
 
 import racing.controller.Controller;
-import racing.controller.Parser;
 import racing.view.InputView;
 import racing.view.OutputView;
 
 public class Application {
 
     public static void main(String[] args) {
-        Controller controller = new Controller(new InputView(), new OutputView(), new Parser());
+        Controller controller = new Controller(new InputView(), new OutputView());
         controller.startGame();
     }
 }

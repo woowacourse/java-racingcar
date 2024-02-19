@@ -1,5 +1,7 @@
 package racing.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -9,14 +11,13 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public String readNames() {
+    public List<String> readNames() {
         System.out.println(ENTER_NAMES);
-        return readLine();
+        return parseNames(readLine());
     }
 
-    public int readTryCount() {
-        System.out.println(ENTER_TRY_COUNT);
-        return readInt();
+    private List<String> parseNames(String input) {
+        return Arrays.stream(input.split(",")).map(String::trim).toList();
     }
 
     private String readLine() {
@@ -25,6 +26,11 @@ public class InputView {
             throw new IllegalArgumentException("입력이 null이거나 비어 있습니다.");
         }
         return input;
+    }
+
+    public int readTryCount() {
+        System.out.println(ENTER_TRY_COUNT);
+        return readInt();
     }
 
     private int readInt() {
