@@ -18,7 +18,7 @@ class RefereeTest {
 
     static class FixNumberGenerator implements NumberGenerator {
         @Override
-        public int generateNumber(int bound) {
+        public int generateNumber() {
             return 4;
         }
     }

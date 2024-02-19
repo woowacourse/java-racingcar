@@ -1,8 +1,9 @@
 package racingcar.domain;
 
 public class RandomNumberGenerator implements NumberGenerator{
+    private static final int BOUND = 10;
     @Override
-    public int generateNumber(int bound){
-        return (int) (Math.random()*bound);
+    public int generateNumber(){
+        return (int) (Math.random() * BOUND);
     }
 }
