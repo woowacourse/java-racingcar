@@ -21,7 +21,7 @@ public class RacingCarController {
     public void run() {
         inputCarName();
         service.playGame(inputAttemptLimit());
-//        outputView.printWinners(service.getWinnerName());
+        outputView.printWinners(service.getWinnerName());
     }
 
     private Cars inputCarName() {
