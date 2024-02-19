@@ -5,33 +5,35 @@ import java.util.List;
 import java.util.Map;
 import racingcar.model.Car;
 import racingcar.model.CarGroup;
+import racingcar.model.RacingGame;
 import racingcar.utils.NameParser;
 import racingcar.utils.InputValidator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class GameController {
-    private final CarGroup carGroup = new CarGroup();
-    private List<String> names;
-    private int moveCount;
+    private RacingGame racingGame;
 
     public void init() throws IOException {
-        readCarNames();
-        readMoveCount();
-        initCars(names);
+        List<String> names;
+        int moveCount;
+
+        do {
+            names = readCarNames();
+        } while (!isNameValid(names));
+        do {
+            moveCount = readMoveCount();
+        } while (!isMoveCountValid(moveCount));
+
+        racingGame = new RacingGame(createCarGroup(names), moveCount);
     }
 
-    private void readCarNames() throws IOException {
-        boolean isValid = false;
-        while (!isValid) {
-            isValid = doReadCarNames();
-        }
+    private List<String> readCarNames() throws IOException {
+        return NameParser.parse(InputView.inputNames());
     }
 
-    private boolean doReadCarNames() throws IOException {
+    private boolean isNameValid(List<String> names) {
         try {
-            OutputView.printlnInputName();
-            names = NameParser.parse(InputView.inputNames());
             InputValidator.validateCarName(names);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
@@ -40,17 +42,8 @@ public class GameController {
         return true;
     }
 
-    private void readMoveCount() throws IOException {
-        boolean isValid = false;
-        while (!isValid) {
-            isValid = doReadMoveCount();
-        }
-    }
-
-    private boolean doReadMoveCount() throws IOException {
+    private boolean isMoveCountValid(int moveCount) {
         try {
-            OutputView.printlnInputMoveCount();
-            moveCount = InputView.inputMoveCount();
             InputValidator.validateMoveCount(moveCount);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e.getMessage());
@@ -59,22 +52,27 @@ public class GameController {
         return true;
     }
 
-    private void initCars(List<String> carNames) {
+    private int readMoveCount() throws IOException {
+        return InputView.inputMoveCount();
+    }
+
+    private CarGroup createCarGroup(List<String> carNames) {
+        CarGroup carGroup = new CarGroup();
+
         for (String name : carNames) {
             carGroup.add(new Car(name));
         }
+        return carGroup;
     }
 
     public void play() {
         OutputView.printResultDescription();
-        for (int i = 0; i < moveCount; i++) {
-            Map<String, Integer> raceResponse = carGroup.race();
-            OutputView.printPosition(raceResponse);
-        }
+        List<Map<String, Integer>> raceResponse = racingGame.race();
+        OutputView.printPosition(raceResponse);
     }
 
     public void finish() {
-        List<String> winners = carGroup.findWinners();
+        List<String> winners = racingGame.findWinners();
         if (winners.isEmpty()) {
             OutputView.printNoWinner();
             return;

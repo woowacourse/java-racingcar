@@ -21,7 +21,7 @@ public class CarTest {
     @DisplayName("생성된 난수가 이동 기준을 만족하지 않을 때 위치는 변하지 않는다.")
     void notMoveTest() {
         final Car car = new Car("몰리");
-        final int randomNumber = 2;
+        final int randomNumber = 3;
 
         car.move(randomNumber);
 

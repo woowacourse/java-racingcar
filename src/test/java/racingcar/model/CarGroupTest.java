@@ -32,7 +32,7 @@ public class CarGroupTest {
         neo.move(moveNumber);
         pedro.move(moveNumber);
 
-        assertThat(carGroup.findWinners()).isEqualTo(List.of(neo));
+        assertThat(carGroup.findWinners()).isEqualTo(List.of("네오"));
     }
 
     @Test
