@@ -15,7 +15,7 @@ class CarsTest {
     @DisplayName("모든 자동차들이 조건에 의해 전진한다.")
     void moveAllCarsTest() {
         //given
-        Cars cars = new Cars(List.of("미아", "메이슨"));
+        Cars cars = new Cars(List.of("Mia", "Mason"));
 
         //when
         cars.moveAllCars(new RandomNumberForward());
@@ -31,7 +31,7 @@ class CarsTest {
     @DisplayName("모든 자동차들이 조건에 의해 정지한다.")
     void dontMoveAllCarsTest() {
         //given
-        Cars cars = new Cars(List.of("미아", "메이슨"));
+        Cars cars = new Cars(List.of("Mia", "Mason"));
 
         //when
         cars.moveAllCars(new RandomNumberStop());
@@ -57,7 +57,7 @@ class CarsTest {
     @DisplayName("단일의 우승자가 발생하는 지 확인한다.")
     void determineUniqueWinnerTest() {
         //given
-        Cars cars = new Cars(List.of("미아", "메이슨"));
+        Cars cars = new Cars(List.of("Mia", "Mason"));
         List<Car> createdCars = cars.getCars();
         createdCars.get(0).move(1);
         createdCars.get(1).move(8);
@@ -68,14 +68,14 @@ class CarsTest {
         //then
         assertThat(winners)
                 .extracting(Car::getName)
-                .isEqualTo(List.of("메이슨"));
+                .isEqualTo(List.of("Mason"));
     }
 
     @Test
     @DisplayName("다수의 우승자가 발생하는 지 확인한다.")
     void determineMultipleWinnerTest() {
         //given
-        Cars cars = new Cars(List.of("미아", "메이슨", "조조", "감자", "도라"));
+        Cars cars = new Cars(List.of("Mia", "Mason", "JoJo", "Gamza", "Dora"));
         List<Car> createdCars = cars.getCars();
         createdCars.get(0).move(9);
         createdCars.get(1).move(8);
@@ -89,6 +89,6 @@ class CarsTest {
         //then
         assertThat(winners)
                 .extracting(Car::getName)
-                .isEqualTo(List.of("미아", "메이슨", "조조"));
+                .isEqualTo(List.of("Mia", "Mason", "JoJo"));
     }
 }

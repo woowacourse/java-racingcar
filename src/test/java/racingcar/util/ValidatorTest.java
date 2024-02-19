@@ -22,9 +22,9 @@ class ValidatorTest {
 
     @Test
     @DisplayName("자동차 이름이 1자 이상 5자 이하가 아니면 예외가 발생한다.")
-    void validateCarNamesFormatTest() {
+    void validateCarNamesFormatLengthTest() {
         //given
-        List<String> carNames = List.of("", "다섯글자초과");
+        List<String> carNames = List.of("", "moreThanLimit");
 
         //when & then
         assertThrows(
@@ -35,10 +35,23 @@ class ValidatorTest {
     }
 
     @Test
+    @DisplayName("자동차 이름이 영문 알파벳이 아니면 예외가 발생한다.")
+    void validateCarNamesFormatAlphabetTest() {
+        //given
+        List<String> carNames = List.of("Mason", "메이슨");
+
+        //when & then
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> Validator.validateCarNames(carNames),
+                "자동차 이름은 알파벳 대소문자로만 구성되어야 합니다.");
+    }
+
+    @Test
     @DisplayName("자동차 이름이 중복되면 예외가 발생한다.")
     void validateDuplicatedNamesTest() {
         //given
-        List<String> carNames = List.of("미아", "미아");
+        List<String> carNames = List.of("Mia", "Mia");
 
         //when & then
         assertThrows(

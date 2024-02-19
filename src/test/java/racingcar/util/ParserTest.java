@@ -12,13 +12,13 @@ class ParserTest {
     @DisplayName("입력된 자동차 이름 문자열을 ,로 파싱하고, 양옆 공백을 제거한다.")
     void parseCarNamesTest() {
         //given
-        String carNamesInput = "미아, 메이슨, 포비   ";
+        String carNamesInput = "Mia, Mason, Pobi   ";
 
         //when
         List<String> parsedCarNames = parseCarNames(carNamesInput);
 
         //then
-        assertThat(parsedCarNames).containsExactly("미아", "메이슨", "포비");
+        assertThat(parsedCarNames).containsExactly("Mia", "Mason", "Pobi");
     }
 
 }
