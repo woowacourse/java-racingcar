@@ -26,10 +26,10 @@ public class CarTest {
     @Nested
     class Feature {
         @Test
-        @DisplayName("차 1칸 이동")
+        @DisplayName("랜덤 넘버가 4 이상이면, 차 1칸 이동")
         void testMove() {
             Car car = new Car("차", 0);
-            car.move();
+            car.move(4);
 
             int actual = car.getPosition();
             int expected = 1;
