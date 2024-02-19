@@ -24,11 +24,16 @@ public class Cars {
     public List<Car> determineWinners() {
         int farthestDistance = getFarthestDistance();
 
-        return cars.stream().filter(car -> car.getPosition() == farthestDistance).collect(Collectors.toList());
+        return cars.stream()
+                .filter(car -> car.getPosition() == farthestDistance)
+                .collect(Collectors.toList());
     }
 
     private int getFarthestDistance() {
-        return cars.stream().mapToInt(Car::getPosition).max().orElse(0);
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
 }
