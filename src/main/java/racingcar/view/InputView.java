@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class InputView {
     private final InputValidator inputValidator = new InputValidator();
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public List<String> getCarNames() {
         displayMessage(USER_CAR_NAME_INPUT_PROMPT);
