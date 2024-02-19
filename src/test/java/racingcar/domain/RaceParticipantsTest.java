@@ -43,9 +43,9 @@ class RaceParticipantsTest {
         final RaceParticipants raceParticipants = new RaceParticipants(List.of(move3times, move2times, move1times));
 
         //when
-        for (int i = 0; i < 3; i++) {
-            raceParticipants.move();
-        }
+        raceParticipants.move();
+        raceParticipants.move();
+        raceParticipants.move();
 
         //then
         assertSoftly(softly -> {
