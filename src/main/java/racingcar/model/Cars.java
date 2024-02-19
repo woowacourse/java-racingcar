@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
 
@@ -21,19 +20,10 @@ public class Cars {
         for (Car car : cars) {
             car.move(RandomNumberGenerator.generate());
             result.put(car, car.getPosition());
-            System.out.println(car.getPosition());
         }
 
         return result;
     }
-
-//    public Map<Car, Integer> getCarsPosition() {
-//        Map<Car, Integer> carsPosition = new LinkedHashMap<>();
-//        for (Car car : cars) {
-//            carsPosition.put(car, car.getPosition());
-//        }
-//        return carsPosition;
-//    }
 
     public int getMaxPosition() {
         return cars.stream()

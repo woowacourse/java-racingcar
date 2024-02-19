@@ -33,26 +33,6 @@ public class RacingGame {
         return cars.getCarsByPosition(maxPosition);
     }
 
-//    private RaceResult moveCars() {
-//        Map<String, Integer> raceResult = new LinkedHashMap<>();
-//        for (Car car : cars) {
-//            car.move(generateRandomNumber());
-//            raceResult.put(car.getName(), car.getPosition());
-//        }
-//        return new RaceResult(raceResult);
-//    }
-
-//    private int generateRandomNumber() {
-//        return new Random().nextInt(10);
-//    }
-
-//    private int getMaxPosition() {
-//        return cars.stream()
-//                .map(Car::getPosition)
-//                .max(Integer::compareTo)
-//                .orElse(0);
-//    }
-
     private void validateNumberOfRaces(int numberOfRaces) {
         if (numberOfRaces < MINIMUM_TRY_COUNT) {
             throw new IllegalArgumentException("[ERROR] 경주 횟수는 최소 1회 이상 입력해주세요.");
