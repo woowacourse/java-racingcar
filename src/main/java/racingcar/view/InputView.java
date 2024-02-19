@@ -15,14 +15,9 @@ public class InputView {
     public List<String> getCarName() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = scanner.nextLine();
-        List<String> splitCarNames;
-        try {
-            splitCarNames = getSplitCarNames(input);
-            validateNoDuplicatedCarNames(splitCarNames);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getCarName();
-        }
+        List<String> splitCarNames = getSplitCarNames(input);
+        validateNoDuplicatedCarNames(splitCarNames);
+
         return splitCarNames;
     }
 
