@@ -23,6 +23,11 @@ public class CarRacingGame {
         return roundResults;
     }
 
+    public List<String> findWinners() {
+        List<Car> carsAtMaxPosition = cars.findCarsAtMaxPosition();
+        return findWinnerNamesBy(carsAtMaxPosition);
+    }
+
     private RoundResult playRound(NumberGenerator numberGenerator) {
         RoundResult roundResult = new RoundResult();
 
@@ -31,11 +36,6 @@ public class CarRacingGame {
 
         roundResult.recordRoundResult(cars.getCars());
         return roundResult;
-    }
-
-    public List<String> findWinners() {
-        List<Car> carsAtMaxPosition = cars.findCarsAtMaxPosition();
-        return findWinnerNamesBy(carsAtMaxPosition);
     }
 
     private List<String> findWinnerNamesBy(List<Car> cars) {
