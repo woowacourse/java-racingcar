@@ -1,6 +1,7 @@
 package domain;
 
 import domain.car.Car;
+import util.Randoms;
 
 import java.util.function.IntSupplier;
 
@@ -31,7 +32,7 @@ public class RandomMovingCar {
     }
 
     public static int generateRandomPower() {
-        return (int) (Math.random() * (MAX_POWER - MIN_POWER + 1) + MIN_POWER);
+        return Randoms.pickNumberInRange(MIN_POWER, MAX_POWER);
     }
 
     public String getName() {
