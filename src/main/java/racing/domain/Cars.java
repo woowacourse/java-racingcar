@@ -33,7 +33,7 @@ class Cars {
 
   Map<String, Integer> getCarsStatus() {
     return cars.stream()
-        .collect(Collectors.toMap(Car::getName, Car::getDistance));
+        .collect(Collectors.toMap(Car::getName, Car::getPosition));
   }
 
   List<Car> getMax() {
@@ -41,6 +41,6 @@ class Cars {
         .sorted()
         .findFirst()
         .orElseThrow();
-    return cars.stream().filter(car -> car.getDistance() == maxCar.getDistance()).toList();
+    return cars.stream().filter(car -> car.getPosition() == maxCar.getPosition()).toList();
   }
 }

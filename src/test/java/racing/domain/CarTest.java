@@ -13,7 +13,7 @@ class CarTest {
   void go() {
     Car test = new Car(0, "test");
     test.go();
-    Assertions.assertThat(test.getDistance())
+    Assertions.assertThat(test.getPosition())
         .isEqualTo(ONCE_MOVE_DISTANCE);
   }
 
@@ -22,7 +22,7 @@ class CarTest {
   void stop() {
     Car test = new Car(0, "test");
     test.stop();
-    Assertions.assertThat(test.getDistance())
+    Assertions.assertThat(test.getPosition())
         .isEqualTo(0);
   }
 }

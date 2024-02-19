@@ -5,16 +5,16 @@ class Car implements Comparable<Car> {
   static final int ONCE_MOVE_DISTANCE = 1;
 
   private final String name;
-  private int distance;
+  private int position;
 
-  Car(int distance, String name) {
+  Car(int position, String name) {
     CarNameValidator.validate(name);
-    this.distance = distance;
+    this.position = position;
     this.name = name;
   }
 
   void go() {
-    distance += ONCE_MOVE_DISTANCE;
+    position += ONCE_MOVE_DISTANCE;
   }
 
   void stop() {
@@ -22,14 +22,14 @@ class Car implements Comparable<Car> {
 
   @Override
   public int compareTo(Car o) {
-    return o.distance - distance;
+    return o.position - position;
   }
 
   String getName() {
     return name;
   }
 
-  int getDistance() {
-    return distance;
+  int getPosition() {
+    return position;
   }
 }
