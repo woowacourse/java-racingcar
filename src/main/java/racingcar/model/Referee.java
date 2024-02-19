@@ -6,7 +6,7 @@ import java.util.List;
 public class Referee {
     private List<String> winners = new ArrayList<>();
 
-    public int getFarthestDistance(Cars cars) {
+    public int determineFarthestDistance(Cars cars) {
         return cars.getCars()
                 .stream()
                 .mapToInt(Car::getPosition)
@@ -15,7 +15,7 @@ public class Referee {
     }
 
     public List<String> determineWinnerNames(Cars cars) {
-        int finalMaxPosition = getFarthestDistance(cars);
+        int finalMaxPosition = determineFarthestDistance(cars);
         List<Car> winningCars = cars.determineWinners(finalMaxPosition);
         for (Car winner : winningCars) {
             winners.add(winner.getName());
