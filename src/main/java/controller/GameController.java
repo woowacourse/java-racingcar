@@ -1,26 +1,25 @@
 package controller;
 
-import domain.car.Car;
 import domain.car.Cars;
 import domain.name.Names;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
+import util.NumberGenerator;
 import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    private final RandomNumberGenerator randomNumberGenerator;
 
-    public GameController(InputView inputView, OutputView outputView, RandomNumberGenerator randomNumberGenerator) {
+    public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.randomNumberGenerator = randomNumberGenerator;
 
     }
 
@@ -39,9 +38,18 @@ public class GameController {
         return Cars.from(names);
     }
 
+    //TODO : NumberGenerator 를 주입할 지 , 내부 생성할지 좀 더 고려해봐야함
     private void performRace(final Cars cars, Integer raceCount) {
-        List<RaceProgress> raceProgresses = cars.performRace(raceCount, randomNumberGenerator);
+        NumberGenerator powerGenerator = new RandomNumberGenerator();
+        List<RaceProgress> raceProgresses = IntStream.range(0, raceCount)
+                                                     .mapToObj(value -> performEachRace(cars, powerGenerator))
+                                                     .toList();
         outputView.printAllRaceProgress(raceProgresses);
+    }
+
+    private RaceProgress performEachRace(final Cars cars, NumberGenerator powerGenerator) {
+        cars.performRace(powerGenerator);
+        return cars.convertRaceProgress();
     }
 
     private void announceWinners(Cars cars) {

@@ -8,9 +8,8 @@ public class Main {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
-        GameController gameController = new GameController(inputView, outputView, randomNumberGenerator);
+        GameController gameController = new GameController(inputView, outputView);
 
         gameController.startGame();
     }
