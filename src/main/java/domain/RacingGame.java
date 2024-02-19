@@ -38,10 +38,17 @@ public class RacingGame {
     }
 
     private void makeCarsFrom(String rawCarNames) {
+        validateNull(rawCarNames);
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
         validate(carNames);
         for (String carName : carNames) {
             cars.add(new Car(carName));
+        }
+    }
+
+    private void validateNull(String rawCarNames) {
+        if (rawCarNames == null) {
+            throw new IllegalArgumentException("null 값을 입력할 수 없습니다.");
         }
     }
 
