@@ -1,5 +1,6 @@
 package controller;
 
+import model.Car;
 import model.Cars;
 import model.Round;
 import view.InputView;
@@ -26,9 +27,16 @@ public class RacingCarController {
         outputView.writeResultMessage();
         for (int i = 0; i < round.getRound(); i++) {
             cars.moveCars();
-            outputView.writeRoundResult(cars);
+            printResult(cars);
         }
 
         outputView.writeWinners(cars.findWinnerNames());
+    }
+
+    private void printResult(Cars cars) {
+        for (Car car : cars.getCars()) {
+            outputView.writeRoundResult(car.getName(), car.getPosition());
+        }
+        System.out.println();
     }
 }

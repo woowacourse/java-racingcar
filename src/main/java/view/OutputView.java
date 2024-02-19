@@ -1,7 +1,5 @@
 package view;
 
-import model.Car;
-import model.Cars;
 import java.util.List;
 
 public class OutputView {
@@ -14,12 +12,9 @@ public class OutputView {
         System.out.println(System.lineSeparator() + "실행 결과");
     }
 
-    public void writeRoundResult(Cars cars) {
-        for (Car car : cars.getCars()) {
-            System.out.println(String.format("%s %s %s",
-                    car.getName(), NAME_DELIMITER, TRACE.repeat(car.getPosition())));
-        }
-        System.out.println();
+    public void writeRoundResult(String name, int position) {
+        System.out.println(String.format("%s %s %s",
+                name, NAME_DELIMITER, TRACE.repeat(position)));
     }
 
     public void writeWinners(List<String> names) {
