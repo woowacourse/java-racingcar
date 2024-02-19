@@ -1,12 +1,13 @@
 package racingcar.domain;
 
+import racingcar.domain.gameresult.RacingGameResult;
 import racingcar.domain.numericgenerator.RandomNumericGenerator;
 
 public class RacingGame {
     private Cars cars;
     private TryCount tryCount;
     private NumericGenerator generator = new RandomNumericGenerator();
-    private GameResult gameResult = new GameResult();
+    private GameResult gameResult = new RacingGameResult();
 
     public RacingGame(Cars cars, TryCount tryCount) {
         this.cars = cars;
