@@ -1,51 +1,29 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import java.util.stream.Collectors;
 import view.OutputView;
 
-public class Service {
+public class RacingCarGame {
     public static final int MOVE_NUMBER = 4;
-    private final List<Car> cars;
+    private Cars cars;
 
-    public Service() {
-        this.cars = new ArrayList<>();
+    public RacingCarGame() {
     }
 
     public List<String> separateCarName(String carNames) {
         return List.of(carNames.split(","));
     }
 
-    public List<Car> setCars(List<String> carNames) {
+    public Cars setCars(List<String> carNames) {
+        List<Car> carList = new ArrayList<>();
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            carList.add(new Car(carName));
         }
-        validateCarAmount();
-        validateDuplicateName();
+        this.cars = new Cars(carList);
         return cars;
-    }
-
-    private void validateCarAmount() {
-        if (cars.size() == 1) {
-            throw new IllegalArgumentException(ErrorMessage.MULTIPLE_CARS_REQUIRED.getMessage());
-        }
-    }
-
-    private void validateDuplicateName() {
-        int duplication = 0;
-        Set<String> validateCar = new HashSet<>();
-        for (Car car : cars) {
-            validateCar.add(car.getCarName());
-            duplication = validateCar.size();
-        }
-
-        if (cars.size() != duplication) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NAME.getMessage());
-        }
     }
 
     public void playGame(int attemptLimit) {
@@ -59,7 +37,7 @@ public class Service {
     }
 
     private void playRacing() {
-        for (Car car : cars) {
+        for (Car car : cars.getCars()) {
             goOrStop(car, randomNumberGenerator());
         }
     }
@@ -76,18 +54,14 @@ public class Service {
     }
 
     public List<String> getWinnerName() {
-        int max = cars.stream()
+        int max = cars.getCars().stream()
                 .mapToInt(Car::getLocation)
                 .max()
                 .orElse(-1);
 
-        return cars.stream()
+        return cars.getCars().stream()
                 .filter(car -> car.getLocation() == max)
                 .map(Car::getCarName)
                 .collect(Collectors.toList());
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 }

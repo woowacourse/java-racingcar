@@ -1,19 +1,18 @@
 package controller;
 
-import domain.Car;
+import domain.Cars;
 import domain.ErrorMessage;
-import domain.Service;
-import java.util.List;
+import domain.RacingCarGame;
 import view.InputView;
 import view.OutputView;
 
 public class RacingCarController {
     public static final int MINIMUM_ATTEMPT_LIMIT = 1;
-    private final Service service;
+    private final RacingCarGame service;
     private final OutputView outputView;
     private final InputView inputView;
 
-    public RacingCarController(Service service, OutputView outputView, InputView inputView) {
+    public RacingCarController(RacingCarGame service, OutputView outputView, InputView inputView) {
         this.service = service;
         this.outputView = outputView;
         this.inputView = inputView;
@@ -22,10 +21,10 @@ public class RacingCarController {
     public void run() {
         inputCarName();
         service.playGame(inputAttemptLimit());
-        outputView.printWinners(service.getWinnerName());
+//        outputView.printWinners(service.getWinnerName());
     }
 
-    private List<Car> inputCarName() {
+    private Cars inputCarName() {
         try {
             String inputCarName = inputView.requestCarName();
             return service.setCars(service.separateCarName(inputCarName));

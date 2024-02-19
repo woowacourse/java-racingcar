@@ -1,6 +1,7 @@
 package view;
 
 import domain.Car;
+import domain.Cars;
 import java.util.List;
 
 public class OutputView {
@@ -12,8 +13,8 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public static void printResult(List<Car> cars) {
-        for (Car car : cars) {
+    public static void printResult(Cars cars) {
+        for (Car car : cars.getCars()) {
             System.out.println(String.join(" : ", car.getCarName(), "-".repeat(car.getLocation())));
         }
         System.out.println();
