@@ -4,14 +4,17 @@ public class Car {
     private final String name;
     private int count;
 
+    private static final int MOVE_CONDITION = 3;
+    private static final int STEP = 1;
+
     public Car(final String name) {
         this.name = name;
         this.count = 0;
     }
 
     public void move(final int randomNumber) {
-        if (randomNumber > 3 ) {
-            this.count += 1;
+        if (randomNumber > MOVE_CONDITION) {
+            this.count += STEP;
         }
     }
 
