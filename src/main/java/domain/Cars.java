@@ -15,8 +15,8 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveCars() {
-        cars.forEach(car -> car.move(RandomGenerator.getRandomNumber()));
+    public void moveCars(NumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
     public List<Car> getCars() {

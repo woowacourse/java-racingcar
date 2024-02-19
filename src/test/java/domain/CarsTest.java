@@ -33,15 +33,20 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("우승자들을 리스트에 넣어 반환한다.")
-    void getWinners() {
+    @DisplayName("각 자동차를 조건에 맞춰 이동한다")
+    void moveCarsTest() {
         //given
-        Car one = new Car("one", 5);
+        Car one = new Car("one", 0);
         Car two = new Car("two", 0);
-        Car three = new Car("three", 5);
+        Car three = new Car("three", 0);
         Cars cars = new Cars(Arrays.asList(one, two, three));
 
-        //when, then
-        assertThat(cars.getWinners()).contains(one, three);
+        //when
+        cars.moveCars(new FixedNumberGenerator());
+
+        //then
+        for (Car car : cars.getCars()) {
+            assertThat(car.getLocation()).isEqualTo(1);
+        }
     }
 }
