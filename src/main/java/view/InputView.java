@@ -12,8 +12,6 @@ public class InputView {
     private static final String READ_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(%s)를 기준으로 구분).";
     private static final String READ_ROUND = "시도할 회수는 몇회인가요?";
 
-    private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-
     public List<String> readCarNames() throws IOException {
         System.out.println(String.format(READ_CAR_NAMES, NAME_DELIMITER));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -27,6 +25,7 @@ public class InputView {
 
     public String readRound() throws IOException {
         System.out.println(READ_ROUND);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         return bufferedReader.readLine();
     }
 }
