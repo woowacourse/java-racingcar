@@ -54,6 +54,17 @@ public class CarsTest {
                        .isAtPosition(1));
     }
 
+    @Test
+    @DisplayName("자동차 상태들을 포함한 일급 컬렉션으로 변환한다")
+    public void convertRaceProgress() {
+        Cars cars = Cars.from(이름_목록_생성());
+
+        RaceProgress raceProgress = cars.convertRaceProgress();
+
+        assertInstanceOf(RaceProgress.class, raceProgress);
+    }
+
+
     private Names 이름_목록_생성() {
         Name name1 = new Name("스티치");
         Name name2 = new Name("조이썬");
