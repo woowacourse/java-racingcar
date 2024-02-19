@@ -1,6 +1,4 @@
-package model;
-
-import java.util.Objects;
+package domain;
 
 public class Car {
 
@@ -35,19 +33,6 @@ public class Car {
     public int getMovement() {
         return movement;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Car car = (Car) o;
-        return Objects.equals(name, car.name);
-    }
-
 
     private void validateName(String carName) {
         validateNameLength(carName);

@@ -1,6 +1,5 @@
-package model;
+package domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -17,10 +16,11 @@ public class Cars {
         cars.forEach(car -> car.move(movesGenerator.doMove()));
     }
 
-    public List<Car> findWinners() {
+    public List<String> findWinnerNames() {
         int maxMovement = getMaxMovement();
         return cars.stream()
                 .filter(car -> car.getMovement() == maxMovement)
+                .map(Car::getCarName)
                 .toList();
     }
 
@@ -30,6 +30,6 @@ public class Cars {
     }
 
     public List<Car> getPresentCarsStatus() {
-        return Collections.unmodifiableList(cars);
+        return List.copyOf(cars);
     }
 }
