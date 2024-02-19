@@ -43,13 +43,15 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("진행 횟수와 파워 생성기를 통해 , 경기를 진행한다")
+    @DisplayName("파워 생성기를 통해 , 경기를 진행한다")
     public void performRace() {
         Cars cars = Cars.from(이름_목록_생성());
 
-        List<RaceProgress> result = cars.performRace(3, new SequenceNumberGenerator());
+        cars.performRace(new SequenceNumberGenerator(List.of(2, 8)));
 
-        assertEquals(result.size(),3);
+        assertTrue(cars.getValue()
+                       .get(1)
+                       .isAtPosition(1));
     }
 
     private Names 이름_목록_생성() {

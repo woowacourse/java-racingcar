@@ -30,13 +30,11 @@ public class Cars {
         return selectCarsWithPosition(maxPosition);
     }
 
-    public List<RaceProgress> performRace(int raceCount, NumberGenerator powerGenerator) {
-        return IntStream.range(0, raceCount)
-                        .mapToObj(index -> performEachRace(powerGenerator)).toList();
+    public void performRace(NumberGenerator powerGenerator) {
+        value.forEach(car -> car.race(powerGenerator.generate()));
     }
 
-    private RaceProgress performEachRace(NumberGenerator powerGenerator) {
-        value.forEach(car -> car.race(powerGenerator.generate()));
+    public RaceProgress convertRaceProgress() {
         return RaceProgress.from(value);
     }
 
