@@ -21,23 +21,8 @@ public class RaceParticipants {
         }
     }
 
-    public void move() {
+    public Map<String, Integer> move() {
         cars.forEach(Car::move);
-    }
-
-
-    public List<String> getRaceWinnerNames() {
-        Car winner = cars.stream()
-                .max(Car::compareTo)
-                .orElseThrow();
-
-        return cars.stream()
-                .filter(car -> car.compareTo(winner) == 0)
-                .map(Car::getName)
-                .toList();
-    }
-
-    public Map<String, Integer> getCarNamesAndPosition() {
         Map<String, Integer> result = new LinkedHashMap<>();
         for (Car car : cars) {
             result.put(car.getName(), car.getPosition());

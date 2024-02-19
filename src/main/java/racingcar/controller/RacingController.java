@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.domain.RaceHistory;
 import racingcar.domain.RaceParticipants;
 import racingcar.domain.car.move.MovingStrategy;
 import racingcar.dto.request.RaceCountRequest;
@@ -7,9 +8,6 @@ import racingcar.dto.request.RaceParticipantsRequest;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 public class RacingController implements Controller {
@@ -29,7 +27,6 @@ public class RacingController implements Controller {
         RaceParticipants raceParticipants = readRaceParticipants();
         final int raceCount = readRaceCount();
         race(raceCount, raceParticipants);
-        printRaceWinners(raceParticipants);
     }
 
     private RaceParticipants readRaceParticipants() {
@@ -48,18 +45,12 @@ public class RacingController implements Controller {
 
     private void race(final int raceCount, final RaceParticipants raceParticipants) {
         outputView.printRaceResultHeaderMessage();
-        List<Map<String, Integer>> history = new ArrayList<>();
+        RaceHistory raceHistory = new RaceHistory();
         for (int i = 0; i < raceCount; i++) {
-            raceParticipants.move();
-            final Map<String, Integer> raceResult = raceParticipants.getCarNamesAndPosition();
-            history.add(raceResult);
+            ;raceHistory.add(raceParticipants.move());
         }
-        outputView.printRaceHistory(history);
-    }
-
-    private void printRaceWinners(final RaceParticipants raceParticipants) {
-        final List<String> raceWinnerNames = raceParticipants.getRaceWinnerNames();
-        outputView.printRaceWinners(raceWinnerNames);
+        outputView.printRaceHistory(raceHistory.getRaceHistory());
+        outputView.printRaceWinners(raceHistory.getFinalWinners());
     }
 
     private <T> T retryOnException(final Supplier<T> supplier) {

@@ -25,29 +25,23 @@ class CarTest {
     @Test
     void 자동차_움직임_성공() {
         // given
-        final List<Boolean> movableList = List.of(true, false, true, false, true);
-        final Car car = new Car("car", new MockMovingStrategy(movableList));
+        final Car car = new Car("car", new MockMovingStrategy(List.of(true, false)));
 
         // when
         car.move();
         car.move();
-        car.move();
-        car.move();
-        car.move();
 
         // then
-        assertThat(car.getPosition()).isEqualTo(3);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
     void 자동차_위치를_비교한다() {
         // given
-        final Car car1 = new Car("car1", new MockMovingStrategy(List.of(true, true)));
-        final Car car2 = new Car("car2", new MockMovingStrategy(List.of(true, false)));
+        final Car car1 = new Car("car1", new MockMovingStrategy(List.of(true)));
+        final Car car2 = new Car("car2", new MockMovingStrategy(List.of(false)));
 
         // when
-        car1.move();
-        car2.move();
         car1.move();
         car2.move();
 
