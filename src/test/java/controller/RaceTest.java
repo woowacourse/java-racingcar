@@ -7,6 +7,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 import model.NumberGenerator;
+import view.InputView;
+import view.OutputView;
 
 
 class RaceTest {
@@ -36,7 +38,7 @@ class RaceTest {
         outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
 
-        race = new Race(new TestNumberGenerator(1));
+        race = new Race(new InputView(), new OutputView(), new TestNumberGenerator(1));
 
         // when
         race.start();
