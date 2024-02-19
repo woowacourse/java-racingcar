@@ -9,7 +9,6 @@ public class Cars {
     private final List<Car> cars;
 
     public Cars(List<String> carNames) {
-
         this.cars = generateCarListByCarNames(carNames);
     }
 
@@ -23,14 +22,13 @@ public class Cars {
         cars.forEach(Car::move);
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
     public List<Car> determineWinners(int farthestPosition) {
         return cars.stream()
                 .filter(car -> car.isFurthestPosition(farthestPosition))
                 .collect(Collectors.toList());
     }
 
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
+    }
 }
