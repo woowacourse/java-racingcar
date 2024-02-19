@@ -1,12 +1,10 @@
 package racingcar.view;
 
-import racingcar.message.ErrorMessage;
-
 import java.util.List;
 import java.util.Scanner;
 
 import static racingcar.message.ErrorMessage.*;
-import static racingcar.validator.InputValidator.*;
+import static racingcar.validator.Validator.*;
 
 public class InputView {
 

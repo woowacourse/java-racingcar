@@ -1,12 +1,10 @@
 package racingcar.validator;
 
-import racingcar.message.ErrorMessage;
-
 import java.util.List;
 
 import static racingcar.message.ErrorMessage.*;
 
-public class InputValidator {
+public class Validator {
     private final static int MAXIMUM_NAME_LENGTH = 5;
 
     public static void validateNaturalNumber(int tryCount) {
