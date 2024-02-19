@@ -13,12 +13,14 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printRaceResult(final Map<String, Integer> raceResult) {
-        raceResult.forEach((carName, position) -> {
-            String currentPosition = "-".repeat(position);
-            System.out.printf("%s : %s%n", carName, currentPosition);
+    public void printRaceHistory(final List<Map<String, Integer>> raceHistory) {
+        raceHistory.forEach(round -> {
+            round.forEach((carName, position) -> {
+                String currentPosition = "-".repeat(position);
+                System.out.printf("%s : %s%n", carName, currentPosition);
+            });
+            System.out.println();
         });
-        System.out.println();
     }
 
     @Override

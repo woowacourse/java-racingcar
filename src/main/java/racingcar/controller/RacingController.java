@@ -7,6 +7,7 @@ import racingcar.dto.request.RaceParticipantsRequest;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -47,12 +48,13 @@ public class RacingController implements Controller {
 
     private void race(final int raceCount, final RaceParticipants raceParticipants) {
         outputView.printRaceResultHeaderMessage();
+        List<Map<String, Integer>> history = new ArrayList<>();
         for (int i = 0; i < raceCount; i++) {
             raceParticipants.move();
-
             final Map<String, Integer> raceResult = raceParticipants.getCarNamesAndPosition();
-            outputView.printRaceResult(raceResult);
+            history.add(raceResult);
         }
+        outputView.printRaceHistory(history);
     }
 
     private void printRaceWinners(final RaceParticipants raceParticipants) {

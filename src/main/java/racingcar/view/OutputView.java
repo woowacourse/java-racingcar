@@ -6,7 +6,7 @@ import java.util.Map;
 public interface OutputView {
     void printRaceResultHeaderMessage();
 
-    void printRaceResult(final Map<String, Integer> raceResult);
+    void printRaceHistory(final List<Map<String, Integer>> raceHistory);
 
     void printRaceWinners(final List<String> raceResult);
 }
