@@ -12,14 +12,6 @@ public class Car {
         this.distance = 0;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getDistance() {
-        return distance;
-    }
-
     public void moveCar(MovingCarCondition condition) {
         if (condition.isSatisfied()) {
             distance++;
@@ -27,5 +19,13 @@ public class Car {
         if (distance < 0) {
             throw new IllegalArgumentException("이동 거리는 음수가 될 수 없습니다.");
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 }
