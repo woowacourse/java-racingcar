@@ -3,8 +3,8 @@ package domain;
 import java.util.Random;
 
 public class RandomNumberGenerator implements NumberGenerator {
-    public static final int MIN_VALUE = 0;
-    public static final int MAX_VALUE = 9;
+    private static final int MIN_VALUE = 0;
+    private static final int MAX_VALUE = 9;
 
     @Override
     public int generate() {

@@ -1,7 +1,8 @@
 package domain;
 
 public class RandomMovementGenerator implements MovementGenerator {
-    public static final int MOVABLE_CRITERION = 4;
+    private static final int MOVABLE_CRITERION = 4;
+
     private final NumberGenerator randomNumberGenerator;
 
     public RandomMovementGenerator(final NumberGenerator randomNumberGenerator) {
