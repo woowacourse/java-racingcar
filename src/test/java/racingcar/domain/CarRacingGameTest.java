@@ -27,7 +27,7 @@ class CarRacingGameTest {
     @Test
     @DisplayName("자동차 경주를 진행할 수 있다.")
     void race() {
-        List<RoundResult> raceResult = carRacingGame.race(new RandomNumberGenerator());
+        List<RoundResult> raceResult = carRacingGame.race(() -> 4);
         assertThat(raceResult).hasSize(1);
     }
 

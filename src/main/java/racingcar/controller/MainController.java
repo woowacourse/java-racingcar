@@ -6,14 +6,16 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class MainController {
+    private static final int UPPER_BOUND = 10;
 
     public void run() {
         CarRacingGame carRacingGame = initializeCarRacingGame();
-        List<RoundResult> roundResults = carRacingGame.race(new RandomNumberGenerator());
+        List<RoundResult> roundResults = carRacingGame.race(() -> new Random().nextInt(UPPER_BOUND));
 
         showRoundResults(roundResults);
         showWinners(carRacingGame.findWinners());
