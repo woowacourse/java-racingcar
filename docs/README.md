@@ -99,3 +99,7 @@ public class RacingMain {
     }
 }
 ```
+
+## 2단계 리뷰 반영 사항
+
+- [X] CarController를 RacingGame으로 변경
