@@ -6,6 +6,7 @@ import java.util.List;
 public class Cars {
 
     private static final int MIN_PARTICIPANT = 2;
+    private static final int WINNER = 0;
 
     private final List<Car> cars;
 
@@ -14,22 +15,19 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void moveCars() {
-        cars.forEach(car -> car.move(RandomGenerator.getRandomNumber()));
+    public void moveCars(NumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(numberGenerator.generate()));
     }
 
     public List<Car> getCars() {
         return cars;
     }
 
-    public int getWinnerLocation() {
+    public List<Car> getWinners() {
         cars.sort(Collections.reverseOrder());
-        return cars.get(0).getLocation();
-    }
-
-    public List<Car> getWinners(int furthestLocation) {
+        int furthestLocation = cars.get(WINNER).getLocation();
         return cars.stream()
-                .filter(car -> car.getLocation() == furthestLocation)
+                .filter(car -> car.isSameLocation(furthestLocation))
                 .toList();
     }
 
@@ -40,7 +38,7 @@ public class Cars {
 
     private void validateAmount(List<Car> cars) {
         if (cars.size() < MIN_PARTICIPANT) {
-            throw new IllegalArgumentException("2인 이상의 참가자를 입력해주세요.");
+            throw new IllegalArgumentException(ExceptionMessages.PARTICIPANT_AMOUNT);
         }
     }
 
@@ -50,7 +48,7 @@ public class Cars {
                 .distinct()
                 .count();
         if (uniqueCount != cars.size()) {
-            throw new IllegalArgumentException("중복된 이름이 있습니다.");
+            throw new IllegalArgumentException(ExceptionMessages.DUPLICATED_NAME);
         }
     }
 }

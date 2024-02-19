@@ -12,6 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CarTest {
 
+    private static final int CAN_MOVE_NUMBER = 4;
+
     private final Car car = new Car("abc");
 
     @Test
@@ -31,7 +33,20 @@ class CarTest {
     @Test
     @DisplayName("현재 위치를 반환한다")
     void getLocation() {
-        assertThat(car.getLocation()).isEqualTo(0);
+        Car car = new Car("abc", 1);
+        assertThat(car.getLocation()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("가장 멀리 간 우승차인지 반환한다.")
+    void isWinnerTest() {
+        car.move(CAN_MOVE_NUMBER);
+        car.move(CAN_MOVE_NUMBER);
+        car.move(CAN_MOVE_NUMBER);
+
+        int furthestLocation = 3;
+
+        assertThat(car.isSameLocation(furthestLocation)).isTrue();
     }
 
     @Nested
