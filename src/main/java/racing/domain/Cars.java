@@ -15,9 +15,9 @@ public class Cars {
         this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
-    private static void validateDuplicateName(List<String> cars) {
-        int count = (int) cars.stream().distinct().count();
-        if (count != cars.size()) {
+    private static void validateDuplicateName(List<String> carNames) {
+        int count = (int) carNames.stream().distinct().count();
+        if (count != carNames.size()) {
             throw new IllegalArgumentException();
         }
     }
