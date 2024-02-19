@@ -14,14 +14,9 @@ public class StringParser {
     }
 
     public static Integer parseToInt(String target) {
-        validateNumeric(target);
-        return Integer.parseInt(target);
-    }
-
-    public static void validateNumeric(String target) {
         try {
-            Integer.parseInt(target);
-        } catch (NumberFormatException e) {
+            return Integer.parseInt(target);
+        } catch (NumberFormatException ex) {
             throw new IllegalArgumentException(ERROR_OF_TYPE);
         }
     }

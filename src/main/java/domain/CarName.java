@@ -17,7 +17,7 @@ public class CarName {
     }
 
     private void validate(String carName) {
-        if (carName.length() > LIMIT_LENGTH) {
+        if (carName.length() > LIMIT_LENGTH || carName.isEmpty()) {
             throw new IllegalArgumentException(ERROR_OF_LENGTH);
         }
     }

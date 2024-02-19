@@ -22,7 +22,7 @@ public class Position {
     }
 
     public int getPosition() {
-        return this.position;
+        return position;
     }
 
     public void increase() {

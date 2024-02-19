@@ -19,11 +19,11 @@ public class Car {
     }
 
     public Integer getPosition() {
-        return this.position.getPosition();
+        return position.getPosition();
     }
 
     public String getCarName() {
-        return this.carName.getCarName();
+        return carName.getCarName();
     }
 
     public void tryMove() {
@@ -33,7 +33,7 @@ public class Car {
     }
 
     private boolean canMove() {
-        return powerStrategy.checkRandomNumberRange();
+        return powerStrategy.canMove();
     }
 
     private void move() {
