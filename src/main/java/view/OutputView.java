@@ -1,6 +1,6 @@
 package view;
 
-import model.CarInfoDto;
+import model.CarDto;
 import model.ResultByRoundDto;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class OutputView {
         System.out.println(String.join(LINE_SEPARATOR, racingRecord));
     }
 
-    private void addRoundResultByFormat(List<CarInfoDto> cars) {
+    private void addRoundResultByFormat(List<CarDto> cars) {
         StringBuilder roundBuilder = new StringBuilder();
 
         cars.stream()
