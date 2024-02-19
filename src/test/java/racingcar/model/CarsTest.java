@@ -1,9 +1,9 @@
 package racingcar.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,28 +14,30 @@ class CarsTest {
     @DisplayName("공동 우승자 확인")
     @Test
     void findWinners() {
-        // given
         Cars cars = Cars.from("aa,bb,cc");
         cars.go(() -> 5);
 
-        // when
-        List<Car> winner = cars.findWinner();
+        List<Car> winner = cars.findWinners();
 
-        // then
-        Assertions.assertThat(winner).hasSize(3);
+        assertThat(winner).hasSize(3);
     }
 
     @DisplayName("단독 우승자 확인")
     @Test
     void findWinner() {
-        // given
-        Cars cars = Cars.from("aa,bb,cc");
-        cars.go(new TestNumberGenerator());
-        // when
-        List<Car> winner = cars.findWinner();
+        Car winner = Car.from("a");
+        Car loser1 = Car.from("b");
+        Car loser2 = Car.from("c");
 
-        // then
-        Assertions.assertThat(winner).hasSize(1).extracting("name").isEqualTo(List.of("cc"));
+        winner.go(new AlwaysMoveNumberGenerator());
+        loser1.go(new NoMoveNumberGenerator());
+        loser2.go(new NoMoveNumberGenerator());
+
+        Cars cars = new Cars(winner, loser1, loser2);
+
+        List<Car> winners = cars.findWinners();
+
+        assertThat(winners).hasSize(1).extracting("name").isEqualTo(List.of("a"));
     }
 
     @DisplayName("올바르지 않은 구분자")
@@ -47,22 +49,23 @@ class CarsTest {
     }
 
 
-
-    static class TestNumberGenerator implements NumberGenerator {
-
-        private static int value = 2;
+    static class AlwaysMoveNumberGenerator implements NumberGenerator {
         @Override
         public int generate() {
-            return value++;
+            return 4;
+        }
+    }
+
+    static class NoMoveNumberGenerator implements NumberGenerator {
+        @Override
+        public int generate() {
+            return 0;
         }
     }
 
     @DisplayName("자동차 이름이 중복시 예외 발생")
     @Test
     void duplicatedName() {
-        // given
-        // when
-        // then
         assertThatThrownBy(() -> Cars.from("aa,aa"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -70,14 +73,11 @@ class CarsTest {
     @DisplayName("getter로 가져온 List는 수정이 불가")
     @Test
     void add() {
-        // given
         Cars cars = Cars.from("a,b,c");
 
-        // when
         List<Car> unmodifiedCars = cars.getCars();
 
-        // then
-        Assertions.assertThatThrownBy(() -> unmodifiedCars.add(Car.from("새로운차")))
+        assertThatThrownBy(() -> unmodifiedCars.add(Car.from("새로운차")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 
@@ -89,13 +89,13 @@ class CarsTest {
         Cars cars = Cars.from("a,b,c");
         List<Car> unmodifiedCars = cars.getCars();
         Car unmodifyCar = unmodifiedCars.get(0);
-        unmodifyCar.go(4);
+        unmodifyCar.go(new AlwaysMoveNumberGenerator());
 
         // when
         List<Car> originCars = cars.getCars();
         Car originCar = originCars.get(0);
 
         // then
-        Assertions.assertThat(originCar.getPosition()).isNotEqualTo(unmodifyCar.getPosition());
+        assertThat(originCar.getPosition()).isNotEqualTo(unmodifyCar.getPosition());
     }
 }

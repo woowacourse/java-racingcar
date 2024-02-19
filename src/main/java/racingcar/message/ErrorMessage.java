@@ -4,6 +4,7 @@ public enum ErrorMessage {
     INVALID_CAR_NAME("유효하지 않은 자동차 이름입니다."),
 
     INVALID_ROUND("유효하지 않은 시도 횟수입니다."),
+    INVALID_INPUT("예기치 못한 오류입니다."),
     ;
 
     private static final String PREFIX = "[ERROR] ";

@@ -1,38 +1,51 @@
 package racingcar.model;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
+import racingcar.model.CarsTest.AlwaysMoveNumberGenerator;
+import racingcar.model.CarsTest.NoMoveNumberGenerator;
 
 class CarTest {
 
-    @DisplayName("4이상일 때 전진한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void goPassable(int number) {
-        // given
-        Car car = Car.from("a");
+    @DisplayName("전진하는 경우")
+    @Test
+    void goPassable() {
+        Car a = Car.from("a");
 
-        // when
-        car.go(number);
+        a.go(new AlwaysMoveNumberGenerator());
 
-        // then
-        Assertions.assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(a.getPosition()).isEqualTo(1);
     }
 
-    @DisplayName("4미만시 전진할 수 없다.")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3})
-    void cantGo(int number) {
-        // given
+    @DisplayName("전진하지 않는 경우")
+    @Test
+    void cantGo() {
         Car car = Car.from("a");
 
-        // when
-        car.go(number);
+        car.go(new NoMoveNumberGenerator());
 
-        // then
-        Assertions.assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
+    @Test
+    @DisplayName("시작은 서로 같은 위치에서 시작")
+    void isSamePosition() {
+        Car a = Car.from("a");
+        Car b = Car.from("b");
+
+        assertThat(a.isSamePosition(b)).isTrue();
+    }
+
+    @Test
+    @DisplayName("서로 다른 위치인 경우")
+    void isNotSamePosition() {
+        Car a = Car.from("a");
+        Car b = Car.from("b");
+
+        b.go(new AlwaysMoveNumberGenerator());
+
+        assertThat(a.isSamePosition(b)).isFalse();
+    }
 }
