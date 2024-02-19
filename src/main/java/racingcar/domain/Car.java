@@ -5,6 +5,7 @@ import static racingcar.message.ErrorMessage.ERROR_WITH_OVER_LENGTH;
 
 public class Car {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final int MOVE_POINT = 4;
 
     private final String name;
     private int position;
@@ -35,7 +36,7 @@ public class Car {
 
     private boolean canMove(){
         int random = numberGenerator.generateNumber();
-        return random >= 4;
+        return random >= MOVE_POINT;
     }
 
     public void move() {
