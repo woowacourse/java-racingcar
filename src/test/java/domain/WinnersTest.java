@@ -25,7 +25,7 @@ class WinnersTest {
         assertThat(Winners.createWinners(cars).getWinners()).containsAll(List.of(expectedWinner));
     }
 
-    @DisplayName("여러명의 우승자가 존재할 수 있다.")
+    @DisplayName("우승자가 여러명이다.")
     @Test
     void findWinnersTest() {
         Cars cars = new Cars(List.of("가", "나", "다"));
@@ -40,7 +40,7 @@ class WinnersTest {
         assertThat(Winners.createWinners(cars).getWinners()).containsAll(expectedWinners);
     }
 
-    @DisplayName("모두가 우승자가 될 수 있다.")
+    @DisplayName("모두가 우승자이다.")
     @Test
     void findWinnersAllTest() {
         Cars cars = new Cars(List.of("가", "나", "다"));
