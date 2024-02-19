@@ -8,7 +8,6 @@ public class OutputCommand {
     public static String WINNER_FORMAT = "%s가 최종 우승했습니다." + System.lineSeparator();
     public static String WINNERS_DELIMITER = ", ";
     public static String HYPHEN = "-";
-    public static String COMMA = ",";
     public static String CAR_RESULT_FORMAT = "%s : %s" + System.lineSeparator();
     public static String ERROR_PREFIX = "[ERROR] ";
 }

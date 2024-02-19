@@ -4,9 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static racingcar.ui.OutputCommand.COMMA;
-
 public class Vehicles {
+    private static final String CAR_NAMES_DELIMITER = ",";
     private final List<Car> cars;
 
     private Vehicles(List<Car> cars) {
@@ -15,7 +14,7 @@ public class Vehicles {
 
     public static Vehicles from(String carNames) {
         validate(carNames);
-        return new Vehicles(Arrays.stream(carNames.split(COMMA))
+        return new Vehicles(Arrays.stream(carNames.split(CAR_NAMES_DELIMITER))
                 .map(String::trim)
                 .map(Car::new)
                 .collect(Collectors.toList())
@@ -40,7 +39,7 @@ public class Vehicles {
     }
 
     private static boolean hasDuplicateName(String carNames) {
-        return carNames.split(COMMA).length != Arrays.stream(carNames.split(COMMA))
+        return carNames.split(CAR_NAMES_DELIMITER).length != Arrays.stream(carNames.split(CAR_NAMES_DELIMITER))
                 .collect(Collectors.toSet()).size();
     }
 
