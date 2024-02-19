@@ -1,7 +1,10 @@
 package racingcar.domain;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -16,7 +19,7 @@ class CarsTest {
 
     private static int uniqueIdentifier = 0;
 
-    @DisplayName("중복된 자동차 이름이 존재하면 예외를 던진다")
+    @DisplayName("중복된 자동차 이름이 있으면 예외를 던진다")
     @ParameterizedTest
     @MethodSource("provideDuplicatedCarNames")
     void testUniqueCarNames(List<Car> cars) {
@@ -37,11 +40,47 @@ class CarsTest {
                 .toList();
     }
 
+    @DisplayName("중복된 자동차 이름이 없으면 예외를 던지지 않는다")
+    @ParameterizedTest
+    @MethodSource("provideUniqueCarNames")
+    void testValidNameLength(List<Car> cars) {
+        assertDoesNotThrow(() -> new Cars(cars));
+    }
+
+    private static Stream<Arguments> provideUniqueCarNames() {
+        return Stream.of(
+                Arguments.of(createCarsWithName(List.of("조조네조", "감쟈감쟈", "연극끝"))),
+                Arguments.of(createCarsWithName(List.of("수가성", "맛나요", "재방문각")))
+        );
+    }
+
+    @DisplayName("이동한 거리가 같은 자동차 이름 리스트를 반환한다")
+    @ParameterizedTest
+    @MethodSource("provideCarsWithTargetDistanceAndCarName")
+    void testFindCarNamesWithSameDistance(Cars cars, int distance, List<Integer> carNameIndexes) {
+        List<String> carNames = cars.findCarNamesWithSameDistance(distance);
+        List<Car> carList = cars.values();
+        assertThat(
+                carNameIndexes.stream()
+                .map(index -> carList.get(index).getName())
+                .toList()
+        ).containsAll(carNames);
+    }
+
+    private static Stream<Arguments> provideCarsWithTargetDistanceAndCarName() {
+        return Stream.of(
+                Arguments.of(createCarsWithDistance(List.of(10, 3, 5, 20, 3, 6)), 6, List.of(5)),
+                Arguments.of(createCarsWithDistance(List.of(101, 20, 50, 101, 100)), 101, List.of(0, 3)),
+                Arguments.of(createCarsWithDistance(List.of(1, 1, 1, 1, 1)), 1, List.of(0, 1, 2, 3, 4)),
+                Arguments.of(createCarsWithDistance(List.of(1, 1, 1, 1, 1)), 0, List.of())
+        );
+    }
+
     @DisplayName("가장 멀리 이동한 거리를 반환한다")
     @ParameterizedTest
     @MethodSource("provideCarsWithMaxDistance")
-    void testFindMaxDistance(List<Car> cars, int maxDistance) {
-        assertThat(new Cars(cars).findMaxDistance())
+    void testFindMaxDistance(Cars cars, int maxDistance) {
+        assertThat(cars.findMaxDistance())
                 .isEqualTo(maxDistance);
     }
 
@@ -53,10 +92,10 @@ class CarsTest {
         );
     }
 
-    private static List<Car> createCarsWithDistance(List<Integer> distances) {
+    private static Cars createCarsWithDistance(List<Integer> distances) {
         return distances.stream()
                 .map(CarsTest::createCarWithDistance)
-                .toList();
+                .collect(collectingAndThen(toList(), Cars::new));
     }
 
     private static Car createCarWithDistance(int distance) {
