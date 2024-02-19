@@ -2,10 +2,10 @@ package racingcar.domain;
 
 import java.util.List;
 
-public abstract class NumberOfPower {
+public interface NumberOfPower {
 
-    protected static final int MIN_NUMBER_OF_POWER = 0;
-    protected static final int MAX_NUMBER_OF_POWER = 9;
+    int MIN_NUMBER_OF_POWER = 0;
+    int MAX_NUMBER_OF_POWER = 9;
 
-    protected abstract List<Integer> generateNumbersOfPower(int size);
+    List<Integer> generateNumbersOfPower(int size);
 }

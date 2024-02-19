@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import racingcar.util.RandomNumberGenerator;
 
-public class RandomNumberOfPower extends NumberOfPower {
+public class RandomNumberOfPower implements NumberOfPower {
 
     @Override
     public List<Integer> generateNumbersOfPower(int size) {

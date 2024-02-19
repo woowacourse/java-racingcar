@@ -48,10 +48,10 @@ class RacingGameTest {
                 .collect(collectingAndThen(toList(), Cars::new));
     }
 
-    static class CustomNumberOfPower extends NumberOfPower {
+    static class CustomNumberOfPower implements NumberOfPower {
 
         @Override
-        protected List<Integer> generateNumbersOfPower(int size) {
+        public List<Integer> generateNumbersOfPower(int size) {
             return nCopies(size, REQUIRED_NUMBER_OF_POWER);
         }
     }
