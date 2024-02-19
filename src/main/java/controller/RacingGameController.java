@@ -10,8 +10,6 @@ import view.OutputView;
 
 public class RacingGameController {
 
-    private static final String CAR_NAMES_DELIMITER = ",";
-
     private final InputView inputView;
     private final OutputView outputView;
     private final RaceGameService raceGameService;
