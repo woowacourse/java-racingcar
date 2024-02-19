@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class PositionTest {
     @Test
-    void forward메서드_테스트() {
+    void 위치를_이동한다() {
         // given
         final int value = 0;
         final Position position = new Position(value);
@@ -19,7 +19,7 @@ class PositionTest {
     }
 
     @Test
-    void compareTo메서드_테스트() {
+    void 위치를_비교한다() {
         // given
         final Position position1 = new Position(1);
         final Position position2 = new Position(2);

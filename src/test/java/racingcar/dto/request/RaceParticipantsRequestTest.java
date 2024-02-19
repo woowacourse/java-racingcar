@@ -23,7 +23,7 @@ class RaceParticipantsRequestTest {
     }
 
     @Test
-    void toRaceParticipants를_이용해서_RaceParticipants로_변환_성공() {
+    void 경주_참여자들로_변환에_성공한다() {
         //given
         final List<String> carNames = List.of("a", "bb", "ccc");
         final String inputNames = String.join(",", carNames);
@@ -41,7 +41,7 @@ class RaceParticipantsRequestTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"", "  ", ",일", "일,,이", "일,이,"})
-    void toRaceParticipants를_이용해서_RaceParticipants로_변환_실패(final String name) {
+    void 경주_참여자들로_변환에_실패한다(final String name) {
         //when
         final RaceParticipantsRequest raceParticipantsRequest = new RaceParticipantsRequest(name);
 

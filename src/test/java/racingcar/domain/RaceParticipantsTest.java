@@ -34,7 +34,7 @@ class RaceParticipantsTest {
     }
 
     @Test
-    void move메서드로_자동차들을_움직인다() {
+    void 자동차들을_움직인다() {
         //given
         final Car move3times = new Car("car1", new MockMovingStrategy(List.of(true, true, true)));
         final Car move2times = new Car("car2", new MockMovingStrategy(List.of(true, true, false)));
