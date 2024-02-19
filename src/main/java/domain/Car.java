@@ -4,16 +4,20 @@ public class Car {
 
     private final CarName carName;
     private final Position position;
-    private final RandomPowerGenerator randomPowerGenerator;
+    private final PowerGenerator powerGenerator;
 
     private Car(CarName carName) {
         this(carName, new Position());
     }
 
     private Car(CarName carName, Position position) {
+        this(carName, position, new RandomPowerGenerator());
+    }
+
+    private Car(CarName carName, Position position, PowerGenerator powerGenerator) {
         this.carName = carName;
         this.position = position;
-        this.randomPowerGenerator = new RandomPowerGenerator();
+        this.powerGenerator = powerGenerator;
     }
 
     public static Car from(String name) {
@@ -24,8 +28,12 @@ public class Car {
         return new Car(new CarName(name), new Position(position));
     }
 
+    static Car of(String name, Integer position, PowerGenerator powerGenerator) {
+        return new Car(new CarName(name), new Position(position), powerGenerator);
+    }
+
     public void tryMove() {
-        moveByPower(randomPowerGenerator.generate());
+        moveByPower(powerGenerator.generate());
     }
 
     void moveByPower(Power power) {
