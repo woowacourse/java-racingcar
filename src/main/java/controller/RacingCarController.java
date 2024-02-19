@@ -25,7 +25,7 @@ public class RacingCarController {
                     new Cars(convertToCar(inputView.inputCarsName())),
                     new TrialCount(inputView.inputTrialCount()));
     outputView.printResultComment();
-    while (game.over()) {
+    while (!game.over()) {
       outputView.printResult(game.play());
     }
     outputView.printWinner(game.winners());
