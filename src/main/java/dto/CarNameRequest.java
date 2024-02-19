@@ -5,12 +5,11 @@ import java.util.List;
 
 public record CarNameRequest(String cars) {
 
-    public static final String DELIMITER = ",";
-
-    public CarNameRequest from() {
+    public CarNameRequest {
         validateCars(cars);
-        return new CarNameRequest(cars);
     }
+
+    public static final String DELIMITER = ",";
 
     public List<String> asList() {
         return Arrays.asList(cars.split(DELIMITER));

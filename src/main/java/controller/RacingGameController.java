@@ -7,6 +7,7 @@ import domain.RacingGame;
 import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
 import dto.CarNameRequest;
+import dto.CountRequest;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import view.InputView;
@@ -23,7 +24,8 @@ public class RacingGameController {
 
     public void run() {
         CarNameRequest carsNameRequest = retryUntilNoException(inputView::readCars);
-        Count count = Count.from(retryUntilNoException(inputView::readCount));
+        CountRequest countRequest = retryUntilNoException(inputView::readCount);
+        Count count = countRequest.toCount();
         Cars cars = retryUntilNoException(Cars::from, carsNameRequest.asList());
         RacingGame racingGame = RacingGame.of(count, cars, new RandomMovementGenerator(new RandomNumberGenerator()));
         RaceResult raceResult = racingGame.race();

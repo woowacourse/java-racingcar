@@ -1,7 +1,13 @@
-package view;
+package dto;
 
-public class InputValidator {
-    public void validateCount(String input) {
+import domain.Count;
+
+public record CountRequest(String input) {
+    public CountRequest {
+        validate(input);
+    }
+
+    public void validate(String input) {
         validateBlank(input);
         validateNumeric(input);
         validateRange(input);
@@ -36,5 +42,9 @@ public class InputValidator {
 
     private static boolean isNumeric(String input) {
         return !input.matches("-?\\d+");
+    }
+
+    public Count toCount() {
+        return new Count(Integer.parseInt(input));
     }
 }

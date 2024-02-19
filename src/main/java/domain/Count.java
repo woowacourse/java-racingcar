@@ -27,6 +27,7 @@ public class Count {
         return new Count(count);
     }
 
+
     public boolean isGreaterOrEqualThan(int currentCount) {
         return currentCount <= count;
     }
