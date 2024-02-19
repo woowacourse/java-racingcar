@@ -26,5 +26,4 @@ public class InputViewTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 자동차 이름은 사용할 수 없습니다.");
     }
-
 }
