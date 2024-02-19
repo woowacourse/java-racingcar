@@ -1,69 +1,43 @@
 package racingcar.domain;
 
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import racingcar.dto.CarStatus;
 
 public class Car implements Comparable<Car> {
-    private static final Pattern NAME_PATTERN = Pattern.compile("[^ㄱ-ㅎ가-힣a-zA-Z0-9_-]");
-    private static final int MAX_NAME_LENGTH = 5;
     private static final int CAR_MOVE_THRESHOLD = 4;
 
-    private final String name;
-    private int position = 0;
+    private final CarName name;
+    private Position position;
 
-    public Car(final String name) {
-        validateName(name);
-        this.name = name.trim();
+    private Car(final CarName name) {
+        this.name = name;
+        this.position = Position.ZERO;
     }
 
-    private void validateName(final String name) {
-        validateNotNull(name);
-        validateNameStyle(name);
-        validateNameLength(name);
+    public static Car from(final String name) {
+        return new Car(new CarName(name));
     }
 
-    private void validateNotNull(final String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("자동차 이름에 공백을 입력할 수 없습니다.");
-        }
-    }
-
-    private void validateNameStyle(final String name) {
-        Matcher matcher = NAME_PATTERN.matcher(name);
-
-        if (matcher.find()) {
-            throw new IllegalArgumentException("올바르지 않은 자동차 이름입니다.");
-        }
-    }
-
-    private void validateNameLength(final String name) {
-        if (name.trim().length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차 이름의 길이가 5를 초과합니다");
-        }
-    }
-
-    public void move(final int threshold) {
-        if (threshold >= CAR_MOVE_THRESHOLD) {
-            this.position++;
+    public void move(final int fuel) {
+        if (fuel >= CAR_MOVE_THRESHOLD) {
+            position = position.increasePosition();
         }
     }
 
     public String getName() {
-        return name;
+        return name.value();
     }
 
     public CarStatus getCarStatus() {
-        return new CarStatus(name, position);
+        return new CarStatus(name.value(), position.value());
     }
 
     public int compareTo(Car other) {
-        return this.position - other.position;
+        return this.position.value() - other.position.value();
     }
 
     public boolean isSamePosition(Car other) {
-        return this.position == other.position;
+        return this.position.value() == other.position.value();
     }
 
     @Override

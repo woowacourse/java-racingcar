@@ -2,6 +2,7 @@ package racingcar.view;
 
 import java.util.List;
 import racingcar.dto.CarStatus;
+import racingcar.dto.RoundResult;
 
 public class OutputView {
     private static final String RESULT_SUBJECT = "실행 결과";
@@ -19,8 +20,12 @@ public class OutputView {
         System.out.println(RESULT_SUBJECT);
     }
 
-    public static void printResult(final List<CarStatus> carStatuses) {
-        carStatuses.stream()
+    public static void printResults(final List<RoundResult> results) {
+        results.forEach(OutputView::printResult);
+    }
+
+    private static void printResult(final RoundResult result) {
+        result.value().stream()
                 .map(OutputView::makeCarStatusResult)
                 .forEach(System.out::println);
         System.out.println();

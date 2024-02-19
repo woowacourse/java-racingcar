@@ -1,34 +1,38 @@
 package racingcar.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static racingcar.domain.Cars.MAX_CARS_SIZE;
+import static racingcar.domain.Cars.MIN_CARS_SIZE;
 
 import java.util.List;
 import java.util.stream.Stream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import racingcar.dto.CarStatus;
+import racingcar.util.TestRefuelGenerator;
 
 class CarsTest {
     @Test
     @DisplayName("[Success] 자동차가 정상적으로 생성됨")
     void createCars() {
-        List<Car> cars = List.of(new Car("a"), new Car("b"));
+        List<String> carNames = List.of("a", "b");
 
-        assertThatCode(() -> new Cars(cars))
+        assertThatCode(() -> Cars.of(carNames))
                 .doesNotThrowAnyException();
     }
 
     @Test
     @DisplayName("[Exception] 중복된 자동차 이름이 있으면 예외를 던진다")
     void createCarsByDuplicateCarNames() {
-        List<Car> cars = List.of(new Car("123"), new Car("123"));
+        List<String> carNames = List.of("123", "123");
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Cars(cars))
+                .isThrownBy(() -> Cars.of(carNames))
                 .withMessage("자동차 이름은 중복될 수 없습니다.");
     }
 
@@ -36,13 +40,9 @@ class CarsTest {
     @MethodSource("InputCarNames")
     @DisplayName("[Exception] 자동차 대수가 2대 미만이거나 10대 초과하면 예외를 던진다")
     void createCarsByInvalidSize(List<String> carNames) {
-        List<Car> cars = carNames.stream()
-                .map(Car::new)
-                .toList();
-
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Cars(cars))
-                .withMessage("자동차 대수는 2대 이상 100대 이하여야 합니다.");
+                .isThrownBy(() -> Cars.of(carNames))
+                .withMessage(String.format("자동차 대수는 %d대 이상 %d대 이하여야 합니다.", MIN_CARS_SIZE, MAX_CARS_SIZE));
     }
 
     private static Stream<Arguments> InputCarNames() {
@@ -53,21 +53,27 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("[Success] 자동차 전진 횟수가 가장 많은 차들의 이름을 반환한다")
+    @DisplayName("[Success] NumberGenerator에서 생성된 숫자를 순서대로 전달하여 자동차가 전진할 수 있게 한다")
+    void move() {
+        Cars cars = Cars.of(List.of("car1", "car2", "car3", "car4"));
+        cars.move(new TestRefuelGenerator()); // 4, 4, 3, 3
+        List<Integer> result = cars.result().value()
+                .stream()
+                .map(CarStatus::position)
+                .toList();
+
+        assertThat(result)
+                .isEqualTo(List.of(1, 1, 0, 0));
+    }
+
+    @Test
+    @DisplayName("[Success] 가장 많이 전진한 자동차를 우승자로 반환")
     void getWinners() {
-        Car car1 = new Car("car1");
-        car1.move(4);
-        car1.move(4);
-        Car car2 = new Car("car2");
-        car2.move(4);
-        car2.move(4);
-        Car car3 = new Car("car3");
-        car3.move(1);
-        car3.move(1);
+        Cars cars = Cars.of(List.of("car1", "car2", "car3", "car4"));
+        cars.move(new TestRefuelGenerator()); // 4, 4, 3, 3
+        cars.move(new TestRefuelGenerator());
 
-        Cars cars = new Cars(List.of(car1, car2, car3));
-
-        Assertions.assertThat(cars.getWinners())
-                .isEqualTo(List.of("car1", "car2"));
+        assertThat(cars.getWinners())
+                .containsExactly("car1", "car2");
     }
 }
