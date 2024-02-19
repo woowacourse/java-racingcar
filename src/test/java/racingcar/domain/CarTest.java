@@ -3,8 +3,8 @@ package racingcar.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.condition.FalseCondition;
-import racingcar.condition.TrueCondition;
+import racingcar.testCondition.FalseCondition;
+import racingcar.testCondition.TrueCondition;
 
 class CarTest {
     @Test
