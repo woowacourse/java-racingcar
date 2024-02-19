@@ -12,15 +12,12 @@ public class InputView {
     private final static String MESSAGE_ONLY_NATURAL_NUMBER = "시도할 회수는 자연수를 입력해 주세요.";
     private final static int MAX_LENGTH_OF_NAME = 5;
     private final Scanner scanner = new Scanner(System.in);
-    private final OutputView outputView;
 
-
-    public InputView(OutputView outputView) {
-        this.outputView = outputView;
+    public InputView() {
     }
 
     public List<String> getCarName() {
-        outputView.printCarNameInputMessage();
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String input = scanner.nextLine();
         List<String> splitCarNames;
         try {
@@ -36,7 +33,7 @@ public class InputView {
     }
 
     public int getTryCount() {
-        outputView.printTryCountInputMessage();
+        System.out.println("시도할 회수는 몇회인가요?");
         String input = scanner.nextLine();
         int tryCount;
         try {
