@@ -14,10 +14,10 @@ public class GameManager {
     InputView inputView = new InputView();
 
     public void run() {
-        List<String> carNames = inputView.getCarName();
-        List<Car> cars = makeNewCars(carNames);
-
+        List<Car> cars = getCars();
         int tryCount = inputView.getTryCount();
+
+        System.out.println("실행 결과");
         for (int i = 0; i < tryCount; i++) {
             moveCars(cars);
             outputView.printTryResult(cars);
@@ -25,6 +25,17 @@ public class GameManager {
 
         List<Car> winners = decideWinners(cars);
         outputView.printWinners(winners);
+    }
+
+    private List<Car> getCars() {
+        List<Car> cars;
+        try {
+            cars = makeNewCars(inputView.getCarName());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            cars = makeNewCars(inputView.getCarName());
+        }
+        return cars;
     }
 
     private List<Car> makeNewCars(List<String> carNames) {
