@@ -28,4 +28,10 @@ public class Cars {
                 .map(Car::getName)
                 .toList();
     }
+
+    public static Cars makeNewCars(List<String> carNames) {
+        return new Cars(carNames.stream()
+                .map(Car::new)
+                .toList());
+    }
 }

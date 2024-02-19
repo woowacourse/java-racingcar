@@ -8,6 +8,8 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
+import static racingcar.domain.Cars.*;
+
 public class GameManager {
 
     private static final int MAX_RANDOM_NUMBER = 9;
@@ -42,9 +44,5 @@ public class GameManager {
         }
     }
 
-    private Cars makeNewCars(List<String> carNames) {
-        return new Cars(carNames.stream()
-                .map(Car::new)
-                .toList());
-    }
+
 }
