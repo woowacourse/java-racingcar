@@ -6,15 +6,15 @@ import java.util.List;
 public class Race {
 
     private final List<Car> cars;
-    private final CarMoveStrategy moveStrategy;
+    private final CarMove carMove;
 
-    public Race(List<Car> cars, CarMoveStrategy moveStrategy) {
+    public Race(List<Car> cars, CarMove carMove) {
         this.cars = cars;
-        this.moveStrategy = moveStrategy;
+        this.carMove = carMove;
     }
 
     public void move() {
-        cars.forEach(car -> car.move(moveStrategy.isMove()));
+        cars.forEach(car -> car.move(carMove.isMove()));
     }
 
     public List<Car> findWinner() {

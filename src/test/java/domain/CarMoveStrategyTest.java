@@ -15,7 +15,7 @@ class CarMoveStrategyTest {
     @ParameterizedTest
     @MethodSource("moveRandomlyTestProvider")
     void moveRandomlyTest(IntSupplier supplier, boolean expected) {
-        CarMoveStrategy moveStrategy = new CarMoveStrategy(supplier);
+        CarMove moveStrategy = new CarMove(supplier);
 
         // when
         boolean actual = moveStrategy.isMove();
