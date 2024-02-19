@@ -30,15 +30,13 @@ public class Cars {
         cars.forEach(car -> car.moveByNumber(RandomGenerator.generate()));
     }
 
-    @Override
-    public String toString() {
-        return cars.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining("\n", "", "\n"));
-    }
 
-    public List<Car> findFurthestCars() {
+    public List<Car> findWinners() {
         Collections.sort(cars);
         return cars.stream().filter((car) -> car.isSamePosition(cars.get(0))).toList();
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

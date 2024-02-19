@@ -30,11 +30,6 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public String toString() {
-        return name + " : " + "-".repeat(position);
-    }
-
-    @Override
     public int compareTo(Car otherCar) {
         return otherCar.position - this.position;
     }
@@ -45,5 +40,9 @@ public class Car implements Comparable<Car> {
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

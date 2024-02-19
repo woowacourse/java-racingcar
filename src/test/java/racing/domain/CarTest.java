@@ -36,9 +36,7 @@ class CarTest {
     void moveByNumber(int number) {
         Car car = new Car("pobi");
         car.moveByNumber(number);
-        String[] split = car.toString().split(" : ");
-        int position = split[1].length();
-        assertEquals(1, position);
+        assertEquals(1, car.getPosition());
     }
 
 }
