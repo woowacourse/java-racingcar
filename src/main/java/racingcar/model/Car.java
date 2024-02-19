@@ -1,12 +1,14 @@
 package racingcar.model;
 
-public class CarName {
+import java.util.Objects;
+
+public class Car {
     private static final int MOVE_THRESHOLD = 4;
     private static final int INITIAL_POSITION = 0;
     private final String name;
     private int position;
 
-    public CarName(String name) {
+    public Car(String name) {
         validateNameCharacters(name);
         validateNameLength(name);
         this.name = name;
@@ -21,10 +23,16 @@ public class CarName {
         return position;
     }
 
-    public void move(int randomNumber) {
-        if (randomNumber >= MOVE_THRESHOLD) {
-            position++;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
     }
 
     private void validateNameLength(String name) {
@@ -37,5 +45,15 @@ public class CarName {
         if (!name.matches("^[a-zA-Z]*$")) {
             throw new IllegalArgumentException("자동차의 이름은 영어로만 이루어져야 합니다.");
         }
+    }
+
+    public void move(int randomNumber) {
+        if (randomNumber >= MOVE_THRESHOLD) {
+            position++;
+        }
+    }
+
+    public boolean isWinner(int maxPosition) {
+        return this.position > 0 && this.position == maxPosition;
     }
 }
