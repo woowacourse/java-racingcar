@@ -49,8 +49,15 @@ public class CarRacing {
     private void tryMove(final TryCount tryCount, final Cars cars) {
         for (int i = 0; i < tryCount.getValue(); i++) {
             cars.tryMove(new CarAccelerator());
-            outputView.printCarsPosition(cars.getCars());
+            printCarsPosition(cars.getCars());
         }
+    }
+
+    private void printCarsPosition(final List<Car> cars) {
+        for (final Car car : cars) {
+            outputView.printCarPosition(car.getName(), car.getPosition());
+        }
+        outputView.printNewLine();
     }
 
     private void printWinners(final Cars cars) {

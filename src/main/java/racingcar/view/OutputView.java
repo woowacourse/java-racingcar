@@ -14,16 +14,17 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public void printCarsPosition(final List<Car> cars) {
-        for (Car car : cars) {
-            String positionBar = createPositionBar(car.getPosition());
-            System.out.printf((CAR_POSITION_MESSAGE) + "%n", car.getName(), positionBar);
-        }
-        System.out.println();
+    public void printCarPosition(final String carName, final int position) {
+        String positionBar = createPositionBar(position);
+        System.out.printf((CAR_POSITION_MESSAGE) + "%n", carName, positionBar);
     }
 
     private String createPositionBar(final int position) {
         return CAR_POSITION_BAR.repeat(position);
+    }
+
+    public void printNewLine() {
+        System.out.println();
     }
 
     public void printWinners(final List<String> winners) {
