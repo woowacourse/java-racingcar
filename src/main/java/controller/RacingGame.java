@@ -7,7 +7,6 @@ import domain.name.Names;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
 import domain.race.RaceResult;
-import util.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
