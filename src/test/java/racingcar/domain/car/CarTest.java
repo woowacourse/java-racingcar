@@ -25,8 +25,7 @@ class CarTest {
     @Test
     void 자동차_움직임_성공() {
         // given
-        final List<Boolean> movableList = List.of(true, false);
-        final Car car = new Car("car", new MockMovingStrategy(movableList));
+        final Car car = new Car("car", new MockMovingStrategy(List.of(true, false)));
 
         // when
         car.move();
