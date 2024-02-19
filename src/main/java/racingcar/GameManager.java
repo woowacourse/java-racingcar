@@ -14,22 +14,25 @@ public class GameManager {
     InputView inputView = new InputView(outputView);
 
     public void run() {
-        List<Car> cars = new ArrayList<>();
         List<String> carNames = inputView.getCarName();
-        makeNewCars(cars, carNames);
+        List<Car> cars = makeNewCars(carNames);
+
         int tryCount = inputView.getTryCount();
         for (int i = 0; i < tryCount; i++) {
             moveCars(cars);
             outputView.printTryResult(cars);
         }
+
         List<Car> winners = decideWinners(cars);
         outputView.printWinners(winners);
     }
 
-    private void makeNewCars(List<Car> cars, List<String> carNames) {
+    private List<Car> makeNewCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
+        return cars;
     }
 
     private void moveCars(List<Car> cars) {
