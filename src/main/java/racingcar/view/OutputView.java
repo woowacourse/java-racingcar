@@ -9,6 +9,7 @@ public class OutputView {
     private static final String POSITION_FORM = "%s : %s";
     private static final String TRACE = "-";
     private static final String WINNER_MSG = "%s가 최종 우승했습니다.";
+    private static final String SEPARATOR = ", ";
 
     public void printCarPosition(final Cars cars) {
         for(Car car : cars.getCars()) {
@@ -25,7 +26,7 @@ public class OutputView {
 
     public void printWinners(final List<Car> winners) {
         List<String> winnerNames = winners.stream().map(Car::getName).toList();
-        final String names = String.join(", ", winnerNames);
+        final String names = String.join(SEPARATOR, winnerNames);
         System.out.println(String.format(WINNER_MSG, names));
     }
 

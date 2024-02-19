@@ -4,23 +4,22 @@ public class Car {
     private final String name;
     private int count;
 
+    private static final int MOVE_CONDITION = 3;
+    private static final int STEP = 1;
+
     public Car(final String name) {
         this.name = name;
         this.count = 0;
     }
 
     public void move(final int randomNumber) {
-        if (randomNumber > 3 ) {
-            this.count += 1;
+        if (randomNumber > MOVE_CONDITION) {
+            this.count += STEP;
         }
     }
 
-    public boolean isSameCount(final int count) {
-        return this.count == count;
-    }
-
-    public boolean isAlsoWinner(final Car car) {
-        return car.isSameCount(count);
+    public boolean isSameCount(final Car car) {
+        return this.count == car.count;
     }
 
     public String getName() {

@@ -46,6 +46,6 @@ class CarTest {
         car2.move(condition2);
 
         //when & then
-        assertTrue(car1.isAlsoWinner(car2));
+        assertTrue(car1.isSameCount(car2));
     }
 }
