@@ -1,14 +1,13 @@
 package racingcar.domain;
 
 import java.util.List;
-import racingcar.util.RandomUtil;
+import racingcar.util.RandomUtils;
 
 public class Cars {
     private static final int MIN_DISTANCE = 0;
     private static final int RANDOM_MIN_LIMIT = 0;
     private static final int RANDOM_MAX_LIMIT = 9;
     private final List<Car> cars;
-    RandomUtil randomUtil = RandomUtil.getInstance();
 
     private Cars(final List<Car> cars) {
         this.cars = cars;
@@ -49,7 +48,7 @@ public class Cars {
                 .count();
     }
 
-    void move(final CarMoveStrategy carMovement) {
+    void move(final CarMoveStrategy carMovement, final RandomUtils randomUtil) {
         cars.forEach(car -> car.move(carMovement, randomUtil.generate(RANDOM_MIN_LIMIT, RANDOM_MAX_LIMIT)));
     }
 

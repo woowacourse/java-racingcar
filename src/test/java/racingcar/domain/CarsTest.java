@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.util.RandomUtils;
 
 @DisplayName("자동차들")
 class CarsTest {
@@ -67,7 +68,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("움직이지 못할 경우, 거리가 변하지 않는다.")
+    @DisplayName("랜덤값이 4보다 작으면 움직이지 않는다")
     public void carsNotMoveTest() {
         //given
         List<String> carNames = List.of("choco", "seyan", "solar");
@@ -81,8 +82,15 @@ class CarsTest {
             }
         };
 
+        final RandomUtils randomUtil = new RandomUtils() {
+            @Override
+            public int generate(int minLimit, int maxLimit) {
+                return 1;
+            }
+        };
+
         //when
-        cars.move(carMoveStrategy);
+        cars.move(carMoveStrategy, randomUtil);
         List<Car> carList = cars.getCars();
 
         //then
@@ -94,7 +102,7 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("움직울 경우, move 횟수만큼 거리가 변한다.")
+    @DisplayName("랜덤값이 4보다 큰 경우 자동차가 움직인다")
     public void carsMoveTestIterator() {
         //given
         List<String> carNames = List.of("choco", "seyan", "solar");
@@ -109,8 +117,15 @@ class CarsTest {
             }
         };
 
+        final RandomUtils randomUtil = new RandomUtils() {
+            @Override
+            public int generate(int minLimit, int maxLimit) {
+                return 5;
+            }
+        };
+
         //when
-        IntStream.range(0, iteratorCounts).forEach(i -> cars.move(carMoveStrategy));
+        IntStream.range(0, iteratorCounts).forEach(i -> cars.move(carMoveStrategy, randomUtil));
 
         //then
         assertEquals(cars.getCars().get(0).getDistance(), distanceResult);
