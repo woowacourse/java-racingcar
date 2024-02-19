@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Game {
     public final int MAX_NUM = 9;
     public final int THRESHOLD = 4;
+
     public Game() {
     }
 
@@ -53,7 +54,7 @@ public class Game {
     private void validateDuplicateName(List<Car> cars) {
         int duplication = 0;
         Set<String> validateCar = new HashSet<>();
-        for (Car car:cars) {
+        for (Car car : cars) {
             duplication = validateDuplication(car.getCarName(), validateCar);
         }
 

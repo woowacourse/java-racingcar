@@ -5,6 +5,7 @@ import domain.Game;
 
 import java.util.List;
 import java.util.Scanner;
+
 import view.InputView;
 import view.OutputView;
 
@@ -24,7 +25,7 @@ public class Controller {
     private void playGame(List<Car> cars, int attemptLimit) {
         OutputView.printHeadLine();
 
-        while (attemptLimit!=0) {
+        while (attemptLimit != 0) {
             game.playRacing(cars);
             OutputView.printResult(cars);
             attemptLimit--;
