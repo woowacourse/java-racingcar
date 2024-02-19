@@ -22,8 +22,7 @@ public class RandomMovingCars {
         validateMaxCarsSize(cars);
         validateDuplication(cars);
     }
-
-
+    
     private static void validateMinCarsSize(List<RandomMovingCar> cars) {
         if (cars.size() < MIN_CARS_SIZE) {
             throw new IllegalArgumentException(String.format("경주에 참가하는 자동차는 %d 대 이상이어야 합니다.", MIN_CARS_SIZE));
