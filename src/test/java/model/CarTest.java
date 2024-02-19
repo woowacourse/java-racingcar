@@ -23,13 +23,13 @@ class CarTest {
         }
 
         @Test
-        @DisplayName("전진을 안 한 경우")
+        @DisplayName("전진을 안 한 경우 테스트")
         void notMoveTest() {
             assertThat(car.getDistance()).isEqualTo(0);
         }
 
         @Test
-        @DisplayName("한 칸 전진")
+        @DisplayName("한 칸 전진을 한 경우 테스트")
         void moveOneTest() {
             car.move(5);
 
@@ -37,7 +37,7 @@ class CarTest {
         }
 
         @Test
-        @DisplayName("두 칸 전진")
+        @DisplayName("두 칸 전진을 한 경우 테스트")
         void moveTwoTest() {
             car.move(5);
             car.move(4);
@@ -48,7 +48,7 @@ class CarTest {
 
     @Nested
     @DisplayName("정렬 테스트")
-    class SortCars {
+    class SortCarsTest {
         @Test
         @DisplayName("내림차순 정렬 테스트")
         void sortTest() {

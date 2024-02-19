@@ -17,6 +17,10 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    public boolean isDistanceAt(int distance) {
+        return this.distance == distance;
+    }
+
     public int getDistance() {
         return distance;
     }

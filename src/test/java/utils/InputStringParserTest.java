@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class InputStringParserTest {
 
     @Test
-    @DisplayName("입력 문자열 split메서드 파싱 테스트")
+    @DisplayName("입력 문자열 파싱 테스트")
     void parseInputToListTest() {
         List<String> names = InputStringParser.parseInputToList("재즈,호기,재즈다,호기다");
 
