@@ -3,7 +3,6 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import racingcar.model.GameResult;
 import racingcar.model.RoundResult;
 
 import java.util.List;
