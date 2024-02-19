@@ -28,7 +28,7 @@ class RacingGameTest {
     @Test
     @DisplayName("자동차 이름 정상 입력: 경계값 입력 - 자동차 100대")
     void carNames_ok_boundaryTest_hundredCases() {
-        String testCase = makeCarNamesTestCase(100);
+        String testCase = makeTestNames(100);
         new RacingGame(testCase, moveStrategy);
     }
 
@@ -67,24 +67,32 @@ class RacingGameTest {
     @Test
     @DisplayName("자동차 이름 예외 입력(5): 1~100개의 이름만 입력 가능하다.")
     void carNames_exception_rangeViolation() {
-        String testCase = makeCarNamesTestCase(101);
+        String testCase = makeTestNames(101);
         assertThatThrownBy(() -> new RacingGame(testCase, moveStrategy))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    String makeCarNamesTestCase(int testCaseAmount) {
+    private static String makeTestNames(int testCaseAmount) {
         List<String> carNames = new ArrayList<>();
-        Random random = new Random();
         while (carNames.size() < testCaseAmount) {
-            StringBuilder randomName = new StringBuilder();
-            for (int i = 0; i < 5; i++) {
-                char randomChar = (char) ('a' + random.nextInt(26));
-                randomName.append(randomChar);
-            }
-            if (!carNames.contains(randomName.toString())) {
-                carNames.add(randomName.toString());
-            }
+            addNameToList(makeRandomName(5), carNames);
         }
         return String.join(",", carNames);
+    }
+
+    private static StringBuilder makeRandomName(int length) {
+        Random random = new Random();
+        StringBuilder randomName = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            char randomChar = (char) ('a' + random.nextInt(26));
+            randomName.append(randomChar);
+        }
+        return randomName;
+    }
+
+    private static void addNameToList(StringBuilder randomName, List<String> carNames) {
+        if (!carNames.contains(randomName.toString())) {
+            carNames.add(randomName.toString());
+        }
     }
 }
