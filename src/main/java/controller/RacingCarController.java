@@ -24,18 +24,18 @@ public class RacingCarController {
 
         Round round = Round.from(inputView.readRound());
 
-        outputView.writeResultMessage();
+        outputView.printResultMessage();
         for (int i = 0; i < round.getRound(); i++) {
             cars.moveCars();
             printResult(cars);
         }
 
-        outputView.writeWinners(cars.findWinnerNames());
+        outputView.printWinners(cars.findWinnerNames());
     }
 
     private void printResult(Cars cars) {
         for (Car car : cars.getCars()) {
-            outputView.writeRoundResult(car.getName(), car.getPosition());
+            outputView.printRoundResult(car.getName(), car.getPosition());
         }
         System.out.println();
     }
