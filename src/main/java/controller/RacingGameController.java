@@ -2,18 +2,18 @@ package controller;
 
 import domain.Cars;
 import domain.Count;
+import domain.RaceResult;
 import domain.RacingGame;
 import domain.RandomMovementGenerator;
 import domain.RandomNumberGenerator;
 import dto.CarNameRequest;
+import dto.CountRequest;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import view.InputView;
 import view.OutputView;
 
 public class RacingGameController {
-
-
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -24,15 +24,15 @@ public class RacingGameController {
 
     public void run() {
         CarNameRequest carsNameRequest = retryUntilNoException(inputView::readCars);
-        Count count = Count.from(retryUntilNoException(inputView::readCount));
+        CountRequest countRequest = retryUntilNoException(inputView::readCount);
+        Count count = countRequest.toCount();
         Cars cars = retryUntilNoException(Cars::from, carsNameRequest.asList());
         RacingGame racingGame = RacingGame.of(count, cars, new RandomMovementGenerator(new RandomNumberGenerator()));
-        racingGame.race();
+        RaceResult raceResult = racingGame.race();
         outputView.showStatusMessage();
-        outputView.showStatus(racingGame.getRaceResult());
-        outputView.showResult(cars.getWinners().toNames());
+        outputView.showStatus(raceResult);
+        outputView.showResult(raceResult.getWinners());
     }
-
 
     private <T> T retryUntilNoException(Supplier<T> supplier) {
         try {

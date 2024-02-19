@@ -2,7 +2,7 @@ package domain;
 
 public class Car implements Comparable<Car> {
 
-    private final Distance distance;
+    private Distance distance;
     private final Name name;
 
     public Car(Name name, Distance distance) {
@@ -11,7 +11,7 @@ public class Car implements Comparable<Car> {
     }
 
     public static Car fromName(String name) {
-        return new Car(Name.from(name), Distance.init());
+        return new Car(Name.from(name), Distance.from(0));
     }
 
     public static Car of(String name, int distance) {
@@ -20,11 +20,11 @@ public class Car implements Comparable<Car> {
 
 
     public void move() {
-        distance.increase();
+        this.distance = this.distance.increase();
     }
 
-    public int getDistance() {
-        return distance.getDistance();
+    public Distance getDistance() {
+        return distance;
     }
 
     public String getName() {

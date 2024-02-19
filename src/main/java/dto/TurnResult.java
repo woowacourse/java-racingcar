@@ -13,15 +13,7 @@ public class TurnResult {
     }
 
     public static TurnResult from(Cars cars) {
-        return new TurnResult(convertToDto(cars));
-    }
-
-    private static List<CarStatus> convertToDto(Cars cars) {
-        List<CarStatus> carStatusesTmp = new ArrayList<>();
-        for (Car car : cars.getCars()) {
-            carStatusesTmp.add(CarStatus.of(car));
-        }
-        return carStatusesTmp;
+        return new TurnResult(cars.toDto());
     }
 
     public List<CarStatus> getCarStatuses() {

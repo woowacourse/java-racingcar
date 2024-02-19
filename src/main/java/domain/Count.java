@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Count {
     public static final int MIN_COUNT = 1;
     public static final int MAX_COUNT = 100;
+
     private final int count;
 
     public Count(int count) {
@@ -25,6 +26,7 @@ public class Count {
     public static Count from(int count) {
         return new Count(count);
     }
+
 
     public boolean isGreaterOrEqualThan(int currentCount) {
         return currentCount <= count;
