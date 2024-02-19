@@ -1,3 +1,6 @@
+package view;
+
+import domain.car.CarRoundResult;
 import java.util.List;
 
 public class OutputView {
@@ -8,9 +11,9 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void showRoundResult(List<Car> roundResult) {
-        for (Car car : roundResult) {
-            showCarLocation(car.getName(), car.getLocation());
+    public static void showRoundResult(List<CarRoundResult> roundResult) {
+        for (CarRoundResult car : roundResult) {
+            showCarLocation(car.name(), car.location());
         }
         System.out.println();
     }
