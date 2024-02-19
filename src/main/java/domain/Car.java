@@ -1,29 +1,35 @@
 package domain;
 
-import java.util.Set;
-
 public class Car {
     public final int MAX_BOUND = 5;
-    public String name;
+    public final String name;
     public int location;
+    public boolean isWinner = false;
 
     public Car(String name) {
-        validator(name);
-        this.name = removeBlank(name);
+        validateCarName(name);
+        this.name = removeSpace(name);
         location = 0;
     }
 
-    private void validator(String name) {
-        if (!validateSize(name)) {
+    private void validateCarName(String name) {
+        validateSize(name);
+        validateBlankName(name);
+    }
+
+    private void validateSize(String name) {
+        if (name.length() > MAX_BOUND) {
             throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다");
         }
     }
 
-    private boolean validateSize(String name) {
-        return name.length() <= MAX_BOUND;
+    private void validateBlankName(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 이름은 공백일 수 없습니다");
+        }
     }
 
-    private String removeBlank(String name) {
+    private String removeSpace(String name) {
         return name.replaceAll(" ", "");
     }
 
@@ -39,11 +45,15 @@ public class Car {
         return location;
     }
 
-    public boolean isBlank() {
-        return name.isBlank();
+    public boolean isSamePosition(int maxPosition) {
+        return location == maxPosition;
     }
 
-    public boolean isMaxPosition(int maxPosition) {
-        return location == maxPosition;
+    public void setWinner() {
+        isWinner = true;
+    }
+
+    public boolean getResult() {
+        return isWinner;
     }
 }
