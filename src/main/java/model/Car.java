@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Objects;
-
 public class Car {
 
     private static final String CAR_NAME_TOO_LONG = "자동차 이름이 5자 초과입니다.";
