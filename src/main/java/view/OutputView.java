@@ -27,9 +27,9 @@ public class OutputView {
     public void printRacingWinners(List<CarDto> winners) {
         if (isExistWinner(winners)) {
             printWinners(winners);
-        } else if (!isExistWinner(winners)) {
-            printNoWinner();
+            return;
         }
+        printNoWinner();
     }
 
     private void printWinners(List<CarDto> winners) {
