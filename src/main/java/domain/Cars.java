@@ -55,15 +55,12 @@ public class Cars {
     }
 
     public Winners judge() {
-        List<String> winners = new ArrayList<>();
         int max = findMaxPosition();
-        for(Car car : cars)  {
-            Optional<String> maxCarName =  car.getNameIfSamePosition(max);
-            if(maxCarName.isPresent()) {
-                winners.add(maxCarName.get());
-            }
-        }
-        return new Winners(winners);
+        List<String> winnerNames = cars.stream()
+                .filter(car -> car.isWinner(max))
+                .map(Car::getName)
+                .toList();
+        return new Winners(winnerNames);
     }
 
     private int findMaxPosition() {
