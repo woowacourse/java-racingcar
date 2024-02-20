@@ -1,13 +1,12 @@
 package view;
 
 import domain.Car;
-import domain.CarGroup;
+import domain.RacingGame;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    // 정책 변경 가능성 있는 상수 분리
     private static final String CAR_POSITION_MARK = "-";
     private static final String WINNERS_NAME_DELIMITER = ", ";
 
@@ -15,8 +14,8 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printCarsPosition(final CarGroup carGroup) {
-        final List<Car> cars = carGroup.getAllCars();
+    public static void printCarsPosition(final RacingGame racingGame) {
+        final List<Car> cars = racingGame.getAllCars();
 
         cars.forEach(car -> {
                     final String carName = car.getName();
@@ -27,8 +26,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printResult(final CarGroup carGroup) {
-        final List<Car> winners = carGroup.getWinners();
+    public static void printResult(final RacingGame racingGame) {
+        final List<Car> winners = racingGame.getWinners();
 
         if (winners.size() == 0) {
             System.out.println("우승자가 없습니다.");

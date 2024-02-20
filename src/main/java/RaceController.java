@@ -1,5 +1,4 @@
 import domain.Attempts;
-import domain.CarGroup;
 import domain.RacingGame;
 import view.InputView;
 import view.OutputView;
@@ -10,28 +9,26 @@ public class RaceController {
     private static final InputView inputView = new InputView(System.in);
 
     public static void main(String[] args) {
-        final CarGroup carGroup = repeatUntilGetValidCarNames();
+        final RacingGame racingGame = repeatUntilGetValidCarNames();
         final Attempts attempts = repeatUntilGetValidAttempts();
 
         OutputView.printRaceResultHeader();
-        race(carGroup, attempts);
-        OutputView.printResult(carGroup);
+        race(racingGame, attempts);
+        OutputView.printResult(racingGame);
     }
 
-    private static void race(final CarGroup carGroup, final Attempts attempts) {
-        final RacingGame racingGame = new RacingGame(carGroup);
-
+    private static void race(final RacingGame racingGame, final Attempts attempts) {
         while (attempts.isEnd()) {
-            racingGame.moveCars();
-            OutputView.printCarsPosition(carGroup);
+            racingGame.move();
+            OutputView.printCarsPosition(racingGame);
             attempts.decrease();
         }
     }
 
-    private static CarGroup repeatUntilGetValidCarNames() {
+    private static RacingGame repeatUntilGetValidCarNames() {
         try {
             final String[] carNames = inputView.readCarNames();
-            return new CarGroup(carNames);
+            return new RacingGame(carNames);
         } catch (IOException | IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
             return repeatUntilGetValidCarNames();
