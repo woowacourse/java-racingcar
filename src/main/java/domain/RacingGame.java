@@ -17,9 +17,8 @@ public class RacingGame {
     private final MoveStrategy moveStrategy;
 
     public RacingGame(String rawCarNames, MoveStrategy moveStrategy) {
-        this.cars = new ArrayList<>();
+        this.cars = validate(rawCarNames);
         this.moveStrategy = moveStrategy;
-        validate(rawCarNames);
     }
 
     public List<Car> playOneRound() {
@@ -37,15 +36,15 @@ public class RacingGame {
             .toList();
     }
 
-    private void validate(String rawCarNames) {
+    private List<Car> validate(String rawCarNames) {
         validateEmptyOrBlank(rawCarNames);
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
         validateCarAmount(carNames);
         validateNameDuplication(carNames);
 
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+        return carNames.stream()
+            .map(Car::new)
+            .toList();
     }
 
     private void validateEmptyOrBlank(String rawCarNames) {
