@@ -11,25 +11,39 @@ import java.util.List;
 public class GameManager {
     private static final String MESSAGE_NOT_EXIST_CAR = "생성된 자동차가 없습니다.";
     OutputView outputView = new OutputView();
-    InputView inputView = new InputView(outputView);
+    InputView inputView = new InputView();
 
     public void run() {
-        List<Car> cars = new ArrayList<>();
-        List<String> carNames = inputView.getCarName();
-        makeNewCars(cars, carNames);
+        List<Car> cars = getCars();
         int tryCount = inputView.getTryCount();
+
+        outputView.printResultMessage();
         for (int i = 0; i < tryCount; i++) {
             moveCars(cars);
             outputView.printTryResult(cars);
         }
+
         List<Car> winners = decideWinners(cars);
         outputView.printWinners(winners);
     }
 
-    private void makeNewCars(List<Car> cars, List<String> carNames) {
+    private List<Car> getCars() {
+        List<Car> cars;
+        try {
+            cars = makeNewCars(inputView.getCarName());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            cars = getCars();
+        }
+        return cars;
+    }
+
+    private List<Car> makeNewCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
         for (String carName : carNames) {
             cars.add(new Car(carName));
         }
+        return cars;
     }
 
     private void moveCars(List<Car> cars) {
