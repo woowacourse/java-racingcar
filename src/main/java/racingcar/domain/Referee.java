@@ -27,9 +27,6 @@ public class Referee {
                 .mapToInt(position -> position)
                 .max();
 
-        if (winnerPosition.isPresent()) {
-            return winnerPosition.getAsInt();
-        }
-        return 0;
+        return winnerPosition.orElse(0);
     }
 }
