@@ -1,7 +1,6 @@
 import domain.Attempts;
 import domain.CarGroup;
 import domain.RacingGame;
-import utils.RandomPowerGenerator;
 import view.InputView;
 import view.OutputView;
 
@@ -20,7 +19,7 @@ public class RaceController {
     }
 
     private static void race(final CarGroup carGroup, final Attempts attempts) {
-        final RacingGame racingGame = new RacingGame(carGroup, new RandomPowerGenerator());
+        final RacingGame racingGame = new RacingGame(carGroup);
 
         while (attempts.isEnd()) {
             racingGame.moveCars();
