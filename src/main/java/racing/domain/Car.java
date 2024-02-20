@@ -2,7 +2,7 @@ package racing.domain;
 
 public class Car implements Comparable<Car> {
     public static final int MAX_NAME_LENGTH = 5;
-    public static final int MINIMUM_FORWARD_NUMBER = 4;
+
     private final String name;
     private int position;
 
@@ -18,19 +18,14 @@ public class Car implements Comparable<Car> {
 
     private void validateSize(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[Error] 이름은 5글자 이하여야 합니다.");
         }
     }
 
-    public void moveByNumber(int value) {
-        if (value >= MINIMUM_FORWARD_NUMBER) {
+    public void move(MoveStrategy moveStrategy) {
+        if (moveStrategy.movable()) {
             this.position++;
         }
-    }
-
-    @Override
-    public String toString() {
-        return name + " : " + "-".repeat(position);
     }
 
     @Override
@@ -38,11 +33,15 @@ public class Car implements Comparable<Car> {
         return otherCar.position - this.position;
     }
 
-    public boolean isSame(Car car) {
+    public boolean isSamePosition(Car car) {
         return this.position == car.position;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

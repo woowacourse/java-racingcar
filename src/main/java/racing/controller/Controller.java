@@ -1,8 +1,7 @@
 package racing.controller;
 
-import java.util.List;
 import racing.domain.Cars;
-import racing.domain.Race;
+import racing.domain.RandomMoveStrategy;
 import racing.domain.TryCount;
 import racing.view.InputView;
 import racing.view.OutputView;
@@ -17,13 +16,20 @@ public class Controller {
     }
 
     public void startGame() {
-        Cars cars = new Cars(inputView.readNames());
+        Cars cars = new Cars(inputView.readNames(), new RandomMoveStrategy());
         TryCount tryCount = new TryCount(inputView.readTryCount());
 
-        Race race = new Race(cars, tryCount);
-        List<String> result = race.proceedRace();
+        proceedRace(cars, tryCount);
 
-        outputView.printResult(result);
-        outputView.printWinners(race.getWinners());
+        outputView.printWinners(cars.findWinners());
+    }
+
+    public void proceedRace(Cars cars, TryCount tryCount) {
+        outputView.printResult();
+        while (tryCount.isRemain()) {
+            tryCount.consume();
+            cars.proceedRound();
+            outputView.printOngoingResult(cars.getCars());
+        }
     }
 }

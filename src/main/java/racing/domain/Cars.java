@@ -7,22 +7,20 @@ import java.util.stream.Collectors;
 import racing.util.RandomGenerator;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
+    private final MoveStrategy moveStrategy;
 
-    public Cars(String rawNames) {
+    public Cars(String rawNames, MoveStrategy moveStrategy) {
         List<String> carNames = parseNames(rawNames);
-        validate(carNames);
+        validateDuplicateName(carNames);
         this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
+        this.moveStrategy = moveStrategy;
     }
 
-    private void validate(List<String> cars) {
-        validateDuplicateName(cars);
-    }
-
-    private static void validateDuplicateName(List<String> cars) {
-        int count = (int) cars.stream().distinct().count();
-        if (count != cars.size()) {
-            throw new IllegalArgumentException();
+    private static void validateDuplicateName(List<String> carNames) {
+        int count = (int) carNames.stream().distinct().count();
+        if (count != carNames.size()) {
+            throw new IllegalArgumentException("[Error] 이름이 중복되었습니다.");
         }
     }
 
@@ -31,18 +29,16 @@ public class Cars {
     }
 
     public void proceedRound() {
-        cars.forEach(car -> car.moveByNumber(RandomGenerator.generate()));
+        cars.forEach(car -> car.move(moveStrategy));
     }
 
-    @Override
-    public String toString() {
-        return cars.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining("\n", "", "\n"));
-    }
 
-    public List<Car> findFurthestCars() {
+    public List<Car> findWinners() {
         Collections.sort(cars);
-        return cars.stream().filter((car) -> car.isSame(cars.get(0))).toList();
+        return cars.stream().filter((car) -> car.isSamePosition(cars.get(0))).toList();
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
