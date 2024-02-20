@@ -15,11 +15,9 @@ public class RacingCarGame {
 
     public void playGame(int attemptLimit) {
         OutputView.printHeadLine();
-        int count = 0;
-        while (count < attemptLimit) {
+        for (int i = 0; i < attemptLimit; i++) {
             playRacing();
             OutputView.printResult(cars);
-            count++;
         }
     }
 
