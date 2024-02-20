@@ -2,6 +2,7 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import racingcar.domain.Car;
 import racingcar.domain.CarAccelerator;
 import racingcar.domain.Cars;
@@ -29,10 +30,9 @@ public class CarRacing {
     }
 
     private Cars createCars(final List<String> carNames) {
-        final List<Car> cars = new ArrayList<>();
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+        final List<Car> cars = carNames.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
 
         return new Cars(cars);
     }
