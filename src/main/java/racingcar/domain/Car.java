@@ -29,7 +29,7 @@ public class Car {
         return name.length() > CAR_NAME_MAX_LENGTH;
     }
 
-    private static boolean isBiggerThanBoundary() {
+    protected boolean isBiggerThanBoundary() {
         return randomUtil.generate(BOUNDARY_RANDOM_MIN, BOUNDARY_RANDOM_MAX) >= MOVE_BOUNDARY;
     }
 

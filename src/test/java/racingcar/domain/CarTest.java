@@ -54,14 +54,19 @@ class CarTest {
     public void printStatusTest() {
         //given
         String name = "choco";
-        int defaultForward = 0;
         int movedForward = 1;
 
         //when
-        Car car = new Car(name);
+        Car car = new Car(name) {
+            @Override
+            protected boolean isBiggerThanBoundary() {
+                return true;
+            }
+        };
         car.move();
 
         //then
-        assertThat(car.getForward()).isBetween(defaultForward, movedForward);
+        assertThat(car.getForward())
+                .isEqualTo(movedForward);
     }
 }
