@@ -7,17 +7,9 @@ public class InputView {
     private InputView() {}
 
     private static final Scanner sc = new Scanner(System.in);
-    public static List<String> inputCarNames() {
+    public static String inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = sc.nextLine().trim();
-        validateLastComma(input);
-        return List.of(input.split(","));
-    }
-
-    private static void validateLastComma(String input) {
-        if (input.endsWith(",")) {
-            throw new IllegalArgumentException("이름은 1글자 이상 5글자 이하만 가능합니다.");
-        }
+        return sc.nextLine().trim();
     }
 
     public static int inputMoveCount() {

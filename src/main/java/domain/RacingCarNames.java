@@ -6,16 +6,24 @@ import java.util.stream.Collectors;
 public class RacingCarNames {
     private List<String> names;
 
-    public RacingCarNames(List<String> names) {
-        validateDuplication(names);
-        validateNamesLength(names);
-        this.names = names;
+    public RacingCarNames(String input) {
+        validateLastComma(input);
+        List<String> inputNames = List.of(input.split(","));
+        validateDuplication(inputNames);
+        validateNamesLength(inputNames);
+        this.names = inputNames;
     }
 
     public RacingCars createRacingCars() {
         return new RacingCars(names.stream()
                 .map(RacingCar::new)
                 .collect(Collectors.toList()));
+    }
+
+    private static void validateLastComma(String input) {
+        if (input.endsWith(",")) {
+            throw new IllegalArgumentException("이름은 1글자 이상 5글자 이하만 가능합니다.");
+        }
     }
 
     private void validateNamesLength(List<String> names) {

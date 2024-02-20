@@ -27,7 +27,7 @@ public class RacingCarController {
     }
 
     private RacingCarNames readRacingCarNames() {
-        List<String> carNames = InputView.inputCarNames();
+        String carNames = InputView.inputCarNames();
         return new RacingCarNames(carNames);
     }
 
