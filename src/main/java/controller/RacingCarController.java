@@ -1,5 +1,6 @@
 package controller;
 
+import model.Car;
 import model.Cars;
 import model.RacingGame;
 import view.InputView;
@@ -19,7 +20,9 @@ public class RacingCarController {
 
     public void run() throws IOException {
         final List<String> names = inputView.readCarNames();
-        final Cars cars = Cars.from(names);
+        final Cars cars = Cars.from(names.stream()
+                                    .map(Car::from)
+                                    .toList());
 
         final String round = inputView.readRound();
         final RacingGame racingGame = RacingGame.from(cars, round);

@@ -71,3 +71,21 @@
 - [x] OutputView [ERROR] 상수화 취소 
 - [x] 모든 출력 조건은 view로 이동
 - [x] stream으로 수정
+
+
+## step2 피드백(2)
+- [x] BufferedReader 필드에서 삭제 후 메소드 안에서 선언
+- [x] 에러 메세지 속의 매직넘버 상수화
+- [x] CscSource의 테스트 예시도 순서대로 작성
+- [x] shift + F6 를 누른 뒤 엔터 누르면 한꺼번에 변경 가능!
+- [x] .collect(Collectors.toList()) -> toList로 변경(불변객체 반환)
+- [x] 객체 리스트 반환하는 getter 메소드는 반환 리스트를 불변으로 수정
+  - https://tecoble.techcourse.co.kr/post/2020-05-08-First-Class-Collection/
+- [x] getter는 클래스 맨 아래로 
+- [x] CarInfoDto -> CarDto로 의미 명확하게 수정
+- [x] CarsTest에 우승자 테스트
+- [x] 테스트코드 예외 thrownBy만 하지말고 .isInstanceOf로 에러까지 명시하기
+- [x] OutputView의 stream 부분에서 forEach 찾아보기
+  - ❓로직 가독성 개선 -> 다시 for문으로 바꿨는데 잘 모르겠다... 
+- ❓Cars calculateMaxPosition 람다 사용해서 수정
+

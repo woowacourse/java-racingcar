@@ -16,7 +16,7 @@ public class RacingGameTest {
     @NullSource
     @ValueSource(strings = {"+4", "ss", "", "   ", "-1", "3.2", "0"})
     void roundValidationTest(String tryCount) {
-        final List<String> correctNames = List.of("lemon" ,"berry");
+        final List<Car> correctNames = List.of(Car.from("good") ,Car.from("yes"));
         final Cars correctCars = Cars.from(correctNames);
 
         System.out.println(correctCars.getCars());

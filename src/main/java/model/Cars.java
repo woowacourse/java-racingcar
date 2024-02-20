@@ -2,6 +2,7 @@ package model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static util.Util.generateRandomNumber;
@@ -17,29 +18,28 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars from(final List<String> names) {
-        validateNames(names);
-
-        List<Car> cars = names.stream()
-                .map(Car::from)
-                .toList();
+    public static Cars from(final List<Car> cars) {
+        validateNames(cars);
 
         return new Cars(cars);
     }
 
-    private static void validateNames(List<String> names) {
-        checkDuplicatedName(names);
-        checkNameCount(names);
+    private static void validateNames(List<Car> cars) {
+        checkDuplicatedName(cars);
+        checkNameCount(cars);
     }
 
-    private static void checkDuplicatedName(List<String> names) {
-        long nameCount = names.stream().distinct().count();
-        if (names.size() != nameCount) {
+    private static void checkDuplicatedName(List<Car> cars) {
+        Set<String> uniqueNames = cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toSet());
+
+        if (uniqueNames.size() != cars.size()) {
             throw new IllegalArgumentException("[ERROR] 자동차의 이름은 중복될 수 없습니다.");
         }
     }
 
-    private static void checkNameCount(List<String> names) {
+    private static void checkNameCount(List<Car> names) {
         if (names.size() < MIN_CAR_NAME_COUNT) {
             throw new IllegalArgumentException(
                     String.format("[ERROR] 자동차 이름은 %d개 이상이어야 합니다.",
