@@ -14,16 +14,8 @@ public class OutputView {
         System.out.println("\n실행 결과");
     }
 
-    public static void printCarsPosition(final RacingGame racingGame) {
-        final List<Car> cars = racingGame.getAllCars();
-
-        cars.forEach(car -> {
-                    final String carName = car.getName();
-                    final int carPosition = car.getPosition();
-                    System.out.println(carName + " : " + CAR_POSITION_MARK.repeat(carPosition));
-                }
-        );
-        System.out.println();
+    public static void printCarsPosition(final String result) {
+        System.out.println(result);
     }
 
     public static void printResult(final RacingGame racingGame) {

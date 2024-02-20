@@ -13,16 +13,9 @@ public class RaceController {
         final Attempts attempts = repeatUntilGetValidAttempts();
 
         OutputView.printRaceResultHeader();
-        race(racingGame, attempts);
+        String raceResult = racingGame.race(racingGame, attempts);
+        OutputView.printCarsPosition(raceResult);
         OutputView.printResult(racingGame);
-    }
-
-    private static void race(final RacingGame racingGame, final Attempts attempts) {
-        while (attempts.isEnd()) {
-            racingGame.move();
-            OutputView.printCarsPosition(racingGame);
-            attempts.decrease();
-        }
     }
 
     private static RacingGame repeatUntilGetValidCarNames() {

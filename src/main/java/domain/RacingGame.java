@@ -11,6 +11,8 @@ public class RacingGame {
     private final List<Car> carGroup;
     private final PowerGenerator powerGenerator;
 
+    private String result = "";
+
 
     public RacingGame(final String[] carNames) {
         this.carGroup = makeCarGroup(carNames);
@@ -22,8 +24,24 @@ public class RacingGame {
         this.powerGenerator = powerGenerator;
     }
 
+    public String race(final RacingGame racingGame, final Attempts attempts) {
+        while (!attempts.isEnd()) {
+            racingGame.move();
+            attempts.decrease();
+        }
+        return result;
+    }
+
     public void move() {
-        carGroup.forEach(car -> car.move(powerGenerator.getNumber()));
+        carGroup.forEach(car -> {
+            car.move(powerGenerator.getNumber());
+            addResult(car);
+        });
+        result += "\n";
+    }
+
+    private void addResult(Car car) {
+        result += car.getName() + " : " + "-".repeat(car.getPosition()) + "\n";
     }
 
     public List<Car> getAllCars() {
