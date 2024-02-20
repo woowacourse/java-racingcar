@@ -30,12 +30,16 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {4, 9})
-    @DisplayName("랜덤값이 4이상이면 자동차를 전진합니다")
-    void moveByNumber(int number) {
+    @Test
+    @DisplayName("자동차를 전진합니다")
+    void move() {
         Car car = new Car("pobi");
-        car.moveByNumber(number);
+        car.move(new RandomMoveStrategy(){
+            @Override
+            public boolean movable() {
+                return true;
+            }
+        });
         assertEquals(1, car.getPosition());
     }
 

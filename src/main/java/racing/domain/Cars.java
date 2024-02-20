@@ -8,11 +8,13 @@ import racing.util.RandomGenerator;
 
 public class Cars {
     private final List<Car> cars;
+    private final MoveStrategy moveStrategy;
 
-    public Cars(String rawNames) {
+    public Cars(String rawNames, MoveStrategy moveStrategy) {
         List<String> carNames = parseNames(rawNames);
         validateDuplicateName(carNames);
         this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
+        this.moveStrategy = moveStrategy;
     }
 
     private static void validateDuplicateName(List<String> carNames) {
@@ -27,7 +29,7 @@ public class Cars {
     }
 
     public void proceedRound() {
-        cars.forEach(car -> car.moveByNumber(RandomGenerator.generate()));
+        cars.forEach(car -> car.move(moveStrategy));
     }
 
 

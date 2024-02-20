@@ -2,7 +2,6 @@ package racing.domain;
 
 public class Car implements Comparable<Car> {
     public static final int MAX_NAME_LENGTH = 5;
-    public static final int MINIMUM_FORWARD_NUMBER = 4;
 
     private final String name;
     private int position;
@@ -23,8 +22,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public void moveByNumber(int value) {
-        if (value >= MINIMUM_FORWARD_NUMBER) {
+    public void move(MoveStrategy moveStrategy) {
+        if (moveStrategy.movable()) {
             this.position++;
         }
     }
