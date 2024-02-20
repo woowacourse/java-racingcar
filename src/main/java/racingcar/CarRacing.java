@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
@@ -47,8 +46,9 @@ public class CarRacing {
     }
 
     private void tryMove(final TryCount tryCount, final Cars cars) {
+        final CarAccelerator accelerator = new CarAccelerator();
         for (int i = 0; i < tryCount.getValue(); i++) {
-            cars.tryMove(new CarAccelerator());
+            cars.tryMove(accelerator);
             printCarsPosition(cars.getCars());
         }
     }
