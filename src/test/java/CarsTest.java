@@ -1,6 +1,8 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import model.Car;
+import model.Cars;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +20,7 @@ class CarsTest {
         );
         Cars cars = new Cars(carList);
 
-        List<Integer> randomNumbers = List.of(0, 3, 6, 9);
+        List<Integer> randomNumbers = List.of(0, 3, 4, 9);
         cars.moveAll(randomNumbers);
 
         List<Integer> expectedLocations = List.of(0, 0, 1, 1);
@@ -29,7 +31,7 @@ class CarsTest {
         assertThat(actual).isEqualTo(expectedLocations);
     }
 
-    @DisplayName("자동차들 중 가장 큰 위치를 확인")
+    @DisplayName("자동차 중 가장 큰 위치를 가지는 자동차 이름을 반환한다")
     @Test
     void getMaxLocation() {
 
@@ -41,6 +43,6 @@ class CarsTest {
         );
         Cars cars = new Cars(carList);
 
-        assertThat(cars.getMaxLocation()).isEqualTo(7);
+        assertThat(cars.getMaxLocationCarNames()).isEqualTo(List.of("d"));
     }
 }

@@ -1,6 +1,9 @@
+package model;
+
 public class Car {
 
     private static final int MIN_NUMBER_FOR_MOVE = 4;
+    private static final int DEFAULT_LOCATION = 0;
     private final CarName carName;
     private final CarLocation carLocation;
 
@@ -18,11 +21,9 @@ public class Car {
     }
 
     public static Car from(String name) {
-        return new Car(
-                new CarName(name),
-                new CarLocation(0)
-        );
+        return from(name, DEFAULT_LOCATION);
     }
+
 
     public void move(int randomNumber) {
         if (randomNumber >= MIN_NUMBER_FOR_MOVE) {

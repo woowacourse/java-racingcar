@@ -1,5 +1,7 @@
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import model.CarLocation;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,5 +13,15 @@ class CarLocationTest {
         assertThatThrownBy(() -> new CarLocation(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("위치가 정상적으로 증가함을 확인")
+    @Test
+    void checkIncrease() {
+        CarLocation carLocation = new CarLocation(0);
+
+        carLocation.increaseLocation();
+
+        Assertions.assertThat(carLocation.getLocation()).isEqualTo(1);
     }
 }

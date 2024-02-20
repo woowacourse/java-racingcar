@@ -1,17 +1,19 @@
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
+import controller.RacingGame;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.time.Duration;
-import java.util.List;
 import java.util.NoSuchElementException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.Randoms;
+import utils.moveNumberGenerator;
 
 class RacingGameTest {
     private PrintStream standardOut;
@@ -37,12 +39,7 @@ class RacingGameTest {
          * 차량 3대를 3번 전진시키는데, 모든 차량을 3번 다 전진시키도록 설정
          */
         command("a,b,c", "3");
-        RacingGame racingGame = new RacingGame() {
-            @Override
-            protected List<Integer> createRandomNumber(int carCount) {
-                return List.of(4, 5, 6);
-            }
-        };
+        RacingGame racingGame = new RacingGame(new moveNumberGenerator());
 
         racingGame.run();
 
@@ -92,7 +89,7 @@ class RacingGameTest {
     }
 
     private void start() {
-        RacingGame racingGame = new RacingGame();
+        RacingGame racingGame = new RacingGame(new Randoms());
         racingGame.run();
     }
 
