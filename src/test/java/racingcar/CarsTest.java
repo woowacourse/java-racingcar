@@ -40,10 +40,10 @@ public class CarsTest {
         @DisplayName("랜덤 넘버가 4 이상인 경우 차 위치 이동")
         void testMoveCarsMove() {
             Cars cars = new Cars(new TestNumericGenerator(4), List.of("차1", "차2"));
-            cars.moveCars();
+            cars.move();
 
-            List<Integer> actual = List.of(1, 1);
-            List<Integer> expected = cars.getCarPositions();
+            List<Integer> actual = cars.getPositions();
+            List<Integer> expected = List.of(1, 1);
 
             assertThat(actual).isEqualTo(expected);
         }
@@ -52,34 +52,10 @@ public class CarsTest {
         @DisplayName("랜덤 넘버가 3 이하인 경우 차 정지")
         void testMoveCarsStop() {
             Cars cars = new Cars(new TestNumericGenerator(3), List.of("차1", "차2"));
-            cars.moveCars();
+            cars.move();
 
-            List<Integer> actual = List.of(0, 0);
-            List<Integer> expected = cars.getCarPositions();
-
-            assertThat(actual).isEqualTo(expected);
-        }
-
-        @Test
-        @DisplayName("제일 높은 값을 갖는 객체가 하나인 경우, 해당 객체를 제대로 리턴하는지 확인")
-        void testCalculatorWinner() {
-            Cars cars = new Cars(new TestNumericGenerator(4, 3), List.of("폭포", "포케"));
-            cars.moveCars();
-
-            List<String> actual = cars.calculateWinner();
-            List<String> expected = List.of("폭포");
-
-            assertThat(actual).isEqualTo(expected);
-        }
-
-        @Test
-        @DisplayName("제일 높은 값을 갖는 객체가 둘인 경우, 두 객체를 모두 제대로 리턴하는지 확인")
-        void testCalculatorMultiWinner() {
-            Cars cars = new Cars(new TestNumericGenerator(4, 4, 3), List.of("폭포", "포케", "무빈"));
-            cars.moveCars();
-
-            List<String> actual = cars.calculateWinner();
-            List<String> expected = List.of("폭포", "포케");
+            List<Integer> actual = cars.getPositions();
+            List<Integer> expected = List.of(0, 0);
 
             assertThat(actual).isEqualTo(expected);
         }

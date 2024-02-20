@@ -1,9 +1,10 @@
 package racingcar.view;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
+import racingcar.model.GameResult;
+import racingcar.model.RoundResult;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class OutputView {
     public static void printRequestCarNamesMessage() {
@@ -14,20 +15,30 @@ public class OutputView {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
-    public static void printResultMessage() {
-        System.out.println("\n실행 결과");
-    }
-
-    public static void printCar(Car car) {
-        System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
-    }
-
-    public static void printCars(Cars cars) {
-        cars.getCars().forEach(OutputView::printCar);
-        System.out.println();
-    }
-
     public static void printWinners(List<String> winners) {
         System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+    }
+
+    private static String makeCarInfo(String name, int position) {
+        return name + " : " + "-".repeat(position);
+    }
+
+    private static void printRoundResult(RoundResult roundResult) {
+        List<String> names = roundResult.getNames();
+        List<Integer> positions = roundResult.getPositions();
+
+        IntStream.range(0, names.size())
+                .forEach(idx -> {
+                    String s = makeCarInfo(names.get(idx), positions.get(idx));
+                    System.out.println(s);
+                });
+    }
+
+    public static void printGameResults(GameResult gameResult) {
+        System.out.println("\n실행 결과");
+        gameResult.getGameResult().forEach(roundResult -> {
+            printRoundResult(roundResult);
+            System.out.println();
+        });
     }
 }

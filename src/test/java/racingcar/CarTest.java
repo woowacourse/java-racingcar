@@ -18,7 +18,7 @@ public class CarTest {
         @ValueSource(strings = {"이름이여섯자", "자동차이름일곱"})
         @DisplayName("이름이 5자 초과 시 예외 발생")
         void testNameUnderFive(String given) {
-            assertThatThrownBy(() -> new Car(given))
+            assertThatThrownBy(() -> new Car(given, 0))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -26,10 +26,10 @@ public class CarTest {
     @Nested
     class Feature {
         @Test
-        @DisplayName("차 1칸 이동")
+        @DisplayName("랜덤 넘버가 4 이상이면, 차 1칸 이동")
         void testMove() {
-            Car car = new Car("차");
-            car.move();
+            Car car = new Car("차", 0);
+            car.move(4);
 
             int actual = car.getPosition();
             int expected = 1;

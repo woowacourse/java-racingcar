@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import racingcar.constants.Constants;
 import racingcar.controller.NumericGenerator;
 
 import java.util.List;
@@ -14,32 +13,21 @@ public class Cars {
         this.generator = generator;
 
         this.cars = carNames.stream()
-                .map(Car::new)
+                .map(name -> new Car(name, 0))
                 .collect(Collectors.toList());
     }
 
-    public void moveCars() {
-        cars.stream()
-                .filter(car -> generator.generate() >= Constants.MOVE_LINE)
-                .forEach(Car::move);
+    public void move() {
+        cars.forEach(car -> car.move(generator.generate()));
     }
 
-    public List<String> calculateWinner() {
-        int maxPosition = cars.stream()
-                .map(Car::getPosition)
-                .max(Integer::compareTo)
-                .orElse(0);
+    public List<String> getNames() {
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public List<Integer> getCarPositions() {
+    public List<Integer> getPositions() {
         return cars.stream()
                 .map(Car::getPosition)
                 .collect(Collectors.toList());
