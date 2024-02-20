@@ -14,28 +14,37 @@ import view.InputView;
 import view.OutputView;
 
 public class Race {
+
     private static final int MOVE_THRESHOLD = 4;
+    private final InputView inputView;
+    private final OutputView outputView;
     private final NumberGenerator numberGenerator;
 
-    public Race(NumberGenerator numberGenerator) {
+    public Race(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
+        this.inputView = inputView;
+        this.outputView = outputView;
         this.numberGenerator = numberGenerator;
     }
 
-    public void start() {
+    public void run() {
         Cars cars = createCars();
         TryCount tryCount = createTryCount();
-        OutputView.printResultHeader();
+        racing(cars, tryCount);
+        List<String> winners = cars.getWinners();
+        outputView.printWinners(winners);
+    }
+
+    private void racing(Cars cars, TryCount tryCount) {
+        outputView.printResultHeader();
         while (tryCount.hasTryCount()) {
             moveCars(cars);
-            OutputView.printCarNameAndPosition(cars);
+            outputView.printCarNameAndPosition(cars);
             tryCount.decreaseTryCount();
         }
-        List<String> winners = cars.getWinners();
-        OutputView.printWinners(winners);
     }
 
     private Cars createCars() {
-        String[] carNames = InputView.inputCarNames();
+        String[] carNames = inputView.inputCarNames();
         return Arrays.stream(carNames)
                 .map(Name::new)
                 .map(Car::new)
@@ -43,7 +52,7 @@ public class Race {
     }
 
     private TryCount createTryCount() {
-        int tryCount = InputView.inputTryCount();
+        int tryCount = inputView.inputTryCount();
         return new TryCount(tryCount);
     }
 
