@@ -2,7 +2,6 @@ package racingcar.domain;
 
 public class Car {
 
-    private static final int ZERO = 0;
     private final static int MAXIMUM_NAME_LENGTH = 5;
     private final static String MESSAGE_LENGTH_OF_CAR_NAME = "자동차 이름은 1자 이상 5자 이하여야 합니다.";
     private String name;
