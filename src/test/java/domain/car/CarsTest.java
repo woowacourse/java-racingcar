@@ -1,6 +1,5 @@
 package domain.car;
 
-import domain.racing.RacingRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +15,9 @@ class CarsTest {
     void generateCars() throws Exception {
         // Given
         List<String> carNames = List.of("car1", "car2", "car3");
-        RacingRule racingRule = new RacingRule();
 
         // When
-        Cars cars = Cars.of(carNames, racingRule);
+        Cars cars = Cars.of(carNames);
 
         // Then
         assertThat(cars).isNotNull();
@@ -30,10 +28,9 @@ class CarsTest {
     void initCarsThrowExceptionWhenListSizeLessThanOne() throws Exception {
         // Given
         List<String> invalidInput = List.of("test");
-        RacingRule racingRule = new RacingRule();
 
         // When & Then
-        assertThatThrownBy(() -> Cars.of(invalidInput, racingRule))
+        assertThatThrownBy(() -> Cars.of(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("자동차 이름의 개수는 2이상이여야 합니다.");
     }
@@ -43,10 +40,9 @@ class CarsTest {
     void initCarsThrowExceptionWhenDuplicatedCarNames() throws Exception {
         // Given
         List<String> invalidInput = List.of("test", "test");
-        RacingRule racingRule = new RacingRule();
 
         // When & Then
-        assertThatThrownBy(() -> Cars.of(invalidInput, racingRule))
+        assertThatThrownBy(() -> Cars.of(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("중복된 자동차 이름을 허용하지 않습니다.");
     }

@@ -10,19 +10,18 @@ import java.util.List;
 public class Cars {
 
     private final List<Car> cars;
-    private final RacingRule racingRule;
+    private final RacingRule racingRule = new RacingRule();
 
-    private Cars(List<Car> cars, RacingRule racingRule) {
+    private Cars(List<Car> cars) {
         this.cars = cars;
-        this.racingRule = racingRule;
     }
 
-    public static Cars of(List<String> carNames, RacingRule racingRule) {
+    public static Cars of(List<String> carNames) {
         validateCarNamesCount(carNames);
         validateDuplicatedCarNames(carNames);
         List<Car> cars = initCars(carNames);
 
-        return new Cars(cars, racingRule);
+        return new Cars(cars);
     }
 
     private static void validateCarNamesCount(List<String> carNames) {

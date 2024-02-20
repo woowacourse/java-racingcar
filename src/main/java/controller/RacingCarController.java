@@ -2,7 +2,6 @@ package controller;
 
 import domain.car.Cars;
 import domain.racing.RacingCount;
-import domain.racing.RacingRule;
 import dto.CarStatus;
 import view.InputView;
 import view.OutputView;
@@ -31,9 +30,8 @@ public class RacingCarController {
     private Cars initCars() {
         try {
             List<String> carNames = inputView.inputCarNames();
-            RacingRule racingRule = new RacingRule();
 
-            return Cars.of(carNames, racingRule);
+            return Cars.of(carNames);
         } catch (RuntimeException e) {
             outputView.printInputCarNamesErrorMessage();
 
