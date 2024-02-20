@@ -1,6 +1,6 @@
 package model;
 
-import exception.CarLocationException;
+import exception.model.CarLocationException;
 
 public class CarLocation {
     private int location;

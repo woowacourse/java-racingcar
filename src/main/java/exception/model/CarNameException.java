@@ -1,4 +1,4 @@
-package exception;
+package exception.model;
 
 public enum CarNameException {
     INVALID_LENGTH("[ERROR] 이름의 길이는 1자 이상, 5자 이하여야 합니다. 다시 입력해 주세요.");

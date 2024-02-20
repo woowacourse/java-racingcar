@@ -1,6 +1,6 @@
 package model;
 
-import exception.CarNameException;
+import exception.model.CarNameException;
 
 public class CarName {
 

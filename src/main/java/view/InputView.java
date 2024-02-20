@@ -1,6 +1,6 @@
 package view;
 
-import exception.InputException;
+import exception.view.InputException;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Supplier;

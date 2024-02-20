@@ -1,4 +1,4 @@
-package exception;
+package exception.model;
 
 public enum CarLocationException {
     NOT_NEGATIVE("[ERROR] 위치에는 음수가 입력될 수 없습니다.");

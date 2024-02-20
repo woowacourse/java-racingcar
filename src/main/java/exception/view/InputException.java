@@ -1,4 +1,4 @@
-package exception;
+package exception.view;
 
 public enum InputException {
     INVALID_FORMAT("[ERROR] 입력 형식이 올바르지 않습니다. 다시 입력해 주세요."),
