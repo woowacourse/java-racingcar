@@ -5,7 +5,7 @@ import java.util.List;
 public class Cars {
 
     private static final String MESSAGE_NOT_EXIST_CAR = "생성된 자동차가 없습니다.";
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
