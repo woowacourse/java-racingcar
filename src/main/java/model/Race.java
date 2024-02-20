@@ -31,10 +31,11 @@ public class Race {
         Collections.sort(cars);
         Car winner = cars.get(0);
 
-        return cars.stream()
-                .filter(car -> winner.showDistance().length() == car.showDistance().length())
+        List<String> carNames = cars.stream()
+                .filter(car -> winner.getDistance() == car.getDistance())
                 .map(Car::getName)
                 .collect(Collectors.toList());
+        return carNames;
     }
 
     public List<String> getCarsName() {
