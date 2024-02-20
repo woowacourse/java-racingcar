@@ -1,25 +1,24 @@
 package domain;
 
+import dto.CarDto;
 import dto.ResultDto;
 import utils.PowerGenerator;
 import utils.RandomPowerGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RacingGame {
-    private final List<Car> carGroup;
+    private final CarGroup carGroup;
     private final PowerGenerator powerGenerator;
 
     public RacingGame(final String[] carNames) {
-        this.carGroup = makeCarGroup(carNames);
+        this.carGroup = new CarGroup(carNames);
         this.powerGenerator = new RandomPowerGenerator();
     }
 
     RacingGame(final String[] carNames, final PowerGenerator powerGenerator) {
-        this.carGroup = makeCarGroup(carNames);
+        this.carGroup = new CarGroup(carNames);
         this.powerGenerator = powerGenerator;
     }
 
@@ -28,45 +27,20 @@ public class RacingGame {
 
         while (!attempts.isEnd()) {
             racingGame.move();
-            result.add(ResultDto.toDto(carGroup));
+            result.add(ResultDto.toDto(carGroup.getCars()));
             attempts.decrease();
         }
 
         return result;
     }
 
-    public void move() {
-        for (Car car : carGroup) {
+    public List<CarDto> getResult() {
+        return carGroup.getWinners();
+    }
+
+    private void move() {
+        for (Car car : carGroup.getCars()) {
             car.move(powerGenerator.getNumber());
         }
-    }
-
-    public List<Car> getAllCars() {
-        return carGroup;
-    }
-
-    public List<Car> getWinners() {
-        final int positionMax = getPositionMax();
-
-        if (positionMax == 0) {
-            return List.of();
-        }
-
-        return carGroup.stream()
-                .filter(car -> car.isPositionedAt(positionMax))
-                .toList();
-    }
-
-    private List<Car> makeCarGroup(final String[] carNames) {
-        return Arrays.stream(carNames)
-                .map(Car::new)
-                .collect(Collectors.toList());
-    }
-
-    private int getPositionMax() {
-        return carGroup.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(0);
     }
 }

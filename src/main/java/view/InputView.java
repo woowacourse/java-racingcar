@@ -7,9 +7,7 @@ import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
 public class InputView {
-    // 정책 변경 가능성 있는 상수 분리
     private static final String CAR_NAME_DELIMITER = ",";
-
     private final BufferedReader reader;
 
     public InputView(final InputStream inputStream) {
@@ -25,12 +23,6 @@ public class InputView {
         return userInput.split(CAR_NAME_DELIMITER);
     }
 
-    private void validateCarNamesFormat(final String names) {
-        if (!Pattern.matches("^[A-z0-9,]+$", names)) {
-            throw new IllegalArgumentException("형식에 맞게 다시 입력하세요.\n");
-        }
-    }
-
     public Integer readNumberOfAttempts() throws IOException {
         System.out.println("시도할 회수는 몇회인가요?");
         final String userInput = removeBlank(reader.readLine());
@@ -38,6 +30,12 @@ public class InputView {
         validateNumberOfAttempts(userInput);
 
         return Integer.parseInt(userInput);
+    }
+
+    private void validateCarNamesFormat(final String names) {
+        if (!Pattern.matches("^[A-z0-9,]+$", names)) {
+            throw new IllegalArgumentException("형식에 맞게 다시 입력하세요.\n");
+        }
     }
 
     private void validateNumberOfAttempts(final String text) {

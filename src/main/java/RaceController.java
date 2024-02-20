@@ -14,9 +14,9 @@ public class RaceController {
         final RacingGame racingGame = repeatUntilGetValidCarNames();
         final Attempts attempts = repeatUntilGetValidAttempts();
 
-        List<ResultDto> raceResult = racingGame.race(racingGame, attempts);
-        OutputView.printRaceProcess(raceResult);
-        OutputView.printResult(racingGame);
+        List<ResultDto> raceProcess = racingGame.race(racingGame, attempts);
+        OutputView.printRaceProcess(raceProcess);
+        OutputView.printResult(racingGame.getResult());
     }
 
     private static RacingGame repeatUntilGetValidCarNames() {

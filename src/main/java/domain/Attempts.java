@@ -17,16 +17,16 @@ public class Attempts {
         this.numberOfAttempts = numberOfAttempts;
     }
 
-    private boolean isNumberOfAttemptsOutOfRange(final int numberOfAttempts) {
-        return numberOfAttempts < MIN_ATTEMPTS || numberOfAttempts > MAX_ATTEMPTS;
-    }
-
     public boolean isEnd() {
         return numberOfAttempts == 0;
     }
 
     public void decrease() {
         numberOfAttempts--;
+    }
+
+    private boolean isNumberOfAttemptsOutOfRange(final int numberOfAttempts) {
+        return numberOfAttempts < MIN_ATTEMPTS || numberOfAttempts > MAX_ATTEMPTS;
     }
 
     @Override

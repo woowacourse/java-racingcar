@@ -17,16 +17,6 @@ public class Car {
         this.position = position;
     }
 
-    private void validate(final String name) {
-        if (isNameLengthOutOfRange(name)) {
-            throw new IllegalArgumentException("1이상 5이하의 이름을 입력하세요.\n");
-        }
-    }
-
-    private boolean isNameLengthOutOfRange(final String name) {
-        return name.length() < 1 || name.length() > 5;
-    }
-
     public void move(final int number) {
         if (number >= 4) {
             position++;
@@ -37,12 +27,22 @@ public class Car {
         return this.position == position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPosition() {
         return position;
     }
 
-    public String getName() {
-        return name;
+    private void validate(final String name) {
+        if (isNameLengthOutOfRange(name)) {
+            throw new IllegalArgumentException("1이상 5이하의 이름을 입력하세요.\n");
+        }
+    }
+
+    private boolean isNameLengthOutOfRange(final String name) {
+        return name.length() < 1 || name.length() > 5;
     }
 
     @Override

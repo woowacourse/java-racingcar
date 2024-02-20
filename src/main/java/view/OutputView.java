@@ -1,7 +1,6 @@
 package view;
 
-import domain.Car;
-import domain.RacingGame;
+import dto.CarDto;
 import dto.ResultDto;
 
 import java.util.List;
@@ -16,26 +15,14 @@ public class OutputView {
         raceProcess.forEach(OutputView::printCarsPositionSingleAttempt);
     }
 
-    private static void printCarsPositionSingleAttempt(final ResultDto singleAttemptResult) {
-        singleAttemptResult.carGroup().forEach(carDto -> {
-                    String carName = carDto.name();
-                    int position = carDto.position();
-                    System.out.println(carName + " : " + CAR_POSITION_MARK.repeat(position));
-                }
-        );
-        System.out.println();
-    }
-
-    public static void printResult(final RacingGame racingGame) {
-        final List<Car> winners = racingGame.getWinners();
-
+    public static void printResult(final List<CarDto> winners) {
         if (winners.size() == 0) {
             System.out.println("우승자가 없습니다.");
             return;
         }
 
         final List<String> winnerNames = winners.stream()
-                .map(Car::getName)
+                .map(CarDto::name)
                 .collect(Collectors.toList());
 
         final String result = String.join(WINNERS_NAME_DELIMITER, winnerNames).concat("가 최종 우승했습니다.");
@@ -44,5 +31,15 @@ public class OutputView {
 
     public static void printExceptionMessage(final Exception ex) {
         System.out.println(ex.getMessage());
+    }
+
+    private static void printCarsPositionSingleAttempt(final ResultDto singleAttemptResult) {
+        singleAttemptResult.carGroup().forEach(carDto -> {
+                    String carName = carDto.name();
+                    int position = carDto.position();
+                    System.out.println(carName + " : " + CAR_POSITION_MARK.repeat(position));
+                }
+        );
+        System.out.println();
     }
 }
