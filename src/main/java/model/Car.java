@@ -18,6 +18,19 @@ public class Car {
         this.statuses = new ArrayList<>();
     }
 
+    public static List<Car> convertToCar(List<String> carsName) {
+        validateNotDuplicate(carsName);
+        return carsName.stream().map(Car::new).toList();
+    }
+
+    private static void validateNotDuplicate(List<String> carsName) {
+        int originCount = carsName.size();
+        int distinctCount = (int) carsName.stream().distinct().count();
+        if (originCount != distinctCount) {
+            throw new IllegalArgumentException(Exception.DUPLICATE.getMessage());
+        }
+    }
+
     private void validateNullAndEmpty(String name) {
         if (Objects.isNull(name) || name.isBlank()) {
             throw new IllegalArgumentException(Exception.CAR_NAME_NULL_BLANK.getMessage());
@@ -38,17 +51,9 @@ public class Car {
         statuses.add(MoveStatus.STOP);
     }
 
-    private static void validateNotDuplicate(List<String> carsName) {
-        int originCount = carsName.size();
-        int distinctCount = (int) carsName.stream().distinct().count();
-        if (originCount != distinctCount) {
-            throw new IllegalArgumentException(Exception.DUPLICATE.getMessage());
-        }
-    }
-
-    public static List<Car> convertToCar(List<String> carsName) {
-        validateNotDuplicate(carsName);
-        return carsName.stream().map(Car::new).toList();
+    public int getForwardCount() {
+        return (int)
+                statuses.stream().filter(carStatus -> carStatus.equals(MoveStatus.FORWARD)).count();
     }
 
     public List<MoveStatus> getStatuses() {
@@ -57,11 +62,6 @@ public class Car {
 
     public String getName() {
         return name;
-    }
-
-    public int getForwardCount() {
-        return (int)
-                statuses.stream().filter(carStatus -> carStatus.equals(MoveStatus.FORWARD)).count();
     }
 
     @Override
