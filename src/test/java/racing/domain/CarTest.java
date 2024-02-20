@@ -34,7 +34,7 @@ class CarTest {
     @DisplayName("자동차를 전진합니다")
     void move() {
         Car car = new Car("pobi");
-        car.move(new RandomMoveStrategy(){
+        car.move(new RandomMoveStrategy() {
             @Override
             public boolean movable() {
                 return true;

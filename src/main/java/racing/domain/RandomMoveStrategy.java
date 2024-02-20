@@ -2,7 +2,7 @@ package racing.domain;
 
 import racing.util.RandomGenerator;
 
-public class RandomMoveStrategy implements MoveStrategy{
+public class RandomMoveStrategy implements MoveStrategy {
 
 
     private static final int MIN_MOVABLE_NUMBER = 4;

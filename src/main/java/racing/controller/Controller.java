@@ -16,7 +16,7 @@ public class Controller {
     }
 
     public void startGame() {
-        Cars cars = new Cars(inputView.readNames(),new RandomMoveStrategy());
+        Cars cars = new Cars(inputView.readNames(), new RandomMoveStrategy());
         TryCount tryCount = new TryCount(inputView.readTryCount());
 
         proceedRace(cars, tryCount);

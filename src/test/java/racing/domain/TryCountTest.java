@@ -37,6 +37,7 @@ class TryCountTest {
 
         assertThat(tryCount.isRemain()).isTrue();
     }
+
     @Test
     @DisplayName("시도횟수가 남아있지않다면 True를 반환합니다.")
     void isRemainWithZero() {
