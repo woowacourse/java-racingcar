@@ -38,13 +38,9 @@ public class Race {
     }
 
     public List<String> getCarsName() {
-        List<String> carNames = new ArrayList<>();
-
-        for (Car car : cars.getCars()) {
-            carNames.add(car.getName());
-        }
-
-        return carNames;
+        return cars.getCars().stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     public List<String> getDistances() {
