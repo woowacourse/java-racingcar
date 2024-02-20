@@ -1,24 +1,19 @@
 package racingcar.domain;
 
-import static racingcar.util.Constant.CAR_MOVE_THRESHOLD;
-import static racingcar.util.Constant.MAX_NAME_LENGTH;
-import static racingcar.exception.ExceptionMessage.*;
-
-import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Car implements Comparable<Car> {
+    private final int MAX_NAME_LENGTH = 5;
+    private final int CAR_MOVE_THRESHOLD = 4;
     private final Pattern NAME_PATTERN = Pattern.compile("[^a-zA-Z0-9_-]");
     private final String name;
     private int position = 0;
 
     public Car(final String name) {
-        validateNotNull(name);
-        String trimmedName = name.trim();
-        validateName(trimmedName);
-        this.name = trimmedName;
+        validateName(name);
+        this.name = name;
     }
 
     private void validateName(final String name) {
@@ -26,28 +21,24 @@ public class Car implements Comparable<Car> {
         validateNameLength(name);
     }
 
-    private void validateNotNull(final String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException(NOT_NULL_CAR_NAME.getMessage());
-        }
-    }
-
     private void validateNameStyle(final String name) {
         Matcher matcher = NAME_PATTERN.matcher(name);
 
         if (matcher.find()) {
-            throw new IllegalArgumentException(INVALID_CAR_NAME.getMessage());
+            throw new IllegalArgumentException("올바르지 않은 자동차 이름입니다.");
         }
     }
 
     private void validateNameLength(final String name) {
-        if (name.length() > MAX_NAME_LENGTH.getValue()) {
-            throw new IllegalArgumentException(INVALID_CAR_NAME_SIZE.getMessage());
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(
+                    String.format("자동차 이름의 길이가 %d를 초과합니다", MAX_NAME_LENGTH
+            ));
         }
     }
 
     public void move(final int threshold) {
-        if (threshold >= CAR_MOVE_THRESHOLD.getValue()) {
+        if (threshold >= CAR_MOVE_THRESHOLD) {
             this.position++;
         }
     }
@@ -58,10 +49,6 @@ public class Car implements Comparable<Car> {
 
     public int getPosition() {
         return position;
-    }
-
-    public Map<String, Integer> result() {
-        return Map.of(name, position);
     }
 
     public int compareTo(Car other) {

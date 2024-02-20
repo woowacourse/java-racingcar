@@ -1,18 +1,16 @@
 package racingcar.domain;
 
-import static racingcar.util.Constant.MAX_CARS_SIZE;
-import static racingcar.util.Constant.MAX_RANDOM_NUMBER;
-import static racingcar.util.Constant.MIN_CARS_SIZE;
-import static racingcar.exception.ExceptionMessage.*;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import racingcar.service.RandomNumberGenerator;
+import racingcar.util.RandomNumberGenerator;
 
 public class Cars {
+    private final int MAX_CARS_SIZE = 10;
+    private final int MIN_CARS_SIZE = 2;
+    private final int MAX_RANDOM_NUMBER = 9;
     private final List<Car> cars;
 
     public Cars(final List<Car> cars) {
@@ -26,27 +24,29 @@ public class Cars {
                 .distinct()
                 .count();
         if (cars.size() != uniqueCarNames) {
-            throw new IllegalArgumentException(NOT_DUPLICATED_CAR_NAME.getMessage());
+            throw new IllegalArgumentException("자동차 이름은 중복될 수 없습니다.");
         }
     }
 
     private void validateSize(final List<Car> cars) {
-        if (cars.size() < MIN_CARS_SIZE.getValue() || cars.size() > MAX_CARS_SIZE.getValue()) {
-            throw new IllegalArgumentException(INVALID_CARS_SIZE.getMessage());
+        if (cars.size() < MIN_CARS_SIZE || cars.size() > MAX_CARS_SIZE) {
+            throw new IllegalArgumentException(
+                    String.format("자동차 대수는 %d대 이상 %d대 이하여야 합니다.", MIN_CARS_SIZE, MAX_CARS_SIZE)
+            );
         }
     }
 
     public void move() {
-        cars.forEach(car -> car.move(RandomNumberGenerator.generate(MAX_RANDOM_NUMBER.getValue())));
+        cars.forEach(car -> car.move(RandomNumberGenerator.generate(MAX_RANDOM_NUMBER)));
     }
 
     public Map<String, Integer> result() {
         return cars.stream()
-                .map(Car::result)
-                .map(result -> result.entrySet().iterator().next())
                 .collect(Collectors.toMap(
-                        Map.Entry::getKey, Map.Entry::getValue,
-                        (a, b) -> a, LinkedHashMap::new));
+                        Car::getName,
+                        Car::getPosition,
+                        (a, b) -> a,
+                        LinkedHashMap::new));
     }
 
     public List<String> getWinners() {
@@ -57,7 +57,7 @@ public class Cars {
     private Car getHighestPositionCar() {
         return cars.stream()
                 .max(Car::compareTo)
-                .orElseThrow(() -> new IllegalArgumentException(NOT_NULL.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException("공백을 입력할 수 없습니다."));
     }
 
     private List<String> getSamePositionCars(final Car highestPositionCar) {

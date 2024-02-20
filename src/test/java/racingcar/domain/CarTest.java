@@ -3,17 +3,13 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static racingcar.exception.ExceptionMessage.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Map;
 
 class CarTest {
     @Test
@@ -26,22 +22,12 @@ class CarTest {
     @Nested
     class ValidateCarName {
         @ParameterizedTest
-        @NullAndEmptySource
-        @ValueSource(strings = {" ", "  ", "\t", "\n"})
-        @DisplayName("[Exception] 자동차 이름이 공백이나 null이면 예외를 던진다")
-        void createCarByNull(final String name) {
-            assertThatIllegalArgumentException()
-                    .isThrownBy(() -> new Car(name))
-                    .withMessage(NOT_NULL_CAR_NAME.getMessage());
-        }
-
-        @ParameterizedTest
         @ValueSource(strings = {"가나다", "!!", ",,"})
         @DisplayName("[Exception] 자동차 이름에 숫자, 영문, '-', '_' 외에 다른 문자가 포함되면 예외를 던진다")
         void createCarByInvalidCharacter(final String name) {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Car(name))
-                    .withMessage(INVALID_CAR_NAME.getMessage());
+                    .withMessage("올바르지 않은 자동차 이름입니다.");
         }
 
         @Test
@@ -49,7 +35,9 @@ class CarTest {
         void createCarByExcessLength() {
             assertThatIllegalArgumentException()
                     .isThrownBy(() -> new Car("ABCDEF"))
-                    .withMessage(INVALID_CAR_NAME_SIZE.getMessage());
+                    .withMessage(
+                            String.format("자동차 이름의 길이가 %d를 초과합니다", 5
+            ));
         }
     }
 
@@ -80,15 +68,6 @@ class CarTest {
 
             assertThat(car.getPosition())
                     .isEqualTo(0);
-        }
-
-        @Test
-        @DisplayName("[Success] 자동차 결과를 '이름 : -'와 같은 형태로 반환한다.")
-        void getResult() {
-            car.move(4);
-
-            assertThat(car.result())
-                    .isEqualTo(Map.of("a", 1));
         }
     }
 }
