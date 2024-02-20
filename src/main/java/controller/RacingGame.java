@@ -1,8 +1,6 @@
 package controller;
 
-import java.util.Arrays;
 import java.util.List;
-import model.Car;
 import model.Cars;
 import utils.NumberGenerator;
 import view.InputView;
@@ -26,18 +24,9 @@ public class RacingGame {
         String names = inputView.retryInputOnException(inputView::receiveNames);
         int trialCount = inputView.retryInputOnException(inputView::receiveTrialCount);
 
-        Cars cars = loadCars(names);
+        Cars cars = Cars.from(names.split(SEPARATOR));
         race(trialCount, cars);
         outputView.printWinners(cars.getMaxLocationCarNames());
-    }
-
-
-    private Cars loadCars(String carNames) {
-        List<Car> carList = Arrays.stream(carNames.split(SEPARATOR))
-                .map(Car::from)
-                .toList();
-
-        return new Cars(carList);
     }
 
     private void race(int trialCount, Cars cars) {
