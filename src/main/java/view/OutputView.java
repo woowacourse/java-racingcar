@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.util.List;
 
 public class OutputView implements AutoCloseable {
+    private static final String FORWARD_MESSAGE = "-";
     private static final String DELIMITER = " : ";
     private final BufferedWriter writer;
 
@@ -45,14 +46,13 @@ public class OutputView implements AutoCloseable {
     }
 
     private String concatenateMoveStatuses(List<MoveStatus> moveStatuses) {
-        long forwardStatusCount = moveStatuses.stream().filter(status -> status.equals(MoveStatus.FORWARD)).count();
-        String forwardString = "-";
-        return forwardString.repeat((int) forwardStatusCount);
+        int forwardStatusCount = (int) moveStatuses.stream().filter(status -> status.equals(MoveStatus.FORWARD)).count();
+        return FORWARD_MESSAGE.repeat(forwardStatusCount);
     }
 
     public void printWinner(List<Car> cars) {
         String winnersName = String.join(", ", cars.stream().map(Car::getName).toList());
-        String winnersPrintMessage = String.format((PrintMessage.WINNER.getMessage()), winnersName);
+        String winnersPrintMessage = String.format(PrintMessage.WINNER.getMessage(), winnersName);
         try {
             writer.write(winnersPrintMessage);
             writer.newLine();
