@@ -55,11 +55,7 @@ public class Cars {
     }
 
     public Winners judge() {
-        int max = findMaxPosition();
-        List<String> winnerNames = cars.stream()
-                .filter(car -> car.isWinner(max))
-                .map(Car::getName)
-                .toList();
+        List<String> winnerNames = getWinnerNames(findMaxPosition());
         return new Winners(winnerNames);
     }
 
@@ -68,5 +64,12 @@ public class Cars {
                 .mapToInt(car -> car.getPosition())
                 .max()
                 .orElseThrow(() -> new IllegalStateException());
+    }
+
+    private List<String> getWinnerNames(int max) {
+        return cars.stream()
+                .filter(car -> car.isWinner(max))
+                .map(Car::getName)
+                .toList();
     }
 }
