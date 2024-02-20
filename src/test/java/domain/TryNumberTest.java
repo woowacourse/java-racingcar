@@ -24,7 +24,7 @@ class TryNumberTest {
         Assertions.assertThat(tryNumber.isTryable()).isTrue();
     }
 
-    @DisplayName("시도횟수가 음수일 시 게임 진행 여부를 정확히 판별하는 지 테스트")
+    @DisplayName("시도횟수가 남아있지 않을 시(0이하일시) 게임 진행 여부를 정확히 판별하는 지 테스트")
     @Test
     public void testNotTryGame() {
         TryNumber tryNumber = new TryNumber(1);
