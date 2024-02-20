@@ -17,6 +17,12 @@ public class Cars {
                 .toList());
     }
 
+    public static void moveRandomly(Car car, MoveCondition moveCondition) {
+        if (moveCondition.isMovable()) {
+            car.move();
+        }
+    }
+
     public int calculateLongestDistance() {
         return cars.stream()
                 .mapToInt(Car::getDistance)
@@ -34,9 +40,10 @@ public class Cars {
 
     public void moveCars() {
         for (Car car : cars) {
-            car.moveRandomly(RandomMoveCondition.getInstance());
+            moveRandomly(car, RandomMoveCondition.getInstance());
         }
     }
+
 
     public List<Car> getCars() {
         return List.copyOf(cars);

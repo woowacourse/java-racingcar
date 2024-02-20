@@ -16,15 +16,8 @@ public class Car {
         this.distance = 0;
     }
 
-
     public void move() {
         distance++;
-    }
-
-    public void moveRandomly(MoveCondition moveCondition) {
-        if (moveCondition.isMovable()) {
-            this.move();
-        }
     }
 
     public String getName() {

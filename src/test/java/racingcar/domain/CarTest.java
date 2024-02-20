@@ -36,7 +36,7 @@ class CarTest {
     @DisplayName("랜덤_숫자가_4_이상이면_움직임")
     void randomMoveCar() {
         Car car = new Car("capy");
-        car.moveRandomly(new TestRandomMoveCondition(4));
+        Cars.moveRandomly(car, new TestRandomMoveCondition(4));
         assertThat(car.getDistance()).isEqualTo(1);
     }
 
@@ -44,7 +44,7 @@ class CarTest {
     @DisplayName("랜덤_숫자가_4_미만이면_정지")
     void randomStopCar() {
         Car car = new Car("capy");
-        car.moveRandomly(new TestRandomMoveCondition(3));
+        Cars.moveRandomly(car, new TestRandomMoveCondition(3));
         assertThat(car.getDistance()).isEqualTo(0);
     }
 
