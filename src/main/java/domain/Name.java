@@ -7,12 +7,12 @@ public class Name {
     private static final Pattern NAME_CONDITION = Pattern.compile("^[가-힣a-zA-Z]*$");
     private final String name;
 
-    public Name(String name) {
+    public Name(final String name) {
         validate(name);
         this.name = name;
     }
 
-    private static void validate(String name) {
+    private void validate(final String name) {
         validateNull(name);
         validateCarNameLength(name);
         validateBlank(name);
@@ -21,37 +21,37 @@ public class Name {
         validateEnglishOrKorean(name);
     }
 
-    private static void validateCarNameLength(String name) {
+    private void validateCarNameLength(final String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format("자동차 이름은 %d글자를 넘을 수 없습니다.", MAX_NAME_LENGTH));
         }
     }
 
-    private static void validateBlank(String name) {
+    private void validateBlank(final String name) {
         if (name.isBlank()) {
             throw new IllegalArgumentException("자동차 이름은 공백이나 스페이스일 수 없습니다.");
         }
     }
 
-    private static void validateNull(String name) {
+    private void validateNull(final String name) {
         if (name == null) {
             throw new IllegalArgumentException("자동차 이름은 null일 수 없습니다.");
         }
     }
 
-    private static void validateStartsWithBlank(String name) {
+    private void validateStartsWithBlank(final String name) {
         if (name.startsWith(" ")) {
             throw new IllegalArgumentException("자동차 이름은 공백으로 시작할 수 없습니다.");
         }
     }
 
-    private static void validateEndsWithBlank(String name) {
+    private void validateEndsWithBlank(final String name) {
         if (name.endsWith(" ")) {
             throw new IllegalArgumentException("자동차 이름은 공백으로 끝날 수 없습니다.");
         }
     }
 
-    private static void validateEnglishOrKorean(String name) {
+    private void validateEnglishOrKorean(final String name) {
         if (!NAME_CONDITION.matcher(name).matches()) {
             throw new IllegalArgumentException("자동차 이름은 영어 또는 한글만 가능합니다.");
         }

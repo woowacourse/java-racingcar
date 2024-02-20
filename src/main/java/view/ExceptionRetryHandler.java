@@ -9,7 +9,7 @@ public class ExceptionRetryHandler {
     private ExceptionRetryHandler() {
     }
 
-    public static <R> R retryUntilValid(Supplier<R> supplier, int retryCount) {
+    public static <R> R retryUntilValid(final Supplier<R> supplier, final int retryCount) {
         if (retryCount == RETRY_LIMIT_COUNT) {
             String errorMessage = String.format("재입력 제한 횟수 %d를 초과하여 프로그램을 종료합니다.", RETRY_LIMIT_COUNT);
             throw new IllegalStateException(errorMessage);

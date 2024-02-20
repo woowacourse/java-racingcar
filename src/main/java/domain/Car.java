@@ -5,16 +5,16 @@ public class Car {
     private final Name name;
     private int position;
 
-    public Car(Name name, int position) {
+    public Car(final Name name, final int position) {
         this.name = name;
         this.position = position;
     }
 
-    public static Car from(String name) {
+    public static Car from(final String name) {
         return new Car(new Name(name), 0);
     }
 
-    public void move(int power) {
+    public void move(final int power) {
         if (power >= MOVE_BOUND_NUMBER) {
             position++;
         }

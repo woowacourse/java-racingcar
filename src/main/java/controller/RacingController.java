@@ -5,7 +5,7 @@ import domain.Cars;
 import domain.NumberGenerator;
 import domain.RandomNumberGenerator;
 import domain.Rap;
-import domain.Winners;
+import domain.Winner;
 import util.StringConvertor;
 import view.ExceptionRetryHandler;
 import view.InputView;
@@ -25,7 +25,7 @@ public class RacingController {
         Cars cars = createCars(receiveCarNames());
         Rap rap = createRap(receiveTryCount());
         racing(cars, rap);
-        outputView.printWinners(Winners.from(cars));
+        outputView.printWinner(Winner.from(cars));
     }
 
     private String receiveCarNames() {
@@ -33,7 +33,7 @@ public class RacingController {
         return ExceptionRetryHandler.retryUntilValid(inputView::readCarNames, INITIAL_RETRY_COUNT);
     }
 
-    private Cars createCars(String carNames) {
+    private Cars createCars(final String carNames) {
         String[] cars = StringConvertor.splitByDelimiter(carNames, StringConvertor.getDelimiter());
         CarFactory carFactory = CarFactory.from(cars);
         return new Cars(carFactory.getProducedCars());
@@ -44,11 +44,11 @@ public class RacingController {
         return ExceptionRetryHandler.retryUntilValid(inputView::readTryCount, INITIAL_RETRY_COUNT);
     }
 
-    private Rap createRap(int tryCount) {
+    private Rap createRap(final int tryCount) {
         return new Rap(tryCount);
     }
 
-    private void racing(Cars cars, Rap rap) {
+    private void racing(final Cars cars, final Rap rap) {
         outputView.printRacingResult();
         NumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         while (rap.isLeft()) {
