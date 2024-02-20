@@ -1,9 +1,8 @@
-package racingcar.io;
-
-import racingcar.io.validator.InputValidator;
+package racingcar.view;
 
 import java.util.List;
 import java.util.Scanner;
+import racingcar.view.validator.InputValidator;
 
 public class InputView {
 

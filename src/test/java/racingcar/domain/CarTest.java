@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,17 +11,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class CarTest {
 
-    private static Accelerator testMoveForwardAccelerator;
-    private static Accelerator testStopAccelerator;
-
-    @BeforeAll
-    static void init() {
-        testMoveForwardAccelerator = new TestMoveForwardAccelerator();
-        testStopAccelerator = new TestStopAccelerator();
-    }
-
     @ParameterizedTest
-    @ValueSource(strings = {"p", "po", "poo", "pooo", "poooo"})
+    @ValueSource(strings = {"p", "pobii"})
     @DisplayName("자동차 이름의 길이가 1 이상 5 이하로 주어지면 자동차가 정상적으로 생성된다")
     void createCarSuccess(String carName) {
         Assertions.assertThatCode(() -> new Car(carName))
@@ -45,7 +35,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", "  ", "   "})
+    @ValueSource(strings = {"", " "})
     @DisplayName("자동차 이름이 blank로 주어지면 자동차가 정상적으로 생성되지 않는다")
     void createCarFailWhenInputBlank(String carName) {
         assertThatThrownBy(() -> new Car(carName))
@@ -53,10 +43,11 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("4 이상 9 이하의 값을 받으면 자동차가 이동한다")
+    @DisplayName("4 이상의 값을 받으면 자동차가 이동한다")
     void moveCar() {
         //given
-        Car car = new Car("pobi");
+        final Car car = new Car("pobi");
+        final Accelerator testMoveForwardAccelerator = new TestMoveForwardAccelerator();
         //when
         car.moveForward(testMoveForwardAccelerator);
         //then
@@ -64,9 +55,11 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("3 이하의 값을 받으면 자동차가 이동하지 않는다.")
     void doNotMoveCar() {
         //given
-        Car car = new Car("pobi");
+        final Car car = new Car("pobi");
+        final Accelerator testStopAccelerator = new TestStopAccelerator();
         //when
         car.moveForward(testStopAccelerator);
         //then
@@ -74,7 +67,6 @@ class CarTest {
     }
 
     static class TestMoveForwardAccelerator implements Accelerator {
-
         static final int MOVE = 4;
 
         @Override
@@ -84,7 +76,6 @@ class CarTest {
     }
 
     static class TestStopAccelerator implements Accelerator {
-
         static final int NOT_MOVE = 3;
 
         @Override

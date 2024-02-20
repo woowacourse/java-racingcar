@@ -1,26 +1,33 @@
 package racingcar.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Cars {
     private final List<Car> cars;
-    private final Accelerator accelerator;
 
-    public Cars(List<Car> cars, Accelerator accelerator) {
+    public Cars(final List<Car> cars) {
         validate(cars);
+
         this.cars = cars;
-        this.accelerator = accelerator;
     }
 
-    private void validate(List<Car> cars) {
+    private void validate(final List<Car> cars) {
         validateCarSize(cars);
         validateCarNameDuplication(cars);
     }
 
-    private void validateCarNameDuplication(List<Car> cars) {
-        int actualCarAmount = cars.size();
-        long distinctCarAmount = cars.stream()
+    private void validateCarSize(final List<Car> cars) {
+        if (cars.size() <= 1) {
+            throw new IllegalArgumentException("자동차 경주를 위해선 2대 이상의 자동차가 필요합니다.");
+        }
+    }
+
+    private void validateCarNameDuplication(final List<Car> cars) {
+        final int actualCarAmount = cars.size();
+        final long distinctCarAmount = cars.stream()
                 .map(Car::getName)
                 .distinct()
                 .count();
@@ -29,13 +36,7 @@ public class Cars {
         }
     }
 
-    private void validateCarSize(List<Car> cars) {
-        if (cars.size() <= 1) {
-            throw new IllegalArgumentException("자동차 경주를 위해선 2대 이상의 자동차가 필요합니다.");
-        }
-    }
-
-    public void tryMove() {
+    public void tryMove(final Accelerator accelerator) {
         for (Car car : cars) {
             car.moveForward(accelerator);
         }
@@ -45,12 +46,13 @@ public class Cars {
         return cars;
     }
 
-    public int getWinnerPosition() {
-        int maxPosition = Integer.MIN_VALUE;
+    public Map<String, Integer> getCarsPosition() {
+        final Map<String, Integer> carsPosition = new HashMap<>();
+
         for (Car car : cars) {
-            maxPosition = Math.max(car.getPosition(), maxPosition);
+            carsPosition.put(car.getName(), car.getPosition());
         }
 
-        return maxPosition;
+        return carsPosition;
     }
 }

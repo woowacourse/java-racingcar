@@ -1,8 +1,8 @@
-package racingcar.io.validator;
+package racingcar.view.validator;
 
 public class InputValidator {
 
-    public static void validateIntFormat(String text) {
+    public static void validateIntFormat(final String text) {
         try {
             Integer.parseInt(text);
         } catch (NumberFormatException exception) {
