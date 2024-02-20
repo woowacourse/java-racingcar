@@ -1,10 +1,11 @@
 package racingcar.controller;
 
-import racingcar.model.RandomNumberGenerator;
+import java.sql.Ref;
+import racingcar.domain.RandomNumberGenerator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
-import racingcar.model.Car;
-import racingcar.model.Referee;
+import racingcar.domain.Car;
+import racingcar.domain.Referee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,8 @@ public class Controller {
     public void run() {
         Referee referee = new Referee();
 
-        List<String> carNames = inputView.getCarNames();
+        List<Car> cars = generateCarList(inputView.getCarNames());
         int tryNumber = inputView.getTryNumber();
-
-        List<Car> cars = generateCarList(carNames);
 
         outputView.printResultHeaderPrompt();
 
@@ -28,15 +27,6 @@ public class Controller {
         }
 
         outputView.printWinners(referee.generateWinners(cars));
-    }
-
-    private void moveCars(List<Car> cars) {
-        for(Car car : cars) {
-            car.move();
-            outputView.printResult(car.getName(), car.getPosition());
-        }
-
-        OutputView.parseLine();
     }
 
     private List<Car> generateCarList(List<String> carNames) {
@@ -48,5 +38,18 @@ public class Controller {
         }
 
         return cars;
+    }
+
+    private void printResult(int tryNumber, List<Car> cars) {
+
+    }
+
+    private void moveCars(List<Car> cars) {
+        for(Car car : cars) {
+            car.move();
+            outputView.printResult(car.getName(), car.getPosition());
+        }
+
+        OutputView.parseLine();
     }
 }

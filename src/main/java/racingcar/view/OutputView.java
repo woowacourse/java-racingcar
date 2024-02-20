@@ -1,7 +1,7 @@
 package racingcar.view;
 
 import java.util.List;
-import static racingcar.view.UserMessage.*;
+import static racingcar.message.UserMessage.*;
 
 public class OutputView {
 

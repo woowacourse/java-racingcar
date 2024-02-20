@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.message;
 
 public class ErrorMessage {
     public static final String ERROR_WITH_INPUT_BLANK = "[ERROR] 이름에 공백을 입력할 수 없습니다.";

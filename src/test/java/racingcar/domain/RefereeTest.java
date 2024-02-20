@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +18,7 @@ class RefereeTest {
 
     static class FixNumberGenerator implements NumberGenerator {
         @Override
-        public int generateNumber(int bound) {
+        public int generateNumber() {
             return 4;
         }
     }

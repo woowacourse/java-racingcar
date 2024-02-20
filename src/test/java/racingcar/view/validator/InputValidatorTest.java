@@ -9,17 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputValidatorTest {
 
-    @Test
-    @DisplayName("이름 사이에 공백이 존재하는 자동차 이름 테스트")
-    void validateNameWithSpace() {
-        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableNames(Arrays.asList("ca r","car1")));
-    }
-
-    @Test
-    @DisplayName("5자를 초과하는 자동차 이름 테스트")
-    void validateLongName() {
-        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateAvailableNames(Arrays.asList("longname", "car1")));
-    }
 
     @Test
     @DisplayName("작명 규칙을 위반하지 않은 자동차 이름 테스트")

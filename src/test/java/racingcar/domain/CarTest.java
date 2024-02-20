@@ -1,19 +1,33 @@
-package racingcar.model;
+package racingcar.domain;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.view.validator.InputValidator;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CarTest {
+
+    @Test
+    @DisplayName("이름 사이에 공백이 존재하는 자동차 이름 테스트")
+    void validateNameWithSpace() {
+        assertThrows(IllegalArgumentException.class, () -> new Car("sp ce,", new RandomNumberGenerator()));
+    }
+
+    @Test
+    @DisplayName("5자를 초과하는 자동차 이름 테스트")
+    void validateLongName() {
+        assertThrows(IllegalArgumentException.class, () -> new Car("longname,", new RandomNumberGenerator()));
+    }
 
     @Test
     @DisplayName("숫자 4보다 작은 숫자가 나왔을 때 안 움직이는지 확인")
     void testDontMoveAboutSmallNumber() {
         Car car = new Car("test", new NumberGenerator() {
             @Override
-            public int generateNumber(int bound) {
+            public int generateNumber() {
                 return 3;
             }
         });
@@ -28,7 +42,7 @@ class CarTest {
     void testMoveAboutBigNumber() {
         Car car = new Car("test", new NumberGenerator() {
             @Override
-            public int generateNumber(int bound) {
+            public int generateNumber() {
                 return 4;
             }
         });
@@ -43,7 +57,7 @@ class CarTest {
     void testOtherPositionIsSmaller() {
         Car car = new Car("test", new NumberGenerator() {
             @Override
-            public int generateNumber(int bound) {
+            public int generateNumber() {
                 return 4;
             }
         });
@@ -59,7 +73,7 @@ class CarTest {
     void testOtherPositionIsBigger() {
         Car car = new Car("test", new NumberGenerator() {
             @Override
-            public int generateNumber(int bound) {
+            public int generateNumber() {
                 return 4;
             }
         });
@@ -75,7 +89,7 @@ class CarTest {
     void testMatchesPosition() {
         Car car = new Car("test", new NumberGenerator() {
             @Override
-            public int generateNumber(int bound) {
+            public int generateNumber() {
                 return 4;
             }
         });
@@ -91,7 +105,7 @@ class CarTest {
     void testDoesNotMatchPosition() {
         Car car = new Car("test", new NumberGenerator() {
             @Override
-            public int generateNumber(int bound) {
+            public int generateNumber() {
                 return 4;
             }
         });
