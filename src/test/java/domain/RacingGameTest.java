@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,13 +25,6 @@ class RacingGameTest {
     @DisplayName("자동차 이름 입력 성공")
     void carNames_ok(String rawCarNames) {
         assertThatCode(() -> new RacingGame(rawCarNames, moveStrategy)).doesNotThrowAnyException();
-    }
-
-    @Test
-    @DisplayName("자동차 이름 입력 성공: 경계값 100대")
-    void carNames_ok_boundaryTest_hundredCases() {
-        String testCase = makeTestNames(100);
-        new RacingGame(testCase, moveStrategy);
     }
 
     @Test
@@ -65,6 +59,31 @@ class RacingGameTest {
     void carNames_exception_delimiterViolation(String rawCarNames) {
         assertThatThrownBy(() -> new RacingGame(rawCarNames, moveStrategy))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차 이동 성공")
+    void playOneRound() {
+        RacingGame racingGame = new RacingGame("a,b,c,d", new AlwaysMoveStrategy());
+        List<Car> cars = racingGame.playOneRound();
+        for (Car car : cars) {
+            assertThat(car.getScore()).isEqualTo(1);
+        }
+    }
+
+    public static class AlwaysMoveStrategy implements MoveStrategy {
+
+        @Override
+        public boolean isMovable() {
+            return true;
+        }
+    }
+
+    @Test
+    @DisplayName("자동차 이름 입력 성공: 경계값 100대")
+    void carNames_ok_boundaryTest_hundredCases() {
+        String testCase = makeTestNames(100);
+        new RacingGame(testCase, moveStrategy);
     }
 
     @Test
