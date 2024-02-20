@@ -18,11 +18,11 @@ public record RaceResultsResponse(List<Map<String, Integer>> raceResults) {
         return new RaceResultsResponse(raceResultsResponse);
     }
 
-    private static Map<String, Integer> createRaceResultResponse(Map<Car, Integer> raceResult) {
+    private static Map<String, Integer> createRaceResultResponse(final Map<Car, Integer> raceResult) {
         final Map<String, Integer> raceResultMap = new LinkedHashMap<>();
         for (final Map.Entry<Car, Integer> entry : raceResult.entrySet()) {
             raceResultMap.put(entry.getKey().getName(), entry.getValue());
         }
-        return raceResultMap;
+        return new LinkedHashMap<>(raceResultMap);
     }
 }

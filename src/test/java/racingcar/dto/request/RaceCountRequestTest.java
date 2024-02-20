@@ -10,7 +10,7 @@ import racingcar.exception.InvalidInputException;
 class RaceCountRequestTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "50", "100"})
-    void toInt를_이용해서_int로_변환_성공(String input) {
+    void 숫자로_변환에_성공한다(String input) {
         //when
         final RaceCountRequest raceCountRequest = new RaceCountRequest(input);
         final int count = raceCountRequest.toInt();
@@ -24,9 +24,9 @@ class RaceCountRequestTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"  ", "0", "-1", "101", "1000", "!@#"})
-    void toInt를_이용해서_int로_변환_실패(String input) {
+    void 숫자로_변환에_실패한다(String input) {
         //when & then
-        RaceCountRequest raceCountRequest = new RaceCountRequest(input);
+        final RaceCountRequest raceCountRequest = new RaceCountRequest(input);
         assertThatThrownBy(raceCountRequest::toInt)
                 .isInstanceOf(InvalidInputException.class);
     }

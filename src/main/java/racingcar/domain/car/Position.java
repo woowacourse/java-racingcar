@@ -13,7 +13,7 @@ public class Position implements Comparable<Position> {
         this.value = value;
     }
 
-    private void validateRange(int value) {
+    private void validateRange(final int value) {
         if (value < MIN_POSITION) {
             throw new InvalidInputException(ErrorMessage.INVALID_POSITION);
         }

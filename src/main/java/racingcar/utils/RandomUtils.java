@@ -7,11 +7,11 @@ public class RandomUtils {
     private RandomUtils() {
     }
 
-    private static final Random random = ThreadLocalRandom.current();
+    private static final Random DEFAULT_RANDOM = ThreadLocalRandom.current();
 
     public static int pickNumberInRange(final int startInclusive, final int endInclusive) {
         validateRange(startInclusive, endInclusive);
-        return startInclusive + random.nextInt(endInclusive - startInclusive + 1);
+        return startInclusive + DEFAULT_RANDOM.nextInt(endInclusive - startInclusive + 1);
     }
 
     private static void validateRange(final int startInclusive, final int endInclusive) {

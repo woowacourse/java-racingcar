@@ -15,7 +15,7 @@ public class InputUtils {
     public static int parseToInt(final String input) {
         try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             throw new InvalidInputException(ErrorMessage.INPUT_NOT_A_NUMBER);
         }
     }
@@ -24,14 +24,15 @@ public class InputUtils {
         if (input == null) {
             return List.of();
         }
-        return Arrays.stream(input.split(DELIMITER, -1)).map(String::trim).toList();
+        String[] parts = input.split(DELIMITER, -1);
+        return Arrays.stream(parts).map(String::trim).toList();
     }
 
     public static <T> T retryOnException(final Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();
-            } catch (IllegalArgumentException e) {
+            } catch (final IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
