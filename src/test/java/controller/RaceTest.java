@@ -41,7 +41,7 @@ class RaceTest {
         race = new Race(new InputView(), new OutputView(), new TestNumberGenerator(1));
 
         // when
-        race.start();
+        race.run();
 
         // then
         assertThat(outputStreamCaptor.toString()).contains("경주할 자동차 이름을 입력하세요(이름은 쉼표(,) 기준으로 구분).",

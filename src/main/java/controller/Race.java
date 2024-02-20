@@ -26,17 +26,21 @@ public class Race {
         this.numberGenerator = numberGenerator;
     }
 
-    public void start() {
+    public void run() {
         Cars cars = createCars();
         TryCount tryCount = createTryCount();
+        racing(cars, tryCount);
+        List<String> winners = cars.getWinners();
+        outputView.printWinners(winners);
+    }
+
+    private void racing(Cars cars, TryCount tryCount) {
         outputView.printResultHeader();
         while (tryCount.hasTryCount()) {
             moveCars(cars);
             outputView.printCarNameAndPosition(cars);
             tryCount.decreaseTryCount();
         }
-        List<String> winners = cars.getWinners();
-        outputView.printWinners(winners);
     }
 
     private Cars createCars() {

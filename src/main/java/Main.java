@@ -9,6 +9,6 @@ public class Main {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         Race race = new Race(inputView, outputView, new RandomNumberGenerator());
-        race.start();
+        race.run();
     }
 }
