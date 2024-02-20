@@ -1,13 +1,13 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("자동차")
 class CarTest {
@@ -29,25 +29,44 @@ class CarTest {
 
     @DisplayName("적절하지 않은 이름은 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"chocochip", "aaaaaaaaa"})
+    @ValueSource(strings = {"chocochip", "aaaaaa"})
     public void testInvalidName(String name) {
         //given & when & then
         assertThrows(IllegalArgumentException.class, () -> new Car(name));
     }
 
     @Test
-    @DisplayName("")
-    public void printStatusTest() {
+    @DisplayName("멈춘 상태를 출력한다.")
+    void printNotForwardStatusTest() {
         //given
         String name = "choco";
         int defaultForward = 0;
-        int movedForward = 1;
 
         //when
         Car car = new Car(name);
+
+        //then
+        assertThat(car.getForward()).isEqualTo(defaultForward);
+    }
+
+    @Test
+    @DisplayName("전진한 상태를 출력한다.")
+    public void printStatusTest() {
+        //given
+        String name = "choco";
+        int movedForward = 1;
+
+        //when
+        Car car = new Car(name) {
+            @Override
+            protected boolean isBiggerThanBoundary() {
+                return true;
+            }
+        };
         car.move();
 
         //then
-        assertThat(car.getForward()).isBetween(defaultForward, movedForward);
+        assertThat(car.getForward())
+                .isEqualTo(movedForward);
     }
 }

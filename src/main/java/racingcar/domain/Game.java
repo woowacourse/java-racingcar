@@ -1,17 +1,24 @@
 package racingcar.domain;
 
-import java.util.stream.IntStream;
 import racingcar.ui.OutputView;
+
+import java.util.function.BiConsumer;
+import java.util.stream.IntStream;
 
 public class Game {
     private static final int NATURAL_NUMBER_BOUNDARY = 0;
     private final int tryCount;
-    private final Vehicles vehicles;
+    private final Cars cars;
 
-    public static Game from(String userTryCount, Vehicles vehicles) throws NumberFormatException {
-        int tryCount = parseUserInput(userTryCount);
+    private Game(int tryCount, Cars cars) {
+        this.tryCount = tryCount;
+        this.cars = cars;
+    }
+
+    public static Game from(String rawTryCount, Cars cars) throws NumberFormatException {
+        int tryCount = parseUserInput(rawTryCount);
         validNaturalNumber(tryCount);
-        return new Game(tryCount, vehicles);
+        return new Game(tryCount, cars);
     }
 
     private static void validNaturalNumber(int tryCount) {
@@ -28,19 +35,14 @@ public class Game {
         return Integer.parseInt(userTryCount);
     }
 
-    private Game(int tryCount, Vehicles vehicles) {
-        this.tryCount = tryCount;
-        this.vehicles = vehicles;
-    }
-
-    public void proceed() {
+    public void proceed(BiConsumer<String, Integer> doEachCarAfterMove) {
         IntStream.range(0, tryCount).forEach((i) -> {
-            vehicles.move();
+            cars.move(doEachCarAfterMove);
             OutputView.printNewLine();
         });
     }
 
     public Winner getWinner() {
-        return Winner.from(vehicles.getBiggestCars());
+        return Winner.from(cars.getBiggestCars());
     }
 }

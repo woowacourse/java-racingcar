@@ -18,7 +18,7 @@ class GameTest {
         String userTryCount = "5";
 
         //when&then
-        assertDoesNotThrow(() -> Game.from(userTryCount, Vehicles.from(userCarNames)));
+        assertDoesNotThrow(() -> Game.from(userTryCount, Cars.from(userCarNames)));
     }
 
     @ParameterizedTest
@@ -29,6 +29,6 @@ class GameTest {
         String userCarNames = "choco,seyan";
 
         //when & then
-        assertThrows(NumberFormatException.class, () -> Game.from(userTryCount, Vehicles.from(userCarNames)));
+        assertThrows(NumberFormatException.class, () -> Game.from(userTryCount, Cars.from(userCarNames)));
     }
 }

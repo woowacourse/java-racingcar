@@ -4,6 +4,10 @@ import racingcar.ui.OutputView;
 import racingcar.util.RandomNumber;
 import racingcar.util.RandomUtil;
 
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
 public class Car {
     private static final int CAR_NAME_MAX_LENGTH = 5;
     private static final int MOVE_BOUNDARY = 4;
@@ -25,12 +29,12 @@ public class Car {
         return name.length() > CAR_NAME_MAX_LENGTH;
     }
 
-    private static boolean isBiggerThanBoundary() {
+    protected boolean isBiggerThanBoundary() {
         return randomUtil.generate(BOUNDARY_RANDOM_MIN, BOUNDARY_RANDOM_MAX) >= MOVE_BOUNDARY;
     }
 
     private void validate(String name) {
-        if (isLongerThanMaxLength(name)) {
+        if (name == null || isLongerThanMaxLength(name)) {
             throw new IllegalArgumentException();
         }
     }
@@ -39,11 +43,6 @@ public class Car {
         if (isBiggerThanBoundary()) {
             forward++;
         }
-        printStatus();
-    }
-
-    private void printStatus() {
-        OutputView.printCarResult(name, forward);
     }
 
     public String getName() {

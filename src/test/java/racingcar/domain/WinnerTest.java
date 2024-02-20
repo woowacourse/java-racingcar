@@ -16,9 +16,9 @@ class WinnerTest {
         String winner2 = "seyan";
 
         //when
-        Vehicles vehicles = Vehicles.from(userInput);
-        vehicles.getBiggestCars();
-        Winner winner = Winner.from(vehicles.getBiggestCars());
+        Cars cars = Cars.from(userInput);
+        cars.getBiggestCars();
+        Winner winner = Winner.from(cars.getBiggestCars());
 
         //then
         assertEquals(winner.getWinners().get(0), winner1);
