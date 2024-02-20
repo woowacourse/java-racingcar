@@ -6,7 +6,6 @@ import racingcar.view.OutputView;
 
 import java.util.List;
 
-import static racingcar.domain.Cars.makeNewCars;
 
 public class GameManager {
 
@@ -15,7 +14,7 @@ public class GameManager {
 
     public void run() {
         List<String> carNames = inputView.getCarName();
-        Cars cars = makeNewCars(carNames);
+        Cars cars = Cars.makeNewCars(carNames);
         int tryCount = inputView.getTryCount();
         outputView.printTryResultMenu();
         for (int i = 0; i < tryCount; i++) {
