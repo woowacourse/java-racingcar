@@ -7,10 +7,8 @@ import exception.ErrorMessage;
 import exception.RacingCarGameException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import utils.RandomNumberGenerator;
 
 public class Cars {
     private List<Car> cars;
@@ -23,12 +21,6 @@ public class Cars {
         validateUniqueName(carNames);
         List<Car> cars = convertToCarList(carNames);
         return new Cars(cars);
-    }
-
-    private static List<Car> convertToCarList(List<String> carNames) {
-        return carNames.stream()
-                .map(name -> new Car(new CarName(name)))
-                .toList();
     }
 
     private static void validateUniqueName(List<String> names) {
@@ -47,25 +39,24 @@ public class Cars {
                 .count();
     }
 
-    public CarsStatus move() {
+    private static List<Car> convertToCarList(List<String> carNames) {
+        return carNames.stream()
+                .map(name -> new Car(new CarName(name)))
+                .toList();
+    }
+
+    public CarsStatus move(NumberGenerator generator) {
         List<CarStatus> carStatuses = new ArrayList<>();
         for (Car car : cars) {
-            int number = RandomNumberGenerator.generate();
+            int number = generator.generate();
             carStatuses.add(car.move(number));
         }
         return new CarsStatus(carStatuses);
     }
 
     public Winners judge() {
-        List<String> winners = new ArrayList<>();
-        int max = findMaxPosition();
-        for(Car car : cars)  {
-            Optional<String> maxCarName =  car.getNameIfMax(max);
-            if(maxCarName.isPresent()) {
-                winners.add(maxCarName.get());
-            }
-        }
-        return new Winners(winners);
+        List<String> winnerNames = getWinnerNames(findMaxPosition());
+        return new Winners(winnerNames);
     }
 
     private int findMaxPosition() {
@@ -75,7 +66,10 @@ public class Cars {
                 .orElseThrow(() -> new IllegalStateException());
     }
 
-    public List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+    private List<String> getWinnerNames(int max) {
+        return cars.stream()
+                .filter(car -> car.isWinner(max))
+                .map(Car::getName)
+                .toList();
     }
 }
