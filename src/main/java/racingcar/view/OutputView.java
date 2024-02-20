@@ -2,8 +2,8 @@ package racingcar.view;
 
 import java.util.StringJoiner;
 
-import racingcar.model.Car;
-import racingcar.model.Cars;
+import racingcar.domain.model.Car;
+import racingcar.domain.model.Cars;
 
 public class OutputView {
 

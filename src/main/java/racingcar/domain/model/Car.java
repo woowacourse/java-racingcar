@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain.model;
 
 import java.util.Objects;
 
@@ -31,6 +31,11 @@ public class Car implements Comparable<Car> {
 
     public Integer getProgress() {
         return progress;
+    }
+
+
+    public boolean isEqualToProgress(int compareProgress) {
+        return this.progress == compareProgress;
     }
 
     @Override

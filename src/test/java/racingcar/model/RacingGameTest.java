@@ -5,6 +5,10 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.model.Car;
+import racingcar.domain.rules.CarMoveRule;
+import racingcar.domain.model.Cars;
+import racingcar.domain.service.RacingGame;
 
 public class RacingGameTest {
 
@@ -37,7 +41,7 @@ public class RacingGameTest {
         Assertions.assertThat(cars.stream().map(Car::getProgress).toList()).isEqualTo(expected);
     }
 
-    @DisplayName("자동차는 룰의 조건에 따라 전진하지 않기도 한다.")
+    @DisplayName("자동차는 룰에 따라 전진하지 않기도 한다.")
     @Test
     void stopTest() {
         //given
@@ -82,4 +86,21 @@ public class RacingGameTest {
         Assertions.assertThatThrownBy(() -> new RacingGame(cars, moveCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("Cars 중 가장 긴 거리를 이동한 차들을 반환한다.")
+    void filterWinningCars() {
+        //given
+        List<Car> originCar = List.of(new Car("car1"), new Car("car2"), new Car("car3"));
+        //when
+        originCar.get(0).move();
+        originCar.get(1).move();
+
+        Cars cars = new Cars(originCar);
+        RacingGame racingGame = new RacingGame(cars, 1);
+
+        //then
+        Assertions.assertThat(racingGame.findWinners().stream().map(Car::getName).toList())
+                .isEqualTo(List.of("car1", "car2"));
+     }
 }

@@ -1,6 +1,9 @@
-package racingcar.model;
+package racingcar.domain.service;
 
 import java.util.List;
+import racingcar.domain.model.Car;
+import racingcar.domain.model.Cars;
+import racingcar.domain.rules.CarMoveRule;
 
 public class RacingGame {
 
@@ -21,8 +24,16 @@ public class RacingGame {
         }
     }
 
-    public boolean isGameOver() {
-        return moveCount-- <= 0;
+    public boolean isRoundInProgress() {
+        decreaseMoveCount();
+        return !isGameOver();
+    }
+    private boolean isGameOver() {
+        return moveCount <= 0;
+    }
+
+    private void decreaseMoveCount() {
+        this.moveCount--;
     }
 
     public void move(CarMoveRule carMoveRule) {
@@ -30,20 +41,14 @@ public class RacingGame {
     }
 
     public Cars findWinners() {
-        int maxProgress = getMaxProgress();
+        int maxProgress = cars.getMaxProgress();
         return new Cars(filterWinningCars(maxProgress));
     }
 
-    private int getMaxProgress() {
-        return cars.stream()
-                .map(Car::getProgress)
-                .reduce(Integer::max)
-                .orElse(0);
-    }
 
     private List<Car> filterWinningCars(int maxProgress) {
         return cars.stream()
-                .filter(car -> car.getProgress() == maxProgress)
+                .filter(car -> car.isEqualToProgress(maxProgress))
                 .toList();
     }
 }
