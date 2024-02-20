@@ -21,10 +21,6 @@ public class RacingCarController {
         OutputView.printWinners(winners);
     }
 
-    private void printResult(RaceResult raceResult) {
-        OutputView.printResult(raceResult.name(), raceResult.moveNumber());
-    }
-
     private RacingCars readRacingCars() {
         RacingCarNames racingCarNames = readRacingCarNames();
         return racingCarNames.createRacingCars();
@@ -36,7 +32,11 @@ public class RacingCarController {
     }
 
     private TryNumber readTryNumber() {
-        String input = InputView.inputMoveCount();
-        return new TryNumber(Integer.parseInt(input));
+        int input = InputView.inputMoveCount();
+        return new TryNumber(input);
+    }
+
+    private void printResult(RaceResult raceResult) {
+        OutputView.printResult(raceResult.name(), raceResult.moveNumber());
     }
 }
