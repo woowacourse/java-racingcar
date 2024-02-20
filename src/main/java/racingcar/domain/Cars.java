@@ -11,6 +11,11 @@ public class Cars {
         this.cars = cars;
     }
 
+    public static Cars makeNewCars(List<String> carNames) {
+        return new Cars(carNames.stream()
+                .map(Car::new)
+                .toList());
+    }
 
     public int calculateLongestDistance() {
         return cars.stream()
@@ -26,11 +31,6 @@ public class Cars {
                 .toList();
     }
 
-    public static Cars makeNewCars(List<String> carNames) {
-        return new Cars(carNames.stream()
-                .map(Car::new)
-                .toList());
-    }
 
     public void moveCars() {
         for (Car car : cars) {
