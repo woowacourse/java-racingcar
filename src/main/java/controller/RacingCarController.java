@@ -2,7 +2,6 @@ package controller;
 
 import domain.car.Cars;
 import domain.racing.RacingCount;
-import domain.racing.RacingRule;
 import dto.CarStatus;
 import view.InputView;
 import view.OutputView;
@@ -61,12 +60,6 @@ public class RacingCarController {
             outputView.printRacingResult(raceResult);
         }
 
-        return getWinners(cars);
-    }
-
-    private List<String> getWinners(final Cars cars) {
-        RacingRule racingRule = new RacingRule();
-
-        return cars.findWinnerNames(racingRule);
+        return cars.findWinnerNames();
     }
 }

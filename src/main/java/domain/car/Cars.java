@@ -10,8 +10,9 @@ import java.util.List;
 public class Cars {
 
     private final List<Car> cars;
+    private final RacingRule racingRule = new RacingRule();
 
-    private Cars(List<Car> cars) {
+    protected Cars(List<Car> cars) {
         this.cars = cars;
     }
 
@@ -50,8 +51,8 @@ public class Cars {
                 .toList();
     }
 
-    public List<String> findWinnerNames(RacingRule rule) {
-        return rule.findWinnerCars(cars)
+    public List<String> findWinnerNames() {
+        return racingRule.findWinnerCars(cars)
                 .stream()
                 .map(Car::getName)
                 .toList();
