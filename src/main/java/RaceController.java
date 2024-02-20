@@ -1,9 +1,11 @@
 import domain.Attempts;
 import domain.RacingGame;
+import dto.ResultDto;
 import view.InputView;
 import view.OutputView;
 
 import java.io.IOException;
+import java.util.List;
 
 public class RaceController {
     private static final InputView inputView = new InputView(System.in);
@@ -12,9 +14,8 @@ public class RaceController {
         final RacingGame racingGame = repeatUntilGetValidCarNames();
         final Attempts attempts = repeatUntilGetValidAttempts();
 
-        OutputView.printRaceResultHeader();
-        String raceResult = racingGame.race(racingGame, attempts);
-        OutputView.printCarsPosition(raceResult);
+        List<ResultDto> raceResult = racingGame.race(racingGame, attempts);
+        OutputView.printRaceProcess(raceResult);
         OutputView.printResult(racingGame);
     }
 

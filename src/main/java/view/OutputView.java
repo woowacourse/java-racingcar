@@ -2,6 +2,7 @@ package view;
 
 import domain.Car;
 import domain.RacingGame;
+import dto.ResultDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,12 +11,19 @@ public class OutputView {
     private static final String CAR_POSITION_MARK = "-";
     private static final String WINNERS_NAME_DELIMITER = ", ";
 
-    public static void printRaceResultHeader() {
+    public static void printRaceProcess(final List<ResultDto> raceProcess) {
         System.out.println("\n실행 결과");
+        raceProcess.forEach(OutputView::printCarsPositionSingleAttempt);
     }
 
-    public static void printCarsPosition(final String result) {
-        System.out.println(result);
+    private static void printCarsPositionSingleAttempt(final ResultDto singleAttemptResult) {
+        singleAttemptResult.carGroup().forEach(carDto -> {
+                    String carName = carDto.name();
+                    int position = carDto.position();
+                    System.out.println(carName + " : " + CAR_POSITION_MARK.repeat(position));
+                }
+        );
+        System.out.println();
     }
 
     public static void printResult(final RacingGame racingGame) {

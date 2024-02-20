@@ -1,8 +1,10 @@
 package domain;
 
+import dto.ResultDto;
 import utils.PowerGenerator;
 import utils.RandomPowerGenerator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,9 +12,6 @@ import java.util.stream.Collectors;
 public class RacingGame {
     private final List<Car> carGroup;
     private final PowerGenerator powerGenerator;
-
-    private String result = "";
-
 
     public RacingGame(final String[] carNames) {
         this.carGroup = makeCarGroup(carNames);
@@ -24,24 +23,22 @@ public class RacingGame {
         this.powerGenerator = powerGenerator;
     }
 
-    public String race(final RacingGame racingGame, final Attempts attempts) {
+    public List<ResultDto> race(final RacingGame racingGame, final Attempts attempts) {
+        List<ResultDto> result = new ArrayList<>();
+
         while (!attempts.isEnd()) {
             racingGame.move();
+            result.add(ResultDto.toDto(carGroup));
             attempts.decrease();
         }
+
         return result;
     }
 
     public void move() {
-        carGroup.forEach(car -> {
+        for (Car car : carGroup) {
             car.move(powerGenerator.getNumber());
-            addResult(car);
-        });
-        result += "\n";
-    }
-
-    private void addResult(Car car) {
-        result += car.getName() + " : " + "-".repeat(car.getPosition()) + "\n";
+        }
     }
 
     public List<Car> getAllCars() {
