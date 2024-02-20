@@ -1,7 +1,8 @@
 package controller;
 
+import model.Car;
+import model.Cars;
 import model.RacingGame;
-import model.Round;
 import view.InputView;
 import view.OutputView;
 import java.io.IOException;
@@ -18,17 +19,17 @@ public class RacingCarController {
     }
 
     public void run() throws IOException {
-        List<String> names = inputView.readCarNames();
-        RacingGame racingGame = RacingGame.from(names);
+        final List<String> names = inputView.readCarNames();
+        final Cars cars = Cars.from(names.stream()
+                                    .map(Car::from)
+                                    .toList());
 
-        Round round = Round.from(inputView.readRound());
+        final String round = inputView.readRound();
+        final RacingGame racingGame = RacingGame.from(cars, round);
 
-        outputView.writeResultMessage();
-        for (int i = 0; i < round.getRound(); i++) {
-            racingGame.moveCars();
-            outputView.writeRoundResult(racingGame.showAllCarTrace());
-        }
+        racingGame.race();
 
+        outputView.writeRacingResult(racingGame.getAllRacingRecord());
         outputView.writeWinners(racingGame.findWinnerNames());
     }
 }

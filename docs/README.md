@@ -1,5 +1,5 @@
 ## 구현 기능 목록
-- 자동차 이름 입력(부여) 기능  
+- 자동차 이름 입력(부여) 기능
   [예외] 공백 포함 5자 이하가 아닌 경우  
   [예외] 중복된 이름이 있는 경우  
   [예외] 이름이 공백(Blank)이거나 빈 값(null)인 경우  
@@ -49,3 +49,43 @@
     - 아니면 에러메세지 `[ERROR] 에러내용`을 그대로 작성하는게 좋을까?
     - 일단 OutputView에 public으로 `ERROR_PREFIX = "[ERROR] "`상수화 한 뒤 다른 클래스에서 가져다 쓰는 방식으로 수정.
 - [x] Car 클래스 moveForward 메소드의 randomNumber 파라미터이름 수정(처음 보는 사람은 왜 randomNumber가 들어오는지 이해못한다.)
+
+
+## step2 피드백
+- [x] Cars 객체를 RacingGame 으로 이름을 바꾸어주셨는데, CarsTest 이름도 거기에 맞게 함께 바꾸어주면 좋을 것 같아요
+- [x] Car 객체의 showTrace 메서드를 보면 파라미터를 더 이상 사용하지 않아요
+  더불어 RacingGame 과 Car 에 중복되는 상수가 있는데, 명확하게 한 쪽에서만 쓰도록 하면 좋겠네요!
+  - Car의 showTrace 메소드 삭제 후 RacingGame에서만 출력 형식 맞춰서 반환할 수 있게 수정
+- [x] 자바 11 버전부터 String 에 repeat() 메서드가 추가되었어요.
+  for 문을 사용하여 StringBuilder 에 append 할 수도 있지만, 이 repeat() 메서드로 조금 더 간결하게 반복 로직을 구현할 수도 있습니다! step 2 에서 한 번 반영해보세요 :)
+- [x] Car 쪽 필드 보면 상수와 변수 사이 공백이 원래 있었는데, 다시 없애셨네요.
+  다른 클래스에서는 공백을 추가하셨는데, 여기는 제거한 이유가 있을까요?
+- [x] 상수, 클래스 변수, 인스턴스 변수, 생성자, 메서드 순으로 작성한다.
+- [x] 생성자 파라미터, 객체 변수에 final 붙이기
+  - [x] 테스트 코드에서도 변수 선언할때 final 사용
+- [x] checkIsNumber() -> 명확하게 수정
+- [x] Application에서 Controller 객체 만들지 말고 new로 생성만 하기
+- [x] 개행 문자 System.lineSeparator()로 통일
+- [x] 랜덤 생성 메서드 코드 의미 명확하게 수정
+- [x] Round 객체 삭제 후 시도 횟수 변수를 RacingGame 필드로 이동
+- [x] OutputView [ERROR] 상수화 취소 
+- [x] 모든 출력 조건은 view로 이동
+- [x] stream으로 수정
+
+
+## step2 피드백(2)
+- [x] BufferedReader 필드에서 삭제 후 메소드 안에서 선언
+- [x] 에러 메세지 속의 매직넘버 상수화
+- [x] CscSource의 테스트 예시도 순서대로 작성
+- [x] shift + F6 를 누른 뒤 엔터 누르면 한꺼번에 변경 가능!
+- [x] .collect(Collectors.toList()) -> toList로 변경(불변객체 반환)
+- [x] 객체 리스트 반환하는 getter 메소드는 반환 리스트를 불변으로 수정
+  - https://tecoble.techcourse.co.kr/post/2020-05-08-First-Class-Collection/
+- [x] getter는 클래스 맨 아래로 
+- [x] CarInfoDto -> CarDto로 의미 명확하게 수정
+- [x] CarsTest에 우승자 테스트
+- [x] 테스트코드 예외 thrownBy만 하지말고 .isInstanceOf로 에러까지 명시하기
+- [x] OutputView의 stream 부분에서 forEach 찾아보기
+  - ❓로직 가독성 개선 -> 다시 for문으로 바꿨는데 잘 모르겠다... 
+- ❓Cars calculateMaxPosition 람다 사용해서 수정
+
