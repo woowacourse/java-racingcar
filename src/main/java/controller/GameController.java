@@ -1,25 +1,26 @@
 package controller;
 
-import domain.car.Car;
 import domain.car.Cars;
-import constant.CarConstant;
 import domain.name.Names;
 import domain.race.RaceCount;
 import domain.race.RaceProgress;
+import util.NumberGenerator;
+import util.RandomNumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.stream.IntStream;
 
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
 
+
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+
     }
 
     public void startGame() {
@@ -27,7 +28,7 @@ public class GameController {
 
         RaceCount raceCount = inputView.inputRaceCount();
 
-        performRace(cars.getValue(), raceCount.getValue());
+        performRace(cars, raceCount.getValue());
 
         announceWinners(cars);
     }
@@ -37,28 +38,22 @@ public class GameController {
         return Cars.from(names);
     }
 
-    private void performRace(final List<Car> cars, Integer raceCount) {
-        List<RaceProgress> raceProgresses = new ArrayList<>();
-        for (int i = 0; i < raceCount; i++) {
-            performEachRace(cars);
-            raceProgresses.add(RaceProgress.from(cars));
-        }
-
+    //TODO : NumberGenerator 를 주입할 지 , 내부 생성할지 좀 더 고려해봐야함
+    private void performRace(final Cars cars, Integer raceCount) {
+        NumberGenerator powerGenerator = new RandomNumberGenerator();
+        List<RaceProgress> raceProgresses = IntStream.range(0, raceCount)
+                                                     .mapToObj(value -> performEachRace(cars, powerGenerator))
+                                                     .toList();
         outputView.printAllRaceProgress(raceProgresses);
     }
 
-    private void performEachRace(final List<Car> cars) {
-        cars.forEach(car -> {
-            Integer power = createPower();
-            car.race(power);
-        });
+    private RaceProgress performEachRace(final Cars cars, NumberGenerator powerGenerator) {
+        cars.performRace(powerGenerator);
+        return cars.convertRaceProgress();
     }
 
     private void announceWinners(Cars cars) {
         outputView.printRaceResult(cars);
     }
 
-    private Integer createPower() {
-        return new Random().nextInt(CarConstant.MAXIMUM_POWER);
-    }
 }

@@ -1,9 +1,12 @@
 package domain.car;
 
 import domain.name.Names;
+import domain.race.RaceProgress;
+import util.NumberGenerator;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Cars {
     private final List<Car> value;
@@ -27,6 +30,15 @@ public class Cars {
         return selectCarsWithPosition(maxPosition);
     }
 
+    public void performRace(NumberGenerator powerGenerator) {
+        value.forEach(car -> car.race(powerGenerator.generate()));
+    }
+
+    public RaceProgress convertRaceProgress() {
+        return RaceProgress.from(value);
+    }
+
+
     private Integer getMaxPosition() {
         return value.
                 stream()
@@ -36,11 +48,12 @@ public class Cars {
     }
 
     private List<Car> selectCarsWithPosition(Integer position) {
-        return
-                value.stream()
-                     .filter(car -> car.isAtPosition(position))
-                     .toList();
+        return value
+                .stream()
+                .filter(car -> car.isAtPosition(position))
+                .toList();
     }
+
 
     public List<Car> getValue() {
         return Collections.unmodifiableList(value);
