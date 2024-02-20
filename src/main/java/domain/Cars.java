@@ -21,14 +21,9 @@ public class Cars {
     }
 
     private void validateDuplicateName(List<Car> cars) {
-        int duplication = 0;
-        Set<String> validateCar = new HashSet<>();
-        for (Car car : cars) {
-            validateCar.add(car.getCarName());
-            duplication = validateCar.size();
-        }
+        Set<Car> validateCar = new HashSet<>(cars);
 
-        if (cars.size() != duplication) {
+        if (cars.size() != validateCar.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NAME.getMessage());
         }
     }
