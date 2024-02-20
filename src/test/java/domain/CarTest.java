@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
@@ -16,15 +17,15 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", "ABCde"})
-    @DisplayName("이름 정상 입력: 자동차의 이름 정상 입력")
+    @DisplayName("이름 입력 성공")
     void carName_ok(String carName) {
-        new Car(carName);
+        assertThatCode(() -> new Car(carName)).doesNotThrowAnyException();
     }
 
     @ParameterizedTest
     @EmptySource
     @ValueSource(strings = {" "})
-    @DisplayName("이름 예외 입력: 자동차의 이름은 공백일 수 없다.")
+    @DisplayName("이름 입력 실패: 공백 입력")
     void carName_exception_noBlank_noEmpty(String name) {
         assertThatThrownBy(() -> new Car(name))
             .isInstanceOf(IllegalArgumentException.class)
@@ -32,7 +33,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("이름 예외 입력: 자동차의 이름은 null일 수 없다.")
+    @DisplayName("이름 입력 실패: null 입력")
     void carName_exception_notNull() {
         assertThatThrownBy(() -> new Car(null))
             .isInstanceOf(IllegalArgumentException.class)
@@ -41,7 +42,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"abcdef", ""})
-    @DisplayName("이름 예외 입력: 자동차의 이름은 1~5자만 허용된다.")
+    @DisplayName("이름 입력 실패: 경계값 미만 0글자, 경계값 초과 6글자")
     void carName_exception_cantViolateLengthRegulations(String name) {
         assertThatThrownBy(() -> new Car(name))
             .isInstanceOf(IllegalArgumentException.class)
@@ -50,7 +51,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a123", "A!"})
-    @DisplayName("이름 예외 입력: 자동차의 이름은 알파벳만 가능하다.")
+    @DisplayName("이름 입력 실패: 알파벳 이외 문자 입력")
     void carName_exception_cantIncludeNonAlphabets(String name) {
         assertThatThrownBy(() -> new Car(name))
             .isInstanceOf(IllegalArgumentException.class)
@@ -58,7 +59,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("자동차는 정상적으로 움직인다.")
+    @DisplayName("성공: 자동차는 정상적으로 움직인다.")
     void move() {
         // given
         Car carA = new Car("CarA");
@@ -71,7 +72,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("자동차끼리 score를 기준으로 최댓값을 구할 수 있다.")
+    @DisplayName("성공: score를 기준으로 최댓값 구하기")
     void compare() {
         // given
         Car carA = new Car("CarA");
@@ -90,7 +91,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("두 Car 객체가 score를 기준으로 같으면 equal하다고 판정한다.")
+    @DisplayName("성공: 두 Car 객체가 score를 기준으로 같으면 equal하다.")
     void equals() {
         // given
         Car carA = new Car("CarA");

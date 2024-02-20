@@ -1,5 +1,6 @@
 package domain;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
@@ -20,20 +21,20 @@ class RacingGameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", "a,bb,cCc,dDdD,eeeee", "  a  , bb  , cCc ,    dDdD ,eeeee  "})
-    @DisplayName("자동차 이름 정상 입력")
+    @DisplayName("자동차 이름 입력 성공")
     void carNames_ok(String rawCarNames) {
-        new RacingGame(rawCarNames, moveStrategy);
+        assertThatCode(() -> new RacingGame(rawCarNames, moveStrategy)).doesNotThrowAnyException();
     }
 
     @Test
-    @DisplayName("자동차 이름 정상 입력: 경계값 입력 - 자동차 100대")
+    @DisplayName("자동차 이름 입력 성공: 경계값 100대")
     void carNames_ok_boundaryTest_hundredCases() {
         String testCase = makeTestNames(100);
         new RacingGame(testCase, moveStrategy);
     }
 
     @Test
-    @DisplayName("자동차 이름 예외 입력: 자동차 이름에 중복이 있어서는 안 된다.")
+    @DisplayName("자동차 이름 입력 실패: 중복")
     void carNames_exception_noDuplication() {
         assertThatThrownBy(() -> new RacingGame("aa,aa,bb", moveStrategy))
             .isInstanceOf(IllegalArgumentException.class)
@@ -44,7 +45,7 @@ class RacingGameTest {
     @NullSource
     @EmptySource
     @ValueSource(strings = " ")
-    @DisplayName("자동차 이름 예외 입력: 입력이 비어 있거나 null이면 안 된다.")
+    @DisplayName("자동차 이름 입력 실패: 비어 있거나 null인 입력")
     void carNames_exception_noEmptyInput(String rawCarNames) {
         assertThatThrownBy(() -> new RacingGame(rawCarNames, moveStrategy))
             .isInstanceOf(IllegalArgumentException.class)
@@ -52,7 +53,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("자동차 이름 예외 입력: 쉼표만 입력하면 안 된다.")
+    @DisplayName("자동차 이름 입력 실패: 쉼표만 입력")
     void carNames_exception_onlyComma() {
         assertThatThrownBy(() -> new RacingGame(",,", moveStrategy))
             .isInstanceOf(IllegalArgumentException.class);
@@ -60,14 +61,14 @@ class RacingGameTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a,b.c", "a,b,c,,d", ",,a,b", "a,b,,"})
-    @DisplayName("자동차 이름 예외 입력: 이름은 하나의 쉼표로 구분되어야 한다.")
+    @DisplayName("자동차 이름 입력 실패: delimiter 위반")
     void carNames_exception_delimiterViolation(String rawCarNames) {
         assertThatThrownBy(() -> new RacingGame(rawCarNames, moveStrategy))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("자동차 이름 예외 입력(5): 1~100개의 이름만 입력 가능하다.")
+    @DisplayName("자동차 이름 입력 실패: 경계값 초과 101개")
     void carNames_exception_rangeViolation() {
         String testCase = makeTestNames(101);
         assertThatThrownBy(() -> new RacingGame(testCase, moveStrategy))
