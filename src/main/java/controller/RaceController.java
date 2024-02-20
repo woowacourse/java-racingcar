@@ -19,7 +19,7 @@ public class RaceController {
 
     public void startRace() {
         Race race = makeRace();
-        Round round = makeTryCount();
+        Round round = makeRound();
 
         outputView.showRaceResult();
         startRound(round, race);
@@ -39,7 +39,7 @@ public class RaceController {
         }
     }
 
-    private Round makeTryCount() {
+    private Round makeRound() {
         try {
             String inputRound = inputView.inputRound();
 
@@ -47,7 +47,7 @@ public class RaceController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
-            return makeTryCount();
+            return makeRound();
         }
     }
 
