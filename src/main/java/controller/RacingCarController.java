@@ -1,37 +1,46 @@
 package controller;
 
+import domain.Car;
 import domain.Cars;
 import domain.ErrorMessage;
 import domain.RacingCarGame;
+import java.util.ArrayList;
+import java.util.List;
 import view.InputView;
 import view.OutputView;
 
 public class RacingCarController {
     public static final int MINIMUM_ATTEMPT_LIMIT = 1;
-    private final RacingCarGame service;
     private final OutputView outputView;
     private final InputView inputView;
 
-    public RacingCarController(RacingCarGame service, OutputView outputView, InputView inputView) {
-        this.service = service;
+    public RacingCarController(OutputView outputView, InputView inputView) {
         this.outputView = outputView;
         this.inputView = inputView;
     }
 
     public void run() {
-        inputCarName();
-        service.playGame(inputAttemptLimit());
-        outputView.printWinners(service.getWinnerName());
+        RacingCarGame racingCarGame = new RacingCarGame(inputCarName());
+        racingCarGame.playGame(inputAttemptLimit());
+        outputView.printWinners(racingCarGame.getWinnerName());
     }
 
     private Cars inputCarName() {
         try {
-            String inputCarName = inputView.requestCarName();
-            return service.setCars(service.separateCarName(inputCarName));
+            List<String> inputCarNames = inputView.requestCarName();
+            return setCars(inputCarNames);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputCarName();
         }
+    }
+
+    public Cars setCars(List<String> carNames) {
+        List<Car> carList = new ArrayList<>();
+        for (String carName : carNames) {
+            carList.add(new Car(carName));
+        }
+        return new Cars(carList);
     }
 
     private int inputAttemptLimit() {

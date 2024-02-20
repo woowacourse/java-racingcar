@@ -1,32 +1,16 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.stream.Collectors;
 import view.OutputView;
 
 public class RacingCarGame {
     public static final int MOVE_NUMBER = 4;
-    private Cars cars;
+    private final Cars cars;
 
-    public RacingCarGame() {
-    }
-
-    public List<String> separateCarName(String carNames) {
-        return List.of(carNames.split(","));
-    }
-
-    public Cars setCars(List<String> carNames) {
-        List<Car> carList = new ArrayList<>();
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
-        this.cars = new Cars(carList);
-        return cars;
+    public RacingCarGame(Cars cars) {
+        this.cars = cars;
     }
 
     public void playGame(int attemptLimit) {
@@ -57,13 +41,20 @@ public class RacingCarGame {
     }
 
     public List<String> getWinnerName() {
-        return cars.getCars().stream()
-                .collect(Collectors.groupingBy(Car::getLocation))
-                .entrySet().stream()
-                .max(Comparator.comparingInt(Map.Entry::getKey))
-                .map(entry -> entry.getValue().stream()
-                        .map(Car::getCarName)
-                        .collect(Collectors.toList()))
-                .orElse(Collections.emptyList());
+        int max = 0;
+        List<String> winners = new ArrayList<>();
+
+        for (Car car : cars.getCars()) {
+            int location = car.getLocation();
+            if (location == max) {
+                winners.add(car.getCarName());
+            }
+            if (location > max) {
+                winners.clear();
+                max = location;
+                winners.add(car.getCarName());
+            }
+        }
+        return winners;
     }
 }
