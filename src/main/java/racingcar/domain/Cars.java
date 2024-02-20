@@ -11,9 +11,6 @@ public class Cars {
         this.cars = cars;
     }
 
-    public List<Car> getCars() {
-        return List.copyOf(cars);
-    }
 
     public int calculateLongestDistance() {
         return cars.stream()
@@ -39,5 +36,9 @@ public class Cars {
         for (Car car : cars) {
             car.moveRandomly(RandomMoveCondition.getInstance());
         }
+    }
+
+    public List<Car> getCars() {
+        return List.copyOf(cars);
     }
 }

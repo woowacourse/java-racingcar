@@ -16,13 +16,6 @@ public class Car {
         this.distance = 0;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getDistance() {
-        return distance;
-    }
 
     public void move() {
         distance++;
@@ -32,5 +25,13 @@ public class Car {
         if (moveCondition.isMovable()) {
             this.move();
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 }
