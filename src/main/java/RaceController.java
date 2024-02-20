@@ -7,8 +7,6 @@ import view.OutputView;
 
 import java.io.IOException;
 
-import static java.util.stream.IntStream.range;
-
 public class RaceController {
     private static final InputView inputView = new InputView(System.in);
 
@@ -23,12 +21,12 @@ public class RaceController {
 
     private static void race(final CarGroup carGroup, final Attempts attempts) {
         final RacingGame racingGame = new RacingGame(carGroup, new RandomPowerGenerator());
-        final int numberOfAttempts = attempts.numberOfAttempts();
 
-        range(0, numberOfAttempts).forEach(ignore -> {
+        while (attempts.isEnd()) {
             racingGame.moveCars();
             OutputView.printCarsPosition(carGroup);
-        });
+            attempts.decrease();
+        }
     }
 
     private static CarGroup repeatUntilGetValidCarNames() {
