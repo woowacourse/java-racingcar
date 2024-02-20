@@ -5,6 +5,9 @@ import domain.Cars;
 import java.util.List;
 
 public class OutputView {
+    private static final String RESULT_DELIMITER = " : ";
+    private static final String GO_COUNT = "-";
+
     public OutputView() {
     }
 
@@ -15,7 +18,7 @@ public class OutputView {
 
     public static void printResult(Cars cars) {
         for (Car car : cars.getCars()) {
-            System.out.println(String.join(" : ", car.getCarName(), "-".repeat(car.getLocation())));
+            System.out.println(String.join(RESULT_DELIMITER, car.getCarName(), GO_COUNT.repeat(car.getLocation())));
         }
         System.out.println();
     }
