@@ -11,10 +11,6 @@ public class Round {
         this.round = validate(rawRound);
     }
 
-    public int getRound() {
-        return round;
-    }
-
     private int validate(String rawRound) {
         int number = validateNonNumber(rawRound);
         validateRange(number);
@@ -34,5 +30,9 @@ public class Round {
             throw new IllegalArgumentException(
                 "시도 횟수는 " + MIN_ROUND + " ~ " + MAX_ROUND + "만 입력 가능합니다.");
         }
+    }
+
+    public int getRound() {
+        return round;
     }
 }

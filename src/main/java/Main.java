@@ -11,13 +11,13 @@ public class Main {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        RacingGame racingGame = errorHandler.executeErrorOccurable(inputView::readCarNames);
-        Round round = errorHandler.executeErrorOccurable(inputView::readRound);
+        RacingGame racingGame = errorHandler.readUntilNoExceptionOccurs(inputView::readCarNames);
+        Round round = errorHandler.readUntilNoExceptionOccurs(inputView::readRound);
 
-        System.out.println("실행 결과");
         for (int i = 0; i < round.getRound(); i++) {
-            outputView.printScore(racingGame.playOneRound());
+            racingGame.playOneRound();
         }
-        outputView.printCars(racingGame.findWinners());
+
+        outputView.printResult(racingGame);
     }
 }

@@ -15,20 +15,20 @@ public class RacingGame {
 
     private final List<Car> cars;
     private final MoveStrategy moveStrategy;
+    private final List<RoundRecord> gameRecord = new ArrayList<>();
 
     public RacingGame(String rawCarNames, MoveStrategy moveStrategy) {
-        cars = new ArrayList<>();
+        this.cars = validate(rawCarNames);
         this.moveStrategy = moveStrategy;
-        makeCarsFrom(rawCarNames);
     }
 
-    public List<Car> playOneRound() {
+    public void playOneRound() {
         for (Car car : cars) {
             if (moveStrategy.isMovable()) {
                 car.move();
             }
         }
-        return cars;
+        gameRecord.add(new RoundRecord(cars));
     }
 
     public List<Car> findWinners() {
@@ -37,17 +37,21 @@ public class RacingGame {
             .toList();
     }
 
-    private void makeCarsFrom(String rawCarNames) {
+    private List<Car> validate(String rawCarNames) {
+        validateEmptyOrBlank(rawCarNames);
         List<String> carNames = Arrays.stream(rawCarNames.trim().split("\\s*,\\s*", -1)).toList();
-        validate(carNames);
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+        validateCarAmount(carNames);
+        validateNameDuplication(carNames);
+
+        return carNames.stream()
+            .map(Car::new)
+            .toList();
     }
 
-    private void validate(List<String> names) {
-        validateCarAmount(names);
-        validateNameDuplication(names);
+    private void validateEmptyOrBlank(String rawCarNames) {
+        if (rawCarNames == null || rawCarNames.isBlank()) {
+            throw new IllegalArgumentException("null 값이나 빈 문자열을 입력할 수 없습니다.");
+        }
     }
 
     private void validateCarAmount(List<String> names) {
@@ -62,5 +66,9 @@ public class RacingGame {
         if (nonDuplicatedNames.size() != names.size()) {
             throw new IllegalArgumentException("중복되거나 비어 있는 자동차 이름이 있습니다.");
         }
+    }
+
+    public List<RoundRecord> getGameRecord() {
+        return gameRecord;
     }
 }

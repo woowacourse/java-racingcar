@@ -2,42 +2,32 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RoundTest {
 
-    @Test
-    @DisplayName("시도 횟수 정상 입력")
-    void round_ok() {
-        Assertions.assertAll(
-            () -> new Round("1"),
-            () -> new Round("100")
-        );
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "100"})
+    @DisplayName("시도 횟수 입력 성공: 경계값 1, 100")
+    void round_ok(String rawRound) {
+        new Round(rawRound);
     }
 
-    @Test
-    @DisplayName("시도 횟수 예외 입력: 범위 초과")
-    void round_exception_rangeViolation() {
-        Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new Round("-1"))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new Round("0"))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new Round("101"))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "101"})
+    @DisplayName("시도 횟수 입력 실패: 경계값 -1, 0, 101")
+    void round_exception_rangeViolation(String rawRound) {
+        assertThatThrownBy(() -> new Round(rawRound))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("시도 횟수 예외 입력: 숫자가 아닌 입력")
-    void round_exception_nonNumbers() {
-        Assertions.assertAll(
-            () -> assertThatThrownBy(() -> new Round("abc"))
-                .isInstanceOf(IllegalArgumentException.class),
-            () -> assertThatThrownBy(() -> new Round("10!"))
-                .isInstanceOf(IllegalArgumentException.class)
-        );
+    @ParameterizedTest
+    @ValueSource(strings = {"abc", "10!"})
+    @DisplayName("시도 횟수 입력 실패: 숫자가 아닌 입력")
+    void round_exception_nonNumbers(String rawRound) {
+        assertThatThrownBy(() -> new Round(rawRound))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
