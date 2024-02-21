@@ -8,6 +8,8 @@ import domain.validation.CarValidator;
 import domain.validation.RoundValidator;
 
 public class Converter {
+    private Converter() {
+    }
 
     public static List<Car> toCars(String rawCarNames) {
         List<Car> cars = new ArrayList<>();

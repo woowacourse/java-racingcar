@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 public class CarValidator {
+    private CarValidator() {
+    }
+
     private static final int MIN_CAR_LENGTH = 1;
     private static final int MAX_CAR_LENGTH = 100;
     private static final String NAME_RULE = "^[a-zA-Z]{1,5}$";
