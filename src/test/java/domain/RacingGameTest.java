@@ -64,18 +64,10 @@ class RacingGameTest {
     @Test
     @DisplayName("자동차 이동 성공")
     void playOneRound() {
-        RacingGame racingGame = new RacingGame("a,b,c,d", new AlwaysMoveStrategy());
+        RacingGame racingGame = new RacingGame("a,b,c,d", () -> true);
         List<Car> cars = racingGame.playOneRound();
         for (Car car : cars) {
             assertThat(car.getScore()).isEqualTo(1);
-        }
-    }
-
-    public static class AlwaysMoveStrategy implements MoveStrategy {
-
-        @Override
-        public boolean isMovable() {
-            return true;
         }
     }
 
