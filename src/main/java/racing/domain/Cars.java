@@ -1,18 +1,19 @@
 package racing.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import racing.util.MovableStrategy;
+import racing.util.RandomMoveMaker;
 
 public class Cars {
+
+    private static final String DUPLICATE_CAR_NAME = "자동차 이름이 중복되었습니다.";
 
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         validate(cars);
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
     }
 
     private void validate(List<Car> cars) {
@@ -20,34 +21,24 @@ public class Cars {
     }
 
     private void validateDuplicate(List<Car> cars) {
-        Map<String, Long> nameCounts = cars.stream()
-                .collect(Collectors.groupingBy(Car::getName, Collectors.counting()));
-        boolean hasDuplicates = nameCounts.values().stream().anyMatch(count -> count > 1);
-        if (hasDuplicates) {
-            throw new IllegalArgumentException("자동차 이름이 중복되었습니다.");
+        int count = (int) cars.stream().distinct().count();
+        if (count != cars.size()) {
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME);
         }
     }
 
-    public void moveAll(MovableStrategy movableStrategy) {
+    public void moveAll(RandomMoveMaker randomMoveMaker) {
         cars.stream()
-                .filter(car -> movableStrategy.isMove())
+                .filter(car -> randomMoveMaker.isMove())
                 .forEach(Car::move);
     }
 
     public List<Car> findWinners() {
-        reverseSort();
-        return findCarsWithSamePosition(cars.get(0));
-    }
-
-    public void reverseSort() {
         Collections.sort(cars);
-    }
-
-    public List<Car> findCarsWithSamePosition(Car target) {
-        return cars.stream().filter((car) -> car.isSame(target)).toList();
+        return cars.stream().filter(car -> car.isSame(cars.get(0))).toList();
     }
 
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 }

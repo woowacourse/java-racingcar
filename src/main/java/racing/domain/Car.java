@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Car implements Comparable<Car> {
 
+    private static final String CAR_NAME_LENGTH_EXCEEDED = "자동차 이름 길이가 초과되었습니다.";
     private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
@@ -16,12 +17,12 @@ public class Car implements Comparable<Car> {
     }
 
     private void validate(String name) {
-        validateSize(name);
+        validateLength(name);
     }
 
-    private void validateSize(String name) {
+    private void validateLength(String name) {
         if (name.length() > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw new IllegalArgumentException("자동차 이름 길이가 초과되었습니다.");
+            throw new IllegalArgumentException(CAR_NAME_LENGTH_EXCEEDED);
         }
     }
 
@@ -29,13 +30,13 @@ public class Car implements Comparable<Car> {
         this.position++;
     }
 
-    public boolean isSame(Car car) {
-        return this.position == car.position;
+    public boolean isSame(Car other) {
+        return this.position == other.position;
     }
 
     @Override
-    public int compareTo(Car otherCar) {
-        return otherCar.position - this.position;
+    public int compareTo(Car other) {
+        return other.position - this.position;
     }
 
     @Override
@@ -46,8 +47,13 @@ public class Car implements Comparable<Car> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Car car = (Car) o;
-        return Objects.equals(name, car.name);
+        Car other = (Car) o;
+        return Objects.equals(this.name, other.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String getName() {
