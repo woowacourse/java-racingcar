@@ -4,8 +4,8 @@ import domain.Car;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import validation.CarValidator;
-import validation.RoundValidator;
+import domain.validation.CarValidator;
+import domain.validation.RoundValidator;
 
 public class Converter {
 

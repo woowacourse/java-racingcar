@@ -1,4 +1,4 @@
-package validation;
+package domain.validation;
 
 public class RoundValidator {
     private static final int MIN_ROUND = 1;

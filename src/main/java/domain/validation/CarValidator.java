@@ -1,4 +1,4 @@
-package validation;
+package domain.validation;
 
 import java.util.HashSet;
 import java.util.List;
