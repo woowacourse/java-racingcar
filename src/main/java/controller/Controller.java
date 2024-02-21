@@ -2,15 +2,18 @@ package controller;
 
 import conversion.Converter;
 import domain.Car;
-import java.util.List;
-
 import domain.RacingGame;
-import domain.RandomMoveStrategy;
+import domain.movestrategy.RandomMoveStrategy;
 import view.InputView;
 import view.IterativeReader;
 import view.OutputView;
 
+import java.util.List;
+
 public class Controller {
+
+    private Controller() {
+    }
 
     public static void start() {
         List<Car> cars = IterativeReader.readUntilNoError(Controller::getCars);
