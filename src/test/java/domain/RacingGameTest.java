@@ -62,7 +62,7 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("자동차 이동 성공")
+    @DisplayName("성공: 자동차 이동")
     void playOneRound() {
         // given
         RacingGame racingGame = new RacingGame("a,b", () -> true);
@@ -74,6 +74,19 @@ class RacingGameTest {
         // then
         assertThat(gameRecord.get(0).getCars().get(0).getScore()).isEqualTo(1);
         assertThat(gameRecord.get(0).getCars().get(1).getScore()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("성공: 우승자 정상 판별")
+    void findWinners() {
+        RacingGame racingGame = new RacingGame("a,b", () -> true);
+
+        racingGame.playOneRound();
+
+        List<Car> winners = racingGame.findWinners();
+
+        assertThat(winners.get(0).getName()).isEqualTo("a");
+        assertThat(winners.get(1).getName()).isEqualTo("b");
     }
 
     @Test
