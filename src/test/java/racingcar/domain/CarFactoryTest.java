@@ -15,7 +15,7 @@ class CarFactoryTest {
     @DisplayName("이름이 주어지면, 자동차를 올바르게 생성한다.")
     void createCarTest(String input) {
         // given
-        CarFactory carFactory = new CarFactory((s, e) -> 1);
+        CarFactory carFactory = new CarFactory(() -> 1);
         List<String> carNames = Arrays.stream(input.split(",")).toList();
 
         // when

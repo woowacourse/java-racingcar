@@ -23,14 +23,14 @@ public class Circuit {
     public List<CarStatus> getWinners(List<CarStatus> result) {
         int maxPosition = getMaxPosition(result);
         return result.stream()
-                .filter(carStatus -> carStatus.position() == maxPosition)
+                .filter(carStatus -> carStatus.isPositionAt(maxPosition))
                 .toList();
     }
 
     private int getMaxPosition(List<CarStatus> result) {
         return result.stream()
-                .mapToInt(CarStatus::position)
-                .max()
+                .max(CarStatus::compareTo)
+                .map(CarStatus::position)
                 .orElse(0);
     }
 }
