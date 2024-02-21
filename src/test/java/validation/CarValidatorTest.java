@@ -2,6 +2,8 @@ package validation;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,34 +13,28 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CarValidatorTest {
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "bb", "cCc", "DdddD"})
     @DisplayName("차 이름 테스트: 정상 입력")
-    void validateCarNames_validInputs() {
-        // given
-        List<String> names = new ArrayList<>(List.of("A", "bb", "cCc", "DdddD"));
+    void validateCarNames_validInputs(String validName) {
+        assertDoesNotThrow(() -> CarValidator.validateCarNames(List.of(validName)));
+    }
 
-        // when - then
-        assertDoesNotThrow(() -> CarValidator.validateCarNames(names));
+    @ParameterizedTest
+    @ValueSource(strings = {"abcdef", "", "ab!"})
+    @DisplayName("차 이름 테스트: 예외 입력(1) - 명명 규칙 위반")
+    void validateCarNames_invalidInputs(String invalidName) {
+        List<String> invalidNames = new ArrayList<>(List.of(invalidName));
+        assertThrows(IllegalArgumentException.class,
+                () -> CarValidator.validateCarNames(invalidNames));
     }
 
     @Test
-    @DisplayName("차 이름 테스트: 예외 입력(1) - 명명 규칙 위반")
-    void validateCarNames_invalidInputs() {
-        // given
-        List<String> nameTooLong = new ArrayList<>(List.of("abcdef"));
-        List<String> nameBlank = new ArrayList<>(List.of(""));
-        List<String> nameWithIllegalLetter = new ArrayList<>(List.of("ab!"));
-        List<String> nameWithDuplication = new ArrayList<>(List.of("aa,bb,bb,cc"));
-
-        // when - then
+    @DisplayName("차 이름 테스트 : 예외 입력(2) - 중복 이름이 존재할 때")
+    void validateCarNames_duplicateNames() {
+        List<String> duplicateNames = new ArrayList<>(List.of("aa", "bb", "aa"));
         assertThrows(IllegalArgumentException.class,
-                () -> CarValidator.validateCarNames(nameTooLong));
-        assertThrows(IllegalArgumentException.class,
-                () -> CarValidator.validateCarNames(nameBlank));
-        assertThrows(IllegalArgumentException.class,
-                () -> CarValidator.validateCarNames(nameWithIllegalLetter));
-        assertThrows(IllegalArgumentException.class,
-                () -> CarValidator.validateCarNames(nameWithDuplication));
+                () -> CarValidator.validateCarNames(duplicateNames));
     }
 
     @Test
