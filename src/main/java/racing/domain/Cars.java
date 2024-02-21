@@ -3,7 +3,7 @@ package racing.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import racing.util.MovableStrategy;
+import racing.util.RandomMoveMaker;
 
 public class Cars {
 
@@ -27,9 +27,9 @@ public class Cars {
         }
     }
 
-    public void moveAll(MovableStrategy movableStrategy) {
+    public void moveAll(RandomMoveMaker randomMoveMaker) {
         cars.stream()
-                .filter(car -> movableStrategy.isMove())
+                .filter(car -> randomMoveMaker.isMove())
                 .forEach(Car::move);
     }
 

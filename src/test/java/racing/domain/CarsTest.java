@@ -6,9 +6,11 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing.util.RandomMoveMaker;
 
 class CarsTest {
 
@@ -38,9 +40,15 @@ class CarsTest {
     void moveAllByMovableNumber() {
         // given
         Cars cars = new Cars(List.of(new Car("pobi"), new Car("crong")));
+        RandomMoveMaker randomMoveMaker = new RandomMoveMaker(new Random() {
+            @Override
+            public int nextInt(int bound) {
+                return 4;
+            }
+        });
 
         // when
-        cars.moveAll(() -> true);
+        cars.moveAll(randomMoveMaker);
 
         // then
         List<Integer> positions = cars.getCars().stream().map(Car::getPosition).collect(Collectors.toList());
@@ -52,9 +60,15 @@ class CarsTest {
     void moveAllByImmovableNumber() {
         // given
         Cars cars = new Cars(List.of(new Car("pobi"), new Car("crong")));
+        RandomMoveMaker randomMoveMaker = new RandomMoveMaker(new Random() {
+            @Override
+            public int nextInt(int bound) {
+                return 3;
+            }
+        });
 
         // when
-        cars.moveAll(() -> false);
+        cars.moveAll(randomMoveMaker);
 
         // then
         List<Integer> positions = cars.getCars().stream().map(Car::getPosition).collect(Collectors.toList());
