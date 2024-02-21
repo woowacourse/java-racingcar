@@ -13,6 +13,7 @@ class TryCountTest {
     @Test
     @DisplayName("시도 횟수가 올바르면 TryCount 객체 생성")
     void createTryCount() {
+        // when & then
         assertThatCode(() -> new TryCount(5)).doesNotThrowAnyException();
     }
 
@@ -20,6 +21,7 @@ class TryCountTest {
     @ValueSource(ints = {0, -1})
     @DisplayName("시도 횟수가 0 이하의 숫자인 경우 예외")
     void createTryCountWithUnderZero(int invalidCount) {
+        // when & then
         assertThatThrownBy(() -> new TryCount(invalidCount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
