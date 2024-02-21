@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -18,6 +19,16 @@ public class RacingCarsTest {
                 new Car("neo"));
 
         assertThat(racingCars.getAllCars()).containsExactlyElementsOf(expected);
+    }
+
+    @Test
+    @DisplayName("자동차의 이름에 중복이 존재하는 경우는 예외를 발생시킨다.")
+    void cars_generation_by_has_duplication() {
+        List<String> carNames = List.of("weve", "weve", "pobi", "neo");
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new RacingCars(carNames);
+        });
     }
 
     @Test

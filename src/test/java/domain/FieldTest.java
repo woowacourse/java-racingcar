@@ -44,8 +44,8 @@ public class FieldTest {
 }
 
 class FixedNumberGenerator implements NumberGenerator {
-    private static List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
-    private static Integer index = 0;
+    private List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    private Integer index = 0;
 
     @Override
     public int getNumber() {
