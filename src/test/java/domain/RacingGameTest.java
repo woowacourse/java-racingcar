@@ -80,7 +80,8 @@ class RacingGameTest {
     @DisplayName("자동차 이름 입력 성공: 경계값 100대")
     void carNames_ok_boundaryTest_hundredCases() {
         String testCase = makeTestNames(100);
-        new RacingGame(testCase, moveStrategy);
+        assertThatCode(() -> new RacingGame(testCase, moveStrategy))
+            .doesNotThrowAnyException();
     }
 
     @Test
