@@ -6,12 +6,10 @@ import java.util.List;
 public class RacingGame {
 
     public static List<String> getWinnerNames(List<Car> cars) {
-
-        Collections.sort(cars);
-        Car maxScoreCar = cars.get(0);
+        Car maxScoreCar = Collections.max(cars);
 
         return cars.stream()
-                .filter(car -> car.compareTo(maxScoreCar) == 0)
+                .filter(car -> car.isSame(maxScoreCar))
                 .map(Car::getName)
                 .toList();
     }
