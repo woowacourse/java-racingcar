@@ -1,5 +1,6 @@
 package racing.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import racing.util.MovableStrategy;
@@ -12,7 +13,7 @@ public class Cars {
 
     public Cars(List<Car> cars) {
         validate(cars);
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
     }
 
     private void validate(List<Car> cars) {
@@ -38,6 +39,6 @@ public class Cars {
     }
 
     public List<Car> getCars() {
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 }
