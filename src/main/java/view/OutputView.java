@@ -1,12 +1,14 @@
 package view;
 
 import domain.Car;
-import java.util.Arrays;
+import domain.Cars;
 import java.util.List;
 
 public class OutputView {
-    public static void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
+    private static final String RESULT_DELIMITER = " : ";
+    private static final String GO_COUNT = "-";
+
+    public OutputView() {
     }
 
     public static void printHeadLine() {
@@ -14,22 +16,14 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    // TODO : 대쉬 반복 ..잘해보기
-    public static void printResult(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(car.getCarName() + " : " + repeatDash(car.getLocation()));
+    public static void printResult(Cars cars) {
+        for (Car car : cars.getCars()) {
+            System.out.println(String.join(RESULT_DELIMITER, car.getCarName(), GO_COUNT.repeat(car.getLocation())));
         }
         System.out.println();
     }
 
-    private static StringBuilder repeatDash(int repeatCount) {
-        StringBuilder dash = new StringBuilder();
-        dash.append("-".repeat(Math.max(0, repeatCount)));
-        return dash;
-    }
-
-    public static void printWinners(List<String> winners) {
-        winners.removeAll(Arrays.asList("", null));
+    public void printWinners(List<String> winners) {
         for (String name : winners) {
             System.out.print(name);
             printComma(winners, name);
@@ -37,7 +31,7 @@ public class OutputView {
         System.out.println("가 최종 우승했습니다.");
     }
 
-    private static void printComma(List<String> winners, String name) {
+    private void printComma(List<String> winners, String name) {
         if (winners.indexOf(name) != winners.size() - 1) {
             System.out.print(", ");
         }

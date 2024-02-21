@@ -20,4 +20,12 @@ class CarTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("빈 이름");
     }
+
+    @DisplayName("자동차 객체 생성 시 null 값이 들어오는 경우 예외가 발생한다")
+    @Test
+    void nullTest() {
+        Assertions.assertThatThrownBy(() -> new Car(null))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessageContaining("null");
+    }
 }

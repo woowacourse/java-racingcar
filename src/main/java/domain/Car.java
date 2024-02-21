@@ -1,6 +1,9 @@
 package domain;
 
+import java.util.Objects;
+
 public class Car {
+    public static final int MINIMUM_LENGTH = 5;
     public String name;
     public int location;
 
@@ -11,19 +14,14 @@ public class Car {
     }
 
     private void validator(String name) {
-        validateSize(name);
-        validateBlankName(name);
-    }
+        Objects.requireNonNull(name, ErrorMessage.NULL_NAME.getMessage());
 
-    private void validateSize(String name) {
-        if (!(name.length() <= 5)) {
-            throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다");
+        if (name.length() > MINIMUM_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.LENGTH_EXCEEDED.getMessage());
         }
-    }
 
-    private void validateBlankName(String name) {
         if (name.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 빈 이름은 사용할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_NAME.getMessage());
         }
     }
 
@@ -33,6 +31,23 @@ public class Car {
 
     public void incLocation() {
         location += 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String getCarName() {
