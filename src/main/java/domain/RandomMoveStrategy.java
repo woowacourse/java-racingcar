@@ -1,6 +1,6 @@
 package domain;
 
-public class RandomMoveStrategy implements MoveStrategy{
+public class RandomMoveStrategy implements MoveStrategy {
     private static final int RANDOM_NUMBER_RANGE = 10;
     private static final int MOVE_BOUNDARY_NUMBER = 4;
 
